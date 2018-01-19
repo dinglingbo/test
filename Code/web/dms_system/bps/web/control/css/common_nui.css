@@ -1,0 +1,57 @@
+/*
+* nui-bps-fetchmessagelist style
+*/
+.nui-bps-fetchmsg-head {
+	width:100%;
+	height:30px;
+	border-bottom:solid 1px rgb(200,197,191);
+	font:9pt 宋体;
+}
+.nui-bps-fetchmsg-row-height {
+	height:40px;
+	border-bottom:0px
+}
+.nui-bps-fetchmsg-row-even {
+	background:rgb(243,242,241);
+}
+
+.nui-bps-fetchmsg-row-odd {
+	background:rgb(255,255,255)
+}
+
+.mini-textboxlist ul {
+    padding: 5px 2px 0;
+}
+.search .mini-textbox-input {
+	background:url('../images/selector/search.gif') no-repeat right center;
+}
+
+/*
+ *	grayBtn && redBtn
+ */
+ 
+body a.redBtn:hover{
+}
+body a.redBtn{
+}
+
+
+body a.grayBtn{
+}
+
+body a.grayBtn:hover{
+}
+
+body a.dgBtn:hover{
+}
+body a.dgBtn{
+	
+}
+
+.bottomBtnDiv{
+	width:97%;
+	margin:0 auto;
+	text-align:center;
+	position:fixed;
+	bottom:10px;
+}

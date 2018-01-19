@@ -1,0 +1,156 @@
+
+input[disabled] {
+    border: 1px solid #CCCCCC;
+}
+div.flash {
+    border-color: #D9E4FF;
+    margin: 10px 5px;
+}
+.progressWrapper {
+    overflow: hidden;
+}
+.progressContainer {
+    background-color: #F7F7F7;
+    border: 1px solid #E8E8E8;
+    margin: 5px;
+    overflow: hidden;
+    padding: 4px;
+}
+.message {
+    background-color: #FFFFCC;
+    border: 1px solid #FFDD99;
+    margin: 1em 0;
+    overflow: hidden;
+    padding: 10px 20px;
+}
+.red {
+    background-color: #FFEBEB;
+    border: 1px solid #B50000;
+}
+.green {
+    background-color: #EBFFEB;
+    border: 1px solid #DDF0DD;
+}
+.blue {
+    background-color: #F0F5FF;
+    border: 1px solid #CEE2F2;
+}
+.progressName {
+    color: #555555;
+    font-size: 8pt;
+    font-weight: 700;
+    height: 18px;
+    overflow: hidden;
+    text-align: left;
+    white-space: nowrap;
+    width: 323px;
+}
+.progressBarInProgress, .progressBarComplete, .progressBarError {
+    background-color: blue;
+    font-size: 0;
+    height: 2px;
+    margin-top: 2px;
+    width: 0;
+}
+.progressBarComplete {
+    background-color: green;
+    visibility: hidden;
+    width: 100%;
+}
+.progressBarError {
+    background-color: red;
+    visibility: hidden;
+    width: 100%;
+}
+.progressBarStatus {
+    font-family: Arial;
+    font-size: 7pt;
+    margin-top: 2px;
+    text-align: left;
+    white-space: nowrap;
+    width: 337px;
+}
+a.progressCancel {
+    background-image: url("../images/cancelbutton.gif");
+    background-position: -14px 0;
+    background-repeat: no-repeat;
+    display: block;
+    float: right;
+    font-size: 0;
+    height: 14px;
+    width: 14px;
+}
+a.progressCancel:hover {
+    background-position: 0 0;
+}
+.swfupload {
+    vertical-align: top;
+}
+.swfupload-files{
+	padding:0px;
+	margin:5px 0px;
+}
+.swfupload-files a{
+	text-decoration: none;
+}
+.swfupload-files li{
+	display: inline-block;
+    float: left;
+    list-style-type: none;
+    margin:2px;
+}
+.swfupload-cancelbutton{
+	width:100px;height: 25px;
+	margin-left:10px;
+}
+.swfupload-img{
+	border:solid 1px #ccc;
+	position:relative;
+	margin:2px;
+	padding:2px;
+	float:left;
+	text-align:center;
+}
+
+.swfupload-img .swfupload-file-del{
+	height:14px;
+	width:14px;
+	position:absolute;
+	top:4px;
+	right:4px;
+    background-image: url("../images/cancelbutton.gif");
+    background-position: -14px 0;
+    background-repeat: no-repeat;
+	display:block;
+	cursor:pointer;
+}
+.swfupload-img img{
+	height:100px;
+}
+.swfupload-file{
+	position: relative;
+	padding: 0 6px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	border-radius: 9px;
+	border: 1px solid #CAD8F3;
+	background: #DEE7F8;
+	cursor: default;
+	padding-right: 15px;
+	height: 16px;
+	line-height: 16px;
+	margin-bottom: 2px;
+	white-space: nowrap;
+	list-style:none;
+}
+.swfupload-file .swfupload-file-del{
+	position: absolute;
+	right: 4px;
+	top: 5px;
+	display: block;
+	width: 7px;
+	height: 7px;
+	font-size: 1px;
+	background: url(../images/close.gif);
+	cursor: pointer;
+}

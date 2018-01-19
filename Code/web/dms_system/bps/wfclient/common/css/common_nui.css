@@ -1,0 +1,129 @@
+/*
+ * asLabel
+ */
+ 
+.mini-required .mini-textbox-border,
+.mini-required .mini-buttonedit-border
+{    
+}
+ 
+ .body-font{
+   font-family: 微软雅黑;
+}
+ 
+.mini-modal{
+ }
+.bpsDatagrid .mini-grid-topRightCell{
+}
+.asLabel .mini-buttonedit-button,
+.asLabel .mini-textboxlist-close {
+	display: none;
+}
+.asLabel .mini-textboxlist-item {
+	padding-right: 8px;
+}
+.asLabel .mini-textbox-border,
+.asLabel .mini-textbox-input,
+.asLabel .mini-buttonedit-border,
+.asLabel .mini-buttonedit-input,
+.asLabel .mini-textboxlist-border {
+    border:0;background:none;cursor:default;
+}  
+.asLabel .mini-buttonedit-button {
+    display:none;
+}
+.nui-form-label {
+}
+.nui-form-table
+{
+}
+.nui-form-table th
+{
+}
+.nui-form-table td
+{
+}
+.nui-form-table label
+{
+}
+.nui-form-table tr+tr{
+}
+.nui-form-table tr.odd {
+}
+
+/*
+ *	grayBtn && redBtn
+ */
+ 
+body a.redBtn:hover{
+}
+body a.redBtn{
+}
+
+
+body a.grayBtn{
+}
+
+body a.grayBtn:hover{
+}
+
+body a.dgBtn:hover{
+}
+body a.dgBtn{
+	
+}
+/*
+ *datagrid
+ */
+.bpsDatagrid .mini-grid-table{
+/*  height: 100%; */
+}
+.bpsDatagrid .mini-grid-row,
+.bpsDatagrid .mini-grid-headerRow{
+}
+
+.bpsDatagrid .mini-grid-rows-view{
+}
+.bpsDatagrid .mini-grid-headerCell-inner{
+}
+.bpsDatagrid .mini-grid-headerCell-inner input{
+}
+.bpsDatagrid .mini-grid-cell-inner{
+}
+.bpsDatagrid .mini-grid-cell{
+}
+.bpsDatagrid .mini-grid-cell,
+.bpsDatagrid .mini-grid-filterCell,
+.bpsDatagrid .mini-grid-headerCell,
+.bpsDatagrid .mini-grid-summaryCell{
+}
+.bpsDatagrid tr .mini-grid-column-splitter{
+}
+.bpsDatagrid .mini-grid-headerCell-outer{
+}
+.bpsDatagrid .mini-grid-headerCell{
+}
+.bpsDatagrid .mini-grid-cell,.bpsDatagrid .mini-grid-headerCell,.bpsDatagrid .mini-grid-filterCell,.bpsDatagrid .mini-grid-summaryCell
+{     
+}
+
+
+.bpsDatagrid .mini-grid-row-alt
+{
+}
+.bpsDatagrid .mini-grid-border{
+}
+
+.bpsDatagrid .mini-grid-rows-view{
+}
+
+.bottomBtnDiv{
+	width:97%;
+	margin:0 auto;
+	text-align:center;
+	position:fixed;
+	bottom:10px;
+}
+
+.textof_clip .mini-grid-cell-nowrap{
+}

@@ -1,0 +1,52 @@
+.pager{
+	margin-top: 15px;
+	height:30px;
+	width:100%
+}
+.pagerControl{
+	float: right;
+	width: 500px;
+	height: 32px;
+}
+.button{
+	border: 1px solid #ddd;
+	text-align: center;
+	font-family: 兰亭黑,微软雅黑,黑体 ;
+	font-size: 12px;
+	float: right;
+	background-color: #dbdbdb;
+	height: 32px;
+	line-height: 32px;
+	vertical-align: center;
+	color:#333;
+}
+.button:hover{
+	cursor:pointer;
+}
+
+.btnDisable{
+	background-color: #fcfcfc;
+	color:#cccccc;
+}
+.btnEnable{
+	background-color: #dbdbdb;
+	color:#333;
+}
+.ctrl{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.number{
+	width: 40px;
+}
+.pagerText{
+	float: left;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-family: 兰亭黑,微软雅黑,黑体 ;
+}
+.currentPage{
+	background-color: #424242;
+	color: #f5f5f5;
+}

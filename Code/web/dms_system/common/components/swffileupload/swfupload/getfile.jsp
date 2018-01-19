@@ -1,0 +1,1 @@
+<%@page pageEncoding="GBK"%><%@include file="/common/common.jsp"%><h:outputFile contentType="@fileObject/contentType" property="fileObject/fileData" outputFileName="@fileObject/clientFileName"/><%out.clear();out = pageContext.pushBody();%>

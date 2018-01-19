@@ -1,0 +1,8 @@
+#
+#Fri Jan 19 18:45:06 CST 2018
+uiType=NUI
+project.type=EOS
+componentType=com.primeton.component.module
+author=Guine
+description=dms_workspace_api
+componentVersion=7.0.0.0

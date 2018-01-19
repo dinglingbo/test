@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+        <node label="Process Definition" data="CTX100" isBranch="true" desc="Process definition">
+                <node label="Process Definition ID" data="CTX101" desc="Process definition unique identifier" />
+                <node label="Process Definition Name" data="CTX102" desc="Process definition name" />
+                <node label="Process Definition Display Name" data="CTX103" desc="Process definition display name" />
+                <node label="Process Definition Owner" data="CTX104" desc="Creator of process definition" />
+                <node label="Process Definition Version" data="CTX105" desc="Process definition version, one process probably has multiple versions" />
+                <node label="Process Definition Current State" data="CTX106" desc="Process definition current state, 1 means unpublished, 3 means published" />
+                <node label="Is Process Definition Latest Version" data="CTX107" desc="Whether current process definition is latest versoin in the version tree, 1 means latest version, 0 means not" />
+                <node label="Process Definition Create Time" data="CTX108" desc="Time that process definition is submitted for the first time" />
+                <node label="Process Definition Deployer" data="CTX109" desc="User who submit process definition for the first time, if submitted by Studio, this deployer is inner system user: internal" />
+                <node label="Process Definition Package ID" data="CTX110" desc="Package unique identifier of process definition, default value is BPS_DEFAULT" />
+                <node label="Process Definition Package Name" data="CTX111" desc="Package name of process definition" />
+                <node label="Process Definition Update Time" data="CTX112" desc="Time that process definition is submitted for the last time" />
+        </node>
+        <node label="Previous Activity Definition  " data="CTX500" isBranch="true" desc="Startpoint activity definition of current wire">
+                <node label="Previous Activity Definition ID" data="CTX501" desc="Unique identifier of startpoint activity definition of current wire" />
+                <node label="Previous Activity Definition Name" data="CTX502" desc="Name of startpoint activity definition of current wire" />
+                <node label="Previous Activity Definition Participant Type" data="CTX504" desc="Participant type of startpoint activity definition of current wire" />
+                <node label="Previous Activity Aggregation Mode" data="CTX505" desc="Aggregation mode of startpoint activity definition of current wire" />
+                <node label="Previous Activity Branch Mode" data="CTX506" desc="Branch mode of startpoint activity definition of current wire" />
+                <node label="Previous Activity Definition Priority" data="CTX507" desc="Activity priority of startpoint activity definition of current wire" />
+                <node label="Previous Activity Type" data="CTX508" desc="Activity type of startpoint activity definition of current wire" />
+                <node label="Previous Activity URL Type" data="CTX509" desc="URL type that defined in activity definition, when startpoint activity of current wire is manual activity" />
+                <node label="Previous Activity URL" data="CTX510" desc="URL that defined in activity definition, when startpoint activity of current wire is manual activity" />
+                <node label="Is Previous Activity Allow Entrusted" data="CTX511" desc="Whether startpoint activity of current wire allows entrusted when it is manual activity, return true if it allows, return false if not" />
+                <node label="Is Previous Activity Multi-WorkItem" data="CTX512" desc="Whether startpoint activity of current wire is defined multi-workitem when it is manual activity, return true if it is, return false if not" />
+        </node>
+        <node label="Next Activity Definition " data="CTX600" isBranch="true" desc="Endpoint activity definition of current wire">
+                <node label="Next Activity Definition ID" data="CTX601" desc="Unique identifier of endpoint activity definition of current wire" />
+                <node label="Next Activity Definition Name" data="CTX602" desc="Name of endpoint activity definition of current wire" />
+                <node label="Next Activity Definition Participant Type" data="CTX604" desc="Participant type of endpoint activity definition of current wire" />
+                <node label="Next Activity Aggregation Mode" data="CTX605" desc="Aggregation mode of endpoint activity definition of current wire" />
+                <node label="Next Activity Branch Mode" data="CTX606" desc="Branch mode of endpoint activity definition of current wire" />
+                <node label="Next Activity Definition Priority" data="CTX607" desc="Activity priority of endpoint activity definition of current wire" />
+                <node label="Next Activity Type" data="CTX608" desc="Activity type of endpoint activity definition of current wire" />
+                <node label="Next Activity URL Type" data="CTX609" desc="URL type that defined in activity definition, when endpoint activity of current wire is manual activity" />
+                <node label="Next Activity URL" data="CTX610" desc="URL that defined in activity definition, when endpoint activity of current wire is manual activity" />
+                <node label="Is Next Activity Allow Entrusted" data="CTX611" desc="Whether endpoint activity of current wire allows entrusted when it is manual activity, return true if it allows, return false if not" />
+                <node label="Is Next Activity Multi-WorkItem" data="CTX612" desc="Whether endpoint activity of current wire is defined multi-workitem when it is manual activity, return true if it is, return false if not" />
+        </node>
+        <node label="Process Instance" data="CTX300" isBranch="true" desc="Process instance of referenced rule">
+                <node label="Process Instance ID" data="CTX301" desc="Unique identifier of current process instance" />
+                <node label="Process Instance Description" data="CTX302" desc="Description of current process instance" />
+                <node label="Process Instance Name" data="CTX303" desc="Name of current process instance" />
+                <node label="Process Instance Create Time" data="CTX304" desc="Create time of current process instance" />
+                <node label="Process Instance Creator" data="CTX305" desc="Creator of current process instance" />
+                <node label="Process Instance Current State" data="CTX306" desc="Current state of process instance, please refer to help document about process instance state" />
+                <node label="Process Instance End Time" data="CTX307" desc="End time of current process instance" />
+                <node label="Is Process Instance Timeout" data="CTX308" desc="Whether current process instance is timeout, N means not timeout, Y means already timeout"/>
+                <node label="Process Instance Time Limit Number" data="CTX309" desc="The total time that supposed to cost from process instance start to end as defined, return value format is: xx minute" />
+                <node label="Process Instance Time Limit Description" data="CTX310" desc="Description of the total time that supposed to cost from process instance start to end as defined, return value format is: XX day XX hour XX minute" />
+                <node label="Process Instance Starter" data="CTX311" desc="Starter of current process instance" />
+                <node label="Parent Activity Instance ID" data="CTX312" desc="The activity instance ID of parent process instance that calls current process instance, if current process instance is sub-process instance" />
+                <node label="Parent Process Instance ID" data="CTX313" desc="The parent process instance ID that calls current process instance, if current process instance is a sub-process instance" />
+                <!--node label="Process Instance Prioriy" data="CTX314" desc="" /-->
+                <!--node label="Related Data" data="CTX315" desc="" /-->
+                <node label="Process Instance Reminder Time" data="CTX316" desc="Reminder time of current process instance before timeout, format is yyyyMMDDHHmmss " />
+                <node label="Process Instance Start Time" data="CTX317" desc="Start time of current process instance" />
+                <node label="Process Instance Exceeded Time" data="CTX318" desc="The number of minutes that current process instance has exceeded the time limit, this value is 0 when it is not timeout" />
+                <node label="Process Instance Exceeded Time Description" data="CTX319" desc="Description of the time that current process instance has exceeded the time limit, format is: XX day XX hour XX minute" />
+                <!--node label="Ownship Update Editon" data="CTX320" desc="" /-->
+        </node>
+        <!--node label="Activity Instance" data="CTX400" isBranch="true" desc="">
+                <node label="Activity Instance ID" data="CTX401" desc="" />
+                <node label="Activity Instance Description" data="CTX402" desc="" />
+                <node label="Activity Instance Name" data="CTX403" desc="" />
+                <node label="Activity Instance Create Time" data="CTX404" desc="" />
+                <node label="Activity Instance Current State" data="CTX405" desc="" />
+                <node label="Activity Instance End Time" data="CTX406" desc="" />
+                <node label="Activity Instance Start Time" data="CTX407" desc="" />
+                <node label="Activity Instance Priority" data="CTX408" desc="" />
+                <node label="Roll Back Sign" data="CTX409" desc="" />
+                <node label="ID Sub-Process Instance ID" data="CTX410" desc="" />
+        </node-->
+</root>

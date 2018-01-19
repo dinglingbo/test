@@ -1,0 +1,44 @@
+<activities>
+    <activity>
+      <id>1</id>
+      <label>Start</label>
+      <type>start</type>
+      <editPage></editPage>
+    </activity>
+    <activity>
+      <id>2</id>
+      <label>Manual Start</label>
+      <type>manualstart</type>
+      <editPage></editPage>
+    </activity>
+    <activity>
+      <id>3</id>
+      <label>Manual Activity</label>
+      <type>manual</type>
+      <editPage></editPage>
+    </activity>
+    <activity>
+      <id>4</id>
+      <label>Router Activity</label>
+      <type>route</type>
+      <editPage></editPage>
+    </activity>
+    <activity>
+      <id>5</id>
+      <label>Sub-Process Activity</label>
+      <type>subflow</type>
+      <editPage></editPage>
+    </activity>
+    <activity>
+      <id>6</id>
+      <label>Auto Activity</label>
+      <type>toolapp</type>
+      <editPage></editPage>
+    </activity>
+    <activity>
+      <id>7</id>
+      <label>End</label>
+      <type>finish</type>
+      <editPage></editPage>
+    </activity>
+</activities>

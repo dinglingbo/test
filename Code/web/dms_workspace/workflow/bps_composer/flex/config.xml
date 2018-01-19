@@ -1,0 +1,115 @@
+﻿<root>
+	<server>
+		<name>192.168.111.61</name>
+		<port>8080</port>
+	</server>
+	<context_root>/workspace</context_root>
+	<business>
+		<!-- 默认参数id,type -->
+		<operator name="getChildren">
+			<url></url>
+		</operator>
+		<operator name="getCatlogById">
+			<url>com.primeton.bps.flex.comp4flex.getCatlogById</url>
+		</operator>
+		<operator name="getResourceByCatlogId">
+			<url>com.primeton.bps.flex.comp4flex.getResourceByCatlogId</url>
+		</operator>
+		<operator name="getBusiServicesByNames">
+			<url>com.primeton.bps.flex.comp4flex.getBizOptsByNames</url>
+		</operator>
+		<operator name="getBusiVarsByNames">
+			<url>com.primeton.bps.flex.comp4flex.getBizVarsByNames</url>
+		</operator>
+		<operator name="getCalendars">
+			<url>com.primeton.bps.flex.comp4flex.getCalendars</url>
+		</operator>
+		<operator name="getBizVariablesByDefID">
+			<url>com.primeton.bps.flex.comp4flex.getBizVarsByProcessDefID</url>
+		</operator>
+		<operator name="getParticipantRulesByDefID">
+			<url>com.primeton.bps.flex.comp4flex.getParticipantRulesByDefID</url>
+		</operator>
+		<operator name="getBranchRulesByDefID">
+			<url>com.primeton.bps.flex.comp4flex.getParticipantRulesByDefID</url>
+		</operator>
+		<operator name="saveHumanTask">
+			<url>com.primeton.bps.flex.comp4flex.saveHumanTask</url>
+		</operator>
+		<operator name="saveBizOperation">
+			<url>com.primeton.bps.flex.comp4flex.saveBizOperation</url>
+		</operator>
+		<operator name="saveRule">
+			<url>com.primeton.bps.flex.comp4flex.saveRule</url>
+		</operator>
+		<operator name="getRuleByID">
+			<url>com.primeton.bps.flex.comp4flex.getRuleByID</url>
+		</operator>
+		<operator name="getCalendarDetailsByMonth">
+			<url>com.primeton.bps.flex.comp4flex.queryCalendarDetailsByMonth</url>
+		</operator>
+		<operator name="saveCalendarDetails">
+			<url>com.primeton.bps.flex.comp4flex.saveCalendarDetails</url>
+		</operator>
+		<operator name="getUseableBizResourcesByCurCID">
+			<url>com.primeton.bps.flex.comp4flex.getUseableBizResourcesByCurCID</url>
+		</operator>
+		<operator name="saveBizResourceBatch">
+			<url>com.primeton.bps.flex.comp4flex.saveBizResourceBatch</url>
+		</operator>
+		<operator name="validateRule">
+			<url>com.primeton.bps.flex.comp4flex.validateRule</url>
+		</operator>
+		<operator name="saveBizVar">
+			<url>com.primeton.bps.flex.comp4flex.saveBizVar</url>
+		</operator>
+		<operator name="getProcessExtendInfo">
+			<url>com.primeton.bps.flex.comp4flex.getProcessExtendInfo</url>
+		</operator>
+		<operator name="getActivityExtendInfo">
+			<url>com.primeton.bps.flex.comp4flex.getActivityExtendInfo</url>
+		</operator>
+		<operator name="getBizOptByID">
+			<url>com.primeton.bps.flex.comp4flex.getBizOptByID</url>
+		</operator>
+		<operator name="getBusiPackInfoByBusiCatalogID">
+			<url>com.primeton.bps.flex.comp4flex.getBusiPackInfoByBusiCatalogID</url>
+		</operator>
+		<operator name="getFormTemplateList">
+			<url>com.primeton.bps.flex.comp4flex.getFormTemplateList</url>
+		</operator>
+		<operator name="getSubNodesByCatlogIdWithPerm">
+			<url>com.primeton.bps.flex.comp4flex.getSubNodesByCatlogIdWithPerm</url>
+		</operator>
+	</business>
+	<process>
+		<operator name="getProcessString">
+			<url>com.primeton.bps.flex.comp4flex.getProcessStringByDefId</url>
+		</operator>
+		<operator name="submitProcess">
+			<url>com.primeton.bps.flex.comp4flex.submitProcess</url>
+		</operator>
+		<operator name="validateProcess">
+			<url>com.primeton.bps.flex.comp4flex.validateProcess</url>
+		</operator>
+		<operator name="getProcessesByDefID">
+			<url>com.primeton.bps.flex.comp4flex.getProcessesByDefID</url>
+		</operator>
+		<operator name="queryProcessChNameByName">
+			<url>com.primeton.bps.flex.comp4flex.queryProcessChNameByName</url>
+		</operator>
+	</process>
+	<omservice>
+		<operator name="getChildParticipants">
+			<url>com.primeton.bps.flex.comp4flex.getChildParticipants</url>
+		</operator>
+		<operator name="getParticipantTypes">
+			<url>com.primeton.bps.flex.comp4flex.getParticipantTypes</url>
+		</operator>
+	</omservice>
+	<form>
+		<operator name="hasBizFormCustomizeModule">
+			<url>com.primeton.bps.flex.comp4flex.hasBizFormCustomizeModule</url>
+		</operator>
+	</form>
+</root>

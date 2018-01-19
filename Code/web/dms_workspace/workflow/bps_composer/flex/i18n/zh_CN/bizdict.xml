@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dicts>
+	<dictType dictTypeId="WFDICT_AutoInvokeType" dictTypeName="自动活动实现类型">
+		<dictEntry dictId="service-component" dictName="服务"/>
+		<dictEntry dictId="logic-flow" dictName="逻辑流"/>
+		<dictEntry dictId="pojo" dictName="Java方法"/>
+		<dictEntry dictId="business-logic" dictName="业务逻辑"/>
+		<dictEntry dictId="compute-logic" dictName="运算逻辑"/>
+		<dictEntry dictId="business-operation" dictName="业务操作"/>
+		<dictEntry dictId="bizlet" dictName="运算逻辑"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcessDefState" dictTypeName="流程定义状态">
+		<dictEntry dictId="1" dictName="未发布"/>
+		<dictEntry dictId="3" dictName="已发布"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_RemindType" dictTypeName="提醒方式" >
+		<dictEntry dictId="mail" dictName="mail"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_DelegateType" dictTypeName="代办方式" >
+		<dictEntry dictId="D" dictName="代办"/>
+		<dictEntry dictId="A" dictName="协办"/>
+		<dictEntry dictId="W" dictName="收回"/>
+		<dictEntry dictId="F" dictName="完成"/>
+		<dictEntry dictId="I" dictName="初始"/>
+		<dictEntry dictId="R" dictName="打回"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_PartiInType" dictTypeName="参与类型" >
+		<dictEntry dictId="GET" dictName="领取"/>
+		<dictEntry dictId="EXE" dictName="执行"/>
+		<dictEntry dictId="OGET" dictName="曾经领取"/>
+		<dictEntry dictId="OEXE" dictName="曾经执行"/>
+		<dictEntry dictId="PEXE" dictName="执行完成"/>		
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcessDefTimeLimit" dictTypeName="是否使用时间限制">
+		<dictEntry dictId="true" dictName="是"/>
+		<dictEntry dictId="false" dictName="否"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcessState" dictTypeName="流程状态">
+		<dictEntry dictId="1" dictName="未启动"/>
+		<dictEntry dictId="2" dictName="运行"/>
+		<dictEntry dictId="3" dictName="挂起"/>
+		<dictEntry dictId="7" dictName="完成"/>
+		<dictEntry dictId="8" dictName="终止"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ActivityState" dictTypeName="活动状态">
+		<dictEntry dictId="1" dictName="未启动"/>
+		<dictEntry dictId="2" dictName="运行"/>
+		<dictEntry dictId="3" dictName="挂起"/>
+		<dictEntry dictId="7" dictName="完成"/>
+		<dictEntry dictId="8" dictName="终止"/>
+		<dictEntry dictId="10" dictName="待激活"/>
+		<dictEntry dictId="-1" dictName="应用异常"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ActivityType" dictTypeName="活动类型">
+		<dictEntry dictId="manual" dictName="人工活动"/>
+		<dictEntry dictId="route" dictName="路由活动"/>
+		<dictEntry dictId="toolapp" dictName="自动活动"/>
+		<dictEntry dictId="subflow" dictName="子流程活动"/>
+		<dictEntry dictId="start" dictName="开始活动"/>
+		<dictEntry dictId="finish" dictName="结束活动"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_YN" dictTypeName="布尔描述">
+		<dictEntry dictId="Y" dictName="是"/>
+		<dictEntry dictId="N" dictName="否"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_Priority" dictTypeName="优先级">
+		<dictEntry dictId="80" dictName="高"/>
+		<dictEntry dictId="70" dictName="次高"/>
+		<dictEntry dictId="60" dictName="中"/>
+		<dictEntry dictId="50" dictName="次中"/>
+		<dictEntry dictId="40" dictName="低"/>
+		<dictEntry dictId="30" dictName="次低"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_TimeType" dictTypeName="时间单位类型">
+		<dictEntry dictId="D" dictName="天"/>
+		<dictEntry dictId="H" dictName="小时"/>
+		<dictEntry dictId="M" dictName="分钟"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ParticipantType" dictTypeName="参与者类型">
+		<dictEntry dictId="organization" dictName="组织机构"/>
+		<dictEntry dictId="process-starter" dictName="流程启动者"/>
+		<dictEntry dictId="act-executer" dictName="活动执行者"/>
+		<dictEntry dictId="relevantdata" dictName="相关数据"/>
+		<dictEntry dictId="rulelogic" dictName="规则逻辑"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_RollbackType" dictTypeName="回退调用类型">
+		<dictEntry dictId="business-logic" dictName="业务逻辑"/>
+		<dictEntry dictId="compute-logic" dictName="运算逻辑"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_WorkItemState" dictTypeName="工作项状态">
+		<dictEntry dictId="4" dictName="待领取"/>	
+		<dictEntry dictId="8" dictName="挂起"/>
+		<dictEntry dictId="10" dictName="运行"/>		
+		<dictEntry dictId="12" dictName="完成"/>
+		<dictEntry dictId="13" dictName="终止"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_WorkItemBizState" dictTypeName="工作项业务状态">
+		<dictEntry dictId="0" dictName="正常"/>
+		<dictEntry dictId="1" dictName="代理"/>
+		<dictEntry dictId="2" dictName="代办"/>
+		<dictEntry dictId="3" dictName="协办"/>
+		<dictEntry dictId="4" dictName="待确认"/>
+		<dictEntry dictId="6" dictName="修改"/>		
+	</dictType>	
+	<dictType dictTypeId="WFDICT_WorkItemUrlType" dictTypeName="自定义URL类型">
+		<dictEntry dictId="N" dictName="无"/>
+		<dictEntry dictId="F" dictName="页面流"/>
+		<dictEntry dictId="W" dictName="Web页面"/>
+		<dictEntry dictId="O" dictName="其它"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditLogActionType" dictTypeName="审计日志功能类型">
+		<dictEntry dictId="ENGQRY" dictName="引擎查询"/>
+		<dictEntry dictId="ENGOPT" dictName="引擎操作"/>
+		<dictEntry dictId="APP" dictName="应用调用"/>
+		<dictEntry dictId="TRIGGER" dictName="触发事件"/>
+		<dictEntry dictId="TIMER" dictName="定时器类型"/>
+		<dictEntry dictId="FETCHPARTI" dictName="获取参与者"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditLogOccasion" dictTypeName="审计日志记录时机">
+		<dictEntry dictId="B" dictName="开始"/>
+		<dictEntry dictId="E" dictName="结束"/>
+		<dictEntry dictId="EX" dictName="异常"/>			
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditOpt" dictTypeName="审计日志操作对象">
+		<dictEntry dictId="PROCESSDEFINE" dictName="流程定义"/>
+		<dictEntry dictId="PROCESSINST" dictName="流程实例"/>
+		<dictEntry dictId="ACTIVITYINST" dictName="活动实例"/>
+		<dictEntry dictId="WORKITEM" dictName="工作项"/>
+		<dictEntry dictId="OTHER" dictName="其他"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_InvokeType" dictTypeName="调用方式">
+		<dictEntry dictId="synchronous" dictName="同步"/>
+		<dictEntry dictId="asynchronous" dictName="异步"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_TerminalType" dictTypeName="终止方式">
+		<dictEntry dictId="auto" dictName="自动"/>
+		<dictEntry dictId="manual" dictName="人工"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ActionType" dictTypeName="响应类型">
+		<dictEntry dictId="100" dictName="创建流程实例"/>
+		<dictEntry dictId="101" dictName="启动流程实例"/>
+		<dictEntry dictId="102" dictName="唤醒流程实例"/>
+		<dictEntry dictId="103" dictName="挂起流程实例"/>
+		<dictEntry dictId="104" dictName="改变流程状态"/>
+		<dictEntry dictId="105" dictName="中止流程实例"/>
+		<dictEntry dictId="106" dictName="升级流程实例"/>
+		<dictEntry dictId="107" dictName="修改相关数据"/>
+		<dictEntry dictId="108" dictName="非正常取消"/>
+		<dictEntry dictId="109" dictName="结束"/>
+		<dictEntry dictId="200" dictName="提交活动实例"/>
+		<dictEntry dictId="201" dictName="中止活动实例"/>
+		<dictEntry dictId="202" dictName="回退活动实例"/>
+		<dictEntry dictId="203" dictName="启动活动实例"/>
+		<dictEntry dictId="204" dictName="取消活动实例"/>
+		<dictEntry dictId="205" dictName="重起活动实例"/>
+		<dictEntry dictId="300" dictName="提交工作项"/>
+		<dictEntry dictId="301" dictName="挂起工作项"/>
+		<dictEntry dictId="302" dictName="中止工作项"/>
+		<dictEntry dictId="303" dictName="恢复工作项"/>
+		<dictEntry dictId="304" dictName="改变工作项状态"/>
+		<dictEntry dictId="305" dictName="领取工作项"/>
+		<dictEntry dictId="306" dictName="退回工作项"/>
+		<dictEntry dictId="307" dictName="改派工作项"/>
+		<dictEntry dictId="400" dictName="创建流程定义"/>
+		<dictEntry dictId="401" dictName="升级流程定义"/>
+		<dictEntry dictId="402" dictName="修改流程定义"/>
+		<dictEntry dictId="403" dictName="改流程定义状态"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_WorkitemNumStrategy" dictTypeName="工作项个数获取方式">
+		<dictEntry dictId="designate" dictName="指定"/>
+		<dictEntry dictId="relevantdata" dictName="相关数据"/>
+		<dictEntry dictId="operators-number" dictName="根据操作员个数确定"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_FinishRule" dictTypeName="完成规则">
+		<dictEntry dictId="all" dictName="全部完成"/>
+		<dictEntry dictId="specifyNum" dictName="完成个数"/>
+		<dictEntry dictId="specifyPercent" dictName="完成百分比"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcStarterType" dictTypeName="流程启动者">
+		<dictEntry dictId="all" dictName="任意人员启动"/>
+		<dictEntry dictId="organization" dictName="组织机构"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditOperateType" dictTypeName="委派相关操作">
+		<dictEntry dictId="500" dictName="创建代理关系"/>
+		<dictEntry dictId="501" dictName="修改代理关系"/>
+		<dictEntry dictId="502" dictName="删除代理关系"/>
+		<dictEntry dictId="503" dictName="任务交接"/>
+		<dictEntry dictId="504" dictName="代办"/>
+		<dictEntry dictId="505" dictName="协办"/>
+		<dictEntry dictId="506" dictName="拒绝"/>
+		<dictEntry dictId="507" dictName="收回"/>
+		<dictEntry dictId="508" dictName="重做"/>
+		<dictEntry dictId="509" dictName="确认"/>
+		<dictEntry dictId="1001" dictName="流程超时"/>
+		<dictEntry dictId="1002" dictName="流程提醒"/>
+		<dictEntry dictId="1003" dictName="活动超时"/>
+		<dictEntry dictId="1004" dictName="活动提醒"/>
+		<dictEntry dictId="1005" dictName="设置参与者"/>
+		<dictEntry dictId="1006" dictName="设置后继活动"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProOperateType" dictTypeName="流程操作类型">
+	    <dictEntry dictId="ALL" dictName="全部"/>
+		<dictEntry dictId="STARTPROC" dictName="启动流程"/>
+		<dictEntry dictId="EXEWI" dictName="执行工作项"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AgentItemType" dictTypeName="代理项类型">
+	    <dictEntry dictId="PROCESS"  dictName="流程"/>
+		<dictEntry dictId="ACTIVITY" dictName="活动"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_OMParticipantType" dictTypeName="参与者类型">
+	    <dictEntry dictId="person"  dictName="个人"/>
+		<dictEntry dictId="role" dictName="角色"/>
+		<dictEntry dictId="organization" dictName="机构"/>
+		<dictEntry dictId="position" dictName="岗位"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AgentType" dictTypeName="代理类型">
+	    <dictEntry dictId="ALL"  dictName="完全代理"/>
+		<dictEntry dictId="PART" dictName="部分代理"/>
+	</dictType>
+</dicts>

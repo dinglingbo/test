@@ -1,0 +1,26 @@
+#left_area {
+	width: 50%;
+}
+
+#right_area {
+	width: 50%;
+}
+#middle_area{
+	text-align:center;
+}
+#middle_area input{
+	width: 10px;
+	height: 72px;
+	border:none;
+	padding:0px;
+	margin:2px 0px;
+	display:block;
+	
+}
+#rightBtn {
+	background-image: url(images/right.gif);
+}
+
+#leftBtn {
+	background-image: url(images/left.gif);
+}

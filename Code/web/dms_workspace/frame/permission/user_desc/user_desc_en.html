@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BPS Workspace default user permission configuration script</title>
+</head>
+<style>
+body{text-align:center;font:"Times New Roman", Times, serif; background:#eceeed;}
+.main{margin-left:auto; margin-right:auto;width:750px;border:0px solid #000;text-align:left;color:#234575;background:#fff url(h1_bg.jpg) repeat-x;padding-right:20px;padding-bottom:30px;}
+h3{color:#FFFFFF;text-align:center; padding-top:10px;}
+.title{font-family:黑体;font-size:16px;text-align:left;margin-left:10px; padding-left:20px; padding-bottom:2px; padding-top:5px;background:url(1.gif) no-repeat 0px 5px; border-bottom:2px solid #9fbcdc; color:#ff6600;}
+.content{margin-left:10px; text-align:left;margin-top:30px; font-weight:bold;font-size:10pt;}
+p{font-size:10pt}
+table{border-collapse:collapse;font-size:10pt;margin-top:-15px;background-color:#f7fcfd;margin-left:20px;}
+.tb_config{border:1px solid #049ed0;table-layout:fixed;word-break: break-all;text-align:left; margin-top:-5px;}
+.tb_config td{marign-right:10px;}
+ul{ list-style-image:url(2.gif);margin-top:8px;}
+.th_head{background:url(2.gif) no-repeat 5px 8px;padding:5px 15px;border-bottom:1px solid #049ed0;}
+.rights{border:1px solid #049ed0; text-align:center; margin-top:-15px;}
+.rights th{width:85px;padding:5px 10px;border:1px solid #049ed0;}
+.rights td{border:1px solid #049ed0;padding:5px 20px;}
+.default_rights{margin-top:-5px;;text-align:left;}
+.default_rights td{padding:5px 10px;}
+.tb_content{text-align:left;background:#fff;border-left:1px solid #049ed0;}
+.head{ font-weight:bold; margin-top:10px;}
+.bottom{background:url(bottom_bg.gif) no-repeat;height:25px;margin-left:auto; margin-right:auto;width:770px;text-align:center;font:9pt 宋体 normal;color:#234575;padding-top:8px;}
+</style>
+<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon">
+<body marginheight="0" marginwidth="0" topmargin="0" bottommargin="0">
+<div class="main">
+<h3>BPS Workspace Default User Permission Configuration Script</h3>
+<p class="content">BPS Workspace is a biz process centralization of management workarea that offered by the BPS product of Primeton. You could manage various biz process and optimize job by using the model of organization that supported by BPS product. (Of course, you can replace with BPS opening interface in actual project.)</p>
+<p class="title">BPS supported six default internal permission set: </p>
+<table class="tb_config">
+
+  <tr>
+    <td>
+   <ul>
+   <li><b>bpsclient</b>：Client use permission. It offered the function of start process, view work item, recieve/execute work item, agent setting and so on;</li>
+   <li><b>bpsadmin</b>：Managed engine instance manage permission. It offered the function of engine instances' register,management,configuration and so on. (This permission is only default possessed of the user sysadmin );</li>
+   <li><b>bpsmanager</b>：Process manage&monitor permission. You can use operating platform of workflow. Business process management staff not only can manage the process instances, but also can monitor the process action of business operation staff;</li>
+   <li><b>bpscustom</b>：Biz process configuration permission. You can use the tools of process business composer implement by BPS process engine. Business process management staff could modeling,configuration and adjustment of process in the view of business by using it; </li>
+   <li><b>bpsconfig</b>：Managed engine instance manage permission. You can use the tools of system management by which system administrator could config and manage the workflow engine;</li>
+   <li><b>bpsbizcat</b>：Biz catalog management permission. It offered the function of biz catalog's creation,maintain,authorization and the function of import&export of biz process and biz rosource;</li>
+   </ul>
+    </td>
+  </tr> 
+</table>
+
+<p class="title">BPS supported default user and permission allocation:</p>
+
+<table class="default_rights">
+  <tr>
+    <td>tiger：</td>
+    <td class="tb_content">Client use permission, Process manage&monitor permission, Biz process configuration permission, Managed engine instance manage permission, Biz catalog management permission;</td>
+  </tr>
+  <tr>
+    <td>goose：</td>
+    <td class="tb_content">Client use permission, Process manage&monitor permission;</td>
+  </tr>
+  <tr>
+    <td>fish：</td>
+    <td class="tb_content">Client use permission, Process manage&monitor permission, Biz process configuration permission, Managed engine configuration manage permission;</td>
+  </tr>
+  <tr>
+    <td>snoppy：</td>
+    <td class="tb_content">Client use permission, Managed engine instance manage permission, Biz catalog management permission;</td>
+  </tr>
+  <tr>
+    <td>micky：</td>
+    <td class="tb_content">Client use permission, Biz catalog management permission;</td>
+  </tr>
+  <tr>
+    <td>kitty：</td>
+    <td class="tb_content">Client use permission;</td>
+  </tr>
+  <tr>
+    <td>sysadmin：</td>
+    <td class="tb_content">Managed engine instance manage permission;</td>
+  </tr>
+
+</table>
+
+
+<p style="margin-left:20px;">As follows:</p>
+<table class="rights">
+  <tr>
+    <th nowrap="nowrap">User Permission Set</th>
+    <th>bpsclient</th>
+    <th>bpsadmin</th>
+    <th>bpsmanager</th>
+    <th>bpscustom</th>
+    <th>bpsconfig</th>
+    <th>bpsbizcat</th>
+  </tr>
+  <tr>
+    <td>tiger</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+  </tr>
+  <tr>
+    <td>goose</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>fish</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>snoppy</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+  </tr>
+  <tr>
+    <td>micky</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+  </tr>
+  <tr>
+    <td>kitty</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>sysadmin</td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+
+
+</div>
+
+</div>
+<div class="bottom">(c) Copyright Primeton 2011. All Rights Reserved.</div>
+</body>
+</html>

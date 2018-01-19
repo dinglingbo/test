@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dicts>
+	<dictType dictTypeId="WFDICT_AutoInvokeType" dictTypeName="Auto Activity Implement Type">
+		<dictEntry dictId="service-component" dictName="Service"/>
+		<dictEntry dictId="logic-flow" dictName="Logic Flow"/>
+		<dictEntry dictId="pojo" dictName="Java Method"/>
+		<dictEntry dictId="business-logic" dictName="Business Logic"/>
+		<dictEntry dictId="compute-logic" dictName="Operation Logic"/>
+		<dictEntry dictId="business-operation" dictName="Business Operation"/>
+		<dictEntry dictId="bizlet" dictName="Operation Logic"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcessDefState" dictTypeName="Process Definition State">
+		<dictEntry dictId="1" dictName="Unpublished"/>
+		<dictEntry dictId="3" dictName="Published"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_RemindType" dictTypeName="Remind Way" >
+		<dictEntry dictId="mail" dictName="mail"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_DelegateType" dictTypeName="Delegate Way" >
+		<dictEntry dictId="D" dictName="Delegate"/>
+		<dictEntry dictId="A" dictName="Help"/>
+		<dictEntry dictId="W" dictName="Withdraw"/>
+		<dictEntry dictId="F" dictName="Finish"/>
+		<dictEntry dictId="I" dictName="Initia"/>
+		<dictEntry dictId="R" dictName="Return"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_PartiInType" dictTypeName="Participant Type" >
+		<dictEntry dictId="GET" dictName="Get"/>
+		<dictEntry dictId="EXE" dictName="Execute"/>
+		<dictEntry dictId="OGET" dictName="Once Get"/>
+		<dictEntry dictId="OEXE" dictName="Once Execute"/>
+		<dictEntry dictId="PEXE" dictName="Perform"/>		
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcessDefTimeLimit" dictTypeName="Whether to use time limit">
+		<dictEntry dictId="true" dictName="Yes"/>
+		<dictEntry dictId="false" dictName="No"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcessState" dictTypeName="Process State">
+		<dictEntry dictId="1" dictName="Unstarted"/>
+		<dictEntry dictId="2" dictName="Running"/>
+		<dictEntry dictId="3" dictName="Hang-up"/>
+		<dictEntry dictId="7" dictName="Finished"/>
+		<dictEntry dictId="8" dictName="Stop"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ActivityState" dictTypeName="Activity State">
+		<dictEntry dictId="1" dictName="Unstarted"/>
+		<dictEntry dictId="2" dictName="Running"/>
+		<dictEntry dictId="3" dictName="Hang-up"/>
+		<dictEntry dictId="7" dictName="Finished"/>
+		<dictEntry dictId="8" dictName="Stop"/>
+		<dictEntry dictId="10" dictName="Activating"/>
+		<dictEntry dictId="-1" dictName="Application Exception"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ActivityType" dictTypeName="Activity Type">
+		<dictEntry dictId="manual" dictName="Manual Activity"/>
+		<dictEntry dictId="route" dictName="Route Activity"/>
+		<dictEntry dictId="toolapp" dictName="Auto Activity"/>
+		<dictEntry dictId="subflow" dictName="Sub-Process Activity"/>
+		<dictEntry dictId="start" dictName="Start"/>
+		<dictEntry dictId="finish" dictName="End"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_YN" dictTypeName="Boolean Description">
+		<dictEntry dictId="Y" dictName="Yes"/>
+		<dictEntry dictId="N" dictName="No"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_Priority" dictTypeName="Priority">
+		<dictEntry dictId="80" dictName="High"/>
+		<dictEntry dictId="70" dictName="Less High"/>
+		<dictEntry dictId="60" dictName="Middle"/>
+		<dictEntry dictId="50" dictName="Less Middle"/>
+		<dictEntry dictId="40" dictName="Low"/>
+		<dictEntry dictId="30" dictName="Less Low"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_TimeType" dictTypeName="Time Unit Type">
+		<dictEntry dictId="D" dictName="Day"/>
+		<dictEntry dictId="H" dictName="Hour"/>
+		<dictEntry dictId="M" dictName="Minute"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ParticipantType" dictTypeName="Participant Type">
+		<dictEntry dictId="organization" dictName="Organization"/>
+		<dictEntry dictId="process-starter" dictName="Process Starter"/>
+		<dictEntry dictId="act-executer" dictName="Activity Executor"/>
+		<dictEntry dictId="relevantdata" dictName="Related Data"/>
+		<dictEntry dictId="rulelogic" dictName="Rule Logic"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_RollbackType" dictTypeName="Rollback Invoke Type">
+		<dictEntry dictId="business-logic" dictName="Business Logic"/>
+		<dictEntry dictId="compute-logic" dictName="Operation Logic"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_WorkItemState" dictTypeName="WorkItem State">
+		<dictEntry dictId="4" dictName="getting"/>	
+		<dictEntry dictId="8" dictName="Hang-up"/>
+		<dictEntry dictId="10" dictName="running"/>		
+		<dictEntry dictId="12" dictName="finished"/>
+		<dictEntry dictId="13" dictName="stop"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_WorkItemBizState" dictTypeName="WorkItem Business State">
+		<dictEntry dictId="0" dictName="Normal"/>
+		<dictEntry dictId="1" dictName="Agent"/>
+		<dictEntry dictId="2" dictName="Delegate"/>
+		<dictEntry dictId="3" dictName="Help"/>
+		<dictEntry dictId="4" dictName="waiting confirm"/>
+		<dictEntry dictId="6" dictName="Modify"/>		
+	</dictType>	
+	<dictType dictTypeId="WFDICT_WorkItemUrlType" dictTypeName="Custom URL Type">
+		<dictEntry dictId="N" dictName="None"/>
+		<dictEntry dictId="F" dictName="Page Flow"/>
+		<dictEntry dictId="W" dictName="Web Page"/>
+		<dictEntry dictId="O" dictName="Other"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditLogActionType" dictTypeName="Audit Log Function Type">
+		<dictEntry dictId="ENGQRY" dictName="Engine Query"/>
+		<dictEntry dictId="ENGOPT" dictName="Engine Operation"/>
+		<dictEntry dictId="APP" dictName="Application Invoke"/>
+		<dictEntry dictId="TRIGGER" dictName="Trigger Event"/>
+		<dictEntry dictId="TIMER" dictName="Timer Type"/>
+		<dictEntry dictId="FETCHPARTI" dictName="Get Participant"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditLogOccasion" dictTypeName="Audit Log Record Time">
+		<dictEntry dictId="B" dictName="Start"/>
+		<dictEntry dictId="E" dictName="End"/>
+		<dictEntry dictId="EX" dictName="Exception"/>			
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditOpt" dictTypeName="Audit Log operation Object ">
+		<dictEntry dictId="PROCESSDEFINE" dictName="Process Definition"/>
+		<dictEntry dictId="PROCESSINST" dictName="Process Instance"/>
+		<dictEntry dictId="ACTIVITYINST" dictName="Activity Instance"/>
+		<dictEntry dictId="WORKITEM" dictName="WorkItem"/>
+		<dictEntry dictId="OTHER" dictName="Other"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_InvokeType" dictTypeName="Invoke Mode">
+		<dictEntry dictId="synchronous" dictName="Synchronous"/>
+		<dictEntry dictId="asynchronous" dictName="Asynchronous"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_TerminalType" dictTypeName="Termination Mode">
+		<dictEntry dictId="auto" dictName="Auto"/>
+		<dictEntry dictId="manual" dictName="Manual"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ActionType" dictTypeName="Response Type">
+		<dictEntry dictId="100" dictName="Create Process Instance"/>
+		<dictEntry dictId="101" dictName="Start Process Instance"/>
+		<dictEntry dictId="102" dictName="Awake Process Instance"/>
+		<dictEntry dictId="103" dictName="Hang-up process Instance"/>
+		<dictEntry dictId="104" dictName="Change Process State"/>
+		<dictEntry dictId="105" dictName="Suspend Process Instance"/>
+		<dictEntry dictId="106" dictName="Upgrade Process Instance"/>
+		<dictEntry dictId="107" dictName="Modify Related Data"/>
+		<dictEntry dictId="108" dictName="Not Normal Cancel"/>
+		<dictEntry dictId="109" dictName="End"/>
+		<dictEntry dictId="200" dictName="Submit Activity Instance"/>
+		<dictEntry dictId="201" dictName="Suspend Activity Instance"/>
+		<dictEntry dictId="202" dictName="Rollback Activity Instance"/>
+		<dictEntry dictId="203" dictName="Start Activity Instance"/>
+		<dictEntry dictId="204" dictName="Cancel Activity Instance"/>
+		<dictEntry dictId="205" dictName="Restart Activity Instance"/>
+		<dictEntry dictId="300" dictName="Submit WorkItem"/>
+		<dictEntry dictId="301" dictName="Hang-up WorkItem"/>
+		<dictEntry dictId="302" dictName="Suspend WorkItem"/>
+		<dictEntry dictId="303" dictName="Resume WorkItem"/>
+		<dictEntry dictId="304" dictName="Change WorkItem State"/>
+		<dictEntry dictId="305" dictName="Get WorkItem"/>
+		<dictEntry dictId="306" dictName="Withdraw WorkItem"/>
+		<dictEntry dictId="307" dictName="Reassign WorkItem"/>
+		<dictEntry dictId="400" dictName="Create Process Definition"/>
+		<dictEntry dictId="401" dictName="Upgrade Process Definition"/>
+		<dictEntry dictId="402" dictName="Modify Process Definition"/>
+		<dictEntry dictId="403" dictName="Modify Process Definition State"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_WorkitemNumStrategy" dictTypeName="WorkItem Number Get Way">
+		<dictEntry dictId="designate" dictName="Specify"/>
+		<dictEntry dictId="relevantdata" dictName="Related Data"/>
+		<dictEntry dictId="operators-number" dictName="Confirm According to Operator Number"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_FinishRule" dictTypeName="Finish Rule">
+		<dictEntry dictId="all" dictName="All Finish"/>
+		<dictEntry dictId="specifyNum" dictName="Finish Number"/>
+		<dictEntry dictId="specifyPercent" dictName="Finish Percentage"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProcStarterType" dictTypeName="Process Starter">
+		<dictEntry dictId="all" dictName="Any Staff Start"/>
+		<dictEntry dictId="organization" dictName="Organization"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AuditOperateType" dictTypeName="Assigned Related Operation">
+		<dictEntry dictId="500" dictName="Create Agent Relation"/>
+		<dictEntry dictId="501" dictName="Modify Agent Relation"/>
+		<dictEntry dictId="502" dictName="Delete Agent Relation"/>
+		<dictEntry dictId="503" dictName="Task Transfer"/>
+		<dictEntry dictId="504" dictName="Delegate"/>
+		<dictEntry dictId="505" dictName="Help"/>
+		<dictEntry dictId="506" dictName="Reject"/>
+		<dictEntry dictId="507" dictName="Withdraw"/>
+		<dictEntry dictId="508" dictName="Redo"/>
+		<dictEntry dictId="509" dictName="Confirm"/>
+		<dictEntry dictId="1001" dictName="Process Timeout"/>
+		<dictEntry dictId="1002" dictName="Process Remind"/>
+		<dictEntry dictId="1003" dictName="Activity Timeout"/>
+		<dictEntry dictId="1004" dictName="Activity Remind"/>
+		<dictEntry dictId="1005" dictName="Set Participant"/>
+		<dictEntry dictId="1006" dictName="Set Succeed Activity"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_ProOperateType" dictTypeName="Process Operation Type">
+	    <dictEntry dictId="ALL" dictName="All"/>
+		<dictEntry dictId="STARTPROC" dictName="Start Process"/>
+		<dictEntry dictId="EXEWI" dictName="Execute WorkItem"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AgentItemType" dictTypeName="Agent Item Type">
+	    <dictEntry dictId="PROCESS"  dictName="Process"/>
+		<dictEntry dictId="ACTIVITY" dictName="Activity"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_OMParticipantType" dictTypeName="Participant Type">
+	    <dictEntry dictId="person"  dictName="Individual"/>
+		<dictEntry dictId="role" dictName="Role"/>
+		<dictEntry dictId="organization" dictName="Organization"/>
+		<dictEntry dictId="position" dictName="Position"/>
+	</dictType>
+	<dictType dictTypeId="WFDICT_AgentType" dictTypeName="Agent Type">
+	    <dictEntry dictId="ALL"  dictName="All Agent"/>
+		<dictEntry dictId="PART" dictName="Part Agent"/>
+	</dictType>
+</dicts>

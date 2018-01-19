@@ -1,0 +1,1 @@
+var process_inst_js = "The state of the process must be running";

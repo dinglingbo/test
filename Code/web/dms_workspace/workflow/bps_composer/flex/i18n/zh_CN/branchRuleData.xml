@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+        <node label="流程定义" data="CTX100" isBranch="true" desc="流程定义">
+                <node label="流程定义ID" data="CTX101" desc="流程定义唯一标识" />
+                <node label="流程定义名称" data="CTX102" desc="流程定义名称" />
+                <node label="流程定义显示名" data="CTX103" desc="流程定义的显示名称" />
+                <node label="流程定义拥有者" data="CTX104" desc="流程定义的创建用户" />
+                <node label="流程定义版本" data="CTX105" desc="流程定义的版本号，一个流程可能有多个版本" />
+                <node label="流程定义当前状态" data="CTX106" desc="流程定义当前状态，1表示未发布，3表示已发布" />
+                <node label="流程定义是否最新版本" data="CTX107" desc="当前流程定义是否是版本树中的最新版本，1表示是最新版本；0表示不是最新版本" />
+                <node label="流程定义创建时间" data="CTX108" desc="流程定义被首次提交到持久化存储时的时间" />
+                <node label="流程定义部署人" data="CTX109" desc="流程定义被首次提交时的用户，通过Studio提交的流程定义，该部署人为系统内置的用户internal" />
+                <node label="流程定义所在包ID" data="CTX110" desc="流程所属包的唯一标识，该值默认情况下为BPS_DEFAULT" />
+                <node label="流程定义所在包名称" data="CTX111" desc="流程定义所属包的名称描述" />
+                <node label="流程定义更新时间" data="CTX112" desc="流程定义最后一次被提交的时间" />
+        </node>
+        <node label="前驱活动定义" data="CTX500" isBranch="true" desc="当前连线的起点活动定义">
+                <node label="前驱活动定义ID" data="CTX501" desc="当前连线的起点活动定义唯一标识" />
+                <node label="前驱活动定义名称" data="CTX502" desc="当前连线的起点活动定义的名称" />
+                <node label="前驱活动定义的参与者类型" data="CTX504" desc="当前连线的起点活动上定义的参与者类型" />
+                <node label="前驱活动聚合模式" data="CTX505" desc="当前连线的起点活动上定义的活动的聚合模式" />
+                <node label="前驱活动分支模式" data="CTX506" desc="当前连线的起点活动上定义的活动的分支模式" />
+                <node label="前驱活动定义的优先级" data="CTX507" desc="当前连线的起点活动上定义的活动的优先级" />
+                <node label="前驱活动类型" data="CTX508" desc="当前连线的起点活动上定义的活动的类型" />
+                <node label="前驱活动URL类型" data="CTX509" desc="当前连线的起点活动如果为人工活动时，其上定义的活动指向的被调用的URL的类型" />
+                <node label="前驱活动URL" data="CTX510" desc="当前连线的起点活动如果为人工活动时，其上定义的活动指向的被调用的URL" />
+                <node label="前驱活动是否允许委派标识" data="CTX511" desc="当前连线的起点活动如果为人工活动定义时，其上定义的是否允许该活动被委派的标识，允许返回true,不允许返回false" />
+                <node label="前驱活动是否为多工作项标识" data="CTX512" desc="当前连线的起点活动如果为人工活动定义时,其上定义的该活动是否为多工作项的标识，是多工作项返回true,不是返回false" />
+        </node>
+        <node label="后继活动定义" data="CTX600" isBranch="true" desc="当前连线的终点活动定义">
+                <node label="后继活动定义ID" data="CTX601" desc="当前连线的终点活动定义唯一标识" />
+                <node label="后继活动定义名称" data="CTX602" desc="当前连线的终点活动定义的名称" />
+                <node label="后继活动定义的参与者类型" data="CTX604" desc="当前连线的终点活动上定义的参与者类型" />
+                <node label="后继活动聚合模式" data="CTX605" desc="当前连线的终点活动上定义的活动的聚合模式" />
+                <node label="后继活动分支模式" data="CTX606" desc="当前连线的终点活动上定义的活动的分支模式" />
+                <node label="后继活动定义的优先级" data="CTX607" desc="当前连线的终点活动上定义的活动的优先级" />
+                <node label="后继活动类型" data="CTX608" desc="当前连线的终点活动上定义的活动的类型" />
+                <node label="后继活动URL类型" data="CTX609" desc="当前连线的终点活动如果为人工活动时，其上定义的活动指向的被调用的URL的类型" />
+                <node label="后继活动URL" data="CTX610" desc="当前连线的终点活动如果为人工活动时，其上定义的活动指向的被调用的URL" />
+                <node label="后继活动是否允许委派标识" data="CTX611" desc="当前连线的终点活动如果为人工活动定义时，其上定义的是否允许该活动被委派的标识，允许返回true,不允许返回false" />
+                <node label="后继活动是否为多工作项标识" data="CTX612" desc="当前连线的终点活动如果为人工活动定义时,其上定义的该活动是否为多工作项的标识，是多工作项返回true,不是返回false" />
+        </node>
+        <node label="流程实例" data="CTX300" isBranch="true" desc="被引用规则所属的流程实例">
+                <node label="流程实例ID" data="CTX301" desc="当前流程实例的唯一标识" />
+                <node label="流程实例描述" data="CTX302" desc="当前流程实例的描述" />
+                <node label="流程实例名称" data="CTX303" desc="当前流程实例的名称" />
+                <node label="流程实例创建时间" data="CTX304" desc="当前流程实例的创建时间" />
+                <node label="流程实例创建者" data="CTX305" desc="当前流程实例的创建用户" />
+                <node label="流程实例当前状态" data="CTX306" desc="当前流程实例的状态，具体状态说明请参考帮助文档" />
+                <node label="流程实例终止时间" data="CTX307" desc="当前流程实例被终止的时间" />
+                <node label="流程实例是否超时" data="CTX308" desc="当前流程实例是否超时的标志，N表示未超时，Y表示已超时" />
+                <node label="流程实例时间限制数" data="CTX309" desc="当前流程实例在其定义期指定的从流程被启动到结束共应该消耗的时间，返回值格式为XX分钟" />
+                <node label="流程实例时间限制描述" data="CTX310" desc="当前流程实例在其定义期指定的从流程被启动到结束共应该消耗的时间描述，返回值格式为XX天XX小时XX分钟" />
+                <node label="流程实例启动者" data="CTX311" desc="当前流程实例的创建用户" />
+                <node label="父活动实例ID" data="CTX312" desc="如果当前流程实例是一个子流程实例，该ID对应调用当前流程实例的父流程实例的活动实例ID" />
+                <node label="父流程实例ID" data="CTX313" desc="如果当前流程实例是一个子流程实例，该ID对应调用当前流程实例的父流程实例ID" />
+                <!--node label="流程实例优先级" data="CTX314" desc="" /-->
+                <!--node label="相关数据" data="CTX315" desc="" /-->
+                <node label="流程实例提醒时间" data="CTX316" desc="当前流程实例在超时前的提醒时间点，格式为yyyyMMDDHHmmss" />
+                <node label="流程实例开始时间" data="CTX317" desc="当前流程实例的开始时间" />
+                <node label="流程实例超时数" data="CTX318" desc="当前流程实例已超出指定时间限制的分钟数，未超时时该值为0" />
+                <node label="流程实例超时描述" data="CTX319" desc="当前流程实例已超出指定时间限制的时间数的描述，格式为XX天XX小时XX分钟" />
+                <!--node label="所属更新版本" data="CTX320" desc="" /-->
+        </node>
+        <!--node label="活动实例" data="CTX400" isBranch="true" desc="">
+                <node label="活动实例ID" data="CTX401" desc="" />
+                <node label="活动实例描述" data="CTX402" desc="" />
+                <node label="活动实例名称" data="CTX403" desc="" />
+                <node label="活动实例创建时间" data="CTX404" desc="" />
+                <node label="活动实例当前状态" data="CTX405" desc="" />
+                <node label="活动实例结束时间" data="CTX406" desc="" />
+                <node label="活动实例开始时间" data="CTX407" desc="" />
+                <node label="活动实例优先级" data="CTX408" desc="" />
+                <node label="回退标志" data="CTX409" desc="" />
+                <node label="子流程实例ID" data="CTX410" desc="" />
+        </node-->
+</root>

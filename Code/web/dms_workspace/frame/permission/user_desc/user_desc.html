@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BPS工作空间缺省用户权限配置说明</title>
+</head>
+<style>
+body{text-align:center;font:"Times New Roman", Times, serif; background:#eceeed;}
+.main{margin-left:auto; margin-right:auto;width:750px;border:0px solid #000;text-align:left;color:#234575;background:#fff url(h1_bg.jpg) repeat-x;padding-right:20px;padding-bottom:30px;}
+h1{color:#FFFFFF;text-align:center; padding-top:6px;}
+.title{font-family:黑体;font-size:16px;text-align:left;margin-left:10px; padding-left:20px; padding-bottom:2px; padding-top:5px;background:url(1.gif) no-repeat 0px 5px; border-bottom:2px solid #9fbcdc; color:#ff6600;}
+.content{margin-left:10px; text-align:left;margin-top:30px; font-weight:bold;font-size:10pt;}
+p{font-size:10pt}
+table{border-collapse:collapse;font-size:10pt;margin-top:-15px;background-color:#f7fcfd;margin-left:20px;}
+.tb_config{border:1px solid #049ed0;table-layout:fixed;word-break: break-all;text-align:left; margin-top:-5px;}
+.tb_config td{marign-right:10px;}
+ul{ list-style-image:url(2.gif);margin-top:8px;}
+.th_head{background:url(2.gif) no-repeat 5px 8px;padding:5px 15px;border-bottom:1px solid #049ed0;}
+.rights{border:1px solid #049ed0; text-align:center; margin-top:-15px;}
+.rights th{width:85px;padding:5px 10px;border:1px solid #049ed0;}
+.rights td{border:1px solid #049ed0;padding:5px 20px;}
+.default_rights{margin-top:-5px;;text-align:left;}
+.default_rights td{padding:5px 10px;}
+.tb_content{text-align:left;background:#fff;border-left:1px solid #049ed0;}
+.head{ font-weight:bold; margin-top:10px;}
+.bottom{background:url(bottom_bg.gif) no-repeat;height:25px;margin-left:auto; margin-right:auto;width:770px;text-align:center;font:9pt 宋体 normal;color:#234575;padding-top:8px;}
+</style>
+<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon">
+<body marginheight="0" marginwidth="0" topmargin="0" bottommargin="0">
+<div class="main">
+<h1>BPS工作空间缺省用户权限配置说明</h1>
+<p class="content">BPS Workspace 是Primeton BPS 产品提供的业务流程统一管理工作区。您可以使用由BPS 产品默认提供的组织机构模型的用户来进行业务流程的各种管理和优化工作（当然，实际项目中完全可以采用BPS的开放接口进行替换）。</p>
+<p class="title">BPS 默认提供的六种内置权限集：</p>
+<table class="tb_config">
+
+  <tr>
+    <td>
+   <ul>
+   <li><b>bpsclient</b>：客户端使用权限，给用户提供了启动流程、查看工作项、领取/执行工作项、代理设置等功能；</li>
+   <li><b>bpsadmin</b>：受管引擎实例管理权限，给用户提供了引擎实例的注册、管理、配置等功能（该权限默认仅为sysadmin用户拥有）；</li>
+   <li><b>bpsmanager</b>：流程管理监控权限，可以使用工作流操作平台，通过它业务流程管控人员不仅可以对流程实例进行管理，同时还可以对业务操作人员的流程动作进行监控；</li>
+   <li><b>bpscustom</b>：业务流程配置权限，可以使用基于BPS流程引擎实现的Web端的流程业务化定制工具，通过它业务流程管理人员可以以业务视角进行流程的业务化建模、配置与调整；</li>
+   <li><b>bpsconfig</b>：受管引擎配置管理权限，可以使用系统管理工具，通过它系统管理员可以对工作流引擎进行配置和管理；</li>
+   <li><b>bpsbizcat</b>：业务目录管理权限，提供业务目录创建、维护、授权，以及业务流程、业务资源导入导出功能；</li>
+   </ul>
+    </td>
+  </tr> 
+</table>
+
+<p class="title">BPS 的提供的默认用户及权限分配：</p>
+
+<table class="default_rights">
+  <tr>
+    <td>tiger：</td>
+    <td class="tb_content">客户端使用权限、流程管理监控权限、业务流程配置权限、受管引擎配置管理权限、业务目录管理权限；</td>
+  </tr>
+  <tr>
+    <td>goose：</td>
+    <td class="tb_content">客户端使用权限、流程管理监控权限；</td>
+  </tr>
+  <tr>
+    <td>fish：</td>
+    <td class="tb_content">客户端使用权限、流程管理监控权限、业务流程配置权限、受管引擎配置管理权限；</td>
+  </tr>
+  <tr>
+    <td>snoppy：</td>
+    <td class="tb_content">客户端使用权限、受管引擎配置管理权限、业务目录管理权限；</td>
+  </tr>
+  <tr>
+    <td>micky：</td>
+    <td class="tb_content">客户端使用权限、业务目录管理权限；</td>
+  </tr>
+  <tr>
+    <td>kitty：</td>
+    <td class="tb_content">客户端使用权限；</td>
+  </tr>
+  <tr>
+    <td>sysadmin：</td>
+    <td class="tb_content">受管引擎实例管理权限；</td>
+  </tr>
+
+</table>
+
+
+<p style="margin-left:20px;">如下表：</p>
+<table class="rights">
+  <tr>
+    <th>用户权限集</th>
+    <th>bpsclient</th>
+    <th>bpsadmin</th>
+    <th>bpsmanager</th>
+    <th>bpscustom</th>
+    <th>bpsconfig</th>
+    <th>bpsbizcat</th>
+  </tr>
+  <tr>
+    <td>tiger</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+  </tr>
+  <tr>
+    <td>goose</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>fish</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>snoppy</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td><img src="4.gif"/></td>
+  </tr>
+  <tr>
+    <td>micky</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+  </tr>
+  <tr>
+    <td>kitty</td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>sysadmin</td>
+    <td></td>
+    <td><img src="4.gif"/></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+
+
+</div>
+
+</div>
+<div class="bottom">(c) Copyright Primeton 2011. All Rights Reserved.</div>
+</body>
+</html>

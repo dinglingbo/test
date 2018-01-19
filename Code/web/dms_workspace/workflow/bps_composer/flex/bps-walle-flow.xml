@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<walle>
+	<flowdesinger locale="zh_CN" type="custom">
+		<!-- 目前固定只支持原始的集中类型: start,finish,manual,route,toolapp,subflow-->
+		<pwindows>
+			<pwindow type="Process">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Basic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_BizVar"/>	  
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Rule"/>	  
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Event"/>	  
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_TimeLimit"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Participant"/>	  
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Extend"/>   			
+			</pwindow>
+			<pwindow type="Activity" subtype="start">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_StartBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Form"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			</pwindow>
+			<pwindow type="Activity" subtype="finish">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_FinishBasic"/>
+				<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			</pwindow> 
+			<pwindow type="Activity" subtype="manual">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Particiapnt"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Form"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_TimeLimit"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_MultiWorkItem"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualEvent"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Free"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_WorkItemNotification"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			    
+			</pwindow> 
+			<pwindow type="Activity" subtype="manualstart">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Form"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_TimeLimit"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualEvent"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Free"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			</pwindow> 
+			<pwindow type="Activity" subtype="route">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_RouteBasic"/>
+				<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			</pwindow>
+			<pwindow type="Activity" subtype="toolapp">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_AutoBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ToolApp"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Event"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			</pwindow>
+			<pwindow type="Activity" subtype="webservice">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_AutoBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_WebServiceWSDL"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_WebServiceHeader"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_WebServiceAttach"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Event"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			</pwindow>
+			<pwindow type="Activity" subtype="subflow"> 
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_SubflowBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Event"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>
+			</pwindow>
+		</pwindows>
+	</flowdesinger>
+	<flowdesinger locale="zh_CN" type="config">
+		<!-- 目前固定只支持原始的集中类型: start,finish,manual,route,toolapp,subflow-->
+		<pwindows>
+			<pwindow type="Process">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Basic"/>
+			    <!-- <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_BizVar"/> -->	  
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Rule"/>	  
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Event"/>	  
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_TimeLimit"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Participant"/>	  
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ProcessTabPanel_Extend"/> -->   			
+			</pwindow>
+			<pwindow type="Activity" subtype="start">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_StartBasic"/>
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Form"/> -->
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/> -->
+			</pwindow>
+			<pwindow type="Activity" subtype="finish">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_FinishBasic"/>
+				<!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/> -->
+			</pwindow> 
+			<pwindow type="Activity" subtype="manual">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Particiapnt"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_TimeLimit"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualEvent"/>
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_MultiWorkItem"/> -->
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Form"/> -->
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Free"/> -->
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/> -->
+			</pwindow>
+			<pwindow type="Activity" subtype="manualstart">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_TimeLimit"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ManualEvent"/>
+			</pwindow>  
+			<pwindow type="Activity" subtype="route">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_RouteBasic"/>
+				<!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/> -->
+			</pwindow>
+			<pwindow type="Activity" subtype="toolapp">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_AutoBasic"/>
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_ToolApp"/>-->
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Event"/>
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>-->
+			</pwindow>
+			<pwindow type="Activity" subtype="webservice">
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_AutoBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_WebServiceWSDL"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_WebServiceHeader"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_WebServiceAttach"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Event"/>
+			</pwindow>
+			<pwindow type="Activity" subtype="subflow"> 
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_SubflowBasic"/>
+			    <tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Event"/>
+			    <!--<tabpanel title="" index="0" classname="com.primeton.flow.pwindow.tabpanels.ActivityTabPanel_Extend"/>-->
+			</pwindow>
+		</pwindows>
+	</flowdesinger>
+</walle>

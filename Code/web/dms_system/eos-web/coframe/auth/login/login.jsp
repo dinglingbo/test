@@ -10,7 +10,7 @@
   - Description:
 -->
 <head>
-<title>普元-用户登录</title>
+<title>DMS-用户登录</title>
 <%
    String contextPath=request.getContextPath();
    String url = null;
@@ -44,7 +44,7 @@
 <div id="warpper" class="wrap">
 		<div class="main">
 			<div id="form1" class="login-box">
-				<h3>欢迎来到应用基础框架</h3>
+				<h3>欢迎登录DMS平台</h3>
 				<form method="post"	name="loginForm" onsubmit="return login();" action="<%=url%>" >
 					<input id="original_url" class="nui-hidden" name="original_url" value="<%=original_url %>"/>
 					<p class="login-item">
@@ -54,7 +54,7 @@
 					</p>
 					<p class="login-item">
 					  <em>密　码：</em>
-					  <input name="password" id="password"  class="nui-password" vtype="minLength:6" minLengthErrorText="密码不能少于6个字符"
+					  <input name="password" id="password"  class="nui-password" vtype="minLength:1" minLengthErrorText="密码不能少于1个字符"
 			                onenter="keyboardLogin" style="width:237px;height:26px;" onvalidation="onCheckPassword" 
 			                autocomplete="off" />
 					</p>
@@ -66,7 +66,7 @@
 			</div>
 		</div>
 		<div class="foot">
-			<p>(c) Copyright Primeton 2012. All Rights Reserved.<span></span></p>
+			<p>(c) Copyright Harson 2018. All Rights Reserved.<span></span></p>
 		</div>
 	</div>
 

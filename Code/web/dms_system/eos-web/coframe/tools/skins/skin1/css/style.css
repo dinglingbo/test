@@ -39,7 +39,7 @@ html, body{height:100%;}
 
 #header{top:0; height:70px; background:url(../images/head-bg.gif) repeat-x;}
 .head-in{display:block; width:100%; height:70px; background:url(../images/head.gif) center center no-repeat;}
-.head-in .logo{float:left; margin:25px 20px 0 20px; _margin-left:10px; _margin-right:10px; width:180px; height:25px; background:url(../images/logo.png) no-repeat; _background:url(../images/logo.gif) no-repeat;}
+.head-in .logo{float:left; margin:25px 20px 0 20px; _margin-left:10px; _margin-right:10px; width:180px; height:25px; __background:url(../images/logo.png) no-repeat; _background:url(../images/logo.gif) no-repeat;}
 .head-in .name{float:left; margin-top:22px; width:250px; height:60px;color:#023D67;font:26px/30px Simhei;}
 .head-in .options{margin:15px 10px 0 0; _margin-right:10px;}
 .head-in .time span{margin-right:10px;}

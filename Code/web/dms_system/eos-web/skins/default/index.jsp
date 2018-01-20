@@ -6,7 +6,7 @@
 <head>
 <%@include file="/coframe/tools/skins/common.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>普元-用户机构及权限管理系统</title>
+<title>DMS管理系统</title>
 <style type="text/css">
 .dtHighLight{
 	background:#F0F8FF !important;
@@ -19,8 +19,10 @@
 	<div id="header">
 		<div class="head-in clearfix">
 			<div class="fl clearfix">
-				<h1 class="logo"></h1>
+				<h1 class="logo">DMS管理系统</h1>
+				<%--
 				<h2 class="name">应用基础框架</h2>
+				--%>
 			</div>
 			<div class="options fr">
 				<div class="time font-5"><span id="currentData"></span></div>
@@ -89,7 +91,7 @@
 		</div>
 	</div>
 	<div id="footer">
-		<p>(c) Copyright Primeton 2012. All Rights Reserved. <%=com.primeton.ext.common.l7e.ImprimaturMgr.getImprimatur().getEditionInfo(com.eos.data.datacontext.DataContextManager.current().getCurrentLocale())%></p>
+		<p>(c) Copyright Harson 2018. All Rights Reserved. </p>
 	</div>
 </div>
 </div>

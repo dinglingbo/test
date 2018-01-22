@@ -1,0 +1,8 @@
+#
+#Mon Jan 22 16:58:49 CST 2018
+uiType=NUI
+project.type=EOS
+componentType=com.primeton.component.module
+author=Guine
+description=dms_part_api
+componentVersion=7.0.0.0

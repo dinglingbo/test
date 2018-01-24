@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Guine -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--区域下属分店  #deptCode#-->
+    <select id="getAreaComp" parameterClass="java.util.HashMap" resultClass="com.vplus.data.org.MpDepartments">
+		Select DA.dept_name deptName, DA.dept_code deptCode
+		FROM MP_DEPARTMENTS AREA  
+		INNER JOIN MP_DEPARTMENTS DA on instr(DA.tree_id, AREA.tree_id) &gt;0
+		Where 
+		AREA.dept_code=#deptCode#
+		AND DA.dept_type='COMP' AND DA.dept_status='A'
+     </select>
+</sqlMap>

@@ -28,6 +28,10 @@
 				and the field value 'default' of 'configValue' node stands for an application datasource. 
 			-->
 			<configValue key="default">default</configValue>
+			<configValue key="saas">saas</configValue>
+			<configValue key="HSFForce">HSFForce</configValue>
+			<configValue key="budget">budget</configValue>
+			<configValue key="slog">slog</configValue>
 		</group>
 	</module>
 </contribution>

@@ -11,28 +11,24 @@ import com.hs.common.MD5;
 
 @Bizlet("llq工具类")
 public class LlqCall {
-	String securityKey = "80967a34826f415790ee748028b6d195";// 安全码
-	String uid="5232e6c0e7618e47e39db82a0eaead9a";
-	String hashid = "llq";
 
 	@Bizlet("setHashKey")
 	public void setHashKey(Map<String, Object> params) {
-		String hash;// HASH码
-		String tms;// 时间戳
+		String securityKey = params.get("securityKey").toString();	
+		params.remove("securityKey");
 		Long time = (new Date()).getTime();// 1516266450.711719
 
-		tms = time.toString().substring(0, 10);
+		String tms = time.toString().substring(0, 10);
 		params.put("time", tms);
 		System.out.println("tms=" + tms);
-		params.put("uid", uid);
-		params.put("hashid", hashid);
 		Map<String, Object> sortMap = sortMapByKey(params); // 按Key进行排序
 
 		StringBuffer s = new StringBuffer();
 		for (Map.Entry<String, Object> entry : sortMap.entrySet()) {
 			s.append(entry.getValue());
 		}
-		hash = MD5.crypt(s.toString() + securityKey);
+		
+		String hash = MD5.crypt(s.toString() + securityKey);
 		System.out.println("hash=" + hash);
 		params.put("hash", hash);
 	}

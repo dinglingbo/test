@@ -72,17 +72,57 @@ function addSuplier()
         allowResize:false,
         onload: function ()
         {
-
+        	var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData({
+                province:provinceList,
+                city:cityList
+            });
         },
         ondestroy: function (action)
         {
-
+        	if(action == "ok")
+            {
+                grid.reload();
+            }
         }
     });
 }
 function editSuplier()
 {
+    var row = grid.getSelected();
 
+    if(!row)
+    {
+        nui.alert("请选择要编辑的数据");
+        return;
+    }
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.part.baseData.supplierDetail.flow",
+        title: "供应商资料", width: 530, height: 560,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData({
+                province:provinceList,
+                city:cityList,
+                supplier:row
+            });
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+                grid.reload();
+            }
+        }
+    });
+}
+function onRowDblClick(e)
+{
+    editSuplier();
 }
 
 

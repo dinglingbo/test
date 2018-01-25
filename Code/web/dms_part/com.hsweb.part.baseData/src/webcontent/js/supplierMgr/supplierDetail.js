@@ -2,14 +2,27 @@
  * Created by Administrator on 2018/1/23.
  */
 
+var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var basicInfoForm = null;
+var contactInfoForm = null;
+var financeInfoForm = null;
+var otherInfoForm = null;
+
+function initForm(){
+    basicInfoForm = new nui.Form("#basicInfoForm");
+    contactInfoForm = new nui.Form("#contactInfoForm");
+    financeInfoForm = new nui.Form("#financeInfoForm");
+    otherInfoForm = new nui.Form("#otherInfoForm");
+}
 $(document).ready(function(v)
 {
-
+    initForm();
 });
 
 function onValueChanged(){
 
 }
+
 
 function CloseWindow(action) {
     //if (action == "close" && form.isChanged()) {
@@ -22,4 +35,105 @@ function CloseWindow(action) {
 }
 function onCancel(e) {
     CloseWindow("cancel");
+}
+var requiredField = {
+    code:"供应商编码",
+    fullName:"供应商全称",
+    billTypeId:"票据类型",
+    settTypeId:"结算方式",
+    manager:"联系人",
+    mobile:"手机",
+    provinceId:"省份",
+    cityId:"城市"
+};
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveSupplier.biz.ext";
+function onOk()
+{
+    var dataList = [];
+    dataList[0] = basicInfoForm.getData();
+    dataList[1] = contactInfoForm.getData();
+    dataList[2] = financeInfoForm.getData();
+    dataList[3] = otherInfoForm.getData();
+    var data = {};
+    for(var i=0;i<dataList.length;i++)
+    {
+        for(var key in dataList[i])
+        {
+            if(typeof dataList[i][key] == "string"){
+                data[key] = dataList[i][key]
+            }
+        }
+    }
+    data.isClient = nui.get("isClient").getValue();
+    data.isSupplier = nui.get("isSupplier").getValue();
+    data.isDisabled = nui.get("isDisabled").getValue();
+    console.log(data);
+    for(var key in requiredField)
+    {
+        if(!data[key] || data[key].trim().length==0)
+        {
+            nui.alert(requiredField[key]+"不能为空");
+            return;
+        }
+    }
+    nui.mask({
+        html:'保存中...'
+    });
+    nui.ajax({
+        url:saveUrl,
+        type:"post",
+        data:JSON.stringify({
+            supplier:data
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                nui.alert("保存成功");
+                CloseWindow("ok");
+            }
+            else{
+                nui.alert(data.errMsg||"保存失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+function setData(data)
+{
+    provinceList = data.province||[];
+    provinceList.forEach(function(v){
+        provinceHash[v.id] = v;
+    });
+    if(!provinceEl)
+    {
+        provinceEl = nui.get("provinceId");
+    }
+    provinceEl.setData(provinceList);
+    cityList = data.city||[];
+    cityList.forEach(function(v){
+        cityHash[v.id] = v;
+    });
+    console.log(data);
+    if(data.supplier)
+    {
+        if(!basicInfoForm)
+        {
+            initForm();
+        }
+        var supplier = data.supplier;
+        basicInfoForm.setData(supplier);
+        contactInfoForm.setData(supplier);
+        financeInfoForm.setData(supplier);
+        otherInfoForm.setData(supplier);
+        nui.get("isClient").setValue(supplier.isClient);
+        nui.get("isSupplier").setValue(supplier.isSupplier);
+        nui.get("isDisabled").setValue(supplier.isDisabled);
+    }
 }

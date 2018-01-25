@@ -113,7 +113,7 @@
 		       a.account_bank_no       accountBankNo,
 		       a.bill_type_id          billTypeId,
 		       a.sett_type_id          settTypeId,
-		       a."LEVEL"               "level",
+		       a.tgrade                tgrade,
 		       a.credit_limit          creditLimit,
 		       a.is_disabled           isDisabled,
 		       a.remark                remark,

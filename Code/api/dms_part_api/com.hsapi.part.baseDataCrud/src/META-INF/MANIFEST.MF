@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.foundation,com.hsapi.part.data
+eos-webCtxPath: baseDataCrud
+Bundle-Vendor: chenziming
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.part.baseDataCrud
+Bundle-Description: 基础数据
+Bundle-SymbolicName: com.hsapi.part.baseDataCrud
+

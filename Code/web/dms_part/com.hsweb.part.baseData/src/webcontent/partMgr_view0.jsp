@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="baseData/js/partMgr/partMgr.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.0"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

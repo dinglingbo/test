@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="baseData/js/supplierMgr/supplierDetail.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierDetail.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	text-align: right;

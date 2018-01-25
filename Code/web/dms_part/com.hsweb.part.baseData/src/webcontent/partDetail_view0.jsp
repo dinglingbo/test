@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="baseData/js/partMgr/partDetail.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partDetail.js?v=1.0.0"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

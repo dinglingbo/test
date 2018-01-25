@@ -1,5 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@include file="/common/common.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -8,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="common/js/partSelect.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/common/js/partSelect.js?v=1.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

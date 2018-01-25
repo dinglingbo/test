@@ -10,7 +10,7 @@
 <head>
 <title>客户管理</title>
 
-<script src="baseData/js/customerMgr/customerMgr.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/customerMgr/customerMgr.js?v=1.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

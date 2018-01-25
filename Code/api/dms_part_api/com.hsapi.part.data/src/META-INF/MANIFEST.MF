@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: data
+Bundle-Vendor: chenziming
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.part.data
+Bundle-Description: 数据实体
+Bundle-SymbolicName: com.hsapi.part.data
+

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierDetail.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierDetail.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -100,24 +100,24 @@
                     <input id="billTypeId"
                            name="billTypeId"
                            class="nui-combobox width1"
-                           textField="text"
-                           valueField="id"
+                           textField="name"
+                           valueField="customid"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
-                           showNullItem="true"
+                           showNullItem="false"
                            nullItemText="请选择..."/>
 
                     <span class="title title-width1 required">结算方式：</span>
                     <input id="settTypeId"
                            name="settTypeId"
                            class="nui-combobox width2"
-                           textField="text"
-                           valueField="id"
+                           textField="name"
+                           valueField="customid"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
-                           showNullItem="true"
+                           showNullItem="false"
                            nullItemText="请选择..."/>
                 </div>
                 <div class="row">
@@ -125,8 +125,8 @@
                     <input id="supplierType"
                            name="supplierType"
                            class="nui-combobox width1"
-                           textField="text"
-                           valueField="id"
+                           textField="name"
+                           valueField="customid"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
@@ -144,8 +144,8 @@
                            name="managerDuty"
                            width="110"
                            class="nui-combobox"
-                           textField="text"
-                           valueField="id"
+                           textField="name"
+                           valueField="customid"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
@@ -166,11 +166,11 @@
                 </div>
                 <div class="row">
                     <span class="title title-width1">信用等级：</span>
-                    <input id="level"
-                           name="level"
+                    <input id="tgrade"
+                           name="tgrade"
                            class="nui-combobox width1"
-                           textField="text"
-                           valueField="id"
+                           textField="name"
+                           valueField="customid"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"

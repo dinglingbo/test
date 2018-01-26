@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierMgr.js?v1.0.1"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierMgr.js?v1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -26,7 +26,17 @@
                 <label style="font-family:Verdana;">供应商全称：</label>
                 <input class="nui-textbox" width="100" id="fullName"/>
                 <label style="font-family:Verdana;">供应商类型：</label>
-                <input class="nui-textbox" width="100"/>
+                <input id="supplierType"
+                       name="supplierType"
+                       class="nui-combobox width1"
+                       textField="name"
+                       valueField="customid"
+                       emptyText="请选择..."
+                       url=""
+                       width="100"
+                       allowInput="true"
+                       showNullItem="true"
+                       nullItemText="请选择..."/>
                 <label style="font-family:Verdana;">优势品牌/产品：</label>
                 <input class="nui-textbox" width="100" id="advantageCarbrandId"/>
                 <label style="font-family:Verdana;">联系人电话：</label>
@@ -55,6 +65,7 @@
          dataField="suppliers"
          pageSize="20"
          totalField="page.count"
+         onrowdblclick="onRowDblClick"
          ondrawcell="onDrawCell"
          frozenStartColumn="0"
          frozenEndColumn="7">
@@ -83,7 +94,7 @@
             </div>
             <div header="财务信息" headerAlign="center">
                 <div property="columns">
-                    <div field="level" width="100" headerAlign="center">信誉等级</div>
+                    <div field="tgrade" width="100" headerAlign="center">信誉等级</div>
                     <div field="creditLimit" width="100" headerAlign="center">信誉额度</div>
                     <div field="billTypeId" width="100" headerAlign="center">票据类型</div>
                     <div field="settTypeId" width="100" headerAlign="center">结算方式</div>
@@ -146,7 +157,7 @@
                            url=""
                            allowInput="true"
                            showNullItem="false"
-                           onvaluechanged="onProvinceSelected"
+                           onvaluechanged="onProvinceSelected('cityId')"
                            nullItemText="请选择..."/>
                 </td>
                 <td class="table-label">城市:</td>
@@ -159,7 +170,7 @@
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
-                           showNullItem="true"
+                           showNullItem="false"
                            nullItemText="请选择..."/>
                 </td>
             </tr>

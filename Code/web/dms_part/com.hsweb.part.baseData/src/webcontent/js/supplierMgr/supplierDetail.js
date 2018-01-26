@@ -14,8 +14,23 @@ function initForm(){
     financeInfoForm = new nui.Form("#financeInfoForm");
     otherInfoForm = new nui.Form("#otherInfoForm");
 }
+var billTypeId = null;
+var settTypeId = null;
+var supplierType = null;
+var managerDuty = null;
+var tgrade = null;
+function initComboBox()
+{
+    provinceEl = nui.get("provinceId");
+    billTypeId = nui.get("billTypeId");
+    settTypeId = nui.get("settTypeId");
+    supplierType = nui.get("supplierType");
+    managerDuty = nui.get("managerDuty");
+    tgrade = nui.get("tgrade");
+}
 $(document).ready(function(v)
 {
+	initComboBox();
     initForm();
 });
 
@@ -105,6 +120,16 @@ function onOk()
     });
 }
 
+var tgradeList = [];
+var tgradeHash = {};
+var billTypeIdList = [];
+var billTypeIdHash = {};
+var settTypeIdList = [];
+var settTypeIdHash = {};
+var managerDutyList = [];
+var managerDutyHash = {};
+var supplierTypeList = [];
+var supplierTypeHash = {};
 function setData(data)
 {
     provinceList = data.province||[];
@@ -120,6 +145,31 @@ function setData(data)
     cityList.forEach(function(v){
         cityHash[v.id] = v;
     });
+    tgradeList = data.tgrade||[];
+    tgradeList.forEach(function(v){
+        tgradeHash[v.customid] = v;
+    });
+    billTypeIdList = data.billTypeId||[];
+    billTypeIdList.forEach(function(v){
+        billTypeIdHash[v.customid] = v;
+    });
+    settTypeIdList = data.settTypeId||[];
+    settTypeIdList.forEach(function(v){
+        settTypeIdHash[v.customid] = v;
+    });
+    managerDutyList = data.managerDuty||[];
+    managerDutyList.forEach(function(v){
+        managerDutyHash[v.customid] = v;
+    });
+    supplierTypeList = data.supplierType||[];
+    supplierTypeList.forEach(function(v){
+        supplierTypeHash[v.customid] = v;
+    });
+    billTypeId.setData(billTypeIdList);
+    settTypeId.setData(settTypeIdList);
+    supplierType.setData(supplierTypeList);
+    managerDuty.setData(managerDutyList);
+    tgrade.setData(tgradeList);
     console.log(data);
     if(data.supplier)
     {
@@ -132,6 +182,8 @@ function setData(data)
         contactInfoForm.setData(supplier);
         financeInfoForm.setData(supplier);
         otherInfoForm.setData(supplier);
+        onProvinceSelected("cityId");
+        contactInfoForm.setData(supplier);
         nui.get("isClient").setValue(supplier.isClient);
         nui.get("isSupplier").setValue(supplier.isSupplier);
         nui.get("isDisabled").setValue(supplier.isDisabled);

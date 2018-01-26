@@ -7,6 +7,34 @@ var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var grid = null;
+//信誉等级
+var tgradeList = [
+    {
+        "customid":0,
+        "name":"高"
+    },
+    {
+        "customid":1,
+        "name":"中"
+    },
+    {
+        "customid":2,
+        "name":"低"
+    }
+];
+var tgradeHash = {
+    0:tgradeList[0],
+    1:tgradeList[1],
+    2:tgradeList[2]
+};
+var billTypeIdList = [];
+var billTypeIdHash = {};
+var settTypeIdList = [];
+var settTypeIdHash = {};
+var managerDutyList = [];
+var managerDutyHash = {};
+var supplierTypeList = [];
+var supplierTypeHash = {};
 $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
@@ -16,6 +44,51 @@ $(document).ready(function(v)
     //console.log("xxx");
     
     getProvinceAndCity();
+    var dictIdList = [];
+    dictIdList.push('DDT20130703000008');//票据类型
+    dictIdList.push('DDT20180105000001');//供应商负责人职务
+    dictIdList.push('DDT20130703000035');//结算方式
+    dictIdList.push('DDT20171226000001');//供应商类型
+    getDictItems(dictIdList,function(data)
+    {
+        if(data && data.dataItems)
+        {
+            var dataItems = data.dataItems||[];
+            billTypeIdList = dataItems.filter(function(v)
+            {
+                if(v.dictid == "DDT20130703000008")
+                {
+                    billTypeIdHash[v.customid] = v;
+                    return true;
+                }
+            });
+            settTypeIdList = dataItems.filter(function(v)
+            {
+                if(v.dictid == "DDT20130703000035")
+                {
+                    settTypeIdHash[v.customid] = v;
+                    return true;
+                }
+            });
+            managerDutyList = dataItems.filter(function(v)
+            {
+                if(v.dictid == "DDT20180105000001")
+                {
+                    managerDutyHash[v.customid] = v;
+                    return true;
+                }
+            });
+            supplierTypeList = dataItems.filter(function(v)
+            {
+                if(v.dictid == "DDT20171226000001")
+                {
+                    supplierTypeHash[v.customid] = v;
+                    return true;
+                }
+            });
+            nui.get("supplierType").setData(supplierTypeList);
+        }
+    });
 });
 function onSearch(){
     search();
@@ -30,7 +103,8 @@ function getSearchParam() {
 	var params = {
 		fullName : nui.get("fullName").getValue(),
 		advantageCarbrandId : nui.get("advantageCarbrandId").getValue(),
-		mobile : nui.get("mobile").getValue()
+		mobile : nui.get("mobile").getValue(),
+		supplierType : nui.get("supplierType").getValue()
 	};
 
 	return params;
@@ -75,7 +149,12 @@ function addSuplier()
         	var iframe = this.getIFrameEl();
             iframe.contentWindow.setData({
                 province:provinceList,
-                city:cityList
+                city:cityList,
+                supplierType:supplierTypeList,
+                billTypeId:billTypeIdList,
+                settTypeId:settTypeIdList,
+                tgrade:tgradeList,
+                managerDuty:managerDutyList
             });
         },
         ondestroy: function (action)
@@ -108,7 +187,12 @@ function editSuplier()
             iframe.contentWindow.setData({
                 province:provinceList,
                 city:cityList,
-                supplier:row
+                supplier:row,
+                supplierType:supplierTypeList,
+                billTypeId:billTypeIdList,
+                settTypeId:settTypeIdList,
+                tgrade:tgradeList,
+                managerDuty:managerDutyList
             });
         },
         ondestroy: function (action)
@@ -127,40 +211,57 @@ function onRowDblClick(e)
 
 
 
+
 function onDrawCell(e)
 {
-    if(e.field == "isDisabled")
-    {
-        e.cellHtml = e.value==0?"否":"是";
-    }
     switch (e.field)
     {
         case "isDisabled":
-            e.cellHtml = e.value==0?"否":"是";
+            e.cellHtml = e.value==1?"是":"否";
             break;
         case "provinceId":
-            e.cellHtml = provinceHash[e.value].name;
+            if(provinceHash[e.value])
+            {
+                e.cellHtml = provinceHash[e.value].name;
+            }
             break;
         case "cityId":
-            e.cellHtml = cityHash[e.value].name;
+            if(cityHash[e.value])
+            {
+                e.cellHtml = cityHash[e.value].name;
+            }
+            break;
+        case "tgrade":
+            if(tgradeHash[e.value]){
+                e.cellHtml = tgradeHash[e.value].name||"";
+            }
+            break;
+        case "billTypeId":
+            if(billTypeIdHash[e.value]){
+                e.cellHtml = billTypeIdHash[e.value].name||"";
+            }
+
+            break;
+        case "settTypeId":
+            if(settTypeIdHash[e.value]){
+                e.cellHtml = settTypeIdHash[e.value].name||"";
+            }
+            break;
+        case "managerDuty":
+            if(managerDutyHash[e.value]){
+                e.cellHtml = managerDutyHash[e.value].name||"";
+            }
+            break;
+        case "supplierType":
+            if(supplierTypeHash[e.value])
+            {
+                e.cellHtml = supplierTypeHash[e.value].name||"";
+            }
             break;
     }
 }
 
 var getProvinceAndCityUrl = baseUrl+"com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
-var provinceHash = {};
-var provinceList = [];
-var cityHash = {};
-var cityList = [];
-var provinceEl = null;
-var cityEl = null;
-function onProvinceSelected(e){
-    var id = provinceEl.getValue();
-    var currCityList = cityList.filter(function(v){
-        return v.provinceId == id;
-    });
-    cityEl.setData(currCityList);
-}
 function getProvinceAndCity(callback)
 {
     if(!provinceEl)

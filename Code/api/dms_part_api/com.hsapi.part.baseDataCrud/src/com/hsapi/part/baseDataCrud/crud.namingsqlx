@@ -133,6 +133,9 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code = #code#)
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="supplierType">  
+                (supplier_type = #supplierType#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="cityId">  
                 (city_id = #cityId#)
             </isNotEmpty>

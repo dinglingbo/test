@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partBrandDetail.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partBrandDetail.js?v=1.0.4"></script>
 <style type="text/css">
 
 body {
@@ -39,8 +39,10 @@ body {
 </style>
 </head>
 <body>
+
 <div id="basicInfoForm" class="form">
     <input class="nui-hidden" name="id"/>
+    <input class="nui-hidden" name="parentId"/>
     <div class="row">
         <span class="title title-width1 required">品牌编码：</span>
         <input name="code" class="nui-textbox width1"/>
@@ -51,11 +53,11 @@ body {
     </div>
     <div class="row">
         <span class="title title-width1">生产厂家：</span>
-        <input name="factory" class="nui-textbox width1"/>
+        <input name="manufacture" class="nui-textbox width1"/>
     </div>
     <div class="row">
         <span class="title title-width1">备注：</span>
-        <input name="backup" class="nui-textbox width1"/>
+        <input name="remark" class="nui-textbox width1"/>
     </div>
 </div>
 <div style="text-align:center;padding:10px;">

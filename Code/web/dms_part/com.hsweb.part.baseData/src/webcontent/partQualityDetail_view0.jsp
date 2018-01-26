@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partQualityDetail.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partQualityDetail.js?v=1.0.3"></script>
 <style type="text/css">
 body {
 	padding: 10px;
@@ -42,6 +42,7 @@ body {
 </style>
 </head>
 <body>
+
 <div id="basicInfoForm" class="form">
     <input class="nui-hidden" name="id"/>
     <div class="row">

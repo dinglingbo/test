@@ -2,15 +2,27 @@
  * Created by Administrator on 2018/1/24.
  */
 
+var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 $(document).ready(function(v)
 {
     basicInfoForm = new nui.Form("#basicInfoForm")
 });
+function setData(data)
+{
+    if(!basicInfoForm)
+    {
+        basicInfoForm = new nui.Form("#basicInfoForm")
+    }
+    data = data||{};
+    var quality = data.quality;
+    basicInfoForm.setData(quality);
+}
 var requiredField = {
     code:"品质编码",
     name:"品质名称"
 };
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePartBrand.biz.ext";
 function onOk()
 {
     var data = basicInfoForm.getData();
@@ -23,6 +35,33 @@ function onOk()
             return;
         }
     }
+    nui.mask({
+        html:'保存中...'
+    });
+    nui.ajax({
+        url:saveUrl,
+        type:"post",
+        data:JSON.stringify({
+            brand:data
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                nui.alert("保存成功");
+                CloseWindow("ok");
+            }
+            else{
+                nui.alert(data.errMsg||"保存失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 function CloseWindow(action) {
     //if (action == "close" && form.isChanged()) {

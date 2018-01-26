@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库定义</title>
-<script src="<%= request.getContextPath() %>/baseData/js/storehouseMgr/storehouseMgr.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/storehouseMgr/storehouseMgr.js?v=1.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -17,6 +17,7 @@
 </style>
 </head>
 <body>
+
 <div class="nui-splitter"
      id="splitter"
      allowResize="false"
@@ -35,7 +36,10 @@
         <div class="nui-fit">
             <ul id="tree1" class="nui-tree" url="" style="width:100%;height: 100%;"
                 contextMenu="#treeMenu"
-                showTreeIcon="true" textField="text" idField="id">
+                dataField="storehouse"
+                resultAsTree="false"
+                onnodeselect="onNodeselect"
+                showTreeIcon="true" textField="name" idField="id" parentField="parentId">
             </ul>
         </div>
     </div>
@@ -46,7 +50,7 @@
                     <td style="white-space:nowrap;">
                         <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPosition()">新增仓位</a>
                         <a class="nui-button" plain="true" iconCls="icon-save" onclick="savePosition()">保存</a>
-                        <a class="nui-button" plain="true" iconCls="icon-no" onclick="disablePosition()">禁用</a>
+                        <a class="nui-button" plain="true" iconCls="icon-no" onclick="disableLocation()">禁用</a>
                     </td>
                 </tr>
             </table>
@@ -54,15 +58,22 @@
         <div class="nui-fit">
             <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                  showPager="false"
+                 dataField="locations"
+                 idField="id"
+                 allowCellEdit="true"
+                 ondrawcell="onDrawCell"
+                 selectOnLoad="true"
                  url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div field="dept_name" headerAlign="center" allowSort="true">仓位</div>
+                    <div field="name" name="name" headerAlign="center" allowSort="true">仓位
+                        <input property="editor" class="nui-textbox" style="width:100%;"/>
+                    </div>
                     <div field="isDisabled" width="80" headerAlign="center" allowSort="true">是否禁用</div>
-                    <div field="createdBy" width="60" headerAlign="center" allowSort="true">建档人</div>
-                    <div field="creationDate" width="100" headerAlign="center" allowSort="true">建档时间</div>
-                    <div field="lastUpdatedBy" width="60" allowSort="true" headerAlign="center">修改人</div>
-                    <div field="lastUpdateDate" width="100" headerAlign="center" allowSort="true">修改时间</div>
+                    <div field="recorder" width="60" headerAlign="center" allowSort="true">建档人</div>
+                    <div field="recordDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">建档时间</div>
+                    <div field="modifier" width="60" allowSort="true" headerAlign="center">修改人</div>
+                    <div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">修改时间</div>
                 </div>
             </div>
         </div>

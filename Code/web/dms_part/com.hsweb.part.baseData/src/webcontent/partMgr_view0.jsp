@@ -11,17 +11,10 @@
 <title>配件管理</title>
 <script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.0"></script>
 <style type="text/css">
-html,body {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
 </style>
 </head>
 <body>
+
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
@@ -58,10 +51,16 @@ html,body {
     <div class="nui-splitter"
          allowResize="false"
          style="width:100%;height:100%;">
-        <div size="240" showCollapseButton="false">
+        <div size="210" showCollapseButton="false">
+            <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;text-align: center;">
+                <span>配件分类</span>
+            </div>
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
-                    showTreeIcon="true" textField="name" idField="id" parentField="pid" resultAsTree="false">
+                    dataField="partTypes"
+                    ondrawnode="onDrawNode"
+                    onnodedblclick="onNodeDblClick"
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentid" resultAsTree="false">
                 </ul>
             </div>
         </div>
@@ -76,7 +75,7 @@ html,body {
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      frozenStartColumn="0"
-                     frozenEndColumn="6"
+                     frozenEndColumn="7"
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""
@@ -84,7 +83,7 @@ html,body {
                      idField="id"
                      totalField="page.count"
                      pageSize="50"
-                     showFilterRow="true" allowCellSelect="true" allowCellEdit="true">
+                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
@@ -107,7 +106,7 @@ html,body {
                                 <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
                                 <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                 <div field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
-                                <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">二级分类</div>
+                                <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
                             </div>
                         </div>
                         <div header="价格信息" headerAlign="center">
@@ -130,29 +129,12 @@ html,body {
                                 <div field="nameEn" width="120" headerAlign="center" allowSort="true">英文名称</div>
                             </div>
                         </div>
-
-                        <div field="loginname" width="120" headerAlign="center" allowSort="true" allowSort="true">员工帐号
-                            <input property="editor" class="nui-textbox" style="width:100%;"/>
-                        </div>
-                        <div field="name" width="120" headerAlign="center" allowSort="true" allowSort="true">员工姓名
-                            <input property="editor" class="nui-textbox" style="width:100%;"/>
-                            <input id="nameFilter" property="filter" class="nui-textbox" onvaluechanged="onNameFilterChanged" style="width:100%;" />
-                        </div>
-                        <div field="gender" width="100" allowSort="true" renderer="onGenderRenderer" align="center" headerAlign="center">性别
-                            <input property="editor" class="nui-combobox" style="width:100%;" data="Genders"/>
-                        </div>
-                        <div field="age" width="100" allowSort="true">年龄
-                            <input property="editor" class="nui-spinner" minValue="0" maxValue="200" value="25" style="width:100%;"/>
-                        </div>
-                        <div field="birthday" width="100" allowSort="true" dateFormat="yyyy-MM-dd">出生日期
-                            <input property="editor" class="nui-datepicker" style="width:100%;"/>
-                        </div>
-                        <div field="createtime" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">创建日期</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

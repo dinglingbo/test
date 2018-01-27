@@ -25,11 +25,11 @@
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
                 <label style="font-family:Verdana;">客户编码：</label>
-                <input class="nui-textbox" width="100"/>
+                <input class="nui-textbox" width="100" id="code"/>
                 <label style="font-family:Verdana;">客户全称：</label>
-                <input class="nui-textbox" width="100"/>
+                <input class="nui-textbox" width="100" id="fullName"/>
                 <label style="font-family:Verdana;">联系人电话：</label>
-                <input class="nui-textbox" width="100"/>
+                <input class="nui-textbox" width="100" id="mobile"/>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
@@ -52,6 +52,11 @@
     <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
          url=""  idField="id" multiSelect="true"
          pageSize="20"
+         dataField="customers"
+         pageSize="20"
+         totalField="page.count"
+         onrowdblclick="onRowDblClick"
+         ondrawcell="onDrawCell"
          frozenStartColumn="0"
          frozenEndColumn="4">
         <div property="columns">
@@ -59,47 +64,47 @@
             <!--<div type="checkcolumn" ></div>-->
             <div header="基本信息" headerAlign="center">
                 <div property="columns">
-                    <div field="dept_name" width="100" headerAlign="center">客户编码</div>
-                    <div field="position_name" width="80" headerAlign="center">客户简称</div>
-                    <div field="position_name" width="100" headerAlign="center">客户全称</div>
-                    <div field="position_name" width="100" headerAlign="center">对象类型</div>
+                    <div field="code" width="100" headerAlign="center">客户编码</div>
+                    <div field="shortName" width="80" headerAlign="center">客户简称</div>
+                    <div field="fullName" width="100" headerAlign="center">客户全称</div>
+                    <div field="guestType" width="100" headerAlign="center">对象类型</div>
                 </div>
             </div>
             <div header="客户联系方式" headerAlign="center">
                 <div property="columns">
-                    <div field="dept_name" width="100" headerAlign="center">电话</div>
-                    <div field="position_name" width="80" headerAlign="center">手机号码</div>
-                    <div field="position_name" width="100" headerAlign="center">地址</div>
+                    <div field="tel" width="100" headerAlign="center">电话</div>
+                    <div field="mobile" width="100" headerAlign="center">手机号码</div>
+                    <div field="addr" width="100" headerAlign="center">地址</div>
                 </div>
             </div>
             <div header="联系人信息" headerAlign="center">
                 <div property="columns">
-                    <div field="position_name" width="80" headerAlign="center">联系人</div>
-                    <div field="dept_name" width="100" headerAlign="center">联系人电话</div>
+                    <div field="contactor" width="80" headerAlign="center">联系人</div>
+                    <div field="contactorTel" width="100" headerAlign="center">联系人电话</div>
                 </div>
             </div>
             <div header="财务信息" headerAlign="center">
                 <div property="columns">
-                    <div field="dept_name" width="100" headerAlign="center">对象等级</div>
-                    <div field="position_name" width="80" headerAlign="center">票据类型</div>
-                    <div field="position_name" width="100" headerAlign="center">信誉额度</div>
+                    <div field="tgrade" width="100" headerAlign="center">对象等级</div>
+                    <div field="billTypeId" width="80" headerAlign="center">票据类型</div>
+                    <div field="creditLimit" width="100" headerAlign="center">信誉额度</div>
                 </div>
             </div>
             <div header="其他信息" headerAlign="center">
                 <div property="columns">
-                    <div field="dept_name" width="100" headerAlign="center">拼音</div>
-                    <div field="position_name" width="80" headerAlign="center">省份 </div>
-                    <div field="position_name" width="100" headerAlign="center">城市</div>
-                    <div field="position_name" width="100" headerAlign="center">传真</div>
+                    <div field="pyName" width="100" headerAlign="center">拼音</div>
+                    <div field="provinceId" width="80" headerAlign="center">省份 </div>
+                    <div field="cityId" width="100" headerAlign="center">城市</div>
+                    <div field="fax" width="100" headerAlign="center">传真</div>
 
-                    <div field="dept_name" width="200" headerAlign="center">备注</div>
+                    <div field="remark" width="200" headerAlign="center">备注</div>
                 </div>
             </div>
             <div header="操作信息" headerAlign="center">
                 <div property="columns">
-                    <div field="dept_name" width="70" headerAlign="center">最后操作人</div>
-                    <div field="position_name" width="100" headerAlign="center">最后操作时间</div>
-                    <div field="position_name" width="30" headerAlign="center">禁用</div>
+                    <div field="modifier" width="70" headerAlign="center">最后操作人</div>
+                    <div field="modifyDate" width="135" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss">最后操作时间</div>
+                    <div field="isDisabled" width="30" headerAlign="center" align="center">禁用</div>
                 </div>
             </div>
         </div>
@@ -115,32 +120,32 @@
         <table style="width:100%;">
             <tr>
                 <td class="table-label">客户编码:</td>
-                <td><input name="loginname" class="nui-textbox" /></td>
+                <td><input name="code" class="nui-textbox" /></td>
                 <td class="table-label">客户简称:</td>
-                <td><input name="name" class="nui-textbox" /></td>
+                <td><input name="shortName" class="nui-textbox" /></td>
             </tr>
             <tr>
                 <td class="table-label">客户全称:</td>
                 <td colspan="3">
-                    <input name="salary" class="nui-textbox" style="width:100%;"/>
+                    <input name="fullName" class="nui-textbox" style="width:100%;"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-label">联系人:</td>
-                <td><input name="loginname" class="nui-textbox" /></td>
+                <td><input name="contactor" class="nui-textbox" /></td>
                 <td class="table-label">联系人电话：</td>
-                <td><input name="name" class="nui-textbox" /></td>
+                <td><input name="contactorTel" class="nui-textbox" /></td>
             </tr>
             <tr>
                 <td class="table-label">会员等级:</td>
-                <td><input name="loginname" class="nui-textbox" /></td>
+                <td><input name="memLevel" class="nui-textbox" /></td>
                 <td class="table-label">会员卡号:</td>
-                <td><input name="name" class="nui-textbox" /></td>
+                <td><input name="memCarNo" class="nui-textbox" /></td>
             </tr>
             <tr>
                 <td class="table-label">省份:</td>
                 <td>
-                    <input id="combo1"
+                    <input id="provinceId"
                            class="nui-combobox"
                            textField="text"
                            valueField="id"
@@ -150,11 +155,12 @@
                            required="true"
                            allowInput="true"
                            showNullItem="true"
+                           onvaluechanged="onProvinceSelected('cityId')"
                            nullItemText="请选择..."/>
                 </td>
                 <td class="table-label">城市:</td>
                 <td>
-                    <input id="select-city"
+                    <input id="cityId"
                            class="nui-combobox"
                            textField="text"
                            valueField="id"
@@ -174,7 +180,6 @@
         </div>
     </div>
 </div>
-
 
 
 </body>

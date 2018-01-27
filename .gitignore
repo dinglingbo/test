@@ -5,6 +5,9 @@
 *.pdb
 ##*.jar
 
+##
+self_*
+
 ##目录
 bin
 eosdebug

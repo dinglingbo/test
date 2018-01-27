@@ -10,7 +10,7 @@
 <head>
 <title>common</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js"
+<script src="<%=request.getContextPath()%>/common/nui/nui.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
 	function getRoot() {
@@ -25,7 +25,7 @@
 
 	window._rootUrl = getRoot();
 	//console.log(window._rootUrl);
-	
+
 	var provinceHash = {};
 	var provinceList = [];
 	var cityHash = {};
@@ -42,6 +42,30 @@
 			cityEl.setData(currCityList);
 		}
 	}
+
+	var getDictItemsUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getDictItems.biz.ext";
+	function getDictItems(dictIdList, callback) {
+		var params = {};
+		params.dictIdList = dictIdList;
+		nui.ajax({
+			url : getDictItemsUrl,
+			type : "post",
+			data : JSON.stringify(params),
+			success : function(data) {
+				if (data && data.dataItems) {
+					callback && callback({
+						code : "S",
+						dataItems : data.dataItems
+					});
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
 </script>
 <style type="text/css">
 html,body {
@@ -56,7 +80,7 @@ html,body {
 </head>
 <body>
 	<script type="text/javascript">
-    	nui.parse();
-    </script>
+		nui.parse();
+	</script>
 </body>
 </html>

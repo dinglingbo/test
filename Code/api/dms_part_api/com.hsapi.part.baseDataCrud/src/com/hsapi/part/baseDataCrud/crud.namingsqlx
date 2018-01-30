@@ -128,13 +128,17 @@
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate
 		       FROM com_guest a
-		       WHERE a.is_supplier = 1
+		       WHERE a.is_supplier = 1 
+		     <!--  AND a.guest_type = '01020202'-->
     	<dynamic>
     		<isNotEmpty prepend="and" property="code">  
-                (code = #code#)
+                (code like '%$code$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="supplierType">  
                 (supplier_type = #supplierType#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="icClient">  
+                (is_client = #icClient#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="cityId">  
                 (city_id = #cityId#)
@@ -145,20 +149,29 @@
             <isNotEmpty prepend="and" property="isDisabled">  
                 (is_disabled = #isDisabled#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="memLevel">  
+                (mem_level = #memLevel#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="memCarNo">  
+                (mem_car_no like '%$memCarNo$%')
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="fullName">  
-                (full_name like '%$fullName$' or full_name like '$fullName$%')
+                (full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="advantageCarbrandId">  
-                (advantage_carbrand_id like '%$advantageCarbrandId$' or advantage_carbrand_id like '$advantageCarbrandId$%')
+                (advantage_carbrand_id like '%$advantageCarbrandId$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
-                (mobile like '%$mobile$' or mobile like '$mobile$%')
+                (mobile like '%$mobile$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="shortName">  
-                (short_name like '%$shortName$' or short_name like '$shortName$%')
+                (short_name like '%$shortName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="manager">  
-                (manager like '%$manager$' or manager like '$manager$%')
+                (manager like '%$manager$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (full_name like '%$name$%' or short_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
@@ -222,7 +235,7 @@
 		       WHERE a.is_client = 1
     	<dynamic>
     		<isNotEmpty prepend="and" property="code">  
-                (code like '%$code$' or code like '$code$%')
+                (code = #code#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="cityId">  
                 (city_id = #cityId#)

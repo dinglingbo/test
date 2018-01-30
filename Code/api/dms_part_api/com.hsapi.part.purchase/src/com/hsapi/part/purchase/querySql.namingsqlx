@@ -42,34 +42,42 @@
 		       a.modifier modifier,
 		       a.modify_date modifyDate,
 		       a.sett_type settType
-		       FROM PTS_ENTER_MAIN a
+		       FROM PTS_ENTER_MAIN a where enter_type_id = '050101'
     	<dynamic>
-    		<isNotEmpty prepend="and" property="code">  
-                (code like '%$code$' or code like '$code$%')
+    		<isNotEmpty prepend="and" property="guestId">  
+                (guest_id = #guestId#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="cityId">  
-                (city_id = #cityId#)
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (to_char(enter_date,'mm')=to_char(sysdate,'mm'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="provinceId">  
-                (province_id = #provinceId#)
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (to_char(enter_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="isDisabled">  
-                (is_disabled = #isDisabled#)
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (to_char(enter_date,'dd')=to_char(sysdate,'dd'))
             </isNotEmpty>
-    		<isNotEmpty prepend="and" property="fullName">  
-                (full_name like '%$fullName$' or full_name like '$fullName$%')
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (to_char(enter_date,'dd')=to_char(sysdate-1,'dd'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="mobile">  
-                (mobile like '%$mobile$' or mobile like '$mobile$%')
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (to_char(enter_date,'iw')=to_char(sysdate,'iw'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="shortName">  
-                (short_name like '%$shortName$' or short_name like '$shortName$%')
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--上周-->
+                (to_char(enter_date,'iw')=to_char(sysdate-7,'iw'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="memLevel">  
-                (mem_Level like '%$memLevel$' or mem_Level like '$memLevel$%')
+            <isNotEmpty prepend="and" property="auditStatus">  
+            <!--审核状态-->
+                (audit_status = #auditStatus#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="manager">  
-                (manager like '%$manager$' or manager like '$manager$%')
+            <isNotEmpty prepend="and" property="postStatus">  
+            <!--是否过账-->
+                (post_status = #postStatus#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$

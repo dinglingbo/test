@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商选择界面</title>
-<script src="<%= request.getContextPath() %>/common/js/supplierSelect.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/common/js/supplierSelect.js?v=1.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -28,19 +28,19 @@
                 <input class="nui-textbox" width="100" id="code"/>
                 <label style="font-family:Verdana;">电话：</label>
                 <input class="nui-textbox" width="100" id="phone"/>
-                <label style="font-family:Verdana;">类型：</label>
-                <input id="type"
-                       class="nui-combobox width1"
-                       textField="text"
-                       valueField="id"
-                       emptyText="请选择..."
-                       url=""
-                       allowInput="true"
-                       showNullItem="true"
-                       nullItemText="请选择..."/>
+                <!--<label style="font-family:Verdana;">类型：</label>-->
+                <!--<input id="type"-->
+                       <!--class="nui-combobox width1"-->
+                       <!--textField="text"-->
+                       <!--valueField="id"-->
+                       <!--emptyText="请选择..."-->
+                       <!--url=""-->
+                       <!--allowInput="true"-->
+                       <!--showNullItem="true"-->
+                       <!--nullItemText="请选择..."/>-->
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示禁用：</label>
-                <input class="nui-checkbox" width="100" id="isDisabled"/>
+                <input class="nui-checkbox" width="100" id="showDisabled" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
@@ -62,7 +62,8 @@
         <div size="200" showCollapseButton="false">
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;height: 100%;"
-                    showTreeIcon="true" textField="text" idField="id">
+                    onnodedblclick="onNodeDblClick"
+                    showTreeIcon="true" textField="name" idField="id">
                 </ul>
             </div>
         </div>
@@ -71,24 +72,28 @@
                 <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
                      url=""  idField="id" multiSelect="true"
                      pageSize="20"
-                     frozenStartColumn="0"
-                     frozenEndColumn="0">
+                     dataField="suppliers"
+                     totalField="page.count"
+                     ondrawcell="onDrawCell"
+                     selectOnLoad="true"
+                     frozenStartColumn="-1"
+                     frozenEndColumn="-1">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <!--<div type="checkcolumn" ></div>-->
                         <div header="往来基本信息" headerAlign="center">
                             <div property="columns">
-                                <div field="name" width="80" headerAlign="center" header="简称"></div>
+                                <div field="shortName" width="80" headerAlign="center" header="简称"></div>
                                 <div field="fullName" width="100" headerAlign="center" header="全称"></div>
-                                <div field="productName" width="100" headerAlign="center" header="优势品牌/产品"></div>
-                                <div field="type" width="80" headerAlign="center" header="票据类型"></div>
-                                <div field="way" width="100" headerAlign="center" header="结算方式"></div>
-                                <div field="contactName" width="100" headerAlign="center" header="联系人"></div>
-                                <div field="contactPhone" width="100" headerAlign="center" header="联系电话"></div>
-                                <div field="person" width="80" headerAlign="center" header="业务员"></div>
-                                <div field="personPhone" width="100" headerAlign="center" header="业务员电话"></div>
+                                <div field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
+                                <div field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
+                                <div field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
+                                <div field="manager" width="100" headerAlign="center" header="联系人"></div>
+                                <div field="mobile" width="100" headerAlign="center" header="联系电话"></div>
+                                <div field="contactor" width="80" headerAlign="center" header="业务员"></div>
+                                <div field="contactorTel" width="100" headerAlign="center" header="业务员电话"></div>
                                 <div field="code" width="100" headerAlign="center" header="编码"></div>
-                                <div field="status" width="100" headerAlign="center" header="状态"></div>
+                                <div field="isDisabled" width="100" headerAlign="center" header="状态"></div>
                             </div>
                         </div>
                     </div>
@@ -108,60 +113,63 @@
                 <td class="table-label">全称:</td>
                 <td><input name="fullName" class="nui-textbox" /></td>
                 <td class="table-label">简称:</td>
-                <td><input name="name" class="nui-textbox" /></td>
+                <td><input name="shortName" class="nui-textbox" /></td>
             </tr>
             <tr>
                 <td class="table-label">编码:</td>
                 <td><input name="code" class="nui-textbox" /></td>
                 <td class="table-label">单位等级:</td>
-                <td><input name="level" class="nui-textbox" /></td>
+                <td><input name="tgrade" class="nui-textbox" /></td>
             </tr>
             <tr>
                 <td class="table-label">联系人:</td>
-                <td><input name="contactName" class="nui-textbox" /></td>
+                <td><input name="manager" class="nui-textbox" /></td>
                 <td class="table-label">联系人电话:</td>
-                <td><input name="contactPhone" class="nui-textbox" /></td>
+                <td><input name="mobile" class="nui-textbox" /></td>
             </tr>
             <tr>
                 <td class="table-label">会员等级:</td>
-                <td><input name="vipLevel" class="nui-textbox" /></td>
+                <td><input name="memLevel" class="nui-textbox" /></td>
                 <td class="table-label">会员卡号:</td>
-                <td><input name="cardNum" class="nui-textbox" /></td>
+                <td><input name="memCarNo" class="nui-textbox" /></td>
             </tr>
             <tr>
                 <td class="table-label">省份:</td>
                 <td>
-                    <input name="pro"
+                    <input name="provinceId"
+                           id="provinceId"
                            class="nui-combobox"
-                           textField="text"
+                           textField="name"
                            valueField="id"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
-                           showNullItem="true"
+                           showNullItem="false"
+                           onvaluechanged="onProvinceSelected('cityId')"
                            nullItemText="请选择..."/>
                 </td>
                 <td class="table-label">城市:</td>
                 <td>
-                    <input name="city"
+                    <input name="cityId"
+                           id="cityId"
                            class="nui-combobox"
-                           textField="text"
+                           textField="name"
                            valueField="id"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
-                           showNullItem="true"
+                           showNullItem="false"
                            nullItemText="请选择..."/>
                 </td>
             </tr>
             <tr>
                 <td class="table-label">客户:</td>
                 <td>
-                    <input class="nui-checkbox" name="isCustomer"/>
+                    <input class="nui-checkbox" name="icClient" trueValue="1" falseValue="0"/>
                 </td>
                 <td class="table-label">是否禁用:</td>
                 <td>
-                    <input class="nui-checkbox" name="isDisabled"/>
+                    <input class="nui-checkbox" name="showDisabled" trueValue="1" falseValue="0"/>
                 </td>
             </tr>
         </table>

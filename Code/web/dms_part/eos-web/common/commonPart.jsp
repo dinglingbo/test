@@ -83,6 +83,23 @@
 			}
 		});
 	}
+	var getStorehouseUrl = window._rootUrl
+			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+	function getStorehouse(callback) {
+		nui.ajax({
+			url : getStorehouseUrl,
+			type : "post",
+			success : function(data) {
+				if (data && data.storehouse) {
+					callback && callback(data);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
 </script>
 <style type="text/css">
 html,body {

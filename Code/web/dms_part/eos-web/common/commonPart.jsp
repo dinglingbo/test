@@ -66,6 +66,23 @@
 			}
 		});
 	}
+	var getProvinceAndCityUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
+	function getProvinceAndCity(callback) {
+		nui.ajax({
+			url : getProvinceAndCityUrl,
+			type : "post",
+			success : function(data) {
+				if (data) {
+					callback && callback(data);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
 </script>
 <style type="text/css">
 html,body {

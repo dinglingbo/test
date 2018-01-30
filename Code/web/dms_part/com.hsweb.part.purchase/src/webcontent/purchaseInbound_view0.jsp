@@ -30,6 +30,7 @@
 </style>
 </head>
 <body>
+
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
@@ -49,9 +50,9 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)">全部</a>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">供应商：</label>
-                <input id="btnEdit1" class="nui-buttonedit"
+                <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
-                       onbuttonclick="selectSupplier('btnEdit1')" selectOnFocus="true" />
+                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
@@ -64,10 +65,10 @@
         <tr>
             <td style="width:100%;">
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">新增</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()">修改</a>
-                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()">保存</a>
-                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEdit()">取消</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()">审核</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a>
+                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn">保存</a>
+                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a>
+                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" id="reViewBtn">审核</a>
             </td>
         </tr>
     </table>
@@ -80,17 +81,20 @@
          allowResize="false"
          handlerSize="6"
          style="width:100%;height:100%;">
-        <div size="250" showCollapseButton="false">
+        <div size="300" showCollapseButton="false">
             <div title="入库单列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
+                     selectOnLoad="true"
+                     onrowdblclick="onLeftGridRowDblClick"
+                     dataField="ptsEnterMainList"
                      url="">
                     <div property="columns">
-                        <div field="dept_name" headerAlign="center" header="入库单号"></div>
-                        <div field="dept_name" width="80" headerAlign="center" header="入库日期"></div>
-                        <div field="dept_name" width="60" headerAlign="center" header="状态"></div>
+                        <div field="id" headerAlign="center" header="入库单号"></div>
+                        <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
+                        <div field="auditStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
                 </div>
                 <!--footer-->
@@ -110,28 +114,30 @@
                                 <label>入库单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%"/>
+                                <input class="nui-textbox" width="100%" name="id" enabled="false" placeholder="新增入库单"/>
                             </td>
                             <td class="title required">
                                 <label>入库日期：</label>
                             </td>
                             <td width="100">
-                                <input name="inDate"
+                                <input name="enterDate"
                                        width="100%"
-                                       class="nui-datepicker"/>
+                                       showTime="true"
+                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                             </td>
                             <td class="title required">
                                 <label>仓库：</label>
                             </td>
                             <td>
-                                <input id="purchase"
+                                <input id="storeId"
+                                       name="storeId"
                                        class="nui-combobox width1"
-                                       textField="text"
+                                       textField="name"
                                        valueField="id"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="true"
-                                       showNullItem="true"
+                                       showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
                             </td>
@@ -139,14 +145,15 @@
                                 <label>票据类型：</label>
                             </td>
                             <td>
-                                <input name="type"
+                                <input name="billTypeId"
+                                       id="billTypeId"
                                        class="nui-combobox width1"
-                                       textField="text"
-                                       valueField="id"
+                                       textField="name"
+                                       valueField="customid"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="true"
-                                       showNullItem="true"
+                                       showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
                             </td>
@@ -156,25 +163,28 @@
                                 <label>供应商：</label>
                             </td>
                             <td colspan="5">
-                                <input id="btnEdit3"
+                                <input id="guestId"
+                                       name="guestId"
                                        class="nui-buttonedit"
                                        emptyText="请选择供应商..."
-                                       onbuttonclick="selectSupplier('btnEdit3')"
+                                       onbuttonclick="selectSupplier('guestId')"
                                        width="100%"
+                                       placeholder="请选择供应商"
                                        selectOnFocus="true" />
                             </td>
                             <td class="title">
                                 <label>结算方式：</label>
                             </td>
                             <td>
-                                <input name="way"
+                                <input name="settType"
+                                       id="settType"
                                        class="nui-combobox width1"
-                                       textField="text"
-                                       valueField="id"
+                                       textField="name"
+                                       valueField="customid"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="true"
-                                       showNullItem="true"
+                                       showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
                             </td>
@@ -184,22 +194,23 @@
                                 <label>采购员：</label>
                             </td>
                             <td colspan="1">
-                                <input name="person"
-                                       class="nui-combobox width1"
-                                       textField="text"
-                                       valueField="id"
-                                       emptyText="请选择..."
-                                       url=""
-                                       allowInput="true"
-                                       showNullItem="true"
-                                       width="100%"
-                                       nullItemText="请选择..."/>
+                                <input class="nui-textbox" name="buyer" width="100%">
+                                <!--<input name="buyer"-->
+                                       <!--class="nui-combobox width1"-->
+                                       <!--textField="text"-->
+                                       <!--valueField="id"-->
+                                       <!--emptyText="请选择..."-->
+                                       <!--url=""-->
+                                       <!--allowInput="true"-->
+                                       <!--showNullItem="true"-->
+                                       <!--width="100%"-->
+                                       <!--nullItemText="请选择..."/>-->
                             </td>
                             <td class="title">
                                 <label>票据号：</label>
                             </td>
                             <td colspan="3">
-                                <input class="nui-textbox" width="100%" name="piaojuhao"/>
+                                <input class="nui-textbox" width="100%" name="billCode"/>
                             </td>
                             <td class="title">
                                 <label>验货员：</label>
@@ -222,13 +233,13 @@
                                 <label>备注：</label>
                             </td>
                             <td colspan="5">
-                                <input class="nui-textbox" width="100%" name="backup"/>
+                                <input class="nui-textbox" width="100%" name="remark"/>
                             </td>
                             <td class="title">
                                 <label>总金额：</label>
                             </td>
                             <td colspan="1">
-                                <input class="nui-textbox" width="100%" name="total"/>
+                                <input class="nui-textbox" width="100%" name="totalAmt" enabled="false" style="text-align: right;"/>
                             </td>
                         </tr>
                     </table>
@@ -238,9 +249,9 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()">添加</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="savePosition()">修改</a>
-                            <a class="nui-button" plain="true" iconCls="icon-remove" onclick="disablePosition()">删除</a>
+                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn">添加</a>
+                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="editPartBtn">修改</a>
+                            <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn">删除</a>
                         </td>
                     </tr>
                 </table>
@@ -248,36 +259,38 @@
             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
+                     dataField="enterDetailList"
+                     idField="id"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="dept_name" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="dept_name" headerAlign="center" header="配件名称"></div>
+                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                                <div field="partName" headerAlign="center" header="配件名称"></div>
                                 <div field="dept_name" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="dept_name" width="60" headerAlign="center" header="车型"></div>
-                                <div field="dept_name" width="40" headerAlign="center" header="单位"></div>
-                                <div field="dept_name" width="40" headerAlign="center" header="数量"></div>
+                                <div field="unitx" width="60" headerAlign="center" header="车型"></div>
+                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div field="enterQty" width="40" headerAlign="center" header="数量"></div>
                             </div>
                         </div>
                         <div header="不含税信息" headerAlign="center">
                             <div property="columns">
-                                <div field="dept_name" width="40" headerAlign="center" header="单价"></div>
-                                <div field="dept_name" width="40" headerAlign="center" header="金额"></div>
+                                <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
+                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="含税信息" headerAlign="center">
                             <div property="columns">
-                                <div field="dept_name" width="40" headerAlign="center" header="税率"></div>
-                                <div field="dept_name" width="40" headerAlign="center" header="单价"></div>
-                                <div field="dept_name" width="40" headerAlign="center" header="金额"></div>
+                                <div field="taxRate" width="40" headerAlign="center" header="税率"></div>
+                                <div field="taxUnitPrice" width="40" headerAlign="center" header="单价"></div>
+                                <div field="taxAmt" width="40" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">
-                                <div field="dept_name" width="60" headerAlign="center" header="建议销价"></div>
-                                <div field="dept_name" width="60" headerAlign="center" header="入库分配"></div>
+                                <div field="suggestPrice" width="60" headerAlign="center" header="建议销价"></div>
+                                <div field="remark" width="60" headerAlign="center" header="入库分配"></div>
                             </div>
                         </div>
                     </div>
@@ -339,5 +352,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

@@ -32,20 +32,21 @@
 <body>
 
 <div id="basicInfoForm" class="form">
-    <input class="nui-hidden" name="id"/>
+    <input class="nui-hidden" name="detailId"/>
+    <input class="nui-hidden" name="partId"/>
     <table style="width: 100%">
         <tr>
             <td class="title">
                 <label>配件编码</label>
             </td>
             <td>
-                <input name="code" class="nui-textbox" enabled="false" width="100%"/>
+                <input name="partCode" class="nui-textbox" enabled="false" width="100%"/>
             </td>
             <td class="title">
                 <label>配件名称</label>
             </td>
             <td>
-                <input name="name" class="nui-textbox width1" enabled="true" width="100%"/>
+                <input name="partName" class="nui-textbox width1" enabled="false" width="100%"/>
             </td>
         </tr>
         <tr>
@@ -61,7 +62,7 @@
                 <label>单位</label>
             </td>
             <td colspan="1">
-                <input name="fullName" class="nui-textbox" enabled="false" width="100%"/>
+                <input name="unit" class="nui-textbox" enabled="false" width="100%" value="0"/>
             </td>
         </tr>
         <tr>
@@ -69,13 +70,13 @@
                 <label>数量</label>
             </td>
             <td>
-                <input name="count" class="nui-textbox" enabled="true" width="100%"/>
+                <input name="enterQty" class="nui-spinner"  minValue="1" maxValue="10000000" width="100%" value="1"/>
             </td>
             <td class="title required">
                 <label>单价</label>
             </td>
             <td>
-                <input name="acount" class="nui-textbox width1" enabled="true" width="100%"/>
+                <input name="noTaxUnitPrice" class="nui-textbox width1" enabled="true" width="100%"/>
             </td>
         </tr>
         <tr>

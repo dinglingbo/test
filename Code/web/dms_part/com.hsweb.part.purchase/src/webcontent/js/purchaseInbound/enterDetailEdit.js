@@ -33,16 +33,6 @@ function onOk()
 {
     var data = basicInfoForm.getData();
     console.log(data);
-    data.taxSign = 0;
-    data.taxRate = ".07";
-    var totalTaxRate = parseFloat(1+data.taxRate);
-    data.taxUnitPrice = (totalTaxRate*data.noTaxUnitPrice).toFixed(2);//含税单价=税率*
-    data.taxAmt = (data.taxUnitPrice*data.enterQty).toFixed(2);//含税总额
-    data.noTaxAmt = (data.noTaxUnitPrice*data.enterQty).toFixed(2);//不含税总额
-    data.taxRateAmt = (data.taxAmt-data.noTaxAmt).toFixed(2);//税额
-    data.outableQty = data.enterQty;
-    data.suggestPrice = 0;
-    data.suggestAmt = 0;
     //return;
     for(var key in requiredField)
     {

@@ -7,6 +7,27 @@ var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var grid = null;
+
+//信誉等级
+var tgradeList = [
+    {
+        "customid":0,
+        "name":"高"
+    },
+    {
+        "customid":1,
+        "name":"中"
+    },
+    {
+        "customid":2,
+        "name":"低"
+    }
+];
+var tgradeHash = {
+    0:tgradeList[0],
+    1:tgradeList[1],
+    2:tgradeList[2]
+};
 var billTypeIdList = [];
 var billTypeIdHash = {};
 var settTypeIdList = [];
@@ -206,12 +227,64 @@ function addCustomer()
         allowResize:false,
         onload: function ()
         {
-
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData({
+                province:provinceList,
+                city:cityList,
+                billTypeId:billTypeIdList,
+                settTypeId:settTypeIdList,
+                tgrade:tgradeList,
+                managerDuty:managerDutyList
+            });
         },
         ondestroy: function (action)
         {
-
+            if(action == "ok")
+            {
+                grid.reload();
+            }
         }
     });
+}
+function editCustomer()
+{
+    var row = grid.getSelected();
+
+    if(!row)
+    {
+        nui.alert("请选择要编辑的数据");
+        return;
+    }
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.part.baseData.customerAdd.flow",
+        title: "客户资料", width: 500, height: 560,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData({
+                province:provinceList,
+                city:cityList,
+                supplier:row,
+                billTypeId:billTypeIdList,
+                settTypeId:settTypeIdList,
+                tgrade:tgradeList,
+                managerDuty:managerDutyList
+            });
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+                grid.reload();
+            }
+        }
+    });
+}
+function onRowDblClick(e)
+{
+    editCustomer();
 }
 

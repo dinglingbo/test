@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <select id="queryPtsEnterMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterMain">
+    	SELECT a.id ID,
+		       a.source_id sourceId,
+		       a.enter_date enterDate,
+		       a.comp_code compCode,
+		       a.store_id storeId,
+		       a.guest_id guestId,
+		       a.guest_full_name guestFullName,
+		       a.bill_code billCode,
+		       a.bill_type_id billTypeId,
+		       a.bill_status billStatus,
+		       a.enter_type_id enterTypeId,
+		       a.enter_total_qty enterTotalQty,
+		       a.tax_amt taxAmt,
+		       a.goods_amt goodsAmt,
+		       a.total_amt totalAmt,
+		       a.payable_amt payableAmt,
+		       a.back_reason_id backReasonId,
+		       a.quoter quoter,
+		       a.buyer buyer,
+		       a.store_keeper storeKeeper,
+		       a.audit_status auditStatus,
+		       a.auditor auditor,
+		       a.audit_date auditDate,
+		       a.post_status postStatus,
+		       a.post_man postMan,
+		       a.post_date postDate,
+		       a.remark remark,
+		       a.recorder recorder,
+		       a.record_date recordDate,
+		       a.modifier modifier,
+		       a.modify_date modifyDate,
+		       a.sett_type settType
+		       FROM PTS_ENTER_MAIN a
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="code">  
+                (code like '%$code$' or code like '$code$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="cityId">  
+                (city_id = #cityId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="provinceId">  
+                (province_id = #provinceId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">  
+                (is_disabled = #isDisabled#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (full_name like '%$fullName$' or full_name like '$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (mobile like '%$mobile$' or mobile like '$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">  
+                (short_name like '%$shortName$' or short_name like '$shortName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="memLevel">  
+                (mem_Level like '%$memLevel$' or mem_Level like '$memLevel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="manager">  
+                (manager like '%$manager$' or manager like '$manager$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+</sqlMap>

@@ -7,9 +7,9 @@
 	//应用地址
 	String contextPath=request.getContextPath();
 	//api地址
-	String apiPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; 
+	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + contextPath + "/"; 
 	//web地址
-	String webPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + contextPath + "/";  
 	
 	Cookie cookie = new Cookie("miniuiSkin", "bootstrap");
 	// 设置Cookie的生命周期,如果设置为负值的话,关闭浏览器就失效.
@@ -20,8 +20,6 @@
 <%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
 <%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
 <%@ taglib uri="http://eos.primeton.com/tags/eos" prefix="e"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://eos.sie.com/tags/i18n"  prefix="i18n"%>
 <% String currentLanguage = request.getLocale().getLanguage().toLowerCase();%>
 <style>
     html, body
@@ -37,4 +35,8 @@
 	var apiPath		= "<%=apiPath%>";
 	var webPath		= "<%=webPath%>";
 	var token		= "";
+	
+	$(function(){
+		nui.context='<%=contextPath %>'
+	})
 </script>

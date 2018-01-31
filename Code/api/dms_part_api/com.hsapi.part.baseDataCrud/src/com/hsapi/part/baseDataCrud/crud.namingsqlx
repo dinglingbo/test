@@ -237,6 +237,9 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code = #code#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestType">  
+                (guest_type = #guestType#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="cityId">  
                 (city_id = #cityId#)
             </isNotEmpty>
@@ -246,20 +249,23 @@
             <isNotEmpty prepend="and" property="isDisabled">  
                 (is_disabled = #isDisabled#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (full_name like '%$name$%' or short_name like '%$name$%')
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="fullName">  
-                (full_name like '%$fullName$' or full_name like '$fullName$%')
+                (full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
-                (mobile like '%$mobile$' or mobile like '$mobile$%')
+                (mobile like '%$mobile$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="shortName">  
-                (short_name like '%$shortName$' or short_name like '$shortName$%')
+                (short_name like '%$shortName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="memLevel">  
-                (mem_Level like '%$memLevel$' or mem_Level like '$memLevel$%')
+                (mem_Level = #memLevel#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="manager">  
-                (manager like '%$manager$' or manager like '$manager$%')
+                (manager like '%$manager$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$

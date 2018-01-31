@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.foundation
+Bundle-Vendor: Administrator
+eos-webCtxPath: repair
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.repair
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.repair
+

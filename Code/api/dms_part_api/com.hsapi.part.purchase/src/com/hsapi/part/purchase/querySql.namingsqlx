@@ -42,8 +42,11 @@
 		       a.modifier modifier,
 		       a.modify_date modifyDate,
 		       a.sett_type settType
-		       FROM PTS_ENTER_MAIN a where enter_type_id = '050101'
+		       FROM PTS_ENTER_MAIN a where 1=1
     	<dynamic>
+    		<isNotEmpty prepend="and" property="enterTypeId">  
+                (enter_type_id = #enterTypeId#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="guestId">  
                 (guest_id = #guestId#)
             </isNotEmpty>
@@ -70,6 +73,85 @@
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
                 (to_char(enter_date,'iw')=to_char(sysdate-7,'iw'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="auditStatus">  
+            <!--审核状态-->
+                (audit_status = #auditStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="postStatus">  
+            <!--是否过账-->
+                (post_status = #postStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+    
+    <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutMain">
+    	SELECT a.id ID,
+		       a.source_id sourceId,
+		       a.out_date outDate,
+		       a.comp_code compCode,
+		       a.store_id storeId,
+		       a.guest_id guestId,
+		       a.guest_full_name guestFullName,
+		       a.out_type_id outTypeId,
+		       a.out_total_qty outTotalQty,
+		       a.true_cost trueCost,
+		       a.tax_amt taxAmt,
+		       a.total_discount_amt totalDiscountAmt,
+		       a.goods_amt goodsAmt,
+		       a.total_amt totalAmt,
+		       a.receivable_amt receivableAmt,
+		       a.bill_type_id billTypeId,
+		       a.bill_status billStatus,
+		       a.back_reason_id backReasonId,
+		       a.checker checker,
+		       a.seller seller,
+		       a.store_keeper storeKeeper,
+		       a.audit_status auditStatus,
+		       a.auditor auditor,
+		       a.audit_date auditDate,
+		       a.post_status postStatus,
+		       a.post_man postMan,
+		       a.post_date postDate,
+		       a.remark remark,
+		       a.recorder recorder,
+		       a.record_date recordDate,
+		       a.modifier modifier,
+		       a.modify_date modifyDate 
+		 FROM pts_out_main a where 1=1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="outTypeId">  
+                (out_type_id = #outTypeId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="guestId">  
+                (guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (to_char(out_date,'mm')=to_char(sysdate,'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (to_char(out_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (to_char(out_date,'dd')=to_char(sysdate,'dd'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (to_char(out_date,'dd')=to_char(sysdate-1,'dd'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (to_char(out_date,'iw')=to_char(sysdate,'iw'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--上周-->
+                (to_char(out_date,'iw')=to_char(sysdate-7,'iw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="auditStatus">  
             <!--审核状态-->

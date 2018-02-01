@@ -47,10 +47,10 @@
 		style="border-bottom: 0; padding: 0px; height: 30px;">
 		<table style="width: 100%">
 			<tr>
-				<td style="width: 100%"><a class="nui-button" id="add"
-					iconCls="icon-add" onclick="add()" plain="true">新增项目（A）</a> <a
-					class="nui-button" id="update" iconCls="icon-edit" onclick="edit()"
-					plain="true">修改项目（E）</a></td>
+				<td style="width: 100%">
+					<a class="nui-button" id="add" iconCls="icon-add" onclick="add()" plain="true">新增项目（A）</a>
+					<a	class="nui-button" id="update" iconCls="icon-edit" onclick="edit()"	plain="true">修改项目（E）</a>
+				</td>
 			</tr>
 		</table>
 	</div>

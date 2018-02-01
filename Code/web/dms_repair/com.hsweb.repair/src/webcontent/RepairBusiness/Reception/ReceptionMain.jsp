@@ -16,98 +16,57 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-panel" showToolbar="false" title="" showFooter="true"
-		style="width: 100%; height: 12%">
-		<div class="nui-form1" id="form1" style="height: 100%">
-			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsweb.repair.DataBase.RpbClass" />
-			<!-- 排序 -->
-			<input class="nui-hidden" name="criteria/_orderby[1]/_property"
-				value="id" /> <input class="nui-hidden"
-				name="criteria/_orderby[1]/_sort" value="arc">
-			<table class="table" id="table1" style="height: 100%;">
-				<tr style="width: 100%; height: 12%; line-height: 12%;">
-					<td>
-						<h4>快速查询：</h4>
-					</td>
-					<!-- lookup_type_code -->
-					<td class="nui-button" id="lookup_type_code"
-						style="margin-top: 5px;" plain="true">我接待的车</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[1]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[1]/likeRule"
-						value="1" /></td>
-					<!-- lookup_type_name -->
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">在报价的车</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">在维修的车</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">已完工的车</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-
-
-					<td class="form_label" id="lookup_type_name">车牌号：</td>
-					<td colspan="3"><input class="nui-textbox" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td property="footer"><a class="nui-button"
-						iconCls="icon-search" onclick="search()">查询（Q）</a></td>
-
-					<!-- 超链接模式 -->
-					<!-- 
-        	        <td>
-        	        	<a href="../../index.html">首页</a> 
-        	        </td>
-        	         -->
-				</tr>
-			</table>
+	<div  class="nui-toolbar"  style="height:30px">
+        <div  class="nui-form1" id="form1" style="height:100%">
+        	<input class="nui-hidden" name="criteria/_entity" value=""/>
+	        	<table class="table" id="table1" style="height:100% ">
+	        		<tr>
+	        	   		<td>
+	        	    		<label style="font-family:Verdana;">快速查询：</label>
+	        	    	
+	        	         	<a class="nui-button" plain="true" onclick="onSearch(0)">我接待的车</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(1)">在报价的车</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(2)">在维修的车</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(3)">已完工的车</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(4)">在结算的车</a>
+	                	 	
+	                	</td>
+	        		</tr>
+				</table>
 		</div>
 	</div>
+	
 
 	<div class="nui-toolbar" id="div_1"
 		style="border-bottom: 0; padding: 0px;">
 		<table style="width: 100%">
 			<tr>
-				<td style="width: 100%"><a class="nui-button" id="save"
-					iconCls="icon-reload" onclick="reload()">刷新（R）</a> <a
-					class="nui-button" id="add" iconCls="icon-add" onclick="add()">新增（A）</a>
-					<a class="nui-button" id="save" iconCls="" onclick="save()">产品录入（P）</a>
-					<a class="nui-button" id="save" iconCls="icon-save"
-					onclick="save()">保存（S）</a> <a class="nui-button" id="save"
-					iconCls="" onclick="save()">确定维修（T）</a> <a class="nui-button"
-					id="save" iconCls="" onclick="save()">维修归档（G）</a> <a
-					class="nui-button" id="save" iconCls="" onclick="save()">审核（V）</a>
-					<a class="nui-button" id="save" iconCls="" onclick="save()">结算（J）</a>
-					<a class="nui-button" id="save" iconCls="" onclick="save()">出单（D）</a>
-					<a class="nui-button" id="save" iconCls="" onclick="save()">返单（F）</a>
-					<a class="nui-button" id="save" iconCls="" onclick="save()">客户（G）</a>
-					<a class="nui-MenuButton" id="save" iconCls="" onclick="save()">其他（O）</a>
-					<a class="nui-MenuButton" id="save" iconCls="icon-print"
-					onclick="print()">打印（P）</a></td>
+				<td style="width: 100%">
+					<a class="nui-button" plain="true" iconCls="icon-reload" onclick="reload()">刷新（R）</a>
+					<a class="nui-button" plain="true" iconCls="icon-add" onclick="add()">新增（A）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">产品录入（P）</a>
+					<a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存（S）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">确定维修（T）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">维修归档（G）</a> 
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">审核（V）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">结算（J）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">出单（D）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">返单（F）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="save()">客户（G）</a>
+					<a class="nui-MenuButton" plain="true" iconCls="" onclick="save()">其他（O）</a>
+					<a class="nui-MenuButton" plain="true" iconCls="icon-print"onclick="print()">打印（P）</a>
+				</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="nui-fit">
-		<div class="nui-splitter" style="width: 100%; height: 100%;">
+		<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false" id="datagrid1">
 			<div size="30%" showCollapseButton="false">
 				<div class="nui-fit">
-					<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
+					<div id="datagrid1" dataField="" class="nui-datagrid"
 						style="width: 100%; height: 100%;"
-						url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+						url=""
 						pageSize="20" showPageInfo="true" multiSelect="true"
 						showPageIndex="false" showPage="true" showPageSize="false"
 						showReloadButton="false" showPagerButtonIcon="false"
@@ -148,6 +107,60 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	var grid = nui.get("datagrid1");
+    	var formData = new nui.Form("#form1").getData(false, false);
+    	grid.load(formData);
+    	
+    	function add(){
+    		nui.open({
+    			url:"./subpage/Customer.jsp",
+    			title:"客户选择",width:900,height:550,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	//重新刷新页面
+    	function refresh(){
+    		var form = new nui.Form("#form1");
+    		var json = form.getData(false, false);
+    		grid.load(json);
+    		nui.get("update").enable();
+    	}
+    	//查询
+    	function search(){
+    		var form = new nui.Form("#form1");
+    		var json = form.getData(false, false)
+    		grid.load(json);
+    	}
+    	//重置查询条件
+    	function reset(){
+    		var form = new nui.Form("#form1");
+    		grid.reset();
+    	}
+    	//enter键触发
+    	function onKeyEnter(e){
+    		search();
+    	}
+    	//选择列（判定，大于一编辑禁用）
+    	function selectionChanged(){
+    	    var rows = grid.getSelecteds();
+    	    if(rows.length>1){
+    	        nui.get("update").disable();
+    	    }else{
+    	        nui.get("update").enable();
+    	    }
+    	}
+    	function onIsDisabled(e) {
+        if (e.value == 1) return "禁用";
+        if (e.value == 0) return "启用";
+    }
     </script>
 </body>
 </html>

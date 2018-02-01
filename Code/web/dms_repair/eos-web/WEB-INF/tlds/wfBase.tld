@@ -194,9 +194,9 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-	</tag>	
-	
-		<tag>
+	</tag>
+
+	<tag>
 		<name>tempProcessGraph</name>
 		<tagclass>com.eos.workflow.web.taglib.TempProcessGraphTag</tagclass>
 		<bodycontent>JSP</bodycontent>

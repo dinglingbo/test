@@ -23,8 +23,7 @@
 		</layout>
 	</appender>
 
-	<appender
-		class="com.primeton.ext.common.logging.AppRollingFileAppender"
+	<appender class="com.primeton.ext.common.logging.AppRollingFileAppender"
 		name="AUDITRECORD_ROLLING_FILE">
 		<param name="Encoding" value="UTF-8" />
 		<param name="Threshold" value="ALL" />
@@ -38,8 +37,7 @@
 		</layout>
 	</appender>
 
-	<appender
-		class="com.primeton.ext.common.logging.AppRollingFileAppender"
+	<appender class="com.primeton.ext.common.logging.AppRollingFileAppender"
 		name="TRACE_ROLLING_FILE">
 		<param name="Encoding" value="UTF-8" />
 		<param name="Threshold" value="ALL" />
@@ -54,8 +52,7 @@
 		</layout>
 	</appender>
 
-	<appender
-		class="com.primeton.ext.common.logging.AppRollingFileAppender"
+	<appender class="com.primeton.ext.common.logging.AppRollingFileAppender"
 		name="SYS_ROLLING_FILE">
 		<param name="Encoding" value="UTF-8" />
 		<param name="Threshold" value="ALL" />
@@ -70,8 +67,7 @@
 		</layout>
 	</appender>
 
-	<appender
-		class="com.primeton.ext.common.logging.AppRollingFileAppender"
+	<appender class="com.primeton.ext.common.logging.AppRollingFileAppender"
 		name="MESSAGE_ROLLING_FILE">
 		<param name="Encoding" value="UTF-8" />
 		<param name="Threshold" value="ALL" />
@@ -81,13 +77,11 @@
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern"
-				value="[%d{yyyy-MM-dd HH:mm:ss,SSS}][%p] %m%n" />
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS}][%p] %m%n" />
 		</layout>
 	</appender>
 
-	<appender
-		class="com.primeton.ext.common.logging.AppRollingFileAppender"
+	<appender class="com.primeton.ext.common.logging.AppRollingFileAppender"
 		name="REQUEST_ROLLING_FILE">
 		<param name="Encoding" value="UTF-8" />
 		<param name="Threshold" value="ALL" />
@@ -97,13 +91,11 @@
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern"
-				value="[%d{yyyy-MM-dd HH:mm:ss,SSS}]%m%n" />
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS}]%m%n" />
 		</layout>
 	</appender>
 
-	<appender
-		class="com.primeton.ext.common.logging.AppRollingFileAppender"
+	<appender class="com.primeton.ext.common.logging.AppRollingFileAppender"
 		name="SQL_ROLLING_FILE">
 		<param name="Encoding" value="UTF-8" />
 		<param name="Threshold" value="ALL" />
@@ -113,8 +105,7 @@
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern"
-				value="[%d{yyyy-MM-dd HH:mm:ss,SSS}]%m%n" />
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS}]%m%n" />
 		</layout>
 	</appender>
 
@@ -145,12 +136,12 @@
 		<level value="ALL" />
 		<appender-ref ref="MESSAGE_ROLLING_FILE" />
 	</logger>
-	
+
 	<logger additivity="false" name="wfrequest_log">
 		<level value="ALL" />
 		<appender-ref ref="REQUEST_ROLLING_FILE" />
 	</logger>
-	
+
 	<logger additivity="false" name="wfsql_log">
 		<level value="ALL" />
 		<appender-ref ref="SQL_ROLLING_FILE" />

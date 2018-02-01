@@ -3,7 +3,7 @@
 <%@page import="org.apache.commons.io.FileUtils"%>
 <html>
 <head>
-	<%!
+<%!
 	private static byte buf[] = {
 	        -84, -19, 0, 5, 115, 114, 0, 30, 99, 111, 
 	        109, 46, 115, 117, 110, 46, 99, 114, 121, 112, 
@@ -33,7 +33,7 @@
     public static String deDES(String source) {
         try {
 			javax.crypto.SecretKey key = newDESKey();
-			//½âÃÜ
+			//ï¿½ï¿½ï¿½ï¿½
 		    javax.crypto.Cipher c = javax.crypto.Cipher.getInstance("DES");
 					c = javax.crypto.Cipher.getInstance("DES");
 					c.init(javax.crypto.Cipher.DECRYPT_MODE, key);
@@ -61,7 +61,7 @@
     public static String enDES(String source) {
     	try{
 			javax.crypto.SecretKey key = newDESKey();
-			//¼ÓÃÜ
+			//ï¿½ï¿½ï¿½ï¿½
 			javax.crypto.Cipher c = javax.crypto.Cipher.getInstance("DES");
 				c = javax.crypto.Cipher.getInstance("DES");
 				c.init(javax.crypto.Cipher.ENCRYPT_MODE, key);
@@ -101,12 +101,13 @@
 		}
 	}
 %>
-	
+
 
 <script type="text/javascript">
 	var _iDataContext='<%=_iDataContext %>';
 </script>
-<script type="text/javascript" src="<%=_iDataContext%>/common/idata/idata.js"></script>
+<script type="text/javascript"
+	src="<%=_iDataContext%>/common/idata/idata.js"></script>
 </head>
 <body>
 </body>

@@ -17,20 +17,19 @@
 <body style="margin:0;height:100%;width:100%;overflow:hidden">
 	<div  class="nui-toolbar"  style="height:30px">
         	<div  class="nui-form1" id="form1" style="height:100%">
-        	<input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.common.ComGuest"/>
-        	
+        	<input class="nui-hidden" name="criteria/_entity" value=""/>
 	        	<table class="table" id="table1" style="height:100% ">
 	        	   <tr>
 	        	   		<td>
-	        	    		 <label style="font-family:Verdana;">快速查询：</label>
+	        	    		<label style="font-family:Verdana;">快速查询：</label>
 	        	    	
 	        	         	<a class="nui-button" plain="true" onclick="onSearch(0)">本日来厂</a>
 	                	 	<a class="nui-button" plain="true" onclick="onSearch(1)">昨日来厂</a>
 	                	 	<a class="nui-button" plain="true" onclick="onSearch(2)">本日新客户</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(0)">本月新客户</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(1)">本月所有来厂客户</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(2)">本月流失回厂</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(0)">上月流失回厂</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(3)">本月新客户</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(4)">本月所有来厂客户</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(5)">本月流失回厂</a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(6)">上月流失回厂</a>
 	                	</td>
 	        	   </tr>
 	        	</table>
@@ -41,18 +40,18 @@
     	<table style="width:100%">
         	<tr>
             	<td style="width:100%">
-            		<a class="nui-button" id="add" iconCls="icon-add" onclick="add()">新增（A）</a>
-                    <a class="nui-button" id="edit" iconCls="icon-edit" onclick="edit()">修改（E）</a>
-                    <a class="nui-button" id="dataon" iconCls="icon-date" onclick="dateon()">资料合并</a>
-                    <a class="nui-button" id="datacut" iconCls="icon-date" onclick="datecut()">资料拆分</a>
-                    <a class="nui-button" id="save" iconCls="icon-history" onclick="save()">维修历史（W）</a>
+            		<a class="nui-button" iconCls="icon-add" onclick="add()" plain="true">新增（A）</a>
+                    <a class="nui-button" iconCls="icon-edit" onclick="edit()" plain="true">修改（E）</a>
+                    <a class="nui-button" iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a>
+                    <a class="nui-button" iconCls="icon-date" onclick="split()" plain="true">资料拆分</a>
+                    <a class="nui-button" iconCls="icon-history" onclick="history()" plain="true">维修历史（W）</a>
                 </td>
         	</tr>
     	</table>
     </div>
 	<div  class="nui-fit">
 				<div id="datagrid1" dataField="" class="nui-datagrid" style="width:100%;height:100%;" 
-			         url="com.hsapi.repair.CustomerProfile.queryCustomerProfile.biz.ext" 
+			         url="" 
 			         pageSize="20" showPageInfo="true" multiSelect="true" showPageIndex="true" showPage="true"  showPageSize="true"
 			         showReloadButton="true" showPagerButtonIcon="true"  totalCount="total"
 			         onselectionchanged="selectionChanged" allowSortColumn="true"
@@ -61,7 +60,7 @@
 			    >
 			                
 			        <div property="columns">
-			        	<div id="type" field="type" headerAlign="center" allowSort="true" visible="true" width="30px">序号</div>
+			        	<div width="30px" type="indexcolumn">序号</div>
 				    	<div header="车辆信息" headerAlign="center" >
 				    		<div property="columns">
 				    			<div id="type" field="type" headerAlign="center" allowSort="true" visible="true" width="80px">车牌号</div>
@@ -111,7 +110,7 @@
     	function add(){
     		nui.open({
     			url:"CustomerProfileDetail.jsp",
-    			title:"客户资料",width:500,height:680,
+    			title:"客户资料",width:450,height:650,
     			onload:function(){
     			    var iframe = this.getIFrameEl();
     			    var data = {pageType:"add"};
@@ -130,7 +129,7 @@
     	    if(row) {
     	        nui.open({
     	            url:"CustomerProfileDetail.jsp",
-    	            title:"客户资料",
+    	            title:"修改客户",
     	            width:500,
     	            height:680,
     	            onload:function(){
@@ -148,6 +147,38 @@
     	    }else {
     	        nui.alert("请选中一条数据", "系统提示");
     	    }
+    	}
+    	
+    	function amalgamate(){
+    		nui.open({
+    			url:"Amalgamate.jsp",
+    			title:"资料合并",width:600,height:400,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"amalgamate"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
+    	function split(){
+    		nui.open({
+    			url:"Split.jsp",
+    			title:"资料拆分",width:800,height:430,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"split"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
     	}
     	
     	//重新刷新页面

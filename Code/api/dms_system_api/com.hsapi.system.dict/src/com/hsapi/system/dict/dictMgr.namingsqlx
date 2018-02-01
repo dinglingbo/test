@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Guine -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryDictType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT A.ID, A.PARENTID, A.CUSTOMID, A.NAME, A.DESCRIPTION, B.NUM from COM_DATADICTIONARIES A
+		LEFT JOIN(
+			select A.ID, CASE WHEN COUNT(B.id)>0 then 1 ELSE 0 END NUM 
+			from COM_DATADICTIONARIES A 
+			LEFT JOIN COM_DATADICTIONARIES B ON B.PARENTID=A.ID
+			GROUP BY A.ID
+		)B ON A.ID=B.ID
+		WHERE 1=1 
+		<isNotNull property="parentid">
+			AND A.PARENTID = #parentid#
+		</isNotNull>
+		<isNotNull property="queryId">
+			AND A.ID like '%#queryId#%'
+		</isNotNull>
+    </select>
+</sqlMap>

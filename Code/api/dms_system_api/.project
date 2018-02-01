@@ -15,11 +15,10 @@
 			<arguments>
 				<dictionary>
 					<key>application</key>
-					<value>default</value>
+					<value>dms</value>
 				</dictionary>
 				<dictionary>
 					<key>database</key>
-					<value>SLOG</value>
 				</dictionary>
 				<dictionary>
 					<key>server</key>

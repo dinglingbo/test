@@ -23,4 +23,15 @@
 			AND A.ID like '%#queryId#%'
 		</isNotNull>
     </select>
+    <select id="queryDictItem" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT ID, DICTID, CUSTOMID, NAME, PROPERTY1, PROPERTY2, PROPERTY3, DESCRIPTION
+    	from COM_DATAITEMS A		
+		WHERE 1=1 
+		<isNotNull property="dictid">
+			AND A.DICTID = #dictid#
+		</isNotNull>
+		<isNotNull property="sortField">
+			Order By #sortField# #sortOrder#
+		</isNotNull>
+    </select>    
 </sqlMap>

@@ -77,7 +77,8 @@
 	</div>
 </td>
 <td style="height:100%;" rowspan="2" valign="top">
-	<div class="nui-fit">
+	<%-- 数据项列表 --%>
+    <div class="nui-fit">
 	<div class="nui-panel" title="数据字典项" style="width:100%;height:100%;"
 	    showToolbar="true" showCollapseButton="false" showFooter="false" allowResize="false" >
 		<div property="toolbar" >
@@ -89,14 +90,15 @@
 	    
 	    <div id="dict_tg" class="nui-treegrid" style="width:100%;height:100%;" autoLoad="false"
 	    	 showPager="true" pageSize="15" sizeList="[15,25,50]" allowAlternating="true" multiSelect="true"
-		    url="org.gocom.components.coframe.dict.DictManager.queryDict.biz.ext" onbeforeload="onBeforeTreeLoad" 
+		    url="com.hsapi.system.dict.dictMgr.queryDict.biz.ext" onbeforeload="onBeforeTreeLoad" 
 		    onselectionchanged="onDictSelected"  ondrawnode="onDictDrawNode" onnodeclick="onDictNodeClick"
-		    dataField="data" idField="dictid" treeColumn="dictid">
+		    dataField="data" idField="ID" treeColumn="ID">
 		    <div property="columns">
 		        <div type="checkcolumn" ></div>
-		        <div name="dictid" field="dictid" allowSort="true" width="45%">字典项代码</div>
-		        <div field="dictname" allowSort="true" width="47%">字典项名称</div>
-		        <div field="sortno" allowSort="true" width="8%">排序</div>
+		        <div name="ID" field="ID" allowSort="true" width="30%">数据项ID</div>
+		        <div field="NAME" allowSort="true" width="30%">数据项名称</div>
+		        <div field="CUSTOMID" allowSort="true" width="20%">CUSTOMID</div>
+		        <div field="PROPERTY1" allowSort="true" width="20%">PROPERTY1</div>
 		    </div>
 		</div>
 	    
@@ -200,8 +202,8 @@
             nui.get("btn_removeDictType").enable();
             
             var record = grid.getSelected();
-	        dict_tg.load({ parentid: record.id });
-	        seldicttypeid = record.id;
+	        dict_tg.load({ dictid: record.ID });
+	        seldicttypeid = record.ID;
         }else{
             nui.get("btn_addSubDictType").disable();
             nui.get("btn_editDictType").disable();
@@ -209,7 +211,7 @@
         }
     }
 	function onDictTypeDrawNode(e){//节点加载完清空参数，避免影响查询和翻页
-		dict_type_tg._dataSource.loadParams.parentid = null;
+		dict_type_tg._dataSource.loadParams.ID = null;
 	}
 	function onDictTypeLoad(e){//加载第一个类型的字典项
 		nui.parse();		
@@ -330,7 +332,6 @@
             nui.get("btn_editDict").enable();
             nui.get("btn_removeDict").enable();
             seldictid = grid.getSelected().ID;
-            alert("seldictid=" + seldictid);
         }else{
             nui.get("btn_addSubDict").disable();
             nui.get("btn_editDict").disable();
@@ -343,13 +344,13 @@
 	    dict_tg._dataSource.loadParams.parentid = null;
     }
     function onDictNodeClick(e) {
-	    dict_tg._dataSource.loadParams.parentid = e.node.ID;
+	    //dict_tg._dataSource.loadParams.parentid = e.node.ID;
     }
 	function onBeforeTreeLoad (e) {
-    	if (e.node&&e.node.ID){
+    	/*if (e.node&&e.node.ID){
 	    	alert(e.node.ID);
 			dict_tg._dataSource.loadParams.parentid = e.node.ID;
-    	}
+    	}*/
 	}
     
     

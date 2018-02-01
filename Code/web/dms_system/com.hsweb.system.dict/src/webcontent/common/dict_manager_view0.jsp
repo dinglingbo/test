@@ -24,9 +24,9 @@
 		<form id="query_dict_type_form" method="post">
 		<table border="0" style="width:100%;" align="center">
 			<tr>
-				<td align="right">类型代码：</td>
+				<td align="right">ID：</td>
 				<td><input id="dicttypeid" name="dicttypeid" class="nui-textbox" style="width:100px;" onenter="onKeyEnter"/></td>
-				<td align="right">类型名称：</td>
+				<td align="right">名称：</td>
 				<td><input id="dicttypename" name="dicttypename" class="nui-textbox" style="width:100px;" onenter="onKeyEnter"/></td>
 				<td><a class="nui-button" onclick="searchDictType();">查询</a></td>
 			</tr>
@@ -44,8 +44,10 @@
 			<a class="nui-button" plain="true" iconCls="icon-addnew" onclick="addSubDictType()" id="btn_addSubDictType">添加子类型</a>
 	        <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editDictType()" id="btn_editDictType">修改</a>
             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeDictType()" id="btn_removeDictType">删除</a>
+			<!-- 
 			<a class="nui-button" plain="true" iconCls="icon-upload" onclick="importDict();">导入</a>&nbsp;
 			<a class="nui-button" plain="true" iconCls="icon-download" onclick="exportDict();">导出</a>&nbsp;
+			 -->
 			<a class="nui-button" plain="true" onclick="refreshDictCache();">刷新缓存</a>
 	           </td>
 	        </tr>
@@ -53,16 +55,20 @@
 	    </div>
 	  </div>
 	    
+	  <%-- 主列表 --%>
 	  <div class="nui-fit">
 	    <div id="dict_type_tg" class="nui-treegrid" style="width:100%;height:100%;"
 		    showPager="true" pageSize="10" sizeList="[10,20,50]" allowAlternating="true" multiSelect="true"
-		    url="org.gocom.components.coframe.dict.DictManager.queryDictType.biz.ext"
+		    url="com.hsapi.system.dict.dictMgr.queryDictType.biz.ext"
 			onselectionchanged="onDictTypeSelected" ondrawnode="onDictTypeDrawNode" onload="onDictTypeLoad"
-		    dataField="data" idField="dicttypeid" treeColumn="dicttypeid">
+		    dataField="data" idField="ID" treeColumn="ID">
 		    <div property="columns" width="20">
 		        <div type="checkcolumn" ></div>
-		        <div name="dicttypeid" field="dicttypeid" allowSort="true" width="50%">类型代码</div>
-		        <div field="dicttypename" allowSort="true" width="50%">类型名称</div>
+		        <div name="ID" field="ID" allowSort="true" width="20%">ID</div>
+		        <div field="NAME" allowSort="true" width="20%">名称</div>
+		        <div field="CUSTOMID" allowSort="true" width="10%">customId</div>
+		        <div field="PARENTID" allowSort="true" width="20%">parentId</div>
+		        <div field="DESCRIPTION" allowSort="true" width="25%">备注</div>
 		    </div>
 		</div>
 	  </div>
@@ -72,7 +78,7 @@
 </td>
 <td style="height:100%;" rowspan="2" valign="top">
 	<div class="nui-fit">
-	<div class="nui-panel" title="业务字典项" style="width:100%;height:100%;"
+	<div class="nui-panel" title="数据字典项" style="width:100%;height:100%;"
 	    showToolbar="true" showCollapseButton="false" showFooter="false" allowResize="false" >
 		<div property="toolbar" >
 	        <a class="nui-button" plain="true" iconCls="icon-add" onclick="addDict()" >添加</a>
@@ -194,8 +200,8 @@
             nui.get("btn_removeDictType").enable();
             
             var record = grid.getSelected();
-	        dict_tg.load({ dicttypeid: record.dicttypeid });
-	        seldicttypeid = record.dicttypeid;
+	        dict_tg.load({ parentid: record.id });
+	        seldicttypeid = record.id;
         }else{
             nui.get("btn_addSubDictType").disable();
             nui.get("btn_editDictType").disable();
@@ -203,7 +209,7 @@
         }
     }
 	function onDictTypeDrawNode(e){//节点加载完清空参数，避免影响查询和翻页
-		dict_type_tg._dataSource.loadParams.dicttypeid = null;
+		dict_type_tg._dataSource.loadParams.parentid = null;
 	}
 	function onDictTypeLoad(e){//加载第一个类型的字典项
 		nui.parse();		
@@ -323,7 +329,8 @@
             nui.get("btn_addSubDict").enable();
             nui.get("btn_editDict").enable();
             nui.get("btn_removeDict").enable();
-            seldictid = grid.getSelected().dictid;
+            seldictid = grid.getSelected().ID;
+            alert("seldictid=" + seldictid);
         }else{
             nui.get("btn_addSubDict").disable();
             nui.get("btn_editDict").disable();
@@ -332,15 +339,17 @@
           
     }
     function onDictDrawNode(e) {//节点加载完清空参数，避免影响查询和翻页
-	    dict_tg._dataSource.loadParams.dictid = null;
-	    dict_tg._dataSource.loadParams.parenttypeid = null;
+	    dict_tg._dataSource.loadParams.id = null;
+	    dict_tg._dataSource.loadParams.parentid = null;
     }
     function onDictNodeClick(e) {
-	    dict_tg._dataSource.loadParams.parenttypeid = e.node.eosDictType.dicttypeid;
+	    dict_tg._dataSource.loadParams.parentid = e.node.ID;
     }
 	function onBeforeTreeLoad (e) {
-    	if (e.node&&e.node.eosDictType) 
-			dict_tg._dataSource.loadParams.parenttypeid = e.node.eosDictType.dicttypeid.toString();
+    	if (e.node&&e.node.ID){
+	    	alert(e.node.ID);
+			dict_tg._dataSource.loadParams.parentid = e.node.ID;
+    	}
 	}
     
     

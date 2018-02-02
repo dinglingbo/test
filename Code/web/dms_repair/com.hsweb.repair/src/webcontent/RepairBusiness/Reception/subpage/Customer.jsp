@@ -138,7 +138,7 @@
     	
     	function onAdd(){
     		nui.open({
-    			url:"../CustomerProfile/AddEditCustomerjsp",
+    			url:"../Reception/AddEditCustomer.jsp",
     			title:"新增客户",
 				width:500,
     	        height:680,

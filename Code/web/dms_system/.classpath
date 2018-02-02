@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.system.dict/bin" path="com.hsweb.system.dict/src"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-pool2-2.4.2.jar"/>
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/json-lib-2.2.2-jdk15.jar"/>

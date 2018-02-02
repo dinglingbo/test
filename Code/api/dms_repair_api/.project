@@ -15,11 +15,11 @@
 			<arguments>
 				<dictionary>
 					<key>application</key>
-					<value>bpsform</value>
+					<value>default</value>
 				</dictionary>
 				<dictionary>
 					<key>database</key>
-					<value>SLOG</value>
+					<value>HuaShengOra_Repair</value>
 				</dictionary>
 				<dictionary>
 					<key>server</key>

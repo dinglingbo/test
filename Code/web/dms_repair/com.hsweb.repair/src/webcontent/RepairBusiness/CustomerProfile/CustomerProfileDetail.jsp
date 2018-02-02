@@ -92,7 +92,7 @@
 				</div>
 			</div>
 			<div style="text-align:right;padding:10px;margin-top:0">               
-				<a class="mini-button" onclick="onOk" style="margin-right:20px;">保存（S）</a>       
+				<a class="mini-button" onclick="onOk" style="margin-right:10px;">保存（S）</a>       
 				<a class="mini-button" onclick="onCancel" >取消（C）</a>       
 			</div>
 	    </div>

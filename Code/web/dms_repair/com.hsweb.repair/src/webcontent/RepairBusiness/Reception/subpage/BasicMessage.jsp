@@ -18,61 +18,149 @@
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 
 	<!-- 上下 -->
-	<div class="nui-splitter" handlerSize="2" showHandleButton="false"
-		style="width: 100%; height: 100%;" borderStyle="border:1"
-		vertical="true">
+	<div class="nui-splitter" handlerSize="2" showHandleButton="false" style="width: 100%; height: 100%;" 
+		 borderStyle="border:1" vertical="true">
 		<div size="40%" showCollapseButton="falses">
 			<!-- 基本信息 -->
-			<div class="nui-panel" title="基本信息" id="div_1"
-				style="border-bottom: 0; padding: 0px; width: 100%; height: 100%;">
+				<div class="nui-panel" title="基本信息" id="div_1" style="border-bottom: 0; padding: 0px; width: 100%; height: 100%;">
 				<div class="nui-fit">
-					<span style="margin-left: 20px; margin-top: 10px;">车牌号：</span> <input
-						class="nui-textbox" style="width: 14%; margin-top: 10px;" /> <span
-						style="margin-left: 20px; margin-top: 10px;"> <a
-						class="nui-button" id="save" onclick="save()">改</a>
-					</span> <span style="margin-left: 20px; margin-top: 10px;">业务类型：</span> <input
-						class="nui-combobox" style="width: 14%; margin-top: 10px;" /> <span
-						style="margin-left: 20px; margin-top: 10px;">维修类型：</span> <input
-						class="nui-combobox" style="width: 13%; margin-top: 10px;" /></br> <span
-						style="margin-left: 20px; margin-top: 10px;">维修顾问：</span> <input
-						class="nui-combobox" allowInput="true" textField="text"
-						valueField="id" value="cn" showNullItem="true"
-						style="width: 14%; margin-top: 10px;" /> <span
-						style="margin-left: 20px; margin-top: 10px;">进厂油量：</span> <input
-						class="nui-combobox" style="width: 14%; margin-top: 10px;" /> <span
-						style="margin-left: 20px; margin-top: 10px;">进厂里程：</span> <input
-						class="nui-textbox" style="width: 13%; margin-top: 10px;" /></br> <span
-						style="margin-left: 20px; margin-top: 10px;">进厂日期：</span> <input
-						id="data" style="margin-top: 10px;" class="nui-datepicker"
-						value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
-						timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
-						showClearButton="false" /> <span
-						style="margin-left: 20px; margin-top: 10px;">报价日期：</span> <input
-						id="data" style="margin-top: 10px;" class="nui-datepicker"
-						value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
-						timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
-						showClearButton="false" /> <span
-						style="margin-left: 20px; margin-top: 10px;">维修日期：</span> <input
-						id="data" style="margin-top: 10px;" class="nui-datepicker"
-						value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
-						timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
-						showClearButton="false" /> </br> <span
-						style="margin-left: 20px; margin-top: 10px;">完工日期：</span> <input
-						id="data" style="margin-top: 10px;" class="nui-datepicker"
-						value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
-						timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
-						showClearButton="false" /> <span
-						style="margin-left: 20px; margin-top: 10px;">预计交车：</span> <input
-						id="data" style="margin-top: 10px;" class="nui-datepicker"
-						value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
-						timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
-						showClearButton="false" /> <span
-						style="margin-left: 20px; margin-top: 10px;">接车卡号：</span> <input
-						class="nui-textbox" style="width: 20%; margin-top: 10px;" /></br> <span
-						style="margin-left: 20px; margin-top: 10px;">是否洗车：</span> <input
-						class="nui-combobox" style="width: 5%; margin-top: 10px;" /> <span
-						style="margin-left: 20px; margin-top: 10px;">备注：</span> <input
-						class="nui-textbox" style="width: 50%; margin-top: 10px;" />
+					<table>
+						<tr>
+							<td>
+								车牌号：
+							</td>
+							<td>
+								<input class="nui-textbox" style="width: 140px; margin-top: 10px;" /> 
+							</td>
+							<td>
+								<a class="nui-button"  onclick="edit()">改</a>
+							</td>
+							<td>
+								业务类型：
+							</td>
+							<td>
+								<input class="nui-combobox" style="width: 140px; margin-top: 10px;" /> 
+							</td>
+							<td>
+								维修类型：
+							</td>
+							<td>
+								<input class="nui-combobox" style="width: 130px; margin-top: 10px;" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								维修顾问：
+							</td>
+							<td>
+								<input class="nui-combobox" allowInput="false" style="width: 140px; margin-top: 10px;" /> 
+							</td>
+							<td>
+								进厂油量：
+							</td>
+							<td>
+								<input class="nui-combobox" style="width: 140px; margin-top: 10px;" allowInput="false" /> 
+							</td>
+							<td>
+								进厂里程：
+							</td>
+							<td>
+								<input class="nui-Spinner" style="width: 130px; margin-top: 10px;" format="n" allowNull="true" value=" " showButton="false"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								进厂日期：
+							</td>
+							<td>
+								<input id="data" style="margin-top: 10px;" class="nui-datepicker" value="" nullValue="null"
+									   format="yyyy-MM-dd " showOkButton="false" showClearButton="true" 
+								/> 
+							</td>
+							<td>
+								报价日期：
+							</td>
+							<td>
+								<input id="data" style="margin-top: 10px;" class="nui-datepicker" value=""  format="yyyy-MM-dd HH:mm:ss"
+									   nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" 
+								/> 
+							</td>
+							<td>
+								维修日期：
+							</td>
+							<td>
+								<input id="data" style="margin-top: 10px;" class="nui-datepicker" value=""  format="yyyy-MM-dd HH:mm:ss"
+									   nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" 
+								/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								完工日期：
+							</td>
+							<td>
+								<input id="data" style="margin-top: 10px;" class="nui-datepicker" value="" nullValue="null"
+									   format="yyyy-MM-dd " showOkButton="false" showClearButton="true" 
+								/> 
+							</td>
+							<td>
+								预计交车：
+							</td>
+							<td>
+								<input id="data" style="margin-top: 10px;" class="nui-datepicker" value=""  format="yyyy-MM-dd HH:mm:ss"
+									   nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" 
+								/> 
+							</td>
+							<td>
+								接车卡号：
+							</td>
+							<td>
+								<input id="data" style="margin-top: 10px;" class="nui-datepicker" value=""  format="yyyy-MM-dd HH:mm:ss"
+									   nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" 
+								/>
+							</td>
+						</tr>
+					</table>
+					<span style="margin-left: 20px; margin-top: 10px;"></span>
+						<input class="nui-textbox" style="width: 14%; margin-top: 10px;" /> 
+					<span style="margin-left: 20px; margin-top: 10px;"> 
+					 	<a class="nui-button" id="save" onclick="save()">改</a>
+					</span> 
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						<input class="nui-combobox" style="width: 14%; margin-top: 10px;" /> 
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						<input class="nui-textbox" style="width: 13%; margin-top: 10px;" /></br> 
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						<input id="data" style="margin-top: 10px;" class="nui-datepicker"
+							value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
+							timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
+							showClearButton="false" /> 
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						</br> 
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						<input id="data" style="margin-top: 10px;" class="nui-datepicker"
+							value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
+							timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
+							showClearButton="false" /> 
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						<input id="data" style="margin-top: 10px;" class="nui-datepicker"
+							value="" nullValue="null" format="yyyy-MM-dd HH:mm:ss"
+							timeFormat="HH:mm:ss" showTime="true" showOkButton="true"
+							showClearButton="false" /> 
+					<span style="margin-left: 20px; margin-top: 10px;"></span> 
+						</br> 
+					<span style="margin-left: 20px; margin-top: 10px;">是否洗车：</span> 
+						<input class="nui-combobox" style="width: 5%; margin-top: 10px;" /> 
+					<span style="margin-left: 20px; margin-top: 10px;">备注：</span> 
+						<input class="nui-textbox" style="width: 50%; margin-top: 10px;" />
 				</div>
 			</div>
 		</div>

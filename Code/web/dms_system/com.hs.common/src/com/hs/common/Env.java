@@ -106,8 +106,7 @@ public class Env {
 
 	public static void generateInitPlatformModel() {
 		InitPlatformModel initPlatformModel = null;
-		String filePath = Env.basePath + File.separator + "config"
-				+ File.separator + "env" + File.separator + Env.initXmlPath;
+		String filePath = Env.basePath + Env.initXmlPath;
 		File file = new File(filePath);
 		if (!file.exists()) {// 平台初始化模板不存在
 			System.out.println("找不到平台初始化模板！路径为：" + filePath);
@@ -389,13 +388,12 @@ public class Env {
 
 	/* 初始化项目配置Contribution */
 	private synchronized static void initContribution(String path) {
-		path = path + File.separator + "config" + File.separator + "env"
-				+ File.separator + "env.xml";
+		path += "env.xml";
 		File file = new File(path);
-		System.out.println("初始化配置，配置文件路径为：" + path);
 		if (!file.exists()) {// 配置不存在
 			System.out.println("找不到配置文件！路径为：" + path);
 		} else {// 读取配置文件
+			System.out.println("初始化配置，配置文件路径为：" + path);
 			List<Element> conEles = null;
 			String ctrName = null;
 			List<Element> modEles = null;
@@ -438,6 +436,7 @@ public class Env {
 					}
 					ctrMap.put(ctrName, contribution);
 				}
+				System.out.println("配置文件初始化成功！");
 			} catch (DocumentException e) {
 				e.printStackTrace();
 			}

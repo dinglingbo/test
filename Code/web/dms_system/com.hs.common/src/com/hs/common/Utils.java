@@ -59,108 +59,24 @@ public class Utils {
 		temp[temp.length - 1] = object;
 		return temp;
 	}
-
+	
 	@Bizlet("")
-	public static void append2ObjectToList(List list, Object obj1, Object obj2) {
-		list.add(obj1);
-		list.add(obj2);
-	}
-
-	@Bizlet("")
-	public static void append3ObjectToList(List list, Object obj1, Object obj2,
-			Object obj3) {
-		list.add(obj1);
-		list.add(obj2);
-		list.add(obj3);
-	}
-
-	@Bizlet("")
-	public static void append4ObjectToList(List list, Object obj1, Object obj2,
-			Object obj3, Object obj4) {
-		list.add(obj1);
-		list.add(obj2);
-		list.add(obj3);
-		list.add(obj4);
-	}
-
-	@Bizlet("")
-	public static void append5ObjectToList(List list, Object obj1, Object obj2,
-			Object obj3, Object obj4, Object obj5) {
-		list.add(obj1);
-		list.add(obj2);
-		list.add(obj3);
-		list.add(obj4);
-		list.add(obj5);
-	}
-
-	/**
-	 * @param jsonStr
-	 *            转换Map
-	 * @return
-	 */
-	@Bizlet("")
-	public static String getToken(String jsonStr) {
-		try {
-			JSONObject obj = JSONObject.parseObject(jsonStr);
-			// obj = (JSONObject) obj.get("data");
-			// String token = obj.getString("token");
-			String token = obj.getString("data");
-
-			return token;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return "";
+	public static Object[] appendArray2Array(Object[] arrTo, Object[] arr) {
+		Object[] temp;
+		if (arrTo != null && arr !=null) {
+			temp = new Object[arrTo.length + arr.length];
+			for (int i = 0; i < arrTo.length; i++) {
+				temp[i] = arrTo[i];
+			}
+			for (int i = 0; i < arr.length; i++) {
+				temp[arrTo.length + i] = arr[i];
+			}
+		}else if(arrTo==null){
+			return arr;
+		} else{
+			return arrTo;
 		}
-	}
-
-	@Bizlet("")
-	public static String getStatus(String jsonStr) {
-		try {
-			JSONObject obj = JSONObject.parseObject(jsonStr);
-
-			String status = obj.getString("status");
-
-			return status;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return "";
-		}
-	}
-
-	@Bizlet("")
-	public static String getLoginName(String jsonStr) {
-		try {
-			JSONObject obj = JSONObject.parseObject(jsonStr);
-			obj = (JSONObject) obj.get("data");
-			String status = obj.getString("loginName");
-
-			return status;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return "";
-		}
-	}
-
-	/**
-	 * @param jsonStr
-	 *            转换Map
-	 * @return
-	 */
-	@Bizlet("")
-	public static Map<String, Object> json2Token(String jsonStr) {
-		try {
-			HashMap p = new HashMap();
-			p = (HashMap) JSON.parse(jsonStr);
-			JSONObject obj = JSONObject.parseObject(jsonStr);
-			obj = (JSONObject) obj.get("data");
-			String token = obj.getString("token");
-
-			return p;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
-		}
+		return temp;
 	}
 
 	@Bizlet("")

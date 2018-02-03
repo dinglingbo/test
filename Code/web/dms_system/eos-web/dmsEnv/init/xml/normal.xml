@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 本normal.xml部署时使用，初始化通用版V平台 -->
+<env>
+	<!-- 平台级别 -->
+	<platform>
+		<!-- 初始化平台机构 -->
+		<mpOrgs>
+			<!-- 可修改字段 -->
+			<orgName>VPLUS</orgName><orgFullName>VPLUS</orgFullName><orgCode>VPLUS</orgCode>
+			<!-- 固定字段 -->
+			<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy><orgType>PLATFORM</orgType><orgStatus>A</orgStatus><authorStatus>APPROVAL</authorStatus><siblingAllowAccess>N</siblingAllowAccess><parentAllowAccess>N</parentAllowAccess><allowAccessOthers>Y</allowAccessOthers><friendAuth>Y</friendAuth>
+		</mpOrgs>
+		<!-- MP_ROLES -->
+		<mpRolesList>
+			<!-- 初始化平台管理员角色 -->
+			<mpRoles>
+				<!-- 可修改字段 -->
+				<roleName>平台管理员</roleName><roleCode>PLATFORM_ADMIN</roleCode>
+				<!-- 固定字段 -->
+				<isSystem>Y</isSystem><roleStatus>A</roleStatus><createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
+			</mpRoles>
+		</mpRolesList>
+		<!-- MP_USERS -->
+		<mpUsersList>
+			<!-- 初始化平台管理员 -->
+			<mpUsers>
+				<!-- 可修改字段 -->
+				<userName>平台管理员</userName><userCode>sysadmin</userCode><password>123456</password>
+				<!-- 固定字段 -->
+				<isLocked>N</isLocked><authorType>LOCAL</authorType><userStatus>A</userStatus><isPublic>Y</isPublic><createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy><authStatus>REGISTER</authStatus>
+				<!-- 关联角色列表 -->
+				<roleCodeList>
+					<roleCode>PLATFORM_ADMIN</roleCode>
+				</roleCodeList>
+			</mpUsers>
+		</mpUsersList>
+	</platform>
+</env>

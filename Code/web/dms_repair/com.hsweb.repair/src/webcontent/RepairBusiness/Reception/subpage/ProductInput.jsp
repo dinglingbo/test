@@ -17,56 +17,55 @@
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 
-	<div class="nui-splitter" style="width: 100%; height: 100%;"
-		vertical="true">
-		<div size="20%" showCollapseButton="false">
-			<div class="nui-toolbar">
+	<div class="nui-splitter" style="width: 100%; height: 100%;" vertical="true" allowResize="false" handlerSize="0">
+		<div size="6%" showCollapseButton="false">
+			<div class="nui-toolbar" style="height:100%">
 				<table>
 					<tr>
 						<td>
-						<td class="form_label" id="lookup_type_name">编码：</td>
-						<td colspan="3"><input class="nui-textbox" name="isDisabled"
-							style="width: 80px;" /> <input class="nui-hidden"
-							name="criteria/_expr[2]/_op" value="=" /> <input
-							class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+							<span class="form_label" id="lookup_type_name">编码：</span>
+						<td colspan="1">
+							<input class="nui-textbox" name="isDisabled" style="width: 80px;" />
 						</td>
-						<td class="form_label" id="lookup_type_name">名称：</td>
-						<td colspan="3"><input class="nui-textbox" name="isDisabled"
-							style="width: 80px;" /> <input class="nui-hidden"
-							name="criteria/_expr[2]/_op" value="=" /> <input
-							class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+						<td class="form_label" id="lookup_type_name">
+							名称：
 						</td>
-						<td class="form_label" id="lookup_type_name">拼音：</td>
-						<td colspan="3"><input class="nui-textbox" name="isDisabled"
-							style="width: 80px;" /> <input class="nui-hidden"
-							name="criteria/_expr[2]/_op" value="=" /> <input
-							class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+						<td colspan="1">
+							<input class="nui-textbox" name="isDisabled" style="width: 80px;" /> 
 						</td>
-						<td class="form_label" id="lookup_type_name">车型：</td>
-						<td colspan="3"><input class="nui-textbox" name="isDisabled"
-							style="width: 80px;" /> <input class="nui-hidden"
-							name="criteria/_expr[2]/_op" value="=" /> <input
-							class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+						<td class="form_label" id="lookup_type_name">
+							拼音：
+						</td>
+						<td colspan="1">
+							<input class="nui-textbox" name="isDisabled" style="width: 80px;" /> 
+						</td>
+						<td class="form_label" id="lookup_type_name">
+							车型：
+						</td>
+						<td colspan="1">
+							<input class="nui-textbox" name="isDisabled" style="width: 80px;" /> 
 						</td>
 
+						<td>
+							<a class="nui-button" id="search" iconCls="icon-search" onclick="search()" plain="true">查询</a>
 						</td>
-						<td><a class="nui-button" id="search" iconCls="icon-search"
-							onclick="search()">查询</a></td>
-						<td><a class="nui-button" id="downgrade"
-							iconCls="icon-downgrade" onclick="downgrade()">下一页</a></td>
-						<td><a class="nui-button" id="change" iconCls="icon-ok"
-							onclick="change()">选择</a></td>
-						<td><a class="nui-button" id="new" iconCls="icon-new"
-							onclick="">套餐录入</a></td>
+						<td>
+							<a class="nui-button" id="downgrade" iconCls="icon-downgrade" onclick="downgrade()" plain="true">下一页</a>
+						</td>
+						<td>
+							<a class="nui-button" id="change" iconCls="icon-ok" onclick="change()" plain="true">选择</a>
+						</td>
+						<td>
+							<a class="nui-button" id="new" iconCls="icon-new" onclick="onInput()" plain="true">套餐录入</a>
+						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 		<div showCollapseButton="false">
-			<div class="nui-splitter" style="width: 100%; height: 100%;">
+			<div class="nui-splitter" style="width: 100%; height: 100%;" >
 				<div size="25%" showCollapseButton="false">
-					<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
-						style="width: 100%; height: 100%;"
+					<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 100%;"
 						url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
 						pageSize="20" showPageInfo="true" multiSelect="true"
 						showPageIndex="false" showPage="true" showPageSize="false"
@@ -150,6 +149,22 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	
+    	function onInput(){
+    		nui.open({
+    			url:"./subpage/PackgeDetail.jsp",
+    			title:"本店套餐",width:1200,height:690,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"customer"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
     </script>
 </body>
 </html>

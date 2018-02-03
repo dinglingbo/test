@@ -25,21 +25,22 @@
 			value="com.hsweb.repair.DataBase.RpbItem" />
 		<table class="table" id="table1" style="height: 100%">
 			<tr>
-				<td><label style="font-family: Verdana;">快速查询：</label> <label
-					style="font-family: Verdana;">工种：</label> <input
-					id="search-brandName" class="nui-combobox width1" textField="text"
-					valueField="id" emptyText="请选择..." url="" allowInput="true"
-					showNullItem="true" nullItemText="请选择..." /> <label
-					style="font-family: Verdana;">品牌：</label> <input
-					id="search-brandName" class="nui-combobox width1" textField="text"
-					valueField="id" emptyText="请选择..." url="" allowInput="true"
-					showNullItem="true" nullItemText="请选择..." /> <label
-					style="font-family: Verdana;">项目编码：</label> <input
-					class="nui-textbox" name="isDisabled" /> <label
-					style="font-family: Verdana;">项目名称：</label> <input
-					class="nui-textbox" name="isDisabled" /> <a class="nui-button"
-					plain="true" iconCls="icon-search" onclick="onSearch()">查询（Q）</a> <a
-					class="nui-button" plain="true" onclick="onClean()">清空（C）</a></td>
+				<td>
+					<label style="font-family: Verdana;">快速查询：</label> 
+					<label style="font-family: Verdana;">工种：</label> 
+					<input id="search-brandName" class="nui-combobox width1" textField="text" valueField="id" emptyText="请选择..." url="" 
+						   allowInput="true" showNullItem="true" nullItemText="请选择..." /> 
+					<label style="font-family: Verdana;">品牌：</label> 
+					<input id="search-brandName" class="nui-combobox width1" textField="text"
+						   valueField="id" emptyText="请选择..." url="" allowInput="true"
+						   showNullItem="true" nullItemText="请选择..." /> 
+					<label style="font-family: Verdana;">项目编码：</label> 
+					<input class="nui-textbox" name="isDisabled" /> 
+					<label style="font-family: Verdana;">项目名称：</label> 
+					<input class="nui-textbox" name="isDisabled" /> 
+					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询（Q）</a> 
+					<a class="nui-button" plain="true" onclick="onClean()">清空（C）</a>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -81,7 +82,7 @@
 					showPage="true" showPageSize="false" showReloadButton="false"
 					showPagerButtonIcon="false" totalCount="total"
 					onselectionchanged="selectionChanged" allowSortColumn="true">
-					<div property="columns">
+					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div header="项目基本信息" headerAlign="center">
 							<div property="columns">

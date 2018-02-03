@@ -44,7 +44,7 @@
 				<td style="width: 100%">
 					<a class="nui-button" plain="true" iconCls="icon-reload" onclick="reload()">刷新（R）</a>
 					<a class="nui-button" plain="true" iconCls="icon-add" onclick="add()">新增（A）</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="save()">产品录入（P）</a>
+					<a class="nui-button" plain="true" iconCls="icon-addnew" onclick="entry()">产品录入（P）</a>
 					<a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存（S）</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="save()">确定维修（T）</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="save()">维修归档（G）</a> 
@@ -53,8 +53,8 @@
 					<a class="nui-button" plain="true" iconCls="" onclick="save()">出单（D）</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="save()">返单（F）</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="save()">客户（G）</a>
-					<a class="nui-MenuButton" plain="true" iconCls="" onclick="save()">其他（O）</a>
-					<a class="nui-MenuButton" plain="true" iconCls="icon-print"onclick="print()">打印（P）</a>
+					<a class="nui-MenuButton" plain="true" iconCls="icon-date" menu="#ohterMenu">其他（O）</a>
+					<a class="nui-MenuButton" plain="true" iconCls="icon-print" menu="#printMenu">打印（P）</a>
 				</td>
 			</tr>
 		</table>
@@ -84,14 +84,13 @@
 							<div id="isDisabled" field="isDisabled" headerAlign="center"
 								allowSort="true" visible="true" width="30%">维修顾问</div>
 							<div id="isDisabled" field="isDisabled" headerAlign="center"
-								allowSort="true" visible="true" width="30%">工单号</div>
+								allowSort="true" visible="true" width="45%">工单号</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div showCollapseButton="false">
-				<div id="mainTabs" class="nui-tabs" activeIndex="0"
-					style="width: 100%; height: 100%;" plain="false" onactivechanged="">
+				<div id="mainTabs" class="nui-tabs" activeIndex="0" style="width: 100%; height: 100%;" plain="false" onactivechanged="">
 					<div title="基本信息" url="./subpage/BasicMessage.jsp"></div>
 					<div title="产品录入" url="./subpage/ProductInput.jsp"></div>
 					<div title="套餐清单" url="./subpage/ComboList.jsp"></div>
@@ -103,8 +102,22 @@
 		</div>
 	</div>
 
-
-
+	<!-- menu -->
+	<ul id="ohterMenu" class="nui-menu" style="display:none;">
+		<li class="separator"></li>
+        <li>储值卡销售 </li>
+        <li>储值卡充值</li>
+	    <li>车牌替换/修改</li>
+	    <li onclick="onReferral()">等级转介绍客户</li>
+    </ul>
+    <ul id="printMenu" class="nui-menu" style="display:none;">
+		<li class="separator"></li>
+        <li>打印维修委托单（A）</li>
+        <li>打印派工单（C）</li>
+	    <li>打印结算单（E）</li>
+	    <li>打印出单结算单（F）</li>
+    </ul>
+    
 	<script type="text/javascript">
     	nui.parse();
     	var grid = nui.get("datagrid1");
@@ -126,6 +139,38 @@
     		}	
     		});
     	}
+    	
+    	function entry(){
+    		nui.open({
+    			url:"./subpage/ProductEntry.jsp",
+    			title:"标准化产品查询",width:900,height:600,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function onReferral(){
+    		nui.open({
+    			url:"./subpage/CustomerReferral.jsp",
+    			title:"客户选择",width:350,height:430,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"referral"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
     	//重新刷新页面
     	function refresh(){
     		var form = new nui.Form("#form1");

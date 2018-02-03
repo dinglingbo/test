@@ -46,16 +46,15 @@
 		style="border-bottom: 0; padding: 0px; height: 30px">
 		<table style="width: 100%">
 			<tr>
-				<td style="width: 100%"><a class="nui-button" id="add"
-					iconCls="icon-add" onclick="addClass()" plain="true">新增（A）</a> <a
-					class="nui-button" id="save" iconCls="icon-save" onclick="save()" plain="true">保存（S）</a>
-
+				<td style="width: 100%">
+					<a class="nui-button" iconCls="icon-ok" onclick="onOk()" plain="true">选择（C）</a> 
+					<a class="nui-button" iconCls="icon-no" onclick="onNo()" plain="true">关闭（D）</a>
 				</td>
 			</tr>
 		</table>
 	</div>
 	<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false" showHandleButton="false">
-		<div size="28%" showCollapseButton="false">
+		<div size="25%" showCollapseButton="false">
 			<!-- 套餐信息 -->
 			<div class="nui-fit">
 				<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"

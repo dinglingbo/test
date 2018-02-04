@@ -135,7 +135,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.commons.env.getEnv</process:partner>
+      <process:partner type="literal">com.hs.common.env.getEnv</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="group" type="literal" value="String" valueType="Primitive" pattern="reference">BPS</process:inputVariable>
       </process:inputVariables>
@@ -160,7 +160,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.commons.HttpUtils.sendPost</process:partner>
+      <process:partner type="literal">com.hs.common.HttpUtils.sendPost</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -214,7 +214,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.commons.HttpUtils.sendPost</process:partner>
+      <process:partner type="literal">com.hs.common.HttpUtils.sendPost</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -240,7 +240,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.commons.HttpUtils.sendPost</process:partner>
+      <process:partner type="literal">com.hs.common.HttpUtils.sendPost</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -269,7 +269,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.commons.Utils.str2Map</process:partner>
+      <process:partner type="literal">com.hs.common.Utils.str2Map</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

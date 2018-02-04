@@ -125,7 +125,7 @@
 				<mpMenusList>
 					<mpMenus>
 						<!-- 可修改字段 -->
-						<menuName>缓存监控</menuName><menuCode>缓存监控</menuCode><menuURL>com.vplus.cachemgr.cacheviewr.flow</menuURL><seqNo>1</seqNo><menuIcon>icon-ICON--gangweiguanli</menuIcon>
+						<menuName>缓存监控</menuName><menuCode>缓存监控</menuCode><menuURL>com.sys.cachemgr.cacheviewr.flow</menuURL><seqNo>1</seqNo><menuIcon>icon-ICON--gangweiguanli</menuIcon>
 						<!-- 固定字段 -->
 						<createdBy>0</createdBy><lastUpdatedBy>0</lastUpdatedBy>
 					</mpMenus>

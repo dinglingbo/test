@@ -8,6 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <!--区域下属分店  #deptCode#-->
+    <!--
     <select id="getAreaComp" parameterClass="java.util.HashMap" resultClass="com.vplus.data.org.MpDepartments">
 		Select DA.dept_name deptName, DA.dept_code deptCode
 		FROM MP_DEPARTMENTS AREA  
@@ -16,4 +17,5 @@
 		AREA.dept_code=#deptCode#
 		AND DA.dept_type='COMP' AND DA.dept_status='A'
      </select>
+    -->
 </sqlMap>

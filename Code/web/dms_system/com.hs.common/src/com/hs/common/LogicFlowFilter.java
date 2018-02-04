@@ -60,7 +60,7 @@ public class LogicFlowFilter implements Filter {
 		}
 
 		/**
-		 * 如果是返回提示，就不需要再处理
+		 * 如果是返回登录提示，就不需要再处理
 		 */
 		if (isAuthorRequiredRequest(url)) {
 			HttpServletResponse rsp = (HttpServletResponse) response;
@@ -97,14 +97,14 @@ public class LogicFlowFilter implements Filter {
 		// 如果不是合法的请求，在请求头重返回数据
 		// res.sendRedirect(req.getContextPath() + "/login.jsp");
 		url = req.getContextPath()
-				+ "/com.vplus.login.auth.authRequried.biz.ext";
+				+ "/com.hs.common.login.authRequried.biz.ext";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		System.out.println("非法的请求：" + req.getRequestURL().toString());
 		dispatcher.forward(requestWrapper, response);
 	}
 
 	private boolean isAuthorRequiredRequest(String url) {
-		return url.indexOf("com.vplus.login.auth.authRequried.biz") >= 0;
+		return url.indexOf("com.hs.common.login.authRequried") >= 0;
 	}
 
 	/**
@@ -118,8 +118,8 @@ public class LogicFlowFilter implements Filter {
 		// 如果是某个页面流请求过来的，就认为是OK的
 		String flow = req.getHeader("Referer");
 		if (flow != null && flow.indexOf(".flow") >= 0) {
-			//System.out.println("页面流关联请求，不验证");
-			//return true;
+			// System.out.println("页面流关联请求，不验证");
+			// return true;
 		}
 		return false;
 
@@ -132,44 +132,13 @@ public class LogicFlowFilter implements Filter {
 	 * @return
 	 */
 	private boolean isExcludeUrls(String url) {
-		if (url.indexOf("com.vplus.login.svr.login") >= 0) {
-			return true;
+		// 设置值
+		String excludedPages = Env.getContributionConfig("com.sys.auth",
+				"authCheck", "logicFlow", "excludedPages");
+		if (excludedPages != null && excludedPages.trim().length() > 0) {
+			excludedPageArray = excludedPages.split(",");
 		}
-
-		if (url.indexOf("com.vplus.login.svr.pcLogin") >= 0) {
-			return true;
-		}
-
-		if (url.indexOf("com.hs.commons.login.uniqApi") >= 0) {
-			return true;
-		}
-
-		if (url.indexOf("com.vplus.login.auth.setUserOrgInfo") >= 0) {
-			return true;
-		}
-
-		// ERP登录接口
-		if (url.indexOf("com.vplus.login.auth.erpAuth") >= 0) {
-			return true;
-		}
-
-		// 登录接口
-		if (url.indexOf("com.vplus.login.auth.apiAuth") >= 0) {
-			return true;
-		}
-
-		// 五力接口
-		if (url.indexOf("com.hs.fiveforce.yy.kpi") >= 0) {// com.hs.fiveforce.yy.kpi
-			System.out.println("com.hs.fiveforce.yy.kpi is isExcludeUrls");
-			return true;
-		}
-
-		if (url.indexOf("com.vplus.login.auth.checkToken") >= 0) {// com.hs.fiveforce.yy.kpi
-			System.out
-					.println("com.vplus.login.auth.checkToken is isExcludeUrls");
-			return true;
-		}
-
+		// 检查
 		if (excludedPageArray != null && excludedPageArray.length > 0) {
 			for (int i = 0; i < excludedPageArray.length; i++) {
 				if (url.indexOf(excludedPageArray[i]) >= 0) {
@@ -237,15 +206,13 @@ public class LogicFlowFilter implements Filter {
 	 * @return
 	 */
 	public boolean isClientRequest(MyHttpServletRequestWrapper req) {
-		String token = getToken(req, "vsessionid");
-		if (token == null || "".equals(token)) {
-			token = getToken(req, "token");
-		}
+		String token = getToken(req, "token");
 
 		HttpSession session = req.getSession(false);
 		if (session == null) {
 			session = req.getSession(true);
-			System.out.println("vapp创建Session：" + session.getId());
+			System.out.println(req.getContextPath() + "创建Session："
+					+ session.getId());
 		}
 		if (token == null || token.trim().length() < 10) {
 			// 无token时，检查session
@@ -286,38 +253,8 @@ public class LogicFlowFilter implements Filter {
 				return getUserInfo(key, keys[1], posiId, session);
 			}
 		} else {
-			Object[] result = null;
-
-			String componentName = "com.vplus.login.auth";// 逻辑构件名称com.harson.bpmapi.auth
-			String operationName = "checkToken";// 逻辑流名称checkToken
-			// 逻辑流的输入参数
-			int size = 1;
-			Object[] params = new Object[size];
-			params[0] = token;// access_token
-			try {
-				result = MUOCommonUtil.invokeBizWithMUO(componentName,
-						operationName, params, session);// 逻辑流的返回值
-				if ("success".equals(result[0])) {// loginName
-					Object obj = result[1];// userKey
-					if (obj == null || "".equals(obj)) {
-						System.out.println("未能获取userKey");
-						return false;
-					} else {
-						String userKey = obj.toString();
-						String[] keys = userKey.split("_");
-						posiId = Long.valueOf(userKey.replaceAll("user_"
-								+ keys[1] + "_", ""));
-						return getUserInfo(key, keys[1], posiId, session);
-					}
-				} else {
-					System.out.println("Token验证失败");
-					return false;
-				}
-			} catch (Throwable e) {
-				e.printStackTrace();
-				System.out.println("验证token遇到错误：" + e.getMessage());
-				return false;
-			}
+			System.out.println("token不存在，未登录：" + key);
+			return false;
 		}
 	}
 
@@ -430,7 +367,8 @@ public class LogicFlowFilter implements Filter {
 								System.out.println("Session中token为空");
 								return false;
 							} else if (RedisUtils.exists("token_" + token)) {
-								System.out.println("Session中的token验证通过：" + token);
+								System.out.println("Session中的token验证通过："
+										+ token);
 								return true;
 							} else {
 								String loginName = u.getAttributes()
@@ -451,8 +389,8 @@ public class LogicFlowFilter implements Filter {
 											+ posiId;
 									RedisUtils.hsetAndExtend("token_" + token,
 											"userInfo", loginName);
-									RedisUtils.hsetAndExtend(loginName, "userInfo",
-											userInfo);
+									RedisUtils.hsetAndExtend(loginName,
+											"userInfo", userInfo);
 									System.out.println("Session中" + uid
 											+ "通过验证，并重置redis值");
 									return true;
@@ -487,10 +425,11 @@ public class LogicFlowFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig cfg) throws ServletException {
-		String excludedPages = cfg.getInitParameter("excludedPages");
-		if (excludedPages != null && excludedPages.trim().length() > 0) {
-			excludedPageArray = excludedPages.split(",");
-		}
+		/*
+		 * String excludedPages = cfg.getInitParameter("excludedPages"); if
+		 * (excludedPages != null && excludedPages.trim().length() > 0) {
+		 * excludedPageArray = excludedPages.split(","); }
+		 */
 	}
 
 	private boolean isLogicFlow(String url) {

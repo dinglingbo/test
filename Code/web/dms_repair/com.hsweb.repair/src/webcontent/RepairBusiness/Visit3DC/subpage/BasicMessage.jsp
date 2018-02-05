@@ -96,8 +96,7 @@
 		</table>
 
 
-		<div
-			style="height: 0; width: 100%; border: 0.6px solid #AAAAAA; margin: 7px 0 -5px 0;"></div>
+		<div style="height: 0; width: 100%; border: 0.6px solid #AAAAAA; margin: 7px 0 -5px 0;"></div>
 
 
 
@@ -140,8 +139,7 @@
 				</td>
 				<td>
 					<div>
-						<input class="nui-combobox"
-							style="width: 150px; margin: 10px 10px 0 0" />
+						<input class="nui-combobox" style="width: 150px; margin: 10px 10px 0 0" />
 					</div>
 					<div>
 						<input id="data" class="nui-datepicker" value="" nullValue="null"

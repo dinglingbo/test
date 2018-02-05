@@ -16,18 +16,18 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-splitter" style="width: 100%; height: 100%"
-		vertical="true">
+	<div class="nui-splitter" style="width: 100%; height: 100%" vertical="true" allowResize="false">
 		<div size="50%" showCollapseButton="false">
-			<div class="nui-toolbar" id="div_1"
-				style="border-bottom: 0; padding: 0px;">
-				<span> <a class="nui-button" id="add" iconCls="icon-add"
-					onclick="add()">新增</a> <a class="nui-button" id="edit"
-					iconCls="icon-edit" onclick="eidt()">修改</a> <a class="nui-button"
-					id="add" iconCls="icon-remove" onclick="remove()">删除</a> <a
-					class="nui-button" id="ok" iconCls="icon-ok" iconCls=""
-					onclick="ok()">同意维修</a>
-				</span> <span width="100%"> 估算合计：<span id="total"></span>
+			<div class="nui-toolbar" id="div_1" style="border-bottom: 0; padding: 0px;">
+				<span> 
+					<a class="nui-button" plain="true" iconCls="icon-add" onclick="addItem()">新增</a> 
+					<a class="nui-button" plain="true" iconCls="icon-edit" onclick="eidtItem()">修改</a> 
+					<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeItem()">删除</a> 
+					<a class="nui-button" plain="true" iconCls="icon-ok" iconCls="" onclick="okItem()">同意维修</a>
+				</span> 
+				<span width="100%"> 估算合计：
+					<span id="total">
+					</span>
 				</span>
 			</div>
 			<div class="nui-fit">
@@ -65,10 +65,10 @@
 			<div class="nui-toolbar" id="div_1"
 				style="border-bottom: 0; padding: 0px;">
 				<span> <a class="nui-button" id="add" iconCls="icon-add"
-					onclick="add()">新增</a> <a class="nui-button" id="edit"
-					iconCls="icon-edit" onclick="eidt()">修改</a> <a class="nui-button"
-					id="add" iconCls="icon-remove" onclick="remove()">删除</a> <a
-					class="nui-button" id="ok" iconCls="icon-ok" iconCls=""
+					onclick="addMaterial()">新增</a> <a class="nui-button" id="edit"
+					iconCls="icon-edit" onclick="eidtMaterial()">修改</a> <a class="nui-button"
+					id="add" iconCls="icon-remove" onclick="removeMaterial()">删除</a> <a
+					class="nui-button" id="okMaterial" iconCls="icon-ok" iconCls=""
 					onclick="ok()">同意维修</a>
 				</span>
 			</div>
@@ -110,6 +110,62 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	
+    	function addItem(){
+    		nui.open({
+    			url:"./subpage/addEditItem.jsp",
+    			title:"维修项目录入",width:450,height:200,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function editItem(){
+    	    var row = grid.getSelected();
+    	    if(row) {
+    	        nui.open({
+    	            url:"./subpage/addEditItem.jsp",
+    	            title:"维修项目录入",width:450,height:200,
+    	            onload:function(){
+    	                var iframe = this.getIFrameEl();
+    	                var data = {pageType:"edit",record:{comguest:row}};
+    	                //直接从页面获取，不用去后台获取
+    	                iframe.contentWindow.setData(data);
+    	            },
+    	            ondestroy:function(action){
+    	                if(action == "saveSuccess"){
+    	                    grid.reload();
+    	                }
+    	            }
+    	        });
+    	    }else {
+    	        nui.alert("请选中一条数据", "系统提示");
+    	    }
+    	}
+    	
+    	function addMaterial(){
+    		nui.open({
+    			url:"./subpage/addEditMaterial.jsp",
+    			title:"维修项目录入",width:450,height:200,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
+    	
     </script>
 </body>
 </html>

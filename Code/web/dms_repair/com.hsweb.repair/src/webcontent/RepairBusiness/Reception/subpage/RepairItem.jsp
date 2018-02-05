@@ -16,15 +16,18 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-splitter" style="width: 100%; height: 100%"
-		vertical="true">
+	
+	<div class="nui-splitter" style="width: 100%; height: 100%" allowResize="false" vertical="true">
 		<div size="50%" showCollapseButton="false">
 			<div class="nui-toolbar" id="div_1"
 				style="border-bottom: 0; padding: 0px;">
-				<span> <a class="nui-button" id="edit" iconCls="icon-edit"
-					onclick="eidt()">修改</a> <a class="nui-button" id="add"
-					iconCls="icon-remove" onclick="remove()">删除</a>
-				</span> <span width="100%"> 维修合计：<span id="total"></span>
+				<span> 
+					<a class="nui-button" plain="true" iconCls="icon-edit" onclick="eidtItem()">修改</a> 
+					<a class="nui-button" plain="true" iconCls="icon-remove" onclick="remove()">删除</a>
+				</span> 
+				<span width="100%"> 
+					维修合计：
+					<span id="total"></span>
 				</span>
 			</div>
 			<div class="nui-fit">
@@ -118,6 +121,29 @@
     	//金额合计
     	var total = document.getElementById("total");
 	    total.innerHTML = new Date().getTime();
+	    
+	    function eidtItem(){
+    	    var row = grid.getSelected();
+    	    if(row) {
+    	        nui.open({
+    	            url:"./subpage/addEditItem.jsp",
+    	            title:"维修项目录入",width:450,height:200,
+    	            onload:function(){
+    	                var iframe = this.getIFrameEl();
+    	                var data = {pageType:"edit",record:{comguest:row}};
+    	                //直接从页面获取，不用去后台获取
+    	                iframe.contentWindow.setData(data);
+    	            },
+    	            ondestroy:function(action){
+    	                if(action == "saveSuccess"){
+    	                    grid.reload();
+    	                }
+    	            }
+    	        });
+    	    }else {
+    	        nui.alert("请选中一条数据", "系统提示");
+    	    }
+    	}
 	
 	    
     </script>

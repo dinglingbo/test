@@ -16,100 +16,45 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-panel" showToolbar="false" title="" showFooter="true"
-		style="width: 100%; height: 12%">
+	<div  class="nui-toolbar"  style="height:50px">
 		<div class="nui-form1" id="form1" style="height: 100%">
 			<input class="nui-hidden" name="criteria/_entity"
 				value="com.hsweb.repair.DataBase.RpbClass" />
-			<!-- 排序 -->
-			<input class="nui-hidden" name="criteria/_orderby[1]/_property"
-				value="id" /> <input class="nui-hidden"
-				name="criteria/_orderby[1]/_sort" value="arc">
+			
 			<table class="table" id="table1" style="height: 100%;">
-				<tr style="width: 100%; height: 12%; line-height: 12%;">
+				<tr style="display: block; margin:-5px 0">
+					<td width="80px">
+						<span style="color:#0000FF;margin-left: 10px;">工单号：</span>
+					</td>
 					<td>
-						<h4>快速查询：</h4>
+						<label field="" style="color:#0000FF;width: 200px; " /></label>
 					</td>
-					<!-- lookup_type_code -->
-					<td class="nui-button" id="lookup_type_code"
-						style="margin-top: 5px;" plain="true">本日</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[1]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[1]/likeRule"
-						value="1" /></td>
-					<!-- lookup_type_name -->
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">昨日</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本周</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">上周</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本月</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">上月</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本年</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">上年</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-
-
-					<td class="form_label" id="lookup_type_name">车牌号（客户）：</td>
-					<td colspan="3"><input class="nui-buttonedit"
-						name="isDisabled" emptyText="请输入..." showClose="true"
-						oncloseclick="onCloseClick" /> <input class="nui-hidden"
-						name="criteria/_expr[2]/_op" value="=" /> <input
-						class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+					<td width="80px">
+							<span style="color:#0000FF;margin-left: 10px;">车牌号：</span>
 					</td>
-					<td class="form_label" id="lookup_type_name">维修顾问：</td>
-					<td colspan="3"><input class="nui-combobox" name="isDisabled"
-						emptyText="请选择..." /> <input class="nui-hidden"
-						name="criteria/_expr[2]/_op" value="=" /> <input
-						class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+					<td>
+						<label field="" style="color:#0000FF;width:120px; " /></label>
 					</td>
-					<td><a class="nui-button" iconCls="icon-search"
-						onclick="search()">查询（Q）</a></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">更多</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-
-					<!-- 超链接模式 -->
-					<!-- 
-        	        <td>
-        	        	<a href="../../index.html">首页</a> 
-        	        </td>
-        	         -->
+				</tr>
+				<tr style="display: block; margin:-3px 0">
+					<td>
+						<label style="font-family:Verdana;">快速查询：</label>
+						<a class="nui-button"  style="color:#0000FF" plain="true">本日</a>
+						<a class="nui-button"  style="color:#0000FF" plain="true">昨日</a>
+						<a class="nui-button"  style="color:#0000FF" plain="true">本周</a>
+						<a class="nui-button"  style="color:#0000FF" plain="true">上周</a>
+						<a class="nui-button"  style="color:#0000FF" plain="true">本月</a>
+						<a class="nui-button"  style="color:#0000FF" plain="true">上月</a>
+						<a class="nui-button"  style="color:#0000FF" plain="true">本年</a>
+						<a class="nui-button"  style="color:#0000FF" plain="true">上年</a>
+						<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin:0 10px 0 0" ></span>
+						<label class="form_label" >车牌号（客户）：</label>
+						<input class="nui-buttonedit" name="isDisabled" emptyText="请输入..." showClose="true" oncloseclick="onClean()" /> 
+						<label class="form_label" >维修顾问：</label>
+						<input class="nui-combobox" name="isDisabled" emptyText="请选择..." /> 
+						<a class="nui-button" iconCls="icon-search" onclick="search()" plain="true">查询（Q）</a>
+						<a class="nui-button" iconCls="icon-search" onclick="search()" plain="true" style="color:#0000FF">更多</a>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -119,12 +64,12 @@
 		style="border-bottom: 0; padding: 0px;">
 		<table style="width: 100%">
 			<tr>
-				<td style="width: 100%"><a class="nui-button" id="next"
-					iconCls="icon-downgrade" onclick="next()">下一页</a> <a
-					class="nui-button" id="user" iconCls="icon-user" onclick="user()">客户资料</a>
-					<a class="nui-button" id="dataon" iconCls="icon-date"
-					onclick="dateon()">维修历史</a> <a class="nui-menubutton" id="datacut"
-					iconCls="icon-print" onclick="print()">打印</a></td>
+				<td style="width: 100%">
+					<a class="nui-button" plain="true" iconCls="icon-downgrade" onclick="next()">下一页</a> 
+					<a class="nui-button" plain="true" iconCls="icon-user" onclick="customer()">客户资料</a>
+					<a class="nui-button" plain="true" iconCls="icon-date" onclick="history()">维修历史</a> 
+					<a class="nui-menubutton" plain="true" iconCls="icon-print"  menu="#printMenu">打印</a>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -251,10 +196,35 @@
 
 
 
-
+	<ul id="printMenu" class="nui-menu" style="display:none;">
+		<li class="separator"></li>
+        <li onclick="print()">打印维修委托单（A）</li>
+        <li>打印派工单（C）</li>
+	    <li>打印结算单（E）</li>
+	    <li>打印出单结算单（F）</li>
+    </ul>
 
 	<script type="text/javascript">
     	nui.parse();
+    	var grid = nui.get("datagrid1");
+    	var formData = new nui.Form("#form1").getData(false, false);
+    	grid.load(formData);
+    	
+    	function customer(){
+    		nui.open({
+    			url:"../../RepairBusiness/CustomerProfile/CustomerProfileDetail.jsp",
+    			title:"客户资料",width:460,height:640,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"customer"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
     </script>
 </body>
 </html>

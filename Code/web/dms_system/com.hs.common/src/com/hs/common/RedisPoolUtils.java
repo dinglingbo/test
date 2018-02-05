@@ -10,35 +10,35 @@ public class RedisPoolUtils {
 
 	// Redis服务器地址
 	private static String ADDR_ARRAY = Env.getContributionConfig(
-			"com.vplus.cachemgr", "CacheCfg", "redisCfg", "address");
+			"com.sys.cachemgr", "CacheCfg", "redisCfg", "address");
 
 	// Redis服务器端口
 	private static int PORT = Integer.parseInt(Env.getContributionConfig(
-			"com.vplus.cachemgr", "CacheCfg", "redisCfg", "port"));
+			"com.sys.cachemgr", "CacheCfg", "redisCfg", "port"));
 
 	// 访问密码
 	private static String AUTH = Env.getContributionConfig(
-			"com.vplus.cachemgr", "CacheCfg", "redisCfg", "password");
+			"com.sys.cachemgr", "CacheCfg", "redisCfg", "password");
 
 	// 可用连接实例的最大数目，默认值为8；
 	// 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。
 	private static int MAX_ACTIVE = Integer.parseInt(Env.getContributionConfig(
-			"com.vplus.cachemgr", "CacheCfg", "redisCfg", "maxActive"));
+			"com.sys.cachemgr", "CacheCfg", "redisCfg", "maxActive"));
 
 	// 控制一个pool最多有多少个状态为idle(空闲的)的jedis实例，默认值也是8。
 	private static int MAX_IDLE = Integer.parseInt(Env.getContributionConfig(
-			"com.vplus.cachemgr", "CacheCfg", "redisCfg", "maxIdle"));
+			"com.sys.cachemgr", "CacheCfg", "redisCfg", "maxIdle"));
 
 	// 等待可用连接的最大时间，单位毫秒，默认值为-1，表示永不超时。如果超过等待时间，则直接抛出JedisConnectionException；
 	private static int MAX_WAIT = Integer.parseInt(Env.getContributionConfig(
-			"com.vplus.cachemgr", "CacheCfg", "redisCfg", "maxWait"));
+			"com.sys.cachemgr", "CacheCfg", "redisCfg", "maxWait"));
 
 	// 超时时间
 	private static int TIMEOUT = Integer.parseInt(Env.getContributionConfig(
-			"com.vplus.cachemgr", "CacheCfg", "redisCfg", "timeout"));
+			"com.sys.cachemgr", "CacheCfg", "redisCfg", "timeout"));
 
 	// 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
-	private static boolean TEST_ON_BORROW = true;// "".equalsIgnoreCase(Env.getContributionConfig("com.vplus.cachemgr",
+	private static boolean TEST_ON_BORROW = true;// "".equalsIgnoreCase(Env.getContributionConfig("com.sys.cachemgr",
 													// "CacheCfg", "redisCfg",
 													// "testOnBorrow"));
 

@@ -46,7 +46,7 @@ public class Env {
 		if (Env.basePath != null) {
 			initContribution(Env.basePath);// 重新加载配置文件
 		}
-		return "已重新加载配置文件：" + Env.basePath;
+		return "已重新加载配置文件，basePath：" + Env.basePath;
 	}
 
 	public static void envInit(String basePath) {
@@ -106,8 +106,7 @@ public class Env {
 
 	public static void generateInitPlatformModel() {
 		InitPlatformModel initPlatformModel = null;
-		String filePath = Env.basePath + File.separator + "config"
-				+ File.separator + "env" + File.separator + Env.initXmlPath;
+		String filePath = Env.basePath + Env.initXmlPath;
 		File file = new File(filePath);
 		if (!file.exists()) {// 平台初始化模板不存在
 			System.out.println("找不到平台初始化模板！路径为：" + filePath);
@@ -389,13 +388,12 @@ public class Env {
 
 	/* 初始化项目配置Contribution */
 	private synchronized static void initContribution(String path) {
-		path = path + File.separator + "config" + File.separator + "env"
-				+ File.separator + "env.xml";
+		path += "env.xml";
 		File file = new File(path);
-		System.out.println("初始化配置，配置文件路径为：" + path);
 		if (!file.exists()) {// 配置不存在
 			System.out.println("找不到配置文件！路径为：" + path);
 		} else {// 读取配置文件
+			System.out.println("初始化配置，配置文件路径为：" + path);
 			List<Element> conEles = null;
 			String ctrName = null;
 			List<Element> modEles = null;
@@ -438,6 +436,7 @@ public class Env {
 					}
 					ctrMap.put(ctrName, contribution);
 				}
+				System.out.println("配置文件初始化成功！");
 			} catch (DocumentException e) {
 				e.printStackTrace();
 			}
@@ -488,20 +487,11 @@ public class Env {
 	public static String getContributionConfig(String ctrName, String module,
 			String group, String key) {
 		String val = getCtrMap(ctrName, module, group, key);
-		// if ("com.vplus.cachemgr".equals(ctrName) && "CacheCfg".equals(module)
-		// && "redisCfg".equals(group) && "password".equals(key))
-		// {//redis密码直接返回空
-		// return val;
-		// }
-		// if (null==val || "".equals(val.trim())) {
-		// val = ConfigurationUtil.getContributionConfig(ctrName, module, group,
-		// key);
-		// }
 		return val;
 	}
 
 	public static void main(String[] args) {
-		String path = "D:\\EOS7.5Studio_VPLUS\\apache-tomcat-7.0.54\\webapps\\vplus";
+		String path = "/data/appConfig/dmsEnv/";
 		Env.initContribution(path);
 
 	}

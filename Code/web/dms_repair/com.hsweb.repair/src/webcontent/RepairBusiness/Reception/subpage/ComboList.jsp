@@ -18,11 +18,13 @@
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 	<div class="nui-toolbar" id="div_1"
 		style="border-bottom: 0; padding: 0px;">
-		<span> <a class="nui-button" id="edit" iconCls="icon-edit"
-			onclick="eidt()">修改</a> <a class="nui-button" id="add"
-			iconCls="icon-remove" onclick="remove()">删除</a> <a class="nui-button"
-			id="ok" iconCls="icon-ok" iconCls="" onclick="ok()">同意维修</a>
-		</span> <span width="100%"> 套餐合计：
+		<span> 
+			<a class="nui-button" plain="true" iconCls="icon-edit"  onclick="eidt()">修改</a> 
+			<a class="nui-button" plain="true" iconCls="icon-remove" onclick="remove()">删除</a> 
+			<a class="nui-button" plain="true" iconCls="icon-ok" iconCls="" onclick="ok()">同意维修</a>
+		</span> 
+		<span width="100%"> 
+			套餐合计： 
 			<div id="total"></div>
 		</span>
 	</div>

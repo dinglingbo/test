@@ -20,7 +20,7 @@
 	    <div size="30%" showCollapseButton="false">
 	    	<div  class="nui-panel" showToolbar="false" title="客户信息" showFooter="false" style="width:100%;height:100%;">
 				<table class="nui-form-table">
-		        	<tr style=" display:block;margin:0">
+		        	<tr style=" display:block;margin:-2px 0 0 0">
 		        		<td width="70px">
 		        			<span style="color:#FF0000;margin-left:10px;">客户名称：</span>
 		        		</td>

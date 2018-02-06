@@ -16,8 +16,7 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<input class="nui-textarea" name="isDisabled"
-		style="width: 100%; height: 70%" />
+	<input class="nui-textarea" name="isDisabled" style="width: 100%; height: 75%" />
 
 
 	<script type="text/javascript">

@@ -16,36 +16,19 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-panel" showToolbar="false" title="" showFooter="true"
-		style="width: 100%; height: 1">
-		<div class="nui-form1" id="form1" style="height: 100%">
-			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsweb.repair.DataBase.RpbClass" />
-			<!-- 排序 -->
-			<input class="nui-hidden" name="criteria/_orderby[1]/_property"
-				value="id" /> <input class="nui-hidden"
-				name="criteria/_orderby[1]/_sort" value="arc">
-			<table class="table" id="table1" style="height: 100%">
-				<tr style="width: 100%; height: 12%; line-height: 12%;">
-					<td>
-						<h3>出车报告</h3>
-					</td>
-				</tr>
-			</table>
-		</div>
+	<div  class="nui-toolbar" height="15px">
+		<label>出车报告</label>
 	</div>
 	<div class="nui-toolbar" id="div_1"
 		style="border-bottom: 0; padding: 0px; height: 30px">
 		<table style="width: 100%">
 			<tr>
-				<td style="width: 100%"><a class="nui-button" id="add"
-					iconCls="icon-add" onclick="addClass()">新增（A）</a> <a
-					class="nui-button" id="update" iconCls="icon-edit" onclick="edit()">修改（E）</a>
-					<a class="nui-button" id="remove" iconCls="icon-remove"
-					onclick="remove()">删除（D）</a> <a class="nui-button" id="save"
-					iconCls="icon-save" onclick="save()">保存（S）</a> <a
-					class="nui-button" id="cancel" iconCls="icon-cancel"
-					onclick="cancel()">取消（C）</a></td>
+				<td style="width: 100%"><a class="nui-button"  plain="true" iconCls="icon-add" onclick="addClass()">新增（A）</a> 
+					<a class="nui-button" plain="true"" iconCls="icon-edit" onclick="edit()">修改（E）</a>
+					<a class="nui-button" plain="true" iconCls="icon-remove" onclick="remove()">删除（D）</a> 
+					<a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存（S）</a> 
+					<a class="nui-button" plain="true" iconCls="icon-cancel" onclick="cancel()">取消（C）</a>
+				</td>
 			</tr>
 		</table>
 	</div>

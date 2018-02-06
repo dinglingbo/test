@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>维修接待</title>
+<title>基本信息</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%= request.getContextPath() %>/common/nui/nui.js"
 	type="text/javascript"></script>
@@ -269,7 +269,7 @@
     	
     	function onChange(){
     		nui.open({
-    			url:"./subpage/Customer.jsp",
+    			url:"../../RepairBusiness/CustomerProfile/subpage/Customer.jsp",
     			title:"客户选择",width:900,height:550,
     			onload:function(){
     			    var iframe = this.getIFrameEl();

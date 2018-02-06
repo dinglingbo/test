@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.fastjson.JSON;
+import javax.servlet.http.HttpServletRequest;
+
 import com.alibaba.fastjson.JSONObject;
 import com.eos.data.datacontext.UserObject;
 import com.eos.system.annotation.Bizlet;
@@ -59,11 +60,11 @@ public class Utils {
 		temp[temp.length - 1] = object;
 		return temp;
 	}
-	
+
 	@Bizlet("")
 	public static Object[] appendArray2Array(Object[] arrTo, Object[] arr) {
 		Object[] temp;
-		if (arrTo != null && arr !=null) {
+		if (arrTo != null && arr != null) {
 			temp = new Object[arrTo.length + arr.length];
 			for (int i = 0; i < arrTo.length; i++) {
 				temp[i] = arrTo[i];
@@ -71,9 +72,9 @@ public class Utils {
 			for (int i = 0; i < arr.length; i++) {
 				temp[arrTo.length + i] = arr[i];
 			}
-		}else if(arrTo==null){
+		} else if (arrTo == null) {
 			return arr;
-		} else{
+		} else {
 			return arrTo;
 		}
 		return temp;
@@ -178,7 +179,7 @@ public class Utils {
 		String[] cols = byCols.split(",");
 		String[] sCols = sumCols.split(",");
 		String[] groups = groupBy.split(",");
-		
+
 		byCols = "," + byCols + ",";
 		sumCols = "," + sumCols + ",";
 		String colName = "";
@@ -187,14 +188,14 @@ public class Utils {
 		String groupVal = "";
 		for (HashMap<String, Object> hmap : p) {
 			tmpVal = "";
-			groupVal="";
+			groupVal = "";
 			for (String c : cols) {
 				tmpVal += hmap.get(c);
 			}
 			for (String g : groups) {
 				groupVal += hmap.get(g);
 			}
-			
+
 			if (groupVal.equals(currVal)) {
 				// 求和
 				for (String sc : sCols) {
@@ -237,6 +238,61 @@ public class Utils {
 		}
 	}
 
+	/**
+	 * 获取用户真实IP地址，不使用request.getRemoteAddr()的原因是有可能用户使用了代理软件方式避免真实IP地址,
+	 * 可是，如果通过了多级反向代理的话，X-Forwarded-For的值并不止一个，而是一串IP值
+	 * 
+	 * @return ip
+	 */
+	@Bizlet("")
+	public static String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("x-forwarded-for");
+		System.out.println("x-forwarded-for ip: " + ip);
+		if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
+			// 多次反向代理后会有多个ip值，第一个ip才是真实ip
+			if (ip.indexOf(",") != -1) {
+				ip = ip.split(",")[0];
+			}
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+			System.out.println("Proxy-Client-IP ip: " + ip);
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+			System.out.println("WL-Proxy-Client-IP ip: " + ip);
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+			System.out.println("HTTP_CLIENT_IP ip: " + ip);
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+			System.out.println("HTTP_X_FORWARDED_FOR ip: " + ip);
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("X-Real-IP");
+			System.out.println("X-Real-IP ip: " + ip);
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+			System.out.println("getRemoteAddr ip: " + ip);
+		}
+		System.out.println("获取客户端ip: " + ip);
+		return ip;
+	}
+
+	@Bizlet("")
+	public static String createSessionId() {
+		return java.util.UUID.randomUUID().toString();
+	}
+
+	@Bizlet("")
+	public static String getMd5SessionId(HttpServletRequest request) {
+		String ip = getIpAddr(request);
+		return MD5.crypt(createSessionId() + ip);
+	}
+
 	/*
 	 * @Bizlet("") public static String obj2json(UserObject obj) { try { String
 	 * aa = JSONObject.toJSONString(obj); return aa; } catch (Exception e) {
@@ -244,17 +300,21 @@ public class Utils {
 	 */
 
 	public static void main(String args[]) {
-		UserObject userObj = new UserObject();
+		/*
+		 * UserObject userObj = new UserObject();
+		 * 
+		 * userObj.getAttributes().put("token",
+		 * "8f692b27-3ccd-3695-a44c-d82506ad4cbc");
+		 * userObj.setSessionId("8f692b27-3ccd-3695-a44c-d82506ad4cbc");
+		 * userObj.setUserId("7499");
+		 * 
+		 * String abc = obj2GzipStr(userObj); System.out.println(abc); userObj =
+		 * (UserObject) SerializeUtil.decompressUnserialize(abc);
+		 * System.out.println(userObj.getSessionId());
+		 */
+		System.out.println(createSessionId());
+		System.out.println(createSessionId());
 
-		userObj.getAttributes().put("token",
-				"8f692b27-3ccd-3695-a44c-d82506ad4cbc");
-		userObj.setSessionId("8f692b27-3ccd-3695-a44c-d82506ad4cbc");
-		userObj.setUserId("7499");
-
-		String abc = obj2GzipStr(userObj);
-		System.out.println(abc);
-		userObj = (UserObject) SerializeUtil.decompressUnserialize(abc);
-		System.out.println(userObj.getSessionId());
 	}
 
 }

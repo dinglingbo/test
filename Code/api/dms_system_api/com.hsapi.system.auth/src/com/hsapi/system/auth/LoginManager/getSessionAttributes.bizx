@@ -15,7 +15,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="java.util.HashMap" name="attributes" type="query" valueType="Java">attributes</process:return>
+      <process:return id="0" language="java.util.HashMap" name="userObj" type="query" valueType="Java">userObj</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -39,7 +39,23 @@
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/attributes</process:from>
-      <process:to type="query">attributes</process:to>
+      <process:to type="query">userObj/attributes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">userObj/userId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">userObj/userName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">userObj/userOrgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgName</process:from>
+      <process:to type="query">userObj/userOrgName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -53,7 +69,7 @@
   <process:variables/>
   <process:inputs varArgs="false"/>
   <process:outputs>
-    <process:output anyType="java.util.HashMap" description="" isArray="false" name="attributes"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="userObj"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

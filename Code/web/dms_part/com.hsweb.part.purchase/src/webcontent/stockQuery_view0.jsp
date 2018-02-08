@@ -23,7 +23,6 @@
         <table style="width:100%;">
             <tr>
                 <td style="white-space:nowrap;">
-                    <label style="font-family:Verdana;">快速查询：</label>
                     <label style="font-family:Verdana;">分店名称：</label>
                     <input id="compCode"
                            name="compCode"
@@ -50,8 +49,12 @@
                     <input class="nui-textbox" width="100" name="partCode"/>
                     <label style="font-family:Verdana;">名称：</label>
                     <input class="nui-textbox" width="100" name="name"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="white-space:nowrap;">
                     <label style="font-family:Verdana;">仓位：</label>
-                    <input class="nui-textbox" width="100" name="storeLocation"/>
+                    <input class="nui-textbox" width="100" name="stockLocation"/>
                     <label style="font-family:Verdana;">车型：</label>
                     <input class="nui-textbox" width="100" name="carType"/>
                     <label style="font-family:Verdana;">品牌：</label>
@@ -97,9 +100,9 @@
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      frozenStartColumn="0"
-                     frozenEndColumn="7"
+                     frozenEndColumn="3"
                      borderStyle="border:0;"
-                     dataField="parts"
+                     dataField="ptsStockCycList"
                      url=""
                      ondrawcell="onPartGridDraw"
                      idField="id"
@@ -111,36 +114,36 @@
                         <div type="indexcolumn">序号</div>
                         <div header="分店仓库信息" headerAlign="center">
                             <div property="columns">
-                                <div field="compName" width="50" headerAlign="center" header="分店名称"></div>
+                                <div field="compCode" width="100" headerAlign="center" header="分店名称"></div>
                                 <div field="storeId" width="50" headerAlign="center" header="仓库"></div>
-                                <div field="storeLocationName" width="50" headerAlign="center" header="仓位"></div>
+                                <div field="stockLocation" width="50" headerAlign="center" header="仓位"></div>
                             </div>
                         </div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partId" width="50" headerAlign="center" header="内码"></div>
+                                <div field="partId" width="70" headerAlign="center" header="内码"></div>
                                 <div field="partCode" width="80" headerAlign="center" allowSort="true" header="配件编码"></div>
                                 <div field="partName" width="80" headerAlign="center" allowSort="true" header="配件名称"></div>
-                                <div field="partFullName" width="80" headerAlign="center" allowSort="true" header="配件全称"></div>
-                                <div field="partQualityId" width="80" headerAlign="center" allowSort="true" header="品质"></div>
-                                <div field="partBrandId" width="80" headerAlign="center" allowSort="true" header="品牌"></div>
-                                <div field="abcType" width="80" headerAlign="center" allowSort="true" header="ABC分类"></div>
+                                <div field="partFullName" width="100" headerAlign="center" allowSort="true" header="配件全称"></div>
+                                <div field="qualityTypeId" width="70" headerAlign="center" allowSort="true" header="品质"></div>
+                                <div field="partBrandId" width="70" headerAlign="center" allowSort="true" header="品牌"></div>
+                                <div field="abcType" width="60" headerAlign="center" allowSort="true" header="ABC分类"></div>
                             </div>
                         </div>
                         <div header="库存信息" headerAlign="center">
                             <div property="columns">
-                                <div field="outAbleQty" width="50" headerAlign="center" header="数量"></div>
-                                <div field="unit" width="80" headerAlign="center" allowSort="true" header="单位"></div>
-                                <div field="noTaxUnitPrice" width="80" headerAlign="center" allowSort="true" header="单价"></div>
-                                <div field="noTaxAmt" width="80" headerAlign="center" allowSort="true" header="金额"></div>
-                                <div field="suggestPrice" width="80" headerAlign="center" allowSort="true" header="建议销价"></div>
-                                <div field="sellPrice" width="80" headerAlign="center" allowSort="true" header="最后销价"></div>
+                                <div field="stockQty" width="50" headerAlign="center" header="数量" align="right"></div>
+                                <div field="unit" width="80" headerAlign="center" allowSort="true" header="单位" align="right"></div>
+                                <div field="stockPrice" width="80" headerAlign="center" allowSort="true" header="单价" align="right"></div>
+                                <div field="stockAmt" width="80" headerAlign="center" allowSort="true" header="金额" align="right"></div>
+                                <div field="suggestPrice" width="80" headerAlign="center" allowSort="true" header="建议销价" align="right"></div>
+                                <div field="lastSellPrice" width="80" headerAlign="center" allowSort="true" header="最后销价" align="right"></div>
                             </div>
                         </div>
                         <div header="上下限" headerAlign="center">
                             <div property="columns">
-                                <div field="heightLimit" width="60" headerAlign="center" align="right" allowSort="true" header="上限"></div>
-                                <div field="lowLimit" width="60" headerAlign="center" align="right" allowSort="true" header="下限"></div>
+                                <div field="stockUpLimit" width="60" headerAlign="center" align="right" allowSort="true" header="上限" align="right"></div>
+                                <div field="stockDownLimit" width="60" headerAlign="center" align="right" allowSort="true" header="下限" align="right"></div>
                             </div>
                         </div>
                         <div header="其他信息" headerAlign="center">
@@ -149,8 +152,8 @@
                                 <div field="carTypeIdF" width="60" headerAlign="center" allowSort="true" header="一级分类"></div>
                                 <div field="carTypeIdS" width="60" headerAlign="center" allowSort="true" header="二级分类"></div>
                                 <div field="carTypeIdT" width="60" headerAlign="center" allowSort="true" header="三级分类"></div>
-                                <div field="lastEnyterDate" dateFormat="yyyy-MM-dd H:mm:ss" width="60" headerAlign="center" allowSort="true" header="最近入库日期"></div>
-                                <div field="lastOutDate" dateFormat="yyyy-MM-dd H:mm:ss" width="60" headerAlign="center" allowSort="true" header="最近出库日期"></div>
+                                <div field="lastEnterDate" dateFormat="yyyy-MM-dd" width="80" headerAlign="center" allowSort="true" header="最近入库日期"></div>
+                                <div field="lastOutDate" dateFormat="yyyy-MM-dd" width="80" headerAlign="center" allowSort="true" header="最近出库日期"></div>
                             </div>
                         </div>
                     </div>

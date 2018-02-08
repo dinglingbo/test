@@ -1,17 +1,6 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<!-- 
-  - Author(s): Administrator
-  - Date: 2018-01-24 23:01:46
-  - Description:
--->
-<head>
-<title>common</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=request.getContextPath()%>/common/nui/nui.js"
-	type="text/javascript"></script>
 <script type="text/javascript">
 	function getRoot() {
 		var hostname = location.hostname;
@@ -100,6 +89,23 @@
 			}
 		});
 	}
+	var getStorehouseUrl = window._rootUrl
+			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+	function getStorehouse(callback) {
+		nui.ajax({
+			url : getStorehouseUrl,
+			type : "post",
+			success : function(data) {
+				if (data && data.storehouse) {
+					callback && callback(data);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
 </script>
 <style type="text/css">
 html,body {
@@ -111,10 +117,3 @@ html,body {
 	overflow: hidden;
 }
 </style>
-</head>
-<body>
-	<script type="text/javascript">
-		nui.parse();
-	</script>
-</body>
-</html>

@@ -10,6 +10,32 @@ var advancedSearchFormData = null;
 var basicInfoForm = null;
 var leftGrid = null;
 var rightGrid = null;
+
+//单据状态
+var billStatusList = [
+  {
+      customid:'0',
+      name:'未审'
+  },
+  {
+      customid:'1',
+      name:'未审'
+  },
+  {
+      customid:'2',
+      name:'已过账'
+  },
+  {
+      customid:'3',
+      name:'已取消'
+  }
+];
+var billStatusHash = {
+  "0":"未审",
+  "1":"已审",
+  "2":"已过账",
+  "3":"已取消"
+};
 $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
@@ -53,9 +79,7 @@ $(document).ready(function(v)
                     }
                 });
                 nui.get("settType").setData(settTypeIdList);
-                leftGrid.load({},function(){
-                    onLeftGridRowDblClick({});
-                });
+                quickSearch(currType);
             }
         });
     });
@@ -107,6 +131,18 @@ function loadRightGridData(enterId)
         enterId:enterId
     });
 }
+function onLeftGridDrawCell(e)
+{
+    switch (e.field){
+        case "billStatus":
+            if(billStatusHash && billStatusHash[e.value])
+            {
+                e.cellHtml = billStatusHash[e.value];
+            }
+            break;
+    }
+}
+var currType = 2;
 function quickSearch(type){
     var params = {};
     switch (type)
@@ -141,6 +177,15 @@ function quickSearch(type){
         default:
             break;
     }
+    currType = type;
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
+    }
     doSearch(params);
 }
 function onSearch(){
@@ -156,16 +201,19 @@ function getSearchParam(){
     params.guestId = nui.get("searchGuestId").getValue();
     return params;
 }
-function doSearch(params)
+function doSearch(params) 
 {
+	params.enterTypeId = '050101';
 	leftGrid.load({
-        params:params
-    });
+		params : params
+	}, function() {
+		onLeftGridRowDblClick({});
+	});
 }
 function advancedSearch()
 {
     advancedSearchWin.show();
-    advancedSearchForm.clear();
+//    advancedSearchForm.clear();
     if(advancedSearchFormData)
     {
         advancedSearchForm.setData(advancedSearchFormData);
@@ -174,11 +222,29 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    var i;
+    if(searchData.startDate)
+    {
+        searchData.startDate = searchData.startDate.substr(0,10);
+    }
+    if(searchData.endDate)
+    {
+        searchData.endDate = searchData.endDate.substr(0,10);
+    }
+    if(searchData.enterIdList)
+    {
+        var tmpList = searchData.enterIdList.split("\n");
+        for(i=0;i<tmpList.length;i++)
+        {
+            tmpList[i] = "'"+tmpList[i]+"'";
+        }
+        searchData.enterIdList = tmpList.join(",");
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }
 function onAdvancedSearchCancel(){
-    advancedSearchForm.clear();
+//    advancedSearchForm.clear();
     advancedSearchWin.hide();
 }
 function addInbound()
@@ -198,6 +264,13 @@ function addInbound()
     editEnterMainBtn.disable();
     cancelEditEnterMainBtn.enable();
     saveEnterMainBtn.enable();
+    
+    var addPartBtn = nui.get("addPartBtn");
+    var editPartBtn = nui.get("editPartBtn");
+    var deletePartBtn = nui.get("deletePartBtn");
+    addPartBtn.enable();
+    editPartBtn.enable();
+    deletePartBtn.enable();
 }
 function editInbound(){
 	var editEnterMainBtn = nui.get("editEnterMainBtn");
@@ -240,25 +313,41 @@ function save() {
 			return;
 		}
 	}
-	if (supplier) {
-		data.guestFullName = supplier.fullName;
-	}
-	data.enterTotalQty = 0;
-	data.taxAmt = 0;
-	data.goodsAmt = 0;
-	data.payableAmt = 0;
-	console.log(data);
-	var enterDetailAdd = rightGrid.getChanges("added") || [];
-	var enterDetailUpdate = [];
-	for ( var key in editPartHash) {
-		if (typeof editPartHash[key] == 'object') {
-			enterDetailUpdate.push(editPartHash[key]);
-		}
-	}
-	var enterDetailDelete = rightGrid.getChanges("removed") || [];
-	enterDetailDelete = enterDetailDelete.filter(function(v) {
-		return v.detailId;
-	});
+	if(supplier)
+    {
+        data.guestFullName = supplier.fullName;
+    }
+    data.enterTotalQty = 0;
+    data.taxAmt = 0;
+    data.goodsAmt = 0;
+    data.payableAmt = 0;
+    data.totalAmt = 0;
+    var list = rightGrid.getData();
+    for(var i=0;i<list.length;i++)
+    {
+        var tmp = list[i];
+        data.enterTotalQty += parseInt(tmp.enterQty);
+        data.taxAmt += parseFloat(tmp.taxAmt);
+        data.totalAmt += parseFloat(tmp.noTaxAmt);
+    }
+    data.payableAmt = data.totalAmt;
+    data.goodsAmt = data.totalAmt;
+    data.billStatus = data.billStatus||0;
+    console.log(data);
+    var enterDetailAdd = rightGrid.getChanges("added")||[];
+    var enterDetailUpdate = [];
+    for(var key in editPartHash)
+    {
+        if(typeof editPartHash[key] == 'object')
+        {
+            enterDetailUpdate.push(editPartHash[key]);
+        }
+    }
+    var enterDetailDelete = rightGrid.getChanges("removed")||[];
+    enterDetailDelete = enterDetailDelete.filter(function(v)
+    {
+        return v.detailId;
+    });
 	nui.mask({
 		html : '保存中...'
 	});
@@ -456,4 +545,41 @@ function deletePart(){
         delete editPartHash[part.detailId];
     }
     rightGrid.removeRow(part,true);
+}
+var reviewUrl = baseUrl+"com.hsapi.part.purchase.crud.auditEnter.biz.ext";
+function review()
+{
+    var row = leftGrid.getSelected();
+    if(!row || !row.id)
+    {
+        return;
+    }
+    var params = {
+        id:row.id
+    };
+    nui.mask({
+        html:'审核保存中...'
+    });
+    nui.ajax({
+        url:reviewUrl,
+        type:"post",
+        data:JSON.stringify(params),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                nui.alert("审核成功");
+                quickSearch(currType);
+            }
+            else{
+                nui.alert(data.errMsg||"审核失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }

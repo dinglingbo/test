@@ -36,18 +36,18 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">昨日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">上周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">上月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)">未审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)">已审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)">已过帐</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)">全部</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)" id="type6">未审</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)" id="type7">已审</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)" id="type8">已过帐</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">客户名称：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
@@ -88,6 +88,7 @@
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
                      selectOnLoad="true"
+                     ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
                      url="">
@@ -107,7 +108,6 @@
             <div title="销售信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
-                    <input class="nui-hidden" name="id"/>
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
@@ -175,7 +175,7 @@
                                 <label>验货员：</label>
                             </td>
                             <td colspan="1">
-                                <input name="yanhuo"
+                                <input name="checker"
                                        class="nui-combobox width1"
                                        textField="text"
                                        valueField="id"
@@ -198,6 +198,7 @@
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="true"
+                                       enabled="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -208,7 +209,7 @@
                                 <label>销售员：</label>
                             </td>
                             <td colspan="1">
-                                <input class="nui-textbox" name="buyer" width="100%">
+                                <input class="nui-textbox" name="seller" width="100%">
                                 <!--<input name="buyer"-->
                                 <!--class="nui-combobox width1"-->
                                 <!--textField="text"-->
@@ -224,7 +225,7 @@
                                 <label>发票号：</label>
                             </td>
                             <td colspan="3">
-                                <input class="nui-textbox" width="100%" name="billCode"/>
+                                <input class="nui-textbox" width="100%" name="sourceId"/>
                             </td>
                             <td class="title">
                                 <label>总金额：</label>
@@ -268,17 +269,17 @@
                             <div property="columns">
                                 <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="dept_name" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="carModel" width="60" headerAlign="center" header="车型"></div>
+                                <div field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
                                 <div field="unit" width="40" headerAlign="center" header="单位"></div>
                                 <div field="outQty" width="40" headerAlign="center" header="数量"></div>
                             </div>
                         </div>
                         <div header="销售金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="sellUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div field="discountRate" width="40" headerAlign="center" header="折扣率(%)"></div>
-                                <div field="sellAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div field="sellUnitPrice" width="60" headerAlign="center" header="单价" align="right"></div>
+                                <div field="discountRate" width="60" headerAlign="center" header="折扣率(%)" align="right"></div>
+                                <div field="sellAmt" width="60" headerAlign="center" header="金额" align="right"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">

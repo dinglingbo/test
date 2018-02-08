@@ -5,7 +5,7 @@ var basePath = window._rootUrl||"http://127.0.0.1:8080/default/";
 var partListUrl = basePath+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
 var tree = null;
-var treeUrl = basePath+"com.hsapi.repair.Item.getRepairTypeTree.biz.ext";
+var treeUrl = basePath+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 
 var qualityList = [];
 var qualityHash = {};
@@ -35,7 +35,6 @@ $(document).ready(function(v)
             brandHash[v.id] = v;
         });
     });
-    //字典
     var dictIdList = [];
     dictIdList.push('DDT20130703000016');//--单位
     dictIdList.push('DDT20130703000067');//--ABC分类

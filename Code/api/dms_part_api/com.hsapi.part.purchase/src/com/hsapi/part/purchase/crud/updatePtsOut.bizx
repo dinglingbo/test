@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updatePtsEnter" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updatePtsOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -80,6 +80,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -95,7 +96,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">enterMain</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">outMain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -120,7 +121,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">enterMain/modifyDate</process:to>
+      <process:to type="query">outMain/modifyDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -128,7 +129,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">enterMain/modifier</process:to>
+      <process:to type="query">outMain/modifier</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -145,7 +146,7 @@
     <location x="7" y="64"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:iterate iterable="enterDetailAdd" iterableElement="tmp"/>
+    <process:iterate iterable="outDetailAdd" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
     <location x="7" y="96"/>
@@ -192,8 +193,8 @@
       <process:to type="query">i</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterMain/id</process:from>
-      <process:to type="query">tmp/enterId</process:to>
+      <process:from type="query" pattern="reference">outMain/id</process:from>
+      <process:to type="query">tmp/outId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -220,7 +221,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailAdd</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">outDetailAdd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -272,7 +273,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">新增失败</process:from>
+      <process:from type="literal" pattern="reference">更新失败</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
@@ -319,7 +320,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailUpdate</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">outDetailUpdate</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -347,7 +348,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailDelete</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">outDetailDelete</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -361,15 +362,15 @@
   <process:info author="chenziming" createTime="2018-01-29 16:49:34" date="2018-01-29Z" description="" name="insertPtsEnter" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="time" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="enterMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailDelete"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutMain" name="outMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

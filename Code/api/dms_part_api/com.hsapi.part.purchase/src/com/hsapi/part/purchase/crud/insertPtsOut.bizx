@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updatePtsEnter" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insertPtsOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -12,7 +12,7 @@
   <nodes xsi:type="process:tEnd" description="" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link12</targetConnections>
     <targetConnections>link16</targetConnections>
-    <location x="566" y="240"/>
+    <location x="540" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -26,7 +26,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="568" y="276"/>
+    <location x="542" y="186"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -76,7 +76,7 @@
     <figSize height="17" width="72"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="updateEntity" displayName="Update a record" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo3</targetNode>
@@ -90,18 +90,18 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">enterMain</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">outMain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="290" y="96"/>
-    <figSize height="17" width="73"/>
+    <location x="294" y="96"/>
+    <figSize height="17" width="64"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -120,15 +120,47 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">enterMain/modifyDate</process:to>
+      <process:to type="query">outMain/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">outMain/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">COM20170313000001</process:from>
+      <process:to type="query">outMain/orgcode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">outMain/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outMain/auditStatus</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">time</process:from>
+      <process:to type="query">outMain/id</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">i</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outMain/auditStatus</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">outMain/postStatus</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">enterMain/modifier</process:to>
+      <process:to type="query">outMain/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">outMain/recorder</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -145,7 +177,7 @@
     <location x="7" y="64"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:iterate iterable="enterDetailAdd" iterableElement="tmp"/>
+    <process:iterate iterable="outDetail" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
     <location x="7" y="96"/>
@@ -192,8 +224,8 @@
       <process:to type="query">i</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterMain/id</process:from>
-      <process:to type="query">tmp/enterId</process:to>
+      <process:from type="query" pattern="reference">outMain/id</process:from>
+      <process:to type="query">tmp/outId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -204,7 +236,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="insertEntityBatch" displayName="insertEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>invokePojo4</targetNode>
+      <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo3</sourceNode>
@@ -220,7 +252,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailAdd</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">outDetail</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -234,13 +266,13 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link10</targetConnections>
-    <location x="638" y="134"/>
+    <targetConnections>link11</targetConnections>
+    <location x="539" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="628" y="170"/>
+    <location x="529" y="96"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -266,9 +298,7 @@
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <targetConnections>link13</targetConnections>
-    <targetConnections>link17</targetConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="417" y="143"/>
+    <location x="312" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -281,7 +311,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="415" y="179"/>
+    <location x="310" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -291,85 +321,27 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="417" y="240"/>
+    <location x="418" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="407" y="276"/>
+    <location x="408" y="186"/>
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="updateEntityBatch" displayName="updateEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo4</sourceNode>
-      <targetNode>invokePojo5</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo4</sourceNode>
-      <targetNode>assign1</targetNode>
-    </sourceConnections>
-    <targetConnections>link11</targetConnections>
-    <location x="526" y="59"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo4label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntityBatch</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailUpdate</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="485" y="95"/>
-    <figSize height="17" width="105"/>
-    <node>invokePojo4</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="deleteEntityBatch" displayName="deleteEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo5</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo5</sourceNode>
-      <targetNode>assign1</targetNode>
-    </sourceConnections>
-    <targetConnections>link9</targetConnections>
-    <location x="527" y="134"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo5label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.deleteEntityBatch</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailDelete</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="488" y="170"/>
-    <figSize height="17" width="100"/>
-    <node>invokePojo5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-01-29 16:49:34" date="2018-01-29Z" description="" name="insertPtsEnter" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="time" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="enterMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailDelete"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutMain" name="outMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

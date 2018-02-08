@@ -13,7 +13,7 @@
     	SELECT a.id ID,
 		       a.source_id sourceId,
 		       a.enter_date enterDate,
-		       a.comp_code compCode,
+		       a.orgcode orgcode,
 		       a.store_id storeId,
 		       a.guest_id guestId,
 		       a.guest_full_name guestFullName,
@@ -44,6 +44,15 @@
 		       a.sett_type settType
 		       FROM PTS_ENTER_MAIN a where 1=1
     	<dynamic>
+    		<isNotEmpty prepend="and" property="id">  
+                (id like '%$id$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">  
+                (to_char(enter_date,'yyyy-mm-dd') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (to_char(enter_date,'yyyy-mm-dd') &lt;= #endDate#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="enterTypeId">  
                 (enter_type_id = #enterTypeId#)
             </isNotEmpty>
@@ -74,13 +83,19 @@
             <!--上周-->
                 (to_char(enter_date,'iw')=to_char(sysdate-7,'iw'))
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatus">  
+            <!--单据状态-->
+                (bill_status = #billStatus#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="auditStatus">  
             <!--审核状态-->
                 (audit_status = #auditStatus#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="postStatus">  
-            <!--是否过账-->
                 (post_status = #postStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="enterIdList">  
+                (a.id in ($enterIdList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
@@ -92,7 +107,7 @@
     	SELECT a.id ID,
 		       a.source_id sourceId,
 		       a.out_date outDate,
-		       a.comp_code compCode,
+		       a.orgcode orgcode,
 		       a.store_id storeId,
 		       a.guest_id guestId,
 		       a.guest_full_name guestFullName,
@@ -123,11 +138,26 @@
 		       a.modify_date modifyDate 
 		 FROM pts_out_main a where 1=1
     	<dynamic>
+    		<isNotEmpty prepend="and" property="id">  
+                (id like '%$id$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatus">  
+                (A.bill_status like '%$billStatus$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">  
+                (to_char(out_date,'yyyy-mm-dd') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (to_char(out_date,'yyyy-mm-dd') &lt;= #endDate#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="outTypeId">  
                 (out_type_id = #outTypeId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="outIdList">  
+                (A.id in ($outIdList$))
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="guestId">  
-                (guest_id = #guestId#)
+                (A.guest_id = #guestId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
@@ -162,6 +192,315 @@
                 (post_status = #postStatus#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+    
+    
+    <select id="queryPtsEnterMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsEnterMainDetailV">
+    	SELECT A.ENTER_DATE enterDate,
+		       A.orgcode orgcode,
+		       A.STORE_ID storeId,
+		       A.GUEST_ID guestId,
+		       A.GUEST_FULL_NAME guestFullName,
+		       A.BILL_TYPE_ID billTypeId,
+		       A.BILL_STATUS billStatus,
+		       A.ENTER_TYPE_ID enterTypeId,
+		       A.ENTER_TOTAL_QTY,
+		       A.BACK_REASON_ID,
+		       A.QUOTER,
+		       A.BUYER buyer,
+		       A.STORE_KEEPER,
+		       A.AUDIT_STATUS,
+		       A.AUDITOR,
+		       A.AUDIT_DATE,
+		       A.POST_STATUS,
+		       A.POST_MAN,
+		       A.POST_DATE,
+		       A.RECORDER,
+		       A.MODIFIER modifier,
+		       A.RECORD_DATE,
+		       A.MODIFY_DATE,
+		       A.SETT_TYPE settType,
+		       B.DETAIL_ID detailId,
+		       B.PART_ID partId,
+		       B.ENTER_ID enterId,
+		       B.PART_CODE partCode,
+		       C.NAME partName,
+		       '无' partBrandName,
+		       C.UNIT unit,
+		       C.APPLY_CAR_MODEL applyCarModel,
+		       B.ENTER_QTY enterQty,
+		       B.OUTABLE_QTY outableQty,
+		       B.TAX_SIGN taxSign,
+		       B.TAX_RATE taxRate,
+		       B.TAX_RATE_AMT taxRateAmt,
+		       B.TAX_UNIT_PRICE taxUnitPrice,
+		       B.TAX_AMT taxAmt,
+		       B.NO_TAX_UNIT_PRICE noTaxUnitPrice,
+		       B.NO_TAX_AMT noTaxAmt,
+		       B.SUGGEST_PRICE,
+		       B.SUGGEST_AMT,
+		       B.REMARK remark,
+		       B.ORDER_DETAIL_ID,
+		       B.PREV_OUT_DETAIL_ID,
+		       B.ROOT_ENTER_DETAIL_ID
+		  FROM PTS_ENTER_MAIN A
+		  JOIN PTS_ENTER_DETAIL B
+		    ON (A.ID = B.ENTER_ID)
+		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
+		    ON (B.PART_ID = C.ID) where 1=1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="enterTypeId">  
+                (A.enter_type_id = #enterTypeId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="guestId">  
+                (A.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="storeId">  
+                (A.store_id = #storeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="enterIdList">  
+                (A.id in ($enterIdList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                (B.part_code in ($partCodeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (to_char(A.enter_date,'mm')=to_char(sysdate,'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (to_char(A.enter_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (to_char(A.enter_date,'dd')=to_char(sysdate,'dd'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (to_char(A.enter_date,'dd')=to_char(sysdate-1,'dd'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (to_char(A.enter_date,'iw')=to_char(sysdate,'iw'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--上周-->
+                (to_char(A.enter_date,'iw')=to_char(sysdate-7,'iw'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisYear">  
+            <!--本年-->
+                (to_char(A.enter_date,'yyyy')=to_char(sysdate,'yyyy'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear">  
+            <!--上年-->
+                (to_char(A.enter_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outableQtyGreaterThanZero">  
+            <!---->
+                (B.outable_qty > 0)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">  
+                (to_char(A.enter_date,'yyyy-mm-dd') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (to_char(A.enter_date,'yyyy-mm-dd') &lt;= #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (B.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (C.name like '%$name$%' or C.full_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+    
+    
+    <select id="queryPtsOutMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsOutMainDetailV">
+    	SELECT B.OUT_ID outId,
+		       A.OUT_DATE outDate,
+		       A.orgcode orgcode,
+		       A.STORE_ID storeId,
+		       A.GUEST_ID guestId,
+		       A.GUEST_FULL_NAME guestFullName,
+		       A.OUT_TYPE_ID outTypeId,
+		       A.BILL_TYPE_ID billTypeId,
+		       A.BILL_STATUS billStatus,
+		       A.BACK_REASON_ID backReasonId,
+		       A.CHECKER checker,
+		       A.SELLER seller,
+		       A.STORE_KEEPER,
+		       A.AUDIT_STATUS,
+		       A.AUDITOR,
+		       A.AUDIT_DATE,
+		       A.POST_STATUS,
+		       A.POST_MAN,
+		       A.POST_DATE,
+		       A.RECORDER,
+		       A.RECORD_DATE,
+		       A.MODIFIER modifier,
+		       A.MODIFY_DATE,
+		       B.DETAIL_ID detailId,
+		       B.PART_ID partId,
+		       B.PART_CODE partCode,
+		       C.NAME partName,
+		       C.UNIT unit,
+		       B.OUT_QTY outQty,
+		       B.OUT_BACKABLE_QTY outBackableQty,
+		       B.TAX_SIGN taxSign,
+		       B.TAX_RATE taxRate,
+		       B.TAX_RATE_AMT taxRateAmt,
+		       B.SELL_UNIT_PRICE sellUnitPrice,
+		       B.SELL_AMT sellAmt,
+		       B.DISCOUNT_RATE discountRate,
+		       B.DISCOUNT_AMT discountAmt, 
+		       B.DISCOUNT_LAST_UNIT_PRICE discountLastUnitPrice,
+		       B.DISCOUNT_LAST_AMT discountLastAmt,
+		       B.COST_UNIT_PRICE costUnitPrice,
+		       B.COST_AMT costAmt,
+		       B.NO_TAX_COST_UNIT_PRICE noTaxCostUnitPrice,
+		       B.NO_TAX_COST_AMT noTaxCostAmt,
+		       B.TAX_COST_UNIT_PRICE taxCostUnitPrice,
+		       B.TAX_COST_AMT taxCostAmt,
+		       B.REMARK remark,
+		       B.PREV_ENTER_DETAIL_ID,
+		       B.ROOT_OUT_DETAIL_ID,
+		       B.ORDER_DETAIL_ID,
+		       C.APPLY_CAR_MODEL applyCarModel
+		  FROM PTS_OUT_MAIN A
+		  JOIN PTS_OUT_DETAIL B
+		    ON (A.ID = B.OUT_ID)
+		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
+		    ON (B.PART_ID = C.ID) where 1=1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="outTypeId">  
+                (A.out_type_id = #outTypeId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="guestId">  
+                (A.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (to_char(A.out_date,'mm')=to_char(sysdate,'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (to_char(A.out_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (to_char(A.out_date,'dd')=to_char(sysdate,'dd'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (to_char(A.out_date,'dd')=to_char(sysdate-1,'dd'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (to_char(A.out_date,'iw')=to_char(sysdate,'iw'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--上周-->
+                (to_char(A.out_date,'iw')=to_char(sysdate-7,'iw'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisYear">  
+            <!--本年-->
+                (to_char(A.out_date,'yyyy')=to_char(sysdate,'yyyy'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear">  
+            <!--上年-->
+                (to_char(A.out_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outableQtyGreaterThanZero">  
+            <!---->
+                (B.outable_qty &gt; 0)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+    
+    
+    
+    
+    <select id="queryPtsStockCycVList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsStockCycV">
+    	SELECT A.ID ID,
+		       A.PART_ID partId,
+		       A.STORE_ID storeId,
+		       A.orgcode orgcode,
+		       A.LAST_SELL_PRICE lastSellPrice,
+		       A.SUGGEST_PRICE suggestPrice,
+		       A.COST_PRICE costPrice,
+		       A.STOCK_LOCATION stockLocation,
+		       A.ORDER_CYC orderCyc,
+		       A.ARRIVE_CYC arriveCyc,
+		       A.SAFE_CYC safeCyc,
+		       A.STOCK_UP_LIMIT stockUpLimit,
+		       A.STOCK_DOWN_LIMIT stockDownLimit,
+		       A.DAY_SELL_VALUME daySellValume,
+		       A.MONTH_SELL_VALUME monthSellValume,
+		       A.LAST_ENTER_DATE lastEnterDate,
+		       A.LAST_OUT_DATE lastOutDate,
+		       A.STOCK_QTY stockQty,
+		       A.STOCK_PRICE stockPrice,
+		       A.STOCK_AMT stockAmt,
+		       A.UNUSEABLE_DAY unuseableDay,
+		       B.CODE              partCode,
+		       B.NAME              partName,
+		       B.FULL_NAME         partFullName,
+		       B.QUALITY_TYPE_ID qualityTypeId,
+		       B.PART_BRAND_ID partBrandId,
+		       B.APPLY_CAR_MODEL applyCarModel,
+		       B.ABC_TYPE abcType,
+		       B.UNIT unit,
+		       B.CAR_TYPE_ID_F carTypeIdF,
+		       B.CAR_TYPE_ID_S carTypeIdS,
+		       B.CAR_TYPE_ID_T carTypeIdT
+		  FROM PTS_STORE_CYC A
+		  JOIN WB_COMMON.COM_ATTRIBUTE B
+		    ON (A.PART_ID = B.ID)
+				where 1=1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="compCode">   
+                (A.orgCode = #compCode#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="storeId">   
+                (A.STORE_ID = #storeId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="cartypef">   
+                (B.CAR_TYPE_ID_F = #cartypef#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="cartypes">   
+                (B.CAR_TYPE_ID_S = #cartypes#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="cartypet">   
+                (B.CAR_TYPE_ID_T = #cartypet#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="stockLocation">   
+                (A.stock_location like '%$stockLocation$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">   
+                (B.code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">   
+                (B.name like '%$name$%' or B.full_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="stockQtyGreaterThanUpLimit">  
+            <!--高于上限-->
+                (a.stock_qty &gt; a.stock_up_limit)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="stockQtyLessThanDownLimit">  
+            <!--低于下限-->
+                (a.stock_qty &lt; a.stock_down_limit)
+            </isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  
         </dynamic>  

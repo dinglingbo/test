@@ -22,7 +22,7 @@
 	        	<table class="table" id="table1" style="height:100% ">
 	        		<tr style="display: block; margin:-5px 0">
 						<td width="80px">
-							<span style="color:#0000FF;margin-left: 10px;">工单号：</span>
+							<span style="color:#0000FF;">工单号：</span>
 						</td>
 						<td>
 							<label field="" style="color:#0000FF;width: 200px; " /></label>
@@ -49,12 +49,23 @@
 	        	   		<td>
 	        	    		<label style="font-family:Verdana;">快速查询：</label>
 	        	    	
-	        	         	<a class="nui-button" plain="true" onclick="onSearch(0)" style="color:#0000FF">我接待的车</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(1)" style="color:#0000FF">在报价的车</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(2)" style="color:#0000FF">在维修的车</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(3)" style="color:#0000FF">已完工的车</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(4)" style="color:#0000FF">在结算的车</a>
+	        	         	<a class="nui-button" plain="true" onclick="onSearch(0)" style="color:#0000FF"><u>我接待的车</u></a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(1)" style="color:#0000FF"><u>在报价的车</u></a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(2)" style="color:#0000FF"><u>在维修的车</u></a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(3)" style="color:#0000FF"><u>已完工的车</u></a>
+	                	 	<a class="nui-button" plain="true" onclick="onSearch(4)" style="color:#0000FF"><u>在结算的车</u></a>
 	                	 	
+	                	</td>
+	                	<td>
+	                		<span style="width:0;height:100%;border: 0.6px solid #AAAAAA;margin:5px" ></span>
+	                	</td>
+	                	<td>
+	                		<label>车牌号：</label>
+	                	</td>
+	                	<td>
+	                		<input class="nui-textbox" style="widht:150px"/>
+	                		
+	                		<a class="nui-button" iconCls="icon-search" plain="true" onclick="">查询(Q)</a>
 	                	</td>
 	        		</tr>
 				</table>
@@ -73,10 +84,10 @@
 					<a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存（S）</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="save()">确定维修（T）</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="noRepair()">未修归档（G）</a> 
-					<a class="nui-button" plain="true" iconCls="" onclick="save()">审核（V）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="examine()">审核（V）</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="settlement()">结算（J）</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="save()">出单（D）</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="save()">返单（F）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="outList()">出单（D）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="returnList()">返单（F）</a>
 					<a class="nui-button" plain="true" iconCls="icon-user" onclick="customer()">客户（G）</a>
 					<a class="nui-MenuButton" plain="true" iconCls="icon-date" menu="#ohterMenu">其他（O）</a>
 					<a class="nui-MenuButton" plain="true" iconCls="icon-print" menu="#printMenu">打印（P）</a>
@@ -185,7 +196,7 @@
     	}
     	function onReferral(){
     		nui.open({
-    			url:"./subpage/CustomerReferral.jsp",
+    			url:"../../common/Customer.jsp",
     			title:"客户选择",width:350,height:430,
     			onload:function(){
     			    var iframe = this.getIFrameEl();
@@ -216,8 +227,8 @@
     	
     	function settlement(){
     		nui.open({
-    			url:"./subpage/Settlement.jsp",
-    			title:"完工结算",width:900,height:600,
+    			url:"../../common/Settlement.jsp",
+    			title:"完工结算",width:650,height:630,
     			onload:function(){
     			    var iframe = this.getIFrameEl();
     			    var data = {pageType:"settlement"};
@@ -244,7 +255,36 @@
     		}	
     		});
     	}
-    	
+    	function examine(){
+    		nui.open({
+    			url:"../../common/RepairExamine.jsp",
+    			title:"维修单审核",width:930,height:600,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"examine"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function returnList(){
+    		nui.open({
+    			url:"../../common/ReturnList.jsp",
+    			title:"返单处理",width:500,height:200,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"returnList"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
     	//重新刷新页面
     	function refresh(){
     		var form = new nui.Form("#form1");

@@ -36,18 +36,18 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">昨日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">上周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">上月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)">未审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)">已审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)">已过帐</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)">全部</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)" id="type6">未审</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)" id="type7">已审</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)" id="type8">已过帐</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">出库单号：</label>
                 <input class="nui-textbox" name="search-enterId" enabled="true"/>
@@ -62,11 +62,11 @@
     <table style="width:100%;">
         <tr>
             <td style="width:100%;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">新增</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a>
-                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn">保存</a>
-                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" id="reViewBtn">审核</a>
+                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()" enabled="true">新增</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" enabled="false" id="editEnterMainBtn">修改</a>
+                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" enabled="false" id="saveEnterMainBtn">保存</a>
+                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" enabled="false" id="cancelEditEnterMainBtn">取消</a>
+                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" enabled="false" id="reViewBtn">审核</a>
             </td>
         </tr>
     </table>
@@ -86,13 +86,15 @@
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
                      selectOnLoad="true"
+                     sortMode="client"
+                     ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="出库单号"></div>
-                        <div field="outDate" width="80" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
-                        <div field="auditStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div field="id" headerAlign="center" header="出库单号" allowSort="true"></div>
+                        <div field="outDate" width="80" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd H:ss:mm" allowSort="true"></div>
+                        <div field="billStatus" width="30" headerAlign="center" header="状态" allowSort="true"></div>
                     </div>
                 </div>
                 <!--footer-->
@@ -105,7 +107,6 @@
             <div title="出库信息" class="nui-panel"
                  style="width:100%;height: 110px;">
                 <div id="basicInfoForm" class="form">
-                    <input class="nui-hidden" name="id"/>
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
@@ -118,7 +119,7 @@
                                 <label>出库日期：</label>
                             </td>
                             <td width="100">
-                                <input name="enterDate"
+                                <input name="outDate"
                                        width="100%"
                                        showTime="true"
                                        class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
@@ -161,13 +162,14 @@
                                 <label>经办人：</label>
                             </td>
                             <td colspan="1">
-                                <input class="nui-textbox" name="buyer" width="100%">
+                                <input class="nui-textbox" name="seller" width="100%">
                             <td class="title">
                                 <label>单据状态：</label>
                             </td>
                             <td colspan="1">
                                 <input name="billStatus"
                                        id="billStatus"
+                                       enabled="false"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="customid"
@@ -221,18 +223,18 @@
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="brandName" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="carModel" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div field="partCode" width="100" headerAlign="center" header="配件编码" allowSort="true"></div>
+                                <div field="partName" headerAlign="center" header="配件名称" allowSort="true"></div>
+                                <div field="brandName" width="60" headerAlign="center" header="品牌" allowSort="true"></div>
+                                <div field="applyCarModel" width="60" headerAlign="center" header="车型" allowSort="true"></div>
+                                <div field="unit" width="40" headerAlign="center" header="单位" align="right" allowSort="true"></div>
                             </div>
                         </div>
                         <div header="数量金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="outQty" width="40" headerAlign="center" header="数量"></div>
-                                <div field="sellUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div field="sellAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div field="outQty" width="40" headerAlign="center" header="数量" align="right" allowSort="true" dataType="int"></div>
+                                <div field="sellUnitPrice" width="40" headerAlign="center" header="单价" align="right" allowSort="true" dataType="float"></div>
+                                <div field="sellAmt" width="40" headerAlign="center" header="金额" align="right" allowSort="true" dataType="float"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
@@ -255,7 +257,7 @@
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
             <tr>
-                <td class="title">退货日期:</td>
+                <td class="title">出库日期:</td>
                 <td>
                     <input name="startDate"
                            width="100%"
@@ -274,22 +276,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">
-                    <span>客户名称:</span>
-                </td>
+                <td class="title">出库单号:</td>
                 <td colspan="3">
-                    <input id="btnEdit2"
-                           class="nui-buttonedit"
-                           emptyText="请选择客户..."
-                           onbuttonclick="selectSupplier('btnEdit2')"
-                           width="100%"
-                           selectOnFocus="true" />
-                </td>
-            </tr>
-            <tr>
-                <td class="title">退货单号:</td>
-                <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;"></textarea>
+                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;" id="outIdList"></textarea>
                 </td>
             </tr>
         </table>

@@ -64,6 +64,10 @@
       <process:from type="query" pattern="reference">date</process:from>
       <process:to type="query">part/modifyDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">part/modifier</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="172" y="206"/>
@@ -189,6 +193,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">date</process:from>
       <process:to type="query">part/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">part/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">aaaa</process:from>
+      <process:to type="query">part/orgcode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">part/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

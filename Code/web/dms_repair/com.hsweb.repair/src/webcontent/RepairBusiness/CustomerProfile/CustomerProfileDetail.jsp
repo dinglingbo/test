@@ -92,8 +92,8 @@
 				</div>
 			</div>
 			<div style="text-align:right;padding:10px;margin-top:0">               
-				<a class="mini-button" onclick="onOk" style="margin-right:10px;">保存（S）</a>       
-				<a class="mini-button" onclick="onCancel" >取消（C）</a>       
+				<a class="nui-button" onclick="onOk" style="margin-right:10px;width:60px">保存(S)</a>       
+				<a class="nui-button" onclick="onCancel" style="width:60px">取消(C)</a>      
 			</div>
 	    </div>
 	    

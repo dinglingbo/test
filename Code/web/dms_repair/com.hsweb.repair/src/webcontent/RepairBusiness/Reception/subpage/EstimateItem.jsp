@@ -152,7 +152,7 @@
     	function addMaterial(){
     		nui.open({
     			url:"./subpage/addEditMaterial.jsp",
-    			title:"维修项目录入",width:450,height:200,
+    			title:"维修材料录入",width:450,height:200,
     			onload:function(){
     			    var iframe = this.getIFrameEl();
     			    var data = {pageType:"add"};
@@ -164,7 +164,28 @@
     		}	
     		});
     	}
-    	
+    	function editMaterial(){
+    	    var row = grid.getSelected();
+    	    if(row) {
+    	        nui.open({
+    	            url:"./subpage/addEditMaterial.jsp",
+    	            title:"维修材料录入",width:450,height:200,
+    	            onload:function(){
+    	                var iframe = this.getIFrameEl();
+    	                var data = {pageType:"edit",record:{comguest:row}};
+    	                //直接从页面获取，不用去后台获取
+    	                iframe.contentWindow.setData(data);
+    	            },
+    	            ondestroy:function(action){
+    	                if(action == "saveSuccess"){
+    	                    grid.reload();
+    	                }
+    	            }
+    	        });
+    	    }else {
+    	        nui.alert("请选中一条数据", "系统提示");
+    	    }
+    	}
     	
     </script>
 </body>

@@ -21,7 +21,7 @@
 			<div class="nui-fit">
 				<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
 					style="width: 100%; height: 100%;"
-					url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+					url=""
 					pageSize="20" showPageInfo="true" multiSelect="true"
 					showPageIndex="false" showPage="true" showPageSize="false"
 					showReloadButton="false" showPagerButtonIcon="false"

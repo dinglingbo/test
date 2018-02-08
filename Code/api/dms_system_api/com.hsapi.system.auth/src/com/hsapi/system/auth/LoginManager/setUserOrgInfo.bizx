@@ -59,6 +59,10 @@
       <process:to type="query">m:userObject/userName</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">u/empcode</process:from>
+      <process:to type="query">m:userObject/attributes/empCode</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orgs</process:from>
       <process:to type="query">m:userObject/attributes/orgs</process:to>
     </process:copy>

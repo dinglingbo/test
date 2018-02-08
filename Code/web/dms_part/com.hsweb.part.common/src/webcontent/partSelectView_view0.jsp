@@ -19,34 +19,38 @@
 <body>
 
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="white-space:nowrap;">
-                <label style="font-family:Verdana;">编码：</label>
-                <input class="nui-textbox" width="100" id="search-code"/>
-                <label style="font-family:Verdana;">名称：</label>
-                <input class="nui-textbox" width="100" id="search-name"/>
-                <label style="font-family:Verdana;">车型：</label>
-                <input class="nui-textbox" width="100" id="search-applyCarModel"/>
-                <label style="font-family:Verdana;">拼音：</label>
-                <input class="nui-textbox" width="100" id="search-namePy"/>
-                <label style="font-family:Verdana;">品牌：</label>
-                <input id="search-brandName"
-                       class="nui-combobox width1"
-                       textField="text"
-                       valueField="id"
-                       emptyText="请选择..."
-                       url=""
-                       allowInput="true"
-                       showNullItem="true"
-                       nullItemText="请选择..."/>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
-            </td>
-        </tr>
-    </table>
+    <div class="form" id="queryForm">
+        <table style="width:100%;">
+            <tr>
+                <td style="white-space:nowrap;">
+                    <label style="font-family:Verdana;">编码：</label>
+                    <input class="nui-textbox" width="100" id="search-code" name="code"/>
+                    <label style="font-family:Verdana;">名称：</label>
+                    <input class="nui-textbox" width="100" id="search-name" name="name"/>
+                    <label style="font-family:Verdana;">车型：</label>
+                    <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
+                    <label style="font-family:Verdana;">拼音：</label>
+                    <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
+                    <label style="font-family:Verdana;">品牌：</label>
+                    <input id="applyCarBrandId"
+                           name="applyCarBrandId"
+                           class="nui-combobox width1"
+                           textField="carBrandZh"
+                           valueField="id"
+                           emptyText="请选择..."
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
+                    <span class="separator"></span>
+                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                    <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
+
 <div class="nui-fit">
     <div class="nui-splitter"
          allowResize="false"

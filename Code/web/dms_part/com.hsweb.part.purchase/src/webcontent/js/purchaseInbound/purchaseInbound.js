@@ -295,6 +295,17 @@ function cancelEditInbound(){
     {
         if(action == "ok")
         {
+        	var saveEnterMainBtn = nui.get("saveEnterMainBtn");
+            var cancelEditEnterMainBtn = nui.get("cancelEditEnterMainBtn");
+            cancelEditEnterMainBtn.disable();
+            saveEnterMainBtn.disable();
+
+            var addPartBtn = nui.get("addPartBtn");
+            var editPartBtn = nui.get("editPartBtn");
+            var deletePartBtn = nui.get("deletePartBtn");
+            addPartBtn.disable();
+            editPartBtn.disable();
+            deletePartBtn.disable();
             onLeftGridRowDblClick({});
         }
     });

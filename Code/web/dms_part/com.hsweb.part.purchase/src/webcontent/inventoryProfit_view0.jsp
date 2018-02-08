@@ -36,18 +36,18 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">昨日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">上周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">上月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)">未审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)">已审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)">已过帐</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)">全部</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)" id="type6">未审</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)" id="type7">已审</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)" id="type8">已过帐</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
             </td>
@@ -82,13 +82,15 @@
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
                      selectOnLoad="true"
+                     sortMode="client"
+                     ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsEnterMainList"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="入库单号"></div>
-                        <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
-                        <div field="auditStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div field="id" headerAlign="center" header="入库单号" allowSort="true"></div>
+                        <div field="enterDate" width="80" headerAlign="center" allowSort="true" header="入库日期" dateFormat="yyyy-MM-dd"></div>
+                        <div field="billStatus" width="30" headerAlign="center" allowSort="true" header="状态"></div>
                     </div>
                 </div>
                 <!--footer-->
@@ -165,6 +167,7 @@
                             <td colspan="1">
                                 <input name="billStatus"
                                        id="billStatus"
+                                       enabled="false"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="customid"
@@ -202,6 +205,7 @@
             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
+                     sortMode="client"
                      dataField="enterDetailList"
                      idField="id"
                      url="">
@@ -209,24 +213,24 @@
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="dept_name" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="unitx" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div field="partCode" width="100" headerAlign="center" header="配件编码" allowSort="true"></div>
+                                <div field="partName" headerAlign="center" header="配件名称" allowSort="true"></div>
+                                <div field="partBrandName" width="60" headerAlign="center" header="品牌" allowSort="true"></div>
+                                <div field="applyCarModel" width="60" headerAlign="center" header="车型" allowSort="true"></div>
+                                <div field="unit" width="40" headerAlign="center" header="单位" allowSort="true"></div>
 
                             </div>
                         </div>
                         <div header="金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="enterQty" width="40" headerAlign="center" header="盘盈数"></div>
-                                <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div field="enterQty" width="40" headerAlign="center" header="盘盈数" align="right" allowSort="true" dataType="int"></div>
+                                <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价" align="right" allowSort="true" dataType="float"></div>
+                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额" align="right" allowSort="true" dataType="float"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">
-                                <div field="remark" width="60" headerAlign="center" header="备注"></div>
+                                <div field="remark" width="60" headerAlign="center" header="备注" allowSort="true"></div>
                             </div>
                         </div>
                     </div>
@@ -263,22 +267,15 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
-                </td>
+                <td class="title">入库单号:</td>
                 <td colspan="3">
-                    <input id="btnEdit2"
-                           class="nui-buttonedit"
-                           emptyText="请选择供应商..."
-                           onbuttonclick="selectSupplier('btnEdit2')"
-                           width="100%"
-                           selectOnFocus="true" />
+                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;" name="enterIdList"></textarea>
                 </td>
             </tr>
             <tr>
-                <td class="title">入库单号:</td>
+                <td class="title">盘点人:</td>
                 <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;"></textarea>
+                    <input class="nui-combobox" emptyText="" width="100%" />
                 </td>
             </tr>
         </table>

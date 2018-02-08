@@ -66,8 +66,9 @@ $(document).ready(function(v)
         });
     });
 });
+var currType = 2;
 function quickSearch(type){
-    var params = {};
+    var params = getSearchParam();
     switch (type)
     {
         case 0:
@@ -106,6 +107,15 @@ function quickSearch(type){
         default:
             break;
     }
+    currType = type;
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
+    }
     doSearch(params);
 }
 function onSearch(){
@@ -124,7 +134,7 @@ function getSearchParam()
 }
 function doSearch(params)
 {
-    params.enterTypeId = "";
+	params.enterTypeId = enterTypeId;
     grid.load({
         params:params
     });
@@ -214,6 +224,7 @@ function onCancel(e) {
     CloseWindow("cancel");
 }
 var callback = null;
+var enterTypeId = "";
 function setData(data,ck)
 {
     data = data||{};
@@ -238,7 +249,11 @@ function setData(data,ck)
         nui.get("guestId1").setText(guestFullName);
         nui.get("guestId1").disable();
     }
-    onSearch();
+    if(data.enterTypeId)
+    {
+        enterTypeId = data.enterTypeId;
+    }
+    quickSearch(currType);
 }
 function onPartGridDraw(e)
 {
@@ -293,34 +308,6 @@ function onPartGridDraw(e)
 
 
 
-
-
-
-
-
-
-
-
-///--commonpart
-var getStorehouseUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
-function getStorehouse(callback)
-{
-    nui.ajax({
-        url:getStorehouseUrl,
-        type:"post",
-        success:function(data)
-        {
-            if(data && data.storehouse)
-            {
-                callback && callback(data);
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
 var supplier = null;
 function selectSupplier(elId)
 {
@@ -350,54 +337,6 @@ function selectSupplier(elId)
                 el.setValue(value);
                 el.setText(text);
             }
-        }
-    });
-}
-
-
-
-//--commonPart
-var getProvinceAndCityUrl = baseUrl+"com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
-function getProvinceAndCity(callback)
-{
-    nui.ajax({
-        url:getProvinceAndCityUrl,
-        type:"post",
-        success:function(data)
-        {
-            if(data)
-            {
-                callback && callback(data);
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
-var getDictItemsUrl = baseUrl+"com.hsapi.part.common.svr.getDictItems.biz.ext";
-function getDictItems(dictIdList,callback)
-{
-    var params = {};
-    params.dictIdList = dictIdList;
-    nui.ajax({
-        url:getDictItemsUrl,
-        type:"post",
-        data:JSON.stringify(params),
-        success:function(data)
-        {
-            if(data && data.dataItems)
-            {
-                callback && callback({
-                    code:"S",
-                    dataItems:data.dataItems
-                });
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
         }
     });
 }

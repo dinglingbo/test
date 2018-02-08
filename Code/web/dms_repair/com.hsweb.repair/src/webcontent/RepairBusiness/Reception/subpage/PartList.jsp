@@ -19,7 +19,7 @@
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
 			style="width: 100%; height: 100%;"
-			url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+			url=""
 			pageSize="20" showPageInfo="false" multiSelect="true"
 			showPageIndex="false" showPage="false" showPageSize="false"
 			showReloadButton="false" showPagerButtonIcon="false"
@@ -27,15 +27,15 @@
 			allowSortColumn="true" virtualScroll="true" virtualColumns="true">
 
 			<div property="columns">
-				<div id="type" field="type" headerAlign="center" allowSort="true"
+				<div  field="type" headerAlign="center" allowSort="true"
 					visible="true" width="20%">辅料编码</div>
-				<div id="name" field="name" headerAlign="center" allowSort="true"
+				<div  field="name" headerAlign="center" allowSort="true"
 					visible="true" width="25%">辅料名称</div>
-				<div id="captainName" field="captainName" headerAlign="center"
+				<div  field="captainName" headerAlign="center"
 					allowSort="true" visible="true" width="15%">数量</div>
-				<div id="isDisabled" field="isDisabled" headerAlign="center"
+				<div  field="isDisabled" headerAlign="center"
 					allowSort="true" visible="true" width="20%">单价</div>
-				<div id="isDisabled" field="isDisabled" headerAlign="center"
+				<div  field="isDisabled" headerAlign="center"
 					allowSort="true" visible="true" width="20%">金额</div>
 
 			</div>

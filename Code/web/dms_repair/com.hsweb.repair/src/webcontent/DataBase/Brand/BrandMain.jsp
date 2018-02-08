@@ -26,12 +26,12 @@
 		<table class="table" id="table1" style="height: 100%">
 			<tr>
 				<td><label style="font-family: Verdana;">快速查询：</label> <a
-					class="nui-button" plain="true" onclick="onSearch(0)">已启用</a> <a
-					class="nui-button" plain="true" onclick="onSearch(1)">已禁用</a> <a
-					class="nui-button" plain="true" onclick="onSearch(2)">全部</a> <a
-					class="nui-button" plain="true" onclick="onSearch(3)">同步品牌</a> <a
-					class="nui-button" plain="true" onclick="onSearch(4)">同步车系</a> <a
-					class="nui-button" plain="true" onclick="onSearch(5)">同步车型</a></td>
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(0)">已启用</a> <a
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(1)">已禁用</a> <a
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(2)">全部</a> <a
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(3)">同步品牌</a> <a
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(4)">同步车系</a> <a
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(5)">同步车型</a></td>
 			</tr>
 		</table>
 

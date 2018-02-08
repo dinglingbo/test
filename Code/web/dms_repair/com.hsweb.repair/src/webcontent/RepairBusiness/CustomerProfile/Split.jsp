@@ -23,7 +23,7 @@
 						<span style="margin-left: 2px;">客户名称：</span>
 					</td>
 					<td colspan="1">
-						<input class="nui-buttonedit" onclick="customer()" width="490px" />
+						<input class="nui-buttonedit" onclick="onCustomer()" width="490px" />
 					</td>
 					<td class="form_label" width="70px">
 						<span style="margin-left: 10px;">手机号码：</span>
@@ -119,9 +119,9 @@
     	var formData = new nui.Form("#form1").getData(false, false);
     	grid.load(formData);
     	
-    	function customer(){
+    	function onCustomer(){
     		nui.open({
-    			url:"./subpage/Customer.jsp",
+    			url:"../../common/Customer.jsp",
     			title:"客户选择",width:900,height:550,
     			onload:function(){
     			    var iframe = this.getIFrameEl();

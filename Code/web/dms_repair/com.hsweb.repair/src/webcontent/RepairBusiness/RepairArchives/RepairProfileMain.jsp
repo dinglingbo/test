@@ -18,13 +18,11 @@
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 	<div  class="nui-toolbar"  style="height:50px">
 		<div class="nui-form1" id="form1" style="height: 100%">
-			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsweb.repair.DataBase.RpbClass" />
-			
+			<input class="nui-hidden" name="criteria/_entity" value="" />
 			<table class="table" id="table1" style="height: 100%;">
 				<tr style="display: block; margin:-5px 0">
 					<td width="80px">
-						<span style="color:#0000FF;margin-left: 10px;">工单号：</span>
+						<span style="color:#0000FF;">工单号：</span>
 					</td>
 					<td>
 						<label field="" style="color:#0000FF;width: 200px; " /></label>
@@ -39,27 +37,34 @@
 				<tr style="display: block; margin:-3px 0">
 					<td>
 						<label style="font-family:Verdana;">快速查询：</label>
-						<a class="nui-button"  style="color:#0000FF" plain="true">本日</a>
-						<a class="nui-button"  style="color:#0000FF" plain="true">昨日</a>
-						<a class="nui-button"  style="color:#0000FF" plain="true">本周</a>
-						<a class="nui-button"  style="color:#0000FF" plain="true">上周</a>
-						<a class="nui-button"  style="color:#0000FF" plain="true">本月</a>
-						<a class="nui-button"  style="color:#0000FF" plain="true">上月</a>
-						<a class="nui-button"  style="color:#0000FF" plain="true">本年</a>
-						<a class="nui-button"  style="color:#0000FF" plain="true">上年</a>
+					</td>
+					<td>
+						<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin:5px 0 0 0" ></span>
+					</td>
+					<td>
+						<a class="nui-button" plain="true" onclick="onSearch(0)" style="color:#0000FF"><u>本日</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(1)" style="color:#0000FF"><u>昨日</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(2)" style="color:#0000FF"><u>本月</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(3)" style="color:#0000FF"><u>上月</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(4)" style="color:#0000FF"><u>本年</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(4)" style="color:#0000FF"><u>上年</u></a>
+					</td>
+					<td>
 						<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin:0 10px 0 0" ></span>
+					</td>
+					<td>
+						
 						<label class="form_label" >车牌号（客户）：</label>
-						<input class="nui-buttonedit" name="isDisabled" emptyText="请输入..." showClose="true" oncloseclick="onClean()" /> 
+						<input class="nui-buttonedit"  emptyText="请输入..." showClose="true" onclick="customer()" oncloseclick="onClean()" /> 
 						<label class="form_label" >维修顾问：</label>
-						<input class="nui-combobox" name="isDisabled" emptyText="请选择..." /> 
+						<input class="nui-combobox"  emptyText="请选择..." /> 
 						<a class="nui-button" iconCls="icon-search" onclick="search()" plain="true">查询（Q）</a>
-						<a class="nui-button" iconCls="icon-search" onclick="search()" plain="true" style="color:#0000FF">更多</a>
+						<a class="nui-button"  onclick="onMore()" plain="true" style="color:#0000FF"><u>更多</u></a>
 					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
-
 	<div class="nui-toolbar" id="div_1"
 		style="border-bottom: 0; padding: 0px;">
 		<table style="width: 100%">
@@ -68,13 +73,12 @@
 					<a class="nui-button" plain="true" iconCls="icon-downgrade" onclick="next()">下一页</a> 
 					<a class="nui-button" plain="true" iconCls="icon-user" onclick="customer()">客户资料</a>
 					<a class="nui-button" plain="true" iconCls="icon-date" onclick="history()">维修历史</a> 
-					<a class="nui-menubutton" plain="true" iconCls="icon-print"  menu="#printMenu">打印</a>
+					<a class="nui-menubutton" plain="true" iconCls="icon-print" onclick="print()">打印</a>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<div class="nui-splitter" style="width: 100%; height: 100%;"
-		vertical="true">
+	<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false" vertical="true">
 		<div size="40%" showCollapseButton="false">
 			<div class="nui-fit">
 				<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
@@ -193,22 +197,31 @@
 			</div>
 		</div>
 	</div>
+	
+		
+		
 
 
-
-	<ul id="printMenu" class="nui-menu" style="display:none;">
-		<li class="separator"></li>
-        <li onclick="print()">打印维修委托单（A）</li>
-        <li>打印派工单（C）</li>
-	    <li>打印结算单（E）</li>
-	    <li>打印出单结算单（F）</li>
-    </ul>
 
 	<script type="text/javascript">
     	nui.parse();
-    	var grid = nui.get("datagrid1");
-    	var formData = new nui.Form("#form1").getData(false, false);
-    	grid.load(formData);
+    	
+    	function onMore(){
+    		nui.open({
+    			url:"./subpage/More.jsp",
+    			title:"高级查询",width:380,height:400,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"more"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
     	
     	function customer(){
     		nui.open({
@@ -217,6 +230,21 @@
     			onload:function(){
     			    var iframe = this.getIFrameEl();
     			    var data = {pageType:"customer"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function history(){
+    		nui.open({
+    			url:"../../common/History.jsp",
+    			title:"维修历史",width:850,height:640,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"history"};
     			    iframe.contentWindow.setData(data);
     			},
     			

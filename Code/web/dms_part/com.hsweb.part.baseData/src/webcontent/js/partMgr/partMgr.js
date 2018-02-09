@@ -5,7 +5,7 @@ var basePath = window._rootUrl||"http://127.0.0.1:8080/default/";
 var partListUrl = basePath+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
 var tree = null;
-var treeUrl = basePath+"com.hsapi.repair.Item.getRepairTypeTree.biz.ext";
+var treeUrl = basePath+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 
 var qualityList = [];
 var qualityHash = {};
@@ -13,45 +13,54 @@ var brandHash = {};
 var brandList = [];
 var unitList = [];
 var abcTypeList = [];
-$(document).ready(function(v)
-{
+var carBrandList = [];
+var queryForm = null;
+
+
+$(document).ready(function() {
+	queryForm = new nui.Form("#queryForm");
 	partGrid = nui.get("partGrid");
-    partGrid.setUrl(partListUrl);
+	partGrid.setUrl(partListUrl);
+	partGrid.on("load", function() {
+		onPartGridRowClick({});
+	});
+	tree = nui.get("tree1");
+	tree.setUrl(treeUrl);
+	// console.log("xxx");
 
-    tree = nui.get("tree1");
-    tree.setUrl(treeUrl);
-    //console.log("xxx");
+	getAllPartBrand(function(data) {
+		qualityList = data.quality;
+		qualityList.forEach(function(v) {
+			qualityHash[v.id] = v;
+		});
+		brandList = data.brand;
+		brandList.forEach(function(v) {
+			brandHash[v.id] = v;
+		});
+		getAllCarBrand(function(data) {
+			data = data || {};
+			carBrandList = data.carBrands || [];
+			console.log(carBrandList);
+			nui.get("applyCarBrandId").setData(carBrandList);
+			var dictIdList = [];
+			dictIdList.push('DDT20130703000016');// --单位
+			dictIdList.push('DDT20130703000067');// --ABC分类
+			getDictItems(dictIdList, function(data) {
+				if (data && data.dataItems) {
+					var dataItems = data.dataItems || [];
+					unitList = dataItems.filter(function(v) {
+						return v.dictid == 'DDT20130703000016';
+					});
+					abcTypeList = dataItems.filter(function(v) {
+						return v.dictid == 'DDT20130703000067';
+					});
+				}
+				onSearch();
+			});
+		});
 
-    getAllPartBrand(function(data)
-    {
-        qualityList = data.quality;
-        qualityList.forEach(function(v)
-        {
-            qualityHash[v.id] = v;
-        });
-        brandList = data.brand;
-        brandList.forEach(function(v)
-        {
-            brandHash[v.id] = v;
-        });
-    });
-    //字典
-    var dictIdList = [];
-    dictIdList.push('DDT20130703000016');//--单位
-    dictIdList.push('DDT20130703000067');//--ABC分类
-    getDictItems(dictIdList,function(data)
-    {
-        if(data && data.dataItems)
-        {
-            var dataItems = data.dataItems||[];
-            unitList = dataItems.filter(function(v){
-                return v.dictid == 'DDT20130703000016';
-            });
-            abcTypeList = dataItems.filter(function(v){
-                return v.dictid == 'DDT20130703000067';
-            });
-        }
-    });
+	});
+
 });
 function onDrawNode(e)
 {
@@ -144,11 +153,11 @@ function reloadData()
 }
 function getSearchParams()
 {
-    var params = {};
-    params.code = nui.get("search-code").getValue();
-    params.name = nui.get("search-name").getValue();
-    params.namePy = nui.get("search-namePy").getValue().toUpperCase();
-    params.applyCarModel = nui.get("search-applyCarModel").getValue();
+	var params = queryForm.getData();
+    if(params.showDisabled == 0)
+    {
+        params.isDisabled = 0;
+    }
     return params;
 }
 function onSearch()
@@ -202,12 +211,86 @@ function addOrEditPart(row)
         {
             if(action == "ok")
             {
-                partGrid.reload();
+            	reloadData();
             }
         }
     });
 }
+function onPartGridRowClick(e)
+{
+    var row = e.record||partGrid.getSelected();
+    if(!row)
+    {
+        return;
+    }
+    if(row.isDisabled == 1)
+    {
+        nui.get("disableBtn").hide();
+        nui.get("enableBtn").show();
+    }
+    else{
+        nui.get("enableBtn").hide();
+        nui.get("disableBtn").show();
+    }
+}
+function disablePart()
+{
+    var row = partGrid.getSelected();
+    console.log(row);
+    if(!row)
+    {
+        nui.alert("请选择要禁用的配件");
+        return;
+    }
 
+    savePart({
+        id:row.id,
+        isDisabled:1
+    },"禁用成功","禁用失败");
+}
+function enablePart()
+{
+    var row = partGrid.getSelected();
+    console.log(row);
+    if(!row)
+    {
+        nui.alert("请选择要启用的配件");
+        return;
+    }
+
+    savePart({
+        id:row.id,
+        isDisabled:0
+    },"启用成功","启用失败");
+}
+var saveUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.savePart.biz.ext";
+function savePart(part,successTip,errorTip)
+{
+    nui.ajax({
+        url:saveUrl,
+        type:"post",
+        data:JSON.stringify({
+            part:part
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                nui.alert(successTip||"保存成功");
+                reloadData();
+            }
+            else{
+                nui.alert(data.errMsg||errorTip||"保存失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 
 var getAllPartBrandUrl = basePath+"com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
 function getAllPartBrand(callback)

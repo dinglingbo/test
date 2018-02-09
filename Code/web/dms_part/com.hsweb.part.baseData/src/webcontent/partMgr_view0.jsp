@@ -16,36 +16,39 @@
 <body>
 
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="white-space:nowrap;">
-                <label style="font-family:Verdana;">快速查询：</label>
-                <label style="font-family:Verdana;">编码：</label>
-                <input class="nui-textbox" width="100" id="search-code"/>
-                <label style="font-family:Verdana;">名称：</label>
-                <input class="nui-textbox" width="100" id="search-name"/>
-                <label style="font-family:Verdana;">车型：</label>
-                <input class="nui-textbox" width="100" id="search-applyCarModel"/>
-                <label style="font-family:Verdana;">拼音：</label>
-                <input class="nui-textbox" width="100" id="search-namePy"/>
-                <label style="font-family:Verdana;">品牌：</label>
-                <input id="search-brandName"
-                       class="nui-combobox width1"
-                       textField="text"
-                       valueField="id"
-                       emptyText="请选择..."
-                       url=""
-                       allowInput="true"
-                       showNullItem="true"
-                       nullItemText="请选择..."/>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <span class="separator"></span>
-                <label style="font-family:Verdana;">包含已禁用：</label>
-                <input class="nui-checkbox" />
-            </td>
-        </tr>
-    </table>
+    <div class="form" id="queryForm">
+        <table style="width:100%;">
+            <tr>
+                <td style="white-space:nowrap;">
+                    <label style="font-family:Verdana;">快速查询：</label>
+                    <label style="font-family:Verdana;">编码：</label>
+                    <input class="nui-textbox" width="100" id="search-code" name="code"/>
+                    <label style="font-family:Verdana;">名称：</label>
+                    <input class="nui-textbox" width="100" id="search-name" name="name"/>
+                    <label style="font-family:Verdana;">车型：</label>
+                    <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
+                    <label style="font-family:Verdana;">拼音：</label>
+                    <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
+                    <label style="font-family:Verdana;">品牌：</label>
+                    <input id="applyCarBrandId"
+                           name="applyCarBrandId"
+                           class="nui-combobox width1"
+                           textField="carBrandZh"
+                           valueField="id"
+                           emptyText="请选择..."
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
+                    <span class="separator"></span>
+                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                    <span class="separator"></span>
+                    <label style="font-family:Verdana;">包含已禁用：</label>
+                    <input class="nui-checkbox" trueValue="1" falseValue="0" id="showDisabled"/>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 <div class="nui-fit">
     <div class="nui-splitter"
@@ -68,7 +71,8 @@
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="addPart()">新增</a>
                 <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editPart()">修改</a>
-                <a class="nui-button" iconCls="icon-no" plain="true" onclick="disablePart()">禁用</a>
+                <a class="nui-button" iconCls="icon-no" plain="true" onclick="disablePart()" id="disableBtn">禁用</a>
+                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="enablePart()" id="enableBtn" visible="false">启用</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-reload" plain="true" onclick="reloadData()">刷新</a>
             </div>
@@ -79,9 +83,11 @@
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""
+                     onrowclick="onPartGridRowClick"
                      ondrawcell="onPartGridDraw"
                      idField="id"
                      totalField="page.count"
+                     selectOnLoad="true"
                      pageSize="50"
                      showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">

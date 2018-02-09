@@ -34,7 +34,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.commons.Env.getContributionConfig</process:partner>
+      <process:partner type="literal">com.hs.common.Env.getContributionConfig</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -77,7 +77,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.commons.Env.getContributionConfig</process:partner>
+      <process:partner type="literal">com.hs.common.Env.getContributionConfig</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

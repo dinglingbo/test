@@ -3,7 +3,7 @@
  */
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPtsOutMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPtsEnterDetailByOutId.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPtsOutDetailByOutId.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;

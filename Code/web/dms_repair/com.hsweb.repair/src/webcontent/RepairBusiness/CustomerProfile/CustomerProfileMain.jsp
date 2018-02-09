@@ -23,13 +23,32 @@
 	        	   		<td>
 	        	    		<label style="font-family:Verdana;">快速查询：</label>
 	        	    	
-	        	         	<a class="nui-button" plain="true" onclick="onSearch(0)">本日来厂</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(1)">昨日来厂</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(2)">本日新客户</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(3)">本月新客户</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(4)">本月所有来厂客户</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(5)">本月流失回厂</a>
-	                	 	<a class="nui-button" plain="true" onclick="onSearch(6)">上月流失回厂</a>
+	        	         	<a class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(0)"><u>本日来厂</u></a>
+	                	 	<a class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(1)"><u>昨日来厂</u></a>
+	                	 	<a class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(2)"><u>本日新客户</u></a>
+	                	 	<a class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(3)"><u>本月新客户</u></a>
+	                	 	<a class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(4)"><u>本月所有来厂客户</u></a>
+	                	 	<a class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(5)"><u>本月流失回厂</u></a>
+	                	 	<a class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(6)"><u>上月流失回厂</u></a>
+	                	</td>
+	                	<td>
+	                		<span style="width:0;height:100%;border: 0.6px solid #AAAAAA;margin:5px" ></span>
+	                	</td>
+	                	<td>
+	                		<label>车牌号</label>
+	                	</td>
+	                	<td>
+	                		<input class="nui-textbox" style="widht:150px"/>
+	                	</td>
+	                	<td>
+	                		<label>手机号码：</label>
+	                	</td>
+	                	<td>
+	                		<input class="nui-textbox" style="widht:150px"/>
+	                	</td>
+	                	<td>	
+	                		<a class="nui-button" iconCls="icon-search" plain="true" onclick="">查询(Q)</a>
+	                		<a class="nui-button" plain="true" style="color: #0000FF" onclick="onMore()">更多</a>
 	                	</td>
 	        	   </tr>
 	        	</table>
@@ -44,7 +63,7 @@
                     <a class="nui-button" iconCls="icon-edit" onclick="edit()" plain="true">修改（E）</a>
                     <a class="nui-button" iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a>
                     <a class="nui-button" iconCls="icon-date" onclick="split()" plain="true">资料拆分</a>
-                    <a class="nui-button" iconCls="icon-history" onclick="history()" plain="true">维修历史（W）</a>
+                    <a class="nui-button" iconCls="icon-node" onclick="history()" plain="true">维修历史（W）</a>
                 </td>
         	</tr>
     	</table>
@@ -109,7 +128,7 @@
     	
     	function add(){
     		nui.open({
-    			url:"CustomerProfileDetail.jsp",
+    			url:"../../common/subpage/customerSubpage/AddEditCustomer.jsp",
     			title:"客户资料",width:450,height:650,
     			onload:function(){
     			    var iframe = this.getIFrameEl();
@@ -128,7 +147,7 @@
     	    var row = grid.getSelected();
     	    if(row) {
     	        nui.open({
-    	            url:"CustomerProfileDetail.jsp",
+    	            url:"../../common/subpage/customerSubpage/AddEditCustomer.jsp",
     	            title:"修改客户",
     	            width:500,
     	            height:680,
@@ -181,6 +200,37 @@
     		});
     	}
     	
+    	function history(){
+    		nui.open({
+    			url:"../../common/History.jsp",
+    			title:"维修历史",width:850,height:640,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"history"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function onMore(){
+    		nui.open({
+    			url:"./subpage/More.jsp",
+    			title:"高级查询",width:450,height:300,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"more"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
     	//重新刷新页面
     	function refresh(){
     		var form = new nui.Form("#form1");
@@ -217,12 +267,7 @@
         if (e.value == 0) return "启用";
     }
     	
-    	//禁用
-    	function forbidden(){
-    	    
-    	    
-    	    
-    	}
+    	
     	
     </script>
 </body>

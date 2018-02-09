@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<div showCollapseButton="false">
-			<div class="nui-splitter" style="width: 100%; height: 100%;" >
+			<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false">
 				<div size="25%" showCollapseButton="false">
 					<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 100%;"
 						url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"

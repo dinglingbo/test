@@ -79,8 +79,8 @@
 	    </div>
     </fieldset>
 	<div style="text-align:center;padding:10px;">               
-		<a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>       
-		<a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>       
+		<a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>       
+		<a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>       
 	</div>
 
 	<script type="text/javascript">

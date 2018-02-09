@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>产品录入</title>
+<title>产品录入(弹窗)</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     

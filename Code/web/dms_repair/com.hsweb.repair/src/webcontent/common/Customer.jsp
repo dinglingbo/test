@@ -58,7 +58,7 @@
 					<td>
 						<a class="nui-button" plain="true" id="button" iconCls="icon-add" onclick="onAdd()">新增客户（N）</a>
 		                <a class="nui-button" plain="true" id="button" iconCls="icon-edit" onclick="onEdit()">修改客户（M）</a>
-		                <a class="nui-button" plain="true" id="button" iconCls="icon-no" onclick="onNo()">关闭（C）</a>
+		                <a class="nui-button" plain="true" id="button" iconCls="icon-no" onclick="onCancel()">关闭（C）</a>
 					</td>
 				</tr>
 			</table>
@@ -138,10 +138,10 @@
     	
     	function onAdd(){
     		nui.open({
-    			url:"../Reception/AddEditCustomer.jsp",
+    			url:"../../common/subpage/customerSubpage/AddEditCustomer.jsp",
     			title:"新增客户",
-				width:500,
-    	        height:680,
+				width:460,
+    	        height:640,
     			onload:function(){
     			    var iframe = this.getIFrameEl();
     			    var data = {pageType:"add"};
@@ -157,10 +157,10 @@
     	    var row = grid.getSelected();
     	    if(row) {
     	        nui.open({
-    	            url:"../CustomerProfile/AddEditCustomerjsp",
+    	            url:"../../common/subpage/customerSubpage/AddEditCustomer.jsp",
     	            title:"修改客户",
-    	            width:500,
-    	            height:680,
+    	            width:460,
+    	            height:640,
     	            onload:function(){
     	                var iframe = this.getIFrameEl();
     	                var data = {pageType:"edit",record:{comguest:row}};
@@ -210,7 +210,21 @@
     	    }
     	}
     	
-    	
+    	//关闭窗口
+        function CloseWindow(action) {
+        	if (action == "close" && form.isChanged()) {
+            	if (confirm("数据被修改了，是否先保存？")) {
+            		saveData();
+                }
+            }
+                if (window.CloseOwnerWindow)
+                return window.CloseOwnerWindow(action);
+                else window.close();
+        }
+    	//取消
+        function onCancel() {
+        	CloseWindow("cancel");
+        }
     </script>
 </body>
 </html>

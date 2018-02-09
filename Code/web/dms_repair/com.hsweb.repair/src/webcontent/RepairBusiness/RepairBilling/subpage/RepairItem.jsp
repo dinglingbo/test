@@ -16,24 +16,23 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-splitter" style="width: 100%; height: 100%;">
+	<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false" >
 		<div size="50%" showCollapseButton="false">
-			<div class="nui-toolbar" id="div_1"
-				style="border-bottom: 0; padding: 0px;">
+			<div class="nui-toolbar"  style="border-bottom: 0; padding: 0px;">
 				<table style="width: 100%">
 					<tr>
-						<td style="width: 100%"><a class="nui-button" id="add"
-							iconCls="icon-add" onclick="add()">新增</a> <a class="nui-button"
-							id="edit" iconCls="icon-edit" onclick="edit()">修改</a> <a
-							class="nui-button" id="remove" iconCls="icon-remove"
-							onclick="remove()">删除</a></td>
+						<td style="width: 100%">
+							<a class="nui-button" plain="true" iconCls="icon-add" onclick="addItem()">新增</a> 
+							<a class="nui-button" plain="true" iconCls="icon-edit" onclick="editItem()">修改</a> 
+							<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeItem()">删除</a>
+						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="nui-fit">
 				<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
-					style="width: 100%; height: 240px;"
-					url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+					style="width: 100%; height: 100%;"
+					url=""
 					pageSize="20" showPageInfo="true" multiSelect="true"
 					showPageIndex="false" showPage="true" showPageSize="false"
 					showReloadButton="false" showPagerButtonIcon="false"
@@ -66,18 +65,18 @@
 				style="border-bottom: 0; padding: 0px;">
 				<table style="width: 100%">
 					<tr>
-						<td style="width: 100%"><a class="nui-button" id="add"
-							iconCls="icon-add" onclick="add()">新增</a> <a class="nui-button"
-							id="edit" iconCls="icon-edit" onclick="edit()">修改</a> <a
-							class="nui-button" id="remove" iconCls="icon-remove"
-							onclick="remove()">删除</a></td>
+						<td style="width: 100%">
+							<a class="nui-button" plain="true" iconCls="icon-add" onclick="addMaterial()">新增</a> 
+							<a class="nui-button" plain="true" iconCls="icon-edit" onclick="editMaterial()">修改</a> 
+							<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeMaterial()">删除</a>
+						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="nui-fit">
 				<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
-					style="width: 100%; height: 240px;"
-					url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+					style="width: 100%; height: 100%"
+					url=""
 					pageSize="20" showPageInfo="true" multiSelect="true"
 					showPageIndex="false" showPage="true" showPageSize="false"
 					showReloadButton="false" showPagerButtonIcon="false"
@@ -111,6 +110,82 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	
+    	function addItem(){
+    		nui.open({
+    			url:"./subpage/addEditItem.jsp",
+    			title:"维修项目录入",width:450,height:260,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function editItem(){
+    	    var row = grid.getSelected();
+    	    if(row) {
+    	        nui.open({
+    	            url:"./subpage/addEditItem.jsp",
+    	            title:"维修项目录入",width:450,height:270,
+    	            onload:function(){
+    	                var iframe = this.getIFrameEl();
+    	                var data = {pageType:"edit",record:{comguest:row}};
+    	                //直接从页面获取，不用去后台获取
+    	                iframe.contentWindow.setData(data);
+    	            },
+    	            ondestroy:function(action){
+    	                if(action == "saveSuccess"){
+    	                    grid.reload();
+    	                }
+    	            }
+    	        });
+    	    }else {
+    	        nui.alert("请选中一条数据", "系统提示");
+    	    }
+    	}
+    	
+    	function addMaterial(){
+    		nui.open({
+    			url:"./subpage/addEditMaterial.jsp",
+    			title:"维修材料录入",width:530,height:230,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function editMaterial(){
+    	    var row = grid.getSelected();
+    	    if(row) {
+    	        nui.open({
+    	            url:"./subpage/addEditMaterial.jsp",
+    	            title:"维修材料录入",width:500,height:250,
+    	            onload:function(){
+    	                var iframe = this.getIFrameEl();
+    	                var data = {pageType:"edit",record:{comguest:row}};
+    	                //直接从页面获取，不用去后台获取
+    	                iframe.contentWindow.setData(data);
+    	            },
+    	            ondestroy:function(action){
+    	                if(action == "saveSuccess"){
+    	                    grid.reload();
+    	                }
+    	            }
+    	        });
+    	    }else {
+    	        nui.alert("请选中一条数据", "系统提示");
+    	    }
+    	}
     </script>
 </body>
 </html>

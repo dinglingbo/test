@@ -16,120 +16,69 @@
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-panel" showToolbar="false" title="" showFooter="true"
-		style="width: 100%; height: 12%">
+	<div  class="nui-toolbar"  style="height:50px">
 		<div class="nui-form1" id="form1" style="height: 100%">
-			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsweb.repair.DataBase.RpbClass" />
-			<!-- 排序 -->
-			<input class="nui-hidden" name="criteria/_orderby[1]/_property"
-				value="id" /> <input class="nui-hidden"
-				name="criteria/_orderby[1]/_sort" value="arc">
+			<input class="nui-hidden" name="criteria/_entity" value="" />
 			<table class="table" id="table1" style="height: 100%;">
-				<tr style="width: 100%; height: 12%; line-height: 12%;">
+				<tr style="display: block; margin:-5px 0">
+					<td width="80px">
+						<span style="color:#0000FF;">工单号：</span>
+					</td>
 					<td>
-						<h4>快速查询：</h4>
+						<label field="" style="color:#0000FF;width: 200px; " /></label>
 					</td>
-					<!-- lookup_type_code -->
-					<td class="nui-button" id="lookup_type_code"
-						style="margin-top: 5px;" plain="true">本日</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[1]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[1]/likeRule"
-						value="1" /></td>
-					<!-- lookup_type_name -->
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">昨日</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本周</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">上周</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本月</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">上月</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本年</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">上年</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-
-
-					<td class="form_label" id="lookup_type_name">车牌号（客户）：</td>
-					<td colspan="3"><input class="nui-buttonedit"
-						name="isDisabled" emptyText="请输入..." showClose="true"
-						oncloseclick="onCloseClick" /> <input class="nui-hidden"
-						name="criteria/_expr[2]/_op" value="=" /> <input
-						class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+					<td width="80px">
+							<span style="color:#0000FF;margin-left: 10px;">车牌号：</span>
 					</td>
-					<td class="form_label" id="lookup_type_name">维修顾问：</td>
-					<td colspan="3"><input class="nui-combobox" name="isDisabled"
-						emptyText="请选择..." /> <input class="nui-hidden"
-						name="criteria/_expr[2]/_op" value="=" /> <input
-						class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+					<td>
+						<label field="" style="color:#0000FF;width:120px; " /></label>
 					</td>
-					<td><a class="nui-button" iconCls="icon-search"
-						onclick="search()">查询（Q）</a></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">更多</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-
-					<!-- 超链接模式 -->
-					<!-- 
-        	        <td>
-        	        	<a href="../../index.html">首页</a> 
-        	        </td>
-        	         -->
+				</tr>
+				<tr style="display: block; margin:-3px 0">
+					<td>
+						<label style="font-family:Verdana;">快速查询：</label>
+					</td>
+					<td>
+						<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin:5px 0 0 0" ></span>
+					</td>
+					<td>
+						<a class="nui-button" plain="true" onclick="onSearch(0)" style="color:#0000FF"><u>本日</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(1)" style="color:#0000FF"><u>昨日</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(2)" style="color:#0000FF"><u>本月</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(3)" style="color:#0000FF"><u>上月</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(4)" style="color:#0000FF"><u>本年</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(4)" style="color:#0000FF"><u>上年</u></a>
+					</td>
+					<td>
+						<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin:0 10px 0 0" ></span>
+					</td>
+					<td>
+						
+						<label class="form_label" >车牌号（客户）：</label>
+						<input class="nui-buttonedit"  emptyText="请输入..." showClose="true" onclick="customer()" oncloseclick="onClean()" /> 
+						<label class="form_label" >维修顾问：</label>
+						<input class="nui-combobox"  emptyText="请选择..." /> 
+						<a class="nui-button" iconCls="icon-search" onclick="search()" plain="true">查询（Q）</a>
+						<a class="nui-button"  onclick="onMore()" plain="true" style="color:#0000FF"><u>更多</u></a>
+					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
-
 	<div class="nui-toolbar" id="div_1"
 		style="border-bottom: 0; padding: 0px;">
 		<table style="width: 100%">
 			<tr>
-				<td style="width: 100%"><a class="nui-button" id="next"
-					iconCls="icon-downgrade" onclick="next()">下一页</a> <a
-					class="nui-button" id="user" iconCls="icon-user" onclick="user()">客户资料</a>
-					<a class="nui-button" id="dataon" iconCls="icon-date"
-					onclick="dateon()">维修历史</a> <a class="nui-menubutton" id="datacut"
-					iconCls="icon-print" onclick="print()">打印</a></td>
+				<td style="width: 100%">
+					<a class="nui-button" plain="true" iconCls="icon-downgrade" onclick="next()">下一页</a> 
+					<a class="nui-button" plain="true" iconCls="icon-user" onclick="customer()">客户资料</a>
+					<a class="nui-button" plain="true" iconCls="icon-date" onclick="history()">维修历史</a> 
+					<a class="nui-menubutton" plain="true" iconCls="icon-print" onclick="print()">打印</a>
+				</td>
 			</tr>
 		</table>
 	</div>
-	<div class="nui-splitter" style="width: 100%; height: 100%;"
-		vertical="true">
+	<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false" vertical="true">
 		<div size="40%" showCollapseButton="false">
 			<div class="nui-fit">
 				<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
@@ -248,13 +197,62 @@
 			</div>
 		</div>
 	</div>
-
-
+	
+		
+		
 
 
 
 	<script type="text/javascript">
     	nui.parse();
+    	
+    	function onMore(){
+    		nui.open({
+    			url:"./subpage/More.jsp",
+    			title:"高级查询",width:380,height:400,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"more"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
+    	
+    	function customer(){
+    		nui.open({
+    			url:"../../RepairBusiness/CustomerProfile/CustomerProfileDetail.jsp",
+    			title:"客户资料",width:460,height:640,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"customer"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function history(){
+    		nui.open({
+    			url:"../../common/History.jsp",
+    			title:"维修历史",width:850,height:640,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"history"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
     </script>
 </body>
 </html>

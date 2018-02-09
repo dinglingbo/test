@@ -46,7 +46,7 @@ public class Env {
 		if (Env.basePath != null) {
 			initContribution(Env.basePath);// 重新加载配置文件
 		}
-		return "已重新加载配置文件：" + Env.basePath;
+		return "已重新加载配置文件，basePath：" + Env.basePath;
 	}
 
 	public static void envInit(String basePath) {
@@ -487,20 +487,11 @@ public class Env {
 	public static String getContributionConfig(String ctrName, String module,
 			String group, String key) {
 		String val = getCtrMap(ctrName, module, group, key);
-		// if ("com.vplus.cachemgr".equals(ctrName) && "CacheCfg".equals(module)
-		// && "redisCfg".equals(group) && "password".equals(key))
-		// {//redis密码直接返回空
-		// return val;
-		// }
-		// if (null==val || "".equals(val.trim())) {
-		// val = ConfigurationUtil.getContributionConfig(ctrName, module, group,
-		// key);
-		// }
 		return val;
 	}
 
 	public static void main(String[] args) {
-		String path = "D:\\EOS7.5Studio_VPLUS\\apache-tomcat-7.0.54\\webapps\\vplus";
+		String path = "/data/appConfig/dmsEnv/";
 		Env.initContribution(path);
 
 	}

@@ -16,11 +16,11 @@
 </head>
 <body style="margin:0;height:100%;width:100%;overflow:hidden">
 	<input name="pageType" class="nui-hidden"/>
-	<div  class="nui-splitter" style="width:100%;height:100%;" id="dataform1" vertical="true" allowResize="false">
+	<div  class="nui-splitter" style="width:100%;height:100%;"  vertical="true" allowResize="false">
 	    <div size="30%" showCollapseButton="false">
 	    	<div  class="nui-panel" showToolbar="false" title="客户信息" showFooter="false" style="width:100%;height:100%;">
 				<table class="nui-form-table">
-		        	<tr style=" display:block;margin:0">
+		        	<tr style=" display:block;margin:-2px 0 0 0">
 		        		<td width="70px">
 		        			<span style="color:#FF0000;margin-left:10px;">客户名称：</span>
 		        		</td>
@@ -86,21 +86,21 @@
 			<div id="mainTabs" class="nui-tabs" activeIndex="0" style="width:98%;height:90%;margin-left:5px"      
 				 plain="false" onactivechanged=""
 			>
-				<div title="车辆信息" url="./subpage/Vehicle.jsp" >        
+				<div title="车辆信息" url="./Vehicle.jsp" >        
 				</div>
-				<div title="联系人信息" url="./subpage/Contacts.jsp" >        
+				<div title="联系人信息" url="./Contacts.jsp" >        
 				</div>
 			</div>
 			<div style="text-align:right;padding:10px;margin-top:0">               
-				<a class="mini-button" onclick="onOk" style="margin-right:20px;">保存（S）</a>       
-				<a class="mini-button" onclick="onCancel" >取消（C）</a>       
+				<a class="nui-button" onclick="onOk" style="margin-right:10px;">保存（S）</a>       
+				<a class="nui-button" onclick="onCancel" >取消（C）</a>       
 			</div>
 	    </div>
 	    
 	</div>
 	
 
-
+	
 
 	<script type="text/javascript">
     	nui.parse();

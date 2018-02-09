@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+
+
+	<resultMap class="commonj.sdo.DataObject" id="resultMap1">
+        <result column="GUEST_ID" javaType="string" property="guestId"/>
+        <result column="groupFieldName" javaType="string" property="groupFieldName"/>
+        <result column="PART_ID" javaType="string" property="partId"/>
+        <result column="Jan" javaType="double" property="Jan"/>
+        <result column="Feb" javaType="double" property="Feb"/>
+        <result column="Mar" javaType="double" property="Mar"/>
+        <result column="Apr" javaType="double" property="Apr"/>
+        <result column="May" javaType="double" property="May"/>
+        <result column="Jun" javaType="double" property="Jun"/>
+        <result column="Jul" javaType="double" property="Jul"/>
+        <result column="Aug" javaType="double" property="Aug"/>
+        <result column="Jan" javaType="double" property="Jan"/>
+        <result column="Feb" javaType="double" property="Feb"/>
+        <result column="Sep" javaType="double" property="Sep"/>
+        <result column="Oct" javaType="double" property="Oct"/>
+        <result column="Nov" javaType="double" property="Nov"/>
+        <result column="Dec" javaType="double" property="Dec"/>
+        <result column="orgcode" javaType="string" property="orgcode"/>
+    </resultMap>
+	<select id="queryPurEnterAnalysis" parameterClass="java.util.HashMap" resultMap="resultMap1">
+    	SELECT 
+    	<dynamic>
+    		a.orgcode orgcode,
+    		<isNotEmpty prepend="" property="groupbyGuestId">   
+                A.GUEST_ID GUEST_ID,
+       			A.GUEST_FULL_NAME groupFieldName,
+       			null as PART_ID,
+            </isNotEmpty>
+    		<isNotEmpty prepend="" property="groupbyPartId"> 
+    			null as GUEST_ID,  
+                B.PART_ID PART_ID,
+		        C.NAME groupFieldName,
+            </isNotEmpty>  
+        </dynamic>
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'01',B.NO_TAX_AMT,0)) AS Jan,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'02',B.NO_TAX_AMT,0)) AS Feb,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'03',B.NO_TAX_AMT,0)) AS Mar,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'04',B.NO_TAX_AMT,0)) AS Apr,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'05',B.NO_TAX_AMT,0)) AS May,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'06',B.NO_TAX_AMT,0)) AS Jun,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'07',B.NO_TAX_AMT,0)) AS Jul,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'08',B.NO_TAX_AMT,0)) AS Aug,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'09',B.NO_TAX_AMT,0)) AS Sep,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'10',B.NO_TAX_AMT,0)) AS Oct,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'11',B.NO_TAX_AMT,0)) AS Nov,
+		       SUM(DECODE(to_char(a.enter_date,'mm'),'12',B.NO_TAX_AMT,0)) AS Dec
+		  FROM PTS_ENTER_MAIN A
+		  JOIN PTS_ENTER_DETAIL B
+		    ON (A.ID = B.ENTER_ID)
+		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
+		    ON (B.PART_ID = C.ID)
+		    WHERE 1=1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="enterTypeId">   
+                (A.enter_type_id = #enterTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (to_char(A.enter_date,'mm')=to_char(sysdate,'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (to_char(A.enter_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="quarter">  
+            <!--季度-->
+                (to_char(A.out_date,'q')=#quarter#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisYear">  
+            <!--本年-->
+                (to_char(A.enter_date,'yyyy')=to_char(sysdate,'yyyy'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear">  
+            <!--上年-->
+                (to_char(A.enter_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+            </isNotEmpty>
+    		<isNotEmpty prepend="" property="groupbyGuestId">   
+                GROUP BY a.orgcode,to_char(a.enter_date,'mm'),A.GUEST_ID,A.GUEST_FULL_NAME
+            </isNotEmpty>
+    		<isNotEmpty prepend="" property="groupbyPartId">   
+                GROUP BY a.orgcode,to_char(a.enter_date,'mm'),B.PART_ID,C.NAME
+            </isNotEmpty>
+        </dynamic>
+		ORDER BY to_char(a.enter_date,'mm') 
+    </select>
+    <select id="queryPurOutAnalysis" parameterClass="java.util.HashMap" resultMap="resultMap1">
+    	SELECT 
+    	<dynamic>
+    		a.orgcode orgcode,
+    		<isNotEmpty prepend="" property="groupbyGuestId">   
+                A.GUEST_ID GUEST_ID,
+       			A.GUEST_FULL_NAME groupFieldName,
+       			null as PART_ID,
+            </isNotEmpty>
+    		<isNotEmpty prepend="" property="groupbyPartId"> 
+    			null as GUEST_ID,  
+                B.PART_ID PART_ID,
+		        C.NAME groupFieldName,
+            </isNotEmpty>  
+        </dynamic>
+		       SUM(DECODE(to_char(a.out_date,'mm'),'01',B.sell_amt,0)) AS Jan,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'02',B.sell_amt,0)) AS Feb,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'03',B.sell_amt,0)) AS Mar,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'04',B.sell_amt,0)) AS Apr,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'05',B.sell_amt,0)) AS May,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'06',B.sell_amt,0)) AS Jun,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'07',B.sell_amt,0)) AS Jul,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'08',B.sell_amt,0)) AS Aug,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'09',B.sell_amt,0)) AS Sep,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'10',B.sell_amt,0)) AS Oct,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'11',B.sell_amt,0)) AS Nov,
+		       SUM(DECODE(to_char(a.out_date,'mm'),'12',B.sell_amt,0)) AS Dec
+		  FROM PTS_OUT_MAIN A
+		  JOIN PTS_OUT_DETAIL B
+		    ON (A.ID = B.OUT_ID)
+		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
+		    ON (B.PART_ID = C.ID)
+		    WHERE 1=1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="outTypeId">   
+                (A.out_type_id = #outTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (to_char(A.out_date,'mm')=to_char(sysdate,'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (to_char(A.out_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="quarter">  
+            <!--季度-->
+                (to_char(A.out_date,'q')=#quarter#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisYear">  
+            <!--本年-->
+                (to_char(A.out_date,'yyyy')=to_char(sysdate,'yyyy'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear">  
+            <!--上年-->
+                (to_char(A.out_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+            </isNotEmpty>
+    		<isNotEmpty prepend="" property="groupbyGuestId">   
+                GROUP BY a.orgcode,to_char(a.out_date,'mm'),A.GUEST_ID,A.GUEST_FULL_NAME
+            </isNotEmpty>
+    		<isNotEmpty prepend="" property="groupbyPartId">   
+                GROUP BY a.orgcode,to_char(a.out_date,'mm'),B.PART_ID,C.NAME
+            </isNotEmpty>
+        </dynamic>
+		ORDER BY to_char(a.out_date,'mm') 
+    </select>
+</sqlMap>

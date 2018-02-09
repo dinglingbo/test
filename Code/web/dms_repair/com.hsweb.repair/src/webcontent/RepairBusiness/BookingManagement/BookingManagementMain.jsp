@@ -13,101 +13,97 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%= request.getContextPath() %>/common/nui/nui.js"
 	type="text/javascript"></script>
+	<style type="text/css">
+		#td{
+			width:170px
+		}
+		#label1{
+			width:85px
+		}
+		#label2{
+			width:60px
+		}
+	</style>
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-panel" showToolbar="false" title="" showFooter="true"
-		style="width: 100%; height: 12%">
-		<div class="nui-form1" id="form1" style="height: 100%">
-			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsweb.repair.DataBase.RpbClass" />
-			<!-- 排序 -->
-			<input class="nui-hidden" name="criteria/_orderby[1]/_property"
-				value="id" /> <input class="nui-hidden"
-				name="criteria/_orderby[1]/_sort" value="arc">
-			<table class="table" id="table1" style="height: 100%;">
-				<tr style="width: 100%; height: 12%; line-height: 12%;">
+	<div  class="nui-toolbar"  style="height:50px">
+        <div  class="nui-form1" id="form1" style="height:100%">
+        	<input class="nui-hidden" name="criteria/_entity" value=""/>
+        	<table class="table" id="table1" style="height:100% ">
+        		<tr style="display: block; margin:-5px 0">
+					<td width="80px">
+						<span style="color:#0000FF;">车牌号：</span>
+					</td>
 					<td>
-						<h4>快速查询：</h4>
+						<label field="" style="color:#0000FF;width:120px; " /></label>
 					</td>
-					<!-- lookup_type_code -->
-					<td class="nui-button" id="lookup_type_code"
-						style="margin-top: 5px;" plain="true">本日预约车辆</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[1]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[1]/likeRule"
-						value="1" /></td>
-					<!-- lookup_type_name -->
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本周预约车辆</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">本月预约车辆</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-
-					<td class="form_label" id="lookup_type_name">车牌号：</td>
-					<td colspan="3"><input class="nui-textbox" name="isDisabled"
-						emptyText="请输入..." /> <input class="nui-hidden"
-						name="criteria/_expr[2]/_op" value="=" /> <input
-						class="nui-hidden" name="criteria/_expr[2]/likeRule" value="0" />
+					<td >
+						<span style="color:#FF0000;margin-left: 10px;">预计来厂日期：</span>
+					</td>							<td>
+						<label field="" style="color:#0000FF;width: 50px; " /></label>
 					</td>
-					<td property="footer"><a class="nui-button"
-						iconCls="icon-search" onclick="search()">查询（Q）</a></td>
-
-					<td class="nui-button" id="lookup_type_name"
-						style="margin-top: 5px;" plain="true">更多</td>
-					<td colspan="3"><input class="nui-hidden" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-
-					<td class="form_label" id="lookup_type_name">仅显示本人预约</td>
-					<td colspan="3"><input class="nui-checkbox" name="isDisabled" />
-						<input class="nui-hidden" name="criteria/_expr[2]/_op" value="=" />
-						<input class="nui-hidden" name="criteria/_expr[2]/likeRule"
-						value="0" /></td>
-					<!-- 超链接模式 -->
-					<!-- 
-        	        <td>
-        	        	<a href="../../index.html">首页</a> 
-        	        </td>
-        	         -->
+					<td width="50px">
+						<span style="color:#0000FF;margin-left: 10px;">进程：</span>
+					</td>
+					<td>
+						<label field="" style="color:#FF0000;width: 70px; " /></label>	
+					</td>
 				</tr>
+        		<tr>
+        	   		<td>
+        	    		<label style="font-family:Verdana;">快速查询：</label>
+        	    	
+        	         	<a class="nui-button" plain="true" onclick="onSearch(0)" style="color:#0000FF"><u>本日预约车辆</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(1)" style="color:#0000FF"><u>本周预约车辆</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(2)" style="color:#0000FF"><u>本月预约车辆</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(3)" style="color:#0000FF"><u>已完工的车</u></a>
+                	 	<a class="nui-button" plain="true" onclick="onSearch(4)" style="color:#0000FF"><u>在结算的车</u></a>
+                	 	
+                	</td>
+                	<td>
+                		<span style="width:0;height:100%;border: 0.6px solid #AAAAAA;margin:5px" ></span>
+                	</td>
+                	<td>
+                		<label>车牌号：</label>
+                	</td>
+                	<td>
+                		<input class="nui-textbox" style="widht:150px"/>
+                		
+                		<a class="nui-button" iconCls="icon-search" plain="true" onclick="">查询(Q)</a>
+                		<a class="nui-button" plain="true" style="color: #0000FF" onclick="onMore()"><u>更多</u></a>
+                		
+                		<label>仅显示本人预约</label>
+                		<div  class="nui-checkbox"></div>
+					</td>
+        		</tr>
 			</table>
 		</div>
 	</div>
-
-	<div class="nui-toolbar" id="div_1"
-		style="border-bottom: 0; padding: 0px;">
+	
+	<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
 		<table style="width: 100%">
 			<tr>
-				<td style="width: 100%"><a class="nui-button" id="save"
-					iconCls="icon-reload" onclick="reload()">刷新（R）</a> <a
-					class="nui-button" id="add" iconCls="icon-add" onclick="add()">新增（A）</a>
-					<a class="nui-button" id="save" iconCls="icon-save"
-					onclick="save()">保存（S）</a> <a class="nui-button" id="cancel"
-					iconCls="icon-cancel" onclick="cancel()">取消（C）</a> <a
-					class="nui-button" id="save" iconCls="" onclick="save()">预约跟踪（G）</a>
-					<a class="nui-button" id="save" iconCls="" onclick="save()">转入报价（T）</a>
-					<a class="nui-button" id="save" iconCls="" onclick="save()">维修历史（W）</a>
+				<td style="width: 100%">
+					<a class="nui-button" plain="true" iconCls="icon-reload" onclick="reload()">刷新（R）</a> 
+					<a class="nui-button" plain="true" iconCls="icon-add" onclick="add()">新增（A）</a>
+					<a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存（S）</a> 
+					<a class="nui-button" plain="true" iconCls="icon-cancel" onclick="cancel()">取消（C）</a> 
+					<a class="nui-button" plain="true" iconCls="" onclick="reservation()">预约跟踪（G）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="quote()">转入报价（T）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="history()">维修历史（W）</a>
 				</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="nui-fit">
-		<div class="nui-splitter" style="width: 100%; height: 100%;">
+		<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false">
 			<div size="25%" showCollapseButton="false">
 				<div class="nui-fit">
 					<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
 						style="width: 100%; height: 100%;"
-						url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+						url=""
 						pageSize="20" showPageInfo="true" multiSelect="true"
 						showPageIndex="false" showPage="true" showPageSize="false"
 						showReloadButton="false" showPagerButtonIcon="false"
@@ -127,58 +123,108 @@
 				</div>
 			</div>
 			<div showCollapseButton="false">
-
-				<div class="nui-splitter"
-					style="margin: 0; height: 100%; width: 100%;" vertical="true">
-					<div size="60%" showCollapseButton="false">
-						<div class="nui-panel" title="基本信息" id="div_1"
-							style="border-bottom: 0; padding: 0px; width: 100%; height: 100%;">
-							<div class="nui-fit">
-								<span style="margin-left: 20px; margin-top: 10px;">车牌号：</span> <input
-									class="nui-combobox" style="width: 14%; margin-top: 10px;" /> <span
-									style="margin-left: 20px; margin-top: 10px;">品牌：</span> <input
-									class="nui-combobox" style="width: 14%; margin-top: 10px;" /> </br>
-
-								<span style="margin-left: 20px; margin-top: 10px;">车型：</span> <input
-									class="nui-textbox" style="width: 70%; margin-top: 10px;" /></br> <span
-									style="margin-left: 20px; margin-top: 10px;">联系人：</span> <input
-									class="nui-textbox" style="width: 20%; margin-top: 10px;" /> <span
-									style="margin-left: 20px; margin-top: 10px;">联系电话：</span> <input
-									class="nui-textbox" style="width: 20%; margin-top: 10px;" /> <span
-									style="margin-left: 20px; margin-top: 10px;">预约项目：</span> <input
-									class="nui-combobox" style="width: 14%; margin-top: 10px;" /> </br>
-
-								<span style="margin-left: 20px; margin-top: 10px;">预约来厂日期：</span>
-								<input id="data" style="margin-top: 10px;"
-									class="nui-datepicker" value="" nullValue="null"
-									format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss"
-									showTime="true" showOkButton="true" showClearButton="false" />
-								<span style="margin-left: 20px; margin-top: 10px;">等级日期：</span>
-								<input id="data" style="margin-top: 10px;"
-									class="nui-datepicker" value="" nullValue="null"
-									format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss"
-									showTime="true" showOkButton="true" showClearButton="false" />
-								<span style="margin-left: 20px; margin-top: 10px;">预约类型：</span>
-								<input class="nui-combobox"
-									style="width: 20%; margin-top: 10px;" /> </br> <span
-									style="margin-left: 20px; margin-top: 10px;">预约单号：</span> <input
-									class="nui-textbox" style="width: 5%; margin-top: 10px;" /> <span
-									style="margin-left: 20px; margin-top: 10px;">登记人：</span> <input
-									class="nui-textbox" style="width: 50%; margin-top: 10px;" /> </br> <span
-									style="margin-left: 20px; margin-top: 10px;">客户描述：</span> <input
-									class="nui-textarea"
-									style="width: 96%; height: 38%; margin: 10px 20px 0 20px;" />
-
-							</div>
-
-						</div>
-					</div>
-
-					<div showCollapseButton="false">
+				<div class="nui-panel" title="基本信息"  style="border-bottom: 0; padding: 0px; width: 100%; height: 100%;">
+					<div class="nui-fit">
+						<table >
+							<tr style="display: block;margin: 0">
+								<td id="label1">
+									<label>车牌号：</label>
+								</td>
+								<td>
+									<input class="nui-buttonedit" id="td" onclick="onCustomer()" />
+								</td>
+								<td id="label2">
+									<label>品牌：</label>
+								</td>
+								<td>
+									<input class="nui-combobox" id="td" />
+								</td>
+							</tr>
+							<tr style="display: block;margin: 0">
+								<td id="label1">
+									<label>车型：</label>
+								</td>
+								<td>
+									<input class="nui-textbox" style="width: 646px; " />
+								</td>
+							</tr>
+							<tr style="display: block;margin: 0">
+								<td id="label1">
+									<label style="color: #FF0000">联系人：</label>
+								</td>
+								<td>
+									<input class="nui-textbox" id="td" />
+								</td>
+								<td id="label2">
+									<label style="color: #FF0000">联系电话：</label>
+								</td>
+								<td>
+									<input class="nui-textbox" id="td" />
+								</td>
+								<td id="label2">
+									<label>预约项目：</label>
+								</td>
+								<td>
+									<input class="nui-combobox" id="td" />
+								</td>
+							</tr>
+							<tr style="display: block;margin: 0">
+								<td id="label1">
+									<label style="color: #FF0000">预约来厂日期：</label>
+								</td>
+								<td>
+									<input id="td"  class="nui-datepicker" viewDate="new Date()"
+										   nullValue="null" format="yyyy-MM-dd"  showOkButton="true" showClearButton="false" />
+								</td>
+								<td id="label2">
+									<label>登记日期：</label>
+								</td>
+								<td>
+									<input id="td" class="nui-datepicker" viewDate="new Date()" nullValue="null" allowInput="false "
+										   format="yyyy-MM-dd"  showOkButton="true" showClearButton="false" />
+								</td>
+								<td id="label2">
+									<label>预约类型：</label>
+								</td>
+								<td>
+									<input class="nui-combobox" id="td" />
+								</td>
+							</tr>
+							<tr style="display: block;margin: 0">
+								<td id="label1">
+									<label>预约单号：</label>
+								</td>
+								<td>
+									<input id="td"  class="nui-datepicker" viewDate="new Date()"
+										   nullValue="null" format="yyyy-MM-dd"  showOkButton="true" showClearButton="false" />
+								</td>
+								<td id="label2">
+									<label>登记人：</label>
+								</td>
+								<td>
+									 <input class="nui-textbox" id="td" />
+								</td>
+							</tr>
+							<tr style="display: block;margin: 0">
+								<td id="label1">
+									<label>客户描述：</label>
+								</td>
+							</tr>
+							<tr style="display: block;margin: 0">
+								<td >
+									<input class="nui-textarea" style="width: 990px;height: 100px"/>
+								</td>
+							</tr>
+							<tr style="display: block;margin: 0">	
+								<td>
+									<label>预约跟踪明细</label>
+								</td>
+							</tr>
+						</table>
 						<div class="nui-fit">
 							<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
 								style="width: 100%; height: 100%;"
-								url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+								url=""
 								pageSize="20" showPageInfo="true" multiSelect="true"
 								showPageIndex="false" showPage="true" showPageSize="false"
 								showReloadButton="false" showPagerButtonIcon="false"
@@ -186,8 +232,7 @@
 								allowSortColumn="true" virtualScroll="true"
 								virtualColumns="true">
 								<div property="columns">
-									<div id="type" field="type" headerAlign="center"
-										allowSort="true" visible="true" width="5%">序号</div>
+									<div type="indexcolumn"  headerAlign="center" allowSort="true"  width="5%">序号</div>
 									<div header="基本信息" headerAlign="center">
 										<div property="columns">
 											<div id="type" field="type" headerAlign="center"
@@ -214,7 +259,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -223,6 +267,69 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	
+    	function history(){
+    		nui.open({
+    			url:"../../common/History.jsp",
+    			title:"维修历史",width:850,height:640,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"history"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function onMore(){
+    		nui.open({
+    			url:"./subpage/More.jsp",
+    			title:"高级查询",width:380,height:180,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"more"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	function reservation(){
+    		nui.open({
+    			url:"../../common/ReservationTracking.jsp",
+    			title:"预约跟踪",width:560,height:500,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"reservation"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
+    	function quote(){
+    		nui.open({
+    			url:"../../common/subpage/customerSubpage/AddEditCustomer.jsp",
+    			title:"客户资料",width:450,height:650,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    		
+    	}
     </script>
 </body>
 </html>

@@ -18,11 +18,13 @@
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 	<div class="nui-toolbar" id="div_1"
 		style="border-bottom: 0; padding: 0px;">
-		<span> <a class="nui-button" id="edit" iconCls="icon-edit"
-			onclick="eidt()">修改</a> <a class="nui-button" id="add"
-			iconCls="icon-remove" onclick="remove()">删除</a> <a class="nui-button"
-			id="ok" iconCls="icon-ok" iconCls="" onclick="ok()">同意维修</a>
-		</span> <span width="100%"> 套餐合计：
+		<span> 
+			<a class="nui-button" plain="true" iconCls="icon-edit"  onclick="add()">修改</a> 
+			<a class="nui-button" plain="true" iconCls="icon-remove" onclick="remove()">删除</a> 
+			<a class="nui-button" plain="true" iconCls="icon-ok"  onclick="ok()">同意维修</a>
+		</span> 
+		<span width="100%"> 
+			套餐合计： 
 			<div id="total"></div>
 		</span>
 	</div>
@@ -64,6 +66,48 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	function add(){
+    		nui.open({
+    			url:"../../common/subpage/EditCombo.jsp",
+    			title:"修改套餐",
+    			width:650,
+    	        height:550,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    	}
+    	
+    	function editCombo(){
+    	    var row = grid.getSelected();
+    	    if(row) {
+    	        nui.open({
+    	            url:"../../common/subpage/EditCombo.jsp",
+    	            title:"修改套餐",
+    	            width:500,
+    	            height:680,
+    	            onload:function(){
+    	                var iframe = this.getIFrameEl();
+    	                var data = {pageType:"edit",record:{comguest:row}};
+    	                //直接从页面获取，不用去后台获取
+    	                iframe.contentWindow.setData(data);
+    	            },
+    	            ondestroy:function(action){
+    	                if(action == "saveSuccess"){
+    	                    grid.reload();
+    	                }
+    	            }
+    	        });
+    	    }else {
+    	        nui.alert("请选中一条数据", "系统提示");
+    	    }
+    	}
     </script>
 </body>
 </html>

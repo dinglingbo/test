@@ -21,19 +21,19 @@
 			<td>客户描述：
 				<div style="margin-top: 5px">
 					<input class="nui-textarea" name="isDisabled"
-						style="height: 230px; width: 445px;" emptyText="请输入..." />
+						style="height: 250px; width: 445px;" emptyText="请输入..." />
 				</div>
 			</td>
 			<td>故障现象：
 				<div style="margin-top: 5px">
 					<input class="nui-textarea" name="isDisabled"
-						style="height: 230px; width: 445px;" emptyText="请输入..." />
+						style="height: 250px; width: 445px;" emptyText="请输入..." />
 				</div>
 			</td>
 			<td>解决措施：
 				<div style="margin-top: 5px">
 					<input class="nui-textarea" name="isDisabled"
-						style="height: 230px; width: 445px;" emptyText="请输入..." />
+						style="height: 250px; width: 445px;" emptyText="请输入..." />
 				</div>
 			</td>
 		</tr>

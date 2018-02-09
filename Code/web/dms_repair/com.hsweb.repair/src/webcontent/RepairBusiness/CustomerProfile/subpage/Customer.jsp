@@ -140,8 +140,8 @@
     		nui.open({
     			url:"../CustomerProfile/CustomerProfileDetail.jsp",
     			title:"新增客户",
-				width:500,
-    	        height:680,
+				width:460,
+    	        height:640,
     			onload:function(){
     			    var iframe = this.getIFrameEl();
     			    var data = {pageType:"add"};
@@ -159,8 +159,8 @@
     	        nui.open({
     	            url:"../CustomerProfile/CustomerProfileDetail.jsp",
     	            title:"修改客户",
-    	            width:500,
-    	            height:680,
+    	            width:460,
+    	            height:640,
     	            onload:function(){
     	                var iframe = this.getIFrameEl();
     	                var data = {pageType:"edit",record:{comguest:row}};

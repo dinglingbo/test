@@ -100,9 +100,9 @@
 			</tr>
 		</table>
 		<div style="text-align:right;padding:10px;margin-top:0">
-			<a class="mini-button" iconCls="icon-upgrade" onclick="onGo()" style="margin-right:10px;"></a>   
-			<a class="mini-button" iconCls="icon-downgrade" onclick="onAdd()" style="margin-right:10px;"></a>  
-			<a class="mini-button" iconCls="icon-add" onclick="onBack()" ></a>   
+			<a class="nui-button" iconCls="icon-upgrade" onclick="onGo()" style="margin-right:10px;"></a>   
+			<a class="nui-button" iconCls="icon-downgrade" onclick="onAdd()" style="margin-right:10px;"></a>  
+			<a class="nui-button" iconCls="icon-add" onclick="onBack()" ></a>   
 		</div>
 	</div>
 

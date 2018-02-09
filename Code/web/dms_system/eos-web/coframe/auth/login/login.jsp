@@ -14,6 +14,9 @@
 <%
    String contextPath=request.getContextPath();
    String url = null;
+   String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
+   loginUrl = "com.hsapi.system.auth.login.login.flow";
+   
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
    if(isOpenSecurity){
@@ -21,12 +24,12 @@
    		if(!isAllInHttps){
    			String ip = securityConfig.getHost();
    			String https_port = securityConfig.getHttps_port();
-   			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/org.gocom.components.coframe.auth.login.login.flow";
+   			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
    		}else{
-   			url = "org.gocom.components.coframe.auth.login.login.flow"; 
+   			url = loginUrl;
    		}
    }else{
-   		url = "org.gocom.components.coframe.auth.login.login.flow";
+   		url = loginUrl;
    }
  %>
 <script type="text/javascript" src="<%=contextPath%>/common/nui/nui.js"></script>

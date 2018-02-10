@@ -1,5 +1,4 @@
-nui.parse();
-    	
+		nui.parse();
     	
     	var grid = nui.get("datagrid1");
     	var formData = new nui.Form("#form1").getData(false, false);

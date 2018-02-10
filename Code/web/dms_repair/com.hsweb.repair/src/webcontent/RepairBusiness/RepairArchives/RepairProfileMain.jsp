@@ -73,7 +73,7 @@
 					<a class="nui-button" plain="true" iconCls="icon-downgrade" onclick="next()">下一页</a> 
 					<a class="nui-button" plain="true" iconCls="icon-user" onclick="customer()">客户资料</a>
 					<a class="nui-button" plain="true" iconCls="icon-date" onclick="history()">维修历史</a> 
-					<a class="nui-menubutton" plain="true" iconCls="icon-print" onclick="print()">打印</a>
+					<a class="nui-menubutton" plain="true" iconCls="icon-print" menu="#printMenu">打印</a>
 				</td>
 			</tr>
 		</table>
@@ -201,7 +201,13 @@
 		
 		
 
-
+	<ul id="printMenu" class="nui-menu" style="display:none;">
+		<li class="separator"></li>
+        <li>打印维修委托单（A）</li>
+        <li>打印派工单（C）</li>
+	    <li>打印结算单（E）</li>
+	    <li>打印出单结算单（F）</li>
+    </ul>
 
 	<script type="text/javascript">
     	nui.parse();

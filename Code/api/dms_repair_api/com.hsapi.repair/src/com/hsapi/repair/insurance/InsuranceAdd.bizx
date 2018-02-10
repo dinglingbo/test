@@ -78,7 +78,7 @@
   <process:info author="Administrator" createTime="2018-01-29 14:41:27" date="2018-01-29Z" description="" name="TeamAdd" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.rpb.ComGuest" name="comguest"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.common.ComGuest" name="comguest"/>
   </process:inputs>
   <process:outputs/>
   <process:extAttribute1>public</process:extAttribute1>

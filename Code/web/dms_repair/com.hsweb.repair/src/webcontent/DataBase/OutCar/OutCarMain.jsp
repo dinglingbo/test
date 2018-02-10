@@ -19,12 +19,11 @@
 	<div  class="nui-toolbar" height="15px">
 		<label>出车报告</label>
 	</div>
-	<div class="nui-toolbar" id="div_1"
-		style="border-bottom: 0; padding: 0px; height: 30px">
+	<div class="nui-toolbar"  style="border-bottom: 0; padding: 0px; height: 30px">
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 100%"><a class="nui-button"  plain="true" iconCls="icon-add" onclick="addClass()">新增（A）</a> 
-					<a class="nui-button" plain="true"" iconCls="icon-edit" onclick="edit()">修改（E）</a>
+					<a class="nui-button" plain="true" iconCls="icon-edit" onclick="edit()">修改（E）</a>
 					<a class="nui-button" plain="true" iconCls="icon-remove" onclick="remove()">删除（D）</a> 
 					<a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存（S）</a> 
 					<a class="nui-button" plain="true" iconCls="icon-cancel" onclick="cancel()">取消（C）</a>
@@ -32,11 +31,10 @@
 			</tr>
 		</table>
 	</div>
-	<div class="nui-splitter" style="width: 100%; height: 100%;"
-		showHandleButton="false">
+	<div class="nui-splitter" style="width: 100%; height: 91.5%;" showHandleButton="false">
 		<div size="20%" showCollapseButton="false">
 			<div class="nui-fit">
-				<div size="240" showCollapseButton="false">
+				<div  class="nui-panel" showToolbar="false" title="出车报告列表"  showFooter="false" style="width:100%;height:100%;">
 					<!-- 树形联动 -->
 					<div class="nui-fit">
 						<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
@@ -49,29 +47,27 @@
 			</div>
 		</div>
 		<div showCollapseButton="false">
-			<div class="nui-splitter" style="width: 100%; height: 100%;"
-				showHandleButton="false">
+			<div class="nui-splitter" style="width: 100%; height: 100%;" showHandleButton="false">
 				<div size="60%" showCollapseButton="false">
-					<div class="nui-fit">
-						<div id="datagrid1" dataField="types" class="nui-datagrid"
-							style="width: 100%; height: 100%;"
-							url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
-							pageSize="20" showPageInfo="true" multiSelect="true"
-							showPageIndex="false" showPage="true" showPageSize="false"
-							showReloadButton="false" showPagerButtonIcon="false"
-							totalCount="total" onselectionchanged="selectionChanged"
-							allowSortColumn="true">
-
-							<div property="columns">
-								<div id="id" field="id" headerAlign="center" allowSort="true"
-									visible="true" width="40px">序号</div>
-								<div header="出车报告列表" headerAlign="center">
-									<div property="columns">
-										<div id="type" field="type" headerAlign="center"
-											allowSort="true" visible="true">报告类型</div>
-										<div id="name" field="name" headerAlign="center"
-											allowSort="true" visible="true">报告内容</div>
-
+					<div  class="nui-panel" showToolbar="false" title="出车报告类型"  showFooter="false" style="width:100%;height:100%;">
+						<div class="nui-fit">
+							<div id="datagrid1" dataField="types" class="nui-datagrid"
+								style="width: 100%; height: 100%;"
+								url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
+								pageSize="20" showPageInfo="true" multiSelect="true"
+								showPageIndex="false" showPage="true" showPageSize="false"
+								showReloadButton="false" showPagerButtonIcon="false"
+								totalCount="total" onselectionchanged="selectionChanged"
+								allowSortColumn="true">
+	
+								<div property="columns">
+									<div type="indexcolumn" headerAlign="center" width="40px">序号</div>
+									<div header="出车报告列表" headerAlign="center">
+										<div property="columns">
+											<div id="type" field="type" headerAlign="center" allowSort="true" visible="true">报告类型</div>
+											<div id="name" field="name" headerAlign="center" allowSort="true" visible="true">报告内容</div>
+	
+										</div>
 									</div>
 								</div>
 							</div>
@@ -79,17 +75,18 @@
 					</div>
 				</div>
 				<div showCollapseButton="false">
-					<span
-						style="margin-left: 20px; margin-top: 5px; height: 30px; display: inline-block;">报告类型：</span></br>
-					<span style="margin: 10px 0px 10px 20px;"> <input
-						class="nui-combobox" property="editor"
-						style="width: 90%; height: 30px; display: inline-block;"
-						data="Genders" />
-					</span></br> <span
-						style="margin-left: 20px; height: 30px; color: #FF0000; display: inline-block;">报告类型：</span></br>
-					<input class="nui-TextArea"
-						style="margin-left: 20px; width: 90%; height: 75%" />
-
+					<div  class="nui-panel" showToolbar="false" title="报告内容编辑"  showFooter="false" style="width:100%;height:100%;">
+						<span
+							style="margin-left: 20px; margin-top: 5px; height: 30px; display: inline-block;">报告类型：</span></br>
+						<span style="margin: 10px 0px 10px 20px;"> <input
+							class="nui-combobox" property="editor"
+							style="width: 90%; height: 30px; display: inline-block;"
+							data="Genders" />
+						</span></br> <span
+							style="margin-left: 20px; height: 30px; color: #FF0000; display: inline-block;">报告类型：</span></br>
+						<input class="nui-TextArea"
+							style="margin-left: 20px; width: 90%; height: 480px" />
+					</div>
 				</div>
 			</div>
 
@@ -114,7 +111,7 @@
 		<div id="east" title="报告内容编辑" region="east" width="500%"
 			showHeader="true" showCollapseButton="false"></div>
 	</div>
-	</div>
+	
 
 
 	<script type="text/javascript">

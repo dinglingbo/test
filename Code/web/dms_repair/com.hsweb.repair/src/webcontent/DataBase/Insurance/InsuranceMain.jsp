@@ -37,7 +37,7 @@
         </div>
     
 	
-	<div class="nui-toolbar" id="div_1" style="border-bottom:0;padding:0px;height:30px">
+	<div class="nui-toolbar"  style="border-bottom:0;padding:0px;height:30px">
 		<table style="width:100%">
 			<tr >
 				<td style="width:100%" >

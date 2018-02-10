@@ -5,11 +5,11 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-02-08 16:04:12
+  - Date: 2018-02-09 09:40:17
   - Description:
 -->
 <head>
-<title>维修完工</title>
+<title>完工总检</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <style type="text/css">
@@ -33,12 +33,7 @@
     		width: 330px;
     		height: 200px;
     	}
-    	div#mini-32{
-    		height:22px
-    	}
-    	div#mini-52{
-    		height:22px
-    	}
+    	
     </style>
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
@@ -73,15 +68,21 @@
 						<label field="" style="color:#0000FF;width:120px; " /></label>
 					</td>
 				</tr>
-				<tr style="display: block; margin:-2px 0">
+				<tr style="display: block; margin:-3px 0">
 					<td>
 						<label style="font-family:Verdana;">快速查询：</label>
 					</td>
 					<td>
-						<label >车牌号（客户）：</label>
+						<a class="nui-button"  style="color:#0000FF" plain="true"><u>在维修</u></a>
+						<a class="nui-button"  style="color:#0000FF" plain="true"><u>完工总检</u></a>
 					</td>
 					<td>
-						<input class="nui-textbox" /> 
+						<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin:0 10px 0 0" ></span>
+					</td>
+					<td>
+						
+						<label class="form_label" >车牌号（客户）：</label>
+						<input class="nui-textbox" emptyText="请输入..." /> 
 						<a class="nui-button" iconCls="icon-search" onclick="search()" plain="true">查询（Q）</a>
 					</td>
 				</tr>
@@ -93,13 +94,14 @@
 			<tr>
 				<td style="width: 100%">
 					<a class="nui-button" plain="true" 	iconCls="icon-reload" onclick="reloadData()">刷新(R)</a> 
-					<a class="nui-button" plain="true"  iconCls="icon-print" onclick="print()">打印(P)</a>
+					<a class="nui-button" plain="true"  iconCls="" onclick="onFinnish()">完工总检</a> 
+					<a class="nui-button" plain="true"  iconCls="icon-print"  onclick="print()">打印(P)</a>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<div  class="nui-splitter" style="width:100%;height:100%;" allowResize="false">
-	    <div size="24%" showCollapseButton="false">
+	<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false">
+		<div size="24%" showCollapseButton="false">
 	        <div class="nui-fit">
 				<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 87.5%;"
 					url=""
@@ -115,20 +117,15 @@
 			</div>	
 		</div>
 		<div showCollapseButton="false">
-	        <div id="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%; height: 92.5%;" plain="false" onactivechanged="">
-				<div title="完工处理" >
+	        <div id="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%; height: 87.5%;" plain="false" onactivechanged="">
+				<div title="派工处理" >
 					<div class="nui-fit">
-						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 89%;"url=""
+						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 100%;"url=""
 							pageSize="20" showPageInfo="false" multiSelect="true" showPageIndex="false" showPageSize="false"
 							showReloadButton="false" showPagerButtonIcon="false" selectOnRightClick="true"
 							totalCount="total" allowSortColumn="true" virtualScroll="true" virtualColumns="true">
 		
 							<div property="columns">
-								<div header="右键" headerAlign="center">
-									<div property="columns">
-										<div type="checkboxcolumn"  headerAlign="center" allowSort="true" width="30px">选择</div>
-									</div>
-								</div>
 								<div header="基本信息" headerAlign="center">
 									<div property="columns">
 										<div  field="name" headerAlign="center" allowSort="true" visible="true" width="100px">维修项目</div>
@@ -153,32 +150,16 @@
 								</div>
 							</div>
 						</div>
-						<div>
-							<table>
-								<tr style="display: block; margin:0">
-									<td>
-										<a class="nui-button" iconCls="icon-ok" onclick="save()" plain="true">全选</a>
-										<a class="nui-button" iconCls="icon-ok" onclick="save()" plain="true">项目完工</a>
-										<a class="nui-button" iconCls="icon-cancel" onclick="ok()" plain="true">取消完工</a>
-									</td>
-								</tr>
-							</table>
-						</div>
-		    		</div>
+					</div>
 		    	</div>
-		    	<div title="审核领料单" >
+				<div title="审核领料单" >
 					<div class="nui-fit">
-						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 89%;"url=""
+						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 100%;"url=""
 							pageSize="20" showPageInfo="false" multiSelect="true" showPageIndex="false" showPageSize="false"
 							showReloadButton="false" showPagerButtonIcon="false" selectOnRightClick="true"
 							totalCount="total" allowSortColumn="true" virtualScroll="true" virtualColumns="true">
 		
 							<div property="columns">
-								<div header="右键" headerAlign="center">
-									<div property="columns">
-										<div type="checkboxcolumn"  headerAlign="center" allowSort="true" width="30px">选择</div>
-									</div>
-								</div>
 								<div header="零件信息" headerAlign="center">
 									<div property="columns">
 										<div  field="name" headerAlign="center" allowSort="true" visible="true" width="100px">零件编码</div>
@@ -190,30 +171,16 @@
 									<div property="columns">
 										<div  field="name" headerAlign="center" allowSort="true" visible="true" width="90px">领料人</div>
 										<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="90px">领料时间</div>
-										<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="60px">出库标记</div>
+										<div  class="nui-checkbox" field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="60px">出库标记</div>
 										<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="60px">审核人</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div>
-							<table>
-								<tr style="display: block; margin:0">
-									<td>
-										<a class="nui-button" iconCls="icon-ok" onclick="save()" plain="true">全选</a>
-										<a class="nui-button" iconCls="icon-cancel" onclick="save()" plain="true">反选</a>
-										<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin:0 5px " ></span>
-										<a class="nui-button" iconCls="icon-node" onclick="ok()" plain="true">领料审核</a>
-										<a class="nui-button" iconCls="icon-cancel" onclick="ok()" plain="true">取消审核</a>
-									</td>
-								</tr>
-							</table>
-						</div>
-		    		</div>
-		    	</div>
-					    
-				<div title="工单信息" >
-					<div  class="nui-panel" showToolbar="false" title="维修信息" showFooter="false" style="width:100%;height:31%;margin: 0 0 4px 0;">
+					</div>
+		    	</div>	    
+				<div title="基本信息" >
+					<div  class="nui-panel" showToolbar="false" title="维修信息" showFooter="false" style="width:100%;height:33%;margin: 0 0 4px 0;">
 						<table>
 							<tr style="display: block; margin:7px 0 0 0">
 								<td width="60px" style="text-align: right;">
@@ -266,7 +233,7 @@
 									<label>预计交车：</label>
 								</td>
 								<td>
-									<input class="nui-datepicker" id="basetd1" format="yyyy-MM-dd "  viewDate="new Date()"/>
+									<input class="nui-datepicker" id="basetd1" format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="time" viewDate="new Date()"/>
 								</td>
 								<td width="60px" style="text-align: right;">
 									<label>维修日期：</label>
@@ -291,7 +258,7 @@
 							</tr>
 						</table>
 					</div>
-					<div  class="nui-panel" showToolbar="false" title="描述信息" showFooter="false" style="width:100%;height:44%;margin: 0 0 4px 0;">
+					<div  class="nui-panel" showToolbar="false" title="描述信息" showFooter="false" style="width:100%;height:47%;margin: 0 0 4px 0;">
 						<table style="margin:0 0 -3px 0">
 							<tr style="display: block; margin:0">
 								<td width="">
@@ -317,7 +284,7 @@
 					</div>
 					<div  class="nui-panel" showToolbar="false" title="车辆信息" showFooter="false" style="width:100%;height:18%;margin: 4px 0 0 0;">
 						<table>
-							<tr style="display: block; margin:5px 0 0 0">
+							<tr style="display: block; margin:3px 0 0 0">
 								<td width="60px" style="text-align: right;">
 									<label>车牌号：</label>
 								</td>
@@ -337,7 +304,7 @@
 									<input id="text1" class="nui-textbox" />
 								</td>
 							</tr>
-							<tr style="display: block; margin:5px 0 0 0">
+							<tr style="display: block; margin:3px 0 0 0">
 								<td width="60px" style="text-align: right;">
 									<label>底盘号：</label>
 								</td>
@@ -357,7 +324,6 @@
 			</div>	
 	    </div>
 	</div>
-
 
 
 	<script type="text/javascript">

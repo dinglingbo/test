@@ -25,22 +25,20 @@
 
 	<div class="nui-toolbar" id="form1"
 		style="height: 30px; padding: 2px; border-bottom: 0;">
-		<input class="nui-hidden" name="criteria/_entity"
-			value="com.hsapi.repair.DataBase.RpbClass" />
+		<input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.DataBase.RpbClass" />
 		<table class="table" id="table1" style="height: 100%">
 			<tr style="width: 100%; height: 12%; line-height: 12%;">
 				<td><label style="font-family: Verdana;">快速查询：</label> <a
-					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(0)">已启用</a> <a
-					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(1)">已禁用</a> <a
-					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(2)">全部</a></td>
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(0)"><u>已启用</u></a> <a
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(1)"><u>已禁用</u></a> <a
+					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(2)"><u>全部</u></a></td>
 			</tr>
 		</table>
 	</div>
 
 
 
-	<div class="nui-splitter" style="width: 100%; height: 100%;"
-		showHandleButton="false">
+	<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false" showHandleButton="false">
 		<div size="45%" showCollapseButton="false">
 			<!-- 班组 -->
 			<div class="nui-toolbar"
@@ -71,14 +69,10 @@
 						<div type="indexcolumn" headerAlign="center">序号</div>
 						<div header="班组信息" headerAlign="center">
 							<div property="columns">
-								<div id="" field="" headerAlign="center" allowSort="true"
-									visible="true">维修工种</div>
-								<div id="name" field="name" headerAlign="center"
-									allowSort="true" visible="true">班组名称</div>
-								<div id="captainName" field="captainName" headerAlign="center"
-									allowSort="true" visible="true">班组长名字</div>
-								<div id="isDisabled" field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" renderer="onIsDisabled">是否禁用</div>
+								<div  field="" headerAlign="center" allowSort="true" visible="true">维修工种</div>
+								<div  field="name" headerAlign="center" allowSort="true" visible="true">班组名称</div>
+								<div  field="captainName" headerAlign="center" allowSort="true" visible="true">班组长名字</div>
+								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" renderer="onIsDisabled">是否禁用</div>
 							</div>
 						</div>
 					</div>
@@ -103,23 +97,19 @@
 			<div class="nui-fit">
 				<div id="rightGrid" dataField="rpbClassMembers" class="nui-datagrid"
 					style="width: 100%; height: 95%;"
-					url="com.hsapi.repair.team.TeamMemberQuery.biz.ext" pageSize="20"
+					url="" pageSize="20"
 					showPageInfo="true" multiSelect="true" showPageIndex="false"
 					showPage="true" showPageSize="false" showReloadButton="false"
 					showPagerButtonIcon="false" totalCount="total"
 					allowSortColumn="true" selectOnLoad="true"
-					onrowdblclick="disableTeamMember" ondrawcell="onDrawCell">
+					>
 					<div property="columns">
-						<div id="" field="" headerAlign="center" allowSort="true"
-							visible="true" width="30px">序号</div>
+						<div type="indexcolumn"headerAlign="center" allowSort="true" visible="true" width="30px">序号</div>
 						<div header="成员信息" headerAlign="center">
 							<div property="columns">
-								<div id="code" field="code" headerAlign="center"
-									allowSort="true" visible="true">成员编号</div>
-								<div id="name" field="name" headerAlign="center"
-									allowSort="true">班组成员</div>
-								<div id="idDisabled" field="idDisabled" headerAlign="center"
-									allowSort="true">是否禁用</div>
+								<div  field="code" headerAlign="center" allowSort="true" visible="true">成员编号</div>
+								<div  field="name" headerAlign="center" allowSort="true">班组成员</div>
+								<div  field="idDisabled" headerAlign="center" allowSort="true">是否禁用</div>
 							</div>
 						</div>
 					</div>

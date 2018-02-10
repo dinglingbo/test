@@ -19,7 +19,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.DataBase.RpbClass[]" name="rpbclass" type="query" valueType="DataObject">rpbclass</process:return>
+      <process:return id="0" language="com.hsapi.repair.rpb.RpbClass[]" name="rpbclass" type="query" valueType="DataObject">rpbclass</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
     </process:returns>
   </nodes>

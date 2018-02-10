@@ -1,6 +1,29 @@
 
+<%@page import="com.eos.data.datacontext.IUserObject"%>
+<%@page import="com.eos.data.datacontext.DataContextManager"%>
+<%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
+<script src="<%=request.getContextPath()%>/common/nui/nui.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	<%
+		IMUODataContext muo = DataContextManager.current().getMUODataContext();
+		String currUserName = "";
+		String currOrgid = "";
+		if (muo != null) 
+		{
+			IUserObject userobject = muo.getUserObject();
+			if (userobject != null) {
+				//String ip = userobject.getUserRemoteIP();
+				currUserName = userobject.getUserRealName();
+				currOrgid = userobject.getUserOrgId();
+			}
+		}
+	%>
+	var currUserName = <%="'"+currUserName+"'"%>;
+	var currOrgid = <%="'"+currOrgid+"'"%>;
+</script>
 <script type="text/javascript">
 	function getRoot() {
 		var hostname = location.hostname;
@@ -106,6 +129,43 @@
 			}
 		});
 	}
+	var getAllCarBrandUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
+	function getAllCarBrand(callback) {
+		nui.ajax({
+			url : getAllCarBrandUrl,
+			type : "post",
+			success : function(data) {
+				if (data && data.carBrands) {
+					callback && callback(data);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	var getOrgListUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getOrgList.biz.ext";
+	function getOrgList(callback) {
+		nui.ajax({
+			url : getOrgListUrl,
+			type : "post",
+			success : function(data) {
+				if (data && data.orgList) {
+					callback && callback({
+						code : "S",
+						orgList : data.orgList
+					});
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
 </script>
 <style type="text/css">
 html,body {
@@ -115,5 +175,9 @@ html,body {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+}
+
+table {
+	font-size: 12px;
 }
 </style>

@@ -38,9 +38,12 @@ var billStatusHash = {
 };
 $(document).ready(function(v)
 {
-    leftGrid = nui.get("leftGrid");
+	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
-
+    leftGrid.on("load",function()
+    {
+        onLeftGridRowDblClick({})
+    });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
@@ -113,6 +116,9 @@ function loadRightGridData(enterId)
     rightGrid.load({
         enterId:enterId
     });
+}
+function reloadLeftGrid(){
+    leftGrid.reload();
 }
 function onLeftGridDrawCell(e)
 {
@@ -190,7 +196,7 @@ function doSearch(params)
     leftGrid.load({
         params:params
     },function(){
-        onLeftGridRowDblClick({});
+  //      onLeftGridRowDblClick({});
     });
 }
 function advancedSearch()
@@ -354,7 +360,7 @@ function save()
             if(data.errCode == "S")
             {
                 nui.alert("保存成功");
-                onLeftGridRowDblClick({});
+                reloadLeftGrid();
             }
             else{
                 nui.alert(data.errMsg||"保存失败");

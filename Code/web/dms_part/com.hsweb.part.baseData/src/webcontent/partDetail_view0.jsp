@@ -54,7 +54,8 @@
 </style>
 </head>
 <body>
-    <div class="nui-fit" style="padding: 10px;overflow: hidden;">
+    
+<div class="nui-fit" style="padding: 10px;overflow: hidden;">
         <span>基本信息</span>
         <div id="basicInfoForm" class="form">
             <input class="nui-hidden" name="id"/>
@@ -118,17 +119,17 @@
             </div>
             <div class="row">
                 <span class="title title-width1">适用车型：</span>
-                <input name="applyCarModel"
-                       id="applyCarModel"
+                <input name="applyCarbrandId"
+                       id="applyCarbrandId"
                        class="nui-combobox width1"
-                       textField="name"
+                       textField="carBrandZh"
                        valueField="id"
                        emptyText="请选择..."
                        url=""
                        allowInput="true"
-                       showNullItem="true"
+                       showNullItem="false"
                        nullItemText="请选择..."/>
-                <input name="xxxxx" class="nui-textbox width4"/>
+                <input name="applyCarModel" id="applyCarModel" class="nui-textbox width4"/>
             </div>
             <div class="row">
                 <span class="title title-width1">通用编码：</span>
@@ -158,7 +159,7 @@
                 <span class="title title-width1">重量：</span>
                 <input name="weight" class="nui-textbox width1" value="0"/>
                 <span class="title title-width1">是否禁用：</span>
-                <input name="uniformSellPrice" class="nui-checkbox" trueValue="1" falseValue="0"/>
+                <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0"/>
                 <span class="title title-width1">统一售价：</span>
                 <input name="isUniform" class="nui-checkbox" trueValue="1" falseValue="0"/>
             </div>
@@ -168,5 +169,6 @@
         <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
         <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
     </div>
+    
 </body>
 </html>

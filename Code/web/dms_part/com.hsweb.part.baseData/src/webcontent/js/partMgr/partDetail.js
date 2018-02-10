@@ -128,6 +128,11 @@ function setData(data)
     qualityTypeIdList = data.qualityTypeIdList||[];
 
     applyCarModel.setData(applyCarModelList);
+    applyCarModel.on("valuechanged",function()
+    {	   
+    	var value = applyCarModel.getText();
+        nui.get("applyCarModel").setValue(value);
+    });
     abcType.setData(abcTypeList);
  //   partBrandId.setData(partBrandIdList);
     qualityTypeId.setData(qualityTypeIdList);

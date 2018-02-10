@@ -162,4 +162,202 @@
         </dynamic>
 		ORDER BY to_char(a.out_date,'mm') 
     </select>
+    
+    <resultMap class="commonj.sdo.DataObject" id="resultMap2">
+        <result column="part_id" javaType="string" property="partId"/>
+        <result column="orgcode" javaType="string" property="orgcode"/>
+        <result column="code" javaType="string" property="partCode"/>
+        <result column="name" javaType="string" property="partName"/>
+        <result column="purchaseEnter" javaType="string" property="purchaseEnter"/>
+        <result column="purchaseOut" javaType="string" property="purchaseOut"/>
+        <result column="repairEnter" javaType="string" property="repairEnter"/>
+        <result column="sellOut" javaType="string" property="sellOut"/>
+        <result column="sellEnter" javaType="string" property="sellEnter"/>
+        <result column="repairOut" javaType="string" property="repairOut"/>
+        <result column="inventoryProfit" javaType="string" property="inventoryProfit"/>
+        <result column="inventoryLoss" javaType="string" property="inventoryLoss"/>
+        <result column="allotEnter" javaType="string" property="allotEnter"/>
+        <result column="allotOut" javaType="string" property="allotOut"/>
+        <result column="materialEnter" javaType="string" property="materialEnter"/>
+        <result column="materialOut" javaType="string" property="materialOut"/>
+    </resultMap>
+    <select id="queryInventoryDetailList" parameterClass="java.util.HashMap" resultMap="resultMap2">
+    	SELECT a.part_id,
+		       a.orgcode,
+		       b.code,
+		       <dynamic>
+		    		<isNotEmpty prepend="" property="amt">   
+		                decode(a.operate_type,'050101',sum(a.amt),0) AS purchaseEnter,
+				       decode(a.operate_type,'050201',sum(a.amt),0) AS purchaseOut,
+				       decode(a.operate_type,'050102',sum(a.amt),0) AS repairEnter,
+				       decode(a.operate_type,'050202',sum(a.amt),0) AS sellOut,
+				       decode(a.operate_type,'050104',sum(a.amt),0) AS sellEnter,
+				       decode(a.operate_type,'050203',sum(a.amt),0) AS repairOut,
+				       decode(a.operate_type,'050105',sum(a.amt),0) AS inventoryProfit,
+				       decode(a.operate_type,'050205',sum(a.amt),0) AS inventoryLoss,
+				       decode(a.operate_type,'050106',sum(a.amt),0) AS allotEnter,
+				       decode(a.operate_type,'050206',sum(a.amt),0) AS allotOut,
+				       decode(a.operate_type,'050103',sum(a.amt),0) AS materialEnter,
+       				   decode(a.operate_type,'050204',sum(a.amt),0) AS materialOut,
+		            </isNotEmpty>
+		    		<isNotEmpty prepend="" property="qty"> 
+		    			decode(a.operate_type,'050101',sum(a.qty),0) AS purchaseEnter,
+				       decode(a.operate_type,'050201',sum(a.qty),0) AS purchaseOut,
+				       decode(a.operate_type,'050102',sum(a.qty),0) AS repairEnter,
+				       decode(a.operate_type,'050202',sum(a.qty),0) AS sellOut,
+				       decode(a.operate_type,'050104',sum(a.qty),0) AS sellEnter,
+				       decode(a.operate_type,'050203',sum(a.qty),0) AS repairOut,
+				       decode(a.operate_type,'050105',sum(a.qty),0) AS inventoryProfit,
+				       decode(a.operate_type,'050205',sum(a.qty),0) AS inventoryLoss,
+				       decode(a.operate_type,'050106',sum(a.qty),0) AS allotEnter,
+				       decode(a.operate_type,'050206',sum(a.qty),0) AS allotOut,
+				       decode(a.operate_type,'050103',sum(a.qty),0) AS materialEnter,
+       				   decode(a.operate_type,'050204',sum(a.qty),0) AS materialOut,
+		            </isNotEmpty>  
+		       </dynamic>
+		       b.name
+		       FROM PTS_INVOICING_STORE_DETAIL a LEFT JOIN wb_common.com_attribute b ON (a.part_id = b.source_id)
+				where a.store_id = #storeId#
+			<dynamic>
+				<isNotEmpty prepend="and" property="today">  
+	            <!--本日-->
+	                (to_char(a.record_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="yesterday">  
+	            <!--昨日-->
+	                (to_char(a.record_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="thisMonth"> 
+	            <!--本月 --> 
+	                (to_char(a.record_date,'yyyymm')=to_char(sysdate,'yyyymm'))
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="thisWeek">  
+	            <!--本周-->
+	                (to_char(a.record_date,'yyyyiw') = to_char(sysdate,'yyyyiw'))
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="lastWeek">  
+	            <!--上周-->
+	                (to_char(a.record_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="lastMonth"> 
+	            <!--上月 --> 
+	                (to_char(a.record_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="thisYear">  
+	            <!--本年-->
+	                (to_char(a.record_date,'yyyy')=to_char(sysdate,'yyyy'))
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="lastYear">  
+	            <!--上年-->
+	                (to_char(a.record_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+	            </isNotEmpty>
+	        </dynamic>
+				GROUP BY a.operate_type,a.part_id,a.orgcode,b.code,b.name
+    </select>
+    
+    
+    <resultMap class="commonj.sdo.DataObject" id="resultMap3">
+        <result column="PART_ID" javaType="string" property="partId"/>
+        <result column="balaAmt" javaType="string" property="balaAmt"/>
+    </resultMap>
+    <select id="queryBeginInventory" parameterClass="java.util.HashMap" resultMap="resultMap3">
+    	SELECT A.PART_ID,SUM(A.BALA_AMT) balaAmt
+			  FROM PTS_INVOICING_STORE_DETAIL A
+			 WHERE A.DETAIL_ID IN
+			       (SELECT MAX(DETAIL_ID)
+			          FROM PTS_INVOICING_STORE_DETAIL
+			         WHERE store_id = #storeId#
+			      <dynamic>
+					  	<isNotEmpty prepend="and" property="today">  
+			            <!--本日-->
+			                (to_char(record_date,'yyyymmdd') &lt; to_char(sysdate,'yyyymmdd'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="yesterday">  
+			            <!--昨日-->
+			                (to_char(record_date,'yyyymmdd') &lt; to_char(sysdate-1,'yyyymmdd'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisWeek">  
+			            <!--本周-->
+			                (to_char(record_date,'yyyyiw') &lt; to_char(sysdate,'yyyyiw'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastWeek">  
+			            <!--上周-->
+			                (to_char(record_date,'yyyyiw')  &lt; to_char(sysdate-7,'yyyyiw'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisMonth"> 
+			            <!--本月 --> 
+			                (to_char(record_date,'yyyymm') &lt; to_char(sysdate,'yyyymm'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastMonth"> 
+			            <!--上月 --> 
+			                (to_char(record_date,'yyyymm') &lt; to_char(add_months(sysdate,-1),'yyyymm'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisYear">  
+			            <!--本年-->
+			                (to_char(record_date,'yyyy') &lt; to_char(sysdate,'yyyy'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastYear">  
+			            <!--上年-->
+			                (to_char(record_date,'yyyy') &lt; to_char(add_months(sysdate,-12),'yyyy'))
+			            </isNotEmpty>
+				  </dynamic>
+			         GROUP BY orgcode, PART_ID, STORE_ID)
+			 GROUP BY A.PART_ID
+    </select>
+    
+    <select id="queryEndInventory" parameterClass="java.util.HashMap" resultMap="resultMap3">
+    	SELECT A.PART_ID,SUM(A.BALA_AMT) balaAmt
+			  FROM PTS_INVOICING_STORE_DETAIL A
+			 WHERE A.DETAIL_ID IN
+			       (SELECT MAX(DETAIL_ID)
+			          FROM PTS_INVOICING_STORE_DETAIL
+			         WHERE store_id = #storeId#
+			      <dynamic>
+					  	<isNotEmpty prepend="and" property="today">  
+			            <!--本日-->
+			                (to_char(record_date,'yyyymmdd') &lt;= to_char(sysdate,'yyyymmdd'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="yesterday">  
+			            <!--昨日-->
+			                (to_char(record_date,'yyyymmdd') &lt;= to_char(sysdate-1,'yyyymmdd'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisWeek">  
+			            <!--本周-->
+			                (to_char(record_date,'yyyyiw') &lt;= to_char(sysdate,'yyyyiw'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastWeek">  
+			            <!--上周-->
+			                (to_char(record_date,'yyyyiw')  &lt;= to_char(sysdate-7,'yyyyiw'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisMonth"> 
+			            <!--本月 --> 
+			                (to_char(record_date,'yyyymmdd') &lt;= to_char(sysdate,'yyyymmdd'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastMonth"> 
+			            <!--上月 --> 
+			                (to_char(record_date,'yyyymmdd') &lt; to_char(trunc(sysdate,'mm'),'yyyymmdd'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="thisYear">  
+			            <!--本年-->
+			                (to_char(record_date,'yyyymmdd') &lt;= to_char(sysdate,'yyyymmdd'))
+			            </isNotEmpty>
+			            <isNotEmpty prepend="and" property="lastYear">  
+			            <!--上年-->
+			                (to_char(record_date,'yyyymmdd') &lt; to_char(trunc(sysdate,'yyyy'),'yyyymmdd'))
+			            </isNotEmpty>
+				  </dynamic>
+			         GROUP BY orgcode, PART_ID, STORE_ID)
+			 GROUP BY A.PART_ID
+    </select>
+    
+    <select id="queryCurrInventory" parameterClass="java.util.HashMap" resultMap="resultMap3">
+    	SELECT A.PART_ID,SUM(A.BALA_AMT) balaAmt
+			  FROM PTS_INVOICING_STORE_DETAIL A
+			 WHERE A.DETAIL_ID IN
+			       (SELECT MAX(DETAIL_ID)
+			          FROM PTS_INVOICING_STORE_DETAIL
+			         WHERE store_id = #storeId#
+			         GROUP BY orgcode, PART_ID, STORE_ID)
+			 GROUP BY A.PART_ID
+    </select>
 </sqlMap>

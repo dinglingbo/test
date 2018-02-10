@@ -209,7 +209,7 @@ function doSearch(params)
 function advancedSearch()
 {
     advancedSearchWin.show();
-    advancedSearchForm.clear();
+//    advancedSearchForm.clear();
     if(advancedSearchFormData)
     {
         advancedSearchForm.setData(advancedSearchFormData);
@@ -218,11 +218,19 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    if(searchData.startDate)
+    {
+        searchData.startDate = searchData.startDate.substr(0,10);
+    }
+    if(searchData.endDate)
+    {
+        searchData.endDate = searchData.endDate.substr(0,10);
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }
 function onAdvancedSearchCancel(){
-    advancedSearchForm.clear();
+ //   advancedSearchForm.clear();
     advancedSearchWin.hide();
 }
 function addInbound()

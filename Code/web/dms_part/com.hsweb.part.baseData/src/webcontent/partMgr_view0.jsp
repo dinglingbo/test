@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.1"></script>
 <style type="text/css">
 </style>
 </head>
@@ -44,7 +44,7 @@
                     <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                     <span class="separator"></span>
                     <label style="font-family:Verdana;">包含已禁用：</label>
-                    <input class="nui-checkbox" trueValue="1" falseValue="0" id="showDisabled"/>
+                    <input class="nui-checkbox" trueValue="1" falseValue="0" name="showDisabled"/>
                 </td>
             </tr>
         </table>

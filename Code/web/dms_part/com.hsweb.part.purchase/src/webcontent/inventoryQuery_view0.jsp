@@ -32,17 +32,17 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">昨日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">上周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">上月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)">上年</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
                 <span class="separator"></span>
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)">未审</a>-->
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)">已审</a>-->
@@ -68,7 +68,8 @@
          showPager="false"
          dataField="ptsOutMainList"
          idField="id"
-         url="">
+         frozenStartColumn="0"
+         frozenEndColumn="0">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="维度" headerAlign="center">
@@ -124,26 +125,28 @@
 </div>
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:110px;"
+     title="高级查询" style="width:220px;height:150px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
             <tr>
-                <td class="title">日期:</td>
+                <td class="title">起始日期:</td>
                 <td>
                     <input name="startDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
-                <td class="">至:</td>
+            </tr>
+            <tr>
+                <td class="title">终止日期:</td>
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>

@@ -131,7 +131,7 @@
       <process:to type="query">outMain/orgcode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">outMain/orgid</process:to>
     </process:copy>
     <process:copy>

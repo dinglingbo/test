@@ -13,7 +13,7 @@
 <title>班组定义</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/repair/js/DataBase/Team/TeamMain.js?v=1.0.1"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/DataBase/Team/TeamMain.js?v=1.0.1"></script>
 
 
 
@@ -23,10 +23,10 @@
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 
 	<div class="nui-toolbar" id="form1" style="height: 30px; padding: 2px; border-bottom: 0;">
+		<input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.DataBase.RpbClass" />
 		<table class="table" id="table1" style="height: 100%">
 			<tr style="width: 100%; height: 12%; line-height: 12%;">
-				<td>
-				<label style="font-family:Verdana;font-size: 12px;">快速查询：</label> <a
+				<td><label style="font-family: Verdana;font-size: 12px;">快速查询：</label> <a
 					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(0)"><u>已启用</u></a> <a
 					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(1)"><u>已禁用</u></a> <a
 					class="nui-button" plain="true" style="color:#0000FF" onclick="onSearch(2)"><u>全部</u></a></td>
@@ -43,26 +43,25 @@
 				style="padding: 2px; border-top: 0; border-left: 0; border-bottom: 0;">
 				<table style="width: 100%">
 					<tr>
-						<td style="white-space: nowrap;">
-							<a class="nui-button" id="add" iconCls="icon-add" onclick="addTeam()" plain="true">添加班组</a>
-							<a class="nui-button" id="update" iconCls="icon-edit" onclick="editTeam()" plain="true">编辑班组</a> 
-							<a class="nui-button" id="disabledLeft" iconCls="icon-no" onclick="disableTeam()" plain="true" >禁用班组</a>
-						</td>
+						<td style="white-space: nowrap;"><a class="nui-button"
+							id="add" iconCls="icon-add" onclick="addTeam()" plain="true">添加班组</a>
+							<a class="nui-button" id="update" iconCls="icon-edit"
+							onclick="editTeam()" plain="true">编辑班组</a> <a class="nui-button"
+							id="forbidden" iconCls="icon-no" onclick="disableTeam()"
+							plain="true">禁用班组</a></td>
 					</tr>
 				</table>
 			</div>
 			<div class="nui-fit">
 				<div id="leftGrid" dataField="rpbclass" class="nui-datagrid"
-					style="width: 100%; height: 95%;" 
-					url="" pageSize="20"
-					showPageInfo="true" multiSelect="true" showPageIndex="false"showPagerButtonIcon="false" 
-					showPage="true" showPageSize="false" showReloadButton="false" allowSortColumn="true"
-					
-					ondrawcell="onDrawCell"
-					onrowdblclick="editTeam"
-					onrowclick="onLeftGridRowClick"
-					selectOnLoad="true" 
-				>
+					style="width: 100%; height: 95%;"
+					url="com.hsapi.repair.team.TeamQuery.biz.ext" pageSize="20"
+					showPageInfo="true" multiSelect="true" showPageIndex="false"
+					showPage="true" showPageSize="false" showReloadButton="false"
+					showPagerButtonIcon="false" totalCount="total"
+					onselectionchanged="onSelectionChanged" allowSortColumn="true"
+					selectOnLoad="true" onrowdblclick="editTeam"
+					onrowclick="onLeftGridRowClick">
 
 					<div property="columns">
 						<div type="indexcolumn" headerAlign="center">序号</div>
@@ -94,7 +93,7 @@
 				</table>
 			</div>
 			<div class="nui-fit">
-				<div id="rightGrid" dataField="members" class="nui-datagrid"
+				<div id="rightGrid" dataField="rpbClassMembers" class="nui-datagrid"
 					style="width: 100%; height: 95%;"
 					url="" pageSize="20"
 					showPageInfo="true" multiSelect="true" showPageIndex="false"
@@ -119,6 +118,81 @@
 
 
 
-
+	<script type="text/javascript">
+    	nui.parse();
+    	
+    	var grid = nui.get("leftGrid");
+    	var grid2 = nui.get("rightGrid");
+    	var formData = new nui.Form("#form1").getData(false, false);
+    	grid.load(formData);
+    	
+    	
+		
+		
+		
+        function onSelectionChanged(e) {
+        
+            var dgrid = e.sender;
+            var record = dgrid.getSelected();
+            if (record) {
+                grid2.load({ grid: record.id });
+            }
+        }
+    	//重新刷新页面
+    	function refresh(){
+    		var form = new nui.Form("#form1");
+    		var json = form.getData(false, false);
+    		grid.load(json);
+    		nui.get("update").enable();
+    	}
+    	//查询
+    	function search(){
+    		var form = new nui.Form("#form1");
+    		var json = form.getData(false, false)
+    		grid.load(json);
+    	}
+    	//重置查询条件
+    	function reset(){
+    		var form = new nui.Form("#form1");
+    		grid.reset();
+    	}
+    	//enter键触发
+    	function onKeyEnter(e){
+    		search();
+    	}
+    	//选择列（判定，大于一编辑禁用）
+    	function selectionChanged(){
+    	    var rows = grid.getSelecteds();
+    	    if(rows.length>1){
+    	        nui.get("update").disable();
+    	    }else{
+    	        nui.get("update").enable();
+    	    }
+    	}
+    	
+    	
+    	function addTeamMember(){
+    		nui.open({
+    			url:"TeamMemberAdd.jsp",
+    			title:"添加班组成员",width:400,height:200,
+    			onload:function(){
+    			    var iframe = this.getIFrameEl();
+    			    var data = {pageType:"add"};
+    			    iframe.contentWindow.setFormData(data);
+    			},
+    			
+    		    ondestroy:function(action){
+    		    grid.reload();
+    		}	
+    		});
+    		
+    	}
+    	
+    	
+    	    
+    	    
+    	    
+    	
+    </script>
 </body>
 </html>

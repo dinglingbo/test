@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.workflow,com.primeton.eos.richweb,com.hsapi.re
+ pair.data,com.eos.foundation
+eos-webCtxPath: baseData
+Bundle-Vendor: liyin
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.repair.baseData
+Bundle-Description: 基础数据
+Bundle-SymbolicName: com.hsapi.repair.baseData
+

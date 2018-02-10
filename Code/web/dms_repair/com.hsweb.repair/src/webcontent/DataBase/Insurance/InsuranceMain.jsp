@@ -12,7 +12,7 @@
 <title>保险公司</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceMain.js?v=1.0.1" ></script>
+    <script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceMain.js?v=1.0.1" type="text/javascript" ></script>
     
 </head>
 <body style="margin:0;height:100%;width:100%;overflow:hidden">

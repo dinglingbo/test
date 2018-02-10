@@ -35,6 +35,7 @@ function onDrawCell(e) {
 
 function edit(action) {    
     var data;
+    var emp = {};
     
     if (action == 'new') {
     	data = {action: action};
@@ -45,16 +46,20 @@ function edit(action) {
     		return;
     		
     	}
-    	data = {action: action, id: row.id};    	
+    	
+    	emp.empid = row.empid;  	
     }
 
     nui.open({
         url: baseUrl + "/common/employeeEdit.jsp",
-        width: 660,      //宽度
-        height: 400,    //高度
+        width: 600,      //宽度
+        height: 290,    //高度
         title: "员工信息",      //标题 组织编码选择
         allowResize:true,
-        onload: function () { },
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(emp);
+        },
         ondestroy: function (action) {  //弹出页面关闭前
             if (action == "OK") {       //如果点击“确定”
                 var iframe = this.getIFrameEl();

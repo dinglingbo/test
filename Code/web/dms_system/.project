@@ -15,7 +15,7 @@
 			<arguments>
 				<dictionary>
 					<key>application</key>
-					<value>dms</value>
+					<value>default</value>
 				</dictionary>
 				<dictionary>
 					<key>database</key>

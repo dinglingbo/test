@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,8 +41,8 @@
 			<tr>
 				<td style="width: 100%">
 					<a class="nui-button" plain="true" iconCls="icon-reload" onclick="reload()">刷新（R）</a> 
-					<a class="nui-button" plain="true" iconCls="icon-add" onclick="add()">新增（A）</a>
-					<a class="nui-button" plain="true" iconCls="icon-edit" onclick="edit()">修改（S）</a> 
+					<a class="nui-button" plain="true" iconCls="icon-add" onclick="edit('new')">新增（A）</a>
+					<a class="nui-button" plain="true" iconCls="icon-edit" onclick="edit('edit')">修改（S）</a> 
 					<a class="nui-button" plain="true" iconCls="" onclick="dimssion()">离职（S）</a> 
 					<a class="nui-button" plain="true" iconCls="icon-undo" onclick="openSystemLoginName()">开通账号（B）</a> 
 					<a class="nui-button" plain="true" iconCls="icon-print" onclick="closeSystemLoginName()">停用账号（P）</a>
@@ -60,7 +59,7 @@
 			url="com.hsapi.system.employee.employeeMgr.employeeQuery.biz.ext"
 			pageSize="50" showPageInfo="true" multiSelect="true"
 			showReloadButton="true" showPagerButtonIcon="true"
-			totalCount="total" onselectionchanged="selectionChanged" 
+			totalField="page.count"  onselectionchanged="selectionChanged" 
 			allowSortColumn="true">
 
 			<div property="columns">
@@ -80,7 +79,6 @@
 						<div id="userID" field="type" headerAlign="center" allowSort="true" visible="true" width="60px">系统用户ID</div>
 						<div id="IsOpenAccount" field="type" headerAlign="center" allowSort="true" visible="true" width="10px">是否开通系统</div>
 						<div id="SystemAccount" field="type" headerAlign="center" allowSort="true" visible="true" width="60px">系统账号</div>
-						<div id="type" field="type" headerAlign="center" allowSort="true" visible="true" width="60px">车型</div>
 					</div>
 				</div>
 				<div header="其它信息" headerAlign="center">

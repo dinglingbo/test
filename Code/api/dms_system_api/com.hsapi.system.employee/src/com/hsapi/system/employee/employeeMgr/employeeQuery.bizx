@@ -4,6 +4,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="60" y="60"/>
     <size height="28" width="28"/>
@@ -16,6 +17,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="com.hsapi.system.data.sys.ComMember[]" name="rs" type="query" valueType="DataObject">rs</process:return>
+      <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -47,7 +49,7 @@
       <process:to type="query">cd/_expr[1]/name</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">like</process:from>
+      <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">cd/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
@@ -55,7 +57,7 @@
       <process:to type="query">cd/_expr[2]/tel</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">like</process:from>
+      <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">cd/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
@@ -74,6 +76,10 @@
       <process:from type="literal" pattern="reference">&lt;=</process:from>
       <process:to type="query">cd/_expr[4]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="210" y="96"/>
@@ -84,6 +90,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="360" y="60"/>
@@ -119,6 +126,7 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComMember" name="rs"/>
+    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,8 +10,8 @@
 <head>
 <title>员工管理</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-
+	<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+	<script src="<%= request.getContextPath() %>/common/js/employeeQuery.js?v=1.0.0"></script>
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 	<div  class="nui-toolbar"  style="height:26px">
@@ -90,5 +90,5 @@
 		</div>
 	</div>
 </body>
-<script src="<%= request.getContextPath() %>/common/js/employeeQuery.js?v=1.0.0"></script>
+
 </html>

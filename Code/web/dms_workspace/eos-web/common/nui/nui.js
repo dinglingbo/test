@@ -53,7 +53,8 @@ document.write('<link href="' + bootPATH + 'themes/icons.css" rel="stylesheet" t
 //skin
 var skin = getCookie("miniuiSkin");
 if (skin) {
-    document.write('<link href="' + bootPATH + 'miniui/themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
+    //document.write('<link href="' + bootPATH + 'miniui/themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
+    document.write('<link href="' + bootPATH + 'themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
 }
 
 

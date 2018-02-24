@@ -10,12 +10,15 @@
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	//web地址
 	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
+	//系统域
+	String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
 	
 	String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
 	apiPath = Env.getContributionConfig("system", "url", "api", serverType);
 	
 	serverType = Env.getContributionConfig("system", "url", "web", "serverType");
 	webPath = Env.getContributionConfig("system", "url", "web", serverType);
+	
 	
 	Cookie cookie = new Cookie("miniuiSkin", "bootstrap");
 	// 设置Cookie的生命周期,如果设置为负值的话,关闭浏览器就失效.
@@ -34,12 +37,13 @@
     }
 </style>
 
-<script src="common/nui/nui.js" type="text/javascript"></script>
-<script type="text/javascript" src="common/nui/locale/zh_CN.js"></script>
+<script src="<%=contextPath%>/common/nui/nui.js" type="text/javascript"></script>
+<script type="text/javascript" src="<%=contextPath%>/common/nui/locale/zh_CN.js"></script>
 <script type="text/javascript">
 	var contextPath = "<%=contextPath%>";
 	var apiPath		= "<%=apiPath%>";
 	var webPath		= "<%=webPath%>";
+	var sysDomain   = "<%=sysDomain%>";
 	
 	$(function(){
 		nui.context='<%=contextPath %>'
@@ -47,18 +51,19 @@
 	
 	function backToLogin(){
 		var url = window.location.pathname;
-		for(var i=0;i<excludedFlows.length;i++){
+		/* for(var i=0;i<excludedFlows.length;i++){
 			if(url && ''!=url
 				&& -1!=url.lastIndexOf(excludedFlows[i])){//例外的不拦截
 				return false;
 			}
-		}
+		} */
 		if(window.parent!=window
 			&& ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}else{
 		//	debugger;
-			window.top.location.href = "com.vplus.login.timeout.flow";			
+			alert("登录超时，正在跳转！");
+            window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
 		}
 	}
 	<%
@@ -66,20 +71,36 @@
 	String token="";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
-		%>backToLogin();<%
+		%>alert(123);backToLogin();<%
 	}else{
 		IUserObject u = (IUserObject) session.getAttribute("userObject");		
 		if (u != null) {
 			String orgId = u.getUserOrgId();
-			try {
+			String noOrgId = "N";
+            try {
 				attr = u.getAttributes();
 				token = attr.get("token").toString();
+                noOrgId = session.getAttribute("noOrgId").toString();
 			} catch (Exception e) {
 			}
-			if (orgId==null || orgId.trim().length()==0) {%>backToLogin();<%}
+            
+            if(token==null || token.trim().length()==0){
+                %>backToLogin();<%
+            }
+            
+			if (orgId==null || orgId.trim().length()==0) {
+                if(noOrgId==null || noOrgId.equals("N")){
+                    %>//alert("未能获取用户orgId属性，功能无法正常使用!");//backToLogin();
+                    <%
+                }
+                session.setAttribute("noOrgId", "Y");
+			}else{
+                session.setAttribute("noOrgId", "N");
+            }
 		}
 	}
 	%>
 	
 	var token = "<%=token %>";
+    //alert("token=" + token);
 </script>

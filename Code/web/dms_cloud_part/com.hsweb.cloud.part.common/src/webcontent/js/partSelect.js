@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/1/23.
  */
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
-var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
+var treeUrl = baseUrl+"com.hsapi.cloud.part.commonn.svr.getPartTypeTree.biz.ext";
+var partGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
 
 var qualityList = [];
@@ -14,7 +14,8 @@ var unitList = [];
 var abcTypeList = [];
 var carBrandList = [];
 
-var queryForm = null;function onDrawNode(e)
+var queryForm = null;
+function onDrawNode(e)
 {
     var node = e.node;
     e.nodeHtml = node.code + " " + node.name;

@@ -444,7 +444,6 @@ function add()
     nui.get("taxRate").setValue(0.17);
     nui.get("taxSign").setValue(1);
     nui.get("orderDate").setValue(new Date());
-    nui.get("printTimes").setValue(0);
     
     var guestId = nui.get("guestId");
     guestId.focus();
@@ -587,7 +586,7 @@ function selectSupplier(elId)
                 console.log(data);
                 console.log(elId);
                 supplier = data.supplier;
-                var value = supplier.id;
+                var value = supplier.guestId;
                 var text = supplier.fullName;
                 var el = nui.get(elId);
                 el.setValue(value);
@@ -601,8 +600,8 @@ function selectPart(callback)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.partSelectView.flow",
-        title: "供应商资料", width: 930, height: 560,
+        url: "com.hsweb.cloud.part.common.partSelectView.flow",
+        title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()

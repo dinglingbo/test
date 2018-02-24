@@ -57,7 +57,7 @@
 	}
 
 	var getDictItemsUrl = window._rootUrl
-			+ "com.hsapi.part.common.svr.getDictItems.biz.ext";
+			+ "com.hsapi.cloud.part.commonn.svr.getDictItems.biz.ext";
 	function getDictItems(dictIdList, callback) {
 		var params = {};
 		params.dictIdList = dictIdList;
@@ -80,7 +80,7 @@
 		});
 	}
 	var getProvinceAndCityUrl = window._rootUrl
-			+ "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
+			+ "com.hsapi.cloud.part.commonn.svr.getProvinceAndCity.biz.ext";
 	function getProvinceAndCity(callback) {
 		nui.ajax({
 			url : getProvinceAndCityUrl,
@@ -97,24 +97,7 @@
 		});
 	}
 	var getStorehouseUrl = window._rootUrl
-			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
-	function getStorehouse(callback) {
-		nui.ajax({
-			url : getStorehouseUrl,
-			type : "post",
-			success : function(data) {
-				if (data && data.storehouse) {
-					callback && callback(data);
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				//  nui.alert(jqXHR.responseText);
-				console.log(jqXHR.responseText);
-			}
-		});
-	}
-	var getStorehouseUrl = window._rootUrl
-			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+			+ "com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext";
 	function getStorehouse(callback) {
 		nui.ajax({
 			url : getStorehouseUrl,
@@ -131,7 +114,7 @@
 		});
 	}
 	var getAllCarBrandUrl = window._rootUrl
-			+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
+			+ "com.hsapi.cloud.part.commonn.svr.getAllCarBrand.biz.ext";
 	function getAllCarBrand(callback) {
 		nui.ajax({
 			url : getAllCarBrandUrl,
@@ -146,28 +129,7 @@
 				console.log(jqXHR.responseText);
 			}
 		});
-	}
-	var getOrgListUrl = window._rootUrl
-			+ "com.hsapi.part.common.svr.getOrgList.biz.ext";
-	function getOrgList(callback) {
-		nui.ajax({
-			url : getOrgListUrl,
-			type : "post",
-			success : function(data) {
-				if (data && data.orgList) {
-					callback && callback({
-						code : "S",
-						orgList : data.orgList
-					});
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				//  nui.alert(jqXHR.responseText);
-				console.log(jqXHR.responseText);
-			}
-		});
-	}
-	
+	}	
 	function addDate(date, days) {
         if (days == undefined || days == '') {
             days = 1;

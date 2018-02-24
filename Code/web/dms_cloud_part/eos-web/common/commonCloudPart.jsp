@@ -6,6 +6,7 @@
 	pageEncoding="UTF-8" session="false"%>
 <script src="<%=request.getContextPath()%>/common/nui/nui.js"
 	type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/common/date.js" type="text/javascript"></script>
 <script type="text/javascript">
 	<%
 		IMUODataContext muo = DataContextManager.current().getMUODataContext();
@@ -166,6 +167,31 @@
 			}
 		});
 	}
+	
+	function addDate(date, days) {
+        if (days == undefined || days == '') {
+            days = 1;
+        }
+        var date = new Date(date);
+        date.setDate(date.getDate() + days);
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+    	return date.getFullYear() + '-' + getFormatDate(month) + '-' + getFormatDate(day);
+    }
+
+    // 日期月份/天的显示，如果是1位数，则在前面加上'0'
+    function getFormatDate(arg) {
+        if (arg == undefined || arg == '') {
+            return '';
+        }
+
+        var re = arg + '';
+        if (re.length < 2) {
+            re = '0' + re;
+        }
+
+        return re;
+    }
 </script>
 <style type="text/css">
 html,body {

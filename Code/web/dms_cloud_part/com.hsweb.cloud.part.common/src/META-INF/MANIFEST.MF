@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: common
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.cloud.part.common
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.cloud.part.common
+

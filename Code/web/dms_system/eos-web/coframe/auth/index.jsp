@@ -2,7 +2,7 @@
 <%@page import="org.gocom.components.coframe.tools.IConstants" %>
 <%@page pageEncoding="UTF-8"%>
 <%
-	String skin = "default";
+	String skin = "outlookmenu";/* default */
 	Object userObj = session.getAttribute("userObject");
 	if(userObj != null){
 		UserObject userObject = (UserObject)userObj;

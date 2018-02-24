@@ -12,10 +12,10 @@
 	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
 	
 	String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
-	apiPath = Env.getContributionConfig("system", "url", "api", serverType) || apiPath;
+	apiPath = Env.getContributionConfig("system", "url", "api", serverType);
 	
 	serverType = Env.getContributionConfig("system", "url", "web", "serverType");
-	webPath = Env.getContributionConfig("system", "url", "web", serverType) || webPath;
+	webPath = Env.getContributionConfig("system", "url", "web", serverType);
 	
 	Cookie cookie = new Cookie("miniuiSkin", "bootstrap");
 	// 设置Cookie的生命周期,如果设置为负值的话,关闭浏览器就失效.

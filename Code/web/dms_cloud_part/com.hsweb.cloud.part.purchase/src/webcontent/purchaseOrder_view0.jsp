@@ -455,7 +455,7 @@
                     <span style="letter-spacing: 6px;">供应</span>商:
                 </td>
                 <td colspan="3">
-                    <input id="guestId"
+                    <input id="btnEdit2"
                            name="guestId"
                            class="nui-buttonedit"
                            emptyText="请选择供应商..."

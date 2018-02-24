@@ -46,7 +46,8 @@ html, body{height:100%;}
 .head-in .options .version{margin-top:5px;}
 .head-in .options .version .select-wrap{margin-left:13px; width:119px;}
 
-#container{position:absolute; top:70px; bottom:30px; left:0; width:100%; _height:90%;}
+#container_{position:absolute; top:70px; bottom:30px; left:0; width:100%; _height:90%;}
+#container{position:absolute; top:0px; bottom:30px; left:0; width:100%; _height:90%;}
 #container iframe{width:100%; position:relative; height:100%; *position:absolute; *top:0; *bottom:0; _position:static;}
 
 /*sidebar*/

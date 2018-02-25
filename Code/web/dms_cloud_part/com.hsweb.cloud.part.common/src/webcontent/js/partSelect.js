@@ -12,9 +12,58 @@ var brandHash = {};
 var brandList = [];
 var unitList = [];
 var abcTypeList = [];
+var abcTypeHash = {};
 var carBrandList = [];
-
 var queryForm = null;
+$(document).ready(function() {
+    queryForm = new nui.Form("#queryForm");
+    partGrid = nui.get("partGrid");
+    partGrid.setUrl(partGridUrl);
+    /*partGrid.on("load", function() {
+        onPartGridRowClick({});
+    });*/
+    tree = nui.get("tree1");
+    tree.setUrl(treeUrl);
+
+    getAllPartBrand(function(data) {
+        qualityList = data.quality;
+        qualityList.forEach(function(v) {
+            qualityHash[v.id] = v;
+        });
+        brandList = data.brand;
+        brandList.forEach(function(v) {
+            brandHash[v.id] = v;
+        });
+
+        nui.get("partBrandId").setData(brandList);
+
+        getAllCarBrand(function(data) {
+            data = data || {};
+            carBrandList = data.carBrands || [];
+            
+            var dictIdList = [];
+            dictIdList.push('DDT20130703000016');// --单位
+            dictIdList.push('DDT20130703000067');// --ABC分类
+            getDictItems(dictIdList, function(data) {
+                if (data && data.dataItems) {
+                    var dataItems = data.dataItems || [];
+                    unitList = dataItems.filter(function(v) {
+                        return v.dictid == 'DDT20130703000016';
+                    });
+                    abcTypeList = dataItems.filter(function(v) {
+                        return v.dictid == 'DDT20130703000067';
+                    });
+                    abcTypeList.forEach(function(v) {
+                        abcTypeHash[v.id] = v;
+                    });
+                }
+                onSearch();
+            });
+        });
+
+    });
+
+});
 function onDrawNode(e)
 {
     var node = e.node;
@@ -38,13 +87,11 @@ function onNodeDblClick(e)
     var cartypet = list[2]||"";
 
     var partName = {
-        cartypef:cartypef,
-        cartypes:cartypes,
-        cartypet:cartypet
+        carTypeIdF:cartypef,
+        carTypeIdS:cartypes,
+        carTypeIdT:cartypet
     };
-    doSearch({
-        partName:partName
-    });
+    doSearch(partName);
 }
 var partTypeHash = null;
 function onPartGridDraw(e)
@@ -88,6 +135,15 @@ function onPartGridDraw(e)
             if(brandHash[e.value])
             {
                 e.cellHtml = brandHash[e.value].name||"";
+            }
+            else{
+                e.cellHtml = "";
+            }
+            break;
+        case "abcType":
+            if(abcTypeHash[e.value])
+            {
+                e.cellHtml = abcTypeHash[e.value].name||"";
             }
             else{
                 e.cellHtml = "";
@@ -170,30 +226,51 @@ function addOrEditPart(row)
 
 var resultData = {};
 var callback = null;
+var checkcallback = null;
 function onOk()
 {
     var node = partGrid.getSelected();
-    console.log(node);
-    if(!node)
+    var nodec = nui.clone(node);
+    
+    if(!nodec)
     {
         return;
     }
     resultData = {
-        part:node
+        part:nodec
     };
     if(!callback)
     {
         CloseWindow("ok");
     }
     else{
-        callback(resultData);
+        //需要判断是否已经添加了此配件
+        var checkMsg = checkcallback(resultData);
+        if(checkMsg) 
+        {
+            nui.confirm(checkMsg, "友情提示",
+                function (action) { 
+                    if (action == "ok") {
+                        callback(resultData);
+                    }else {
+                        return;
+                    }
+                }
+            );
+        }else
+        {
+            //弹出数量，单价和金额的编辑界面
+            callback(resultData);
+        }
+
     }
 }
 function getData(){
     return resultData;
 }
-function setData(data,ck){
+function setData(data,ck,cck){
     callback = ck;
+    checkcallback = cck;
 }
 function CloseWindow(action)
 {
@@ -202,4 +279,8 @@ function CloseWindow(action)
 }
 function onCancel(e) {
     CloseWindow("cancel");
+}
+function onRowDblClick()
+{
+    onOk();
 }

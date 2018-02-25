@@ -8,9 +8,9 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="queryPartList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComAttribute">
-    	SELECT a.id ID,
-		       a.code CODE,
-		       a.name NAME,
+    	SELECT a.id id,
+		       a.code code,
+		       a.name name,
 		       a.full_name fullName,
 		       a.brand_code brandCode,
 		       a.oem_code oemCode,
@@ -50,8 +50,8 @@
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (is_disabled = #isDisabled#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="applyCarBrandId">  
-                (apply_carbrand_id = #applyCarBrandId#)
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (PART_BRAND_ID = #partBrandId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="carTypeIdF">  
                 (car_type_id_f = #carTypeIdF#)

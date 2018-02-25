@@ -215,7 +215,7 @@
                                                width="100%"
                                                nullItemText="请选择..."/>
                                     </td>
-                                    <td class="title">
+                                    <td class="title required">
                                         <label>结算方式：</label>
                                     </td>
                                     <td>
@@ -231,7 +231,7 @@
                                                width="100%"
                                                nullItemText="请选择..."/>
                                     </td>
-                                    <td class="title">
+                                    <td class="title required">
                                         <label>开票税点：</label>
                                     </td>
                                     <td>
@@ -268,7 +268,6 @@
                     <tr>
                         <td style="white-space:nowrap;">
                             <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn">添加</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="editPartBtn">修改</a>
                             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn">删除</a>
                         </td>
                     </tr>
@@ -277,22 +276,26 @@
             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
-                     dataField="enterDetailList"
+                     dataField="pjPchsOrderDetailList"
                      idField="id"
                      showSummaryRow="true"
                      frozenStartColumn="0"
                      frozenEndColumn="6"
+                     ondrawcell="onRightGridDraw"
+                     allowCellSelect="true"
+                     allowCellEdit="true"
+                     oncellcommitedit="onCellCommitEdit"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
                             	<div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
-                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="partBranName" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+                                <div field="comPartName" headerAlign="center" header="配件名称"></div>
+                                <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                <div field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                <div field="comUnit" width="40" headerAlign="center" header="单位"></div>
                             </div>
                         </div>
                         <div header="数量金额信息" headerAlign="center">
@@ -300,7 +303,7 @@
                                 <div field="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="orderPrice" numberFormat="0.00" width="50" headerAlign="center" header="单价">
+                                <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
@@ -314,25 +317,25 @@
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
                                 <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-					        	仓库<input property="editor" enabled="true" name="storeGrids" dataField="storeGrids" class="nui-combobox" valueField="id" textField="name" 
-			                            url="com.saas.scmb.biz.basic.getStoreGrid.biz.ext"
+					        	仓库<input id="storeList" property="editor" enabled="true" name="storehouse" dataField="storeGrids" class="nui-combobox" valueField="id" textField="name" 
+			                            url=""
 			                            onvaluechanged="" emptyText=""  vtype="required"
 			                            /> 
 					        	</div>	
-				    			<div field="oemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>	
-				    			<div field="spec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>																
+				    			<div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>	
+				    			<div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>																
                             </div>
                         </div>
                         <div header="不含税信息" headerAlign="center">
                             <div property="columns">
-                                <div field="noTaxUnitPrice" width="50" headerAlign="center" header="单价"></div>
+                                <div field="noTaxPrice" width="50" headerAlign="center" header="单价"></div>
                                 <div field="noTaxAmt" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="含税信息" headerAlign="center">
                             <div property="columns">
                                 <div field="taxRate" width="50" headerAlign="center" header="税率"></div>
-                                <div field="taxUnitPrice" width="50" headerAlign="center" header="单价"></div>
+                                <div field="taxPrice" width="50" headerAlign="center" header="单价"></div>
                                 <div field="taxAmt" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="金额"></div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%-- <%@include file="/common/common.jsp"%> --%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/commonCloudPart.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -32,10 +32,10 @@
                     <label style="font-family:Verdana;">拼音：</label>
                     <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
                     <label style="font-family:Verdana;">品牌：</label>
-                    <input id="applyCarBrandId"
-                           name="applyCarBrandId"
+                    <input id="partBrandId"
+                           name="partBrandId"
                            class="nui-combobox width1"
-                           textField="carBrandZh"
+                           textField="name"
                            valueField="id"
                            emptyText="请选择..."
                            url=""
@@ -55,10 +55,13 @@
     <div class="nui-splitter"
          allowResize="false"
          style="width:100%;height:100%;">
-        <div size="240" showCollapseButton="false">
+        <div size="240" showCollapseButton="true">
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
-                    showTreeIcon="true" textField="name" idField="id" parentField="pid" resultAsTree="false">
+                    dataField="partTypes"
+                    ondrawnode="onDrawNode"
+                    onnodedblclick="onNodeDblClick"
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentid" resultAsTree="false">
                 </ul>
             </div>
         </div>
@@ -76,6 +79,7 @@
                      dataField="parts"
                      url=""
                      ondrawcell="onPartGridDraw"
+                     onrowdblclick="onRowDblClick"
                      idField="id"
                      totalField="page.count"
                      pageSize="50"
@@ -87,6 +91,7 @@
                                 <div field="isDisabled" width="50" headerAlign="center">状态</div>
                                 <div field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div field="partBrandId" width="70" headerAlign="center">品牌</div>
+                                <div field="id" width="50" headerAlign="center">配件ID</div>
                                 <div field="code" width="80" headerAlign="center" allowSort="true">编码</div>
                                 <div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
                                 <div field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
@@ -102,7 +107,7 @@
                                 <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
                                 <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                 <div field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
-                                <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">二级分类</div>
+                                <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
                             </div>
                         </div>
                         <div header="价格信息" headerAlign="center">

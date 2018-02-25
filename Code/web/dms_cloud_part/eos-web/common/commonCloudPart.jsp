@@ -130,6 +130,25 @@
 			}
 		});
 	}	
+	var getAllPartBrandUrl = window._rootUrl+"com.hsapi.cloud.part.commonn.svr.getAllPartBrand.biz.ext";
+	function getAllPartBrand(callback)
+	{
+	    nui.ajax({
+	        url:getAllPartBrandUrl,
+	        type:"post",
+	        success:function(data)
+	        {
+	            if(data && data.quality && data.brand)
+	            {
+	                callback && callback(data);
+	            }
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
+	            //  nui.alert(jqXHR.responseText);
+	            console.log(jqXHR.responseText);
+	        }
+	    });
+	}
 	function addDate(date, days) {
         if (days == undefined || days == '') {
             days = 1;

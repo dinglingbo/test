@@ -14,73 +14,77 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.2" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>    
 </head>
 <body>
+    <%
+        String system_api_domain = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
+    %>
+    <center>
+        <br/>
+        全部品牌 >
+        <div id="vin" 
+            class="nui-autocomplete" 
+            style="width:350px;"
+            popupWidth="400" 
+            textField="vin" 
+            valueField="vin" 
+            url="<%=sysDomain%>/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext" 
+            onvaluechanged="" 
+            dataField="data"
+            searchField="vin"
+            enterQuery="true">     
+            <div property="columns">
+                <div header="vin" field="vin" width="50"></div>
+                <div header="品牌" field="brandname"></div>
+            </div>
+        </div>
+        <a class="nui-button" onclick="queryVin();">查&nbsp;&nbsp;询</a>
+        <br/><br/>
+    </center>
+    
+    
     <div class="nui-fit">
-        <%
-            String system_api_domain = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
-        %>
-        <center>
-            <br/>
-            全部品牌 >
-            <div id="vin" 
-                class="nui-autocomplete" 
-                style="width:350px;"
-                popupWidth="400" 
-                textField="vin" 
-                valueField="vin" 
-                url="<%=sysDomain%>/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext" 
-                onvaluechanged="" 
-                dataField="data"
-                searchField="vin"
-                enterQuery="true">     
-                <div property="columns">
-                    <div header="vin" field="vin" width="50"></div>
-                    <div header="品牌" field="brandname"></div>
+        <div class="nui-splitter" style="width:100%; height:100%;" id="panel">
+            <div size="40%" showCollapseButton="false">
+                <div class="nui-fit">
+                    <div id="gridMain" 
+                        class="nui-datagrid" 
+                        style="width:100%;height:100%;"
+                        showColumns="false"
+                        showPager="false"
+                        allowcellwrap="true">
+                        <div property="columns">
+                            <div type="indexcolumn"></div>
+                            <div field="name" width="80" headerAlign="center" allowSort="false"></div>                  
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a class="nui-button" onclick="queryVin();">查&nbsp;&nbsp;询</a>
-            <br/><br/>
-        </center>
-        
-        
-        <div class="nui-fit" id="gridContent" style="display:none;">
-            <table style="width:100%;height:100%" border=0>
-                <tr>
-                    <td style="width:40%;">
-                        <div id="gridMain" 
-                            class="nui-datagrid" 
-                            style="width:100%;height:100%;"
-                            showColumns="false"
-                            showPager="false">
-                            <div property="columns">
-                                <div type="indexcolumn"></div>
-                                <div field="name" width="80" headerAlign="center" allowSort="false"></div>                  
-                            </div>
+            <div size="60%" showCollapseButton="false">
+                <div class="nui-fit">            
+                    <div id="gridSub" 
+                        class="nui-datagrid" 
+                        style="width:100%;height:100%;"
+                        showColumns="false"
+                        showPager="false"
+                        allowcellwrap="true">
+                        <div property="columns">
+                            <div type="indexcolumn"></div>                
+                            <div field="field1" width="80" headerAlign="center" allowSort="true"></div>    
+                            <div field="field2" width="150" headerAlign="center" allowSort="true"></div>
                         </div>
-                    </td>
-                    <td>
-                        <div id="gridSub" 
-                            class="nui-datagrid" 
-                            style="width:100%;height:100%;"
-                            showColumns="false"
-                            showPager="false">
-                            <div property="columns">
-                                <div type="indexcolumn"></div>                
-                                <div field="field1" width="80" headerAlign="center" allowSort="true"></div>    
-                                <div field="field2" width="150" headerAlign="center" allowSort="true"></div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
 	<script type="text/javascript">
     	nui.parse();
-    	//searchVins();
+        var panel = nui.get("panel");
+        panel.hidePane(0);
+        panel.hidePane(1);
     </script>
 </body>
 </html>

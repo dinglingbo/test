@@ -77,15 +77,16 @@ function setGridSub(data){
             dataList[i] = nui.clone(tmp);
         }
         
-        var gridContent = nui.get("gridContent");
-        gridSub.setData(dataList);
         if(dataList && dataList.length > 0){
-            $("#gridContent").show();
+            panel.showPane(0);
+            panel.showPane(1);
+            gridSub.setData(dataList);
             
             //加载主组数据
             queryGroupByVin(brand);
         }else{
-            $("#gridContent").hide();
+            panel.hidePane(0);
+            panel.hidePane(1);
         }        
     }
 }

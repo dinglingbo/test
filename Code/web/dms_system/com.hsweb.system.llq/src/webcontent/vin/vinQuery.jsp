@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
     <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.2" type="text/javascript"></script>    
 </head>
 <body>
@@ -49,16 +49,15 @@
             <table style="width:100%;height:100%" border=0>
                 <tr>
                     <td style="width:40%;">
-                        <div class="nui-fit">
                         <div id="gridMain" 
                             class="nui-datagrid" 
                             style="width:100%;height:100%;"
                             showColumns="false"
                             showPager="false">
                             <div property="columns">
-                                <div type="name"></div>                    
+                                <div type="indexcolumn"></div>
+                                <div field="name" width="80" headerAlign="center" allowSort="false"></div>                  
                             </div>
-                        </div>
                         </div>
                     </td>
                     <td>

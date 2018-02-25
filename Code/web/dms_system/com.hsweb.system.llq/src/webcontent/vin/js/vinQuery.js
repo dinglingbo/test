@@ -18,13 +18,19 @@ function queryVin(){
             "token": token
         }
         callAjax(url, params, processAjax, setGridSub);        
+    }else{
+        errorVin();
     }	
+}
+
+function errorVin(){
+    nui.alert("请输入17位VIN编码！");
 }
 
 /*
 *主组列表(需要先调用车辆信息接口，再执行)
 */
-function queryGroupByVin(){	
+function queryGroupByVin(brand){	
 	var obj = nui.get("vin");
     var vin = obj.getValue();
     
@@ -32,11 +38,14 @@ function queryGroupByVin(){
         var params = {
             "url":"https://llq.007vin.com/ppyvin/group",
             "params":{
-                "vin":vin
+                "vin":vin,
+                "brand":brand
             },
             "token": token
         }
         callAjax(url, params, processAjax, setGridMain);
+    }else{
+        errorVin();
     }	
 }
 
@@ -44,9 +53,8 @@ function queryGroupByVin(){
 *主组数据处理
 */
 function setGridMain(data){
-    alert(data);
-    var obj = nui.get("brand");
-    //obj.dataField = data;
+    var gridMain = nui.get("gridMain");
+    gridMain.setData(data);
 }
 
 /*
@@ -54,6 +62,7 @@ function setGridMain(data){
 */
 function setGridSub(data){
     var dataBody = data.mains;
+    var brand = data.brand;
     var gridSub = nui.get("gridSub");
     gridSub.setData([]);
     if(dataBody){
@@ -72,12 +81,12 @@ function setGridSub(data){
         gridSub.setData(dataList);
         if(dataList && dataList.length > 0){
             $("#gridContent").show();
+            
+            //加载主组数据
+            queryGroupByVin(brand);
         }else{
             $("#gridContent").hide();
-        }
-        
-        //加载主组数据
-        queryGroupByVin();
+        }        
     }
 }
 

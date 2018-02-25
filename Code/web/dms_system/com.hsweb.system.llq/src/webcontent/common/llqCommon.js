@@ -52,6 +52,6 @@ function processAjax(rs, callBack){
         callBack(rs.result.data);
     }
     else{
-        nui.alert("获取数据失败！");
+        nui.alert("获取数据失败！\n\r[" + rs.result.msg + "]");
     }
 }

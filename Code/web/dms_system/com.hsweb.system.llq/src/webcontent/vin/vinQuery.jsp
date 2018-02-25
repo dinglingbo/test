@@ -13,52 +13,58 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.0" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.2" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-fit">
         <%
             String system_api_domain = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
         %>
-        全部品牌 >
-        <div id="vin" 
-            class="nui-autocomplete" 
-            style="width:250px;"
-            popupWidth="400" 
-            textField="vin" 
-            valueField="vin" 
-            url="<%=sysDomain%>/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext" 
-            onvaluechanged="" 
-            dataField="data"
-            searchField="vin">     
-            <div property="columns">
-                <div header="vin" field="vin" width="50"></div>
-                <div header="品牌" field="brandname"></div>
+        <center>
+            <br/>
+            全部品牌 >
+            <div id="vin" 
+                class="nui-autocomplete" 
+                style="width:350px;"
+                popupWidth="400" 
+                textField="vin" 
+                valueField="vin" 
+                url="<%=sysDomain%>/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext" 
+                onvaluechanged="" 
+                dataField="data"
+                searchField="vin"
+                enterQuery="true">     
+                <div property="columns">
+                    <div header="vin" field="vin" width="50"></div>
+                    <div header="品牌" field="brandname"></div>
+                </div>
             </div>
-        </div>
-        <a class="nui-button" onclick="queryVin();">查询</a>
+            <a class="nui-button" onclick="queryVin();">查&nbsp;&nbsp;询</a>
+            <br/><br/>
+        </center>
         
         
-        <div class="nui-fit" id="gridContent" style="display:;">
-            <table>
+        <div class="nui-fit" id="gridContent" style="display:none;">
+            <table style="width:100%;height:100%" border=0>
                 <tr>
-                    <td>
+                    <td style="width:40%;">
+                        <div class="nui-fit">
                         <div id="gridMain" 
                             class="nui-datagrid" 
-                            style="width:500px;height:250px;"
+                            style="width:100%;height:100%;"
                             showColumns="false"
                             showPager="false">
                             <div property="columns">
-                                <div type="field1"></div>                
-                                <div field="field2" width="120" headerAlign="center" allowSort="true"></div>                    
+                                <div type="name"></div>                    
                             </div>
+                        </div>
                         </div>
                     </td>
                     <td>
                         <div id="gridSub" 
                             class="nui-datagrid" 
-                            style="width:600px;height:250px;"
+                            style="width:100%;height:100%;"
                             showColumns="false"
                             showPager="false">
                             <div property="columns">

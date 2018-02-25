@@ -171,8 +171,7 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 	<welcome-file-list>
-	<welcome-file>index.jsp</welcome-file>
-	    <welcome-file>coframe/index.jsp</welcome-file>
+		<welcome-file>apiIndex.jsp</welcome-file>
 	</welcome-file-list>
 	<mime-mapping>
 		<extension>xml</extension>

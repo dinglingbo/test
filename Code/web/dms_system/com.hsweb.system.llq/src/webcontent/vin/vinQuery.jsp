@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.4" type="text/javascript"></script>    
 </head>
 <body>
     <%
@@ -56,6 +56,7 @@
                         allowcellwrap="true">
                         <div property="columns">
                             <div type="indexcolumn"></div>
+                            <div field="auth" width="80" visible="false" allowSort="false"></div>
                             <div field="name" width="80" headerAlign="center" allowSort="false"></div>                  
                         </div>
                     </div>
@@ -69,10 +70,7 @@
                         showColumns="false"
                         showPager="false"
                         allowcellwrap="true">
-                        <div property="columns">
-                            <div type="indexcolumn"></div>                
-                            <div field="field1" width="80" headerAlign="center" allowSort="true"></div>    
-                            <div field="field2" width="150" headerAlign="center" allowSort="true"></div>
+                        <div property="columns">                            
                         </div>
                     </div>
                 </div>
@@ -81,10 +79,13 @@
     </div>
     
 	<script type="text/javascript">
-    	nui.parse();
+    	/* nui.parse();
+        var gridMain = nui.get("gridMain");
+        var gridSub = nui.get("gridSub");
         var panel = nui.get("panel");
+        
         panel.hidePane(0);
-        panel.hidePane(1);
+        panel.hidePane(1); */
     </script>
 </body>
 </html>

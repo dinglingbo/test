@@ -35,6 +35,7 @@ var managerDutyList = [];
 var managerDutyHash = {};
 var supplierTypeList = [];
 var supplierTypeHash = {};
+var orgHash={};
 $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
@@ -88,6 +89,13 @@ $(document).ready(function(v)
             });
             nui.get("supplierType").setData(supplierTypeList);
         }
+        getOrgList(function(data)
+        {
+        	var orgList = data.orgList;
+            orgList.forEach(function(v){
+            	orgHash[v.orgid] = v.orgname;
+            });
+        });
     });
 });
 function onSearch(){
@@ -127,8 +135,10 @@ function advancedSearch()
 }
 function onAdvancedSearchOk()
 {
-    var searchData = advancedSearchForm.getData();
+	var searchData = advancedSearchForm.getData();
+    advancedSearchFormData = searchData;
     advancedSearchWin.hide();
+    //console.log(searchData);
     doSearch(searchData);
 }
 function onAdvancedSearchCancel(){
@@ -216,6 +226,12 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+    	case "orgid":
+	        if(orgHash && orgHash[e.value])
+	        {
+	            e.cellHtml = orgHash[e.value]
+	        }
+	        break;
         case "isDisabled":
             e.cellHtml = e.value==1?"是":"否";
             break;

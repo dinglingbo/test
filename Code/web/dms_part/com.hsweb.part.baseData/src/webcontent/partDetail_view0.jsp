@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partDetail.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partDetail.js?v=1.0.3"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;
@@ -54,8 +54,7 @@
 </style>
 </head>
 <body>
-    
-<div class="nui-fit" style="padding: 10px;overflow: hidden;">
+   <div class="nui-fit" style="padding: 10px;overflow: hidden;">
         <span>基本信息</span>
         <div id="basicInfoForm" class="form">
             <input class="nui-hidden" name="id"/>
@@ -78,7 +77,7 @@
                        allowInput="false"
                        onbuttonclick="onButtonEdit" selectOnFocus="true" />
                 <span class="title required">编码：</span>
-                <input name="code" class="nui-textbox width2"/>
+                <input name="code" class="nui-textbox width2" id="code"/>
                 <span class="title required">单位：</span>
                 <input name="unit"
                        id="unit"
@@ -115,7 +114,7 @@
                        showNullItem="false"
                        nullItemText="请选择..."/>
                 <span class="title">型号：</span>
-                <input name="xxxxx" class="nui-textbox width3"/>
+                <input name="model" class="nui-textbox width3"/>
             </div>
             <div class="row">
                 <span class="title title-width1">适用车型：</span>
@@ -151,11 +150,11 @@
                 <span class="title title-width1">统一价：</span>
                 <input name="uniformSellPrice" class="nui-textbox width1" value="0"/>
                 <span class="title title-width1">兑换积分：</span>
-                <input name="adse" class="nui-textbox width1" value="0"/>
+                <input name="exchangeIntegral" class="nui-textbox width1" value="0"/>
             </div>
             <div class="row">
                 <span class="title title-width1">用量：</span>
-                <input id="sp1" class="nui-spinner width1"  minValue="0" maxValue="1000000" value="0"/>
+                <input name="usage" class="nui-spinner width1"  minValue="0" maxValue="1000000" value="0"/>
                 <span class="title title-width1">重量：</span>
                 <input name="weight" class="nui-textbox width1" value="0"/>
                 <span class="title title-width1">是否禁用：</span>
@@ -169,6 +168,5 @@
         <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
         <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
     </div>
-    
 </body>
 </html>

@@ -26,7 +26,7 @@ $(document).ready(function(v){
                     "vin":vin,
                     "brand":brand,
                     "is_filter":1,
-                    "auth":row.auth
+                    "auth":unescape(row.auth)
                 },
                 "token": token
             }
@@ -39,16 +39,29 @@ $(document).ready(function(v){
 *
 */
 function setSubGroupData(data){
-    alert(data);
+    //alert(data);
+    /*
+    主组 num
+    分组 subgroup
+    图号  mid
+    名称  subgroupname
+    备注description
+    型号  model
+    */
     gridSub.set({
         columns: [
-            { type: "indexcolumn" },
-            { field: "field1", width:80, headerAlign: "center", allowSort: false, header: ""},
-            { field: "field2", width:150, headerAlign: "center", allowSort: false, header: ""}
+            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号"},
+            { field: "num", width:30, headerAlign: "center", allowSort: false, header: "主组"},
+            { field: "subgroup", width:30, headerAlign: "center", allowSort: false, header: "分组"},
+            { field: "mid", width:60, headerAlign: "center", allowSort: false, header: "图号"},
+            { field: "subgroupname", width:150, headerAlign: "center", allowSort: false, header: "名称"},
+            { field: "description", width:150, headerAlign: "center", allowSort: false, header: "备注"},
+            { field: "model", width:100, headerAlign: "center", allowSort: false, header: "型号"}
         ]
     });
-    //gridSub.setData(dataList);
+    gridSub.setData(data);
 }
+
 
 /*
 *用户车架号历史查询记录（使用逻辑流，因为无法控制autocomplete发送请求的方式）
@@ -130,9 +143,9 @@ function setGridSub(data){
             panel.showPane(1);
             gridSub.set({
                 columns: [
-                    { type: "indexcolumn" },
-                    { field: "field1", width:80, headerAlign: "center", allowSort: false, header: ""},
-                    { field: "field2", width:150, headerAlign: "center", allowSort: false, header: ""}
+                    { type: "indexcolumn", width:20, headerAlign: "center", header: "序号"},
+                    { field: "field1", width:80, headerAlign: "center", allowSort: false, header: "分类"},
+                    { field: "field2", width:150, headerAlign: "center", allowSort: false, header: "详情"}
                 ]
             });
             gridSub.setData(dataList);

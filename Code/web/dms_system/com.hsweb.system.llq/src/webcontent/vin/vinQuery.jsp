@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.4" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.0" type="text/javascript"></script>    
 </head>
 <body>
     <%
@@ -51,13 +51,13 @@
                     <div id="gridMain" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;"
-                        showColumns="false"
+                        showColumns="true"
                         showPager="false"
                         allowcellwrap="true">
                         <div property="columns">
-                            <div type="indexcolumn"></div>
+                            <div type="indexcolumn" width="20" headerAlign="center">序号</div>
                             <div field="auth" width="80" visible="false" allowSort="false"></div>
-                            <div field="name" width="80" headerAlign="center" allowSort="false"></div>                  
+                            <div field="name" width="80" headerAlign="center" allowSort="false">主组名称</div>                  
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <div id="gridSub" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;"
-                        showColumns="false"
+                        showColumns="true"
                         showPager="false"
                         allowcellwrap="true">
                         <div property="columns">                            

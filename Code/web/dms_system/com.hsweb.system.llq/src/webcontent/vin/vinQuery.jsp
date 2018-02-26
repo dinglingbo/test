@@ -77,15 +77,5 @@
             </div>
         </div>
     </div>
-    
-	<script type="text/javascript">
-    	/* nui.parse();
-        var gridMain = nui.get("gridMain");
-        var gridSub = nui.get("gridSub");
-        var panel = nui.get("panel");
-        
-        panel.hidePane(0);
-        panel.hidePane(1); */
-    </script>
 </body>
 </html>

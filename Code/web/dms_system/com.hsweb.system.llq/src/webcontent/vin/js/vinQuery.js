@@ -50,7 +50,7 @@ function setSubGroupData(data){
     */
     gridSub.set({
         columns: [
-            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号"},
+            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
             { field: "num", width:30, headerAlign: "center", allowSort: false, header: "主组"},
             { field: "subgroup", width:30, headerAlign: "center", allowSort: false, header: "分组"},
             { field: "mid", width:60, headerAlign: "center", allowSort: false, header: "图号"},
@@ -143,7 +143,7 @@ function setGridSub(data){
             panel.showPane(1);
             gridSub.set({
                 columns: [
-                    { type: "indexcolumn", width:20, headerAlign: "center", header: "序号"},
+                    { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
                     { field: "field1", width:80, headerAlign: "center", allowSort: false, header: "分类"},
                     { field: "field2", width:150, headerAlign: "center", allowSort: false, header: "详情"}
                 ]

@@ -220,11 +220,11 @@ function showRightGrid(gridObj){
 
 
 function setBgColor(obj){
-    $(".groupButton").style.background = "#e0d7d7";
+    $(".groupButton").attr("style", "background:#ffffff;");
     var color = obj.el.style.background;
     if(color=="red"){
-        obj.el.style.background = "#e0d7d7";
+        obj.el.style.background = "#ffffff";
     }else{
-        obj.el.style.background = "red";
+        obj.el.style.background = "#e0d7d7";
     }
 }

@@ -14,16 +14,16 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1ds" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1s" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
         <div size="40%" showCollapseButton="false" style="border:0;">
             <br/>
             <center id="groupButton">
-                <a class="nui-button groupButton" onclick="setBgColor(this)">主&nbsp;&nbsp;组</a>
-                <a class="nui-button groupButton" onclick="setBgColor(this)" onclick="">分&nbsp;&nbsp;组</a>
-                <a class="nui-button groupButton" onclick="setBgColor(this)">零&nbsp;&nbsp;件</a>
+                <a class="nui-button groupButton" onclick="setBgColor(this);showRightGrid(gridCfg)">主&nbsp;&nbsp;组</a>
+                <a class="nui-button groupButton" onclick="setBgColor(this);showRightGrid(gridSubGroup)" onclick="">分&nbsp;&nbsp;组</a>
+                <a class="nui-button groupButton" onclick="setBgColor(this);showRightGrid(gridParts)">零&nbsp;&nbsp;件</a>
             </center>
         </div>
         <div showCollapseButton="false" style="border:0;">

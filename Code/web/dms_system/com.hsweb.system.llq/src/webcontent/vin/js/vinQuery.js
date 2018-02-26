@@ -14,8 +14,8 @@ $(document).ready(function(v){
     gridParts = nui.get("gridParts");
     panel = nui.get("panel");
     
-    panel.hidePane(0);
-    panel.hidePane(1); 
+    //panel.hidePane(0);
+    panel.hidePane(2); 
     
     gridMainGroup.on("rowclick", function (e) {//查分组信息
         /* var column = e.column;
@@ -101,8 +101,7 @@ function setGridCfg(data){
         }
         
         if(dataList && dataList.length > 0){
-            panel.showPane(0);
-            panel.showPane(1);
+            panel.showPane(2);
             /* gridCfg.set({
                 columns: [
                     { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
@@ -115,8 +114,7 @@ function setGridCfg(data){
             //加载主组数据
             queryGroupByVin();
         }else{
-            panel.hidePane(0);
-            panel.hidePane(1);
+            panel.hidePane(2);
         }        
     }
 }
@@ -143,6 +141,13 @@ function queryGroupByVin(){
 */
 function setgridMainGroup(data){    
     showLeftGrid(gridMainGroup);
+    gridMainGroup.set({
+        columns: [
+            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
+            { field: "auth", visible: false},
+            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称"}
+        ]
+    });
     gridMainGroup.setData(data);
 }
 

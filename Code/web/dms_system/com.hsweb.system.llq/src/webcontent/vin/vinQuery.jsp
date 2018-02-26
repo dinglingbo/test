@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1ds" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -62,10 +62,7 @@
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
-                        <div property="columns">
-                            <div field="auth" width="80" visible="false" allowSort="false"></div>
-                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
-                            <div field="name" width="80" headerAlign="center" allowSort="false">主组名称</div>                  
+                        <div property="columns">                                           
                         </div>
                     </div>
                 </div>

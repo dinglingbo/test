@@ -40,7 +40,15 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
-
+    leftGrid.on("load",function(){
+    	var data = leftGrid.getData()||[];
+        var count = data.length;
+        if(count>0)
+        {
+            onLeftGridRowDblClick({});
+        }
+        nui.get("leftGridCount").setValue("共"+count+"项");
+    });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
@@ -79,8 +87,43 @@ $(document).ready(function(v)
                     }
                 });
                 nui.get("settType").setData(settTypeIdList);
-                quickSearch(currType);
             }
+            var roleId = [];
+            roleId.push("010810");//验货员
+            roleId.push("010806");//采购员
+            getRoleMember(roleId,function(data)
+            {
+                var list = data.members;
+                var buyerList = list.filter(function(v)
+                {
+                    return v.roleId == "010806";
+                });
+                var checkerList = list.filter(function(v)
+                {
+                    return v.roleId == "010810";
+                });
+                var checkerEl = nui.get("checker");
+                var buyerEl = nui.get("buyer");
+                checkerEl.setData(checkerList);
+                buyerEl.setData(buyerList);
+                checkerEl.on("valuechanged",function()
+                {
+                    var checkerEl = nui.get("checker");
+                    if(!checkerEl.getValue()){
+                        checkerEl.setValue(currUserName);
+                        checkerEl.setText(currUserName);
+                    }
+                });
+                buyerEl.on("valuechanged",function()
+                {
+                    var buyerEl = nui.get("buyer");
+                    if(!buyerEl.getValue()){
+                        buyerEl.setValue(currUserName);
+                        buyerEl.setText(currUserName);
+                    }
+                });
+                quickSearch(currType);
+            });
         });
     });
 });
@@ -97,6 +140,12 @@ function onLeftGridRowDblClick(e)
     }
  //   console.log(row);
     basicInfoForm.setData(row);
+    var checkerEl = nui.get("checker");
+    var buyerEl = nui.get("buyer");
+    checkerEl.setValue(row.storeKeeper);
+    checkerEl.setText(row.storeKeeper);
+    buyerEl.setValue(row.buyer);
+    buyerEl.setText(row.buyer);
     nui.get("guestId").setText(row.guestFullName);
     var editEnterMainBtn = nui.get("editEnterMainBtn");
     var saveEnterMainBtn = nui.get("saveEnterMainBtn");
@@ -123,6 +172,9 @@ function onLeftGridRowDblClick(e)
     }
     var enterId = row.id;
     loadRightGridData(enterId);
+}
+function reloadLeftGrid(){
+    leftGrid.reload();
 }
 function loadRightGridData(enterId)
 {
@@ -207,7 +259,6 @@ function doSearch(params)
 	leftGrid.load({
 		params : params
 	}, function() {
-		onLeftGridRowDblClick({});
 	});
 }
 function advancedSearch()
@@ -250,11 +301,23 @@ function onAdvancedSearchCancel(){
 function addInbound()
 {
 	basicInfoForm.clear();
+	var storeList = nui.get("storeId").getData()||[];
+    var billTypeIdList = nui.get("billTypeId").getData()||[];
+    var settTypeList = nui.get("settType").getData()||[];
     var data = {
         enterDate:(new Date()),
-        totalAmt:0
+        totalAmt:0,
+        settType:settTypeList[0].customid,
+        billTypeId:billTypeIdList[0].customid,
+        storeId:storeList[0].id
     };
     basicInfoForm.setData(data);
+    var checkerEl = nui.get("checker");
+    var buyerEl = nui.get("buyer");
+    checkerEl.setValue(currUserName);
+    checkerEl.setText(currUserName);
+    buyerEl.setValue(currUserName);
+    buyerEl.setText(currUserName);
     rightGrid.clearRows();
     var editEnterMainBtn = nui.get("editEnterMainBtn");
     var saveEnterMainBtn = nui.get("saveEnterMainBtn");
@@ -344,6 +407,7 @@ function save() {
     data.payableAmt = data.totalAmt;
     data.goodsAmt = data.totalAmt;
     data.billStatus = data.billStatus||0;
+    data.enterTypeId = '050101';
     console.log(data);
     var enterDetailAdd = rightGrid.getChanges("added")||[];
     var enterDetailUpdate = [];
@@ -376,7 +440,7 @@ function save() {
 			data = data || {};
 			if (data.errCode == "S") {
 				nui.alert("保存成功");
-				onLeftGridRowDblClick({});
+				reloadLeftGrid();
 			} else {
 				nui.alert(data.errMsg || "保存失败");
 			}
@@ -425,7 +489,7 @@ function selectPart(callback)
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.common.partSelectView.flow",
-        title: "供应商资料", width: 930, height: 560,
+        title: "选择配件", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()

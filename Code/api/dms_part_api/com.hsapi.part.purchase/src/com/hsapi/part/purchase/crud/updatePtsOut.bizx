@@ -128,7 +128,7 @@
       <process:to type="query">i</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
       <process:to type="query">outMain/modifier</process:to>
     </process:copy>
   </nodes>

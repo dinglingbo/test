@@ -42,7 +42,7 @@
 		       a.modifier modifier,
 		       a.modify_date modifyDate,
 		       a.sett_type settType
-		       FROM PTS_ENTER_MAIN a where 1=1
+		       FROM PTS_ENTER_MAIN a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
                 (id like '%$id$%')
@@ -136,7 +136,7 @@
 		       a.record_date recordDate,
 		       a.modifier modifier,
 		       a.modify_date modifyDate 
-		 FROM pts_out_main a where 1=1
+		 FROM pts_out_main a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
                 (id like '%$id$%')

@@ -111,6 +111,7 @@ function getSearchParam()
 }
 function doSearch(params)
 {
+	params.guestType = '01020102';
     grid.load({
         params:params
     });

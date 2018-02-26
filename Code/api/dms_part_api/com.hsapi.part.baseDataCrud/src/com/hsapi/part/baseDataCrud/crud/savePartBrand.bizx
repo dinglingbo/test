@@ -60,7 +60,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
       <process:to type="query">brand/modifier</process:to>
     </process:copy>
   </nodes>
@@ -110,7 +110,7 @@
       <process:to type="query">brand/isDisabled</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
       <process:to type="query">brand/recorder</process:to>
     </process:copy>
     <process:copy>

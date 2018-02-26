@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseInbound/purchaseInbound.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/purchaseInbound/purchaseInbound.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -65,10 +65,10 @@
         <tr>
             <td style="width:100%;">
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">新增</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a>
-                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn">保存</a>
-                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" id="reViewBtn">审核</a>
+               	<a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn" enabled="false">修改</a>
+                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn" enabled="false">保存</a>
+                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn" enabled="false">取消</a>
+                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" id="reViewBtn" enabled="false">审核</a>
             </td>
         </tr>
     </table>
@@ -100,7 +100,7 @@
                 </div>
                 <!--footer-->
                 <div property="footer">
-                    <input type='nui-textbox' value='Footer' readonly="true" style='vertical-align:middle;'/>
+                    <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
                                 <label>入库单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" placeholder="新增入库单"/>
+                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增入库单"/>
                             </td>
                             <td class="title required">
                                 <label>入库日期：</label>
@@ -195,17 +195,17 @@
                                 <label>采购员：</label>
                             </td>
                             <td colspan="1">
-                                <input class="nui-textbox" name="buyer" width="100%">
-                                <!--<input name="buyer"-->
-                                       <!--class="nui-combobox width1"-->
-                                       <!--textField="text"-->
-                                       <!--valueField="id"-->
-                                       <!--emptyText="请选择..."-->
-                                       <!--url=""-->
-                                       <!--allowInput="true"-->
-                                       <!--showNullItem="true"-->
-                                       <!--width="100%"-->
-                                       <!--nullItemText="请选择..."/>-->
+                                <input name="buyer"
+                                        id="buyer"
+                                        class="nui-combobox width1"
+                                        textField="name"
+                                        valueField="name"
+                                        emptyText="请选择..."
+                                        url=""
+                                        allowInput="true"
+                                        showNullItem="false"
+                                        width="100%"
+                                        nullItemText="请选择..."/>
                             </td>
                             <td class="title">
                                 <label>票据号：</label>
@@ -217,14 +217,15 @@
                                 <label>验货员：</label>
                             </td>
                             <td colspan="1">
-                                <input name="yanhuo"
+                                <input name="storeKeeper"
+                                       id="checker"
                                        class="nui-combobox width1"
-                                       textField="text"
-                                       valueField="id"
+                                       textField="name"
+                                       valueField="name"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="true"
-                                       showNullItem="true"
+                                       showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
                             </td>

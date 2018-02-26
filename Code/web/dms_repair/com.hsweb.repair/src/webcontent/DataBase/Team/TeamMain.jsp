@@ -13,14 +13,14 @@
 <title>班组定义</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/repair/js/DataBase/Team/TeamMain.js?v=1.0.1"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/repair/js/DataBase/Team/TeamMain.js"></script>
 
 
 
 
 
 </head>
-<body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
+<body>
 
 	<div class="nui-toolbar" id="form1" style="height: 30px; padding: 2px; border-bottom: 0;">
 		<table class="table" id="table1" style="height: 100%">
@@ -47,6 +47,7 @@
 							<a class="nui-button" id="add" iconCls="icon-add" onclick="addTeam()" plain="true">添加班组</a>
 							<a class="nui-button" id="update" iconCls="icon-edit" onclick="editTeam()" plain="true">编辑班组</a> 
 							<a class="nui-button" id="disabledLeft" iconCls="icon-no" onclick="disableTeam()" plain="true" >禁用班组</a>
+							<a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableTeam()" id="enabledLeft" visible="false">启用班组</a>
 						</td>
 					</tr>
 				</table>
@@ -54,9 +55,9 @@
 			<div class="nui-fit">
 				<div id="leftGrid" dataField="rpbclass" class="nui-datagrid"
 					style="width: 100%; height: 95%;" 
-					url="" pageSize="20"
-					showPageInfo="true" multiSelect="true" showPageIndex="false"showPagerButtonIcon="false" 
-					showPage="true" showPageSize="false" showReloadButton="false" allowSortColumn="true"
+					url="" 
+					showPageInfo="false" multiSelect="true" showPageIndex="false"showPagerButtonIcon="false" 
+					 showPageSize="false" showReloadButton="false" allowSortColumn="true"
 					
 					ondrawcell="onDrawCell"
 					onrowdblclick="editTeam"
@@ -81,8 +82,7 @@
 
 		<div showCollapseButton="false" style="border-left: 0">
 			<!-- 班组成员-->
-			<div class="nui-toolbar" id="div_1"
-				style="border-bottom: 0; padding: 0px;">
+			<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
 
 				<table style="width: 100%">
 					<tr>
@@ -96,11 +96,15 @@
 			<div class="nui-fit">
 				<div id="rightGrid" dataField="members" class="nui-datagrid"
 					style="width: 100%; height: 95%;"
-					url="" pageSize="20"
-					showPageInfo="true" multiSelect="true" showPageIndex="false"
-					showPage="true" showPageSize="false" showReloadButton="false"
+					url="" 
+					showPageInfo="false" multiSelect="true" showPageIndex="false"
+					showPageSize="false" showReloadButton="false"
 					showPagerButtonIcon="false" totalCount="total"
 					allowSortColumn="true" selectOnLoad="true"
+					
+					ondrawcell="onDrawCell"
+					onrowdblclick="editTeamMember"
+					selectOnLoad="true" 
 					>
 					<div property="columns">
 						<div type="indexcolumn"headerAlign="center" allowSort="true" visible="true" width="30px">序号</div>
@@ -108,7 +112,7 @@
 							<div property="columns">
 								<div  field="code" headerAlign="center" allowSort="true" visible="true">成员编号</div>
 								<div  field="name" headerAlign="center" allowSort="true">班组成员</div>
-								<div  field="idDisabled" headerAlign="center" allowSort="true">是否禁用</div>
+								<div  field="isDisabled" headerAlign="center" allowSort="true">是否禁用</div>
 							</div>
 						</div>
 					</div>

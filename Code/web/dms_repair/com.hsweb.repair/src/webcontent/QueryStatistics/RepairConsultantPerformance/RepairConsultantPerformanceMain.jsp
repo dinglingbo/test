@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>维修顾问业绩</title>
+<title>维修顾问业绩报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     
@@ -153,7 +153,7 @@
 				<td style="text-align:right;">
 					<a class="nui-button" onclick="onChoice()" style="margin-right:10px;width:70px">选择样式</a>  
 					<span style="width:0;height:100%;border: 0.6px dashed #AAAAAA;margin:5px" ></span>
-					<a class="nui-button" onclick="onCancel" style="margin-right:7px;width:60px;color:#0000FF" plain="true"><u>柱形图（列表）</u></a>       
+					<a class="nui-button" onclick="onCancel" style="margin-right:7px;width:100px;color:#0000FF" plain="true"><u>柱形图（列表）</u></a>       
 				</td>
 			</tr>
 			<tr style="display: block; margin:0">

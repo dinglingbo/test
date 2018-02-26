@@ -74,7 +74,7 @@
 						<div  field="" headerAlign="center" allowSort="true" visible="true" width="60px">期初车辆</div>
 						<div  field="" headerAlign="center" allowSort="true" visible="true" width="70px">期末车辆</div>
 						<div  field="" headerAlign="center" allowSort="true" visible="true" width="60px">流入车辆</div>
-							<div  field="" headerAlign="center" allowSort="true" visible="true" width="60px">流出车辆</div>
+						<div  field="" headerAlign="center" allowSort="true" visible="true" width="60px">流出车辆</div>
 						<div  field="" headerAlign="center" allowSort="true" visible="true" width="60px">回流车辆</div>
 						<div  field="" headerAlign="center" allowSort="true" visible="true" width="70px">新车客户</div>
 						<div  field="" headerAlign="center" allowSort="true" visible="true" width="60px">期初流失</div>

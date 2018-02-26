@@ -99,12 +99,12 @@
 				<td style="text-align:right;">
 					<a class="nui-button" onclick="onChoice()" style="margin-right:10px;width:70px">选择样式</a>  
 					<span style="width:0;height:100%;border: 0.6px dashed #AAAAAA;margin:5px" ></span>
-					<a class="nui-button" onclick="onCancel" style="margin-right:7px;width:120px;color:#0000FF" plain="true"><u>柱形图（列表）</u></a>       
+					<a class="nui-button" onclick="onCancel" style="margin-right:7px;width:100px;color:#0000FF" plain="true"><u>柱形图（列表）</u></a>       
 				</td>
 			</tr>
 			<tr style="display: block; margin:0">
 				<td>
-					<a class="nui-textarea"onclick="onCancel" style="margin-left:20px;width:1320px;height: 160px;margin-top:5px"></a>  
+					<a class="nui-textarea"onclick="onCancel" style="margin-left:20px;width:1320px;height: 60px;margin-top:5px"></a>  
 				</td>				
 			</tr>
 		</table>

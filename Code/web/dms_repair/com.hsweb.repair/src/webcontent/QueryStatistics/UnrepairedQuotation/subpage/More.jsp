@@ -65,7 +65,7 @@
 					<label>报价单号：</label>
 				</td>
 				<td>
-					<input class="nui-textarea"  height="89px" width="298px" allowInput="false"/>
+					<input class="nui-textarea"  height="89px" width="298px"/>
 				</td>
 			</tr>
 		</table>

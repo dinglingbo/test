@@ -1,72 +1,73 @@
-		var form = new nui.Form("#dataform1");
-		form.setChanged(false);
-		
-    	function saveData(){
-				var urlStr;
-                var pageType = nui.getbyName("pageType").getValue();
-                if(pageType=="add"){
-                    urlStr = "com.hsapi.repair.brand.addBrand.biz.ext";
-                }
-                if(pageType=="edit"){
-                    urlStr = "com.hsapi.repair.brand.editBrand.biz.ext";
-                }
-                form.validate();
-                if(form.isValid()==false) return;
-				var data = form.getData(false,true);
-                var json = nui.encode(data);
+var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var dataform1 = null;
+//必填
+var requiredField = {
+		carBrandEn:"品牌英文名",
+		carBrandZh:"品牌中文名"
+};
 
-                $.ajax({
-                    url:urlStr,
-                    type:'POST',
-                    data:json,
-                    cache:false,
-                    contentType:'text/json',
-                    success:function(text){
-                        var returnJson = nui.decode(text);
-                        if(returnJson.exception == null){
-                            CloseWindow("saveSuccess");
-                        }else{
-                            nui.alert("保存失败", "系统提示", function(action){
-                                if(action == "ok" || action == "close"){
-                                    
-                                }
-                                });
-                            }
-                        }
-                        });
-                    }
+$(document).ready(function(){
+	dataform1 = new nui.Form("#dataform1");
+});
 
-                    //页面间传输json数据
-                    function setData(data){
-                        var infos = nui.clone(data);
-						nui.getbyName("pageType").setValue(infos.pageType);
+function setData(data){
+	if(!dataform1){
+		dataform1 = new nui.Form("#dataform1");
+	}
+	data = data||{};
+	var brand = data.brand;
+	dataform1.setData(brand);
+}
 
-                        if (infos.pageType == "edit") {
-                            var json = infos.record;
-							var form = new nui.Form("#dataform1");
-                            form.setData(json);
-                            form.setChanged(false);
-                        }
-                    }
+function onOk(){
+	var data = dataform1.getData();
+	console.log(data);
+	for(var key in requiredField){
+		if(!data[key] || data[key].trim().length==0)
+        {
+            nui.alert(requiredField[key]+"不能为空");
+            return;
+        }
+	}
+	nui.mask({
+		html:'保存中..'
+	});
+	nui.ajax({
+		url:"com.hsapi.repair.baseData.brand.saveBrand.biz.ext",
+		type:"post",
+		data:JSON.stringify({
+			brand:data
+		}),
+		success:function(data){
+			nui.unmask();
+			data = data||{};
+			if(data.errCode == "S")
+			{
+				nui.alert("保存成功");
+				CloseWindow("ok");
+			}
+			else{
+				nui.alert(data.errMsg||"保存失败");
+			}
+		},
+		error:function(jqXHR, textStatus, errorThrown){
+			//  nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 
-                    //关闭窗口
-                    function CloseWindow(action) {
-                        if (action == "close" && form.isChanged()) {
-                            if (confirm("数据被修改了，是否先保存？")) {
-                                saveData();
-                            }
-                        }
-                        if (window.CloseOwnerWindow)
-                        return window.CloseOwnerWindow(action);
-                        else window.close();
-                    }
+function CloseWindow(action) {
+//    if (action == "close" && form.isChanged()) {
+//        if (confirm("数据被修改了，是否先保存？")) {
+//            saveData();
+//        }
+//    }
+    if (window.CloseOwnerWindow)
+    return window.CloseOwnerWindow(action);
+    else window.close();
+}
 
-                    //确定保存或更新
-                    function onOk() {
-                        saveData();
-                    }
-
-                    //取消
-                    function onCancel() {
-                        CloseWindow("cancel");
-                    }
+function onCancel() {
+    CloseWindow("cancel");
+}

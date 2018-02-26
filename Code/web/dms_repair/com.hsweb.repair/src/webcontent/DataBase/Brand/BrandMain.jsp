@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -13,15 +14,12 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%= request.getContextPath() %>/common/nui/nui.js"
 	type="text/javascript"></script>
-<script
-	src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/BrandMain.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/BrandMain.js"  type="text/javascript"></script>
 
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 	<div class="nui-toolbar" id="form1" style="height: 30px">
-
-		<input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.common.ComCarBrand" />
 		<table class="table" id="table1" style="height: 100%">
 			<tr>
 				<td>
@@ -58,20 +56,27 @@
 								<td style="width: 100%"><a class="nui-button" id="add"
 									iconCls="icon-add" onclick="addBrand()" plain="true">新增品牌（A）</a>
 									<a class="nui-button" id="update" iconCls="icon-edit"
-									onclick="editBrand()" plain="true">修改品牌（E）</a> <a
-									class="nui-button" id="no" iconCls="icon-no" onclick="no()"
-									plain="true">禁用品牌（D）</a></td>
+									onclick="editBrand()" plain="true">修改品牌（E）</a> 
+									<a class="nui-button" id="disabledBrand" iconCls="icon-no" onclick="disableBrand()" plain="true">禁用品牌（D）</a>
+									<a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableBrand()" id="enabledBrand" visible="false">启用品牌</a>
+								</td>
 							</tr>
 						</table>
 					</div>
 					<div class="nui-fit">
-						<div id="datagrid1" dataField="brands" class="nui-datagrid"
+						<div id="leftBrandGrid" dataField="brands" class="nui-datagrid"
 							style="width: 100%; height: 100%;"
-							url="com.hsapi.repair.brand.queryBrand.biz.ext" pageSize="20"
-							showPageInfo="true" multiSelect="true" showPageIndex="false"
-							showPage="true" showPageSize="false" showReloadButton="false"
+							url=""  showPageInfo="false" 
+							multiSelect="true" showPageIndex="false"
+							showPageSize="false" showReloadButton="false" allowSortColumn="true"
 							showPagerButtonIcon="false" totalCount="total"
-							onselectionchanged="selectionChanged" allowSortColumn="true">
+							
+							ondrawcell="onDrawCell"
+							onrowdblclick="editBrand"
+							onrowclick="onLeftBrandGridRowClick"
+							selectOnLoad="true" 
+							
+						>
 							<div property="columns">
 								<div type="indexcolumn">序号</div>
 								<div header="车辆品牌信息" headerAlign="center">
@@ -89,25 +94,29 @@
 
 				<div>
 					<!-- 车系信息 -->
-					<div class="nui-toolbar" id="div_2"
+					<div class="nui-toolbar" 
 						style="border-bottom: 0; padding: 0px;">
 						<table style="width: 100%">
 							<tr>
 								<td style="width: 100%"><a class="nui-button" id="add"
 									iconCls="icon-add" onclick="addSeries()" plain="true">新增车系（S）</a>
 									<a class="nui-button" id="update" iconCls="icon-edit"
-									onclick="editSeries()" plain="true">修改车系（D）</a></td>
+									onclick="editSeries()" plain="true">修改车系（D）</a>
+									<a class="nui-button" iconCls="icon-no" onclick="disableSeries()" plain="true" id="disabledSeries" visible="false">禁用车系</a>
+									<a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableSeries()" id="enabledSeries" visible="false">启用车系</a>
+								</td>
 							</tr>
 						</table>
 					</div>
 					<div class="nui-fit">
-						<div id="datagrid1" dataField="seriess" class="nui-datagrid"
+						<div id="leftSeriesGrid" dataField="serieses" class="nui-datagrid"
 							style="width: 100%; height: 90%;"
-							url="com.hsapi.repair.brand.querySeries.biz.ext" pageSize="20"
-							showPageInfo="true" multiSelect="true" showPageIndex="false"
-							showPage="true" showPageSize="false" showReloadButton="false"
+							url="" 
+							showPageInfo="false" multiSelect="true" showPageIndex="false"
+							showPageSize="false" showReloadButton="false"
 							showPagerButtonIcon="false" totalCount="total"
-							onselectionchanged="selectionChanged" allowSortColumn="true">
+							onDrawCell="onDrawCell"
+							allowSortColumn="true">
 							<div property="columns">
 								<div type="indexcolumn">序号</div>
 								<div header="车系信息" headerAlign="center">
@@ -127,7 +136,7 @@
 		</div>
 		<div>
 			<!-- 车型车系信息 -->
-			<div class="nui-toolbar" id="div_1"
+			<div class="nui-toolbar" 
 				style="border-bottom: 0; padding: 0px;">
 				<table style="width: 100%">
 					<tr>
@@ -135,18 +144,21 @@
 							iconCls="icon-add" onclick="addModel()" plain="true">新增车型（N）</a>
 							<a class="nui-button" iconCls="icon-edit" onclick="editModel()"
 							plain="true">修改车型（M）</a> <a class="nui-button" iconCls="icon-no"
-							onclick="forbiddenModel()" plain="true">禁用车型（C）</a></td>
+							onclick="disableModel()" plain="true">禁用车型（C）</a>
+							<a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableSeries()" id="enabledSeries" visible="false">启用车型</a>
+						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="nui-fit">
-				<div id="datagrid1" dataField="models" class="nui-datagrid"
+				<div id="rightModelGrid" dataField="models" class="nui-datagrid"
 					style="width: 100%; height: 95%;"
-					url="com.hsapi.repair.brand.queryModel.biz.ext" pageSize="20"
-					showPageInfo="true" multiSelect="true" showPageIndex="false"
-					showPage="true" showPageSize="false" showReloadButton="false"
-					showPagerButtonIcon="false" totalCount="total"
-					onselectionchanged="selectionChanged" allowSortColumn="true">
+					url="" 
+					showPageInfo="false" multiSelect="true" showPageIndex="false"
+					showPageSize="false" showReloadButton="false"
+					showPagerButtonIcon="false" 
+					ondrawcell="onDrawCell"
+					allowSortColumn="true">
 					<div property="columns">
 						<div type="indexcolumn">序号</div>
 						<div header="车型车系信息" headerAlign="center">
@@ -167,178 +179,5 @@
 		</div>
 	</div>
 
-
-
-
-
-	<script type="text/javascript">
-    	nui.parse();
-    	
-    	var grid = nui.get("datagrid1");
-    	var formData = new nui.Form("#form1").getData(false, false);
-    			grid.load(formData);
-    	
-    	function addBrand(){
-    		nui.open({
-    			url:"CarBrandDetail.jsp",
-    			title:"新增品牌",width:400,height:200,
-    			onload:function(){
-    			    var iframe = this.getIFrameEl();
-    			    var data = {pageType:"add"};
-    			    iframe.contentWindow.setData(data);
-    			},
-    			
-    		    ondestroy:function(action){
-    		    grid.reload();
-    		}	
-    		});
-    		
-    	}
-    	
-    	function editBrand(){
-    	    var row = grid.getSelected();
-    	    if(row) {
-    	        nui.open({
-    	            url:"CarBrandDetail.jsp",
-    	            title:"修改品牌",
-    	            width:400,
-    	            height:200,
-    	            onload:function(){
-    	                var iframe = this.getIFrameEl();
-    	                var data = {pageType:"edit",record:{comguest:row}};
-    	                //直接从页面获取，不用去后台获取
-    	                iframe.contentWindow.setData(data);
-    	            },
-    	            ondestroy:function(action){
-    	                if(action == "saveSuccess"){
-    	                    grid.reload();
-    	                }
-    	            }
-    	        });
-    	    }else {
-    	        nui.alert("请选中一条数据", "系统提示");
-    	    }
-    	}
-    	
-    	function addSeries(){
-    		nui.open({
-    			url:"CarSeriesDetail.jsp",
-    			title:"新增车系",width:400,height:280,
-    			onload:function(){
-    			    var iframe = this.getIFrameEl();
-    			    var data = {pageType:"add"};
-    			    iframe.contentWindow.setData(data);
-    			},
-    			
-    		    ondestroy:function(action){
-    		    grid.reload();
-    		}	
-    		});
-    		
-    	}
-    	
-    	function editSeries(){
-    	    var row = grid.getSelected();
-    	    if(row) {
-    	        nui.open({
-    	            url:"CarSeriesDetail.jsp",
-    	            title:"修改车系",
-    	            width:400,
-    	            height:280,
-    	            onload:function(){
-    	                var iframe = this.getIFrameEl();
-    	                var data = {pageType:"edit",record:{comguest:row}};
-    	                //直接从页面获取，不用去后台获取
-    	                iframe.contentWindow.setData(data);
-    	            },
-    	            ondestroy:function(action){
-    	                if(action == "saveSuccess"){
-    	                    grid.reload();
-    	                }
-    	            }
-    	        });
-    	    }else {
-    	        nui.alert("请选中一条数据", "系统提示");
-    	    }
-    	}
-    	
-    	function addModel(){
-    		nui.open({
-    			url:"CarModelDetail.jsp",
-    			title:"新增车型",width:400,height:280,
-    			onload:function(){
-    			    var iframe = this.getIFrameEl();
-    			    var data = {pageType:"add"};
-    			    iframe.contentWindow.setData(data);
-    			},
-    			
-    		    ondestroy:function(action){
-    		    grid.reload();
-    		}	
-    		});
-    		
-    	}
-    	
-    	function editModel(){
-    	    var row = grid.getSelected();
-    	    if(row) {
-    	        nui.open({
-    	            url:"CarModelDetail.jsp",
-    	            title:"修改车型",
-    	            width:400,
-    	            height:280,
-    	            onload:function(){
-    	                var iframe = this.getIFrameEl();
-    	                var data = {pageType:"edit",record:{comguest:row}};
-    	                //直接从页面获取，不用去后台获取
-    	                iframe.contentWindow.setData(data);
-    	            },
-    	            ondestroy:function(action){
-    	                if(action == "saveSuccess"){
-    	                    grid.reload();
-    	                }
-    	            }
-    	        });
-    	    }else {
-    	        nui.alert("请选中一条数据", "系统提示");
-    	    }
-    	}
-    	
-    	//重新刷新页面
-    	function refresh(){
-    		var form = new nui.Form("#form1");
-    		var json = form.getData(false, false);
-    		grid.load(json);
-    		nui.get("update").enable();
-    	}
-    	//查询
-    	function search(){
-    		var form = new nui.Form("#form1");
-    		var json = form.getData(false, false)
-    		grid.load(json);
-    	}
-    	//重置查询条件
-    	function reset(){
-    		var form = new nui.Form("#form1");
-    		grid.reset();
-    	}
-    	//enter键触发
-    	function onKeyEnter(e){
-    		search();
-    	}
-    	//选择列（判定，大于一编辑禁用）
-    	function selectionChanged(){
-    	    var rows = grid.getSelecteds();
-    	    if(rows.length>1){
-    	        nui.get("update").disable();
-    	    }else{
-    	        nui.get("update").enable();
-    	    }
-    	}
-    	function onIsDisabled(e) {
-        if (e.value == 1) return "禁用";
-        if (e.value == 0) return "启用";
-    }
-    </script>
 </body>
 </html>

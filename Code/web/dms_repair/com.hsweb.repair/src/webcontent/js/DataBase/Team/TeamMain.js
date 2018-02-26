@@ -3,11 +3,11 @@
  */
 
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.repair.baseData.team.QueryTeam.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.team.QueryTeam.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.repair.baseData.team.queryTeam.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.team.queryTeamMember.biz.ext";
 var leftGrid = null;
 var rightGrid = null;
-var splitter = null;
+
 
 	$(document).ready(function(v)
 {		
@@ -18,15 +18,15 @@ var splitter = null;
 		rightGrid = nui.get("rightGrid");
 		rightGrid.setUrl(rightGridUrl);
 		loadLeftGridData({});
+		loadRightGridData({});
 });
 	
 	function addOrEditTeam(team)
 	{
 	    nui.open({
 	        targetWindow: window,
-	        url: "repair/DataBase/Team/addEditTeam.jsp",
-	        title: "新增班组", width: 350, height: 150,
-	        allowDrag:true,
+	        url: "addEditTeam.jsp",
+	        title: "班组", width: 400, height: 200,
 	        allowResize:false,
 	        onload: function ()
 	        {
@@ -65,8 +65,8 @@ var splitter = null;
 	{
 	    nui.open({
 	        targetWindow: window,
-	        url: "com.hsweb.repair.DataBase.TeamDetail.flow",
-	        title: "新增班组成员", width: 350, height: 150,
+	        url: "addEditTeamMember.jsp",
+	        title: "班组成员", width: 400, height: 200,
 	        allowDrag:true,
 	        allowResize:false,
 	        onload: function ()
@@ -89,7 +89,8 @@ var splitter = null;
 	    });
 	}
 	
-	function addTeam()
+	
+	function addTeamMember()
 	{
 		 var team = leftGrid.getSelected();
 		    if(team)
@@ -100,7 +101,7 @@ var splitter = null;
 		        addOrEditTeamMember(member);
 		    }
 	}
-	function editTeam()
+	function editTeamMember()
 	{
 	    var member = rightGrid.getSelected();
 	    if(member)
@@ -128,6 +129,7 @@ var splitter = null;
 	        params.isDisabled = type;
 	    }
 	    loadLeftGridData(params);
+	    loadRightGridData(params);
 	}
 	
 	//获取数据
@@ -153,6 +155,7 @@ var splitter = null;
 	    });
 	}
 	
+	//点击获取右边表格数据
 	function onLeftGridRowClick(e)
 	{
 	    var row = e.record;
@@ -183,10 +186,43 @@ var splitter = null;
 	            nui.get("disabledRight").show();
 	            nui.get("enabledRight").hide();
 	        }
+	        
 	    });
 	}
 	function reloadRightGrid(){
-	    rightGrid.reload()
+	    rightGrid.reload();
+	}
+	
+	//启用班组
+	function enablePartTeam(){
+	    var row = leftGrid.getSelected();
+	    if(row)
+	    {
+	        nui.confirm("确定要启用所选班组？","提示",function(action)
+	        {
+	            if(action == "ok")
+	            {
+	                updateIsDisabled({
+	                    id:row.id,
+	                    isDisabled:0
+	                },function(data)
+	                {
+	                    data = data||{};
+	                    if(data.errCode == "S")
+	                    {
+	                        row.isDisabled = 0;
+	                        leftGrid.updateRow(row,row);
+	                        nui.get("disabledLeft").show();
+	                        nui.get("enabledLeft").hide();
+	                        nui.alert("启用成功");
+	                    }
+	                    else{
+	                        nui.alert(data.errMsg||"启用失败");
+	                    }
+	                });
+	            }
+	        }.bind(row));
+	    }
 	}
 	//禁用班组
 	function disableTeam(){
@@ -253,9 +289,9 @@ var splitter = null;
 	}
 	
 	var updateIsDisabledUrl = baseUrl+"com.hsapi.repair.baseData.team.saveTeamMember.biz.ext";
-	function updateIsDisabled(men,callback)
+	function updateIsDisabled(member,callback)
 	{
-	    console.log(brand);
+	    console.log(member);
 	    nui.mask({
 	        html:'保存中...'
 	    });
@@ -263,7 +299,7 @@ var splitter = null;
 	        url:updateIsDisabledUrl,
 	        type:"post",
 	        data:JSON.stringify({
-	            brand:brand
+	        	member:member
 	        }),
 	        success:function(data)
 	        {

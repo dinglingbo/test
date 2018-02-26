@@ -15,8 +15,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.common.ComGuest[]" name="comguests" type="query" valueType="DataObject">comguests</process:return>
-      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.common.ComGuest[]" name="comguests" type="query" valueType="DataObject">comguests</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -66,6 +65,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.common.ComGuest</process:from>
+      <process:to type="query">criteria/_entity</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">01020104</process:from>
       <process:to type="query">criteria/_expr[1]/guestType</process:to>
     </process:copy>
@@ -83,8 +86,7 @@
     <process:input description="" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.common.ComGuest" name="comguests"/>
-    <process:output description="" isArray="false" name="total" primitiveType="Int"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.common.ComGuest" name="comguests"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

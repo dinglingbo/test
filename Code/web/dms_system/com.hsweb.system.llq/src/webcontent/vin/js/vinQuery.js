@@ -76,6 +76,7 @@ function queryVin(){
             "token": token
         }
         
+        $(".groupButton").hide();
         callAjax(url, params, processAjax, setGridCfg);
     }	
 }
@@ -155,26 +156,6 @@ function setgridMainGroup(data){
 *分组信息
 */
 function setSubGroupData(data){
-    //alert(data);
-    /*
-    主组  num
-    分组  subgroup
-    图号  mid
-    名称  subgroupname
-    备注  description
-    型号  model
-    */
-    /* gridSubGroup.set({
-        columns: [
-            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
-            { field: "num", width:30, headerAlign: "center", allowSort: false, header: "主组"},
-            { field: "subgroup", width:30, headerAlign: "center", allowSort: false, header: "分组"},
-            { field: "mid", width:60, headerAlign: "center", allowSort: false, header: "图号"},
-            { field: "subgroupname", width:150, headerAlign: "center", allowSort: false, header: "名称"},
-            { field: "description", width:150, headerAlign: "center", allowSort: false, header: "备注"},
-            { field: "model", width:100, headerAlign: "center", allowSort: false, header: "型号"}
-        ]
-    }); */
     gridSubGroup.setData(data);
     showRightGrid(gridSubGroup);
 }
@@ -183,7 +164,6 @@ function setSubGroupData(data){
 *零件数据处理
 */
 function setGridPartsData(data){
-    alert(data);
     gridParts.setData(data);
     showRightGrid(gridParts);
     
@@ -215,16 +195,20 @@ function showRightGrid(gridObj){
     gridSubGroup.hide();
     gridParts.hide();
     
-    gridObj.show();  
+    gridObj.show();
+    var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
+    $($(".groupButton")[num]).show();
+    //$($(".groupButton")[num]).click();
+    setBgColor($(".groupButton")[num]);
 }
 
 
 function setBgColor(obj){
-    $(".groupButton").attr("style", "background:#ffffff;");
-    var color = obj.el.style.background;
+    $(".groupButton:visible").attr("style", "background:#ffffff;");
+    var color = obj.style.background;
     if(color=="red"){
-        obj.el.style.background = "#ffffff";
+        obj.style.background = "#ffffff";
     }else{
-        obj.el.style.background = "#e0d7d7";
+        obj.style.background = "#e0d7d7";
     }
 }

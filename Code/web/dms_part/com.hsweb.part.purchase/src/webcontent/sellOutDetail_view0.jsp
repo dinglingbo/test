@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellOutDetail.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellOutDetail.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -24,40 +24,161 @@
 </head>
 <body>
 
-
-	<form id="form1" action="com.hsweb.part.purchase.sellOutDetail.flow"
-		method="post">
-		<h:hidden name="_eosFlowKey" property="_eosFlowKey"></h:hidden>
-
-
-		<table cellPadding="0" style="width: 80%" class="pg_result"
-			align="left" cellSpacing="1" border="1">
-			<tr bgcolor="#99FFFF">
-				<td colspan="4" align="center">???????????</td>
-			</tr>
-			<tr bgcolor="#CCCCFF">
-				<td style="width: 10%">???????</td>
-				<td style="width: 10%">???????</td>
-				<td style="width: 10%">????????</td>
-				<td style="width: 25%">?????</td>
-			</tr>
-
-
-		</table>
-		<input id="action" type="hidden" name="_eosFlowAction" value="action1">
-
-		<script type="text/javascript">
-			function selectAction(action) {
-				document.getElementById("action").value = action;
-				document.getElementById("form1").submit();
-			}
-		</script>
-
-		<input type="button" align="left" value="??"
-			onclick="selectAction('action1');">
-	</form>
-
-
+<div id="basicInfoForm" class="form">
+    <input class="nui-hidden" name="detailId"/>
+    <input class="nui-hidden" name="partId"/>
+    <input class="nui-hidden" name="costAmt"/>
+    <input class="nui-hidden" name="costUnitPrice"/>
+    <input class="nui-hidden" name="noTaxCostUnitPrice"/>
+    <input class="nui-hidden" name="noTaxCostAmt"/>
+    <input class="nui-hidden" name="taxCostUnitPrice"/>
+    <input class="nui-hidden" name="taxCostAmt"/>
+    <table style="width: 100%">
+        <tr>
+            <td class="title">
+                <label>配件编码</label>
+            </td>
+            <td>
+                <input name="partCode" class="nui-textbox" enabled="false" width="100%"/>
+            </td>
+            <td class="title">
+                <label>配件名称</label>
+            </td>
+            <td>
+                <input name="partName" class="nui-textbox width1" enabled="false" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                <label>品牌</label>
+            </td>
+            <td colspan="1">
+                <input name="partBrandName" class="nui-textbox" enabled="false" width="100%"/>
+            </td>
+            <td class="title">
+                <label>车型</label>
+            </td>
+            <td colspan="1">
+                <input name="applyCarModel" class="nui-textbox" enabled="false" width="100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                <label>单位</label>
+            </td>
+            <td colspan="1">
+                <input name="unit" class="nui-textbox" enabled="false" width="100%"/>
+            </td>
+            <td class="title">
+                <label>库存数</label>
+            </td>
+            <td colspan="1">
+                <input name="outableQty" class="nui-textbox" enabled="false" width="100%" value="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="title required">
+                <label>数量</label>
+            </td>
+            <td>
+                <input name="outQty"
+                       id="outQty"
+                       onvaluechanged="onUnitPriceChange"
+                       class="nui-spinner"  minValue="1" maxValue="10000000" width="100%" value="1"/>
+            </td>
+            <td class="title required">
+                <label>单价</label>
+            </td>
+            <td>
+                <input name="sellUnitPrice"
+                       id="sellUnitPrice"
+                       class="nui-textbox width1"
+                       enabled="true"
+                       width="100%"
+                       onvaluechanged="onUnitPriceChange"
+                       value="1"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="title required">
+                <label>折扣率(%)</label>
+            </td>
+            <td>
+                <input name="discountRate"
+                       id="discountRate"
+                       class="nui-spinner"
+                       decimalPlaces="2"
+                       format="n"
+                       onvaluechanged="onUnitPriceChange"
+                       minValue="0" maxValue="100"
+                       width="100%" value="100"/>
+            </td>
+            <td class="title required">
+                <label>折后单价</label>
+            </td>
+            <td>
+                <input name="discountLastUnitPrice"
+                       id="discountLastUnitPrice"
+                       decimalPlaces="2"
+                       format="¥#,0.00"
+                       enabled="false"
+                       class="nui-spinner"  minValue="0" width="100%" value="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="title required">
+                <label>折后</label>
+            </td>
+            <td>
+                <input name="discountLastAmt" id="discountLastAmt"
+                       decimalPlaces="2"
+                       format="¥#,0.00"
+                       onvaluechanged="onAmtChange"
+                       class="nui-spinner"  minValue="0" width="100%" value="1"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+            </td>
+            <td>
+            </td>
+            <td class="title">
+                <span>小计</span>
+            </td>
+            <td>
+                <span id="totalAmt">RMB</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+            </td>
+            <td>
+            </td>
+            <td class="title">
+                <span>折后</span>
+            </td>
+            <td>
+                <span id="discountLastAmt1">RMB</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+            </td>
+            <td>
+            </td>
+            <td class="title">
+                <span>优惠</span>
+            </td>
+            <td>
+                <span id="youhui">RMB</span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="text-align:center;padding:10px;">
+    <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
+    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+</div>
 
 
 </body>

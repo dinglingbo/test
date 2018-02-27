@@ -57,6 +57,7 @@
                      onrowdblclick="editPartQuality"
                      onrowclick="onLeftGridRowClick"
                      selectOnLoad="true"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center">序号</div>
@@ -91,6 +92,7 @@
                      dataField="brands"
                      onrowdblclick="editPartBrand"
                      selectOnLoad="true"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center">序号</div>

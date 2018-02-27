@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/inventoryMgr/inventoryProfit.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/inventoryMgr/inventoryProfit.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -95,7 +95,7 @@
                 </div>
                 <!--footer-->
                 <div property="footer">
-                    <input type='nui-textbox' value='Footer' readonly="true" style='vertical-align:middle;'/>
+                    <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
                 </div>
             </div>
         </div>
@@ -194,7 +194,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addQuickBtn" enabled="false">快速录入</a>
+                           
                             <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn" enabled="false">添加</a>
                             <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="editPartBtn" enabled="false">修改</a>
                             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn" enabled="false">删除</a>
@@ -275,7 +275,12 @@
             <tr>
                 <td class="title">盘点人:</td>
                 <td colspan="3">
-                    <input class="nui-combobox" emptyText="" width="100%" />
+                    <input class="nui-combobox" emptyText="" width="100%"
+                           textField="name"
+                           valueField="name"
+                           showNullItem="false"
+                           name="buyer"
+                           id="buyer"/>
                 </td>
             </tr>
         </table>

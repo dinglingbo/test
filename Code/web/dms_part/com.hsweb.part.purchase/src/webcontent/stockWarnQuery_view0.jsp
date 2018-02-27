@@ -49,29 +49,30 @@
     </table>
 </div>
 <div class="nui-fit">
-    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+   <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
          dataField="ptsStockCycList"
          idField="id"
+         sortMode="client"
          url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="基础信息" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                    <div field="partName" width="100" headerAlign="center" header="配件名称"></div>
-                    <div field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-                    <div field="applyCarModel" width="100" headerAlign="center" header="车型"></div>
-                    <div field="partName1" width="100" headerAlign="center" header="类型"></div>
-                    <div field="stockLocation" width="100" headerAlign="center" header="存入仓位"></div>
-                    <div field="suggestPrice" width="100" headerAlign="center" header="建议售价" align="right"></div>
-                    <div field="stockQty" width="100" headerAlign="center" header="库存数量" align="right"></div>
+                    <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="partName" width="100" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="partName1" width="100" headerAlign="center" header="类型"></div>
+                    <div allowSort="true" field="stockLocation" width="100" headerAlign="center" header="存入仓位"></div>
+                    <div allowSort="true" datatype="float" field="suggestPrice" width="100" headerAlign="center" header="建议售价" align="right"></div>
+                    <div allowSort="true" datatype="int" field="stockQty" width="100" headerAlign="center" header="库存数量" align="right"></div>
                 </div>
             </div>
             <div header="仓位周期信息" headerAlign="center">
                 <div property="columns">
-                    <div field="stockDownLimit" width="60" headerAlign="center" header="库存下限" align="right"></div>
-                    <div field="stockUpLimit" headerAlign="center" header="库存上限" align="right"></div>
+                    <div allowSort="true" datatype="int" field="stockDownLimit" width="60" headerAlign="center" header="库存下限" align="right"></div>
+                    <div allowSort="true" datatype="int" field="stockUpLimit" headerAlign="center" header="库存上限" align="right"></div>
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link3</targetConnections>
-    <location x="960" y="152"/>
+    <location x="986" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -29,7 +29,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="962" y="188"/>
+    <location x="988" y="188"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -37,6 +37,7 @@
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link2" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="375" y="152"/>
@@ -203,12 +204,12 @@
     </sourceConnections>
     <targetConnections>link22</targetConnections>
     <targetConnections>link26</targetConnections>
-    <location x="852" y="152"/>
+    <location x="901" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="842" y="188"/>
+    <location x="891" y="188"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -219,7 +220,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="595" y="274"/>
+    <location x="615" y="152"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -233,7 +234,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="570" y="310"/>
+    <location x="590" y="188"/>
     <figSize height="17" width="73"/>
     <node>invokePojo3</node>
   </nodes>
@@ -244,7 +245,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="525" y="274"/>
+    <location x="540" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -265,7 +266,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="527" y="310"/>
+    <location x="542" y="188"/>
     <figSize height="17" width="25"/>
     <node>assign2</node>
   </nodes>
@@ -275,16 +276,16 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="761" y="274"/>
+    <location x="810" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">billtypeid+customCode+'-'+yearmonthc+maxnostr</process:from>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="759" y="310"/>
+    <location x="808" y="188"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -303,7 +304,7 @@
       <process:to type="query">billrecord/id</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">billtypeid</process:from>
+      <process:from type="query" pattern="reference">billTypeCode</process:from>
       <process:to type="query">billrecord/billTypeCode</process:to>
     </process:copy>
     <process:copy>
@@ -331,7 +332,7 @@
       <process:to type="query">maxnostr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">billtypeid+customCode+'-'+yearmonthc+maxnostr</process:from>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>
@@ -395,7 +396,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="687" y="274"/>
+    <location x="719" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo6label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -411,7 +412,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
-    <location x="650" y="310"/>
+    <location x="682" y="186"/>
     <figSize height="17" width="96"/>
     <node>invokePojo6</node>
   </nodes>

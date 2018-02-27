@@ -2,9 +2,9 @@
 <com.primeton.studio.component.core.EosComponentTypeInfo>
   <description>
     <version>6.0</version>
-    <displayName>uniq</displayName>
+    <displayName>settle</displayName>
     <author>Administrator</author>
-    <createdTime>2018-02-25 16:48:37</createdTime>
+    <createdTime>2018-02-27 16:01:04</createdTime>
     <description></description>
     <detailDescription></detailDescription>
     <demo></demo>

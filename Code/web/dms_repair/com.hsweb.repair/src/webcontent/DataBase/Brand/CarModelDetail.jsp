@@ -28,9 +28,11 @@
 	</style>
 </head>
 <body style="margin: 0; padding: 0; overflow: hidden">
-	<input name="id" class="nui-hidden" />
 	<fieldset style="width: 94.8%; height: 67%; border: solid 1px #aaa; position: relative; margin: 5px 5px;">
 		<div id="dataform1"  class="form">
+			<input name="id" class="nui-hidden" />
+			<input name="carBrandId" class="nui-hidden" />
+			<input name="carSeriesId" class="nui-hidden" />
 			<table style="table-layout: fixed;" class="nui-form-table">
 				<tr>
 					<td class="form_label" width="60px"><span

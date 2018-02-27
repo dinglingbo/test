@@ -48,6 +48,10 @@
       <process:to type="query">criteria/_expr[1]/carBrandId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">carSeriesId</process:from>
+      <process:to type="query">criteria/_expr[2]/carSeriesId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.repair.data.common.ComCarModel</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
@@ -99,7 +103,7 @@
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">isDisabled</process:from>
-      <process:to type="query">criteria/_expr[2]/isDisabled</process:to>
+      <process:to type="query">criteria/_expr[3]/isDisabled</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -143,6 +147,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="carBrandId" primitiveType="String"/>
     <process:input description="" isArray="false" name="isDisabled" primitiveType="String"/>
+    <process:input description="" isArray="false" name="carSeriesId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.common.ComCarModel" name="models"/>

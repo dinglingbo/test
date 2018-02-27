@@ -92,36 +92,39 @@
 						<!-- 车辆品牌信息 -->
 						<div id="mainTabs" class="nui-tabs" activeIndex="0" style="width: 100%; height: 100%;" plain="false" onactivechanged="">
 							<div title="基本信息" >
-								<div class="nui-fit">
-									<span style="margin-left: 20px; margin-top: 5px;">套餐名称：</span> 
-									<input name="name" class="nui-textbox" style="width: 60%; margin-top: 5px;" />
-									</br> 
-									
-									<span style="margin-left: 20px; margin-top: 5px;">套餐类别：</span> 
-									<input name="" class="nui-combobox" allowInput="true" textField="text" valueField="id" 
-									       showNullItem="true" style="width: 14%; margin-top: 5px;" /> 
-									<span style="margin-left: 20px; margin-top: 5px;">市场金额：</span> 
-									<input name="total" class="nui-spinner" style="width: 14%; margin-top: 5px;" format="￥0.00" allowInput="false" showButton="false" changeOnMousewheel="false" value=" "/> 
-									<span style="margin-left: 20px; margin-top: 5px;">套餐金额：</span> 
-									<input name="amount" class="nui-spinner" style="width: 12.1%; margin-top: 5px;" format="￥0.00" showButton="false" changeOnMousewheel="false" value=" "/>
-									</br> 
-									
-									<span style="margin-left: 20px; margin-top: 5px;">适用品牌：</span> 
-									<input name="" class="nui-combobox" allowInput="true" textField="text"
-									valueField="id" value="cn" showNullItem="true" style="width: 14%; margin-top: 5px;" /> 
-									<span style="margin-left: 20px; margin-top: 5px;">是否共享：</span> 
-									<input name="isShare" class="nui-checkbox" trueValue="Y" falseValue="N" />
-									</br> 
-									
-									<span style="margin-left: 20px; margin-top: 5px;">适用车型：</span> 
-									<input name="" class="nui-combobox" allowInput="true" textField="text" valueField="id" 
-									       showNullItem="true" style="width: 60%; margin-top: 5px;" />
-									</br> 
-									
-									<span style="margin-left: 20px; margin-top: 5px;">套餐说明：</span> 
-									<input name="description" class="nui-TextArea" style="width: 60%; margin-top: 5px;" /></br> 
-									<span style="margin-left: 20px; margin-top: 5px;">套餐编码：</span> 
-									<input name="id" class="nui-textbox" style="width: 60%; margin-top: 5px;" allowInput="false"/>
+								<div class="form" id="dataform1">
+									<input class="nui-hidden" name="id"/>
+									<div class="nui-fit">
+										<span style="margin-left: 20px; margin-top: 5px;">套餐名称：</span> 
+										<input name="name" class="nui-textbox" style="width: 60%; margin-top: 5px;" />
+										</br> 
+										
+										<span style="margin-left: 20px; margin-top: 5px;">套餐类别：</span> 
+										<input name="type" class="nui-combobox" allowInput="true" textField="text" valueField="id" 
+										       showNullItem="true" style="width: 14%; margin-top: 5px;" /> 
+										<span style="margin-left: 20px; margin-top: 5px;">市场金额：</span> 
+										<input name="total" class="nui-spinner" style="width: 14%; margin-top: 5px;" format="￥0.00" allowInput="false" showButton="false" changeOnMousewheel="false" value=" "/> 
+										<span style="margin-left: 20px; margin-top: 5px;">套餐金额：</span> 
+										<input name="amount" class="nui-spinner" style="width: 12.1%; margin-top: 5px;" format="￥0.00" showButton="false" changeOnMousewheel="false" value=" "/>
+										</br> 
+										
+										<span style="margin-left: 20px; margin-top: 5px;">适用品牌：</span> 
+										<input name="" class="nui-combobox" allowInput="true" textField="text"
+										valueField="id" value="cn" showNullItem="true" style="width: 14%; margin-top: 5px;" /> 
+										<span style="margin-left: 20px; margin-top: 5px;">是否共享：</span> 
+										<input name="isShare" class="nui-checkbox" trueValue="Y" falseValue="N" />
+										</br> 
+										
+										<span style="margin-left: 20px; margin-top: 5px;">适用车型：</span> 
+										<input name="" class="nui-combobox" allowInput="true" textField="text" valueField="id" 
+										       showNullItem="true" style="width: 60%; margin-top: 5px;" />
+										</br> 
+										
+										<span style="margin-left: 20px; margin-top: 5px;">套餐说明：</span> 
+										<input name="description" class="nui-TextArea" style="width: 60%; margin-top: 5px;" /></br> 
+										<span style="margin-left: 20px; margin-top: 5px;">套餐编码：</span> 
+										<input name="id" class="nui-textbox" style="width: 60%; margin-top: 5px;" allowInput="false"/>
+									</div>
 								</div>
 							</div>
 						</div>

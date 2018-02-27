@@ -63,6 +63,7 @@
 								showReloadButton="false" showPagerButtonIcon="false"
 								
 								onrowclick="onOutCarDataRowClick"
+								selectOnLoad="true"
 								allowSortColumn="true"
 							>
 	
@@ -81,7 +82,8 @@
 					</div>
 				</div>
 				<div showCollapseButton="false">
-					<div id="dataform1" class="nui-form" >
+					<div id="dataform1" class="form" >
+						<input name="id" class="nui-hidden"/>
 						<div  class="nui-panel" showToolbar="false" title="报告内容编辑"  showFooter="false" style="width:100%;height:100%;">
 							<span
 								style="margin-left: 20px; margin-top: 5px; height: 30px; display: inline-block;">报告类型：</span></br>
@@ -91,7 +93,7 @@
 								 />
 							</span>
 							</br> 
-							<span style="margin-left: 20px; height: 30px; color: #FF0000; display: inline-block;">报告类型：</span></br>
+							<span style="margin-left: 20px; height: 30px; color: #FF0000; display: inline-block;">报告内容：</span></br>
 							<input class="nui-TextArea" name="content" style="margin-left: 20px; width: 90%; height: 480px" />
 						</div>
 					</div>

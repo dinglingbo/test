@@ -49,7 +49,7 @@ function callAjax(url, params, processAjax, callBack){
 function processAjax(rs, callBack){
     if(rs.errCode != 'E' && rs.result.code == '1'){
         //nui.alert("获取数据成功！");
-        callBack(rs.result.data);
+        callBack(rs.result.data, rs.result);
     }
     else{
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");

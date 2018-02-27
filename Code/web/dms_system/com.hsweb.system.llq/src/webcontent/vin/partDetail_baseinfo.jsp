@@ -9,13 +9,10 @@
              showPager="fasle" >                
             <div property="columns">                                              
                 <div field="pid" headerAlign="center" width="50px" align="center">零件号</div>
-                <div field="parttype" headerAlign="center" width="50px" align="center">零件类型</div>
-                <div field="prices" headerAlign="center" width="50px" align="center">售价</div>
-                <div field="mill" headerAlign="center" width="50px" align="center">厂家</div>
-                <div field="factory_type" headerAlign="center" width="50px" align="center" renderer="onFactoryTypeRender">产商类型</div>
-                <div field="cost_price" headerAlign="center" width="50px" align="center">含税进货价</div>
-                <div field="eot_price" headerAlign="center" width="50px" align="center">不含税进货价</div>
-                <div field="origin" headerAlign="center" width="50px" align="center">产地</div>
+                <div field="label" headerAlign="center" width="50px" align="center">零件名称</div>
+                <div field="num" headerAlign="center" width="50px" align="center">数量</div>
+                <div field="prices" headerAlign="center" width="50px" align="center">价格</div>
+                <div field="model" headerAlign="center" width="50px" align="center">型号</div>
                 <div field="remark" headerAlign="center" width="50px" align="center">备注</div>
             </div>
         </div>

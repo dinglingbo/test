@@ -69,11 +69,12 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-                quickSearch(20);
+                quickSearch(currType);
             }
         });
     });
 });
+var currType = 2;
 function quickSearch(type){
     var params = {};
     switch (type)
@@ -114,10 +115,14 @@ function quickSearch(type){
         default:
             break;
     }
-    var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
-    if(outableQtyGreaterThanZero == 1)
+    currType = type;
+    if($("a[id*='type']").length>0)
     {
-        params.outableQtyGreaterThanZero = 1;
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
     }
     doSearch(params);
 }
@@ -141,7 +146,42 @@ function advancedSearch()
 }
 function onAdvancedSearchOk()
 {
-    var searchData = advancedSearchForm.getData();
+	var searchData = advancedSearchForm.getData();
+    advancedSearchFormData = {};
+    for(var key in searchData)
+    {
+        advancedSearchFormData[key] = searchData[key];
+    }
+    var i;
+    if(searchData.startDate)
+    {
+        searchData.startDate = searchData.startDate.substr(0,10);
+    }
+    if(searchData.endDate)
+    {
+        searchData.endDate = searchData.endDate.substr(0,10);
+    }
+    var tmpList = [];
+    if(searchData.outIdList)
+    {
+        tmpList = searchData.outIdList.split("\n");
+        for(i=0;i<tmpList.length;i++)
+        {
+            tmpList[i] = "'"+tmpList[i]+"'";
+        }
+        searchData.outIdList = tmpList.join(",");
+        //console.log(tmpList);
+    }
+    if(searchData.partCodeList)
+    {
+        tmpList = searchData.partCodeList.split("\n");
+        for(i=0;i<tmpList.length;i++)
+        {
+            tmpList[i] = "'"+tmpList[i]+"'";
+        }
+        searchData.partCodeList = tmpList.join(",");
+        //console.log(tmpList);
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }

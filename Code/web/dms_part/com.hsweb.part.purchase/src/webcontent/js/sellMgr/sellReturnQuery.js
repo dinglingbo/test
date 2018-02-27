@@ -66,12 +66,13 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-                quickSearch(20);
+                quickSearch(currType);
             }
         });
     });
 
 });
+var currType = 2;
 function quickSearch(type){
     var params = {};
     switch (type)
@@ -111,6 +112,15 @@ function quickSearch(type){
             break;
         default:
             break;
+    }
+    currType = type;
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
     }
     doSearch(params);
 }

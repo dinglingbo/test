@@ -40,9 +40,14 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
-    leftGrid.on("load",function()
-    {
-        onLeftGridRowDblClick({})
+    leftGrid.on("load",function(){
+        var data = leftGrid.getData()||[];
+        var count = data.length;
+        if(count>0)
+        {
+            onLeftGridRowDblClick({});
+        }
+        nui.get("leftGridCount").setValue("共"+count+"项");
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
@@ -243,7 +248,8 @@ function addInbound()
         enterDate:(new Date()),
         totalAmt:0,
         billStatus:0,
-        storeId:storeList[0].id
+        storeId:storeList[0].id,
+        buyer:currUserName
     };
     basicInfoForm.setData(data);
     rightGrid.clearRows();
@@ -422,8 +428,8 @@ function selectPart(callback)
     var guestFullName = nui.get("guestId").getText();
     nui.open({
         targetWindow: window,
-        url: "../common/sellOutSelectView.html",
-        title: "供应商资料", width: 930, height: 560,
+        url: "com.hsweb.part.common.sellOutSelect.flow",
+        title: "选择销售明细", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
@@ -472,7 +478,7 @@ function addPart()
 {
     selectPart(function(data)
     {
-        var part = data.part;
+        var part = data.enterDetail;
         console.log(part);
         addEnterDetail(part);
     });

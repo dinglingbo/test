@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/allotMgr/allotEnter.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/allotMgr/allotEnter.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -89,16 +89,17 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsEnterMainList"
+                     sortMode="client"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="入库单号"></div>
-                        <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd"></div>
-                        <div field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="id" headerAlign="center" header="入库单号"></div>
+                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd"></div>
+                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
                 </div>
                 <!--footer-->
                 <div property="footer">
-                    <input type='nui-textbox' value='Footer' readonly="true" style='vertical-align:middle;'/>
+                    <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
                 </div>
             </div>
         </div>
@@ -231,29 +232,30 @@
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
                      dataField="enterDetailList"
-                     idField="id"
+                     idField="detailId"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="dept_name" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
-                                <div field="enterQty" width="40" headerAlign="center" header="数量"></div>
+                                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                                <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+                                <div allowSort="true" field="dept_name" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div allowSort="true" datatype="int" field="enterQty" width="40" headerAlign="center" header="数量"></div>
                             </div>
                         </div>
                         <div header="金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
+                                <div allowSort="true" datatype="float" field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">
-                                <div field="remark" width="60" headerAlign="center" header="备注"></div>
+                                <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
                             </div>
                         </div>
                     </div>

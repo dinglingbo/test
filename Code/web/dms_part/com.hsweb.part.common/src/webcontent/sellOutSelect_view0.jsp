@@ -75,33 +75,34 @@
          dataField="ptsOutMainDetailList"
          idField="detailId"
          onrowdblclick="onOk"
+         sortMode="client"
          url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="零件信息" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="100" headerAlign="center" header="零件编码"></div>
-                    <div field="partName" headerAlign="center" header="零件名称"></div>
-                    <div field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div field="applyCarModel" width="60" headerAlign="center" header="适用车型"></div>
-                    <div field="unit" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="partCode" width="100" headerAlign="center" header="零件编码"></div>
+                    <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
+                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="适用车型"></div>
+                    <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
             <div header="库存" headerAlign="center">
                 <div property="columns">
-                    <div field="outBackableQty" width="60" headerAlign="center" header="可退货数" align="right"></div>
-                    <div field="sellUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
-                    <div field="discountRate" width="80" headerAlign="center" header="折扣率(%)" align="right"></div>
-                    <div field="sellAmt" width="80" headerAlign="center" header="金额" align="right"></div>
+                    <div allowSort="true" datatype="int" field="outBackableQty" width="60" headerAlign="center" header="可退货数" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
+                    <div allowSort="true" datatype="int" field="discountRate" width="80" headerAlign="center" header="折扣率(%)" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellAmt" width="80" headerAlign="center" header="金额" align="right"></div>
                 </div>
             </div>
             <div header="销售信息" headerAlign="center">
                 <div property="columns">
-                    <div field="outId" width="100" headerAlign="center" header="销售单号"></div>、
-                    <div field="storeId" width="60" headerAlign="center" header="仓库"></div>
-                    <div field="guestFullName" width="100" headerAlign="center" header="客户名称"></div>
-                    <div field="seller" width="60" headerAlign="center" header="销售员"></div>
-                    <div field="billStatus" width="60" headerAlign="center" header="状态"></div>
+                    <div allowSort="true" field="outId" width="100" headerAlign="center" header="销售单号"></div>、
+                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="guestFullName" width="100" headerAlign="center" header="客户名称"></div>
+                    <div allowSort="true" field="seller" width="60" headerAlign="center" header="销售员"></div>
+                    <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="状态"></div>
                 </div>
             </div>
         </div>

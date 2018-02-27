@@ -105,12 +105,13 @@
                      totalField="page.count"
                      selectOnLoad="true"
                      pageSize="50"
+                     sortMode="client"
                      showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partId" width="50" headerAlign="center" header="内码"></div>
+                                <div allowSort="true" field="partId" width="50" headerAlign="center" header="内码"></div>
                                 <div field="partCode" width="80" headerAlign="center" allowSort="true" header="配件编码"></div>
                                 <div field="partName" width="80" headerAlign="center" allowSort="true" header="配件名称"></div>
                                 <div field="partFullName" width="80" headerAlign="center" allowSort="true" header="配件全称"></div>
@@ -121,7 +122,7 @@
                         </div>
                         <div header="库存信息" headerAlign="center">
                             <div property="columns">
-                                <div field="stockQty" width="50" headerAlign="center" header="数量" align="right"></div>
+                                <div allowSort="true" field="stockQty" width="50" headerAlign="center" header="数量" align="right"></div>
                                 <div field="stockPrice" width="80" headerAlign="center" allowSort="true" header="单价" align="right"></div>
                                 <div field="stockAmt" width="80" headerAlign="center" allowSort="true" header="金额" align="right"></div>
                                 <div field="suggestPrice" width="80" headerAlign="center" allowSort="true" header="建议销价" align="right"></div>
@@ -131,7 +132,7 @@
                         </div>
                         <div header="周期信息" headerAlign="center">
                             <div property="columns">
-                                <div field="orderCyc" width="50" headerAlign="center" header="订货周期" align="right"></div>
+                                <div allowSort="true" field="orderCyc" width="50" headerAlign="center" header="订货周期" align="right"></div>
                                 <div field="arriveCyc" width="80" headerAlign="center" allowSort="true" header="到货周期" align="right"></div>
                                 <div field="safeCyc" width="80" headerAlign="center" allowSort="true" header="安全库存周期" align="right"></div>
                             </div>

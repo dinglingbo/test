@@ -19,9 +19,9 @@
 
 </head>
 <body style="margin: 0; padding: 0; overflow: hidden">
-	<input name="id" class="nui-hidden" />
 	<fieldset style="width: 92.5%; height: 55%; border: solid 1px #aaa; position: relative; margin: 5px 5px;">
 		<div id="dataform1"  class="form">
+			<input name="id" class="nui-hidden" />
 			<table style="table-layout: fixed;" class="nui-form-table">
 				<tr style="display: block; margin: 10px 0">
 					<td class="form_label" width="100px"><span

@@ -67,7 +67,7 @@
                      repeatItems="2"
                      id="countWay"
                      width="100"
-                     style="position: absolute;top: -1px;display: inline-table;"
+                     style="position: absolute;top: 4px;display: inline-table;"
                      textField="text" valueField="id" value="1" data="[{id:1,text:'金额'},{id:2,text:'数量'}]">
                 </div>
             </td>
@@ -88,46 +88,47 @@
          showPager="false"
          dataField="list"
          idField="partId"
+         sortMode="client"
          frozenStartColumn="0"
          frozenEndColumn="0">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="维度" headerAlign="center">
                 <div property="columns">
-                    <div field="partId" width="100" headerAlign="center" header="内码"></div>
-                    <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                    <div field="partName" width="100" headerAlign="center" header="配件名称"></div>
-                    <div field="partFullName" width="100" headerAlign="center" header="配件全称"></div>
+                    <div allowSort="true" datatype="float" field="partId" width="100" headerAlign="center" header="内码"></div>
+                    <div allowSort="true" datatype="float" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" datatype="float" field="partName" width="100" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" datatype="float" field="partFullName" width="100" headerAlign="center" header="配件全称"></div>
                 </div>
             </div>
             <div header="采购" headerAlign="center">
                 <div property="columns">
-                    <div field="purchaseEnter" width="60" headerAlign="center" header="采购入库" dataType="float" align="right"></div>
-                    <div field="purchaseOut" headerAlign="center" header="采购退货" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="purchaseEnter" width="60" headerAlign="center" header="采购入库" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="purchaseOut" headerAlign="center" header="采购退货" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="维修" headerAlign="center">
                 <div property="columns">
-                    <div field="repairOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
-                    <div field="repairEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="repairOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="repairEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="销售" headerAlign="center">
                 <div property="columns">
-                    <div field="sellOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
-                    <div field="sellEnter" headerAlign="center" header="退货金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellEnter" headerAlign="center" header="退货金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="调拨" headerAlign="center">
                 <div property="columns">
-                    <div field="allotEnter" width="60" headerAlign="center" header="入库金额" dataType="float" align="right"></div>
-                    <div field="allotOut" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="allotEnter" width="60" headerAlign="center" header="入库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="allotOut" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="耗材" headerAlign="center">
                 <div property="columns">
-                    <div field="materialOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
-                    <div field="materialEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="materialOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="materialEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="库存" headerAlign="center">

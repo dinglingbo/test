@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售退货查询</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellReturnQuery.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellReturnQuery.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -32,17 +32,17 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">昨日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">上周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">上月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)">上年</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
                 <span class="separator"></span>
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)">未审</a>-->
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)">已审</a>-->
@@ -69,41 +69,42 @@
          dataField="ptsEnterMainDetailList"
          idField="detailId"
          ondrawcell="onDrawCell"
+         sortMode="client"
          url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div field="enterId" width="100" headerAlign="center" header="退货单号"></div>
-                    <div field="enterDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd"></div>
-                    <div field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
-                    <div field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
-                    <div field="settType" width="60" headerAlign="center" header="结算方式"></div>
-                    <div field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="enterId" width="100" headerAlign="center" header="退货单号"></div>
+                    <div allowSort="true" field="enterDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd"></div>
+                    <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
+                    <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
+                    <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
+                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="零件属性" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="零件编码"></div>
-                    <div field="partName" headerAlign="center" header="零件名称"></div>
-                    <div field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
-                    <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                    <div field="unit" width="40" headerAlign="center" header="单位"></div>
-                    <div type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>
+                    <div allowSort="true" field="partCode" width="60" headerAlign="center" header="零件编码"></div>
+                    <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
+                    <div allowSort="true" field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>
                 </div>
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div field="enterQty" width="40" headerAlign="center" header="退货库数"></div>
-                    <div field="outableQty" width="40" headerAlign="center" header="可出库数"></div>
-                    <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                    <div field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
+                    <div allowSort="true" datatype="int" field="enterQty" width="40" headerAlign="center" header="退货库数"></div>
+                    <div allowSort="true" datatype="int" field="outableQty" width="40" headerAlign="center" header="可出库数"></div>
+                    <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
+                    <div allowSort="true" datatype="float" field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div field="guestFullName" width="60" headerAlign="center" header="客户名称"></div>
-                    <div field="buyer" width="60" headerAlign="center" header="退货员"></div>
+                    <div allowSort="true" field="guestFullName" width="60" headerAlign="center" header="客户名称"></div>
+                    <div allowSort="true" field="buyer" width="60" headerAlign="center" header="退货员"></div>
                 </div>
             </div>
         </div>
@@ -129,12 +130,12 @@
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
                            showOkButton="false"
                            width="100%"
-                           showClearButton="false"/>
+                           showClearButton="true"/>
                 </td>
             </tr>
             <tr>

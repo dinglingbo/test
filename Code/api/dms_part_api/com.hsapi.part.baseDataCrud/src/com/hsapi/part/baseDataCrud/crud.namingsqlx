@@ -45,7 +45,7 @@
 		       a.is_disabled isDisabled,
 		       a.is_host isHost
         FROM com_attribute a
-        where 1=1
+        where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (is_disabled = #isDisabled#)
@@ -69,10 +69,10 @@
                 (name like '%$name$%' or full_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarModel">  
-                (apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')
+                (apply_car_model like '%$applyCarModel$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="namePy">  
-                (name_py like '%$namePy$' or name_py like '$namePy$%')
+                (name_py like '%$namePy$%')
             </isNotEmpty>  
             <isNotEmpty prepend="order by " property="sortField">  
                 $sortField$ $sortOrder$
@@ -82,7 +82,8 @@
     
     
     <select id="querySupplierList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComGuest">
-    	SELECT a.short_name shortName,
+    	SELECT a.orgid,
+    		   a.short_name shortName,
 		       a.full_name fullName,
 		       a.code      CODE,
 		       a.id        ID,
@@ -134,8 +135,7 @@
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate
 		       FROM com_guest a
-		       WHERE a.is_supplier = 1 
-		     <!--  AND a.guest_type = '01020202'-->
+		       WHERE a.is_supplier = 1 and a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
@@ -238,7 +238,7 @@
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate
 		       FROM com_guest a
-		       WHERE a.is_client = 1
+		       WHERE a.is_client = 1 and a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="code">  
                 (code = #code#)

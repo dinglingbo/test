@@ -14,7 +14,57 @@ var unitList = [];
 var abcTypeList = [];
 var carBrandList = [];
 
-var queryForm = null;function onDrawNode(e)
+var queryForm = null;
+$(document).ready(function(v)
+{
+    queryForm = new nui.Form("#queryForm");
+    partGrid = nui.get("partGrid");
+    partGrid.setUrl(partGridUrl);
+
+    tree = nui.get("tree1");
+    tree.setUrl(treeUrl);
+    //console.log("xxx");
+
+    getAllPartBrand(function(data)
+    {
+        data = data||{};
+        qualityList = data.quality;
+        qualityList.forEach(function(v)
+        {
+            qualityHash[v.id] = v;
+        });
+        brandList = data.brand;
+        brandList.forEach(function(v)
+        {
+            brandHash[v.id] = v;
+        });
+        getAllCarBrand(function(data)
+        {
+            data = data||{};
+            carBrandList = data.carBrands||[];
+            console.log(carBrandList);
+            nui.get("applyCarBrandId").setData(carBrandList);
+            var dictIdList = [];
+            dictIdList.push('DDT20130703000016');//--单位
+            dictIdList.push('DDT20130703000067');//--ABC分类
+            getDictItems(dictIdList,function(data)
+            {
+                if(data && data.dataItems)
+                {
+                    var dataItems = data.dataItems||[];
+                    unitList = dataItems.filter(function(v){
+                        return v.dictid == 'DDT20130703000016';
+                    });
+                    abcTypeList = dataItems.filter(function(v){
+                        return v.dictid == 'DDT20130703000067';
+                    });
+                }
+                onSearch();
+            });
+        });
+    });
+});
+function onDrawNode(e)
 {
     var node = e.node;
     e.nodeHtml = node.code + " " + node.name;

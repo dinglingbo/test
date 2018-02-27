@@ -180,7 +180,9 @@ function editPart(){
     }
 
 }
-
+function onPartGridRowDblClick(){
+    editPart();
+}
 function addOrEditPart(row)
 {
     nui.open({
@@ -192,12 +194,14 @@ function addOrEditPart(row)
         allowResize:false,
         onload: function ()
         {
-            var iframe = this.getIFrameEl();
+        	var iframe = this.getIFrameEl();
+            var carBrandList = nui.get("applyCarBrandId").getData();
             var params = {
                 qualityTypeIdList:qualityList,
                 partBrandIdList:brandList,
                 unitList:unitList,
-                abcTypeList:abcTypeList
+                abcTypeList:abcTypeList,
+                applyCarModelList:carBrandList
             };
             if(row)
             {

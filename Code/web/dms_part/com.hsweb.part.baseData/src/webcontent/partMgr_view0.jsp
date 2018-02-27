@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.4"></script>
 <style type="text/css">
 </style>
 </head>
@@ -83,6 +83,7 @@
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""
+                     onrowdblclick="onPartGridRowDblClick"
                      onrowclick="onPartGridRowClick"
                      ondrawcell="onPartGridDraw"
                      idField="id"
@@ -107,7 +108,7 @@
                             <div property="columns">
                                 <div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 
-                                <div field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
+                                <div field="model" width="60" headerAlign="center" allowSort="true">型号</div>
 
                                 <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
                                 <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>

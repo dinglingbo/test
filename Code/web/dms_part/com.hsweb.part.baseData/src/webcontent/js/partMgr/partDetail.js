@@ -12,10 +12,51 @@ var abcType = null;
 var partBrandId = null;
 var qualityTypeId = null;
 var unit = null;
+
+
+var abcTypeList = [
+    {
+        customid:"A1",
+        name:"A1"
+    },
+    {
+        customid:"A2",
+        name:"A2"
+    },
+    {
+        customid:"A3",
+        name:"A3"
+    },
+    {
+        customid:"B1",
+        name:"B1"
+    },
+    {
+        customid:"B2",
+        name:"B2"
+    },
+    {
+        customid:"B3",
+        name:"B3"
+    },
+    {
+        customid:"C1",
+        name:"C1"
+    },
+    {
+        customid:"C2",
+        name:"C2"
+    },
+    {
+        customid:"C3",
+        name:"C3"
+    }
+];
 function initComboBox()
 {
-    applyCarModel = nui.get("applyCarModel");
+    applyCarModel = nui.get("applyCarbrandId");
     abcType = nui.get("abcType");
+    abcType.setData(abcTypeList);
     partBrandId = nui.get("partBrandId");
     qualityTypeId = nui.get("qualityTypeId");
     unit = nui.get("unit");
@@ -68,7 +109,7 @@ function onOk()
         data.carTypeIdS = partName.cartypes||"";
         data.carTypeIdT = partName.cartypet||"";
     }
-    data.abcType = "";
+  //  data.abcType = "";
     data.name = nui.get("partNameId").getText();
     data.fullName = data.name;
     if(data.spec)
@@ -106,7 +147,6 @@ function onOk()
 }
 
 var applyCarModelList = [];
-var abcTypeList = [];
 var partBrandIdList = [];
 var partBrandIdHash = {};
 var qualityTypeIdList = [];
@@ -118,7 +158,6 @@ function setData(data)
         initComboBox();
     }
     applyCarModelList = data.applyCarModelList||[];
-    abcTypeList = data.abcTypeList||[];
     partBrandIdList = data.partBrandIdList||[];
     partBrandIdList.forEach(function(v)
     {
@@ -129,12 +168,10 @@ function setData(data)
 
     applyCarModel.setData(applyCarModelList);
     applyCarModel.on("valuechanged",function()
-    {	   
-    	var value = applyCarModel.getText();
+    {
+        var value = applyCarModel.getText();
         nui.get("applyCarModel").setValue(value);
     });
-    abcType.setData(abcTypeList);
- //   partBrandId.setData(partBrandIdList);
     qualityTypeId.setData(qualityTypeIdList);
     unit.setData(unitList);
     console.log(data);
@@ -145,10 +182,19 @@ function setData(data)
             initForm();
         }
         var partData = data.partData;
-        basicInfoForm.setData(partData);
-        onQualityTypeIdChanged();
-        basicInfoForm.setData(partData);
-        nui.get("partNameId").setText(partData.name);
+        nui.mask({
+            html:'数据加载中...'
+        });
+        getPartById(partData.id,function(data)
+        {
+            nui.unmask();
+            var part = data.part;
+            basicInfoForm.setData(part);
+            onQualityTypeIdChanged();
+            basicInfoForm.setData(part);
+            nui.get("partNameId").setText(part.name);
+            nui.get("code").disable();
+        });
     }
 }
 

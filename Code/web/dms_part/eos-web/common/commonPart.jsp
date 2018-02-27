@@ -7,22 +7,25 @@
 <script src="<%=request.getContextPath()%>/common/nui/nui.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-	<%
-		IMUODataContext muo = DataContextManager.current().getMUODataContext();
-		String currUserName = "";
-		String currOrgid = "";
-		if (muo != null) 
-		{
-			IUserObject userobject = muo.getUserObject();
-			if (userobject != null) {
-				//String ip = userobject.getUserRemoteIP();
-				currUserName = userobject.getUserRealName();
-				currOrgid = userobject.getUserOrgId();
-			}
-		}
-	%>
-	var currUserName = <%="'"+currUserName+"'"%>;
-	var currOrgid = <%="'"+currOrgid+"'"%>;
+	
+<%IMUODataContext muo = DataContextManager.current()
+					.getMUODataContext();
+			String currUserName = "";
+			String currOrgid = "";
+			if (muo != null) {
+				IUserObject userobject = muo.getUserObject();
+				if (userobject != null) {
+					//String ip = userobject.getUserRemoteIP();
+					currUserName = userobject.getUserRealName();
+					currOrgid = userobject.getUserOrgId();
+				}
+			}%>
+	var currUserName =
+<%="'" + currUserName + "'"%>
+	;
+	var currOrgid =
+<%="'" + currOrgid + "'"%>
+	;
 </script>
 <script type="text/javascript">
 	function getRoot() {
@@ -159,6 +162,79 @@
 						orgList : data.orgList
 					});
 				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	var getAllPartBrandUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
+	function getAllPartBrand(callback) {
+		nui.ajax({
+			url : getAllPartBrandUrl,
+			type : "post",
+			success : function(data) {
+				if (data && data.quality && data.brand) {
+					callback && callback(data);
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	var getPartByIdUrl = window._rootUrl
+			+ "com.hsapi.part.baseDataCrud.crud.getPartById.biz.ext";
+	function getPartById(id, callback) {
+		var params = {};
+		params.id = id;
+		nui.ajax({
+			url : getPartByIdUrl,
+			type : "post",
+			data : JSON.stringify(params),
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	var getOrgListUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getOrgList.biz.ext";
+	function getOrgList(callback) {
+		nui.ajax({
+			url : getOrgListUrl,
+			type : "post",
+			success : function(data) {
+				if (data && data.orgList) {
+					callback && callback({
+						code : "S",
+						orgList : data.orgList
+					});
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	var getRoleMemberUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getRoleMemberByRoleId.biz.ext";
+	function getRoleMember(roleId, callback) {
+		var params = {};
+		params.roleId = roleId;
+		nui.ajax({
+			url : getRoleMemberUrl,
+			type : "post",
+			data : JSON.stringify(params),
+			success : function(data) {
+				callback && callback(data);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				//  nui.alert(jqXHR.responseText);

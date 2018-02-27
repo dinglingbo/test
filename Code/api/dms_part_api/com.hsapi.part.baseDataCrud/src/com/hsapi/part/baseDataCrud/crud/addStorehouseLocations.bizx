@@ -139,6 +139,14 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">tmp/recordDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:to type="query">tmp/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:to type="query">tmp/modifier</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="221" y="158"/>

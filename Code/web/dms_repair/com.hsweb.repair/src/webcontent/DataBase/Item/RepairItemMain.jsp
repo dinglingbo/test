@@ -1,6 +1,7 @@
-w<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -14,38 +15,52 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 <script src="<%= request.getContextPath() %>/common/nui/nui.js"
 	type="text/javascript"></script>
 <script
-	src="<%= request.getContextPath() %>/js/DataBase/Team/TeamMain.js?v=1.0.1"></script>
+	src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js" type="text/javascript"></script>
 
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-
-	<div class="nui-toolbar" id="form1"
-		style="height: 30px; padding: 2px; border-bottom: 0;">
-		<input class="nui-hidden" name="criteria/_entity"
-			value="com.hsweb.repair.DataBase.RpbItem" />
-		<table class="table" id="table1" style="height: 100%">
-			<tr>
-				<td>
-					<label style="font-family: Verdana;">快速查询：</label> 
-					<label style="font-family: Verdana;">工种：</label> 
-					<input id="search-brandName" class="nui-combobox width1" textField="text" valueField="id" emptyText="请选择..." url="" 
-						   allowInput="true" showNullItem="true" nullItemText="请选择..." /> 
-					<label style="font-family: Verdana;">品牌：</label> 
-					<input id="search-brandName" class="nui-combobox width1" textField="text"
-						   valueField="id" emptyText="请选择..." url="" allowInput="true"
-						   showNullItem="true" nullItemText="请选择..." /> 
-					<label style="font-family: Verdana;">项目编码：</label> 
-					<input class="nui-textbox" name="isDisabled" /> 
-					<label style="font-family: Verdana;">项目名称：</label> 
-					<input class="nui-textbox" name="isDisabled" /> 
-					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询（Q）</a> 
-					<a class="nui-button" plain="true" onclick="onClean()">清空（C）</a>
-				</td>
-			</tr>
-		</table>
+	<div class="form" id="queryForm">
+		<div class="nui-toolbar" style="height: 30px; padding: 2px; border-bottom: 0;">
+			<table class="table" id="table1" style="height: 100%">
+				<tr>
+					<td>
+						<label style="font-family: Verdana;font-size: 12px;">快速查询：</label> 
+						<label style="font-family: Verdana;;font-size: 12px;">工种：</label> 
+						<input id="applyWorkTypeId"
+                           name="applyWorkTypeId"
+                           class="nui-combobox width1"
+                           textField="name"
+                           valueField="id"
+                           emptyText="请选择..."
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
+						<label style="font-family: Verdana;;font-size: 12px;">品牌：</label> 
+						<input id="applyCarBrandId"
+                           name="applyCarBrandId"
+                           class="nui-combobox width1"
+                           textField="carBrandZh"
+                           valueField="id"
+                           emptyText="请选择..."
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
+						<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label> 
+						<input class="nui-textbox" id="search-code" name="code"/> 
+						<label style="font-family: Verdana;;font-size: 12px;">项目名称：</label> 
+						<input class="nui-textbox" id="search-name" name="name" /> 
+						<!-- separator 分离器 -->
+						<span class="separator"></span>
+						<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询（Q）</a> 
+						<a class="nui-button" plain="true" onclick="onClean()">清空（C）</a>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-	<div class="nui-toolbar" id="div_1"
-		style="border-bottom: 0; padding: 0px; height: 30px;">
+	<div class="nui-toolbar"  style="border-bottom: 0; padding: 0px; height: 30px;">
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 100%">
@@ -65,48 +80,47 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 				</div>
 				<div class="nui-fit">
 					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
-						dataField="rpbItems" ondrawnode="onDrawNode"
-						onnodedblclick="onNodeDblClick" showTreeIcon="true"
-						textField="name" idField="id" parentField="parentid"
-						resultAsTree="false">
+						dataField="dics" resultAsTree="false" parentField="parentId"
+						showTreeIcon="true" textField="name" idField="id" 
+						
+						onrowclick="onRepairGridRowClick"
+						contextMenu="#treeMenu"
+					>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div showCollapseButton="false">
 			<div class="nui-fit">
-				<div id="datagrid1" dataField="rpbItems" class="nui-datagrid"
+				<div id="rightGrid" dataField="rpbItems" class="nui-datagrid"
 					style="width: 100%; height: 91%;"
-					url="com.hsapi.repair.item.queryRepairItem.biz.ext" pageSize="20"
-					showPageInfo="true" multiSelect="true" showPageIndex="false"
-					showPage="true" showPageSize="false" showReloadButton="false"
-					showPagerButtonIcon="false" totalCount="total"
-					onselectionchanged="selectionChanged" allowSortColumn="true">
+					url="" pageSize="50"
+					multiSelect="true"
+					showPageSize="false" 
+					allowSortColumn="true"
+					selectOnLoad="true"
+					allowCellSelect="true"
+					showFilterRow="false"
+					
+					
+				>
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div header="项目基本信息" headerAlign="center">
 							<div property="columns">
-								<div type="code" headerAlign="center" width="100px">项目编号</div>
-								<div id="name" field="name" headerAlign="center"
-									allowSort="true" width="150px">项目名称</div>
-								<div id="itemKind" field="itemKind" headerAlign="center"
-									allowSort="true" width="40px">工种</div>
-								<div id="type" field="type" headerAlign="center"
-									allowSort="true" width="100px">项目类型</div>
-								<div id="carBrandId" field="carBrandId" headerAlign="center"
-									allowSort="true" width="60px">品牌</div>
-								<div id="carModel" field="carModel" headerAlign="center"
-									allowSort="true" width="60px">车型</div>
+								<div field="code" headerAlign="center" width="100px">项目编号</div>
+								<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
+								<div field="itemKind" headerAlign="center" allowSort="true" width="40px">工种</div>
+								<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
+								<div field="carBrandId" headerAlign="center" allowSort="true" width="60px">品牌</div>
+								<div field="carModel" headerAlign="center" allowSort="true" width="60px">车型</div>
 							</div>
 						</div>
 						<div header="项目价格信息" headerAlign="center">
 							<div property="columns">
-								<div id="itemTime" field="itemTime" headerAlign="center"
-									allowSort="true" visible="true" width="70px">工时</div>
-								<div id="unitPrice" field="unitPrice" headerAlign="center"
-									allowSort="true" width="80px">工时单价</div>
-								<div id="amt" field="amt" headerAlign="center" allowSort="true"
-									width="80px">工时费</div>
+								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="70px">工时</div>
+								<div field="unitPrice" headerAlign="center" allowSort="true" width="80px">工时单价</div>
+								<div field="amt" headerAlign="center" allowSort="true" width="80px">工时费</div>
 							</div>
 						</div>
 					</div>
@@ -115,59 +129,12 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 		</div>
 	</div>
 
+	<ul id="treeMenu" class="nui-contextmenu" onbeforeopen="onBeforeOpen">
+    <li name="add" iconCls="icon-add" onclick="onAddNode">新增同级</li>
+    <li name="addChild" iconCls="icon-add" onclick="onAddChildNode">新增子级</li>
+    <li name="edit" iconCls="icon-edit" onclick="onEditNode">修改</li>
+</ul>
 
-
-	<script type="text/javascript">
-    	nui.parse();
-    	var grid = nui.get("datagrid1");
-    	var formData = new nui.Form("#form1").getData(false, false);
-    	grid.load(formData);
-    	
-    	function add(){
-    		nui.open({
-    			url:"RepairItemDetail.jsp",
-    			title:"新增维修项目",
-    			width:450,
-    			height:500,
-    			onload:function(){
-    			    var iframe = this.getIFrameEl();
-    			    var data = {pageType:"add"};
-    			    iframe.contentWindow.setData(data);
-    			},
-    			
-    		    ondestroy:function(action){
-    		    grid.reload();
-    		}	
-    		});
-    		
-    	}
-    	
-    	function edit(){
-    	    var row = grid.getSelected();
-    	    if(row) {
-    	        nui.open({
-    	            url:"RepairItemDetail.jsp",
-    	            title:"修改维修项目",
-    	            width:450,
-    	            height:500,
-    	            onload:function(){
-    	                var iframe = this.getIFrameEl();
-    	                var data = {pageType:"edit",record:{comguest:row}};
-    	                //直接从页面获取，不用去后台获取
-    	                iframe.contentWindow.setData(data);
-    	            },
-    	            ondestroy:function(action){
-    	                if(action == "saveSuccess"){
-    	                    grid.reload();
-    	                }
-    	            }
-    	        });
-    	    }else {
-    	        nui.alert("请选中一条数据", "系统提示");
-    	    }
-    	}
-    	
-    	
-    </script>
+	
 </body>
 </html>

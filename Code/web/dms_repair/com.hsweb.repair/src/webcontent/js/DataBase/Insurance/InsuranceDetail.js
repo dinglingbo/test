@@ -1,73 +1,75 @@
-nui.parse();
-		var form = new nui.Form("#dataform1");
-		form.setChanged(false);
+		var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+		var basicInfoForm = null;
 		
-    	function saveData(){
-				var urlStr;
-                var pageType = nui.getbyName("pageType").getValue();
-                if(pageType=="add"){
-                    urlStr = "com.hsapi.repair.insurance.InsuranceAdd.biz.ext";
-                }
-                if(pageType=="edit"){
-                    urlStr = "com.hsapi.repair.insurance.InsuranceEdit.biz.ext";
-                }
-                form.validate();
-                if(form.isValid()==false) return;
-				var data = form.getData(false,true);
-                var json = nui.encode(data);
-
-                $.ajax({
-                    url:urlStr,
-                    type:'POST',
-                    data:json,
-                    cache:false,
-                    contentType:'text/json',
-                    success:function(text){
-                        var returnJson = nui.decode(text);
-                        if(returnJson.exception == null){
-                            CloseWindow("saveSuccess");
-                        }else{
-                            nui.alert("保存失败", "系统提示", function(action){
-                                if(action == "ok" || action == "close"){
-                                    
-                                }
-                                });
-                            }
-                        }
-                        });
-                    }
-
-                    //页面间传输json数据
-                    function setData(data){
-                        var infos = nui.clone(data);
-						nui.getbyName("pageType").setValue(infos.pageType);
-
-                        if (infos.pageType == "edit") {
-                            var json = infos.record;
-							var form = new nui.Form("#dataform1");
-                            form.setData(json);
-                            form.setChanged(false);
-                        }
-                    }
-
-                    //关闭窗口
-                    function CloseWindow(action) {
-                        if (action == "close" && form.isChanged()) {
-                            if (confirm("数据被修改了，是否先保存？")) {
-                                saveData();
-                            }
-                        }
-                        if (window.CloseOwnerWindow)
-                        return window.CloseOwnerWindow(action);
-                        else window.close();
-                    }
-
-                    //确定保存或更新
-                    function onOk() {
-                        saveData();
-                    }
-
-                    //取消
-                    function onCancel() {
-                        CloseWindow("close");
-                    }
+		$(document).ready(function(){
+			basicInfoForm = new nui.Form("#basicInfoForm");
+		});
+		function setData(data){
+			if(!basicInfoForm){
+				basicInfoForm = new nui.Form("#basicInfoForm");
+			}
+			data = data||{};
+			var comguest = data.comguest;
+			basicInfoForm.setData(comguest);
+		};
+		//必填
+		var requiredField = {
+			    code:"保险公司代码",
+			    fullName:"保险公司名称"
+		};
+		var saveUrl = baseUrl + "com.hsapi.repair.baseData.insurance.saveInsurance.biz.ext";
+		function onOk()
+		{
+		    var data = basicInfoForm.getData();
+		    console.log(data);
+		    for(var key in requiredField)
+		    {
+		        if(!data[key] || data[key].trim().length==0)
+		        {
+		            nui.alert(requiredField[key]+"不能为空");
+		            return;
+		        }
+		    }
+		    nui.mask({
+		        html:'保存中...'
+		    });
+		    nui.ajax({
+		        url:saveUrl,
+		        type:"post",
+		        data:JSON.stringify({
+		            comguest:data
+		        }),
+		        success:function(data)
+		        {
+		            nui.unmask();
+		            data = data||{};
+		            if(data.errCode == "S")
+		            {
+		                nui.alert("保存成功");
+		                CloseWindow("ok");
+		            }
+		            else{
+		                nui.alert(data.errMsg||"保存失败");
+		            }
+		        },
+		        error:function(jqXHR, textStatus, errorThrown){
+		            //  nui.alert(jqXHR.responseText);
+		            console.log(jqXHR.responseText);
+		        }
+		    });
+		}
+		
+		function CloseWindow(action) {
+		    //if (action == "close" && form.isChanged()) {
+		    //    if (confirm("数据被修改了，是否先保存？")) {
+		    //        return false;
+		    //    }
+		    //}
+		    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+		    else window.close();
+		}
+		function onCancel() {
+		    CloseWindow("cancel");
+		}
+		
+		

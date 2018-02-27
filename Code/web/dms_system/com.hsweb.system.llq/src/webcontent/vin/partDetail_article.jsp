@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
     
-<div title="基础信息" name="basic" visible="fasle">    
+<div title="品牌件" name="article" visible="fasle">    
    <div class="nui-fit">   
-        <div id="dgbasic" class="nui-datagrid"
+        <div id="dgarticle" class="nui-datagrid"
              style="width:100%;height:100%;"
              showColumns="fasle"
              showPager="fasle" >                

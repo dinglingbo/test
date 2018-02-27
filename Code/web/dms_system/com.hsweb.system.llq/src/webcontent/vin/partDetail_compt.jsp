@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
  
-<div title="组件" name="compt">    
+<div title="组件" name="compt" visible="fasle">    
    <div class="nui-fit">   
-        <div id="bz" class="nui-datagrid" dataField="dgcompt" 
-             allowCellEdit="true" allowCellSelect="true"
-             url="com.hs.ys.control.basicData.compGrowthModel.queryCompGrowthModel.biz.ext"
+        <div id="dgcompt" class="nui-datagrid"
+             allowCellEdit="true" 
+             allowCellSelect="true"
              style="width:100%;height:100%;"
              showPager="fasle" >                
             <div property="columns">  

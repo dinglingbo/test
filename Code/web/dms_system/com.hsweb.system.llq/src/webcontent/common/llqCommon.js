@@ -55,3 +55,19 @@ function processAjax(rs, callBack){
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");
     }
 }
+
+/*
+*处理键值对串
+*/
+function processKeyValue(list){
+    var dataList=[];
+    var tmpList;
+    var tmp={};
+    for(var i=0; i<list.length; i++){
+        tmpList = list[i].split(":");
+        tmp.field1 = tmpList[0] || "";
+        tmp.field2 = tmpList[1] || "";
+        dataList[i] = nui.clone(tmp);
+    }
+    return dataList;
+}

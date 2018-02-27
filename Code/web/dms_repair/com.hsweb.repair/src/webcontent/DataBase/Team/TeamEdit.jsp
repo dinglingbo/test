@@ -174,9 +174,7 @@
 
                         function CloseWindow(action){
 
-                            if(action=="close"){
-
-                                }else if(window.CloseOwnerWindow)
+                            if(action=="close"){}else if(window.CloseOwnerWindow)
                                 return window.CloseOwnerWindow(action);
                                 else
                                 return window.close();

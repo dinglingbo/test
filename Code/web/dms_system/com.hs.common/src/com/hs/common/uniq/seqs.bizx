@@ -34,6 +34,16 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">dbName</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="180" y="150"/>
     <size height="28" width="28"/>
@@ -52,8 +62,10 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="286" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -62,7 +74,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">default</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="query" value="java.lang.String" valueType="Java" pattern="reference">dbName</process:inputVariable>
       <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hs.common.uniq.getSeqValue</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">p</process:inputVariable>
     </process:inputVariables>
@@ -94,6 +106,25 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="283" y="60"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">default</process:from>
+      <process:to type="query">dbName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="281" y="96"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Guine" createTime="2017-12-02 23:33:57" date="2017-12-02Z" description="" name="seqs" version="7.0.0.0"/>
@@ -103,6 +134,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="seqName" primitiveType="String"/>
+    <process:input description="" isArray="false" name="dbName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="seq" primitiveType="Long"/>

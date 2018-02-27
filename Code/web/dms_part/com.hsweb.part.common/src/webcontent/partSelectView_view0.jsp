@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%= request.getContextPath() %>/common/js/partSelect.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/common/js/partSelect.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -17,7 +17,6 @@
 </style>
 </head>
 <body>
-
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <div class="form" id="queryForm">
         <table style="width:100%;">
@@ -50,15 +49,20 @@
         </table>
     </div>
 </div>
-
 <div class="nui-fit">
     <div class="nui-splitter"
          allowResize="false"
          style="width:100%;height:100%;">
-        <div size="240" showCollapseButton="false">
+        <div size="210" showCollapseButton="false">
+            <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;text-align: center;">
+                <span>系统分类</span>
+            </div>
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
-                    showTreeIcon="true" textField="name" idField="id" parentField="pid" resultAsTree="false">
+                    dataField="partTypes"
+                    ondrawnode="onDrawNode"
+                    onnodedblclick="onNodeDblClick"
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentid" resultAsTree="false">
                 </ul>
             </div>
         </div>
@@ -78,8 +82,9 @@
                      ondrawcell="onPartGridDraw"
                      idField="id"
                      totalField="page.count"
+                     selectOnLoad="true"
                      pageSize="50"
-                     showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
+                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
@@ -102,7 +107,7 @@
                                 <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
                                 <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                 <div field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
-                                <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">二级分类</div>
+                                <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
                             </div>
                         </div>
                         <div header="价格信息" headerAlign="center">
@@ -131,7 +136,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

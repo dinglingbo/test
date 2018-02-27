@@ -3,6 +3,7 @@
 	<name>dms_part_api</name>
 	<comment></comment>
 	<projects>
+		<project>dms_system</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -19,7 +20,7 @@
 				</dictionary>
 				<dictionary>
 					<key>database</key>
-					<value>WB_PART</value>
+					<value>WB_COMMON</value>
 				</dictionary>
 				<dictionary>
 					<key>server</key>

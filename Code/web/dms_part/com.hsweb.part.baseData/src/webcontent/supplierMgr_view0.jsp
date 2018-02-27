@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierMgr.js?v1.0.2"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierMgr.js?v1.0.3"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -74,7 +74,7 @@
             <!--<div type="checkcolumn" ></div>-->
             <div header="基本信息" headerAlign="center">
                 <div property="columns">
-                    <div field="compCode" width="100" headerAlign="center" header="店名"></div>
+                    <div field="orgid" width="100" headerAlign="center" header="店名"></div>
                     <div field="shortName" width="80" headerAlign="center" header="供应商简称"></div>
                     <div field="fullName" width="100" headerAlign="center" header="供应商全称"></div>
                     <div field="tel" width="100" headerAlign="center" header="电话"></div>
@@ -177,7 +177,7 @@
             <tr>
                 <td class="table-label">是否禁用:</td>
                 <td>
-                    <input class="nui-checkbox" name="isDisabled"/>
+                    <input class="nui-checkbox" name="isDisabled" trueValue="1" falseValue="0"/>
                 </td>
             </tr>
         </table>

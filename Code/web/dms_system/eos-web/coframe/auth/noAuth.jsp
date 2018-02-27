@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>noImprimatur</title>
+<%@include file="/common/sysCommon.jsp" %>
 </head>
 <body>
 <table width="100%" height="100%" bgcolor="#FFFFFF">
@@ -16,7 +17,7 @@
 			</tr>
 		    <tr >
 				<td></td>
-				<td style="font:16px">对不起，您没有操作权限!</td>
+				<td style="font:16px">登录超时，或您没有操作权限!</td>
 				<td></td>
 			</tr>
 		</table>
@@ -26,7 +27,6 @@
 	<td>
 	</td>
 	</tr>
-</table>
- 
+</table> 
 </body>
 </html>

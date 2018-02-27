@@ -246,9 +246,11 @@ public class LogicFlowFilter implements Filter {
 			System.out.println("已登录：" + key);
 			String userKey = RedisUtils.hgetAndExtend(key, "userInfo");
 			if (RedisUtils.exists(userKey)) {// userKey有效
+				System.out.println("已获取userKey：" + userKey);
 				setSessionFromRedis(session, key, userKey);
 				return true;
 			} else {
+				System.out.println("未找到userKey：" + userKey);
 				String[] keys = userKey.split("_");
 				return getUserInfo(key, keys[1], posiId, session);
 			}
@@ -265,7 +267,12 @@ public class LogicFlowFilter implements Filter {
 				.decompressUnserialize(RedisUtils.hgetAndExtend(userKey,
 						"userInfo"));
 		// 是否需要更新设置token?
-		session.setAttribute("userObject", userObject);
+		if(userObject!=null){
+			session.setAttribute("userObject", userObject);
+			System.out.println("已设置Session From Redis!");
+		}else{
+			System.out.println("userObject IS NUll!");
+		}
 		try {
 			jedis = RedisPoolUtils.getJedis();
 			jedis.hset(tokenKey, "userInfo", userKey);

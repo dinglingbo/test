@@ -8,7 +8,7 @@ $(document).ready(function(v)
     basicInfoForm = new nui.Form("#basicInfoForm")
 });
 var requiredField = {
-    qishihao:"仓位流水起始号"
+	startIndex:"仓位流水起始号"
 };
 var saveUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.addStorehouseLocations.biz.ext";
 function onOk()

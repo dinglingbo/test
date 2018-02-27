@@ -32,17 +32,17 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">昨日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">上周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">上月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)">上年</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
                 <span class="separator"></span>
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)">未审</a>-->
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)">已审</a>-->
@@ -62,25 +62,34 @@
                        allowInput="true"
                        showNullItem="false"
                        nullItemText="请选择..."/>
+                <label style="font-family:Verdana;">仓库：</label>
+                <div class="nui-radiobuttonlist"
+                     repeatItems="2"
+                     id="countWay"
+                     width="100"
+                     style="position: absolute;top: -1px;display: inline-table;"
+                     textField="text" valueField="id" value="1" data="[{id:1,text:'金额'},{id:2,text:'数量'}]">
+                </div>
             </td>
         </tr>
     </table>
 </div>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="width:100%;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">打印</a>
-            </td>
-        </tr>
-    </table>
-</div>
+<!--<div class="nui-toolbar" style="padding:2px;border-bottom:0;">-->
+    <!--<table style="width:100%;">-->
+        <!--<tr>-->
+            <!--<td style="width:100%;">-->
+                <!--<a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">打印</a>-->
+            <!--</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
-         dataField="ptsOutMainList"
-         idField="id"
-         url="">
+         dataField="list"
+         idField="partId"
+         frozenStartColumn="0"
+         frozenEndColumn="0">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="维度" headerAlign="center">
@@ -93,45 +102,45 @@
             </div>
             <div header="采购" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="采购入库"></div>
-                    <div field="partName" headerAlign="center" header="采购退货"></div>
+                    <div field="purchaseEnter" width="60" headerAlign="center" header="采购入库" dataType="float" align="right"></div>
+                    <div field="purchaseOut" headerAlign="center" header="采购退货" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="维修" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="出库金额"></div>
-                    <div field="partName" headerAlign="center" header="归库金额"></div>
+                    <div field="repairOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div field="repairEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="销售" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="出库金额"></div>
-                    <div field="partName" headerAlign="center" header="退货金额"></div>
+                    <div field="sellOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div field="sellEnter" headerAlign="center" header="退货金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="调拨" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="入库金额"></div>
-                    <div field="partName" headerAlign="center" header="出库金额"></div>
+                    <div field="allotEnter" width="60" headerAlign="center" header="入库金额" dataType="float" align="right"></div>
+                    <div field="allotOut" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="耗材" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="出库金额"></div>
-                    <div field="partName" headerAlign="center" header="归库金额"></div>
+                    <div field="materialOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div field="materialEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="库存" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="期初金额"></div>
-                    <div field="partName" headerAlign="center" header="期末库存金额"></div>
-                    <div field="partName" headerAlign="center" header="当前库存金额"></div>
+                    <div field="beginCount" width="60" headerAlign="center" header="期初金额" dataType="float" align="right"></div>
+                    <div field="endCount" headerAlign="center" header="期末库存金额" dataType="float" align="right"></div>
+                    <div field="currCount" headerAlign="center" header="当前库存金额" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="盘点" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="60" headerAlign="center" header="盘盈金额"></div>
-                    <div field="partName" headerAlign="center" header="盘亏金额"></div>
+                    <div field="inventoryProfit" width="60" headerAlign="center" header="盘盈金额" dataType="float" align="right"></div>
+                    <div field="inventoryLoss" headerAlign="center" header="盘亏金额" dataType="float" align="right"></div>
                 </div>
             </div>
         </div>
@@ -139,26 +148,28 @@
 </div>
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:110px;"
+     title="高级查询" style="width:220px;height:150px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
             <tr>
-                <td class="title">日期:</td>
+                <td class="title">起始日期:</td>
                 <td>
                     <input name="startDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
-                <td class="">至:</td>
+            </tr>
+            <tr>
+                <td class="title">终止日期:</td>
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>

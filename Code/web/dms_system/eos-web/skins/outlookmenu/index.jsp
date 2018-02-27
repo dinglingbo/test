@@ -6,7 +6,7 @@
 <head>
 <%@include file="/coframe/tools/skins/common.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>普元-用户机构及权限管理系统</title>
+<title>DMS管理系统</title>
 <style type="text/css">
 .dtHighLight{
 	background:#F0F8FF !important;
@@ -16,6 +16,7 @@
 <body class="index">
 <div class="nui-fit">
 <div id="wrapper" class="wrap">
+	<%-- 
 	<div id="header">
 		<div class="head-in clearfix">
 			<div class="fl clearfix">
@@ -27,6 +28,7 @@
 			</div>
 		</div>
 	</div>
+	 --%>
 	<div class="nui-fit">
 		<div id="container">
 				<div id="wrapper" class="wrap">

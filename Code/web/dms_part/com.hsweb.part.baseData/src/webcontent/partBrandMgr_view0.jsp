@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件品牌</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partBrandMgr.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partBrandMgr.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -23,9 +23,9 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" plain="true" onclick="onSearch(0)">已启用</a>
-                <a class="nui-button" plain="true" onclick="onSearch(1)">已禁用</a>
-                <a class="nui-button" plain="true" onclick="onSearch(2)">全部</a>
+                <a class="nui-button" plain="true" onclick="onSearch(0)" id="type0">已启用</a>
+                <a class="nui-button" plain="true" onclick="onSearch(1)" id="type1">已禁用</a>
+                <a class="nui-button" plain="true" onclick="onSearch(2)" id="type2">全部</a>
             </td>
         </tr>
     </table>

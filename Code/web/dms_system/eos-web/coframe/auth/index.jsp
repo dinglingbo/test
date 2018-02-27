@@ -1,8 +1,10 @@
 <%@page import="com.eos.data.datacontext.UserObject"%>
 <%@page import="org.gocom.components.coframe.tools.IConstants" %>
 <%@page pageEncoding="UTF-8"%>
+<%@include file="/common/sysCommon.jsp" %>
+
 <%
-	String skin = "default";
+	String skin = "outlookmenu";/* default */
 	Object userObj = session.getAttribute("userObject");
 	if(userObj != null){
 		UserObject userObject = (UserObject)userObj;
@@ -11,5 +13,5 @@
 		}
 	}
 	
-	response.sendRedirect(request.getContextPath() + "/skins/"+skin+"/index.jsp");
+	response.sendRedirect(sysDomain + "/skins/"+skin+"/index.jsp");
  %>

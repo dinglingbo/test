@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var basePath = window._rootUrl||"http://127.0.0.1:8080/default/";
-var partListUrl = basePath+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
+var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var partListUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
 var tree = null;
-var treeUrl = basePath+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
+var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 
 var qualityList = [];
 var qualityHash = {};
@@ -15,8 +15,6 @@ var unitList = [];
 var abcTypeList = [];
 var carBrandList = [];
 var queryForm = null;
-
-
 $(document).ready(function() {
 	queryForm = new nui.Form("#queryForm");
 	partGrid = nui.get("partGrid");
@@ -182,7 +180,9 @@ function editPart(){
     }
 
 }
-
+function onPartGridRowDblClick(){
+    editPart();
+}
 function addOrEditPart(row)
 {
     nui.open({
@@ -194,12 +194,14 @@ function addOrEditPart(row)
         allowResize:false,
         onload: function ()
         {
-            var iframe = this.getIFrameEl();
+        	var iframe = this.getIFrameEl();
+            var carBrandList = nui.get("applyCarBrandId").getData();
             var params = {
                 qualityTypeIdList:qualityList,
                 partBrandIdList:brandList,
                 unitList:unitList,
-                abcTypeList:abcTypeList
+                abcTypeList:abcTypeList,
+                applyCarModelList:carBrandList
             };
             if(row)
             {
@@ -292,7 +294,7 @@ function savePart(part,successTip,errorTip)
     });
 }
 
-var getAllPartBrandUrl = basePath+"com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
+var getAllPartBrandUrl = baseUrl+"com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
 function getAllPartBrand(callback)
 {
     nui.ajax({

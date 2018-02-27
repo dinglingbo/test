@@ -40,7 +40,15 @@ $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
-
+    leftGrid.on("load",function(){
+        var data = leftGrid.getData()||[];
+        var count = data.length;
+        if(count>0)
+        {
+            onLeftGridRowDblClick({});
+        }
+        nui.get("leftGridCount").setValue("共"+count+"项");
+    });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
@@ -126,14 +134,17 @@ function onLeftGridRowDblClick(e)
         editEnterMainBtn.disable();
         reViewBtn.disable();
     }
-    var enterId = row.id;
-    loadRightGridData(enterId);
+    var outId = row.id;
+    loadRightGridData(outId);
 }
-function loadRightGridData(enterId)
+function reloadLeftGrid(){
+    leftGrid.reload();
+}
+function loadRightGridData(outId)
 {
     editPartHash={};
     rightGrid.load({
-        enterId:enterId
+    	outId:outId
     });
 }
 var currType = 2;
@@ -244,10 +255,14 @@ function onAdvancedSearchCancel(){
 }
 function addInbound()
 {
-    basicInfoForm.clear();
+	basicInfoForm.clear();
+    var storeList = nui.get("storeId").getData();
     var data = {
-        enterDate:(new Date()),
-        totalAmt:0
+        outDate:(new Date()),
+        totalAmt:0,
+        billStatus:"0",
+        storeId:storeList[0].id,
+        seller:currUserName
     };
     basicInfoForm.setData(data);
     rightGrid.clearRows();
@@ -259,7 +274,7 @@ function addInbound()
     editEnterMainBtn.disable();
     cancelEditEnterMainBtn.enable();
     saveEnterMainBtn.enable();
-    
+
     var addPartBtn = nui.get("addPartBtn");
     var editPartBtn = nui.get("editPartBtn");
     var deletePartBtn = nui.get("deletePartBtn");
@@ -366,10 +381,10 @@ function save()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            enterMain:data,
-            enterDetailAdd:enterDetailAdd,
-            enterDetailUpdate:enterDetailUpdate,
-            enterDetailDelete:enterDetailDelete
+            outMain:data,
+            outDetailAdd:outDetailAdd,
+            outDetailUpdate:outDetailUpdate,
+            outDetailDelete:outDetailDelete
         }),
         success:function(data)
         {
@@ -378,7 +393,7 @@ function save()
             if(data.errCode == "S")
             {
                 nui.alert("保存成功");
-                quickSearch(currType);
+                reloadLeftGrid();
             }
             else{
                 nui.alert(data.errMsg||"保存失败");

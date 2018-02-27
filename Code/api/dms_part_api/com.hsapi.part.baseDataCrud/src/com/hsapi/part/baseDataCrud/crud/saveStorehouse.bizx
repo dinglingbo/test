@@ -86,7 +86,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="226" y="199"/>
@@ -103,6 +103,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">storehouse/isLock</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">storehouse/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -142,7 +146,7 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
-    <targetConnections>link5</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="330" y="195"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -213,12 +217,54 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getCurrentOrg" displayName="getCurrentOrg" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="229" y="270"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.common.svr.getCurrentOrg</process:partner>
+      <process:inputVariables/>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="org" type="query" value="commonj.sdo.DataObject" valueType="Java">org</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="199" y="305"/>
+    <figSize height="17" width="86"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="327" y="270"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">org/orgcode</process:from>
+      <process:to type="query">storehouse/orgcode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="325" y="306"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-01-26 11:49:13" date="2018-01-26Z" description="" name="savePartBrand" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="org"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.com.ComStore" name="storehouse"/>

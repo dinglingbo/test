@@ -10,13 +10,29 @@ var rightGrid = null;
 var splitter = null;
 $(document).ready(function(v)
 {
-	//splitter = nui.get("splitter");
+    //splitter = nui.get("splitter");
     //console.log(splitter);
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-    loadLeftGridData({});
+    rightGrid.on("rowclick",function(e)
+    {
+        var row = e.record;
+        if(row)
+        {
+            if(row.isDisabled == 1)
+            {
+                nui.get("disabledRight").hide();
+                nui.get("enabledRight").show();
+            }
+            else{
+                nui.get("enabledRight").hide();
+                nui.get("disabledRight").show();
+            }
+        }
+    });
+    onSearch(2);
 });
 
 
@@ -124,6 +140,14 @@ function onSearch(type)
     {
         params.isDisabled = type;
     }
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
+    }
     loadLeftGridData(params);
 }
 function loadLeftGridData(params)
@@ -167,7 +191,7 @@ function loadRightGridData(parentId)
         parentId:parentId
     },function(){
         var row = rightGrid.getSelected();
-        if(row.isDisabled)
+        if(row && row.isDisabled)
         {
             nui.get("disabledRight").hide();
             nui.get("enabledRight").show();

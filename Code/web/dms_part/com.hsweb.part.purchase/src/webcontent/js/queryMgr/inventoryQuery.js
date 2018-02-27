@@ -31,49 +31,17 @@ $(document).ready(function(v)
                 storehouseHash[v.customid] = v;
             }
         });
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000065');//出库类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("settType").setData(settTypeIdList);
-                var outTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000065")
-                    {
-                        outTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                quickSearch(20);
-            }
-        });
+        quickSearch(currType);
     });
 
 });
-function quickSearch(type){
+function getSearchParams(){
     var params = {};
+    return params;
+}
+var currType = 2;
+function quickSearch(type){
+    var params = getSearchParams();
     switch (type)
     {
         case 0:
@@ -98,10 +66,10 @@ function quickSearch(type){
             params.auditStatus = 0;
             break;
         case 7:
-            params.auditStatus = 1;
+            params.billStatus = 1;
             break;
         case 8:
-            params.postStatus = 1;
+            params.billStatus = 2;
             break;
         case 10:
             params.thisYear = 1;
@@ -112,11 +80,19 @@ function quickSearch(type){
         default:
             break;
     }
+    currType = type;
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
+    }
     doSearch(params);
 }
 function doSearch(params)
 {
-    params.outTypeId = '050201';//采购退货
     rightGrid.load({
         params:params
     });
@@ -124,7 +100,7 @@ function doSearch(params)
 function advancedSearch()
 {
     advancedSearchWin.show();
-    advancedSearchForm.clear();
+  //  advancedSearchForm.clear();
     if(advancedSearchFormData)
     {
         advancedSearchForm.setData(advancedSearchFormData);
@@ -133,11 +109,19 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    if(searchData.startDate)
+    {
+        searchData.startDate = searchData.startDate.substr(0,10);
+    }
+    if(searchData.endDate)
+    {
+        searchData.endDate = searchData.endDate.substr(0,10);
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }
 function onAdvancedSearchCancel(){
-    advancedSearchForm.clear();
+ //   advancedSearchForm.clear();
     advancedSearchWin.hide();
 }
 var supplier = null;
@@ -173,58 +157,3 @@ function selectSupplier(elId)
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-//--commonPart
-var getStorehouseUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
-function getStorehouse(callback)
-{
-    nui.ajax({
-        url:getStorehouseUrl,
-        type:"post",
-        success:function(data)
-        {
-            if(data && data.storehouse)
-            {
-                callback && callback(data);
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
-var getDictItemsUrl = baseUrl+"com.hsapi.part.common.svr.getDictItems.biz.ext";
-function getDictItems(dictIdList,callback)
-{
-    var params = {};
-    params.dictIdList = dictIdList;
-    nui.ajax({
-        url:getDictItemsUrl,
-        type:"post",
-        data:JSON.stringify(params),
-        success:function(data)
-        {
-            if(data && data.dataItems)
-            {
-                callback && callback({
-                    code:"S",
-                    dataItems:data.dataItems
-                });
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}

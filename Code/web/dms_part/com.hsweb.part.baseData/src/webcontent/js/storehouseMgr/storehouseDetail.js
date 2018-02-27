@@ -8,10 +8,10 @@ $(document).ready(function(v)
     basicInfoForm = new nui.Form("#basicInfoForm")
 });
 var requiredField = {
-    adminName:"仓库管理员",
+    chargeMan:"仓库管理员",
     name:"仓库名称",
-    adminPhone:"管理员电话",
-    level:"仓库级别"
+    chargeTel:"管理员电话",
+    levelNumber:"仓库级别"
 };
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveStorehouse.biz.ext";
 function onOk()

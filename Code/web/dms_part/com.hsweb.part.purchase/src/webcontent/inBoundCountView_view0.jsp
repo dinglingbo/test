@@ -34,6 +34,7 @@
 <div id="basicInfoForm" class="form">
     <input class="nui-hidden" name="detailId"/>
     <input class="nui-hidden" name="partId"/>
+    <input class="nui-hidden" name="applyCarModel">
     <table style="width: 100%">
         <tr>
             <td class="title">

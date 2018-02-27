@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>purchase/js/purchaseReturn/purchaseReturn.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/purchaseReturn/purchaseReturn.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -100,7 +100,7 @@
                 </div>
                 <!--footer-->
                 <div property="footer">
-                    <input type='nui-textbox' value='Footer' readonly="true" style='vertical-align:middle;'/>
+                    <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
                 </div>
             </div>
         </div>
@@ -160,7 +160,7 @@
                                 <label>退货员：</label>
                             </td>
                             <td colspan="1">
-                                <input class="nui-textbox" name="buyer" width="100%">
+                                <input class="nui-textbox" name="seller" width="100%">
                         </tr>
                         <tr>
                             <td class="title">

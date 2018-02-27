@@ -14,6 +14,7 @@
 </style>
 </head>
 <body>
+
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
@@ -31,7 +32,7 @@
                        emptyText="请选择..."
                        url=""
                        allowInput="true"
-                       showNullItem="true"
+                       showNullItem="false"
                        nullItemText="请选择..."/>
                 <label style="font-family:Verdana;">查询关键字：</label>
                 <input class="nui-textbox" width="100" id="key"/>
@@ -45,6 +46,9 @@
     <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
          url=""  idField="id" multiSelect="true"
          pageSize="50"
+         idField="PartID"
+         dataField="sellPriceList"
+         sortMode="client"
          frozenStartColumn="0"
          frozenEndColumn="4">
         <div property="columns">
@@ -52,18 +56,18 @@
             <!--<div type="checkcolumn" ></div>-->
             <div header="配件进价信息" headerAlign="center">
                 <div property="columns">
-                    <div field="dept_name" width="100" headerAlign="center" header="配件编码"></div>
-                    <div field="position_name" width="80" headerAlign="center" header="配件名称"></div>
-                    <div field="position_name" width="100" headerAlign="center" header="品牌"></div>
-                    <div field="dept_name" width="100" headerAlign="center" header="车型"></div>
+                    <div field="PartCode" width="100" headerAlign="center" header="配件编码"  allowSort="true"></div>
+                    <div field="PartName" width="80" headerAlign="center" header="配件名称"  allowSort="true"></div>
+                    <div field="CarPlate" width="100" headerAlign="center" header="品牌"  allowSort="true"></div>
+                    <div field="CarModel" width="100" headerAlign="center" header="车型"  allowSort="true"></div>
                 </div>
             </div>
             <div header="配件基本信息" headerAlign="center">
                 <div property="columns">
-                    <div field="position_name" width="80" headerAlign="center" header="4S含税销售价"></div>
-                    <div field="position_name" width="80" headerAlign="center" header="建议销价"></div>
-                    <div field="dept_name" width="100" headerAlign="center" header="4S批发价"></div>
-                    <div field="dept_name" headerAlign="center" header="备注"></div>
+                    <div field="Price4S" width="80" headerAlign="center" header="4S含税销售价"  allowSort="true"></div>
+                    <div field="SuggestionPrice" width="80" headerAlign="center" header="建议销价"  allowSort="true"></div>
+                    <div field="WholesalePrice" width="100" headerAlign="center" header="4S批发价"  allowSort="true"></div>
+                    <div field="Remark" headerAlign="center" header="备注"  allowSort="true"></div>
                 </div>
             </div>
         </div>

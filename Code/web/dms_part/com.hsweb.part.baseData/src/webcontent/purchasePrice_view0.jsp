@@ -11,17 +11,10 @@
 <title>进价行情</title>
 <script src="<%= request.getContextPath() %>/baseData/js/purchasePrice/purchasePrice.js?v=1.0.0"></script>
 <style type="text/css">
-html,body {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
 </style>
 </head>
 <body>
+
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
@@ -53,24 +46,27 @@ html,body {
     <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
          url=""  idField="id" multiSelect="true"
          pageSize="50"
+         idField="goods_id"
+         dataField="priceList"
+         sortMode="client"
          frozenStartColumn="0"
-         frozenEndColumn="4">
+         frozenEndColumn="0">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <!--<div type="checkcolumn" ></div>-->
             <div header="配件进价信息" headerAlign="center">
                 <div property="columns">
-                    <div field="dept_name" width="100" headerAlign="center" header="配件编码"></div>
-                    <div field="position_name" width="80" headerAlign="center" header="配件名称"></div>
-                    <div field="position_name" width="100" headerAlign="center" header="最新进价"></div>
-                    <div field="dept_name" width="100" headerAlign="center" header="最近更新日期"></div>
+                    <div field="goods_sn"  headerAlign="center" header="配件编码" allowSort="true"></div>
+                    <div field="goods_name" headerAlign="center" header="配件名称" allowSort="true"></div>
+                    <div field="shop_price" headerAlign="center" header="最新进价" allowSort="true"></div>
+                    <div field="last_update" headerAlign="center" header="最近更新日期" dateFormat="yyyy-MM-dd H:mm:ss" allowSort="true"></div>
                 </div>
             </div>
             <div header="零件基本信息" headerAlign="center">
                 <div property="columns">
-                    <div field="position_name" width="80" headerAlign="center" header="品牌"></div>
-                    <div field="position_name" width="80" headerAlign="center" header="类型"></div>
-                    <div field="dept_name" width="100" headerAlign="center" header="车型"></div>
+                    <div field="brand_name" width="80" headerAlign="center" header="品牌" allowSort="true"></div>
+                    <div field="cat_name" width="80" headerAlign="center" header="类型" allowSort="true"></div>
+                    <div field="CarSuit" width="100" headerAlign="center" header="车型" allowSort="true"></div>
                 </div>
             </div>
         </div>

@@ -41,7 +41,13 @@ $(document).ready(function(v)
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
     leftGrid.on("load",function(){
-        onLeftGridRowDblClick({});
+        var data = leftGrid.getData()||[];
+        var count = data.length;
+        if(count>0)
+        {
+            onLeftGridRowDblClick({});
+        }
+        nui.get("leftGridCount").setValue("共"+count+"项");
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
@@ -55,7 +61,19 @@ $(document).ready(function(v)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
-        quickSearch(currType);
+        var roleId = [];
+        roleId.push("010806");//盘点人
+        getRoleMember(roleId,function(data)
+        {
+            var list = data.members;
+            var buyerList = list.filter(function(v)
+            {
+                return v.roleId == "010806";
+            });
+            var buyerEl = nui.get("buyer");
+            buyerEl.setData(buyerList);
+            quickSearch(currType);
+        });
     });
 
 });
@@ -222,7 +240,8 @@ function addInbound()
         enterDate:(new Date()),
         totalAmt:0,
         billStatus:0,
-        storeId:storeList[0].id
+        storeId:storeList[0].id,
+        buyer:currUserName
     };
     basicInfoForm.setData(data);
     rightGrid.clearRows();
@@ -294,10 +313,6 @@ function save()
             nui.alert(requiredField[key]+"不能为空");
             return;
         }
-    }
-    if(supplier)
-    {
-        data.guestFullName = supplier.fullName;
     }
     data.enterTotalQty = 0;
     data.taxAmt = 0;

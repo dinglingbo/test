@@ -91,11 +91,12 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
+                     sortMode="client"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="退货单号"></div>
-                        <div field="outDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
-                        <div field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="id" headerAlign="center" header="退货单号"></div>
+                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
+                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
                 </div>
                 <!--footer-->
@@ -230,28 +231,29 @@
                      showPager="false"
                      dataField="outDetailList"
                      idField="detailId"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
-                                <div field="outQty" width="40" headerAlign="center" header="数量" align="right"></div>
+                                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                                <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+                                <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div allowSort="true" datatype="int" field="outQty" width="40" headerAlign="center" header="数量" align="right"></div>
                             </div>
                         </div>
                         <div header="退货信息" headerAlign="center">
                             <div property="columns">
-                                <div field="sellUnitPrice" width="40" headerAlign="center" header="单价" align="right"></div>
-                                <div field="sellAmt" width="40" headerAlign="center" header="金额" align="right"></div>
+                                <div allowSort="true" datatype="float" field="sellUnitPrice" width="40" headerAlign="center" header="单价" align="right"></div>
+                                <div allowSort="true" datatype="float" field="sellAmt" width="40" headerAlign="center" header="金额" align="right"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">=
-                                <div field="remark" width="60" headerAlign="center" header="备注"></div>
+                                <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
                             </div>
                         </div>
                     </div>

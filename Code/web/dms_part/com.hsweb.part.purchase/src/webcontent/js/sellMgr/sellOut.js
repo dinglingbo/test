@@ -40,7 +40,15 @@ $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
-
+    leftGrid.on("load",function(){
+        var data = leftGrid.getData()||[];
+        var count = data.length;
+        if(count>0)
+        {
+            onLeftGridRowDblClick({});
+        }
+        nui.get("leftGridCount").setValue("共"+count+"项");
+    });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
@@ -71,8 +79,43 @@ $(document).ready(function(v)
                     }
                 });
                 nui.get("billTypeId").setData(billTypeIdList);
-                quickSearch(currType);
             }
+            var roleId = [];
+            roleId.push("010810");//验货员
+            roleId.push("010816");//销售员
+            getRoleMember(roleId,function(data)
+            {
+            	var list = data.members;
+                var sellerList = list.filter(function(v)
+                {
+                    return v.roleId == "010816";
+                });
+                var checkerList = list.filter(function(v)
+                {
+                    return v.roleId == "010810";
+                });
+                var checkerEl = nui.get("checker");
+                var sellerEl = nui.get("seller");
+                checkerEl.setData(checkerList);
+                sellerEl.setData(sellerList);
+                checkerEl.on("valuechanged",function()
+                {
+                    var checkerEl = nui.get("checker");
+                    if(!checkerEl.getValue()){
+                        checkerEl.setValue(currUserName);
+                        checkerEl.setText(currUserName);
+                    }
+                });
+                sellerEl.on("valuechanged",function()
+                {
+                    var sellerEl = nui.get("seller");
+                    if(!sellerEl.getValue()){
+                        sellerEl.setValue(currUserName);
+                        sellerEl.setText(currUserName);
+                    }
+                });
+                quickSearch(currType);
+            });
         });
     });
 
@@ -104,6 +147,12 @@ function onLeftGridRowDblClick(e)
     }
     //   console.log(row);
     basicInfoForm.setData(row);
+    var checkerEl = nui.get("checker");
+    var sellerEl = nui.get("seller");
+    checkerEl.setValue(row.checker);
+    checkerEl.setText(row.checker);
+    sellerEl.setValue(row.seller);
+    sellerEl.setText(row.seller);
     nui.get("guestId").setText(row.guestFullName);
     var editEnterMainBtn = nui.get("editEnterMainBtn");
     var saveEnterMainBtn = nui.get("saveEnterMainBtn");
@@ -130,6 +179,9 @@ function onLeftGridRowDblClick(e)
     }
     var outId = row.id;
     loadRightGridData(outId);
+}
+function reloadLeftGrid(){
+    leftGrid.reload();
 }
 function loadRightGridData(outId)
 {
@@ -203,7 +255,6 @@ function doSearch(params)
     leftGrid.load({
         params:params
     },function(){
-        onLeftGridRowDblClick({});
     });
 }
 function advancedSearch()
@@ -217,7 +268,8 @@ function advancedSearch()
 }
 function onAdvancedSearchOk()
 {
-    var searchData = advancedSearchForm.getData();
+	var searchData = advancedSearchForm.getData();
+    var i;
     if(searchData.startDate)
     {
         searchData.startDate = searchData.startDate.substr(0,10);
@@ -225,6 +277,15 @@ function onAdvancedSearchOk()
     if(searchData.endDate)
     {
         searchData.endDate = searchData.endDate.substr(0,10);
+    }
+    if(searchData.outIdList)
+    {
+        var tmpList = searchData.outIdList.split("\n");
+        for(i=0;i<tmpList.length;i++)
+        {
+            tmpList[i] = "'"+tmpList[i]+"'";
+        }
+        searchData.outIdList = tmpList.join(",");
     }
     advancedSearchWin.hide();
     doSearch(searchData);
@@ -246,6 +307,12 @@ function addInbound()
         storeId:storeList[0].id
     };
     basicInfoForm.setData(data);
+    var checkerEl = nui.get("checker");
+    var sellerEl = nui.get("seller");
+    checkerEl.setValue(currUserName);
+    checkerEl.setText(currUserName);
+    sellerEl.setValue(currUserName);
+    sellerEl.setText(currUserName);
     rightGrid.clearRows();
     var editEnterMainBtn = nui.get("editEnterMainBtn");
     var saveEnterMainBtn = nui.get("saveEnterMainBtn");
@@ -374,7 +441,7 @@ function save()
             if(data.errCode == "S")
             {
                 nui.alert("保存成功");
-                onLeftGridRowDblClick({});
+                reloadLeftGrid();
             }
             else{
                 nui.alert(data.errMsg||"保存失败");
@@ -393,7 +460,7 @@ function selectCustomer(elId)
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.common.customerSelect.flow",
-        title: "供应商资料", width: 980, height: 560,
+        title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
@@ -422,7 +489,12 @@ function selectCustomer(elId)
 function selectPart(callback)
 {
 	var params = {};
-
+	var guestId = nui.get("guestId").getValue();
+    if(!guestId)
+    {
+        nui.alert("请选择客户");
+        return;
+    }
     var storeId = nui.get("storeId").getValue();
     if(!storeId){
         nui.alert("请选择仓库");

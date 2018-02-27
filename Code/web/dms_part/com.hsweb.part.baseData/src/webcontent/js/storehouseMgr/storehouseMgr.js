@@ -16,18 +16,19 @@ $(document).ready(function(v)
 
 function onBeforeOpen(e)
 {
-    var menu = e.sender;
+	var menu = e.sender;
     var node = tree.getSelectedNode();
     var editItem = nui.getbyName("edit", menu);
     var addChildItem = nui.getbyName("addChild", menu);
-    if(!node)
+    editItem.hide();
+    addChildItem.hide();
+    if(node)
     {
-        editItem.hide();
-        addChildItem.hide();
-    }
-    else{
         editItem.show();
-        addChildItem.show();
+        if(!node.isEnd)
+        {
+            addChildItem.show();
+        }
     }
 }
 function onAddNode()
@@ -40,9 +41,9 @@ function onAddNode()
     var storehouseList = tree.getList()||[];
     nui.open({
         targetWindow: window,
-        url: "./storehouseDetailView.html",
+        url: "com.hsweb.part.baseData.storehouseDetail.flow",
         title: "仓库定义",
-        width: 500, height: 250,
+        width: 500, height: 270,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -51,7 +52,7 @@ function onAddNode()
             iframe.contentWindow.setData({
                 storehouse:{
                     isEdit:"N",
-                    chargeMan:"周坤",
+                    chargeMan:currUserName||"",
                     id:(new Date()).getTime(),
                     parentId:pId
                 },
@@ -80,9 +81,9 @@ function onAddChildNode(){
     var storehouseList = tree.getList()||[];
     nui.open({
         targetWindow: window,
-        url: "./storehouseDetailView.html",
+        url: "com.hsweb.part.baseData.storehouseDetail.flow",
         title: "仓库定义",
-        width: 500, height: 250,
+        width: 500, height: 270,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -91,7 +92,7 @@ function onAddChildNode(){
             iframe.contentWindow.setData({
                 storehouse:{
                     isEdit:"N",
-                    chargeMan:"周坤",
+                    chargeMan:currUserName||"",
                     id:(new Date()).getTime(),
                     parentId:pId
                 },
@@ -116,9 +117,9 @@ function onEditNode(){
     var storehouseList = tree.getList()||[];
     nui.open({
         targetWindow: window,
-        url: "./storehouseDetailView.html",
+        url: "com.hsweb.part.baseData.storehouseDetail.flow",
         title: "仓库定义",
-        width: 500, height: 250,
+        width: 500, height: 270,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -156,7 +157,7 @@ function addPosition()
     var storehouseList = tree.getList()||[];
     nui.open({
         targetWindow: window,
-        url: "./positionDetailView.html",
+        url: "com.hsweb.part.baseData.positionDetail.flow",
         title: "仓位定义",
         width: 525, height: 230,
         allowDrag:true,
@@ -171,7 +172,10 @@ function addPosition()
         },
         ondestroy: function (action)
         {
-
+        	if(action == "ok")
+            {
+                reloadGrid();
+            }
         }
     });
 }
@@ -225,6 +229,7 @@ function disableLocation(){
             if(data.errCode == "S")
             {
                 nui.alert("禁用成功");
+                reloadGrid();
             }
             else{
                 nui.alert("禁用失败");
@@ -235,4 +240,52 @@ function disableLocation(){
             console.log(jqXHR.responseText);
         }
     });
+}
+function savePosition()
+{
+    var rows = rightGrid.getChanges("modified")||[];
+    if(rows.length == 0)
+    {
+        return;
+    }
+    var locations = [];
+    for(var i=0;i<rows.length;i++)
+    {
+        locations.push({
+            id:rows[i].id,
+            name:rows[i].name
+        });
+    }
+  //  console.log(locations);
+    nui.mask({
+        html:'保存中...'
+    });
+    nui.ajax({
+        url:saveUrl,
+        type:"post",
+        data:JSON.stringify({
+            locations:locations
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                nui.alert("保存成功");
+                reloadGrid();
+            }
+            else{
+                nui.alert("保存失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            nui.alert("网络出错");
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+function reloadGrid(){
+    rightGrid.reload();
 }

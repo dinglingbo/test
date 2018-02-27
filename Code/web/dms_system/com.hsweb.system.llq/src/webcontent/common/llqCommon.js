@@ -47,11 +47,11 @@ function callAjax(url, params, processAjax, callBack){
 * 处理Ajax结果
 */
 function processAjax(rs, callBack){
-    if(rs.result.code == '1'){
+    if(rs.errCode != 'E' && rs.result.code == '1'){
         //nui.alert("获取数据成功！");
         callBack(rs.result.data);
     }
     else{
-        nui.alert("获取数据失败！\n\r[" + rs.result.msg + "]");
+        nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");
     }
 }

@@ -26,6 +26,7 @@ public class LlqCall {
 		StringBuffer s = new StringBuffer();
 		for (Map.Entry<String, Object> entry : sortMap.entrySet()) {
 			s.append(entry.getValue());
+			System.out.println(entry.getKey() + "：" + entry.getValue());
 		}
 		
 		String hash = MD5.crypt(s.toString() + securityKey);

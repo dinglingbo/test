@@ -55,6 +55,10 @@
       <process:from type="query" pattern="reference">parentId</process:from>
       <process:to type="query">cond/_expr[1]/parentId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">cond/_expr[2]/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="210" y="96"/>
@@ -145,7 +149,7 @@
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">isDisabled</process:from>
-      <process:to type="query">cond/_expr[2]/isDisabled</process:to>
+      <process:to type="query">cond/_expr[3]/isDisabled</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

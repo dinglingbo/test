@@ -1,5 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@include file="/common/common.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -9,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 <script
-	src="<%= request.getContextPath() %>purchase/js/purchaseInbound/enterDetailEdit.js?v=1.0.0"></script>
+	src="<%= request.getContextPath() %>/purchase/js/purchaseInbound/enterDetailEdit.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;

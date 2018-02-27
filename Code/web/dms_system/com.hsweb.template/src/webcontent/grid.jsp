@@ -13,24 +13,40 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinMain.js" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-fit">
-        <div id="gridMain" 
-            class="nui-datagrid" 
-            style="width:700px;height:250px;"
-            url="">
-            <div property="columns">
-                <div type="indexcolumn"></div>                
-                <div field="loginname" width="120" headerAlign="center" allowSort="true">员工帐号</div>    
-                <div field="name" width="120" headerAlign="center" allowSort="true">姓名</div>    
-                <div header="工作信息">
-                    <div property="columns">
-                        <div field="dept_name" width="120">所属部门</div>
-                        <div field="position_name" width="100">职位</div>
-                        <div field="salary" width="100" allowSort="true">薪资</div>
+        <div class="nui-splitter" style="width:100%; height:100%;" id="panel">
+            <div size="40%" showCollapseButton="false">
+                <div class="nui-fit">
+                    <div id="gridMain" 
+                        class="nui-datagrid" 
+                        style="width:100%;height:100%;"
+                        showColumns="false"
+                        showPager="false"
+                        allowcellwrap="true">
+                        <div property="columns">
+                            <div type="indexcolumn"></div>
+                            <div field="name" width="80" headerAlign="center" allowSort="false"></div>                  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div size="60%" showCollapseButton="false">
+                <div class="nui-fit">            
+                    <div id="gridSub" 
+                        class="nui-datagrid" 
+                        style="width:100%;height:100%;"
+                        showColumns="false"
+                        showPager="false"
+                        allowcellwrap="true">
+                        <div property="columns">
+                            <div type="indexcolumn"></div>                
+                            <div field="field1" width="80" headerAlign="center" allowSort="true"></div>    
+                            <div field="field2" width="150" headerAlign="center" allowSort="true"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,7 +55,7 @@
     
 	<script type="text/javascript">
     	nui.parse();
-    	//searchVins();
+        var panel = nui.get("panel");
     </script>
 </body>
 </html>

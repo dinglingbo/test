@@ -1,44 +1,60 @@
 
 var vin; //vin
 var brand; //品牌
-var gridCfg; //车辆配置
-var gridMainGroup; //主组
-var gridSubGroup;//分组
-var gridParts;//零件
+var dgNavigation; //导航
+var dg1; //层1
+var dg2; //层2
+var dg3; //层3
+var dg4; //层4
+var dg5; //层5
+var dg6; //层6
+var dg7; //层7
+var dg8; //层8
+var dg9; //层9
+var navData = [];
+
 var panel;
 
 $(document).ready(function(v){
-    gridCfg = nui.get("gridCfg");
-	gridMainGroup = nui.get("gridMainGroup");
-    gridSubGroup = nui.get("gridSubGroup");
-    gridParts = nui.get("gridParts");
-    panel = nui.get("panel");
+    dgNavigation = nui.get("dgNavigation"); //导航
+    dg1 = nui.get("dg1"); //层1
+    dg2 = nui.get("dg2"); //层2
+    dg3 = nui.get("dg3"); //层3
+    dg4 = nui.get("dg4"); //层4
+    dg5 = nui.get("dg5"); //层5
+    dg6 = nui.get("dg6"); //层6
+    dg7 = nui.get("dg7"); //层7
+    dg8 = nui.get("dg8"); //层8
+    dg9 = nui.get("dg9"); //层9
     
-    //panel.hidePane(0);
-    panel.hidePane(2); 
+    queryDg1();
     
-    gridMainGroup.on("rowclick", function (e) {//查分组信息
+    dgNavigation.on("rowclick", function (e) {//导航
+        var row = dgNavigation.getSelected();
+        if (row.index) {
+            showRightGrid(eval('dg' + row.index));
+        }
+    });
+    
+    dg1.on("rowclick", function (e) {//查分组信息
         /* var column = e.column;
         var editor = e.editor;
         field = e.field,
         value = e.value; */
-        var row = gridMainGroup.getSelected();
-        if (row.auth) {
+        var row = dg1.getSelected();
+        if (row.brand) {
             var params = {
-                "url":"https://llq.007vin.com/ppyvin/subgroup",
+                "url":"https://llq.007vin.com/cars/show",
                 "params":{
-                    "vin":vin,
-                    "brand":brand,
-                    "is_filter":1,
-                    "auth":unescape(row.auth)
+                    "brand":row.brand
                 },
                 "token": token
             }
-            callAjax(url, params, processAjax, setSubGroupData);
+            callAjax(url, params, processAjax, setDg2);
         }
     });
     
-    gridSubGroup.on("rowclick", function (e) {//查零件信息
+    /*gridSubGroup.on("rowclick", function (e) {//查零件信息
         var row = gridSubGroup.getSelected();
         if (row.auth) {
             var params = {
@@ -64,7 +80,7 @@ $(document).ready(function(v){
             var html = '<a class="icon-hedit" href="javascript:openDetail(' + record.pid + ')">' + value + '</a>';
             e.cellHtml = html;
         }
-    });
+    });*/
 });
 
 /*
@@ -72,69 +88,56 @@ $(document).ready(function(v){
 */
 
 /*
-*通过vin获取车辆信息
+*获取品牌
 */
-function queryVin(){	
-	var obj = nui.get("vin");
-    vin = obj.getValue();
-    
-    if (checkVin()){
-        var params = {
-            "url":"https://llq.007vin.com/ppyvin/searchvins",
-            "params":{
-                "vin":vin
-            },
-            "token": token
-        }
-        
-        $(".groupButton").hide();
-        callAjax(url, params, processAjax, setGridCfg);
-    }	
-}
-
-/*
-*车辆信息数据处理
-*/
-function setGridCfg(data){
-    var dataBody = data.mains;
-    brand = data.brand;
-    gridCfg.setData([]);
-    showRightGrid(gridCfg);
-    if(dataBody){
-        data = dataBody.split("\n");
-        var dataList=[];
-        var tmpList;
-        var tmp={};
-        for(var i=0; i<data.length-1; i++){//最后一个无效
-            tmpList = data[i].split(":");
-            tmp.field1 = tmpList[0] || "";
-            tmp.field2 = tmpList[1] || "";
-            dataList[i] = nui.clone(tmp);
-        }
-        
-        if(dataList && dataList.length > 0){
-            panel.showPane(2);
-            /* gridCfg.set({
-                columns: [
-                    { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
-                    { field: "field1", width:80, headerAlign: "center", allowSort: false, header: "分类"},
-                    { field: "field2", width:150, headerAlign: "center", allowSort: false, header: "详情"}
-                ]
-            }); */
-            gridCfg.setData(dataList);
-            
-            //加载主组数据
-            queryGroupByVin();
-        }else{
-            panel.hidePane(2);
-        }        
+function queryDg1(){	
+    var params = {
+        "url":"https://llq.007vin.com/ppycars/brand",
+        "params":{
+        },
+        "token": token
     }
+    
+    //$(".groupButton").hide();
+    callAjax(url, params, processAjax, setDg1);
 }
 
 /*
-*获取主组列表(需要先调用车辆信息接口，再执行)
+*setNav
 */
-function queryGroupByVin(){	
+function setNav(index, title){
+    for(var i=navData.length-1; i>0; i--){
+        navData.pop();            
+        if(i == index){
+            break;
+        }
+    }
+    navData.push({index:index, title: index + " " + title});
+}
+
+/*
+*setDg1
+*/
+function setDg1(data){
+    dg1.setData(data);
+    setNav(1, "选择品牌");
+    //navData.push({index:1, title:"1 选择品牌"});
+    showRightGrid(dg1);
+}
+
+/*
+*setDg2
+*/
+function setDg2(data, rs){
+    dg2.setData(data);
+    setNav(2, rs.title);
+    showRightGrid(dg2);
+}
+
+/*
+*Dg1
+*/
+function setDg1Data(){	
     if (checkVin()){
         var params = {
             "url":"https://llq.007vin.com/ppyvin/group",
@@ -224,15 +227,21 @@ function showLeftGrid(gridObj){
 *右部grid
 */
 function showRightGrid(gridObj){
-    gridCfg.hide();
-    gridSubGroup.hide();
-    gridParts.hide();
+    dg1.hide();
+    dg2.hide();
+    dg3.hide();
+    dg4.hide();
+    dg5.hide();
+    dg6.hide();
+    dg7.hide();
+    dg8.hide();
+    dg9.hide();    
     
     gridObj.show();
-    var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
+    dgNavigation.setData(navData);
+    /* var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
     $($(".groupButton")[num]).show();
-    //$($(".groupButton")[num]).click();
-    setBgColor($(".groupButton")[num]);
+    setBgColor($(".groupButton")[num]); */
 }
 
 

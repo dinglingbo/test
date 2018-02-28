@@ -49,62 +49,50 @@
     </table>
 </div>
 <div class="nui-fit">
-    <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
-         url=""  idField="id" multiSelect="true"
-         pageSize="20"
-         dataField="customers"
-         pageSize="20"
-         totalField="page.count"
-         onrowdblclick="onRowDblClick"
-         ondrawcell="onDrawCell"
-         frozenStartColumn="0"
-         frozenEndColumn="4">
-        <div property="columns">
-            <div type="indexcolumn">序号</div>
-            <!--<div type="checkcolumn" ></div>-->
-            <div header="基本信息" headerAlign="center">
-                <div property="columns">
-                    <div field="code" width="100" headerAlign="center">客户编码</div>
-                    <div field="shortName" width="80" headerAlign="center">客户简称</div>
-                    <div field="fullName" width="100" headerAlign="center">客户全称</div>
-                    <div field="guestType" width="100" headerAlign="center">对象类型</div>
-                </div>
+    <div class="nui-splitter"
+         id="splitter"
+         allowResize="false"
+         handlerSize="6"
+         style="width:100%;height:100%;">
+        <div size="200" showCollapseButton="false">
+            <div class="nui-fit">
+                <ul id="tree1" class="nui-tree" url="" style="width:100%;height: 100%;"
+                    onnodedblclick="onNodeDblClick"
+                    showTreeIcon="true" textField="name" idField="id">
+                </ul>
             </div>
-            <div header="客户联系方式" headerAlign="center">
-                <div property="columns">
-                    <div field="tel" width="100" headerAlign="center">电话</div>
-                    <div field="mobile" width="100" headerAlign="center">手机号码</div>
-                    <div field="addr" width="100" headerAlign="center">地址</div>
-                </div>
-            </div>
-            <div header="联系人信息" headerAlign="center">
-                <div property="columns">
-                    <div field="contactor" width="80" headerAlign="center">联系人</div>
-                    <div field="contactorTel" width="100" headerAlign="center">联系人电话</div>
-                </div>
-            </div>
-            <div header="财务信息" headerAlign="center">
-                <div property="columns">
-                    <div field="tgrade" width="100" headerAlign="center">对象等级</div>
-                    <div field="billTypeId" width="80" headerAlign="center">票据类型</div>
-                    <div field="creditLimit" width="100" headerAlign="center">信誉额度</div>
-                </div>
-            </div>
-            <div header="其他信息" headerAlign="center">
-                <div property="columns">
-                    <div field="pyName" width="100" headerAlign="center">拼音</div>
-                    <div field="provinceId" width="80" headerAlign="center">省份 </div>
-                    <div field="cityId" width="100" headerAlign="center">城市</div>
-                    <div field="fax" width="100" headerAlign="center">传真</div>
-
-                    <div field="remark" width="200" headerAlign="center">备注</div>
-                </div>
-            </div>
-            <div header="操作信息" headerAlign="center">
-                <div property="columns">
-                    <div field="modifier" width="70" headerAlign="center">最后操作人</div>
-                    <div field="modifyDate" width="135" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss">最后操作时间</div>
-                    <div field="isDisabled" width="30" headerAlign="center" align="center">禁用</div>
+        </div>
+        <div showCollapseButton="false" style="border-right:0;border-left:0;">
+            <div class="nui-fit">
+                <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
+                     url=""  idField="id" multiSelect="true"
+                     pageSize="20"
+                     dataField="customers"
+                     totalField="page.count"
+                     ondrawcell="onDrawCell"
+                     selectOnLoad="true"
+                     sortMode="client"
+                     frozenStartColumn="0"
+                     frozenEndColumn="0">
+                    <div property="columns">
+                        <div type="indexcolumn">序号</div>
+                        <!--<div type="checkcolumn" ></div>-->
+                        <div header="往来基本信息" headerAlign="center">
+                            <div property="columns">
+                                <div allowSort="true" field="shortName" width="80" headerAlign="center" header="简称"></div>
+                                <div allowSort="true" field="fullName" width="100" headerAlign="center" header="全称"></div>
+                                <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
+                                <div allowSort="true" field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
+                                <div allowSort="true" field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
+                                <div allowSort="true" field="manager" width="100" headerAlign="center" header="联系人"></div>
+                                <div allowSort="true" field="mobile" width="100" headerAlign="center" header="联系电话"></div>
+                                <div allowSort="true" field="contactor" width="80" headerAlign="center" header="业务员"></div>
+                                <div allowSort="true" field="contactorTel" width="100" headerAlign="center" header="业务员电话"></div>
+                                <div allowSort="true" field="code" width="100" headerAlign="center" header="编码"></div>
+                                <div allowSort="true" field="isDisabled" width="100" headerAlign="center" header="状态"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -40,9 +40,14 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
-    leftGrid.on("load",function()
-    {
-        onLeftGridRowDblClick({})
+    leftGrid.on("load",function(){
+        var data = leftGrid.getData()||[];
+        var count = data.length;
+        if(count>0)
+        {
+            onLeftGridRowDblClick({});
+        }
+        nui.get("leftGridCount").setValue("共"+count+"项");
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);

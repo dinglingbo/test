@@ -41,7 +41,13 @@ $(document).ready(function(v)
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
     leftGrid.on("load",function(){
-        onLeftGridRowDblClick({});
+        var data = leftGrid.getData()||[];
+        var count = data.length;
+        if(count>0)
+        {
+            onLeftGridRowDblClick({});
+        }
+        nui.get("leftGridCount").setValue("共"+count+"项");
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
@@ -50,7 +56,6 @@ $(document).ready(function(v)
     basicInfoForm = new nui.Form("#basicInfoForm");
     //console.log("xxx");
 
-    nui.get("billStatus").setData(billStatusList);
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -184,6 +189,14 @@ function quickSearch(type){
     }
     doSearch(params);
 }
+function onSearch(){
+    doSearch(getSearchParam())
+}
+function getSearchParam(){
+    var params = {};
+    params.id = nui.get("outId").getValue();
+    return params;
+}
 function doSearch(params)
 {
     params = params||{};
@@ -234,12 +247,12 @@ function onAdvancedSearchCancel(){
 function addInbound()
 {
 	basicInfoForm.clear();
-    var storeList = nui.get("storeId").getData();
+	var storeList = nui.get("storeId").getData();
     var data = {
         outDate:(new Date()),
         totalAmt:0,
-        billStatus:0,
-        storeId:storeList[0].id
+        storeId:storeList[0].id,
+        seller:currUserName
     };
     basicInfoForm.setData(data);
     rightGrid.clearRows();
@@ -313,10 +326,6 @@ function save()
             return;
         }
     }
-    if(supplier)
-    {
-        data.guestFullName = supplier.fullName;
-    }
     var list = rightGrid.getData();
     data.outTotalQty = 0;
     data.trueCost = 0;
@@ -337,8 +346,9 @@ function save()
     data.receivableAmt = data.totalAmt;
     data.outTypeId = '050205';//盘亏出库
     data.billTypeId = '010101';
-    data.guestId = "aaa";
-    data.guestFullName = "aaa";
+    data.guestId = currOrgid;
+    data.guestFullName = currOrgName;
+    data.billStatus = 0;
     console.log(data);
     var outDetailAdd = rightGrid.getChanges("added")||[];
     var outDetailUpdate = [];

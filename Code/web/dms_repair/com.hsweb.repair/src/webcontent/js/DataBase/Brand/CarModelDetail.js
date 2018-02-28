@@ -18,7 +18,7 @@ function setData(data){
 	var model = data.model;
 	dataform1.setData(model);
 }
-savaUrl = "com.hsapi.repair.baseData.brand.saveModel.biz.ext";
+
 function saveData(){
 	var data = dataform1.getData();
 	console.log(data);
@@ -33,7 +33,7 @@ function saveData(){
 		html:'保存中..'
 	});
 	nui.ajax({
-		url:savaUrl,
+		url:"com.hsapi.repair.baseData.brand.saveModel.biz.ext",
 		type:"post",
 		data:JSON.stringify({
 			model:data
@@ -60,11 +60,7 @@ function onOk(){
 	saveData();
 }
 function CloseWindow(action) {
-//  if (action == "close" && form.isChanged()) {
-//      if (confirm("数据被修改了，是否先保存？")) {
-//          saveData();
-//      }
-//  }
+
   if (window.CloseOwnerWindow)
   return window.CloseOwnerWindow(action);
   else window.close();

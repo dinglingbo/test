@@ -20,10 +20,8 @@
 </head>
 <body>
 	<fieldset style="width: 93.5%; height: 106px; border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;"">
-		<div id="dataform1" class="form" style="padding-top: 5px;">
-			<!-- 隐藏区域 -->
-			<!-- <input class="nui-hidden" name="rpbclass.rpbClassMembers" id="rpbclass.rpbClassMembers"/>
-	    	<input class="nui-hidden" name="rpbclass." id="types.rpbClassMembers"/> -->
+		<div id="dataform1" class="nui-form" style="padding-top: 5px;">
+			<input class="nui-hidden" name="id" /> 
 
 			<span style="width: 80px; height: 38px; display: inline-block;color: #FF0000">维修工种：</span>
 			<input class="nui-combobox" name="type" width="260px" /> <span

@@ -11,22 +11,36 @@
 <head>
 <title>零件详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
+    <%@include file="/common/sysCommon.jsp" %>    
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/partDetail.js?v=2" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/partDetail.js?v=1.32" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit">
         <%--<h1 style="color:black" align="center">零件详情</h1> --%>
 	   
-	   <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
+        <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
 		     onactivechanged="changeTabs" >
+            <!--基础信息-->
             <%@include file="/llq/vin/partDetail_basic.jsp" %>
+            <!--渠道价格-->
             <%@include file="/llq/vin/partDetail_price.jsp" %>
+            <!--替换件-->
             <%@include file="/llq/vin/partDetail_replace.jsp" %>
+            <!--品牌件-->
+            <%@include file="/llq/vin/partDetail_article.jsp" %>
+            <!--组件-->
             <%@include file="/llq/vin/partDetail_compt.jsp" %>
+            <!--技术信息-->
+            <%@include file="/llq/vin/partDetail_baseinfo.jsp" %>
+            <!--适用车型-->
+            <%@include file="/llq/vin/partDetail_compatible.jsp" %>
         </div>
     </div>
 </body>
 </html>
+<script>
+    var pid = '<b:write property="pid"/>';
+    var brand = '<b:write property="brand"/>';
+</script>

@@ -66,12 +66,13 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-                quickSearch(20);
+                quickSearch(currType);
             }
         });
     });
 
 });
+var currType = 2;
 function quickSearch(type){
     var params = {};
     switch (type)
@@ -112,6 +113,15 @@ function quickSearch(type){
         default:
             break;
     }
+    currType = type;
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
+    }
     doSearch(params);
 }
 function doSearch(params)
@@ -133,6 +143,41 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    advancedSearchFormData = {};
+    for(var key in searchData)
+    {
+        advancedSearchFormData[key] = searchData[key];
+    }
+    var i;
+    if(searchData.startDate)
+    {
+        searchData.startDate = searchData.startDate.substr(0,10);
+    }
+    if(searchData.endDate)
+    {
+        searchData.endDate = searchData.endDate.substr(0,10);
+    }
+    var tmpList = [];
+    if(searchData.enterIdList)
+    {
+        tmpList = searchData.enterIdList.split("\n");
+        for(i=0;i<tmpList.length;i++)
+        {
+            tmpList[i] = "'"+tmpList[i]+"'";
+        }
+        searchData.enterIdList = tmpList.join(",");
+        //console.log(tmpList);
+    }
+    if(searchData.partCodeList)
+    {
+        tmpList = searchData.partCodeList.split("\n");
+        for(i=0;i<tmpList.length;i++)
+        {
+            tmpList[i] = "'"+tmpList[i]+"'";
+        }
+        searchData.partCodeList = tmpList.join(",");
+        //console.log(tmpList);
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }
@@ -140,14 +185,14 @@ function onAdvancedSearchCancel(){
     advancedSearchForm.clear();
     advancedSearchWin.hide();
 }
-var supplier = null;
-function selectSupplier(elId)
+var customer = null;
+function selectCustomer(elId)
 {
-    supplier = null;
+    customer = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
-        title: "供应商资料", width: 980, height: 560,
+        url: "com.hsweb.part.common.customerSelect.flow",
+        title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
@@ -162,9 +207,9 @@ function selectSupplier(elId)
                 var data = iframe.contentWindow.getData();
                 console.log(data);
                 console.log(elId);
-                supplier = data.supplier;
-                var value = supplier.id;
-                var text = supplier.fullName;
+                customer = data.customer;
+                var value = customer.id;
+                var text = customer.fullName;
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);

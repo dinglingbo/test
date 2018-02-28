@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/common/js/enterDetailSelect.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/common/js/enterDetailSelect.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -81,42 +81,43 @@
          dataField="ptsEnterMainDetailList"
          idField="detailId"
          onrowdblclick="onOk"
+         sortMode="client"
          url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="零件信息" headerAlign="center">
                 <div property="columns">
-                    <div field="partCode" width="100" headerAlign="center" header="零件编码"></div>
-                    <div field="partName" headerAlign="center" header="零件名称"></div>
-                    <div field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div field="applyCarModel" width="60" headerAlign="center" header="适用车型"></div>
-                    <div field="unit" width="40" headerAlign="center" header="单位"></div>
-                    <div field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="partCode" width="100" headerAlign="center" header="零件编码"></div>
+                    <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
+                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="适用车型"></div>
+                    <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="库存" headerAlign="center">
                 <div property="columns">
-                    <div field="outableQty" width="60" headerAlign="center" header="库存" align="right"></div>
-                    <div field="enterQty" width="60" headerAlign="center" header="入库数" align="right"></div>
-                    <div field="outQty      " width="60" headerAlign="center" header="已出库" align="right"></div>
+                    <div allowSort="true" datatype="int" field="outableQty" width="60" headerAlign="center" header="库存" align="right"></div>
+                    <div allowSort="true" datatype="int" field="enterQty" width="60" headerAlign="center" header="入库数" align="right"></div>
+                    <div allowSort="true" datatype="int" field="outQty" width="60" headerAlign="center" header="已出库" align="right"></div>
                 </div>
             </div>
             <div header="不含税信息" headerAlign="center">
                 <div property="columns">
-                    <div field="noTaxUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
+                    <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
                 </div>
             </div>
             <div header="含税信息" headerAlign="center">
                 <div property="columns">
-                    <div field="taxRate" width="60" headerAlign="center" header="税率" align="right"></div>
-                    <div field="taxUnitPrice" width="60" headerAlign="center" header="单价" align="right"></div>
+                    <div allowSort="true" datatype="float" field="taxRate" width="60" headerAlign="center" header="税率" align="right"></div>
+                    <div allowSort="true" datatype="float" field="taxUnitPrice" width="60" headerAlign="center" header="单价" align="right"></div>
                 </div>
             </div>
             <div header="入库信息" headerAlign="center">
                 <div property="columns">
-                    <div field="enterId" width="100" headerAlign="center" header="入库单号"></div>
-                    <div field="guestFullName" width="100" headerAlign="center" header="供应商"></div>
-                    <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd"></div>
+                    <div allowSort="true" field="enterId" width="100" headerAlign="center" header="入库单号"></div>
+                    <div allowSort="true" field="guestFullName" width="100" headerAlign="center" header="供应商"></div>
+                    <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd"></div>
                 </div>
             </div>
         </div>

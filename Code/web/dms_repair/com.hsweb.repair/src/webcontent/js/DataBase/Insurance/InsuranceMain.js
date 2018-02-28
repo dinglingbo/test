@@ -5,6 +5,7 @@
 		$(document).ready(function(v){
 			dataGrid = nui.get("datagrid1");
 			dataGrid.setUrl(dataGridUrl);
+			
 			loadDataGridData({});
 		});
 		
@@ -35,7 +36,28 @@
 		    loadDataGridData(params);
 		}
 		
-		function addOrEdit(comguest){
+		function addInsurance(comguest){
+    		nui.open({
+    			targetWindow: window,
+    			url:"InsuranceDetail.jsp",
+    			title:"保险公司",width:450,height:300,
+    			onload:function(){
+    				if(comguest){
+    					var iframe = this.getIFrameEl();
+    					iframe.contentWindow.setData({
+    						comguest:comguest
+    					});
+    				}
+    			},
+    			 ondestroy:function(action){
+    		    	if(action == "ok"){
+    		    		dataGrid.reload();
+    		    	}
+    		}	
+    		});
+    		
+    	}
+		function editInsurance(comguest){
     		nui.open({
     			targetWindow: window,
     			url:"InsuranceDetail.jsp",
@@ -58,12 +80,12 @@
     	}
 		
 		function add(){
-			addOrEdit();
+			addInsurance();
 		}
 		function edit(){
 			var row = dataGrid.getSelected();
 			if(row){
-				addOrEdit(row);
+				editInsurance(row);
 			}
 		}
 		function onDrawCell(e)

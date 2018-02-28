@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/allotMgr/allotOut.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/allotMgr/allotOut.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -49,7 +49,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">出库单号：</label>
-                <input class="nui-textbox" name="outId" enabled="true"/>
+                <input class="nui-textbox" id="outId" enabled="true"/>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
@@ -89,16 +89,17 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
+                     sortMode="client"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="出库单号" allowSort="true"></div>
-                        <div field="outDate" width="80" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd" allowSort="true"></div>
-                        <div field="billStatus" width="30" headerAlign="center" header="状态" allowSort="true"></div>
+                        <div allowSort="true" field="id" headerAlign="center" header="出库单号" allowSort="true"></div>
+                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd" allowSort="true"></div>
+                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态" allowSort="true"></div>
                     </div>
                 </div>
                 <!--footer-->
                 <div property="footer">
-                    <input type='nui-textbox' value='Footer' readonly="true" style='vertical-align:middle;'/>
+                    <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
                 </div>
             </div>
         </div>
@@ -205,10 +206,6 @@
                             <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn" enabled="false">添加</a>
                             <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="editPartBtn" enabled="false">修改</a>
                             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn" enabled="false">删除</a>
-                            <span class="separator"></span>
-                            <input class="nui-textbox" name="search-enterId" enabled="true" emptyText="请输入配件编码"/>
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="1" enabled="false">库存查询</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="2" enabled="false">批量查询</a>
                         </td>
                     </tr>
                 </table>

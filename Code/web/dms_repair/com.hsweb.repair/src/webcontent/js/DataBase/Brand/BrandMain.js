@@ -23,7 +23,7 @@ $(document).ready(function(v){
 	loadRightModelGrid({});
 });
 //brand
-function addOrEditBrands(brand){
+function addBrands(brand){
 	nui.open({
 		targetWindow: window,
         url: "CarBrandDetail.jsp",
@@ -31,7 +31,7 @@ function addOrEditBrands(brand){
         allowResize:false,
         onload: function ()
         {
-            if(brand)
+        	if(brand)
             {
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.setData({
@@ -48,21 +48,71 @@ function addOrEditBrands(brand){
         }
 	});
 }
+function editBrands(brand){
+	nui.open({
+		targetWindow: window,
+        url: "CarBrandDetail.jsp",
+        title: "编辑品牌", width: 400, height: 190,
+        allowResize:false,
+        onload: function ()
+        {
+            if(brand)
+            {
+            	var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                	brand:brand
+                });
+            }
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	leftBrandGrid.reload();
+            }
+        }
+	});
+}
 function addBrand(){
-	addOrEditBrands();
+	addBrands();
 }
 function editBrand(){
 	var row = leftBrandGrid.getSelected();
 	if(row){
-		addOrEditBrands(row);
+		editBrands(row);
 	}
 }
 //series
-function addOrEditSeries(series){
+function addSerieses(series){
 	nui.open({
 		targetWindow: window,
         url: "CarSeriesDetail.jsp",
         title: "新增车系", width: 600, height: 240,
+        allowResize:false,
+        onload: function ()
+        {
+            if(series)
+            {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                	series:series
+                });
+            }
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	leftSeriesGrid.reload();
+            }
+        }
+	});
+}
+function editSerieses(series){
+	nui.open({
+		targetWindow: window,
+        url: "CarSeriesDetail.jsp",
+        title: "编辑车系", width: 600, height: 240,
         allowResize:false,
         onload: function ()
         {
@@ -88,20 +138,21 @@ function addSeries(){
 	var row = leftBrandGrid.getSelected();
 	if(row){
 		var series = {
-				parentId:row.id
+				carBrandId:row.id
 		};
-		addOrEditSeries(series);
+		addSerieses(series);
 	}
 	
 }
 function editSeries(){
 	var row = leftSeriesGrid.getSelected();
 	if(row){
-		addOrEditSeries(row);
+		editSerieses(row);
 	}
 }
+
 //model
-function addOrEditModel(model){
+function addModels(model){
 	nui.open({
 		targetWindow: window,
         url: "CarModelDetail.jsp",
@@ -126,21 +177,58 @@ function addOrEditModel(model){
         }
 	});
 }
+function editModels(model){
+	nui.open({
+		targetWindow: window,
+        url: "CarModelDetail.jsp",
+        title: "编辑车型", width: 600, height: 240,
+        allowResize:false,
+        onload: function ()
+        {
+            if(model)
+            {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                	model:model
+                });
+            }
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	rightModelGrid.reload();
+            }
+        }
+	});
+}
+
+//function addSeries(){
+//	var row = leftBrandGrid.getSelected();
+//	if(row){
+//		var series = {
+//				carBrandId:row.id
+//		};
+//		addSerieses(series);
+//	}
+//	
+//}
 //根据XX添加到父类
 function addModel(){
-	var row = rightModelGrid.getSelected();
+	var row = leftSeriesGrid.getSelected();
 	if(row){
 		var model = {
-				parentId:row.id
+				carBrandId:row.carBrandId,
+				carSeriesId:row.id
 		};
-		addOrEditModel(model);
+		addModels(model);
 	}
 	
 }
 function editModel(){
 	var row = rightModelGrid.getSelected();
 	if(row){
-		addOrEditModel(row);
+		editModels(row);
 	}
 }
 
@@ -176,47 +264,37 @@ function loadLeftBrandGridData(params){
 
 function onLeftBrandGridRowClick(e){
 	var row = e.record;
-    if(row.isDisabled)
-    {
-        nui.get("disabledBrand").hide();
-        nui.get("enabledBrand").show();
-    }
-    else{
-        nui.get("disabledBrand").show();
-        nui.get("enabledBrand").hide();
-    }
+    
     loadLeftSeriesGridData(row.id);
 	loadRightModelGrid(row.id);
+    
+}
+
+function onLeftSeriesGridRowClick(e){
+	var row = e.record;
+    
+    loadRightModelGrid(row.carBrandId,row.id);
     
 }
 
 function loadLeftSeriesGridData(carBrandId){
 	leftSeriesGrid.load({
 		carBrandId:carBrandId
-	},function(){
-		var row = leftSeriesGrid.getSelected();
-		if(row.isDisabled){
-			nui.get("disabledSeries").hide();
-			nui.get("enabledSeries").show();
-		}else{
-			nui.get("disabledSeries").show();
-            nui.get("enabledSeries").hide();
-		}
 	});
 }
-function loadRightModelGrid(carBrandId){
+function loadRightModelGrid(carBrandId,carSeriesId){
+	
 	rightModelGrid.load({
-		carBrandId:carBrandId
-	},function(){
-		var row = rightModelGrid.getSelected();
-		if(row.isDisabled){
-			nui.get("disabledModel").hide();
-			nui.get("enabledModel").show();
-		}else{
-			nui.get("disabledModel").show();
-            nui.get("enabledModel").hide();
-		}
+		
+		carBrandId:carBrandId,
+		carSeriesId:carSeriesId
 	});
+}
+//重新刷新页面
+function reBrand(){
+    var form = new  nui.Form("#form");
+    var json = form.getData(false,false);
+    leftBrandGrid.load(json);//grid查询
 }
 //function reloadLeftSeriesGrid(){
 //	leftSeriesGrid.reload();
@@ -225,8 +303,8 @@ function loadRightModelGrid(carBrandId){
 //	rightModelGrid.reload();
 //}
 
-//brand
-var brandUrl = "com.hsapi.repair.baseData.brand.saveBrand.biz.ext";
+//brand 本页面修改保存
+var brandUrl = baseUrl + "com.hsapi.repair.baseData.brand.saveBrand.biz.ext";
 function upadateData(brand,callback)
 {
     console.log(brand);
@@ -238,6 +316,31 @@ function upadateData(brand,callback)
         type:"post",
         data:JSON.stringify({
         	brand:brand
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            callback && callback(data);
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+//series
+var seriesUrl = baseUrl + "com.hsapi.repair.baseData.brand.saveSeries.biz.ext";
+function upadateData(series,callback)
+{
+    console.log(series);
+    nui.mask({
+        html:'保存中...'
+    });
+    nui.ajax({
+        url:seriesUrl,
+        type:"post",
+        data:JSON.stringify({
+        	series:series
         }),
         success:function(data)
         {

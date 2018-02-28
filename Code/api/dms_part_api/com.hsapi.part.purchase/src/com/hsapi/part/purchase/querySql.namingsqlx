@@ -47,11 +47,14 @@
     		<isNotEmpty prepend="and" property="id">  
                 (id like '%$id$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="buyer">  
+                (buyer = #buyer#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (to_char(enter_date,'yyyy-mm-dd') &gt;= #startDate#)
+                (to_char(record_date,'yyyy-mm-dd') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (to_char(enter_date,'yyyy-mm-dd') &lt;= #endDate#)
+                (to_char(record_date,'yyyy-mm-dd') &lt;= #endDate#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="enterTypeId">  
                 (enter_type_id = #enterTypeId#)
@@ -61,27 +64,27 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(enter_date,'mm')=to_char(sysdate,'mm'))
+                (to_char(record_date,'yyyymm')=to_char(sysdate,'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(enter_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+                (to_char(record_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(enter_date,'dd')=to_char(sysdate,'dd'))
+                (to_char(record_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(enter_date,'dd')=to_char(sysdate-1,'dd'))
+                (to_char(record_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(enter_date,'iw')=to_char(sysdate,'iw'))
+                (to_char(record_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(enter_date,'iw')=to_char(sysdate-7,'iw'))
+                (to_char(record_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billStatus">  
             <!--单据状态-->
@@ -145,10 +148,10 @@
                 (A.bill_status like '%$billStatus$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (to_char(out_date,'yyyy-mm-dd') &gt;= #startDate#)
+                (to_char(record_date,'yyyy-mm-dd') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (to_char(out_date,'yyyy-mm-dd') &lt;= #endDate#)
+                (to_char(record_date,'yyyy-mm-dd') &lt;= #endDate#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="outTypeId">  
                 (out_type_id = #outTypeId#)
@@ -161,27 +164,27 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(out_date,'mm')=to_char(sysdate,'mm'))
+                (to_char(record_date,'yyyymm')=to_char(sysdate,'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(out_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+                (to_char(record_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(out_date,'dd')=to_char(sysdate,'dd'))
+                (to_char(record_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(out_date,'dd')=to_char(sysdate-1,'dd'))
+                (to_char(record_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(out_date,'iw')=to_char(sysdate,'iw'))
+                (to_char(record_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(out_date,'iw')=to_char(sysdate-7,'iw'))
+                (to_char(record_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="auditStatus">  
             <!--审核状态-->
@@ -250,7 +253,7 @@
 		  JOIN PTS_ENTER_DETAIL B
 		    ON (A.ID = B.ENTER_ID)
 		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID) where 1=1
+		    ON (B.PART_ID = C.ID) where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="enterTypeId">  
                 (A.enter_type_id = #enterTypeId#)
@@ -269,45 +272,45 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(A.enter_date,'mm')=to_char(sysdate,'mm'))
+                (to_char(A.audit_date,'yyyymm')=to_char(sysdate,'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(A.enter_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+                (to_char(A.audit_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(A.enter_date,'dd')=to_char(sysdate,'dd'))
+                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(A.enter_date,'dd')=to_char(sysdate-1,'dd'))
+                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(A.enter_date,'iw')=to_char(sysdate,'iw'))
+                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(A.enter_date,'iw')=to_char(sysdate-7,'iw'))
+                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisYear">  
             <!--本年-->
-                (to_char(A.enter_date,'yyyy')=to_char(sysdate,'yyyy'))
+                (to_char(A.audit_date,'yyyy')=to_char(sysdate,'yyyy'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear">  
             <!--上年-->
-                (to_char(A.enter_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+                (to_char(A.audit_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outableQtyGreaterThanZero">  
             <!---->
                 (B.outable_qty > 0)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (to_char(A.enter_date,'yyyy-mm-dd') &gt;= #startDate#)
+                (to_char(A.audit_date,'yyyy-mm-dd') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (to_char(A.enter_date,'yyyy-mm-dd') &lt;= #endDate#)
+                (to_char(A.audit_date,'yyyy-mm-dd') &lt;= #endDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">  
                 (B.part_code like '%$partCode$%')
@@ -377,7 +380,7 @@
 		  JOIN PTS_OUT_DETAIL B
 		    ON (A.ID = B.OUT_ID)
 		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID) where 1=1
+		    ON (B.PART_ID = C.ID) where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="outTypeId">  
                 (A.out_type_id = #outTypeId#)
@@ -385,37 +388,49 @@
     		<isNotEmpty prepend="and" property="guestId">  
                 (A.guest_id = #guestId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="outIdList">  
+                (A.id in ($outIdList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                (B.PART_CODE in ($partCodeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">
+                (to_char(A.audit_date,'yyyy-mm-dd')&gt;=#startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                (to_char(A.audit_date,'yyyy-mm-dd')&lt;=#endDate#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(A.out_date,'mm')=to_char(sysdate,'mm'))
+                (to_char(A.audit_date,'yyyymm')=to_char(sysdate,'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(A.out_date,'mm')=to_char(add_months(sysdate,-1),'mm'))
+                (to_char(A.audit_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(A.out_date,'dd')=to_char(sysdate,'dd'))
+                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(A.out_date,'dd')=to_char(sysdate-1,'dd'))
+                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(A.out_date,'iw')=to_char(sysdate,'iw'))
+                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(A.out_date,'iw')=to_char(sysdate-7,'iw'))
+                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisYear">  
             <!--本年-->
-                (to_char(A.out_date,'yyyy')=to_char(sysdate,'yyyy'))
+                (to_char(A.audit_date,'yyyy')=to_char(sysdate,'yyyy'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear">  
             <!--上年-->
-                (to_char(A.out_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+                (to_char(A.audit_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outableQtyGreaterThanZero">  
             <!---->

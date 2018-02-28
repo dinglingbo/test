@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/inventoryMgr/inventoryLoss.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/inventoryMgr/inventoryLoss.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -50,7 +50,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">出库单号：</label>
-                <input class="nui-textbox" name="search-enterId" enabled="true"/>
+                <input class="nui-textbox" id="outId" enabled="true"/>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
@@ -99,7 +99,7 @@
                 </div>
                 <!--footer-->
                 <div property="footer">
-                    <input type='nui-textbox' value='Footer' readonly="true" style='vertical-align:middle;'/>
+                    <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@
                             <td class="title">
                                 <label>盘亏原因：</label>
                             </td>
-                            <td colspan="1">
+                            <td colspan="3">
                                 <input name="backReasonId"
                                        id="backReasonId"
                                        class="nui-combobox width1"
@@ -159,26 +159,10 @@
                                        nullItemText="请选择..."/>
                             </td>
                             <td class="title">
-                                <label>经办人：</label>
+                                <label>盘点人：</label>
                             </td>
                             <td colspan="1">
                                 <input class="nui-textbox" name="seller" width="100%">
-                            <td class="title">
-                                <label>单据状态：</label>
-                            </td>
-                            <td colspan="1">
-                                <input name="billStatus"
-                                       id="billStatus"
-                                       enabled="false"
-                                       class="nui-combobox width1"
-                                       textField="name"
-                                       valueField="customid"
-                                       emptyText="请选择..."
-                                       url=""
-                                       allowInput="true"
-                                       showNullItem="true"
-                                       width="100%"
-                                       nullItemText="请选择..."/>
                             </td>
                         </tr>
                         <tr>
@@ -189,7 +173,7 @@
                                 <input class="nui-textbox" width="100%" name="remark"/>
                             </td>
                             <td class="title">
-                                <label>总金额：</label>
+                                <label>盘亏金额：</label>
                             </td>
                             <td colspan="1">
                                 <input class="nui-textbox" width="100%" name="totalAmt" enabled="false" style="text-align: right;"/>
@@ -205,10 +189,6 @@
                             <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn" enabled="false">添加</a>
                             <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="editPartBtn" enabled="false">修改</a>
                             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn" enabled="false">删除</a>
-                            <span class="separator"></span>
-                            <input class="nui-textbox" name="search-enterId" enabled="true" emptyText="请输入配件编码"/>
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="1" enabled="false">库存查询</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="2" enabled="false">批量查询</a>
                         </td>
                     </tr>
                 </table>
@@ -218,6 +198,7 @@
                      showPager="false"
                      dataField="outDetailList"
                      idField="detailId"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
@@ -267,18 +248,18 @@
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
                            showOkButton="false"
                            width="100%"
-                           showClearButton="false"/>
+                           showClearButton="true"/>
                 </td>
             </tr>
             <tr>
                 <td class="title">出库单号:</td>
                 <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;" id="outIdList"></textarea>
+                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;" name="outIdList"></textarea>
                 </td>
             </tr>
         </table>

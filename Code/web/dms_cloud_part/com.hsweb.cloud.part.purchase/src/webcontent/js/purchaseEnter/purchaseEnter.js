@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -119,7 +119,7 @@ function loadMainAndDetailInfo(row)
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
        formJson = nui.encode(basicInfoForm.getData());
 
-       //加载采购订单明细表信息
+       //加载采购入库明细表信息
        var mainId = row.id;
        loadRightGridData(mainId);
    }else {
@@ -260,7 +260,6 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
-	//目前没有区域采购订单，销退受理  params.enterTypeId = '050101';
 	leftGrid.load({
 		params : params
 	}, function() {
@@ -301,15 +300,15 @@ function onAdvancedSearchOk()
     var searchData = advancedSearchForm.getData();
     var i;
     //订货日期
-    if(searchData.sOrderDate)
+    if(searchData.sEnterDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sEnterDate = searchData.sEnterDate.substr(0,10);
     }
-    if(searchData.eOrderDate)
+    if(searchData.eEnterDate)
     {
-        var date = searchData.eOrderDate;
-        searchData.eOrderDate = addDate(date, 1);
-        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
+        var date = searchData.eEnterDate;
+        searchData.eEnterDate = addDate(date, 1);
+        searchData.eEnterDate = searchData.eEnterDate.substr(0,10);
     }
     //创建日期
     if(searchData.sCreateDate)
@@ -338,7 +337,7 @@ function onAdvancedSearchOk()
     {
         params.guestId = nui.get("guestId").getValue();
     }
-    //订单单号
+    //采购单号
     if(searchData.serviceIdList)
     {
         var tmpList = searchData.serviceIdList.split("\n");
@@ -369,7 +368,7 @@ function onAdvancedSearchCancel()
 function checkNew() 
 {
     var rows = leftGrid.findRows(function(row){
-        if(row.serviceId == "新采购订单") return true;
+        if(row.serviceId == "新采购入库") return true;
     });
     
     return rows.length;
@@ -405,16 +404,17 @@ function add()
     basicInfoForm.reset();
     rightGrid.clearRows();
     
-    var newRow = { serviceId: '新采购订单', auditSign: 0};
+    var newRow = { serviceId: '新采购入库', auditSign: 0};
     leftGrid.addRow(newRow, 0);
     leftGrid.clearSelect(false);
     leftGrid.select(newRow, false);
     
-    nui.get("serviceId").setValue("新采购订单");
+    nui.get("serviceId").setValue("新采购入库");
+    nui.get("enterTypeId").setValue("050101");
     nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
     nui.get("taxRate").setValue(0.17);
     nui.get("taxSign").setValue(1);
-    nui.get("orderDate").setValue(new Date());
+    nui.get("enterDate").setValue(new Date());
     
     var guestId = nui.get("guestId");
     guestId.focus();
@@ -451,29 +451,29 @@ function onBillTypeIdChanged(e)
 function calcTaxPriceInfo(taxSign, taxRate)
 {
     rightGrid.findRow(function(row){
-        var orderQty = row.orderQty;
-        var orderPrice = row.orderPrice;
-        var orderAmt = row.orderAmt;
+        var enterQty = row.enterQty;
+        var enterPrice = row.enterPrice;
+        var enterAmt = row.enterAmt;
         var noTaxPrice = 0;
         var noTaxAmt = 0;
         var taxPrice = 0;
         var taxAmt = 0;
 
         if (taxSign == 0) { //收据
-            noTaxAmt = orderAmt;
-            noTaxPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
-            orderPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
-            taxAmt = orderAmt * (1.0 + parseFloat(taxRate));
-            taxPrice = orderQty > 0 ? (orderAmt / orderQty) * (1.0 + parseFloat(taxRate)) : 0;
+            noTaxAmt = enterAmt;
+            noTaxPrice = (enterQty > 0 ? enterAmt / enterQty : 0);
+            enterPrice = (enterQty > 0 ? enterAmt / enterQty : 0);
+            taxAmt = enterAmt * (1.0 + parseFloat(taxRate));
+            taxPrice = enterQty > 0 ? (enterAmt / enterQty) * (1.0 + parseFloat(taxRate)) : 0;
         } else {
-            taxAmt = orderAmt;
-            taxPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
-            orderPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
-            noTaxAmt = orderAmt / (1.0 + parseFloat(taxRate));
-            noTaxPrice = orderQty > 0 ? (orderAmt / orderQty) / (1.0 + parseFloat(taxRate)) : 0;
+            taxAmt = enterAmt;
+            taxPrice = (enterQty > 0 ? enterAmt / enterQty : 0);
+            enterPrice = (enterQty > 0 ? enterAmt / enterQty : 0);
+            noTaxAmt = enterAmt / (1.0 + parseFloat(taxRate));
+            noTaxPrice = enterQty > 0 ? (enterAmt / enterQty) / (1.0 + parseFloat(taxRate)) : 0;
         }
 
-        var newRow = {orderPrice: orderPrice, noTaxAmt: noTaxAmt, noTaxPrice: noTaxPrice, 
+        var newRow = {enterPrice: enterPrice, noTaxAmt: noTaxAmt, noTaxPrice: noTaxPrice, 
                       taxAmt: taxAmt, taxPrice: taxPrice, taxSign: taxSign, taxRate: taxRate};
         rightGrid.updateRow(row, newRow);
     });
@@ -483,14 +483,15 @@ function getMainData()
     var data = basicInfoForm.getData();
     //汇总明细数据到主表
     data.isFinished = 0;
+    data.enterTypeId = '050101';
     data.auditSign = 0;
     data.billStatusId = '';
     data.noTaxAmt = 0;
     data.notEnterAmt = 0;
     data.notEnterQty = 0;
-    data.orderAmt = 0;
-    data.orderItem = 0;
-    data.orderQty = 0;
+    data.enterAmt = 0;
+    data.enterItem = 0;
+    data.enterQty = 0;
     data.printTimes = 0;
     data.taxAmt = 0;
     data.taxDiff = 0;
@@ -499,10 +500,10 @@ function getMainData()
     {
         var tmp = list[i];
         data.noTaxAmt += parseFloat(tmp.noTaxAmt);
-        data.notEnterAmt += parseFloat(tmp.orderAmt);
-        data.notEnterQty += parseFloat(tmp.orderQty);
-        data.orderAmt += parseFloat(tmp.orderAmt);
-        data.orderQty += parseFloat(tmp.orderQty);
+        data.notEnterAmt += parseFloat(tmp.enterAmt);
+        data.notEnterQty += parseFloat(tmp.enterQty);
+        data.enterAmt += parseFloat(tmp.enterAmt);
+        data.enterQty += parseFloat(tmp.enterQty);
         data.taxAmt += parseFloat(tmp.taxAmt);
     }
     data.taxDiff = data.taxAmt - data.noTaxAmt;
@@ -516,12 +517,12 @@ function getMainData()
 var requiredField = {
     guestId : "供应商",
 	storeId : "仓库",
-    orderDate : "订货日期",
+    enterDate : "订货日期",
 	billTypeId : "票据类型",
     settleTypeId : "结算方式",
     taxRate : "开票税点",
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjEnter.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -540,7 +541,6 @@ function save() {
     }else{
         return;
     }
-    
 
     data = getMainData();
    
@@ -559,9 +559,9 @@ function save() {
         return v.detailId;
     });*/
 
-    var pchsOrderDetailAdd = rightGrid.getChanges("added");
-    var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
-    var pchsOrderDetailDelete = rightGrid.getChanges("removed");
+    var enterDetailAdd = rightGrid.getChanges("added");
+    var enterDetailUpdate = rightGrid.getChanges("modified");
+    var enterDetailDelete = rightGrid.getChanges("removed");
 
     nui.mask({
         el: document.body,
@@ -573,10 +573,10 @@ function save() {
 		url : saveUrl,
 		type : "post",
 		data : JSON.stringify({
-			pchsOrderMain : data,
-			pchsOrderDetailAdd : pchsOrderDetailAdd,
-			pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-			pchsOrderDetailDelete : pchsOrderDetailDelete
+			enterMain : data,
+			enterDetailAdd : enterDetailAdd,
+			enterDetailUpdate : enterDetailUpdate,
+			enterDetailDelete : enterDetailDelete
 		}),
 		success : function(data) {
             nui.unmask(document.body);
@@ -584,9 +584,9 @@ function save() {
 			if (data.errCode == "S") {
 				nui.alert("保存成功!");
 				//onLeftGridRowDblClick({});
-                var pjPchsOrderMainList = data.pjPchsOrderMainList;
-                if(pjPchsOrderMainList && pjPchsOrderMainList.length>0) {
-                    var leftRow = pjPchsOrderMainList[0];
+                var pjEnterMainList = data.pjEnterMainList;
+                if(pjEnterMainList && pjEnterMainList.length>0) {
+                    var leftRow = pjEnterMainList[0];
                     var row = leftGrid.getSelected();
                     leftGrid.updateRow(row,leftRow);
 
@@ -668,62 +668,62 @@ function onCellCommitEdit(e) {
         e.cancel = true;
     }else {
         var newRow = {};
-        if (e.field == "orderQty") {
-            var orderQty = e.value;
-            var orderPrice = record.orderPrice;
+        if (e.field == "enterQty") {
+            var enterQty = e.value;
+            var enterPrice = record.enterPrice;
             var noTaxPrice = record.noTaxPrice;
             var taxPrice = record.taxPrice;
             
             if(e.value==null || e.value=='') {
                 e.value = 0;
-                orderQty = 0;
+                enterQty = 0;
             }else if(e.value < 0) {
                 e.value = 0;
-                orderQty = 0;
+                enterQty = 0;
             }
             
-            var orderAmt = orderQty * orderPrice;
-            var noTaxAmt = orderQty * noTaxPrice; 
-            var taxAmt = orderQty * taxPrice;                    
+            var enterAmt = enterQty * enterPrice;
+            var noTaxAmt = enterQty * noTaxPrice; 
+            var taxAmt = enterQty * taxPrice;                    
                                 
-            newRow = { orderAmt: orderAmt, noTaxAmt: noTaxAmt, taxAmt: taxAmt};
+            newRow = { enterAmt: enterAmt, noTaxAmt: noTaxAmt, taxAmt: taxAmt};
             rightGrid.updateRow(e.row, newRow);
             
             //record.enteramt.cellHtml = enterqty * enterprice;
-        }else if (e.field == "orderPrice") {
-            var orderQty = record.orderQty;
-            var orderPrice = e.value;
+        }else if (e.field == "enterPrice") {
+            var enterQty = record.enterQty;
+            var enterPrice = e.value;
             var taxSign = record.taxSign;
             var taxRate = record.taxRate;
             var noTaxPrice = 0;
             var taxPrice = 0;
             
             if (taxSign == 0) { //收据
-                noTaxPrice = orderPrice;
-                taxPrice = orderPrice * (1.0 + parseFloat(taxRate));
+                noTaxPrice = enterPrice;
+                taxPrice = enterPrice * (1.0 + parseFloat(taxRate));
             } else {
-                taxPrice = orderPrice;
-                noTaxPrice = orderPrice / (1.0 + parseFloat(taxRate));
+                taxPrice = enterPrice;
+                noTaxPrice = enterPrice / (1.0 + parseFloat(taxRate));
             }
             
             if(e.value==null || e.value=='') {
                 e.value = 0;
-                orderPrice = 0;
+                enterPrice = 0;
             }else if(e.value < 0) {
                 e.value = 0;
-                orderPrice = 0;
+                enterPrice = 0;
             }
             
-            var orderAmt = orderQty * orderPrice;
-            var noTaxAmt = orderQty * noTaxPrice; 
-            var taxAmt = orderQty * taxPrice;  
+            var enterAmt = enterQty * enterPrice;
+            var noTaxAmt = enterQty * noTaxPrice; 
+            var taxAmt = enterQty * taxPrice;  
                            
-            newRow = { orderAmt: orderAmt, noTaxAmt: noTaxAmt, taxAmt: taxAmt, noTaxPrice: noTaxPrice, taxPrice: taxPrice};
+            newRow = { enterAmt: enterAmt, noTaxAmt: noTaxAmt, taxAmt: taxAmt, noTaxPrice: noTaxPrice, taxPrice: taxPrice};
             rightGrid.updateRow(e.row, newRow);
             
-        }else if (e.field == "orderAmt") {
-            var orderQty = record.orderQty;
-            var orderAmt = e.value;
+        }else if (e.field == "enterAmt") {
+            var enterQty = record.enterQty;
+            var enterAmt = e.value;
             var taxSign = record.taxSign;
             var taxRate = record.taxRate;
             var noTaxPrice = 0;
@@ -731,28 +731,28 @@ function onCellCommitEdit(e) {
             
             if(e.value==null || e.value=='') {
                 e.value = 0;
-                orderAmt = 0;
+                enterAmt = 0;
             }else if(e.value < 0) {
                 e.value = 0;
-                orderAmt = 0;
+                enterAmt = 0;
             }
             
             //e.cellHtml = enterqty * enterprice;
-            var orderPrice = orderAmt*1.0/orderQty;
+            var enterPrice = enterAmt*1.0/enterQty;
 
             if (taxSign == 0) { //收据
-                noTaxPrice = orderPrice;
-                taxPrice = orderPrice * (1.0 + parseFloat(taxRate));
+                noTaxPrice = enterPrice;
+                taxPrice = enterPrice * (1.0 + parseFloat(taxRate));
             } else {
-                taxPrice = orderPrice;
-                noTaxPrice = orderPrice / (1.0 + parseFloat(taxRate));
+                taxPrice = enterPrice;
+                noTaxPrice = enterPrice / (1.0 + parseFloat(taxRate));
             }
 
-            var noTaxAmt = orderQty * noTaxPrice; 
-            var taxAmt = orderQty * taxPrice;  
+            var noTaxAmt = enterQty * noTaxPrice; 
+            var taxAmt = enterQty * taxPrice;  
                           
-            if(orderQty) {
-                newRow = { orderPrice: orderPrice, noTaxAmt: noTaxAmt, taxAmt: taxAmt, noTaxPrice: noTaxPrice, taxPrice: taxPrice};
+            if(enterQty) {
+                newRow = { enterPrice: enterPrice, noTaxAmt: noTaxAmt, taxAmt: taxAmt, noTaxPrice: noTaxPrice, taxPrice: taxPrice};
                 rightGrid.updateRow(e.row, newRow);
             }
             
@@ -777,7 +777,7 @@ function selectPart(callback,checkcallback)
         }
     });
 }
-function addPchsOrderDetail(part)
+function addEnterDetail(part)
 {
     nui.open({
         targetWindow: window,
@@ -806,9 +806,9 @@ function addPchsOrderDetail(part)
                 enterDetail.comPartBrandId = data.partBrandId;
                 enterDetail.comApplyCarModel = data.applyCarModel;
                 enterDetail.comUnit = data.unit;
-                enterDetail.orderQty = data.qty;
-                enterDetail.orderPrice = data.price;
-                enterDetail.orderAmt = data.amt;
+                enterDetail.enterQty = data.qty;
+                enterDetail.enterPrice = data.price;
+                enterDetail.enterAmt = data.amt;
                 enterDetail.remark = data.remark;
                 enterDetail.storeId = data.storeId;
                 enterDetail.comOemCode = data.oemCode;
@@ -826,13 +826,13 @@ function addPchsOrderDetail(part)
                 if (taxSign == 0) { //收据
                     enterDetail.noTaxAmt = data.amt;;
                     enterDetail.noTaxPrice = (data.qty > 0 ? data.amt / data.qty : 0);
-                    enterDetail.orderPrice = (data.qty > 0 ? data.amt / data.qty : 0);
+                    enterDetail.enterPrice = (data.qty > 0 ? data.amt / data.qty : 0);
                     enterDetail.taxAmt = data.amt * (1.0 + parseFloat(taxRate));
                     enterDetail.taxPrice = data.qty > 0 ? (data.amt / data.qty) * (1.0 + parseFloat(taxRate)) : 0;
                 } else {
                     enterDetail.taxAmt = data.amt;
                     enterDetail.taxPrice = (data.qty > 0 ? data.amt / data.qty : 0);
-                    enterDetail.orderPrice = (data.qty > 0 ? data.amt / data.qty : 0);
+                    enterDetail.enterPrice = (data.qty > 0 ? data.amt / data.qty : 0);
                     enterDetail.noTaxAmt = data.amt / (1.0 + parseFloat(taxRate));
                     enterDetail.noTaxPrice = data.qty > 0 ? (data.amt / data.qty) / (1.0 + parseFloat(taxRate)) : 0;
                 }
@@ -845,7 +845,7 @@ function addPchsOrderDetail(part)
 function addPart() {
 	selectPart(function(data) {
 		var part = data.part;
-		addPchsOrderDetail(part);
+		addEnterDetail(part);
 	},function(data) {
         var part = data.part;
         var partid = part.id;
@@ -887,18 +887,18 @@ function checkRightData()
 {
     var msg = '';
     var rows = rightGrid.findRows(function(row){
-        if(row.orderQty){
-            if(row.orderQty <= 0) return true;
+        if(row.enterQty){
+            if(row.enterQty <= 0) return true;
         }else{
             return true;
         }
-        if(row.orderPrice){
-            if(row.orderPrice <= 0) return true;
+        if(row.enterPrice){
+            if(row.enterPrice <= 0) return true;
         }else{
             return true;
         }
-        if(row.orderAmt){
-            if(row.orderAmt <= 0) return true;
+        if(row.enterAmt){
+            if(row.enterAmt <= 0) return true;
         }else{
             return true;
         }
@@ -914,7 +914,7 @@ function checkRightData()
     }
     return msg;
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrder.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjEnter.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -935,6 +935,8 @@ function audit()
         return;
     }
 
+    data = getMainData();
+
     //审核时，数量，单价，金额，仓库不能为空
     var msg = checkRightData();
     if(msg){
@@ -942,11 +944,9 @@ function audit()
         return;
     }
 
-    data = getMainData();
-
-    var pchsOrderDetailAdd = rightGrid.getChanges("added");
-    var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
-    var pchsOrderDetailDelete = rightGrid.getChanges("removed");
+    var enterDetailAdd = rightGrid.getChanges("added");
+    var enterDetailUpdate = rightGrid.getChanges("modified");
+    var enterDetailDelete = rightGrid.getChanges("removed");
 
     nui.mask({
         el: document.body,
@@ -958,10 +958,10 @@ function audit()
         url : auditUrl,
         type : "post",
         data : JSON.stringify({
-            pchsOrderMain : data,
-            pchsOrderDetailAdd : pchsOrderDetailAdd,
-            pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-            pchsOrderDetailDelete : pchsOrderDetailDelete
+            enterMain : data,
+            enterDetailAdd : enterDetailAdd,
+            enterDetailUpdate : enterDetailUpdate,
+            enterDetailDelete : enterDetailDelete
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -969,9 +969,9 @@ function audit()
             if (data.errCode == "S") {
                 nui.alert("审核成功!");
                 //onLeftGridRowDblClick({});
-                var pjPchsOrderMainList = data.pjPchsOrderMainList;
-                if(pjPchsOrderMainList && pjPchsOrderMainList.length>0) {
-                    var leftRow = pjPchsOrderMainList[0];
+                var pjEnterMainList = data.pjEnterMainList;
+                if(pjEnterMainList && pjEnterMainList.length>0) {
+                    var leftRow = pjEnterMainList[0];
                     var row = leftGrid.getSelected();
                     leftGrid.updateRow(row,leftRow);
 
@@ -991,12 +991,12 @@ function audit()
 function onDrawSummaryCell(e)
 {
     var rows = e.data;//rightGrid.getData();
-    if (e.field == "orderAmt") { 
-        var orderAmt = 0;
+    if (e.field == "enterAmt") { 
+        var enterAmt = 0;
         for (var i = 0; i < rows.length; i++) {
-            orderAmt += parseFloat(rows[i].orderAmt);
+            enterAmt += parseFloat(rows[i].enterAmt);
         }
-        nui.get("orderAmt").setValue(orderAmt);
+        nui.get("enterAmt").setValue(enterAmt);
     }
 }
 function onGuestValueChanged(e)

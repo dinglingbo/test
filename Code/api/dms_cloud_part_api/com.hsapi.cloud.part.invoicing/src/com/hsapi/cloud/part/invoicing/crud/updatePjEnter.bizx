@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updatePjPchsOrder" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updatePjEnter" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -73,7 +73,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">pchsOrderMain</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">enterMain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -101,7 +101,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailAdd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -200,7 +200,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pchsOrderDetailUpdate</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailUpdate</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -228,7 +228,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pchsOrderDetailDelete</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetailDelete</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -253,26 +253,26 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">pchsOrderMain/orgid</process:to>
+      <process:to type="query">enterMain/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">pchsOrderMain/auditSign</process:to>
+      <process:to type="query">enterMain/auditSign</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">pchsOrderMain/operatorId</process:to>
+      <process:to type="query">enterMain/operatorId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">pchsOrderMain/operator</process:to>
+      <process:to type="query">enterMain/operator</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">pchsOrderMain/operateDate</process:to>
+      <process:to type="query">enterMain/operateDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">pchsOrderMain/id</process:from>
+      <process:from type="query" pattern="reference">enterMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
   </nodes>
@@ -303,7 +303,7 @@
     <location x="30" y="62"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:iterate iterable="pchsOrderDetailAdd" iterableElement="tmp"/>
+    <process:iterate iterable="enterDetailAdd" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
     <location x="231" y="94"/>
@@ -380,7 +380,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_PCHS_ORDER_DETAIL_ID</process:inputVariable>
+        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_ENTER_DETAIL_ID</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">detailId</process:outputVariable>
@@ -413,7 +413,7 @@
     <location x="300" y="62"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
-    <process:iterate iterable="pchsOrderDetailUpdate" iterableElement="tmp"/>
+    <process:iterate iterable="enterDetailUpdate" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend2label" name="label" nodeType="label">
     <location x="478" y="94"/>
@@ -480,16 +480,16 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="detailId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxAmt" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" name="pchsOrderMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="pchsOrderDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="pchsOrderDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="pchsOrderDetailDelete"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMain" name="enterMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

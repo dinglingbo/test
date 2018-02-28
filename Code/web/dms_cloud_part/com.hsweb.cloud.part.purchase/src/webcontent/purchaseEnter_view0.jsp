@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>采购订单</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseOrder/purchaseOrder.js?v=1.0.0"></script>
+<title>采购入库</title>
+<script src="<%= request.getContextPath() %>/purchase/js/purchaseEnter/purchaseEnter.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -87,7 +87,7 @@
          handlerSize="6"
          style="width:100%;height:100%;">
         <div size="300" showCollapseButton="true">
-	        <div title="采购订单列表" class="nui-panel"
+	        <div title="采购入库列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -99,11 +99,11 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     dataField="pjPchsOrderMainList"
+                     dataField="pjEnterMainList"
                      url="">
                     <div property="columns">
                     	<div type="indexcolumn">序号</div>
-                        <div field="serviceId" headerAlign="center" width="150" header="订单单号"></div>
+                        <div field="serviceId" headerAlign="center" width="150" header="采购单号"></div>
                         <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->
                         <div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="80" headerAlign="center" header="供应商"></div>
@@ -122,12 +122,13 @@
             
              -->
                 <fieldset id="fd1" style="width:98%;height: 130px;">
-                    <legend><span>采购订单信息</span></legend>
+                    <legend><span>采购入库信息</span></legend>
                     <div class="fieldset-body">
                     
                         <div id="basicInfoForm" class="form" contenteditable="false">
                             <input class="nui-hidden" name="id"/>
                             <input class="nui-hidden" name="operateDate"/>
+                            <input class="nui-hidden" id="enterTypeId" name="enterTypeId"/>
                             <table style="width: 100%;">
                                 <tr>
                                     <td class="title required">
@@ -161,7 +162,7 @@
                                                nullItemText="请选择..."/>
                                     </td>
                                     <td class="title">
-                                        <label>订单单号：</label>
+                                        <label>采购单号：</label>
                                     </td>
                                     <td>
                                         <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/>
@@ -169,16 +170,16 @@
                                 </tr>
                                 <tr>
                                     <td class="title required">
-                                        <label>订货日期：</label>
+                                        <label>入库日期：</label>
                                     </td>
                                     <td width="120">
-                                        <input name="orderDate"
-                                               id="orderDate"
+                                        <input name="enterDate"
+                                               id="enterDate"
                                                width="100%"
                                                showTime="true"
                                                class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
                                     </td>
-                                    <td class="title wide">
+                                    <!-- <td class="title wide">
                                         <label>预计到货日期：</label>
                                     </td>
                                     <td width="160">
@@ -187,7 +188,7 @@
                                                width="100%"
                                                showTime="true"
                                                class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
-                                    </td>
+                                    </td> -->
                                     <td class="title">
                                         <label>手工单号：</label>
                                     </td>
@@ -198,7 +199,7 @@
                                         <label>采购员：</label>
                                     </td>
                                     <td colspan="1">
-                                        <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
+                                        <input class="nui-textbox" id="enterMan" name="enterMan" width="100%">
                                     </td>
                                 </tr>
                                 <tr>
@@ -256,7 +257,7 @@
                                         <label>总金额：</label>
                                     </td>
                                     <td colspan="1">
-                                        <input class="nui-textbox" width="100%" id="orderAmt" name="orderAmt" enabled="false" style="text-align: right;"/>
+                                        <input class="nui-textbox" width="100%" id="enterAmt" name="enterAmt" enabled="false" style="text-align: right;"/>
                                     </td>
                                 </tr>
                             </table>
@@ -280,7 +281,7 @@
             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
-                     dataField="pjPchsOrderDetailList"
+                     dataField="pjEnterDetailList"
                      idField="id"
                      showSummaryRow="true"
                      frozenStartColumn="0"
@@ -306,13 +307,13 @@
                         </div>
                         <div header="数量金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
+                                <div field="enterQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
+                                <div field="enterPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
+                                <div field="enterAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="remark" width="80" headerAlign="center" allowSort="true">
@@ -403,15 +404,15 @@
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
         	<tr>
-                <td class="title">订货日期:</td>
+                <td class="title">入库日期:</td>
                 <td>
-                    <input name="sOrderDate"
+                    <input name="sEnterDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input name="eOrderDate"
+                    <input name="eEnterDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
@@ -474,7 +475,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">订单单号:</td>
+                <td class="title">采购单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

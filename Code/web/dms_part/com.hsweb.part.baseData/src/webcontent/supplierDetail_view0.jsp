@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierDetail.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierDetail.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -70,13 +70,13 @@
 
 <div style="text-align: right;">
     <span>内部往来</span>
-    <div id="ck1" name="product" class="nui-checkbox" readOnly="false" text="" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></div>
+    <div id="isInternal" name="isInternal" class="nui-checkbox" text="" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></div>
     <span>客户</span>
-    <div id="isClient" name="product" class="nui-checkbox" readOnly="false" text="" trueValue="1" falseValue="0"></div>
+    <div id="isClient" name="isClient" class="nui-checkbox" text="" checked="true" enabled="false" trueValue="1" falseValue="0"></div>
     <span>供应商</span>
-    <div id="isSupplier" name="product" class="nui-checkbox" text="" checked="true" enabled="false" trueValue="1" falseValue="0"></div>
+    <div id="isSupplier" name="isSupplier" class="nui-checkbox" text=""  trueValue="1" falseValue="0"></div>
     <span>是否禁用</span>
-    <div id="isDisabled" name="product" class="nui-checkbox" readOnly="false" text="" trueValue="1" falseValue="0"></div>
+    <div id="isDisabled" name="isDisabled" class="nui-checkbox" text="" trueValue="1" falseValue="0"></div>
 </div>
 <div class="nui-fit">
     <div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:100%;margin-left: 1.5%;"
@@ -87,13 +87,21 @@
                 <input class="nui-hidden" name="id"/>
                 <div class="row">
                     <span class="title title-width1 required">供应商编码：</span>
-                    <input name="code" class="nui-textbox width1"/>
+                    <input name="code" id="code" class="nui-textbox width1"/>
                     <span class="title title-width1">供应商简称：</span>
                     <input name="shortName" class="nui-textbox width2" width="185"/>
                 </div>
                 <div class="row">
                     <span class="title title-width1 required">供应商全称：</span>
-                    <input name="fullName" class="nui-textbox width3" width="403"/>
+                    <input name="fullName"
+                           id="fullName"
+                           class="nui-textbox width3" width="403"/>
+                    <input name="fullName1" class="nui-buttonedit width3" width="403"
+                           id="fullName1"
+                           emptyText="请选择公司..."
+                           allowInput="false"
+                           onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
+                           visible="false"/>
                 </div>
                 <div class="row">
                     <span class="title title-width1 required">票据类型：</span>
@@ -214,8 +222,8 @@
                 <div class="row">
                     <span class="title title-width1">邮箱：</span>
                     <input name="email" class="nui-textbox width1"/>
-                    <span class="title title-width1">QQ：</span>
-                    <input name="loginname" class="nui-textbox width2"/>
+                    <span class="title title-width1">QQ/微信：</span>
+                    <input name="instantMsg" class="nui-textbox width2"/>
                 </div>
                 <div class="row">
                     <span class="title title-width1">邮政编码：</span>
@@ -239,11 +247,11 @@
                     <span class="title title-width2">纳税人编码：</span>
                     <input name="taxpayerCode" class="nui-textbox width4"/>
                     <span class="title title-width2">纳税人电话：</span>
-                    <input name="loginname" class="nui-textbox width5"/>
+                    <input name="taxpayerTel" class="nui-textbox width5"/>
                 </div>
                 <div class="row">
                     <span class="title title-width2">纳税人名称：</span>
-                    <input name="taxpayerTel" class="nui-textbox width6"/>
+                    <input name="taxpayerName" class="nui-textbox width6"/>
                 </div>
             </div>
             <span>其他信息</span>

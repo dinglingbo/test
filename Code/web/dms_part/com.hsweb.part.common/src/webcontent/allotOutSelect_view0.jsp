@@ -70,30 +70,31 @@
          dataField="ptsOutMainDetailList"
          idField="detailId"
          onrowdblclick="onOk"
+         sortMode="client"
          url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="零件信息" headerAlign="center">
                 <div property="columns">
-                    <div field="outId" width="100" headerAlign="center" header="调拨单号"></div>
-                    <div field="partCode" width="100" headerAlign="center" header="零件编码"></div>
-                    <div field="partName" headerAlign="center" header="零件名称"></div>
-                    <div field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div field="applyCarModel" width="60" headerAlign="center" header="适用车型"></div>
-                    <div field="unit" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="outId" width="100" headerAlign="center" header="调拨单号"></div>
+                    <div allowSort="true" field="partCode" width="100" headerAlign="center" header="零件编码"></div>
+                    <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
+                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="适用车型"></div>
+                    <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
             <div header="数量金额信息" headerAlign="center">
                 <div property="columns">
-                    <div field="outQty" width="60" headerAlign="center" header="数量" align="right"></div>
-                    <div field="sellUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
-                    <div field="sellAmt" width="60" headerAlign="center" header="金额" align="right"></div>
+                    <div allowSort="true" datatype="int" field="outQty" width="60" headerAlign="center" header="数量" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellAmt" width="60" headerAlign="center" header="金额" align="right"></div>
                 </div>
             </div>
             <div header="调拨信息" headerAlign="center">
                 <div property="columns">
-                    <div field="outDate" width="80" headerAlign="center" header="调出日期" dateFormat="yyyy-MM-dd"></div>
-                    <div field="seller" width="100" headerAlign="center" header="经办人"></div>
+                    <div allowSort="true" field="outDate" width="80" headerAlign="center" header="调出日期" dateFormat="yyyy-MM-dd"></div>
+                    <div allowSort="true" field="seller" width="100" headerAlign="center" header="经办人"></div>
                 </div>
             </div>
         </div>

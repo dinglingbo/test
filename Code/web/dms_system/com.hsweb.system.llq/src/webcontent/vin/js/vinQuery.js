@@ -54,6 +54,17 @@ $(document).ready(function(v){
             callAjax(url, params, processAjax, setGridPartsData);
         }
     });
+    
+    gridParts.on("drawcell", function (e) { //表格绘制
+        var record = e.record;
+        var column = e.column;
+        var field = e.field;
+        var value = e.value;
+        if(field == "detail"){
+            var html = '<a class="icon-hedit" href="javascript:openDetail(' + record.pid + ')">' + value + '</a>';
+            e.cellHtml = html;
+        }
+    });
 });
 
 /*
@@ -167,6 +178,28 @@ function setGridPartsData(data){
     gridParts.setData(data);
     showRightGrid(gridParts);
     
+}
+
+/*
+*零件详情
+*/
+function openDetail(pid){	
+    try{
+        nui.open({
+            url : sysDomain + "/com.hsweb.system.llq.vin.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            title : "零件详情",
+            width : "600px",
+            height : "500px",
+            showHeader:true,
+            onload : function() {
+                //var iframe = this.getIFrameEl();
+                //iframe.contentWindow.setInitData(row, e);
+            },
+            ondestroy : function(action) {
+                //gridParts.reload();
+            }
+        });
+    }finally{}
 }
 
 function checkVin(){

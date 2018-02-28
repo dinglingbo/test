@@ -12,12 +12,14 @@
 					.getMUODataContext();
 			String currUserName = "";
 			String currOrgid = "";
+			String currOrgName = "";
 			if (muo != null) {
 				IUserObject userobject = muo.getUserObject();
 				if (userobject != null) {
 					//String ip = userobject.getUserRemoteIP();
 					currUserName = userobject.getUserRealName();
 					currOrgid = userobject.getUserOrgId();
+					currOrgName = userobject.getUserOrgName();
 				}
 			}%>
 	var currUserName =
@@ -25,6 +27,9 @@
 	;
 	var currOrgid =
 <%="'" + currOrgid + "'"%>
+	;
+	var currOrgName =
+<%="'" + currOrgName + "'"%>
 	;
 </script>
 <script type="text/javascript">

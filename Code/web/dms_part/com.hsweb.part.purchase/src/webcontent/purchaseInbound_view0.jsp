@@ -91,11 +91,12 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsEnterMainList"
+                     sortMode="client"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="入库单号"></div>
-                        <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
-                        <div field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="id" headerAlign="center" header="入库单号"></div>
+                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
+                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
                 </div>
                 <!--footer-->
@@ -258,41 +259,42 @@
                     </tr>
                 </table>
             </div>
-            <div class="nui-fit">
+             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
                      dataField="enterDetailList"
-                     idField="id"
+                     idField="detailId"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="partBranName" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
-                                <div field="enterQty" width="40" headerAlign="center" header="数量"></div>
+                                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                                <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+                                <div allowSort="true" field="partBranName" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div allowSort="true" datatype="int" field="enterQty" width="40" headerAlign="center" header="数量"></div>
                             </div>
                         </div>
                         <div header="不含税信息" headerAlign="center">
                             <div property="columns">
-                                <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
+                                <div allowSort="true" datatype="float" field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="含税信息" headerAlign="center">
                             <div property="columns">
-                                <div field="taxRate" width="40" headerAlign="center" header="税率"></div>
-                                <div field="taxUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div field="taxAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div allowSort="true" datatype="float" field="taxRate" width="40" headerAlign="center" header="税率"></div>
+                                <div allowSort="true" datatype="float" field="taxUnitPrice" width="40" headerAlign="center" header="单价"></div>
+                                <div allowSort="true" datatype="float" field="taxAmt" width="40" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">
-                                <div field="suggestPrice" width="60" headerAlign="center" header="建议销价"></div>
-                                <div field="remark" width="60" headerAlign="center" header="入库分配"></div>
+                                <div allowSort="true" datatype="float" field="suggestPrice" width="60" headerAlign="center" header="建议销价"></div>
+                                <div allowSort="true" field="remark" width="60" headerAlign="center" header="入库分配"></div>
                             </div>
                         </div>
                     </div>

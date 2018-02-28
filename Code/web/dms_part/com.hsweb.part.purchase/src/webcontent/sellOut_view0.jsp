@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellOut.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellOut.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -91,16 +91,17 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
+                     sortMode="client"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="销售单号"></div>
-                        <div field="outDate" width="80" headerAlign="center" header="销售日期" dateFormat="yyyy-MM-dd"></div>
-                        <div field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="id" headerAlign="center" header="销售单号"></div>
+                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="销售日期" dateFormat="yyyy-MM-dd"></div>
+                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
                 </div>
                 <!--footer-->
                 <div property="footer">
-                    <input type='nui-textbox' value='Footer' readonly="true" style='vertical-align:middle;'/>
+                    <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
                 </div>
             </div>
         </div>
@@ -176,13 +177,14 @@
                             </td>
                             <td colspan="1">
                                 <input name="checker"
+                                       id="checker"
                                        class="nui-combobox width1"
-                                       textField="text"
-                                       valueField="id"
+                                       textField="name"
+                                       valueField="name"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="true"
-                                       showNullItem="true"
+                                       showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
                             </td>
@@ -209,17 +211,17 @@
                                 <label>销售员：</label>
                             </td>
                             <td colspan="1">
-                                <input class="nui-textbox" name="seller" width="100%">
-                                <!--<input name="buyer"-->
-                                <!--class="nui-combobox width1"-->
-                                <!--textField="text"-->
-                                <!--valueField="id"-->
-                                <!--emptyText="请选择..."-->
-                                <!--url=""-->
-                                <!--allowInput="true"-->
-                                <!--showNullItem="true"-->
-                                <!--width="100%"-->
-                                <!--nullItemText="请选择..."/>-->
+                                <input name="seller"
+                                       id="seller"
+                                       class="nui-combobox width1"
+                                       textField="name"
+                                       valueField="name"
+                                       emptyText="请选择..."
+                                       url=""
+                                       allowInput="true"
+                                       showNullItem="false"
+                                       width="100%"
+                                       nullItemText="请选择..."/>
                             </td>
                             <td class="title">
                                 <label>发票号：</label>
@@ -262,29 +264,30 @@
                      showPager="false"
                      dataField="outDetailList"
                      idField="detailId"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                <div field="partName" headerAlign="center" header="配件名称"></div>
-                                <div field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
-                                <div field="outQty" width="40" headerAlign="center" header="数量"></div>
+                                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                                <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
+                                <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div allowSort="true" datatype="int" field="outQty" width="40" headerAlign="center" header="数量"></div>
                             </div>
                         </div>
                         <div header="销售金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="sellUnitPrice" width="60" headerAlign="center" header="单价" align="right"></div>
-                                <div field="discountRate" width="60" headerAlign="center" header="折扣率(%)" align="right"></div>
-                                <div field="sellAmt" width="60" headerAlign="center" header="金额" align="right"></div>
+                                <div allowSort="true" datatype="float" field="sellUnitPrice" width="60" headerAlign="center" header="单价" align="right"></div>
+                                <div allowSort="true" datatype="int" field="discountRate" width="60" headerAlign="center" header="折扣率(%)" align="right"></div>
+                                <div allowSort="true" datatype="float" field="sellAmt" width="60" headerAlign="center" header="金额" align="right"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">
-                                <div field="remark" width="60" headerAlign="center" header="备注"></div>
+                                <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
                             </div>
                         </div>
                     </div>
@@ -312,12 +315,12 @@
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
                            showOkButton="false"
                            width="100%"
-                           showClearButton="false"/>
+                           showClearButton="true"/>
                 </td>
             </tr>
             <tr>
@@ -335,9 +338,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">入库单号:</td>
+                <td class="title">销售单号:</td>
                 <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;"></textarea>
+                    <textarea class="nui-textarea" name="outIdList" emptyText="" width="100%" style="height: 100px;"></textarea>
                 </td>
             </tr>
         </table>

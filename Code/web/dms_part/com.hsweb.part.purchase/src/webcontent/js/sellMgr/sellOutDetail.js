@@ -16,7 +16,15 @@ function setData(data)
     var part = data.part;
     if(part)
     {
+        console.log(part);
+        part.taxCostAmt = part.taxCostAmt||part.taxAmt;
+        part.taxCostUnitPrice = part.taxCostUnitPrice||part.taxUnitPrice;
+        part.noTaxCostAmt = part.noTaxCostAmt||part.noTaxAmt;
+        part.noTaxCostUnitPrice = part.noTaxCostUnitPrice||part.noTaxUnitPrice;
+        part.costAmt = part.costAmt||part.taxSign==1?part.taxAmt:part.noTaxAmt;
+        part.costUnitPrice = part.costUnitPrice||part.taxSign==1?part.taxUnitPrice:part.noTaxUnitPrice;
         basicInfoForm.setData(part);
+        onUnitPriceChange();
     }
 }
 var resultData = {};
@@ -27,7 +35,7 @@ function getData(){
 
 var requiredField = {
     outQty:"数量",
-    sellUniPrice:"单价"
+    sellUnitPrice:"单价"
 };
 function onOk()
 {

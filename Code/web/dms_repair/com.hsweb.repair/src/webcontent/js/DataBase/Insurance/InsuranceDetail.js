@@ -1,26 +1,26 @@
 		var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-		var basicInfoForm = null;
+		var dataform = null;
+		
+		var requiredField = {
+				code:"保险公司代码",
+				fullName:"保险公司名称",
+		};
 		
 		$(document).ready(function(){
-			basicInfoForm = new nui.Form("#basicInfoForm");
+			dataform = new nui.Form("#dataform1");
 		});
 		function setData(data){
-			if(!basicInfoForm){
-				basicInfoForm = new nui.Form("#basicInfoForm");
+			if(!dataform){
+				dataform = new nui.Form("#dataform1");
 			}
 			data = data||{};
 			var comguest = data.comguest;
-			basicInfoForm.setData(comguest);
+			dataform.setData(comguest);
 		};
-		//必填
-		var requiredField = {
-			    code:"保险公司代码",
-			    fullName:"保险公司名称"
-		};
-		var saveUrl = baseUrl + "com.hsapi.repair.baseData.insurance.saveInsurance.biz.ext";
+//		var saveUrl = baseUrl + "com.hsapi.repair.baseData.insurance.saveInsurance.biz.ext";
 		function onOk()
 		{
-		    var data = basicInfoForm.getData();
+		    var data = dataform.getData();
 		    console.log(data);
 		    for(var key in requiredField)
 		    {
@@ -34,7 +34,7 @@
 		        html:'保存中...'
 		    });
 		    nui.ajax({
-		        url:saveUrl,
+		        url:"com.hsapi.repair.baseData.insurance.saveInsurance.biz.ext",
 		        type:"post",
 		        data:JSON.stringify({
 		            comguest:data
@@ -60,12 +60,8 @@
 		}
 		
 		function CloseWindow(action) {
-		    //if (action == "close" && form.isChanged()) {
-		    //    if (confirm("数据被修改了，是否先保存？")) {
-		    //        return false;
-		    //    }
-		    //}
-		    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+		    if (window.CloseOwnerWindow) 
+		    return window.CloseOwnerWindow(action);
 		    else window.close();
 		}
 		function onCancel() {

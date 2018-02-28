@@ -76,24 +76,25 @@
                      totalField="page.count"
                      ondrawcell="onDrawCell"
                      selectOnLoad="true"
-                     frozenStartColumn="-1"
-                     frozenEndColumn="-1">
+                     sortMode="client"
+                     frozenStartColumn="0"
+                     frozenEndColumn="0">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <!--<div type="checkcolumn" ></div>-->
                         <div header="往来基本信息" headerAlign="center">
                             <div property="columns">
-                                <div field="shortName" width="80" headerAlign="center" header="简称"></div>
-                                <div field="fullName" width="100" headerAlign="center" header="全称"></div>
-                                <div field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
-                                <div field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
-                                <div field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
-                                <div field="manager" width="100" headerAlign="center" header="联系人"></div>
-                                <div field="mobile" width="100" headerAlign="center" header="联系电话"></div>
-                                <div field="contactor" width="80" headerAlign="center" header="业务员"></div>
-                                <div field="contactorTel" width="100" headerAlign="center" header="业务员电话"></div>
-                                <div field="code" width="100" headerAlign="center" header="编码"></div>
-                                <div field="isDisabled" width="100" headerAlign="center" header="状态"></div>
+                                <div allowSort="true" field="shortName" width="80" headerAlign="center" header="简称"></div>
+                                <div allowSort="true" field="fullName" width="100" headerAlign="center" header="全称"></div>
+                                <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
+                                <div allowSort="true" field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
+                                <div allowSort="true" field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
+                                <div allowSort="true" field="manager" width="100" headerAlign="center" header="联系人"></div>
+                                <div allowSort="true" field="mobile" width="100" headerAlign="center" header="联系电话"></div>
+                                <div allowSort="true" field="contactor" width="80" headerAlign="center" header="业务员"></div>
+                                <div allowSort="true" field="contactorTel" width="100" headerAlign="center" header="业务员电话"></div>
+                                <div allowSort="true" field="code" width="100" headerAlign="center" header="编码"></div>
+                                <div allowSort="true" field="isDisabled" width="100" headerAlign="center" header="状态"></div>
                             </div>
                         </div>
                     </div>

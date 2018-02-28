@@ -84,50 +84,51 @@
                      totalField="page.count"
                      selectOnLoad="true"
                      pageSize="50"
+                     sortMode="client"
                      showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
-                                <div field="isDisabled" width="50" headerAlign="center">状态</div>
-                                <div field="qualityTypeId" width="60" headerAlign="center">品质</div>
-                                <div field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                <div field="code" width="80" headerAlign="center" allowSort="true">编码</div>
-                                <div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                                <div field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
-                                <div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
+                                <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
+                                <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
+                                <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
+                                <div allowSort="true" field="code" width="80" headerAlign="center" allowSort="true">编码</div>
+                                <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
+                                <div allowSort="true" field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
+                                <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                             </div>
                         </div>
                         <div header="" headerAlign="center">
                             <div property="columns">
-                                <div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
+                                <div allowSort="true" field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 
-                                <div field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
+                                <div allowSort="true" field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
-                                <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
-                                <div field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
-                                <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
+                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+                                <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
+                                <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
+                                <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
                             </div>
                         </div>
                         <div header="价格信息" headerAlign="center">
                             <div property="columns">
-                                <div field="retailPrice" width="60" headerAlign="center" align="right" allowSort="true">零售价</div>
-                                <div field="wholeSalePrice" width="60" headerAlign="center" align="right" allowSort="true">批发价</div>
-                                <div field="uniformSellPrice" width="70" headerAlign="center" align="right" allowSort="true">统一价格</div>
+                                <div allowSort="true" datatype="float" field="retailPrice" width="60" headerAlign="center" align="right" allowSort="true">零售价</div>
+                                <div allowSort="true" datatype="float" field="wholeSalePrice" width="60" headerAlign="center" align="right" allowSort="true">批发价</div>
+                                <div allowSort="true" datatype="float" field="uniformSellPrice" width="70" headerAlign="center" align="right" allowSort="true">统一价格</div>
                             </div>
                         </div>
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
-                                <div field="dept_name" width="60" headerAlign="center" allowSort="true">助记码</div>
+                                <div allowSort="true" field="dept_name" width="60" headerAlign="center" allowSort="true">助记码</div>
 
-                                <div field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>
+                                <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>
 
-                                <div field="position_name" width="70" headerAlign="center" header="售价方式" allowSort="true"></div>
+                                <div allowSort="true" field="position_name" width="70" headerAlign="center" header="售价方式" allowSort="true"></div>
 
-                                <div field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div>
-                                <div field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>
-                                <div field="nameEn" width="120" headerAlign="center" allowSort="true">英文名称</div>
+                                <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div>
+                                <div allowSort="true" field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>
+                                <div allowSort="true" field="nameEn" width="120" headerAlign="center" allowSort="true">英文名称</div>
                             </div>
                         </div>
                     </div>

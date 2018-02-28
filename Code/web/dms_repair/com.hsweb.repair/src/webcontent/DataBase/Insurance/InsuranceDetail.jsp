@@ -13,15 +13,14 @@
 <title>编辑保险公司</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceDetail.js?v=1.0.1" ></script>
+    <script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceDetail.js" ></script>
     
 </head>
 <body>
-	<input name="id" class="nui-hidden" />
 	<fieldset style="width:93%;height:200px;border:solid 1px #aaa;position:relative;margin:5px 5px;">
-	    <div id="basicInfoForm" class="form" style="padding-top:5px;" >
-	    <input class="nui-hidden" name="code"/>
-	    	 <table style="width:100%;height:100%;table-layout:fixed;" class="nui-form-table">
+	    <div id="dataform1" class="nui-form" style="padding-top:5px;" >
+			<input name="id" class="nui-hidden" />
+		    <table style="width:100%;height:100%;table-layout:fixed;" class="nui-form-table">
 	                <tr>
 	                    <td class="form_label" width="130px">
 	                     <span style="color:#FF0000;margin-left:30px;">保险公司代码：</span> 	  

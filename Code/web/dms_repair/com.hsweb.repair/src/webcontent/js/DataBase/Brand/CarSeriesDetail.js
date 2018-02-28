@@ -13,6 +13,7 @@ function setData(data){
 	if(!dataform1){
 		dataform1 = new nui.Form("#dataform1");
 	}
+	
 	data = data||{};
 	var series = data.series;
 	dataform1.setData(series);
@@ -58,11 +59,6 @@ function onOk(){
 	saveSeries();
 }
 function CloseWindow(action) {
-//  if (action == "close" && form.isChanged()) {
-//      if (confirm("数据被修改了，是否先保存？")) {
-//          saveData();
-//      }
-//  }
   if (window.CloseOwnerWindow)
   return window.CloseOwnerWindow(action);
   else window.close();
@@ -71,3 +67,83 @@ function CloseWindow(action) {
 function onCancel() {
   CloseWindow("cancel");
 }
+
+
+
+
+
+
+
+//series
+function addSerieses(series){
+	nui.open({
+		targetWindow: window,
+        url: "CarSeriesDetail.jsp",
+        title: "新增车系", width: 600, height: 240,
+        allowResize:false,
+        onload: function ()
+        {
+            if(series)
+            {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                	series:series
+                });
+            }
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	leftSeriesGrid.reload();
+            }
+        }
+	});
+}
+function editSerieses(series){
+	nui.open({
+		targetWindow: window,
+        url: "CarSeriesDetail.jsp",
+        title: "编辑车系", width: 600, height: 240,
+        allowResize:false,
+        onload: function ()
+        {
+            if(series)
+            {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                	series:series
+                });
+            }
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	leftSeriesGrid.reload();
+            }
+        }
+	});
+}
+//根据XX添加到父类
+function addSeries(){
+	var row = leftBrandGrid.getSelected();
+	if(row){
+		var series = {
+				carBrandId:row.id
+		};
+		addSerieses(series);
+	}
+	
+}
+function editSeries(){
+	var row = leftSeriesGrid.getSelected();
+	if(row){
+		editSerieses(row);
+	}
+}
+
+
+
+
+

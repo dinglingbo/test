@@ -67,12 +67,12 @@
             <div type="indexcolumn">序号</div>
             <div header="分店信息" headerAlign="center">
                 <div property="columns">
-                    <div field="orgcode" width="150" headerAlign="center" header="分店名称"></div>
+                    <div allowSort="true" field="orgcode" width="150" headerAlign="center" header="分店名称"></div>
                 </div>
             </div>
             <div header="维度" headerAlign="center">
                 <div property="columns">
-                    <div field="groupFieldName" width="80" headerAlign="center" header="配件名称" align="right"></div>
+                    <div allowSort="true" field="groupFieldName" width="80" headerAlign="center" header="配件名称" align="right"></div>
                 </div>
             </div>
             <div header="1-12月" headerAlign="center">

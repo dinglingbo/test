@@ -90,34 +90,35 @@
                      idField="id"
                      ondrawcell="onRightGrid1DrawCell"
                      onrowclick="onRightGrid1RowClick"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="" headerAlign="center">
                             <div property="columns">
-                                <div field="id" width="150" headerAlign="center" header="工单号"></div>
-                                <div field="guestFullName" width="150" headerAlign="center" header="往来单位"></div>
-                                <div field="enterDate" headerAlign="center" width="80"  header="入库日期" dateFormat="yyyy-MM-dd"></div>
+                                <div allowSort="true" field="id" width="150" headerAlign="center" header="工单号"></div>
+                                <div allowSort="true" field="guestFullName" width="150" headerAlign="center" header="往来单位"></div>
+                                <div allowSort="true" field="enterDate" headerAlign="center" width="80"  header="入库日期" dateFormat="yyyy-MM-dd"></div>
                                 <!--<div field="billStatus" width="60" headerAlign="center" header="单据状态"></div>-->
-                                <div field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
-                                <div field="settType" width="60" headerAlign="center" header="结算方式"></div>
-                                <div field="auditor" width="100" headerAlign="center" header="审核人"></div>
+                                <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
+                                <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
+                                <div allowSort="true" field="auditor" width="100" headerAlign="center" header="审核人"></div>
                             </div>
                         </div>
                         <div header="金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="payableAmt" width="80" headerAlign="center" header="应付金额" align="right"></div>
+                                <div allowSort="true" datatype="float" field="payableAmt" width="80" headerAlign="center" header="应付金额" align="right"></div>
                             </div>
                         </div>
                         <div header="操作信息" headerAlign="center">
                             <div property="columns">
-                                <div field="auditor" width="100" headerAlign="center" header="操作员"></div>
-                                <div field="auditDate" headerAlign="center" width="80" header="操作日期" dateFormat="yyyy-MM-dd"></div>
+                                <div allowSort="true" field="auditor" width="100" headerAlign="center" header="操作员"></div>
+                                <div allowSort="true" field="auditDate" headerAlign="center" width="80" header="操作日期" dateFormat="yyyy-MM-dd"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">
-                                <div field="remark" width="60" headerAlign="center" header="备注"></div>
+                                <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
                             </div>
                         </div>
                     </div>
@@ -126,35 +127,36 @@
                      showPager="false"
                      dataField="enterDetailList"
                      idField="detailId"
+                     sortMode="client"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="零件信息" headerAlign="center">
                             <div property="columns">
-                                <div field="partCode" width="60" headerAlign="center" header="零件编码"></div>
-                                <div field="partName" headerAlign="center" header="零件名称"></div>
-                                <div field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
-                                <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                <div field="unit" width="40" headerAlign="center" header="单位"></div>
-                                <div type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>
+                                <div allowSort="true" field="partCode" width="60" headerAlign="center" header="零件编码"></div>
+                                <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
+                                <div allowSort="true" field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
+                                <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>
                             </div>
                         </div>
                         <div header="数量单价" headerAlign="center">
                             <div property="columns">
-                                <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价" align="right"></div>
-                                <div field="taxRate" width="40" headerAlign="center" header="税率" align="right"></div>
-                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额" align="right"></div>
+                                <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="40" headerAlign="center" header="单价" align="right"></div>
+                                <div allowSort="true" datatype="float" field="taxRate" width="40" headerAlign="center" header="税率" align="right"></div>
+                                <div allowSort="true" datatype="float" field="noTaxAmt" width="40" headerAlign="center" header="金额" align="right"></div>
                             </div>
                         </div>
                         <div header="" headerAlign="center">
                             <div property="columns">
-                                <div field="suggestPrice" width="80" headerAlign="center" header="建议销价/退货价" align="right"></div>
-                                <div field="suggestAmt" width="100" headerAlign="center" header="建议销销售金额/退货金额" align="right"></div>
+                                <div allowSort="true" datatype="float" field="suggestPrice" width="80" headerAlign="center" header="建议销价/退货价" align="right"></div>
+                                <div allowSort="true" datatype="float" field="suggestAmt" width="100" headerAlign="center" header="建议销销售金额/退货金额" align="right"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
                             <div property="columns">
-                                <div field="remark" width="60" headerAlign="center" header="备注"></div>
+                                <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
                             </div>
                         </div>
                     </div>

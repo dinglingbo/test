@@ -483,6 +483,7 @@ function getMainData()
     var data = basicInfoForm.getData();
     //汇总明细数据到主表
     data.isFinished = 0;
+    data.enterTypeId = '050101';
     data.auditSign = 0;
     data.billStatusId = '';
     data.noTaxAmt = 0;

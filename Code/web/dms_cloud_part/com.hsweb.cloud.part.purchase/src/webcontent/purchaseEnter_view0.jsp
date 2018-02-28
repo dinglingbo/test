@@ -128,7 +128,7 @@
                         <div id="basicInfoForm" class="form" contenteditable="false">
                             <input class="nui-hidden" name="id"/>
                             <input class="nui-hidden" name="operateDate"/>
-                            <input class="nui-hidden" name="enterTypeId"/>
+                            <input class="nui-hidden" id="enterTypeId" name="enterTypeId"/>
                             <table style="width: 100%;">
                                 <tr>
                                     <td class="title required">
@@ -153,10 +153,10 @@
                                                name="storeId"
                                                class="nui-combobox width1"
                                                textField="name"
-                                               valueField="storeId"
+                                               valueField="id"
                                                emptyText="请选择..."
                                                url=""
-                                               allowInput="true"
+                                               allowInput="false"
                                                showNullItem="false"
                                                width="100%"
                                                nullItemText="请选择..."/>
@@ -214,7 +214,7 @@
                                                valueField="customid"
                                                emptyText="请选择..."
                                                url=""
-                                               allowInput="true"
+                                               allowInput="false"
                                                showNullItem="false"
                                                width="100%"
                                                onvaluechanged="onBillTypeIdChanged"
@@ -231,7 +231,7 @@
                                                valueField="customid"
                                                emptyText="请选择..."
                                                url=""
-                                               allowInput="true"
+                                               allowInput="false"
                                                showNullItem="false"
                                                width="100%"
                                                nullItemText="请选择..."/>
@@ -324,7 +324,7 @@
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
                                 <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-					        	仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="storeId" textField="name" 
+					        	仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
 			                            url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
 			                            onvaluechanged="" emptyText=""  vtype="required"
 			                            /> 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getStoreById.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getStoreById" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.stockcal.getBalanceInvocing" title="Administrator&#x9;18-2-27 下午7:03">
     <location x="71" y="50"/>
     <size height="100" width="400"/>
@@ -33,7 +33,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">id</process:from>
-      <process:to type="query">cond/_expr[1]/storeId</process:to>
+      <process:to type="query">cond/_expr[1]/id</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

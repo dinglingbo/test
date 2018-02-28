@@ -238,7 +238,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.uniq.getCompBillNO</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">XSC</process:inputVariable>
       </process:inputVariables>
@@ -448,10 +448,15 @@
     <chidren>subprocess3</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="可出库数量" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>subprocess1</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link27" name="link27" displayName="连接线" type="transition">
       <sourceNode>assign5</sourceNode>
@@ -894,7 +899,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -1285,10 +1290,15 @@
     <node>invokePojo10</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="appendList3" displayName="appendList" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
+    <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>invokePojo11</sourceNode>
       <targetNode>loopend1</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link32</targetConnections>
     <location x="1140" y="106"/>
@@ -1361,8 +1371,8 @@
     <location x="300" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.uniq.partSeqs</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_OUT_MAIN_ID</process:inputVariable>
       </process:inputVariables>
@@ -1385,8 +1395,8 @@
     <location x="822" y="106"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.uniq.partSeqs</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_OUT_DETAIL_ID</process:inputVariable>
       </process:inputVariables>
@@ -1409,8 +1419,8 @@
     <location x="961" y="106"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.uniq.partSeqs</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_SELL_QTY_TEMP_RECORD_ID</process:inputVariable>
       </process:inputVariables>
@@ -1433,8 +1443,8 @@
     <location x="790" y="200"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.uniq.partSeqs</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_OUT_DETAIL_ID</process:inputVariable>
       </process:inputVariables>
@@ -1457,8 +1467,8 @@
     <location x="982" y="200"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.uniq.partSeqs</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_SELL_QTY_TEMP_RECORD_ID</process:inputVariable>
       </process:inputVariables>

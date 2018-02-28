@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.hsapi.cloud.part.commonn;
+package com.hsapi.cloud.part.com;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;

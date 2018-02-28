@@ -120,7 +120,7 @@
     <figSize height="17" width="73"/>
     <node>subprocess2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getColumnIntValue" displayName="getColumnIntValue" type="invoke" index="5" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getColumnIntValue" displayName="getColumnIntValue" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -139,8 +139,8 @@
     <location x="291" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.BillStateUtils.getColumnIntValue</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.cloud.part.common.BillStateUtils.getColumnIntValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -159,7 +159,7 @@
     <figSize height="17" width="111"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getColumnDateValue" displayName="getColumnDateValue" type="invoke" index="5" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getColumnDateValue" displayName="getColumnDateValue" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>subprocess1</targetNode>
@@ -178,8 +178,8 @@
     <location x="424" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.BillStateUtils.getColumnDateValue</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.cloud.part.common.BillStateUtils.getColumnDateValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

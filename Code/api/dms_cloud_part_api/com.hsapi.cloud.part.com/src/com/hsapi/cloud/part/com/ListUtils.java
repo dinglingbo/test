@@ -1,4 +1,4 @@
-package com.hsapi.cloud.part.commonn;
+package com.hsapi.cloud.part.com;
 
 import java.util.ArrayList;
 import java.util.List;

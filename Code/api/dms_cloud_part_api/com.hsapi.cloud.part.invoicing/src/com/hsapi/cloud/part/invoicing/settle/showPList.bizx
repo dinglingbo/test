@@ -19,7 +19,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.saas.scmb.settledataset.FiRpBillP[]" name="pList" type="query" valueType="DataObject">pList</process:return>
+      <process:return id="0" language="com.hsapi.cloud.part.data.pts.FiRpBillP[]" name="pList" type="query" valueType="DataObject">pList</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -62,24 +62,20 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.saas.scmb.settledataset.FiRpBillP</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.FiRpBillP</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">chainId</process:from>
-      <process:to type="query">cd/_expr[1]/chainId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">branchId</process:from>
-      <process:to type="query">cd/_expr[2]/branchId</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">cd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">guestId</process:from>
-      <process:to type="query">cd/_expr[3]/supplierId</process:to>
+      <process:to type="query">cd/_expr[2]/supplierId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">cd/_expr[4]/createDate</process:to>
+      <process:to type="query">cd/_expr[3]/createDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -90,20 +86,16 @@
       <process:to type="query">cd/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
+      <process:from type="literal" pattern="reference">between</process:from>
       <process:to type="query">cd/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">between</process:from>
-      <process:to type="query">cd/_expr[4]/_op</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">beginDate</process:from>
-      <process:to type="query">cd/_expr[4]/_min</process:to>
+      <process:to type="query">cd/_expr[3]/_min</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">endDate</process:from>
-      <process:to type="query">cd/_expr[4]/_max</process:to>
+      <process:to type="query">cd/_expr[3]/_max</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -139,7 +131,7 @@
     <figSize height="17" width="162"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getDayEndTime" displayName="getDayEndTime" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getDayEndTime" displayName="getDayEndDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign0</targetNode>
@@ -149,7 +141,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.saas.scmb.biz.DateUtils.getDayEndDate</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getDayEndDate</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -164,7 +156,7 @@
     <figSize height="17" width="92"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getDayStartTime" displayName="getDayStartTime" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getDayStartTime" displayName="getDayStartDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link8" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -174,7 +166,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.saas.scmb.biz.DateUtils.getDayStartDate</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getDayStartDate</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -252,7 +244,7 @@
     <process:input description="" isArray="false" name="type" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.saas.scmb.settledataset.FiRpBillP" name="pList"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiRpBillP" name="pList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

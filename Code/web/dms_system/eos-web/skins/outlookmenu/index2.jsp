@@ -6,7 +6,7 @@
 <head>
 <%@include file="/coframe/tools/skins/common.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DMS管理系统</title>
+<title>DMS管理系统2</title>
 <style type="text/css">
 .dtHighLight{
 	background:#F0F8FF !important;
@@ -15,80 +15,17 @@
 </head>
 <body class="index">
 <div class="nui-fit">
-<div id="wrapper" class="wrap">
-	<%-- 
-	<div id="header">
-		<div class="head-in clearfix">
-			<div class="fl clearfix">
-				<h1 class="logo"></h1>
-				<h2 class="name">应用基础框架</h2>
-			</div>
-			<div class="options fr">
-				<div class="time font-5"><span id="currentData"></span></div>
-			</div>
-		</div>
-	</div>
-	 --%>
-	<div class="nui-fit">
-		<div id="container">
-				<!--<div id="wrapper" class="wrap">-->
-					<!--侧边栏-->
-					<div class="sidebar">
-						<!--用户信息区-->
-						<div class="user">
-							<img class="head" src="<%=contextPath%>/coframe/tools/skins/skin1/images/user-head.gif" width="51" height="51" alt="" />
-							<p class="tips">
-								<span class="font-1"><strong>您好，<%=AppUserManager.getCurrentUserId() %></strong></span>
-								<span><a class="set" href="#" onclick="javascript:updatepwd()">修改密码</a><a class="login-out" href="<%=contextPath%>/coframe/auth/login/logout.jsp" target="_top">注销</a></span>
-							</p>
-						</div>
-						<!--左侧菜单-->
-						<div class="nui-fit">
-							<ul id="tree1" class="nui-outlookmenu" url="org.gocom.components.coframe.auth.LoginManager.getMenuList.biz.ext" 
-								style="width:100%;height:100%;"  onitemclick="onItemSelect" expandOnNodeClick="true"
-			                    textField="text" idField="id" parentField="pid" resultAsTree="false"
-			                    showTreeIcon="true" dataField="treeNodes">        
-					        </ul>		
-						</div> 
-					</div>
-					<!--右侧主内容区-->
-					<div class="main">
-						<!--面包屑导航条-->
-						<div class="positionbar">
-							<ul class="position clearfix" id="positionbar">
-								<li class="index">
-									<a><span>首页</span></a><b class="arrow"></b>
-								</li>
-							</ul>
-						</div>
-						<!--主体内容显示区-->
-						<div class="submain radius">
-							<b class="b1"></b>
-							<b class="b2"></b>
-							<div class="fmain">
-								<div class="nui-fit" style="padding:5px;">
-								<iframe id="mainframe" src="<%=contextPath %>/coframe/auth/welcome/welcome.jsp" frameborder="0" name="main" style="width:100%;height:100%;" border="0"></iframe>
-								</div>
-							</div>
-							<b class="b3"></b>
-							<b class="b4"></b>
-						</div>
-					</div>
-				<!--</div>-->
-		</div>
-	</div>
-	<div id="footer">
-		<p>(c) Copyright Primeton 2012. All Rights Reserved. <%=com.primeton.ext.common.l7e.ImprimaturMgr.getImprimatur().getEditionInfo(com.eos.data.datacontext.DataContextManager.current().getCurrentLocale())%></p>
-	</div>
-</div>
-</div>
+	<ul id="tree1" class="nui-outlookmenu" url="org.gocom.components.coframe.auth.LoginManager.getMenuList.biz.ext" 
+		style="width:100%;height:100%;"  onitemclick="onItemSelect" expandOnNodeClick="true"
+        textField="text" idField="id" parentField="pid" resultAsTree="false"
+        showTreeIcon="true" dataField="treeNodes">        
+    </ul>		
+</div> 
 </body>
  
 </html>
 <script type="text/javascript">
     nui.parse();
-    
-    var iframe = document.getElementById("mainframe");
  
     var contextPath = '<%=contextPath%>';
    	function onItemSelect(e){

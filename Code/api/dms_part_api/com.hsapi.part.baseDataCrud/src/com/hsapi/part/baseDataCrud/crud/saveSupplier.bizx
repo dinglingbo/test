@@ -242,7 +242,7 @@
     <figSize height="17" width="72"/>
     <node>invokePojo3</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getShortPyWithoutSpace" displayName="getShortPyWithoutSpace" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getShortPyWithoutSpace" displayName="getShortPyWithoutSpace" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign0</targetNode>
@@ -251,8 +251,8 @@
     <location x="110" y="70"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.data.PartCommonUtil.getShortPyWithoutSpace</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.PartCommonUtil.getShortPyWithoutSpace</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

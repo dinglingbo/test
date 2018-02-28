@@ -189,7 +189,7 @@ function openDetail(pid){
             url : sysDomain + "/com.hsweb.system.llq.vin.partDetail.flow?brand=" + brand + "&pid=" + pid,
             title : "零件详情",
             width : "600px",
-            height : "500px",
+            height : "400px",
             showHeader:true,
             onload : function() {
                 //var iframe = this.getIFrameEl();

@@ -36,17 +36,18 @@ $(document).ready(function(v){
         }
     });
     
-    dg1.on("rowclick", function (e) {//查分组信息
+    dg1.on("rowclick", function (e) {//查第2层
         /* var column = e.column;
         var editor = e.editor;
         field = e.field,
         value = e.value; */
         var row = dg1.getSelected();
         if (row.brand) {
+            brand = row.brand;
             var params = {
                 "url":"https://llq.007vin.com/cars/show",
                 "params":{
-                    "brand":row.brand
+                    "brand": brand
                 },
                 "token": token
             }
@@ -54,33 +55,122 @@ $(document).ready(function(v){
         }
     });
     
-    /*gridSubGroup.on("rowclick", function (e) {//查零件信息
-        var row = gridSubGroup.getSelected();
-        if (row.auth) {
+    dg2.on("rowclick", function (e) {//查第3层
+        var row = dg2.getSelected();
+        if (row.auth && !row.last) {
             var params = {
-                "url":"https://llq.007vin.com/ppyvin/parts",
+                "url":"https://llq.007vin.com/cars/code",
                 "params":{
-                    "vin":vin,
-                    "brand":brand,
-                    "is_filter":1,
-                    "auth":unescape(row.auth)
+                    "brand": brand,
+                    "auth": row.auth                                                                           
                 },
                 "token": token
             }
-            callAjax(url, params, processAjax, setGridPartsData);
+            callAjax(url, params, processAjax, setDg3);
+        }else{
+            alert("last");
         }
     });
     
-    gridParts.on("drawcell", function (e) { //表格绘制
-        var record = e.record;
-        var column = e.column;
-        var field = e.field;
-        var value = e.value;
-        if(field == "detail"){
-            var html = '<a class="icon-hedit" href="javascript:openDetail(' + record.pid + ')">' + value + '</a>';
-            e.cellHtml = html;
+    dg3.on("rowclick", function (e) {//查第4层
+        var row = dg3.getSelected();
+        if (row.auth && !row.last) {
+            var params = {
+                "url":"https://llq.007vin.com/cars/model",
+                "params":{
+                    "brand": brand,
+                    "auth": row.auth                                                                           
+                },
+                "token": token
+            }
+            callAjax(url, params, processAjax, setDg4);
+        }else{
+            alert("last");
         }
-    });*/
+    });
+    
+    dg4.on("rowclick", function (e) {//查第5层
+        var row = dg4.getSelected();
+        if (row.auth && !row.last) {
+            var params = {
+                "url":"https://llq.007vin.com/cars/litm",
+                "params":{
+                    "brand": brand,
+                    "auth": row.auth                                                                           
+                },
+                "token": token
+            }
+            callAjax(url, params, processAjax, setDg5);
+        }else{
+            alert("last");
+        }
+    });
+    
+    dg5.on("rowclick", function (e) {//查第6层
+        var row = dg5.getSelected();
+        if (row.auth && !row.last) {
+            var params = {
+                "url":"https://llq.007vin.com/cars/litn",
+                "params":{
+                    "brand": brand,
+                    "auth": row.auth                                                                           
+                },
+                "token": token
+            }
+            callAjax(url, params, processAjax, setDg6);
+        }else{
+            alert("last");
+        }
+    });
+    
+    dg6.on("rowclick", function (e) {//查第7层
+        var row = dg6.getSelected();
+        if (row.auth && !row.last) {
+            var params = {
+                "url":"https://llq.007vin.com/cars/litf",
+                "params":{
+                    "brand": brand,
+                    "auth": row.auth                                                                           
+                },
+                "token": token
+            }
+            callAjax(url, params, processAjax, setDg7);
+        }else{
+            alert("last");
+        }
+    });
+    
+    dg7.on("rowclick", function (e) {//查第8层
+        var row = dg7.getSelected();
+        if (row.auth && !row.last) {
+            var params = {
+                "url":"https://qpds.007vin.com/cars/litfi",
+                "params":{
+                    "brand": brand,
+                    "auth": row.auth                                                                           
+                },
+                "token": token
+            }
+            callAjax(url, params, processAjax, setDg8);
+        }else{
+            alert("last");
+        }
+    });
+    
+    dg8.on("rowclick", function (e) {//查第9层
+        var row = dg8.getSelected();
+        if (row.auth && !row.last) {
+            var params = {
+                "url":"https://qpds.007vin.com/cars/litsx",
+                "params":{
+                    "brand": brand,
+                    "auth": row.auth                                                                           
+                },
+                "token": token
+            }
+            callAjax(url, params, processAjax, setDg9);
+        }
+    });
 });
 
 /*
@@ -106,11 +196,8 @@ function queryDg1(){
 *setNav
 */
 function setNav(index, title){
-    for(var i=navData.length-1; i>0; i--){
+    for(var i=navData.length; i>=index; i--){
         navData.pop();            
-        if(i == index){
-            break;
-        }
     }
     navData.push({index:index, title: index + " " + title});
 }
@@ -135,83 +222,66 @@ function setDg2(data, rs){
 }
 
 /*
-*Dg1
+*setDg3
 */
-function setDg1Data(){	
-    if (checkVin()){
-        var params = {
-            "url":"https://llq.007vin.com/ppyvin/group",
-            "params":{
-                "vin":vin,
-                "brand":brand
-            },
-            "token": token
-        }
-        callAjax(url, params, processAjax, setgridMainGroup);
-    }	
+function setDg3(data, rs){
+    dg3.setData(data);
+    setNav(3, rs.title);
+    showRightGrid(dg3);
 }
 
 /*
-*主组数据处理
+*setDg4
 */
-function setgridMainGroup(data){    
-    showLeftGrid(gridMainGroup);
-    gridMainGroup.set({
-        columns: [
-            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
-            { field: "auth", visible: false},
-            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称"}
-        ]
-    });
-    gridMainGroup.setData(data);
+function setDg4(data, rs){
+    dg4.setData(data);
+    setNav(4, rs.title);
+    showRightGrid(dg4);
 }
 
 /*
-*分组信息
+*setDg5
 */
-function setSubGroupData(data){
-    gridSubGroup.setData(data);
-    showRightGrid(gridSubGroup);
+function setDg5(data, rs){
+    dg5.setData(data);
+    setNav(5, rs.title);
+    showRightGrid(dg5);
 }
 
 /*
-*零件数据处理
+*setDg6
 */
-function setGridPartsData(data){
-    gridParts.setData(data);
-    showRightGrid(gridParts);
-    
+function setDg6(data, rs){
+    dg6.setData(data);
+    setNav(6, rs.title);
+    showRightGrid(dg6);
 }
 
 /*
-*零件详情
+*setDg7
 */
-function openDetail(pid){	
-    try{
-        nui.open({
-            url : sysDomain + "/com.hsweb.system.llq.vin.partDetail.flow?brand=" + brand + "&pid=" + pid,
-            title : "零件详情",
-            width : "600px",
-            height : "500px",
-            showHeader:true,
-            onload : function() {
-                //var iframe = this.getIFrameEl();
-                //iframe.contentWindow.setInitData(row, e);
-            },
-            ondestroy : function(action) {
-                //gridParts.reload();
-            }
-        });
-    }finally{}
+function setDg7(data, rs){
+    dg7.setData(data);
+    setNav(7, rs.title);
+    showRightGrid(dg7);
 }
 
-function checkVin(){
-    if (vin && vin.length == 17){
-        return true;
-    }else{
-        nui.alert("请输入17位VIN编码！");
-        return false;
-    }
+/*
+*setDg8
+*/
+function setDg8(data, rs){
+    dg8.setData(data);
+    setNav(8, rs.title);
+    showRightGrid(dg8);
+}
+
+/*
+*setDg9
+*/
+function setDg9(data, rs){
+    dg9.setData(data);
+    setNav(9, rs.title);
+    showRightGrid(dg9);
 }
 
 /*
@@ -243,7 +313,6 @@ function showRightGrid(gridObj){
     $($(".groupButton")[num]).show();
     setBgColor($(".groupButton")[num]); */
 }
-
 
 function setBgColor(obj){
     $(".groupButton:visible").attr("style", "background:#ffffff;");

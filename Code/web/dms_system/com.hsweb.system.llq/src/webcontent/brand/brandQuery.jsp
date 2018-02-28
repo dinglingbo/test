@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=3.2" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=ss2" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -89,138 +89,119 @@
                     <div id="dg3" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;display:none;"
-                        showColumns="true"
+                        showColumns="false"
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
                         <div property="columns">  
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="field1" width="80" headerAlign="center" allowSort=false>分类</div>
-                            <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
+                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                            <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                            <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                            <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                            <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                            <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                         </div>
                     </div>
                     <!--层4-->
                     <div id="dg4" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;display:none;"
-                        showColumns="true"
+                        showColumns="false"
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
                         <div property="columns">  
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="field1" width="80" headerAlign="center" allowSort=false>分类</div>
-                            <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
+                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                            <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                            <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                            <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                            <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                            <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                         </div>
                     </div>
                     <!--层5-->
                     <div id="dg5" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;display:none;"
-                        showColumns="true"
+                        showColumns="false"
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
                         <div property="columns">  
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="field1" width="80" headerAlign="center" allowSort=false>分类</div>
-                            <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
+                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                            <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                            <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                            <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                            <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                            <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                         </div>
                     </div>
                     <!--层6-->
                     <div id="dg6" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;display:none;"
-                        showColumns="true"
+                        showColumns="false"
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
                         <div property="columns">  
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="field1" width="80" headerAlign="center" allowSort=false>分类</div>
-                            <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
+                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                            <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                            <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                            <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                            <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                            <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                         </div>
                     </div>
                     <!--层7-->
                     <div id="dg7" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;display:none;"
-                        showColumns="true"
+                        showColumns="false"
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
                         <div property="columns">  
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="field1" width="80" headerAlign="center" allowSort=false>分类</div>
-                            <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
+                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                            <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                            <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                            <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                            <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                            <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                         </div>
                     </div>
                     <!--层8-->
                     <div id="dg8" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;display:none;"
-                        showColumns="true"
+                        showColumns="false"
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
                         <div property="columns">  
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="field1" width="80" headerAlign="center" allowSort=false>分类</div>
-                            <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
+                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                            <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                            <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                            <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                            <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                            <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                         </div>
                     </div>
                     <!--层9-->
                     <div id="dg9" 
                         class="nui-datagrid" 
                         style="width:100%;height:100%;display:none;"
-                        showColumns="true"
+                        showColumns="false"
                         showPager="false"
                         allowcellwrap="true"
                         showSummaryRow="true">
                         <div property="columns">  
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="field1" width="80" headerAlign="center" allowSort=false>分类</div>
-                            <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
-                        </div>
-                    </div>
-                    <!--层2-->
-                    <div id="dg12" 
-                        class="nui-datagrid" 
-                        style="width:100%;height:100%;display:none;"
-                        showColumns="true"
-                        showPager="false"
-                        allowcellwrap="true"
-                        showSummaryRow="true">
-                        <div property="columns"> 
-                            <div field="auth" width="80" visible="false" allowSort="false"></div>
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="num" width="30" headerAlign="center" allowSort=false>主组</div>
-                            <div field="subgroup" width="30" headerAlign="center" allowSort=false>分组</div>
-                            <div field="mid" width="60" headerAlign="center" allowSort=false>图号</div>
-                            <div field="subgroupname" width="150" headerAlign="center" allowSort=false>名称</div>
-                            <div field="description" width="150" headerAlign="center" allowSort=false>备注</div>
-                            <div field="model" width="100" headerAlign="center" allowSort=false>型号</div>                      
-                        </div>
-                    </div>
-                    <!--零件-->
-                    <div id="gridParts" 
-                        class="nui-datagrid" 
-                        style="width:100%;height:100%;display:none;"
-                        showColumns="true"
-                        showPager="false"
-                        allowcellwrap="true"
-                        showSummaryRow="true">
-                        <div property="columns"> 
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div field="num" width="20" headerAlign="center" allowSort=false>位置</div>
-                            <div field="pid" width="60" headerAlign="center" allowSort=false>零件OE号</div>
-                            <div field="label" width="80" headerAlign="center" allowSort=false>名称</div>
-                            <div field="quantity" width="20" headerAlign="center" allowSort=false>件数</div>
-                            <div field="model" width="50" headerAlign="center" allowSort=false>型号</div>
-                            <div field="remark" width="80" headerAlign="center" allowSort=false>备注</div>
-                            <div field="prices" width="50" headerAlign="center" allowSort=false>参考价格</div>
-                            <div field="" width="20" headerAlign="center" allowSort=false>说明</div>
-                            <div field="detail" width="20" headerAlign="center" allowSort=false></div>
+                            <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                            <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                            <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                            <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                            <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                            <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                         </div>
                     </div>
                 </div>

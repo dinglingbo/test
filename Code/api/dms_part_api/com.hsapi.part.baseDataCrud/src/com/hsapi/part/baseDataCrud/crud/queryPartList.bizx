@@ -43,14 +43,6 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">sortField</process:from>
-      <process:to type="query">params/sortField</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">sortOrder</process:from>
-      <process:to type="query">params/sortOrder</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
     </process:copy>
@@ -94,8 +86,6 @@
   <process:variables/>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
-    <process:input description="" isArray="false" name="sortField" primitiveType="String"/>
-    <process:input description="" isArray="false" name="sortOrder" primitiveType="String"/>
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>

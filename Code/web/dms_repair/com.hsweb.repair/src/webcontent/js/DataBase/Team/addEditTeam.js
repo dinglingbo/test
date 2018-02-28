@@ -5,6 +5,9 @@ var requiredField = {
 		name:"班组名称",
 		captainName:"班组长名称"
 };
+$(document).ready(function (){
+	dataform1 = new nui.Form("#dataform1");
+});
 function setData(data){
 	if(!dataform1){
 		dataform1 = new nui.Form("#dataform1");
@@ -15,6 +18,7 @@ function setData(data){
 	dataform1.setData(team);
 }
 function onOk(){
+	debugger;
 	var data = dataform1.getData();
 	console.log(data);
 	for(var key in requiredField){
@@ -28,12 +32,13 @@ function onOk(){
 		html:'保存中..'
 	});
 	nui.ajax({
-		url:"",
+		url:"com.hsapi.repair.baseData.team.saveTeam.biz.ext",
 		type:"post",
 		data:JSON.stringify({
 			team:data
 		}),
 		success:function(data){
+			
 			nui.unmask();
 			data = data||{};
 			if(data.errCode == "S")
@@ -52,11 +57,6 @@ function onOk(){
 	});
 }
 function CloseWindow(action) {
-//  if (action == "close" && form.isChanged()) {
-//      if (confirm("数据被修改了，是否先保存？")) {
-//          saveData();
-//      }
-//  }
   if (window.CloseOwnerWindow)
   return window.CloseOwnerWindow(action);
   else window.close();

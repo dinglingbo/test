@@ -57,7 +57,7 @@
 	}
 
 	var getDictItemsUrl = window._rootUrl
-			+ "com.hsapi.cloud.part.commonn.svr.getDictItems.biz.ext";
+			+ "com.hsapi.cloud.part.common.svr.getDictItems.biz.ext";
 	function getDictItems(dictIdList, callback) {
 		var params = {};
 		params.dictIdList = dictIdList;
@@ -80,7 +80,7 @@
 		});
 	}
 	var getProvinceAndCityUrl = window._rootUrl
-			+ "com.hsapi.cloud.part.commonn.svr.getProvinceAndCity.biz.ext";
+			+ "com.hsapi.cloud.part.common.svr.getProvinceAndCity.biz.ext";
 	function getProvinceAndCity(callback) {
 		nui.ajax({
 			url : getProvinceAndCityUrl,
@@ -114,7 +114,7 @@
 		});
 	}
 	var getAllCarBrandUrl = window._rootUrl
-			+ "com.hsapi.cloud.part.commonn.svr.getAllCarBrand.biz.ext";
+			+ "com.hsapi.cloud.part.common.svr.getAllCarBrand.biz.ext";
 	function getAllCarBrand(callback) {
 		nui.ajax({
 			url : getAllCarBrandUrl,
@@ -130,7 +130,7 @@
 			}
 		});
 	}	
-	var getAllPartBrandUrl = window._rootUrl+"com.hsapi.cloud.part.commonn.svr.getAllPartBrand.biz.ext";
+	var getAllPartBrandUrl = window._rootUrl+"com.hsapi.cloud.part.common.svr.getAllPartBrand.biz.ext";
 	function getAllPartBrand(callback)
 	{
 	    nui.ajax({

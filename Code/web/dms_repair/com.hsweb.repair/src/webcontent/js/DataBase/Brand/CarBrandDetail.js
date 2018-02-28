@@ -71,3 +71,65 @@ function CloseWindow(action) {
 function onCancel() {
     CloseWindow("cancel");
 }
+
+
+//brand
+function addBrands(brand){
+	nui.open({
+		targetWindow: window,
+        url: "CarBrandDetail.jsp",
+        title: "新增品牌", width: 400, height: 190,
+        allowResize:false,
+        onload: function ()
+        {
+        	if(brand)
+            {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                	brand:brand
+                });
+            }
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	leftBrandGrid.reload();
+            }
+        }
+	});
+}
+function editBrands(brand){
+	nui.open({
+		targetWindow: window,
+        url: "CarBrandDetail.jsp",
+        title: "编辑品牌", width: 400, height: 190,
+        allowResize:false,
+        onload: function ()
+        {
+            if(brand)
+            {
+            	var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                	brand:brand
+                });
+            }
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	leftBrandGrid.reload();
+            }
+        }
+	});
+}
+function addBrand(){
+	addBrands();
+}
+function editBrand(){
+	var row = leftBrandGrid.getSelected();
+	if(row){
+		editBrands(row);
+	}
+}

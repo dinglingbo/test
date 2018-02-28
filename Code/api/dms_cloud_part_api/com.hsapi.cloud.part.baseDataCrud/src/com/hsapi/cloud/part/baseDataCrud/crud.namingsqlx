@@ -180,6 +180,9 @@
             <isNotEmpty prepend="and" property="name">  
                 (full_name like '%$name$%' or short_name like '%$name$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="pny">  
+                (full_name like '%$pny$%' or short_name like '%$pny$%' or code like '%$pny$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  

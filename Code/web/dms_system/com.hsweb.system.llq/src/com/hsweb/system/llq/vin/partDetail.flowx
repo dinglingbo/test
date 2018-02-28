@@ -4,8 +4,11 @@
     <sourceConnections xsi:type="process:tActionLink" description="" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0" dataConvertClass="">
       <sourceNode>start0</sourceNode>
       <targetNode>view0</targetNode>
-      <process:validateRules onError="default"/>
-      <process:inputParameters/>
+      <process:validateRules errorPage="" onError="default"/>
+      <process:inputParameters>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="brand" primitiveType="String"/>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="pid" primitiveType="String"/>
+      </process:inputParameters>
     </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>

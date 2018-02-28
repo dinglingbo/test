@@ -92,9 +92,10 @@
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="true"
-                 	 pageSize="50"
-                 	 sizeList=[20,50,100,200]
+                 	   pageSize="50"
+                 	   sizeList=[20,50,100,200]
                      selectOnLoad="true"
+                     showModified="false"
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
@@ -126,6 +127,7 @@
                     
                         <div id="basicInfoForm" class="form" contenteditable="false">
                             <input class="nui-hidden" name="id"/>
+                            <input class="nui-hidden" name="operateDate"/>
                             <table style="width: 100%;">
                                 <tr>
                                     <td class="title required">
@@ -137,6 +139,7 @@
                                                class="nui-buttonedit"
                                                emptyText="请选择供应商..."
                                                onbuttonclick="selectSupplier('guestId')"
+                                               onvaluechanged="onGuestValueChanged"
                                                width="100%"
                                                placeholder="请选择供应商"
                                                selectOnFocus="true" />
@@ -152,7 +155,7 @@
                                                valueField="id"
                                                emptyText="请选择..."
                                                url=""
-                                               allowInput="true"
+                                               allowInput="false"
                                                showNullItem="false"
                                                width="100%"
                                                nullItemText="请选择..."/>
@@ -210,9 +213,10 @@
                                                valueField="customid"
                                                emptyText="请选择..."
                                                url=""
-                                               allowInput="true"
+                                               allowInput="false"
                                                showNullItem="false"
                                                width="100%"
+                                               onvaluechanged="onBillTypeIdChanged"
                                                nullItemText="请选择..."/>
                                     </td>
                                     <td class="title required">
@@ -226,7 +230,7 @@
                                                valueField="customid"
                                                emptyText="请选择..."
                                                url=""
-                                               allowInput="true"
+                                               allowInput="false"
                                                showNullItem="false"
                                                width="100%"
                                                nullItemText="请选择..."/>
@@ -235,7 +239,7 @@
                                         <label>开票税点：</label>
                                     </td>
                                     <td>
-                                        <input class="nui-textbox" id="taxRate" name="taxRate" width="100%">
+                                        <input class="nui-textbox" id="taxRate" name="taxRate" enabled="false" width="100%">
                                     </td>
                                     <td colspan="2">
                                         <input id="taxSign" name="taxSign" enabled="false" class="mini-checkbox" text="是否开票" trueValue="1" falseValue="0" />
@@ -285,6 +289,8 @@
                      allowCellSelect="true"
                      allowCellEdit="true"
                      oncellcommitedit="onCellCommitEdit"
+                     ondrawsummarycell="onDrawSummaryCell"
+                     showModified="false"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
@@ -317,8 +323,8 @@
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
                                 <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-					        	仓库<input id="storeList" property="editor" enabled="true" name="storehouse" dataField="storeGrids" class="nui-combobox" valueField="id" textField="name" 
-			                            url=""
+					        	仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
+			                            url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
 			                            onvaluechanged="" emptyText=""  vtype="required"
 			                            /> 
 					        	</div>	

@@ -1,7 +1,3 @@
-/**
- * Created by Administrator on 2018/1/29.
- */
-
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.repair.baseData.team.queryTeam.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.team.queryTeamMember.biz.ext";
@@ -21,12 +17,12 @@ var rightGrid = null;
 		loadRightGridData({});
 });
 	
-	function addOrEditTeam(team)
+	function addTeams(team)
 	{
 	    nui.open({
 	        targetWindow: window,
 	        url: "addEditTeam.jsp",
-	        title: "班组", width: 400, height: 200,
+	        title: "新增班组", width: 400, height: 200,
 	        allowResize:false,
 	        onload: function ()
 	        {
@@ -47,17 +43,42 @@ var rightGrid = null;
 	        }
 	    });
 	}
-	
+	function editTeams(team)
+	{
+	    nui.open({
+	        targetWindow: window,
+	        url: "addEditTeam.jsp",
+	        title: "编辑班组", width: 400, height: 200,
+	        allowResize:false,
+	        onload: function ()
+	        {
+	            if(team)
+	            {
+	                var iframe = this.getIFrameEl();
+	                iframe.contentWindow.setData({
+	                	team:team
+	                });
+	            }
+	        },
+	        ondestroy: function (action)
+	        {
+	            if(action == "ok")
+	            {
+	                leftGrid.reload();
+	            }
+	        }
+	    });
+	}
 	function addTeam()
 	{
-		addOrEditTeam();
+		addTeams();
 	}
 	function editTeam()
 	{
 	    var row = leftGrid.getSelected();
 	    if(row)
 	    {
-	    	addOrEditTeam(row);
+	    	editTeams(row);
 	    }
 	}
 	

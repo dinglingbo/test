@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=2" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -122,7 +122,8 @@
                             <div field="model" width="50" headerAlign="center" allowSort=false>型号</div>
                             <div field="remark" width="80" headerAlign="center" allowSort=false>备注</div>
                             <div field="prices" width="50" headerAlign="center" allowSort=false>参考价格</div>
-                            <div field="" width="20" headerAlign="center" allowSort=false>说明</div>                            
+                            <div field="" width="20" headerAlign="center" allowSort=false>说明</div>
+                            <div field="detail" width="20" headerAlign="center" allowSort=false></div>
                         </div>
                     </div>
                 </div>

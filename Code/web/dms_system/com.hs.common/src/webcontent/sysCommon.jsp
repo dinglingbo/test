@@ -38,7 +38,8 @@
 </style>
 
 <script src="<%=contextPath%>/common/nui/nui.js" type="text/javascript"></script>
-<script type="text/javascript" src="<%=contextPath%>/common/nui/locale/zh_CN.js"></script>
+<script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
+<script src="<%=sysDomain%>/dict/common/js/constantDef.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var contextPath = "<%=contextPath%>";
 	var apiPath		= "<%=apiPath%>";

@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=ss2" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=2132" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -27,7 +27,9 @@
         </div>
         <div showCollapseButton="false" style="border:0;">
             <br/>
-            <!--<a class="nui-button" onclick="queryVin();"></a>-->
+            <div id="topNav">
+                <a style="cursor:pointer" onclick="showRightGrid(eval('dg1'))"><B>选择品牌</B></a>
+            </div>
             <br/><br/>
         </div>
     </div> 
@@ -62,9 +64,9 @@
                         showSummaryRow="true">
                         <div property="columns">  
                             <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
-                            <div field="brand" width="80" headerAlign="center" allowSort=false>品牌代号</div>
-                            <div field="brandEn" width="120" headerAlign="center" allowSort=false>品牌英文名</div>
                             <div field="brandCn" width="150" headerAlign="center" allowSort=false>品牌中文名</div>
+                            <div field="brandEn" width="120" headerAlign="center" allowSort=false>品牌英文名</div>
+                            <div field="brand" width="80" headerAlign="center" allowSort=false>品牌代号</div>
                             <div field="brandImg" headerAlign="center" visible="false" allowSort=false>品牌log图片url</div>
                         </div>
                     </div>

@@ -44,6 +44,7 @@ $(document).ready(function(v){
         var row = dg1.getSelected();
         if (row.brand) {
             brand = row.brand;
+            setTopNav(2, row.brandCn);
             var params = {
                 "url":"https://llq.007vin.com/cars/show",
                 "params":{
@@ -58,11 +59,12 @@ $(document).ready(function(v){
     dg2.on("rowclick", function (e) {//查第3层
         var row = dg2.getSelected();
         if (row.auth && !row.last) {
+            setTopNav(3, row.name);
             var params = {
                 "url":"https://llq.007vin.com/cars/code",
                 "params":{
                     "brand": brand,
-                    "auth": row.auth                                                                           
+                    "auth": unescape(row.auth)                                                                           
                 },
                 "token": token
             }
@@ -75,11 +77,12 @@ $(document).ready(function(v){
     dg3.on("rowclick", function (e) {//查第4层
         var row = dg3.getSelected();
         if (row.auth && !row.last) {
+            setTopNav(4, row.name);
             var params = {
                 "url":"https://llq.007vin.com/cars/model",
                 "params":{
                     "brand": brand,
-                    "auth": row.auth                                                                           
+                    "auth": unescape(row.auth)                                                                           
                 },
                 "token": token
             }
@@ -92,11 +95,12 @@ $(document).ready(function(v){
     dg4.on("rowclick", function (e) {//查第5层
         var row = dg4.getSelected();
         if (row.auth && !row.last) {
+            setTopNav(5, row.name);
             var params = {
                 "url":"https://llq.007vin.com/cars/litm",
                 "params":{
                     "brand": brand,
-                    "auth": row.auth                                                                           
+                    "auth": unescape(row.auth)                                                                           
                 },
                 "token": token
             }
@@ -109,11 +113,12 @@ $(document).ready(function(v){
     dg5.on("rowclick", function (e) {//查第6层
         var row = dg5.getSelected();
         if (row.auth && !row.last) {
+            setTopNav(6, row.name);
             var params = {
                 "url":"https://llq.007vin.com/cars/litn",
                 "params":{
                     "brand": brand,
-                    "auth": row.auth                                                                           
+                    "auth": unescape(row.auth)                                                                           
                 },
                 "token": token
             }
@@ -126,11 +131,12 @@ $(document).ready(function(v){
     dg6.on("rowclick", function (e) {//查第7层
         var row = dg6.getSelected();
         if (row.auth && !row.last) {
+            setTopNav(7, row.name);
             var params = {
                 "url":"https://llq.007vin.com/cars/litf",
                 "params":{
                     "brand": brand,
-                    "auth": row.auth                                                                           
+                    "auth": unescape(row.auth)                                                                           
                 },
                 "token": token
             }
@@ -143,11 +149,12 @@ $(document).ready(function(v){
     dg7.on("rowclick", function (e) {//查第8层
         var row = dg7.getSelected();
         if (row.auth && !row.last) {
+            setTopNav(8, row.name);
             var params = {
                 "url":"https://qpds.007vin.com/cars/litfi",
                 "params":{
                     "brand": brand,
-                    "auth": row.auth                                                                           
+                    "auth": unescape(row.auth)                                                                           
                 },
                 "token": token
             }
@@ -160,11 +167,12 @@ $(document).ready(function(v){
     dg8.on("rowclick", function (e) {//查第9层
         var row = dg8.getSelected();
         if (row.auth && !row.last) {
+            setTopNav(9, row.name);
             var params = {
                 "url":"https://qpds.007vin.com/cars/litsx",
                 "params":{
                     "brand": brand,
-                    "auth": row.auth                                                                           
+                    "auth": unescape(row.auth)                                                                           
                 },
                 "token": token
             }
@@ -172,10 +180,6 @@ $(document).ready(function(v){
         }
     });
 });
-
-/*
-*用户车架号历史查询记录（使用逻辑流，因为无法控制autocomplete发送请求的方式）
-*/
 
 /*
 *获取品牌
@@ -200,6 +204,17 @@ function setNav(index, title){
         navData.pop();            
     }
     navData.push({index:index, title: index + " " + title});
+}
+
+/*
+*setTopNav
+*/
+function setTopNav(index, name){
+    var topData = $("#topNav").children();
+    for(var i=topData.length; i>=index; i--){
+        $(topData[i-1]).remove();            
+    }
+    $("#topNav").append('<a style="cursor:pointer" onclick="showRightGrid(eval(\'dg' + index + '\'))"><span><B>&nbsp;&gt;&nbsp;' + name + '</B></span></a>');
 }
 
 /*

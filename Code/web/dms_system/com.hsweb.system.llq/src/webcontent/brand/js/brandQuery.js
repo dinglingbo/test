@@ -1,5 +1,5 @@
 
-var vin; //vin
+var index,max; //navigator
 var brand; //品牌
 var dgNavigation; //导航
 var dg1; //层1
@@ -199,7 +199,7 @@ function queryDg1(){
 /*
 *setNav
 */
-function setNav(index, title){
+function setNav(title){
     for(var i=navData.length; i>=index; i--){
         navData.pop();            
     }
@@ -222,7 +222,8 @@ function setTopNav(index, name){
 */
 function setDg1(data){
     dg1.setData(data);
-    setNav(1, "选择品牌");
+    index = 1, max = 1;
+    setNav("选择品牌");
     //navData.push({index:1, title:"1 选择品牌"});
     showRightGrid(dg1);
 }
@@ -232,7 +233,8 @@ function setDg1(data){
 */
 function setDg2(data, rs){
     dg2.setData(data);
-    setNav(2, rs.title);
+    index = 2, max = 2;
+    setNav(rs.title);
     showRightGrid(dg2);
 }
 
@@ -241,7 +243,8 @@ function setDg2(data, rs){
 */
 function setDg3(data, rs){
     dg3.setData(data);
-    setNav(3, rs.title);
+    index = 3, max = 3;
+    setNav(rs.title);
     showRightGrid(dg3);
 }
 
@@ -250,7 +253,8 @@ function setDg3(data, rs){
 */
 function setDg4(data, rs){
     dg4.setData(data);
-    setNav(4, rs.title);
+    index = 4, max = 4;
+    setNav(rs.title);
     showRightGrid(dg4);
 }
 
@@ -259,7 +263,8 @@ function setDg4(data, rs){
 */
 function setDg5(data, rs){
     dg5.setData(data);
-    setNav(5, rs.title);
+    index = 5, max = 5;
+    setNav(rs.title);
     showRightGrid(dg5);
 }
 
@@ -268,7 +273,8 @@ function setDg5(data, rs){
 */
 function setDg6(data, rs){
     dg6.setData(data);
-    setNav(6, rs.title);
+    index = 6, max = 6;
+    setNav(rs.title);
     showRightGrid(dg6);
 }
 
@@ -277,7 +283,8 @@ function setDg6(data, rs){
 */
 function setDg7(data, rs){
     dg7.setData(data);
-    setNav(7, rs.title);
+    index = 7, max = 7;
+    setNav(rs.title);
     showRightGrid(dg7);
 }
 
@@ -286,7 +293,8 @@ function setDg7(data, rs){
 */
 function setDg8(data, rs){
     dg8.setData(data);
-    setNav(8, rs.title);
+    index = 8, max = 8;
+    setNav(rs.title);
     showRightGrid(dg8);
 }
 
@@ -295,7 +303,8 @@ function setDg8(data, rs){
 */
 function setDg9(data, rs){
     dg9.setData(data);
-    setNav(9, rs.title);
+    index = 9, max = 9;
+    setNav(rs.title);
     showRightGrid(dg9);
 }
 
@@ -324,9 +333,20 @@ function showRightGrid(gridObj){
     
     gridObj.show();
     dgNavigation.setData(navData);
-    /* var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
-    $($(".groupButton")[num]).show();
-    setBgColor($(".groupButton")[num]); */
+    
+    var gid = gridObj.getId();
+    index = parseInt(gid.replace("dg", ""));
+    
+    if(index==1){
+        $($(".groupButton")[0]).attr("style", "background:#e0d7d7;");
+    }else{
+        $($(".groupButton")[0]).attr("style", "background:#ffffff;");
+    }
+    if(index==max){
+        $($(".groupButton")[1]).attr("style", "background:#e0d7d7;");
+    }else{
+        $($(".groupButton")[1]).attr("style", "background:#ffffff;");
+    }
 }
 
 function setBgColor(obj){
@@ -336,5 +356,24 @@ function setBgColor(obj){
         obj.style.background = "#ffffff";
     }else{
         obj.style.background = "#e0d7d7";
+    }
+}
+/*
+ *上一步
+ **/
+function showUp(){
+    if(index > 1){
+        index -= 1;
+        showRightGrid(eval('dg' + index))
+    }
+}
+
+/*
+ *下一步
+ **/
+function showDown(){
+    if(index < max){
+        index += 1;
+        showRightGrid(eval('dg' + index))
     }
 }

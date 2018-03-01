@@ -13,9 +13,9 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
     <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=32" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=2" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=12" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 

@@ -1,4 +1,4 @@
-
+var vinPartImg;//零件图片
 //var gridCfg; //车辆配置
 var gridMainGroup; //主组
 var gridSubGroup;//分组
@@ -6,6 +6,7 @@ var gridParts;//零件
 var ntab;
 
 $(document).ready(function(v){
+    vinPartImg = $("#vin_part_img");
     //gridCfg = nui.get("gridCfg");
 	gridMainGroup = nui.get("gridMainGroup");
     gridSubGroup = nui.get("gridSubGroup");
@@ -43,6 +44,16 @@ $(document).ready(function(v){
                 "token": token
             }
             callAjax(url, params, processAjax, setGridPartsData);
+            
+            params = {
+                "url":"https://llq.007vin.com/ppycars/subimgs",
+                "params":{
+                    "brand":brand,
+                    "auth":unescape(row.auth)
+                },
+                "token": token
+            }
+            callAjax(url, params, processAjax, setPartImg);
         }
     });
     
@@ -77,7 +88,7 @@ function queryGroupByAuth(auth){
 *主组数据处理
 */
 function setgridMainGroup(data){    
-    showLeftGrid(gridMainGroup);
+    showInfoLeftGrid(gridMainGroup);
     gridMainGroup.set({
         columns: [
             { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
@@ -105,7 +116,7 @@ function setSubGroupData(data){
 function setGridPartsData(data){
     gridParts.setData(data);
     showInfoRightGrid(gridParts);
-    
+    showInfoLeftGrid(vinPartImg);
 }
 
 /*
@@ -133,8 +144,9 @@ function openDetail(pid){
 /*
 *左部grid
 */
-function showLeftGrid(gridObj){
+function showInfoLeftGrid(gridObj){
     gridMainGroup.hide();
+    vinPartImg.hide();
     
     gridObj.show();  
 }
@@ -153,6 +165,10 @@ function showInfoRightGrid(gridObj){
     $($(".groupButton")[num]).show();
     //$($(".groupButton")[num]).click();
     setBgColor($(".groupButton")[num]);
+    
+    if(gridObj != gridParts){//非零件
+        showInfoLeftGrid(gridMainGroup);
+    }
 }
 
 

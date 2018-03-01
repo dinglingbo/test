@@ -55,10 +55,7 @@
             <div size="40%" showCollapseButton="false">
                 <div class="nui-fit">
                     <!--主组-->
-                    <%@include file="/llq/vin/vinQuery_MainGroup.jsp" %>
-                    <img src="" id="vin_part_img"
-                        usemap="#part_mark_vin" 
-                        style="opacity: 1; width:100%;height:100%;display:none;">
+                    <%@include file="/llq/vin/vinQuery_MainGroup.jsp" %>                    
                 </div>
             </div>
             <div size="60%" showCollapseButton="false">

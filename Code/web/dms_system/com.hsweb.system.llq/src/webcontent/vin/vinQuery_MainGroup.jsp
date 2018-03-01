@@ -11,3 +11,6 @@
     <div property="columns">                                           
     </div>
 </div>
+<img src="" id="vin_part_img"
+     usemap="#part_mark_vin" 
+     style="opacity: 1; width:100%;height:100%;display:none;">

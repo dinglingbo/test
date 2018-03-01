@@ -188,16 +188,8 @@ function setSubGroupData(data){
 */
 function setGridPartsData(data, rs){
     gridParts.setData(data);
-    //img
     showRightGrid(gridParts);
     showLeftGrid(vinPartImg);
-}
-
-/*
-*零件图片处理
-*/
-function setPartImg(data, rs){
-    vinPartImg.attr("src", data.imgurl);
 }
 
 /*

@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.0" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -56,7 +56,7 @@
                 <div class="nui-fit">
                     <!--主组-->
                     <%@include file="/llq/vin/vinQuery_MainGroup.jsp" %>
-                    <img src="" 
+                    <img src="" id="vin_part_img"
                         usemap="#part_mark_vin" 
                         style="opacity: 1; width:100%;height:100%;display:none;">
                 </div>

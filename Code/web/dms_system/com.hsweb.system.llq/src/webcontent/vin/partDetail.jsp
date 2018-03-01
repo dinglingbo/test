@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon.jsp" %>    
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/partDetail.js?v=1.32" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/partDetail.js?v=1.2" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit">

@@ -173,8 +173,7 @@ function queryCompt(){
 }
 
 function setCompt(data){
-    var list = processKeyValue(data.headermessage);
-    dgcompt.setData(list);
+    dgcompt.setData(data);
     detailCatch['compt'] = 1;
 }
 

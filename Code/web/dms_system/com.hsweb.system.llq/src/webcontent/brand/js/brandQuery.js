@@ -70,7 +70,7 @@ $(document).ready(function(v){
             }
             callAjax(url, params, processAjax, setDg3);
         }else{
-            alert("last");
+            queryGroupByAuth(row.auth);
         }
     });
     
@@ -88,7 +88,7 @@ $(document).ready(function(v){
             }
             callAjax(url, params, processAjax, setDg4);
         }else{
-            alert("last");
+            queryGroupByAuth(row.auth);
         }
     });
     
@@ -106,7 +106,7 @@ $(document).ready(function(v){
             }
             callAjax(url, params, processAjax, setDg5);
         }else{
-            alert("last");
+            queryGroupByAuth(row.auth);
         }
     });
     
@@ -124,7 +124,7 @@ $(document).ready(function(v){
             }
             callAjax(url, params, processAjax, setDg6);
         }else{
-            alert("last");
+            queryGroupByAuth(row.auth);
         }
     });
     
@@ -142,7 +142,7 @@ $(document).ready(function(v){
             }
             callAjax(url, params, processAjax, setDg7);
         }else{
-            alert("last");
+            queryGroupByAuth(row.auth);
         }
     });
     
@@ -160,7 +160,7 @@ $(document).ready(function(v){
             }
             callAjax(url, params, processAjax, setDg8);
         }else{
-            alert("last");
+            queryGroupByAuth(row.auth);
         }
     });
     

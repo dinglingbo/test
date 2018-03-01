@@ -14,15 +14,15 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=2132" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=d2" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
         <div size="15%" showCollapseButton="false" style="border:0;">
             <br/>
             <center id="groupButton">
-                <a class="nui-button groupButton" onclick="showRightGrid(gridCfg)">上一步</a>
-                <a class="nui-button groupButton" onclick="showRightGrid(gridParts)">下一步</a>
+                <a class="nui-button groupButton" onclick="showUp()">上一步</a>&nbsp;
+                <a class="nui-button groupButton" onclick="showDown()">下一步</a>
             </center>
         </div>
         <div showCollapseButton="false" style="border:0;">

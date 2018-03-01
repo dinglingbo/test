@@ -104,6 +104,9 @@ function onPartGridDraw(e)
 
     switch (e.field)
     {
+	    case "isUniform":
+	        e.cellHtml = e.value == 1?"是":"否";
+	        break;
         case "isDisabled":
             e.cellHtml = e.value == 1?"失效":"有效";
             break;
@@ -165,6 +168,12 @@ function onSearch()
 }
 function doSearch(params)
 {
+	params.sortOrder = "ASC";
+    params.sortField = "id";
+    if(params.namePy)
+    {
+        params.namePy = params.namePy.toUpperCase();
+    }
 	partGrid.load({
         params:params
     });
@@ -174,7 +183,7 @@ function addPart(){
 }
 function editPart(){
     var row = partGrid.getSelected();
-    if(row)
+    if(row && row.orgid == currOrgid)
     {
         addOrEditPart(row);
     }
@@ -234,6 +243,17 @@ function onPartGridRowClick(e)
         nui.get("enableBtn").hide();
         nui.get("disableBtn").show();
     }
+    if(row.orgid != currOrgid)
+    {
+        nui.get("editBtn").disable();
+        nui.get("disableBtn").disable();
+        nui.get("enableBtn").disable();
+    }
+    else{
+        nui.get("editBtn").enable();
+        nui.get("disableBtn").enable();
+        nui.get("enableBtn").enable();
+    }
 }
 function disablePart()
 {
@@ -259,7 +279,6 @@ function enablePart()
         nui.alert("请选择要启用的配件");
         return;
     }
-
     savePart({
         id:row.id,
         isDisabled:0

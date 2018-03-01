@@ -17,7 +17,6 @@
 		       a.common_code commonCode,
 		       a.query_code queryCode,
 		       a.quality_type_id qualityTypeId,
-		       a.orgcode orgcode,
 		       a.part_name_id partNameId,
 		       a.name_py namePy,
 		       a.name_en nameEn,
@@ -42,10 +41,12 @@
 		       a.retail_price retailPrice,
 		       a.whole_sale_price wholeSalePrice,
 		       a.spec spec,
+		       a.model model,
 		       a.is_disabled isDisabled,
-		       a.is_host isHost
+		       a.is_host isHost,
+		       a.orgid orgid
         FROM com_attribute a
-        where a.orgid = #orgid#
+        where (a.orgid = 0 or a.orgid = #orgid#)
     	<dynamic>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (is_disabled = #isDisabled#)
@@ -77,7 +78,7 @@
             <isNotEmpty prepend="order by " property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  
-        </dynamic>  
+        </dynamic>
     </select>
     
     
@@ -241,7 +242,10 @@
 		       WHERE a.is_client = 1 and a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="code">  
-                (code = #code#)
+                (code like '%$code$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeList">  
+                (guest_type in ($guestTypeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestType">  
                 (guest_type = #guestType#)

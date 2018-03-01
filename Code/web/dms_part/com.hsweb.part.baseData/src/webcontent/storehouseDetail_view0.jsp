@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/baseData/js/storehouseMgr/storehouseDetail.js?v=1.0.4"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/storehouseMgr/storehouseDetail.js?v=1.0.5"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;
@@ -35,7 +35,8 @@
 </head>
 <body>
 
-<div title="车型规格分类" class="nui-panel" style="width:calc(100% - 20px);height:150px;margin: 10px;"
+<div title="" class="nui-panel" style="width:calc(100% - 20px);height:110px;margin: 10px;"
+     showHeader="false"
      onbuttonclick="onbuttonclick">
     <div id="basicInfoForm" class="form">
         <input class="nui-hidden" name="isEdit"/>
@@ -46,29 +47,12 @@
             <input name="name" class="nui-textbox width1"/>
         </div>
         <div class="row">
-            <span class="title title-width2">上级仓库：</span>
-            <input name="parentId"
-                   id="parentId"
-                   class="nui-combobox width1"
-                   textField="name"
-                   valueField="id"
-                   emptyText="请选择..."
-                   url=""
-                   allowInput="true"
-                   showNullItem="true"
-                   nullItemText="请选择..."/>
             <span class="title title-width2 required">仓库管理员：</span>
             <input name="chargeMan" class="nui-textbox width1"/>
-        </div>
-        <div class="row">
             <span class="title title-width2 required">管理员电话：</span>
             <input name="chargeTel" class="nui-textbox width1"/>
-            <span class="title title-width2 required">仓库级别：</span>
-            <input name="levelNumber" class="nui-textbox width1" vtype="int"  intErrorText="仓库级别只能输入整数"/>
         </div>
         <div class="row">
-            <span class="title title-width2">是否末级：</span>
-            <input name="isEnd" class="nui-checkbox" trueValue="1" falseValue="0"/>
             <span class="title title-width2">是否禁用：</span>
             <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0"/>
         </div>

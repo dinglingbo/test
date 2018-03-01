@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库定义</title>
-<script src="<%= request.getContextPath() %>/baseData/js/storehouseMgr/storehouseMgr.js?v=1.0.6"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/storehouseMgr/storehouseMgr.js?v=1.0.15"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -28,7 +28,9 @@
             <table style="width:100%;">
                 <tr>
                     <td style="white-space:nowrap;">
-                        <label style="font-family:Verdana;">仓库定义</label>
+                        <label style="font-family:Verdana;">仓库定义:</label>
+                        <a class="nui-button" plain="true" iconCls="icon-add" onclick="onAddNode()">新增</a>
+                        <a class="nui-button" plain="true" iconCls="icon-edit" onclick="onEditNode()">修改</a>
                     </td>
                 </tr>
             </table>
@@ -48,9 +50,11 @@
             <table style="width:100%;">
                 <tr>
                     <td style="white-space:nowrap;">
+                    	 <label style="font-family:Verdana;">仓位定义:</label>
                         <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPosition()">新增仓位</a>
                         <a class="nui-button" plain="true" iconCls="icon-save" onclick="savePosition()">保存</a>
-                        <a class="nui-button" plain="true" iconCls="icon-no" onclick="disableLocation()">禁用</a>
+                        <a class="nui-button" plain="true" iconCls="icon-no" onclick="disableLocation()" id="disableBtn">禁用</a>
+                        <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableLocation()" id="enableBtn" visible="false">启用</a>
                     </td>
                 </tr>
             </table>
@@ -81,12 +85,6 @@
         </div>
     </div>
 </div>
-
-<ul id="treeMenu" class="nui-contextmenu" onbeforeopen="onBeforeOpen">
-    <li name="add" iconCls="icon-add" onclick="onAddNode">新增同级</li>
-    <li name="addChild" iconCls="icon-add" onclick="onAddChildNode">新增子级</li>
-    <li name="edit" iconCls="icon-edit" onclick="onEditNode">修改</li>
-</ul>
 
 </body>
 </html>

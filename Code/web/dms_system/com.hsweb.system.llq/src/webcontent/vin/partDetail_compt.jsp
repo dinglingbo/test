@@ -8,9 +8,7 @@
              allowCellSelect="true"
              style="width:100%;height:100%;"
              showPager="fasle" >                
-            <div property="columns">  
-                <div field="investLevel"    visible="false"><strong>标准店</strong></div>
-                <div field="investLevelId" visible="false" ><strong>标准店ID</strong></div>                                              
+            <div property="columns">                                         
                 <div field="fiveForceKpiType" name="fiveForceKpiType" headerAlign="center" width="50px" align="center"></div>
             </div>
         </div>

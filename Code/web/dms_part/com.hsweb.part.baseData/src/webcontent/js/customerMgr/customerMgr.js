@@ -111,7 +111,7 @@ function getSearchParam()
 }
 function doSearch(params)
 {
-	params.guestType = '01020102';
+	params.guestTypeList = "'01020102','01020202'";
     grid.load({
         params:params
     });
@@ -128,6 +128,7 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    advancedSearchFormData = searchData;
     advancedSearchWin.hide();
     doSearch(searchData);
 }
@@ -155,9 +156,9 @@ function onDrawCell(e)
             }
             break;
         case "tgrade":
-            //if(tgradeHash && tgradeHash[e.value]){
-            //    e.cellHtml = tgradeHash[e.value].name||"";
-            //}
+        	if(tgradeHash && tgradeHash[e.value]){
+                e.cellHtml = tgradeHash[e.value].name||"";
+            }
             break;
         case "billTypeId":
             if(billTypeIdHash[e.value]){

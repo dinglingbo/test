@@ -110,6 +110,9 @@ function onPartGridDraw(e)
 
     switch (e.field)
     {
+	    case "isUniform":
+	        e.cellHtml = e.value == 1?"是":"否";
+	        break;
         case "isDisabled":
             e.cellHtml = e.value == 1?"失效":"有效";
             break;
@@ -167,6 +170,12 @@ function onSearch()
 }
 function doSearch(params)
 {
+	params.sortOrder = "ASC";
+    params.sortField = "is_host";
+    if(params.namePy)
+    {
+        params.namePy = params.namePy.toUpperCase();
+    }
     partGrid.load({
         params:params
     });

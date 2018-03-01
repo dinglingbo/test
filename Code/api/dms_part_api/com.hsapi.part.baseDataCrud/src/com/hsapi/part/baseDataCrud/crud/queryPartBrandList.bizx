@@ -48,6 +48,14 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">orgIds[1]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">orgIds[2]</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.part.data.com.ComPartBrand</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
@@ -56,8 +64,12 @@
       <process:to type="query">cond/_expr[1]/parentId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgIds</process:from>
       <process:to type="query">cond/_expr[2]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">in</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -162,6 +174,7 @@
   <process:info author="chenziming" createTime="2018-01-26 11:21:22" date="2018-01-26Z" description="" name="queryPartBrandList" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" name="orgIds" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="parentId" primitiveType="String"/>

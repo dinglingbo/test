@@ -5,13 +5,12 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 $(document).ready(function(v)
 {
-    basicInfoForm = new nui.Form("#basicInfoForm")
+    basicInfoForm = new nui.Form("#basicInfoForm");
 });
 var requiredField = {
     chargeMan:"仓库管理员",
     name:"仓库名称",
-    chargeTel:"管理员电话",
-    levelNumber:"仓库级别"
+    chargeTel:"管理员电话"
 };
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveStorehouse.biz.ext";
 function onOk()
@@ -82,10 +81,5 @@ function setData(data)
     {
         var storehouse = data.storehouse;
         basicInfoForm.setData(storehouse);
-    }
-    if(data.storehouseList)
-    {
-        var storehouseList = data.storehouseList;
-        nui.get("parentId").setData(storehouseList);
     }
 }

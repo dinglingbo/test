@@ -32,7 +32,16 @@ $(document).ready(function(v)
 });
 
 function onValueChanged(){
-
+	var value = nui.get("isInternal").getValue();
+    if(value == 1)
+    {
+        nui.get("fullName").hide();
+        nui.get("fullName1").show();
+    }
+    else{
+        nui.get("fullName1").hide();
+        nui.get("fullName").show();
+    }
 }
 
 function CloseWindow(action) {
@@ -71,7 +80,7 @@ var requiredField = {
 	    {
 	        for(var key in dataList[i])
 	        {
-	            if(typeof dataList[i][key] == "string"){
+	        	if(typeof dataList[i][key] != "function"){
 	                data[key] = dataList[i][key]
 	            }
 	        }
@@ -79,6 +88,20 @@ var requiredField = {
 	    data.isClient = nui.get("isClient").getValue();
 	    data.isSupplier = nui.get("isSupplier").getValue();
 	    data.isDisabled = nui.get("isDisabled").getValue();
+	    data.isInternal = nui.get("isInternal").getValue();
+	    if(data.isInternal == 1)
+	    {
+	    	if(!data.fullName1)
+	        {
+	            nui.alert("请选择公司");
+	            return;
+	        }
+	        data.isInternalId = data.fullName1;
+	        data.fullName = nui.get("fullName1").getText();
+	    }
+	    else{
+	        data.isInternalId = "";
+	    }
 	    console.log(data);
 	    for(var key in requiredField)
 	    {
@@ -88,7 +111,11 @@ var requiredField = {
 	            return;
 	        }
 	    }
-	    data.guestType = '01020102';
+	    if(data.isEdit != "Y")
+	    {
+	        data.guestType = '01020102';
+	    }
+
 	    nui.mask({
 	        html:'保存中...'
 	    });
@@ -162,13 +189,14 @@ var requiredField = {
 	    managerDuty.setData(managerDutyList);
 	    tgrade.setData(tgradeList);
 	    console.log(data);
+	    if(!basicInfoForm)
+	    {
+	        initForm();
+	    }
 	    if(data.supplier)
 	    {
-	        if(!basicInfoForm)
-	        {
-	            initForm();
-	        }
 	        var supplier = data.supplier;
+	        supplier.isEdit="Y";
 	        basicInfoForm.setData(supplier);
 	        contactInfoForm.setData(supplier);
 	        financeInfoForm.setData(supplier);
@@ -178,7 +206,19 @@ var requiredField = {
 	        nui.get("isClient").setValue(supplier.isClient);
 	        nui.get("isSupplier").setValue(supplier.isSupplier);
 	        nui.get("isDisabled").setValue(supplier.isDisabled);
-
+	        nui.get("isInternal").setValue(supplier.isInternal);
+	        if(supplier.isInternal == 1)
+	        {
+	            nui.get("fullName").hide();
+	            nui.get("fullName1").show();
+	            nui.get("fullName1").setValue(supplier.isInternalId);
+	            nui.get("fullName1").setText(supplier.fullName);
+	        }
+	    }
+	    else{
+	        basicInfoForm.setData({
+	            code:currentTimeMillis
+	        });
 	    }
 	}
 

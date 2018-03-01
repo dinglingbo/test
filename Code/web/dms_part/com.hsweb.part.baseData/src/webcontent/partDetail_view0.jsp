@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partDetail.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partDetail.js?v=1.0.10"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;
@@ -58,6 +58,7 @@
         <span>基本信息</span>
         <div id="basicInfoForm" class="form">
             <input class="nui-hidden" name="id"/>
+            <input class="nui-hidden" name="isEdit"/>
             <div class="row">
                 <span class="title title-width1 required">配件品质：</span>
                 <input name="qualityTypeId"

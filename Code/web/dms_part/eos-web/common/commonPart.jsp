@@ -22,15 +22,10 @@
 					currOrgName = userobject.getUserOrgName();
 				}
 			}%>
-	var currUserName =
-<%="'" + currUserName + "'"%>
-	;
-	var currOrgid =
-<%="'" + currOrgid + "'"%>
-	;
-	var currOrgName =
-<%="'" + currOrgName + "'"%>
-	;
+	var currUserName = <%="'" + currUserName + "'"%>;
+	var currOrgid = <%="'" + currOrgid + "'"%>;
+	var currOrgName = <%="'" + currOrgName + "'"%>;
+	var currentTimeMillis = <%= System.currentTimeMillis()%>;
 </script>
 <script type="text/javascript">
 	function getRoot() {
@@ -244,6 +239,37 @@
 			error : function(jqXHR, textStatus, errorThrown) {
 				//  nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
+			}
+		});
+	}
+
+	function selectOrg(elId, orgcodeEl) {
+		nui.open({
+			targetWindow : window,
+			url : "com.hsweb.part.common.orgSelect.flow",
+			title : "请选择公司",
+			width : 200,
+			height : 300,
+			allowDrag : true,
+			allowResize : false,
+			onload : function() {
+			},
+			ondestroy : function(action) {
+				if (action == "ok") {
+					var iframe = this.getIFrameEl();
+					var data = iframe.contentWindow.getData();
+					if (data && data.org && data.org.orgid) {
+						var org = data.org || {};
+						if (elId && nui.get(elId)) {
+							nui.get(elId).setValue(org.orgid);
+							nui.get(elId).setText(org.orgname);
+						}
+						if (orgcodeEl && nui.get(orgcodeEl)) {
+							nui.get(orgcodeEl).setValue(org.orgcode);
+						}
+
+					}
+				}
 			}
 		});
 	}

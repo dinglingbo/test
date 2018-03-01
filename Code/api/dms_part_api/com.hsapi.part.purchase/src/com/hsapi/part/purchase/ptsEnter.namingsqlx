@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:steven -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+
+    <select id="pts_enter_detail" parameterClass="HashMap" resultClass="HashMap">
+		select detail_id, part_id, part_code, part_name, enter_qty, 
+			case when tax_sign = 0 then no_tax_unit_price else tax_unit_price end price, 
+			case when tax_sign = 0 then no_tax_amt else tax_amt end total, 
+			prev_out_detail_id source_id, order_detail_id  order_id
+		from pts_enter_detail where enter_id = #enter_id#
+	</select>
+	
+	
+    <select id="pts_invaicing_detail_bala" parameterClass="HashMap" resultClass="HashMap">
+		SELECT NVL(BALA_QTY, 0) BALA_QTY, NVL(BALA_UNIT_PRICE,0) BALA_UNIT_PRICE, NVL(BALA_AMT,0) BALA_AMT
+		FROM PTS_INVOICING_DETAIL 
+		WHERE DETAIL_ID = (SELECT MAX(DETAIL_ID) FROM PTS_INVOICING_DETAIL WHERE ORGID = #orgId# AND PART_ID = #partId#)
+	</select>	
+	
+</sqlMap>

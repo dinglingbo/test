@@ -169,6 +169,7 @@
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link15" name="link15" displayName="连接线" type="transition">
       <sourceNode>subprocess0</sourceNode>
@@ -259,7 +260,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

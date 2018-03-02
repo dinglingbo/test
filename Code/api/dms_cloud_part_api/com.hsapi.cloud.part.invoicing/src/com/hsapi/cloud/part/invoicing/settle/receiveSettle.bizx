@@ -233,7 +233,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">RPR</process:inputVariable>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">RPR</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
@@ -258,7 +258,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="query" value="String" valueType="Primitive" pattern="reference">SEQ_FI_RP_BILL_R_ID</process:inputVariable>
+        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_FI_RP_BILL_R_ID</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">mainId</process:outputVariable>

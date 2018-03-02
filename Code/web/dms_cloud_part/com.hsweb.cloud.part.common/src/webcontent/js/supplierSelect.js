@@ -120,7 +120,7 @@ function onAdvancedSearchOk()
 {
 	var searchData = advancedSearchForm.getData();
     advancedSearchWin.hide();
-    console.log(searchData);
+    
     if(searchData.showDisabled == 0)
     {
         searchData.isDisabled = 0;
@@ -138,7 +138,7 @@ function onOk()
 	var node = grid.getSelected();
     if(node)
     {
-        console.log(node);
+       
         resultData = {
             supplier:node
         };

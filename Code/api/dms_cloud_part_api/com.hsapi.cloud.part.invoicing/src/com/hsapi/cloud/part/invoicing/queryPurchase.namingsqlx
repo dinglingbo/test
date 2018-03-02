@@ -160,7 +160,7 @@
                 B.SHORT_NAME AS guestShortName
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
-                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.GUEST_ID
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
                 LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
@@ -170,31 +170,31 @@
                 </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
-                    (to_char(A.ORDER_DATE,'yyyy-mm-dd') &gt;= #sOrderDate#)
+                    A.ORDER_DATE,'yyyy-mm-dd' &gt;= #sOrderDate#
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eOrderDate">  
-                    (to_char(A.ORDER_DATE,'yyyy-mm-dd') &lt; #eOrderDate#)
+                    (A.ORDER_DATE,'yyyy-mm-dd' &lt; #eOrderDate#)
                 </isNotEmpty>
                 <!--创建日期 -->
                 <isNotEmpty prepend="and" property="sCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #sCreateDate#)
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #eCreateDate#)
+                    (A.CREATE_DATE &lt; #eCreateDate#)
                 </isNotEmpty>
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &gt;= #sAuditDate#)
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &lt; #eAuditDate#)
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
                 </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #startDate#)
+                    (A.CREATE_DATE &gt;= #startDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="endDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #endDate#)
+                    (A.CREATE_DATE &lt; #endDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
@@ -269,7 +269,7 @@
                 B.SHORT_NAME AS guestShortName
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
-                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.GUEST_ID
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
                 LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
@@ -279,31 +279,31 @@
                 </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
-                    (to_char(A.ORDER_DATE,'yyyy-mm-dd') &gt;= #sOrderDate#)
+                    (A.ORDER_DATE &gt;= #sOrderDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eOrderDate">  
-                    (to_char(A.ORDER_DATE,'yyyy-mm-dd') &lt; #eOrderDate#)
+                    (A.ORDER_DATE &lt; #eOrderDate#)
                 </isNotEmpty>
                 <!--创建日期 -->
                 <isNotEmpty prepend="and" property="sCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #sCreateDate#)
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #eCreateDate#)
+                    (A.CREATE_DATE &lt; #eCreateDate#)
                 </isNotEmpty>
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &gt;= #sAuditDate#)
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &lt; #eAuditDate#)
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
                 </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #startDate#)
+                    (A.CREATE_DATE &gt;= #startDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="endDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #endDate#)
+                    (A.CREATE_DATE &lt; #endDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
@@ -667,7 +667,7 @@
 			B.SHORT_NAME AS guestShortName
 			FROM
 			DMS_CLOUD_PART.PJ_ENTER_MAIN A
-			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.GUEST_ID
+			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
 			LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
 			where 1=1
@@ -677,31 +677,31 @@
                 </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sEnterDate">  
-                    (to_char(A.ENTER_DATE,'yyyy-mm-dd') &gt;= #sEnterDate#)
+                    (A.ENTER_DATE &gt;= #sEnterDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eEnterDate">  
-                    (to_char(A.Enter_DATE,'yyyy-mm-dd') &lt; #eEnterDate#)
+                    (A.Enter_DATE &lt; #eEnterDate#)
                 </isNotEmpty>
                 <!--创建日期 -->
                 <isNotEmpty prepend="and" property="sCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #sCreateDate#)
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #eCreateDate#)
+                    (A.CREATE_DATE &lt; #eCreateDate#)
                 </isNotEmpty>
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &gt;= #sAuditDate#)
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &lt; #eAuditDate#)
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
                 </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #startDate#)
+                    (A.CREATE_DATE &gt;= #startDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="endDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #endDate#)
+                    (A.CREATE_DATE &lt; #endDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
@@ -770,7 +770,7 @@
 			B.SHORT_NAME AS guestShortName
 			FROM
 			DMS_CLOUD_PART.PJ_ENTER_MAIN_CHK A
-			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.GUEST_ID
+			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
 			LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
 			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
 			where 1=1
@@ -780,31 +780,31 @@
                 </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sEnterDate">  
-                    (to_char(A.ENTER_DATE,'yyyy-mm-dd') &gt;= #sEnterDate#)
+                    (A.ENTER_DATE &gt;= #sEnterDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eEnterDate">  
-                    (to_char(A.Enter_DATE,'yyyy-mm-dd') &lt; #eEnterDate#)
+                    (A.Enter_DATE &lt; #eEnterDate#)
                 </isNotEmpty>
                 <!--创建日期 -->
                 <isNotEmpty prepend="and" property="sCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #sCreateDate#)
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eCreateDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #eCreateDate#)
+                    (A.CREATE_DATE &lt; #eCreateDate#)
                 </isNotEmpty>
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &gt;= #sAuditDate#)
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eAuditDate">  
-                    (to_char(A.AUDIT_DATE,'yyyy-mm-dd') &lt; #eAuditDate#)
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
                 </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &gt;= #startDate#)
+                    (A.CREATE_DATE &gt;= #startDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="endDate">  
-                    (to_char(A.CREATE_DATE,'yyyy-mm-dd') &lt; #endDate#)
+                    (A.CREATE_DATE &lt; #endDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)

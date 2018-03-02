@@ -99,6 +99,7 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjEnterMainList"
                      url="">
                     <div property="columns">

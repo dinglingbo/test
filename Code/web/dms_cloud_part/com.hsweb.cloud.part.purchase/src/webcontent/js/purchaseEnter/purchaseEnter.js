@@ -127,10 +127,22 @@ function loadMainAndDetailInfo(row)
         //grid_details.clearRows();
    }
 }
-function onLeftGridSelectionChanged(){    
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新采购入库'){
+
+        leftGrid.removeRow(row);
+    }
+}
+function onLeftGridSelectionChanged(e)
+{    
    var row = leftGrid.getSelected(); 
    
-   loadMainAndDetailInfo(row);
+   if(row){
+        loadMainAndDetailInfo(row);
+   }
+   
 } 
 function loadRightGridData(mainId)
 {
@@ -625,7 +637,7 @@ function selectSupplier(elId)
                 var data = iframe.contentWindow.getData();
                
                 supplier = data.supplier;
-                var value = supplier.guestId;
+                var value = supplier.id;
                 var text = supplier.fullName;
                 var el = nui.get(elId);
                 el.setValue(value);
@@ -1020,7 +1032,7 @@ function setGuestInfo(params)
                 var supplier = text.suppliers;
                 if(supplier && supplier.length>0) {
                     var data = supplier[0];
-                    var value = data.guestId;
+                    var value = data.id;
                     var text = data.fullName;
                     var el = nui.get('guestId');
                     el.setValue(value);

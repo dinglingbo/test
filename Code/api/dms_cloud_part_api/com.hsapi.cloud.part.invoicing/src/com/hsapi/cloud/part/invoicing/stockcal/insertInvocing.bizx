@@ -606,6 +606,10 @@
       <process:from type="query" pattern="reference">dInvocing</process:from>
       <process:to type="query">dInvocingB</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="643" y="321"/>
@@ -710,7 +714,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="query" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_INVOCING_ID</process:inputVariable>
+        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_INVOCING_ID</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">fId</process:outputVariable>

@@ -167,6 +167,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>transactioncommit0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="585" y="150"/>
@@ -233,7 +234,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">RPP</process:inputVariable>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">RPP</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
@@ -259,7 +260,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="query" value="String" valueType="Primitive" pattern="reference">SEQ_FI_RP_BILL_P_ID</process:inputVariable>
+        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_FI_RP_BILL_P_ID</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">mainId</process:outputVariable>

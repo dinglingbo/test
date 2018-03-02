@@ -100,7 +100,7 @@
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactioncommit0</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>assign13</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="1002" y="150"/>
@@ -327,6 +327,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.FiGuestBalance</process:inputVariable>
       <process:inputVariable id="1" name="maxColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">createDate</process:inputVariable>
+      <process:inputVariable id="2" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">maxCreateDate</process:outputVariable>
@@ -351,7 +352,7 @@
       <process:to type="query">prevCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">prevCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -525,7 +526,7 @@
       <process:inputVariable id="2" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
@@ -730,8 +731,8 @@
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link28</targetConnections>
-    <location x="1125" y="150"/>
+    <targetConnections>link6</targetConnections>
+    <location x="1185" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -740,9 +741,28 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1123" y="186"/>
+    <location x="1183" y="186"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值12" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link28</targetConnections>
+    <location x="1083" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="1078" y="186"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

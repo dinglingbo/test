@@ -1164,13 +1164,14 @@
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>invokePojo8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="1098" y="200"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1196,7 +1197,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo8label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1222,7 +1223,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.ListUtils.listToArray</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.listToArray</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1248,7 +1249,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo9label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.ListUtils.listToArray</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.listToArray</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1273,7 +1274,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo10label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1305,7 +1306,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo11label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.commonn.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

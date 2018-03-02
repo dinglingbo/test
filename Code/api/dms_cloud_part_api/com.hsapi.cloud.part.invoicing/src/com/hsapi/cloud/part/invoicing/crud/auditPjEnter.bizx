@@ -764,7 +764,7 @@
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -804,13 +804,13 @@
     <figSize height="17" width="56"/>
     <node>transactionrollback2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign10" name="赋值10" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link42" name="link42" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign10</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:leftOperand type="query">auditMain/billTypeId</process:leftOperand>
           <process:rightOperand type="literal">050102</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -820,7 +820,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

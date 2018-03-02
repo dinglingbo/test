@@ -79,7 +79,7 @@
                        name="storeId"
                        class="nui-combobox"
                        textField="name"
-                       valueField="storeId"
+                       valueField="id"
                        emptyText="请选择..."
                        url=""
                        allowInput="true"

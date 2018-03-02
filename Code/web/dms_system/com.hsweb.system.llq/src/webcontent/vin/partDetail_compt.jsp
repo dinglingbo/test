@@ -8,10 +8,12 @@
              allowCellSelect="true"
              style="width:100%;height:100%;"
              showPager="fasle" >                
-            <div property="columns">  
-                <div field="investLevel"    visible="false"><strong>标准店</strong></div>
-                <div field="investLevelId" visible="false" ><strong>标准店ID</strong></div>                                              
-                <div field="fiveForceKpiType" name="fiveForceKpiType" headerAlign="center" width="50px" align="center"></div>
+            <div property="columns">                                         
+                <div field="pid" headerAlign="center" width="50px" align="center">零件号</div>
+                <div field="label" headerAlign="center" width="50px" align="center">名称</div>
+                <div field="num" headerAlign="center" width="50px" align="center">件数</div>
+                <div field="model" headerAlign="center" width="50px" align="center">型号</div>
+                <div field="remark" headerAlign="center" width="50px" align="center">备注</div>
             </div>
         </div>
    </div>        

@@ -173,8 +173,7 @@ function queryCompt(){
 }
 
 function setCompt(data){
-    var list = processKeyValue(data.headermessage);
-    dgcompt.setData(list);
+    dgcompt.setData(data);
     detailCatch['compt'] = 1;
 }
 
@@ -195,8 +194,9 @@ function queryBaseinfo(){
     }	
 }
 
-function setBaseinfo(data){
-    dgbaseinfo.setData(data);
+function setBaseinfo(data, rs){
+    var list = processKeyValue(rs.showmessage);
+    dgbaseinfo.setData(list);
     detailCatch['baseinfo'] = 1;
 }
 

@@ -71,3 +71,10 @@ function processKeyValue(list){
     }
     return dataList;
 }
+
+/*
+*零件图片处理
+*/
+function setPartImg(data, rs){
+    vinPartImg.attr("src", data.imgurl);
+}

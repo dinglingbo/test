@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件品牌</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partBrandMgr.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partBrandMgr.js?v=1.0.10"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -42,7 +42,7 @@
                     <tr>
                         <td style="white-space:nowrap;">
                             <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPartQuality()">新增品质</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPartQuality()">修改品质</a>
+                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPartQuality()" id="editLeft">修改品质</a>
                             <a class="nui-button" plain="true" iconCls="icon-no" onclick="disablePartQuality()" id="disabledLeft" visible="false">禁用品质</a>
                             <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enablePartQuality()" id="enabledLeft" visible="false">启用品质</a>
                         </td>
@@ -77,8 +77,8 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPartBrand()">新增品牌</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPartBrand()">修改品牌</a>
+                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPartBrand()" id="addRight">新增品牌</a>
+                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPartBrand()" id="editRight">修改品牌</a>
                             <a class="nui-button" plain="true" iconCls="icon-no" onclick="disablePartBrand()" id="disabledRight" visible="false">禁用品牌</a>
                             <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enablePartBrand()" id="enabledRight" visible="false">启用品牌</a>
                         </td>

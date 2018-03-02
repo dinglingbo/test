@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.4"></script>
+<script src="<%= request.getContextPath() %>/baseData/js/partMgr/partMgr.js?v=1.0.10"></script>
 <style type="text/css">
 </style>
 </head>
@@ -70,7 +70,7 @@
         <div showCollapseButton="false">
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="addPart()">新增</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editPart()">修改</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editPart()" id="editBtn">修改</a>
                 <a class="nui-button" iconCls="icon-no" plain="true" onclick="disablePart()" id="disableBtn">禁用</a>
                 <a class="nui-button" iconCls="icon-ok" plain="true" onclick="enablePart()" id="enableBtn" visible="false">启用</a>
                 <span class="separator"></span>
@@ -126,11 +126,11 @@
                         </div>
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="dept_name" width="60" headerAlign="center" allowSort="true">助记码</div>
+                                <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true">助记码</div>
 
                                 <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>
 
-                                <div allowSort="true" field="position_name" width="70" headerAlign="center" header="售价方式" allowSort="true"></div>
+                                <div allowSort="true" field="isUniform" width="70" headerAlign="center" header="是否统一售价" allowSort="true"></div>
 
                                 <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div>
                                 <div allowSort="true" field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>

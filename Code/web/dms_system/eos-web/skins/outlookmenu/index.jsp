@@ -31,7 +31,7 @@
 	 --%>
 	<div class="nui-fit">
 		<div id="container">
-				<div id="wrapper" class="wrap">
+				<!--<div id="wrapper" class="wrap">-->
 					<!--侧边栏-->
 					<div class="sidebar">
 						<!--用户信息区-->
@@ -74,7 +74,7 @@
 							<b class="b4"></b>
 						</div>
 					</div>
-				</div>
+				<!--</div>-->
 		</div>
 	</div>
 	<div id="footer">

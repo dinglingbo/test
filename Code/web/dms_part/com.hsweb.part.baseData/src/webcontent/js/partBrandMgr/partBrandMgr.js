@@ -38,10 +38,19 @@ $(document).ready(function(v)
 
 function addOrEditPartQuality(quality)
 {
+	var title = "新增品质";
+    if(quality)
+    {
+        if(quality.orgid != currOrgid)
+        {
+            return;
+        }
+        title = "品质编辑";
+    }
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.baseData.partQualityDetail.flow",
-        title: "新增品质", width: 350, height: 150,
+        title: title, width: 350, height: 150,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -77,11 +86,21 @@ function editPartQuality()
 }
 
 
-function addOrEditPartBrand(brand){
+function addOrEditPartBrand(brand)
+{
+	var title = "新增品牌";
+    if(brand)
+    {
+        if(brand.orgid != currOrgid)
+        {
+            return;
+        }
+        title = "品牌编辑";
+    }
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.baseData.partBrandDetail.flow",
-        title: "新增品质", width: 350, height: 200,
+        title: title, width: 350, height: 200,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -167,7 +186,9 @@ function loadLeftGridData(params)
                 nui.get("disabledLeft").show();
                 nui.get("enabledLeft").hide();
             }
-            loadRightGridData(row.id);
+            onLeftGridRowClick({
+                record:row
+            });
         }
     });
 }
@@ -182,6 +203,25 @@ function onLeftGridRowClick(e)
     else{
         nui.get("disabledLeft").show();
         nui.get("enabledLeft").hide();
+    }
+    if(row.orgid != currOrgid)
+    {
+        nui.get("disabledLeft").disable();
+        nui.get("enabledLeft").disable();
+        nui.get("editLeft").disable();
+        nui.get("addRight").disable();
+        nui.get("editRight").disable();
+        nui.get("disabledRight").disable();
+        nui.get("enabledRight").disable();
+    }
+    else{
+        nui.get("disabledLeft").enable();
+        nui.get("enabledLeft").enable();
+        nui.get("editLeft").enable();
+        nui.get("addRight").enable();
+        nui.get("editRight").enable();
+        nui.get("disabledRight").enable();
+        nui.get("enabledRight").enable();
     }
     loadRightGridData(row.id);
 }

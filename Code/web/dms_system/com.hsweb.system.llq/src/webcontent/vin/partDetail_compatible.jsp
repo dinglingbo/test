@@ -9,8 +9,8 @@
              showColumns="true"
              showPager="fasle" >                
             <div property="columns">                                             
-                <div field="cars_model" headerAlign="center" width="50px" align="center">车型</div>
-                <div field="year" headerAlign="center" width="50px" align="center">年份</div>
+                <div field="cars_model" headerAlign="right" width="20px" align="right">车型</div>
+                <div field="year" headerAlign="left" align="left">年份</div>
             </div>
         </div>
     </div>        

@@ -89,6 +89,7 @@ var requiredField = {
     partBrandId:"配件品牌",
     abcType:"ABC分类"
 };
+var oldData = null;
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePart.biz.ext";
 function onOk()
 {
@@ -117,6 +118,24 @@ function onOk()
         data.fullName = data.fullName + " " + data.spec;
     }
     data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
+    if(data.isEdit == "N")
+    {
+        var matches = data.code.match(/([\w]*)/ig);
+        data.queryCode = "";
+        for(var i=0;i<matches.length;i++)
+        {
+            data.queryCode+=matches[i];
+        }
+        data.oemCode = data.code;
+    }
+    if(oldData && oldData.isUniform == 0 && data.isUniform == 1)
+    {
+        data.needSetUniformDate = "Y";
+    }
+    if(data.qualityTypeId == "000071")
+    {
+    	data.brandCode = data.code;
+    }
     nui.mask({
         html:'保存中...'
     });
@@ -187,8 +206,15 @@ function setData(data)
         });
         getPartById(partData.id,function(data)
         {
-            nui.unmask();
-            var part = data.part;
+        	nui.unmask();
+            data = data||{};
+            var part = data.part||{};
+            if(!part.id)
+            {
+                nui.alert("数据加载出错");
+                return;
+            }
+            oldData = part;
             basicInfoForm.setData(part);
             onQualityTypeIdChanged();
             basicInfoForm.setData(part);

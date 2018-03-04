@@ -9,6 +9,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.cloud.part.invoicing/bin" path="com.hsapi.cloud.part.invoicing/src"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
-	<classpathentry kind="lib" path="F:/FIRE/需要的JAR包/mysql-connector-5.1.41.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

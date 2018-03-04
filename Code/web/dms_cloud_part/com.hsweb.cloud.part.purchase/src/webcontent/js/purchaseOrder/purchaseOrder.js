@@ -509,6 +509,7 @@ function getMainData()
 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+        data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
     }
 
     return data;
@@ -615,7 +616,12 @@ function selectSupplier(elId)
         allowResize:true,
         onload: function ()
         {
-
+            var iframe = this.getIFrameEl();
+            var params = {
+                isSupplier: 1,
+                isClient: 0
+            };
+            iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {
@@ -843,6 +849,13 @@ function addPchsOrderDetail(part)
     });
 }
 function addPart() {
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.auditSign == 1) {
+            return;
+        } 
+    }
+
 	selectPart(function(data) {
 		var part = data.part;
 		addPchsOrderDetail(part);
@@ -872,6 +885,13 @@ function checkPartIDExists(partid){
 var editPartHash = {
 };
 function deletePart(){
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.auditSign == 1) {
+            return;
+        } 
+    }
+
     var part = rightGrid.getSelected();
     if(!part)
     {

@@ -38,11 +38,11 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>invokePojo3</targetNode>
+      <targetNode>invokePojo4</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="-104" y="79"/>
+    <location x="-120" y="79"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -55,7 +55,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="-129" y="115"/>
+    <location x="-145" y="115"/>
     <figSize height="17" width="72"/>
     <node>invokePojo0</node>
   </nodes>
@@ -99,10 +99,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">mainId</process:from>
-      <process:to type="query">pchsOrderMain/id</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">serviceId</process:from>
@@ -338,10 +334,11 @@
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">CGD</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -350,31 +347,29 @@
     <figSize height="17" width="92"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="mainSeqs" displayName="mainSeqs" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getPrimaryKey" displayName="getPrimaryKey" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo3</sourceNode>
+      <sourceNode>invokePojo4</sourceNode>
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="-27" y="80"/>
+    <location x="-34" y="78"/>
     <size height="28" width="22"/>
-    <nodeLabel>invokePojo3label</nodeLabel>
+    <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">pj_pchs_order_main</process:inputVariable>
+      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">pchsOrderMain</process:inputVariable>
     </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">mainId</process:outputVariable>
-    </process:outputVariables>
+    <process:outputVariables/>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="-44" y="116"/>
-    <figSize height="17" width="57"/>
-    <node>invokePojo3</node>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
+    <location x="-65" y="114"/>
+    <figSize height="17" width="85"/>
+    <node>invokePojo4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

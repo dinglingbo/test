@@ -3,6 +3,7 @@
  */
 package com.hsapi.cloud.part.common;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.eos.system.annotation.Bizlet;
@@ -57,6 +58,7 @@ public class BillStateUtils {
 		
 		if (result != null && result.length > 0) {
 			Date tk = result[0].getDate(resColumn);
+			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			
 			return tk;
 		} else {
@@ -106,6 +108,7 @@ public class BillStateUtils {
 		return result;
 
 	}
+	
 }
 	
 

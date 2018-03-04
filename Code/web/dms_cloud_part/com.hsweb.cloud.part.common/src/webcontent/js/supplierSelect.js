@@ -15,6 +15,8 @@ var billTypeIdList = [];
 var billTypeIdHash = {};
 var settTypeIdList = [];
 var settTypeIdHash = {};
+var isSupplier = 0;
+var isClient = 0;
 $(document).ready(function(v)
 {
 	grid = nui.get("datagrid1");
@@ -59,7 +61,6 @@ $(document).ready(function(v)
                     return true;
                 }
             });
-            grid.load();
         }
     });
 });
@@ -77,6 +78,14 @@ function onProvinceSelected(cityId)
         });
         cityEl.setData(currCityList);
     }
+}
+function setData(data)
+{
+    data = data||{};
+    isSupplier = data.isSupplier;
+    isClient = data.isClient;
+
+    search();
 }
 function onSearch(){
     search();
@@ -99,6 +108,8 @@ function getSearchParam()
     {
         params.isDisabled = 0;
     }
+    params.isSupplier = isSupplier;
+    params.isClient = isClient;
     return params;
 }
 function doSearch(params)

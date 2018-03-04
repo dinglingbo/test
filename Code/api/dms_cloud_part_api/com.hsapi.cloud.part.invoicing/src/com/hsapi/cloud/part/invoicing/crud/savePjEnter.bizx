@@ -139,7 +139,7 @@
     <location x="291" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hsapi.cloud.part.common.BillStateUtils.getColumnIntValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
@@ -163,12 +163,13 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NE">
+        <process:simpleCondition operator="LT">
           <process:leftOperand type="query">enterMain/operateDate</process:leftOperand>
           <process:rightOperand type="query">operateDate</process:rightOperand>
         </process:simpleCondition>
@@ -178,7 +179,7 @@
     <location x="424" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hsapi.cloud.part.common.BillStateUtils.getColumnDateValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>

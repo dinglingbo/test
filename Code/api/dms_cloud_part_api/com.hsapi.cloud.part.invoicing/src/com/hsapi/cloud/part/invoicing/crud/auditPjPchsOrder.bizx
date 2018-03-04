@@ -331,7 +331,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">出库明细为空</process:from>
+      <process:from type="literal" pattern="reference">订单明细为空</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

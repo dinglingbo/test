@@ -19,9 +19,9 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getBalanceInvocing" displayName="getBalanceInvocing" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>subprocess5</targetNode>
+      <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="135" y="285"/>
@@ -44,9 +44,9 @@
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getStoreBalanceInvocing" displayName="getStoreBalanceInvocing" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>subprocess4</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="135" y="150"/>
@@ -80,10 +80,6 @@
     <location x="491" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">sId</process:from>
-      <process:to type="query">sdInvocing/id</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">dc</process:from>
       <process:to type="query">sdInvocing/dc</process:to>
@@ -221,7 +217,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
+    <targetConnections>link16</targetConnections>
     <location x="315" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -315,10 +311,6 @@
     <location x="491" y="285"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">fId</process:from>
-      <process:to type="query">dInvocing/id</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">dc</process:from>
       <process:to type="query">dInvocing/dc</process:to>
@@ -456,7 +448,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link13</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="315" y="285"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
@@ -677,54 +669,6 @@
     <location x="554" y="255"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="sId序列号" displayName="partSeqs" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess4</sourceNode>
-      <targetNode>assign1</targetNode>
-    </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <location x="240" y="150"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_STORE_INVOCING_ID</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">sId</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="226" y="185"/>
-    <figSize height="17" width="55"/>
-    <node>subprocess4</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="invocing序列号" displayName="partSeqs" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link3" isDefault="true" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign6</targetNode>
-    </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="240" y="285"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_INVOCING_ID</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">fId</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="211" y="320"/>
-    <figSize height="17" width="85"/>
-    <node>subprocess5</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link25</targetConnections>

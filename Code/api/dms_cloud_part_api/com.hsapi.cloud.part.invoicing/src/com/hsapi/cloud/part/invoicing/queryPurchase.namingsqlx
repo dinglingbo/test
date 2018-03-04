@@ -57,6 +57,7 @@
         <result column="billStatusId" javaType="string" property="billStatusId"/>
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
+        <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjPchsOrderMainList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderMainList">
@@ -108,7 +109,8 @@
             M.settleTypeId,
             M.billStatusId,
             M.guestFullName,
-            M.guestShortName
+            M.guestShortName,
+            M.versionNo
         FROM (
             SELECT DISTINCT
                 A.ID as id,
@@ -157,7 +159,8 @@
                 A.SETTLE_TYPE_ID as settleTypeId,
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
-                B.SHORT_NAME AS guestShortName
+                B.SHORT_NAME AS guestShortName,
+                a.version_no as versionNo
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -266,7 +269,8 @@
                 A.SETTLE_TYPE_ID as settleTypeId,
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
-                B.SHORT_NAME AS guestShortName
+                B.SHORT_NAME AS guestShortName,
+                a.version_no as versionNo
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -576,6 +580,7 @@
         <result column="settleTypeId" javaType="string" property="settleTypeId"/>
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
+        <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjEnterMainList" parameterClass="java.util.HashMap" resultMap="pjEnterMainList">
@@ -621,7 +626,8 @@
 			M.sellRtnAmt,
 			M.settleTypeId,
 			M.guestFullName,
-			M.guestShortName
+			M.guestShortName,
+			M.versionNo
         FROM (
             SELECT DISTINCT
 			A.ID AS id,
@@ -664,7 +670,8 @@
 			A.SELL_RTN_AMT AS sellRtnAmt,
 			A.SETTLE_TYPE_ID AS settleTypeId,
 			B.FULL_NAME AS guestFullName,
-			B.SHORT_NAME AS guestShortName
+			B.SHORT_NAME AS guestShortName,
+			a.version_no as versionNo
 			FROM
 			DMS_CLOUD_PART.PJ_ENTER_MAIN A
 			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -767,7 +774,8 @@
 			A.SELL_RTN_AMT AS sellRtnAmt,
 			A.SETTLE_TYPE_ID AS settleTypeId,
 			B.FULL_NAME AS guestFullName,
-			B.SHORT_NAME AS guestShortName
+			B.SHORT_NAME AS guestShortName,
+			a.version_no as versionNo
 			FROM
 			DMS_CLOUD_PART.PJ_ENTER_MAIN_CHK A
 			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

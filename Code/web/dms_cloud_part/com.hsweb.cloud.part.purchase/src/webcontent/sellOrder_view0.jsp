@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseOrder/purchaseOrder.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/sellOrder/sellOrder.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -99,7 +99,7 @@
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     dataField="pjPchsOrderMainList"
+                     dataField="pjSellOrderMainList"
                      url="">
                     <div property="columns">
                     	<div type="indexcolumn">序号</div>
@@ -169,7 +169,7 @@
                                 </tr>
                                 <tr>
                                     <td class="title required">
-                                        <label>订货日期：</label>
+                                        <label>订单日期：</label>
                                     </td>
                                     <td width="120">
                                         <input name="orderDate"
@@ -182,8 +182,8 @@
                                         <label>预计到货日期：</label>
                                     </td>
                                     <td width="160">
-                                        <input name="planArriveDate"
-                                               id="planArriveDate"
+                                        <input name="planSendDate"
+                                               id="planSendDate"
                                                width="100%"
                                                showTime="true"
                                                class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
@@ -280,7 +280,7 @@
             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
-                     dataField="pjPchsOrderDetailList"
+                     dataField="pjSellOrderDetailList"
                      idField="id"
                      showSummaryRow="true"
                      frozenStartColumn="0"
@@ -328,21 +328,11 @@
 			                            onvaluechanged="" emptyText=""  vtype="required"
 			                            /> 
 					        	</div>	
+                                <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="缺货数量">
+                                </div>
+                                <div field="occupyQty" visible="false" width="60" headerAlign="center" allowSort="true" header="占用数量"></div>
 				    			<div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>	
 				    			<div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>																
-                            </div>
-                        </div>
-                        <div header="不含税信息" headerAlign="center">
-                            <div property="columns">
-                                <div field="noTaxPrice" width="50" headerAlign="center" header="单价"></div>
-                                <div field="noTaxAmt" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="金额"></div>
-                            </div>
-                        </div>
-                        <div header="含税信息" headerAlign="center">
-                            <div property="columns">
-                                <div field="taxRate" width="50" headerAlign="center" header="税率"></div>
-                                <div field="taxPrice" width="50" headerAlign="center" header="单价"></div>
-                                <div field="taxAmt" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                     </div>
@@ -403,7 +393,7 @@
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
         	<tr>
-                <td class="title">订货日期:</td>
+                <td class="title">订单日期:</td>
                 <td>
                     <input name="sOrderDate"
                            width="100%"
@@ -461,7 +451,7 @@
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
+                    <span style="letter-spacing: 6px;">客户:
                 </td>
                 <td colspan="3">
                     <input id="btnEdit2"

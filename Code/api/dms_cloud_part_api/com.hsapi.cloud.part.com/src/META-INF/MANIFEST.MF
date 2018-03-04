@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Require-Bundle: com.eos.foundation
-eos-webCtxPath: com
-Bundle-Vendor: Administrator
-Bundle-Version: 1.0.0
-Bundle-Name: com.hsapi.cloud.part.com
-Bundle-Description: 
-Bundle-SymbolicName: com.hsapi.cloud.part.com
-

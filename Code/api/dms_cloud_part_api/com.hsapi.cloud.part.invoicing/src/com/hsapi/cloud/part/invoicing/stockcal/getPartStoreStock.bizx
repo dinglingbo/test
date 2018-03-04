@@ -88,7 +88,7 @@
       <process:to type="query">cd/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">cd/_expr[3]/orgid</process:to>
     </process:copy>
     <process:copy>

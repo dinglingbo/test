@@ -9,7 +9,7 @@
     </resultMap>
 
     <select id="getEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.EnterOutableQty"> 
-		SELECT  b.ID as id, b.OUTABLE_QTY - NVL(E.SellQty, 0) AS outableQty,
+		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
 				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
 				B.STORE_ID as storeId, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
 				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
@@ -53,7 +53,7 @@
 		WHERE 1 =1 
 			  AND A.AUDIT_SIGN = 1
 		      AND B.OUTABLE_QTY > 0
-		      AND B.OUTABLE_QTY - NVL(E.SellQty, 0) > 0
+		      AND B.OUTABLE_QTY - IFNULL(E.SellQty, 0) > 0
 		
 			<isNotNull prepend = "" property = "orgid">
 				AND A.ORGID = #orgid#
@@ -76,7 +76,7 @@
     
     
     <select id="chooseEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.EnterOutableQty"> 
-		SELECT  b.ID as id, b.OUTABLE_QTY - NVL(E.SellQty, 0) AS outableQty,
+		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
 				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
 				B.STORE_ID as storeId, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
 				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
@@ -95,10 +95,10 @@
 			PJ_ENTER_MAIN_CHK A
 		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
 		INNER JOIN WB_COMMON.COM_ATTRIBUTE F ON F.ID = B.PART_ID
-		INNER JOIN WB_COMMON.COM_GUEST K ON A.GUEST_ID = K.GUEST_ID
+		INNER JOIN WB_COMMON.COM_GUEST K ON A.GUEST_ID = K.ID
 		LEFT JOIN PJ_ENTER_DETAIL_CHK M ON M.ID = B.ROOT_ID
 		LEFT JOIN PJ_ENTER_MAIN_CHK N ON N.ID = M.MAIN_ID
-		LEFT JOIN WB_COMMON.COM_GUEST J ON N.GUEST_ID = J.GUEST_ID
+		LEFT JOIN WB_COMMON.COM_GUEST J ON N.GUEST_ID = J.ID
 		LEFT JOIN (
 			SELECT
 				C.SOURCE_ID,
@@ -141,7 +141,7 @@
 		WHERE 1 =1 
 			  AND A.AUDIT_SIGN = 1
 		      AND B.OUTABLE_QTY > 0
-		      AND B.OUTABLE_QTY - NVL(E.SellQty, 0) > 0
+		      AND B.OUTABLE_QTY - IFNULL(E.SellQty, 0) > 0
 		
 			<isNotNull prepend = "" property = "orgid">
 				AND A.ORGID = #orgid#
@@ -222,7 +222,7 @@
 		FROM
 			PJ_OUT_DETAIL_CHK A
 		INNER JOIN PJ_OUT_MAIN_CHK B ON A.MAIN_ID = B.ID
-		INNER JOIN WB_COMMON.COM_GUEST C ON B.GUEST_ID = C.GUEST_ID
+		INNER JOIN WB_COMMON.COM_GUEST C ON B.GUEST_ID = C.ID
 		INNER JOIN WB_COMMON.COM_ATTRIBUTE D ON A.PART_ID = D.ID
 		where 1 = 1
 		

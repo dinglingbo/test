@@ -275,6 +275,10 @@
       <process:from type="query" pattern="reference">pchsOrderMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">pchsOrderMain/versionNo</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="-70" y="95"/>
@@ -284,7 +288,6 @@
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
     <location x="30" y="23"/>
     <size height="102" width="241"/>
-    <chidren>subprocess2</chidren>
     <chidren>loopstart1</chidren>
     <chidren>loopend1</chidren>
     <chidren>assign4</chidren>
@@ -295,9 +298,9 @@
     <node>loopstart1</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
-    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="link2" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
     <location x="30" y="62"/>
@@ -325,14 +328,10 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>loopend1</targetNode>
     </sourceConnections>
-    <targetConnections>link14</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="166" y="59"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">detailId</process:from>
-      <process:to type="query">tmp/id</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">tmp/mainId</process:to>
@@ -366,31 +365,6 @@
     <location x="144" y="95"/>
     <figSize height="17" width="73"/>
     <node>assign4</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="detailSeqs" displayName="partSeqs" collapsed="false" grouped="true" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="link0" isDefault="true" type="transition">
-      <sourceNode>subprocess2</sourceNode>
-      <targetNode>assign4</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link15</targetConnections>
-    <location x="87" y="60"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.partSeqs</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_PJ_PCHS_ORDER_DETAIL_ID</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">detailId</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="70" y="95"/>
-    <figSize height="17" width="61"/>
-    <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group2" name="group2" grouped="true" gstart="loopstart2" gend="loopend2">
     <location x="300" y="23"/>

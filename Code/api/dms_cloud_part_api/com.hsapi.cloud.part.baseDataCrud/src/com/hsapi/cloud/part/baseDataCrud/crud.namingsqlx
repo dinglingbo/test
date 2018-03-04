@@ -9,6 +9,7 @@
     </resultMap>
     <select id="queryPartList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComAttribute">
     	SELECT a.id id,
+    		   a.orgid orgid,
 		       a.code code,
 		       a.name name,
 		       a.full_name fullName,
@@ -17,7 +18,6 @@
 		       a.common_code commonCode,
 		       a.query_code queryCode,
 		       a.quality_type_id qualityTypeId,
-		       a.orgcode orgcode,
 		       a.part_name_id partNameId,
 		       a.name_py namePy,
 		       a.name_en nameEn,
@@ -78,6 +78,7 @@
                 $sortField$ $sortOrder$
             </isNotEmpty>  
         </dynamic>  
+        
     </select>
     
     
@@ -86,7 +87,7 @@
 		       a.full_name fullName,
 		       a.code      CODE,
 		       a.id        ID,
-		       a.orgcode orgcode,
+		       a.orgid   orgid,
 		       a.card_no   cardNo,
 		       a.py_name   pyName,
 		       a.guest_type guestType,
@@ -132,12 +133,17 @@
 		       a.recorder              recorder,
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
-		       a.modify_date           modifyDate,
-		       a.guest_id guestId
+		       a.modify_date           modifyDate
 		       FROM com_guest a
-		       WHERE a.is_supplier = 1 
-		     <!--  AND a.guest_type = '01020202'-->
-    	<dynamic>
+		       WHERE 1 = 1
+		     <!-- a.is_supplier = 1   AND a.guest_type = '01020202'-->
+    	<dynamic>	
+    		<isNotEmpty prepend="and" property="isSupplie">  
+                (a.is_supplier = #isSupplie#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isClient">  
+                (a.is_client = #isClient#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
@@ -240,8 +246,7 @@
 		       a.recorder              recorder,
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
-		       a.modify_date           modifyDate,
-		       a.guest_id guestId
+		       a.modify_date           modifyDate
 		       FROM com_guest a
 		       WHERE a.is_client = 1
     	<dynamic>

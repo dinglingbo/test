@@ -41,6 +41,14 @@
     <input class="nui-hidden" name="unit"/>
     <input class="nui-hidden" name="oemCode"/>
     <input class="nui-hidden" name="spec"/>
+    <input class="nui-hidden" name="id"/>
+    <input class="nui-hidden" name="rootId"/>
+    <input class="nui-hidden" name="sourceId"/>
+    <input class="nui-hidden" name="taxSign"/>
+    <input class="nui-hidden" name="taxRate"/>
+    <input class="nui-hidden" name="taxPrice"/>
+    <input class="nui-hidden" name="noTaxPrice"/>
+    <input class="nui-hidden" name="enterPrice"/>
     <table style="width: 100%">
         <tr>
             <td class="title">
@@ -79,7 +87,7 @@
                        name="storeId"
                        class="nui-combobox"
                        textField="name"
-                       valueField="storeId"
+                       valueField="id"
                        emptyText="请选择..."
                        url=""
                        allowInput="true"

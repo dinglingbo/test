@@ -128,6 +128,7 @@
                         <div id="basicInfoForm" class="form" contenteditable="false">
                             <input class="nui-hidden" name="id"/>
                             <input class="nui-hidden" name="operateDate"/>
+                            <input class="nui-hidden" name="versionNo"/>
                             <table style="width: 100%;">
                                 <tr>
                                     <td class="title required">

@@ -332,7 +332,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">出库明细为空</process:from>
+      <process:from type="literal" pattern="reference">入库明细为空</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -586,6 +586,16 @@
       <sourceNode>subprocess6</sourceNode>
       <targetNode>assign6</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>assign11</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link28</targetConnections>
     <targetConnections>link30</targetConnections>
     <location x="1315" y="288"/>
@@ -683,7 +693,7 @@
         <process:inputVariable id="2" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">auditMain/serviceId</process:inputVariable>
         <process:inputVariable id="3" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">f/mainId</process:inputVariable>
         <process:inputVariable id="4" name="billDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">f/id</process:inputVariable>
-        <process:inputVariable id="5" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">auditMain/billTypeId</process:inputVariable>
+        <process:inputVariable id="5" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">auditMain/enterTypeId</process:inputVariable>
         <process:inputVariable id="6" name="guestId" type="query" value="Long" valueType="Primitive" pattern="reference">f/guestId</process:inputVariable>
         <process:inputVariable id="7" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">f/guestName</process:inputVariable>
         <process:inputVariable id="8" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">f/partId</process:inputVariable>
@@ -764,7 +774,7 @@
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -795,6 +805,7 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link25</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="1052" y="391"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback2label</nodeLabel>
@@ -804,13 +815,13 @@
     <figSize height="17" width="56"/>
     <node>transactionrollback2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign10" name="赋值10" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link42" name="link42" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign10</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:leftOperand type="query">auditMain/billTypeId</process:leftOperand>
           <process:rightOperand type="literal">050102</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -820,7 +831,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -883,6 +894,25 @@
     <location x="1722" y="323"/>
     <figSize height="17" width="32"/>
     <node>end2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>transactionrollback2</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="1314" y="390"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign11label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">生成应付失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
+    <location x="1309" y="426"/>
+    <figSize height="17" width="39"/>
+    <node>assign11</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

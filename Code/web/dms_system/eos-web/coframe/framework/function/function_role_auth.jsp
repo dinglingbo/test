@@ -72,7 +72,11 @@
             cache: false,
             contentType:'text/json',
             success: function (text) {
-            	nui.alert("权限设置成功");
+            	if(text.data){
+                    nui.alert("权限设置成功");
+            	}else{
+                    nui.alert("权限设置失败");
+                }
             },
             error: function () {
             	nui.alert("权限设置失败");

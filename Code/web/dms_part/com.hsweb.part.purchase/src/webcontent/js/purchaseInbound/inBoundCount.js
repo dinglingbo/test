@@ -16,6 +16,10 @@ function setData(data)
     var part = data.part;
     if(part)
     {
+    	if(part.fullName)
+        {
+            part.partFullName = part.fullName;
+        }
         basicInfoForm.setData(part);
     }
 }
@@ -27,7 +31,7 @@ function getData(){
 
 var requiredField = {
     enterQty:"数量",
-    noTaxUnitPrice:"单价"
+    unitPrice:"单价"
 };
 function onOk()
 {

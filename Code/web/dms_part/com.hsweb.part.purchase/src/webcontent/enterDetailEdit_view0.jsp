@@ -10,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 <script
-	src="<%= request.getContextPath() %>/purchase/js/purchaseInbound/enterDetailEdit.js?v=1.0.2"></script>
+	src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/enterDetailEdit.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -63,7 +63,7 @@
 				<td><input name="enterQty" class="nui-spinner" minValue="1"
 					maxValue="10000000" width="100%" value="1" /></td>
 				<td class="title required"><label>单价</label></td>
-				<td><input name="noTaxUnitPrice" class="nui-textbox width1"
+				<td><input name="unitPrice" class="nui-textbox width1"
 					enabled="true" width="100%" /></td>
 			</tr>
 			<tr>

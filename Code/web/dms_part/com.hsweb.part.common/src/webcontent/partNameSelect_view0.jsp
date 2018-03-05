@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件名称查询</title>
-<script src="<%= request.getContextPath() %>/common/js/partNameSelect.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/commonPart/js/partNameSelect.js?v=1.0.1"></script>
 <style type="text/css">
 </style>
 </head>

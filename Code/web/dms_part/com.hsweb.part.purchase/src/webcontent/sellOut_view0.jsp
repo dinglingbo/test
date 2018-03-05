@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellOut.js?v=1.0.7"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOut.js?v=1.0.18"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -109,13 +109,15 @@
             <div title="销售信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
+                	<input class="nui-hidden" name="id">
+                	<input class="nui-hidden" name="taxSign" id="taxSign"/>
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
                                 <label>销售单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增出库单"/>
+                                <input class="nui-textbox" width="100%" name="outCode" enabled="false" emptyText="新增出库单"/>
                             </td>
                             <td class="title required">
                                 <label>销售日期：</label>
@@ -132,6 +134,7 @@
                             <td>
                                 <input id="storeId"
                                        name="storeId"
+                                       allowInput="false"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="id"
@@ -148,6 +151,7 @@
                             <td>
                                 <input name="billTypeId"
                                        id="billTypeId"
+                                       allowInput="false"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="customid"
@@ -166,6 +170,7 @@
                             <td colspan="3">
                                 <input id="guestId"
                                        name="guestId"
+                                       allowInput="false"
                                        class="nui-buttonedit"
                                        emptyText="请选择查询客户..."
                                        onbuttonclick="selectCustomer('guestId')"
@@ -178,6 +183,7 @@
                             <td colspan="1">
                                 <input name="checker"
                                        id="checker"
+                                       allowInput="false"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="name"
@@ -194,6 +200,7 @@
                             <td>
                                 <input name="billStatus"
                                        id="billStatus"
+                                       allowInput="false"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="customid"
@@ -213,6 +220,7 @@
                             <td colspan="1">
                                 <input name="seller"
                                        id="seller"
+                                       allowInput="false"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="name"
@@ -233,7 +241,7 @@
                                 <label>总金额：</label>
                             </td>
                             <td colspan="1">
-                                <input class="nui-textbox" width="100%" name="totalAmt" enabled="false" style="text-align: right;"/>
+                                <input class="nui-textbox" width="100%" name="receivableAmt" enabled="false" style="text-align: right;"/>
                             </td>
                         </tr>
                         <tr>
@@ -243,7 +251,14 @@
                             <td colspan="5">
                                 <input class="nui-textbox" width="100%" name="remark"/>
                             </td>
-
+							<td class="title">
+                                <label>税率：</label>
+                            </td>
+                            <td colspan="1">
+                                <input class="nui-textbox" width="100%" name="billTaxRate"
+                                       id="billTaxRate"
+                                       enabled="true" style="text-align: right;"/>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -282,7 +297,7 @@
                             <div property="columns">
                                 <div allowSort="true" datatype="float" field="sellUnitPrice" width="60" headerAlign="center" header="单价" align="right"></div>
                                 <div allowSort="true" datatype="int" field="discountRate" width="60" headerAlign="center" header="折扣率(%)" align="right"></div>
-                                <div allowSort="true" datatype="float" field="sellAmt" width="60" headerAlign="center" header="金额" align="right"></div>
+                                <div allowSort="true" datatype="float" field="discountLastAmt" width="60" headerAlign="center" header="金额" align="right"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
@@ -330,6 +345,7 @@
                 <td colspan="3">
                     <input id="btnEdit2"
                            name="guestId"
+                           allowInput="false"
                            class="nui-buttonedit"
                            emptyText="请选择客户..."
                            onbuttonclick="selectCustomer('btnEdit2')"

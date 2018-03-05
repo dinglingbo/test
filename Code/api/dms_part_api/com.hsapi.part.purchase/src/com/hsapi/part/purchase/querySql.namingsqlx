@@ -11,9 +11,9 @@
     
     <select id="queryPtsEnterMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterMain">
     	SELECT a.id ID,
+    			a.enter_code enterCode,
 		       a.source_id sourceId,
 		       a.enter_date enterDate,
-		       a.orgcode orgcode,
 		       a.store_id storeId,
 		       a.guest_id guestId,
 		       a.guest_full_name guestFullName,
@@ -41,7 +41,8 @@
 		       a.record_date recordDate,
 		       a.modifier modifier,
 		       a.modify_date modifyDate,
-		       a.sett_type settType
+		       a.sett_type settType,
+		       a.bill_tax_rate billTaxRate
 		       FROM PTS_ENTER_MAIN a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
@@ -51,10 +52,10 @@
                 (buyer = #buyer#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (to_char(record_date,'yyyy-mm-dd') &gt;= #startDate#)
+                (date_format(record_date,'%Y-mm-dd') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (to_char(record_date,'yyyy-mm-dd') &lt;= #endDate#)
+                (date_format(record_date,'%Y-mm-dd') &lt;= #endDate#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="enterTypeId">  
                 (enter_type_id = #enterTypeId#)
@@ -64,27 +65,27 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(record_date,'yyyymm')=to_char(sysdate,'yyyymm'))
+                (date_format(record_date,'%Y-%m')=date_format(now(),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(record_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
+                (date_format(record_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(record_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
+                (date_format(record_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(record_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
+                (date_format(record_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(record_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
+                (date_format(record_date,'%X-%V')=date_format(now(),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(record_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
+                (date_format(record_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billStatus">  
             <!--单据状态-->
@@ -108,9 +109,9 @@
     
     <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutMain">
     	SELECT a.id ID,
+    			a.out_code outCode,
 		       a.source_id sourceId,
 		       a.out_date outDate,
-		       a.orgcode orgcode,
 		       a.store_id storeId,
 		       a.guest_id guestId,
 		       a.guest_full_name guestFullName,
@@ -138,20 +139,21 @@
 		       a.recorder recorder,
 		       a.record_date recordDate,
 		       a.modifier modifier,
-		       a.modify_date modifyDate 
+		       a.modify_date modifyDate,
+		       a.bill_tax_rate billTaxRate
 		 FROM pts_out_main a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
                 (id like '%$id$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billStatus">  
-                (A.bill_status like '%$billStatus$%')
+                (A.bill_status = #billStatus#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (to_char(record_date,'yyyy-mm-dd') &gt;= #startDate#)
+                (date_format(record_date,'%Y-%m-%d') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (to_char(record_date,'yyyy-mm-dd') &lt;= #endDate#)
+                (date_format(record_date,'%Y-%m-%d') &lt;= #endDate#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="outTypeId">  
                 (out_type_id = #outTypeId#)
@@ -164,27 +166,27 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(record_date,'yyyymm')=to_char(sysdate,'yyyymm'))
+                (date_format(record_date,'%Y-%m')=date_format(now(),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(record_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
+                (date_format(record_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(record_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
+                (date_format(record_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(record_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
+                (date_format(record_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(record_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
+                (date_format(record_date,'%X-%V')=date_format(now(),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(record_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
+                (date_format(record_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="auditStatus">  
             <!--审核状态-->
@@ -203,15 +205,14 @@
     
     <select id="queryPtsEnterMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsEnterMainDetailV">
     	SELECT A.ENTER_DATE enterDate,
-		       A.orgcode orgcode,
 		       A.STORE_ID storeId,
-		       A.GUEST_ID guestId,
-		       A.GUEST_FULL_NAME guestFullName,
+		       IFNULL(E.guest_id,a.GUEST_ID) guestId,
+		       IFNULL(E.GUEST_FULL_NAME,A.GUEST_FULL_NAME) guestFullName,
 		       A.BILL_TYPE_ID billTypeId,
 		       A.BILL_STATUS billStatus,
 		       A.ENTER_TYPE_ID enterTypeId,
 		       A.ENTER_TOTAL_QTY,
-		       A.BACK_REASON_ID,
+		       A.BACK_REASON_ID backReasonId,
 		       A.QUOTER,
 		       A.BUYER buyer,
 		       A.STORE_KEEPER,
@@ -230,9 +231,10 @@
 		       B.PART_ID partId,
 		       B.ENTER_ID enterId,
 		       B.PART_CODE partCode,
-		       C.NAME partName,
-		       '无' partBrandName,
-		       C.UNIT unit,
+		       B.part_name partName,
+			   B.part_name_id partNameId,
+			   B.part_full_name partFullName,
+		       B.UNIT unit,
 		       C.APPLY_CAR_MODEL applyCarModel,
 		       B.ENTER_QTY enterQty,
 		       B.OUTABLE_QTY outableQty,
@@ -247,19 +249,24 @@
 		       B.SUGGEST_AMT,
 		       B.REMARK remark,
 		       B.ORDER_DETAIL_ID,
-		       B.PREV_OUT_DETAIL_ID,
-		       B.ROOT_ENTER_DETAIL_ID
+		       B.PREV_OUT_DETAIL_ID prevOutDetailId,
+		       B.ROOT_ENTER_DETAIL_ID rootEnterDetailId
 		  FROM PTS_ENTER_MAIN A
 		  JOIN PTS_ENTER_DETAIL B
 		    ON (A.ID = B.ENTER_ID)
+		  LEFT JOIN PTS_ENTER_DETAIL D ON (D.detail_id = B.root_enter_detail_id)
+		  LEFT JOIN pts_enter_main E ON (E.id = D.enter_id)
 		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID) where a.orgid = #orgid#
+		    ON (B.PART_ID = C.ID)
+		     where a.orgid = #orgid#
+		     and a.audit_status = 1
+		     and b.outable_qty &gt; 0
     	<dynamic>
     		<isNotEmpty prepend="and" property="enterTypeId">  
                 (A.enter_type_id = #enterTypeId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="guestId">  
-                (A.guest_id = #guestId#)
+                (IFNULL(E.guest_id,a.GUEST_ID) = #guestId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="storeId">  
                 (A.store_id = #storeId#)
@@ -272,45 +279,45 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(A.audit_date,'yyyymm')=to_char(sysdate,'yyyymm'))
+                (date_format(A.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(A.audit_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
+                (date_format(A.audit_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
+                (date_format(A.audit_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
+                (date_format(A.audit_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
+                (date_format(A.audit_date,'%X-%V')=date_format(now(),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
+                (date_format(A.audit_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisYear">  
             <!--本年-->
-                (to_char(A.audit_date,'yyyy')=to_char(sysdate,'yyyy'))
+                (date_format(A.audit_date,'%Y')=date_format(now(),'%Y'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear">  
             <!--上年-->
-                (to_char(A.audit_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+                (date_format(A.audit_date,'%Y')=date_formatADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outableQtyGreaterThanZero">  
             <!---->
                 (B.outable_qty > 0)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (to_char(A.audit_date,'yyyy-mm-dd') &gt;= #startDate#)
+                (date_format(A.audit_date,'%Y-mm-dd') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (to_char(A.audit_date,'yyyy-mm-dd') &lt;= #endDate#)
+                (date_format(A.audit_date,'%Y-mm-dd') &lt;= #endDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">  
                 (B.part_code like '%$partCode$%')
@@ -328,7 +335,6 @@
     <select id="queryPtsOutMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsOutMainDetailV">
     	SELECT B.OUT_ID outId,
 		       A.OUT_DATE outDate,
-		       A.orgcode orgcode,
 		       A.STORE_ID storeId,
 		       A.GUEST_ID guestId,
 		       A.GUEST_FULL_NAME guestFullName,
@@ -352,8 +358,10 @@
 		       B.DETAIL_ID detailId,
 		       B.PART_ID partId,
 		       B.PART_CODE partCode,
-		       C.NAME partName,
-		       C.UNIT unit,
+		       B.part_name partName,
+		       B.part_name_id partNameId,
+		       B.part_full_name partFullName,
+		       B.UNIT unit,
 		       B.OUT_QTY outQty,
 		       B.OUT_BACKABLE_QTY outBackableQty,
 		       B.TAX_SIGN taxSign,
@@ -372,16 +380,20 @@
 		       B.TAX_COST_UNIT_PRICE taxCostUnitPrice,
 		       B.TAX_COST_AMT taxCostAmt,
 		       B.REMARK remark,
-		       B.PREV_ENTER_DETAIL_ID,
-		       B.ROOT_OUT_DETAIL_ID,
+		       B.PREV_ENTER_DETAIL_ID prevEnterDetailId,
+		       B.ROOT_ENTER_DETAIL_ID rootEnterDetailId,
 		       B.ORDER_DETAIL_ID,
 		       C.APPLY_CAR_MODEL applyCarModel
 		  FROM PTS_OUT_MAIN A
 		  JOIN PTS_OUT_DETAIL B
 		    ON (A.ID = B.OUT_ID)
 		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID) where a.orgid = #orgid#
+		    ON (B.PART_ID = C.ID) 
+		    where a.audit_status = 1
     	<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="outTypeId">  
                 (A.out_type_id = #outTypeId#)
             </isNotEmpty>
@@ -395,42 +407,42 @@
                 (B.PART_CODE in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">
-                (to_char(A.audit_date,'yyyy-mm-dd')&gt;=#startDate#)
+                (date_format(A.audit_date,'%Y-mm-dd')&gt;=#startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">
-                (to_char(A.audit_date,'yyyy-mm-dd')&lt;=#endDate#)
+                (date_format(A.audit_date,'%Y-mm-dd')&lt;=#endDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (to_char(A.audit_date,'yyyymm')=to_char(sysdate,'yyyymm'))
+                (date_format(A.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (to_char(A.audit_date,'yyyymm')=to_char(add_months(sysdate,-1),'yyyymm'))
+                (date_format(A.audit_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate,'yyyymmdd'))
+                (date_format(A.audit_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (to_char(A.audit_date,'yyyymmdd')=to_char(sysdate-1,'yyyymmdd'))
+                (date_format(A.audit_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate,'yyyyiw'))
+                (date_format(A.audit_date,'%X-%V')=date_format(now(),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (to_char(A.audit_date,'yyyyiw')=to_char(sysdate-7,'yyyyiw'))
+                (date_format(A.audit_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisYear">  
             <!--本年-->
-                (to_char(A.audit_date,'yyyy')=to_char(sysdate,'yyyy'))
+                (date_format(A.audit_date,'%Y')=date_format(now(),'%Y'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear">  
             <!--上年-->
-                (to_char(A.audit_date,'yyyy')=to_char(add_months(sysdate,-12),'yyyy'))
+                (date_format(A.audit_date,'%Y')=date_format(ADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outableQtyGreaterThanZero">  
             <!---->
@@ -449,7 +461,6 @@
     	SELECT A.ID ID,
 		       A.PART_ID partId,
 		       A.STORE_ID storeId,
-		       A.orgcode orgcode,
 		       A.LAST_SELL_PRICE lastSellPrice,
 		       A.SUGGEST_PRICE suggestPrice,
 		       A.COST_PRICE costPrice,

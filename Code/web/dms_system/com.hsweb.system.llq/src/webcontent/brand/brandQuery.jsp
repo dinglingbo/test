@@ -14,18 +14,18 @@
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=32" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=12" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=1.2" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
         <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false">
             <!--型号-->
-            <div title="型号" name="brand" visible="true">    
+            <div title="型号" name="brand" visible="true" headerStyle="display:none;">    
                 <%@include file="/llq/brand/brandLevel.jsp" %>
             </div>
             <!--主组-->
-            <div title="主组" name="group" visible="true">    
+            <div title="主组" name="group" visible="true" headerStyle="display:none;">    
                 <%@include file="/llq/brand/brandInfos.jsp" %>
             </div>
         </div>

@@ -22,10 +22,18 @@
 					currOrgName = userobject.getUserOrgName();
 				}
 			}%>
-	var currUserName = <%="'" + currUserName + "'"%>;
-	var currOrgid = <%="'" + currOrgid + "'"%>;
-	var currOrgName = <%="'" + currOrgName + "'"%>;
-	var currentTimeMillis = <%= System.currentTimeMillis()%>;
+	var currUserName =
+<%="'" + currUserName + "'"%>
+	;
+	var currOrgid =
+<%="'" + currOrgid + "'"%>
+	;
+	var currOrgName =
+<%="'" + currOrgName + "'"%>
+	;
+	var currentTimeMillis =
+<%=System.currentTimeMillis()%>
+	;
 </script>
 <script type="text/javascript">
 	function getRoot() {
@@ -51,8 +59,9 @@
 		if (provinceEl) {
 			cityEl = nui.get(cityId);
 			var id = provinceEl.getValue();
+			var code = provinceHash[id].code;
 			var currCityList = cityList.filter(function(v) {
-				return v.provinceId == id;
+				return v.parentid == code;
 			});
 			cityEl.setData(currCityList);
 		}
@@ -89,6 +98,9 @@
 			type : "post",
 			success : function(data) {
 				if (data) {
+					data.province.forEach(function(v) {
+						provinceHash[v.id] = v;
+					});
 					callback && callback(data);
 				}
 			},
@@ -268,6 +280,44 @@
 							nui.get(orgcodeEl).setValue(org.orgcode);
 						}
 
+					}
+				}
+			}
+		});
+	}
+
+	var supplier = null;
+	function selectSupplier(elId, billTypeId, settTypeId) {
+		supplier = null;
+		nui.open({
+			targetWindow : window,
+			url : "com.hsweb.part.common.supplierSelect.flow",
+			title : "供应商资料",
+			width : 980,
+			height : 560,
+			allowDrag : true,
+			allowResize : true,
+			onload : function() {
+
+			},
+			ondestroy : function(action) {
+				if (action == 'ok') {
+					var iframe = this.getIFrameEl();
+					var data = iframe.contentWindow.getData();
+					console.log(data);
+					console.log(elId);
+					supplier = data.supplier;
+					var value = supplier.id;
+					var text = supplier.fullName;
+					var el = nui.get(elId);
+					el.setValue(value);
+					el.setText(text);
+					if (nui.get(billTypeId) && supplier.billTypeId) {
+						nui.get(billTypeId).setValue(supplier.billTypeId);
+						nui.get(billTypeId).doValueChanged();
+					}
+					if (nui.get(settTypeId) && supplier.settTypeId) {
+						nui.get(settTypeId).setValue(supplier.settTypeId);
 					}
 				}
 			}

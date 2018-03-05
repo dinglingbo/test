@@ -5,14 +5,17 @@
     <div size="15%" showCollapseButton="false" style="border:0;">
         <br/>
         <center id="groupButton">
-            <a class="nui-button groupButton" onclick="showInfoUp()">上一步</a>&nbsp;
-            <a class="nui-button groupButton" onclick="showInfoDown()">下一步</a>
+            <a class="nui-button groupButton2" onclick="ntab.activeTab(ntab.getTab(0));">车型选择</a>&nbsp;
+            <a class="nui-button groupButton2" onclick="showInfoRightGrid(gridSubGroup)">主组/分组</a>&nbsp;
+            <a class="nui-button groupButton2" style="display:none;" onclick="showInfoRightGrid(gridParts)">零件</a>
         </center>
     </div>
     <div showCollapseButton="false" style="border:0;">
         <br/>
         <div id="topNav">
+            <!--
             <a style="cursor:pointer" onclick="showInfoRightGrid(eval('dg1'))"><B>选择主组</B></a>
+            -->
         </div>
         <br/><br/>
     </div>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/allotMgr/allotEnter.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotEnter.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 60px;

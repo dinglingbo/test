@@ -25,7 +25,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.part.purchase" uri="/purchase/allotOutQuery_view0.jsp">
+  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.part.purchase" uri="/purchasePart/allotOutQuery_view0.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>

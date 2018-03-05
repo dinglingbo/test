@@ -177,6 +177,8 @@ $(document).ready(function(v){
                 "token": token
             }
             callAjax(url, params, processAjax, setDg9);
+        }else{
+            queryGroupByAuth(row.auth);
         }
     });
 });

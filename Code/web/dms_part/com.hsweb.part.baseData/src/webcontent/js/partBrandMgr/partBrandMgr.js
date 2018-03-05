@@ -89,7 +89,7 @@ function editPartQuality()
 function addOrEditPartBrand(brand)
 {
 	var title = "新增品牌";
-    if(brand)
+	if(brand && brand.id)
     {
         if(brand.orgid != currOrgid)
         {

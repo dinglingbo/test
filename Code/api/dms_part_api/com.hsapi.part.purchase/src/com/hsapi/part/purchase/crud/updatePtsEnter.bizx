@@ -157,7 +157,7 @@
       <sourceNode>loopend0</sourceNode>
       <targetNode>transactionbegin1</targetNode>
     </sourceConnections>
-    <targetConnections>link8</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="176" y="64"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
@@ -173,31 +173,24 @@
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign2</chidren>
+    <chidren>invokePojo6</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>invokePojo6</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="80" y="62"/>
+    <location x="51" y="62"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="expression" pattern="reference">time+i</process:from>
-      <process:to type="query">tmp/detailId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">i+1</process:from>
-      <process:to type="query">i</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">enterMain/id</process:from>
       <process:to type="query">tmp/enterId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="78" y="98"/>
+    <location x="49" y="98"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -355,6 +348,29 @@
     <location x="488" y="170"/>
     <figSize height="17" width="100"/>
     <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="getPrimaryKey" displayName="getPrimaryKey" grouped="true" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="120" y="60"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmp</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="89" y="96"/>
+    <figSize height="17" width="85"/>
+    <node>invokePojo6</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

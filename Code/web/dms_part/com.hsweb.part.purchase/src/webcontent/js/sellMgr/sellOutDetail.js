@@ -14,17 +14,24 @@ function setData(data)
     console.log(data);
     data = data||{};
     var part = data.part;
+    var editQtyOnly = !!data.editQtyOnly;
     if(part)
     {
-        console.log(part);
-        part.taxCostAmt = part.taxCostAmt||part.taxAmt;
-        part.taxCostUnitPrice = part.taxCostUnitPrice||part.taxUnitPrice;
-        part.noTaxCostAmt = part.noTaxCostAmt||part.noTaxAmt;
-        part.noTaxCostUnitPrice = part.noTaxCostUnitPrice||part.noTaxUnitPrice;
-        part.costAmt = part.costAmt||part.taxSign==1?part.taxAmt:part.noTaxAmt;
-        part.costUnitPrice = part.costUnitPrice||part.taxSign==1?part.taxUnitPrice:part.noTaxUnitPrice;
         basicInfoForm.setData(part);
+        nui.get("outQty").setMaxValue(part.outableQty);
         onUnitPriceChange();
+        if(editQtyOnly)
+        {
+        	var list = basicInfoForm.getFields();
+            //console.log(list);
+            list.forEach(function(v)
+            {
+                if(v.enabled && v.name != "outQty")
+                {
+                    v.disable();
+                }
+            });
+        }
     }
 }
 var resultData = {};
@@ -50,6 +57,11 @@ function onOk()
             return;
         }
     }
+    var qty = data.outQty;
+    data.sellAmt = data.sellUnitPrice * qty;
+    data.discountAmt = data.sellAmt - data.discountLastAmt;
+    data.sellAmt = data.sellAmt.toFixed(2);
+    data.discountAmt = data.discountAmt.toFixed(2);
     resultData.enterDetail = data;
     CloseWindow("ok");
 }
@@ -77,8 +89,8 @@ function onUnitPriceChange()
     var discountLastUnitPrice = unitPrice * discountRate / 100;
     var discountLastAmt = discountLastUnitPrice * outQty;
     discountLastUnitPriceEl.setValue(discountLastUnitPrice);
-    discountLastAmtEl.setValue(discountLastAmt);
     discountLastAmtEl.setMaxValue(unitPrice*outQty);
+    discountLastAmtEl.setValue(discountLastAmt);
     $("#totalAmt").html("RMB "+ unitPrice*outQty +"元");
     $("#discountLastAmt1").html("RMB "+ discountLastAmt.toFixed(2) +"元");
     $("#youhui").html("RMB "+ (unitPrice*outQty - discountLastAmt).toFixed(2) +"元");

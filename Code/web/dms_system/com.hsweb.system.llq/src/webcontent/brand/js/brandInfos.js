@@ -3,6 +3,7 @@ var vinPartImg;//零件图片
 var gridMainGroup; //主组
 var gridSubGroup;//分组
 var gridParts;//零件
+var currDg;
 var ntab;
 
 $(document).ready(function(v){
@@ -13,7 +14,7 @@ $(document).ready(function(v){
     gridParts = nui.get("gridParts");
     ntab = nui.get("tabs");
     
-    gridMainGroup.on("rowclick", function (e) {//查分组信息
+    gridMainGroup.on("select", function (e) {//查分组信息rowclick
         /* var column = e.column;
         var editor = e.editor;
         field = e.field,
@@ -97,7 +98,8 @@ function setgridMainGroup(data){
         ]
     });
     gridMainGroup.setData(data);
-    gridSubGroup.selectFirst();
+    //gridSubGroup.selectFirst();
+    gridMainGroup.select(gridMainGroup.getRow(0), true);
     ntab.activeTab(ntab.getTab(1));
     //gridSubGroup.onRowclick();
 }
@@ -161,19 +163,27 @@ function showInfoRightGrid(gridObj){
     
     gridObj.show();
     //var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
-    var num = (gridObj==gridSubGroup)? 0 : 1;
-    $($(".groupButton")[num]).show();
+    var num = (gridObj==gridSubGroup)? 1 : 2;
+    $($(".groupButton2")[num]).show();
     //$($(".groupButton")[num]).click();
-    setBgColor($(".groupButton")[num]);
+    setBgColor($(".groupButton2")[num]);
     
     if(gridObj != gridParts){//非零件
         showInfoLeftGrid(gridMainGroup);
     }
+    
+    /* if(gridObj == gridSubGroup){
+        $(".groupButton2").attr("style", "background:#ffffff;");
+        $($(".groupButton2")[1]).attr("style", "background:#e0d7d7;");
+    }else{
+        $(".groupButton2").attr("style", "background:#ffffff;");
+        $($(".groupButton2")[2]).attr("style", "background:#e0d7d7;");
+    } */
 }
 
 
 function setBgColor(obj){
-    $(".groupButton:visible").attr("style", "background:#ffffff;");
+    $(".groupButton2:visible").attr("style", "background:#ffffff;");
     var color = obj.style.background;
     if(color=="red"){
         obj.style.background = "#ffffff";

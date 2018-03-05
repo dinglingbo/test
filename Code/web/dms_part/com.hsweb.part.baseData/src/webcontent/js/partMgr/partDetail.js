@@ -97,7 +97,7 @@ function onOk()
     console.log(data);
     for(var key in requiredField)
     {
-        if(!data[key] || data[key].trim().length==0)
+    	if(!data[key] || data[key].toString().trim().length==0)
         {
             nui.alert(requiredField[key]+"不能为空");
             return;
@@ -118,7 +118,7 @@ function onOk()
         data.fullName = data.fullName + " " + data.spec;
     }
     data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
-    if(data.isEdit == "N")
+    if(!data.id)
     {
         var matches = data.code.match(/([\w]*)/ig);
         data.queryCode = "";

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/common/js/sellOutSelect.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/commonPart/js/sellOutSelect.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -93,7 +93,7 @@
                     <div allowSort="true" datatype="int" field="outBackableQty" width="60" headerAlign="center" header="可退货数" align="right"></div>
                     <div allowSort="true" datatype="float" field="sellUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
                     <div allowSort="true" datatype="int" field="discountRate" width="80" headerAlign="center" header="折扣率(%)" align="right"></div>
-                    <div allowSort="true" datatype="float" field="sellAmt" width="80" headerAlign="center" header="金额" align="right"></div>
+                    <div allowSort="true" datatype="float" field="discountLastAmt" width="80" headerAlign="center" header="金额" align="right"></div>
                 </div>
             </div>
             <div header="销售信息" headerAlign="center">

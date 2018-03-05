@@ -257,8 +257,12 @@ function setData(data,ck)
 }
 function onPartGridDraw(e)
 {
+	var row = e.record;
     switch (e.field)
     {
+	    case "outQty":
+	        e.cellHtml = row.enterQty - row.outableQty;
+	        break;
         case "storeId":
             if(storehouseHash && storehouseHash[e.value])
             {

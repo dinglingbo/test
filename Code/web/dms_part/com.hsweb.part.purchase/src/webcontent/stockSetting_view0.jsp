@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/stockMgr/stockSetting.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/stockMgr/stockSetting.js?v=1.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

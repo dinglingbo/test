@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseReturn/purchaseReturn.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseReturn.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -109,6 +109,9 @@
             <div title="退货信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
+                	<input class="nui-hidden" name="taxSign" id="taxSign"/>
+                    <input class="nui-hidden" name="billTaxRate" id="billTaxRate"/>
+                    <input class="nui-textbox" visible="false" name="billTypeId" id="billTypeId"/>
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
@@ -152,7 +155,7 @@
                                        name="guestId"
                                        class="nui-buttonedit"
                                        emptyText="请选择供应商..."
-                                       onbuttonclick="selectSupplier('guestId')"
+                                       onbuttonclick="selectSupplier('guestId','billTypeId')"
                                        width="100%"
                                        placeholder="请选择供应商"
                                        selectOnFocus="true" />

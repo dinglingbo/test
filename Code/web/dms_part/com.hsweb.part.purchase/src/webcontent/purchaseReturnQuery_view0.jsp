@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货查询</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseReturn/purchaseReturnQuery.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseReturnQuery.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;

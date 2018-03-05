@@ -31,7 +31,7 @@ $(document).ready(function(v)
         var province = data.province;
         var city = data.city;
         cityList = city;
-        tree.loadList(province.concat(city),"id","provinceId");
+        tree.loadList(province.concat(city),"code","parentid");
         provinceEl = nui.get("provinceId");
         provinceEl.setData(province);
     });
@@ -63,21 +63,6 @@ $(document).ready(function(v)
         }
     });
 });
-var cityList = [];
-var provinceEl = null;
-var cityEl = null;
-function onProvinceSelected(cityId)
-{
-    if(provinceEl)
-    {
-        cityEl = nui.get(cityId);
-        var id = provinceEl.getValue();
-        var currCityList = cityList.filter(function(v){
-            return v.provinceId == id;
-        });
-        cityEl.setData(currCityList);
-    }
-}
 function onSearch(){
     search();
 }
@@ -208,9 +193,9 @@ function onDrawCell(e)
 }
 function onNodeDblClick(e)
 {
-    var node = e.node;
+	var node = e.node;
     var params = getSearchParam();
-    if(node.provinceId)
+    if(node.level == 2)
     {
         params.cityId = node.id;
         var parentNode = tree.getParentNode(node);

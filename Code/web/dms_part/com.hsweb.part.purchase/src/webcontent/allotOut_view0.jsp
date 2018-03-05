@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/allotMgr/allotOut.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotOut.js?v=1.0.9"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -222,7 +222,7 @@
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
                                 <div field="partCode" width="100" headerAlign="center" header="配件编码" allowSort="true"></div>
-                                <div field="partName" headerAlign="center" header="配件名称" allowSort="true"></div>
+                                <div field="partFullName" headerAlign="center" header="配件名称" allowSort="true"></div>
                                 <div field="brandName" width="60" headerAlign="center" header="品牌" allowSort="true"></div>
                                 <div field="applyCarModel" width="60" headerAlign="center" header="车型" allowSort="true"></div>
                                 <div field="unit" width="40" headerAlign="center" header="单位" align="right" allowSort="true"></div>

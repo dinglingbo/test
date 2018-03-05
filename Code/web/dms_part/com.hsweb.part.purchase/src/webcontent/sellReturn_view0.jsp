@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellReturn.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellReturn.js?v=1.0.9"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -116,7 +116,7 @@
                                 <label>退货单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增退货单"/>
+                                <input class="nui-textbox" width="100%" name="enterCode" enabled="false" emptyText="新增退货单"/>
                             </td>
                             <td class="title required">
                                 <label>退货日期：</label>
@@ -248,8 +248,8 @@
                         </div>
                         <div header="金额信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div allowSort="true" datatype="float" field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div allowSort="true" datatype="float" field="suggestPrice" width="40" headerAlign="center" header="单价"></div>
+                                <div allowSort="true" datatype="float" field="suggestAmt" width="40" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">

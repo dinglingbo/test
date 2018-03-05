@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: 
-eos-webCtxPath: baseData
 Bundle-Vendor: chenziming
+eos-webCtxPath: baseDataPart
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsweb.part.baseData
 Bundle-Description: 	

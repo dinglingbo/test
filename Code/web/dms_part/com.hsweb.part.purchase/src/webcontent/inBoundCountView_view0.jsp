@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseInbound/inBoundCount.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/inBoundCount.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -35,6 +35,7 @@
     <input class="nui-hidden" name="detailId"/>
     <input class="nui-hidden" name="partId"/>
     <input class="nui-hidden" name="applyCarModel">
+    <input class="nui-hidden" name="partNameId"/>
     <table style="width: 100%">
         <tr>
             <td class="title">
@@ -55,7 +56,7 @@
                 <label>配件全称</label>
             </td>
             <td colspan="3">
-                <input name="fullName" class="nui-textbox" enabled="false" width="100%"/>
+                <input name="partFullName" class="nui-textbox" enabled="false" width="100%"/>
             </td>
         </tr>
         <tr>
@@ -77,7 +78,7 @@
                 <label>单价</label>
             </td>
             <td>
-                <input name="noTaxUnitPrice" class="nui-textbox width1" enabled="true" width="100%"/>
+                <input name="unitPrice" class="nui-textbox width1" enabled="true" width="100%"/>
             </td>
         </tr>
         <tr>

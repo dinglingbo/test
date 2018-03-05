@@ -27,7 +27,7 @@ function getData(){
 
 var requiredField = {
     enterQty:"数量",
-    noTaxUnitPrice:"单价"
+    unitPrice:"单价"
 };
 function onOk()
 {

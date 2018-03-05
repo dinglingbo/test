@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title> 
-<script src="<%= request.getContextPath() %>/common/js/orgSelect.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/commonPart/js/orgSelect.js?v=1.0.0"></script>
 </head>
 <body>
 <div class="nui-fit">

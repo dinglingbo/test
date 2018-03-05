@@ -10,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 
-<script src="<%= request.getContextPath() %>/baseData/js/customerMgr/customerAdd.js?v=1.0.7"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.7"></script>
 <style type="text/css">
 
 .title {

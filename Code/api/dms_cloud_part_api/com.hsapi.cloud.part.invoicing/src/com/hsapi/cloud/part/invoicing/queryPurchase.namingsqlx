@@ -682,6 +682,9 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="enterTypeId"> 
+                    (A.ENTER_TYPE_ID = #enterTypeId#)
+                </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sEnterDate">  
                     (A.ENTER_DATE &gt;= #sEnterDate#)
@@ -785,6 +788,9 @@
             <dynamic>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="enterTypeId"> 
+                    (A.ENTER_TYPE_ID = #enterTypeId#)
                 </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sEnterDate">  

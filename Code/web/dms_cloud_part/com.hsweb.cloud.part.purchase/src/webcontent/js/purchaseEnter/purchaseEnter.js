@@ -167,6 +167,7 @@ function onLeftGridDrawCell(e)
 var currType = 2;
 function quickSearch(type){
     var params = {};
+    params.enterTypeId = '050101';
     switch (type)
     {
         case 0:
@@ -231,6 +232,7 @@ function onSearch(){
 function search()
 {
     var param = getSearchParam();
+    param.enterTypeId = '050101';
     doSearch(param);
 }
 function getSearchParam(){
@@ -311,6 +313,7 @@ function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
     var i;
+    searchData.enterTypeId = '050101';
     //订货日期
     if(searchData.sEnterDate)
     {

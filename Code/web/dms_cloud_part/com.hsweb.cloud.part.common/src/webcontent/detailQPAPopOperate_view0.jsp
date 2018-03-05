@@ -41,7 +41,6 @@
     <input class="nui-hidden" name="unit"/>
     <input class="nui-hidden" name="oemCode"/>
     <input class="nui-hidden" name="spec"/>
-    <input class="nui-hidden" name="id"/>
     <input class="nui-hidden" name="rootId"/>
     <input class="nui-hidden" name="sourceId"/>
     <input class="nui-hidden" name="taxSign"/>

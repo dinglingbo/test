@@ -53,11 +53,6 @@
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)" id="type8">已过帐</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
                 <span class="separator"></span>
-                <label style="font-family:Verdana;">供应商：</label>
-                <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..."
-                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
             </td>
@@ -122,7 +117,7 @@
                  style="width:100%;height: 130px;">
             
              -->
-                <fieldset id="fd1" style="width:98%;height: 130px;">
+                <fieldset id="fd1" style="width:98%;height: 80px;">
                     <legend><span>盘盈入库信息</span></legend>
                     <div class="fieldset-body">
                     
@@ -133,20 +128,6 @@
                             <input class="nui-hidden" id="enterTypeId" name="enterTypeId"/>
                             <table style="width: 100%;">
                                 <tr>
-                                    <td class="title required">
-                                        <label>供应商：</label>
-                                    </td>
-                                    <td colspan="3">
-                                        <input id="guestId"
-                                               name="guestId"
-                                               class="nui-buttonedit"
-                                               emptyText="请选择供应商..."
-                                               onbuttonclick="selectSupplier('guestId')"
-                                               onvaluechanged="onGuestValueChanged"
-                                               width="100%"
-                                               placeholder="请选择供应商"
-                                               selectOnFocus="true" />
-                                    </td>
                                     <td class="title required">
                                         <label>仓库：</label>
                                     </td>
@@ -163,16 +144,31 @@
                                                width="100%"
                                                nullItemText="请选择..."/>
                                     </td>
+                                    <td class="title  required">
+                                        <label>盘点员：</label>
+                                    </td>
+                                    <td colspan="1">
+                                        <input class="nui-textbox" id="enterMan" name="enterMan" width="100%">
+                                    </td>
                                     <td class="title">
                                         <label>盘盈单号：</label>
                                     </td>
                                     <td>
                                         <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新盘盈订单"/>
                                     </td>
+                                    <td class="title required">
+                                        <label>开票税点：</label>
+                                    </td>
+                                    <td>
+                                        <input class="nui-textbox" vtype="float" id="taxRate" name="taxRate" enabled="true" width="100%">
+                                    </td>
+                                    <td colspan="2">
+                                        <input id="taxSign" name="taxSign" enabled="true" class="mini-checkbox" text="是否开票" trueValue="1" falseValue="0" />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="title required">
-                                        <label>入库日期：</label>
+                                        <label>盘点日期：</label>
                                     </td>
                                     <td width="120">
                                         <input name="enterDate"
@@ -181,74 +177,6 @@
                                                showTime="true"
                                                class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
                                     </td>
-                                    <!-- <td class="title wide">
-                                        <label>预计到货日期：</label>
-                                    </td>
-                                    <td width="160">
-                                        <input name="planArriveDate"
-                                               id="planArriveDate"
-                                               width="100%"
-                                               showTime="true"
-                                               class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
-                                    </td> -->
-                                    <td class="title">
-                                        <label>手工单号：</label>
-                                    </td>
-                                    <td colspan="1">
-                                        <input class="nui-textbox" id="code" name="code" width="100%">
-                                    </td>
-                                    <td class="title">
-                                        <label>盘点员：</label>
-                                    </td>
-                                    <td colspan="1">
-                                        <input class="nui-textbox" id="enterMan" name="enterMan" width="100%">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title required">
-                                        <label>票据类型：</label>
-                                    </td>
-                                    <td>
-                                        <input name="billTypeId"
-                                               id="billTypeId"
-                                               class="nui-combobox width1"
-                                               textField="name"
-                                               valueField="customid"
-                                               emptyText="请选择..."
-                                               url=""
-                                               allowInput="false"
-                                               showNullItem="false"
-                                               width="100%"
-                                               onvaluechanged="onBillTypeIdChanged"
-                                               nullItemText="请选择..."/>
-                                    </td>
-                                    <td class="title required">
-                                        <label>结算方式：</label>
-                                    </td>
-                                    <td>
-                                        <input name="settleTypeId"
-                                               id="settleTypeId"
-                                               class="nui-combobox width1"
-                                               textField="name"
-                                               valueField="customid"
-                                               emptyText="请选择..."
-                                               url=""
-                                               allowInput="false"
-                                               showNullItem="false"
-                                               width="100%"
-                                               nullItemText="请选择..."/>
-                                    </td>
-                                    <td class="title required">
-                                        <label>开票税点：</label>
-                                    </td>
-                                    <td>
-                                        <input class="nui-textbox" id="taxRate" name="taxRate" enabled="false" width="100%">
-                                    </td>
-                                    <td colspan="2">
-                                        <input id="taxSign" name="taxSign" enabled="false" class="mini-checkbox" text="是否开票" trueValue="1" falseValue="0" />
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td class="title">
                                         <label>备注：</label>
                                     </td>
@@ -406,7 +334,7 @@
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
         	<tr>
-                <td class="title">入库日期:</td>
+                <td class="title">盘点日期:</td>
                 <td>
                     <input name="sEnterDate"
                            width="100%"
@@ -460,20 +388,6 @@
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
-                </td>
-                <td colspan="3">
-                    <input id="btnEdit2"
-                           name="guestId"
-                           class="nui-buttonedit"
-                           emptyText="请选择供应商..."
-                           onbuttonclick="selectSupplier('btnEdit2')"
-                           width="100%"
-                           selectOnFocus="true" />
                 </td>
             </tr>
             <tr>

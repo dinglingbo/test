@@ -325,7 +325,7 @@
       <process:to type="query">billrecord/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">customCode</process:from>
+      <process:from type="query" pattern="reference">customCode</process:from>
       <process:to type="query">billrecord/customCode</process:to>
     </process:copy>
     <process:copy>
@@ -466,7 +466,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

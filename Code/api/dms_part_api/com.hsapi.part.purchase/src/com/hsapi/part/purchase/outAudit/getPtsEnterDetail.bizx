@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getPtsOutDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="获取出库明细表记录" title="steven&#x9;18-2-11 下午3:52">
-    <location x="60" y="13"/>
-    <size height="100" width="149"/>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getPtsEnterDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="获取入库明细表记录" title="chenziming&#x9;18-3-3 下午2:43">
+    <location x="75" y="13"/>
+    <size height="100" width="190"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.part.data.pts.PtsOutDetail" name="ptsOutDetail" type="query" valueType="DataObject">ptsOutDetail</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.PtsEnterDetail" name="detail" type="query" valueType="DataObject">detail</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -64,7 +64,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">ptsOutDetail</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">detail</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java">len</process:outputVariable>
@@ -87,7 +87,7 @@
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">detailId</process:from>
-      <process:to type="query">ptsOutDetail/detailId</process:to>
+      <process:to type="query">detail/detailId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -105,6 +105,10 @@
     <location x="498" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp</process:from>
+      <process:to type="query">ptsOutDetail</process:to>
+    </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
@@ -153,7 +157,7 @@
     <process:input description="" isArray="false" name="detailId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="ptsOutDetail"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="detail"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

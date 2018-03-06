@@ -11,7 +11,7 @@
     
     <select id="queryPtsEnterMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterMain">
     	SELECT a.id ID,
-    			a.enter_code enterCode,
+    		   a.enter_code enterCode,
 		       a.source_id sourceId,
 		       a.enter_date enterDate,
 		       a.store_id storeId,
@@ -46,16 +46,16 @@
 		       FROM PTS_ENTER_MAIN a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
-                (id like '%$id$%')
+                (enter_code like '%$id$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="buyer">  
                 (buyer = #buyer#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (date_format(record_date,'%Y-mm-dd') &gt;= #startDate#)
+                (date_format(record_date,'%Y-%m-%d') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (date_format(record_date,'%Y-mm-dd') &lt;= #endDate#)
+                (date_format(record_date,'%Y-%m-%d') &lt;= #endDate#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="enterTypeId">  
                 (enter_type_id = #enterTypeId#)
@@ -99,7 +99,7 @@
                 (post_status = #postStatus#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="enterIdList">  
-                (a.id in ($enterIdList$))
+                (a.enter_code in ($enterIdList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
@@ -109,7 +109,7 @@
     
     <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutMain">
     	SELECT a.id ID,
-    			a.out_code outCode,
+    		   a.out_code outCode,
 		       a.source_id sourceId,
 		       a.out_date outDate,
 		       a.store_id storeId,
@@ -144,7 +144,7 @@
 		 FROM pts_out_main a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
-                (id like '%$id$%')
+                (out_code like '%$id$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billStatus">  
                 (A.bill_status = #billStatus#)
@@ -159,7 +159,7 @@
                 (out_type_id = #outTypeId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outIdList">  
-                (A.id in ($outIdList$))
+                (A.out_code in ($outIdList$))
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="guestId">  
                 (A.guest_id = #guestId#)
@@ -204,126 +204,126 @@
     
     
     <select id="queryPtsEnterMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsEnterMainDetailV">
-    	SELECT A.ENTER_DATE enterDate,
-		       A.STORE_ID storeId,
-		       IFNULL(E.guest_id,a.GUEST_ID) guestId,
-		       IFNULL(E.GUEST_FULL_NAME,A.GUEST_FULL_NAME) guestFullName,
-		       A.BILL_TYPE_ID billTypeId,
-		       A.BILL_STATUS billStatus,
-		       A.ENTER_TYPE_ID enterTypeId,
-		       A.ENTER_TOTAL_QTY,
-		       A.BACK_REASON_ID backReasonId,
-		       A.QUOTER,
-		       A.BUYER buyer,
-		       A.STORE_KEEPER,
-		       A.AUDIT_STATUS,
-		       A.AUDITOR,
-		       A.AUDIT_DATE,
-		       A.POST_STATUS,
-		       A.POST_MAN,
-		       A.POST_DATE,
-		       A.RECORDER,
-		       A.MODIFIER modifier,
-		       A.RECORD_DATE,
-		       A.MODIFY_DATE,
-		       A.SETT_TYPE settType,
-		       B.DETAIL_ID detailId,
-		       B.PART_ID partId,
-		       B.ENTER_ID enterId,
-		       B.PART_CODE partCode,
-		       B.part_name partName,
-			   B.part_name_id partNameId,
-			   B.part_full_name partFullName,
-		       B.UNIT unit,
-		       C.APPLY_CAR_MODEL applyCarModel,
-		       B.ENTER_QTY enterQty,
-		       B.OUTABLE_QTY outableQty,
-		       B.TAX_SIGN taxSign,
-		       B.TAX_RATE taxRate,
-		       B.TAX_RATE_AMT taxRateAmt,
-		       B.TAX_UNIT_PRICE taxUnitPrice,
-		       B.TAX_AMT taxAmt,
-		       B.NO_TAX_UNIT_PRICE noTaxUnitPrice,
-		       B.NO_TAX_AMT noTaxAmt,
-		       B.SUGGEST_PRICE,
-		       B.SUGGEST_AMT,
-		       B.REMARK remark,
-		       B.ORDER_DETAIL_ID,
-		       B.PREV_OUT_DETAIL_ID prevOutDetailId,
-		       B.ROOT_ENTER_DETAIL_ID rootEnterDetailId
-		  FROM PTS_ENTER_MAIN A
-		  JOIN PTS_ENTER_DETAIL B
-		    ON (A.ID = B.ENTER_ID)
-		  LEFT JOIN PTS_ENTER_DETAIL D ON (D.detail_id = B.root_enter_detail_id)
-		  LEFT JOIN pts_enter_main E ON (E.id = D.enter_id)
-		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID)
+    	SELECT
+			a.enter_date enterDate,
+			a.store_id storeId,
+			IFNULL( e.guest_id, a.guest_id ) guestId,
+			IFNULL( e.guest_full_name, a.guest_full_name ) guestFullName,
+			a.bill_type_id billTypeId,
+			a.bill_status billStatus,
+			a.enter_type_id enterTypeId,
+			a.enter_total_qty enterTotalQty,
+			a.back_reason_id backReasonId,
+			a.quoter,
+			a.buyer buyer,
+			a.store_keeper storeKeeper,
+			a.audit_status auditStatus,
+			a.auditor auditor,
+			a.audit_date auditDate,
+			a.post_status post_status,
+			a.post_man postMan,
+			a.post_date postDate,
+			a.recorder recorder,
+			a.modifier modifier,
+			a.record_date recordDate,
+			a.modify_date modifyDate,
+			a.sett_type settType,
+			b.detail_id detailId,
+			b.part_id partId,
+			b.enter_id enterId,
+			b.part_code partCode,
+			b.part_name partName,
+			b.part_name_id partNameId,
+			b.part_full_name partFullName,
+			b.unit unit,
+			c.part_brand_id partBrandId,
+			c.apply_car_model applyCarModel,
+			b.enter_qty enterQty,
+			b.outable_qty outableQty,
+			b.tax_sign taxSign,
+			b.tax_rate taxRate,
+			b.tax_rate_amt taxRateAmt,
+			b.tax_unit_price taxUnitPrice,
+			b.tax_amt taxAmt,
+			b.no_tax_unit_price noTaxUnitPrice,
+			b.no_tax_amt noTaxAmt,
+			b.suggest_price suggestPrice,
+			b.suggest_amt suggestAmt,
+			b.remark remark,
+			b.prev_out_detail_id prevOutDetailId,
+			b.root_enter_detail_id rootEnterDetailId,
+			a.enter_code enterCode
+		FROM
+			pts_enter_main a
+			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
+			LEFT JOIN pts_enter_detail d ON ( d.detail_id = b.root_enter_detail_id )
+			LEFT JOIN pts_enter_main e ON ( e.id = d.enter_id )
+			LEFT JOIN wb_common.com_attribute c ON ( c.id = b.part_id )
 		     where a.orgid = #orgid#
 		     and a.audit_status = 1
-		     and b.outable_qty &gt; 0
     	<dynamic>
     		<isNotEmpty prepend="and" property="enterTypeId">  
-                (A.enter_type_id = #enterTypeId#)
+                (a.enter_type_id = #enterTypeId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="guestId">  
-                (IFNULL(E.guest_id,a.GUEST_ID) = #guestId#)
+                (IFNULL(e.guest_id,a.guest_id) = #guestId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="storeId">  
-                (A.store_id = #storeId#)
+                (a.store_id = #storeId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="enterIdList">  
-                (A.id in ($enterIdList$))
+                (a.enter_code in ($enterIdList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">  
-                (B.part_code in ($partCodeList$))
+                (b.part_code in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (date_format(A.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+                (date_format(a.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (date_format(A.audit_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+                (date_format(a.audit_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="today">  
             <!--本日-->
-                (date_format(A.audit_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+                (date_format(a.audit_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="yesterday">  
             <!--昨日-->
-                (date_format(A.audit_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+                (date_format(a.audit_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisWeek">  
             <!--本周-->
-                (date_format(A.audit_date,'%X-%V')=date_format(now(),'%X-%V'))
+                (date_format(a.audit_date,'%X-%V')=date_format(now(),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastWeek">  
             <!--上周-->
-                (date_format(A.audit_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+                (date_format(a.audit_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisYear">  
             <!--本年-->
-                (date_format(A.audit_date,'%Y')=date_format(now(),'%Y'))
+                (date_format(a.audit_date,'%Y')=date_format(now(),'%Y'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear">  
             <!--上年-->
-                (date_format(A.audit_date,'%Y')=date_formatADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
+                (date_format(a.audit_date,'%Y')=date_formatADDDATE(NOW(), INTERVAL -1 YEAR),'%Y'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outableQtyGreaterThanZero">  
             <!---->
-                (B.outable_qty > 0)
+                (b.outable_qty > 0)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
-                (date_format(A.audit_date,'%Y-mm-dd') &gt;= #startDate#)
+                (date_format(a.audit_date,'%Y-%m-%d') &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (date_format(A.audit_date,'%Y-mm-dd') &lt;= #endDate#)
+                (date_format(a.audit_date,'%Y-%m-%d') &lt;= #endDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">  
-                (B.part_code like '%$partCode$%')
+                (b.part_code like '%$partCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
-                (C.name like '%$name$%' or C.full_name like '%$name$%')
+                (b.part_name like '%$name$%' or b.part_full_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
@@ -333,66 +333,74 @@
     
     
     <select id="queryPtsOutMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsOutMainDetailV">
-    	SELECT B.OUT_ID outId,
-		       A.OUT_DATE outDate,
-		       A.STORE_ID storeId,
-		       A.GUEST_ID guestId,
-		       A.GUEST_FULL_NAME guestFullName,
-		       A.OUT_TYPE_ID outTypeId,
-		       A.BILL_TYPE_ID billTypeId,
-		       A.BILL_STATUS billStatus,
-		       A.BACK_REASON_ID backReasonId,
-		       A.CHECKER checker,
-		       A.SELLER seller,
-		       A.STORE_KEEPER,
-		       A.AUDIT_STATUS,
-		       A.AUDITOR,
-		       A.AUDIT_DATE,
-		       A.POST_STATUS,
-		       A.POST_MAN,
-		       A.POST_DATE,
-		       A.RECORDER,
-		       A.RECORD_DATE,
-		       A.MODIFIER modifier,
-		       A.MODIFY_DATE,
-		       B.DETAIL_ID detailId,
-		       B.PART_ID partId,
-		       B.PART_CODE partCode,
-		       B.part_name partName,
-		       B.part_name_id partNameId,
-		       B.part_full_name partFullName,
-		       B.UNIT unit,
-		       B.OUT_QTY outQty,
-		       B.OUT_BACKABLE_QTY outBackableQty,
-		       B.TAX_SIGN taxSign,
-		       B.TAX_RATE taxRate,
-		       B.TAX_RATE_AMT taxRateAmt,
-		       B.SELL_UNIT_PRICE sellUnitPrice,
-		       B.SELL_AMT sellAmt,
-		       B.DISCOUNT_RATE discountRate,
-		       B.DISCOUNT_AMT discountAmt, 
-		       B.DISCOUNT_LAST_UNIT_PRICE discountLastUnitPrice,
-		       B.DISCOUNT_LAST_AMT discountLastAmt,
-		       B.COST_UNIT_PRICE costUnitPrice,
-		       B.COST_AMT costAmt,
-		       B.NO_TAX_COST_UNIT_PRICE noTaxCostUnitPrice,
-		       B.NO_TAX_COST_AMT noTaxCostAmt,
-		       B.TAX_COST_UNIT_PRICE taxCostUnitPrice,
-		       B.TAX_COST_AMT taxCostAmt,
-		       B.REMARK remark,
-		       B.PREV_ENTER_DETAIL_ID prevEnterDetailId,
-		       B.ROOT_ENTER_DETAIL_ID rootEnterDetailId,
-		       B.ORDER_DETAIL_ID,
-		       C.APPLY_CAR_MODEL applyCarModel
-		  FROM PTS_OUT_MAIN A
-		  JOIN PTS_OUT_DETAIL B
-		    ON (A.ID = B.OUT_ID)
-		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID) 
-		    where a.audit_status = 1
+    	SELECT
+			b.out_id outId,
+			a.out_date outDate,
+			a.store_id storeId,
+			a.guest_id guestId,
+			a.guest_full_name guestFullName,
+			a.out_type_id outTypeId,
+			a.bill_type_id billTypeId,
+			a.bill_status billStatus,
+			a.back_reason_id backReasonId,
+			a.checker checker,
+			a.seller seller,
+			a.store_keeper storeKeeper,
+			a.audit_status auditStatus,
+			a.auditor auditor,
+			a.audit_date auditDate,
+			a.post_status postStatus,
+			a.post_man postMan,
+			a.post_date postDate,
+			a.recorder,
+			a.record_date recordDate,
+			a.modifier modifier,
+			a.modify_date modifyDate,
+			b.detail_id detailId,
+			b.part_id partId,
+			b.part_code partCode,
+			b.part_name partName,
+			b.part_name_id partNameId,
+			b.part_full_name partFullName,
+			b.unit unit,
+			b.out_qty outQty,
+			b.out_backable_qty outBackableQty,
+			b.tax_sign taxSign,
+			b.tax_rate taxRate,
+			b.tax_rate_amt taxRateAmt,
+			b.sell_unit_price sellUnitPrice,
+			b.sell_amt sellAmt,
+			b.discount_rate discountRate,
+			b.discount_amt discountAmt,
+			b.discount_last_unit_price discountLastUnitPrice,
+			b.discount_last_amt discountLastAmt,
+			b.cost_unit_price costUnitPrice,
+			b.cost_amt costAmt,
+			b.no_tax_cost_unit_price noTaxCostUnitPrice,
+			b.no_tax_cost_amt noTaxCostAmt,
+			b.tax_cost_unit_price taxCostUnitPrice,
+			b.tax_cost_amt taxCostAmt,
+			b.remark remark,
+			b.prev_enter_detail_id prevEnterDetailId,
+			b.root_enter_detail_id rootEnterDetailId,
+			c.apply_car_model applyCarModel,
+			a.out_code outCode,
+			c.part_brand_id partBrandId
+		FROM
+			pts_out_main a
+			JOIN pts_out_detail b ON ( a.id = b.out_id )
+			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id ) 
+		WHERE
+			a.audit_status = 1
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outBackableQtyGreaterZero">  
+                (b.out_backable_qty &gt;= 1)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outId">  
+                (A.out_code like '%$outId$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="outTypeId">  
                 (A.out_type_id = #outTypeId#)
@@ -401,16 +409,16 @@
                 (A.guest_id = #guestId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outIdList">  
-                (A.id in ($outIdList$))
+                (A.out_code in ($outIdList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">  
                 (B.PART_CODE in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">
-                (date_format(A.audit_date,'%Y-mm-dd')&gt;=#startDate#)
+                (date_format(A.audit_date,'%Y-%m-%d')&gt;=#startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">
-                (date_format(A.audit_date,'%Y-mm-dd')&lt;=#endDate#)
+                (date_format(A.audit_date,'%Y-%m-%d')&lt;=#endDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 

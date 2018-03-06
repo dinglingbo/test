@@ -15,6 +15,7 @@ var billTypeIdHash = {};
 var settTypeIdList = [];
 var settTypeIdHash = {};
 var storehouseHash = {};
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
@@ -253,6 +254,10 @@ function setData(data,ck)
     {
         enterTypeId = data.enterTypeId;
     }
+    if(data.partBrandIdHash)
+    {
+        partBrandIdHash = data.partBrandIdHash;
+    }
     quickSearch(currType);
 }
 function onPartGridDraw(e)
@@ -260,6 +265,12 @@ function onPartGridDraw(e)
 	var row = e.record;
     switch (e.field)
     {
+	    case "partBrandId":
+	        if(partBrandIdHash  && partBrandIdHash[e.value])
+	        {
+	            e.cellHtml = partBrandIdHash[e.value].name;
+	        }
+	        break;
 	    case "outQty":
 	        e.cellHtml = row.enterQty - row.outableQty;
 	        break;

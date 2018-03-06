@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/commonPart/js/allotOutSelect.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/commonPart/js/allotOutSelect.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -76,7 +76,7 @@
             <div type="indexcolumn">序号</div>
             <div header="零件信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="outId" width="100" headerAlign="center" header="调拨单号"></div>
+                    <div allowSort="true" field="outCode" width="100" headerAlign="center" header="调拨单号"></div>
                     <div allowSort="true" field="partCode" width="100" headerAlign="center" header="零件编码"></div>
                     <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>

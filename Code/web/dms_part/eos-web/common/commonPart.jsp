@@ -92,16 +92,59 @@
 	}
 	var getProvinceAndCityUrl = window._rootUrl
 			+ "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
-	function getProvinceAndCity(callback) {
+	function getProvinceAndCity(callback) 
+	{
+		if(!provinceHash)
+		{
+			provinceHash = {};
+		}
+		if(!cityHash)
+		{
+			cityHash = {};
+		}
+		if(window.top._provinceList && window.top._cityList)
+		{
+			provinceList = window.top._provinceList;
+			cityList = window.top._cityList;
+			provinceList.forEach(function(v) {
+				provinceHash[v.id] = v;
+			});
+			cityList.forEach(function(v){
+	        	cityHash[v.id] = v;
+	        });
+	        if(provinceEl)
+	        {
+	          	provinceEl.setData(provinceList);
+	        }
+			callback && callback({
+				province:provinceList,
+				city:cityList
+			});
+			console.log("getProvinceAndCity from client");
+			return;
+		}
 		nui.ajax({
 			url : getProvinceAndCityUrl,
 			type : "post",
 			success : function(data) {
-				if (data) {
-					data.province.forEach(function(v) {
-						provinceHash[v.id] = v;
-					});
+				if (data && data.province) 
+				{
+					window.top._provinceList = data.province;
+					provinceList = window.top._provinceList;
+					window.top._cityList = data.city;
+	                provinceList.forEach(function(v){
+	                    provinceHash[v.id] = v;
+	                });
+	                if(provinceEl)
+	                {
+	                	provinceEl.setData(provinceList);
+	                }
+	                cityList = window.top._cityList; 
+	                cityList.forEach(function(v){
+	                    cityHash[v.id] = v;
+	                });
 					callback && callback(data);
+					console.log("getProvinceAndCity from server");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

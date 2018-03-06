@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOut.js?v=1.0.18"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOut.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -92,9 +92,10 @@
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
                      sortMode="client"
+                     idFiled="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="id" headerAlign="center" header="销售单号"></div>
+                        <div allowSort="true" field="outCode" headerAlign="center" header="销售单号"></div>
                         <div allowSort="true" field="outDate" width="80" headerAlign="center" header="销售日期" dateFormat="yyyy-MM-dd"></div>
                         <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>

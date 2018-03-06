@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryInventoryDetailList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryInventoryStoreDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -57,6 +57,10 @@ $(document).ready(function(v)
             }
         }
         rightGrid.setData(list);
+    });
+    var countWayEl = nui.get("countWay");
+    countWayEl.on("valuechanged",function(){
+        quickSearch(currType);
     });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
@@ -148,6 +152,7 @@ function quickSearch(type){
 
 function doSearch(params)
 {
+	params.orgid = currOrgid;
     rightGrid.load({
         params:params
     });
@@ -164,16 +169,17 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    var params = getSearchParams();
     if(searchData.startDate)
     {
-        searchData.startDate = searchData.startDate.substr(0,10);
+        params.startDate = searchData.startDate.substr(0,10);
     }
     if(searchData.endDate)
     {
-        searchData.endDate = searchData.endDate.substr(0,10);
+        params.endDate = searchData.endDate.substr(0,10);
     }
     advancedSearchWin.hide();
-    doSearch(searchData);
+    doSearch(params);
 }
 function onAdvancedSearchCancel(){
 //    advancedSearchForm.clear();

@@ -13,16 +13,31 @@ var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
+var partBrandIdHash = {};
+var billStatusHash = {
+    "0":"未审",
+    "1":"已审",
+    "2":"已过账",
+    "3":"已取消"
+};
 $(document).ready(function(v)
 {
-    rightGrid = nui.get("rightGrid");
+	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     rightGrid.on("load", function () {
-        rightGrid.mergeColumns(["enterId"]);
+        rightGrid.mergeColumns(["enterCode"]);
     });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -74,9 +89,18 @@ $(document).ready(function(v)
         });
     });
 });
+function getSearchParam(){
+    var params = {};
+    var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
+    if(outableQtyGreaterThanZero == 1)
+    {
+        params.outableQtyGreaterThanZero = 1;
+    }
+    return params;
+}
 var currType = 2;
 function quickSearch(type){
-    var params = {};
+    var params = getSearchParam();
     switch (type)
     {
         case 0:
@@ -182,6 +206,10 @@ function onAdvancedSearchOk()
         searchData.partCodeList = tmpList.join(",");
         //console.log(tmpList);
     }
+    if(searchData.outableQtyGreaterThanZero == 0)
+    {
+        delete searchData.outableQtyGreaterThanZero;
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }
@@ -226,8 +254,18 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
-        case "billStatus":
-            break;
+	    case "partBrandId":
+	        if(partBrandIdHash && partBrandIdHash[e.value])
+	        {
+	            e.cellHtml = partBrandIdHash[e.value].name;
+	        }
+	        break;
+	    case "billStatus":
+	        if(billStatusHash && billStatusHash[e.value])
+	        {
+	            e.cellHtml = billStatusHash[e.value];
+	        }
+	        break;
         case "enterTypeId":
             if(enterTypeIdHash && enterTypeIdHash[e.value])
             {

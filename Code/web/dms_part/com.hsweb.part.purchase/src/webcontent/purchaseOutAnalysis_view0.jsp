@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseOutAnalysis.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseOutAnalysis.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -50,7 +50,8 @@
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch2(0)" id="atyp0">按供应商</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch2(1)" id="atyp1">按品牌</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch2(2)" id="atyp2">按类型</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch2(3)" id="atyp3">按退货原因</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch2(4)" id="atyp4">按仓库</a>
                 </td>
             </tr>
         </table>
@@ -60,19 +61,19 @@
     <div id="datagrid1" class="nui-datagrid" style="width:100%;height:60%;"
          showPager="false"
          dataField="analysisList"
-         idField="id"
+         idField="code"
          sortMode="client"
          url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="分店信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="orgcode" width="150" headerAlign="center" header="分店名称"></div>
+                    <div allowSort="true" field="orgName" width="150" headerAlign="center" header="分店名称"></div>
                 </div>
             </div>
             <div header="维度" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="groupFieldName" width="80" headerAlign="center" header="配件名称" align="right"></div>
+                    <div allowSort="true" field="name" width="80" headerAlign="center" header="配件名称" align="center"></div>
                 </div>
             </div>
             <div header="1-12月" headerAlign="center">

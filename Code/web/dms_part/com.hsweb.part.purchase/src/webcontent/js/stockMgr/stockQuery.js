@@ -65,7 +65,12 @@ $(document).ready(function(v)
                     data = data||{};
                     carBrandList = data.carBrands||[];
                     nui.get("carBrand").setData(carBrandList);
-                    onSearch();
+                    getOrgList(function(data)
+                    {
+                        var orgList = data.orgList;
+                        nui.get("orgid").setData(orgList);
+                        onSearch();
+                    });
                 });
             });
         });
@@ -170,6 +175,7 @@ function onSearch()
 }
 function doSearch(params)
 {
+//	params.orgid = currOrgid;
     partGrid.load({
         params:params
     });

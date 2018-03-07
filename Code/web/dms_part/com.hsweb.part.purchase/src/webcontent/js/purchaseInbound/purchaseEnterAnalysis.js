@@ -11,7 +11,7 @@ $(document).ready(function(v)
     quickSearch2(currAtype);
     //console.log("xxx");
 });
-var currAtype = -1;
+var currAtype = 0;
 function quickSearch2(type)
 {
     currAtype = type;
@@ -65,41 +65,10 @@ function quickSearch(type){
             params.lastYear = 1;
             break;
         case 12:
-            if(nowMonth<3)
-            {
-                params.quarter = 1;
-            }
-            if(2<nowMonth && nowMonth<6){
-                params.quarter = 2;
-            }
-            if(5<nowMonth && nowMonth<9){
-                params.quarter = 3;
-            }
-            if(nowMonth>8){
-                params.quarter = 4;
-            }
-            params.thisYear = 1;
+            params.thisQuarter = 1;
             break;
         case 13:
-            var now = new Date();
-            var nowMonth = now.getMonth();
-            if(nowMonth<3)
-            {
-                params.quarter = 4;
-                params.lastYear = 1;
-            }
-            if(2<nowMonth && nowMonth<6){
-                params.quarter = 1;
-                params.thisYear = 1;
-            }
-            if(5<nowMonth && nowMonth<9){
-                params.quarter = 2;
-                params.thisYear = 1;
-            }
-            if(nowMonth>8){
-                params.quarter = 3;
-                params.thisYear = 1;
-            }
+            params.lastQuarter = 1;
             break;
         default:
             break;
@@ -111,13 +80,14 @@ function quickSearch(type){
             grid.updateColumn(grid.getColumn(2), {header: "供应商"});
             break;
         case 1:
-            params.groupbyPartId = 1;
+            params.groupbyPartBrandId = 1;
+            grid.updateColumn(grid.getColumn(2), {header: "品牌"});
             break;
         case 2:
-            params.groupbyPartId = 1;
+            params.groupbyCarTypeIdF = 1;
+            grid.updateColumn(grid.getColumn(2), {header: "类型"});
             break;
         default:
-            params.groupbyPartId = 1;
             break;
     }
     if($("a[id*='type']").length>0)
@@ -133,6 +103,7 @@ function quickSearch(type){
 function doSearch(params)
 {
     params.enterTypeId = '050101';
+    params.orgid = currOrgid;
     grid.load({
         params:params
     },function(){

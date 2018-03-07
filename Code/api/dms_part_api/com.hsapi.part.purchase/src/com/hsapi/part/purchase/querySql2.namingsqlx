@@ -11,9 +11,9 @@
 
 
 	<resultMap class="commonj.sdo.DataObject" id="resultMap1">
-        <result column="GUEST_ID" javaType="string" property="guestId"/>
-        <result column="groupFieldName" javaType="string" property="groupFieldName"/>
-        <result column="PART_ID" javaType="string" property="partId"/>
+        <result column="orgName" javaType="string" property="orgName"/>
+        <result column="code" javaType="string" property="code"/>
+        <result column="name" javaType="string" property="name"/>
         <result column="Jan" javaType="double" property="Jan"/>
         <result column="Feb" javaType="double" property="Feb"/>
         <result column="Mar" javaType="double" property="Mar"/>
@@ -27,140 +27,236 @@
         <result column="Sep" javaType="double" property="Sep"/>
         <result column="Oct" javaType="double" property="Oct"/>
         <result column="Nov" javaType="double" property="Nov"/>
-        <result column="Dec" javaType="double" property="Dec"/>
-        <result column="orgcode" javaType="string" property="orgcode"/>
+        <result column="Dece" javaType="double" property="Dec"/>
     </resultMap>
 	<select id="queryPurEnterAnalysis" parameterClass="java.util.HashMap" resultMap="resultMap1">
-    	SELECT 
-    	<dynamic>
-    		a.orgcode orgcode,
-    		<isNotEmpty prepend="" property="groupbyGuestId">   
-                A.GUEST_ID GUEST_ID,
-       			A.GUEST_FULL_NAME groupFieldName,
-       			null as PART_ID,
-            </isNotEmpty>
-    		<isNotEmpty prepend="" property="groupbyPartId"> 
-    			null as GUEST_ID,  
-                B.PART_ID PART_ID,
-		        C.NAME groupFieldName,
-            </isNotEmpty>  
-        </dynamic>
-		       SUM(if(date_format(a.enter_date,'%m')='01',B.NO_TAX_AMT,0)) AS Jan,
-		       SUM(if(date_format(a.enter_date,'%m')='02',B.NO_TAX_AMT,0)) AS Feb,
-		       SUM(if(date_format(a.enter_date,'%m')='03',B.NO_TAX_AMT,0)) AS Mar,
-		       SUM(if(date_format(a.enter_date,'%m')='04',B.NO_TAX_AMT,0)) AS Apr,
-		       SUM(if(date_format(a.enter_date,'%m')='05',B.NO_TAX_AMT,0)) AS May,
-		       SUM(if(date_format(a.enter_date,'%m')='06',B.NO_TAX_AMT,0)) AS Jun,
-		       SUM(if(date_format(a.enter_date,'%m')='07',B.NO_TAX_AMT,0)) AS Jul,
-		       SUM(if(date_format(a.enter_date,'%m')='08',B.NO_TAX_AMT,0)) AS Aug,
-		       SUM(if(date_format(a.enter_date,'%m')='09',B.NO_TAX_AMT,0)) AS Sep,
-		       SUM(if(date_format(a.enter_date,'%m')='10',B.NO_TAX_AMT,0)) AS Oct,
-		       SUM(if(date_format(a.enter_date,'%m')='11',B.NO_TAX_AMT,0)) AS Nov,
-		       SUM(if(date_format(a.enter_date,'%m')='12',B.NO_TAX_AMT,0)) AS Dec
-		  FROM PTS_ENTER_MAIN A
-		  JOIN PTS_ENTER_DETAIL B
-		    ON (A.ID = B.ENTER_ID)
-		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID)
-		    WHERE 1=1
-    	<dynamic>
-    		<isNotEmpty prepend="and" property="enterTypeId">   
-                (A.enter_type_id = #enterTypeId#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisMonth"> 
+    	SELECT
+			SUM( Jan ) Jan,
+			SUM( Feb ) Feb,
+			SUM( Mar ) Mar,
+			SUM( Apr ) Apr,
+			SUM( May ) May,
+			SUM( Jun ) Jun,
+			SUM( Jul ) Jul,
+			SUM( Aug ) Aug,
+			SUM( Sep ) Sep,
+			SUM( Oct ) Oct,
+			SUM( Nov ) Nov,
+			SUM( Dece ) Dece,
+			orgName,
+			CODE,
+		NAME 
+		FROM
+			(
+		SELECT
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 1 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END), 0 ) AS Jan,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 2 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Feb,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 3 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Mar,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 4 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Apr,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 5 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS May,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 6 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Jun,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 7 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Jul,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 8 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Aug,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 9 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Sep,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 10 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Oct,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 11 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Nov,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 12 THEN (case b.tax_sign when 1 then b.tax_amt else b.no_tax_amt end) END ), 0 ) AS Dece,
+			d.ORGNAME orgName,
+		<dynamic>
+			<isNotEmpty prepend="" property="groupbyGuestId">
+			<!--按供应商-->
+			a.guest_id CODE,
+			a.guest_full_name NAME
+			FROM
+			pts_enter_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyPartBrandId">
+			<!--按品牌 -->
+			c.part_brand_id CODE,
+			e.name NAME 
+			FROM
+			pts_enter_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
+			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
+			LEFT JOIN wb_common.com_part_brand e ON ( c.part_brand_id = e.id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyCarTypeIdF">
+			<!--按类型 -->
+			c.car_type_id_f CODE,
+			e.name NAME 
+			FROM
+			pts_enter_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pts_enter_detail b ON ( a.id = b.enter_id ) 
+			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
+			LEFT JOIN wb_common.com_part_type e ON ( e.id = c.car_type_id_f )
+			</isNotEmpty>
+		</dynamic>
+		WHERE
+			1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+			(a.orgid = #orgid#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enterTypeId">
+			(a.enter_type_id = #enterTypeId#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (date_format(A.enter_date,'%m')=date_format(now(),'%m'))
+            (date_format(a.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (date_format(A.enter_date,'%m')=date_format(add_months(now(),-1),'%m'))
+            (date_format(a.audit_date,'%Y-%m')=date_format(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="quarter">  
-            <!--季度-->
-                (date_format(A.out_date,'q')=#quarter#
+            <isNotEmpty prepend="and" property="thisQuarter">  
+            <!--本季度-->
+            (QUARTER(a.audit_date)=QUARTER(now())
+            and
+            YEAR(a.audit_date)=YEAR(NOW()))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastQuarter">  
+            <!--上季度-->
+            (QUARTER(a.audit_date)=QUARTER(DATE_SUB(now(),interval 1 QUARTER))
+            and
+            YEAR(a.audit_date)=YEAR(DATE_SUB(now(),interval 1 QUARTER)))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisYear">  
             <!--本年-->
-                (date_format(A.enter_date,'%Y')=date_format(now(),'%Y'))
+            (YEAR(a.audit_date)=YEAR(NOW()))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear">  
             <!--上年-->
-                (date_format(A.enter_date,'%Y')=date_format(add_months(now(),-12),'%Y'))
+            (year(a.audit_date)=year(date_sub(now(),interval 1 year)))
             </isNotEmpty>
-    		<isNotEmpty prepend="" property="groupbyGuestId">   
-                GROUP BY a.orgcode,date_format(a.enter_date,'%m'),A.GUEST_ID,A.GUEST_FULL_NAME
-            </isNotEmpty>
-    		<isNotEmpty prepend="" property="groupbyPartId">   
-                GROUP BY a.orgcode,date_format(a.enter_date,'%m'),B.PART_ID,C.NAME
-            </isNotEmpty>
-        </dynamic>
-		ORDER BY date_format(a.enter_date,'%m') 
+		</dynamic>
+			) f 
+		GROUP BY
+			orgName,
+			CODE,
+		NAME
     </select>
     <select id="queryPurOutAnalysis" parameterClass="java.util.HashMap" resultMap="resultMap1">
-    	SELECT 
-    	<dynamic>
-    		a.orgcode orgcode,
-    		<isNotEmpty prepend="" property="groupbyGuestId">   
-                A.GUEST_ID GUEST_ID,
-       			A.GUEST_FULL_NAME groupFieldName,
-       			null as PART_ID,
-            </isNotEmpty>
-    		<isNotEmpty prepend="" property="groupbyPartId"> 
-    			null as GUEST_ID,  
-                B.PART_ID PART_ID,
-		        C.NAME groupFieldName,
-            </isNotEmpty>  
-        </dynamic>
-		       SUM(if(date_format(a.out_date,'%m'),'01',B.sell_amt,0)) AS Jan,
-		       SUM(if(date_format(a.out_date,'%m'),'02',B.sell_amt,0)) AS Feb,
-		       SUM(if(date_format(a.out_date,'%m'),'03',B.sell_amt,0)) AS Mar,
-		       SUM(if(date_format(a.out_date,'%m'),'04',B.sell_amt,0)) AS Apr,
-		       SUM(if(date_format(a.out_date,'%m'),'05',B.sell_amt,0)) AS May,
-		       SUM(if(date_format(a.out_date,'%m'),'06',B.sell_amt,0)) AS Jun,
-		       SUM(if(date_format(a.out_date,'%m'),'07',B.sell_amt,0)) AS Jul,
-		       SUM(if(date_format(a.out_date,'%m'),'08',B.sell_amt,0)) AS Aug,
-		       SUM(if(date_format(a.out_date,'%m'),'09',B.sell_amt,0)) AS Sep,
-		       SUM(if(date_format(a.out_date,'%m'),'10',B.sell_amt,0)) AS Oct,
-		       SUM(if(date_format(a.out_date,'%m'),'11',B.sell_amt,0)) AS Nov,
-		       SUM(if(date_format(a.out_date,'%m'),'12',B.sell_amt,0)) AS Dec
-		  FROM PTS_OUT_MAIN A
-		  JOIN PTS_OUT_DETAIL B
-		    ON (A.ID = B.OUT_ID)
-		  LEFT JOIN WB_COMMON.COM_ATTRIBUTE C
-		    ON (B.PART_ID = C.ID)
-		    WHERE 1=1
-    	<dynamic>
-    		<isNotEmpty prepend="and" property="outTypeId">   
-                (A.out_type_id = #outTypeId#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisMonth"> 
+    	SELECT
+			SUM( Jan ) Jan,
+			SUM( Feb ) Feb,
+			SUM( Mar ) Mar,
+			SUM( Apr ) Apr,
+			SUM( May ) May,
+			SUM( Jun ) Jun,
+			SUM( Jul ) Jul,
+			SUM( Aug ) Aug,
+			SUM( Sep ) Sep,
+			SUM( Oct ) Oct,
+			SUM( Nov ) Nov,
+			SUM( Dece ) Dece,
+			orgName,
+			CODE,
+		NAME 
+		FROM
+			(
+		SELECT
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 1 THEN b.sell_amt END ), 0 ) AS Jan,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 2 THEN b.sell_amt END ), 0 ) AS Feb,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 3 THEN b.sell_amt END ), 0 ) AS Mar,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 4 THEN b.sell_amt END ), 0 ) AS Apr,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 5 THEN b.sell_amt END ), 0 ) AS May,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 6 THEN b.sell_amt END ), 0 ) AS Jun,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 7 THEN b.sell_amt END ), 0 ) AS Jul,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 8 THEN b.sell_amt END ), 0 ) AS Aug,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 9 THEN b.sell_amt END ), 0 ) AS Sep,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 10 THEN b.sell_amt END ), 0 ) AS Oct,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 11 THEN b.sell_amt END ), 0 ) AS Nov,
+			ifnull( ( CASE MONTH ( a.audit_date ) WHEN 12 THEN b.sell_amt END ), 0 ) AS Dece,
+			d.ORGNAME orgName,
+		<dynamic>
+			<isNotEmpty prepend="" property="groupbyGuestId">
+			<!--按供应商-->
+			a.guest_id CODE,
+			a.guest_full_name NAME
+			FROM
+			pts_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pts_out_detail b ON ( a.id = b.out_id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyPartBrandId">
+			<!--按品牌 -->
+			c.part_brand_id CODE,
+			e.name NAME 
+			FROM
+			pts_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pts_out_detail b ON ( a.id = b.out_id )
+			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
+			LEFT JOIN wb_common.com_part_brand e ON ( c.part_brand_id = e.id )
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyBackReasonId">
+			<!--按退货原因 -->
+			a.back_reason_id CODE,
+			c.name NAME 
+			FROM
+			pts_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pts_out_detail b ON ( a.id = b.out_id ) 
+			LEFT JOIN wb_common.com_dataitems c on (c.customid = a.back_reason_id)
+			</isNotEmpty>
+			<isNotEmpty prepend="" property="groupbyStoreId">
+			<!--按仓库 -->
+			a.store_id CODE,
+			c.name NAME 
+			FROM
+			pts_out_main a
+			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
+			JOIN pts_out_detail b ON ( a.id = b.out_id ) 
+			LEFT JOIN wb_common.com_store c on (c.id = a.store_id)
+			</isNotEmpty>
+		</dynamic>
+		WHERE
+			1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+			(a.orgid = #orgid#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="outTypeId">
+			(a.out_type_id = #outTypeId#)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
-                (date_format(A.out_date,'%m')=date_format(now(),'%m'))
+            (date_format(a.audit_date,'%Y-%m')=date_format(now(),'%Y-%m'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastMonth"> 
             <!--上月 --> 
-                (date_format(A.out_date,'%m')=date_format(add_months(now(),-1),'%m'))
+            (date_format(a.audit_date,'%Y-%m')=date_format(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="quarter">  
-            <!--季度-->
-                (date_format(A.out_date,'q')=#quarter#
+            <isNotEmpty prepend="and" property="thisQuarter">  
+            <!--本季度-->
+            (QUARTER(a.audit_date)=QUARTER(now())
+            and
+            YEAR(a.audit_date)=YEAR(NOW()))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastQuarter">  
+            <!--上季度-->
+            (QUARTER(a.audit_date)=QUARTER(DATE_SUB(now(),interval 1 QUARTER))
+            and
+            YEAR(a.audit_date)=YEAR(DATE_SUB(now(),interval 1 QUARTER)))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="thisYear">  
             <!--本年-->
-                (date_format(A.out_date,'%Y')=date_format(now(),'%Y'))
+            (YEAR(a.audit_date)=YEAR(NOW()))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear">  
             <!--上年-->
-                (date_format(A.out_date,'%Y')=date_format(add_months(now(),-12),'%Y'))
+            (year(a.audit_date)=year(date_sub(now(),interval 1 year)))
             </isNotEmpty>
-    		<isNotEmpty prepend="" property="groupbyGuestId">   
-                GROUP BY a.orgcode,date_format(a.out_date,'%m'),A.GUEST_ID,A.GUEST_FULL_NAME
-            </isNotEmpty>
-    		<isNotEmpty prepend="" property="groupbyPartId">   
-                GROUP BY a.orgcode,date_format(a.out_date,'%m'),B.PART_ID,C.NAME
-            </isNotEmpty>
-        </dynamic>
-		ORDER BY date_format(a.out_date,'%m') 
+		</dynamic>
+			) f 
+		GROUP BY
+			orgName,
+			CODE,
+		NAME
     </select>
     
     <resultMap class="commonj.sdo.DataObject" id="resultMap2">

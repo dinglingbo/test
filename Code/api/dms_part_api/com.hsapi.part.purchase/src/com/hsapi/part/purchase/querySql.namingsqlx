@@ -461,49 +461,52 @@
             </isNotEmpty>  
         </dynamic>  
     </select>
-    
-    
-    
-    
-    <select id="queryPtsStockCycVList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsStockCycV">
-    	SELECT A.ID ID,
-		       A.PART_ID partId,
-		       A.STORE_ID storeId,
-		       A.LAST_SELL_PRICE lastSellPrice,
-		       A.SUGGEST_PRICE suggestPrice,
-		       A.COST_PRICE costPrice,
-		       A.STOCK_LOCATION stockLocation,
-		       A.ORDER_CYC orderCyc,
-		       A.ARRIVE_CYC arriveCyc,
-		       A.SAFE_CYC safeCyc,
-		       A.STOCK_UP_LIMIT stockUpLimit,
-		       A.STOCK_DOWN_LIMIT stockDownLimit,
-		       A.DAY_SELL_VALUME daySellValume,
-		       A.MONTH_SELL_VALUME monthSellValume,
-		       A.LAST_ENTER_DATE lastEnterDate,
-		       A.LAST_OUT_DATE lastOutDate,
-		       A.STOCK_QTY stockQty,
-		       A.STOCK_PRICE stockPrice,
-		       A.STOCK_AMT stockAmt,
-		       A.UNUSEABLE_DAY unuseableDay,
-		       B.CODE              partCode,
-		       B.NAME              partName,
-		       B.FULL_NAME         partFullName,
-		       B.QUALITY_TYPE_ID qualityTypeId,
-		       B.PART_BRAND_ID partBrandId,
-		       B.APPLY_CAR_MODEL applyCarModel,
-		       B.ABC_TYPE abcType,
-		       B.UNIT unit,
-		       B.CAR_TYPE_ID_F carTypeIdF,
-		       B.CAR_TYPE_ID_S carTypeIdS,
-		       B.CAR_TYPE_ID_T carTypeIdT
-		  FROM PTS_STORE_CYC A
-		  JOIN WB_COMMON.COM_ATTRIBUTE B
-		    ON (A.PART_ID = B.ID)
-				where 1=1
+ 
+    <select id="queryPtsStockCycVList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.part_id partId,
+			a.store_id storeId,
+			ifnull(a.last_sell_price,0) lastSellPrice,
+			ifnull(a.suggest_price,0) suggestPrice,
+			ifnull(a.cost_price,0) costPrice,
+			a.store_location storeLocation,
+			ifnull(a.order_cyc,0) orderCyc,
+			ifnull(a.arrive_cyc,0) arriveCyc,
+			ifnull(a.safe_cyc,0) safeCyc,
+			ifnull(a.stock_up_limit,0) stockUpLimit,
+			ifnull(a.stock_down_limit,0) stockDownLimit,
+			ifnull(a.day_sell_valume,0) daySellValume,
+			ifnull(a.month_sell_valume,0) monthSellValume,
+			a.last_enter_date lastEnterDate,
+			a.last_out_date lastOutDate,
+			a.stock_qty stockQty,
+			a.stock_price stockPrice,
+			a.stock_amt stockAmt,
+			a.unuseable_day unuseableDay,
+			a.part_code partCode,
+			a.part_name partName,
+			a.part_full_name partFullName,
+			b.quality_type_id qualityTypeId,
+			b.part_brand_id partBrandId,
+			b.apply_car_model applyCarModel,
+			b.abc_type abcType,
+			b.unit unit,
+			b.car_type_id_f carTypeIdF,
+			c.name carTypeNameF,
+			b.car_type_id_s carTypeIdS,
+			b.car_type_id_t carTypeIdT,
+			e.ORGNAME orgName
+		FROM
+			pts_cyc_store a
+			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id ) 
+			LEFT JOIN wb_common.com_part_type c on ( b.car_type_id_f = c.id)
+			LEFT JOIN dms_system.org_organization e on (a.orgid = e.ORGID)
+		WHERE
+			1 =1
     	<dynamic>
-    		<isNotEmpty prepend="and" property="compCode">   
-                (A.orgCode = #compCode#)
+    		<isNotEmpty prepend="and" property="orgid">   
+                (A.orgid = #orgid#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="storeId">   
                 (A.STORE_ID = #storeId#)
@@ -517,22 +520,28 @@
             <isNotEmpty prepend="and" property="cartypet">   
                 (B.CAR_TYPE_ID_T = #cartypet#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="stockLocation">   
-                (A.stock_location like '%$stockLocation$%')
+            <isNotEmpty prepend="and" property="carBrand">   
+                (b.apply_carbrand_id = #carBrand#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="storeLocation">   
+                (a.store_location like '%$storeLocation$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">   
+                (b.apply_car_model like '%$applyCarModel$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">   
-                (B.code like '%$partCode$%')
+                (a.part_code like '%$partCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">   
-                (B.name like '%$name$%' or B.full_name like '%$name$%')
+                (a.part_name like '%$name$%' or a.part_full_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="stockQtyGreaterThanUpLimit">  
             <!--高于上限-->
-                (a.stock_qty &gt; a.stock_up_limit)
+                (a.stock_qty &gt; ifnull(a.stock_up_limit,0))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="stockQtyLessThanDownLimit">  
             <!--低于下限-->
-                (a.stock_qty &lt; a.stock_down_limit)
+                (a.stock_qty &lt; ifnull(a.stock_down_limit,0))
             </isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">  
                 $sortField$ $sortOrder$

@@ -880,10 +880,6 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">cycStore/unuseableDay</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">cycOrg/stockLocation</process:from>
-      <process:to type="query">cycStore/storeLocation</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="815" y="386"/>

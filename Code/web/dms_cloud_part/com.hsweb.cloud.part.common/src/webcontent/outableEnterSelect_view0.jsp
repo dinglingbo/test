@@ -23,6 +23,7 @@
         <table style="width:100%;">
             <tr>
                 <td style="white-space:nowrap;">
+                    <input class="nui-hidden" width="100" id="search-guestId" name="guestId"/>
                     <label style="font-family:Verdana;">仓库：</label>
                     <input id="storeId"
                            name="storeId"
@@ -43,7 +44,7 @@
                     <label style="font-family:Verdana;">车型：</label>
                     <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
                     <label style="font-family:Verdana;">拼音：</label>
-                    <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
+                    <input class="nui-textbox" width="50" id="search-namePy" name="namePy"/>
                     <label style="font-family:Verdana;">品牌：</label>
                     <input id="partBrandId"
                            name="partBrandId"
@@ -56,6 +57,13 @@
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择..."/>
+                    <input id="search_showAll" 
+                            name="isShow" 
+                            enabled="true" 
+                            class="nui-checkbox" 
+                            text="显示所有"
+                            trueValue="1" 
+                            falseValue="0" />
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
@@ -69,7 +77,7 @@
     <div class="nui-splitter"
          allowResize="false"
          style="width:100%;height:100%;">
-        <div size="240" showCollapseButton="true">
+        <div size="200" showCollapseButton="true">
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
                     dataField="partTypes"
@@ -97,31 +105,40 @@
                      idField="id"
                      totalField="page.count"
                      pageSize="50"
-                     showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
+                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
-                                <div field="isDisabled" width="50" headerAlign="center">状态</div>
+                                <!-- <div field="isDisabled" width="50" headerAlign="center">状态</div> -->
                                 <!-- <div field="qualityTypeId" width="60" headerAlign="center">品质</div> -->
                                 <div field="partBrandId" width="70" headerAlign="center">品牌</div>
                                 <div field="partId" width="50" headerAlign="center">配件ID</div>
                                 <div field="partCode" width="80" headerAlign="center" allowSort="true">编码</div>
                                 <div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                                <div field="outUnitId" width="30" headerAlign="center" allowSort="true">单位</div>
+                                <div field="enterUnitId" width="30" headerAlign="center" allowSort="true">单位</div>
                             </div>
                         </div>
                         <div header="库存信息" headerAlign="center">
-                            <div property="columns">
+                            <div property="columns">   
+                                <div field="outableQty" width="55px" headerAlign="center" allowSort="true">
+                                可出库数量
+                                </div>
                                 <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
                     仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
                                   url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
                                   onvaluechanged="" emptyText=""  vtype="required"
                                   /> 
-                    </div>   
-                                <div field="outableQty" width="55px" headerAlign="center" allowSort="true">
-                                可出库数量
+                    </div>
+                                <div field="serviceId" align="left" width="55px" headerAlign="center" allowSort="true">
+                                入库单号
                                 </div>
+                                <div field="auditDate" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true">
+                                入库日期
+                                </div>
+                                <div field="guestName" width="150px" headerAlign="center" allowSort="true">
+                                供应商
+                                </div>  
                                 <div field="enterPrice" width="55px" headerAlign="center" allowSort="true">
                                 成本单价
                                 </div>

@@ -34,7 +34,7 @@
         <process:inputVariable id="1" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="balanceInvocing" type="query" value="com.hsapi.cloud.part.invoicing.Invocing" valueType="Java">balanceInvocing</process:outputVariable>
+        <process:outputVariable id="0" name="balanceInvocing" type="query" value="commonj.sdo.DataObject" valueType="Java">balanceInvocing</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -60,7 +60,7 @@
         <process:inputVariable id="2" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="balanceInvocing" type="query" value="com.hsapi.cloud.part.invoicing.StoreInvocing" valueType="Java">storeInvocing</process:outputVariable>
+        <process:outputVariable id="0" name="balanceInvocing" type="query" value="commonj.sdo.DataObject" valueType="Java">storeInvocing</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -173,7 +173,7 @@
       <process:to type="query">sdInvocing/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">sdInvocing/creatorId</process:to>
     </process:copy>
     <process:copy>
@@ -185,7 +185,7 @@
       <process:to type="query">sdInvocing/createDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">sdInvocing/operatorId</process:to>
     </process:copy>
     <process:copy>
@@ -404,7 +404,7 @@
       <process:to type="query">dInvocing/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">dInvocing/creatorId</process:to>
     </process:copy>
     <process:copy>
@@ -416,7 +416,7 @@
       <process:to type="query">dInvocing/createDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">dInvocing/operatorId</process:to>
     </process:copy>
     <process:copy>
@@ -713,8 +713,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Float"/>
-    <process:variable anyType="com.hsapi.cloud.part.invoicing.Invocing" description="" historyStateLocation="client" isArray="false" name="balanceInvocing"/>
-    <process:variable anyType="com.hsapi.cloud.part.invoicing.StoreInvocing" description="" historyStateLocation="client" isArray="false" name="storeInvocing"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="balanceInvocing"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="storeInvocing"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStoreInvocing" name="sdInvocing"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjInvocing" name="dInvocing"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sId" primitiveType="Long"/>

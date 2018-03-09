@@ -22,6 +22,7 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="165" y="159"/>
@@ -49,7 +50,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -172,7 +173,7 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -215,7 +216,7 @@
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -232,7 +233,7 @@
         <process:inputVariable id="2" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="balanceInvocing" type="query" value="com.hsapi.cloud.part.invoicing.StoreInvocing" valueType="Java">storeInvocing</process:outputVariable>
+        <process:outputVariable id="0" name="balanceInvocing" type="query" value="commonj.sdo.DataObject" valueType="Java">storeInvocing</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -247,7 +248,7 @@
       <targetNode>subprocess2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -282,7 +283,7 @@
       <targetNode>transactionrollback0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -319,7 +320,7 @@
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -335,7 +336,7 @@
         <process:inputVariable id="1" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="balanceInvocing" type="query" value="com.hsapi.cloud.part.invoicing.Invocing" valueType="Java">balanceInvocing</process:outputVariable>
+        <process:outputVariable id="0" name="balanceInvocing" type="query" value="commonj.sdo.DataObject" valueType="Java">balanceInvocing</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -360,7 +361,7 @@
       <targetNode>transactioncommit0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -453,8 +454,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgpre" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgsuf" primitiveType="String"/>
-    <process:variable anyType="com.hsapi.cloud.part.invoicing.Invocing" description="" historyStateLocation="client" isArray="false" name="balanceInvocing"/>
-    <process:variable anyType="com.hsapi.cloud.part.invoicing.StoreInvocing" description="" historyStateLocation="client" isArray="false" name="storeInvocing"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="balanceInvocing"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="storeInvocing"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="billQty" primitiveType="Float"/>

@@ -18,7 +18,7 @@
         <result column="code" javaType="string" property="code"/>
         <result column="orderDate" javaType="java.sql.Timestamp" property="orderDate"/>
         <result column="planArriveDate" javaType="java.sql.Timestamp" property="planArriveDate"/>
-        <result column="orderManId" javaType="int" property="orderManId"/>
+        <result column="orderManId" javaType="string" property="orderManId"/>
         <result column="orderMan" javaType="string" property="orderMan"/>
         <result column="billTypeId" javaType="string" property="billTypeId"/>
         <result column="payModeId" javaType="int" property="payModeId"/>
@@ -39,18 +39,18 @@
         <result column="finishDate" javaType="java.sql.Timestamp" property="finishDate"/>
         <result column="sendTypeId" javaType="int" property="sendTypeId"/>
         <result column="printTimes" javaType="int" property="printTimes"/>
-        <result column="printManId" javaType="int" property="printManId"/>
+        <result column="printManId" javaType="string" property="printManId"/>
         <result column="printMan" javaType="string" property="printMan"/>
         <result column="printDate" javaType="java.sql.Timestamp" property="printDate"/>
         <result column="auditSign" javaType="int" property="auditSign"/>
-        <result column="auditorId" javaType="int" property="auditorId"/>
+        <result column="auditorId" javaType="string" property="auditorId"/>
         <result column="auditor" javaType="string" property="auditor"/>
         <result column="auditDate" javaType="java.sql.Timestamp" property="auditDate"/>
         <result column="remark" javaType="string" property="remark"/>
-        <result column="creatorId" javaType="int" property="creatorId"/>
+        <result column="creatorId" javaType="string" property="creatorId"/>
         <result column="creator" javaType="string" property="creator"/>
         <result column="createDate" javaType="java.sql.Timestamp" property="createDate"/>
-        <result column="operatorId" javaType="int" property="operatorId"/>
+        <result column="operatorId" javaType="string" property="operatorId"/>
         <result column="operator" javaType="string" property="operator"/>
         <result column="operateDate" javaType="java.sql.Timestamp" property="operateDate"/>
         <result column="settleTypeId" javaType="string" property="settleTypeId"/>
@@ -548,7 +548,7 @@
         <result column="code" javaType="string" property="code"/>
         <result column="billStatusId" javaType="string" property="billStatusId"/>
         <result column="enterDate" javaType="java.sql.Timestamp" property="enterDate"/>
-        <result column="orderManId" javaType="int" property="orderManId"/>
+        <result column="orderManId" javaType="string" property="orderManId"/>
         <result column="orderMan" javaType="string" property="orderMan"/>
         <result column="billTypeId" javaType="string" property="billTypeId"/>
         <result column="payModeId" javaType="int" property="payModeId"/>
@@ -562,18 +562,18 @@
         <result column="enterAmt" javaType="double" property="enterAmt"/> 
         <result column="sendTypeId" javaType="int" property="sendTypeId"/>
         <result column="printTimes" javaType="int" property="printTimes"/>
-        <result column="printManId" javaType="int" property="printManId"/>
+        <result column="printManId" javaType="string" property="printManId"/>
         <result column="printMan" javaType="string" property="printMan"/>
         <result column="printDate" javaType="java.sql.Timestamp" property="printDate"/>
         <result column="auditSign" javaType="int" property="auditSign"/>
-        <result column="auditorId" javaType="int" property="auditorId"/>
+        <result column="auditorId" javaType="string" property="auditorId"/>
         <result column="auditor" javaType="string" property="auditor"/>
         <result column="auditDate" javaType="java.sql.Timestamp" property="auditDate"/>
         <result column="remark" javaType="string" property="remark"/>
-        <result column="creatorId" javaType="int" property="creatorId"/>
+        <result column="creatorId" javaType="string" property="creatorId"/>
         <result column="creator" javaType="string" property="creator"/>
         <result column="createDate" javaType="java.sql.Timestamp" property="createDate"/>
-        <result column="operatorId" javaType="int" property="operatorId"/>
+        <result column="operatorId" javaType="string" property="operatorId"/>
         <result column="operator" javaType="string" property="operator"/>
         <result column="operateDate" javaType="java.sql.Timestamp" property="operateDate"/>
         <result column="sellRtnAmt" javaType="double" property="sellRtnAmt"/>

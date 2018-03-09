@@ -279,7 +279,7 @@
       <process:to type="query">auditMain/auditor</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">auditMain/auditorId</process:to>
     </process:copy>
   </nodes>
@@ -768,7 +768,7 @@
     <figSize height="17" width="109"/>
     <node>subprocess5</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign10</targetNode>

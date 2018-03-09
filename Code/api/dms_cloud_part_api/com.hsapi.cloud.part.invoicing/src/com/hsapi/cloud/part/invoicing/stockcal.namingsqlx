@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
 
-    <select id="getEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.EnterOutableQty"> 
+    <select id="getEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
 		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
 				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
 				B.STORE_ID as storeId, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
@@ -75,7 +75,7 @@
     </select>
     
     
-    <select id="chooseEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.EnterOutableQty"> 
+    <select id="chooseEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap"> 
 		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
 				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
 				B.STORE_ID as storeId, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
@@ -87,10 +87,10 @@
 				B.RTN_PRICE as rtnPrice, B.RTN_AMT as rtnAmt, B.ENTER_DATE as enterDate,
 				B.PREV_DETAIL_ID as preDetailId, B.ORDER_DETAIL_ID as orderDetailId,
 				B.ORDER_MAIN_ID as orderMainId, B.BRANCH_STOCK_AGE as branchStockAge,
-				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,B.GUEST_NAME as guestName,
+				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,IFNULL(j.full_name,k.full_name) as guestName,
 				B.REMARK as remark, F.CODE AS code, F.NAME as name, F.OEM_CODE as oemCode,
 				F.PART_BRAND_ID as partBrandId, F.APPLY_CAR_MODEL as carModelName,
-				F.SPEC as spec, F.DIRECTION as direction
+				F.SPEC as spec, F.DIRECTION as direction, a.audit_date as auditDate, a.service_id as serviceId
 		FROM
 			PJ_ENTER_MAIN_CHK A
 		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
@@ -121,6 +121,26 @@
 			
 			<isNotNull prepend = "" property = "partId">
 				AND C.PART_ID = #partId#
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "code">
+				AND G.QUERY_CODE like '%$code$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "name">
+				AND G.full_name like '%$name$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "namePy">
+				AND G.NAME_PY like '%$namePy$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "applyCarModel">
+				AND G.apply_car_model like '%$applyCarModel$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "partBrandId">
+				AND G.part_brand_id = #partBrandId#
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
@@ -155,6 +175,27 @@
 				AND B.PART_ID = #partId#
 			</isNotNull>
 			
+			
+			<isNotNull prepend = "" property = "code">
+				AND F.QUERY_CODE like '%$code$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "name">
+				AND F.full_name like '%$name$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "namePy">
+				AND F.NAME_PY like '%$namePy$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "applyCarModel">
+				AND F.apply_car_model like '%$applyCarModel$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "partBrandId">
+				AND F.part_brand_id = #partBrandId#
+			</isNotNull>
+			
 			<isNotNull prepend = "" property = "cnp">
 				and (F.QUERY_CODE like '%$cnp$%' or F.NAME like '%$cnp$%' or F.FULL_NAME like '%$cnp$%' or F.NAME_PY like '%$cnp$%')
 			</isNotNull>
@@ -177,7 +218,7 @@
 	
     </select>
     
-    <select id="chooseOutRtnableDetail" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.OutRtnableQty">
+    <select id="chooseOutRtnableDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
 		A.ID as id,
 		A.MAIN_ID as mainId,
@@ -225,7 +266,7 @@
 		INNER JOIN WB_COMMON.COM_GUEST C ON B.GUEST_ID = C.ID
 		INNER JOIN WB_COMMON.COM_ATTRIBUTE D ON A.PART_ID = D.ID
 		where 1 = 1
-		
+			  and b.enter_type_id = '050202'
 			  AND B.AUDIT_SIGN = 1
 		      AND A.RTNABLE_QTY > 0
 		
@@ -239,6 +280,27 @@
 			
 			<isNotNull prepend = "" property = "partId">
 				AND A.PART_ID = #partId#
+			</isNotNull>
+			
+			
+			<isNotNull prepend = "" property = "code">
+				AND D.QUERY_CODE like '%$code$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "name">
+				AND D.full_name like '%$name$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "namePy">
+				AND D.NAME_PY like '%$namePy$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "applyCarModel">
+				AND D.apply_car_model like '%$applyCarModel$%'
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "partBrandId">
+				AND D.part_brand_id = #partBrandId#
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cnp">
@@ -257,7 +319,7 @@
 		
     </select>
     
-    <select id="getBalanceInvocing" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.Invocing"> 
+    <select id="getBalanceInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
 		SELECT A.ID as id, A.DC as dc, A.ORGID as orgid, A.SERVICE_ID as serviceId, 
 		       A.BILL_MAIN_ID as billMainId, A.BILL_DETAIL_ID as billDetailId, A.BILL_TYPE_ID as billTypeId, A.GUEST_ID as guestId, 
 		       A.GUEST_NAME as guestName, A.PART_ID as partId, A.PART_CODE as partCode, A.PART_NAME as partName, A.QC_QTY as qcQty,
@@ -285,7 +347,7 @@
 	
     </select>
     
-    <select id="getBalanceStoreInvocing" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.StoreInvocing"> 
+    <select id="getBalanceStoreInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
 		SELECT A.ID as id, A.DC as dc, A.ORGID as orgid, A.STORE_ID as storeId, A.SERVICE_ID as serviceId, 
 		       A.BILL_MAIN_ID as billMainId, A.BILL_DETAIL_ID as billDetailId, A.BILL_TYPE_ID as billTypeId, A.GUEST_ID as guestId, 
 		       A.GUEST_NAME as guestName, A.PART_ID as partId, A.PART_CODE as partCode, A.PART_NAME as partName, A.QC_QTY as qcQty,
@@ -451,6 +513,4 @@
 			</isNotNull>
 		)
 	</update>
-
-
 </sqlMap>

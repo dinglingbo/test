@@ -78,7 +78,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.invoicing.EnterOutableQty[]" name="outableDetails" type="query" valueType="Java">outableDetails</process:return>
+      <process:return id="0" language="commonj.sdo.DataObject[]" name="outableDetails" type="query" valueType="Java">outableDetails</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -98,7 +98,7 @@
     <process:input description="" isArray="false" name="partId" primitiveType="Long"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="com.hsapi.cloud.part.invoicing.EnterOutableQty" description="" isArray="true" name="outableDetails"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="outableDetails"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

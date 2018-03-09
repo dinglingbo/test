@@ -48,6 +48,7 @@
     <input class="nui-hidden" name="taxPrice"/>
     <input class="nui-hidden" name="noTaxPrice"/>
     <input class="nui-hidden" name="enterPrice"/>
+    <input class="nui-hidden" name="sellPrice"/>
     <table style="width: 100%">
         <tr>
             <td class="title">

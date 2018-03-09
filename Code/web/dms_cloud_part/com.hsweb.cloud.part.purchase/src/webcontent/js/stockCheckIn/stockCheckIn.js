@@ -473,7 +473,7 @@ var requiredField = {
 	storeId : "仓库",
     enterMan: "盘点员",
     enterDate : "盘点日期",
-    taxRate : "开票税点",
+    taxRate : "开票税点"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjEnter.biz.ext";
 function save() {

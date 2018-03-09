@@ -38,7 +38,7 @@ $(document).ready(function() {
 		getAllCarBrand(function(data) {
 			data = data || {};
 			carBrandList = data.carBrands || [];
-			console.log(carBrandList);
+			//console.log(carBrandList);
 			nui.get("applyCarBrandId").setData(carBrandList);
 			var dictIdList = [];
 			dictIdList.push('DDT20130703000016');// --单位

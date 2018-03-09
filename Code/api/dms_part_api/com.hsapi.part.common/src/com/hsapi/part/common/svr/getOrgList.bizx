@@ -41,6 +41,10 @@
       <process:from type="literal" pattern="reference">com.hsapi.part.data.system.OrgOrganization</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">b</process:from>
+      <process:to type="query">cond/_expr[1]/orgtype</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="210" y="96"/>

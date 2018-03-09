@@ -2,7 +2,7 @@
 <model:DataSetDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://www.primeton.com/datamodel" name="query" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" displayName="query" author="chenziming">
   <nodes xsi:type="model:SPEntityNode" id="Entity0" name="PtsOutDetailV" nodeType="table" displayName="Entity" author="chenziming" open="true" entType="SPEntity" allUseViewModel="true" instanceClass="" table="">
     <location x="90" y="30"/>
-    <size height="570" width="150"/>
+    <size height="588" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property0" name="detailId" displayName="detailId" columnName="detail_id" nullAble="false" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
       <viewField dict="false" dictTypeId="" displayName="detailId" entityField="detailId" id="detailId" label="detailId" name="detailId" userDefined="true">
@@ -1954,38 +1954,107 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
+    <columnProperty id="property181" name="partBrandId" displayName="partBrandId" columnName="part_brand_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" showType="String">
+      <viewField dict="false" dictTypeId="" displayName="partBrandId" entityField="partBrandId" id="partBrandId" label="partBrandId" name="partBrandId" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
     <spEntitySqlView product="default" view="" useSql="true" schema="" needSave="true">
-      <sql>SELECT a.detail_id,&#xD;
-       a.out_id,&#xD;
-       a.part_id,&#xD;
-       a.part_code,&#xD;
-       a.unit,&#xD;
-       a.out_qty,&#xD;
-       a.out_backable_qty,&#xD;
-       a.tax_sign,&#xD;
-       a.tax_rate,&#xD;
-       a.tax_rate_amt,&#xD;
-       a.sell_unit_price,&#xD;
-       a.sell_amt,&#xD;
-       a.discount_rate,&#xD;
-       a.discount_amt,&#xD;
+      <sql>SELECT&#xD;
+	a.detail_id,&#xD;
+	a.out_id,&#xD;
+	a.part_id,&#xD;
+	a.part_code,&#xD;
+	a.unit,&#xD;
+	a.out_qty,&#xD;
+	a.out_backable_qty,&#xD;
+	a.tax_sign,&#xD;
+	a.tax_rate,&#xD;
+	a.tax_rate_amt,&#xD;
+	a.sell_unit_price,&#xD;
+	a.sell_amt,&#xD;
+	a.discount_rate,&#xD;
+	a.discount_amt,&#xD;
 	a.discount_last_amt,&#xD;
-       a.discount_last_unit_price,&#xD;
-       a.cost_unit_price,&#xD;
-       a.cost_amt,&#xD;
-       a.no_tax_cost_unit_price,&#xD;
-       a.no_tax_cost_amt,&#xD;
-       a.tax_cost_unit_price,&#xD;
-       a.tax_cost_amt,&#xD;
-       a.remark,&#xD;
-       a.prev_enter_detail_id,&#xD;
-       a.root_enter_detail_id,&#xD;
-       a.order_detail_id,&#xD;
-       a.part_name,&#xD;
+	a.discount_last_unit_price,&#xD;
+	a.cost_unit_price,&#xD;
+	a.cost_amt,&#xD;
+	a.no_tax_cost_unit_price,&#xD;
+	a.no_tax_cost_amt,&#xD;
+	a.tax_cost_unit_price,&#xD;
+	a.tax_cost_amt,&#xD;
+	a.remark,&#xD;
+	a.prev_enter_detail_id,&#xD;
+	a.root_enter_detail_id,&#xD;
+	a.order_detail_id,&#xD;
+	a.part_name,&#xD;
 	a.part_full_name,&#xD;
 	a.part_name_id,&#xD;
-       b.apply_car_model apply_car_model&#xD;
- FROM wb_part.pts_out_detail a LEFT JOIN wb_common.com_attribute b ON(a.part_id = b.id)</sql>
+	b.apply_car_model,&#xD;
+	b.part_brand_id&#xD;
+FROM&#xD;
+	wb_part.pts_out_detail a&#xD;
+	LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )</sql>
     </spEntitySqlView>
     <spEntitySqlView product="DB2 UDB" view="" useSql="true" schema="">
       <sql></sql>
@@ -8491,8 +8560,8 @@
   </nodes>
   <nodes xsi:type="model:SPEntityNode" id="Entity3" name="PtsEnterDetailV" nodeType="table" displayName="Entity" author="chenziming" open="true" entType="SPEntity" allUseViewModel="true" instanceClass="" table="">
     <location x="317" y="44"/>
-    <size height="462" width="150"/>
-    <figSize height="20" width="150"/>
+    <size height="444" width="150"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property123" name="detailId" displayName="detailId" columnName="detail_id" nullAble="false" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
       <viewField dict="false" dictTypeId="" displayName="detailId" entityField="detailId" id="detailId" label="detailId" name="detailId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -9598,72 +9667,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property140" name="orderDetailId" displayName="orderDetailId" columnName="order_detail_id" nullAble="true" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
-      <viewField dict="false" dictTypeId="" displayName="orderDetailId" entityField="orderDetailId" id="orderDetailId" label="orderDetailId" name="orderDetailId" userDefined="true">
-        <fieldView showAllAttr="false">
-          <type name="write"/>
-          <attr defaultValue="" name="iterateId"/>
-          <attr defaultValue="" name="scope"/>
-          <attr defaultValue="" name="propertyType"/>
-          <attr name="maxLength"/>
-          <attr name="formatPattern"/>
-          <attr defaultValue="" name="maxLengthString"/>
-          <attr name="value"/>
-          <attr name="srcFormatPattern"/>
-          <attr defaultValue="" name="property"/>
-          <attr defaultValue="" name="modelField"/>
-          <attr defaultValue="" name="filter"/>
-          <attr name="ignore"/>
-        </fieldView>
-        <fieldEdit showAllAttr="false">
-          <type name="text"/>
-          <attr defaultValue="" name="onvalidation"/>
-          <attr defaultValue="" name="borderStyle"/>
-          <attr defaultValue="true" name="visible"/>
-          <attr defaultValue="true" name="validateOnChanged"/>
-          <attr defaultValue="请输入整数" name="intErrorText"/>
-          <attr defaultValue="" name="emptyText"/>
-          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
-          <attr defaultValue="" name="destroy"/>
-          <attr defaultValue="" name="id"/>
-          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
-          <attr defaultValue="" name="height"/>
-          <attr defaultValue="请输入数字" name="floatErrorText"/>
-          <attr defaultValue="true" name="allowInput"/>
-          <attr defaultValue="" name="style"/>
-          <attr defaultValue="" name="maxLength"/>
-          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
-          <attr defaultValue="" name="onblur"/>
-          <attr defaultValue="" name="name"/>
-          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
-          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
-          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
-          <attr defaultValue="" name="value"/>
-          <attr defaultValue="false" name="required"/>
-          <attr defaultValue="false" name="selectOnFocus"/>
-          <attr defaultValue="true" name="enabled"/>
-          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
-          <attr defaultValue="" name="cls"/>
-          <attr defaultValue="" name="requiredErrorText"/>
-          <attr defaultValue="" name="width"/>
-          <attr defaultValue="" name="inputStyle"/>
-          <attr defaultValue="" name="onkeyup"/>
-          <attr defaultValue="" name="onenter"/>
-          <attr defaultValue="nui-textbox" name="class"/>
-          <attr defaultValue="" name="onkeydown"/>
-          <attr defaultValue="" name="onfocus"/>
-          <attr defaultValue="editor" name="property"/>
-          <attr defaultValue="" name="vtype"/>
-          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
-          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
-          <attr defaultValue="true" name="validateOnLeave"/>
-          <attr defaultValue="icon" name="errorMode"/>
-          <attr defaultValue="" name="onvaluechanged"/>
-          <attr defaultValue="" name="tooltip"/>
-        </fieldEdit>
-      </viewField>
-    </columnProperty>
-    <columnProperty id="property141" name="prevOutDetailId" displayName="prevOutDetailId" columnName="prev_out_detail_id" nullAble="true" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
+    <columnProperty id="property140" name="prevOutDetailId" displayName="prevOutDetailId" columnName="prev_out_detail_id" nullAble="true" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
       <viewField dict="false" dictTypeId="" displayName="prevOutDetailId" entityField="prevOutDetailId" id="prevOutDetailId" label="prevOutDetailId" name="prevOutDetailId" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -9728,7 +9732,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property142" name="rootEnterDetailId" displayName="rootEnterDetailId" columnName="root_enter_detail_id" nullAble="true" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
+    <columnProperty id="property141" name="rootEnterDetailId" displayName="rootEnterDetailId" columnName="root_enter_detail_id" nullAble="true" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
       <viewField dict="false" dictTypeId="" displayName="rootEnterDetailId" entityField="rootEnterDetailId" id="rootEnterDetailId" label="rootEnterDetailId" name="rootEnterDetailId" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -9793,7 +9797,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property143" name="applyCarModel" displayName="applyCarModel" columnName="apply_car_model" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="1000" dasType="string" showType="String">
+    <columnProperty id="property142" name="applyCarModel" displayName="applyCarModel" columnName="apply_car_model" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="1000" dasType="string" showType="String">
       <viewField dict="false" dictTypeId="" displayName="applyCarModel" entityField="applyCarModel" id="applyCarModel" label="applyCarModel" name="applyCarModel" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -9858,7 +9862,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property144" name="partName" displayName="partName" columnName="part_name" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="50" dasType="string" showType="String">
+    <columnProperty id="property143" name="partName" displayName="partName" columnName="part_name" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="50" dasType="string" showType="String">
       <viewField dict="false" dictTypeId="" displayName="partName" entityField="partName" id="partName" label="partName" name="partName" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -9923,72 +9927,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property180" name="partNameId" displayName="partNameId" columnName="part_name_id" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" showType="String">
-      <viewField dict="false" dictTypeId="" displayName="partNameId" entityField="partNameId" id="partNameId" label="partNameId" name="partNameId" userDefined="true">
-        <fieldView showAllAttr="false">
-          <type name="write"/>
-          <attr defaultValue="" name="iterateId"/>
-          <attr defaultValue="" name="scope"/>
-          <attr defaultValue="" name="propertyType"/>
-          <attr name="maxLength"/>
-          <attr name="formatPattern"/>
-          <attr defaultValue="" name="maxLengthString"/>
-          <attr name="value"/>
-          <attr name="srcFormatPattern"/>
-          <attr defaultValue="" name="property"/>
-          <attr defaultValue="" name="modelField"/>
-          <attr defaultValue="" name="filter"/>
-          <attr name="ignore"/>
-        </fieldView>
-        <fieldEdit showAllAttr="false">
-          <type name="text"/>
-          <attr defaultValue="" name="onvalidation"/>
-          <attr defaultValue="" name="borderStyle"/>
-          <attr defaultValue="true" name="visible"/>
-          <attr defaultValue="true" name="validateOnChanged"/>
-          <attr defaultValue="请输入整数" name="intErrorText"/>
-          <attr defaultValue="" name="emptyText"/>
-          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
-          <attr defaultValue="" name="destroy"/>
-          <attr defaultValue="" name="id"/>
-          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
-          <attr defaultValue="" name="height"/>
-          <attr defaultValue="请输入数字" name="floatErrorText"/>
-          <attr defaultValue="true" name="allowInput"/>
-          <attr defaultValue="" name="style"/>
-          <attr defaultValue="" name="maxLength"/>
-          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
-          <attr defaultValue="" name="onblur"/>
-          <attr defaultValue="" name="name"/>
-          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
-          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
-          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
-          <attr defaultValue="" name="value"/>
-          <attr defaultValue="false" name="required"/>
-          <attr defaultValue="false" name="selectOnFocus"/>
-          <attr defaultValue="true" name="enabled"/>
-          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
-          <attr defaultValue="" name="cls"/>
-          <attr defaultValue="" name="requiredErrorText"/>
-          <attr defaultValue="" name="width"/>
-          <attr defaultValue="" name="inputStyle"/>
-          <attr defaultValue="" name="onkeyup"/>
-          <attr defaultValue="" name="onenter"/>
-          <attr defaultValue="nui-textbox" name="class"/>
-          <attr defaultValue="" name="onkeydown"/>
-          <attr defaultValue="" name="onfocus"/>
-          <attr defaultValue="editor" name="property"/>
-          <attr defaultValue="" name="vtype"/>
-          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
-          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
-          <attr defaultValue="true" name="validateOnLeave"/>
-          <attr defaultValue="icon" name="errorMode"/>
-          <attr defaultValue="" name="onvaluechanged"/>
-          <attr defaultValue="" name="tooltip"/>
-        </fieldEdit>
-      </viewField>
-    </columnProperty>
-    <columnProperty id="property181" name="partFullName" displayName="partFullName" columnName="part_full_name" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="1000" dasType="string" showType="String">
+    <columnProperty id="property144" name="partFullName" displayName="partFullName" columnName="part_full_name" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="1000" dasType="string" showType="String">
       <viewField dict="false" dictTypeId="" displayName="partFullName" entityField="partFullName" id="partFullName" label="partFullName" name="partFullName" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -10053,35 +9992,99 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
+    <columnProperty id="property180" name="partBrandId" displayName="partBrandId" columnName="part_brand_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" showType="String">
+      <viewField dict="false" dictTypeId="" displayName="partBrandId" entityField="partBrandId" id="partBrandId" label="partBrandId" name="partBrandId" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
     <spEntitySqlView product="default" view="" useSql="true" schema="" needSave="true">
-      <sql>SELECT A.DETAIL_ID,&#xD;
-       A.ENTER_ID,&#xD;
-       A.PART_ID,&#xD;
-       A.PART_CODE,&#xD;
-       A.PART_NAME,&#xD;
-	A.part_name_id,&#xD;
-	A.part_full_name,&#xD;
-       A.UNIT,&#xD;
-       A.ENTER_QTY,&#xD;
-       A.OUTABLE_QTY,&#xD;
-       A.TAX_SIGN,&#xD;
-       A.TAX_RATE,&#xD;
-       A.TAX_RATE_AMT,&#xD;
-       A.TAX_UNIT_PRICE,&#xD;
-       A.TAX_AMT,&#xD;
-       A.NO_TAX_UNIT_PRICE,&#xD;
-       A.NO_TAX_AMT,&#xD;
-       A.SUGGEST_PRICE,&#xD;
-       A.SUGGEST_AMT,&#xD;
-       A.REMARK,&#xD;
-       A.ORDER_DETAIL_ID,&#xD;
-       A.PREV_OUT_DETAIL_ID,&#xD;
-       A.ROOT_ENTER_DETAIL_ID,&#xD;
-       B.APPLY_CAR_MODEL&#xD;
-  FROM wb_part.PTS_ENTER_DETAIL A&#xD;
-  LEFT JOIN WB_COMMON.COM_ATTRIBUTE B&#xD;
-    ON (A.PART_ID = B.ID)&#xD;
-</sql>
+      <sql>SELECT&#xD;
+	a.detail_id,&#xD;
+	a.enter_id,&#xD;
+	a.part_id,&#xD;
+	a.part_code,&#xD;
+	a.part_name,&#xD;
+	a.part_full_name,&#xD;
+	a.unit,&#xD;
+	a.enter_qty,&#xD;
+	a.outable_qty,&#xD;
+	a.tax_sign,&#xD;
+	a.tax_rate,&#xD;
+	a.tax_rate_amt,&#xD;
+	a.tax_unit_price,&#xD;
+	a.tax_amt,&#xD;
+	a.no_tax_unit_price,&#xD;
+	a.no_tax_amt,&#xD;
+	a.suggest_price,&#xD;
+	a.suggest_amt,&#xD;
+	a.remark,&#xD;
+	a.prev_out_detail_id,&#xD;
+	a.root_enter_detail_id,&#xD;
+	b.apply_car_model,&#xD;
+	b.part_brand_id&#xD;
+FROM&#xD;
+	wb_part.pts_enter_detail a&#xD;
+	LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )</sql>
     </spEntitySqlView>
     <spEntitySqlView product="DB2 UDB" view="" useSql="true" schema="">
       <sql></sql>

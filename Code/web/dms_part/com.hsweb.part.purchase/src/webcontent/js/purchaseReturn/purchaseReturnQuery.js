@@ -14,13 +14,22 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
 var backReasonIdHash = {};
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
-    rightGrid = nui.get("rightGrid");
+	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -187,6 +196,12 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+	    case "partBrandId":
+	        if(partBrandIdHash && partBrandIdHash[e.value])
+	        {
+	            e.cellHtml = partBrandIdHash[e.value].name;
+	        }
+	        break;
         case "billStatus":
             break;
         case "enterTypeId":

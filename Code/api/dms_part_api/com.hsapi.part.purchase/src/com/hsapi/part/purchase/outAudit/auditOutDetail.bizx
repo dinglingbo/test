@@ -207,7 +207,7 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="LT">
+        <process:simpleCondition operator="GT">
           <process:leftOperand type="query">outQty</process:leftOperand>
           <process:rightOperand type="query">outableQty</process:rightOperand>
         </process:simpleCondition>

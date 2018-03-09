@@ -36,6 +36,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
@@ -51,6 +52,22 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("drawcell",function(e)
+    {
+        switch (e.field)
+        {
+            case "partBrandId":
+                if(partBrandIdHash && partBrandIdHash[e.value])
+                {
+                    e.cellHtml = partBrandIdHash[e.value].name;
+                }
+                break;
+            default:
+                break;
+        }
+    });
+
+
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -72,10 +89,15 @@ $(document).ready(function(v)
         }
         nui.get("billTaxRate").setValue(billTaxRate);
     });
-    //绑定表单
-    //var db = new nui.DataBinding();
-    //db.bindForm("basicInfoForm", leftGrid);
     nui.get("billStatus").setData(billStatusList);
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];

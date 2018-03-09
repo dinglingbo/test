@@ -13,13 +13,22 @@ var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
-    rightGrid = nui.get("rightGrid");
+	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -222,12 +231,12 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
-        case "billStatus":
-            if(billStatusHash && billStatusHash[e.value])
-            {
-                e.cellHtml = billStatusHash[e.value];
-            }
-            break;
+    	case "partBrandId":
+	        if(partBrandIdHash && partBrandIdHash[e.value])
+	        {
+	            e.cellHtml = partBrandIdHash[e.value].name;
+	        }
+	        break;
         case "enterTypeId":
             if(enterTypeIdHash && enterTypeIdHash[e.value])
             {

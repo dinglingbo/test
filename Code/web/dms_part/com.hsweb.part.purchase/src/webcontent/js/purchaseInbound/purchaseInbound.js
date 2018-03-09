@@ -36,6 +36,7 @@ var billStatusHash = {
   "2":"已过账",
   "3":"已取消"
 };
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
@@ -51,13 +52,29 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("drawcell",function(e)
+    {
+        switch (e.field)
+        {
+            case "partBrandId":
+                if(partBrandIdHash && partBrandIdHash[e.value])
+                {
+                    e.cellHtml = partBrandIdHash[e.value].name;
+                }
+                break;
+            default:
+                break;
+        }
+    });
+
+
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
     //console.log("xxx");
     nui.get("billTypeId").on("valuechanged",function()
     {
-    	var value = nui.get("billTypeId").getValue();
+        var value = nui.get("billTypeId").getValue();
         var billTaxRate = nui.get("billTaxRate").getValue();
         if(value == "010101")
         {
@@ -77,9 +94,14 @@ $(document).ready(function(v)
         nui.get("billTaxRate").setValue(billTaxRate);
         reCalculateRightGridData();
     });
-    //绑定表单
-    //var db = new nui.DataBinding();
-    //db.bindForm("basicInfoForm", leftGrid);
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -182,6 +204,7 @@ function reCalculateRightGridData()
     {
         var tmp = data[i];
         calculateAmt(tmp);
+        editPartHash[tmp.detailId] = tmp;
     }
     rightGrid.setData(data);
 }
@@ -642,10 +665,7 @@ function editPart()
                 calculateAmt(part);
                 console.log(part);
                 rightGrid.updateRow(part,part);
-                if(part.detailId && !editPartHash[part.detailId])
-                {
-                    editPartHash[part.detailId] = part;
-                }
+                editPartHash[part.detailId] = part;
             }
         }
     });

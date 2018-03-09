@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/stockMgr/stockQuery.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/stockMgr/stockQuery.js?v=1.0.4"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -24,11 +24,11 @@
             <tr>
                 <td style="white-space:nowrap;">
                     <label style="font-family:Verdana;">分店名称：</label>
-                    <input id="compCode"
-                           name="compCode"
+                    <input id="orgid"
+                           name="orgid"
                            class="nui-combobox width1"
-                           textField="text"
-                           valueField="id"
+                           textField="orgname"
+                           valueField="orgid"
                            emptyText="请选择..."
                            url=""
                            allowInput="true"
@@ -54,9 +54,9 @@
             <tr>
                 <td style="white-space:nowrap;">
                     <label style="font-family:Verdana;">仓位：</label>
-                    <input class="nui-textbox" width="100" name="stockLocation"/>
+                    <input class="nui-textbox" width="100" name="storeLocation"/>
                     <label style="font-family:Verdana;">车型：</label>
-                    <input class="nui-textbox" width="100" name="carType"/>
+                    <input class="nui-textbox" width="100" name="applyCarModel"/>
                     <label style="font-family:Verdana;">品牌：</label>
                     <input id="carBrand"
                            name="carBrand"
@@ -115,9 +115,9 @@
                         <div type="indexcolumn">序号</div>
                         <div header="分店仓库信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="compCode" width="100" headerAlign="center" header="分店名称"></div>
+                                <div allowSort="true" field="orgName" width="100" headerAlign="center" header="分店名称"></div>
                                 <div allowSort="true" field="storeId" width="50" headerAlign="center" header="仓库"></div>
-                                <div allowSort="true" field="stockLocation" width="50" headerAlign="center" header="仓位"></div>
+                                <div allowSort="true" field="storeLocation" width="50" headerAlign="center" header="仓位"></div>
                             </div>
                         </div>
                         <div header="配件信息" headerAlign="center">

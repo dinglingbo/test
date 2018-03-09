@@ -43,9 +43,10 @@ $(document).ready(function(v)
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
+    provinceEl = nui.get("provinceId");
 
-
-    getProvinceAndCity();
+    getProvinceAndCity(function(data)
+    {});
     var dictIdList = [];
     dictIdList.push('DDT20130703000008');//票据类型
     dictIdList.push('DDT20180105000001');//供应商负责人职务
@@ -184,41 +185,6 @@ function onDrawCell(e)
     }
 }
 
-var getProvinceAndCityUrl = baseUrl+"com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
-function getProvinceAndCity(callback)
-{
-    if(!provinceEl)
-    {
-        provinceEl = nui.get("provinceId");
-        cityEl = nui.get("cityId");
-    }
-    nui.ajax({
-        url:getProvinceAndCityUrl,
-        type:"post",
-        success:function(data)
-        {
-            if(data)
-            {
-                provinceList = data.province||[];
-                provinceList.forEach(function(v){
-                    provinceHash[v.id] = v;
-                });
-                provinceEl.setData(provinceList);
-                cityList = data.city||[];
-                cityList.forEach(function(v){
-                    cityHash[v.id] = v;
-                });
-                callback && callback({
-                    code:"S"
-                });
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
 function addCustomer()
 {
     nui.open({

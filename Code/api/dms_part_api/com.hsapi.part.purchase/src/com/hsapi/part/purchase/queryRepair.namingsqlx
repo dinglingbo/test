@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <select id="queryRepairOutList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.orgid orgid,
+			a.store_id storeId,
+			a.service_code serviceCode,
+			a.car_no carNo,
+			a.part_id partId,
+			a.part_code partCode,
+			a.part_name partName,
+			a.unit unit,
+			a.out_qty outQty,
+			a.true_unit_price trueUnitPrice,
+			a.true_cost trueCost,
+			a.sell_unit_price sellUnitPrice,
+			a.sell_amt sellAmt,
+			a.auditor,
+			a.audit_sign auditSign,
+			a.audit_date auditDate,
+			a.pick_man pickMan,
+			a.pick_date pickDate,
+			a.return_man returnMan,
+			a.return_sign returnSign,
+			a.return_date returnDate,
+			a.out_no outNo,
+			a.recorder recorder,
+			a.record_date recordDate
+		FROM
+			pts_repair_out a
+		WHERE
+			1 =1
+		<dynamic>
+            <isNotEmpty prepend="and" property="startDate">  
+                (date_format(a.$dateFiled$,'%Y-%m-%d') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (date_format(a.$dateFiled$,'%Y-%m-%d') &lt;= #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="pickMan">  
+                (a.pickMan = #pickMan#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (date_format(a.record_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (date_format(a.record_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(a.record_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (date_format(a.record_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (date_format(a.record_date,'%X-%V')=date_format(now(),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--上周-->
+                (date_format(a.record_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">  
+                (a.service_code like '%$serviceCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (a.part_Name like '%$partName$%')
+            </isNotEmpty>
+        </dynamic> 
+    </select>
+</sqlMap>

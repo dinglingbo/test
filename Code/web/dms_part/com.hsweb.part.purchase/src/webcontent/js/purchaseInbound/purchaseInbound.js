@@ -175,7 +175,7 @@ function calculateAmt(part)
     var taxSign = nui.get("taxSign").getValue();
     var billTaxRate = nui.get("billTaxRate").getValue();
     billTaxRate = parseFloat(billTaxRate);
-    if(taxSign == 0)
+    if(taxSign === 0 || taxSign === "0")
     {
         part.noTaxUnitPrice = parseFloat(part.noTaxUnitPrice);
         part.taxUnitPrice = part.noTaxUnitPrice * (1+billTaxRate);
@@ -228,6 +228,13 @@ function onLeftGridRowDblClick(e)
     buyerEl.setValue(row.buyer);
     buyerEl.setText(row.buyer);
     nui.get("guestId").setText(row.guestFullName);
+    if(row.billTypeId == "010101")
+    {
+        nui.get("taxSign").setValue(0);
+    }
+    else{
+        nui.get("taxSign").setValue(1);
+    }
     var editEnterMainBtn = nui.get("editEnterMainBtn");
     var saveEnterMainBtn = nui.get("saveEnterMainBtn");
     var cancelEditEnterMainBtn = nui.get("cancelEditEnterMainBtn");
@@ -567,6 +574,12 @@ function selectPart(callback)
 }
 function addEnterDetail(part)
 {
+	var storeId = nui.get("storeId").getValue();
+    if(!storeId)
+    {
+        nui.alert("请先选择仓库");
+        return;
+    }
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.purchase.inBoundCountView.flow",
@@ -576,14 +589,13 @@ function addEnterDetail(part)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            part.partId = part.id;
-            delete part.id;
             part.partCode = part.code;
             part.partName = part.name;
             part.partFullName = part.fullName;
             part.unitPrice = 0;
             iframe.contentWindow.setData({
-                part:part
+                part:part,
+                storeId:storeId
             });
         },
         ondestroy: function (action)
@@ -595,13 +607,16 @@ function addEnterDetail(part)
                 var enterDetail = data.enterDetail;
                 console.log(enterDetail);
                 var detail = {};
-                detail.partId = enterDetail.partId;
-                detail.partCode = enterDetail.partCode;
-                detail.partName = enterDetail.partName;
-                detail.partNameId = enterDetail.partNameId;
-                detail.partFullName = enterDetail.partFullName;
-                detail.applyCarModel = enterDetail.applyCarModel;
-                detail.unit = enterDetail.unit;
+                detail.partId = part.id;
+                detail.partCode = part.code;
+                detail.partName = part.name;
+                detail.partNameId = part.partNameId;
+                detail.partFullName = part.fullName;
+                detail.applyCarModel = part.applyCarModel;
+                detail.unit = part.unit;
+                detail.partBrandId = part.partBrandId;
+                detail.storeLocation = enterDetail.storeLocation;
+                detail.storeLocationId = enterDetail.storeLocationId;
                 detail.remark = enterDetail.remark;
                 detail.enterQty = enterDetail.enterQty;
                 detail.noTaxUnitPrice = enterDetail.unitPrice;
@@ -630,6 +645,7 @@ function editPart()
     {
         return;
     }
+    var storeId = nui.get("storeId").getValue();
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.purchase.enterDetailEdit.flow",
@@ -647,7 +663,8 @@ function editPart()
                 part.unitPrice = part.taxUnitPrice;
             }
             iframe.contentWindow.setData({
-                part:part
+                part:part,
+                storeId:storeId
             });
         },
         ondestroy: function (action)
@@ -663,6 +680,8 @@ function editPart()
                 part.noTaxUnitPrice = enterDetail.unitPrice;
                 part.taxUnitPrice = enterDetail.unitPrice;
                 calculateAmt(part);
+                part.storeLocation = enterDetail.storeLocation;
+                part.storeLocationId = enterDetail.storeLocationId;
                 console.log(part);
                 rightGrid.updateRow(part,part);
                 editPartHash[part.detailId] = part;

@@ -10,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 <script
-	src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/enterDetailEdit.js?v=1.0.4"></script>
+	src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/enterDetailEdit.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -68,8 +68,21 @@
 			</tr>
 			<tr>
 				<td class="title"><label>库位</label></td>
-				<td><input name="kuwei" class="nui-textbox" enabled="true"
-					width="100%" /></td>
+				<td>
+					<input name="storeLocationId"
+                       id="storeLocationId"
+                       class="nui-combobox"
+                       textField="name"
+                       valueField="id"
+                       emptyText="请选择..."
+                       url=""
+                       showNullItem="false"
+                       width="100%"
+                       popupMaxHeight="100"
+                       showPopupOnClick="true"
+                       allowInput="false"
+                       nullItemText="请选择..."/>
+				</td>
 			</tr>
 		</table>
 	</div>

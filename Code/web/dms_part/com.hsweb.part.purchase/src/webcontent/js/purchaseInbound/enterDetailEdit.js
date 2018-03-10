@@ -13,6 +13,21 @@ function setData(data)
     init();
     console.log(data);
     data = data||{};
+    if(data.storeId)
+    {
+        nui.mask({
+            html:'数据加载中...'
+        });
+        var storeId = data.storeId;
+        getLocationListByStoreId(storeId,function(data)
+        {
+            nui.unmask();
+            var locationList = data.locationList;
+            var storeLocationId = nui.get("storeLocationId");
+            storeLocationId.setData(locationList);
+        });
+
+    }
     var part = data.part;
     if(part)
     {
@@ -42,16 +57,13 @@ function onOk()
             return;
         }
     }
+    data.storeLocation = nui.get("storeLocationId").getText();
     resultData.enterDetail = data;
     CloseWindow("ok");
 }
 
-function CloseWindow(action) {
-    //if (action == "close" && form.isChanged()) {
-    //    if (confirm("数据被修改了，是否先保存？")) {
-    //        return false;
-    //    }
-    //}
+function CloseWindow(action) 
+{
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }

@@ -92,33 +92,28 @@
 	}
 	var getProvinceAndCityUrl = window._rootUrl
 			+ "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
-	function getProvinceAndCity(callback) 
-	{
-		if(!provinceHash)
-		{
+	function getProvinceAndCity(callback) {
+		if (!provinceHash) {
 			provinceHash = {};
 		}
-		if(!cityHash)
-		{
+		if (!cityHash) {
 			cityHash = {};
 		}
-		if(window.top._provinceList && window.top._cityList)
-		{
+		if (window.top._provinceList && window.top._cityList) {
 			provinceList = window.top._provinceList;
 			cityList = window.top._cityList;
 			provinceList.forEach(function(v) {
 				provinceHash[v.id] = v;
 			});
-			cityList.forEach(function(v){
-	        	cityHash[v.id] = v;
-	        });
-	        if(provinceEl)
-	        {
-	          	provinceEl.setData(provinceList);
-	        }
+			cityList.forEach(function(v) {
+				cityHash[v.id] = v;
+			});
+			if (provinceEl) {
+				provinceEl.setData(provinceList);
+			}
 			callback && callback({
-				province:provinceList,
-				city:cityList
+				province : provinceList,
+				city : cityList
 			});
 			console.log("getProvinceAndCity from client");
 			return;
@@ -127,22 +122,20 @@
 			url : getProvinceAndCityUrl,
 			type : "post",
 			success : function(data) {
-				if (data && data.province) 
-				{
+				if (data && data.province) {
 					window.top._provinceList = data.province;
 					provinceList = window.top._provinceList;
 					window.top._cityList = data.city;
-	                provinceList.forEach(function(v){
-	                    provinceHash[v.id] = v;
-	                });
-	                if(provinceEl)
-	                {
-	                	provinceEl.setData(provinceList);
-	                }
-	                cityList = window.top._cityList; 
-	                cityList.forEach(function(v){
-	                    cityHash[v.id] = v;
-	                });
+					provinceList.forEach(function(v) {
+						provinceHash[v.id] = v;
+					});
+					if (provinceEl) {
+						provinceEl.setData(provinceList);
+					}
+					cityList = window.top._cityList;
+					cityList.forEach(function(v) {
+						cityHash[v.id] = v;
+					});
 					callback && callback(data);
 					console.log("getProvinceAndCity from server");
 				}
@@ -346,6 +339,55 @@
 						nui.get(settTypeId).setValue(supplier.settTypeId);
 					}
 				}
+			}
+		});
+	}
+	var getLocationListByStoreIdUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getLocationListByStoreId.biz.ext";
+	var locationListHash = window.parent.locationListHash || {};
+	function getLocationListByStoreId(storeId, callback) {
+		if (locationListHash[storeId]) {
+			callback && callback({
+				locationList : locationListHash[storeId]
+			});
+			return;
+		}
+		var params = {};
+		params.storeId = storeId;
+		nui.ajax({
+			url : getLocationListByStoreIdUrl,
+			type : "post",
+			data : JSON.stringify(params),
+			success : function(data) {
+				if (data && data.locationList) {
+					var list = data.locationList;
+					locationListHash[storeId] = list;
+					callback && callback({
+						locationList : list
+					});
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	var getCompBillNOUrl = window._rootUrl + "com.hs.common.uniq.getCompBillNO.biz.ext";
+	function getCompBillNO(billTypeCode, callback) {
+		var params = {};
+		params.billTypeCode = billTypeCode;
+		params.orgid = currOrgid;
+		nui.ajax({
+			url : getCompBillNOUrl,
+			type : "post",
+			data : JSON.stringify(params),
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
 			}
 		});
 	}

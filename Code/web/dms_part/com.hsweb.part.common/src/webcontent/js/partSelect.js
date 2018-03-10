@@ -87,13 +87,11 @@ function onNodeDblClick(e)
     var cartypet = list[2]||"";
 
     var partName = {
-        cartypef:cartypef,
-        cartypes:cartypes,
-        cartypet:cartypet
+        carTypeIdF:cartypef,
+        carTypeIdS:cartypes,
+        carTypeIdT:cartypet
     };
-    doSearch({
-        partName:partName
-    });
+    doSearch(partName);
 }
 var partTypeHash = null;
 function onPartGridDraw(e)

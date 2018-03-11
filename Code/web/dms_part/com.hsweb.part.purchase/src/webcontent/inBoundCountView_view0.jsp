@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/inBoundCount.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/inBoundCount.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -32,10 +32,6 @@
 <body>
 
 <div id="basicInfoForm" class="form">
-    <input class="nui-hidden" name="detailId"/>
-    <input class="nui-hidden" name="partId"/>
-    <input class="nui-hidden" name="applyCarModel">
-    <input class="nui-hidden" name="partNameId"/>
     <table style="width: 100%">
         <tr>
             <td class="title">
@@ -86,21 +82,35 @@
                 <label>库位</label>
             </td>
             <td>
-                <input name="kuwei" class="nui-textbox" enabled="false" width="100%"/>
-            </td>
-            <td class="title">
-                <label>入库分配</label>
-            </td>
-            <td>
-                <input name="fenpei"
+                <input name="storeLocationId"
+                       id="storeLocationId"
                        class="nui-combobox"
                        textField="name"
                        valueField="id"
                        emptyText="请选择..."
                        url=""
-                       allowInput="true"
-                       showNullItem="true"
+                       showNullItem="false"
                        width="100%"
+                       popupMaxHeight="100"
+                       showPopupOnClick="true"
+                       allowInput="false"
+                       nullItemText="请选择..."/>
+            </td>
+            <td class="title">
+                <label>入库分配</label>
+            </td>
+            <td>
+                <input name="remark"
+                       class="nui-combobox"
+                       textField="name"
+                       valueField="id"
+                       emptyText="请选择..."
+                       url=""
+                       showNullItem="false"
+                       width="100%"
+                       popupMaxHeight="100"
+                       showPopupOnClick="true"
+                       allowInput="false"
                        nullItemText="请选择..."/>
             </td>
         </tr>

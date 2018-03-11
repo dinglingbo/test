@@ -240,6 +240,7 @@
 			c.apply_car_model applyCarModel,
 			b.enter_qty enterQty,
 			b.outable_qty outableQty,
+			b.enter_qty-b.outable_qty outQty,
 			b.tax_sign taxSign,
 			b.tax_rate taxRate,
 			b.tax_rate_amt taxRateAmt,
@@ -262,6 +263,9 @@
 		     where a.orgid = #orgid#
 		     and a.audit_status = 1
     	<dynamic>
+    		<isNotEmpty prepend="and" property="carTypeIdF">  
+                (c.car_type_id_f = #carTypeIdF#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="enterTypeId">  
                 (a.enter_type_id = #enterTypeId#)
             </isNotEmpty>
@@ -322,8 +326,14 @@
             <isNotEmpty prepend="and" property="partCode">  
                 (b.part_code like '%$partCode$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastCode">  
+                (b.part_code like '%$lastCode$')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (b.part_name like '%$name$%' or b.part_full_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="queryCode">  
+                (c.query_code like '%$queryCode$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$

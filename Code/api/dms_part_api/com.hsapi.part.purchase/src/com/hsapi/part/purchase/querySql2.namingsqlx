@@ -794,7 +794,7 @@
 			(
 		SELECT
 			a.bala_amt,
-			<dynamic>
+		<dynamic>
 			<isNotEmpty prepend="" property="org">   
 		            a.orgid code
 		       	FROM
@@ -818,5 +818,94 @@
 			) d 
 		GROUP BY
 			code
+    </select>
+    
+    
+    <select id="getStockListByLocIdList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.part_id partId,
+			a.part_code partCode,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_full_name partFullName,
+			a.unit unit,
+			a.store_location_id storeLocationId,
+			a.store_location storeLocation,
+			ifnull(a.stock_price,0) balaUnitPrice,
+			ifnull(a.stock_qty,0) paperQty,
+			ifnull(a.stock_qty,0) trueQty,
+			0 invtLossQty,
+			b.apply_car_model applyCarModel,
+			c.NAME partBrandName 
+		FROM
+			pts_cyc_store a
+			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )
+			LEFT JOIN wb_common.com_part_brand c ON ( b.part_brand_id = c.id ) 
+		WHERE
+			a.store_location_id IN ($idList$)
+		<dynamic>
+			<isNotEmpty prepend="and" property="notGenerateZero">   
+		        a.stock_qty &gt; 0
+		    </isNotEmpty>
+		</dynamic>
+    </select>
+    
+    <select id="getStockCheckListByCheckId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.detail_id detailId,
+			a.part_code partCode,
+			a.part_name partName,
+			a.unit unit,
+			a.store_location storeLocation,
+			a.paper_qty paperQty,
+			a.true_qty trueQty,
+			a.invt_loss_qty invtLossQty,
+			a.flag flag,
+			a.remark remark,
+			b.apply_car_model applyCarModel,
+			c.NAME partBrandName 
+		FROM
+			pts_stock_check_detail a
+			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )
+			LEFT JOIN wb_common.com_part_brand c ON ( b.part_brand_id = c.id ) 
+		WHERE
+			a.check_id = #checkId#
+    </select>
+    
+    <select id="genPtsEnterByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterDetail">
+    	SELECT
+			a.part_id partId,
+			a.part_name partName,
+			a.part_code partCode,
+			a.part_name_id partNameId,
+			a.part_full_name partFullName,
+			a.unit unit,
+			a.invt_loss_qty enterQty,
+			a.bala_unit_price noTaxUnitPrice 
+		FROM
+			pts_stock_check_detail a
+			LEFT JOIN pts_stock_check_main c ON ( a.check_id = c.id )
+			LEFT JOIN pts_cyc_store b ON ( c.store_id = b.store_id AND a.part_id = b.part_id AND a.paper_qty = b.stock_qty ) 
+		WHERE
+			a.check_id = #checkId#
+			AND a.invt_loss_qty &gt; 0
+    </select>
+    <select id="genPtsOutByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutDetail">
+    	SELECT
+			a.part_id partId,
+			a.part_name partName,
+			a.part_code partCode,
+			a.part_name_id partNameId,
+			a.part_full_name partFullName,
+			a.unit unit,
+			a.invt_loss_qty outQty,
+			a.bala_unit_price noTaxCostUnitPrice 
+		FROM
+			pts_stock_check_detail a
+			LEFT JOIN pts_stock_check_main c ON ( a.check_id = c.id )
+			LEFT JOIN pts_cyc_store b ON ( c.store_id = b.store_id AND a.part_id = b.part_id AND a.paper_qty = b.stock_qty ) 
+		WHERE
+			a.check_id = #checkId#
+			AND a.invt_loss_qty > 0
     </select>
 </sqlMap>

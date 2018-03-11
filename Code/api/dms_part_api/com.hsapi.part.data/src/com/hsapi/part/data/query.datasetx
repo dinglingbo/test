@@ -3,7 +3,7 @@
   <nodes xsi:type="model:SPEntityNode" id="Entity0" name="PtsOutDetailV" nodeType="table" displayName="Entity" author="chenziming" open="true" entType="SPEntity" allUseViewModel="true" instanceClass="" table="">
     <location x="90" y="30"/>
     <size height="588" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property0" name="detailId" displayName="detailId" columnName="detail_id" nullAble="false" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
       <viewField dict="false" dictTypeId="" displayName="detailId" entityField="detailId" id="detailId" label="detailId" name="detailId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -8560,8 +8560,8 @@ FROM&#xD;
   </nodes>
   <nodes xsi:type="model:SPEntityNode" id="Entity3" name="PtsEnterDetailV" nodeType="table" displayName="Entity" author="chenziming" open="true" entType="SPEntity" allUseViewModel="true" instanceClass="" table="">
     <location x="317" y="44"/>
-    <size height="444" width="150"/>
-    <figSize height="20" width="170"/>
+    <size height="462" width="150"/>
+    <figSize height="20" width="150"/>
     <columnProperty id="property123" name="detailId" displayName="detailId" columnName="detail_id" nullAble="false" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
       <viewField dict="false" dictTypeId="" displayName="detailId" entityField="detailId" id="detailId" label="detailId" name="detailId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -10057,6 +10057,71 @@ FROM&#xD;
         </fieldEdit>
       </viewField>
     </columnProperty>
+    <columnProperty id="property182" name="storeLocationId" displayName="storeLocationId" columnName="store_location_id" nullAble="true" PK="false" columnType="INT" eosDataType="Int" length="11" dasType="int" showType="Int">
+      <viewField dict="false" dictTypeId="" displayName="storeLocationId" entityField="storeLocationId" id="storeLocationId" label="storeLocationId" name="storeLocationId" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
     <spEntitySqlView product="default" view="" useSql="true" schema="" needSave="true">
       <sql>SELECT&#xD;
 	a.detail_id,&#xD;
@@ -10081,9 +10146,12 @@ FROM&#xD;
 	a.prev_out_detail_id,&#xD;
 	a.root_enter_detail_id,&#xD;
 	b.apply_car_model,&#xD;
-	b.part_brand_id&#xD;
+	b.part_brand_id,&#xD;
+	c.store_location_id&#xD;
 FROM&#xD;
 	wb_part.pts_enter_detail a&#xD;
+	INNER JOIN wb_part.pts_enter_main d on (d.id = a.enter_id)&#xD;
+	LEFT JOIN wb_part.pts_cyc_store c on (a.part_id = c.part_id and d.orgid = c.orgid and d.store_id = c.store_id)&#xD;
 	LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )</sql>
     </spEntitySqlView>
     <spEntitySqlView product="DB2 UDB" view="" useSql="true" schema="">

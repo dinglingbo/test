@@ -848,6 +848,7 @@ function addSellOutDetail(part)
             part.taxPrice = part.taxPrice;
             part.noTaxPrice = part.noTaxPrice;
             part.enterPrice = part.enterPrice;
+            part.enterDate = part.enterDate;
             part.qty = 1;
 
             iframe.contentWindow.setData({
@@ -884,6 +885,7 @@ function addSellOutDetail(part)
                 outDetail.enterPrice = data.enterPrice;
                 outDetail.enterAmt = data.qty * data.enterPrice;
                 outDetail.taxDiff = outDetail.taxAmt - outDetail.noTaxAmt;
+                outDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
 
                 outDetail.comOemCode = data.oemCode;
                 outDetail.comSpec = data.spec;

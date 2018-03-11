@@ -208,8 +208,29 @@ function getQuarterEndDate() {
 }
 
 //获得上年的开始日期
+function getYearStartDate() {
+	var NowStartDate = new Date(nowYear, 0, 1);
+	return formatDate(NowStartDate);
+}
+
+function getYearEndDate() {
+    //获得当前年份4位年
+    //var currentYear=now.getFullYear();
+    //本年最后
+    //var currentYearLastDate=new Date(currentYear,11,31);
+    //return formatDate(currentYearLastDate);
+	var NowStartDate = new Date(nowYear+1, 0, 1);
+	return formatDate(NowStartDate);
+}
+
+//获得上年的开始日期
 function getPrevYearStartDate() {
 	var NowStartDate = new Date(nowYear-1, 0, 1);
+	return formatDate(NowStartDate);
+}
+
+function getPrevYearEndDate() {
+	var NowStartDate = new Date(nowYear, 0, 1);
 	return formatDate(NowStartDate);
 }
 

@@ -4,7 +4,8 @@ var brand; //品牌
 var vinPartImg;//零件图片
 var gridCfg; //车辆配置
 var gridMainGroup; //主组
-var gridSubGroup;//分组
+var subGroups;//分组
+var gridSubGroup;//分组grid
 var gridParts;//零件
 var panel;
 
@@ -12,6 +13,7 @@ $(document).ready(function(v){
     vinPartImg = $("#vin_part_img");
     gridCfg = nui.get("gridCfg");
 	gridMainGroup = nui.get("gridMainGroup");
+    subGroups = $("#subGroups");
     gridSubGroup = nui.get("gridSubGroup");
     gridParts = nui.get("gridParts");
     panel = nui.get("panel");
@@ -180,7 +182,24 @@ function setgridMainGroup(data){
 */
 function setSubGroupData(data){
     gridSubGroup.setData(data);
-    showRightGrid(gridSubGroup);
+    
+    //img
+    var len = data.length;
+    var imgSubGroup = $("#imgSubGroup");
+    imgSubGroup.children().remove();
+    var img = "";
+    for(var i=0;i<len;i++){
+        img = '<a class="sub-group">'
+            + '<div class="LazyLoad is-visible" style="height:140px; width:140px;">'
+            + '    <img src="' + data[i].url + '" alt="sub-group-img">'
+            + '</div>'
+            + '<div class="label">' + data[i].mid + '</div>'
+            + '<div class="float-panel">' + data[i].subgroupname + '</div>'
+        + '</a>';
+        imgSubGroup.append(img);
+        
+    }
+    showRightGrid(subGroups);
 }
 
 /*
@@ -238,11 +257,12 @@ function showLeftGrid(gridObj){
 */
 function showRightGrid(gridObj){
     gridCfg.hide();
-    gridSubGroup.hide();
+    //gridSubGroup.hide();
+    subGroups.hide();
     gridParts.hide();
     
     gridObj.show();
-    var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
+    var num = (gridObj==gridCfg)? 0 : ((gridObj==subGroups)? 1 : 2);
     $($(".groupButton")[num]).show();
     //$($(".groupButton")[num]).click();
     setBgColor($(".groupButton")[num]);
@@ -252,6 +272,15 @@ function showRightGrid(gridObj){
     }
 }
 
+/*
+*子组图/表
+*/
+function showSubGroups(gridObj){
+    $('#imgSubGroup').hide();
+    $('#gridSubGroup').hide();
+    
+    gridObj.show();  
+}
 
 function setBgColor(obj){
     $(".groupButton:visible").attr("style", "background:#ffffff;");

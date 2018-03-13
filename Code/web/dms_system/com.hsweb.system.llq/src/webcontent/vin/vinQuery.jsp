@@ -11,10 +11,11 @@
 <head>
 <title>车架号查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.2" rel="stylesheet" type="text/css" />
     <%@include file="/common/sysCommon.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.120" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -22,7 +23,7 @@
             <br/>
             <center id="groupButton">
                 <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(gridCfg)">主&nbsp;&nbsp;组</a>
-                <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(gridSubGroup)" onclick="">分&nbsp;&nbsp;组</a>
+                <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(subGroups)" onclick="">分&nbsp;&nbsp;组</a>
                 <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(gridParts)">零&nbsp;&nbsp;件</a>
             </center>
         </div>

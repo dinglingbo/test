@@ -155,6 +155,12 @@ function onPartGridDraw(e)
                 e.cellHtml = "";
             }
             break;
+        case "outableQty":
+            if(e.value > 0)
+            {
+                e.cellHtml = "<font color='blue'>" + e.value + "</font>";
+            }
+            break;
         default:
             break;
     }
@@ -180,6 +186,14 @@ function onSearch()
 }
 function doSearch(params)
 {
+    if(!params.storeId && !params.code && !params.name && !params.applyCarModel && !params.namePy && !params.partBrandId){
+        nui.alert("请输入查询条件！");
+        return;
+    }
+    var isShowAll = nui.get("search_showAll").getValue();
+    if(isShowAll == 1){
+        params.guestId = null;
+    }
     partGrid.load({
         params:params
     });
@@ -280,8 +294,11 @@ function setData(data,ck,cck){
 
     data = data||{};
     nui.get("storeId").setValue(data.storeId);
+    nui.get("search-guestId").setValue(data.guestId);
 
-    onSearch();
+    if(data.storeId){
+        onSearch();
+    }
 }
 function CloseWindow(action)
 {

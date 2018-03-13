@@ -4,23 +4,109 @@
     <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
         <parameter javaType="date" jdbcType="DATE" property="dateType"/>
     </parameterMap>
-    <resultMap class="commonj.sdo.DataObject" id="resultMap">
-        <result column="TYPEID" javaType="string" property="typeId"/>
+    <resultMap class="com.hsapi.part.data.pts.PtsEnterDetail" id="resultMap1">
+        <result column="detail_id" javaType="string" property="detailId"/>
+        <result column="part_id" javaType="int" property="partId"/>
+        <result column="part_code" javaType="string" property="partCode"/>
+        <result column="part_name" javaType="string" property="partName"/>
+        <result column="enter_qty" javaType="int" property="enterQty"/>
+        <result column="price" javaType="double" property="price"/>
+        <result column="total" javaType="double" property="total"/>
+        <result column="source_id" javaType="string" property="sourceId"/>
+        <result column="out_backable_qty" javaType="int" property="outBackableQty"/>
+        <result column="part_name_id" javaType="string" property="partNameId"/>
+        <result column="part_full_name" javaType="string" property="partFullName"/>
+        <result column="unit" javaType="string" property="unit"/>
     </resultMap>
-
-    <select id="pts_enter_detail" parameterClass="HashMap" resultClass="HashMap">
-		select detail_id, part_id, part_code, part_name, enter_qty, 
-			case when tax_sign = 0 then no_tax_unit_price else tax_unit_price end price, 
-			case when tax_sign = 0 then no_tax_amt else tax_amt end total, 
-			prev_out_detail_id source_id, order_detail_id  order_id
-		from pts_enter_detail where enter_id = #enter_id#
+    <select id="pts_enter_detail" parameterClass="java.util.HashMap" resultMap="resultMap1">
+		select a.detail_id, 
+		      a.part_id,
+		      a.part_code,
+		      a.part_name,
+		      a.part_name_id,
+		      a.part_full_name,
+		      a.unit,
+		      ifnull(a.enter_qty,0) enter_qty, 
+		      (case when a.tax_sign = 0 then a.no_tax_unit_price else a.tax_unit_price end) price, 
+		      (case when a.tax_sign = 0 then a.no_tax_amt else a.tax_amt end) total, 
+		      a.prev_out_detail_id as source_id, 
+		      a.order_detail_id as order_id,
+		      ifnull(b.out_backable_qty,0) AS out_backable_qty
+		  from pts_enter_detail a LEFT JOIN pts_out_detail b ON (a.prev_out_detail_id = b.detail_id)
+		  	where a.enter_id = #enterId#
 	</select>
 	
-	
-    <select id="pts_invaicing_detail_bala" parameterClass="HashMap" resultClass="HashMap">
-		SELECT NVL(BALA_QTY, 0) BALA_QTY, NVL(BALA_UNIT_PRICE,0) BALA_UNIT_PRICE, NVL(BALA_AMT,0) BALA_AMT
-		FROM PTS_INVOICING_DETAIL 
+	<resultMap class="com.hsapi.part.data.pts.PtsInvoicingDetail" id="resultMap2">
+        <result column="BALA_QTY" javaType="int" property="balaQty"/>
+        <result column="BALA_UNIT_PRICE" javaType="double" property="balaUnitPrice"/>
+        <result column="BALA_AMT" javaType="double" property="balaAmt"/>
+    </resultMap>
+    <select id="pts_invaicing_detail_bala" parameterClass="java.util.HashMap" resultMap="resultMap2">
+		SELECT ifnull(BALA_QTY, 0) BALA_QTY, ifnull(BALA_UNIT_PRICE,0) BALA_UNIT_PRICE, ifnull(BALA_AMT,0) BALA_AMT
+			FROM PTS_INVOICING_DETAIL 
 		WHERE DETAIL_ID = (SELECT MAX(DETAIL_ID) FROM PTS_INVOICING_DETAIL WHERE ORGID = #orgId# AND PART_ID = #partId#)
 	</select>	
 	
+	
+	<resultMap class="com.hsapi.part.data.pts.PtsInvoicingStoreDetail" id="resultMap3">
+        <result column="BALA_QTY" javaType="int" property="balaQty"/>
+        <result column="BALA_UNIT_PRICE" javaType="double" property="balaUnitPrice"/>
+        <result column="BALA_AMT" javaType="double" property="balaAmt"/>
+    </resultMap>
+    <select id="pts_invoicing_store_detail_bala" parameterClass="java.util.HashMap" resultMap="resultMap3">
+		SELECT ifnull(BALA_QTY, 0) AS BALA_QTY,
+		       ifnull(BALA_UNIT_PRICE, 0) AS BALA_UNIT_PRICE,
+		       ifnull(BALA_AMT, 0) BALA_AMT
+		  FROM PTS_INVOICING_STORE_DETAIL
+		 WHERE DETAIL_ID = (SELECT MAX(DETAIL_ID)
+		                      FROM PTS_INVOICING_STORE_DETAIL
+		                     WHERE orgid = #orgId#
+		                       AND PART_ID = #partId#
+		                       AND STORE_ID = #storeId#)
+	</select>
+	
+	
+	<select id="ptsLocationCycPartId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsCycOrg">
+		SELECT c.orgid orgid,
+		       c.part_id partId,
+		       c.stock_location stockLocation,
+		       c.id ID
+		FROM pts_enter_main a 
+		INNER JOIN pts_enter_detail b ON (a.id = b.enter_id)
+		INNER JOIN pts_cyc_org c ON (a.orgid = c.orgid AND b.part_id = c.part_id)
+		WHERE a.id = #enterId#
+	</select>
+	
+	<select id="ptsStoreCycPartId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsCycStore">
+		SELECT c.orgid orgid,
+		       c.part_id partId,
+		       c.store_id storeId,
+		       c.id ID
+		FROM pts_enter_main a 
+		INNER JOIN pts_enter_detail b ON (a.id = b.enter_id)
+		INNER JOIN pts_cyc_store c ON (a.orgid = c.orgid AND b.part_id = c.part_id AND a.store_id = c.store_id)
+		WHERE a.id = #enterId#
+	</select>
+	
+	
+	<resultMap class="commonj.sdo.DataObject" id="resultMap4">
+        <result column="TOTAL_ENTER_QTY" javaType="int" property="totalEnterQty"/>
+        <result column="TOTAL_NO_TAX_AMT" javaType="double" property="totalNoTaxAmt"/>
+        <result column="TOTAL_TAX_AMT" javaType="double" property="totalTaxAmt"/>
+        <result column="TOTAL_STOCK_TRUE_AMT" javaType="double" property="totalStockTrueAmt"/>
+    </resultMap>
+    <select id="getEnterSumAmt" parameterClass="java.util.HashMap" resultMap="resultMap4">
+		SELECT SUM(B.ENTER_QTY) TOTAL_ENTER_QTY,
+		       SUM(B.NO_TAX_AMT) TOTAL_NO_TAX_AMT,
+		       SUM(B.TAX_AMT) TOTAL_TAX_AMT,
+		       SUM(CASE WHEN B.TAX_SIGN = 1 THEN
+		                                      B.TAX_AMT
+		                                     ELSE
+		                                      B.NO_TAX_AMT
+		                                   END) TOTAL_STOCK_TRUE_AMT
+		  FROM PTS_ENTER_MAIN A
+		 INNER JOIN PTS_ENTER_DETAIL B
+		    ON A.ID = B.ENTER_ID
+		 WHERE A.ID = #enterId#
+	</select>
 </sqlMap>

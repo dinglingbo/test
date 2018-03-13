@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/reviewMgr/outReview.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/reviewMgr/outReview.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -101,7 +101,7 @@
                         <div type="indexcolumn">序号</div>
                         <div header="" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="id" width="150" headerAlign="center" header="工单号"></div>
+                                <div allowSort="true" field="outCode" width="150" headerAlign="center" header="工单号"></div>
                                 <div allowSort="true" field="guestFullName" width="150" headerAlign="center" header="往来单位"></div>
                                 <div allowSort="true" field="outDate" headerAlign="center" width="80"  header="出库日期" dateFormat="yyyy-MM-dd"></div>
                                 <!--<div field="billStatus" width="60" headerAlign="center" header="单据状态"></div>-->
@@ -116,8 +116,8 @@
                         </div>
                         <div header="操作信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="auditor" width="100" headerAlign="center" header="操作员"></div>
-                                <div allowSort="true" field="auditDate" headerAlign="center" width="80" header="操作日期" dateFormat="yyyy-MM-dd"></div>
+                                <div allowSort="true" field="modifier" width="100" headerAlign="center" header="操作员"></div>
+                                <div allowSort="true" field="modifyDate" headerAlign="center" width="80" header="操作日期" dateFormat="yyyy-MM-dd"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">
@@ -137,9 +137,9 @@
                         <div type="indexcolumn">序号</div>
                         <div header="零件信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="partCode" width="60" headerAlign="center" header="零件编码"></div>
+                                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="零件编码"></div>
                                 <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
-                                <div allowSort="true" field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                                 <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
                                 <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                                 <!--<div type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>-->
@@ -161,7 +161,7 @@
                             <div property="columns">
                                 <div allowSort="true" field="discountLastUnitPrice" width="80" headerAlign="center" header="单价" align="right"></div>
                                 <div allowSort="true" field="discountRate" width="80" headerAlign="center" header="折扣率(%)" align="right"></div>
-                                <div allowSort="true" field="discountAmt" width="80" headerAlign="center" header="金额" align="right"></div>
+                                <div allowSort="true" field="discountLastAmt" width="80" headerAlign="center" header="金额" align="right"></div>
                             </div>
                         </div>
                         <div header="成本信息" headerAlign="center">

@@ -174,3 +174,61 @@ function doSearch(params)
         params:params
     });
 }
+
+function storeCycEdit()
+{
+    var row = partGrid.getSelected();
+    if(row)
+    {
+        var storehouseList = nui.get("storeId").getData();
+        nui.open({
+            targetWindow: window,
+            url: "com.hsweb.part.purchase.storeCycDetail.flow",
+            title: "周期定义",
+            width: 500, height: 570,
+            allowDrag:true,
+            allowResize:false,
+            onload: function ()
+            {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                    storehouseList:storehouseList,
+                    storeCyc:row
+                });
+            },
+            ondestroy: function (action)
+            {
+                if(action == "ok")
+                {
+                    partGrid.reload();
+                }
+            }
+        });
+    }
+}
+function setStoreLocationBatch()
+{
+    var storehouseList = nui.get("storeId").getData();
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.part.purchase.setStoreLocationBatch.flow",
+        title: "批量设置仓位",
+        width: 500, height: 410,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData({
+                storehouseList:storehouseList
+            });
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+                partGrid.reload();
+            }
+        }
+    });
+}

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/baseData/js/partBrandMgr/partBrandDetail.js?v=1.0.4"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/partBrandMgr/partBrandDetail.js?v=1.0.4"></script>
 <style type="text/css">
 
 body {

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%= request.getContextPath() %>/baseData/js/supplierMgr/supplierDetail.js?v=1.0.6"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -72,9 +72,9 @@
     <span>内部往来</span>
     <div id="isInternal" name="isInternal" class="nui-checkbox" text="" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></div>
     <span>客户</span>
-    <div id="isClient" name="isClient" class="nui-checkbox" text="" checked="true" enabled="false" trueValue="1" falseValue="0"></div>
+    <div id="isClient" name="isClient" class="nui-checkbox" text="" enabled="false" trueValue="1" falseValue="0"></div>
     <span>供应商</span>
-    <div id="isSupplier" name="isSupplier" class="nui-checkbox" text=""  trueValue="1" falseValue="0"></div>
+    <div id="isSupplier" name="isSupplier" class="nui-checkbox" text="" checked="true" enabled="false" trueValue="1" falseValue="0"></div>
     <span>是否禁用</span>
     <div id="isDisabled" name="isDisabled" class="nui-checkbox" text="" trueValue="1" falseValue="0"></div>
 </div>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/queryMgr/inventoryDetailQuery.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/queryMgr/inventoryDetailQuery.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -95,10 +95,10 @@
             <div type="indexcolumn">序号</div>
             <div header="维度" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="partId" width="100" headerAlign="center" header="内码"></div>
-                    <div allowSort="true" datatype="float" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" datatype="float" field="partName" width="100" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" datatype="float" field="partFullName" width="100" headerAlign="center" header="配件全称"></div>
+                    <div allowSort="true" field="partId" width="100" headerAlign="center" header="内码"></div>
+                    <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="partName" width="100" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="partFullName" width="100" headerAlign="center" header="配件全称"></div>
                 </div>
             </div>
             <div header="采购" headerAlign="center">
@@ -109,39 +109,39 @@
             </div>
             <div header="维修" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="repairOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
-                    <div allowSort="true" datatype="float" field="repairEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="repairOut" width="60" headerAlign="center" header="出库" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="repairEnter" headerAlign="center" header="归库" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="销售" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="sellOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
-                    <div allowSort="true" datatype="float" field="sellEnter" headerAlign="center" header="退货金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellOut" width="60" headerAlign="center" header="出库" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="sellEnter" headerAlign="center" header="退货" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="调拨" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="allotEnter" width="60" headerAlign="center" header="入库金额" dataType="float" align="right"></div>
-                    <div allowSort="true" datatype="float" field="allotOut" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="allotEnter" width="60" headerAlign="center" header="入库" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="allotOut" headerAlign="center" header="出库" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="耗材" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="materialOut" width="60" headerAlign="center" header="出库金额" dataType="float" align="right"></div>
-                    <div allowSort="true" datatype="float" field="materialEnter" headerAlign="center" header="归库金额" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="materialOut" width="60" headerAlign="center" header="出库" dataType="float" align="right"></div>
+                    <div allowSort="true" datatype="float" field="materialEnter" headerAlign="center" header="归库" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="库存" headerAlign="center">
                 <div property="columns">
-                    <div field="beginCount" width="60" headerAlign="center" header="期初金额" dataType="float" align="right"></div>
-                    <div field="endCount" headerAlign="center" header="期末库存金额" dataType="float" align="right"></div>
-                    <div field="currCount" headerAlign="center" header="当前库存金额" dataType="float" align="right"></div>
+                    <div field="beginCount" width="60" headerAlign="center" header="期初" dataType="float" align="right"></div>
+                    <div field="endCount" headerAlign="center" header="期末" dataType="float" align="right"></div>
+                    <div field="currCount" headerAlign="center" header="当前" dataType="float" align="right"></div>
                 </div>
             </div>
             <div header="盘点" headerAlign="center">
                 <div property="columns">
-                    <div field="inventoryProfit" width="60" headerAlign="center" header="盘盈金额" dataType="float" align="right"></div>
-                    <div field="inventoryLoss" headerAlign="center" header="盘亏金额" dataType="float" align="right"></div>
+                    <div field="inventoryProfit" width="60" headerAlign="center" header="盘盈" dataType="float" align="right"></div>
+                    <div field="inventoryLoss" headerAlign="center" header="盘亏" dataType="float" align="right"></div>
                 </div>
             </div>
         </div>

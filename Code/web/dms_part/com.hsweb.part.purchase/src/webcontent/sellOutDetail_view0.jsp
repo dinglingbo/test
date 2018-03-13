@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellOutDetail.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOutDetail.js?v=1.0.9"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -25,14 +25,6 @@
 <body>
 
 <div id="basicInfoForm" class="form">
-    <input class="nui-hidden" name="detailId"/>
-    <input class="nui-hidden" name="partId"/>
-    <input class="nui-hidden" name="costAmt"/>
-    <input class="nui-hidden" name="costUnitPrice"/>
-    <input class="nui-hidden" name="noTaxCostUnitPrice"/>
-    <input class="nui-hidden" name="noTaxCostAmt"/>
-    <input class="nui-hidden" name="taxCostUnitPrice"/>
-    <input class="nui-hidden" name="taxCostAmt"/>
     <table style="width: 100%">
         <tr>
             <td class="title">
@@ -45,7 +37,7 @@
                 <label>配件名称</label>
             </td>
             <td>
-                <input name="partName" class="nui-textbox width1" enabled="false" width="100%"/>
+                <input name="partFullName" class="nui-textbox width1" enabled="false" width="100%"/>
             </td>
         </tr>
         <tr>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseInbound/purchaseInbound.js?v=1.0.7"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/purchaseInbound.js?v=1.1.6"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -92,9 +92,10 @@
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsEnterMainList"
                      sortMode="client"
+                     idField="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="id" headerAlign="center" header="入库单号"></div>
+                        <div allowSort="true" field="enterCode" headerAlign="center" header="入库单号"></div>
                         <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
                         <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
@@ -109,14 +110,15 @@
             <div title="入库信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
-                    <input class="nui-hidden" name="id"/>
+                	<input class="nui-hidden" name="id"/>
+                    <input class="nui-hidden" name="taxSign" id="taxSign"/>
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
                                 <label>入库单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增入库单"/>
+                                <input class="nui-textbox" width="100%" name="enterCode" enabled="false" emptyText="新增入库单"/>
                             </td>
                             <td class="title required">
                                 <label>入库日期：</label>
@@ -143,12 +145,12 @@
                                        width="100%"
                                        nullItemText="请选择..."/>
                             </td>
-                            <td class="title required">
-                                <label>票据类型：</label>
+                            <td class="title">
+                                <label>结算方式：</label>
                             </td>
                             <td>
-                                <input name="billTypeId"
-                                       id="billTypeId"
+                                <input name="settType"
+                                       id="settType"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="customid"
@@ -169,17 +171,17 @@
                                        name="guestId"
                                        class="nui-buttonedit"
                                        emptyText="请选择供应商..."
-                                       onbuttonclick="selectSupplier('guestId')"
+                                       onbuttonclick="selectSupplier('guestId','billTypeId','settType')"
                                        width="100%"
                                        placeholder="请选择供应商"
                                        selectOnFocus="true" />
                             </td>
-                            <td class="title">
-                                <label>结算方式：</label>
+                            <td class="title required">
+                                <label>票据类型：</label>
                             </td>
                             <td>
-                                <input name="settType"
-                                       id="settType"
+                                <input name="billTypeId"
+                                       id="billTypeId"
                                        class="nui-combobox width1"
                                        textField="name"
                                        valueField="customid"
@@ -208,7 +210,7 @@
                                         width="100%"
                                         nullItemText="请选择..."/>
                             </td>
-                            <td class="title">
+                            <td class="title required">
                                 <label>票据号：</label>
                             </td>
                             <td colspan="3">
@@ -235,8 +237,16 @@
                             <td class="title">
                                 <label>备注：</label>
                             </td>
-                            <td colspan="5">
+                            <td colspan="3">
                                 <input class="nui-textbox" width="100%" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>税率：</label>
+                            </td>
+                            <td colspan="1">
+                                <input class="nui-textbox" width="100%" name="billTaxRate"
+                                       id="billTaxRate"
+                                       enabled="true" style="text-align: right;"/>
                             </td>
                             <td class="title">
                                 <label>总金额：</label>
@@ -272,7 +282,7 @@
                             <div property="columns">
                                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
-                                <div allowSort="true" field="partBranName" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                                 <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
                                 <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                                 <div allowSort="true" datatype="int" field="enterQty" width="40" headerAlign="center" header="数量"></div>

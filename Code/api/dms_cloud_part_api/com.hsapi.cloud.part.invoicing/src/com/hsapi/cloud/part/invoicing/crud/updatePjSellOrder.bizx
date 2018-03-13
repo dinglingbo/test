@@ -160,7 +160,7 @@
       <process:to type="query">sellOrderMain/auditSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">sellOrderMain/operatorId</process:to>
     </process:copy>
     <process:copy>
@@ -739,7 +739,7 @@
     <figSize height="17" width="80"/>
     <node>invokePojo8</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值2" displayName="赋值" collapsed="false" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值2" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>transactioncommit0</targetNode>

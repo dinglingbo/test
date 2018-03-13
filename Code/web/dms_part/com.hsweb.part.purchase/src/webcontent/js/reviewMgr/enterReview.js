@@ -29,15 +29,38 @@ var treeData = [
 var queryForm = null;
 var billTypeIdHash = {};
 var settTypeIdHash = {};
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
-    rightGrid1 = nui.get("rightGrid1");
+	rightGrid1 = nui.get("rightGrid1");
     rightGrid1.setUrl(rightGrid1Url);
     rightGrid2 = nui.get("rightGrid2");
     rightGrid2.setUrl(rightGrid2Url);
+    rightGrid2.on("drawcell",function(e)
+    {
+        switch (e.field)
+        {
+            case "partBrandId":
+                if(partBrandIdHash && partBrandIdHash[e.value])
+                {
+                    e.cellHtml = partBrandIdHash[e.value].name;
+                }
+                break;
+            default:
+                break;
+        }
+    });
     tree = nui.get("tree1");
     tree.loadData(treeData);
     queryForm = new nui.Form("#queryForm");
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     var dictIdList = [];
     dictIdList.push('DDT20130703000008');//票据类型
     dictIdList.push('DDT20130703000035');//结算方式
@@ -239,16 +262,18 @@ function loadRightGrid2Data(enterId)
         enterId:enterId
     });
 }
-var reviewUrl = baseUrl+"com.hsapi.part.purchase.crud.auditEnter.biz.ext";
+var reviewUrl = baseUrl+"com.hsapi.part.purchase.enterAudit.auditPtsEnterMain.biz.ext";
 function review()
 {
-    var row = rightGrid1.getSelected();
+    var row = leftGrid.getSelected();
     if(!row || !row.id)
     {
         return;
     }
     var params = {
-        id:row.id
+        param:{
+            enterId:row.id
+        }
     };
     nui.mask({
         html:'审核保存中...'
@@ -264,7 +289,7 @@ function review()
             if(data.errCode == "S")
             {
                 nui.alert("审核成功");
-                onSearch();
+                quickSearch(currType);
             }
             else{
                 nui.alert(data.errMsg||"审核失败");
@@ -276,4 +301,3 @@ function review()
         }
     });
 }
-

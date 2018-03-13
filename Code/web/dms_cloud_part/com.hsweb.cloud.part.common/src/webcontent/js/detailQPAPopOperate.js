@@ -25,6 +25,10 @@ function setData(data)
     
     data = data||{};
     var part = data.part;
+
+    if(part.editType && part.editType == 'storeId') {
+        nui.get("storeId").disable();
+    }
     if(part)
     {
         basicInfoForm.setData(part);

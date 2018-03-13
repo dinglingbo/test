@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/allotMgr/allotOut.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotOut.js?v=1.0.10"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -90,9 +90,10 @@
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
                      sortMode="client"
+                     idFiled="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="id" headerAlign="center" header="出库单号" allowSort="true"></div>
+                        <div allowSort="true" field="outCode" headerAlign="center" header="出库单号" allowSort="true"></div>
                         <div allowSort="true" field="outDate" width="80" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd" allowSort="true"></div>
                         <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态" allowSort="true"></div>
                     </div>
@@ -114,7 +115,7 @@
                                 <label>出库单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增出库单"/>
+                                <input class="nui-textbox" width="100%" name="outCode" enabled="false" emptyText="新增出库单"/>
                             </td>
                             <td class="title required">
                                 <label>出库日期：</label>
@@ -222,8 +223,8 @@
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
                                 <div field="partCode" width="100" headerAlign="center" header="配件编码" allowSort="true"></div>
-                                <div field="partName" headerAlign="center" header="配件名称" allowSort="true"></div>
-                                <div field="brandName" width="60" headerAlign="center" header="品牌" allowSort="true"></div>
+                                <div field="partFullName" headerAlign="center" header="配件名称" allowSort="true"></div>
+                                <div field="partBrandId" width="60" headerAlign="center" header="品牌" allowSort="true"></div>
                                 <div field="applyCarModel" width="60" headerAlign="center" header="车型" allowSort="true"></div>
                                 <div field="unit" width="40" headerAlign="center" header="单位" align="right" allowSort="true"></div>
                                 <div field="outQty" width="40" headerAlign="center" header="数量" align="right" dataType="int" allowSort="true"></div>

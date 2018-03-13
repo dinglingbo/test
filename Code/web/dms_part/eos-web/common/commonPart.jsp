@@ -22,10 +22,18 @@
 					currOrgName = userobject.getUserOrgName();
 				}
 			}%>
-	var currUserName = <%="'" + currUserName + "'"%>;
-	var currOrgid = <%="'" + currOrgid + "'"%>;
-	var currOrgName = <%="'" + currOrgName + "'"%>;
-	var currentTimeMillis = <%= System.currentTimeMillis()%>;
+	var currUserName =
+<%="'" + currUserName + "'"%>
+	;
+	var currOrgid =
+<%="'" + currOrgid + "'"%>
+	;
+	var currOrgName =
+<%="'" + currOrgName + "'"%>
+	;
+	var currentTimeMillis =
+<%=System.currentTimeMillis()%>
+	;
 </script>
 <script type="text/javascript">
 	function getRoot() {
@@ -51,8 +59,9 @@
 		if (provinceEl) {
 			cityEl = nui.get(cityId);
 			var id = provinceEl.getValue();
+			var code = provinceHash[id].code;
 			var currCityList = cityList.filter(function(v) {
-				return v.provinceId == id;
+				return v.parentid == code;
 			});
 			cityEl.setData(currCityList);
 		}
@@ -84,29 +93,51 @@
 	var getProvinceAndCityUrl = window._rootUrl
 			+ "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
 	function getProvinceAndCity(callback) {
+		if (!provinceHash) {
+			provinceHash = {};
+		}
+		if (!cityHash) {
+			cityHash = {};
+		}
+		if (window.top._provinceList && window.top._cityList) {
+			provinceList = window.top._provinceList;
+			cityList = window.top._cityList;
+			provinceList.forEach(function(v) {
+				provinceHash[v.id] = v;
+			});
+			cityList.forEach(function(v) {
+				cityHash[v.id] = v;
+			});
+			if (provinceEl) {
+				provinceEl.setData(provinceList);
+			}
+			callback && callback({
+				province : provinceList,
+				city : cityList
+			});
+			console.log("getProvinceAndCity from client");
+			return;
+		}
 		nui.ajax({
 			url : getProvinceAndCityUrl,
 			type : "post",
 			success : function(data) {
-				if (data) {
+				if (data && data.province) {
+					window.top._provinceList = data.province;
+					provinceList = window.top._provinceList;
+					window.top._cityList = data.city;
+					provinceList.forEach(function(v) {
+						provinceHash[v.id] = v;
+					});
+					if (provinceEl) {
+						provinceEl.setData(provinceList);
+					}
+					cityList = window.top._cityList;
+					cityList.forEach(function(v) {
+						cityHash[v.id] = v;
+					});
 					callback && callback(data);
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				//  nui.alert(jqXHR.responseText);
-				console.log(jqXHR.responseText);
-			}
-		});
-	}
-	var getStorehouseUrl = window._rootUrl
-			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
-	function getStorehouse(callback) {
-		nui.ajax({
-			url : getStorehouseUrl,
-			type : "post",
-			success : function(data) {
-				if (data && data.storehouse) {
-					callback && callback(data);
+					console.log("getProvinceAndCity from server");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -270,6 +301,93 @@
 
 					}
 				}
+			}
+		});
+	}
+
+	var supplier = null;
+	function selectSupplier(elId, billTypeId, settTypeId) {
+		supplier = null;
+		nui.open({
+			targetWindow : window,
+			url : "com.hsweb.part.common.supplierSelect.flow",
+			title : "供应商资料",
+			width : 980,
+			height : 560,
+			allowDrag : true,
+			allowResize : true,
+			onload : function() {
+
+			},
+			ondestroy : function(action) {
+				if (action == 'ok') {
+					var iframe = this.getIFrameEl();
+					var data = iframe.contentWindow.getData();
+					console.log(data);
+					console.log(elId);
+					supplier = data.supplier;
+					var value = supplier.id;
+					var text = supplier.fullName;
+					var el = nui.get(elId);
+					el.setValue(value);
+					el.setText(text);
+					if (nui.get(billTypeId) && supplier.billTypeId) {
+						nui.get(billTypeId).setValue(supplier.billTypeId);
+						nui.get(billTypeId).doValueChanged();
+					}
+					if (nui.get(settTypeId) && supplier.settTypeId) {
+						nui.get(settTypeId).setValue(supplier.settTypeId);
+					}
+				}
+			}
+		});
+	}
+	var getLocationListByStoreIdUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getLocationListByStoreId.biz.ext";
+	var locationListHash = window.parent.locationListHash || {};
+	function getLocationListByStoreId(storeId, callback) {
+		if (locationListHash[storeId]) {
+			callback && callback({
+				locationList : locationListHash[storeId]
+			});
+			return;
+		}
+		var params = {};
+		params.storeId = storeId;
+		nui.ajax({
+			url : getLocationListByStoreIdUrl,
+			type : "post",
+			data : JSON.stringify(params),
+			success : function(data) {
+				if (data && data.locationList) {
+					var list = data.locationList;
+					locationListHash[storeId] = list;
+					callback && callback({
+						locationList : list
+					});
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	var getCompBillNOUrl = window._rootUrl + "com.hs.common.uniq.getCompBillNO.biz.ext";
+	function getCompBillNO(billTypeCode, callback) {
+		var params = {};
+		params.billTypeCode = billTypeCode;
+		params.orgid = currOrgid;
+		nui.ajax({
+			url : getCompBillNOUrl,
+			type : "post",
+			data : JSON.stringify(params),
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
 			}
 		});
 	}

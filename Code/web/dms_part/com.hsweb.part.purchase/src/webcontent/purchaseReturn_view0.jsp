@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/purchaseReturn/purchaseReturn.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseReturn.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -92,9 +92,10 @@
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsOutMainList"
                      sortMode="client"
+                     idField="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="id" headerAlign="center" header="退货单号"></div>
+                        <div allowSort="true" field="outCode" headerAlign="center" header="退货单号"></div>
                         <div allowSort="true" field="outDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
                         <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
@@ -109,13 +110,17 @@
             <div title="退货信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
+                	<input class="nui-hidden" name="outCode"/>
+                	<input class="nui-hidden" name="taxSign" id="taxSign"/>
+                    <input class="nui-hidden" name="billTaxRate" id="billTaxRate"/>
+                    <input class="nui-textbox" visible="false" name="billTypeId" id="billTypeId"/>
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
                                 <label>退货单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增退货单"/>
+                                <input class="nui-textbox" width="100%" name="outCode" enabled="false" emptyText="新增退货单"/>
                             </td>
                             <td class="title required">
                                 <label>退货日期：</label>
@@ -152,7 +157,7 @@
                                        name="guestId"
                                        class="nui-buttonedit"
                                        emptyText="请选择供应商..."
-                                       onbuttonclick="selectSupplier('guestId')"
+                                       onbuttonclick="selectSupplier('guestId','billTypeId')"
                                        width="100%"
                                        placeholder="请选择供应商"
                                        selectOnFocus="true" />

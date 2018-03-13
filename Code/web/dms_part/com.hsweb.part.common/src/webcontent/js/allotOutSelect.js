@@ -93,6 +93,7 @@ function getSearchParam()
 function doSearch(params)
 {
     params.outTypeId = "050206";
+    params.outBackableQtyGreaterZero = 1;
     grid.load({
         params:params
     });
@@ -200,12 +201,22 @@ function setData(data,ck)
     {
         enterTypeId = data.enterTypeId;
     }
+    if(data.partBrandIdHash)
+    {
+        partBrandIdHash = data.partBrandIdHash;
+    }
     quickSearch(currType);
 }
 function onPartGridDraw(e)
 {
     switch (e.field)
     {
+	    case "partBrandId":
+	        if(partBrandIdHash && partBrandIdHash[e.value])
+	        {
+	            e.cellHtml = partBrandIdHash[e.value].name;
+	        }
+	        break;
         case "storeId":
             if(storehouseHash && storehouseHash[e.value])
             {

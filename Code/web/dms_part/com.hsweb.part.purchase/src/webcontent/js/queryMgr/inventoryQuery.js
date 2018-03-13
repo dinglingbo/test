@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPtsOutMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryInventoryDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -17,6 +17,51 @@ $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("preload",function(e)
+    {
+        console.log(e);
+        var result = e.result;
+        var beginList = result.beginList;
+        var currList = result.currList;
+        var endList = result.endList;
+        var list = result.list;
+        var j;
+        for(var i=0;i<list.length;i++)
+        {
+            list[i].beginCount = 0;
+            for(j=0;j<beginList.length;j++)
+            {
+                if(list[i].code == beginList[j].code)
+                {
+                    list[i].beginCount = beginList[j].balaAmt;
+                    break;
+                }
+            }
+            list[i].currCount = 0;
+            for(j=0;j<currList.length;j++)
+            {
+                if(list[i].code == currList[j].code)
+                {
+                    list[i].currCount = currList[j].balaAmt;
+                    break;
+                }
+            }
+            list[i].endCount = 0;
+            for(j=0;j<endList.length;j++)
+            {
+                if(list[i].code == endList[j].code)
+                {
+                    list[i].endCount = endList[j].balaAmt;
+                    break;
+                }
+            }
+        }
+        rightGrid.setData(list);
+    });
+    var countWayEl = nui.get("countWay");
+    countWayEl.on("valuechanged",function(){
+        quickSearch(currType);
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -37,6 +82,18 @@ $(document).ready(function(v)
 });
 function getSearchParams(){
     var params = {};
+    var countWay = nui.get("countWay").getValue();
+    params.org = 1;
+    if(countWay == 2)
+    {
+    	delete params.org;
+        params.partBrand = 1;
+    }
+    else if(countWay == 3)
+    {
+    	delete params.org;
+        params.carTypeIdF = 1;
+    }
     return params;
 }
 var currType = 2;
@@ -93,6 +150,7 @@ function quickSearch(type){
 }
 function doSearch(params)
 {
+    params.orgid = currOrgid;
     rightGrid.load({
         params:params
     });
@@ -109,51 +167,19 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    var params = getSearchParams();
     if(searchData.startDate)
     {
-        searchData.startDate = searchData.startDate.substr(0,10);
+        params.startDate = searchData.startDate.substr(0,10);
     }
     if(searchData.endDate)
     {
-        searchData.endDate = searchData.endDate.substr(0,10);
+        params.endDate = searchData.endDate.substr(0,10);
     }
     advancedSearchWin.hide();
-    doSearch(searchData);
+    doSearch(params);
 }
 function onAdvancedSearchCancel(){
  //   advancedSearchForm.clear();
     advancedSearchWin.hide();
 }
-var supplier = null;
-function selectSupplier(elId)
-{
-    supplier = null;
-    nui.open({
-        targetWindow: window,
-        url: "../common/supplierSelectView.html",
-        title: "供应商资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
-
-        },
-        ondestroy: function (action)
-        {
-            if(action == 'ok')
-            {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                console.log(data);
-                console.log(elId);
-                supplier = data.supplier;
-                var value = supplier.id;
-                var text = supplier.fullName;
-                var el = nui.get(elId);
-                el.setValue(value);
-                el.setText(text);
-            }
-        }
-    });
-}
-

@@ -165,11 +165,29 @@ function onRightGridDrawCell(e)
                 e.cellHtml = TaxSignHash[e.value];
             }
             break;
+        case "comPartBrandId":
+            if(brandHash[e.value])
+            {
+                e.cellHtml = brandHash[e.value].name||"";
+            }
+            else{
+                e.cellHtml = "";
+            }
+            break;
+        case "stockOutQty":
+            if(e.value > 0)
+            {
+                e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
+            }
+            break;
+        default:
+            break;
     }
 }
 var currType = 2;
 function quickSearch(type){
     var params = {};
+    params.enterTypeId = '050202';
     switch (type)
     {
         case 0:
@@ -234,6 +252,7 @@ function onSearch(){
 function search()
 {
     var param = getSearchParam();
+    param.enterTypeId = '050202';
     doSearch(param);
 }
 function getSearchParam(){
@@ -276,6 +295,7 @@ function setEditable(flag)
 function doSearch(params) 
 {
 	//目前没有区域销售出库，采退入库  params.enterTypeId = '050101';
+    params.enterTypeId = '050202';
 	leftGrid.load({
 		params : params
 	}, function() {
@@ -695,29 +715,6 @@ function selectSupplier(elId)
         }
     });
 }
-function onRightGridDraw(e)
-{
-    switch (e.field)
-    {
-        case "comPartBrandId":
-            if(brandHash[e.value])
-            {
-                e.cellHtml = brandHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        case "stockOutQty":
-            if(e.value > 0)
-            {
-                e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
-            }
-            break;
-        default:
-            break;
-    }
-}
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
     var editor = e.editor;
@@ -828,13 +825,13 @@ function addSellOutDetail(part)
     nui.open({
         targetWindow: window,
         url: "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
-        title: "入库数量金额", width: 430, height:210,
+        title: "出库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            part.storeId = nui.get("storeId").getValue();
+            part.storeId = part.storeId;
             part.unit = part.enterUnitId;
 
             part.detailId = part.id;
@@ -851,6 +848,7 @@ function addSellOutDetail(part)
             part.taxPrice = part.taxPrice;
             part.noTaxPrice = part.noTaxPrice;
             part.enterPrice = part.enterPrice;
+            part.qty = 1;
 
             iframe.contentWindow.setData({
                 part:part
@@ -906,6 +904,12 @@ function addPart() {
         if(row.auditSign == 1) {
             return;
         } 
+    }
+
+    var guestId = nui.get("guestId").getValue();
+    if(!guestId) {
+        nui.alert("请选择客户！");
+        return;
     }
 
 	selectPart(function(data) {

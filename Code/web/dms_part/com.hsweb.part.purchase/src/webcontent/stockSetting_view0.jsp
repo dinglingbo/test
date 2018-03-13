@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/stockMgr/stockSetting.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/stockMgr/stockSetting.js?v=1.0.4"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -65,9 +65,9 @@
         <tr>
             <td style="width:100%;">
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">计算销量</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">周期定义</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" id="reViewBtn">批量设置仓位</a>
-                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn">保存</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="storeCycEdit()">周期定义</a>
+                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="setStoreLocationBatch()">批量设置仓位</a>
+                <!--<a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn">保存</a>-->
             </td>
         </tr>
     </table>
@@ -145,7 +145,7 @@
                         </div>
                         <div header="仓位信息" headerAlign="center">
                             <div property="columns">
-                                <div field="stockLocation" width="60" headerAlign="center" align="right" allowSort="true" header="存储仓位"></div>
+                                <div field="storeLocation" width="60" headerAlign="center" align="right" allowSort="true" header="存储仓位"></div>
                             </div>
                         </div>
                         <div header="其他信息" headerAlign="center">

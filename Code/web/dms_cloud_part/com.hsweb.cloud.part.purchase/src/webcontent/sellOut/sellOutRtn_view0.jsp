@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>盘盈入库</title>
-<script src="<%= request.getContextPath() %>/purchase/js/stockCheckIn/stockCheckIn.js?v=1.0.0"></script>
+<title>销售退货</title>
+<script src="<%= request.getContextPath() %>/purchase/js/sellOut/sellOutRtn.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -53,9 +53,9 @@
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)" id="type8">已过帐</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
                 <span class="separator"></span>
-                <label style="font-family:Verdana;">供应商：</label>
+                <label style="font-family:Verdana;">客户：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..."
+                       emptyText="请选择客户..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
@@ -87,7 +87,7 @@
          handlerSize="6"
          style="width:100%;height:100%;">
         <div size="300" showCollapseButton="true">
-	        <div title="盘盈入库列表" class="nui-panel"
+	        <div title="采购入库列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -104,10 +104,10 @@
                      url="">
                     <div property="columns">
                     	<div type="indexcolumn">序号</div>
-                        <div field="serviceId" headerAlign="center" width="150" header="盘盈单号"></div>
+                        <div field="serviceId" headerAlign="center" width="150" header="退货单号"></div>
                         <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->
                         <div field="auditSign" width="35" headerAlign="center" header="状态"></div>
-                        <div field="guestFullName" width="80" headerAlign="center" header="供应商"></div>
+                        <div field="guestFullName" width="80" headerAlign="center" header="客户"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                     </div>
                 </div>
@@ -122,8 +122,8 @@
                  style="width:100%;height: 130px;">
             
              -->
-                <fieldset id="fd1" style="width:98%;height: 130px;">
-                    <legend><span>盘盈入库信息</span></legend>
+                <fieldset id="fd1" style="width:98%;height: 80px;">
+                    <legend><span>销售退货信息</span></legend>
                     <div class="fieldset-body">
                     
                         <div id="basicInfoForm" class="form" contenteditable="false">
@@ -134,17 +134,17 @@
                             <table style="width: 100%;">
                                 <tr>
                                     <td class="title required">
-                                        <label>供应商：</label>
+                                        <label>客户：</label>
                                     </td>
                                     <td colspan="3">
                                         <input id="guestId"
                                                name="guestId"
                                                class="nui-buttonedit"
-                                               emptyText="请选择供应商..."
+                                               emptyText="请选择客户..."
                                                onbuttonclick="selectSupplier('guestId')"
                                                onvaluechanged="onGuestValueChanged"
                                                width="100%"
-                                               placeholder="请选择供应商"
+                                               placeholder="请选择客户"
                                                selectOnFocus="true" />
                                     </td>
                                     <td class="title required">
@@ -164,95 +164,33 @@
                                                nullItemText="请选择..."/>
                                     </td>
                                     <td class="title">
-                                        <label>盘盈单号：</label>
+                                        <label>退货员：</label>
+                                    </td>
+                                    <td colspan="1">
+                                        <input class="nui-textbox" id="enterMan" name="enterMan" width="100%">
+                                    </td>
+                                    <td class="title">
+                                        <label>退货单号：</label>
                                     </td>
                                     <td>
-                                        <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新盘盈订单"/>
+                                        <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新退货单号"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="title required">
-                                        <label>入库日期：</label>
+                                        <label>退货日期：</label>
                                     </td>
-                                    <td width="120">
+                                    <td width="120" colspan="3">
                                         <input name="enterDate"
                                                id="enterDate"
                                                width="100%"
                                                showTime="true"
                                                class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
                                     </td>
-                                    <!-- <td class="title wide">
-                                        <label>预计到货日期：</label>
-                                    </td>
-                                    <td width="160">
-                                        <input name="planArriveDate"
-                                               id="planArriveDate"
-                                               width="100%"
-                                               showTime="true"
-                                               class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
-                                    </td> -->
-                                    <td class="title">
-                                        <label>手工单号：</label>
-                                    </td>
-                                    <td colspan="1">
-                                        <input class="nui-textbox" id="code" name="code" width="100%">
-                                    </td>
-                                    <td class="title">
-                                        <label>盘点员：</label>
-                                    </td>
-                                    <td colspan="1">
-                                        <input class="nui-textbox" id="enterMan" name="enterMan" width="100%">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title required">
-                                        <label>票据类型：</label>
-                                    </td>
-                                    <td>
-                                        <input name="billTypeId"
-                                               id="billTypeId"
-                                               class="nui-combobox width1"
-                                               textField="name"
-                                               valueField="customid"
-                                               emptyText="请选择..."
-                                               url=""
-                                               allowInput="false"
-                                               showNullItem="false"
-                                               width="100%"
-                                               onvaluechanged="onBillTypeIdChanged"
-                                               nullItemText="请选择..."/>
-                                    </td>
-                                    <td class="title required">
-                                        <label>结算方式：</label>
-                                    </td>
-                                    <td>
-                                        <input name="settleTypeId"
-                                               id="settleTypeId"
-                                               class="nui-combobox width1"
-                                               textField="name"
-                                               valueField="customid"
-                                               emptyText="请选择..."
-                                               url=""
-                                               allowInput="false"
-                                               showNullItem="false"
-                                               width="100%"
-                                               nullItemText="请选择..."/>
-                                    </td>
-                                    <td class="title required">
-                                        <label>开票税点：</label>
-                                    </td>
-                                    <td>
-                                        <input class="nui-textbox" id="taxRate" name="taxRate" enabled="false" width="100%">
-                                    </td>
-                                    <td colspan="2">
-                                        <input id="taxSign" name="taxSign" enabled="false" class="mini-checkbox" text="是否开票" trueValue="1" falseValue="0" />
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td class="title">
                                         <label>备注：</label>
                                     </td>
-                                    <td colspan="5">
+                                    <td colspan="3">
                                         <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                     </td>
                                     <td class="title">
@@ -307,7 +245,7 @@
                                 <div field="comUnit" width="40" headerAlign="center" header="单位"></div>
                             </div>
                         </div>
-                        <div header="数量金额信息" headerAlign="center">
+                        <div header="退货信息" headerAlign="center">
                             <div property="columns">
                                 <div field="enterQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
@@ -464,7 +402,7 @@
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
+                    <span style="letter-spacing: 6px;">客户</span>:
                 </td>
                 <td colspan="3">
                     <input id="btnEdit2"
@@ -477,7 +415,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">盘盈单号:</td>
+                <td class="title">采购单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

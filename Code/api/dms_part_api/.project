@@ -20,7 +20,7 @@
 				</dictionary>
 				<dictionary>
 					<key>database</key>
-					<value>WB_COMMON</value>
+					<value>wb_part_mysql</value>
 				</dictionary>
 				<dictionary>
 					<key>server</key>

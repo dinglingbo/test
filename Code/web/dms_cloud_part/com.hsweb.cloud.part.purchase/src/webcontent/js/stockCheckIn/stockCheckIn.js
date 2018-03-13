@@ -60,33 +60,7 @@ $(document).ready(function(v)
     {
         storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        return true;
-                    }
-                });
-                nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        return true;
-                    }
-                });
-                nui.get("settleTypeId").setData(settTypeIdList);
-                quickSearch(currType);
-            }
-        });
+        quickSearch(currType);
     });
 
     getAllPartBrand(function(data) {
@@ -103,7 +77,7 @@ function loadMainAndDetailInfo(row)
     if(row) {    
        basicInfoForm.setData(row);
        bottomInfoForm.setData(row);
-       nui.get("guestId").setText(row.guestFullName);
+       //nui.get("guestId").setText(row.guestFullName);
 
        var row = leftGrid.getSelected();
        if(row.auditSign == 1) {
@@ -119,7 +93,7 @@ function loadMainAndDetailInfo(row)
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
        formJson = nui.encode(basicInfoForm.getData());
 
-       //加载采购入库明细表信息
+       //加载盘盈入库明细表信息
        var mainId = row.id;
        loadRightGridData(mainId);
    }else {
@@ -130,7 +104,7 @@ function loadMainAndDetailInfo(row)
 function onLeftGridBeforeDeselect(e)
 {
     var row = leftGrid.getSelected(); 
-    if(row.serviceId == '新采购入库'){
+    if(row.serviceId == '新盘盈入库'){
 
         leftGrid.removeRow(row);
     }
@@ -167,6 +141,7 @@ function onLeftGridDrawCell(e)
 var currType = 2;
 function quickSearch(type){
     var params = {};
+    params.enterTypeId = '050103';
     switch (type)
     {
         case 0:
@@ -231,11 +206,12 @@ function onSearch(){
 function search()
 {
     var param = getSearchParam();
+    param.enterTypeId = '050103';
     doSearch(param);
 }
 function getSearchParam(){
 	var params = {};
-    params.guestId = nui.get("searchGuestId").getValue();
+    //params.guestId = nui.get("searchGuestId").getValue();
     return params;
 }
 function setBtnable(flag)
@@ -310,6 +286,7 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    searchData.enterTypeId = '050103';
     var i;
     //订货日期
     if(searchData.sEnterDate)
@@ -344,12 +321,7 @@ function onAdvancedSearchOk()
         searchData.eAuditDate = addDate(date, 1);
         searchData.eAuditDate = searchData.eAuditDate.substr(0,10);
     }
-    //供应商
-    if(searchData.guestId)
-    {
-        params.guestId = nui.get("guestId").getValue();
-    }
-    //采购单号
+    //盘盈单号
     if(searchData.serviceIdList)
     {
         var tmpList = searchData.serviceIdList.split("\n");
@@ -380,7 +352,7 @@ function onAdvancedSearchCancel()
 function checkNew() 
 {
     var rows = leftGrid.findRows(function(row){
-        if(row.serviceId == "新采购入库") return true;
+        if(row.serviceId == "新盘盈入库") return true;
     });
     
     return rows.length;
@@ -416,49 +388,18 @@ function add()
     basicInfoForm.reset();
     rightGrid.clearRows();
     
-    var newRow = { serviceId: '新采购入库', auditSign: 0};
+    var newRow = { serviceId: '新盘盈入库', auditSign: 0};
     leftGrid.addRow(newRow, 0);
     leftGrid.clearSelect(false);
     leftGrid.select(newRow, false);
     
-    nui.get("serviceId").setValue("新采购入库");
-    nui.get("enterTypeId").setValue("050101");
-    nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
+    nui.get("serviceId").setValue("新盘盈入库");
+    nui.get("enterTypeId").setValue("050103");
+    //nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
     nui.get("taxRate").setValue(0.17);
     nui.get("taxSign").setValue(1);
     nui.get("enterDate").setValue(new Date());
     
-    var guestId = nui.get("guestId");
-    guestId.focus();
-}
-function onBillTypeIdChanged(e) 
-{
-    var billTypeId = e.value;
-    var taxSign = 0;
-    var taxRate = 0;
-    switch (billTypeId)
-    {
-        case '010101':
-            taxSign = 0;
-            taxRate = 0.07;
-            break;
-        case '010102':
-            taxSign = 1;
-            taxRate = 0.07;
-            break;
-        case '010103':
-            taxSign = 1;
-            taxRate = 0.17;
-            break;
-        default:
-            taxSign = 0;
-            taxRate = 0.07;
-            break;
-    }
-    nui.get("taxRate").setValue(taxRate);
-    nui.get("taxSign").setValue(taxSign);
-    //税率改变后需要更新明细数据的含税价格和不含税价格
-    calcTaxPriceInfo(taxSign, taxRate);
 }
 function calcTaxPriceInfo(taxSign, taxRate)
 {
@@ -495,7 +436,8 @@ function getMainData()
     var data = basicInfoForm.getData();
     //汇总明细数据到主表
     data.isFinished = 0;
-    data.enterTypeId = '050101';
+    data.enterTypeId = '050103';
+    data.guestId = 2;
     data.auditSign = 0;
     data.billStatusId = '';
     data.noTaxAmt = 0;
@@ -527,12 +469,11 @@ function getMainData()
     return data;
 }
 var requiredField = {
-    guestId : "供应商",
+    //guestId : "供应商",
 	storeId : "仓库",
-    enterDate : "订货日期",
-	billTypeId : "票据类型",
-    settleTypeId : "结算方式",
-    taxRate : "开票税点",
+    enterMan: "盘点员",
+    enterDate : "盘点日期",
+    taxRate : "开票税点"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjEnter.biz.ext";
 function save() {
@@ -616,47 +557,6 @@ function save() {
 	});
 }
 var supplier = null;	
-function selectSupplier(elId)
-{
-	supplier = null;
-    nui.open({
-        targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
-        title: "供应商资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
-            var iframe = this.getIFrameEl();
-            var params = {
-                isSupplier: 1,
-                isClient: 0
-            };
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action)
-        {
-        	if(action == 'ok')
-            {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-               
-                supplier = data.supplier;
-                var value = supplier.id;
-                var text = supplier.fullName;
-                var el = nui.get(elId);
-                el.setValue(value);
-                el.setText(text);
-
-                if(elId == 'guestId') {
-                    var row = leftGrid.getSelected();
-                    var newRow = {guestFullName: text};
-                    leftGrid.updateRow(row,newRow);
-                }
-            }
-        }
-    });
-}
 function onRightGridDraw(e)
 {
     switch (e.field)
@@ -887,7 +787,7 @@ function checkPartIDExists(partid){
     
     if(row) 
     {
-        return "配件ID："+partid+"在采购订单列表中已经存在，是否继续？";
+        return "配件ID："+partid+"在盘盈订单列表中已经存在，是否继续？";
     }
     
     return null;
@@ -940,7 +840,7 @@ function checkRightData()
     });
     
     if(rows && rows.length > 0){
-        msg = "请完善采购配件的数量，单价，金额，仓库等信息！";
+        msg = "请完善盘盈配件的数量，单价，金额，仓库等信息！";
     }
     return msg;
 }
@@ -1035,58 +935,4 @@ function onGuestValueChanged(e)
     var params = {};
     params.pny = e.value;
     setGuestInfo(params);
-}
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
-function setGuestInfo(params)
-{
-    nui.ajax({
-        url:getGuestInfo,
-        data: {params: params},
-        type:"post",
-        success:function(text)
-        {
-            if(text)
-            {
-                var supplier = text.suppliers;
-                if(supplier && supplier.length>0) {
-                    var data = supplier[0];
-                    var value = data.id;
-                    var text = data.fullName;
-                    var el = nui.get('guestId');
-                    el.setValue(value);
-                    el.setText(text);
-
-                    var row = leftGrid.getSelected();
-                    var newRow = {guestFullName: text};
-                    leftGrid.updateRow(row,newRow);
-                }
-                else
-                {
-                    var el = nui.get('guestId');
-                    el.setValue(null);
-                    el.setText(null);
-
-                    var row = leftGrid.getSelected();
-                    var newRow = {guestFullName: null};
-                    leftGrid.updateRow(row,newRow);
-                }
-            }
-            else
-            {
-                var el = nui.get('guestId');
-                el.setValue(null);
-                el.setText(null);
-
-                var row = leftGrid.getSelected();
-                var newRow = {guestFullName: null};
-                leftGrid.updateRow(row,newRow);
-            }
-
-
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
 }

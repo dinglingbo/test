@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销价行情</title>
-<script src="<%= request.getContextPath() %>/baseData/js/sellPrice/sellPrice.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/sellPrice/sellPrice.js?v=1.0.0"></script>
 <style type="text/css">
 </style>
 </head>

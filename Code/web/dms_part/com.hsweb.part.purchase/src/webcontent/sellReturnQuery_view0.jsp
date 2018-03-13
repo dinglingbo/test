@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售退货查询</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellReturnQuery.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellReturnQuery.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -54,15 +54,15 @@
         </tr>
     </table>
 </div>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="width:100%;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">打印</a>
-            </td>
-        </tr>
-    </table>
-</div>
+<!--<div class="nui-toolbar" style="padding:2px;border-bottom:0;">-->
+    <!--<table style="width:100%;">-->
+        <!--<tr>-->
+            <!--<td style="width:100%;">-->
+                <!--<a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">打印</a>-->
+            <!--</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
@@ -75,7 +75,7 @@
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="enterId" width="100" headerAlign="center" header="退货单号"></div>
+                    <div allowSort="true" field="enterCode" width="100" headerAlign="center" header="退货单号"></div>
                     <div allowSort="true" field="enterDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd"></div>
                     <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
@@ -87,7 +87,7 @@
                 <div property="columns">
                     <div allowSort="true" field="partCode" width="60" headerAlign="center" header="零件编码"></div>
                     <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
-                    <div allowSort="true" field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                     <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                     <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>

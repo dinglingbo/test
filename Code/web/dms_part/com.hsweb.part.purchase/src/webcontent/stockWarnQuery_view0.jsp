@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/stockMgr/stockWarnQuery.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/stockMgr/stockWarnQuery.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -27,29 +27,28 @@
 </head>
 <body>
 
-
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(12)">当前库存数量低于库存下限</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">当前库存数量高于库存上限</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)" id="type14">当前库存数量低于库存下限</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(15)" id="type15">当前库存数量高于库存上限</a>
             </td>
         </tr>
     </table>
 </div>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="width:100%;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">打印</a>
-            </td>
-        </tr>
-    </table>
-</div>
+<!--<div class="nui-toolbar" style="padding:2px;border-bottom:0;">-->
+    <!--<table style="width:100%;">-->
+        <!--<tr>-->
+            <!--<td style="width:100%;">-->
+                <!--<a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">打印</a>-->
+            <!--</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 <div class="nui-fit">
-   <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
          dataField="ptsStockCycList"
          idField="id"
@@ -63,7 +62,7 @@
                     <div allowSort="true" field="partName" width="100" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
                     <div allowSort="true" field="applyCarModel" width="100" headerAlign="center" header="车型"></div>
-                    <div allowSort="true" field="partName1" width="100" headerAlign="center" header="类型"></div>
+                    <div allowSort="true" field="carTypeNameF" width="100" headerAlign="center" header="类型"></div>
                     <div allowSort="true" field="stockLocation" width="100" headerAlign="center" header="存入仓位"></div>
                     <div allowSort="true" datatype="float" field="suggestPrice" width="100" headerAlign="center" header="建议售价" align="right"></div>
                     <div allowSort="true" datatype="int" field="stockQty" width="100" headerAlign="center" header="库存数量" align="right"></div>
@@ -78,7 +77,6 @@
         </div>
     </div>
 </div>
-
 
 
 

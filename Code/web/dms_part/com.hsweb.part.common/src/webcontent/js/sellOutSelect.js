@@ -66,6 +66,7 @@ $(document).ready(function(v)
         });
     });
 });
+var currentType = 2;
 function quickSearch(type){
     var params = getSearchParam();
     switch (type)
@@ -106,6 +107,7 @@ function quickSearch(type){
         default:
             break;
     }
+    currentType = type;
     if($("a[id*='type']").length>0)
     {
         $("a[id*='type']").css("color","black");
@@ -246,7 +248,7 @@ function setData(data,ck)
         nui.get("guestId1").setText(guestFullName);
         nui.get("guestId1").disable();
     }
-    onSearch();
+    quickSearch(currentType);
 }
 function onPartGridDraw(e)
 {

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellMgr/sellReturn.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellReturn.js?v=1.0.10"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -92,9 +92,10 @@
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsEnterMainList"
                      sortMode="client"
+                     idFiled="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="id" headerAlign="center" header="退货单号"></div>
+                        <div allowSort="true" field="enterCode" headerAlign="center" header="退货单号"></div>
                         <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd"></div>
                         <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
                     </div>
@@ -116,7 +117,7 @@
                                 <label>退货单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增退货单"/>
+                                <input class="nui-textbox" width="100%" name="enterCode" enabled="false" emptyText="新增退货单"/>
                             </td>
                             <td class="title required">
                                 <label>退货日期：</label>
@@ -240,7 +241,7 @@
                             <div property="columns">
                                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
-                                <div allowSort="true" field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                                 <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
                                 <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                                 <div allowSort="true" datatype="int" field="enterQty" width="40" headerAlign="center" header="数量"></div>
@@ -248,8 +249,8 @@
                         </div>
                         <div header="金额信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="40" headerAlign="center" header="单价"></div>
-                                <div allowSort="true" datatype="float" field="noTaxAmt" width="40" headerAlign="center" header="金额"></div>
+                                <div allowSort="true" datatype="float" field="suggestPrice" width="40" headerAlign="center" header="单价"></div>
+                                <div allowSort="true" datatype="float" field="suggestAmt" width="40" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">

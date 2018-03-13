@@ -25,7 +25,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.invoicing.OutRtnableQty[]" name="partlist" type="query" valueType="Java">partlist</process:return>
+      <process:return id="0" language="java.util.HashMap[]" name="partlist" type="query" valueType="Java">partlist</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
       <process:return id="2" language="Int" name="totalPage" type="query" valueType="Primitive">totalPage</process:return>
     </process:returns>
@@ -140,7 +140,7 @@
     <process:input description="" isArray="false" name="totalPage" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="com.hsapi.cloud.part.invoicing.OutRtnableQty" description="" isArray="true" name="partlist"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="true" name="partlist"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
     <process:output description="" isArray="false" name="totalPage" primitiveType="Int"/>
   </process:outputs>

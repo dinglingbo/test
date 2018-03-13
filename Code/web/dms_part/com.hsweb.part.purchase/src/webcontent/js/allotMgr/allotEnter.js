@@ -36,6 +36,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
@@ -51,12 +52,35 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("drawcell",function(e)
+    {
+        switch (e.field)
+        {
+            case "partBrandId":
+                if(partBrandIdHash && partBrandIdHash[e.value])
+                {
+                    e.cellHtml = partBrandIdHash[e.value].name;
+                }
+                break;
+            default:
+                break;
+        }
+    });
+    
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
     //console.log("xxx");
 
     nui.get("billStatus").setData(billStatusList);
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -250,7 +274,6 @@ function addInbound()
         storeId:storeList[0].id
     };
     basicInfoForm.setData(data);
-  //  nui.get("guestId").setText("ds");
     rightGrid.clearRows();
     var editEnterMainBtn = nui.get("editEnterMainBtn");
     var saveEnterMainBtn = nui.get("saveEnterMainBtn");
@@ -321,13 +344,15 @@ function save()
     {
         var tmp = list[i];
         data.enterTotalQty += parseInt(tmp.enterQty);
-        data.taxAmt += parseFloat(tmp.taxAmt||0);
-        data.totalAmt += parseFloat(tmp.noTaxAmt);
+        data.taxAmt += parseFloat(tmp.taxAmt);
+        data.goodsAmt += parseFloat(tmp.noTaxAmt);
+        data.totalAmt += tmp.taxSign == 0?parseFloat(tmp.noTaxAmt):parseFloat(tmp.taxAmt);
     }
     data.payableAmt = data.totalAmt;
-    data.goodsAmt = data.payableAmt;
     data.enterTypeId = '050106';
-    data.billCode = "1";
+    data.billCode = "0";
+    data.billTaxRate = 0;
+    data.billTypeId = "010101";
     console.log(data);
     var enterDetailAdd = rightGrid.getChanges("added")||[];
     var enterDetailUpdate = [];
@@ -387,16 +412,27 @@ function selectPart(callback)
         allowResize:true,
         onload: function ()
         {
-            var iframe = this.getIFrameEl();
+        	var iframe = this.getIFrameEl();
             iframe.contentWindow.setData({
                 guestId:guestId,
-                guestFullName:guestFullName
+                guestFullName:guestFullName,
+                partBrandIdHash:partBrandIdHash
             },callback);
         },
         ondestroy: function (action)
         {
         }
     });
+}
+function calculateAmt(part)
+{
+	part.taxAmt = part.taxUnitPrice * part.enterQty;
+    part.noTaxAmt = part.noTaxUnitPrice * part.enterQty;
+    part.taxRateAmt = part.taxAmt - part.noTaxAmt;
+    part.outableQty = part.enterQty;
+    part.taxAmt = part.taxAmt.toFixed(2);
+    part.noTaxAmt = part.noTaxAmt.toFixed(2);
+    part.taxRateAmt = part.taxRateAmt.toFixed(2);
 }
 function addEnterDetail(part)
 {
@@ -405,20 +441,26 @@ function addEnterDetail(part)
     enterDetail.partId = part.partId;
     enterDetail.partCode = part.partCode;
     enterDetail.partName = part.partName;
+    enterDetail.partNameId = part.partNameId;
+    enterDetail.partFullName = part.partFullName;
     enterDetail.applyCarModel = part.applyCarModel;
     enterDetail.unit = part.unit;
     enterDetail.enterQty = part.outBackableQty;
-    enterDetail.outableQty = part.outQty;
     enterDetail.taxSign = part.taxSign;
     enterDetail.taxRate = part.taxRate;
-    enterDetail.taxRateAmt = part.taxRateAmt;
-    enterDetail.noTaxUnitPrice = part.sellUnitPrice;
-    enterDetail.noTaxAmt = enterDetail.noTaxUnitPrice * enterDetail.enterQty;
-    enterDetail.taxUnitPrice = enterDetail.noTaxUnitPrice * (1 + parseFloat(enterDetail.taxRate));
-    enterDetail.taxAmt = enterDetail.taxUnitPrice *  enterDetail.enterQty;
-
+    enterDetail.noTaxUnitPrice = part.noTaxCostUnitPrice;
+    enterDetail.taxUnitPrice = part.taxCostUnitPrice;
+    enterDetail.prevOutDetailId = part.detailId;
+    enterDetail.rootEnterDetailId = part.rootEnterDetailId;
     enterDetail.suggestPrice = 0;
     enterDetail.suggestAmt = 0;
+    calculateAmt(enterDetail);
+    var sourceId = nui.get("sourceId").getValue();
+    if(!sourceId || sourceId != part.outId)
+    {
+        rightGrid.clearRows();
+        nui.get("sourceId").setValue(part.outId);
+    }
     rightGrid.addRow(enterDetail);
 }
 
@@ -510,7 +552,7 @@ function deletePart(){
     rightGrid.removeRow(part,true);
 }
 
-var reviewUrl = baseUrl+"com.hsapi.part.purchase.crud.auditEnter.biz.ext";
+var reviewUrl = baseUrl+"com.hsapi.part.purchase.enterAudit.auditPtsEnterMain.biz.ext";
 function review()
 {
     var row = leftGrid.getSelected();
@@ -519,7 +561,9 @@ function review()
         return;
     }
     var params = {
-        id:row.id
+        param:{
+            enterId:row.id
+        }
     };
     nui.mask({
         html:'审核保存中...'

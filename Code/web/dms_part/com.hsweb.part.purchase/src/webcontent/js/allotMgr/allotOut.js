@@ -36,6 +36,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var partBrandIdHash = {};
 $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
@@ -51,21 +52,49 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("drawcell",function(e)
+    {
+        switch (e.field)
+        {
+            case "partBrandId":
+                if(partBrandIdHash && partBrandIdHash[e.value])
+                {
+                    e.cellHtml = partBrandIdHash[e.value].name;
+                }
+                break;
+            default:
+                break;
+        }
+    });
+
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
     //console.log("xxx");
 
     nui.get("billStatus").setData(billStatusList);
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
         getOrgList(function(data)
         {
-            var orgList = data.orgList;
-            nui.get("guestId").setData(orgList);
-            quickSearch(currType);
+        	 var orgList = data.orgList;
+             var tmpList = [];
+             tmpList = orgList.filter(function(v)
+             {
+                 return v.orgid != currOrgid;
+             });
+             nui.get("guestId").setData(tmpList);
+             quickSearch(currType);
         });
     });
 
@@ -312,7 +341,7 @@ var requiredField = {
 var saveUrl = baseUrl+"com.hsapi.part.purchase.crud.savePtsOut.biz.ext";
 function save()
 {
-    var data = basicInfoForm.getData();
+	var data = basicInfoForm.getData();
     for(var key in requiredField)
     {
         if(!data[key] || data[key].toString().trim().length==0)
@@ -324,11 +353,10 @@ function save()
     data.guestFullName = nui.get("guestId").getText();
     data.outTypeId = "050206";//调拨出库
     data.outTotalQty = 0;
-    if(!data.id)
-    {
-        data.trueCost = 0;
-    }
-    data.billTypeId = '1';
+    data.trueCost = 0;
+    data.billTypeId = '010101';
+    data.billTaxRate = 0;
+    data.billCode = "0";
     data.taxAmt = 0;
     data.totalDiscountAmt = 0;
     data.goodsAmt = 0;
@@ -341,15 +369,13 @@ function save()
     {
         var tmp = rightGridData[i];
         data.totalAmt += parseFloat(tmp.sellAmt);
-        //    data.taxAmt += parseFloat(tmp.taxAmt);
+        data.taxAmt += parseFloat(tmp.taxCostAmt);
+        data.goodsAmt += parseFloat(tmp.noTaxCostAmt);
         data.totalDiscountAmt = parseFloat(tmp.discountAmt);
         data.receivableAmt = parseFloat(tmp.discountLastAmt);
-        if(!data.id)
-        {
-            data.trueCost += parseFloat(tmp .costAmt);
-        }
+        data.trueCost += parseFloat(tmp.costAmt);
+        data.outTotalQty += parseInt(tmp.outQty);
     }
-    data.goodsAmt = data.totalAmt;
     console.log(data);
     var outDetailAdd = rightGrid.getChanges("added")||[];
     var outDetailUpdate = [];
@@ -428,6 +454,35 @@ function selectPart(callback)
         }
     });
 }
+function calculateAmt(part)
+{
+    part.costUnitPrice = part.taxSign == 0 ? part.noTaxCostUnitPrice : part.taxCostUnitPrice;
+    part.sellUnitPrice = part.costUnitPrice;
+    part.discountLastUnitPrice = part.sellUnitPrice;
+    part.discountAmt = 0;
+    part.discountRate = 100;
+    part.sellAmt = part.sellUnitPrice * part.outQty;
+    part.discountLastAmt = part.discountLastUnitPrice * part.outQty;
+    part.taxCostAmt = part.taxCostUnitPrice * part.outQty;
+    part.noTaxCostAmt = part.noTaxCostUnitPrice * part.outQty;
+    part.taxRateAmt = part.taxCostAmt - part.noTaxCostAmt;
+    part.sellAmt = part.sellUnitPrice * part.outQty;
+    part.costAmt = part.costUnitPrice * part.outQty;
+
+    part.outBackableQty = part.outQty;
+    part.noTaxCostAmt = part.noTaxCostAmt.toFixed(2);
+    part.taxCostAmt = part.taxCostAmt.toFixed(2);
+    part.taxRateAmt = part.taxRateAmt.toFixed(2);
+    part.sellAmt = part.sellAmt.toFixed(2);
+    part.costAmt = part.costAmt.toFixed(2);
+
+    part.sellUnitPrice = part.sellUnitPrice.toFixed(2);
+    part.costUnitPrice = part.costUnitPrice.toFixed(2);
+    part.taxCostUnitPrice = part.taxCostUnitPrice.toFixed(2);
+    part.noTaxCostUnitPrice = part.noTaxCostUnitPrice.toFixed(2);
+    part.discountLastUnitPrice = part.discountLastUnitPrice.toFixed(2);
+    part.discountLastAmt = part.discountLastAmt.toFixed(2);
+}
 function addEnterDetail(part)
 {
     nui.open({
@@ -441,23 +496,32 @@ function addEnterDetail(part)
             var iframe = this.getIFrameEl();
             part.sellUnitPrice = part.taxSign==1?part.taxUnitPrice:part.noTaxUnitPrice;
             iframe.contentWindow.setData({
-                part:part
+                part:part,
+                editQtyOnly:true
             });
         },
         ondestroy: function (action)
         {
             if(action == "ok")
             {
-                var iframe = this.getIFrameEl();
+            	var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 var outDetail = data.enterDetail;
 
-                outDetail.outBackableQty = outDetail.outQty;
-                outDetail.taxSign  = 0;
-                outDetail.taxRate = 0.07;
-                outDetail.taxRateAmt = 0;
-                outDetail.sellAmt = outDetail.outQty * parseFloat(outDetail.sellUnitPrice);
-                outDetail.discountAmt = outDetail.sellAmt - outDetail.discountLastAmt;
+                outDetail.taxSign = part.taxSign;
+                outDetail.taxRate = part.taxRate;
+                outDetail.noTaxCostUnitPrice = part.noTaxUnitPrice;
+                outDetail.taxCostUnitPrice = part.taxUnitPrice;
+                outDetail.prevEnterDetailId = part.detailId;
+                outDetail.rootEnterDetailId = part.rootEnterDetailId||part.detailId;
+                
+                outDetail.partId = part.partId;
+                outDetail.partName = part.partName;
+                outDetail.partCode = part.partCode;
+                outDetail.partFullName = part.partFullName;
+                outDetail.partNameId = part.partNameId;
+
+                calculateAmt(outDetail);
                 console.log(outDetail);
                 rightGrid.addRow(outDetail);
             }
@@ -493,34 +557,23 @@ function editPart()
         allowResize:false,
         onload: function ()
         {
-            var iframe = this.getIFrameEl();
+        	var iframe = this.getIFrameEl();
             iframe.contentWindow.setData({
-                part:part
+                part:part,
+                editQtyOnly:true
             });
         },
         ondestroy: function (action)
         {
             if(action == "ok")
             {
-                var iframe = this.getIFrameEl();
+            	var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 var outDetail = data.enterDetail;
 
-            //    var billTypeId = nui.get("billTypeId").getValue();
-                console.log(outDetail);
-                outDetail.outBackableQty = outDetail.outQty;
-                outDetail.sellAmt = outDetail.outQty * parseFloat(outDetail.sellUnitPrice);
-                outDetail.discountAmt = outDetail.sellAmt - outDetail.discountLastAmt;
-
                 part.outQty = outDetail.outQty;
-                part.outBackableQty = outDetail.outBackableQty;
-                part.sellAmt = outDetail.sellAmt;
-                part.discountAmt = outDetail.discountAmt.toFixed(2);
-                part.discountLastAmt = outDetail.discountLastAmt;
-                part.discountRate = outDetail.discountRate;
-                part.sellUnitPrice = outDetail.sellUnitPrice;
-                part.discountLastUnitPrice = outDetail.discountLastUnitPrice;
-                console.log(part);
+                calculateAmt(part);
+                //console.log(part);
                 rightGrid.updateRow(part,part);
                 if(part.detailId && !editPartHash[part.detailId])
                 {
@@ -542,7 +595,7 @@ function deletePart(){
     }
     rightGrid.removeRow(part,true);
 }
-var reviewUrl = baseUrl+"com.hsapi.part.purchase.crud.auditOut.biz.ext";
+var reviewUrl = baseUrl+"com.hsapi.part.purchase.outAudit.auditPtsOut.biz.ext";
 function review()
 {
     var row = leftGrid.getSelected();
@@ -551,7 +604,9 @@ function review()
         return;
     }
     var params = {
-        id:row.id
+        param:{
+            outId:row.id
+        }
     };
     nui.mask({
         html:'审核保存中...'

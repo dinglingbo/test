@@ -9,7 +9,7 @@
 -->
 <head>
 <title>进价行情</title>
-<script src="<%= request.getContextPath() %>/baseData/js/purchasePrice/purchasePrice.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/purchasePrice/purchasePrice.js?v=1.0.0"></script>
 <style type="text/css">
 </style>
 </head>

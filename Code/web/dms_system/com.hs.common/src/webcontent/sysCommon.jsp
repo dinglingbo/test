@@ -10,8 +10,18 @@
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	//web地址
 	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
-	//系统域
+	
+    //Web域 访问其他Web域使用：xxDomain + 页面路径
 	String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
+    String partDomain = Env.getContributionConfig("system", "url", "webDomain", "PART");
+    String repairDomain = Env.getContributionConfig("system", "url", "webDomain", "REPAIR");
+    String cloudPartDomain = Env.getContributionConfig("system", "url", "webDomain", "CLOUDPART");
+    
+    //API域 访问其他API域使用：xxApi + API路径
+	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
+    String partApi = Env.getContributionConfig("system", "url", "apiDomain", "PART");
+    String repairApi = Env.getContributionConfig("system", "url", "apiDomain", "REPAIR");
+    String cloudPartApi = Env.getContributionConfig("system", "url", "apiDomain", "CLOUDPART");
 	
 	String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
 	apiPath = Env.getContributionConfig("system", "url", "api", serverType);
@@ -44,7 +54,16 @@
 	var contextPath = "<%=contextPath%>";
 	var apiPath		= "<%=apiPath%>";
 	var webPath		= "<%=webPath%>";
-	var sysDomain   = "<%=sysDomain%>";
+	
+    var sysDomain   = "<%=sysDomain%>";
+    var partDomain   = "<%=partDomain%>";
+    var repairDomain   = "<%=repairDomain%>";
+    var cloudPartDomain   = "<%=cloudPartDomain%>";
+    
+    var sysApi   = "<%=sysApi%>";
+    var partApi   = "<%=partApi%>";
+    var repairApi   = "<%=repairApi%>";
+    var cloudPartApi   = "<%=cloudPartApi%>";
 	
 	$(function(){
 		nui.context='<%=contextPath %>'

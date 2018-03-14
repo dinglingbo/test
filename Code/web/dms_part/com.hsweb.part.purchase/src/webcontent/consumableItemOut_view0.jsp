@@ -139,9 +139,11 @@
             <div id="rightGrid" class="nui-datagrid"
                  borderStyle="border-left:0"
                  style="width:100%;height:calc(100% - 27px);"
-                 showPager="false"
+                 showPager="true"
                  dataField="list"
                  idField="id"
+                 totalField="page.count"
+                 pageSize="20"
                  frozenStartColumn="0"
                  frozenEndColumn="1"
                  url="">

@@ -44,29 +44,7 @@ $(document).ready(function(v){
     
     gridSubGroup.on("rowclick", function (e) {//查零件信息
         var row = gridSubGroup.getSelected();
-        if (row.auth) {
-            var params = {
-                "url":"https://llq.007vin.com/ppyvin/parts",
-                "params":{
-                    "vin":vin,
-                    "brand":brand,
-                    "is_filter":1,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setGridPartsData);
-            
-            params = {
-                "url":"https://llq.007vin.com/ppycars/subimgs",
-                "params":{
-                    "brand":brand,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setPartImg);
-        }
+        clickGdSubGroup(row);
     });
     
     gridParts.on("drawcell", function (e) { //表格绘制
@@ -189,9 +167,9 @@ function setSubGroupData(data){
     imgSubGroup.children().remove();
     var img = "";
     for(var i=0;i<len;i++){
-        img = '<a class="sub-group">'
+        img = '<a class="sub-group" data=' + i + '>'
             + '<div class="LazyLoad is-visible" style="height:140px; width:140px;">'
-            + '    <img src="' + data[i].url + '" alt="sub-group-img">'
+            + '    <img src="' + data[i].url + '" alt="sub-group-img" class="sub-group-img"/>'
             + '</div>'
             + '<div class="label">' + data[i].mid + '</div>'
             + '<div class="float-panel">' + data[i].subgroupname + '</div>'
@@ -199,7 +177,42 @@ function setSubGroupData(data){
         imgSubGroup.append(img);
         
     }
+    $(".sub-group").bind("click", function(obj){//.sub-group-img
+        var rowid = $(this).attr("data");
+        var row = gridSubGroup.getRow(parseInt(rowid));
+        gridSubGroup.select(row, true);
+        clickGdSubGroup(row);
+    });
     showRightGrid(subGroups);
+}
+
+/*
+*分组事件
+*/
+function clickGdSubGroup(row){
+    if (row.auth) {
+        var params = {
+            "url":"https://llq.007vin.com/ppyvin/parts",
+            "params":{
+                "vin":vin,
+                "brand":brand,
+                "is_filter":1,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setGridPartsData);
+        
+        params = {
+            "url":"https://llq.007vin.com/ppycars/subimgs",
+            "params":{
+                "brand":brand,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setPartImg);
+    }
 }
 
 /*

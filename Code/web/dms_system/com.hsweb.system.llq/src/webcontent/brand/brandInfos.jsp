@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" session="false" %>
 
 <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
-    <div size="15%" showCollapseButton="false" style="border:0;">
+    <div size="25%" showCollapseButton="false" style="border:0;">
         <br/>
         <center id="groupButton">
             <a class="nui-button groupButton2" onclick="ntab.activeTab(ntab.getTab(0));">车型选择</a>&nbsp;

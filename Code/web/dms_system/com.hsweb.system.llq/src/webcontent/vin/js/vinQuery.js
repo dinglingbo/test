@@ -4,7 +4,8 @@ var brand; //品牌
 var vinPartImg;//零件图片
 var gridCfg; //车辆配置
 var gridMainGroup; //主组
-var gridSubGroup;//分组
+var subGroups;//分组
+var gridSubGroup;//分组grid
 var gridParts;//零件
 var panel;
 
@@ -12,6 +13,7 @@ $(document).ready(function(v){
     vinPartImg = $("#vin_part_img");
     gridCfg = nui.get("gridCfg");
 	gridMainGroup = nui.get("gridMainGroup");
+    subGroups = $("#subGroups");
     gridSubGroup = nui.get("gridSubGroup");
     gridParts = nui.get("gridParts");
     panel = nui.get("panel");
@@ -42,29 +44,7 @@ $(document).ready(function(v){
     
     gridSubGroup.on("rowclick", function (e) {//查零件信息
         var row = gridSubGroup.getSelected();
-        if (row.auth) {
-            var params = {
-                "url":"https://llq.007vin.com/ppyvin/parts",
-                "params":{
-                    "vin":vin,
-                    "brand":brand,
-                    "is_filter":1,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setGridPartsData);
-            
-            params = {
-                "url":"https://llq.007vin.com/ppycars/subimgs",
-                "params":{
-                    "brand":brand,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setPartImg);
-        }
+        clickGdSubGroup(row);
     });
     
     gridParts.on("drawcell", function (e) { //表格绘制
@@ -180,7 +160,59 @@ function setgridMainGroup(data){
 */
 function setSubGroupData(data){
     gridSubGroup.setData(data);
-    showRightGrid(gridSubGroup);
+    
+    //img
+    var len = data.length;
+    var imgSubGroup = $("#imgSubGroup");
+    imgSubGroup.children().remove();
+    var img = "";
+    for(var i=0;i<len;i++){
+        img = '<a class="sub-group" data=' + i + '>'
+            + '<div class="LazyLoad is-visible" style="height:140px; width:140px;">'
+            + '    <img src="' + data[i].url + '" alt="sub-group-img" class="sub-group-img"/>'
+            + '</div>'
+            + '<div class="label">' + data[i].mid + '</div>'
+            + '<div class="float-panel">' + data[i].subgroupname + '</div>'
+        + '</a>';
+        imgSubGroup.append(img);
+        
+    }
+    $(".sub-group").bind("click", function(obj){//.sub-group-img
+        var rowid = $(this).attr("data");
+        var row = gridSubGroup.getRow(parseInt(rowid));
+        gridSubGroup.select(row, true);
+        clickGdSubGroup(row);
+    });
+    showRightGrid(subGroups);
+}
+
+/*
+*分组事件
+*/
+function clickGdSubGroup(row){
+    if (row.auth) {
+        var params = {
+            "url":"https://llq.007vin.com/ppyvin/parts",
+            "params":{
+                "vin":vin,
+                "brand":brand,
+                "is_filter":1,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setGridPartsData);
+        
+        params = {
+            "url":"https://llq.007vin.com/ppycars/subimgs",
+            "params":{
+                "brand":brand,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setPartImg);
+    }
 }
 
 /*
@@ -238,11 +270,12 @@ function showLeftGrid(gridObj){
 */
 function showRightGrid(gridObj){
     gridCfg.hide();
-    gridSubGroup.hide();
+    //gridSubGroup.hide();
+    subGroups.hide();
     gridParts.hide();
     
     gridObj.show();
-    var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
+    var num = (gridObj==gridCfg)? 0 : ((gridObj==subGroups)? 1 : 2);
     $($(".groupButton")[num]).show();
     //$($(".groupButton")[num]).click();
     setBgColor($(".groupButton")[num]);
@@ -252,6 +285,15 @@ function showRightGrid(gridObj){
     }
 }
 
+/*
+*子组图/表
+*/
+function showSubGroups(gridObj){
+    $('#imgSubGroup').hide();
+    $('#gridSubGroup').hide();
+    
+    gridObj.show();  
+}
 
 function setBgColor(obj){
     $(".groupButton:visible").attr("style", "background:#ffffff;");

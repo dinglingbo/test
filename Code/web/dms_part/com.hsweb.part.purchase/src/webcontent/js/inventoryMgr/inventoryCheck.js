@@ -71,6 +71,8 @@ function generateAll()
     }
     generateDetail(rows);
 }
+var deleteList = [];
+var deleteHash = {};
 function generateDetail(locList)
 {
     var idList = "";
@@ -82,7 +84,29 @@ function generateDetail(locList)
         }
         idList += locList[i].id;
     }
-    getStockListByLocIdList(idList);
+    var list = rightGrid.getData();
+    if(list.length>0)
+    {
+        nui.confirm("生成之前将先清空盘点列表，是否继续？",function(action)
+        {
+            if(action == "ok")
+            {
+                for(var i=0;i<list.length;i++)
+                {
+                    var v = list[i];
+                    if(v.id && !deleteHash[v.id])
+                    {
+                        deleteHash[v.id] = 1;
+                        deleteList.push(v);
+                    }
+                }
+                getStockListByLocIdList(idList);
+            }
+        });
+    }
+    else{
+        getStockListByLocIdList(idList);
+    }
 }
 function getStockListByLocIdList(idList)
 {
@@ -105,44 +129,67 @@ function getStockListByLocIdList(idList)
 
 function addStockCheck()
 {
-    var addCheckMainBtn = nui.get("addCheckMainBtn");
+	var addCheckMainBtn = nui.get("addCheckMainBtn");
     addCheckMainBtn.disable();
     var removeCheckMainBtn = nui.get("removeCheckMainBtn");
     removeCheckMainBtn.disable();
     var saveCheckMainBtn = nui.get("saveCheckMainBtn");
     saveCheckMainBtn.enable();
-
-    getCheckCode(function(data)
+    var auditBtn =  nui.get("auditBtn");
+    auditBtn.disable();
+    nui.get("genreateBtn").enable();
+    nui.get("genreateAllBtn").enable();
+    nui.get("auditBtn").disable();
+    var date = new Date();
+    var storeList = storeIdEl.getData();
+    var storeId = 0;
+    if(storeList.length>0)
     {
-    	var checkCode = data.checkCode;
-        var date = new Date();
-        var storeList = storeIdEl.getData();
-        var storeId = 0;
-        if(storeList.length>0)
-        {
-            storeId = storeList[0].id;
-        }
-        var main = {
-            orgid:currOrgid,
-            checker:currUserName,
-            checkCode:checkCode,
-            checkDate:date,
-            storeId:storeId
-        };
-        basicInfoForm.setData(main);
-        storeIdEl.doValueChanged();
-    });
+        storeId = storeList[0].id;
+    }
+    var main = {
+        orgid:currOrgid,
+        checker:currUserName,
+        storeId:storeId
+    };
+    basicInfoForm.setData(main);
+    storeIdEl.doValueChanged();
 }
 function getCheckCode(callback)
 {
 	var billTypeCode = "PDD";
-    var checkCode = (new Date).getTime();
-    //getCompBillNO(billTypeCode,function(data)
-    //{
-    //    console.log(data);
-    //});
-    callback({
-        checkCode:checkCode
+  //  var checkCode = (new Date).getTime();
+    getCompBillNO(billTypeCode,function(data)
+    {
+     //   console.log(data);
+        var checkCode = data.serviceno;
+        callback({
+            checkCode:checkCode
+        });
+    });
+}
+function getEnterCode(callback)
+{
+    var billTypeCode = "PYD";
+    getCompBillNO(billTypeCode,function(data)
+    {
+        data = data||{};
+        var code = data.serviceno;
+        callback({
+            code:code
+        });
+    });
+}
+function getOutCode(callback)
+{
+    var billTypeCode = "PKD";
+    getCompBillNO(billTypeCode,function(data)
+    {
+        data = data||{};
+        var code = data.serviceno;
+        callback({
+            code:code
+        });
     });
 }
 var deleteUrl = baseUrl + "com.hsapi.part.purchase.stockCheck.deleteStockCheck.biz.ext";
@@ -210,63 +257,88 @@ function save()
             return;
         }
     }
+    var doSave = function()
+    {
+        checkMain.modifier = currUserName;
+        var list = rightGrid.getData();
+        var insertDetailList = list.filter(function(v){
+            return !v.detailId;
+        });
+        var upDateDetailList = rightGrid.getChanges("modified")||[];
+        upDateDetailList = upDateDetailList.filter(function(v){
+            return v.detailId;
+        });
+        var deleteDetailList = rightGrid.getChanges("removed")||[];
+        deleteDetailList = deleteDetailList.filter(function(v){
+            return v.detailId;
+        });
+        //console.log(list);
+        //console.log(insertDetailList);
+        //console.log(upDateDetailList);
+        //console.log(deleteDetailList);
+        nui.mask({
+            html:'保存中...'
+        });
+        nui.ajax({
+            url:saveUrl,
+            type:"post",
+            data:JSON.stringify({
+                main:checkMain,
+                insertDetailList:insertDetailList,
+                updateDetailList:upDateDetailList,
+                deleteDetailList:deleteDetailList
+            }),
+            success:function(data)
+            {
+                nui.unmask();
+                data = data||{};
+                if(data.errCode == "S")
+                {
+                    nui.alert("保存成功");
+                    var main = data.main;
+                    basicInfoForm.setData(main);
+                    loadRightGridByMainId(main);
+                }
+                else{
+                    nui.alert(data.errMsg||"保存失败");
+                }
+            },
+            error:function(jqXHR, textStatus, errorThrown){
+                //  nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
     if(!checkMain.id)
     {
         //新增
         checkMain.recorder = currUserName;
         checkMain.auditStatus = 0;
-    }
-    checkMain.modifier = currUserName;
-    var list = rightGrid.getData();
-    var insertDetailList = rightGrid.getChanges("added")||[];
-    insertDetailList = insertDetailList.concat(list.filter(function(v){
-        return !v.detailId;
-    }));
-    var upDateDetailList = rightGrid.getChanges("modified")||[];
-    upDateDetailList = upDateDetailList.filter(function(v){
-        return v.detailId;
-    });
-    var deleteDetailList = rightGrid.getChanges("removed")||[];
-    deleteDetailList = deleteDetailList.filter(function(v){
-        return v.detailId;
-    });
-    console.log(list);
-    console.log(insertDetailList);
-    console.log(upDateDetailList);
-    console.log(deleteDetailList);
-    nui.ajax({
-        url:saveUrl,
-        type:"post",
-        data:JSON.stringify({
-            main:checkMain,
-            insertDetailList:insertDetailList,
-            updateDetailList:upDateDetailList,
-            deleteDetailList:deleteDetailList
-        }),
-        success:function(data)
+        nui.mask({
+            html:'获取单号中...'
+        });
+        getCheckCode(function(data)
         {
-            data = data||{};
-            if(data.errCode == "S")
+            nui.unmask();
+            if(!data || !data.checkCode)
             {
-                nui.alert("保存成功");
-                var main = data.main;
-                basicInfoForm.setData(main);
-                loadRightGridByMainId(main);
+                nui.alert("获取单号失败，无法保存");
+                return;
             }
-            else{
-                nui.alert(data.errMsg||"保存失败");
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
+            checkMain.checkCode = data.checkCode;
+            doSave();
+        });
+    }
+    else{
+        doSave();
+    }
 }
 function loadRightGridByMainId(main)
 {
     if(main && main.id)
     {
+    	deleteHash = {};
+        deleteList = [];
         rightGrid.load({
             mainId:main.id
         });
@@ -291,13 +363,18 @@ function loadRightGridByMainId(main)
 
 function removeDetail()
 {
-    var row = rightGrid.getSelected();
+	var row = rightGrid.getSelected();
     if(row)
     {
+        if(row.id && !deleteHash[row.id])
+        {
+            deleteHash[row.id] = row;
+            deleteList.push(row);
+        }
         rightGrid.removeRow(row,true);
     }
     else{
-        nui.alert("请选择要删除的数据");
+        nui.alert("请选择要删除的数据")
     }
 }
 
@@ -324,28 +401,174 @@ function audit()
     nui.mask({
         html:'生成中...'
     });
+    getEnterCode(function(data)
+    {
+        var enterCode = data.code;
+        if(!enterCode)
+        {
+            nui.unmask();
+            nui.alert("获取单号失败，无法生成");
+            return;
+        }
+        params.enterCode = enterCode;
+        getOutCode(function(data)
+        {
+            var outCode = data.code;
+            if(!outCode)
+            {
+                nui.unmask();
+                nui.alert("获取单号失败，无法生成");
+                return;
+            }
+            params.outCode = outCode;
+            nui.ajax({
+                url:auditUrl,
+                type:"post",
+                data:JSON.stringify(params),
+                success:function(data)
+                {
+                    nui.unmask();
+                    data = data||{};
+                    if(data.errCode == "S")
+                    {
+                        nui.alert("生成盈亏单成功");
+                        var main = data.main;
+                        basicInfoForm.setData(main);
+                        loadRightGridByMainId(main);
+                    }
+                    else{
+                        nui.alert(data.errMsg||"生成盈亏单失败");
+                    }
+                },
+                error:function(jqXHR, textStatus, errorThrown){
+                    //  nui.alert(jqXHR.responseText);
+                    console.log(jqXHR.responseText);
+                }
+            });
+        });
+    });
+}
+
+function addDetail()
+{
+	var list = rightGrid.getData();
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.part.common.partSelectView.flow",
+        title: "配件选择",
+        width: 900, height: 500,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+                list:list
+            };
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                data = data||{};
+                var part = data.part;
+                console.log(part);
+                getCycStoreByPartId(part.id,function(data)
+                {
+                	data = data||{};
+                    if(data.cyc)
+                    {
+                        var cycStore = data.cyc;
+                        var detail = {};
+                        detail.applyCarModel = part.applyCarModel;
+                        detail.partBrandName = part.partBrandName;
+                        detail.partId = part.id;
+                        detail.partName = part.name;
+                        detail.partFullName = part.fullName;
+                        detail.partNameId = part.partNameId;
+                        detail.partCode = part.code;
+                        detail.unit = part.unit;
+                        detail.balaUnitPrice = 0;
+                        detail.paperQty = cycStore.stockQty||0;
+                        detail.trueQty = detail.paperQty;
+                        detail.invtLossQty = 0;
+                        detail.storeLocation = cycStore.stockLocation;
+                        detail.stockLocationId = cycStore.stockLocationId;
+                        rightGrid.addRow(detail);
+                    }
+                });
+            }
+        }
+    });
+}
+var getCycStoreByPartIdUrl = baseUrl+"com.hsapi.part.purchase.stockCheck.getCycStoreByPartId.biz.ext";
+function getCycStoreByPartId(partId,callback)
+{
+    var params = {};
+    params.partId = partId;
+    params.orgid = currOrgid;
+    params.storeId = nui.get("storeId").getValue();
     nui.ajax({
-        url:auditUrl,
+        url:getCycStoreByPartIdUrl,
         type:"post",
         data:JSON.stringify(params),
         success:function(data)
         {
-            nui.unmask();
-            data = data||{};
-            if(data.errCode == "S")
-            {
-                nui.alert("生成盈亏单成功");
-                var main = data.main;
-                basicInfoForm.setData(main);
-                loadRightGridByMainId(main);
-            }
-            else{
-                nui.alert(data.errMsg||"生成盈亏单失败");
-            }
+            callback && callback(data);
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function openCheckMain()
+{
+    var list = storeIdEl.getData();
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.part.purchase.selectStockCheck.flow",
+        title: "盘点单选择",
+        width: 900, height: 500,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+                storeList:list
+            };
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+            	var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                data = data||{};
+                var stockCheck = data.stockCheck;
+                console.log(stockCheck);
+                basicInfoForm.setData(stockCheck);
+                var addCheckMainBtn = nui.get("addCheckMainBtn");
+                addCheckMainBtn.disable();
+                var removeCheckMainBtn = nui.get("removeCheckMainBtn");
+                removeCheckMainBtn.disable();
+                var saveCheckMainBtn = nui.get("saveCheckMainBtn");
+                saveCheckMainBtn.enable();
+                var auditBtn =  nui.get("auditBtn");
+                auditBtn.disable();
+                nui.get("auditBtn").disable();
+                if(saveCheckMainBtn.auditStatus != 1)
+                {
+                    nui.get("auditBtn").enable();
+                }
+                loadRightGridByMainId(stockCheck);
+            }
+        }
+    });    
 }

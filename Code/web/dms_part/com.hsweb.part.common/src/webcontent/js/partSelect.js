@@ -234,6 +234,14 @@ function onOk()
     {
         return;
     }
+    var tmp = list.filter(function(v){
+        return v.partId == node.id;
+    });
+    if(tmp && tmp.length>0)
+    {
+        nui.alert("此配件已在明细中，不能重复选择");
+        return;
+    }
     resultData = {
         part:node
     };
@@ -248,7 +256,10 @@ function onOk()
 function getData(){
     return resultData;
 }
-function setData(data,ck){
+function setData(data,ck)
+{
+	data = data||{};
+	list = data.list||[];
     callback = ck;
 }
 function CloseWindow(action)

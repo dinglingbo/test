@@ -50,6 +50,7 @@
                     <input name="startDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
+                           allowInput="false"
                            timeFormat=""/>
                     <label style="font-family:Verdana;">至：</label>
                     <input name="endDate"
@@ -57,6 +58,7 @@
                            format="yyyy-MM-dd"
                            timeFormat=""
                            showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            showClearButton="false"/>
                     <span class="separator"></span>

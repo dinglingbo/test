@@ -8,12 +8,9 @@
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
+<title>库存设置</title>
 <script src="<%= request.getContextPath() %>/purchasePart/js/stockMgr/stockSetting.js?v=1.0.4"></script>
 <style type="text/css">
-.table-label {
-	text-align: right;
-}
 </style>
 </head>
 <body>
@@ -32,7 +29,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <label style="font-family:Verdana;">仓位：</label>
@@ -49,7 +46,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <span class="separator"></span>

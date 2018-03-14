@@ -20,11 +20,6 @@
 	color: red;
 }
 
-.mini-panel-border {
-	/*border-right: 0;*/
-	
-}
-
 .mini-panel-body {
 	padding: 0;
 }
@@ -120,7 +115,6 @@
         </div>
     </div>
 </div>
-
 <div id="advancedSearchWin" class="nui-window"
      title="高级查询" style="width:416px;height:340px;"
      showModal="true"
@@ -133,6 +127,7 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
@@ -142,6 +137,7 @@
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
                            showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="true"/>
@@ -154,6 +150,7 @@
                 <td colspan="3">
                     <input id="btnEdit2"
                            name="guestId"
+                           allowInput="false"
                            class="nui-buttonedit"
                            emptyText="请选择供应商..."
                            onbuttonclick="selectSupplier('btnEdit2')"
@@ -198,6 +195,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

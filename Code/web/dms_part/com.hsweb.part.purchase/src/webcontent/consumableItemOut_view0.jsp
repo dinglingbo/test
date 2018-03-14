@@ -20,11 +20,6 @@
 	color: red;
 }
 
-.mini-panel-border {
-	/*border-right: 0;*/
-	
-}
-
 .mini-panel-body {
 	padding: 0;
 }
@@ -55,7 +50,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <label style="font-family:Verdana;">助记码：</label>
@@ -212,15 +207,17 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>
@@ -233,6 +230,7 @@
                 <td colspan="3">
                     <input id="btnEdit2"
                            name="guestId"
+                           allowInput="false"
                            class="nui-buttonedit"
                            emptyText="请选择供应商..."
                            onbuttonclick="selectSupplier('btnEdit2')"

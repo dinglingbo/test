@@ -153,7 +153,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="true"
                            onvaluechanged="onProvinceSelected('cityId')"
                            nullItemText="请选择..."/>
@@ -167,7 +167,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="true"
                            nullItemText="请选择..."/>
                 </td>

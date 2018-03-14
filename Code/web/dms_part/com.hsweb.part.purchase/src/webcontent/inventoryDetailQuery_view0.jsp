@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
+<title>进销存明细</title>
 <script src="<%= request.getContextPath() %>/purchasePart/js/queryMgr/inventoryDetailQuery.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
@@ -59,7 +59,7 @@
                        valueField="id"
                        emptyText="请选择..."
                        url=""
-                       allowInput="true"
+                       allowInput="false"
                        showNullItem="false"
                        nullItemText="请选择..."/>
                 <label style="font-family:Verdana;">仓库：</label>

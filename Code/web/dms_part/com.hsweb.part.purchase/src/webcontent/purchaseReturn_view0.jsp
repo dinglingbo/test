@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseReturn.js?v=1.0.14"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseReturn.js?v=1.0.15"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -19,11 +19,6 @@
 .title.required {
 	color: red;
 }
-
-.mini-panel-border {
-	border: 0;
-}
-
 .mini-panel-body {
 	padding: 0;
 }
@@ -52,6 +47,7 @@
                 <label style="font-family:Verdana;">供应商：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
+                       allowInput="false"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
@@ -110,8 +106,8 @@
             <div title="退货信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
-                	<input class="nui-hidden" name="outCode"/>
-                	<input class="nui-hidden" name="taxSign" id="taxSign"/>
+                    <input class="nui-hidden" name="outCode"/>
+                    <input class="nui-hidden" name="taxSign" id="taxSign"/>
                     <input class="nui-hidden" name="billTaxRate" id="billTaxRate"/>
                     <input class="nui-textbox" visible="false" name="billTypeId" id="billTypeId"/>
                     <table style="width: 100%;">
@@ -128,8 +124,9 @@
                             <td width="100">
                                 <input name="outDate"
                                        width="100%"
-                                       showTime="true"
-                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                       showTime="false"
+                                       allowInput="false"
+                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd"/>
                             </td>
                             <td class="title required">
                                 <label>仓库：</label>
@@ -142,7 +139,7 @@
                                        valueField="id"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -159,6 +156,7 @@
                                        emptyText="请选择供应商..."
                                        onbuttonclick="selectSupplier('guestId','billTypeId')"
                                        width="100%"
+                                       allowInput="false"
                                        placeholder="请选择供应商"
                                        selectOnFocus="true" />
                             </td>
@@ -180,7 +178,7 @@
                                         valueField="customid"
                                         emptyText="请选择..."
                                         url=""
-                                        allowInput="true"
+                                        allowInput="false"
                                         showNullItem="false"
                                         width="100%"
                                         nullItemText="请选择..."/>
@@ -210,7 +208,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        enabled="false"
                                        width="100%"
@@ -280,18 +278,20 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
-                           showClearButton="false"/>
+                           showClearButton="true"/>
                 </td>
             </tr>
             <tr>
@@ -303,6 +303,7 @@
                            name="guestId"
                            class="nui-buttonedit"
                            emptyText="请选择供应商..."
+                           allowInput="false"
                            onbuttonclick="selectSupplier('btnEdit2')"
                            width="100%"
                            selectOnFocus="true" />

@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/inventoryMgr/inventoryProfit.js?v=1.0.11"></script>
+<title>盘盈入库</title>
+<script src="<%= request.getContextPath() %>/purchasePart/js/inventoryMgr/inventoryProfit.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -18,10 +18,6 @@
 
 .title.required {
 	color: red;
-}
-
-.mini-panel-border {
-	border: 0;
 }
 
 .mini-panel-body {
@@ -118,7 +114,8 @@
                             <td width="100">
                                 <input name="enterDate"
                                        width="100%"
-                                       showTime="true"
+                                       showTime="false"
+                                       allowInput="false"
                                        class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                             </td>
                             <td class="title required">
@@ -132,7 +129,7 @@
                                        valueField="id"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -173,7 +170,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -194,7 +191,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                           
+                            <!--<a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addQuickBtn" enabled="false">快速录入</a>-->
                             <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn" enabled="false">添加</a>
                             <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPart()" id="editPartBtn" enabled="false">修改</a>
                             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn" enabled="false">删除</a>
@@ -252,6 +249,7 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
@@ -260,7 +258,8 @@
                            class="nui-datepicker"
                            format="yyyy-MM-dd H:mm:ss"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>
@@ -278,6 +277,7 @@
                     <input class="nui-combobox" emptyText="" width="100%"
                            textField="name"
                            valueField="name"
+                           allowInput="false"
                            showNullItem="false"
                            name="buyer"
                            id="buyer"/>

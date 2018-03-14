@@ -395,33 +395,56 @@ function save()
     nui.mask({
         html:'保存中...'
     });
-    nui.ajax({
-        url:saveUrl,
-        type:"post",
-        data:JSON.stringify({
-            outMain:data,
-            outDetailAdd:outDetailAdd,
-            outDetailUpdate:outDetailUpdate,
-            outDetailDelete:outDetailDelete
-        }),
-        success:function(data)
-        {
-            nui.unmask();
-            data = data||{};
-            if(data.errCode == "S")
+    var main = data;
+    var doSave = function()
+    {
+        nui.ajax({
+            url:saveUrl,
+            type:"post",
+            data:JSON.stringify({
+                outMain:main,
+                outDetailAdd:outDetailAdd,
+                outDetailUpdate:outDetailUpdate,
+                outDetailDelete:outDetailDelete
+            }),
+            success:function(data)
             {
-                nui.alert("保存成功");
-                reloadLeftGrid();
+                nui.unmask();
+                data = data||{};
+                if(data.errCode == "S")
+                {
+                    nui.alert("保存成功");
+                    quickSearch(currType);
+                }
+                else{
+                    nui.alert(data.errMsg||"保存失败");
+                }
+            },
+            error:function(jqXHR, textStatus, errorThrown){
+                //  nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
             }
-            else{
-                nui.alert(data.errMsg||"保存失败");
+        });
+    };
+    if(!main.id)
+    {
+        getOutCode(function(data)
+        {
+            data = data||{};
+            var outCode = data.code;
+            if(!outCode)
+            {
+                nui.unmask();
+                nui.alert("获取单号失败，无法保存");
+                return;
             }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
+            main.outCode = outCode;
+            doSave();
+        });
+    }
+    else{
+        doSave();
+    }
 }
 
 function selectPart(callback)
@@ -632,5 +655,17 @@ function review()
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
+    });
+}
+function getOutCode(callback)
+{
+    var billTypeCode = "DCD";
+    getCompBillNO(billTypeCode,function(data)
+    {
+        data = data||{};
+        var code = data.serviceno;
+        callback({
+            code:code
+        });
     });
 }

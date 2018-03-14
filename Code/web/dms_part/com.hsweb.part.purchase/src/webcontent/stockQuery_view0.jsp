@@ -11,9 +11,6 @@
 <title>库存查询</title>
 <script src="<%= request.getContextPath() %>/purchasePart/js/stockMgr/stockQuery.js?v=1.0.4"></script>
 <style type="text/css">
-.table-label {
-	text-align: right;
-}
 </style>
 </head>
 <body>
@@ -31,7 +28,7 @@
                            valueField="orgid"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="true"
                            nullItemText="请选择..."/>
                     <label style="font-family:Verdana;">仓库：</label>
@@ -42,7 +39,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <label style="font-family:Verdana;">配件编码：</label>
@@ -65,7 +62,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <span class="separator"></span>

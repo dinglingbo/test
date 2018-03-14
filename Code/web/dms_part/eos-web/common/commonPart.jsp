@@ -1,7 +1,7 @@
-
 <%@page import="com.eos.data.datacontext.IUserObject"%>
 <%@page import="com.eos.data.datacontext.DataContextManager"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
+<%@include file="/common/sysCommon.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
 <script src="<%=request.getContextPath()%>/common/nui/nui.js"

@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotOut.js?v=1.0.10"></script>
+<title>调拨出库</title>
+<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotOut.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -18,10 +18,6 @@
 
 .title.required {
 	color: red;
-}
-
-.mini-panel-border {
-	border: 0;
 }
 
 .mini-panel-body {
@@ -123,7 +119,8 @@
                             <td width="100">
                                 <input name="outDate"
                                        width="100%"
-                                       showTime="true"
+                                       showTime="false"
+                                       allowInput="false"
                                        class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                             </td>
                             <td class="title required">
@@ -137,7 +134,7 @@
                                        valueField="id"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -155,7 +152,7 @@
                                        valueField="orgid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -176,7 +173,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        enabled="false"
                                        showNullItem="true"
                                        width="100%"
@@ -260,15 +257,17 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>
@@ -287,7 +286,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

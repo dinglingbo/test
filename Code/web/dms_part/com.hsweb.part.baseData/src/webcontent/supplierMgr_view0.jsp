@@ -34,7 +34,7 @@
                        emptyText="请选择..."
                        url=""
                        width="100"
-                       allowInput="true"
+                       allowInput="false"
                        showNullItem="true"
                        nullItemText="请选择..."/>
                 <label style="font-family:Verdana;">优势品牌/产品：</label>
@@ -156,7 +156,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            onvaluechanged="onProvinceSelected('cityId')"
                            nullItemText="请选择..."/>
@@ -170,7 +170,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                 </td>
@@ -188,7 +188,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

@@ -119,6 +119,7 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
@@ -128,6 +129,7 @@
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
                            showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="true"/>
@@ -140,6 +142,7 @@
                 <td colspan="3">
                     <input id="btnEdit2"
                            name="guestId"
+                           allowInput="false"
                            class="nui-buttonedit"
                            emptyText="请选择客户..."
                            onbuttonclick="selectCustomer('btnEdit2')"

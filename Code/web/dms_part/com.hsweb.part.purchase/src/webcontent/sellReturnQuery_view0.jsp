@@ -110,7 +110,6 @@
         </div>
     </div>
 </div>
-
 <div id="advancedSearchWin" class="nui-window"
      title="高级查询" style="width:416px;height:320px;"
      showModal="true"
@@ -124,6 +123,7 @@
                     <input name="startDate"
                            width="100%"
                            format="yyyy-MM-dd"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
@@ -133,6 +133,7 @@
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
                            showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="true"/>
@@ -147,6 +148,7 @@
                            name="guestId"
                            class="nui-buttonedit"
                            emptyText="请选择客户..."
+                           allowInput="false"
                            onbuttonclick="selectCustomer('guestId')"
                            width="100%"
                            selectOnFocus="true" />

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存盘点</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/inventoryMgr/inventoryCheck.js?v=1.0.28"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/inventoryMgr/inventoryCheck.js?v=1.1.15"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -67,7 +67,7 @@ fieldset {
                                valueField="id"
                                emptyText="请选择..."
                                url=""
-                               allowInput="true"
+                               allowInput="false"
                                showNullItem="false"
                                nullItemText="请选择..."/>
                     </td>
@@ -85,6 +85,7 @@ fieldset {
                     <td colspan="1" >
                         <input name="checkDate"
                                enabled="false"
+                               allowInput="false"
                                class="nui-datepicker"/>
                     </td>
                     <td class="form-label">备注：</td>

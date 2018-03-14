@@ -31,7 +31,7 @@
                        valueField="id"
                        emptyText="请选择..."
                        url=""
-                       allowInput="true"
+                       allowInput="false"
                        showNullItem="false"
                        nullItemText="请选择..."/>
                 <label style="font-family:Verdana;">查询关键字：</label>

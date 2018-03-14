@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/purchaseInbound.js?v=1.1.6"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/purchaseInbound.js?v=1.1.9"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -52,6 +52,7 @@
                 <label style="font-family:Verdana;">供应商：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
+                       allowInput="false"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
@@ -65,7 +66,7 @@
         <tr>
             <td style="width:100%;">
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">新增</a>
-               	<a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn" enabled="false">修改</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn" enabled="false">修改</a>
                 <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn" enabled="false">保存</a>
                 <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn" enabled="false">取消</a>
                 <a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" id="reViewBtn" enabled="false">审核</a>
@@ -110,7 +111,7 @@
             <div title="入库信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
-                	<input class="nui-hidden" name="id"/>
+                    <input class="nui-hidden" name="id"/>
                     <input class="nui-hidden" name="taxSign" id="taxSign"/>
                     <table style="width: 100%;">
                         <tr>
@@ -126,7 +127,8 @@
                             <td width="100">
                                 <input name="enterDate"
                                        width="100%"
-                                       showTime="true"
+                                       showTime="false"
+                                       allowInput="false"
                                        class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                             </td>
                             <td class="title required">
@@ -140,7 +142,7 @@
                                        valueField="id"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -156,7 +158,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -173,6 +175,7 @@
                                        emptyText="请选择供应商..."
                                        onbuttonclick="selectSupplier('guestId','billTypeId','settType')"
                                        width="100%"
+                                       allowInput="false"
                                        placeholder="请选择供应商"
                                        selectOnFocus="true" />
                             </td>
@@ -187,7 +190,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -205,7 +208,7 @@
                                         valueField="name"
                                         emptyText="请选择..."
                                         url=""
-                                        allowInput="true"
+                                        allowInput="false"
                                         showNullItem="false"
                                         width="100%"
                                         nullItemText="请选择..."/>
@@ -227,7 +230,7 @@
                                        valueField="name"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -269,7 +272,7 @@
                     </tr>
                 </table>
             </div>
-             <div class="nui-fit">
+            <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
                      dataField="enterDetailList"
@@ -282,7 +285,7 @@
                             <div property="columns">
                                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
-                                <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                <div allowSort="true" field="partBranId" width="60" headerAlign="center" header="品牌"></div>
                                 <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
                                 <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                                 <div allowSort="true" datatype="int" field="enterQty" width="40" headerAlign="center" header="数量"></div>
@@ -326,18 +329,20 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
-                           showClearButton="false"/>
+                           showClearButton="true"/>
                 </td>
             </tr>
             <tr>
@@ -350,6 +355,7 @@
                            emptyText="请选择供应商..."
                            onbuttonclick="selectSupplier('btnEdit2')"
                            width="100%"
+                           allowInput="false"
                            selectOnFocus="true" />
                 </td>
             </tr>

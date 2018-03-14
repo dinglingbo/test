@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOut.js?v=1.0.19"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOut.js?v=1.0.20"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -18,10 +18,6 @@
 
 .title.required {
 	color: red;
-}
-
-.mini-panel-border {
-	border: 0;
 }
 
 .mini-panel-body {
@@ -52,6 +48,7 @@
                 <label style="font-family:Verdana;">客户名称：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择查询客户..."
+                       allowInput="false"
                        onbuttonclick="selectCustomer('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
@@ -110,8 +107,8 @@
             <div title="销售信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
-                	<input class="nui-hidden" name="id">
-                	<input class="nui-hidden" name="taxSign" id="taxSign"/>
+                    <input class="nui-hidden" name="id">
+                    <input class="nui-hidden" name="taxSign" id="taxSign"/>
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
@@ -126,8 +123,9 @@
                             <td width="100">
                                 <input name="outDate"
                                        width="100%"
-                                       showTime="true"
-                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                       showTime="false"
+                                       allowInput="false"
+                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd"/>
                             </td>
                             <td class="title required">
                                 <label>仓库：</label>
@@ -141,7 +139,7 @@
                                        valueField="id"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -158,7 +156,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -176,6 +174,7 @@
                                        emptyText="请选择查询客户..."
                                        onbuttonclick="selectCustomer('guestId')"
                                        width="100%"
+                                       allowInput="false"
                                        selectOnFocus="true" />
                             </td>
                             <td class="title">
@@ -190,7 +189,7 @@
                                        valueField="name"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -207,7 +206,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        enabled="false"
                                        showNullItem="false"
                                        width="100%"
@@ -227,7 +226,7 @@
                                        valueField="name"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -252,7 +251,7 @@
                             <td colspan="5">
                                 <input class="nui-textbox" width="100%" name="remark"/>
                             </td>
-							<td class="title">
+                            <td class="title">
                                 <label>税率：</label>
                             </td>
                             <td colspan="1">
@@ -325,6 +324,7 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
@@ -334,6 +334,7 @@
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
                            showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="true"/>
@@ -349,6 +350,7 @@
                            allowInput="false"
                            class="nui-buttonedit"
                            emptyText="请选择客户..."
+                           allowInput="false"
                            onbuttonclick="selectCustomer('btnEdit2')"
                            width="100%"
                            selectOnFocus="true" />
@@ -367,6 +369,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

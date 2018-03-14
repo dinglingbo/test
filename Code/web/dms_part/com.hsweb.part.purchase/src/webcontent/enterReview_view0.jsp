@@ -32,25 +32,34 @@
 		<div class="form" id="queryForm">
 			<table style="width: 100%;">
 				<tr>
-					<td style="white-space: nowrap;"><label
-						style="font-family: Verdana;">快速查询：</label> <a class="nui-button"
-						iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-						<a class="nui-button" iconCls="" plain="true"
-						onclick="quickSearch(2)" id="type2">本周</a> <span class="separator"></span>
-						<a class="nui-button" iconCls="" plain="true"
-						onclick="quickSearch(4)" id="type4">本月</a> <a class="nui-button"
-						iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-						<span class="separator"></span> <label
-						style="font-family: Verdana;">入库单号：</label> <input
-						class="nui-textbox" name="id"> <label
-						style="font-family: Verdana;">入库日期：</label> <input
-						name="startDate" class="nui-datepicker" format="yyyy-MM-dd"
-						timeFormat="" /> <label style="font-family: Verdana;">至：</label> <input
-						name="endDate" class="nui-datepicker" format="yyyy-MM-dd"
-						timeFormat="" showTime="false" showOkButton="false"
-						showClearButton="true" /> <span class="separator"></span> <a
-						class="nui-button" iconCls="icon-search" plain="true"
-						onclick="onSearch()">查询</a></td>
+					<td style="white-space:nowrap;">
+                    <label style="font-family:Verdana;">快速查询：</label>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
+                    <span class="separator"></span>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
+                    <span class="separator"></span>
+                    <label style="font-family:Verdana;">入库单号：</label>
+                    <input class="nui-textbox" name="id">
+                    <label style="font-family:Verdana;">入库日期：</label>
+                    <input name="startDate"
+                           class="nui-datepicker"
+                           format="yyyy-MM-dd"
+                           allowInput="false"
+                           timeFormat=""/>
+                    <label style="font-family:Verdana;">至：</label>
+                    <input name="endDate"
+                           class="nui-datepicker"
+                           format="yyyy-MM-dd"
+                           timeFormat=""
+                           showTime="false"
+                           allowInput="false"
+                           showOkButton="false"
+                           showClearButton="true"/>
+                    <span class="separator"></span>
+                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                </td>
 				</tr>
 			</table>
 		</div>

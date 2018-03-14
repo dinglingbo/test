@@ -20,11 +20,6 @@
 	color: red;
 }
 
-.mini-panel-border {
-	/*border-right: 0;*/
-	
-}
-
 .mini-panel-body {
 	padding: 0;
 }
@@ -135,15 +130,17 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd H:mm:ss"
+                           format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
-                           showTime="true"
+                           showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>
@@ -157,6 +154,7 @@
                     <input id="btnEdit2"
                            name="guestId"
                            class="nui-buttonedit"
+                           allowInput="false"
                            emptyText="请选择供应商..."
                            onbuttonclick="selectSupplier('btnEdit2')"
                            width="100%"

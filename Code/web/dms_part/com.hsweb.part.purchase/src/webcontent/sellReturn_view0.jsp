@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellReturn.js?v=1.0.10"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellReturn.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -18,10 +18,6 @@
 
 .title.required {
 	color: red;
-}
-
-.mini-panel-border {
-	border: 0;
 }
 
 .mini-panel-body {
@@ -52,6 +48,7 @@
                 <label style="font-family:Verdana;">客户名称：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..."
+                       allowInput="false"
                        onbuttonclick="selectCustomer('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
@@ -125,7 +122,8 @@
                             <td width="100">
                                 <input name="enterDate"
                                        width="100%"
-                                       showTime="true"
+                                       showTime="false"
+                                       allowInput="false"
                                        class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                             </td>
                             <td class="title required">
@@ -139,7 +137,7 @@
                                        valueField="id"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -156,7 +154,7 @@
                                        emptyText="请选择..."
                                        enabled="false"
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="false"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -173,6 +171,7 @@
                                        emptyText="请选择客户..."
                                        onbuttonclick="selectCustomer('guestId')"
                                        width="100%"
+                                       allowInput="false"
                                        selectOnFocus="true" />
                             </td>
                             <td class="title">
@@ -193,7 +192,7 @@
                                        valueField="customid"
                                        emptyText="请选择..."
                                        url=""
-                                       allowInput="true"
+                                       allowInput="false"
                                        showNullItem="true"
                                        width="100%"
                                        nullItemText="请选择..."/>
@@ -277,6 +276,7 @@
                 <td>
                     <input name="startDate"
                            width="100%"
+                           allowInput="false"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
@@ -286,6 +286,7 @@
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
                            showTime="false"
+                           allowInput="false"
                            showOkButton="false"
                            width="100%"
                            showClearButton="true"/>
@@ -302,6 +303,7 @@
                            emptyText="请选择客户..."
                            onbuttonclick="selectCustomer('guestId1')"
                            width="100%"
+                           allowInput="false"
                            selectOnFocus="true" />
                 </td>
             </tr>

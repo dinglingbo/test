@@ -509,7 +509,7 @@ function getMainData()
 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
-        data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
+        //data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
     }
 
     return data;
@@ -1079,4 +1079,22 @@ function setGuestInfo(params)
             console.log(jqXHR.responseText);
         }
     });
+}
+function onPrint(){
+	var row = leftGrid.getSelected();
+	if(row) {
+		
+		nui.open({
+	        
+	        url: "com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID=" + row.id,//"view_Guest.jsp",
+	        title: "采购订单打印",
+	        width: 900,
+	        height: 600,
+	        onload: function () {
+		        var iframe = this.getIFrameEl();
+		        //iframe.contentWindow.setInitData(storeId, 'XSD');
+		    }
+	    });	
+	}
+
 }

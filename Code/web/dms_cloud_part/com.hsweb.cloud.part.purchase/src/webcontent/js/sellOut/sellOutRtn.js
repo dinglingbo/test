@@ -800,6 +800,7 @@ function addEnterDetail(part)
             part.price = part.sellPrice;
             part.qty = part.rtnableQty;
             part.amt = part.sellPrice * part.rtnableQty;
+            part.enterDate = part.enterDate;
             part.editType = 'storeId';
             iframe.contentWindow.setData({
                 part:part
@@ -832,6 +833,7 @@ function addEnterDetail(part)
                 enterDetail.fullName = data.fullName;
                 enterDetail.systemUnitId = data.unit; 
                 enterDetail.enterUnitId = data.unit;
+                enterDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
 
                 var taxSign = data.taxSign;
                 var taxRate = data.taxRate;

@@ -49,7 +49,8 @@
     <input class="nui-hidden" name="noTaxPrice"/>
     <input class="nui-hidden" name="enterPrice"/>
     <input class="nui-hidden" name="sellPrice"/>
-    <table style="width: 100%">
+    <input class="nui-hidden" name="enterDate"/>
+    <table style="width: 100%" id="list_table">
         <tr>
             <td class="title">
                 <label>配件编码：</label>

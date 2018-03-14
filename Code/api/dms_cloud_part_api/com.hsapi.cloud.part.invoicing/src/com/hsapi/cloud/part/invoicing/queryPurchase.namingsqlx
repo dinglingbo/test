@@ -168,15 +168,18 @@
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
             <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
-                    A.ORDER_DATE,'yyyy-mm-dd' &gt;= #sOrderDate#
+                    A.ORDER_DATE &gt;= #sOrderDate#
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="eOrderDate">  
-                    (A.ORDER_DATE,'yyyy-mm-dd' &lt; #eOrderDate#)
+                    (A.ORDER_DATE &lt; #eOrderDate#)
                 </isNotEmpty>
                 <!--创建日期 -->
                 <isNotEmpty prepend="and" property="sCreateDate">  
@@ -278,6 +281,9 @@
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
             <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="id">  
                     (a.id = #id#)
                 </isNotEmpty>
@@ -679,6 +685,9 @@
 			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
 			where 1=1
             <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
@@ -786,6 +795,9 @@
 			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
 			where 1=1
             <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
@@ -880,6 +892,9 @@
         <result column="guestId" javaType="int" property="guestId"/>
         <result column="guestName" javaType="string" property="guestName"/>
         <result column="remark" javaType="string" property="remark"/>
+        <result column="packAmt" javaType="double" property="packAmt"/>
+        <result column="scrapQty" javaType="double" property="scrapQty"/>
+        <result column="storeShelf" javaType="string" property="storeShelf"/>
         <result column="comPartCode" javaType="string" property="comPartCode"/>
         <result column="comPartName" javaType="string" property="comPartName"/>
         <result column="comFullName" javaType="string" property="comFullName"/>
@@ -929,6 +944,9 @@
 			M.guestId,
 			M.guestName,
 			M.remark,
+			M.packAmt,
+			M.scrapQty,
+			M.storeShelf,
 			M.comPartCode,
 			M.comPartName,
 			M.comFullName,
@@ -975,6 +993,9 @@
 			A.GUEST_ID AS guestId,
 			A.GUEST_NAME AS guestName,
 			A.REMARK AS remark,
+			a.pack_amt as packAmt,
+			a.scrap_qty as scrapQty,
+			a.store_shelf as storeShelf,
 			B.CODE AS comPartCode,
 			B.NAME AS comPartName,
 			B.FULL_NAME AS comFullName,
@@ -1032,6 +1053,9 @@
 			A.GUEST_ID AS guestId,
 			A.GUEST_NAME AS guestName,
 			A.REMARK AS remark,
+			a.pack_amt as packAmt,
+			a.scrap_qty as scrapQty,
+			a.store_shelf as storeShelf,
 			B.CODE AS comPartCode,
 			B.NAME AS comPartName,
 			B.FULL_NAME AS comFullName,

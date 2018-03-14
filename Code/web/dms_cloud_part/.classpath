@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.settlement/bin" path="com.hsweb.cloud.part.settlement/src"/>
-	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.common/bin" path="com.hsweb.cloud.part.common/src"/>
-	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.purchase/bin" path="com.hsweb.cloud.part.purchase/src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
-	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
-	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.common/bin" path="com.hsweb.cloud.part.common/src"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.settlement/bin" path="com.hsweb.cloud.part.settlement/src"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.purchase/bin" path="com.hsweb.cloud.part.purchase/src"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/c3p0-0.9.0.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/commons-digester-1.8.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/commons-pool2-2.4.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/commons-pool2-2.4.2.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/fastjson-1.1.32.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/flex-messaging-common.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/flex-messaging-core.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/flex-messaging-opt.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/flex-messaging-proxy.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/flex-messaging-remoting.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/iText-2.1.7.js2.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/iTextAsian.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/iTextAsianCmaps-2.1.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/jackson-annotations-2.1.4.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/jackson-core-2.1.4.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/jackson-databind-2.1.4.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/javax.servlet.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/jcommon-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/jfreechart-1.0.3.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/jxl.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/ojdbc14-10.2.0.2.0.jar"/>
+	<classpathentry kind="lib" path="/dms_cloud_part_api/eos-web/WEB-INF/lib/pinyin4j-2.5.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

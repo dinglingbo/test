@@ -29,6 +29,17 @@ function setData(data)
     if(part.editType && part.editType == 'storeId') {
         nui.get("storeId").disable();
     }
+    if(part.enterTypeId && part.enterTypeId == '050101') {
+        var currentRows = document.getElementById("list_table").rows.length; 
+        var insertTr = document.getElementById("list_table").insertRow(currentRows);
+        var insertTd = insertTr.insertCell(0);
+        insertTd.style.textAlign="right";
+        insertTd.style.width="60px";
+        insertTd.innerHTML = "仓位：";
+        
+        insertTd = insertTr.insertCell(1);
+        insertTd.innerHTML = '<input id="storeShelf" name="storeShelf" class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>';
+    }
     if(part)
     {
         basicInfoForm.setData(part);
@@ -37,6 +48,10 @@ function setData(data)
 var resultData = {};
 var callback = null;
 function getData(){
+    var dc = document.getElementById("storeShelf");
+    if(dc){
+        resultData.storeShelf = dc.value;
+    }
     return resultData;
 }
 

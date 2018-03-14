@@ -250,10 +250,10 @@
                                 <div field="enterQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="enterPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
+                                <div field="rtnPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="enterAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
+                                <div field="rtnAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="remark" width="80" headerAlign="center" allowSort="true">

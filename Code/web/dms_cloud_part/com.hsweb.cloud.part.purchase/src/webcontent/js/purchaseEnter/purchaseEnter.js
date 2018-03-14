@@ -802,13 +802,14 @@ function addEnterDetail(part)
     nui.open({
         targetWindow: window,
         url: "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
-        title: "入库数量金额", width: 430, height:210,
+        title: "入库数量金额", width: 430, height:230,
         allowDrag:true,
         allowResize:false,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
             part.storeId = nui.get("storeId").getValue();
+            part.enterTypeId = '050101';
             iframe.contentWindow.setData({
                 part:part
             });
@@ -838,6 +839,7 @@ function addEnterDetail(part)
                 enterDetail.fullName = data.fullName;
                 enterDetail.systemUnitId = data.unit; 
                 enterDetail.enterUnitId = data.unit;
+                enterDetail.storeShelf = data.storeShelf;
 
                 var taxSign = nui.get("taxSign").getValue();
                 var taxRate = nui.get("taxRate").getValue();
@@ -868,6 +870,12 @@ function addPart() {
         if(row.auditSign == 1) {
             return;
         } 
+    }
+
+    var guestId = nui.get("guestId").getValue();
+    if(!guestId) {
+        nui.alert("请选择供应商！");
+        return;
     }
 
 	selectPart(function(data) {

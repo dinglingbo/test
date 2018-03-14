@@ -57,7 +57,7 @@
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <span class="separator"></span>
+                <span class="separator"></span> 
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
             </td>
@@ -73,7 +73,7 @@
                 <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveBtn">保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="icon-ok" plain="true" onclick="audit()" id="auditBtn">审核</a>
-                <a class="nui-button" iconCls="icon-print" plain="true" onclick="print()" id="printBtn">打印</a>
+                <a class="nui-button" iconCls="icon-print" plain="true" onclick="onPrint()" id="printBtn">打印</a>
             </td>
         </tr>
     </table>

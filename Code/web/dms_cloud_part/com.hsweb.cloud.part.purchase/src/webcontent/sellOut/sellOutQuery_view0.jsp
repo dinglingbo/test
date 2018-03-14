@@ -218,7 +218,7 @@
                     <input id="btnEdit2"
                            name="guestId"
                            class="nui-buttonedit"
-                           emptyText="请选择供应商..."
+                           emptyText="请选择客户..."
                            onbuttonclick="selectSupplier('btnEdit2')"
                            width="100%"
                            selectOnFocus="true" />

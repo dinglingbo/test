@@ -906,6 +906,6 @@
 			LEFT JOIN pts_cyc_store b ON ( c.store_id = b.store_id AND a.part_id = b.part_id AND a.paper_qty = b.stock_qty ) 
 		WHERE
 			a.check_id = #checkId#
-			AND a.invt_loss_qty > 0
+			AND a.invt_loss_qty &lt; 0
     </select>
 </sqlMap>

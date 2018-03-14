@@ -88,7 +88,7 @@
       <process:inputVariable id="2" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">main</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -136,7 +136,7 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getGeustByInternalId" displayName="getGeustByInternalId" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getGeustByInternalId" displayName="genPtsOut" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -271,7 +271,7 @@
     <figSize height="17" width="72"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="genPtsEnterAndAudit" displayName="genPtsEnterAndAudit" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="genPtsEnter" displayName="genPtsOut" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>subprocess2</targetNode>
@@ -294,12 +294,13 @@
     <location x="360" y="30"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.genPtsEnterAndAudit</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.genPtsEnter</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="checkMain" type="query" value="com.hsapi.part.data.pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
         <process:inputVariable id="1" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">guestId</process:inputVariable>
         <process:inputVariable id="2" name="guestFullName" type="query" value="String" valueType="Primitive" pattern="reference">guestFullName</process:inputVariable>
+        <process:inputVariable id="3" name="enterCode" type="query" value="String" valueType="Primitive" pattern="reference">enterCode</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -308,8 +309,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="312" y="65"/>
-    <figSize height="17" width="123"/>
+    <location x="338" y="65"/>
+    <figSize height="17" width="70"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -371,7 +372,7 @@
       <targetNode>end0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -413,7 +414,7 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="genPtsOutAndAudit" displayName="genPtsOutAndAudit" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="genPtsOut" displayName="genPtsOut" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -436,12 +437,13 @@
     <location x="482" y="30"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.genPtsOutAndAudit</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.genPtsOut</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="checkMain" type="query" value="com.hsapi.part.data.pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
         <process:inputVariable id="1" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">guestId</process:inputVariable>
         <process:inputVariable id="2" name="guestFullName" type="query" value="String" valueType="Primitive" pattern="reference">guestFullName</process:inputVariable>
+        <process:inputVariable id="3" name="outCode" type="query" value="String" valueType="Primitive" pattern="reference">outCode</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -450,8 +452,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="438" y="65"/>
-    <figSize height="17" width="114"/>
+    <location x="465" y="65"/>
+    <figSize height="17" width="61"/>
     <node>subprocess2</node>
   </nodes>
   <topRuler/>
@@ -468,6 +470,8 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="checkId" primitiveType="String"/>
     <process:input description="" isArray="false" name="auditor" primitiveType="String"/>
+    <process:input description="" isArray="false" name="enterCode" primitiveType="String"/>
+    <process:input description="" isArray="false" name="outCode" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="main"/>

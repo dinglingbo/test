@@ -11,42 +11,70 @@
 -->
 <head>
 <title>新增、编辑班组</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js"
-	type="text/javascript"></script>
-	<script
-	src="<%= request.getContextPath() %>/repair/js/DataBase/Team/addEditTeam.js"  type="text/javascript"></script>
+<script	src="<%= request.getContextPath() %>/repair/js/DataBase/Team/addEditTeam.js?v=1.0.0"  type="text/javascript"></script>
+<style type="text/css">
+table {
+	width: 100%;
+}
 
+table .title {
+	width: 80px;
+	text-align: right;
+}
+
+.required {
+	color: red;
+}
+</style>
 </head>
 <body>
-	<fieldset style="width: 93.5%; height: 106px; border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;"">
-		<div id="dataform1" class="nui-form" style="padding-top: 5px;">
-			<input class="nui-hidden" name="id" /> 
-
-			<span style="width: 80px; height: 38px; display: inline-block;color: #FF0000">维修工种：</span>
-			<input class="nui-combobox" name="type" width="260px" /> <span
-				style="width: 80px; height: 38px; display: inline-block;color: #FF0000">班组名称：</span>
-			<input class="nui-combobox" name="name" width="260px" /> <span
-				style="width: 80px; height: 38px; display: inline-block;color: #FF0000">班组长名称：</span>
-			<input class="nui-textbox" name="captainName" width="260px" />
-
-		</div>
-
-	</fieldset>
-
-
-	<div class="nui-toolbar" style="margin: 0 0 -5px 2px;;width:97.5%;height: 30px" borderStyle="border:0;">
-		<table width="100%">
-			<tr>
-				<td style="text-align: center;" colspan="4"><a
-					class="nui-button" iconCls="icon-save" onclick="onOk()"
-					id="save_btn" plain="true">保存（s）</a> <span
-					style="display: inline-block; width: 25px;"> </span> <a
-					class="nui-button" iconCls="icon-cancel" onclick="onCancel"
-					iconCls="icon-cancel" plain="true">取消（c）</a></td>
-			</tr>
-		</table>
-	</div>
-	
+<div id="basicInfoForm" class="form">
+    <input name="id" class="nui-hidden" />
+    <table>
+        <tr>
+            <td class="title required">
+                <label>维修工种：</label>
+            </td>
+            <td>
+                <input name="type" id="type"
+                       showNullItem="false"
+                       allowInput="false"
+                       class="nui-combobox"
+                       textField="name"
+                       style="width: 100%;"
+                       alwaysView="true"
+                       valueField="customid" />
+            </td>
+        </tr>
+        <tr>
+            <td class="title required">
+                <label>班组类型：</label>
+            </td>
+            <td>
+                <input name="code"  id="code"
+                       showNullItem="false"
+                       allowInput="false"
+                       class="nui-combobox"
+                       textField="name"
+                       style="width: 100%;"
+                       alwaysView="true"
+                       popupMaxHeight="90"
+                       valueField="customid" />
+            </td>
+        </tr>
+        <tr>
+            <td class="title required">
+                <label>班组长名称：</label>
+            </td>
+            <td>
+                <input name="captainName" class="nui-textbox" style="width: 100%;"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="text-align:center;padding:10px;">
+    <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
+    <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
+</div>
 </body>
 </html>

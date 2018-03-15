@@ -1,6 +1,38 @@
+<%@page import="com.eos.data.datacontext.IUserObject"%>
+<%@page import="com.eos.data.datacontext.DataContextManager"%>
+<%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
-
+	pageEncoding="UTF-8" session="false"%>
+<%@include file="/common/sysCommon.jsp"%>
+<script type="text/javascript">
+	
+<%IMUODataContext muo = DataContextManager.current()
+					.getMUODataContext();
+			String currUserName = "";
+			String currOrgid = "";
+			String currOrgName = "";
+			if (muo != null) {
+				IUserObject userobject = muo.getUserObject();
+				if (userobject != null) {
+					//String ip = userobject.getUserRemoteIP();
+					currUserName = userobject.getUserRealName();
+					currOrgid = userobject.getUserOrgId();
+					currOrgName = userobject.getUserOrgName();
+				}
+			}%>
+	var currUserName =
+<%="'" + currUserName + "'"%>
+	;
+	var currOrgid =
+<%="'" + currOrgid + "'"%>
+	;
+	var currOrgName =
+<%="'" + currOrgName + "'"%>
+	;
+	var currentTimeMillis =
+<%=System.currentTimeMillis()%>
+	;
+</script>
 <script type="text/javascript">
 	function getRoot() {
 		var hostname = location.hostname;
@@ -14,7 +46,23 @@
 
 	window._rootUrl = getRoot();
 	//console.log(window._rootUrl);
-
+	function doPost(opt) {
+		var url = opt.url;
+		var data = opt.data;
+		var success = opt.success || function() {
+		};
+		var error = opt.error || function() {
+		};
+		data.orgid = currOrgid;
+		data.userName = currUserName;
+		nui.ajax({
+			url : url,
+			type : "post",
+			data : JSON.stringify(data),
+			success : success,
+			error : error
+		});
+	}
 	var provinceHash = {};
 	var provinceList = [];
 	var cityHash = {};
@@ -31,23 +79,35 @@
 			cityEl.setData(currCityList);
 		}
 	}
+	var getDatadictionariesUrl = window._rootUrl
+			+ "com.hsapi.repair.common.common.getDatadictionaries.biz.ext";
+	function getDatadictionaries(parentId, callback) {
+		var params = {};
+		params.parentId = parentId;
+		doPost({
+			url : getDatadictionariesUrl,
+			data : params,
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback({});
+			}
+		});
+	}
 
 	var getDictItemsUrl = window._rootUrl
 			+ "com.hsapi.repair.common.common.getDictItems.biz.ext";
 	function getDictItems(dictIdList, callback) {
 		var params = {};
 		params.dictIdList = dictIdList;
-		nui.ajax({
+		doPost({
 			url : getDictItemsUrl,
-			type : "post",
-			data : JSON.stringify(params),
+			data : params,
 			success : function(data) {
-				if (data && data.dataItems) {
-					callback && callback({
-						code : "S",
-						dataItems : data.dataItems
-					});
-				}
+				callback && callback(data);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				//  nui.alert(jqXHR.responseText);
@@ -72,43 +132,41 @@
 			}
 		});
 	}
-	
-	/*
-	var getStorehouseUrl = window._rootUrl
-			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
-	function getStorehouse(callback) {
-		nui.ajax({
-			url : getStorehouseUrl,
-			type : "post",
+
+	var getAllCarBrandUrl = window._rootUrl
+			+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
+	function getAllCarBrand(callback) {
+		doPost({
+			url : getAllCarBrandUrl,
+			data : {},
 			success : function(data) {
-				if (data && data.storehouse) {
-					callback && callback(data);
-				}
+				callback && callback(data);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				//  nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
+				callback && callback({});
 			}
 		});
 	}
-	var getStorehouseUrl = window._rootUrl
-			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
-	function getStorehouse(callback) {
-		nui.ajax({
-			url : getStorehouseUrl,
-			type : "post",
+	var getCarSeriesByBrandIdUrl = window._rootUrl
+			+ "com.hsapi.repair.common.common.getCarSeriesByBrandId.biz.ext";
+	function getCarSeriesByBrandId(brandId, callback) {
+		var params = {};
+		params.brandId = brandId;
+		doPost({
+			url : getCarSeriesByBrandIdUrl,
+			data : params,
 			success : function(data) {
-				if (data && data.storehouse) {
-					callback && callback(data);
-				}
+				callback && callback(data);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				//  nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
+				callback && callback(null);
 			}
 		});
 	}
-	*/
 </script>
 <style type="text/css">
 html,body {
@@ -119,6 +177,7 @@ html,body {
 	height: 100%;
 	overflow: hidden;
 }
+
 table {
 	font-size: 12px;
 }

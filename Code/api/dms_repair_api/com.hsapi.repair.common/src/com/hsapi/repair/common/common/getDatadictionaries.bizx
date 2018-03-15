@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getDictItems.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getDatadictionaries" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -15,7 +15,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.common.ComDataitems[]" name="dataItems" type="query" valueType="DataObject">dataItems</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.common.ComDatadictionaries[]" name="list" type="query" valueType="DataObject">list</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -38,20 +38,32 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.common.ComDataitems</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.common.ComDatadictionaries</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">dictIdList</process:from>
-      <process:to type="query">cond/_expr[1]/dictid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">in</process:from>
-      <process:to type="query">cond/_expr[1]/_op</process:to>
+      <process:from type="query" pattern="reference">parentId</process:from>
+      <process:to type="query">cond/_expr[1]/parentid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">cond/_expr[2]/isDisabled</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">id</process:from>
+      <process:to type="query">cond/_select/_field[1]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">parentid</process:from>
+      <process:to type="query">cond/_select/_field[2]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">customid</process:from>
+      <process:to type="query">cond/_select/_field[3]</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">name</process:from>
+      <process:to type="query">cond/_select/_field[4]</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -77,7 +89,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">dataItems</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">list</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -87,15 +99,15 @@
   </nodes>
   <topRuler/>
   <leftRuler/>
-  <process:info author="Administrator" createTime="2018-02-10 14:52:57" date="2018-02-10Z" description="数据字典" name="getDictItems" version="7.0.0.0"/>
+  <process:info author="chenziming" createTime="2018-03-15 10:34:50" date="2018-03-15Z" description="" name="getDatadictionaries" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" name="dictIdList" primitiveType="String"/>
+    <process:input description="" isArray="false" name="parentId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.common.ComDataitems" name="dataItems"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.common.ComDatadictionaries" name="list"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

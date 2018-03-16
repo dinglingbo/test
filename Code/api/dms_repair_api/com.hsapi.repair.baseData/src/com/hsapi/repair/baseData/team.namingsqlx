@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getTeam" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.orgid orgid,
+			a.type type,
+			c.name typeName,
+			a.code code,
+			a.name name,
+			a.captain_name captainName,
+			a.is_disabled isDisabled
+		FROM
+			rpb_class a
+			LEFT JOIN wb_common.com_datadictionaries c on (a.type = c.customid)
+			where a.orgid = #orgid#
+		<dynamic>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty> 
+        </dynamic>
+	</select>
+</sqlMap>

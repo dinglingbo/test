@@ -11,117 +11,147 @@
 -->
 <head>
 <title>新增和编辑</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script
-	src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js"  type="text/javascript"></script>
-    
-    
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.0"></script>
+<style type="text/css">
+table {
+	table-layout: fixed;
+	font-size: 12px;
+	width: 100%;
+}
+
+.form_label {
+	width: 60px;
+	text-align: right;
+}
+
+.mini-panel {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: calc(100% - 20px) !important;
+}
+
+.required {
+	color: red;
+}
+</style>
 </head>
-<body style="margin:0;padding:0;">
-		<input name="pageType" class="nui-hidden"/>
-		<div id="dataform1" class="nui-form" >
-		<div  class="nui-panel" showToolbar="false" title="基本信息" showFooter="false" style="width:430px;height:200px;margin:9px 9px">
-			<div style="padding-top:5px;" >
-				<table style="table-layout:fixed;" class="nui-form-table">
-					<tr style=" display:block;margin:5px 0">
-						<td class="form_label" width="80px"> 
-							<span style="color:#FF0000;margin-left:10px;" >项目编码：</span>
-						</td>
-						<td>
-							<input class="nui-textbox" name="code" width="120px"/>
-						</td>
-						<td class="form_label" width="50px"> 
-							<span style="color:#FF0000;margin-left:10px;">工种：</span>
-						</td>
-						<td>
-							<input class="nui-combobox" name="type" width="122px"/>
-						</td>
-					</tr>
-					<tr style=" display:block;margin:5px 0">
-						<td class="form_label"width="80px" > 
-							<span style="color:#FF0000;margin-left:10px;">项目名称：</span>
-						</td>
-						<td>
-							<input class="nui-textbox" name="name" width="300px"/>
-						</td>
-					</tr>
-					<tr style=" display:block;margin:5px 0">
-						<td class="form_label" width="80px"> 
-							<span style="color:#FF0000;margin-left:10px;">项目类型：</span>
-						</td>
-						<td>
-							<input class="nui-combobox" name="itemKind" width="300px"/>
-						</td>
-					</tr>
-					<tr style=" display:block;margin:5px 0">
-						<td class="form_label" width="80px"> 
-							<span style="color:#FF0000;margin-left:10px;">品牌：</span>
-						</td>
-						<td>
-							<input class="nui-combobox" name="carBrandId" width="120px"/>
-						</td>
-						<td class="form_label" width="50px"> 
-							<span style="color:#FF0000;margin-left:10px;">车型：</span>
-						</td>
-						<td>
-							<input class="nui-combobox" name="carModel" width="122px"/>
-						</td>
-					</tr>
-				</table>
-			</div>
+<body>
+<div id="basicInfoForm" class="form">
+	<input name="id" class="nui-hidden"/>
+	<div class="nui-panel" showToolbar="false" title="基本信息" showFooter="false"
+		style="width:calc(100% - 20px);">
+		<div style="padding-top:5px;" >
+			<table class="nui-form-table">
+				<tr>
+					<td class="form_label required">
+						<label>项目编码：</label>
+					</td>
+					<td>
+						<input class="nui-textbox" name="code" width="100%"/>
+					</td>
+					<td class="form_label required">
+						<label>工种：</label>
+					</td>
+					<td>
+						<input class="nui-combobox" name="itemKind" id="itemKind"
+							   idField="customid"
+							   textField="name"
+							   width="100%"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="form_label required">
+						<label>项目名称：</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-textbox" name="name" width="100%"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="form_label required">
+						<label>项目类型：</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-combobox" name="type" id="type"
+							   idField="customid"
+							   textField="name"
+							   width="100%"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="form_label required">
+						<label>品牌：</label>
+					</td>
+					<td>
+						<input class="nui-combobox" name="carBrandId" id="carBrandId"
+							   idField="id"
+							   textField="carBrandZh"
+							   width="100%"/>
+					</td>
+					<td class="form_label required">
+						<label>车型：</label>
+					</td>
+					<td>
+						<input class="nui-combobox" name="carSeriesId" id="carSeriesId"
+							   idField="id"
+							   textField="name"
+							   width="100%"/>
+					</td>
+				</tr>
+			</table>
 		</div>
-		
-		
-		
-		<div  class="nui-panel" showToolbar="false" title="工时价格信息" showFooter="false" style="width:430px;height:200px;margin:9px 9px">
-			<table style="table-layout:fixed;" class="nui-form-table">
-				<tr style=" display:block;margin:5px 0">
-					<td class="form_label" width="80px"> 
-						<span style="margin-left:20px;">标准工时：</span>
-					</td>
-					<td colspan="1">
-						<input class="nui-spinner" name="itemTime" format="0.00" value="0" maxValue="1000000000"
-										changeOnMousewheel="true" showButton="false" width="300px" inputStyle="text-align:right;"/>
-				</tr>
-				<tr style=" display:block;margin:5px 0">
-					<td class="form_label" width="80px"> 
-						<span style="margin-left:20px;">工时单价：</span>
-					</td>
-					<td colspan="1">
-						<input class="nui-spinner" name="unitPrice" format="0.00" value="0" maxValue="1000000000"
-										changeOnMousewheel="true" showButton="false" width="300px" inputStyle="text-align:right;"/>
-					</td>
-				</tr>
-				<tr style=" display:block;margin:5px 0">
-					<td class="form_label" width="80px"> 
-						<span style="margin-left:20px;">工时金额：</span>
-					</td>
-					<td colspan="1">
-						<input class="nui-spinner" name="amt" format="0.00" value="0" maxValue="1000000000"
-										changeOnMousewheel="true" showButton="false" width="300px" inputStyle="text-align:right;"/>
-					</td>
-				</tr>
-				<tr style=" display:block;margin:5px 0">
-					<td class="form_label" width="80px"> 
-						<span style="margin-left:20px;">提成金额：</span>
-							</td>
-							<td colspan="1">
-								<input class="nui-spinner" name="unitPriceFours" format="0.00" value=" " maxValue="1000000000"
-										changeOnMousewheel="true" showButton="false" width="300px" inputStyle="text-align:right;"/>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-
-				
-			
-			<div style="text-align:center;padding:10px;">               
-        <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>       
-        <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>       
-    </div>
+	</div>
+	<div class="nui-panel" showToolbar="false" title="工时价格信息" showFooter="false"
+		 style="width:calc(100% - 20px);">
+		<table class="nui-form-table">
+			<tr>
+				<td class="form_label">
+					<label>标准工时：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-spinner"
+						   name="itemTime"
+						   format="0.00"
+						   value="0" maxValue="1000000000"
+						   changeOnMousewheel="true" showButton="false"
+						   width="100%" inputStyle="text-align:right;"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="form_label">
+					<label>工时单价：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-spinner" name="unitPrice" format="0.00" value="0" maxValue="1000000000"
+						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="form_label" width="80px">
+					<label>工时金额：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-spinner" name="amt" format="0.00" value="0" maxValue="1000000000"
+						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="form_label" width="80px">
+					<label>提成金额：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-spinner" name="unitPriceFours" format="0.00" value=" " maxValue="1000000000"
+						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div style="text-align:center;padding:10px;">
+	<a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
+	<a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
+</div>
 		
 	
 </body>

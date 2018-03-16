@@ -1,113 +1,79 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var treeUrl = baseUrl+"com.hsapi.repair.baseData.item.getRepairTree.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
 var tree1 = null;
 var rightGrid = null;
 
-//var dataItems = data.dataItems||[];
-//var typeList = dataItems.filter(function(v)
-//        {
-//    if(v.customid == "DDT20130703000064")
-//    {
-//        enterTypeIdHash[v.customid] = v;
-//        return true;
-//    }
-//});
-
-$(document).ready(function() {
-	//queryForm = new nui.Form("#queryForm");
+$(document).ready(function()
+{
+	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
-	tree1.setUrl(treeUrl);
+	var parentId = "DDT20130703000063";
+	getDatadictionaries(parentId,function(data)
+	{
+		var list = data.list||[];
+		tree1.loadList(list);
+	});
+	var parentId1 = "DDT20130703000057";
+	getDatadictionaries(parentId1,function(data)
+	{
+		var list = data.list||[];
+		var itemKind = nui.get("itemKind");
+		itemKind.setData(list);
+	});
+	getAllCarBrand(function(data)
+	{
+		var list = data.carBrands;
+		var carBrandId = nui.get("carBrandId");
+		carBrandId.setData(list);
+	});
+	tree1.on("nodedblclick",function(e)
+	{
+		var node = e.node;
+		var customid = node.customid;
+		var params = getSearchParams();
+		params.customid = customid;
+		doSearch(params);
+	});
 	//右边区域
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
-	
-	loadTreeData({});
-	loadRightGridData({});
-
+	onSearch();
 });
-function onRepairGridRowClick(e){
-	var row = e.record;
-	loadRightGridData(row.customid);
+function getSearchParams()
+{
+	var params = queryForm.getData();
+	return params;
 }
-function loadTreeData(params){
-	rightGrid.setData([]);
-	tree1.load(params,function(){
-		var row = tree1.getSelected();
-		if(row){
-			loadRightGridData(row.customid);
-		}
-	});
+function onSearch()
+{
+	var params = getSearchParams();
+	doSearch(params);
 }
-function loadRightGridData(type){
-	rightGrid.load({
-		type:type
-	});
-	
+function doSearch(params)
+{
+	rightGrid.load(params);
 }
-//function onDrawCell(e){
-//	 switch (e.field)
-//	    {
-//	        case "billStatus":
-//	            if(billStatusHash && billStatusHash[e.value])
-//	            {
-//	                e.cellHtml = billStatusHash[e.value];
-//	            }
-//	            break;
-//	        case "type":
-//	            if(enterTypeIdHash && enterTypeIdHash[e.value])
-//	            {
-//	                e.cellHtml = enterTypeIdHash[e.value].name;
-//	            }
-//	            break;
-//	        case "settType":
-//	            if(settTypeIdHash && settTypeIdHash[e.value])
-//	            {
-//	                e.cellHtml = settTypeIdHash[e.value].name;
-//	            }
-//	            break;
-//	        case "storeId":
-//	            if(storehouseHash && storehouseHash[e.value])
-//	            {
-//	                e.cellHtml = storehouseHash[e.value].name;
-//	            }
-//	            break;
-//	        case "backReasonId":
-//	            if(backReasonIdHash && backReasonIdHash[e.value])
-//	            {
-//	                e.cellHtml = backReasonIdHash[e.value].name;
-//	            }
-//	            break;
-//	        case "enterDayCount":
-//	            var row = e.record;
-//	            var enterTime = (new Date(row.enterDate)).getTime();
-//	            var nowTime = (new Date()).getTime();
-//	            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-//	            e.cellHtml = dayCount+1;
-//	            break;
-//	        default:
-//	            break;
-//	    }
-//}	   
-
 function addOrEdit(item){
 	nui.open({
 		targetWindow: window,
-		url:"RepairItemDetail.jsp",
+		url:"com.hsweb.repair.DataBase.RepairItemDetail.flow",
 		title:"维修项目",
 		width:450,
-		height:500,
+		height:380,
 		allowResize:false,
-		onload: function(){
-			if(item){
-				var iframe = this.getIFrameEl();
-				iframe.contentWindow.setData({
-					item:item
-				});
-			}
+		onload: function()
+		{
+			var iframe = this.getIFrameEl();
+			var params = {};
+			params.typeList = tree1.getList();
+			params.itemKindList = nui.get("itemKind").getData();
+			params.carBrandIdList = nui.get("carBrandId").getData();
+			iframe.contentWindow.setData(params);
 		},
-		ondestroy:function(action){
-	    	if(action == "ok"){
+		ondestroy:function(action)
+		{
+	    	if(action == "ok")
+			{
 	    		rightGrid.reload();
 	    	}	
 		}

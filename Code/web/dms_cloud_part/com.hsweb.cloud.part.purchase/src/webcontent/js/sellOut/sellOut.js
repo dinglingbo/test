@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
 var advancedSearchWin = null;
@@ -142,7 +142,8 @@ function loadRightGridData(mainId)
     var params = {};
     params.mainId = mainId;
     rightGrid.load({
-        params:params
+        params:params,
+        token:token
     });
 }
 function onLeftGridDrawCell(e)
@@ -297,7 +298,8 @@ function doSearch(params)
 	//目前没有区域销售出库，采退入库  params.enterTypeId = '050101';
     params.enterTypeId = '050202';
 	leftGrid.load({
-		params : params
+		params : params,
+        token : token
 	}, function() {
 		//onLeftGridRowDblClick({});
         var data = leftGrid.getData().length;
@@ -646,7 +648,8 @@ function save() {
 			sellOutDetailAdd : sellOutDetailAdd,
 			sellOutDetailUpdate : sellOutDetailUpdate,
 			sellOutDetailDelete : sellOutDetailDelete,
-            sellOutDetailList : sellOutDetailList
+            sellOutDetailList : sellOutDetailList,
+            token : token
 		}),
 		success : function(data) {
             nui.unmask(document.body);
@@ -1067,7 +1070,8 @@ function audit()
             sellOutDetailAdd : sellOutDetailAdd,
             sellOutDetailUpdate : sellOutDetailUpdate,
             sellOutDetailDelete : sellOutDetailDelete,
-            sellOutDetailList : sellOutDetailList
+            sellOutDetailList : sellOutDetailList,
+            token : token
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -1117,7 +1121,7 @@ function setGuestInfo(params)
 {
     nui.ajax({
         url:getGuestInfo,
-        data: {params: params},
+        data: {params: params, token:token},
         type:"post",
         success:function(text)
         {

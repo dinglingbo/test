@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsOrderMainDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
@@ -187,7 +187,8 @@ function doSearch(params)
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({
-        params:params
+        params:params,
+        token:token
     },function(){
         rightGrid.mergeColumns(["serviceId"]);
     });

@@ -56,11 +56,11 @@
 		}
 	}
 
-	var getDictItemsUrl = window._rootUrl
-			+ "com.hsapi.cloud.part.common.svr.getDictItems.biz.ext";
+	var getDictItemsUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.common.svr.getDictItems.biz.ext";//window._rootUrl		
 	function getDictItems(dictIdList, callback) {
 		var params = {};
 		params.dictIdList = dictIdList;
+		params.token = token;
 		nui.ajax({
 			url : getDictItemsUrl,
 			type : "post",
@@ -79,11 +79,11 @@
 			}
 		});
 	}
-	var getProvinceAndCityUrl = window._rootUrl
-			+ "com.hsapi.cloud.part.common.svr.getProvinceAndCity.biz.ext";
+	var getProvinceAndCityUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.common.svr.getProvinceAndCity.biz.ext";
 	function getProvinceAndCity(callback) {
 		nui.ajax({
 			url : getProvinceAndCityUrl,
+			data: {token: token},
 			type : "post",
 			success : function(data) {
 				if (data) {
@@ -96,11 +96,11 @@
 			}
 		});
 	}
-	var getStorehouseUrl = window._rootUrl
-			+ "com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext";
+	var getStorehouseUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext";
 	function getStorehouse(callback) {
 		nui.ajax({
 			url : getStorehouseUrl,
+			data : {token: token},
 			type : "post",
 			success : function(data) {
 				if (data && data.storehouse) {
@@ -113,11 +113,11 @@
 			}
 		});
 	}
-	var getAllCarBrandUrl = window._rootUrl
-			+ "com.hsapi.cloud.part.common.svr.getAllCarBrand.biz.ext";
+	var getAllCarBrandUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.common.svr.getAllCarBrand.biz.ext";
 	function getAllCarBrand(callback) {
 		nui.ajax({
 			url : getAllCarBrandUrl,
+			data : {token: token},
 			type : "post",
 			success : function(data) {
 				if (data && data.carBrands) {
@@ -130,11 +130,12 @@
 			}
 		});
 	}	
-	var getAllPartBrandUrl = window._rootUrl+"com.hsapi.cloud.part.common.svr.getAllPartBrand.biz.ext";
+	var getAllPartBrandUrl = apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.common.svr.getAllPartBrand.biz.ext";
 	function getAllPartBrand(callback)
 	{
 	    nui.ajax({
 	        url:getAllPartBrandUrl,
+	        data : {token: token},
 	        type:"post",
 	        success:function(data)
 	        {

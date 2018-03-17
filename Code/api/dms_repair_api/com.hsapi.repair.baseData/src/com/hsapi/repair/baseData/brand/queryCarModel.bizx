@@ -44,16 +44,28 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">carBrandId</process:from>
+      <process:from type="query" pattern="reference">params/carBrandId</process:from>
       <process:to type="query">criteria/_expr[1]/carBrandId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">carSeriesId</process:from>
-      <process:to type="query">criteria/_expr[2]/carSeriesId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.repair.data.common.ComCarModel</process:from>
       <process:to type="query">criteria/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">carFactoryName</process:from>
+      <process:to type="query">criteria/_orderby[1]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">asc</process:from>
+      <process:to type="query">criteria/_orderby[1]/_sort</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">carSeriesName</process:from>
+      <process:to type="query">criteria/_orderby[2]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">asc</process:from>
+      <process:to type="query">criteria/_orderby[2]/_sort</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -66,8 +78,8 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">isDisabled</process:leftOperand>
+        <process:simpleCondition operator="NOTNULL">
+          <process:leftOperand type="query">params/isDisabled</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -102,8 +114,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">isDisabled</process:from>
-      <process:to type="query">criteria/_expr[3]/isDisabled</process:to>
+      <process:from type="query" pattern="reference">params/isDisabled</process:from>
+      <process:to type="query">criteria/_expr[2]/isDisabled</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -126,7 +138,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">hs_common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">criteria</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -145,9 +157,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="carBrandId" primitiveType="String"/>
-    <process:input description="" isArray="false" name="isDisabled" primitiveType="String"/>
-    <process:input description="" isArray="false" name="carSeriesId" primitiveType="String"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.common.ComCarModel" name="models"/>

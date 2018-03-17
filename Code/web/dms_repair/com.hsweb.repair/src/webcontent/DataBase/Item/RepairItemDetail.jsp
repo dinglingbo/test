@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.5"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -55,7 +55,7 @@ table {
 					</td>
 					<td>
 						<input class="nui-combobox" name="itemKind" id="itemKind"
-							   idField="customid"
+							   valueField="customid"
 							   textField="name"
 							   width="100%"/>
 					</td>
@@ -74,7 +74,7 @@ table {
 					</td>
 					<td colspan="3">
 						<input class="nui-combobox" name="type" id="type"
-							   idField="customid"
+							   valueField="customid"
 							   textField="name"
 							   width="100%"/>
 					</td>
@@ -85,7 +85,7 @@ table {
 					</td>
 					<td>
 						<input class="nui-combobox" name="carBrandId" id="carBrandId"
-							   idField="id"
+							   valueField="id"
 							   textField="carBrandZh"
 							   width="100%"/>
 					</td>
@@ -93,9 +93,9 @@ table {
 						<label>车型：</label>
 					</td>
 					<td>
-						<input class="nui-combobox" name="carSeriesId" id="carSeriesId"
-							   idField="id"
-							   textField="name"
+						<input class="nui-combobox" name="carModelId" id="carModelId"
+							   valueField="id"
+							   textField="carModel"
 							   width="100%"/>
 					</td>
 				</tr>
@@ -128,7 +128,7 @@ table {
 				</td>
 			</tr>
 			<tr>
-				<td class="form_label" width="80px">
+				<td class="form_label">
 					<label>工时金额：</label>
 				</td>
 				<td colspan="1">
@@ -137,11 +137,11 @@ table {
 				</td>
 			</tr>
 			<tr>
-				<td class="form_label" width="80px">
+				<td class="form_label">
 					<label>提成金额：</label>
 				</td>
 				<td colspan="1">
-					<input class="nui-spinner" name="unitPriceFours" format="0.00" value=" " maxValue="1000000000"
+					<input class="nui-spinner" name="deductAmt" format="0.00" value=" " maxValue="1000000000"
 						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
 				</td>
 			</tr>

@@ -1,47 +1,208 @@
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftTreeUrl = baseUrl + "com.hsapi.repair.baseData.outCar.getOutCarTree.biz.ext";
+var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var dataGridUrl = baseUrl + "com.hsapi.repair.baseData.outCar.queryOutCar.biz.ext";
 var leftTree = null;
 var dataGrid = null;
-var dataform1 = null;
-var requiredFieldew={
-		content:"报告类型"
+var basicInfoForm = null;
+var typeHash = {};
+$(document).ready(function (v) {
+    leftTree = nui.get("tree1");
+    var dictIdList = [];
+    dictIdList.push("DDT20130703000058");
+    getDictItems(dictIdList,function(data)
+    {
+        var list = data.dataItems;
+        if(list && list.length>0)
+        {
+            leftTree.loadList(list,"customid",'partentid');
+            nui.get("type").setData(list);
+            list.forEach(function(v){
+                typeHash[v.customid] = v;
+            });
+        }
+    });
+
+    dataGrid = nui.get("datagrid1");
+    dataGrid.setUrl(dataGridUrl);
+    dataGrid.on("load",function()
+    {
+    	basicInfoForm.clear();
+        basicInfoForm.setEnabled(false);
+        var row = dataGrid.getSelected();
+        if(row)
+        {
+            onOutCarDataRowClick({
+                record:row
+            });
+        }
+        else{
+            nui.get("addBtn").enable();
+            nui.get("editBtn").disable();
+            nui.get("deleteBtn").disable();
+            nui.get("saveBtn").disable();
+            nui.get("cancelBtn").disable();
+        }
+    });
+    dataGrid.on("drawcell",function(e)
+    {
+        if("type" == e.field && typeHash[e.value])
+        {
+            e.cellHtml = typeHash[e.value].name;
+        }
+    });
+    basicInfoForm = new nui.Form("#basicInfoForm");
+    basicInfoForm.setEnabled(false);
+});
+function onOutCarRowClick(e)
+{
+    var row = e.record;
+    nui.get("addBtn").enable();
+    nui.get("editBtn").disable();
+    nui.get("deleteBtn").disable();
+    nui.get("saveBtn").disable();
+    nui.get("cancelBtn").disable();
+    basicInfoForm.setEnabled(false);
+    loadDataGridData(row.customid);
+}
+function onOutCarDataRowClick(e)
+{
+    var row = e.record;
+    nui.get("addBtn").enable();
+    nui.get("editBtn").enable();
+    nui.get("deleteBtn").enable();
+    nui.get("saveBtn").disable();
+    nui.get("cancelBtn").disable();
+    basicInfoForm.setData(row);
+}
+function loadDataGridData(type)
+{
+    var params = {};
+    params.type = type;
+    params.orgid = currOrgid;
+    dataGrid.load({
+        params:params
+    });
 }
 
-$(document).ready(function (v){
-	leftTree = nui.get("tree1");
-	leftTree.setUrl(leftTreeUrl);
-	
-	dataGrid = nui.get("datagrid1");
-	dataGrid.setUrl(dataGridUrl);
-	
-	dataform1 = new nui.Form("#dataform1");
-	
-	loadLeftTreeData({});
-	loadDataGridData({});
-});
-function onOutCarRowClick(e){
-	var row = e.record;
-	loadDataGridData(row.id);
-	
+function addReport()
+{
+    nui.get("addBtn").disable();
+    nui.get("editBtn").disable();
+    nui.get("deleteBtn").disable();
+    nui.get("saveBtn").enable();
+    nui.get("cancelBtn").enable();
+    basicInfoForm.setEnabled(true);
+    basicInfoForm.clear();
+    var node = leftTree.getSelectedNode();
+    var data = {
+        type:node.customid
+    };
+    basicInfoForm.setData(data);
 }
-function onOutCarDataRowClick(e){
-	var row = e.record;
-	dataform1.setData(row);
+function editReport()
+{
+	nui.get("addBtn").disable();
+    nui.get("editBtn").disable();
+    nui.get("deleteBtn").disable();
+    nui.get("saveBtn").enable();
+    nui.get("cancelBtn").enable();
+    basicInfoForm.setEnabled(true);
 }
-function loadLeftTreeData(params){
-	dataGrid.setData([]);
-	leftTree.load(params,function(){
-		var row = leftTree.getSelected();
-		if(row){
-			loadDataGridData(row.customid);
-			
-		}
-	});
+function cancelEdit()
+{
+    var row = dataGrid.getSelected();
+    if(row)
+    {
+        onOutCarDataRowClick({
+            record:row
+        });
+    }
+    else{
+        nui.get("addBtn").enable();
+        nui.get("saveBtn").disable();
+        nui.get("cancelBtn").disable();
+    }
+    basicInfoForm.setEnabled(false);
 }
-function loadDataGridData(type){
-	dataGrid.load({
-		type:type
-	});
-	
+var requiredField = {
+    content: "报告类型"
+};
+var saveUrl = baseUrl+"com.hsapi.repair.baseData.outCar.saveOutReport.biz.ext";
+function save()
+{
+    var data = basicInfoForm.getData();
+    for (var key in requiredField) {
+        if (!data[key] || data[key].trim().length == 0) {
+            nui.alert(requiredField[key] + "不能为空");
+            return;
+        }
+    }
+    nui.mask({
+        html: '保存中..'
+    });
+    doPost({
+        url:saveUrl,
+        data:{
+            report:data
+        },
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                nui.alert("保存成功");
+                dataGrid.reload();
+            }
+            else{
+                nui.alert(data.errMsg||"保存失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(jqXHR.responseText);
+            nui.unmask();
+            nui.alert("网络出错");
+        }
+    });
+}
+var deleteUrl = baseUrl+"com.hsapi.repair.baseData.outCar.deleteOutReport.biz.ext";
+function deleteReport()
+{
+    var row = dataGrid.getSelected();
+    if(row)
+    {
+        nui.confirm("确定要删除所选报告？","提示",function(action)
+        {
+            if(action == "ok")
+            {
+                doPost({
+                    url:deleteUrl,
+                    data:{
+                        report:{
+                            id:row.id
+                        }
+                    },
+                    success:function(data)
+                    {
+                        nui.unmask();
+                        data = data||{};
+                        if(data.errCode == "S")
+                        {
+                            nui.alert("删除成功");
+                            dataGrid.reload();
+                        }
+                        else{
+                            nui.alert(data.errMsg||"删除失败");
+                        }
+                    },
+                    error:function(jqXHR, textStatus, errorThrown)
+                    {
+                        console.log(jqXHR.responseText);
+                        nui.unmask();
+                        nui.alert("网络出错");
+                    }
+                });
+            }
+        }.bind(row));
+    }
 }

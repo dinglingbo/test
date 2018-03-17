@@ -11,101 +11,124 @@
 -->
 <head>
 <title>出车报告</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/outCarReportMain.js"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/outCarReportMain.js?v=1.0.6"></script>
+<style type="text/css">
 
+table {
+	table-layout: fixed;
+	font-size: 12px;
+}
+
+.required {
+	color: red;
+}
+</style>
 </head>
-<body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div class="nui-toolbar"  style="border-bottom: 0; padding: 0px; height: 30px">
-		<table style="width: 100%">
-			<tr>
-				<td style="width: 100%"><a class="nui-button"  plain="true" iconCls="icon-add" onclick="addClass()">新增（A）</a> 
-					<a class="nui-button" plain="true" iconCls="icon-edit" onclick="edit()">修改（E）</a>
-					<a class="nui-button" plain="true" iconCls="icon-remove" onclick="remove()">删除（D）</a> 
-					<a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存（S）</a> 
-					<a class="nui-button" plain="true" iconCls="icon-cancel" onclick="cancel()">取消（C）</a>
-				</td>
-			</tr>
-		</table>
-	</div>
-	<div class="nui-splitter" style="width: 100%; height: 95.5%;" showHandleButton="false" allowResize="false">
-		<div size="20%" showCollapseButton="false">
-			<div class="nui-fit">
-				<div class="nui-toolbar"
-					style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>出车报告类型</span>
-				</div>
-				<!-- 树形联动 -->
-				<div class="nui-fit">
-					<ul id="tree1" class="nui-tree" url="" style="width: 100%;" dataField="datas"
-						showTreeIcon="true" textField="name" idField="id" parentField="parentId"
-						resultAsTree="false"
-						
-						onrowclick="onOutCarRowClick"
-						selectOnLoad="true"
-					>
+<body>
+<div class="nui-toolbar" style="border-bottom: 0;">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <a class="nui-button" plain="true" iconCls="icon-add" id="addBtn" enabled="false" onclick="addReport()">新增</a>
+                <a class="nui-button" plain="true" iconCls="icon-edit" id="editBtn" enabled="false" onclick="editReport()">修改</a>
+                <a class="nui-button" plain="true" iconCls="icon-remove" id="deleteBtn" enabled="false" onclick="deleteReport()">删除</a>
+                <a class="nui-button" plain="true" iconCls="icon-save" id="saveBtn" enabled="false" onclick="save()">保存</a>
+                <a class="nui-button" plain="true" iconCls="icon-cancel" id="cancelBtn" enabled="false" onclick="cancelEdit()">取消</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="nui-fit">
+    <div class="nui-splitter" style="width: 100%; height:100%;"
+         showHandleButton="false" allowResize="false">
+        <div size="200" showCollapseButton="false">
+            <div class="nui-fit">
+                <div class="nui-toolbar" style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
+                    <span>出车报告类型</span>
+                </div>
+                <!-- 树形联动 -->
+                <div class="nui-fit">
+                    <ul id="tree1" class="nui-tree"
+                        style="width: 100%;"
+                        showTreeIcon="true" textField="name" idField="customid" parentField="parentId"
+                        resultAsTree="false"
+                        onrowclick="onOutCarRowClick"
+                        selectOnLoad="true">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div showCollapseButton="false">
+            <div class="nui-splitter" style="width: 100%; height: 100%;"
+                 borderStyle="border:0"
+                 showHandleButton="false" allowResize="false">
+                <div size="60%" showCollapseButton="false" style="border: 0;">
+                    <div class="nui-panel" showToolbar="false" title="出车报告类型" showFooter="false"
+                         borderStyle="border-top:0;border-top:bottom;border-left:0"
+                         style="width:100%;height:100%;">
+                        <div class="nui-fit">
+                            <div id="datagrid1" dataField="outs" class="nui-datagrid"
+                                 style="width: 100%; height: 100%;"
+                                 showPager="false"
+                                 onrowclick="onOutCarDataRowClick"
+                                 selectOnLoad="true"
+                                 allowSortColumn="true">
+                                <div property="columns">
+                                    <div type="indexcolumn" headerAlign="center" width="30">序号</div>
+                                    <div header="出车报告列表" headerAlign="center">
+                                        <div property="columns">
+                                            <div field="type" headerAlign="center" allowSort="true" visible="true">报告类型
+                                            </div>
+                                            <div field="content" headerAlign="center" allowSort="true" visible="true" width="60%">报告内容
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div showCollapseButton="false" style="border: 0;">
+                    <div class="nui-panel" showToolbar="false"
+                         borderStyle="border-top:0;border-right:0"
+                         title="报告内容编辑" showFooter="false" style="width:100%;height:100%;">
+                        <div class="form" id="basicInfoForm" style="width:100%;height: 100%">
+                            <input name="id" class="nui-hidden"/>
+                            <table class="nui-form-table" style="width:100%;height: 100%">
+                                <tr height="20">
+                                    <td class="form_label">
+                                        <label>报告类型：</label>
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td>
+                                        <input class="nui-combobox"
+                                               id="type" name="type"
+                                               valueField="customid"
+                                               textField="name"
+                                               allowInput="false"
+                                               allowNullItem="false"
+                                               width="100%"/>
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td class="form_label required">
+                                        <label>报告内容：</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <textarea class="nui-textarea" name="content" style="width: 100%;height: 100%"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div showCollapseButton="false">
-			<div class="nui-splitter" style="width: 100%; height: 100%;" showHandleButton="false" allowResize="false">
-				<div size="60%" showCollapseButton="false">
-					<div  class="nui-panel" showToolbar="false" title="出车报告类型"  showFooter="false" style="width:100%;height:100%;">
-						<div class="nui-fit">
-							<div id="datagrid1" dataField="outs" class="nui-datagrid"
-								style="width: 100%; height: 100%;"
-								url=""
-								showPageInfo="false" multiSelect="true"
-								showPageIndex="false" showPageSize="false"
-								showReloadButton="false" showPagerButtonIcon="false"
-								
-								onrowclick="onOutCarDataRowClick"
-								selectOnLoad="true"
-								allowSortColumn="true"
-							>
-	
-								<div property="columns">
-									<div type="indexcolumn" headerAlign="center" width="40px">序号</div>
-									<div header="出车报告列表" headerAlign="center">
-										<div property="columns">
-											<div field="type" headerAlign="center" allowSort="true" visible="true">报告类型</div>
-											<div field="content" headerAlign="center" allowSort="true" visible="true">报告内容</div>
-	
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div showCollapseButton="false">
-					<div id="dataform1" class="form" >
-						<input name="id" class="nui-hidden"/>
-						<div  class="nui-panel" showToolbar="false" title="报告内容编辑"  showFooter="false" style="width:100%;height:100%;">
-							<span
-								style="margin-left: 20px; margin-top: 5px; height: 30px; display: inline-block;">报告类型：</span></br>
-							<span style="margin: 10px 0px 10px 20px;"> 
-							<input class="nui-combobox" property="editor"
-								style="width: 90%; height: 30px; display: inline-block;"
-								 />
-							</span>
-							</br> 
-							<span style="margin-left: 20px; height: 30px; color: #FF0000; display: inline-block;">报告内容：</span></br>
-							<input class="nui-TextArea" name="content" style="margin-left: 20px; width: 90%; height: 480px" />
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	
-
-
-	
 </body>
 </html>

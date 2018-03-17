@@ -10,15 +10,17 @@
   - Description:
 -->
 <head>
-<title>品牌</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js"
-	type="text/javascript"></script>
-<script
-	src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/CarBrandDetail.js"  type="text/javascript"></script>
+<title>新增品牌</title>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/CarBrandDetail.js?v=1.0.1"></script>
+<style type="text/css">
 
+table {
+	table-layout: fixed;
+	font-size: 12px;
+}
+</style>
 </head>
-<body style="margin: 0; padding: 0; overflow: hidden">
+<body>
 	<fieldset style="width: 92.5%; height: 55%; border: solid 1px #aaa; position: relative; margin: 5px 5px;">
 		<div id="dataform1"  class="form">
 			<input name="id" class="nui-hidden" />
@@ -39,11 +41,8 @@
 		</div>
 	</fieldset>
 	<div style="text-align: right; padding: 10px;">
-		<a class="nui-button" onclick="onOk" style="margin-right: 20px;">保存（S）</a>
-		<a class="nui-button" onclick="onCancel">取消（C）</a>
+		<a class="nui-button" onclick="onOk" style="margin-right: 20px;">保存</a>
+		<a class="nui-button" onclick="onCancel">取消</a>
 	</div>
-
-
-	
 </body>
 </html>

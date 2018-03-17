@@ -31,7 +31,7 @@ $(document).ready(function()
 		var node = e.node;
 		var customid = node.customid;
 		var params = getSearchParams();
-		params.customid = customid;
+		params.type = customid;
 		doSearch(params);
 	});
 	//右边区域
@@ -39,6 +39,9 @@ $(document).ready(function()
 	rightGrid.setUrl(rightGridUrl);
 	onSearch();
 });
+function onClear(){
+	queryForm.clear();
+}
 function getSearchParams()
 {
 	var params = queryForm.getData();
@@ -51,7 +54,10 @@ function onSearch()
 }
 function doSearch(params)
 {
-	rightGrid.load(params);
+	params.orgid = currOrgid;
+	rightGrid.load({
+		params:params
+	});
 }
 function addOrEdit(item){
 	nui.open({
@@ -68,6 +74,10 @@ function addOrEdit(item){
 			params.typeList = tree1.getList();
 			params.itemKindList = nui.get("itemKind").getData();
 			params.carBrandIdList = nui.get("carBrandId").getData();
+			if(item)
+			{
+				params.item = item;
+			}
 			iframe.contentWindow.setData(params);
 		},
 		ondestroy:function(action)
@@ -87,4 +97,40 @@ function edit(){
 	if(row){
 		addOrEdit(row);
 	}
+}
+
+var resultData = {};
+var list = [];
+function getData()
+{
+	return resultData;
+}
+function setData(data)
+{
+	list = data.list||[];
+	nui.get("add").hide();
+	nui.get("update").hide();
+	nui.get("selectBtn").show();
+}
+function onOk()
+{
+	var row = rightGrid.getSelected();
+	if(row)
+	{
+		resultData.item = row;
+		CloseWindow("ok");
+	}
+	else{
+		nui.alert("请选择一个项目");
+	}
+}
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else window.close();
+}
+
+function onCancel() {
+	CloseWindow("cancel");
 }

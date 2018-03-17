@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.0" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.5" type="text/javascript"></script>
 
 </head>
 <body>
@@ -59,8 +59,9 @@
 	<table style="width: 100%">
 		<tr>
 			<td style="width: 100%">
-				<a class="nui-button" id="add" iconCls="icon-add" onclick="add()" plain="true">新增项目（A）</a>
-				<a	class="nui-button" id="update" iconCls="icon-edit" onclick="edit()"	plain="true">修改项目（E）</a>
+				<a class="nui-button" id="add" iconCls="icon-add" onclick="add()" plain="true">新增项目</a>
+				<a class="nui-button" id="update" iconCls="icon-edit" onclick="edit()" plain="true">修改项目</a>
+				<a class="nui-button" id="selectBtn" iconCls="icon-ok" onclick="onOk()" plain="true" visible="false">选择</a>
 			</td>
 		</tr>
 	</table>
@@ -86,7 +87,9 @@
 		</div>
 		<div showCollapseButton="false">
 			<div class="nui-fit">
-				<div id="rightGrid" dataField="rpbItems" class="nui-datagrid"
+				<div id="rightGrid"
+					 dataField="list"
+					 class="nui-datagrid"
 					 style="width: 100%; height: 100%;"
 					 url=""
 					 borderStyle="border:0"
@@ -103,9 +106,9 @@
 							<div property="columns">
 								<div field="code" headerAlign="center" width="100px">项目编号</div>
 								<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
-								<div field="itemKind" headerAlign="center" allowSort="true" width="40px">工种</div>
-								<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
-								<div field="carBrandId" headerAlign="center" allowSort="true" width="60px">品牌</div>
+								<div field="itemKindName" headerAlign="center" allowSort="true" width="40px">工种</div>
+								<div field="typeName" headerAlign="center" allowSort="true" width="100px">项目类型</div>
+								<div field="carBrandName" headerAlign="center" allowSort="true" width="60px">品牌</div>
 								<div field="carModel" headerAlign="center" allowSort="true" width="60px">车型</div>
 							</div>
 						</div>

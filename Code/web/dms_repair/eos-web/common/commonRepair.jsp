@@ -167,6 +167,24 @@
 			}
 		});
 	}
+	var getCarModelByBrandIdUrl = window._rootUrl
+			+ "com.hsapi.repair.common.common.getCarModelByBrandId.biz.ext";
+	function getCarModelByBrandId(brandId, callback) {
+		var params = {};
+		params.brandId = brandId;
+		doPost({
+			url : getCarModelByBrandIdUrl,
+			data : params,
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback(null);
+			}
+		});
+	}
 </script>
 <style type="text/css">
 html,body {

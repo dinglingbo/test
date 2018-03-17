@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
@@ -125,7 +125,8 @@ function loadRightGridData(mainId) {
 	var params = {};
 	params.mainId = mainId;
 	rightGrid.load({
-		params : params
+		params : params,
+		token : token
 	});
 }
 function onLeftGridDrawCell(e) {
@@ -234,7 +235,8 @@ function setEditable(flag) {
 function doSearch(params) {
 	// 目前没有区域采购订单，销退受理 params.enterTypeId = '050101';
 	leftGrid.load({
-		params : params
+		params : params,
+		token : token
 	}, function() {
 		// onLeftGridRowDblClick({});
 		var data = leftGrid.getData().length;
@@ -531,7 +533,8 @@ function save() {
 			pchsOrderMain : data,
 			pchsOrderDetailAdd : pchsOrderDetailAdd,
 			pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-			pchsOrderDetailDelete : pchsOrderDetailDelete
+			pchsOrderDetailDelete : pchsOrderDetailDelete,
+			token: token
 		}),
 		success : function(data) {
 			nui.unmask(document.body);
@@ -796,10 +799,8 @@ function addPchsOrderDetail(part) {
 						if (taxSign == 0) { // 收据
 							enterDetail.noTaxAmt = data.amt;
 							;
-							enterDetail.noTaxPrice = (data.qty > 0 ? data.amt
-									/ data.qty : 0);
-							enterDetail.orderPrice = (data.qty > 0 ? data.amt
-									/ data.qty : 0);
+							enterDetail.noTaxPrice = (data.qty > 0 ? data.amt/ data.qty : 0);
+							enterDetail.orderPrice = (data.qty > 0 ? data.amt/ data.qty : 0);
 							enterDetail.taxAmt = data.amt
 									* (1.0 + parseFloat(taxRate));
 							enterDetail.taxPrice = data.qty > 0 ? (data.amt / data.qty)
@@ -807,14 +808,10 @@ function addPchsOrderDetail(part) {
 									: 0;
 						} else {
 							enterDetail.taxAmt = data.amt;
-							enterDetail.taxPrice = (data.qty > 0 ? data.amt
-									/ data.qty : 0);
-							enterDetail.orderPrice = (data.qty > 0 ? data.amt
-									/ data.qty : 0);
-							enterDetail.noTaxAmt = data.amt
-									/ (1.0 + parseFloat(taxRate));
-							enterDetail.noTaxPrice = data.qty > 0 ? (data.amt / data.qty)
-									/ (1.0 + parseFloat(taxRate))
+							enterDetail.taxPrice = (data.qty > 0 ? data.amt/ data.qty : 0);
+							enterDetail.orderPrice = (data.qty > 0 ? data.amt / data.qty : 0);
+							enterDetail.noTaxAmt = data.amt / (1.0 + parseFloat(taxRate));
+							enterDetail.noTaxPrice = data.qty > 0 ? (data.amt / data.qty) / (1.0 + parseFloat(taxRate))
 									: 0;
 						}
 
@@ -954,7 +951,8 @@ function audit() {
 			pchsOrderMain : data,
 			pchsOrderDetailAdd : pchsOrderDetailAdd,
 			pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-			pchsOrderDetailDelete : pchsOrderDetailDelete
+			pchsOrderDetailDelete : pchsOrderDetailDelete,
+			token: token
 		}),
 		success : function(data) {
 			nui.unmask(document.body);
@@ -1003,7 +1001,8 @@ function setGuestInfo(params) {
 	nui.ajax({
 		url : getGuestInfo,
 		data : {
-			params : params
+			params : params,
+			token : token
 		},
 		type : "post",
 		success : function(text) {

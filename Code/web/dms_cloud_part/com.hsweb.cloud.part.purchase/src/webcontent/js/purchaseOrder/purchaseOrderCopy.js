@@ -137,6 +137,7 @@ function loadRightGridData(mainId)
     editPartHash={};
     var params = {};
     params.mainId = mainId;
+    params.token = token;
     rightGrid.load({
         params:params
     });
@@ -261,6 +262,7 @@ function setEditable(flag)
 function doSearch(params) 
 {
 	//目前没有区域采购订单，销退受理  params.enterTypeId = '050101';
+    params.token = token;
 	leftGrid.load({
 		params : params
 	}, function() {
@@ -577,7 +579,8 @@ function save() {
 			pchsOrderMain : data,
 			pchsOrderDetailAdd : pchsOrderDetailAdd,
 			pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-			pchsOrderDetailDelete : pchsOrderDetailDelete
+			pchsOrderDetailDelete : pchsOrderDetailDelete,
+            token : token
 		}),
 		success : function(data) {
             nui.unmask(document.body);
@@ -985,7 +988,8 @@ function audit()
             pchsOrderMain : data,
             pchsOrderDetailAdd : pchsOrderDetailAdd,
             pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-            pchsOrderDetailDelete : pchsOrderDetailDelete
+            pchsOrderDetailDelete : pchsOrderDetailDelete,
+            token : token
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -1033,6 +1037,7 @@ function onGuestValueChanged(e)
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {
+    params.token = token;
     nui.ajax({
         url:getGuestInfo,
         data: {params: params},

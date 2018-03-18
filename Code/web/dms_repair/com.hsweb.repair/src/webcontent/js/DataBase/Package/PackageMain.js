@@ -6,52 +6,341 @@ var rightPartGridUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.queryPac
 var leftGrid = null;
 var rightItemGrid = null;
 var rightPartGrid = null;
-var dataform = null;
-
-$(document).ready(function (v){
+var basicInfoForm = null;
+var carBrandIdEl = null;
+var carModelIdEl = null;
+var carModelIdHash = {};
+var editPartHash = {};
+$(document).ready(function (v)
+{
 	leftGrid = nui.get("leftGrid"); 
-	leftGrid.setUrl(leftGridUrl); 
-	
-	rightItemGrid = nui.get("rightItemGrid");
+	leftGrid.setUrl(leftGridUrl);
+	leftGrid.on("rowclick",function(e)
+	{
+		onLeftGridRowClick(e);
+	});
+	leftGrid.on("load",function(){
+		onLeftGridRowClick({});
+	});
+
+	rightItemGrid = nui.get("itemGrid");
 	rightItemGrid.setUrl(rightItemGridUrl);
 	
 	rightPartGrid = nui.get("rightPartGrid");
 	rightPartGrid.setUrl(rightPartGridUrl);
-	
-	dataform = new nui.Form("#dataform1");
-	
-	loadLeftGridData({});
-	loadRightItemGridData({});
-	loadRightPartGridData({});
-	
-});
-
-function onLeftGridRowClick(e){
-	var row = e.record;
-	dataform.setData(row);
-	loadRightItemGridData(row.id);
-	loadRightPartGridData(row.id);
-}
-function loadLeftGridData(params){
-	rightItemGrid.setData([]);
-	rightPartGrid.setData([]);
-	leftGrid.load(params,function(){
-		var row = leftGrid.getSelected();
-		if(row){
-			loadRightItemGridData(row.id);
-			loadRightPartGridData(row.id);
-			
+	rightPartGrid.on("cellendedit",function(e)
+	{
+		var row = e.record;
+		if(row)
+		{
+			var qty = row.qty;
+			var unitPrice = row.unitPrice;
+			if(qty && unitPrice)
+			{
+				var amt = unitPrice*qty;
+				row.amt = amt;
+				rightPartGrid.updateRow(row,row);
+			}
 		}
 	});
-}
-function loadRightItemGridData(packageId){
-	rightItemGrid.load({
-		packageId:packageId
+
+	basicInfoForm = new nui.Form("#basicInfoForm");
+	queryForm = new nui.Form("#queryForm");
+	carBrandIdEl = nui.get("carBrandId");
+	carModelIdEl = nui.get("carModelId");
+	init();
+
+	onSearch();
+});
+function init()
+{
+	carBrandIdEl.on("valuechanged",function()
+	{
+		var carBrandId = carBrandIdEl.getValue();
+		if(carModelIdHash[carBrandId])
+		{
+			carModelIdEl.setData(carModelIdHash[carBrandId]);
+		}
+		else
+		{
+			getCarModelByBrandId(carBrandId,function(data)
+			{
+				var list = data.list||[];
+				carModelIdHash[carBrandId] = list;
+				carModelIdEl.setData(carModelIdHash[carBrandId]);
+			});
+		}
 	});
-	
+	var elList = basicInfoForm.getFields();
+	var nameList = ["amount"];
+	elList.forEach(function(v)
+	{
+		if(nameList.indexOf(v.name)>-1)
+		{
+			v.on("focus",function(e){
+				onInputFocus(e);
+			});
+			v.on("blur",function(e){
+				onInputBlur(e);
+			});
+		}
+	});
+	var dictIdList = [];
+	dictIdList.push("DDT20130706000017");
+	getDictItems(dictIdList,function(data)
+	{
+		data = data||{};
+		var list = data.dataItems||[];
+		nui.get("type").setData(list);
+		nui.get("type-search").setData(list);
+	});
+	getAllCarBrand(function(data)
+	{
+		var list = data.carBrands||[];
+		carBrandIdEl.setData(list);
+		nui.get("carBrandId-search").setData(list);
+	});
 }
-function loadRightPartGridData(packageId){
+function onInputBlur(e)
+{
+	var el = e.sender;
+	if(el)
+	{
+		el.setInputStyle("text-align:right;");
+		el.setFormat("￥0.00");
+	}
+}
+function onInputFocus(e)
+{
+	var el = e.sender;
+	if(el)
+	{
+		el.setInputStyle("text-align:left;");
+		el.setFormat("");
+	}
+}
+function onLeftGridRowClick(e)
+{
+	var row = leftGrid.getSelected();
+	if(row)
+	{
+		basicInfoForm.clear();
+		basicInfoForm.setData(row);
+		carBrandIdEl.doValueChanged();
+		loadRightPartGridData(row.id);
+		loadRightItemGridData(row.id);
+	}
+}
+function onSearch()
+{
+	var params = getSearchParams();
+	doSearch(params);
+}
+function getSearchParams()
+{
+	var params = queryForm.getData();
+	return params;
+}
+function doSearch(params)
+{
+	addPackage();
+	params.orgid = currOrgid;
+	leftGrid.load({
+		params:params
+	});
+}
+function loadRightItemGridData(packageId)
+{
+	var params = {
+		packageId:packageId
+	};
+	rightItemGrid.load({
+		params:params
+	});
+}
+function loadRightPartGridData(packageId)
+{
 	rightPartGrid.load({
 		packageId:packageId
 	});
+}
+function addPackage()
+{
+	basicInfoForm.clear();
+	var data = {
+		amount:0,
+		total:0
+	};
+	basicInfoForm.setData(data);
+}
+var saveUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.savePackage.biz.ext";
+function save()
+{
+	var data = basicInfoForm.getData();
+	var partList = rightPartGrid.getData();
+	var i,tmp;
+	var total = 0;
+	for(i=0;i<partList.length;i++)
+	{
+		tmp = partList[i];
+		total += tmp.amt;
+	}
+	var insParts = partList.filter(function(v){
+		return !v.packageId;
+	});
+	var delParts = rightPartGrid.getChanges("removed");
+	var updParts = rightPartGrid.getChanges("modified");
+
+	var itemList = rightItemGrid.getData();
+	var insItems = itemList.filter(function(v){
+		return !v.packageId;
+	});
+	var delItems = rightItemGrid.getChanges("removed");
+	var updItems = rightItemGrid.getChanges("modified");
+	for(i=0;i<itemList.length;i++)
+	{
+		tmp = itemList[i];
+		total += tmp.amt;
+	}
+	data.total = total;
+	nui.mask({
+		html:'保存中..'
+	});
+	doPost({
+		url:saveUrl,
+		data:{
+			main:data,
+			insParts:insParts,
+			delParts:delParts,
+			updParts:updParts,
+			insItems:insItems,
+			delItems:delItems,
+			updItems:updItems
+		},
+		success:function(data)
+		{
+			nui.unmask();
+			data = data||{};
+			if(data.errCode == "S")
+			{
+				nui.alert("保存成功");
+				basicInfoForm.clear();
+				leftGrid.reload();
+			}
+			else{
+				nui.alert(data.errMsg||"保存失败");
+			}
+		},
+		error:function(jqXHR, textStatus, errorThrown)
+		{
+			console.log(jqXHR.responseText);
+			nui.unmask();
+			nui.alert("网络出错");
+		}
+	});
+}
+
+function selectPart(callback)
+{
+	nui.open({
+		targetWindow: window,
+		url: "com.hsweb.part.common.partSelectView.flow",
+		title: "选择配件", width: 930, height: 560,
+		allowDrag:true,
+		allowResize:true,
+		onload: function ()
+		{
+			var iframe = this.getIFrameEl();
+			var params = {};
+			params.list = rightPartGrid.getData();
+			iframe.contentWindow.setData(params);
+		},
+		ondestroy: function (action)
+		{
+			if(action == "ok")
+			{
+				var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getData();
+				callback && callback(data);
+			}
+		}
+	});
+}
+function addPart()
+{
+	selectPart(function(data)
+	{
+		var part = data.part;
+		var packagePart = {
+			partId:part.id,
+			partCode:part.code,
+			partName:part.name,
+			qty:1,
+			unitPrice:0,
+			unit:part.unit,
+			amt:0
+		};
+		rightPartGrid.addRow(packagePart);
+	});
+}
+function removePart()
+{
+	var row = rightPartGrid.getSelected();
+	if(row)
+	{
+		rightPartGrid.removeRow(row,true);
+	}
+}
+
+function selectItem(callback)
+{
+	nui.open({
+		targetWindow: window,
+		url: "com.hsweb.repair.DataBase.RepairItemMain.flow",
+		title: "维修项目", width: 930, height: 560,
+		allowDrag:true,
+		allowResize:true,
+		onload: function ()
+		{
+			var iframe = this.getIFrameEl();
+			var params = {};
+			params.list = rightItemGrid.getData();
+			iframe.contentWindow.setData(params);
+		},
+		ondestroy: function (action)
+		{
+			if(action == "ok")
+			{
+				var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getData();
+				callback && callback(data);
+			}
+		}
+	});
+}
+function addItem()
+{
+	selectItem(function(data)
+	{
+		var item = data.item;
+		var packageItem = {
+			itemId:item.id,
+			itemCode:item.code,
+			itemName:item.name,
+			itemTime:item.itemTime,
+			itemKind:item.itemKind,
+			itemKindName:item.itemKindName,
+			unitPrice:item.unitPrice,
+			amt:item.amt
+		};
+		rightItemGrid.addRow(packageItem);
+	});
+}
+function removeItem()
+{
+	var row = rightItemGrid.getSelected();
+	if(row)
+	{
+		rightItemGrid.removeRow(row,true);
+	}
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryInsuranceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <!-- 保险公司 -->
+    	SELECT 
+			a.id id,
+			a.orgid orgid,
+			a.code code,
+			a.py_name pyName,
+			a.full_name fullName,
+			a.short_name shortName,
+			a.contactor contactor,
+			a.contactor_tel contactorTel,
+			a.order_index orderIndex,
+			a.is_disabled isDisabled
+		FROM
+			com_guest a 
+		WHERE
+			(a.orgid = 0 or a.orgid = #orgid#)
+			and a.guest_type = '01020104'
+		<dynamic>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty> 
+        </dynamic>
+		order by a.order_index asc
+	</select>
+</sqlMap>

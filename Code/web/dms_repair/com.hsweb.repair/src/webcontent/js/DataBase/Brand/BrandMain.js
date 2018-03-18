@@ -11,58 +11,151 @@ $(document).ready(function(v){
 	//左边上区域
 	leftBrandGrid = nui.get("leftBrandGrid");
 	leftBrandGrid.setUrl(leftBrandGridUrl);
+    leftBrandGrid.on("load",function()
+    {
+        var row = leftBrandGrid.getSelected();
+        if(row)
+        {
+            onLeftBrandGridRowClick({
+                record:row
+            });
+        }
+    });
+    leftBrandGrid.on("rowclick",function(e)
+    {
+        onLeftBrandGridRowClick(e);
+    });
 	//左边下区域
 	leftSeriesGrid = nui.get("leftSeriesGrid");
 	leftSeriesGrid.setUrl(leftSeriesGridUrl);
 	//右边区域
 	rightModelGrid = nui.get("rightModelGrid");
 	rightModelGrid.setUrl(rightModelGridUrl);
-	
-	loadLeftBrandGridData({});
-	loadLeftSeriesGridData({});
-	loadRightModelGrid({});
-});
-//brand
-function addBrands(brand){
-	nui.open({
-		targetWindow: window,
-        url: "CarBrandDetail.jsp",
-        title: "新增品牌", width: 400, height: 190,
-        allowResize:false,
-        onload: function ()
+    rightModelGrid.on("load",function()
+    {
+        var row = rightModelGrid.getSelected();
+        if(row)
         {
-        	if(brand)
-            {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	brand:brand
-                });
-            }
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
-            	leftBrandGrid.reload();
-            }
+            onRightModelGridRowClick({
+                record:row
+            });
         }
-	});
+        rightModelGrid.mergeColumns(["carFactoryName","carSeriesName"]);
+    });
+    rightModelGrid.on("rowclick",function(e)
+    {
+        onRightModelGridRowClick(e);
+    });
+	onSearch(currType);
+});
+var currType = 2;
+function getSearchParams(type)
+{
+    var params = {};
+    if (type == 1 || type == 0) {
+        params.isDisabled = type;
+    }
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
+    }
+    currType = type;
+    return params;
 }
-function editBrands(brand){
+function onSearch(type)
+{
+    var params = getSearchParams(type);
+    loadLeftBrandGridData(params);
+}
+function loadLeftBrandGridData(params)
+{
+    leftSeriesGrid.clearRows();
+    rightModelGrid.clearRows();
+    leftBrandGrid.load({
+        params:params
+    });
+}
+//选择(单击)品牌时
+function onLeftBrandGridRowClick(e)
+{
+    var row = e.record;
+    if(row)
+    {
+        if(row.isDisabled == 1)
+        {
+            nui.get("disableBrand").hide();
+            nui.get("enableBrand").show();
+        }
+        else{
+            nui.get("enableBrand").hide();
+            nui.get("disableBrand").show();
+        }
+        loadLeftSeriesGridData(row.id);
+        loadRightModelGrid(row.id);
+    }
+
+}
+//加载车系
+function loadLeftSeriesGridData(carBrandId)
+{
+    var params = getSearchParams(currType);
+    params.carBrandId = carBrandId;
+    leftSeriesGrid.load({
+        params:params
+    });
+}
+//加载车型
+function loadRightModelGrid(carBrandId)
+{
+    var params = getSearchParams(currType);
+    params.carBrandId = carBrandId;
+    rightModelGrid.load({
+        params:params
+    });
+}
+function onRightModelGridRowClick(e)
+{
+    var row = e.record;
+    if(row)
+    {
+        if(row.isDisabled == 1)
+        {
+            nui.get("disableModel").hide();
+            nui.get("enableModel").show();
+        }
+        else{
+            nui.get("enableModel").hide();
+            nui.get("disableModel").show();
+        }
+    }
+}
+
+//brand
+function addOrEditBrand(brand)
+{
+    var title = "新增品牌";
+    if(brand)
+    {
+        title = "修改品牌";
+    }
 	nui.open({
 		targetWindow: window,
-        url: "CarBrandDetail.jsp",
-        title: "编辑品牌", width: 400, height: 190,
+        url: "com.hsweb.repair.DataBase.CarBrandDetail.flow",
+        title: title, width: 400, height: 190,
         allowResize:false,
         onload: function ()
         {
+            var iframe = this.getIFrameEl();
+            var params = {};
             if(brand)
             {
-            	var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	brand:brand
-                });
+                params.brand = brand;
             }
+            iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {
@@ -74,164 +167,277 @@ function editBrands(brand){
 	});
 }
 function addBrand(){
-	addBrands();
+    addOrEditBrand();
 }
 function editBrand(){
 	var row = leftBrandGrid.getSelected();
 	if(row){
-		editBrands(row);
+        addOrEditBrand(row);
 	}
 }
+
+function disableBrand()
+{
+    var row = leftBrandGrid.getSelected();
+    if(row)
+    {
+        nui.confirm("确定要禁用所选品牌？","提示",function(action)
+        {
+            if(action == "ok")
+            {
+                updateBrand({
+                    id:row.id,
+                    isDisabled:1
+                },function(data)
+                {
+                    data = data||{};
+                    if(data.errCode == "S")
+                    {
+                        leftBrandGrid.reload();
+                        nui.alert("禁用成功");
+                    }
+                    else{
+                        nui.alert(data.errMsg||"禁用失败");
+                    }
+                });
+            }
+        }.bind(row));
+    }
+}
+function enableBrand()
+{
+    var row = leftBrandGrid.getSelected();
+    if(row)
+    {
+        nui.confirm("确定要启用所选品牌？","提示",function(action)
+        {
+            if(action == "ok")
+            {
+                updateBrand({
+                    id:row.id,
+                    isDisabled:0
+                },function(data)
+                {
+                    data = data||{};
+                    if(data.errCode == "S")
+                    {
+                        leftBrandGrid.reload();
+                        nui.alert("启用成功");
+                    }
+                    else{
+                        nui.alert(data.errMsg||"启用失败");
+                    }
+                });
+            }
+        }.bind(row));
+    }
+}
+var brandUrl = baseUrl + "com.hsapi.repair.baseData.brand.saveBrand.biz.ext";
+function updateBrand(brand,callback)
+{
+    nui.mask({
+        html:'保存中...'
+    });
+    doPost({
+        url:brandUrl,
+        data:{
+            brand:brand
+        },
+        success:function(data)
+        {
+            nui.unmask();
+            callback && callback(data);
+        },
+        error:function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(jqXHR.responseText);
+            nui.unmask();
+            nui.alert("网络出错");
+        }
+    });
+}
+
+
 //series
-function addSerieses(series){
-	nui.open({
-		targetWindow: window,
-        url: "CarSeriesDetail.jsp",
-        title: "新增车系", width: 600, height: 240,
-        allowResize:false,
-        onload: function ()
-        {
-            if(series)
-            {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	series:series
-                });
-            }
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
-            	leftSeriesGrid.reload();
-            }
-        }
-	});
+function addOrEditSeries(series)
+{
+  var title = "新增车系";
+  if(series && series.id)
+  {
+      title = "修改车系";
+  }
+  nui.open({
+      targetWindow: window,
+      url: "com.hsweb.repair.DataBase.CarSeriesDetail.flow",
+      title: title, width: 600, height: 230,
+      allowResize:false,
+      onload: function ()
+      {
+          var iframe = this.getIFrameEl();
+          var params = {};
+          if(series)
+          {
+              params.series = series;
+          }
+          iframe.contentWindow.setData(params);
+      },
+      ondestroy: function (action)
+      {
+          if(action == "ok")
+          {
+              leftSeriesGrid.reload();
+          }
+      }
+  });
 }
-function editSerieses(series){
-	nui.open({
-		targetWindow: window,
-        url: "CarSeriesDetail.jsp",
-        title: "编辑车系", width: 600, height: 240,
-        allowResize:false,
-        onload: function ()
-        {
-            if(series)
-            {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	series:series
-                });
-            }
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
-            	leftSeriesGrid.reload();
-            }
-        }
-	});
-}
-//根据XX添加到父类
 function addSeries(){
 	var row = leftBrandGrid.getSelected();
 	if(row){
 		var series = {
-				carBrandId:row.id
+          carBrandId:row.id,
+          carBrandName:row.carBrandZh
 		};
-		addSerieses(series);
+      addOrEditSeries(series);
 	}
 	
 }
 function editSeries(){
 	var row = leftSeriesGrid.getSelected();
 	if(row){
-		editSerieses(row);
+      addOrEditSeries(row);
 	}
 }
 
 //model
-function addModels(model){
-	nui.open({
-		targetWindow: window,
-        url: "CarModelDetail.jsp",
-        title: "新增车型", width: 600, height: 240,
-        allowResize:false,
-        onload: function ()
-        {
-            if(model)
-            {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	model:model
-                });
-            }
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
-            	rightModelGrid.reload();
-            }
-        }
-	});
+function addOrEditModel(model)
+{
+  var title = "新增车型";
+  if(model && model.id)
+  {
+      title = "修改车型";
+  }
+  nui.open({
+      targetWindow: window,
+      url: "com.hsweb.repair.DataBase.CarModelDetail.flow",
+      title: title, width: 600, height: 230,
+      allowResize:false,
+      onload: function ()
+      {
+          var iframe = this.getIFrameEl();
+          var params = {};
+          if(model)
+          {
+              params.model = model;
+          }
+          iframe.contentWindow.setData(params);
+      },
+      ondestroy: function (action)
+      {
+          if(action == "ok")
+          {
+              rightModelGrid.reload();
+          }
+      }
+  });
 }
-function editModels(model){
-	nui.open({
-		targetWindow: window,
-        url: "CarModelDetail.jsp",
-        title: "编辑车型", width: 600, height: 240,
-        allowResize:false,
-        onload: function ()
-        {
-            if(model)
-            {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	model:model
-                });
-            }
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
-            	rightModelGrid.reload();
-            }
-        }
-	});
-}
-
-//function addSeries(){
-//	var row = leftBrandGrid.getSelected();
-//	if(row){
-//		var series = {
-//				carBrandId:row.id
-//		};
-//		addSerieses(series);
-//	}
-//	
-//}
-//根据XX添加到父类
-function addModel(){
-	var row = leftSeriesGrid.getSelected();
+function addModel()
+{
+	var row = leftBrandGrid.getSelected();
 	if(row){
 		var model = {
-				carBrandId:row.carBrandId,
-				carSeriesId:row.id
+          carBrandId:row.id,
+          carBrandName:row.carBrandZh
 		};
-		addModels(model);
+      addOrEditModel(model);
 	}
-	
 }
 function editModel(){
 	var row = rightModelGrid.getSelected();
 	if(row){
-		editModels(row);
+      addOrEditModel(row);
 	}
 }
 
+function disableModel()
+{
+    var row = rightModelGrid.getSelected();
+    if(row)
+    {
+        nui.confirm("确定要禁用所选车型？","提示",function(action)
+        {
+            if(action == "ok")
+            {
+                updateModel({
+                    id:row.id,
+                    isDisabled:1
+                },function(data)
+                {
+                    data = data||{};
+                    if(data.errCode == "S")
+                    {
+                        rightModelGrid.reload();
+                        nui.alert("禁用成功");
+                    }
+                    else{
+                        nui.alert(data.errMsg||"禁用失败");
+                    }
+                });
+            }
+        }.bind(row));
+    }
+}
+function enableModel()
+{
+    var row = rightModelGrid.getSelected();
+    if(row)
+    {
+        nui.confirm("确定要启用所选车型？","提示",function(action)
+        {
+            if(action == "ok")
+            {
+                updateModel({
+                    id:row.id,
+                    isDisabled:0
+                },function(data)
+                {
+                    data = data||{};
+                    if(data.errCode == "S")
+                    {
+                        rightModelGrid.reload();
+                        nui.alert("启用成功");
+                    }
+                    else{
+                        nui.alert(data.errMsg||"启用失败");
+                    }
+                });
+            }
+        }.bind(row));
+    }
+}
+var modelUrl = baseUrl + "com.hsapi.repair.baseData.brand.saveModel.biz.ext";
+function updateModel(model,callback)
+{
+    nui.mask({
+        html:'保存中...'
+    });
+    doPost({
+        url:modelUrl,
+        data:{
+            model:model
+        },
+        success:function(data)
+        {
+            nui.unmask();
+            callback && callback(data);
+        },
+        error:function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(jqXHR.responseText);
+            nui.unmask();
+            nui.alert("网络出错");
+        }
+    });
+}
 function onDrawCell(e)
 {
     switch (e.field)
@@ -242,114 +448,4 @@ function onDrawCell(e)
         default:
             break;
     }
-}
-function loadLeftBrandGridData(params){
-	leftSeriesGrid.setData([]);
-	rightModelGrid.setData([]);
-	leftBrandGrid.load(params,function(){
-		var row = leftBrandGrid.getSelected();
-		if(row){
-			if(row.isDisabled){
-				nui.get("disabledBrand").hide();
-				nui.get("enabledBrand").show();
-			}else{
-				nui.get("disabledBrand").show();
-                nui.get("enabledBrand").hide();
-			}
-			loadLeftSeriesGridData(row.id);
-			loadRightModelGrid(row.id);
-		}
-	});
-}
-
-function onLeftBrandGridRowClick(e){
-	var row = e.record;
-    
-    loadLeftSeriesGridData(row.id);
-	loadRightModelGrid(row.id);
-    
-}
-
-function onLeftSeriesGridRowClick(e){
-	var row = e.record;
-    
-    loadRightModelGrid(row.carBrandId,row.id);
-    
-}
-
-function loadLeftSeriesGridData(carBrandId){
-	leftSeriesGrid.load({
-		carBrandId:carBrandId
-	});
-}
-function loadRightModelGrid(carBrandId,carSeriesId){
-	
-	rightModelGrid.load({
-		
-		carBrandId:carBrandId,
-		carSeriesId:carSeriesId
-	});
-}
-//重新刷新页面
-function reBrand(){
-    var form = new  nui.Form("#form");
-    var json = form.getData(false,false);
-    leftBrandGrid.load(json);//grid查询
-}
-//function reloadLeftSeriesGrid(){
-//	leftSeriesGrid.reload();
-//}
-//function reloadRightModelGrid(){
-//	rightModelGrid.reload();
-//}
-
-//brand 本页面修改保存
-var brandUrl = baseUrl + "com.hsapi.repair.baseData.brand.saveBrand.biz.ext";
-function upadateData(brand,callback)
-{
-    console.log(brand);
-    nui.mask({
-        html:'保存中...'
-    });
-    nui.ajax({
-        url:brandUrl,
-        type:"post",
-        data:JSON.stringify({
-        	brand:brand
-        }),
-        success:function(data)
-        {
-            nui.unmask();
-            callback && callback(data);
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
-//series
-var seriesUrl = baseUrl + "com.hsapi.repair.baseData.brand.saveSeries.biz.ext";
-function upadateData(series,callback)
-{
-    console.log(series);
-    nui.mask({
-        html:'保存中...'
-    });
-    nui.ajax({
-        url:seriesUrl,
-        type:"post",
-        data:JSON.stringify({
-        	series:series
-        }),
-        success:function(data)
-        {
-            nui.unmask();
-            callback && callback(data);
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
 }

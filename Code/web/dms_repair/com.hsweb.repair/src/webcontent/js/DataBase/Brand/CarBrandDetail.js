@@ -2,8 +2,8 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var dataform1 = null;
 //必填
 var requiredField = {
-		carBrandEn:"品牌英文名",
-		carBrandZh:"品牌中文名"
+	carBrandEn: "品牌英文名",
+	carBrandZh: "品牌中文名"
 };
 
 $(document).ready(function(){
@@ -15,10 +15,13 @@ function setData(data){
 		dataform1 = new nui.Form("#dataform1");
 	}
 	data = data||{};
-	var brand = data.brand;
-	dataform1.setData(brand);
+	if(data.brand)
+	{
+		var brand = data.brand;
+		dataform1.setData(brand);
+	}
 }
-
+var brandUrl = baseUrl + "com.hsapi.repair.baseData.brand.saveBrand.biz.ext";
 function onOk(){
 	var data = dataform1.getData();
 	console.log(data);
@@ -32,13 +35,13 @@ function onOk(){
 	nui.mask({
 		html:'保存中..'
 	});
-	nui.ajax({
-		url:"com.hsapi.repair.baseData.brand.saveBrand.biz.ext",
-		type:"post",
-		data:JSON.stringify({
+	doPost({
+		url:brandUrl,
+		data:{
 			brand:data
-		}),
-		success:function(data){
+		},
+		success:function(data)
+		{
 			nui.unmask();
 			data = data||{};
 			if(data.errCode == "S")
@@ -50,19 +53,17 @@ function onOk(){
 				nui.alert(data.errMsg||"保存失败");
 			}
 		},
-		error:function(jqXHR, textStatus, errorThrown){
-			//  nui.alert(jqXHR.responseText);
+		error:function(jqXHR, textStatus, errorThrown)
+		{
 			console.log(jqXHR.responseText);
+			nui.unmask();
+			nui.alert("网络出错");
 		}
 	});
 }
 
-function CloseWindow(action) {
-//    if (action == "close" && form.isChanged()) {
-//        if (confirm("数据被修改了，是否先保存？")) {
-//            saveData();
-//        }
-//    }
+function CloseWindow(action)
+{
     if (window.CloseOwnerWindow)
     return window.CloseOwnerWindow(action);
     else window.close();
@@ -70,66 +71,4 @@ function CloseWindow(action) {
 
 function onCancel() {
     CloseWindow("cancel");
-}
-
-
-//brand
-function addBrands(brand){
-	nui.open({
-		targetWindow: window,
-        url: "CarBrandDetail.jsp",
-        title: "新增品牌", width: 400, height: 190,
-        allowResize:false,
-        onload: function ()
-        {
-        	if(brand)
-            {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	brand:brand
-                });
-            }
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
-            	leftBrandGrid.reload();
-            }
-        }
-	});
-}
-function editBrands(brand){
-	nui.open({
-		targetWindow: window,
-        url: "CarBrandDetail.jsp",
-        title: "编辑品牌", width: 400, height: 190,
-        allowResize:false,
-        onload: function ()
-        {
-            if(brand)
-            {
-            	var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData({
-                	brand:brand
-                });
-            }
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
-            	leftBrandGrid.reload();
-            }
-        }
-	});
-}
-function addBrand(){
-	addBrands();
-}
-function editBrand(){
-	var row = leftBrandGrid.getSelected();
-	if(row){
-		editBrands(row);
-	}
 }

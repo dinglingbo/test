@@ -7,33 +7,57 @@ var requiredField = {
 	name: "项目名称",
 	type: "项目类型",
 	carBrandId: "品牌",
-	carSeriesId: "车型"
+	carModelId: "车型"
 };
 $(document).ready(function(){
 
 });
+function onInputFocus(e)
+{
+	var el = e.sender;
+	el.setInputStyle("text-align:left;");
+}
+function onInputBlur(e)
+{
+	var el = e.sender;
+	el.setInputStyle("text-align:right;");
+}
 var carBrandIdEl = null;
-var carSeriesIdEl = null;
-var carSeriesIdHash = {};
+var carModelIdEl = null;
+var carModelIdHash = {};
 function init(callback)
 {
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	carBrandIdEl = nui.get("carBrandId");
-	carSeriesIdEl = nui.get("carSeriesId");
+	carModelIdEl = nui.get("carModelId");
 	carBrandIdEl.on("valuechanged",function()
 	{
 		var carBrandId = carBrandIdEl.getValue();
-		if(carSeriesIdHash[carBrandId])
+		if(carModelIdHash[carBrandId])
 		{
-			carSeriesIdEl.setData(carSeriesIdHash[carBrandId]);
+			carModelIdEl.setData(carModelIdHash[carBrandId]);
 		}
 		else
 		{
-			getCarSeriesByBrandId(carBrandId,function(data)
+			getCarModelByBrandId(carBrandId,function(data)
 			{
 				var list = data.list||[];
-				carSeriesIdHash[carBrandId] = list;
-				carSeriesIdEl.setData(carSeriesIdHash[carBrandId]);
+				carModelIdHash[carBrandId] = list;
+				carModelIdEl.setData(carModelIdHash[carBrandId]);
+			});
+		}
+	});
+	var elList = basicInfoForm.getFields();
+	var nameList = ["itemTime","unitPrice","deductAmt","amt"];
+	elList.forEach(function(v)
+	{
+		if(nameList.indexOf(v.name)>-1)
+		{
+			v.on("focus",function(e){
+				onInputFocus(e);
+			});
+			v.on("blur",function(e){
+				onInputBlur(e);
 			});
 		}
 	});
@@ -61,11 +85,12 @@ function setData(data)
 	{
 		var item = data.item;
 		basicInfoForm.setData(item);
+		carBrandIdEl.doValueChanged();
 	}
 
 	
 }
-var saveUrl = baseUrl+"";
+var saveUrl = baseUrl+"com.hsapi.repair.baseData.item.saveRpbItem.biz.ext";
 function onOk(){
 	var data = basicInfoForm.getData();
 	console.log(data);

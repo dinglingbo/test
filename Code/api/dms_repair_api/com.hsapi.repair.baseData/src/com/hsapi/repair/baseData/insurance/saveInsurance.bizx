@@ -19,7 +19,6 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.repair.data.common.ComGuest" name="comguest" type="query" valueType="DataObject">comguest</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -62,14 +61,14 @@
       <targetNode>invokePojo2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo4</targetNode>
+      <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">comguest/id</process:leftOperand>
@@ -82,12 +81,16 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
+      <process:from type="query" pattern="reference">date</process:from>
       <process:to type="query">comguest/modifyDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userName</process:from>
+      <process:to type="query">comguest/modifier</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -113,7 +116,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">hs_common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">comguest</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -166,7 +169,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">hs_common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">comguest</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -181,7 +184,7 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
     </sourceConnections>
-    <targetConnections>link7</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="435" y="120"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
@@ -196,6 +199,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">01020104</process:from>
       <process:to type="query">comguest/guestType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">comguest/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userName</process:from>
+      <process:to type="query">comguest/recorder</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -212,58 +223,50 @@
     <location x="600" y="120"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">comguest/id</process:from>
-      <process:to type="query">id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">&quot;CZL0000-&quot;+id</process:from>
-      <process:to type="query">comguest/id</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="598" y="156"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getJVMTimeMillis" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo4</sourceNode>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getPrimaryKey" displayName="getPrimaryKey" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign3</targetNode>
-      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="354" y="120"/>
+    <location x="354" y="117"/>
     <size height="28" width="22"/>
-    <nodeLabel>invokePojo4label</nodeLabel>
+    <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.common.utils.DateUtil.getJVMTimeMillis</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
-    <process:inputVariables/>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">comguest/id</process:outputVariable>
-    </process:outputVariables>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">comguest</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="314" y="156"/>
-    <figSize height="17" width="103"/>
-    <node>invokePojo4</node>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="323" y="153"/>
+    <figSize height="17" width="85"/>
+    <node>invokePojo1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-10 16:52:33" date="2018-02-10Z" description="保存班组成员&#xD;&#xA;&#xD;&#xA;" name="saveTeamMember" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="date" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="tmp"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="comguest"/>
-    <process:input description="" isArray="false" name="id" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="S/E" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="comguest"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -11,6 +11,7 @@
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
       <process:return id="0" language="com.hsapi.cloud.part.data.com.ComStore" name="store" type="query" valueType="DataObject">store</process:return>
+      <process:return id="1" language="Int" name="sellSign" type="query" valueType="Primitive">sellSign</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -132,6 +133,10 @@
       <process:from type="expression" pattern="reference">storeList[0]</process:from>
       <process:to type="query">store</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">store/sellSign</process:from>
+      <process:to type="query">sellSign</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="562" y="356"/>
@@ -178,6 +183,7 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComStore" name="store"/>
+    <process:output description="" isArray="false" name="sellSign" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

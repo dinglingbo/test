@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var advancedSearchWin = null;
@@ -52,6 +52,8 @@ $(document).ready(function(v)
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
     bottomInfoForm = new nui.Form("#bottomForm");
+    
+    document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/srvBottom.jsp";
 
     //绑定表单
     //var db = new nui.DataBinding();
@@ -132,6 +134,11 @@ function onLeftGridSelectionChanged(){
    
    loadMainAndDetailInfo(row);
 } 
+function onRightGridSelectionChanged(){    
+   var row = rightGrid.getSelected(); 
+   
+   document.getElementById("formIframe").contentWindow.test();
+}
 function loadRightGridData(mainId)
 {
     editPartHash={};
@@ -522,7 +529,7 @@ var requiredField = {
     orderDate : "订货日期",
 	billTypeId : "票据类型",
     settleTypeId : "结算方式",
-    taxRate : "开票税点",
+    taxRate : "开票税点"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
 function save() {

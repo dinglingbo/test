@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘亏出库</title>
-<script src="<%= request.getContextPath() %>/purchase/js/stockCheckOut/stockCheckOut.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockCheckOut/stockCheckOut.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

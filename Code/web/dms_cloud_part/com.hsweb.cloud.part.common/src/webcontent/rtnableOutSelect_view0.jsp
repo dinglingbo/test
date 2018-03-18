@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%-- <%@include file="/common/common.jsp"%> --%>
+<%@include file="/common/sysCommon.jsp"%>
 <%@include file="/common/commonCloudPart.jsp"%>
 <html>
 <!-- 
@@ -9,7 +9,7 @@
 -->
 <head>
 <title>出库记录选择</title>
-<script src="<%= request.getContextPath() %>/common/js/rtnableOutSelect.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/rtnableOutSelect.js?v=1.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

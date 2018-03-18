@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/6.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPtsOutMainDetail.biz.ext";
 
 var advancedSearchWin = null;
@@ -134,7 +134,8 @@ function doSearch(params)
 {
     params.outTypeId = "050202";
     grid.load({
-        params:params
+        params:params,
+        token:token
     });
 }
 function advancedSearch()

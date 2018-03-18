@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 var treeUrl = baseUrl+"";
 
@@ -33,7 +33,7 @@ $(document).ready(function(v)
         var province = data.province;
         var city = data.city;
         cityList = city;
-        tree.loadList(province.concat(city),"id","provinceId");
+        tree.loadList(province.concat(city),"id","parentid");
         provinceEl = nui.get("provinceId");
         provinceEl.setData(province);
     });
@@ -115,7 +115,8 @@ function getSearchParam()
 function doSearch(params)
 {
     grid.load({
-        params:params
+        params:params,
+        token:token
     });
 }
 function advancedSearch()
@@ -221,7 +222,7 @@ function onNodeDblClick(e)
 {
     var node = e.node;
     var params = getSearchParam();
-    if(node.provinceId)
+    if(node.parentid)
     {
         params.cityId = node.id;
         var parentNode = tree.getParentNode(node);

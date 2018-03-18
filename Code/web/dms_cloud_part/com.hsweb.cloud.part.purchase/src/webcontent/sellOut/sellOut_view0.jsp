@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库</title>
-<script src="<%= request.getContextPath() %>/purchase/js/sellOut/sellOut.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOut/sellOut.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

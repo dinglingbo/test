@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.primeton.studio.component.core.EosComponentTypeInfo>
+  <description>
+    <version>6.0</version>
+    <displayName>paramquery</displayName>
+    <author>Administrator</author>
+    <createdTime>2018-03-17 14:40:23</createdTime>
+    <description>基本参数查询，默认销价，进价，参考价格，</description>
+    <detailDescription></detailDescription>
+    <demo></demo>
+    <links></links>
+  </description>
+  <serviceReferences/>
+</com.primeton.studio.component.core.EosComponentTypeInfo>

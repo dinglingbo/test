@@ -62,6 +62,9 @@
             <isNotEmpty prepend="and" property="carTypeIdT">  
                 (car_type_id_t = #carTypeIdT#)
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partId">  
+                (a.id = #partId#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>

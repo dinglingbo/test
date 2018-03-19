@@ -33,7 +33,7 @@
 <body>
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
-         showPager="true"
+         showPager="false"
          dataField="detailList"
          idField="detailId"
          ondrawcell="onDrawCell"

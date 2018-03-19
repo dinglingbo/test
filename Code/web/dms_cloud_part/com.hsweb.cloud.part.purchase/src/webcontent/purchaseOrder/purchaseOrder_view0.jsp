@@ -80,7 +80,7 @@
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
             </td>
-             <td style="width:100%;">
+            <td style="width:100%;">
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="addBtn">新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
@@ -329,7 +329,7 @@
                             </tr>
                         </table>
                     </div> -->
-                    
+                    <div class="nui-fit">
                         <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                              selectOnLoad="true"
                              showPager="false"
@@ -404,6 +404,7 @@
                             </div>
                         </div>
                     </div>
+                  </div>
                     <!-- <div title="" class="nui-panel" showHeader="false"
                          style="width:100%;height: 30px;">
                         <div id="bottomForm" class="form">

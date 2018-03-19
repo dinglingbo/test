@@ -426,6 +426,7 @@ function checkNew() {
 
 function add() {
 
+	mainTabs.activeTab(billmainTab);
 	if (checkNew() > 0) {
 		nui.alert("请先保存数据！");
 		return;
@@ -449,6 +450,7 @@ function add() {
 	basicInfoForm.reset();
 	rightGrid.clearRows();
 
+
 	var newRow = {
 		serviceId : '新采购订单',
 		auditSign : 0
@@ -462,6 +464,7 @@ function add() {
 	nui.get("taxRate").setValue(0.17);
 	nui.get("taxSign").setValue(1);
 	nui.get("orderDate").setValue(new Date());
+	nui.get("orderMan").setValue(currUserName);
 
 	var guestId = nui.get("guestId");
 	guestId.focus();
@@ -847,6 +850,27 @@ function selectPart(callback, checkcallback) {
 	});
 }
 function addDetail(part) {
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			nui.alert(requiredField[key] + "不能为空!");
+			//如果检测到有必填字段未填写，切换到主表界面
+			mainTabs.activeTab(billmainTab);
+
+			return;
+		}
+	}
+
+	var row = leftGrid.getSelected();
+	if (row) {
+		if (row.auditSign == 1) {
+			nui.alert("此单已审核!");
+			return;
+		}
+	} else {
+		return;
+	}
+	
 	nui.open({
 				targetWindow : window,
 				url : "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",

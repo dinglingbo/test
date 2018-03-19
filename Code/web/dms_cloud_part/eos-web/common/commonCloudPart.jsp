@@ -9,13 +9,15 @@
 	<%
 		IMUODataContext muo = DataContextManager.current().getMUODataContext();
 		String currUserName = "";
+		String currUserId="";
 		String currOrgid = "";
 		if (muo != null) 
 		{
 			IUserObject userobject = muo.getUserObject();
 			if (userobject != null) {
 				//String ip = userobject.getUserRemoteIP();
-				currUserName = userobject.getUserRealName();
+				currUserName = userobject.getUserName();
+				currUserId = userobject.getUserId();
 				currOrgid = userobject.getUserOrgId();
 			}
 		}

@@ -7,7 +7,7 @@ var guestPrice = null;      //客户销价
 var rtnRecord = null;       //退货记录
 var partInfo = null;        //配件基础资料
 var mainrow = null;
-var gparams = null;
+var gparams = {};
 $(document).ready(function(v) {
 	mainTabs = nui.get("mainTabs");
 	var tabList = mainTabs.getTabs();
@@ -20,8 +20,11 @@ $(document).ready(function(v) {
 
 
     document.getElementById("bottomFormIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp";
+    document.getElementById("bottomFormIframeOutableRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomOutableRecord.jsp";
     document.getElementById("bottomFormIframePchsRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRecord.jsp";
-
+    document.getElementById("bottomFormIframeSellRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomSellRecord.jsp";
+    document.getElementById("bottomFormIframeRtnRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRtnRecord.jsp";
+    document.getElementById("bottomFormIframePartInfo").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPartInfo.jsp";
 
     if(parent && parent.setBottomInit){
     	mainrow = parent.setBottomInit();
@@ -46,10 +49,10 @@ $(document).ready(function(v) {
 });
 function setInitEmbedParams(row){
 	var params = {};
-	params.storeId = row.storeId || 0;
-	params.partId = row.partId || 0;
-	params.guestId= row.guestId || 0;
-	gparams = params;
+	params.storeId = row.storeId;
+	params.partId = row.partId;
+	params.guestId= row.guestId;
+	gparams = nui.clone(params);
 	//document.getElementById("bottomFormIframeStock").contentWindow.doSearch(params);
 	showTabInfo();
 }
@@ -63,35 +66,39 @@ function setInitTab(type){
 function showTabInfo(){
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
-	gparams.storeId = gparams.storeId || 0;
-	gparams.partId = gparams.partId || 0;
-	gparams.guestId= gparams.guestId || 0;
+    var params = {};
+    if(!gparams.partId) gparams.partId=0;
+    if(!gparams.guestId) gparams.guestId=0;
+    if(!gparams.storeId) gparams.storeId=0;
 	switch (name)
     {
         case "stockselect":
             document.getElementById("bottomFormIframeStock").contentWindow.doSearch(gparams);
             break;
-        case "bottomFormIframeOutableRecord":
-        	gparams.guestId = null;
-        	gparams.storeId = null;
-            document.getElementById("bottomFormIframeOutableRecord").contentWindow.doSearch(gparams);
+        case "outableRecord":
+        	params.partId=gparams.partId;
+            document.getElementById("bottomFormIframeOutableRecord").contentWindow.doSearch(params);
         	break;
         case "pchsRecord":
-        	gparams.guestId = null;
-        	gparams.storeId = null;
-            document.getElementById("bottomFormIframePchsRecord").contentWindow.doSearch(gparams);
+        	params.partId=gparams.partId;
+            document.getElementById("bottomFormIframePchsRecord").contentWindow.doSearch(params);
             break;
         case "sellRecord":
-            //console.log(gparams);
+            params.partId=gparams.partId;
+            document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
             break;
         case "guestPrice":
-            //console.log(gparams);
+            params.partId=gparams.partId;
+            params.guestId=gparams.guestId;
+            document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
             break;
         case "rtnRecord":
-            //console.log(gparams);
+            params.partId=gparams.partId;
+            document.getElementById("bottomFormIframeRtnRecord").contentWindow.doSearch(params);
             break;
         case "partInfo":
-            //console.log(gparams);
+            params.partId=gparams.partId;
+            document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
             break;
         default:
             break;

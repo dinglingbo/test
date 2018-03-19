@@ -29,7 +29,7 @@
 			      		<iframe id="bottomFormIframeStock" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>
 			    </div>
-			    <div title="库存明细" name="stockselect" >
+			    <div title="库存明细" name="outableRecord" >
 			      <div class="nui-fit">
 			      		<iframe id="bottomFormIframeOutableRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>

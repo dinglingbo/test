@@ -24,48 +24,39 @@
 	      		 style="width:100%; height: 100%;" 
 	      		 plain="false" 
 	      		 onactivechanged="showTabInfo">
+			    <div title="仓库信息" name="stockselect" >
+			      <div class="nui-fit">
+			      		<iframe id="bottomFormIframeStock" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+			      </div>
+			    </div>
 			    <div title="库存明细" name="stockselect" >
 			      <div class="nui-fit">
-			      		<div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
-		                     showPager="true"
-		                 	 pageSize="50"
-		                 	   sizeList=[20,50,100,200]
-		                     selectOnLoad="true"
-		                     showModified="false"
-		                     ondrawcell="onLeftGridDrawCell"
-		                     onrowdblclick=""
-		                     onselectionchanged="onLeftGridSelectionChanged"
-		                     dataField="pjPchsOrderMainList"
-		                     url="">
-		                    <div property="columns">
-		                    	<div type="indexcolumn">序号</div>
-		                        <div field="serviceId" headerAlign="center" width="150" header="订单单号"></div>
-		                        <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->
-		                        <div field="auditSign" width="35" headerAlign="center" header="状态"></div>
-		                        <div field="guestFullName" width="80" headerAlign="center" header="供应商"></div>
-		                        <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
-		                    </div>
-		                </div>
+			      		<iframe id="bottomFormIframeOutableRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>
 			    </div>
 			    <div title="采购记录" name="pchsRecord" >
 			      <div class="nui-fit">
+			      		<iframe id="bottomFormIframePchsRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>
 			    </div>  
 			    <div title="销售记录" name="sellRecord" >
 			      <div class="nui-fit">
+			      		<iframe id="bottomFormIframeSellRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>
 			    </div> 
 			    <div title="客户销价" name="guestPrice" >
 			      <div class="nui-fit">
+			      		<iframe id="bottomFormIframeGuestPrice" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>
 			    </div> 
 			    <div title="退货记录" name="rtnRecord" >
 			      <div class="nui-fit">
+			      		<iframe id="bottomFormIframeRtnRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>
 			    </div>
 			    <div title="配件资料" name="partInfo" >
 			      <div class="nui-fit">
+			      		<iframe id="bottomFormIframePartInfo" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div>
 			    </div>  
 			</div>

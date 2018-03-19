@@ -20,12 +20,6 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-var billStatusHash = {
-    "0":"未审",
-    "1":"已审",
-    "2":"已过账",
-    "3":"已取消"
-};
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -38,7 +32,7 @@ $(document).ready(function(v)
     storeShelf = nui.get("storeShelf");
     partId = nui.get("partId");
     showAll = nui.get("showAll");
-    //console.log("xxx");
+
     getAllPartBrand(function(data)
     {
         var partBrandList = data.brand;
@@ -192,4 +186,79 @@ function onDrawCell(e)
         default:
             break;
     }
+}
+function onOk()
+{
+    var node = rightGrid.getSelected();
+    var nodec = nui.clone(node);
+    var part = {};
+    
+    if(!nodec)
+    {
+        return;
+    }
+    resultData = {
+        part:nodec
+    };
+    if(!parent.addDetail)
+    {
+        return;
+    }
+    else{
+        //需要判断是否已经添加了此配件
+        var checkMsg = parent.checkPartIDExists(nodec.partId);
+        if(checkMsg) 
+        {
+            nui.confirm(checkMsg, "友情提示",
+                function (action) { 
+                    if (action == "ok") {
+                        part.id = nodec.partId;
+                        part.partId = nodec.partId;
+                        part.oemCode = nodec.comOemCode;
+                        part.partBrandId = nodec.partBrandId;
+                        part.applyCarModel = nodec.applyCarModel;
+                        part.unit = nodec.unit;
+                        part.oemCode = nodec.comOemCode;
+                        part.spec = nodec.spec;
+                        part.code = nodec.comPartCode;
+                        part.name = nodec.partName;
+                        part.fullName = nodec.fullName;
+                        part.unit = nodec.unit;
+                        part.qty = 1;
+
+                        parent.addDetail(part);
+                    }else {
+                        return;
+                    }
+                }
+            );
+        }else
+        {
+            //弹出数量，单价和金额的编辑界面
+            part.id = nodec.partId;
+            part.partId = nodec.partId;
+            part.oemCode = nodec.comOemCode;
+            part.partBrandId = nodec.partBrandId;
+            part.applyCarModel = nodec.applyCarModel;
+            part.unit = nodec.unit;
+            part.oemCode = nodec.comOemCode;
+            part.spec = nodec.spec;
+            part.code = nodec.comPartCode;
+            part.name = nodec.partName;
+            part.fullName = nodec.fullName;
+            part.unit = nodec.unit;
+            part.qty = 1;
+            parent.addDetail(part);
+        }
+
+    }
+}
+function onRowDblClick()
+{
+    onOk();
+}
+function setToolBar(type){
+	if(type == "hide"){
+		nui.get("toolmain").hide();
+	}
 }

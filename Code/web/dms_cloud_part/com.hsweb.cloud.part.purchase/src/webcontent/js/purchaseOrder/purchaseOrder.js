@@ -20,6 +20,8 @@ var storehouse = null;
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
+var mainTabs = null;
+var billmainTab = null;
 
 // 单据状态
 var AuditSignList = [ {
@@ -59,6 +61,8 @@ $(document).ready(function(v) {
 	sOrderDate = nui.get("sOrderDate");
 	eOrderDate = nui.get("eOrderDate");
 
+	mainTabs = nui.get("mainTabs");
+	billmainTab = mainTabs.getTab("billmain");
 	document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
 	document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
 	document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
@@ -89,7 +93,6 @@ $(document).ready(function(v) {
 					}
 				});
 				nui.get("settleTypeId").setData(settTypeIdList);
-				quickSearch(currType);
 			}
 		});
 	});
@@ -101,6 +104,7 @@ $(document).ready(function(v) {
 		});
 	});
 
+	gsparams.auditSign = 0;
 	quickSearch(0);
 });
 //返回类型给srvBottom，用于srvBottom初始化
@@ -141,9 +145,18 @@ function onLeftGridSelectionChanged() {
 	loadMainAndDetailInfo(row);
 }
 function onRightGridSelectionChanged(){    
-   var row = rightGrid.getSelected(); 
+    var row = rightGrid.getSelected(); 
    
-   //document.getElementById("formIframe").contentWindow.test();
+	if(row){
+	}else{
+		row = {};
+		row.guestId = null;
+		row.partId = null;
+		row.storeId = null;
+	}
+	row.guestId = nui.get('guestId').getValue();
+
+    document.getElementById("formIframe").contentWindow.setInitEmbedParams(row);
 }
 function loadRightGridData(mainId) {
 	editPartHash = {};
@@ -279,6 +292,7 @@ function search() {
 }
 function getSearchParam() {
 	var params = {};
+	params = gsparams;
 	params.guestId = nui.get("searchGuestId").getValue();
 	return params;
 }
@@ -501,8 +515,7 @@ function calcTaxPriceInfo(taxSign, taxRate) {
 			taxPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
 			orderPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
 			noTaxAmt = orderAmt / (1.0 + parseFloat(taxRate));
-			noTaxPrice = orderQty > 0 ? (orderAmt / orderQty)
-					/ (1.0 + parseFloat(taxRate)) : 0;
+			noTaxPrice = orderQty > 0 ? (orderAmt / orderQty)/ (1.0 + parseFloat(taxRate)) : 0;
 		}
 
 		var newRow = {
@@ -566,6 +579,9 @@ function save() {
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			nui.alert(requiredField[key] + "不能为空!");
+			//如果检测到有必填字段未填写，切换到主表界面
+			mainTabs.activeTab(billmainTab);
+
 			return;
 		}
 	}
@@ -831,8 +847,7 @@ function selectPart(callback, checkcallback) {
 	});
 }
 function addDetail(part) {
-	nui
-			.open({
+	nui.open({
 				targetWindow : window,
 				url : "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
 				title : "入库数量金额",
@@ -990,6 +1005,8 @@ function audit() {
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			nui.alert(requiredField[key] + "不能为空!");
+
+			mainTabs.activeTab(billmainTab);
 			return;
 		}
 	}
@@ -1047,6 +1064,8 @@ function audit() {
 
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(leftRow);
+
+					mainTabs.activeTab(billmainTab);
 				}
 			} else {
 				nui.alert(data.errMsg || "审核失败!");

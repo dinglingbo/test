@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存详情</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containStock.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -33,7 +33,7 @@
 <body>
 
 
-    <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+    <div class="nui-toolbar" id="toolmain" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
@@ -69,6 +69,7 @@
                 <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a>
             </td>
         </tr>
     </table>
@@ -81,6 +82,7 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
+         onrowdblclick="onRowDblClick"
          pageSize="10000"
          sizeList="[1000,5000,10000]"
          showSummaryRow="false">
@@ -92,7 +94,7 @@
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
             <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-            <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+            <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
             <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
             <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>

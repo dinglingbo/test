@@ -145,12 +145,12 @@
               <div size="65%" showCollapseButton="false">
                  <div class="nui-fit">
                       <div class="nui-fit">
-                      <div id="mainTabs" class="nui-tabs" 
+                      <div id="mainTabs" class="nui-tabs" name="mainTabs"
                            activeIndex="0" 
                            style="width:100%; height: auto;" 
                            plain="false" 
                            onactivechanged="">
-                        <div title="采购订单信息" name="stockselect" >
+                        <div title="采购订单信息" id="billmain" name="billmain" >
                           <div class="nui-fit">
                                  <fieldset id="fd1" style="width:95%;height: 120px;">
                                     <legend><span>采购订单信息</span></legend>
@@ -331,6 +331,7 @@
                     </div> -->
                     
                         <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                             selectOnLoad="true"
                              showPager="false"
                              dataField="pjPchsOrderDetailList"
                              idField="id"

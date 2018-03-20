@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%-- <%@include file="/common/common.jsp"%> --%>
+<%@include file="/common/sysCommon.jsp"%>
 <%@include file="/common/commonCloudPart.jsp"%>
 <html>
 <!-- 
@@ -10,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/js/detailQPAPopOperate.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/detailQPAPopOperate.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

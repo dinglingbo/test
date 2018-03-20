@@ -419,7 +419,6 @@
     <location x="702" y="154"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="outableDetails" iterableElement="outableDetail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -708,7 +707,7 @@
       <process:to type="query">outdetail/sourceId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">rootId>=0?rootId:sourceId</process:from>
+      <process:from type="expression" pattern="reference">rootId>0?rootId:sourceId</process:from>
       <process:to type="query">outdetail/rootId</process:to>
     </process:copy>
     <process:copy>
@@ -876,7 +875,7 @@
       <process:to type="query">outdetail/sourceId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">rootId>=0?rootId:sourceId</process:from>
+      <process:from type="expression" pattern="reference">rootId>0?rootId:sourceId</process:from>
       <process:to type="query">outdetail/rootId</process:to>
     </process:copy>
     <process:copy>

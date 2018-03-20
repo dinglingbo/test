@@ -201,6 +201,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="link8" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>transactioncommit0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="605" y="170"/>

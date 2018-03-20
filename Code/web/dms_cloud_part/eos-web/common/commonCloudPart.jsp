@@ -4,20 +4,20 @@
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<script src="<%=request.getContextPath()%>/common/nui/nui.js"
-	type="text/javascript"></script>
-<script src="<%= request.getContextPath() %>/common/date.js" type="text/javascript"></script>
+<script src="<%=webPath + cloudPartDomain %>/common/date.js" type="text/javascript"></script>
 <script type="text/javascript">
 	<%
 		IMUODataContext muo = DataContextManager.current().getMUODataContext();
 		String currUserName = "";
+		String currUserId="";
 		String currOrgid = "";
 		if (muo != null) 
 		{
 			IUserObject userobject = muo.getUserObject();
 			if (userobject != null) {
 				//String ip = userobject.getUserRemoteIP();
-				currUserName = userobject.getUserRealName();
+				currUserName = userobject.getUserName();
+				currUserId = userobject.getUserId();
 				currOrgid = userobject.getUserOrgId();
 			}
 		}
@@ -150,6 +150,26 @@
 	        }
 	    });
 	}
+	var getAllPartTypeUrl = apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
+	function getAllPartType(callback)
+	{
+	    nui.ajax({
+	        url:getAllPartTypeUrl,
+	        data : {token: token},
+	        type:"post",
+	        success:function(data)
+	        {
+	            if(data && data.partTypes)
+	            {
+	                callback && callback(data);
+	            }
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
+	            //  nui.alert(jqXHR.responseText);
+	            console.log(jqXHR.responseText);
+	        }
+	    });
+	}
 	function addDate(date, days) {
         if (days == undefined || days == '') {
             days = 1;
@@ -174,6 +194,16 @@
 
         return re;
     }
+    
+    function Trim(str,is_global){
+	   var result;
+	   result = str.replace(/(^\s+)|(\s+$)/g,"");
+	   if(is_global.toLowerCase()=="g") {
+	   		result = result.replace(/\s/g,"");
+	   }
+	   return result;
+	}
+    
 </script>
 <style type="text/css">
 html,body {

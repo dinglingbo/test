@@ -17,6 +17,11 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var gsparams = {};
+var sOrderDate = null;
+var eOrderDate = null;
+var mainTabs = null;
+var billmainTab = null;
 
 // 单据状态
 var AuditSignList = [ {
@@ -47,7 +52,22 @@ $(document).ready(function(v) {
 	advancedSearchWin = nui.get("advancedSearchWin");
 	advancedSearchForm = new nui.Form("#advancedSearchWin");
 	basicInfoForm = new nui.Form("#basicInfoForm");
-	bottomInfoForm = new nui.Form("#bottomForm");
+	//bottomInfoForm = new nui.Form("#bottomForm");
+
+	gsparams.startDate = getNowStartDate();
+	gsparams.endDate = addDate(getNowEndDate(), 1);
+	gsparams.auditSign = 0;
+
+	sOrderDate = nui.get("sOrderDate");
+	eOrderDate = nui.get("eOrderDate");
+
+	mainTabs = nui.get("mainTabs");
+	billmainTab = mainTabs.getTab("billmain");
+	document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
+	document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
+	document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
+	document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
+	//document.getElementById("formIframe").contentWindow.setInitTab('purchase');
 
 	// 绑定表单
 	// var db = new nui.DataBinding();
@@ -73,7 +93,6 @@ $(document).ready(function(v) {
 					}
 				});
 				nui.get("settleTypeId").setData(settTypeIdList);
-				quickSearch(currType);
 			}
 		});
 	});
@@ -85,12 +104,17 @@ $(document).ready(function(v) {
 		});
 	});
 
+	gsparams.auditSign = 0;
 	quickSearch(0);
 });
+//返回类型给srvBottom，用于srvBottom初始化
+function confirmType(){
+	return "purchase";
+}
 function loadMainAndDetailInfo(row) {
 	if (row) {
 		basicInfoForm.setData(row);
-		bottomInfoForm.setData(row);
+		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
 
 		var row = leftGrid.getSelected();
@@ -120,6 +144,20 @@ function onLeftGridSelectionChanged() {
 
 	loadMainAndDetailInfo(row);
 }
+function onRightGridSelectionChanged(){    
+    var row = rightGrid.getSelected(); 
+   
+	if(row){
+	}else{
+		row = {};
+		row.guestId = null;
+		row.partId = null;
+		row.storeId = null;
+	}
+	row.guestId = nui.get('guestId').getValue();
+
+    document.getElementById("formIframe").contentWindow.setInitEmbedParams(row);
+}
 function loadRightGridData(mainId) {
 	editPartHash = {};
 	var params = {};
@@ -141,60 +179,109 @@ function onLeftGridDrawCell(e) {
 var currType = 2;
 function quickSearch(type) {
 	var params = {};
+	var querysign = 1;
+	var queryname = "本日";
+	var querytypename = "未审";
 	switch (type) {
 	case 0:
 		params.today = 1;
 		params.startDate = getNowStartDate();
 		params.endDate = addDate(getNowEndDate(), 1);
+		queryname = "本日";
+		querysign = 1;
+		gsparams.startDate = getNowStartDate();
+		gsparams.endDate = addDate(getNowEndDate(), 1);
 		break;
 	case 1:
 		params.yesterday = 1;
 		params.startDate = getPrevStartDate();
 		params.endDate = addDate(getPrevEndDate(), 1);
+		queryname = "昨日";
+		querysign = 1;
+		gsparams.startDate = getPrevStartDate();
+		gsparams.endDate = addDate(getPrevEndDate(), 1);
 		break;
 	case 2:
 		params.thisWeek = 1;
 		params.startDate = getWeekStartDate();
 		params.endDate = addDate(getWeekEndDate(), 1);
+		queryname = "本周";
+		querysign = 1;
+		gsparams.startDate = getWeekStartDate();
+		gsparams.endDate = addDate(getWeekEndDate(), 1);
 		break;
 	case 3:
 		params.lastWeek = 1;
 		params.startDate = getLastWeekStartDate();
 		params.endDate = addDate(getLastWeekEndDate(), 1);
+		queryname = "上周";
+		querysign = 1;
+		gsparams.startDate = getLastWeekStartDate();
+		gsparams.endDate = addDate(getLastWeekEndDate(), 1);
 		break;
 	case 4:
 		params.thisMonth = 1;
 		params.startDate = getMonthStartDate();
 		params.endDate = addDate(getMonthEndDate(), 1);
+		queryname = "本月";
+		querysign = 1;
+		gsparams.startDate = getMonthStartDate();
+		gsparams.endDate = addDate(getMonthEndDate(), 1);
 		break;
 	case 5:
 		params.lastMonth = 1;
 		params.startDate = getLastMonthStartDate();
 		params.endDate = addDate(getLastMonthEndDate(), 1);
+		queryname = "上月";
+		querysign = 1;
+		gsparams.startDate = getLastMonthStartDate();
+		gsparams.endDate = addDate(getLastMonthEndDate(), 1);
 		break;
 	case 6:
 		params.auditSign = 0;
+		querytypename = "未审";
+		querysign = 2;
+		gsparams.auditSign = 0;
 		break;
 	case 7:
 		params.auditSign = 1;
+		querytypename = "已审";
+		querysign = 2;
+		gsparams.auditSign = 1;
 		break;
 	case 8:
 		params.postStatus = 1;
+		break;
+	case 9:
+		querytypename = "全部";
+		querysign = 2;
+		gsparams.auditSign = null;
 		break;
 	default:
 		params.today = 1;
 		params.startDate = getNowStartDate();
 		params.endDate = addDate(getNowEndDate(), 1);
+		querytypename = "未审";
+		gsparams.startDate = getNowStartDate();
+		gsparams.endDate = addDate(getNowEndDate(), 1);
+		gsparams.auditSign = 0;
 		break;
 	}
 	currType = type;
-	if ($("a[id*='type']").length > 0) {
+	/*if ($("a[id*='type']").length > 0) {
 		$("a[id*='type']").css("color", "black");
 	}
 	if ($("#type" + type).length > 0) {
 		$("#type" + type).css("color", "blue");
+	}*/
+	if(querysign == 1){
+		var menunamedate = nui.get("menunamedate");
+		menunamedate.setText(queryname);
+	}else if(querysign == 2){
+			var menunametype = nui.get("menunametype");
+			menunametype.setText(querytypename);
 	}
-	doSearch(params);
+	doSearch(gsparams);
 }
 function onSearch() {
 	search();
@@ -205,24 +292,23 @@ function search() {
 }
 function getSearchParam() {
 	var params = {};
+	params = gsparams;
 	params.guestId = nui.get("searchGuestId").getValue();
 	return params;
 }
 function setBtnable(flag) {
 	if (flag) {
-		nui.get("addPartBtn").enable();
-		// nui.get("editPartBtn").enable();
-		nui.get("deletePartBtn").enable();
+		//nui.get("addPartBtn").enable();
+		//nui.get("deletePartBtn").enable();
 		nui.get("saveBtn").enable();
 		nui.get("auditBtn").enable();
-		nui.get("printBtn").enable();
+		//nui.get("printBtn").enable();
 	} else {
-		nui.get("addPartBtn").disable();
-		// nui.get("editPartBtn").disable();
-		nui.get("deletePartBtn").disable();
+		//nui.get("addPartBtn").disable();
+		//nui.get("deletePartBtn").disable();
 		nui.get("saveBtn").disable();
 		nui.get("auditBtn").disable();
-		nui.get("printBtn").disable();
+		//nui.get("printBtn").disable();
 	}
 }
 function setEditable(flag) {
@@ -266,6 +352,9 @@ function advancedSearch() {
 	// advancedSearchForm.clear();
 	if (advancedSearchFormData) {
 		advancedSearchForm.setData(advancedSearchFormData);
+	}else{
+		sOrderDate.setValue(getWeekStartDate());
+		eOrderDate.setValue(addDate(getWeekEndDate(), 1));
 	}
 }
 function onAdvancedSearchOk() {
@@ -300,7 +389,7 @@ function onAdvancedSearchOk() {
 	}
 	// 供应商
 	if (searchData.guestId) {
-		params.guestId = nui.get("guestId").getValue();
+		searchData.guestId = nui.get("advanceGuestId").getValue();
 	}
 	// 订单单号
 	if (searchData.serviceIdList) {
@@ -318,6 +407,7 @@ function onAdvancedSearchOk() {
 		}
 		searchData.partCodeList = tmpList.join(",");
 	}
+	advancedSearchFormData = advancedSearchForm.getData();
 	advancedSearchWin.hide();
 	doSearch(searchData);
 }
@@ -336,6 +426,7 @@ function checkNew() {
 
 function add() {
 
+	mainTabs.activeTab(billmainTab);
 	if (checkNew() > 0) {
 		nui.alert("请先保存数据！");
 		return;
@@ -359,6 +450,7 @@ function add() {
 	basicInfoForm.reset();
 	rightGrid.clearRows();
 
+
 	var newRow = {
 		serviceId : '新采购订单',
 		auditSign : 0
@@ -372,6 +464,7 @@ function add() {
 	nui.get("taxRate").setValue(0.17);
 	nui.get("taxSign").setValue(1);
 	nui.get("orderDate").setValue(new Date());
+	nui.get("orderMan").setValue(currUserName);
 
 	var guestId = nui.get("guestId");
 	guestId.focus();
@@ -425,8 +518,7 @@ function calcTaxPriceInfo(taxSign, taxRate) {
 			taxPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
 			orderPrice = (orderQty > 0 ? orderAmt / orderQty : 0);
 			noTaxAmt = orderAmt / (1.0 + parseFloat(taxRate));
-			noTaxPrice = orderQty > 0 ? (orderAmt / orderQty)
-					/ (1.0 + parseFloat(taxRate)) : 0;
+			noTaxPrice = orderQty > 0 ? (orderAmt / orderQty)/ (1.0 + parseFloat(taxRate)) : 0;
 		}
 
 		var newRow = {
@@ -478,11 +570,10 @@ function getMainData() {
 }
 var requiredField = {
 	guestId : "供应商",
-	storeId : "仓库",
 	orderDate : "订货日期",
 	billTypeId : "票据类型",
 	settleTypeId : "结算方式",
-	taxRate : "开票税点",
+	taxRate : "开票税点"
 };
 var saveUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
@@ -491,6 +582,9 @@ function save() {
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			nui.alert(requiredField[key] + "不能为空!");
+			//如果检测到有必填字段未填写，切换到主表界面
+			mainTabs.activeTab(billmainTab);
+
 			return;
 		}
 	}
@@ -612,6 +706,10 @@ function onRightGridDraw(e) {
 			e.cellHtml = "";
 		}
 		break;
+	case "operateBtn":
+            e.cellHtml = '<span class="icon-remove" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';/*'<span class="icon-add" onClick="javascript:addPart()" title="添加行">&nbsp;&nbsp;&nbsp;&nbsp;</span>' +
+                        ' <span class="icon-remove" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';*/
+            break;
 	default:
 		break;
 	}
@@ -751,9 +849,29 @@ function selectPart(callback, checkcallback) {
 		}
 	});
 }
-function addPchsOrderDetail(part) {
-	nui
-			.open({
+function addDetail(part) {
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			nui.alert(requiredField[key] + "不能为空!");
+			//如果检测到有必填字段未填写，切换到主表界面
+			mainTabs.activeTab(billmainTab);
+
+			return;
+		}
+	}
+
+	var row = leftGrid.getSelected();
+	if (row) {
+		if (row.auditSign == 1) {
+			nui.alert("此单已审核!");
+			return;
+		}
+	} else {
+		return;
+	}
+	
+	nui.open({
 				targetWindow : window,
 				url : "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
 				title : "入库数量金额",
@@ -830,7 +948,7 @@ function addPart() {
 
 	selectPart(function(data) {
 		var part = data.part;
-		addPchsOrderDetail(part);
+		addDetail(part);
 	}, function(data) {
 		var part = data.part;
 		var partid = part.id;
@@ -911,6 +1029,8 @@ function audit() {
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			nui.alert(requiredField[key] + "不能为空!");
+
+			mainTabs.activeTab(billmainTab);
 			return;
 		}
 	}
@@ -968,6 +1088,8 @@ function audit() {
 
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(leftRow);
+
+					mainTabs.activeTab(billmainTab);
 				}
 			} else {
 				nui.alert(data.errMsg || "审核失败!");

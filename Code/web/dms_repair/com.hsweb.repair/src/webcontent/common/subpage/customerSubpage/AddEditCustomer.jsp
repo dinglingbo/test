@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.12"></script>
 <style type="text/css">
 
 table {
@@ -29,7 +29,9 @@ table {
 </style>
 </head>
 <body>
-<div class="nui-splitter" style="width:100%;height:100%;" vertical="true"
+<div class="nui-splitter"
+     id="addEditCustomerPage"
+     style="width:100%;height:100%;" vertical="true"
      borderStyle="border:0;"
      handlerSize="0"
      allowResize="false">
@@ -37,61 +39,64 @@ table {
         <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false"
              borderStyle="border:0;"
              style="width:100%;height:100%;">
-            <table class="nui-form-table" style="width:100%">
-                <tr>
-                    <td class="form_label required">
-                        <label>客户名称：</label>
-                    </td>
-                    <td colspan="3">
-                        <input class="nui-textbox" name="code" width="100%"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form_label">
-                        <label>客户简介：</label>
-                    </td>
-                    <td>
-                        <input class="nui-textbox" name="code" width="100%"/>
-                    </td>
-                    <td class="form_label">
-                        <label>会员卡号：</label>
-                    </td>
-                    <td>
-                        <input class="nui-textbox" name="code" width="100%"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form_label required">
-                        <label>手机号码：</label>
-                    </td>
-                    <td>
-                        <input class="nui-textbox" name="code" width="100%"/>
-                    </td>
-                    <td class="form_label">
-                        <label>电话：</label>
-                    </td>
-                    <td>
-                        <input class="nui-textbox" name="code" width="100%"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form_label">
-                        <label>地址：</label>
-                    </td>
-                    <td colspan="3">
-                        <input class="nui-textbox" name="code" width="100%"/>
-                    </td>
-                </tr>
+            <div class="form" id="basicInfoForm">
+                <input class="nui-hidden" name="id"/>
+                <table class="nui-form-table" style="width:100%">
+                    <tr>
+                        <td class="form_label required">
+                            <label>客户名称：</label>
+                        </td>
+                        <td colspan="3">
+                            <input class="nui-textbox" name="fullName" width="100%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_label">
+                            <label>客户简称：</label>
+                        </td>
+                        <td>
+                            <input class="nui-textbox" name="shortName" width="100%"/>
+                        </td>
+                        <td class="form_label">
+                            <label>会员卡号：</label>
+                        </td>
+                        <td>
+                            <input class="nui-textbox" name="memCarNo" width="100%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_label required">
+                            <label>手机号码：</label>
+                        </td>
+                        <td>
+                            <input class="nui-textbox" name="mobile" width="100%"/>
+                        </td>
+                        <td class="form_label">
+                            <label>电话：</label>
+                        </td>
+                        <td>
+                            <input class="nui-textbox" name="tel" width="100%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_label">
+                            <label>地址：</label>
+                        </td>
+                        <td colspan="3">
+                            <input class="nui-textbox" name="addr" width="100%"/>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="form_label">
-                        <label>备注：</label>
-                    </td>
-                    <td colspan="3">
-                        <input class="nui-textbox" name="remark" width="100%"/>
-                    </td>
-                </tr>
-            </table>
+                    <tr>
+                        <td class="form_label">
+                            <label>备注：</label>
+                        </td>
+                        <td colspan="3">
+                            <input class="nui-textbox" name="remark" width="100%"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div showCollapseButton="false" style="border:0;">
@@ -100,24 +105,26 @@ table {
                  style="width:100%;height: 100%;">
                 <div title="车辆信息" showCloseButton="false">
                     <div class="form" id="carInfoFrom">
+                        <input class="nui-hidden" name="id"/>
+                        <input class="nui-hidden" name="carBrandId" id="carBrandId"/>
                         <table class="nui-form-table" style="width:100%;">
                             <tr>
-                                <td class="form_label">
+                                <td class="form_label required">
                                     <label>车牌号：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-textbox" name="code" width="100%"/>
+                                    <input class="nui-textbox" name="carNo" id="carNo" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="form_label">
+                                <td class="form_label required">
                                     <label>车架号(VIN)：</label>
                                 </td>
                                 <td colspan="2">
-                                    <input class="nui-textbox" name="code" width="100%"/>
+                                    <input class="nui-textbox" name="underpanNo" width="100%"/>
                                 </td>
                                 <td>
-                                    <a class="nui-button" onclick="onSearch(0)">解析</a>
+                                    <a class="nui-button" onclick="onParseUnderpanNo()">解析</a>
                                 </td>
                             </tr>
                             <tr>
@@ -125,7 +132,7 @@ table {
                                     <label>车型信息：</label>
                                 </td>
                                 <td colspan="3">
-                                    <textarea class="nui-textarea" name="code" width="100%"></textarea>
+                                    <textarea class="nui-textarea" name="carModelInfo" width="100%"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -133,7 +140,7 @@ table {
                                     <label>车型：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-buttonedit" name="code" width="100%"/>
+                                    <input class="nui-buttonedit" name="carModelId" id="carModelId" onclick="selectCarModel('carModelId','carBrandId')" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -141,7 +148,10 @@ table {
                                     <label>保险公司：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-combobox" name="code" width="100%"/>
+                                    <input class="nui-combobox" name="insureCompCode" id="insureCompCode"
+                                           valueField="id"
+                                           textField="fullName"
+                                           width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -149,13 +159,13 @@ table {
                                     <label>交强险到期：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-datepicker" width="100%"/>
+                                    <input name="insureDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>商业险到期：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-datepicker" width="100%"/>
+                                    <input name="annualInspectionDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -163,13 +173,13 @@ table {
                                     <label>发动机号：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-textbox" width="100%"/>
+                                    <input name="engineNo" class="nui-textbox" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>保养到期：</label>
                                 </td>
                                 <td>
-                                    <input id="date1" class="nui-datepicker" width="100%"/>
+                                    <input id="careDueDdate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -177,13 +187,22 @@ table {
                                     <label>里程类型：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-combobox" width="100%"/>
+                                    <input name="kiloType"
+                                           id="kiloType"
+                                           valueField="customid"
+                                           textField="name"
+                                           class="nui-combobox" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>车型规格：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-combobox" width="100%"/>
+                                    <input name="carSpec"
+                                           id="carSpec"
+                                           valueField="customid"
+                                           textField="name"
+                                           class="nui-combobox"
+                                           width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -191,13 +210,13 @@ table {
                                     <label>生产日期：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-datepicker" width="100%"/>
+                                    <input name="produceDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>上牌日期：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-datepicker" width="100%"/>
+                                    <input name="firstRegDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -205,13 +224,13 @@ table {
                                     <label>年审到期：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-datepicker" width="100%"/>
+                                    <input name="annualVerificationDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>驾审到期：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-datepicker" width="100%"/>
+                                    <input name="drivingLicenceDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -219,13 +238,17 @@ table {
                                     <label>公司内部车：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-combobox" width="100%"/>
+                                    <input name="isCompanyInside"
+                                           data="[{id:1,text:'是'},{id:0,text:'否'}]"
+                                           class="nui-combobox" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>本公司销售：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-combobox" width="100%"/>
+                                    <input name="isCompanySell"
+                                           data="[{id:1,text:'是'},{id:0,text:'否'}]"
+                                           class="nui-combobox" width="100%"/>
                                 </td>
                             </tr>
                         </table>
@@ -237,41 +260,51 @@ table {
                 </div>
                 <div title="联系人信息" showCloseButton="false">
                     <div class="form" id="contactInfoForm">
+                        <input class="nui-hidden" name="id"/>
                         <table class="nui-form-table" style="width:100%;">
                             <tr>
-                                <td class="form_label">
+                                <td class="form_label required">
                                     <label>姓名：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-textbox" name="code" width="100%"/>
+                                    <input class="nui-textbox" name="name" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>性别：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-combobox" name="code" name="date1" width="100%"/>
+                                    <input class="nui-combobox" name="sex" name="date1" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="form_label">
+                                <td class="form_label required">
                                     <label>手机：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-textbox" name="code" width="100%"/>
+                                    <input class="nui-textbox" name="mobile" width="100%"/>
                                 </td>
-                                <td class="form_label">
+                                <td class="form_label required">
                                     <label>身份：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-textbox" name="code" name="date1" width="100%"/>
+                                    <input class="nui-combobox"
+                                           name="identity"
+                                           id="identity"
+                                           valueField="customid"
+                                           textField="name"
+                                           width="100%"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="form_label">
+                                <td class="form_label required">
                                     <label>来源：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-combobox" name="code" width="100%"/>
+                                    <input class="nui-combobox" name="source"
+                                           id="source"
+                                           valueField="customid"
+                                           textField="name"
+                                           width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -279,13 +312,13 @@ table {
                                     <label>生日类型：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-combobox" name="code" width="100%"/>
+                                    <input class="nui-combobox" name="birthdayType" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>生日：</label>
                                 </td>
                                 <td>
-                                    <input name="date1" class="nui-datepicker" width="100%"/>
+                                    <input name="birthday" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -293,7 +326,7 @@ table {
                                     <label>身份证地址：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-textbox" name="code" width="100%"/>
+                                    <input class="nui-textbox" name="idAddress" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -301,7 +334,7 @@ table {
                                     <label>身份证号码：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-textbox" name="code" width="100%"/>
+                                    <input class="nui-textbox" name="idNo" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -309,7 +342,7 @@ table {
                                     <label>备注：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-textbox" name="code" width="100%"/>
+                                    <input class="nui-textbox" name="remark" width="100%"/>
                                 </td>
                             </tr>
                         </table>
@@ -329,6 +362,5 @@ table {
     </div>
 
 </div>
-
 </body>
 </html>

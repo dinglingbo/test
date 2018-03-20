@@ -3,7 +3,7 @@
  */
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var grid = null;
-var gridUrl = baseUrl+"";
+var gridUrl = baseUrl+"com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
 var queryForm = null;
 $(document).ready(function(v){
 
@@ -30,15 +30,24 @@ function doSearch(params)
     });
 }
 
-function add()
+function addOrEditCustomer(guest)
 {
+    var title = "新增客户资料";
+    if(guest)
+    {
+        title = "修改客户资料";
+    }
     nui.open({
         url: "com.hsweb.repair.DataBase.AddEditCustomer.flow",
-        title: "客户资料", width: 500, height: 623,
+        title: title, width: 500, height: 630,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var data = {pageType: "add"};
-            iframe.contentWindow.setData(data);
+            var params = {};
+            if(guest)
+            {
+                params.guest = guest;
+            }
+            iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {
@@ -48,29 +57,16 @@ function add()
             }
         }
     });
-
+}
+function add()
+{
+    addOrEditCustomer();
 }
 function edit() {
     var row = grid.getSelected();
     if (row)
     {
-        nui.open({
-            url: "com.hsweb.repair.DataBase.AddEditCustomer.flow",
-            title: "修改客户",
-            width: 500,
-            height: 680,
-            onload: function () {
-                var iframe = this.getIFrameEl();
-                var data = {pageType: "edit", record: {comguest: row}};
-                //直接从页面获取，不用去后台获取
-                iframe.contentWindow.setData(data);
-            },
-            ondestroy: function (action) {
-                if (action == "saveSuccess") {
-                    grid.reload();
-                }
-            }
-        });
+        addOrEditCustomer(row);
     } else {
         nui.alert("请选中一条数据", "系统提示");
     }

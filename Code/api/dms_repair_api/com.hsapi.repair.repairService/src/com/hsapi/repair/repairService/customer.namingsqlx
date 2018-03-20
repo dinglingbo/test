@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.orgid orgid,
+			a.car_no carNo,
+			a.guest_id guestId,
+			b.full_name guestFullName,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_brand_id carBrandId,
+			c.car_brand_zh carBrandName,
+			a.engine_no engineNo,
+			a.underpan_no underpanNo,
+			a.annual_inspection_date annualInspectionDate,
+			a.annual_verification_due_date annualVerificationDueDate,
+			a.insure_comp_code insureCompCode,
+			b.addr addr,
+			a.last_come_date lastComeDate,
+			a.last_leave_date lastLeaveDate,
+			a.recorder recorder,
+			a.record_date recordDate,
+			a.produce_date produceDate,
+			a.color color
+		FROM
+			rpb_car a
+			inner join wb_common.com_guest b on (a.guest_id = b.id)
+			left join wb_common.com_car_brand c on (a.car_brand_id = c.id)
+	</select>
+	<select id="queryCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.orgid orgid,
+			a.car_no carNo,
+			a.guest_id guestId,
+			b.full_name guestFullName,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_brand_id carBrandId,
+			c.car_brand_zh carBrandName,
+			a.engine_no engineNo,
+			a.underpan_no underpanNo,
+			a.annual_inspection_date annualInspectionDate,
+			a.annual_verification_due_date annualVerificationDueDate,
+			a.insure_comp_code insureCompCode,
+			b.addr addr,
+			a.last_come_date lastComeDate,
+			a.last_leave_date lastLeaveDate,
+			a.recorder recorder,
+			a.record_date recordDate,
+			a.produce_date produceDate,
+			a.color color,
+			d.name contactName,
+			d.identity identity,
+			e.name identityName,
+			d.mobile mobile,
+			d.tel tel,
+			d.id contactorId
+		FROM
+			rpb_car a
+			inner join wb_common.com_guest b on (a.guest_id = b.id)
+			inner join rpb_contactor d on (b.id = d.guest_id)
+			left join wb_common.com_car_brand c on (a.car_brand_id = c.id)
+			left join wb_common.com_dataitems e on (d.identity = e.customid)
+		WHERE 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">  
+                (a.car_model like '%$carModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="underpanNo">  
+                (a.underpan_no like '%$underpanNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (b.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">  
+                (a.full_name like '%$guestFullName$%')
+            </isNotEmpty>
+        </dynamic>
+	</select>
+</sqlMap>

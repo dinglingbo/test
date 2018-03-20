@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryPrebookList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.car_no carNo,
+			b.NAME bookStatusName,
+			a.predict_come_date predictComeDate
+		FROM
+			rps_prebook a
+			LEFT JOIN wb_common.com_dataitems b ON ( a.book_status = b.customid )
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (date_format(a.predict_come_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(a.predict_come_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (date_format(a.predict_come_date,'%X-%V')=date_format(now(),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="recorder">  
+                (a.recorder = #recorder#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	<select id="queryScoutListByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.scout_man scoutMan,
+			a.scout_date scoutDate,
+			a.next_scout_date nextScoutDate,
+			a.scout_mode scoutMode,
+			b.name scoutModeName,
+			a.is_usabled isUsabled,
+			c.name isUsabledName,
+			a.scout_content scoutContent
+		FROM
+			rps_prebook_tel_scout a
+			left join wb_common.com_dataitems b on (a.scout_mode = b.customid)
+			left join wb_common.com_dataitems c on (a.is_usabled = c.customid)
+		WHERE
+			a.service_id = #serviceId#
+	</select>
+</sqlMap>

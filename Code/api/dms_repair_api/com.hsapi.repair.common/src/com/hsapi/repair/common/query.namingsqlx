@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getAllInsuranceCompany" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.code code,
+			a.full_name fullName,
+			a.short_name shortName
+		FROM
+			com_guest a 
+		WHERE
+			a.guest_type = '01020104'
+			and (a.orgid = 0 or a.orgid = #orgid#)
+	</select>
+</sqlMap>

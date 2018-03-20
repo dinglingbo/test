@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.hsapi.repair.data,com.eos.foundation
+eos-webCtxPath: repairService
+Bundle-Vendor: chenziming
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.repair.repairService
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.repair.repairService
+

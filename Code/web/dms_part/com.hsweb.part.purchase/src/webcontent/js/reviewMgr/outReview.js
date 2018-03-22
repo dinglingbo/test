@@ -7,6 +7,9 @@ var rightGrid1Url = baseUrl+"com.hsapi.part.purchase.svr.queryPtsOutMainList.biz
 var rightGrid2 = null;
 var rightGrid2Url = baseUrl+"com.hsapi.part.purchase.svr.queryPtsOutDetailByOutId.biz.ext";
 var tree = null;
+var storehouseHash = {};
+var menuBtnDateQuickSearch = null;
+
 var treeData = [
     {
         id:"050201",
@@ -50,6 +53,7 @@ $(document).ready(function(v)
         }
     });
     tree = nui.get("tree1");
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
     tree.loadData(treeData);
     queryForm = new nui.Form("#queryForm");
     getAllPartBrand(function(data)
@@ -58,6 +62,15 @@ $(document).ready(function(v)
         partBrandList.forEach(function(v)
         {
             partBrandIdHash[v.id] = v;
+        });
+    });
+    getStorehouse(function(data) {
+        var storehouse = data.storehouse || [];
+        nui.get("storeId").setData(storehouse);
+        storehouse.forEach(function (v) {
+            if (v && v.id) {
+                storehouseHash[v.id] = v;
+            }
         });
     });
     var dictIdList = [];
@@ -88,126 +101,25 @@ $(document).ready(function(v)
                     return true;
                 }
             });
-            quickSearch(currType);
+            quickSearch(menuBtnDateQuickSearch, currType, '本日');
         }
     });
 });
-var currType = 2;
+
+var currType = 0;
+function quickSearch(ctlid, value, text){
+    ctlid.setValue(value);
+    ctlid.setText(text);
+    currType = value;
+    onSearch();
+}
+
 function onSearch()
 {
     var params = getSearchParam();
-    if(currType && !(params.startDate||params.endDate))
-    {
-        switch (currType)
-        {
-            case 0:
-                params.today = 1;
-                break;
-            case 1:
-                params.yesterday = 1;
-                break;
-            case 2:
-                params.thisWeek = 1;
-                break;
-            case 3:
-                params.lastWeek = 1;
-                break;
-            case 4:
-                params.thisMonth = 1;
-                break;
-            case 5:
-                params.lastMonth = 1;
-                break;
-            case 6:
-                params.auditStatus = 0;
-                break;
-            case 7:
-                params.auditStatus = 1;
-                break;
-            case 8:
-                params.postStatus = 1;
-                break;
-            case 10:
-                params.thisYear = 1;
-                break;
-            case 11:
-                params.lastYear = 1;
-                break;
-            default:
-                break;
-        }
-    }
     doSearch(params);
 }
-function getSearchParam()
-{
-    var params = queryForm.getData();
-    if(params.startDate)
-    {
-        params.startDate = params.startDate.substr(0,10);
-    }
-    if(params.endDate)
-    {
-        params.endDate = params.endDate.substr(0,10);
-    }
-    console.log(params);
-    return params;
-}
-function onNodeDblClick()
-{
-    quickSearch(currType);
-}
-function quickSearch(type){
-    var params = {};
-    currType = type;
-    switch (type)
-    {
-        case 0:
-            params.today = 1;
-            break;
-        case 1:
-            params.yesterday = 1;
-            break;
-        case 2:
-            params.thisWeek = 1;
-            break;
-        case 3:
-            params.lastWeek = 1;
-            break;
-        case 4:
-            params.thisMonth = 1;
-            break;
-        case 5:
-            params.lastMonth = 1;
-            break;
-        case 6:
-            params.auditStatus = 0;
-            break;
-        case 7:
-            params.auditStatus = 1;
-            break;
-        case 8:
-            params.postStatus = 1;
-            break;
-        case 10:
-            params.thisYear = 1;
-            break;
-        case 11:
-            params.lastYear = 1;
-            break;
-        default:
-            break;
-    }
-    if($("a[id*='type']").length>0)
-    {
-        $("a[id*='type']").css("color","black");
-    }
-    if($("#type"+type).length>0)
-    {
-        $("#type"+type).css("color","blue");
-    }
-    doSearch(params);
-}
+
 function doSearch(params)
 {
     //   params.outTypeId = '050101';
@@ -222,6 +134,45 @@ function doSearch(params)
         });
     }
 }
+
+function getSearchParam()
+{
+    var params = queryForm.getData();
+
+    var storeId = nui.get("storeId").getValue();
+    params.storeId = storeId;
+
+    var d = menuBtnDateQuickSearch.getValue();
+    if (d == 0) {
+        params.today = 1;
+    } else if (d == 1) {
+        params.yesterday = 1;
+    }  else if (d == 2) {
+        params.thisWeek = 1;
+    } else if (d == 3) {
+        params.lastWeek = 1;
+    } else if (d == 4) {
+        params.thisMonth = 1;
+    } else if (d == 5) {
+        params.lastMonth = 1;
+    }
+
+    if(params.startDate)
+    {
+        params.startDate = params.startDate.substr(0,10);
+    }
+    if(params.endDate)
+    {
+        params.endDate = params.endDate.substr(0,10);
+    }
+    console.log(params);
+    return params;
+}
+function onNodeDblClick()
+{
+    onSearch();
+}
+
 function onRightGrid1RowClick(e){
     var row = e.record;
     var outId = row.id;
@@ -248,6 +199,12 @@ function onRightGrid1DrawCell(e){
             if(settTypeIdHash && settTypeIdHash[e.value])
             {
                 e.cellHtml = settTypeIdHash[e.value].name;
+            }
+            break;
+        case "storeId":
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
             }
             break;
         default:

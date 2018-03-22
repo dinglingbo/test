@@ -92,7 +92,7 @@
         </div>
         <div showCollapseButton="false">
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
-                <span>零件列表</span>
+                <span>配件列表</span>
             </div>
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -107,6 +107,8 @@
                      selectOnLoad="true"
                      pageSize="50"
                      sortMode="true"
+                     allowCellWrap="true"
+                     showSummaryRow="true"
                      showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
@@ -120,9 +122,9 @@
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
                                 <div allowSort="true" field="partId" width="70" headerAlign="center" header="内码"></div>
-                                <div allowSort="true" field="partCode" width="80" headerAlign="center" allowSort="true" header="配件编码"></div>
-                                <div allowSort="true" field="partName" width="80" headerAlign="center" allowSort="true" header="配件名称"></div>
-                                <div allowSort="true" field="partFullName" width="100" headerAlign="center" allowSort="true" header="配件全称"></div>
+                                <div allowSort="true" field="partCode" width="121" headerAlign="center" allowSort="true" header="配件编码"></div>
+                                <div allowSort="true" field="partName" width="121" headerAlign="center" allowSort="true" header="配件名称"></div>
+                                <div allowSort="true" field="partFullName" width="200" headerAlign="center" allowSort="true" header="配件全称"></div>
                                 <div allowSort="true" field="qualityTypeId" width="70" headerAlign="center" allowSort="true" header="品质"></div>
                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center" allowSort="true" header="品牌"></div>
                                 <div allowSort="true" field="abcType" width="60" headerAlign="center" allowSort="true" header="ABC分类"></div>
@@ -130,10 +132,10 @@
                         </div>
                         <div header="库存信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="stockQty" width="50" headerAlign="center" header="数量" align="right"></div>
+                                <div allowSort="true" field="stockQty" width="50" headerAlign="center" header="数量" align="right" summaryType="sum"></div>
                                 <div allowSort="true" field="unit" width="80" headerAlign="center" allowSort="true" header="单位" align="right"></div>
                                 <div allowSort="true" field="stockPrice" width="80" headerAlign="center" allowSort="true" header="单价" align="right"></div>
-                                <div allowSort="true" field="stockAmt" width="80" headerAlign="center" allowSort="true" header="金额" align="right"></div>
+                                <div allowSort="true" field="stockAmt" width="80" headerAlign="center" allowSort="true" header="金额" align="right" summaryType="sum"></div>
                                 <div allowSort="true" field="suggestPrice" width="80" headerAlign="center" allowSort="true" header="建议销价" align="right"></div>
                                 <div allowSort="true" field="lastSellPrice" width="80" headerAlign="center" allowSort="true" header="最后销价" align="right"></div>
                             </div>

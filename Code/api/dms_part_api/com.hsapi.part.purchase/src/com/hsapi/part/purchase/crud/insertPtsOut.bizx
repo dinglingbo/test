@@ -35,12 +35,12 @@
       <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="false" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="盘亏出库" id="link13" name="link13" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
@@ -273,6 +273,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="link2" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <location x="-149" y="330"/>
@@ -367,11 +368,11 @@
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">guest/id</process:from>
-      <process:to type="query">enterMain/guestId</process:to>
+      <process:to type="query">outMain/guestId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">guest/fullName</process:from>
-      <process:to type="query">enterMain/guestFullName</process:to>
+      <process:to type="query">outMain/guestFullName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.STATUS status,
+			a.mt_advisor mtAuditor,
+			a.service_code serviceCode,
+			a.car_no carNo,
+			c.car_brand_zh carBrandName 
+		FROM
+			rps_maintain a
+			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
+			LEFT JOIN wb_common.com_car_brand c ON ( b.car_brand_id = c.id ) 
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="mtAuditor">
+                (a.mt_advisor = #mtAuditor#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">  
+                (a.status = #status#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	<select id="getMaintainById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.status status,
+			a.mt_advisor mtAuditor,
+			a.service_code serviceCode,
+			a.car_no carNo,
+			c.car_brand_zh carBrandName,
+			a.service_type_id serviceTypeId,
+			a.mt_type mtType,
+			a.mt_advisor_id mtAdvisorId,
+			a.enter_oil_mass enterOilMass,
+			a.enter_kilometers enterKilometers,
+			a.enter_date enterDate,
+			a.quote_date quoteDate,
+			a.sure_mt_date sureMtDate,
+			a.check_date checkDate,
+			a.plan_finish_date planFinishDate,
+			a.service_card serviceCard,
+			a.is_car_wash isCarWash,
+			a.remark remark,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,
+			a.car_vin carVin,
+			b.car_model carModel,
+			b.engine_no engineNo,
+			d.name contactorName,
+			d.identity identity,
+			f.name identityName,
+			d.mobile mobile,
+			e.full_name guestFullName,
+			a.guest_id guestId,
+			a.contactor_id contactorId,
+			a.car_id carId
+		FROM
+			rps_maintain a
+			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
+			LEFT JOIN wb_common.com_car_brand c ON ( b.car_brand_id = c.id ) 
+			left join rpb_contactor d on (a.contactor_id = d.id)
+			left join wb_common.com_guest e on (a.guest_id = e.id)
+			left join wb_common.com_dataitems f on (d.identity = f.customid)
+		WHERE
+			a.id = #id# 
+	</select>
+	<select id="getRpsItemByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			c.name receTypeName,
+			a.item_time itemTime,
+			a.item_kind itemKind,
+			b.name itemKindName,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate rate
+		FROM
+			rps_item a
+			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
+			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
+		WHERE
+			a.service_id = #serviceId#
+	</select>
+	<select id="getRpsItemQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			c.name receTypeName,
+			a.item_time itemTime,
+			a.item_kind itemKind,
+			b.name itemKindName,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate rate,
+			a.subtotal subtotal
+		FROM
+			rps_item_quote a
+			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
+			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
+		WHERE
+			a.service_id = #serviceId#
+		and a.package_id is null
+	</select>
+	
+	
+	<select id="getRpsPartQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			c.name receTypeName,
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate rate,
+			a.subtotal subtotal
+		FROM
+			rps_part_quote a
+			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
+		WHERE
+			a.service_id = #serviceId#
+		and a.package_id is null
+	</select>
+</sqlMap>

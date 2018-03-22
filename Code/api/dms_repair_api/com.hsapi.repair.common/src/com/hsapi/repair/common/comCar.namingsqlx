@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryCarBrand" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id nodeId,
+			a.car_brand_zh nodeName,
+			'carBrand' nodeType,
+			false expanded,
+			false isLeaf
+		FROM
+			com_car_brand a
+	</select>
+	<select id="queryCarSeriesByBrandId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id nodeId,
+			a.name nodeName,
+			'carSeries' nodeType,
+			false expanded,
+			true isLeaf
+		FROM
+			com_car_series a
+		WHERE
+			a.car_brand_id = #nodeId#
+	</select>
+</sqlMap>

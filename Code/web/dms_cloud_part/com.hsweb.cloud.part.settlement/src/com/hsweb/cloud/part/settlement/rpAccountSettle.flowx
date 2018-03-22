@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="serviceAudit.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="单据审核" title="Administrator&#x9;18-3-6 下午8:43">
-    <location x="60" y="15"/>
-    <size height="100" width="190"/>
-  </nodes>
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="rpAccountSettle.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>
@@ -29,7 +25,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.cloud.part.settlement" uri="/settlement/serviceAudit_view0.jsp">
+  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.cloud.part.settlement" uri="/settlement/rpAccountSettle_view0.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
@@ -46,5 +42,5 @@
   </nodes>
   <topRuler/>
   <leftRuler/>
-  <process:info author="Administrator" createTime="2018-03-06 20:41:06" date="2018-03-06Z" description="" name="serviceAudit" version="7.0.0.0"/>
+  <process:info author="Administrator" createTime="2018-03-21 18:42:03" date="2018-03-21Z" description="" name="rpAccountSettle" version="7.0.0.0"/>
 </process:tPageFlow>

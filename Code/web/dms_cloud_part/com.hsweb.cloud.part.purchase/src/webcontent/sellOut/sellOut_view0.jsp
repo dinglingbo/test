@@ -49,6 +49,7 @@
                     <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
                     <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                    <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
                     <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
                 </ul>
@@ -58,6 +59,7 @@
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(6)" id="type6">未审</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li>
+                    <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">全部</li>
                 </ul>
 
@@ -303,6 +305,7 @@
                                 <div type="indexcolumn">序号</div>
                                 <div header="配件信息" headerAlign="center">
                                     <div property="columns">
+                                        <div field="operateBtn" width="30" headerAlign="center" header="删除"></div>
                                         <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
                                         <div field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                                         <div field="comPartName" headerAlign="center" header="配件名称"></div>

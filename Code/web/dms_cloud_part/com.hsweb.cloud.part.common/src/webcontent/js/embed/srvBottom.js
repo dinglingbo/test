@@ -73,32 +73,46 @@ function showTabInfo(){
 	switch (name)
     {
         case "stockselect":
-            document.getElementById("bottomFormIframeStock").contentWindow.doSearch(gparams);
+            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+                document.getElementById("bottomFormIframeStock").contentWindow.doSearch(gparams);
+            }
             break;
         case "outableRecord":
-        	params.partId=gparams.partId;
-            document.getElementById("bottomFormIframeOutableRecord").contentWindow.doSearch(params);
+            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            	params.partId=gparams.partId;
+                document.getElementById("bottomFormIframeOutableRecord").contentWindow.doSearch(params);
+            }
         	break;
         case "pchsRecord":
-        	params.partId=gparams.partId;
-            document.getElementById("bottomFormIframePchsRecord").contentWindow.doSearch(params);
+            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            	params.partId=gparams.partId;
+                document.getElementById("bottomFormIframePchsRecord").contentWindow.doSearch(params);
+            }
             break;
         case "sellRecord":
-            params.partId=gparams.partId;
-            document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
+            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+                params.partId=gparams.partId;
+                document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
+            }
             break;
         case "guestPrice":
-            params.partId=gparams.partId;
-            params.guestId=gparams.guestId;
-            document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
+            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+                params.partId=gparams.partId;
+                params.guestId=gparams.guestId;
+                document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
+            }
             break;
         case "rtnRecord":
-            params.partId=gparams.partId;
-            document.getElementById("bottomFormIframeRtnRecord").contentWindow.doSearch(params);
+            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+                params.partId=gparams.partId;
+                document.getElementById("bottomFormIframeRtnRecord").contentWindow.doSearch(params);
+            }
             break;
         case "partInfo":
-            params.partId=gparams.partId;
-            document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
+            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+                params.partId=gparams.partId;
+                document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
+            }
             break;
         default:
             break;

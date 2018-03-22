@@ -338,7 +338,7 @@
         <result column="comBrandCode" javaType="string" property="comBrandCode"/>
         <result column="comOemCode" javaType="string" property="comOemCode"/>
         <result column="comQualityTypeId" javaType="int" property="comQualityTypeId"/>
-        <result column="comPartBrandId" javaType="int" property="comPartBrandId"/>
+        <result column="comPartBrandId" javaType="string" property="comPartBrandId"/>
         <result column="comApplyCarModel" javaType="string" property="comApplyCarModel"/>
         <result column="comUnit" javaType="string" property="comUnit"/>
         <result column="comSpec" javaType="string" property="comSpec"/>
@@ -844,7 +844,7 @@
         <result column="comBrandCode" javaType="string" property="comBrandCode"/>
         <result column="comOemCode" javaType="string" property="comOemCode"/>
         <result column="comQualityTypeId" javaType="int" property="comQualityTypeId"/>
-        <result column="comPartBrandId" javaType="int" property="comPartBrandId"/>
+        <result column="comPartBrandId" javaType="string" property="comPartBrandId"/>
         <result column="comApplyCarModel" javaType="string" property="comApplyCarModel"/>
         <result column="comUnit" javaType="string" property="comUnit"/>
         <result column="comSpec" javaType="string" property="comSpec"/>

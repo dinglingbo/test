@@ -67,8 +67,8 @@ $(document).ready(function(v)
     gsparams.endDate = addDate(getNowEndDate(), 1);
     gsparams.auditSign = 0;
 
-    sOrderDate = nui.get("sOrderDate");
-    eOrderDate = nui.get("eOrderDate");
+    sOutDate = nui.get("sOrderDate");
+    eOutDate = nui.get("eOrderDate");
 
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");
@@ -217,6 +217,10 @@ function onRightGridDrawCell(e)
             {
                 e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
             }
+            break;
+        case "operateBtn":
+            e.cellHtml = '<span class="icon-remove" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';/*'<span class="icon-add" onClick="javascript:addPart()" title="添加行">&nbsp;&nbsp;&nbsp;&nbsp;</span>' +
+                        ' <span class="icon-remove" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';*/
             break;
         default:
             break;

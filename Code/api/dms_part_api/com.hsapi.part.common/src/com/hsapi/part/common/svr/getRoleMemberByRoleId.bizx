@@ -42,16 +42,16 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[1]/orgid</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">roleId</process:from>
-      <process:to type="query">cond/_expr[2]/roleId</process:to>
+      <process:to type="query">cond/_expr[1]/roleId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">in</process:from>
-      <process:to type="query">cond/_expr[2]/_op</process:to>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">cond/_expr[2]/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -94,6 +94,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" name="roleId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.part.data.com.ComRoleMember" name="members"/>

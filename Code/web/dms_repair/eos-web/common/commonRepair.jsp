@@ -49,7 +49,10 @@
 				+ "/";
 	}
 
-	window._rootUrl = getRoot();
+	//window._rootUrl = getRoot();
+	window._rootUrl = apiPath+repairApi+"/";
+	window._rootPartUrl = apiPath+partApi+"/";
+	window._rootSysUrl = apiPath+sysApi+"/";
 	//console.log(window._rootUrl);
 	function doPost(opt) {
 		var url = opt.url;
@@ -60,6 +63,7 @@
 		};
 		data.orgid = currOrgid;
 		data.userName = currUserName;
+		data.token = token;
 		nui.ajax({
 			url : url,
 			type : "post",
@@ -138,7 +142,7 @@
 		});
 	}
 
-	var getAllCarBrandUrl = window._rootUrl
+	var getAllCarBrandUrl = window._rootPartUrl
 			+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
 	function getAllCarBrand(callback) {
 		doPost({
@@ -242,7 +246,7 @@
 			}
 		});
 	}
-	var getCompBillNOUrl = window._rootUrl
+	var getCompBillNOUrl = window._rootSysUrl
 			+ "com.hs.common.uniq.getCompBillNO.biz.ext";
 	function getCompBillNO(billTypeCode, callback) {
 		var params = {};
@@ -250,6 +254,24 @@
 		params.orgid = currOrgid;
 		doPost({
 			url : getCompBillNOUrl,
+			data : params,
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback(null);
+			}
+		});
+	}
+	var getRoleMemberUrl = window._rootPartUrl
+			+ "com.hsapi.part.common.svr.getRoleMemberByRoleId.biz.ext";
+	function getRoleMember(roleId, callback) {
+		var params = {};
+		params.roleId = roleId;
+		doPost({
+			url : getRoleMemberUrl,
 			data : params,
 			success : function(data) {
 				callback && callback(data);

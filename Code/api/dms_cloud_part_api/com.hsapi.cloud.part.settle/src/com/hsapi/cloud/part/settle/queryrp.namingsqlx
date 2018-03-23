@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <select id="queryRPBillList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.serviceId as serviceId,
+			a.orgid as orgid,
+			a.mainId as mainId,
+			a.dc as dc,
+			a.enterTypeId as enterTypeId,
+			a.`CODE` as code,
+			a.billDate as billDate,
+			a.orderMan as orderMan,
+			a.billAmt as billAmt,
+			a.accountSign as accountSign,
+			a.accountAmt as accountAmt,
+			a.accountor as accountor,
+			a.accountDate as accountDate,
+			a.backTimes as backTimes,
+			a.guestId as guestId,
+			a.creator as creator,
+			a.createDate as createDate,
+			a.auditor as auditor,
+			a.auditDate as auditDate,
+			a.remark as remark,
+			a.fullName as fullName,
+			a.shortName as shortName
+		FROM
+			vw_enter_out_main AS a
+		WHERE
+			1 = 1
+				
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.mainId = #id#)
+                </isNotEmpty>
+                
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.createDate &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.createDate &lt; #endDate#)
+                </isNotEmpty>
+                
+                <!--入库日期 -->
+                <isNotEmpty prepend="and" property="sBillDate">  
+                    a.billDate &gt;= #sEnterDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eBillDate">  
+                    (a.billDate &lt; #eEnterDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.createDate &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.createDate &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (a.auditDate &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (a.auditDate &lt; #eAuditDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guestId = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceMan">  
+                    (a.orderMan = #serviceMan#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.serviceId = #serviceId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (a.serviceId in ($serviceIdList$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="accountSign">  
+                    (a.accountSign = #accountSign#)
+                </isNotEmpty>
+                
+	            <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+            </dynamic> 
+				
+	</select>
+	
+	<select id="queryRPAccountList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as rpId,
+			a.rp_bill_id as rpBillId,
+			a.orgid as orgid,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.bill_main_id as billMainId,
+			a.bill_service_id as billServiceId,
+			a.bill_type_id as billTypeId,
+			a.bill_code as billCode,
+			a.bill_dc as billDc,
+			a.rp_amt as rpAmt,
+			a.char_off_amt as charOffAmt,
+			a.no_char_off_amt as noCharOffAmt,
+			a.pre_char_off_amt as preCharOffAmt,
+			a.void_amt as voidAmt,
+			a.print_times as printTimes,
+			a.balance_sign as balanceSign,
+			a.balancer as balancer,
+			a.balance_date as balanceDate,
+			a.settle_sign as settleSign,
+			a.settler as settler,
+			a.settle_date as settleDate,
+			a.settle_status as settleStatus,
+			a.audit_sign as auditSign,
+			a.auditor as auditor,
+			a.audit_date as auditDate,
+			a.remark as remark,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.f_year as fYear,
+			a.f_month as fMonth,
+			a.is_disabled as isDisabled,
+			b.full_name as guestFullName,
+			b.short_name as guestShortName
+		from fi_rp_bill a
+		inner join wb_common.com_guest b
+		on a.guest_id = b.id
+		where a.is_disabled = 0
+
+				
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.mainId = #id#)
+                </isNotEmpty>
+                
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.createDate &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.createDate &lt; #endDate#)
+                </isNotEmpty>
+                
+                <!--入库日期 -->
+                <isNotEmpty prepend="and" property="sBillDate">  
+                    a.billDate &gt;= #sEnterDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eBillDate">  
+                    (a.billDate &lt; #eEnterDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.createDate &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.createDate &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (a.auditDate &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (a.auditDate &lt; #eAuditDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guestId = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceMan">  
+                    (a.orderMan = #serviceMan#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.serviceId = #serviceId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (a.serviceId in ($serviceIdList$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="accountSign">  
+                    (a.accountSign = #accountSign#)
+                </isNotEmpty>
+                
+	            <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+            </dynamic> 
+				
+	</select>
+	
+</sqlMap>

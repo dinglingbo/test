@@ -67,7 +67,7 @@
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
-                    <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选择</a>
+                    <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a>
                 </td>
             </tr>
         </table>
@@ -81,6 +81,7 @@
          borderStyle=""
          dataField="partlist"
          url=""
+         showPager="false"
          ondrawcell="onPartGridDraw"
          onrowdblclick="onRowDblClick"
          idField="id"

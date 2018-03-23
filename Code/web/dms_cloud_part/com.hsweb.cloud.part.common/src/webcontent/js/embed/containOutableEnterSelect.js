@@ -260,9 +260,9 @@ function onOk()
     resultData = {
         part:nodec
     };
-    if(!callback)
+    if(!parent.addDetail)
     {
-        CloseWindow("ok");
+        return;
     }
     else{
         //需要判断是否已经添加了此配件

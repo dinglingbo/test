@@ -125,8 +125,8 @@
 	}
 	
 	function getMenuData(){
-		$.ajax({
-			url: "org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
+		nui.ajax({
+			url: contextPath + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
 			type: "POST",
 			success: function(text){
 				var treeNodes = text.treeNodes;

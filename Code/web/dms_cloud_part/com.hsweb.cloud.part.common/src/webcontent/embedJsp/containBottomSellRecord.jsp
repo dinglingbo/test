@@ -47,7 +47,6 @@
             <div type="indexcolumn">序号</div>
             <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
             <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
-            <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
             <div allowSort="true" field="outDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
             <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
             <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
@@ -59,6 +58,7 @@
             <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
             <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
             <div allowSort="true" datatype="float" field="rtnableQty" summaryType="sum" width="60" headerAlign="center" header="可退货数量"></div>
+            <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
             <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
             <div field="enterPrice" width="60" headerAlign="center" header="成本单价"></div>
             <div field="enterAmt" width="60" headerAlign="center" summaryType="sum" header="成本金额"></div>

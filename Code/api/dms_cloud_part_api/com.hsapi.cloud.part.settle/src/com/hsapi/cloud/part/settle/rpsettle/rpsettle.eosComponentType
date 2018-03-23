@@ -2,10 +2,10 @@
 <com.primeton.studio.component.core.EosComponentTypeInfo>
   <description>
     <version>6.0</version>
-    <displayName>paramquery</displayName>
+    <displayName>rpsettle</displayName>
     <author>Administrator</author>
-    <createdTime>2018-03-17 14:40:23</createdTime>
-    <description>基本参数查询，默认销价，进价，参考价格，</description>
+    <createdTime>2018-03-20 11:46:18</createdTime>
+    <description></description>
     <detailDescription></detailDescription>
     <demo></demo>
     <links></links>

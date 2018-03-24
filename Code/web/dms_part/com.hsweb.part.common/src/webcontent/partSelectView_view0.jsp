@@ -85,6 +85,7 @@
                      selectOnLoad="true"
                      pageSize="50"
                      sortMode="client"
+                     allowCellWrap="true"
                      showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
@@ -95,7 +96,7 @@
                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
                                 <div allowSort="true" field="code" width="80" headerAlign="center" allowSort="true">编码</div>
                                 <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                                <div allowSort="true" field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
+                                <div allowSort="true" field="fullName" width="200" headerAlign="center" allowSort="true">全称</div>
                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                             </div>
                         </div>

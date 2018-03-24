@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseReturn.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/purchaseReturn/purchaseReturn.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -87,9 +87,9 @@
                      idField="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="outCode" headerAlign="center" header="退货单号"></div>
-                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
-                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="billStatus" width="25" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="guestFullName" headerAlign="center" header="供应商" align="left"></div>
+                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:ss"></div>
                     </div>
                 </div>
                 <!--footer-->

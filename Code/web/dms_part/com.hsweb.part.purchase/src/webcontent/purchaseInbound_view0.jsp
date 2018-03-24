@@ -86,6 +86,7 @@
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="false"
                      selectOnLoad="true"
+                     allowCellWrap="true"
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsEnterMainList"
@@ -93,9 +94,10 @@
                      idField="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="enterCode" headerAlign="center" header="入库单号"></div>
-                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div>
-                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="billStatus" width="25" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="guestFullName" headerAlign="center" header="供应商" align="left"></div>
+                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss"></div>
+                        <!--<div allowSort="true" field="enterCode" headerAlign="center" header="入库单号" align="left"></div>-->
                     </div>
                 </div>
                 <!--footer-->
@@ -118,7 +120,7 @@
                             <td>
                                 <input class="nui-textbox" width="100%" name="enterCode" enabled="false" emptyText="新增入库单"/>
                             </td>
-                            <td class="title required">
+                            <td class="title">
                                 <label>入库日期：</label>
                             </td>
                             <td width="100">
@@ -144,7 +146,7 @@
                                        width="100%"
                                        nullItemText="请选择..."/>
                             </td>
-                            <td class="title">
+                            <td class="title required">
                                 <label>结算方式：</label>
                             </td>
                             <td>
@@ -194,7 +196,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="title">
+                            <td class="title" required>
                                 <label>采购员：</label>
                             </td>
                             <td colspan="1">
@@ -216,7 +218,7 @@
                             <td colspan="3">
                                 <input class="nui-textbox" width="100%" name="billCode"/>
                             </td>
-                            <td class="title">
+                            <td class="title" required>
                                 <label>验货员：</label>
                             </td>
                             <td colspan="1">

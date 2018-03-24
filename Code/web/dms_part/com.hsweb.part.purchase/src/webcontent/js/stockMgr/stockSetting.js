@@ -18,9 +18,15 @@ $(document).ready(function(v)
 {
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
+    partGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
 
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
+    tree.on("beforeload",function(e){
+        e.data.token = token;
+    });
     //console.log("xxx");
     queryForm = new nui.Form("#queryForm");
     //仓库
@@ -183,7 +189,7 @@ function storeCycEdit()
         var storehouseList = nui.get("storeId").getData();
         nui.open({
             targetWindow: window,
-            url: "com.hsweb.part.purchase.storeCycDetail.flow",
+            url: "com.hsweb.part.purchase.storeCycDetail.flow?token=" + token,
             title: "周期定义",
             width: 500, height: 570,
             allowDrag:true,
@@ -211,7 +217,7 @@ function setStoreLocationBatch()
     var storehouseList = nui.get("storeId").getData();
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.setStoreLocationBatch.flow",
+        url: "com.hsweb.part.purchase.setStoreLocationBatch.flow?token=" + token,
         title: "批量设置仓位",
         width: 500, height: 410,
         allowDrag:true,

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售退货</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellReturn.js?v=1.0.11"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellReturn.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -98,9 +98,9 @@
                      idFiled="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="enterCode" headerAlign="center" header="退货单号"></div>
-                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd"></div>
-                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="billStatus" width="25" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="guestFullName" headerAlign="center" header="客户名称" align="left"></div>
+                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:ss"></div>
                     </div>
                 </div>
                 <!--footer-->

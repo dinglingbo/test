@@ -9,6 +9,10 @@ $(document).ready(function(v)
 {
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
+    partGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
+
     storeIdEl = nui.get("storeId");
 });
 

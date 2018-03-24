@@ -19,7 +19,9 @@ $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
-
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     queryForm = new nui.Form("#queryForm");

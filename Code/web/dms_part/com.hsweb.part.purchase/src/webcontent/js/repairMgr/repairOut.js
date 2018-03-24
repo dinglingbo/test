@@ -33,24 +33,45 @@ $(document).ready(function()
     console.log(queryInfoForm);
 
     leftGrid = nui.get("leftGrid");
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     console.log(leftGrid);
     leftGrid.setUrl(leftGridUrl);
     rightGrid = nui.get("rightGrid");
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     console.log(rightGrid);
     rightGrid.setUrl(rightGridUrl);
     rightGrid1 = nui.get("rightGrid1");
+    rightGrid1.on("beforeload",function(e){
+        e.data.token = token;
+    });
     console.log(rightGrid1);
     rightGrid1.setUrl(rightGrid1Url);
     rightGrid2 = nui.get("rightGrid1");
+    rightGrid2.on("beforeload",function(e){
+        e.data.token = token;
+    });
     console.log(rightGrid2);
     rightGrid2.setUrl(rightGrid2Url);
     rightGrid3 = nui.get("rightGrid3");
+    rightGrid3.on("beforeload",function(e){
+        e.data.token = token;
+    });
     console.log(rightGrid3);
     rightGrid3.setUrl(rightGrid3Url);
     rightGrid4 = nui.get("rightGrid4");
+    rightGrid4.on("beforeload",function(e){
+        e.data.token = token;
+    });
     console.log(rightGrid4);
     rightGrid4.setUrl(rightGrid4Url);
     rightGrid5 = nui.get("rightGrid5");
+    rightGrid5.on("beforeload",function(e){
+        e.data.token = token;
+    });
     console.log(rightGrid5);
     rightGrid5.setUrl(rightGrid5Url);
 });
@@ -95,7 +116,7 @@ function onEditMaterial()
     {
         nui.open({
             targetWindow: window,
-            url: "com.hsweb.part.purchase.repairMaterial.flow",
+            url: "com.hsweb.part.purchase.repairMaterial.flow?token=" + token,
             title: "供应商资料", width: 560, height: 200,
             allowDrag:true,
             allowResize:false,

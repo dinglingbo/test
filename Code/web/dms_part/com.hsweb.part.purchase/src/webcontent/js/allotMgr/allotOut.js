@@ -43,6 +43,9 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     leftGrid.on("load",function(){
         var data = leftGrid.getData()||[];
         var count = data.length;
@@ -54,6 +57,9 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid.on("drawcell",function(e)
     {
         switch (e.field)
@@ -155,13 +161,22 @@ function reloadLeftGrid(){
 }
 function onLeftGridDrawCell(e)
 {
-    switch (e.field){
-        case "billStatus":
-            if(billStatusHash && billStatusHash[e.value])
-            {
-                e.cellHtml = billStatusHash[e.value];
-            }
-            break;
+    var record = e.record,
+        column = e.column,
+        field = e.field,
+        value = e.value;
+
+    //将单据状态文本替换成图片
+    if (column.field == "billStatus") {
+
+        if (e.value == 0) {
+            console.log('OK' + e.value);
+            e.cellHtml = "<span class='icon-edit' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 1) {
+            e.cellHtml = "<span class='icon-ok' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 2) {
+            e.cellHtml = "<span class='icon-lock' style='width:20px;height:20px;display:block;'></span>"
+        }
     }
 }
 var currType = 0;
@@ -398,7 +413,8 @@ function save()
                 outMain:main,
                 outDetailAdd:outDetailAdd,
                 outDetailUpdate:outDetailUpdate,
-                outDetailDelete:outDetailDelete
+                outDetailDelete:outDetailDelete,
+                token:token
             }),
             success:function(data)
             {
@@ -451,7 +467,7 @@ function selectPart(callback)
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.enterDetailSelect.flow",
+        url: "com.hsweb.part.common.enterDetailSelect.flow?token=" + token,
         title: "选择入库明细", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -503,7 +519,7 @@ function addEnterDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.sellOutDetail.flow",
+        url: "com.hsweb.part.purchase.sellOutDetail.flow?token=" + token,
         title: "销售数量金额", width: 430, height:320,
         allowDrag:true,
         allowResize:false,
@@ -567,7 +583,7 @@ function editPart()
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.sellOutDetail.flow",
+        url: "com.hsweb.part.purchase.sellOutDetail.flow?token=" + token,
         title: "销售数量金额", width: 430, height:320,
         allowDrag:true,
         allowResize:false,
@@ -621,7 +637,8 @@ function review()
     }
     var params = {
         param:{
-            outId:row.id
+            outId:row.id,
+            token:token
         }
     };
     nui.mask({

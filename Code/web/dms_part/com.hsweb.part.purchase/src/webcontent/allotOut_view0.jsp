@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨出库</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotOut.js?v=1.0.12"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotOut.js?v=1.0.13"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -85,9 +85,9 @@
                      idFiled="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="outCode" headerAlign="center" header="出库单号" allowSort="true"></div>
-                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd" allowSort="true"></div>
-                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态" allowSort="true"></div>
+                        <div allowSort="true" field="billStatus" width="25" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="guestFullName" headerAlign="center" header="接收机构" align="left"></div>
+                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss"></div>
                     </div>
                 </div>
                 <!--footer-->
@@ -138,7 +138,7 @@
                         </tr>
                         <tr>
                             <td class="title required">
-                                <label>接收公司：</label>
+                                <label>接收机构：</label>
                             </td>
                             <td colspan="1">
                                 <input name="guestId"

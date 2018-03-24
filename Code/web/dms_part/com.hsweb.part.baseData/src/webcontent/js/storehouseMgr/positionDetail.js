@@ -52,7 +52,8 @@ function onOk()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            storeLocations:storeLocations
+            storeLocations:storeLocations,
+            token:token
         }),
         success:function(data)
         {

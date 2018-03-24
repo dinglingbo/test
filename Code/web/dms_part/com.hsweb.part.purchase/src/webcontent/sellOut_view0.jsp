@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOut.js?v=1.0.20"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/sellMgr/sellOut.js?v=1.0.21"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -89,9 +89,9 @@
                      idFiled="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="outCode" headerAlign="center" header="销售单号"></div>
-                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="销售日期" dateFormat="yyyy-MM-dd"></div>
-                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="billStatus" width="25" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="guestFullName" headerAlign="center" header="客户名称" align="left"></div>
+                        <div allowSort="true" field="outDate" width="80" headerAlign="center" header="销售日期" dateFormat="yyyy-MM-dd H:ss"></div>
                     </div>
                 </div>
                 <!--footer-->

@@ -43,6 +43,9 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+    	e.data.token = token;
+    });
     leftGrid.on("load",function(){
         var data = leftGrid.getData()||[];
         var count = data.length;
@@ -53,6 +56,9 @@ $(document).ready(function(v)
         nui.get("leftGridCount").setValue("共"+count+"项");
     });
     rightGrid = nui.get("rightGrid");
+    rightGrid.on("beforeload",function(e){
+    	e.data.token = token;
+    });
     rightGrid.setUrl(rightGridUrl);
     rightGrid.on("drawcell",function(e)
     {
@@ -150,13 +156,22 @@ function reloadLeftGrid(){
 }
 function onLeftGridDrawCell(e)
 {
-    switch (e.field){
-        case "billStatus":
-            if(billStatusHash && billStatusHash[e.value])
-            {
-                e.cellHtml = billStatusHash[e.value];
-            }
-            break;
+    var record = e.record,
+        column = e.column,
+        field = e.field,
+        value = e.value;
+
+    //将单据状态文本替换成图片
+    if (column.field == "billStatus") {
+
+        if (e.value == 0) {
+            console.log('OK' + e.value);
+            e.cellHtml = "<span class='icon-edit' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 1) {
+            e.cellHtml = "<span class='icon-ok' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 2) {
+            e.cellHtml = "<span class='icon-lock' style='width:20px;height:20px;display:block;'></span>"
+        }
     }
 }
 var currType = 0;
@@ -373,7 +388,8 @@ function save()
                 enterMain:main,
                 enterDetailAdd:enterDetailAdd,
                 enterDetailUpdate:enterDetailUpdate,
-                enterDetailDelete:enterDetailDelete
+                enterDetailDelete:enterDetailDelete,
+                token:token
             }),
             success:function(data)
             {
@@ -577,7 +593,8 @@ function review()
     }
     var params = {
         param:{
-            enterId:row.id
+            enterId:row.id,
+            token:token
         }
     };
     nui.mask({

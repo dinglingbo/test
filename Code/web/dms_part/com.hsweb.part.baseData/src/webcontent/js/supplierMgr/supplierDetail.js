@@ -121,7 +121,8 @@ function onOk()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            supplier:data
+            supplier:data,
+            token:token
         }),
         success:function(data)
         {

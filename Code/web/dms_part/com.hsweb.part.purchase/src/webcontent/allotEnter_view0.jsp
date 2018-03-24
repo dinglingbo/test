@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨入库</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotEnter.js?v=1.0.14"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotEnter.js?v=1.0.16"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -85,9 +85,9 @@
                      idFiled="id"
                      url="">
                     <div property="columns">
-                        <div allowSort="true" field="enterCode" headerAlign="center" header="入库单号"></div>
-                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd"></div>
-                        <div allowSort="true" field="billStatus" width="30" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="billStatus" width="25" headerAlign="center" header="状态"></div>
+                        <div allowSort="true" field="guestFullName" headerAlign="center" header="调出方" align="left"></div>
+                        <div allowSort="true" field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss"></div>
                     </div>
                 </div>
                 <!--footer-->

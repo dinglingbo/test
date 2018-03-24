@@ -42,6 +42,9 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     leftGrid.on("load",function(){
         var data = leftGrid.getData()||[];
         var count = data.length;
@@ -53,7 +56,9 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
     menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");
     advancedSearchWin = nui.get("advancedSearchWin");
@@ -368,7 +373,8 @@ function save()
                 enterMain:main,
                 enterDetailAdd:enterDetailAdd,
                 enterDetailUpdate:enterDetailUpdate,
-                enterDetailDelete:enterDetailDelete
+                enterDetailDelete:enterDetailDelete,
+                token:token
             }),
             success:function(data)
             {
@@ -414,7 +420,7 @@ function selectPart(callback)
 {
 	nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.partSelectView.flow",
+        url: "com.hsweb.part.common.partSelectView.flow?token=" + token,
         title: "选择配件", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -438,7 +444,7 @@ function addEnterDetail(part)
     }
 	nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.inBoundCountView.flow",
+        url: "com.hsweb.part.purchase.inBoundCountView.flow?token=" + token,
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -507,7 +513,7 @@ function editPart()
     var storeId = nui.get("storeId").getValue();
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.enterDetailEdit.flow",
+        url: "com.hsweb.part.purchase.enterDetailEdit.flow?token=" + token,
         title: "数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -577,7 +583,8 @@ function review()
     }
     var params = {
         param:{
-            enterId:row.id
+            enterId:row.id,
+            token:token
         }
     };
     nui.mask({

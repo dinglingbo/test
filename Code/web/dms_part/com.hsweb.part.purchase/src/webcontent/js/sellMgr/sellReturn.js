@@ -44,6 +44,9 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     leftGrid.on("load",function(){
         var data = leftGrid.getData()||[];
         var count = data.length;
@@ -55,6 +58,9 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid.on("drawcell",function(e)
     {
         switch (e.field)
@@ -154,13 +160,22 @@ function reloadLeftGrid(){
 }
 function onLeftGridDrawCell(e)
 {
-    switch (e.field){
-        case "billStatus":
-            if(billStatusHash && billStatusHash[e.value])
-            {
-                e.cellHtml = billStatusHash[e.value];
-            }
-            break;
+    var record = e.record,
+        column = e.column,
+        field = e.field,
+        value = e.value;
+
+    //将单据状态文本替换成图片
+    if (column.field == "billStatus") {
+
+        if (e.value == 0) {
+            console.log('OK' + e.value);
+            e.cellHtml = "<span class='icon-edit' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 1) {
+            e.cellHtml = "<span class='icon-ok' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 2) {
+            e.cellHtml = "<span class='icon-lock' style='width:20px;height:20px;display:block;'></span>"
+        }
     }
 }
 var currType = 0;
@@ -382,7 +397,8 @@ function save()
                 enterMain:main,
                 enterDetailAdd:enterDetailAdd,
                 enterDetailUpdate:enterDetailUpdate,
-                enterDetailDelete:enterDetailDelete
+                enterDetailDelete:enterDetailDelete,
+                token:token
             }),
             success:function(data)
             {
@@ -429,7 +445,7 @@ function selectCustomer(elId)
     customer = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.customerSelect.flow",
+        url: "com.hsweb.part.common.customerSelect.flow?token=" + token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -473,7 +489,7 @@ function selectPart(callback)
     var guestFullName = nui.get("guestId").getText();
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.sellOutSelect.flow",
+        url: "com.hsweb.part.common.sellOutSelect.flow?token=" + token,
         title: "选择销售明细", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -551,7 +567,7 @@ function editPart()
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.enterDetailEdit.flow",
+        url: "com.hsweb.part.purchase.enterDetailEdit.flow?token=" + token,
         title: "数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -623,7 +639,8 @@ function review()
     }
     var params = {
         param:{
-            enterId:row.id
+            enterId:row.id,
+            token:token
         }
     };
     nui.mask({

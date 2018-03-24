@@ -17,6 +17,9 @@ $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid.on("preload",function(e)
     {
         console.log(e);

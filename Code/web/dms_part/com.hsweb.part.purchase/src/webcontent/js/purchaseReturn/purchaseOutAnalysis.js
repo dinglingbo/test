@@ -8,6 +8,9 @@ $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     quickSearch2(currAtype);
     //console.log("xxx");
 });

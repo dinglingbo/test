@@ -19,6 +19,9 @@ $(document).ready(function(v)
 {
 	grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
 
     tree = nui.get("tree1");
   //  tree.setUrl(gridUrl);

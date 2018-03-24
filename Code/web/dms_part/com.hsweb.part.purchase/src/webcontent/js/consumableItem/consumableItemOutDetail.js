@@ -50,7 +50,8 @@ function onOk()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            out:out
+            out:out,
+            token:token
         }),
         success:function(data)
         {

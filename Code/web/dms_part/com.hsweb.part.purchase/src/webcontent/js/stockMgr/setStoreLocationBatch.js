@@ -42,6 +42,7 @@ function onOk()
     }
     var tmpList = data.partCodeList.split("\n");
     data.partCodeList = tmpList;
+    data.token = token;
     nui.mask({
         html:'保存中...'
     });

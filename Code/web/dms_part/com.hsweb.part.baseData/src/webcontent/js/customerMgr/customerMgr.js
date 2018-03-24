@@ -40,6 +40,9 @@ $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -189,7 +192,7 @@ function addCustomer()
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.customerAdd.flow",
+        url: "com.hsweb.part.baseData.customerAdd.flow?token=" + token,
         title: "客户资料", width: 500, height: 560,
         allowDrag:true,
         allowResize:false,
@@ -225,7 +228,7 @@ function editCustomer()
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.customerAdd.flow",
+        url: "com.hsweb.part.baseData.customerAdd.flow?token=" + token,
         title: "客户资料", width: 500, height: 560,
         allowDrag:true,
         allowResize:false,

@@ -36,8 +36,14 @@ $(document).ready(function(v)
 {
 	rightGrid1 = nui.get("rightGrid1");
     rightGrid1.setUrl(rightGrid1Url);
+    rightGrid1.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid2 = nui.get("rightGrid2");
     rightGrid2.setUrl(rightGrid2Url);
+    rightGrid2.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid2.on("drawcell",function(e)
     {
         switch (e.field)
@@ -228,7 +234,8 @@ function review()
     }
     var params = {
         param:{
-            outId:row.id
+            outId:row.id,
+            token:token
         }
     };
     nui.mask({

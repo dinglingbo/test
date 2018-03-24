@@ -14,8 +14,14 @@ $(document).ready(function(v)
     //console.log(splitter);
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid.on("rowclick",function(e)
     {
         var row = e.record;
@@ -49,7 +55,7 @@ function addOrEditPartQuality(quality)
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partQualityDetail.flow",
+        url: "com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
         title: title, width: 350, height: 150,
         allowDrag:true,
         allowResize:false,
@@ -99,7 +105,7 @@ function addOrEditPartBrand(brand)
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partBrandDetail.flow",
+        url: "com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
         title: title, width: 350, height: 200,
         allowDrag:true,
         allowResize:false,
@@ -379,7 +385,8 @@ function updateIsDisabled(brand,callback)
         url:updateIsDisabledUrl,
         type:"post",
         data:JSON.stringify({
-            brand:brand
+            brand:brand,
+            token:token
         }),
         success:function(data)
         {

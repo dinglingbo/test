@@ -19,12 +19,18 @@ $(document).ready(function() {
 	queryForm = new nui.Form("#queryForm");
 	partGrid = nui.get("partGrid");
 	partGrid.setUrl(partListUrl);
+    partGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
 	partGrid.on("load", function() {
 		onPartGridRowClick({});
 	});
 	tree = nui.get("tree1");
 	tree.setUrl(treeUrl);
-	// console.log("xxx");
+    tree.on("beforeload",function(e){
+        e.data.token = token;
+    });
+    // console.log("xxx");
 
 	getAllPartBrand(function(data) {
 		qualityList = data.quality;
@@ -196,7 +202,7 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partDetail.flow",
+        url: "com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 740, height: 350,
         allowDrag:true,
@@ -291,7 +297,8 @@ function savePart(part,successTip,errorTip)
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            part:part
+            part:part,
+            token:token
         }),
         success:function(data)
         {

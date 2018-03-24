@@ -39,7 +39,8 @@ function onOk()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            storehouse:data
+            storehouse:data,
+            token:token
         }),
         success:function(data)
         {

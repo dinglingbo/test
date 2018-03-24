@@ -143,7 +143,8 @@ function onOk()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            part:data
+            part:data,
+            token:token
         }),
         success:function(data)
         {

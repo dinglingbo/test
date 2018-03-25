@@ -533,6 +533,72 @@
     </div>
 </div>
 
+<div id="settleWin" class="nui-window"
+     title="结算" style="width:500px;height:250px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="false">
+    <div id="settleSearchForm" class="form">
+        <table style="width:100%;"  style="border-collapse:separate; border-spacing:10px;">
+            <tr>
+                <td id="settleGuestName" style="text-align:left;" colSpan="7">结算单位：</td>
+            </tr>
+            <tr>
+                <td id="settleBillCount" style="text-align:left;" colSpan="8">结算单据数：</td>
+            </tr>
+            <tr id="rtTr">
+                <td style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;应收</td>
+            </tr>
+            <tr id="rcTr">
+                <td style="text-align:center" width="60px">应收金额:</td>
+                <td id="rRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                <td style="text-align:center" width="60px">实收金额:</td>
+                <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                <td style="text-align:center" width="60px">优惠金额:</td>
+                <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                <td style="text-align:center" width="60px">未结金额:</td>
+                <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+            </tr>
+            <tr id="ptTr">
+                <td style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;应付</td>
+            </tr>
+            <tr id="pcTr">
+                <td style="text-align:center" width="60px">应付金额:</td>
+                <td id="pRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                <td style="text-align:center" width="60px">实付金额:</td>
+                <td id="pTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                <td style="text-align:center" width="60px">免付金额:</td>
+                <td id="pVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                <td style="text-align:center" width="60px">未结金额:</td>
+                <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align:center" width="60px">合计金额:</td>
+                <td id="rpAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+            </tr>
+            <tr>
+                <td style="text-align:center" width="60px">备注:</td>
+                <td id="rpRemark" style="text-align:left;" colSpan="7">
+                    <input id="rpTextRemark" width="80%" emptyText="" class="nui-textbox"/>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align:center;padding:10px;">
+            <a class="nui-button" onclick="settleOK" style="width:60px;margin-right:20px;">确定</a>
+            <a class="nui-button" onclick="settleCancel" style="width:60px;">取消</a>
+        </div>
+    </div>
+</div>
+
 
 
 </body>

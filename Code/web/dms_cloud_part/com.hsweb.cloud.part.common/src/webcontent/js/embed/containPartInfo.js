@@ -160,7 +160,8 @@ function onSearch()
 function doSearch(params)
 {
     partGrid.load({
-        params:params
+        params:params,
+        token:token
     });
 }
 

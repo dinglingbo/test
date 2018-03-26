@@ -10,9 +10,15 @@ $(document).ready(function(v)
 {
 	tree = nui.get("tree1");
     tree.setUrl(treeUrl);
+    tree.on("beforeload",function(e){
+        e.data.token = token;
+    });
+
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-    
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid.on("rowclick",onRowClick);
     rightGrid.on("load",function(){
         onRowClick({});
@@ -35,7 +41,7 @@ function onAddNode()
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.storehouseDetail.flow",
+        url: "com.hsweb.part.baseData.storehouseDetail.flow?token=" + token,
         title: "仓库定义",
         width: 500, height: 200,
         allowDrag:true,
@@ -67,7 +73,7 @@ function onEditNode(){
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.storehouseDetail.flow",
+        url: "com.hsweb.part.baseData.storehouseDetail.flow?token=" + token,
         title: "仓库定义",
         width: 500, height: 200,
         allowDrag:true,
@@ -106,7 +112,7 @@ function addPosition()
     var storehouseList = tree.getList()||[];
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.positionDetail.flow",
+        url: "com.hsweb.part.baseData.positionDetail.flow?token=" + token,
         title: "仓位定义",
         width: 525, height: 230,
         allowDrag:true,
@@ -169,7 +175,8 @@ function disableLocation(){
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            locations:data
+            locations:data,
+            token:token
         }),
         success:function(data)
         {
@@ -209,7 +216,8 @@ function enableLocation(){
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            locations:data
+            locations:data,
+            token:token
         }),
         success:function(data)
         {
@@ -253,7 +261,8 @@ function savePosition()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            locations:locations
+            locations:locations,
+            token:token
         }),
         success:function(data)
         {

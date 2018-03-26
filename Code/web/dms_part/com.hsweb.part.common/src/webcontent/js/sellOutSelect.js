@@ -19,6 +19,9 @@ $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
 
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
@@ -303,7 +306,7 @@ function selectCustomer(elId)
     customer = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.customerSelect.flow",
+        url: "com.hsweb.part.common.customerSelect.flow?token=" + token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

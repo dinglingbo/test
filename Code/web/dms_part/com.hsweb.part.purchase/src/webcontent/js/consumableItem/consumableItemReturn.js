@@ -36,6 +36,7 @@ function onOk()
     var out = basicInfoForm.getData();
     out.returnMan = currUserName;
     out.pickType = "050103";
+    out.token = token;
     nui.mask({
         html:'归库中...'
     });

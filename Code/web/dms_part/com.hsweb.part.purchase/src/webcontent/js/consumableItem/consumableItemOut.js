@@ -16,12 +16,18 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     leftGrid.on("rowdblclick",function(){
         itemOut();
     });
     
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid.on("drawcell",function(e)
     {
         if(e.field == "action")
@@ -93,7 +99,7 @@ function itemOut(){
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.consumableItemOutDetail.flow",
+        url: "com.hsweb.part.purchase.consumableItemOutDetail.flow?token=" + token,
         title: "耗材出库", width: 500, height: 240,
         allowDrag:true,
         allowResize:false,
@@ -126,7 +132,7 @@ function returnStore(id)
     });
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.consumableItemReturn.flow",
+        url: "com.hsweb.part.purchase.consumableItemReturn.flow?token=" + token,
         title: "耗材退回", width: 500, height: 270,
         allowDrag:true,
         allowResize:false,

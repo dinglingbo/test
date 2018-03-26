@@ -11,9 +11,14 @@ $(document).ready(function(v)
 {
     grid = nui.get("grid1");
     grid.setUrl(gridUrl);
-
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
+    tree.on("beforeload",function(e){
+        e.data.token = token;
+    });
     //console.log("xxx");
 });
 function onDrawNode(e)

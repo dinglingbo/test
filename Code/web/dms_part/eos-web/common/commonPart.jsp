@@ -46,7 +46,7 @@
 				+ "/";
 	}
 
-	window._rootUrl = getRoot();
+	window._rootUrl = apiPath + partApi + "/";
 	//console.log(window._rootUrl);
 
 	var provinceHash = {};

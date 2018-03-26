@@ -40,6 +40,9 @@ $(document).ready(function(v)
 {
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -151,7 +154,7 @@ function addSuplier()
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.supplierDetail.flow",
+        url: "com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
         title: "供应商资料", width: 530, height: 560,
         allowDrag:true,
         allowResize:false,
@@ -188,7 +191,7 @@ function editSuplier()
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.supplierDetail.flow",
+        url: "com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
         title: "供应商资料", width: 530, height: 560,
         allowDrag:true,
         allowResize:false,

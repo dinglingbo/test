@@ -17,6 +17,9 @@ $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -191,7 +194,7 @@ function selectCustomer(elId)
     customer = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.customerSelect.flow",
+        url: "com.hsweb.part.common.customerSelect.flow?token=" + token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -287,6 +290,7 @@ function getDictItems(dictIdList,callback)
 {
     var params = {};
     params.dictIdList = dictIdList;
+    params.token = token;
     nui.ajax({
         url:getDictItemsUrl,
         type:"post",

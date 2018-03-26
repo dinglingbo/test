@@ -12,8 +12,14 @@ $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     basicInfoForm = new nui.Form("#basicInfoForm");
     storeIdEl = nui.get("storeId");
     storeIdEl.on("valuechanged",function()
@@ -209,7 +215,8 @@ function removeStockCheck()
                     url:deleteUrl,
                     type:"post",
                     data:JSON.stringify({
-                        checkId:data.id
+                        checkId:data.id,
+                        token:token
                     }),
                     success:function(data)
                     {
@@ -286,7 +293,8 @@ function save()
                 main:checkMain,
                 insertDetailList:insertDetailList,
                 updateDetailList:upDateDetailList,
-                deleteDetailList:deleteDetailList
+                deleteDetailList:deleteDetailList,
+                token:token
             }),
             success:function(data)
             {
@@ -421,6 +429,7 @@ function audit()
                 return;
             }
             params.outCode = outCode;
+            params.token = token;
             nui.ajax({
                 url:auditUrl,
                 type:"post",
@@ -454,7 +463,7 @@ function addDetail()
 	var list = rightGrid.getData();
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.partSelectView.flow",
+        url: "com.hsweb.part.common.partSelectView.flow?token=" + token,
         title: "配件选择",
         width: 900, height: 500,
         allowDrag:true,
@@ -511,6 +520,7 @@ function getCycStoreByPartId(partId,callback)
     params.partId = partId;
     params.orgid = currOrgid;
     params.storeId = nui.get("storeId").getValue();
+    params.token = token;
     nui.ajax({
         url:getCycStoreByPartIdUrl,
         type:"post",
@@ -531,7 +541,7 @@ function openCheckMain()
     var list = storeIdEl.getData();
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.selectStockCheck.flow",
+        url: "com.hsweb.part.purchase.selectStockCheck.flow?token=" + token,
         title: "盘点单选择",
         width: 900, height: 500,
         allowDrag:true,

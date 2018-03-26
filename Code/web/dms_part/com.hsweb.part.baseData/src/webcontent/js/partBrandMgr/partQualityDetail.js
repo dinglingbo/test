@@ -42,7 +42,8 @@ function onOk()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            brand:data
+            brand:data,
+            token:token
         }),
         success:function(data)
         {

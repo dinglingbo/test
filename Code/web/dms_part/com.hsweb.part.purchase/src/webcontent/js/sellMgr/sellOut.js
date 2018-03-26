@@ -10,6 +10,8 @@ var advancedSearchFormData = null;
 var basicInfoForm = null;
 var leftGrid = null;
 var rightGrid = null;
+var menuBtnDateQuickSearch = null;
+var menuBtnStatusQuickSearch = null;
 
 //单据状态
 var billStatusList = [
@@ -41,6 +43,9 @@ $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     leftGrid.on("load",function(){
         var data = leftGrid.getData()||[];
         var count = data.length;
@@ -52,6 +57,9 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid.on("drawcell",function(e)
     {
         switch (e.field)
@@ -67,7 +75,8 @@ $(document).ready(function(v)
         }
     });
 
-
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
+    menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -152,7 +161,7 @@ $(document).ready(function(v)
                         sellerEl.setText(currUserName);
                     }
                 });
-                quickSearch(currType);
+                quickSearch(menuBtnDateQuickSearch, currType, '本日');
             });
         });
     });
@@ -173,16 +182,22 @@ function calculateAmt(part)
 }
 function onLeftGridDrawCell(e)
 {
-    switch (e.field)
-    {
-        case "billStatus":
-            if(billStatusHash && billStatusHash[e.value])
-            {
-                e.cellHtml = billStatusHash[e.value];
-            }
-            break;
-        default:
-            break;
+    var record = e.record,
+        column = e.column,
+        field = e.field,
+        value = e.value;
+
+    //将单据状态文本替换成图片
+    if (column.field == "billStatus") {
+
+        if (e.value == 0) {
+            console.log('OK' + e.value);
+            e.cellHtml = "<span class='icon-edit' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 1) {
+            e.cellHtml = "<span class='icon-ok' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 2) {
+            e.cellHtml = "<span class='icon-lock' style='width:20px;height:20px;display:block;'></span>"
+        }
     }
 }
 function onLeftGridRowDblClick(e)
@@ -241,51 +256,12 @@ function loadRightGridData(outId)
         outId:outId
     });
 }
-var currType = 2;
-function quickSearch(type){
-    var params = {};
-    switch (type)
-    {
-        case 0:
-            params.today = 1;
-            break;
-        case 1:
-            params.yesterday = 1;
-            break;
-        case 2:
-            params.thisWeek = 1;
-            break;
-        case 3:
-            params.lastWeek = 1;
-            break;
-        case 4:
-            params.thisMonth = 1;
-            break;
-        case 5:
-            params.lastMonth = 1;
-            break;
-        case 6:
-            params.auditStatus = 0;
-            break;
-        case 7:
-            params.billStatus = 1;
-            break;
-        case 8:
-            params.billStatus = 2;
-            break;
-        default:
-            break;
-    }
-    currType = type;
-    if($("a[id*='type']").length>0)
-    {
-        $("a[id*='type']").css("color","black");
-    }
-    if($("#type"+type).length>0)
-    {
-        $("#type"+type).css("color","blue");
-    }
-    doSearch(params);
+var currType = 0;
+function quickSearch(ctlid, value, text){
+    ctlid.setValue(value);
+    ctlid.setText(text);
+    currType = value;
+    onSearch();
 }
 function onSearch(){
     search();
@@ -298,6 +274,32 @@ function search()
 function getSearchParam(){
     var params = {};
     params.guestId = nui.get("searchGuestId").getValue();
+
+    var d = menuBtnDateQuickSearch.getValue();
+
+    if (d == 0) {
+        params.today = 1;
+    } else if (d == 1) {
+        params.yesterday = 1;
+    }  else if (d == 2) {
+        params.thisWeek = 1;
+    } else if (d == 3) {
+        params.lastWeek = 1;
+    } else if (d == 4) {
+        params.thisMonth = 1;
+    } else if (d == 5) {
+        params.lastMonth = 1;
+    }
+
+    var s = menuBtnStatusQuickSearch.getValue();
+
+    if (s == 6) {
+        params.auditStatus = 0;
+    } else if (s == 7) {
+        params.auditStatus = 1;
+    }  else if (s == 8) {
+        params.postStatus = 1;
+    }
     return params;
 }
 function doSearch(params)
@@ -307,6 +309,11 @@ function doSearch(params)
         params:params
     },function(){
     });
+
+    nui.get("searchGuestId").setText("");
+    nui.get("searchGuestId").setValue("");
+    nui.get("btnEditSupplierAvd").setText("");
+    nui.get("btnEditSupplierAvd").setValue("");
 }
 function advancedSearch()
 {
@@ -492,7 +499,8 @@ function save()
                 outMain:main,
                 outDetailAdd:outDetailAdd,
                 outDetailUpdate:outDetailUpdate,
-                outDetailDelete:outDetailDelete
+                outDetailDelete:outDetailDelete,
+                token:token
             }),
             success:function(data)
             {
@@ -539,7 +547,7 @@ function selectCustomer(elId)
     customer = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.customerSelect.flow",
+        url: "com.hsweb.part.common.customerSelect.flow?token=" + token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -586,7 +594,7 @@ function selectPart(callback)
     };
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.enterDetailSelect.flow",
+        url: "com.hsweb.part.common.enterDetailSelect.flow?token=" + token,
         title: "选择入库明细", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -604,7 +612,7 @@ function addEnterDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.sellOutDetail.flow",
+        url: "com.hsweb.part.purchase.sellOutDetail.flow?token=" + token,
         title: "销售数量金额", width: 430, height:320,
         allowDrag:true,
         allowResize:false,
@@ -667,7 +675,7 @@ function editPart()
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.sellOutDetail.flow",
+        url: "com.hsweb.part.purchase.sellOutDetail.flow?token=" + token,
         title: "销售数量金额", width: 430, height:320,
         allowDrag:true,
         allowResize:false,
@@ -726,7 +734,8 @@ function review()
     }
     var params = {
         param:{
-            outId:row.id
+            outId:row.id,
+            token:token
         }
     };
     nui.mask({

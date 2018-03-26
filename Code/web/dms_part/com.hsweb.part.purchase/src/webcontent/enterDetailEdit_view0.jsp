@@ -38,10 +38,10 @@
 			name="partId" />
 		<table style="width: 100%">
 			<tr>
-				<td class="title"><label>零件编码</label></td>
+				<td class="title"><label>配件编码</label></td>
 				<td><input name="partCode" class="nui-textbox" enabled="false"
 					width="100%" /></td>
-				<td class="title"><label>零件名称</label></td>
+				<td class="title"><label>配件名称</label></td>
 				<td><input name="partName" class="nui-textbox width1"
 					enabled="false" width="100%" /></td>
 			</tr>

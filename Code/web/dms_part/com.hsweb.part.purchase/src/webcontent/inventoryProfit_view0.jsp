@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘盈入库</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/inventoryMgr/inventoryProfit.js?v=1.0.12"></script>
+<script src="<%= request.getContextPath() %>/purchasePart/js/inventoryMgr/inventoryProfit.js?v=1.0.13"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -32,28 +32,26 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)" id="type6">未审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)" id="type7">已审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)" id="type8">已过帐</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
-                <span class="separator"></span>
+                <a class="nui-menubutton " iconCls="icon-date" menu="#popupMenuDate" id="menuBtnDateQuickSearch">本日</a>
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 0, '本日')" id="type0">本日</li>
+                    <li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 1, '昨日')" id="type1">昨日</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 2, '本周')" id="type2">本周</li>
+                    <li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 3, '上周')" id="type3">上周</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 4, '本月')" id="type4">本月</li>
+                    <li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 5, '上月')" id="type5">上月</li>
+                </ul>
+                <a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenuStatus" id="menuBtnStatusQuickSearch">全部</a>
+                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnStatusQuickSearch, 6, '未审')" id="type6">未审</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnStatusQuickSearch, 7, '已审')" id="type7">已审</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnStatusQuickSearch, 8, '已过账')" id="type8">已过账</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnStatusQuickSearch, 9, '全部')" id="type9">全部</li>
+                </ul>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
-            </td>
-        </tr>
-    </table>
-</div>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="width:100%;">
+                <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="addInbound()">新增</a>
                 <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn" enabled="false">修改</a>
                 <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveEnterMainBtn" enabled="false">保存</a>
@@ -63,7 +61,6 @@
         </tr>
     </table>
 </div>
-
 
 <div class="nui-fit">
     <div class="nui-splitter"
@@ -84,7 +81,7 @@
                      dataField="ptsEnterMainList"
                      url="">
                     <div property="columns">
-                        <div field="id" headerAlign="center" header="入库单号" allowSort="true"></div>
+                        <div field="enterCode" headerAlign="center" header="入库单号" allowSort="true"></div>
                         <div field="enterDate" width="80" headerAlign="center" allowSort="true" header="入库日期" dateFormat="yyyy-MM-dd"></div>
                         <div field="billStatus" width="30" headerAlign="center" allowSort="true" header="状态"></div>
                     </div>
@@ -106,7 +103,7 @@
                                 <label>入库单号：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" width="100%" name="id" enabled="false" emptyText="新增盘盈单"/>
+                                <input class="nui-textbox" width="100%" name="enterCode" enabled="false" emptyText="新增盘盈单"/>
                             </td>
                             <td class="title required">
                                 <label>入库日期：</label>
@@ -205,24 +202,25 @@
                      sortMode="client"
                      dataField="enterDetailList"
                      idField="id"
+                     editNextOnEnterKey="true"
+                     allowCellWrap="true"
+                     showSummaryRow="true"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
                                 <div field="partCode" width="100" headerAlign="center" header="配件编码" allowSort="true"></div>
-                                <div field="partName" headerAlign="center" header="配件名称" allowSort="true"></div>
-                                <div field="partBrandId" width="60" headerAlign="center" header="品牌" allowSort="true"></div>
-                                <div field="applyCarModel" width="60" headerAlign="center" header="车型" allowSort="true"></div>
+                                <div field="partFullName" headerAlign="center" header="配件名称" allowSort="true"></div>
                                 <div field="unit" width="40" headerAlign="center" header="单位" allowSort="true"></div>
 
                             </div>
                         </div>
                         <div header="金额信息" headerAlign="center">
                             <div property="columns">
-                                <div field="enterQty" width="40" headerAlign="center" header="盘盈数" align="right" allowSort="true" dataType="int"></div>
+                                <div field="enterQty" width="40" headerAlign="center" header="盘盈数" align="right" allowSort="true" dataType="int" summaryType="sum"></div>
                                 <div field="noTaxUnitPrice" width="40" headerAlign="center" header="单价" align="right" allowSort="true" dataType="float"></div>
-                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额" align="right" allowSort="true" dataType="float"></div>
+                                <div field="noTaxAmt" width="40" headerAlign="center" header="金额" align="right" allowSort="true" dataType="float" summaryType="sum"></div>
                             </div>
                         </div>
                         <div header="其他" headerAlign="center">

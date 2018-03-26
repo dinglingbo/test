@@ -10,6 +10,8 @@ var advancedSearchFormData = null;
 var basicInfoForm = null;
 var leftGrid = null;
 var rightGrid = null;
+var menuBtnDateQuickSearch = null;
+var menuBtnStatusQuickSearch = null;
 
 //单据状态
 var billStatusList = [
@@ -40,6 +42,9 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     leftGrid.on("load",function(){
         var data = leftGrid.getData()||[];
         var count = data.length;
@@ -51,6 +56,11 @@ $(document).ready(function(v)
     });
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
+    menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -72,7 +82,7 @@ $(document).ready(function(v)
             });
             var buyerEl = nui.get("buyer");
             buyerEl.setData(buyerList);
-            quickSearch(currType);
+            quickSearch(menuBtnDateQuickSearch, currType, '本日');
         });
     });
 
@@ -139,51 +149,55 @@ function onLeftGridDrawCell(e)
             break;
     }
 }
-var currType = 2;
-function quickSearch(type){
+
+var currType = 0;
+function quickSearch(ctlid, value, text){
+    ctlid.setValue(value);
+    ctlid.setText(text);
+    currType = value;
+    onSearch();
+}
+
+function onSearch(){
+    search();
+}
+
+function search()
+{
+    var param = getSearchParam();
+    doSearch(param);
+}
+
+function getSearchParam(){
     var params = {};
-    switch (type)
-    {
-        case 0:
-            params.today = 1;
-            break;
-        case 1:
-            params.yesterday = 1;
-            break;
-        case 2:
-            params.thisWeek = 1;
-            break;
-        case 3:
-            params.lastWeek = 1;
-            break;
-        case 4:
-            params.thisMonth = 1;
-            break;
-        case 5:
-            params.lastMonth = 1;
-            break;
-        case 6:
-            params.billStatus = 0;
-            break;
-        case 7:
-            params.billStatus = 1;
-            break;
-        case 8:
-            params.billStatus = 2;
-            break;
-        default:
-            break;
+
+    var d = menuBtnDateQuickSearch.getValue();
+
+    if (d == 0) {
+        params.today = 1;
+    } else if (d == 1) {
+        params.yesterday = 1;
+    }  else if (d == 2) {
+        params.thisWeek = 1;
+    } else if (d == 3) {
+        params.lastWeek = 1;
+    } else if (d == 4) {
+        params.thisMonth = 1;
+    } else if (d == 5) {
+        params.lastMonth = 1;
     }
-    currType = type;
-    if($("a[id*='type']").length>0)
-    {
-        $("a[id*='type']").css("color","black");
+
+    var s = menuBtnStatusQuickSearch.getValue();
+
+    if (s == 6) {
+        params.auditStatus = 0;
+    } else if (s == 7) {
+        params.auditStatus = 1;
+    }  else if (s == 8) {
+        params.postStatus = 1;
     }
-    if($("#type"+type).length>0)
-    {
-        $("#type"+type).css("color","blue");
-    }
-    doSearch(params);
+
+    return params;
 }
 
 function doSearch(params)
@@ -192,7 +206,7 @@ function doSearch(params)
     leftGrid.load({
         params:params
     },function(){
- //       onLeftGridRowDblClick({});
+        //onLeftGridRowDblClick({});
     });
 }
 function advancedSearch()
@@ -359,7 +373,8 @@ function save()
                 enterMain:main,
                 enterDetailAdd:enterDetailAdd,
                 enterDetailUpdate:enterDetailUpdate,
-                enterDetailDelete:enterDetailDelete
+                enterDetailDelete:enterDetailDelete,
+                token:token
             }),
             success:function(data)
             {
@@ -405,7 +420,7 @@ function selectPart(callback)
 {
 	nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.partSelectView.flow",
+        url: "com.hsweb.part.common.partSelectView.flow?token=" + token,
         title: "选择配件", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -429,7 +444,7 @@ function addEnterDetail(part)
     }
 	nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.inBoundCountView.flow",
+        url: "com.hsweb.part.purchase.inBoundCountView.flow?token=" + token,
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -498,7 +513,7 @@ function editPart()
     var storeId = nui.get("storeId").getValue();
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.purchase.enterDetailEdit.flow",
+        url: "com.hsweb.part.purchase.enterDetailEdit.flow?token=" + token,
         title: "数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -568,7 +583,8 @@ function review()
     }
     var params = {
         param:{
-            enterId:row.id
+            enterId:row.id,
+            token:token
         }
     };
     nui.mask({
@@ -585,7 +601,7 @@ function review()
             if(data.errCode == "S")
             {
                 nui.alert("审核成功");
-                quickSearch(currType);
+                quickSearch(menuBtnDateQuickSearch, 0, '本日');
             }
             else{
                 nui.alert(data.errMsg||"审核失败");

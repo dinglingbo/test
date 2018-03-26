@@ -65,7 +65,8 @@ function onOk()
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            storeCyc:data
+            storeCyc:data,
+            token:token
         }),
         success:function(data)
         {

@@ -8,6 +8,9 @@ var rightGrid1Url = baseUrl+"com.hsapi.part.purchase.svr.queryPtsEnterMainList.b
 var rightGrid2 = null;
 var rightGrid2Url = baseUrl+"com.hsapi.part.purchase.svr.queryPtsEnterDetailByEnterId.biz.ext";
 var tree = null;
+var storehouseHash = {};
+var menuBtnDateQuickSearch = null;
+
 var treeData = [
     {
         id:"050101",
@@ -34,8 +37,14 @@ $(document).ready(function(v)
 {
 	rightGrid1 = nui.get("rightGrid1");
     rightGrid1.setUrl(rightGrid1Url);
+    rightGrid1.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid2 = nui.get("rightGrid2");
     rightGrid2.setUrl(rightGrid2Url);
+    rightGrid2.on("beforeload",function(e){
+        e.data.token = token;
+    });
     rightGrid2.on("drawcell",function(e)
     {
         switch (e.field)
@@ -51,6 +60,10 @@ $(document).ready(function(v)
         }
     });
     tree = nui.get("tree1");
+    tree.on("beforeload",function(e){
+        e.data.token = token;
+    });
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
     tree.loadData(treeData);
     queryForm = new nui.Form("#queryForm");
     getAllPartBrand(function(data)
@@ -61,6 +74,17 @@ $(document).ready(function(v)
             partBrandIdHash[v.id] = v;
         });
     });
+
+    getStorehouse(function(data) {
+        var storehouse = data.storehouse || [];
+        nui.get("storeId").setData(storehouse);
+        storehouse.forEach(function (v) {
+            if (v && v.id) {
+                storehouseHash[v.id] = v;
+            }
+        });
+    });
+
     var dictIdList = [];
     dictIdList.push('DDT20130703000008');//票据类型
     dictIdList.push('DDT20130703000035');//结算方式
@@ -89,129 +113,28 @@ $(document).ready(function(v)
                     return true;
                 }
             });
-            quickSearch(currType);
+            quickSearch(menuBtnDateQuickSearch, currType, '本日');
         }
     });
 });
-var currType = 2;
+
+var currType = 0;
+function quickSearch(ctlid, value, text){
+    ctlid.setValue(value);
+    ctlid.setText(text);
+    currType = value;
+    onSearch();
+}
+
 function onSearch()
 {
     var params = getSearchParam();
-    if(currType && !(params.startDate||params.endDate))
-    {
-        switch (currType)
-        {
-            case 0:
-                params.today = 1;
-                break;
-            case 1:
-                params.yesterday = 1;
-                break;
-            case 2:
-                params.thisWeek = 1;
-                break;
-            case 3:
-                params.lastWeek = 1;
-                break;
-            case 4:
-                params.thisMonth = 1;
-                break;
-            case 5:
-                params.lastMonth = 1;
-                break;
-            case 6:
-                params.auditStatus = 0;
-                break;
-            case 7:
-                params.auditStatus = 1;
-                break;
-            case 8:
-                params.postStatus = 1;
-                break;
-            case 10:
-                params.thisYear = 1;
-                break;
-            case 11:
-                params.lastYear = 1;
-                break;
-            default:
-                break;
-        }
-    }
     doSearch(params);
 }
-function getSearchParam()
-{
-    var params = queryForm.getData();
-    if(params.startDate)
-    {
-        params.startDate = params.startDate.substr(0,10);
-    }
-    if(params.endDate)
-    {
-        params.endDate = params.endDate.substr(0,10);
-    }
-    console.log(params);
-    return params;
-}
-function onNodeDblClick()
-{
-    onSearch();
-}
-function quickSearch(type){
-    var params = {};
-    currType = type;
-    switch (type)
-    {
-        case 0:
-            params.today = 1;
-            break;
-        case 1:
-            params.yesterday = 1;
-            break;
-        case 2:
-            params.thisWeek = 1;
-            break;
-        case 3:
-            params.lastWeek = 1;
-            break;
-        case 4:
-            params.thisMonth = 1;
-            break;
-        case 5:
-            params.lastMonth = 1;
-            break;
-        case 6:
-            params.auditStatus = 0;
-            break;
-        case 7:
-            params.auditStatus = 1;
-            break;
-        case 8:
-            params.postStatus = 1;
-            break;
-        case 10:
-            params.thisYear = 1;
-            break;
-        case 11:
-            params.lastYear = 1;
-            break;
-        default:
-            break;
-    }
-    if($("a[id*='type']").length>0)
-    {
-        $("a[id*='type']").css("color","black");
-    }
-    if($("#type"+type).length>0)
-    {
-        $("#type"+type).css("color","blue");
-    }
-    doSearch(params);
-}
+
 function doSearch(params)
 {
- //   params.enterTypeId = '050101';
+    //   params.enterTypeId = '050101';
     var node = tree.getSelectedNode();
     if(node)
     {
@@ -223,6 +146,47 @@ function doSearch(params)
         });
     }
 }
+
+function getSearchParam()
+{
+    var params = queryForm.getData();
+
+    var storeId = nui.get("storeId").getValue();
+    params.storeId = storeId;
+
+    var d = menuBtnDateQuickSearch.getValue();
+    if (d == 0) {
+        params.today = 1;
+    } else if (d == 1) {
+        params.yesterday = 1;
+    }  else if (d == 2) {
+        params.thisWeek = 1;
+    } else if (d == 3) {
+        params.lastWeek = 1;
+    } else if (d == 4) {
+        params.thisMonth = 1;
+    } else if (d == 5) {
+        params.lastMonth = 1;
+    }
+
+    if(params.startDate)
+    {
+        params.startDate = params.startDate.substr(0,10);
+    }
+    if(params.endDate)
+    {
+        params.endDate = params.endDate.substr(0,10);
+    }
+
+    console.log(params);
+    return params;
+}
+
+function onNodeDblClick()
+{
+    onSearch();
+}
+
 function onRightGrid1RowClick(e){
     var row = e.record;
     var enterId = row.id;
@@ -251,6 +215,12 @@ function onRightGrid1DrawCell(e){
                 e.cellHtml = settTypeIdHash[e.value].name;
             }
             break;
+        case "storeId":
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
+            break;
         default:
             break;
     }
@@ -272,7 +242,8 @@ function review()
     }
     var params = {
         param:{
-            enterId:row.id
+            enterId:row.id,
+            token:token
         }
     };
     nui.mask({
@@ -289,7 +260,7 @@ function review()
             if(data.errCode == "S")
             {
                 nui.alert("审核成功");
-                quickSearch(currType);
+                quickSearch(menuBtnDateQuickSearch, currType, '本日');
             }
             else{
                 nui.alert(data.errMsg||"审核失败");

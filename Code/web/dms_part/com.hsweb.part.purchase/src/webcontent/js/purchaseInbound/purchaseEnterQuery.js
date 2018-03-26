@@ -8,7 +8,7 @@ var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rightGrid = null;
-
+var menuBtnDateQuickSearch = null;
 var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
@@ -24,9 +24,14 @@ $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
+
     rightGrid.on("load", function () {
         rightGrid.mergeColumns(["enterCode"]);
     });
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -41,7 +46,7 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -84,13 +89,44 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-                quickSearch(currType);
+                quickSearch(menuBtnDateQuickSearch, currType, '本日');
             }
         });
     });
 });
+
+
+var currType = 0;
+function quickSearch(ctlid, value, text){
+    ctlid.setValue(value);
+    ctlid.setText(text);
+    currType = value;
+    onSearch();
+}
+
+function onSearch(){
+    var params = getSearchParam();
+    doSearch(params);
+}
+
 function getSearchParam(){
     var params = {};
+    params.storeId = nui.get("storeId").getValue();
+    params.guestId = nui.get("searchGuestId").getValue();
+    var d = menuBtnDateQuickSearch.getValue();
+    if (d == 0) {
+        params.today = 1;
+    } else if (d == 1) {
+        params.yesterday = 1;
+    }  else if (d == 2) {
+        params.thisWeek = 1;
+    } else if (d == 3) {
+        params.lastWeek = 1;
+    } else if (d == 4) {
+        params.thisMonth = 1;
+    } else if (d == 5) {
+        params.lastMonth = 1;
+    }
     var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
     if(outableQtyGreaterThanZero == 1)
     {
@@ -98,58 +134,7 @@ function getSearchParam(){
     }
     return params;
 }
-var currType = 2;
-function quickSearch(type){
-    var params = getSearchParam();
-    switch (type)
-    {
-        case 0:
-            params.today = 1;
-            break;
-        case 1:
-            params.yesterday = 1;
-            break;
-        case 2:
-            params.thisWeek = 1;
-            break;
-        case 3:
-            params.lastWeek = 1;
-            break;
-        case 4:
-            params.thisMonth = 1;
-            break;
-        case 5:
-            params.lastMonth = 1;
-            break;
-        case 6:
-            params.auditStatus = 0;
-            break;
-        case 7:
-            params.auditStatus = 1;
-            break;
-        case 8:
-            params.postStatus = 1;
-            break;
-        case 10:
-            params.thisYear = 1;
-            break;
-        case 11:
-            params.lastYear = 1;
-            break;
-        default:
-            break;
-    }
-    currType = type;
-    if($("a[id*='type']").length>0)
-    {
-        $("a[id*='type']").css("color","black");
-    }
-    if($("#type"+type).length>0)
-    {
-        $("#type"+type).css("color","blue");
-    }
-    doSearch(params);
-}
+
 function doSearch(params)
 {
     params.enterTypeId = '050101';
@@ -158,6 +143,11 @@ function doSearch(params)
     },function(){
         //rightGrid.mergeColumns(["enterId"]);
     });
+
+    nui.get("searchGuestId").setText("");
+    nui.get("searchGuestId").setValue("");
+    nui.get("storeId").setText("");
+    nui.get("storeId").setValue("");
 }
 function advancedSearch()
 {
@@ -223,7 +213,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: "com.hsweb.part.common.supplierSelect.flow?token=" + token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

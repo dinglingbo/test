@@ -19,6 +19,9 @@ $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -166,7 +169,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: "com.hsweb.part.common.supplierSelect.flow?token=" + token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

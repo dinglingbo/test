@@ -10,6 +10,8 @@ var advancedSearchFormData = null;
 var basicInfoForm = null;
 var leftGrid = null;
 var rightGrid = null;
+var menuBtnDateQuickSearch = null;
+var menuBtnStatusQuickSearch = null;
 
 //单据状态
 var billStatusList = [
@@ -41,6 +43,9 @@ $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("beforeload",function(e){
+    	e.data.token = token;
+    });
     leftGrid.on("load",function(){
         var data = leftGrid.getData()||[];
         var count = data.length;
@@ -51,6 +56,9 @@ $(document).ready(function(v)
         nui.get("leftGridCount").setValue("共"+count+"项");
     });
     rightGrid = nui.get("rightGrid");
+    rightGrid.on("beforeload",function(e){
+    	e.data.token = token;
+    });
     rightGrid.setUrl(rightGridUrl);
     rightGrid.on("drawcell",function(e)
     {
@@ -66,7 +74,9 @@ $(document).ready(function(v)
                 break;
         }
     });
-    
+
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
+    menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -146,61 +156,32 @@ function reloadLeftGrid(){
 }
 function onLeftGridDrawCell(e)
 {
-    switch (e.field){
-        case "billStatus":
-            if(billStatusHash && billStatusHash[e.value])
-            {
-                e.cellHtml = billStatusHash[e.value];
-            }
-            break;
+    var record = e.record,
+        column = e.column,
+        field = e.field,
+        value = e.value;
+
+    //将单据状态文本替换成图片
+    if (column.field == "billStatus") {
+
+        if (e.value == 0) {
+            console.log('OK' + e.value);
+            e.cellHtml = "<span class='icon-edit' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 1) {
+            e.cellHtml = "<span class='icon-ok' style='width:20px;height:20px;display:block;'></span>"
+        } else if (e.value == 2) {
+            e.cellHtml = "<span class='icon-lock' style='width:20px;height:20px;display:block;'></span>"
+        }
     }
 }
-var currType = 2;
-function quickSearch(type){
-    var params = {};
-    switch (type)
-    {
-        case 0:
-            params.today = 1;
-            break;
-        case 1:
-            params.yesterday = 1;
-            break;
-        case 2:
-            params.thisWeek = 1;
-            break;
-        case 3:
-            params.lastWeek = 1;
-            break;
-        case 4:
-            params.thisMonth = 1;
-            break;
-        case 5:
-            params.lastMonth = 1;
-            break;
-        case 6:
-            params.billStatus = 0;
-            break;
-        case 7:
-            params.billStatus = 1;
-            break;
-        case 8:
-            params.billStatus = 2;
-            break;
-        default:
-            break;
-    }
-    currType = type;
-    if($("a[id*='type']").length>0)
-    {
-        $("a[id*='type']").css("color","black");
-    }
-    if($("#type"+type).length>0)
-    {
-        $("#type"+type).css("color","blue");
-    }
-    doSearch(params);
+var currType = 0;
+function quickSearch(ctlid, value, text){
+    ctlid.setValue(value);
+    ctlid.setText(text);
+    currType = value;
+    onSearch();
 }
+
 function onSearch(){
     search();
 }
@@ -212,6 +193,32 @@ function search()
 function getSearchParam(){
     var params = {};
     params.id = nui.get("enterId").getValue();
+
+    var d = menuBtnDateQuickSearch.getValue();
+
+    if (d == 0) {
+        params.today = 1;
+    } else if (d == 1) {
+        params.yesterday = 1;
+    }  else if (d == 2) {
+        params.thisWeek = 1;
+    } else if (d == 3) {
+        params.lastWeek = 1;
+    } else if (d == 4) {
+        params.thisMonth = 1;
+    } else if (d == 5) {
+        params.lastMonth = 1;
+    }
+
+    var s = menuBtnStatusQuickSearch.getValue();
+
+    if (s == 6) {
+        params.auditStatus = 0;
+    } else if (s == 7) {
+        params.auditStatus = 1;
+    }  else if (s == 8) {
+        params.postStatus = 1;
+    }
     return params;
 }
 function doSearch(params)
@@ -220,7 +227,7 @@ function doSearch(params)
     leftGrid.load({
         params:params
     },function(){
-        onLeftGridRowDblClick({});
+        //onLeftGridRowDblClick({});
     });
 }
 function advancedSearch()
@@ -381,7 +388,8 @@ function save()
                 enterMain:main,
                 enterDetailAdd:enterDetailAdd,
                 enterDetailUpdate:enterDetailUpdate,
-                enterDetailDelete:enterDetailDelete
+                enterDetailDelete:enterDetailDelete,
+                token:token
             }),
             success:function(data)
             {
@@ -585,7 +593,8 @@ function review()
     }
     var params = {
         param:{
-            enterId:row.id
+            enterId:row.id,
+            token:token
         }
     };
     nui.mask({

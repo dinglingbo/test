@@ -18,9 +18,15 @@ $(document).ready(function(v)
 {
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
+    partGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
 
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
+    tree.on("beforeload",function(e){
+        e.data.token = token;
+    });
     //console.log("xxx");
     queryForm = new nui.Form("#queryForm");
   //仓库

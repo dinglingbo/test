@@ -8,9 +8,9 @@
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
+<title>入库审核</title>
 <script
-	src="<%=request.getContextPath()%>/purchasePart/js/reviewMgr/enterReview.js?v=1.0.1"></script>
+	src="<%=request.getContextPath()%>/purchasePart/js/reviewMgr/enterReview.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -34,14 +34,30 @@
 				<tr>
 					<td style="white-space:nowrap;">
                     <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
-                    <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-                    <span class="separator"></span>
+					<a class="nui-menubutton " iconCls="icon-date" menu="#popupMenuDate" id="menuBtnDateQuickSearch">本日</a>
+					<ul id="popupMenuDate" class="nui-menu" style="display:none;">
+						<li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 0, '本日')" id="type0">本日</li>
+						<li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 1, '昨日')" id="type1">昨日</li>
+						<li class="separator"></li>
+						<li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 2, '本周')" id="type2">本周</li>
+						<li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 3, '上周')" id="type3">上周</li>
+						<li class="separator"></li>
+						<li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 4, '本月')" id="type4">本月</li>
+						<li iconCls="icon-date" onclick="quickSearch(menuBtnDateQuickSearch, 5, '上月')" id="type5">上月</li>
+					</ul>
                     <label style="font-family:Verdana;">入库单号：</label>
                     <input class="nui-textbox" name="id">
+					<label style="font-family:Verdana;">仓库：</label>
+						<input id="storeId"
+							   name="storeId"
+							   class="nui-combobox width1"
+							   textField="name"
+							   valueField="id"
+							   emptyText="请选择..."
+							   url=""
+							   allowInput="false"
+							   showNullItem="false"
+							   nullItemText="请选择..."/>
                     <label style="font-family:Verdana;">入库日期：</label>
                     <input name="startDate"
                            class="nui-datepicker"
@@ -57,21 +73,13 @@
                            allowInput="false"
                            showOkButton="false"
                            showClearButton="true"/>
-                    <span class="separator"></span>
                     <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+					<span class="separator"></span>
+					<a class="nui-button" iconCls="icon-ok" plain="true" onclick="review()" enabled="false" id="reViewBtn">审核</a>
                 </td>
 				</tr>
 			</table>
 		</div>
-	</div>
-	<div class="nui-toolbar" style="padding: 2px; border-bottom: 0;">
-		<table style="width: 100%;">
-			<tr>
-				<td style="width: 100%;"><a class="nui-button"
-					iconCls="icon-ok" plain="true" onclick="review()" enabled="false"
-					id="reViewBtn">审核</a></td>
-			</tr>
-		</table>
 	</div>
 	<div class="nui-fit">
 		<div class="nui-splitter" allowResize="false"
@@ -100,6 +108,8 @@
 										headerAlign="center" header="工单号"></div>
 									<div allowSort="true" field="guestFullName" width="150"
 										headerAlign="center" header="往来单位"></div>
+									<div allowSort="true" field="storeId" width="150"
+										 headerAlign="center" header="仓库"></div>
 									<div allowSort="true" field="enterDate" headerAlign="center"
 										width="80" header="入库日期" dateFormat="yyyy-MM-dd"></div>
 									<!--<div field="billStatus" width="60" headerAlign="center" header="单据状态"></div>-->
@@ -142,13 +152,9 @@
 							<div header="零件信息" headerAlign="center">
 								<div property="columns">
 									<div allowSort="true" field="partCode" width="60"
-										headerAlign="center" header="零件编码"></div>
-									<div allowSort="true" field="partName" headerAlign="center"
-										header="零件名称"></div>
-									<div allowSort="true" field="partBrandId" width="60"
-										headerAlign="center" header="品牌"></div>
-									<div allowSort="true" field="applyCarModel" width="60"
-										headerAlign="center" header="车型"></div>
+										headerAlign="center" header="配件编码"></div>
+									<div allowSort="true" field="partFullName" headerAlign="center"
+										header="配件名称"></div>
 									<div allowSort="true" field="unit" width="40"
 										headerAlign="center" header="单位"></div>
 									<div allowSort="true" type="checkboxcolumn" field="taxSign"

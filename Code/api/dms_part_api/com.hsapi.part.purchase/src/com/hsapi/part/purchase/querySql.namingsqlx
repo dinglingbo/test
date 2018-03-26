@@ -48,6 +48,9 @@
     		<isNotEmpty prepend="and" property="id">  
                 (enter_code like '%$id$%')
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="storeId">  
+                (store_id = #storeId#)
+            </isNotEmpty>            
             <isNotEmpty prepend="and" property="buyer">  
                 (buyer = #buyer#)
             </isNotEmpty>
@@ -146,6 +149,9 @@
     		<isNotEmpty prepend="and" property="id">  
                 (out_code like '%$id$%')
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="storeId">  
+                (store_id = #storeId#)
+            </isNotEmpty>              
             <isNotEmpty prepend="and" property="billStatus">  
                 (A.bill_status = #billStatus#)
             </isNotEmpty>

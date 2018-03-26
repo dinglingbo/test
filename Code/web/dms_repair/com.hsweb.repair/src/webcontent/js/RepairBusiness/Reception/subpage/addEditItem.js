@@ -112,7 +112,7 @@ function addItem()
     var receTypeIdList = nui.get("receTypeId").getData();
     list.push({
         serviceId:serviceId,
-        status:1,
+        status:0,
         itemKind:itemKindList[0].customid,
         receTypeId:receTypeIdList[0].customid,
         itemTime:1,
@@ -126,6 +126,7 @@ function addItem()
 var serviceId = 0;
 function setData(data)
 {
+    console.log(data);
     init(function()
     {
         serviceId = data.serviceId;

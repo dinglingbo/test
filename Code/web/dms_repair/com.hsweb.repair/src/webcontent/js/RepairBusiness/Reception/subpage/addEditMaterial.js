@@ -105,7 +105,7 @@ function addItem()
     var receTypeIdList = nui.get("receTypeId").getData();
     list.push({
         serviceId:serviceId,
-        status:1,
+        status:0,
         receTypeId:receTypeIdList[0].customid,
         qty:1,
         unitPrice:0,
@@ -218,7 +218,7 @@ function selectPartName()
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.partNameSelect.flow",
+        url: "../../view/common/partNameSelectView.html",
         title: "配件名称查询",
         width:900, height: 650,
         allowDrag:true,
@@ -256,3 +256,4 @@ function CloseWindow(action) {
 function onCancel() {
     CloseWindow("cancel");
 }
+

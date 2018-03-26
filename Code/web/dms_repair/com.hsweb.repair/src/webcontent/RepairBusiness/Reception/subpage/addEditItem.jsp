@@ -61,7 +61,7 @@
             </td>
             <td>
                 <input class="nui-combobox" name="status" enabled="false" value="1"
-                       data="[{id:1,text:'在报价'},{id:2,text:'在维修'}]"
+                       data="[{id:0,text:'在报价'},{id:1,text:'在维修'}]"
                        allowInput="false"/>
             </td>
         </tr>

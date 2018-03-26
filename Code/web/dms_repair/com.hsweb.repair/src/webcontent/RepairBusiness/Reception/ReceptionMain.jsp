@@ -107,7 +107,7 @@
             </div>
         </div>
         <div showCollapseButton="false" style="border: 0;">
-            <div id="mainTabs" class="nui-tabs" activeIndex="3" style="width: 100%; height: 100%;" plain="false">
+            <div id="mainTabs" class="nui-tabs" activeIndex="2" style="width: 100%; height: 100%;" plain="false">
                 <div title="基本信息">
                     <div class="nui-form" id="basicInfoForm">
                         <input class="nui-hidden" name="id"/>
@@ -338,7 +338,7 @@
                                         <input class="nui-textbox" name="carModel"/>
                                         <a class="nui-button" iconCls="icon-search" onclick="onSearchItem()" plain="true">查询</a>
                                         <a class="nui-button" id="change" iconCls="icon-ok" onclick="selectItem()" plain="true">选择</a>
-                                        <a class="nui-button" id="new" iconCls="icon-new" onclick="onInput()" plain="true">套餐录入</a>
+                                        <a class="nui-button" id="new" iconCls="icon-new" onclick="selectPackage()" plain="true">本店套餐录入</a>
                                     </td>
                                 </tr>
                             </table>
@@ -391,53 +391,75 @@
                 </div>
                 <div title="套餐清单">
                     <div class="nui-toolbar" style="border-bottom:0;">
-		<label>
-			<a class="nui-button" plain="true" iconCls="icon-edit" onclick="add()">修改</a>
-			<a class="nui-button" plain="true" iconCls="icon-remove" onclick="remove()">删除</a>
-			<a class="nui-button" plain="true" iconCls="icon-ok" onclick="ok()">同意维修</a>
-		</label>
-		<label width="100%">
-			套餐合计：
-			<div id="total"></div>
-		</label>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editRpsPackage()">修改</a>
+                                    <a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeRpsPackage()">删除</a>
+                                    <a class="nui-button" plain="true" iconCls="icon-ok" iconCls="" onclick="sureMtRpsPackage()">同意维修</a>
+                                    <label>套餐合计：</label>
+                                    <label id="pkgTotal"></label>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="nui-fit">
-                        <div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
+                        <div id="packageGrid" class="nui-datagrid"
                              style="width: 100%; height: 100%;"
-                             url="com.hsweb.repair.DataBase.class.ClassQuery.biz.ext"
-                             pageSize="20" showPageInfo="true" multiSelect="true"
-                             showPageIndex="false" showPage="true" showPageSize="false"
-                             showReloadButton="false" showPagerButtonIcon="false"
-                             totalCount="total" onselectionchanged="selectionChanged"
+                             dataField="list"
+                             showPager="false"
                              allowSortColumn="true">
-
                             <div property="columns">
-                                <div field="type" headerAlign="center" allowSort="true"
-                                     visible="true" width="5%">序号
-                                </div>
+                                <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                 <div header="套餐信息">
                                     <div property="columns">
-                                        <div id="name" field="name" headerAlign="center" allowSort="true"
-                                             visible="true" width="40%">套餐名称
+                                        <div type="expandcolumn" >#</div>
+                                        <div field="packageName" headerAlign="center" allowSort="true"
+                                             visible="true" width="">套餐名称
                                         </div>
-                                        <div id="captainName" field="captainName" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">状态
+                                        <div field="status" headerAlign="center"
+                                             allowSort="true" visible="true" width="60">状态
                                         </div>
-                                        <div id="isDisabled" field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="15%">优惠金额
+                                        <div field="pkgamt" headerAlign="center"
+                                             allowSort="true" visible="true" width="80">套餐金额
                                         </div>
-                                        <div id="isDisabled" field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="15%">小计金额
+                                        <div field="discountAmt" headerAlign="center"
+                                             allowSort="true" visible="true" width="80">优惠金额
                                         </div>
-                                        <div id="isDisabled" field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="15%">4S店金额
+                                        <div field="subtotal" headerAlign="center"
+                                             allowSort="true" visible="true" width="80">小计金额
                                         </div>
-                                        <div id="isDisabled" field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="25%">备注
+                                        <div field="amt4s" headerAlign="center"
+                                             allowSort="true" visible="true" width="80">4S店金额
+                                        </div>
+                                        <div field="remark" headerAlign="center"
+                                             allowSort="true" visible="true" width="">备注
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                        </div>
+                        <div id="packageDetailGrid_Form" style="display:none;">
+                            <div id="packageDetailGrid" class="nui-datagrid"
+                                 style="width: 100%; "
+                                 dataField="list"
+                                 showPager="false"
+                                 selectOnLoad="true"
+                                 allowSortColumn="true">
+                                <div property="columns">
+                                    <div field="typeName" headerAlign="center" allowSort="true"
+                                         visible="true" width="60">类型
+                                    </div>
+                                    <div field="name" headerAlign="center"
+                                         allowSort="true" visible="true" width="">名称
+                                    </div>
+                                    <div field="qty" headerAlign="center"
+                                         allowSort="true" visible="true" width="80">工时/数量
+                                    </div>
+                                    <div field="remark" headerAlign="center"
+                                         allowSort="true" visible="true" width="80">备注
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -455,9 +477,9 @@
                                             <a class="nui-button" plain="true" iconCls="icon-add" onclick="addRpsItemQuote()">新增</a>
                                             <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editRpsItemQuote()">修改</a>
                                             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeRpsItemQuote()">删除</a>
-                                            <a class="nui-button" plain="true" iconCls="icon-ok" iconCls="" onclick="okItem()">同意维修</a>
+                                            <a class="nui-button" plain="true" iconCls="icon-ok" iconCls="" onclick="sureMtItem()">同意维修</a>
                                             <label>估算合计：</label>
-                                            <label id=""></label>
+                                            <label id="rpsItemPartQuoteAmt"></label>
                                         </td>
                                     </tr>
 				                </table>
@@ -473,7 +495,7 @@
                                     <div property="columns">
                                         <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                         <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
-                                        <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80">金额小计</div>
+                                        <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80">金额小计</div>
                                         <div field="receTypeName" headerAlign="center"
                                              allowSort="true" visible="true" width="80">收费类型
                                         </div>
@@ -501,7 +523,7 @@
                                             <a class="nui-button" iconCls="icon-add" onclick="addRpsPartQuote()">新增</a>
                                             <a class="nui-button" iconCls="icon-edit" onclick="editRpsPartQuote()">修改</a>
                                             <a class="nui-button" iconCls="icon-remove" onclick="removeRpsPartQuote()">删除</a>
-                                            <a class="nui-button" id="okMaterial" iconCls="icon-ok" iconCls="" onclick="ok()">同意维修</a>
+                                            <a class="nui-button" id="okMaterial" iconCls="icon-ok" iconCls="" onclick="sureMtPart()">同意维修</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -516,7 +538,7 @@
                                     <div property="columns">
                                         <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                         <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
-                                        <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80">金额小计</div>
+                                        <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80">金额小计</div>
                                         <div field="receTypeName" headerAlign="center"
                                              allowSort="true" visible="true" width="80">收费类型
                                         </div>
@@ -539,116 +561,76 @@
                     </div>
                 </div>
                 <div title="维修项目/材料 ">
-                    <div class="nui-splitter" style="width: 100%; height: 100%" allowResize="false" vertical="true">
-                        <div size="50%" showCollapseButton="false">
-                            <div class="nui-toolbar" id="div_1"
-                                 style="border-bottom: 0; padding: 0px;">
-				<label>
-					<a class="nui-button" plain="true" iconCls="icon-edit" onclick="eidtItem()">修改</a>
-					<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeItem()">删除</a>
-				</label>
-				<label width="100%">
-					维修合计：
-					<label id="total"></label>
-				</label>
+                    <div class="nui-splitter" style="width: 100%; height: 100%"
+                         borderStyle="border:0;"
+                         handlerSize="0"
+                         allowResize="false" vertical="true">
+                        <div size="50%" showCollapseButton="false" style="border:0;">
+                            <div class="nui-toolbar" style="border-bottom:0;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a class="nui-button" iconCls="icon-edit" onclick="editRpsItem()">修改</a>
+                                            <a class="nui-button" iconCls="icon-remove" onclick="removeRpsItem()">删除</a>
+                                            <label>维修合计：</label>
+                                            <label id="rpsItemPartAmt"></label>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="nui-fit">
-                                <div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
+                                <div id="rpsItemGrid"
+                                     borderStyle="border-bottom:0;"
+                                     class="nui-datagrid"
+                                     dataField="list"
                                      style="width: 100%; height: 100%;"
-                                     url=""
-                                     pageSize="20" showPageInfo="false" multiSelect="true"
-                                     showPageIndex="false" showPageSize="false" showReloadButton="false"
-                                     showPagerButtonIcon="false"
-                                     totalCount="total" allowSortColumn="true" virtualScroll="true"
-                                     virtualColumns="true">
-
+                                     showPager="false"
+                                     allowSortColumn="true">
                                     <div property="columns">
-                                        <div type="indexcolumn" width="5%">序号</div>
-                                        <div field="name" headerAlign="center" allowSort="true"
-                                             visible="true" width="20%">项目名称
-                                        </div>
-                                        <div id="captainName" field="captainName" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">收费类型
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">金额
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">优惠率
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">优惠金额
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">小计
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">工时
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">工种
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">班组
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">承修人
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="15%">项目编码
-                                        </div>
-
+                                        <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+                                        <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
+                                        <div field="receTypeName" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+                                        <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80">金额</div>
+                                        <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80">优惠率</div>
+                                        <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100">优惠金额</div>
+                                        <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80">小计</div>
+                                        <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80">工时</div>
+                                        <div field="itemKindName" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
+                                        <div field="" headerAlign="center" allowSort="true" visible="true" width="80">班组</div>
+                                        <div field="" headerAlign="center" allowSort="true" visible="true" width="80">承修人</div>
+                                        <div field="itemCode" headerAlign="center" allowSort="true" visible="true" width="">项目编码</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div showCollapseButton="false">
-                            <div class="nui-toolbar" id="div_1"
-                                 style="border-bottom: 0; padding: 0px;">
-				<label> <a class="nui-button" id="edit" iconCls="icon-edit"
-                          onclick="editMaterial()">修改</a> <a class="nui-button" id="add"
-                                                             iconCls="icon-remove" onclick="removeMaterial()">删除</a>
-				</label>
+                            <div class="nui-toolbar" style="border-bottom:0;border-top:0;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a class="nui-button" iconCls="icon-edit" onclick="editRpsPart()">修改</a>
+                                            <a class="nui-button" iconCls="icon-remove" onclick="removeRpsPart()">删除</a>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="nui-fit">
-                                <div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
+                                <div id="rpsPartGrid"
+                                     dataField="list"
+                                     class="nui-datagrid"
                                      style="width: 100%; height: 100%;"
-                                     url=""
-                                     pageSize="20" showPageInfo="true" multiSelect="true"
-                                     showPageIndex="false" showPage="true" showPageSize="false"
-                                     showReloadButton="false" showPagerButtonIcon="false"
-                                     totalCount="total" onselectionchanged="selectionChanged"
+                                     showPager="false"
                                      allowSortColumn="true">
-
                                     <div property="columns">
-                                        <div field="type" headerAlign="center" allowSort="true"
-                                             visible="true" width="5%">序号
-                                        </div>
-                                        <div field="name" headerAlign="center" allowSort="true"
-                                             visible="true" width="20%">零件名称
-                                        </div>
-                                        <div id="captainName" field="captainName" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">收费类型
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">数量
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">单价
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">金额
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">优惠率
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="10%">优惠金额
-                                        </div>
-                                        <div field="isDisabled" headerAlign="center"
-                                             allowSort="true" visible="true" width="15%">零件编码
-                                        </div>
-
+                                        <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+                                        <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
+                                        <div field="receTypeName" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+                                        <div field="qty" headerAlign="center" allowSort="true" visible="true" width="80">数量</div>
+                                        <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80">单价</div>
+                                        <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80">金额</div>
+                                        <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80">优惠率</div>
+                                        <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100">优惠金额</div>
+                                        <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="">零件编码</div>
                                     </div>
                                 </div>
                             </div>

@@ -20,7 +20,7 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-                <label style="font-family:Verdana;">快速查询：</label>
+                <label style="font-family:Verdana;">快速分析：</label>
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">按分店</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">按营销员</a>
                 <!-- 
@@ -108,62 +108,5 @@
         </div>
     </div>
 </div>
-
-<div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:250px;"
-     showModal="true"
-     allowResize="false"
-     allowDrag="false">
-    <div id="advancedSearchForm" class="form">
-        <table style="width:100%;">
-            <tr>
-                <td class="title">入库日期:</td>
-                <td>
-                    <input name="startDate"
-                           width="100%"
-                           allowInput="false"
-                           class="nui-datepicker"/>
-                </td>
-                <td class="">至:</td>
-                <td>
-                    <input name="endDate"
-                           class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           allowInput="false"
-                           showOkButton="false"
-                           width="100%"
-                           showClearButton="true"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
-                </td>
-                <td colspan="3">
-                    <input id="btnEdit2"
-                           class="nui-buttonedit"
-                           emptyText="请选择供应商..."
-                           onbuttonclick="selectSupplier('btnEdit2')"
-                           width="100%"
-                           allowInput="false"
-                           selectOnFocus="true" />
-                </td>
-            </tr>
-            <tr>
-                <td class="title">入库单号:</td>
-                <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100px;" id="enterIdList"></textarea>
-                </td>
-            </tr>
-        </table>
-        <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
-        </div>
-    </div>
-</div>
-
 </body>
 </html>

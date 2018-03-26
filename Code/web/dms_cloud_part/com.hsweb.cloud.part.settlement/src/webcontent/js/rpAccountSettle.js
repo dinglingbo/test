@@ -28,6 +28,7 @@ var innerSellOutGrid = null;
 var editFormSellRtnDetail = null;
 var innerSellRtnGrid = null;
 var auditWin = null;
+var settleWin = null;
 var gprows = null;
 var mainTabs = null;
 
@@ -87,6 +88,7 @@ $(document).ready(function(v)
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     auditWin = nui.get("auditWin");
+    settleWin = nui.get("settleWin");
 
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
@@ -154,8 +156,8 @@ function getSearchParam(){
     params.billServiceId = searchServiceId.getValue();
     params.guestId = comSearchGuestId.getValue();
     
-    params.sCreateDate = searchEndDate.getValue();
-    params.eCreateDate = searchBeginDate.getValue();
+    params.sCreateDate = searchBeginDate.getValue();
+    params.eCreateDate = searchEndDate.getValue();
     return params;
 }
 var currType = 2;
@@ -929,17 +931,381 @@ function doSettle(){
     var rows = rightGrid.getSelecteds();
     var s = rows.length;
     if(s > 0){
-        auditWin.show();
+        if(name == "pRightTab"){
+            document.getElementById('rtTr').style.display = "none";
+            document.getElementById('rcTr').style.display = "none";
+            document.getElementById('ptTr').style.display = "";
+            document.getElementById('pcTr').style.display = "";
+        }else if(name == "rRightTab"){
+            document.getElementById('rtTr').style.display = "";
+            document.getElementById('rcTr').style.display = "";
+            document.getElementById('ptTr').style.display = "none";
+            document.getElementById('pcTr').style.display = "none";
+        }
 
-        var rtn = getRPAmount(rows);
+        var rtn = getSettleAmount(rows);
+        var errCode = rtn.errCode;
+        if(errCode != 'S') {
+            nui.alert(rtn.errMsg || "结算数据填写有问题!");
+            return;
+        }
+
+        settleWin.show();
+        
         var guestName = rows[0].guestName;
-        document.getElementById('balanceGuestName').innerHTML="对账单位："+guestName;
-        document.getElementById('balanceBillCount').innerHTML="对账单据数："+s;
-        document.getElementById('pAmt').innerHTML=rtn.pAmount;
-        document.getElementById('rAmt').innerHTML=rtn.rAmount;
+        document.getElementById('settleGuestName').innerHTML="结算单位："+guestName;
+        document.getElementById('settleBillCount').innerHTML="结算单据数："+s;
+        document.getElementById('rRPAmt').innerHTML=rtn.rRPAmt;
+        document.getElementById('rTrueAmt').innerHTML=rtn.rTrueAmt;
+        document.getElementById('rVoidAmt').innerHTML=rtn.rVoidAmt;
+        document.getElementById('rNoCharOffAmt').innerHTML=rtn.rNoCharOffAmt;
+        document.getElementById('pRPAmt').innerHTML=rtn.pRPAmt;
+        document.getElementById('pTrueAmt').innerHTML=rtn.pTrueAmt;
+        document.getElementById('pVoidAmt').innerHTML=rtn.pVoidAmt;
+        document.getElementById('pNoCharOffAmt').innerHTML=rtn.pNoCharOffAmt;
+        document.getElementById('rpAmt').innerHTML=rtn.rpAmt;
 
     }else{
         nui.alert("请选择单据！");
         return;
     }
+}
+function getSettleAmount(rows){
+    var tab = mainTabs.getActiveTab();
+    var name = tab.name;
+
+    var rRPAmt=0;    //应收金额
+    var rTrueAmt=0;  //实收应收
+    var rVoidAmt=0;  //优惠金额
+    var rNoCharOffAmt =0;  //未结金额
+    var pRPAmt=0;       //应付金额
+    var pTrueAmt=0;     //实付金额
+    var pVoidAmt=0;     //免付金额
+    var pNoCharOffAmt=0; //未结金额
+    var rpAmt=0;          //合计金额
+
+    var s = rows.length;
+    var pAmount = 0;
+    var rAmount = 0;
+    var s1 = 0;  //合计收
+    var s2 = 0;  //合计付
+    var billServiceId = null;
+    var errCode = 'S';
+    var errMsg = null;
+    if(s>0){
+
+        for(var i=0; i<s; i++){
+            var row = rows[i];
+            billServiceId = row.billServiceId;
+            if(name=="rpRightTab"){
+                var billDc = row.billDc;
+                var charOffAmt = row.charOffAmt||0; //已结金额
+                var rpAmt = row.rpAmt||0;   //应结金额
+                var amt2 = row.amt2||0;
+                var amt3 = row.amt3||0;
+                var amt12 = row.amt12||0;
+                var amt13 = row.amt13||0;
+                var noCharOffAmt = rpAmt - charOffAmt;
+                amt2 = parseFloat(amt2);
+                amt3 = parseFloat(amt3);
+                amt12 = parseFloat(amt12);
+                amt13 = parseFloat(amt13);
+
+                if(billDc == 1){
+                    if((amt2 + amt3)>noCharOffAmt) {
+                        errCode = 'E';
+                        errMsg = "业务单：" + billServiceId +"的结算金额超出未结金额";
+                        break;
+                    }
+
+                    rRPAmt += rpAmt;
+                    rTrueAmt += amt2;
+                    rVoidAmt += amt3;
+                    rNoCharOffAmt += noCharOffAmt;
+                    s1 += (amt2 + amt3);
+                }else if(billDc == -1){
+                    if((amt12 + amt13)>noCharOffAmt) {
+                        errCode = 'E';
+                        errMsg = "业务单：" + billServiceId +"的结算金额超出未结金额";
+                        break;
+                    }
+
+                    pRPAmt += rpAmt;
+                    pTrueAmt += amt12;
+                    pVoidAmt += amt13;
+                    pNoCharOffAmt += noCharOffAmt;
+                    s2 += (amt12 + amt13)*-1;
+                }
+            }else if(name=="pRightTab"){
+                var noCharOffAmt = row.noCharOffAmt||0; //已结金额
+
+                if((nowAmt + nowVoidAmt)>noCharOffAmt) {
+                    errCode = 'E';
+                    errMsg = "业务单：" + billServiceId +"的结算金额超出未结金额";
+                    break;
+                }
+
+                var rpAmt = row.rpAmt||0;   //应结金额
+                var nowAmt = row.nowAmt||0;
+                var nowVoidAmt = row.nowVoidAmt||0;
+                nowAmt = parseFloat(nowAmt);
+                nowVoidAmt = parseFloat(nowVoidAmt);
+                pRPAmt += rpAmt;
+                pTrueAmt += nowAmt;
+                pVoidAmt += nowVoidAmt;
+                pNoCharOffAmt += noCharOffAmt;
+                s1 += (nowAmt + nowVoidAmt);
+            }else if(name=="rRightTab"){
+                var noCharOffAmt = row.noCharOffAmt||0; //已结金额
+
+                if((nowAmt + nowVoidAmt)>noCharOffAmt) {
+                    errCode = 'E';
+                    errMsg = "业务单：" + billServiceId +"的结算金额超出未结金额";
+                    break;
+                }
+
+                var rpAmt = row.rpAmt||0;   //应结金额
+                var nowAmt = row.nowAmt||0;
+                var nowVoidAmt = row.nowVoidAmt||0;
+                nowAmt = parseFloat(nowAmt);
+                nowVoidAmt = parseFloat(nowVoidAmt);
+                rRPAmt += rpAmt;
+                rTrueAmt += nowAmt;
+                rVoidAmt += nowVoidAmt;
+                rNoCharOffAmt += noCharOffAmt;
+                s1 += (nowAmt + nowVoidAmt);
+            }
+        }
+
+        s1 += s2;
+    }
+    var rtnMsg = {};
+    rtnMsg.rRPAmt=rRPAmt;    //应收金额
+    rtnMsg.rTrueAmt=rTrueAmt;  //实收应收
+    rtnMsg.rVoidAmt=rVoidAmt;  //优惠金额
+    rtnMsg.rNoCharOffAmt =rNoCharOffAmt;  //未结金额
+    rtnMsg.pRPAmt=pRPAmt;       //应付金额
+    rtnMsg.pTrueAmt=pTrueAmt;     //实付金额
+    rtnMsg.pVoidAmt=pVoidAmt;     //免付金额
+    rtnMsg.pNoCharOffAmt=pNoCharOffAmt; //未结金额
+    rtnMsg.rpAmt=s1;          //合计金额
+    rtnMsg.errCode = errCode;
+    rtnMsg.errMsg = errMsg;
+    return rtnMsg;
+}
+function settleCancel(){
+    document.getElementById('settleGuestName').innerHTML="结算单位：";
+    document.getElementById('settleBillCount').innerHTML="结算单据数：";
+    document.getElementById('rRPAmt').innerHTML=0;
+    document.getElementById('rTrueAmt').innerHTML=0;
+    document.getElementById('rVoidAmt').innerHTML=0;
+    document.getElementById('rNoCharOffAmt').innerHTML=0;
+    document.getElementById('pRPAmt').innerHTML=0;
+    document.getElementById('pTrueAmt').innerHTML=0;
+    document.getElementById('pVoidAmt').innerHTML=0;
+    document.getElementById('pNoCharOffAmt').innerHTML=0;
+    document.getElementById('rpAmt').innerHTML=0;
+    nui.get('rpTextRemark').setValue("");
+    settleWin.hide();
+}
+var settleAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.rpAccountSettle.biz.ext";
+function settleOK(){
+    var msg = checkSettleRow();
+    if(msg){
+        nui.alert(msg);
+        return;
+    }
+    
+    var rightGrid = null;
+    var firstRow = {};
+    var guestId = null;
+    var tab = mainTabs.getActiveTab();
+    var name = tab.name;
+    switch (name)
+    {
+        case "rpRightTab":
+            rightGrid = rpRightGrid;
+            break;
+        case "pRightTab":
+            rightGrid = pRightGrid;
+            break;
+        case "rRightTab":
+            rightGrid = rRightGrid;
+            break;
+        case "qRightTab":
+            rightGrid = qRightGrid;
+            break;
+        default:
+            break;
+    }
+
+    //account  accountDetailList
+    //guest_id, guest_name bala_type_id空 bala_account空 rp_dc  char_off_amt  void_amt  item_qty  settle_type  remark
+    //bill_rp_id, bill_main_id  bill_service_id  bill_type_id  rp_dc  char_off_amt  void_amt
+    var account = {};
+    var accountDetailList = [];
+    var rows = rightGrid.getSelecteds();
+    var s = rows.length;
+    if(s > 0){
+        
+
+        var rRPAmt=0;    //应收金额
+        var rTrueAmt=0;  //实收应收
+        var rVoidAmt=0;  //优惠金额
+        var rNoCharOffAmt =0;  //未结金额
+        var pRPAmt=0;       //应付金额
+        var pTrueAmt=0;     //实付金额
+        var pVoidAmt=0;     //免付金额
+        var pNoCharOffAmt=0; //未结金额
+        var rpAmt=0;          //合计金额
+
+        var s = rows.length;
+        var pAmount = 0;
+        var rAmount = 0;
+        var s1 = 0;  //合计收
+        var s2 = 0;  //合计付
+        
+        firstRow = rows[0];
+        account.guestId = firstRow.guestId;
+        account.guestName = firstRow.guestName;
+        account.itemQty = s;
+        account.remark = nui.get('rpTextRemark').getValue();
+
+        for(var i=0; i<s; i++){
+            var row = rows[i];
+            var accountDetail = {};
+            accountDetail.billRpId = row.id;
+            accountDetail.billMainId = row.billMainId;
+            accountDetail.billServiceId = row.billServiceId;
+            accountDetail.billTypeId = row.billTypeId;
+            if(name=="rpRightTab"){
+                var billDc = row.billDc;
+                var charOffAmt = row.charOffAmt||0; //已结金额
+                var rpAmt = row.rpAmt||0;   //应结金额
+                var amt2 = row.amt2||0;
+                var amt3 = row.amt3||0;
+                var amt12 = row.amt12||0;
+                var amt13 = row.amt13||0;
+                var noCharOffAmt = rpAmt - charOffAmt;
+                amt2 = parseFloat(amt2);
+                amt3 = parseFloat(amt3);
+                amt12 = parseFloat(amt12);
+                amt13 = parseFloat(amt13);
+                if(billDc == 1){
+                    accountDetail.rpDc = 1;
+                    rRPAmt += rpAmt;
+                    rTrueAmt += amt2;
+                    rVoidAmt += amt3;
+                    rNoCharOffAmt += noCharOffAmt;
+                    s1 += (amt2 + amt3);
+                    accountDetail.charOffAmt = amt2;
+                    accountDetail.voidAmt = amt3;
+                }else if(billDc == -1){
+                    accountDetail.rpDc = -1;
+                    pRPAmt += rpAmt;
+                    pTrueAmt += amt12;
+                    pVoidAmt += amt13;
+                    pNoCharOffAmt += noCharOffAmt;
+                    s2 += (amt12 + amt13)*-1;
+                    accountDetail.charOffAmt = amt12;
+                    accountDetail.voidAmt = amt13;
+                }
+            }else if(name=="pRightTab"){
+                var noCharOffAmt = row.noCharOffAmt||0; //已结金额
+                var rpAmt = row.rpAmt||0;   //应结金额
+                var nowAmt = row.nowAmt||0;
+                var nowVoidAmt = row.nowVoidAmt||0;
+                accountDetail.rpDc = -1;
+                nowAmt = parseFloat(nowAmt);
+                nowVoidAmt = parseFloat(nowVoidAmt);
+                pRPAmt += rpAmt;
+                pTrueAmt += nowAmt;
+                pVoidAmt += nowVoidAmt;
+                pNoCharOffAmt += noCharOffAmt;
+                s1 += (nowAmt + nowVoidAmt);
+                accountDetail.charOffAmt = nowAmt;
+                accountDetail.voidAmt = nowVoidAmt;
+            }else if(name=="rRightTab"){
+                var noCharOffAmt = row.noCharOffAmt||0; //已结金额
+                var rpAmt = row.rpAmt||0;   //应结金额
+                var nowAmt = row.nowAmt||0;
+                var nowVoidAmt = row.nowVoidAmt||0;
+                accountDetail.rpDc = 1;
+                nowAmt = parseFloat(nowAmt);
+                nowVoidAmt = parseFloat(nowVoidAmt);
+                rRPAmt += rpAmt;
+                rTrueAmt += nowAmt;
+                rVoidAmt += nowVoidAmt;
+                rNoCharOffAmt += noCharOffAmt;
+                s1 += (nowAmt + nowVoidAmt);
+                accountDetail.charOffAmt = nowAmt;
+                accountDetail.voidAmt = nowVoidAmt;
+            }
+
+            accountDetailList.push(accountDetail);
+        }
+
+        if(name=="rpRightTab"){
+            s1+=s2;
+            if(s1<0){
+                account.rpDc = -1;
+            }else{
+                account.rpDc = 1;
+            }
+            account.settleType = "综合";
+            account.voidAmt = Math.abs(rVoidAmt - pVoidAmt);
+            account.trueCharOffAmt = Math.abs(rTrueAmt - pTrueAmt);
+            account.charOffAmt =  account.voidAmt + account.trueCharOffAmt;
+        }else if(name=="pRightTab"){;
+            account.rpDc = -1;
+            account.settleType = "应付";
+            account.voidAmt = pVoidAmt;
+            account.trueCharOffAmt = pTrueAmt;
+            account.charOffAmt =  pVoidAmt + pTrueAmt;
+        }else if(name=="rRightTab"){
+            account.rpDc = 1;
+            account.settleType = "应收";
+            account.voidAmt = rVoidAmt;
+            account.trueCharOffAmt = rTrueAmt;
+            account.charOffAmt =  rVoidAmt + rTrueAmt;
+        }
+
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据处理中...'
+        });
+
+       nui.ajax({
+            url : settleAuditUrl,
+            type : "post",
+            data : JSON.stringify({
+                account : account,
+                accountDetailList : accountDetailList,
+                token : token
+            }),
+            success : function(data) {
+                nui.unmask(document.body);
+                data = data || {};
+                if (data.errCode == "S") {
+                    nui.alert("对账成功!");
+
+                    balanceCancel();
+                    rightGrid.reload();
+                    
+                } else {
+                    nui.alert(data.errMsg || "对账失败!");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                // nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
+            }
+        }); 
+
+    }else{
+        nui.alert("请选择单据！");
+        return;
+    }
+
 }

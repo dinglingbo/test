@@ -126,9 +126,7 @@
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
   </process:variables>
-  <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="carBrandId" primitiveType="String"/>
-  </process:inputs>
+  <process:inputs varArgs="false"/>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="rs"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

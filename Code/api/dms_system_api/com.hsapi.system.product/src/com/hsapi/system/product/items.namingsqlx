@@ -1,11 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- author:Guine -->
 <sqlMap>
-    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
-        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
-    </parameterMap>
-    <resultMap class="commonj.sdo.DataObject" id="resultMap">
-        <result column="TYPEID" javaType="string" property="typeId"/>
-    </resultMap>
-    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    <!--产品分组-->
+    <select id="getPrdtType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id, parentId, customId = code, typeId, carBrandId, hsid, name = (code + ' ' + name) 
+		FROM dbo.ST_PrdtType 
+		where 
+			<isNull property="carBrandId">
+				ISNULL(carBrandId, '') = ''
+			</isNull>
+			<isNotNull property="carBrandId">
+				ISNULL(carBrandId, #carBrandId#) = #carBrandId#
+			</isNotNull>
+			<isNotNull property="parentId">
+				AND parentId = #parentId#
+			</isNotNull>			
+		order by parentId, code
+    </select>
+    <!--套餐包明细1-->
+    <select id="getPkgDetailByCarMt" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT pkgCarMtId, type = case when typeid = 0 then '工时' else '配件' end , 
+			packageId, itemNameId, itemKind,  partId, partBrandId, itemCode, itemName, qty, price, amt, amt4s 
+		FROM ST_PackageCarModelDetail 
+		WHERE pkgCarMtId = #pkgCarMtId#
+		ORDER BY TypeID
+    </select>
+    <!--套餐包明细2(已停用)-->
+    <select id="getPkgDetailByPackAgeId" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT type, packageId, itemNameId, itemName, itemTypeId, itemKind 
+		FROM vw_pkg_item_part 
+		WHERE packageId = #packageId#
+    </select>
+    <!--Stock1-->
+    <select id="getStock1" parameterClass="HashMap" resultClass="HashMap">
+		SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
+			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
+		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
+		    isnull(d.stock_location, '未设置') stockLocation, d.stock_up_limit stockUpLimit, 
+		    d.stock_down_limit stockDownLimit, d.last_enter_date lastEnterDate, d.last_out_date lastOutDate, 
+		    d.suggest_price suggestPrice, 
+		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
+		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
+		FROM wb_part..pts_invoicing_detail a  
+		INNER JOIN (
+		 	SELECT detail_id = MAX(b1.detail_id) 
+		 	FROM wb_part..pts_invoicing_detail b1 
+		 	WHERE b1.comp_code = #orgCode#
+		    GROUP BY part_id
+		) b ON a.detail_id = b.detail_id  
+		LEFT JOIN wb_part..pts_location_cyc d ON d.part_id = a.part_id and d.comp_code = #orgCode#
+		LEFT JOIN wb_part..vw_com_attribute w ON w.id = a.part_id 
+		WHERE a.bala_qty &gt; 0 
+			AND a.comp_code = #orgCode#
+			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)
+    </select>
+    <!--Stock2-->
+    <select id="getStock2" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
+			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
+		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
+		    isnull(d.stock_location, '未设置') stockLocation, d.stock_up_limit stockUpLimit, 
+		    d.stock_down_limit stockDownLimit, d.last_enter_date lastEnterDate, d.last_out_date lastOutDate, 
+		    d.suggest_price suggestPrice, 
+		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
+		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
+		FROM wb_part..pts_invoicing_detail a 
+		INNER JOIN (
+			SELECT detail_id = MAX(b1.detail_id) 
+			FROM wb_part..pts_invoicing_detail b1
+			group by comp_code, part_id
+		) b ON a.detail_id = b.detail_id 
+		LEFT JOIN wb_part..pts_location_cyc d ON d.part_id = a.part_id and d.comp_code = a.comp_code
+		LEFT JOIN wb_part..vw_com_attribute w ON w.id = a.part_id 
+		WHERE a.bala_qty &gt; 0 
+			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)  
+    </select>
+    <!--getBrandPart-->
+    <select id="getBrandPart" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT b.id, b.code, b.name, b.qualityTypeId, b.brandId, b.parentGroupCode, b.parentGroupId, 
+    		b.groupCode, b.groupId, b.remark, b.hotIndex 
+		FROM ST_PartCommon a 
+		INNER JOIN ST_PartFactory b ON a.PartID = b.ID 
+		WHERE EXISTS (
+		  	SELECT 1 FROM ST_PartCommon 
+			WHERE a.GroupID = GroupID AND PartID = #partId# 
+		) 
+		ORDER BY b.HotIndex DESC
+    </select>
+    <!--getPackage-->
+    <select id="getPackage" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT TOP 99.999 PERCENT id, packageId, packageTypeId, carBrandId, carLevelId, 
+    		carLineId, carModelId, packageName, itemAmt, partAmt, packageTotal, packageAmt, 
+    		package4sAmt, carbrandName, carLevelName, carLineName, carModelName, carEngineName, 
+    		makeTime, fileId, fileName, paintQty, useCount 
+		FROM vw_carmt_pkg_amt 
+		WHERE IsDisabled = 0 and carModelId = '00000000'
+			<isNotNull property="packageTypeId">
+				AND packageTypeId = #packageTypeId#
+			</isNotNull>
+			
+			<isNotNull property="packageId">
+				AND packageId like '%$packageId$%'
+			</isNotNull>
+			<isNotNull property="packageName">
+				AND packageName like '%$packageName$%'
+			</isNotNull>
+			<isNotNull property="pyCode">
+				AND pyCode like '%$pyCode$%'
+			</isNotNull>
+		UNION ALL    	
+    	SELECT TOP 99.999 PERCENT id, packageId, packageTypeId, carBrandId, carLevelId, 
+    		carLineId, carModelId, packageName, itemAmt, partAmt, packageTotal, packageAmt, 
+    		package4sAmt, carbrandName, carLevelName, carLineName, carModelName, carEngineName, 
+    		makeTime, fileId, fileName, paintQty, useCount 
+		FROM vw_carmt_pkg_amt 
+		WHERE IsDisabled = 0
+     		AND carBrandId = #carBrandId#         	
+			AND carLevelId = #carLevelId#			
+			AND carLineId = #carLineId#
+
+			<isNotNull property="carModelId">
+				AND carModelId = #carModelId#
+			</isNotNull>
+			
+			<isNotNull property="packageTypeId">
+				AND packageTypeId = #packageTypeId#
+			</isNotNull>
+			
+			<isNotNull property="packageId">
+				AND packageId like '%$packageId$%'
+			</isNotNull>
+			<isNotNull property="packageName">
+				AND packageName like '%$packageName$%'
+			</isNotNull>
+			<isNotNull property="pyCode">
+				AND pyCode like '%$pyCode$%'
+			</isNotNull>
+	    Order by UseCount DESC
+    </select>
+    <!--getPart-->
+    <select id="getPart" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT c.id, c.code, c.name, d.Name stdName, c.parentGroupCode, 
+    		c.groupCode, c.parentGroupID, c.groupID, c.remark, c.sellPrice4s, c.sellPriceStd 
+        FROM ST_PartFamilyCarModel a 
+		INNER JOIN ST_PartFamilyDetail b ON b.CatID = a.CatID 
+		INNER JOIN ST_PartFactory c ON c.id = b.PartID 
+		LEFT JOIN ST_PartName d ON D.ID = C.PartNameID 
+		WHERE carModelId = #carModelId#
+			
+			<isNotNull property="groupId">
+				AND groupId = #groupId#
+			</isNotNull>
+			<isNotNull property="code">
+				AND c.Code like '%$code$%'
+			</isNotNull>
+			<isNotNull property="name">
+				AND ISNULL(c.Name, '') + ISNULL(d.Name, '') like '%$name$%'
+			</isNotNull>
+    </select>
+    <!--getItem-->
+    <select id="getItem" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT itemId, 'KM' + ItemCode hsItemCode, carBrandId, carLevelId, carLineId, carModelId, carBrandName, 
+    		carLevelName, carLineName, carModelName, itemNameId, ItemTypeID itemSort, itemKind, itemName, itemCode, 
+    		ItemPrice price, ItemTime astandTime, Amt astandSum, Amt4S [4SSum], factoryName, typeId, makeTime, useCount 
+        FROM vw_carmt_item 
+		WHERE CarModelID = '00000000'
+        	<isNotNull property="typeId">
+				AND typeId = #typeId#
+			</isNotNull>			
+			<isNotNull property="itemKind">
+				AND itemKind = #itemKind#  -- ItemKind = 'PQ'
+			</isNotNull>
+			
+			<isNotNull property="itemCode">
+				AND itemCode like '%$itemCode$%'
+			</isNotNull>
+			<isNotNull property="itemName">
+				AND itemName like '%$itemName$%'
+			</isNotNull>
+			<isNotNull property="pyCode">
+				AND pyCode like '%$pyCode$%'
+			</isNotNull>
+        UNION ALL 
+        SELECT TOP 99.999 PERCENT itemId, 'KM' + ItemCode hsItemCode, carBrandId, carLevelId, carLineId, carModelId, carBrandName, 
+    		carLevelName, carLineName, carModelName, itemNameId, ItemTypeID itemSort, itemKind, itemName, itemCode, 
+    		ItemPrice price, ItemTime astandTime, Amt astandSum, Amt4S [4SSum], factoryName, typeId, makeTime, useCount                    
+        FROM vw_carmt_item 
+        WHERE carModelId = #carModelId#
+        	<isNotNull property="carBrandId">
+         		AND carBrandId = #carBrandId#
+         	</isNotNull>
+			<isNotNull property="carLevelId">
+				AND carLevelId = #carLevelId#
+			</isNotNull>
+			
+			<isNotNull property="carLineId">
+				AND carLineId = #carLineId#
+			</isNotNull>
+			
+			<isNotNull property="typeId">
+				AND typeId = #typeId#
+			</isNotNull>			
+			<isNotNull property="itemKind">
+				AND itemKind = #itemKind#  -- ItemKind = 'PQ'
+			</isNotNull>
+			
+			<isNotNull property="itemCode">
+				AND itemCode like '%$itemCode$%'
+			</isNotNull>
+			<isNotNull property="itemName">
+				AND itemName like '%$itemName$%'
+			</isNotNull>
+			<isNotNull property="pyCode">
+				AND pyCode like '%$pyCode$%'
+			</isNotNull>
+		ORDER BY useCount DESC
+    </select>
 </sqlMap>

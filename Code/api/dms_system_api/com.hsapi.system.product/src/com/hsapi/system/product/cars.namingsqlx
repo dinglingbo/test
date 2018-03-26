@@ -15,11 +15,17 @@
     </select>
     <!--车型-->
     <select id="carModel" parameterClass="HashMap" resultClass="HashMap">
-		SELECT DISTINCT A.id, A.carModel, carBrandId, carBrandName, 
+		SELECT DISTINCT A.id carModelId, A.carModel, carBrandId, carBrandName, 
 			carLevelName, carLineName, carEngineName, gearBoxName,
 			A.maketimestart + '-' + a.maketimeend makeYear
 		FROM ST_CarMT A 
 		WHERE carBrandId=#carBrandId#
 			And IsDisabled=0
+    </select>
+    <!--按VIN查车型-->
+    <select id="carVinModel" parameterClass="HashMap" resultClass="HashMap">
+		SELECT carModelId, carModelName, carBrandId, carBrandName, carLevelId, carLevelName, 
+			carLineID, carLineName 
+		FROM dbo.fun_getCarmodelByVIN(#vin#)
     </select>
 </sqlMap>

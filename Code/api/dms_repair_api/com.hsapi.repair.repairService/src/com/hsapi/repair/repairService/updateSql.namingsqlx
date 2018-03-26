@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap">
+		
+	</select>
+	
+	<update id="updateItemQuoteStatus" parameterClass="java.util.HashMap">
+		Update rps_item_quote set status = 1, modifier = #userName#, modify_date = now() Where service_id = #serviceId# and package_id is null
+	</update>
+	<update id="updateItemQuoteStatusPkg" parameterClass="java.util.HashMap">
+		Update rps_item_quote set status = 1, modifier = #userName#, modify_date = now() Where package_id = #packageId#
+	</update>
+	<update id="updatePartQuoteStatusPkg" parameterClass="java.util.HashMap">
+		Update rps_part_quote set status = 1, modifier = #userName#, modify_date = now() Where package_id = #packageId#
+	</update>
+	
+	<delete id="deleteRepairRecord" parameterClass="java.util.HashMap">
+		Delete from rps_repair_record where service_id = #serviceId#
+	</delete>
+</sqlMap>

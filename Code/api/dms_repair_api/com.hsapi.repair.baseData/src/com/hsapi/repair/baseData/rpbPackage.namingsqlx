@@ -45,7 +45,7 @@
 			a.item_time itemTime,
 			a.item_name itemName,
 			a.item_code itemCode,
-			a.item_kind itemKinde,
+			a.item_kind itemKind,
 			e.name itemKindName,
 			a.unit_price unitPrice,
 			a.amt amt

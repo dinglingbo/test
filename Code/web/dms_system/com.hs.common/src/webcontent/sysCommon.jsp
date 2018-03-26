@@ -16,12 +16,16 @@
     String partDomain = Env.getContributionConfig("system", "url", "webDomain", "PART");
     String repairDomain = Env.getContributionConfig("system", "url", "webDomain", "REPAIR");
     String cloudPartDomain = Env.getContributionConfig("system", "url", "webDomain", "CLOUDPART");
+    String crmDomain = Env.getContributionConfig("system", "url", "webDomain", "CRM");
+    String frmDomain = Env.getContributionConfig("system", "url", "webDomain", "FRM");
     
     //API域 访问其他API域使用：xxApi + API路径
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
     String partApi = Env.getContributionConfig("system", "url", "apiDomain", "PART");
     String repairApi = Env.getContributionConfig("system", "url", "apiDomain", "REPAIR");
     String cloudPartApi = Env.getContributionConfig("system", "url", "apiDomain", "CLOUDPART");
+    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
+    String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
 	
 	String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
 	apiPath = Env.getContributionConfig("system", "url", "api", serverType);
@@ -59,11 +63,15 @@
     var partDomain   = "<%=partDomain%>";
     var repairDomain   = "<%=repairDomain%>";
     var cloudPartDomain   = "<%=cloudPartDomain%>";
+    var crmDomain   = "<%=crmDomain%>";
+    var frmDomain   = "<%=frmDomain%>";
     
     var sysApi   = "<%=sysApi%>";
     var partApi   = "<%=partApi%>";
     var repairApi   = "<%=repairApi%>";
     var cloudPartApi   = "<%=cloudPartApi%>";
+    var crmApi   = "<%=crmApi%>";
+    var frmApi   = "<%=frmApi%>";
 	
 	$(function(){
 		nui.context='<%=contextPath %>'

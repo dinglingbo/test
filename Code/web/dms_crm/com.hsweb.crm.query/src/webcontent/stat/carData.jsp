@@ -21,21 +21,15 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速分析：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">按分店</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">按营销员</a>
-                <!-- 
+                <a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenuDate" id="menuBtnDateQuickSearch">按分店</a>
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 0, '按分店')" id="type0">按分店</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 1, '按营销员')" id="type1">按营销员</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 2, '按品牌')" id="type2">按品牌</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 3, '按客户等级')" id="type3">按客户等级</li>
+                </ul>
                 <span class="separator"></span>
-                 -->
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">按品牌</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">按客户等级</a>
-            </td>
-        </tr>
-    </table>
-</div>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="width:100%;">
                 <a class="nui-button" iconCls="icon-print" plain="true" onclick="addInbound()">打印</a>
                 <a class="nui-button" iconCls="icon-downgrade" plain="true" onclick="editInbound()" id="editEnterMainBtn" enabled="false">导出</a>
             </td>

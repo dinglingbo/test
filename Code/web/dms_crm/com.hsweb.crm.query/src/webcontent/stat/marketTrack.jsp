@@ -21,29 +21,31 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">数据范围：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">上周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">上月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">上年</a>
-                <!-- 
-                <span class="separator"></span>
-                 -->
+                <a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu1" id="menuBtnDateQuickSearch">本日</a>
+                <ul id="popupMenu1" class="nui-menu" style="display:none;">
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 0, '本日')" id="type0">本日</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 1, '昨日')" id="type1">昨日</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 0, '本周')" id="type0">本周</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 1, '上周')" id="type1">上周</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 0, '本月')" id="type0">本月</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 1, '上月')" id="type1">上月</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 2, '本年')" id="type2">本年</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 3, '上年')" id="type3">上年</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 2, '更多')" id="type2">更多</li>
+                </ul>
                 <label style="font-family:Verdana;">快速分析：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">按分店</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">按营销员</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">按品牌</a>
-            </td>
-        </tr>
-    </table>
-</div>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style="width:100%;">
+                <a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu2" id="menuBtnDateQuickSearch">按分店</a>
+                <ul id="popupMenu2" class="nui-menu" style="display:none;">
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 0, '按分店')" id="type0">按分店</li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 1, '按营销员')" id="type1">按营销员</li>
+                    <li class="separator"></li>
+                    <li iconCls="icon-tip" onclick="quickSearch(menuBtnDateQuickSearch, 2, '按品牌')" id="type2">按品牌</li>
+                </ul>
+                <li class="separator"></li>
                 <a class="nui-button" iconCls="icon-print" plain="true" onclick="addInbound()">打印</a>
                 <a class="nui-button" iconCls="icon-downgrade" plain="true" onclick="editInbound()" id="editEnterMainBtn" enabled="false">导出</a>
             </td>

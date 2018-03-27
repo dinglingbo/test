@@ -25,7 +25,7 @@
     <!--按VIN查车型-->
     <select id="carVinModel" parameterClass="HashMap" resultClass="HashMap">
 		SELECT carModelId, carModelName, carBrandId, carBrandName, carLevelId, carLevelName, 
-			carLineID, carLineName 
+			carLineId, carLineName 
 		FROM dbo.fun_getCarmodelByVIN(#vin#)
     </select>
 </sqlMap>

@@ -77,15 +77,15 @@
     </select>
     <!--getBrandPart-->
     <select id="getBrandPart" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT b.id, b.code, b.name, b.qualityTypeId, b.brandId, b.parentGroupCode, b.parentGroupId, 
-    		b.groupCode, b.groupId, b.remark, b.hotIndex 
-		FROM ST_PartCommon a 
-		INNER JOIN ST_PartFactory b ON a.PartID = b.ID 
-		WHERE EXISTS (
-		  	SELECT 1 FROM ST_PartCommon 
-			WHERE a.GroupID = GroupID AND PartID = #partId# 
-		) 
-		ORDER BY b.HotIndex DESC
+    	select id, code, name from ST_PartBrandTec
+        WHERE 1=1
+            <isNotNull property="code">
+				AND code like '%$code$%'
+			</isNotNull>
+            <isNotNull property="name">
+				AND name like '%$name$%'
+			</isNotNull>
+		ORDER BY code
     </select>
     <!--getPackage-->
     <select id="getPackage" parameterClass="HashMap" resultClass="HashMap">

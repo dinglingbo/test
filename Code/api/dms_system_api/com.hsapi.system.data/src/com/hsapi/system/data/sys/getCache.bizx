@@ -21,7 +21,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.system.product.MyCache[]" name="rs" type="query" valueType="Java">rs</process:return>
+      <process:return id="0" language="java.lang.Object[]" name="rs" type="query" valueType="Java">rs</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
     </process:returns>
@@ -47,7 +47,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">key</process:leftOperand>
+          <process:leftOperand type="query">id</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -93,7 +93,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="cacheName" type="query" value="java.lang.String" valueType="Java" pattern="reference">cacheName</process:inputVariable>
-      <process:inputVariable id="1" name="key" type="query" value="java.lang.Object" valueType="Java" pattern="reference">key</process:inputVariable>
+      <process:inputVariable id="1" name="key" type="query" value="java.lang.Object" valueType="Java" pattern="reference">id</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object" valueType="Java">cache</process:outputVariable>
@@ -191,14 +191,14 @@
   <leftRuler/>
   <process:info author="Guine" createTime="2018-03-23 08:55:46" date="2018-03-23Z" description="" name="carModel" version="7.0.0.0"/>
   <process:variables>
-    <process:variable anyType="com.hsapi.system.product.MyCache" description="" historyStateLocation="client" isArray="false" name="cache"/>
+    <process:variable anyType="java.lang.Object" description="" historyStateLocation="client" isArray="false" name="cache"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="cacheName" primitiveType="String"/>
-    <process:input description="" isArray="false" name="key" primitiveType="String"/>
+    <process:input description="" isArray="false" name="id" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="com.hsapi.system.product.MyCache" description="" isArray="true" name="rs"/>
+    <process:output anyType="java.lang.Object" description="" isArray="true" name="rs"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
   </process:outputs>

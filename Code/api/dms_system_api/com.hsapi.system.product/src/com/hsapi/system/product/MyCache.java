@@ -12,8 +12,9 @@ import com.eos.system.annotation.Bizlet;
  */
 @Bizlet("")
 public class MyCache {
-	private String id;
-	private String name;
+	private String id; // id
+	private String customId; // 自定义ID
+	private String name;// 中文名称
 
 	public String getId() {
 		return id;

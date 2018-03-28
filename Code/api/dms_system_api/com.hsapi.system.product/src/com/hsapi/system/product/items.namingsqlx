@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- author:Guine -->
 <sqlMap>
-     <resultMap class="java.util.HashMap" id="cacheBrandPartDef">
-        <result column="id" javaType="string" property="id"/>
-        <result column="code" javaType="string" property="code"/>
-        <result column="name" javaType="string" property="name"/>
-    </resultMap>
     <!--产品分组-->
     <select id="getPrdtType" parameterClass="HashMap" resultClass="HashMap">
     	SELECT id, parentId, customId = code, typeId, carBrandId, hsid, name = (code + ' ' + name) 
@@ -92,15 +87,7 @@
 		) 
 		ORDER BY b.HotIndex DESC
     </select>
-    <!--getBrandPartDef-->
-    <select id="getBrandPartDef" parameterClass="HashMap" resultMap="cacheBrandPartDef">
-        select id, code, name from ST_PartBrandTec
-        WHERE 1=1
-            <isNotNull property="id">
-				AND id = #id#
-			</isNotNull>
-		ORDER BY code
-    </select>
+    
     <select id="getBrandPartDef2" parameterClass="HashMap" resultClass="com.hsapi.system.product.MyCache">
         select id, code, name from ST_PartBrandTec
         WHERE 1=1
@@ -238,4 +225,23 @@
 			</isNotNull>
 		ORDER BY useCount DESC
     </select>
+    
+    
+    <parameterMap class="java.util.HashMap" id="parameterMap">
+        <parameter javaType="String" property="id"/>
+    </parameterMap>
+    <resultMap class="java.util.HashMap" id="cacheBrandPartDef">
+        <result column="id" javaType="string" property="id"/>
+        <result column="name" javaType="string" property="name"/>
+        <result column="code" javaType="string" property="code"/>
+    </resultMap>
+    <!--getBrandPartDef-->
+    <select id="getBrandPartDef" parameterMap="parameterMap" resultMap="cacheBrandPartDef">
+        select id, code, name from ST_PartBrandTec
+            <isNotNull property="id">
+				WHERE id = #id#
+			</isNotNull>
+		ORDER BY code
+    </select>
+
 </sqlMap>

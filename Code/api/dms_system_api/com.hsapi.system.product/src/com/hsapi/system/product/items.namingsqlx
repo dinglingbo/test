@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- author:Guine -->
 <sqlMap>
+     <resultMap class="java.util.HashMap" id="cacheBrandPartDef">
+        <result column="id" javaType="string" property="id"/>
+        <result column="code" javaType="string" property="code"/>
+        <result column="name" javaType="string" property="name"/>
+    </resultMap>
     <!--产品分组-->
     <select id="getPrdtType" parameterClass="HashMap" resultClass="HashMap">
     	SELECT id, parentId, customId = code, typeId, carBrandId, hsid, name = (code + ' ' + name) 
@@ -77,13 +82,30 @@
     </select>
     <!--getBrandPart-->
     <select id="getBrandPart" parameterClass="HashMap" resultClass="HashMap">
-    	select id, code, name from ST_PartBrandTec
+    	SELECT DISTINCT b.id, b.code, b.name, b.qualityTypeId, b.brandId, b.parentGroupCode, b.parentGroupId, 
+    		b.groupCode, b.groupId, b.remark, b.hotIndex 
+		FROM ST_PartCommon a 
+		INNER JOIN ST_PartFactory b ON a.PartID = b.ID 
+		WHERE EXISTS (
+		  	SELECT 1 FROM ST_PartCommon 
+			WHERE a.GroupID = GroupID AND PartID = #partId# 
+		) 
+		ORDER BY b.HotIndex DESC
+    </select>
+    <!--getBrandPartDef-->
+    <select id="getBrandPartDef" parameterClass="HashMap" resultMap="cacheBrandPartDef">
+        select id, code, name from ST_PartBrandTec
         WHERE 1=1
-            <isNotNull property="code">
-				AND code like '%$code$%'
+            <isNotNull property="id">
+				AND id = #id#
 			</isNotNull>
-            <isNotNull property="name">
-				AND name like '%$name$%'
+		ORDER BY code
+    </select>
+    <select id="getBrandPartDef2" parameterClass="HashMap" resultClass="com.hsapi.system.product.MyCache">
+        select id, code, name from ST_PartBrandTec
+        WHERE 1=1
+            <isNotNull property="id">
+				AND id = #id#
 			</isNotNull>
 		ORDER BY code
     </select>

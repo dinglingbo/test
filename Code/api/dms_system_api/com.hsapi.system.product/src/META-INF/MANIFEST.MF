@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Require-Bundle: com.eos.foundation
-eos-webCtxPath: product
+Require-Bundle: com.hs.common,com.eos.foundation
 Bundle-Vendor: Guine
+eos-webCtxPath: product
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.system.product
 Bundle-Description: 

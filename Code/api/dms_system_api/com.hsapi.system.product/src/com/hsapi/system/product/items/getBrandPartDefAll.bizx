@@ -94,7 +94,9 @@
     <figSize height="17" width="109"/>
     <node>invokePojo0</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="71" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-03-23 08:55:46" date="2018-03-23Z" description="" name="carModel" version="7.0.0.0"/>
   <process:variables>

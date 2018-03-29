@@ -136,11 +136,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">80967a34826f415790ee748028b6d195</process:from>
+      <process:from type="literal" pattern="reference">10967a34826f415790ee748028b6d222</process:from>
       <process:to type="query">params/securityKey</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">5232e6c0e7618e47e39db82a0eaead9a</process:from>
+      <process:from type="literal" pattern="reference">4232e6c0e7618e47e39db82a0eaea222</process:from>
       <process:to type="query">params/uid</process:to>
     </process:copy>
     <process:copy>

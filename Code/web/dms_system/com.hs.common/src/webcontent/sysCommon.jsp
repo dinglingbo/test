@@ -53,7 +53,8 @@
 
 <script src="<%=contextPath%>/common/nui/nui.js" type="text/javascript"></script>
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
-<script src="<%=sysDomain%>/dict/common/js/constantDef.js" type="text/javascript"></script>
+<script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
+<script src="<%=sysDomain%>/dict/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
 <script type="text/javascript">
 	var contextPath = "<%=contextPath%>";
 	var apiPath		= "<%=apiPath%>";

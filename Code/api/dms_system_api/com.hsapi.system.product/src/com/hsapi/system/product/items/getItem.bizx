@@ -73,10 +73,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">vin</process:from>
-      <process:to type="query">p/vin</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">执行成功！</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>

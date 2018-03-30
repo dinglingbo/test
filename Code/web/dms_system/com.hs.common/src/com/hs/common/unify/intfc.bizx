@@ -11,7 +11,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="java.util.HashMap[]" name="result" type="query" valueType="Java">result</process:return>
+      <process:return id="0" language="java.lang.Object[]" name="result" type="query" valueType="Java">result</process:return>
       <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
@@ -214,7 +214,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="java.util.HashMap" description="" isArray="true" name="result"/>
+    <process:output anyType="java.lang.Object" description="" isArray="true" name="result"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

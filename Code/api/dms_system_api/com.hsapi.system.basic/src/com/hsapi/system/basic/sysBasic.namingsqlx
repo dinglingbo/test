@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Guine -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getUserPosition" parameterClass="HashMap" resultClass="com.hsapi.system.data.sys.VwUserPosition">
+    	SELECT empid, userid, operatorid, empname, orgid, orgname, positionid, 
+    		posicode, posiname
+		FROM vw_user_position 
+		WHERE operatorId = #operatorId#
+    </select>
+</sqlMap>

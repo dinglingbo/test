@@ -10,7 +10,8 @@ define(['api'], function(api) {
       // 查询车架号
       .on('keyup', '.j_serach-input', function() {
         var $searchInfo = $serach.find('.j_search-info')
-        api.fetchSearch({vin: 'w'})
+        var val = $(this).val()
+        api.fetchSearch({vin: val})
           .then(function(res){
             var data = res.data.data
             var html = ''
@@ -38,7 +39,12 @@ define(['api'], function(api) {
         api.fetchCarInfo({params: {vin: vin}})
           .then(function(res) {
             window.store.carInfo = res.data.result.data
-            return api.fetchCarAttrGroup({params: {vin: vin, brand: window.store.carInfo.brand}})
+            if (res.data.result.code == 0) {
+//            	alert(res.data.result.msg)
+            	throw new Error(res.data.result.msg)
+            } else {
+            	return api.fetchCarAttrGroup({params: {vin: vin, brand: window.store.carInfo.brand}})
+            }
           })
           .then(function(res){
             window.store.carAttrGroup = res.data.result.data
@@ -46,8 +52,9 @@ define(['api'], function(api) {
             location.hash = 'ac'
           })
           .catch(function(res) {
+        	  console.log(res)
             $('.j_search-btn').prop('disabled', false).text('查询')
-            alert('获取车辆信息失败')
+            alert(res.message)
           })
       })
   }

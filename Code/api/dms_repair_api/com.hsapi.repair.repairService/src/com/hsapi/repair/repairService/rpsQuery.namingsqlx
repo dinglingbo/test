@@ -21,6 +21,7 @@
 			LEFT JOIN wb_common.com_car_brand c ON ( b.car_brand_id = c.id ) 
 		WHERE
 			a.orgid = #orgid#
+			and a.quote_file_sign = 0
 		<dynamic>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
@@ -40,6 +41,7 @@
 			a.mt_advisor mtAuditor,
 			a.service_code serviceCode,
 			a.car_no carNo,
+			b.car_brand_id carBrandId,
 			c.car_brand_zh carBrandName,
 			a.service_type_id serviceTypeId,
 			a.mt_type mtType,
@@ -67,7 +69,13 @@
 			e.full_name guestFullName,
 			a.guest_id guestId,
 			a.contactor_id contactorId,
-			a.car_id carId
+			a.car_id carId,
+			a.part_audit_sign partAuditSign,
+			a.draw_out_report drawOutReport,
+			a.out_bill_sign outBillSign,
+			a.out_enter_date outEnterDate,
+			a.out_leave_date outLeaveDate,
+			a.out_print_date outPrintDate
 		FROM
 			rps_maintain a
 			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
@@ -94,14 +102,20 @@
 			a.unit_price unitPrice,
 			a.rate rate,
 			a.discount_amt discountAmt,
-			a.subtotal subtotal
+			a.subtotal subtotal,
+			a.class_name className,
+			a.worker worker,
+			a.begin_date beginDate,
+			a.finish_auditor finishAuditor,
+			a.finish_date finishDate,
+			a.remark
 		FROM
 			rps_item a
 			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
 			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
-		and a.package_id is null
+		and ifnull(a.package_id,'') = ''
 	</select>
 	<select id="getRpsItemQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
@@ -125,7 +139,7 @@
 			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
-		and a.package_id is null
+		and ifnull(a.package_id,'') = ''
 	</select>
 	
 	<select id="getRpsPartByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -151,7 +165,8 @@
 			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
-		and a.package_id is null
+			and ifnull(a.package_id,'') = ''
+			and a.status &lt; 11
 	</select>
 	<select id="getRpsPartQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
@@ -175,7 +190,7 @@
 			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
-		and a.package_id is null
+			and ifnull(a.package_id,'') = ''
 	</select>
 	
 	<select id="getRpsPackageByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -363,5 +378,109 @@
 			rps_part_quote a 
 		WHERE
 			a.package_id = #packageId#
+	</select>
+	
+	<select id="getRpsItemToBill" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItemBill">
+    	SELECT
+			service_id serviceId,
+			item_id itemId,
+			item_code itemCode,
+			package_id packageId,
+			item_name itemName,
+			rece_type_id receTypeId,
+			item_is_need itemIsNeed,
+			item_kind itemKind, 
+			item_time itemTime,
+			unit_price unitPrice,
+			amt amt,
+			rate rate,
+			discount_amt discountAmt,
+			subtotal subtotal,
+			status status,
+			remark remark,
+			recorder,
+			record_date recordDate,
+			modifier,
+			modify_date modifyDate
+		FROM
+			rps_item 
+		WHERE
+			service_id = #serviceId#
+	</select>
+	<select id="getRpsPartToBill" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPartBill">
+	    SELECT
+			service_id serviceId,
+			part_id partId,
+			part_code partCode,
+			package_id packageId,
+			part_name partName,
+			rece_type_id receTypeId,
+			part_is_need partIsNeed,
+			qty qty,
+			unit_price unitPrice,
+			unit,
+			amt,
+			rate,
+			discount_amt discountAmt,
+			subtotal,
+			remark,
+			recorder,
+			record_date recordDate,
+			modifier,
+			modify_date modifyDate
+		FROM
+			rps_part 
+		WHERE
+			service_id = #serviceId#
+			AND is_disabled = 0	
+	</select>
+	<select id="getRpsItemBillByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.item_id itemId,
+			a.item_name itemName,
+			a.item_code itemCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			c.name receTypeName,
+			a.item_time itemTime,
+			a.item_kind itemKind,
+			b.name itemKindName,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate rate,
+			a.discount_amt discountAmt,
+			a.subtotal subtotal,
+			a.remark
+		FROM
+			rps_item_bill a
+			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
+			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
+		WHERE
+			a.service_id = #serviceId#
+	</select>
+	<select id="getRpsPartBillByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			a.rece_type_id receTypeId,
+			c.name receTypeName,
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate rate,
+			a.subtotal subtotal,
+			a.discount_amt discountAmt
+		FROM
+			rps_part_bill a
+			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
+		WHERE
+			a.service_id = #serviceId#
 	</select>
 </sqlMap>

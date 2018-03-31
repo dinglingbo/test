@@ -512,12 +512,17 @@
 			c.name carTypeNameF,
 			b.car_type_id_s carTypeIdS,
 			b.car_type_id_t carTypeIdT,
-			e.ORGNAME orgName
+			e.ORGNAME orgName,
+			b.common_code commonCode,
+			f.name qualityTypeName,
+			f.name partBrandName
 		FROM
 			pts_cyc_store a
 			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id ) 
 			LEFT JOIN wb_common.com_part_type c on ( b.car_type_id_f = c.id)
 			LEFT JOIN dms_system.org_organization e on (a.orgid = e.ORGID)
+			left join wb_common.com_part_brand f on (b.quality_type_id = f.id)
+			left join wb_common.com_part_brand g on (b.part_brand_id = f.id)
 		WHERE
 			1 =1
     	<dynamic>
@@ -550,6 +555,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">   
                 (a.part_name like '%$name$%' or a.part_full_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">   
+                (a.part_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="stockQtyGreaterThanUpLimit">  
             <!--高于上限-->

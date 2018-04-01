@@ -12,7 +12,7 @@
 <title>话术模板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/basic/js/talkArtTpl.js?v=1.2" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/basic/js/talkArtTpl.js?v=1.1" type="text/javascript"></script> 
 </head>
 <body>
 
@@ -41,7 +41,7 @@
         <div size="20%" showCollapseButton="false" style="border:0;">
             <div class="nui-fit">
                 <div title="话术类型" class="nui-panel"
-                     showHeader="false"
+                     showHeader="true"
                      showFooter="false"
                      style="width:100%;height:100%;border: 0;">
                     <ul id="tree1" class="nui-tree" 
@@ -54,7 +54,7 @@
                         resultAsTree="false" 
                         parentField="DICTID" 
                         showTreeLines="true" 
-                        onnodeclick="onNodeClick"
+                        onNodedblclick="onNodeDbClick"
                         allowDrag="true">
                     </ul>
                 </div>
@@ -75,6 +75,7 @@
                          onrowdblclick=""
                          dataField="rs"
                          sortMode="client"
+                         allowcellwrap="true"
                          idField="id"
                          url="<%=apiPath + crmApi%>/com.hsapi.crm.basic.crmBasic.getTalkArtList.biz.ext"
                          showSummaryRow="true">
@@ -83,8 +84,10 @@
                             <div headerAlign="center"><strong>基本信息</strong>
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
-                                    <div field="topic" width="30" headerAlign="center" summaryType="count" allowSort=false>主题</div>
-                                    <div field="content" width="30" headerAlign="center" summaryType="" allowSort=false>话术内容</div>
+                                    <div field="topic" width="50" headerAlign="center" summaryType="count" allowSort=false>主题</div>
+                                    <div field="content" width="80" headerAlign="center" summaryType="" allowSort=false>话术内容
+                                        <input property="editor" class="nui-textarea" style="width: 100%;">
+                                    </div>
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>其他信息</strong>

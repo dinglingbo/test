@@ -1,0 +1,56 @@
+.row {
+	margin-top: 5px;
+}
+
+.width1 {
+	width: 100px;
+}
+
+.height1 {
+	width: 50px;
+}
+
+.width2 {
+	width: 145px;
+}
+
+.height2 {
+	width: 100px;
+}
+
+.width3 {
+	width: 250px;
+}
+
+.height3 {
+	width: 150px;
+}
+
+.width4 {
+	width: 290px;
+}
+
+.width5 {
+	width: 330px;
+}
+
+.width6 {
+	width: 357px;
+}
+
+.width7 {
+	width: 544px;
+}
+
+.title {
+	text-align: right;
+	display: inline-block;
+}
+
+.title-width1 {
+	width: 60px;
+}
+
+.title.required {
+	color: red;
+}

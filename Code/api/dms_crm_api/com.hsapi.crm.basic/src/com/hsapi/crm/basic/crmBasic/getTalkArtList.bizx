@@ -84,6 +84,10 @@
       <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/currOrgId</process:from>
+      <process:to type="query">p/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="246" y="220"/>

@@ -379,10 +379,10 @@
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">tmp/itemId</process:from>
-      <process:to type="query">tmpStr</process:to>
+      <process:to type="query">tmpInt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">&quot;s&quot;+tmpStr</process:from>
+      <process:from type="expression" pattern="reference">-tmpInt</process:from>
       <process:to type="query">tmp/itemId</process:to>
     </process:copy>
     <process:copy>
@@ -402,6 +402,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItemQuote" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpStr" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tmpInt" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItemQuote" name="insList"/>

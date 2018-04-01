@@ -72,6 +72,7 @@ function onOutCarDataRowClick(e)
     nui.get("saveBtn").disable();
     nui.get("cancelBtn").disable();
     basicInfoForm.setData(row);
+    basicInfoForm.setEnabled(false);
 }
 function loadDataGridData(type)
 {
@@ -205,4 +206,32 @@ function deleteReport()
             }
         }.bind(row));
     }
+}
+
+function setData()
+{
+    nui.get("selectBtn").show();
+}
+function onOk()
+{
+    var row = dataGrid.getSelected();
+    if(!row)
+    {
+        nui.alert("请选择一份报告");
+    }
+    resutlData.report = row;
+    CloseWindow("ok");
+}
+var resutlData = {};
+function getData()
+{
+    return resutlData;
+}
+function CloseWindow(action)
+{
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
+}
+function onCancel(e) {
+    CloseWindow("cancel");
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
-	
+	pageEncoding="UTF-8" session="false"%>
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,43 +11,50 @@
 -->
 <head>
 <title>未修归档</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/NotRepair.js?v=1.0.0"></script>
+<style type="text/css">
+
+table {
+	font-size: 12px;
+}
+
+.form_label {
+	width: 84px;
+	text-align: right;
+}
+
+.required {
+	color: red;
+}
+</style>
 </head>
-<body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<table>
-		<tr style="display: block;margin:4px 0 0 5px;">
-			<td style="width:85px">
-				<label>未修原因类别：</label>
-			</td>
-			<td>
-				<input class="nui-textbox" id="data"  width="280px" /> 
-			</td>
-		</tr>
-		<tr style="display: block;margin:4px 0 0 5px;">
-			<td style="width:85px">
-				<label>未修原因说明：</label>
-			</td>
-			<td>
-				<input class="nui-textArea" id="data"  width="280px" height="90px" /> 
-			</td>
-		</tr>
-		<tr>
-	    	<td>
-	        	<div style="text-align:right;padding:2px 5px;">
-		        	<a class="nui-button"  onclick="onSearch(3)" >保存(S)</a>
-		            <a class="nui-button"  onclick="onSearch(4)" >关闭(C)</a>
-	            </div> 	 	
-	       	</td>
-		</tr>
-	</table>
-
-
-
-
-	<script type="text/javascript">
-    	nui.parse();
-    </script>
+<body>
+<div id="basicInfoForm">
+    <input class="nui-hidden" name="id"/>
+    <table width="100%">
+        <tr>
+            <td class="form_label required">
+                <label>未修原因类别：</label>
+            </td>
+            <td>
+                <input class="nui-combobox" id="noMtType" name="noMtType" style="width:100%;"
+                       popupMaxHeight="150"
+                       textField="name" valueField="customid"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="form_label required">
+                <label>未修原因说明：</label>
+            </td>
+            <td>
+                <textarea class="nui-textArea" name="noMtReason" style="width:100%;height:120px;"></textarea>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="text-align:right;padding:10px;margin-top:0">
+    <a class="nui-button" onclick="onOk">保存</a>
+    <a class="nui-button" onclick="onCancel">关闭</a>
+</div>
 </body>
 </html>

@@ -12,7 +12,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link38</targetConnections>
     <targetConnections>link42</targetConnections>
-    <location x="654" y="292"/>
+    <location x="706" y="292"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -26,7 +26,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="656" y="328"/>
+    <location x="708" y="328"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -117,10 +117,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">out/auditSign</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">recorder</process:from>
-      <process:to type="query">out/auditor</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">recordDate</process:from>
@@ -1005,6 +1001,7 @@
     <targetConnections>link36</targetConnections>
     <targetConnections>link43</targetConnections>
     <targetConnections>link44</targetConnections>
+    <targetConnections>link18</targetConnections>
     <location x="567" y="203"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
@@ -1074,6 +1071,16 @@
       <sourceNode>invokePojo9</sourceNode>
       <targetNode>assign9</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
+      <sourceNode>invokePojo9</sourceNode>
+      <targetNode>subprocess5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">out/pickType</process:leftOperand>
+          <process:rightOperand type="literal">050203</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link40</targetConnections>
     <location x="656" y="150"/>
     <size height="28" width="22"/>
@@ -1099,12 +1106,13 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link41</targetConnections>
-    <location x="653" y="210"/>
+    <targetConnections>link4</targetConnections>
+    <location x="754" y="234"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="643" y="246"/>
+    <location x="744" y="270"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -1153,6 +1161,42 @@
     <location x="87" y="276"/>
     <figSize height="17" width="58"/>
     <node>invokePojo11</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="afterReapirOut" displayName="afterReapirOut" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="653" y="234"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess5label</nodeLabel>
+    <process:flow index="8" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.afterReapirOut</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">out/serviceId</process:inputVariable>
+        <process:inputVariable id="1" name="partId" type="query" value="String" valueType="Primitive" pattern="reference">out/partId</process:inputVariable>
+        <process:inputVariable id="2" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">out/partCode</process:inputVariable>
+        <process:inputVariable id="3" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">out/partName</process:inputVariable>
+        <process:inputVariable id="4" name="unit" type="query" value="String" valueType="Primitive" pattern="reference">out/unit</process:inputVariable>
+        <process:inputVariable id="5" name="outQty" type="query" value="Int" valueType="Primitive" pattern="reference">out/outQty</process:inputVariable>
+        <process:inputVariable id="6" name="sellAmt" type="query" value="Double" valueType="Primitive" pattern="reference">out/sellAmt</process:inputVariable>
+        <process:inputVariable id="7" name="recorder" type="query" value="String" valueType="Primitive" pattern="reference">recorder</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
+    <location x="623" y="269"/>
+    <figSize height="17" width="87"/>
+    <node>subprocess5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

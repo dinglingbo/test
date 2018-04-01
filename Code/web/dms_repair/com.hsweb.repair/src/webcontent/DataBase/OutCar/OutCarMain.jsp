@@ -34,6 +34,7 @@ table {
                 <a class="nui-button" plain="true" iconCls="icon-remove" id="deleteBtn" enabled="false" onclick="deleteReport()">删除</a>
                 <a class="nui-button" plain="true" iconCls="icon-save" id="saveBtn" enabled="false" onclick="save()">保存</a>
                 <a class="nui-button" plain="true" iconCls="icon-cancel" id="cancelBtn" enabled="false" onclick="cancelEdit()">取消</a>
+                <a class="nui-button" plain="true" iconCls="icon-ok" id="selectBtn" visible="false" onclick="onOk()">选择</a>
             </td>
         </tr>
     </table>

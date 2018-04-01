@@ -88,6 +88,22 @@
 			cityEl.setData(currCityList);
 		}
 	}
+	var getStorehouseUrl = window._rootPartUrl
+			+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+	function getStorehouse(callback) {
+		doPost({
+			url : getStorehouseUrl,
+			data : {},
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback({});
+			}
+		});
+	}
 	var getDatadictionariesUrl = window._rootUrl
 			+ "com.hsapi.repair.common.common.getDatadictionaries.biz.ext";
 	function getDatadictionaries(parentId, callback) {

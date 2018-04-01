@@ -933,6 +933,7 @@
     <targetConnections>link36</targetConnections>
     <targetConnections>link43</targetConnections>
     <targetConnections>link44</targetConnections>
+    <targetConnections>link15</targetConnections>
     <location x="567" y="203"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
@@ -994,13 +995,23 @@
     <node>invokePojo8</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo9" name="updateEntity2" displayName="updateEntity1" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo9</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo9</sourceNode>
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" lineType="note" type="exception">
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
       <sourceNode>invokePojo9</sourceNode>
-      <targetNode>assign9</targetNode>
+      <targetNode>subprocess6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">pickType</process:leftOperand>
+          <process:rightOperand type="literal">050102</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
     <location x="656" y="150"/>
@@ -1027,12 +1038,13 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link41</targetConnections>
-    <location x="653" y="210"/>
+    <targetConnections>link13</targetConnections>
+    <location x="752" y="241"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="643" y="246"/>
+    <location x="742" y="277"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -1140,6 +1152,39 @@
     <location x="98" y="157"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="afterReapirReturn" displayName="afterReapirReturn" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="655" y="233"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess6label</nodeLabel>
+    <process:flow index="5" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.afterReapirReturn</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">out/serviceId</process:inputVariable>
+        <process:inputVariable id="1" name="partId" type="query" value="String" valueType="Primitive" pattern="reference">out/partId</process:inputVariable>
+        <process:inputVariable id="2" name="outQty" type="query" value="Int" valueType="Primitive" pattern="reference">out/outQty</process:inputVariable>
+        <process:inputVariable id="3" name="sellAmt" type="query" value="Double" valueType="Primitive" pattern="reference">out/sellAmt</process:inputVariable>
+        <process:inputVariable id="4" name="recorder" type="query" value="String" valueType="Primitive" pattern="reference">out/returnMan</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
+    <location x="616" y="268"/>
+    <figSize height="17" width="104"/>
+    <node>subprocess6</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

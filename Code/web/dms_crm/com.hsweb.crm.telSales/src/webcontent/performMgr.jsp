@@ -9,10 +9,10 @@
   - Description:
 -->
 <head>
-<title>业绩录入</title>
+<title>业绩管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/teleSales/js/performEntry.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/telsales/js/performMgr.js?v=1.0" type="text/javascript"></script> 
 </head>
 <body>
 

@@ -12,7 +12,7 @@
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/teleSales/js/telTrack.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/telsales/js/telTrack.js?v=1.0" type="text/javascript"></script> 
 </head>
 <body>
 

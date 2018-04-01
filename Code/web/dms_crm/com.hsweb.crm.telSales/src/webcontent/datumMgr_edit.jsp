@@ -9,10 +9,10 @@
   - Description:
 -->
 <head>
-<title>业绩录入-编辑</title>
+<title>资料管理-编辑</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=webPath + crmDomain%>/teleSales/js/performEntry_edit.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=webPath + crmDomain%>/telsales/js/datumMgr_edit.js?v=1.1" type="text/javascript"></script>
     <link href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1" rel="stylesheet" type="text/css" />
     <style type="text/css">
     html, body

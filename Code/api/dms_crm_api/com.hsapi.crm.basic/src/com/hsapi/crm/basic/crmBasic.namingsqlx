@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- author:Guine -->
 <sqlMap>
-    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
-        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
-    </parameterMap>
-    <resultMap class="commonj.sdo.DataObject" id="resultMap">
-        <result column="TYPEID" javaType="string" property="typeId"/>
-    </resultMap>
+    <!--话术模板-->
     <select id="getTalkArtList" parameterClass="HashMap" resultClass="com.hsapi.crm.basic.crmBasic.CrmTalkArt">
         SELECT id, orgcode, type_id typeId, topic, source, content, recorder, 
-        record_date recordDate, modifier, modify_date modifyDate, orgid
+            record_date recordDate, modifier, modify_date modifyDate, orgid
         FROM crm_talk_art
         WHERE orgid = #orgid#
         <isNotNull property="typeId">
@@ -21,6 +16,26 @@
         
         <isNotNull property="topic">
             AND topic like '%$topic$%'
+        </isNotNull> 
+        <isNotNull property="recorder">
+            AND recorder like '%$recorder$%'
+        </isNotNull>          
+    </select>
+    <!--短信模板-->
+    <select id="getSmsList" parameterClass="HashMap" resultClass="com.hsapi.crm.basic.crmBasic.CrmTemplateMsg">
+        SELECT id, orgcode, type_id typeId, char_count charCount, source, content, recorder, 
+            record_date recordDate, modifier, modify_date modifyDate
+        FROM crm_template_msg
+        WHERE orgid = #orgid#
+        <isNotNull property="typeId">
+            AND type_id = #typeId#
+        </isNotNull>
+        <isNotNull property="source">
+            AND source like '%$source$%'
+        </isNotNull>
+        
+        <isNotNull property="content">
+            AND content like '%$content$%'
         </isNotNull> 
         <isNotNull property="recorder">
             AND recorder like '%$recorder$%'

@@ -7,6 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
+    <!--字典定义-->
     <select id="queryDictType" parameterClass="HashMap" resultClass="HashMap">
     	SELECT A.ID, A.PARENTID, A.CUSTOMID, A.NAME, A.DESCRIPTION, B.NUM from COM_DATADICTIONARIES A
 		LEFT JOIN(
@@ -26,6 +27,7 @@
 			AND A.ID like '%#queryId#%'
 		</isNotNull>
     </select>
+    <!--字典项-->
     <select id="queryDictItem" parameterClass="HashMap" resultClass="HashMap">
     	SELECT ID, DICTID, CUSTOMID, NAME, PROPERTY1, PROPERTY2, PROPERTY3, DESCRIPTION
     	from COM_DATAITEMS A		
@@ -36,5 +38,12 @@
 		<isNotNull property="sortField">
 			Order By #sortField# #sortOrder#
 		</isNotNull>
-    </select>    
+    </select>
+    <!--角色成员010815/营销员，-->
+    <select id="queryRoleMember" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT orgId, empId, empName 
+    	FROM com_role_member
+		WHERE role_id = #roleId#
+			AND orgId = #orgId#
+    </select> 
 </sqlMap>

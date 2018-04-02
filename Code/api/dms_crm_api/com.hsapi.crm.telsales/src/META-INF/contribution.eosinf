@@ -27,7 +27,8 @@
 				the value 'default' of attibute 'key' denotes a contribution datasource 
 				and the field value 'default' of 'configValue' node stands for an application datasource. 
 			-->
-			<configValue key="default">default</configValue>
+			<configValue key="default">default</configValue> 
+			<configValue key="DB10_MSSQL_WB_CRM">DB10_MSSQL_WB_CRM</configValue>
 		</group>
 	</module>
 </contribution>

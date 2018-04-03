@@ -79,3 +79,7 @@ function setTypeName(e){
     }
     return "";
 }
+
+function changeTabs(e){
+    
+}

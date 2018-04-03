@@ -1288,13 +1288,13 @@ function settleOK(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("对账成功!");
+                    nui.alert("结算成功!");
 
                     balanceCancel();
                     rightGrid.reload();
                     
                 } else {
-                    nui.alert(data.errMsg || "对账失败!");
+                    nui.alert(data.errMsg || "结算失败!");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {

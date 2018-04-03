@@ -38,39 +38,40 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
-                <span class="separator"></span>
+                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                </ul>
+
 				<label style="font-family:Verdana;">审核日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-            </td>
-        </tr>
-        <tr>
-            <td style="white-space:nowrap;">
-				<!-- <label style="font-family:Verdana;">配件名称/拼音：</label> -->
-	            <input id="partNameAndPY" width="120px" emptyText="配件名称/拼音"  class="nui-textbox"/>
-	            <!-- <label style="font-family:Verdana;">配件编码：</label> -->
-	            <input id="partCode" width="120px" emptyText="配件编码"  class="nui-textbox"/>
-	           <!--  <label style="font-family:Verdana;">订单单号：</label> -->
-	            <input id="serviceId" width="120px" emptyText="订单单号"  class="nui-textbox"/>
-	            <!-- <label style="font-family:Verdana;">客户：</label> -->
+
+                <span class="separator"></span> 
+                <input id="partNameAndPY" width="120px" emptyText="配件名称/拼音"  class="nui-textbox"/>
+                <!-- <label style="font-family:Verdana;">配件编码：</label> -->
+                <input id="partCode" width="120px" emptyText="配件编码"  class="nui-textbox"/>
+               <!--  <label style="font-family:Verdana;">订单单号：</label> -->
+                <input id="serviceId" width="120px" emptyText="订单单号"  class="nui-textbox"/>
+                <!-- <label style="font-family:Verdana;">客户：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-				<span class="separator"></span>
+                <span class="separator"></span>
 
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
             </td>

@@ -66,6 +66,10 @@ html, body
 }
 
 .title-width2 {
+	width: 72px;
+}
+
+.title-width3 {
 	width: 85px;
 }
 

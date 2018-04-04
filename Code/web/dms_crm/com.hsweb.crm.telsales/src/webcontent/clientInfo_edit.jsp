@@ -28,12 +28,12 @@
 </head>
 <body>
     <form id="form1" method="post">
-        <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:90%;" plain="false"
-             onactivechanged="changeTabs" >
+        <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:95%;" plain="false"
+             onactivechanged="changeTabs">
             <!--客户信息-->
-            <%@include file="/telsales/clientInfo_tab2.jsp" %>
-            <!--车辆信息-->
             <%@include file="/telsales/clientInfo_tab1.jsp" %>
+            <!--车辆信息-->
+            <%@include file="/telsales/clientInfo_tab2.jsp" %>
         </div>
 
         <div style="text-align:center;padding:10px;">

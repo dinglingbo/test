@@ -20,7 +20,7 @@
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
     <table style="width:100%;">
         <tr>
-            <td style="white-space:nowrap;">
+            <td><!-- style="white-space:nowrap;"-->
                 <label style="font-family:Verdana;">快速查询：</label>
                 <label style="font-family:Verdana;">跟踪状态：</label>
                 <input class="nui-textbox" name="source" id="source" enabled="true"/>
@@ -36,7 +36,7 @@
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">发送短信</a>
                 <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">预约维修</a>
                 <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">业绩登记</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">新增客户</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="newClient()" id="edit" enabled="true">新增客户</a>
             </td>
         </tr>
     </table>

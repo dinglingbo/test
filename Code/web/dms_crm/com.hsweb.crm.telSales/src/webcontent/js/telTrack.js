@@ -83,3 +83,19 @@ function setTypeName(e){
 function changeTabs(e){
     
 }
+
+function newClient(){
+    mini.open({
+        url: webPath + crmDomain + "/com.hsweb.crm.telsales.clientInfo_edit.flow",
+        title: "新增客户", width: 520, height: 520,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            //var data = { action: "edit", id: row.id };
+            iframe.contentWindow.setData({});
+        },
+        ondestroy: function (action) {
+            //var iframe = this.getIFrameEl();
+            dgGrid.reload();
+        }
+    });
+}

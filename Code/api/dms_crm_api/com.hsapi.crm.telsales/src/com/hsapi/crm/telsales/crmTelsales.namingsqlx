@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Guine -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getDatumMgrList" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id, orgid, car_no carNo, guest_id guestId, guest_name guestName, address, sex,
+    		car_model_id carModelId, car_brand_id carBrandId, car_model carModel, 
+    		produce_date produceDate, engine_no engineNo, underpan_no underpanNo, color, 
+    		first_reg_date firstRegDate, care_due_date careDueDate, 
+    		care_due_mileage careDueMileage, annual_inspection_date annualInspectionDate, 
+    		proceeding_sign proceedingSign, first_come_date firstComeDate, 
+    		insure_comp_code insureCompCode, insure_buy_date insureBuyDate, 
+    		insure_due_date insureDueDate, annual_verification_due_date annualVerificationDueDate, 
+    		longitude, latitude, driving_licence_due_date drivingLicenceDueDate, 
+    		visit_man_id visitManId, visit_status visitStatus, prior_scout_date priorScoutDate, 
+    		next_scout_date nextScoutDate, is_continue_scout isContinueScout, 
+    		first_scout_date firstScoutDate, is_black isBlack, status, recorder, 
+    		record_date recordDate, modifier, modify_date modifyDate
+		FROM crm_guest
+		WHERE orgid = #orgid#
+	        <isNotNull property="visitStatus">
+	            AND visit_status = #visitStatus#
+	        </isNotNull>
+	        <isNotNull property="carNo">
+	            AND car_no = #carNo#
+	        </isNotNull>
+	        
+	        <isNull property="assignStatus">
+	            AND visit_man_id IS NULL
+	        </isNull>
+	        <isNotNull property="assignStatus">
+	            AND visit_man_id IS NOT NULL
+	        </isNotNull>
+	        
+	        <isNotNull property="isCome">
+	            AND is_come = #isCome#
+	        </isNotNull>
+	        
+	        <isNotNull property="carBrandId">
+	            AND car_brand_id = #carBrandId#
+	        </isNotNull>
+	        <isNotNull property="visitManId">
+	            AND visit_man_id = #visitManId#
+	        </isNotNull>
+   	</select>
+</sqlMap>

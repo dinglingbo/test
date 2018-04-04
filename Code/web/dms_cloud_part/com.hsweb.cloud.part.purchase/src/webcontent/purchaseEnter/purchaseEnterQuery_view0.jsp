@@ -69,6 +69,8 @@
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
+                <label style="font-family:Verdana;">可出库数量大于0：</label>
+                <input class="nui-checkbox" id="outableQty" trueValue="1" falseValue="0"/>
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
 

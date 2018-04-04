@@ -183,7 +183,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">accountDetailList</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
@@ -218,7 +218,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>transactionrollback0</targetNode>
@@ -233,7 +233,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>transactionrollback0</targetNode>
@@ -290,7 +290,7 @@
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -340,7 +340,7 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>transactionrollback0</targetNode>
@@ -349,6 +349,14 @@
     <location x="133" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">结算单明细为空</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="131" y="261"/>

@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" method="post">
+    <form id="form1" method="post" style="width:100%;height:92%;">
         <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:95%;" plain="false"
              onactivechanged="changeTabs">
             <!--客户信息-->

@@ -9,21 +9,21 @@
                 <div id="basicInfoForm" class="form">
                     <input class="nui-hidden" name="id"/>
                     <div class="row">
-                        <span class="title title-width2 required">资料是否有效：</span>
+                        <span class="title title-width3 required">资料是否有效：</span>
                         <input name="typeId"
                                id="typeId"
                                required="true"
                                class="nui-combobox width2"
-                               textField="NAME"
-                               valueField="CUSTOMID"
+                               textField="text"
+                               valueField="value"
                                emptyText="请选择..."
-                               url=""
+                               data="const_enabled"
                                allowInput="false"
                                valueFromSelect="true"
                                showNullItem="false"
                                nullItemText="请选择..."/>
                                
-                        <span class="title title-width2 required">联系方式：</span>
+                        <span class="title title-width3 required">联系方式：</span>
                         <input name="typeId"
                                id="typeId"
                                required="true"
@@ -38,21 +38,21 @@
                                nullItemText="请选择..."/>
                     </div>
                     <div class="row">
-                        <span class="title title-width2 required">联系结果：</span>
+                        <span class="title title-width3 required">联系结果：</span>
                         <input name="typeId"
                                id="typeId"
                                required="true"
                                class="nui-combobox width2"
-                               textField="NAME"
-                               valueField="CUSTOMID"
+                               textField="text"
+                               valueField="value"
                                emptyText="请选择..."
-                               url=""
+                               data="const_enabled_communicate"
                                allowInput="false"
                                valueFromSelect="true"
                                showNullItem="false"
                                nullItemText="请选择..."/>
                                
-                        <span class="title title-width2 required">联系状态：</span>
+                        <span class="title title-width3 required">联系状态：</span>
                         <input name="typeId"
                                id="typeId"
                                required="true"
@@ -67,21 +67,13 @@
                                nullItemText="请选择..."/>
                     </div>
                     <div class="row">
-                        <span class="title title-width2">保养到期日期：</span>
+                        <span class="title title-width3">保养到期日期：</span>
                         <input id="recordDate" 
                             name="recordDate" 
                             class="nui-datepicker width2" 
                             dateFormat="yyyy-MM-dd HH:mm:ss" 
                             emptyText="请选择日期" alwaysView="true"/>
-                        <span class="title title-width2">预计购买日期：</span>
-                        <input id="recordDate" 
-                            name="recordDate" 
-                            class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd HH:mm:ss" 
-                            emptyText="请选择日期" alwaysView="true"/>
-                    </div>
-                    <div class="row">
-                        <span class="title title-width2">下次联系日期：</span>
+                        <span class="title title-width3">预计购买日期：</span>
                         <input id="recordDate" 
                             name="recordDate" 
                             class="nui-datepicker width2" 
@@ -89,7 +81,15 @@
                             emptyText="请选择日期" alwaysView="true"/>
                     </div>
                     <div class="row">
-                        <span class="title title-width2 required">联系内容：</span>
+                        <span class="title title-width3">下次联系日期：</span>
+                        <input id="recordDate" 
+                            name="recordDate" 
+                            class="nui-datepicker width2" 
+                            dateFormat="yyyy-MM-dd HH:mm:ss" 
+                            emptyText="请选择日期" alwaysView="true"/>
+                    </div>
+                    <div class="row">
+                        <span class="title title-width3 required">联系内容：</span>
                         <textarea id="content" 
                             name="content" 
                             class="mini-textarea width7" 

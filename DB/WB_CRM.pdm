@@ -14249,9 +14249,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:DataType>varchar(15)</a:DataType>
 <a:Length>15</a:Length>
 <a:Column.Mandatory>1</a:Column.Mandatory>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o830">
 <a:ObjectID>4D6E5610-2AB6-4B97-956B-691013CFC386</a:ObjectID>
@@ -14277,9 +14274,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>客户名称</a:Comment>
 <a:DataType>varchar(200)</a:DataType>
 <a:Length>200</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o832">
 <a:ObjectID>60D8822C-A8CC-4D30-A09B-58C67CF841D4</a:ObjectID>
@@ -14328,9 +14322,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>地址</a:Comment>
 <a:DataType>varchar(200)</a:DataType>
 <a:Length>200</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o836">
 <a:ObjectID>1CAEBB1E-F594-48A6-8905-44F7E17739EB</a:ObjectID>
@@ -14366,9 +14357,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>车型ID</a:Comment>
 <a:DataType>varchar(20)</a:DataType>
 <a:Length>20</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o839">
 <a:ObjectID>C3EF7B05-E202-4C9A-8231-CD2F581083D7</a:ObjectID>
@@ -14381,9 +14369,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>车辆品牌</a:Comment>
 <a:DataType>varchar(20)</a:DataType>
 <a:Length>20</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o840">
 <a:ObjectID>A0B8AB78-6989-400A-8870-95FA50F8759B</a:ObjectID>
@@ -14396,9 +14381,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>车型</a:Comment>
 <a:DataType>varchar(100)</a:DataType>
 <a:Length>100</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o841">
 <a:ObjectID>4247C62C-7E50-4CB6-B03C-A0AFF5204977</a:ObjectID>
@@ -14422,9 +14404,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>发动机号</a:Comment>
 <a:DataType>varchar(20)</a:DataType>
 <a:Length>20</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o843">
 <a:ObjectID>D2FDB23B-ED77-4EEE-AFA1-1A0B31758445</a:ObjectID>
@@ -14437,9 +14416,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>VIN车架号</a:Comment>
 <a:DataType>varchar(20)</a:DataType>
 <a:Length>20</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o844">
 <a:ObjectID>05E05880-183E-4D34-916A-C03CC7A0520F</a:ObjectID>
@@ -14452,9 +14428,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>颜色</a:Comment>
 <a:DataType>varchar(10)</a:DataType>
 <a:Length>10</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o845">
 <a:ObjectID>BF91E5D9-0E84-4A1C-8C84-398899F5E1EE</a:ObjectID>
@@ -14534,9 +14507,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>投保公司</a:Comment>
 <a:DataType>varchar(20)</a:DataType>
 <a:Length>20</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o852">
 <a:ObjectID>22B6165F-A5FD-4429-A151-5A2DD844A2A0</a:ObjectID>
@@ -14718,9 +14688,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>建档人</a:Comment>
 <a:DataType>varchar(20)</a:DataType>
 <a:Length>20</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o868">
 <a:ObjectID>394E303C-3FB1-47CE-A420-043E610F9DFF</a:ObjectID>
@@ -14746,9 +14713,6 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Comment>修改人</a:Comment>
 <a:DataType>varchar(20)</a:DataType>
 <a:Length>20</a:Length>
-<a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true
-
-</a:ExtendedAttributesText>
 </o:Column>
 <o:Column Id="o870">
 <a:ObjectID>F7566757-CBFB-4763-BAE6-B0BA684F5BEC</a:ObjectID>

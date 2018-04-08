@@ -149,7 +149,7 @@ public class Utils {
 		}
 	}
 
-	@Bizlet("")
+	@Bizlet("序列化并压缩对象")
 	public static <E> String obj2GzipStr(E obj) {
 		try {
 			// String aa = SerializeUtil.serialize(obj);
@@ -162,6 +162,18 @@ public class Utils {
 			e.printStackTrace();
 			System.out.println("序列化对象失败");
 			return "";
+		}
+	}
+	
+	@Bizlet("反序列化压缩对象")
+	public static Object gzipStr2Obj(String str) {
+		try {
+			Object aa = SerializeUtil.decompressUnserialize(str);
+			return aa;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("反序列化对象失败");
+			return null;
 		}
 	}
 
@@ -292,6 +304,11 @@ public class Utils {
 		String ip = getIpAddr(request);
 		return MD5.crypt(createSessionId() + ip);
 	}
+	
+	@Bizlet("hashCode")
+	public static Integer hashCode(Object obj) {
+		return obj.hashCode();
+	}
 
 	/*
 	 * @Bizlet("") public static String obj2json(UserObject obj) { try { String
@@ -312,8 +329,14 @@ public class Utils {
 		 * (UserObject) SerializeUtil.decompressUnserialize(abc);
 		 * System.out.println(userObj.getSessionId());
 		 */
-		System.out.println(createSessionId());
-		System.out.println(createSessionId());
+		//System.out.println(createSessionId());
+		//System.out.println(createSessionId());
+		
+		String a="sfd";
+		a.hashCode();
+		Map map=new HashMap();
+		map.put("disct", "DDT2017092200015");
+		System.out.println(Utils.obj2json(map));
 
 	}
 

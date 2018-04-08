@@ -35,6 +35,9 @@
 		<isNotNull property="dictid">
 			AND A.DICTID = #dictid#
 		</isNotNull>
+        <isNull property="dictid">
+			AND A.DICTID in($dictids$)
+		</isNull>
 		<isNotNull property="sortField">
 			Order By #sortField# #sortOrder#
 		</isNotNull>

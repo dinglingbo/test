@@ -13,6 +13,12 @@ $(document).ready(function(v){
     query();
 });
 
+
+function init(){
+    var dictIdList = [];
+    dictIdList.push("DDT20130703000075");//客户来源
+    dictIdList.push("DDT20130703000030");//性别
+}
 /*
  *查询
  **/

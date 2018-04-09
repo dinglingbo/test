@@ -29,7 +29,7 @@
     </select>
     <!--字典项-->
     <select id="queryDictItem" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT ID, DICTID, CUSTOMID, NAME, PROPERTY1, PROPERTY2, PROPERTY3, DESCRIPTION
+    	SELECT id, dictId, customId, name, property1, property2, property3, description
     	from COM_DATAITEMS A		
 		WHERE 1=1 
 		<isNotNull property="dictid">

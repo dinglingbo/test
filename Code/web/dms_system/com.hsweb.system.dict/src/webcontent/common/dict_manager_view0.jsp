@@ -130,12 +130,12 @@
                              dataField="data" idField="ID" treeColumn="ID">
                             <div property="columns">
                                 <div type="checkcolumn"></div>
-                                <div field="CUSTOMID" allowSort="true" width="20%">数据项编码</div>
-                                <div field="NAME" allowSort="true" width="30%">数据项名称</div>
-                                <div name="ID" field="ID" allowSort="true" width="30%" visible="false">数据项ID</div>
-                                <div field="PROPERTY1" allowSort="true" width="20%">属性值1</div>
-                                <div field="PROPERTY2" allowSort="true" width="20%">属性值2</div>
-                                <div field="PROPERTY3" allowSort="true" width="20%">属性值3</div>
+                                <div field="customId" allowSort="true" width="20%">数据项编码</div>
+                                <div field="name" allowSort="true" width="30%">数据项名称</div>
+                                <div name="id" field="ID" allowSort="true" width="30%" visible="false">数据项ID</div>
+                                <div field="property1" allowSort="true" width="20%">属性值1</div>
+                                <div field="property2" allowSort="true" width="20%">属性值2</div>
+                                <div field="property3" allowSort="true" width="20%">属性值3</div>
                             </div>
                         </div>
 

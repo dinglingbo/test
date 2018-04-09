@@ -45,7 +45,7 @@ function callAjax(url, params, processAjax, callBack, obj){
 function processAjax(rs, callBack){
     if(rs.errCode != 'E'){//&& rs.result.code == '1' 第三方接口定义代码
         //nui.alert("获取数据成功！");
-        callBack(rs.result);
+        callBack(rs.result || rs.data);
     }
     else{
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg) + "]");// || rs.result.msg第三方接口定义消息

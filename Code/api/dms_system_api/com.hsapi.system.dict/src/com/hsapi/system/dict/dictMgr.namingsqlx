@@ -21,10 +21,13 @@
 			AND A.PARENTID = #parentid#
 		</isNotNull>
 		<isNotNull property="customId">
-			AND A.CUSTOMID like '%#customId#%'
+			AND A.CUSTOMID like '%$customId$%'
 		</isNotNull>		
 		<isNotNull property="queryId">
-			AND A.ID like '%#queryId#%'
+			AND A.ID like '%$queryId$%'
+		</isNotNull>
+        <isNotNull property="name">
+			AND A.name like '%$name$%'
 		</isNotNull>
     </select>
     <!--字典项-->

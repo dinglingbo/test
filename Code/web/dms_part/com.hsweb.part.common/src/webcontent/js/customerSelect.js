@@ -118,6 +118,7 @@ function getSearchParam()
 function doSearch(params)
 {
     grid.load({
+    	token:token,
         params:params
     });
 }

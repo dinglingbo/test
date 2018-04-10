@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@page pageEncoding="UTF-8"%>
-<%@include file="/coframe/dict/common.jsp"%>
 <%@include file="/common/sysCommon.jsp"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!-- 
@@ -23,21 +22,24 @@
 		<tr class="odd">
 			<th class="nui-form-label"><label for="dicttypeid$text">类型代码：</label></th>
 			<td>
-				<input id="dicttypeid" name="dicttypeid" vtype="maxLength:128" required="true" class="nui-combobox nui-form-input"
-					textField="NAME" valueField="ID" emptyText="请选择" allowInput="false"/>
+				<input id="dicttypeid" name="dictid" vtype="maxLength:128" required="true" class="nui-combobox nui-form-input"
+					textField="name" valueField="id" emptyText="请选择" allowInput="false"/>
 			</td>
 		</tr>
 		<tr>
 			<th class="nui-form-label"><label for="dictid$text">字典项代码：</label></th>
-			<td><input id="dictid" name="dictid" vtype="maxLength:128" required="true" class="nui-textbox nui-form-input"/></td>
+			<td><input id="dictid" name="customid" vtype="maxLength:128" required="true" class="nui-textbox nui-form-input"/></td>
 		</tr>
 		<tr class="odd">
 			<th class="nui-form-label"><label for="dictname$text">字典项名称：</label></th>
-			<td><input id="dictname" name="dictname" vtype="maxLength:255" required="true" class="nui-textbox nui-form-input"/></td>
+			<td><input id="dictname" name="name" vtype="maxLength:255" required="true" class="nui-textbox nui-form-input"/></td>
 		</tr>
 		<tr>
-			<th class="nui-form-label"><label for="sortno$text">排序：</label></th>
-			<td><input id="sortno" name="sortno" vtype="int;maxLength:11" class="nui-textbox nui-form-input"/></td>
+			<th class="nui-form-label"><label for="sortno$text">是否有效：</label></th>
+			<td>
+                <input id="isDisabled" name="isDisabled" vtype="maxLength:128" required="true" class="nui-combobox nui-form-input"
+					textField="text" valueField="value" data="const_enabled" emptyText="请选择" allowInput="false"/>
+            </td>
 		</tr>
 		</table>
 	</form>
@@ -77,8 +79,8 @@
 		
         nui.get("dicttypeid").setData([data.eosDictType]);
 		form.setData(data);
-        alert(data.eosDictType.ID);
-        alert(nui.get("dicttypeid"));
+        //alert(data.eosDictType.id);
+        //alert(nui.get("dicttypeid"));
 		form.setChanged(false);
 		
 		if(data.action == 'edit'){
@@ -91,13 +93,14 @@
 		if (form.isValid() == false) return;
 
 		nui.ajax({
-			url: "org.gocom.components.coframe.dict.DictManager.saveDict.biz.ext",
+			//url: "org.gocom.components.coframe.dict.DictManager.saveDict.biz.ext",
+            url: apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDict.biz.ext",
 			type: 'post',
 			data: nui.encode({data:form.getData()}),
 			cache: false,
 			contentType:'text/json',
 			success: function (json) {
-				if(json.status == 'success'){
+				if(json.errCode == 'S'){
 					closeWindow('ok');
 				}
 				else if(json.status == 'exist') nui.alert("记录已存在！");

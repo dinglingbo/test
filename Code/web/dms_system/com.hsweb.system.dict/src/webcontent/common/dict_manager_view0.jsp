@@ -189,6 +189,11 @@ var seldicttypeid;
 var seldictid;
 var importWindow = nui.get("importWindow");
 
+dict_tg.on("beforeload",function(e){
+    	e.data.token = token;
+        e.data.fromDb = true;
+});
+
 function onKeyEnter(e) {
     searchDictType();
 }
@@ -410,7 +415,7 @@ function onDictDrawNode(e) {//节点加载完清空参数，避免影响查询�
 }
 
 function onDictNodeClick(e) {
-    //dict_tg._dataSource.loadParams.parentid = e.node.ID;
+    dict_tg._dataSource.loadParams.parentid = e.node.id;
 }
 
 function onBeforeTreeLoad(e) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveDictType.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="保存" title="Guine&#x9;18-4-10 下午5:00">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveDict" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="保存字典项" title="Guine&#x9;18-4-10 下午5:00">
     <location x="45" y="35"/>
     <size height="100" width="149"/>
   </nodes>
@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.system.data.dict.ComDatadictionaries" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="0" language="com.hsapi.system.data.dict.ComDataitems" name="data" type="query" valueType="DataObject">data</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
     </process:returns>
@@ -229,10 +229,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.system.data.dict.ComDatadictionaries" name="data"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.system.data.dict.ComDataitems" name="data"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.system.data.dict.ComDatadictionaries" name="data"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.system.data.dict.ComDataitems" name="data"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
   </process:outputs>

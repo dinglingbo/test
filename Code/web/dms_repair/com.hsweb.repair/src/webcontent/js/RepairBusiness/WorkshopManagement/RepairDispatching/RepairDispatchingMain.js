@@ -8,12 +8,9 @@ var leftGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainLis
 var statusHash = ["", "在报价", "在维修","已完工"];
 var rpsItemGrid = null;
 var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemByServiceId.biz.ext";
-var repairOutGrid = null;
-var repairOutGridUrl  = window._rootPartUrl + "com.hsapi.part.purchase.repair.queryRepairOutList.biz.ext";
+
 $(document).ready(function (v)
 {
-    repairOutGrid = nui.get("repairOutGrid");
-    repairOutGrid.setUrl(repairOutGridUrl);
 
     rpsItemGrid = nui.get("itemGrid");
     rpsItemGrid.on("beforeload",function(e){
@@ -49,7 +46,7 @@ $(document).ready(function (v)
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setEnabled(false);
     init(function () {
-        quickSearch(2);
+        onSearch();
     });
 });
 var mtType = [];
@@ -67,6 +64,12 @@ function init(callback)
     itemKindEl = nui.get("itemKind");
     itemKindEl.on("valuechanged",function()
     {
+        var selectUnDispatchingOnly = false;
+        var ck1Value = nui.get("ck1").getValue();
+        if(ck1Value == 1)
+        {
+            selectUnDispatchingOnly = true;
+        }
         var type = itemKindEl.getValue();
         var list = teamList;
         rpsItemGrid.deselectAll();
@@ -75,13 +78,32 @@ function init(callback)
             list = teamList.filter(function(v){
                 return v.type == type;
             });
-            var rows = rpsItemGrid.findRows(function(row){
+            var rows = rpsItemGrid.findRows(function(row)
+            {
+                if(selectUnDispatchingOnly)
+                {
+                    if(row.beginDate)
+                    {
+                        return false;
+                    }
+                }
                 return row.itemKind == type;
             });
             rpsItemGrid.selects(rows);
         }
-        else{
-            rpsItemGrid.selectAll();
+        else
+        {
+            if(selectUnDispatchingOnly)
+            {
+                var rows1 = rpsItemGrid.findRows(function(row)
+                {
+                    return !row.beginDate;
+                });
+                rpsItemGrid.selects(rows1);
+            }
+            else{
+                rpsItemGrid.selectAll();
+            }
         }
         teamEl.setData(list);
         if(list.length>0)
@@ -104,6 +126,10 @@ function init(callback)
         {
             teamMemberEl.setValue(members[0].emplId);
         }
+    });
+    var ck1 = nui.get("ck1");
+    ck1.on("valuechanged",function(){
+        itemKindEl.doValueChanged();
     });
 
     serviceTypeIdEl = nui.get("serviceTypeId");
@@ -221,7 +247,6 @@ function getMaintainById(id)
             basicInfoForm.setData(maintain);
             serviceTypeIdEl.doValueChanged();
             loadRpsItemData();
-            loadRepairOutData();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //  nui.alert(jqXHR.responseText);
@@ -234,177 +259,22 @@ function reloadLeftGrid()
 {
     leftGrid.reload();
 }
-function loadRepairOutData()
+
+function getSearchParams()
 {
-    var maintain = basicInfoForm.getData();
-    if (!maintain.id) {
-        return;
-    }
-    var params = {
-        serviceId: maintain.id,
-        returnSign:0,
-        orgid:currOrgid
-    };
-    repairOutGrid.load({
-    	token:token,
-        params:params
-    });
-}
-function checkAll()
-{
-    repairOutGrid.selectAll();
-}
-function inverse()
-{
-    var rows = repairOutGrid.getSelecteds();
-    repairOutGrid.selectAll();
-    repairOutGrid.deselects(rows);
-}
-function partAudit()
-{
-    var rows = repairOutGrid.getSelecteds();
-    var url = window._rootPartUrl+"com.hsapi.part.purchase.repair.partAudit.biz.ext";
-    nui.mask({
-        html: '审核中..'
-    });
-    doPost({
-        url: url,
-        data: {
-            list:rows
-        },
-        success: function (data) {
-            nui.unmask();
-            data = data || {};
-            if(data.errCode == "S")
-            {
-                nui.alert("审核成功");
-                repairOutGrid.reload();
-            }
-            else{
-                nui.alert(data.errMsg||"审核失败");
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            nui.unmask();
-            nui.alert("网络出错");
-        }
-    });
-}
-function antiPartAudit()
-{
-    var rows = repairOutGrid.getSelecteds();
-    var url = window._rootPartUrl+"com.hsapi.part.purchase.repair.antiPartAudit.biz.ext";
-    nui.mask({
-        html: '取消审核中..'
-    });
-    doPost({
-        url: url,
-        data: {
-            list:rows
-        },
-        success: function (data) {
-            nui.unmask();
-            data = data || {};
-            if(data.errCode == "S")
-            {
-                nui.alert("取消审核成功");
-                repairOutGrid.reload();
-            }
-            else{
-                nui.alert(data.errMsg||"取消审核失败");
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            nui.unmask();
-            nui.alert("网络出错");
-        }
-    });
-}
-//完工总检
-function onFinnish()
-{
-    var maintain = basicInfoForm.getData();
-    if (!maintain.id) {
-        return;
-    }
-    var itemList = rpsItemGrid.findRows(function(row)
-    {
-        return row.status != 2;
-    });
-    if(itemList.length>0)
-    {
-        nui.alert("还有项目未完工，不能总检");
-        return;
-    }
-    var partList = repairOutGrid.findRows(function(row){
-        return !row.auditor;
-    });
-    if(partList.length>0)
-    {
-        nui.alert("还有材料未审核，不能总检");
-        return;
-    }
-    nui.open({
-        targetWindow: window,
-        url: "com.hsweb.RepairBusiness.workInspection.flow",
-        title: "车辆总检",
-        width: 660,
-        height: 420,
-        allowResize: false,
-        onload: function ()
-        {
-            var iframe = this.getIFrameEl();
-            var params = {
-                id: maintain.id
-            };
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action)
-        {
-            if (action == "ok")
-            {
-            	quickSearch(3);
-            }
-        }
-    });
-}
-function quickSearch(type) {
     var params = {};
-    switch (type) {
-        case 0:
-            params.mtAuditor = currUserName;
-            break;
-        case 1:
-            params.status = 1;
-            break;
-        case 2:
-            params.status = 2;
-            break;
-        case 3:
-            params.status = 3;
-            break;
-        case 4:
-            params.status = 4;
-            break;
-        default:
-            break;
-    }
-    if ($("a[id*='type']").length > 0) {
-        $("a[id*='type']").css("color", "black");
-    }
-    if ($("#type" + type).length > 0) {
-        $("#type" + type).css("color", "blue");
-    }
+    params.carNo = nui.get("carNo-search").getValue();
+    return params;
+}
+function onSearch()
+{
+    var params = getSearchParams();
     doSearch(params);
 }
 function doSearch(params) {
     params.orgid = currOrgid;
     leftGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
@@ -418,7 +288,7 @@ function loadRpsItemData()
         serviceId: maintain.id
     };
     rpsItemGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
@@ -536,108 +406,6 @@ function cancelDispatching()
             }
             else{
                 nui.alert(data.errMsg||"取消派工失败");
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            nui.unmask();
-            nui.alert("网络出错");
-        }
-    });
-}
-//项目完工
-function itemFinish()
-{
-    var rows = rpsItemGrid.getSelecteds();
-    rows = rows.filter(function(v){
-        return v.beginDate;
-    });
-    var itemList = [];
-    if(rows && rows.length>0)
-    {
-        itemList = rows.map(function(v)
-        {
-            return {
-                serviceId:v.serviceId,
-                itemId:v.itemId
-            };
-        });
-    }
-    else
-    {
-        nui.alert("请选择已派工的要完工的项目");
-        return;
-    }
-    nui.mask({
-        html:'保存中...'
-    });
-    var Url = baseUrl+"com.hsapi.repair.repairService.work.itemFinish.biz.ext";
-    doPost({
-        url:Url,
-        data:{
-            itemList:itemList
-        },
-        success:function(data)
-        {
-            nui.unmask();
-            data = data||{};
-            if(data.errCode == "S")
-            {
-                nui.alert("完工成功");
-                loadRpsItemData();
-            }
-            else{
-                nui.alert(data.errMsg||"完工失败");
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            nui.unmask();
-            nui.alert("网络出错");
-        }
-    });
-}
-//取消项目完工
-function cancelItemFinish()
-{
-    var rows = rpsItemGrid.getSelecteds();
-    var itemList = [];
-    if(rows && rows.length>0)
-    {
-        itemList = rows.map(function(v)
-        {
-            return {
-                serviceId:v.serviceId,
-                itemId:v.itemId
-            };
-        });
-    }
-    else
-    {
-        nui.alert("请选择要取消完工的项目");
-    }
-    nui.mask({
-        html:'保存中...'
-    });
-    var Url = baseUrl+"com.hsapi.repair.repairService.work.cancelItemFinish.biz.ext";
-    doPost({
-        url:Url,
-        data:{
-            itemList:itemList
-        },
-        success:function(data)
-        {
-            nui.unmask();
-            data = data||{};
-            if(data.errCode == "S")
-            {
-                nui.alert("取消完工成功");
-                loadRpsItemData();
-            }
-            else{
-                nui.alert(data.errMsg||"取消完工失败");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

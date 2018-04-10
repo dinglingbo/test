@@ -11,7 +11,7 @@
 -->
 <head>
 <title>车间派工</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/WorkshopDispatching/WorkshopDispatchingMain.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/WorkshopDispatching/WorkshopDispatchingMain.js?v=1.0.1"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

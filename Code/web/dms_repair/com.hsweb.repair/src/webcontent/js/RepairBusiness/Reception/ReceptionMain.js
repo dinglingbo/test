@@ -163,6 +163,7 @@ function searchStock(type)
     }
     params.orgid = currOrgid;
     stockGrid.load({
+    	token:token,
         params:params
     });
 }
@@ -195,9 +196,18 @@ function quickSearch(type) {
     }
     doSearch(params);
 }
+function onSearch()
+{
+    var carNo = nui.get("carNo-search").getValue();
+    var params = {
+        carNo:carNo
+    };
+    doSearch(params);
+}
 function doSearch(params) {
     params.orgid = currOrgid;
     leftGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -220,6 +230,7 @@ function onSearchItem() {
 function doSearchItem(params) {
     params.orgid = currOrgid;
     itemGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -451,6 +462,7 @@ function loadPackageGridData()
                 packageId: row.id
             };
             packageDetailGrid.load({
+            	token:token,
                 params: params
             });
         });
@@ -463,6 +475,7 @@ function loadPackageGridData()
         serviceId: maintain.id
     };
     packageGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -606,6 +619,7 @@ function loadRpsItemQuoteData() {
         serviceId: maintain.id
     };
     rpsItemQuoteGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -765,6 +779,7 @@ function loadRpsPartQuoteData() {
         serviceId: maintain.id
     };
     rpsPartQuoteGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -940,6 +955,7 @@ function loadRpsItemData() {
         serviceId: maintain.id
     };
     rpsItemGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -1042,6 +1058,7 @@ function loadRpsPartData() {
         serviceId: maintain.id
     };
     rpsPartGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -1168,6 +1185,7 @@ function loadRpsItemBillData()
       serviceId: maintain.id
   };
   rpsItemBillGrid.load({
+	  token:token,
       params: params
   });
 }
@@ -1270,6 +1288,7 @@ function loadRpsPartBillData() {
       serviceId: maintain.id
   };
   rpsPartBillGrid.load({
+	  token:token,
       params: params
   });
 }
@@ -1500,7 +1519,7 @@ function getMaintainById(id) {
 function selectCustomer(callback)
 {
     nui.open({
-        url: "../common1/Customer.html",
+        url: "com.hsweb.RepairBusiness.Customer.flow",
         title: "客户选择", width: 800, height:450,
         onload: function () {
         },
@@ -1846,35 +1865,69 @@ function selectReport()
         }
     });
 }
-function settlement() {
+function settlement() 
+{
+	var maintain = basicInfoForm.getData();
+    if(!maintain.id)
+    {
+        return;
+    }
     nui.open({
-        url: "../../common/Settlement.jsp",
+        url: "com.hsweb.repair.DataBase.settleAccounts.flow",
+        allowResize:false,
         title: "完工结算", width: 650, height: 630,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var data = {pageType: "settlement"};
-            iframe.contentWindow.setData(data);
+            var params = {
+                serviceId:maintain.id
+            };
+            iframe.contentWindow.setData(params);
         },
-
-        ondestroy: function (action) {
-            grid.reload();
+        ondestroy: function (action)
+        {
+            leftGrid.reload();
         }
     });
 }
-function customer() {
+function addOrEdit(guest)
+{
+    var title = "新增客户资料";
+    if(guest)
+    {
+        title = "修改客户资料";
+    }
     nui.open({
-        url: "../../RepairBusiness/CustomerProfile/CustomerProfileDetail.jsp",
-        title: "客户资料", width: 460, height: 640,
-        onload: function () {
+        url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        title:title,
+        width:500,
+        height:630,
+        onload:function(){
             var iframe = this.getIFrameEl();
-            var data = {pageType: "customer"};
-            iframe.contentWindow.setData(data);
+            var params = {};
+            if(guest)
+            {
+                params.guest = guest;
+            }
+            iframe.contentWindow.setData(params);
         },
-
-        ondestroy: function (action) {
-            grid.reload();
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {
+                grid.reload();
+            }
         }
     });
+}
+function showCustomer(){
+    var maintain = basicInfoForm.getData();
+    if(!maintain.id)
+    {
+        return;
+    }
+    if(maintain) {
+        addOrEdit(maintain);
+    }
 }
 function examine()
 {
@@ -1934,18 +1987,30 @@ function examine()
         }
     });
 }
-function returnList() {
+function returnList()
+{
+    var maintain = basicInfoForm.getData();
+    if(!maintain.id)
+    {
+        return;
+    }
     nui.open({
-        url: "../../common/ReturnList.jsp",
-        title: "返单处理", width: 500, height: 200,
+        url: "com.hsweb.repair.DataBase.returnList.flow",
+        allowResize:false,
+        title: "返单处理", width: 400, height: 150,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var data = {pageType: "returnList"};
-            iframe.contentWindow.setData(data);
+            var params = {
+                maintain:maintain
+            };
+            iframe.contentWindow.setData(params);
         },
-
-        ondestroy: function (action) {
-            grid.reload();
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+                quickSearch(2);
+            }
         }
     });
 }

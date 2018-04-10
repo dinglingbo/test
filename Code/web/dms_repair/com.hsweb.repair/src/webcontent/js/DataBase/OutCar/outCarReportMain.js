@@ -80,6 +80,7 @@ function loadDataGridData(type)
     params.type = type;
     params.orgid = currOrgid;
     dataGrid.load({
+    	token:token,
         params:params
     });
 }

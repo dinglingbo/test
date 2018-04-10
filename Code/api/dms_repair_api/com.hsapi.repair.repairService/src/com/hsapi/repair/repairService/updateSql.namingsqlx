@@ -24,4 +24,21 @@
 	<delete id="deleteRepairRecord" parameterClass="java.util.HashMap">
 		Delete from rps_repair_record where service_id = #serviceId#
 	</delete>
+	
+	<delete id="deleteRpsSettlementByServiceId" parameterClass="java.util.HashMap">
+		DELETE FROM rps_settlement WHERE service_id = #serviceId#
+	</delete>
+	<delete id="deleteRpsItemBillByServiceId" parameterClass="java.util.HashMap">
+		DELETE FROM rps_item_bill WHERE service_id = #serviceId#
+	</delete>
+	<delete id="deleteRpsPartBillByServiceId" parameterClass="java.util.HashMap">
+		Delete from rps_part_bill where service_id = #serviceId#
+	</delete>
+	
+	<update id="resetRpsItem" parameterClass="java.util.HashMap">
+		Update rps_item set rate = 0, discount_amt = 0, subtotal = amt where service_id = #serviceId#
+	</update>
+	<update id="resetRpsPart" parameterClass="java.util.HashMap">
+		Update rps_part set rate = 0, discount_amt = 0, subtotal = amt where service_id = #serviceId#
+	</update>
 </sqlMap>

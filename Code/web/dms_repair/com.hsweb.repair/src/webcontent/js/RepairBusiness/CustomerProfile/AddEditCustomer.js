@@ -76,7 +76,7 @@ var carHash = {};
 var currCarIdx = 0;
 function updateCarBtnState()
 {
-	var car = carList[currCarIdx];
+    var car = carList[currCarIdx];
     carInfoFrom.setData(car);
     if(car.id)
     {
@@ -126,7 +126,7 @@ var currContactIdx = 0;
 function updateContactBtnState()
 {
     contactInfoForm.setData(contactList[currContactIdx]);
-    nui.get("carModelId").setText(carList[currContactIdx].carModel);
+    nui.get("carModelId").setText(contactList[currContactIdx].carModel);
     if(currContactIdx<=0)
     {
         nui.get("preContactBtn").disable();
@@ -197,7 +197,7 @@ var contactRequiredField ={
 var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
 function onOk()
 {
-	var guest = basicInfoForm.getData();
+    var guest = basicInfoForm.getData();
     carList[currCarIdx] = carInfoFrom.getData();
     carList[currCarIdx].carModel = nui.get("carModelId").getText();
     var i,key,tmp;
@@ -236,7 +236,7 @@ function onOk()
     {
         if(v.id)
         {
-            var oldJson = carHash[v.id];
+            var oldJson =carHash[v.id];
             var newJson = JSON.stringify(v);
             return oldJson !== newJson;
         }
@@ -301,7 +301,7 @@ function setData(data)
                     data = data||{};
                     if(data.guest && data.guest.id)
                     {
-                    	basicInfoForm.setData(data.guest);
+                        basicInfoForm.setData(data.guest);
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
                         var i;

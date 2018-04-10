@@ -100,7 +100,7 @@
 			b.name itemKindName,
 			a.status status,
 			a.unit_price unitPrice,
-			a.rate rate,
+			a.rate/100.0 rate,
 			a.discount_amt discountAmt,
 			a.subtotal subtotal,
 			a.class_name className,
@@ -131,7 +131,7 @@
 			b.name itemKindName,
 			a.status status,
 			a.unit_price unitPrice,
-			a.rate rate,
+			a.rate/100.0 rate,
 			a.subtotal subtotal
 		FROM
 			rps_item_quote a
@@ -157,7 +157,7 @@
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,
-			a.rate rate,
+			a.rate/100.0 rate,
 			a.subtotal subtotal,
 			a.discount_amt discountAmt
 		FROM
@@ -183,7 +183,7 @@
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,
-			a.rate rate,
+			a.rate/100.0 rate,
 			a.subtotal subtotal
 		FROM
 			rps_part_quote a
@@ -448,7 +448,7 @@
 			b.name itemKindName,
 			a.status status,
 			a.unit_price unitPrice,
-			a.rate rate,
+			a.rate/100.0 rate,
 			a.discount_amt discountAmt,
 			a.subtotal subtotal,
 			a.remark
@@ -474,7 +474,7 @@
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,
-			a.rate rate,
+			a.rate/100.0 rate,
 			a.subtotal subtotal,
 			a.discount_amt discountAmt
 		FROM
@@ -482,5 +482,6 @@
 			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
+		limit 1
 	</select>
 </sqlMap>

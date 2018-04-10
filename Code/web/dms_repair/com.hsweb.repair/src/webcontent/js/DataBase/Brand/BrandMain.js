@@ -76,6 +76,7 @@ function loadLeftBrandGridData(params)
     leftSeriesGrid.clearRows();
     rightModelGrid.clearRows();
     leftBrandGrid.load({
+    	token:token,
         params:params
     });
 }
@@ -105,6 +106,7 @@ function loadLeftSeriesGridData(carBrandId)
     var params = getSearchParams(currType);
     params.carBrandId = carBrandId;
     leftSeriesGrid.load({
+    	token:token,
         params:params
     });
 }
@@ -114,6 +116,7 @@ function loadRightModelGrid(carBrandId)
     var params = getSearchParams(currType);
     params.carBrandId = carBrandId;
     rightModelGrid.load({
+    	token:token,
         params:params
     });
 }

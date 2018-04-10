@@ -203,6 +203,7 @@ function loadLeftGridData(params)
 	params.orgid = currOrgid;
     rightGrid.setData([]);
     leftGrid.load({
+    	token:token,
         params:params
     });
 }
@@ -241,6 +242,7 @@ function onRightGridRowClick(e)
 function loadRightGridData(classId)
 {
     rightGrid.load({
+    	token:token,
         classId:classId
     });
 }

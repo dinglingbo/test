@@ -65,7 +65,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">ID</process:from>
+      <process:from type="query" pattern="reference">id</process:from>
       <process:to type="query">p/parentid</process:to>
     </process:copy>
     <process:copy>
@@ -73,8 +73,8 @@
       <process:to type="query">p/queryId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">customId</process:from>
-      <process:to type="query">p/customId</process:to>
+      <process:from type="query" pattern="reference">customid</process:from>
+      <process:to type="query">p/customid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">name</process:from>
@@ -264,7 +264,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">item/NUM</process:from>
+      <process:from type="query" pattern="reference">item/num</process:from>
       <process:to type="query">isLeaf</process:to>
     </process:copy>
   </nodes>
@@ -304,9 +304,9 @@
     <process:input description="" isArray="false" name="sortField" primitiveType="String"/>
     <process:input description="" isArray="false" name="sortOrder" primitiveType="String"/>
     <process:input description="" isArray="false" name="queryId" primitiveType="String"/>
-    <process:input description="类型代码" isArray="false" name="customId" primitiveType="String"/>
+    <process:input description="类型代码" isArray="false" name="customid" primitiveType="String"/>
     <process:input description="类型名称" isArray="false" name="name" primitiveType="String"/>
-    <process:input description="父节点ID" isArray="false" name="ID" primitiveType="String"/>
+    <process:input description="父节点ID" isArray="false" name="id" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>

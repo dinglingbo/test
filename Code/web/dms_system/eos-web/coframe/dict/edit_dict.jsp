@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@page pageEncoding="UTF-8"%>
 <%@include file="/coframe/dict/common.jsp"%>
+<%@include file="/common/sysCommon.jsp"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!-- 
   - Author(s): 陈鹏
@@ -22,8 +23,8 @@
 		<tr class="odd">
 			<th class="nui-form-label"><label for="dicttypeid$text">类型代码：</label></th>
 			<td>
-				<input id="dicttypeid" name="eosDictType.dicttypeid" vtype="maxLength:128" required="true" class="nui-combobox nui-form-input"
-					textField="dicttypename" valueField="dicttypeid" emptyText="请选择" allowInput="false"/>
+				<input id="dicttypeid" name="dicttypeid" vtype="maxLength:128" required="true" class="nui-combobox nui-form-input"
+					textField="NAME" valueField="ID" emptyText="请选择" allowInput="false"/>
 			</td>
 		</tr>
 		<tr>
@@ -56,8 +57,7 @@
 
 	function loadForm(data) {
 		data = nui.clone(data);
-		
-		if(data.parentdicttypeid != null){
+		/*if(data.parentdicttypeid != null){
 			$.ajax({
 				url: "org.gocom.components.coframe.dict.DictManager.queryDictType.biz.ext",
 				type: 'post',
@@ -68,13 +68,17 @@
 					nui.get("dicttypeid").load(json.data);
 				}
 			});
+            
 		}
 		else{
 			nui.get("dicttypeid").load([{dicttypeid:data.eosDictType.dicttypeid, dicttypename:data.eosDictType.dicttypename}]);
 			nui.get("dicttypeid").setReadOnly(true);
-		}
+		}*/
 		
+        nui.get("dicttypeid").setData([data.eosDictType]);
 		form.setData(data);
+        alert(data.eosDictType.ID);
+        alert(nui.get("dicttypeid"));
 		form.setChanged(false);
 		
 		if(data.action == 'edit'){
@@ -86,7 +90,7 @@
 		form.validate();
 		if (form.isValid() == false) return;
 
-		$.ajax({
+		nui.ajax({
 			url: "org.gocom.components.coframe.dict.DictManager.saveDict.biz.ext",
 			type: 'post',
 			data: nui.encode({data:form.getData()}),

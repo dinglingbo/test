@@ -18,6 +18,25 @@ function init(){
     var dictIdList = [];
     dictIdList.push("DDT20130703000075");//客户来源
     dictIdList.push("DDT20130703000030");//性别
+    var url = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
+    var params = {};
+    params.dictids = [];
+    params.dictids.push("DDT20130703000021");//联系方式
+    params.dictids.push("DDT20130703000081");//联系状态
+    params.token = token;
+    callAjax(url, params, processAjax, processInitData, null);
+}
+
+function processInitData(data){
+    var tmpList = data.filter(function(v){
+        return  "DDT20130703000021" == v.dictId;
+    });
+    nui.get("carSpec").setData(tmpList);
+    
+    tmpList = data.filter(function(v){
+        return  "DDT20130703000081" == v.dictId;
+    });
+    nui.get("kiloType").setData(tmpList);
 }
 /*
  *查询

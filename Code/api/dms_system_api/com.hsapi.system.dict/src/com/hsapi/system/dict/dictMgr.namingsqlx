@@ -9,19 +9,23 @@
     </resultMap>
     <!--字典定义-->
     <select id="queryDictType" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT A.ID, A.PARENTID, A.CUSTOMID, A.NAME, A.DESCRIPTION, B.NUM from COM_DATADICTIONARIES A
+    	SELECT A.id, A.parentid, A.customid, A.name, A.description, B.num from COM_DATADICTIONARIES A
 		LEFT JOIN(
 			select A.ID, CASE WHEN COUNT(B.id)>0 then 1 ELSE 0 END NUM 
 			from COM_DATADICTIONARIES A 
 			LEFT JOIN COM_DATADICTIONARIES B ON B.PARENTID=A.ID
 			GROUP BY A.ID
 		)B ON A.ID=B.ID
-		WHERE 1=1 
-		<isNotNull property="parentid">
-			AND A.PARENTID = #parentid#
+		WHERE 
+		<isNull property="parentid">
+			LENGTH(IFNULL(A.PARENTID,''))=0
+		</isNull>
+        <isNotNull property="parentid">
+			A.PARENTID = #parentid#
 		</isNotNull>
-		<isNotNull property="customId">
-			AND A.CUSTOMID like '%$customId$%'
+        
+		<isNotNull property="customid">
+			AND A.CUSTOMID like '%$customid$%'
 		</isNotNull>		
 		<isNotNull property="queryId">
 			AND A.ID like '%$queryId$%'

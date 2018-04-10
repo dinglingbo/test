@@ -65,14 +65,14 @@
                                             <a class="nui-button" plain="true" iconCls="icon-edit"
                                                onclick="editDictType()" id="btn_editDictType">修改
                                             </a>
-                                            <a class="nui-button" plain="true" iconCls="icon-remove"
+                                            <a class="nui-button" plain="true" iconCls="icon-remove" style="display:none;"
                                                onclick="removeDictType()" id="btn_removeDictType">删除
                                             </a>
                                             <!--
                                             <a class="nui-button" plain="true" iconCls="icon-upload" onclick="importDict();">导入</a>&nbsp;
                                             <a class="nui-button" plain="true" iconCls="icon-download" onclick="exportDict();">导出</a>&nbsp;
-                                             -->
                                             <a class="nui-button" plain="true" onclick="refreshDictCache();">刷新缓存</a>
+                                             -->
                                         </td>
                                     </tr>
                                 </table>
@@ -87,14 +87,14 @@
                                  url="com.hsapi.system.dict.dictMgr.queryDictType.biz.ext"
                                  onselectionchanged="onDictTypeSelected" ondrawnode="onDictTypeDrawNode"
                                  onload="onDictTypeLoad"
-                                 dataField="data" idField="ID" treeColumn="CUSTOMID">
+                                 dataField="data" idField="id" treeColumn="customid" parentField="parentid">
                                 <div property="columns" width="20">
                                     <div type="checkcolumn" width="10%"></div>
-                                    <div name="CUSTOMID" field="CUSTOMID" allowSort="true" width="20%">字典编码</div>
-                                    <div field="NAME" allowSort="true" width="20%">名称</div>
-                                    <div field="DESCRIPTION" allowSort="true" width="25%">备注</div>
-                                    <div field="ID" allowSort="true" width="20%" visible="false">ID</div>
-                                    <div field="PARENTID" allowSort="true" width="20%" visible="false">上级ID</div>
+                                    <div name="customid" field="customid" allowSort="true" width="20%">字典编码</div>
+                                    <div field="name" allowSort="true" width="20%">名称</div>
+                                    <div field="description" allowSort="true" width="25%">备注</div>
+                                    <div field="id" allowSort="true" width="20%" visible="false">ID</div>
+                                    <div field="parentid" allowSort="true" width="20%" visible="false">上级ID</div>
 
                                 </div>
                             </div>
@@ -127,12 +127,13 @@
                              url="com.hsapi.system.dict.dictMgr.queryDict.biz.ext" onbeforeload="onBeforeTreeLoad"
                              onselectionchanged="onDictSelected" ondrawnode="onDictDrawNode"
                              onnodeclick="onDictNodeClick"
-                             dataField="data" idField="ID" treeColumn="ID">
+                             dataField="data" idField="id" treeColumn="id">
                             <div property="columns">
                                 <div type="checkcolumn"></div>
+                                <div field="dictId" visible="false">类型编码</div>
                                 <div field="customId" allowSort="true" width="20%">数据项编码</div>
                                 <div field="name" allowSort="true" width="30%">数据项名称</div>
-                                <div name="id" field="ID" allowSort="true" width="30%" visible="false">数据项ID</div>
+                                <div name="id" field="id" allowSort="true" width="30%" visible="false">数据项ID</div>
                                 <div field="property1" allowSort="true" width="20%">属性值1</div>
                                 <div field="property2" allowSort="true" width="20%">属性值2</div>
                                 <div field="property3" allowSort="true" width="20%">属性值3</div>
@@ -183,6 +184,7 @@ nui.parse();
 
 var dict_type_tg = nui.get("dict_type_tg");
 var dict_tg = nui.get("dict_tg");
+var seldicttypeRow;
 var seldicttypeid;
 var seldictid;
 var importWindow = nui.get("importWindow");
@@ -196,6 +198,7 @@ function searchDictType() {
     var dicttypecode = nui.get("dicttypecode").getValue();
     var dicttypename = nui.get("dicttypename").getValue();
     dict_type_tg.load({id: dicttypeid, code: dicttypecode, name: dicttypename});
+    seldicttypeRow = null;
     seldicttypeid = null;
     seldictid = null;
 }
@@ -238,6 +241,7 @@ function onDictTypeSelected(e) {
     var grid = e.sender;
 
     dict_tg.clearData();
+    seldicttypeRow = null;
     seldicttypeid = null;
     seldictid = null;
 
@@ -252,8 +256,9 @@ function onDictTypeSelected(e) {
         nui.get("btn_removeDictType").enable();
 
         var record = grid.getSelected();
-        dict_tg.load({dictid: record.ID});
-        seldicttypeid = record.ID;
+        dict_tg.load({dictid: record.id});
+        seldicttypeRow = record;
+        seldicttypeid = record.id;
     } else {
         nui.get("btn_addSubDictType").disable();
         nui.get("btn_editDictType").disable();
@@ -262,11 +267,12 @@ function onDictTypeSelected(e) {
 }
 
 function onDictTypeDrawNode(e) {//节点加载完清空参数，避免影响查询和翻页
-    dict_type_tg._dataSource.loadParams.ID = null;
+    dict_type_tg._dataSource.loadParams.id = null;
 }
 
 function onDictTypeLoad(e) {//加载第一个类型的字典项
     nui.parse();
+    seldicttypeRow = null;
     seldicttypeid = null;
     seldictid = null;
     if (e.data[0] != null) {
@@ -309,7 +315,7 @@ function addSubDictType() {
             onload: function () {
                 var iframe = this.getIFrameEl();
                 var parent = dict_type_tg.getSelected();
-                var data = {rank: parent.rank, parentid: parent.dicttypeid, seqno: parent.seqno};
+                var data = {parentName: parent.name, parentid: parent.id};
                 data.action = 'add';
                 iframe.contentWindow.loadForm(data);
             },
@@ -359,6 +365,7 @@ function removeDictType() {
                     contentType: 'text/json',
                     success: function (json) {
                         if (json.status == 'success') {
+                            seldicttypeRow = null;
                             seldicttypeid = null;
                             dict_tg.clearData();
                             dict_type_tg.reload();
@@ -388,7 +395,7 @@ function onDictSelected(e) {
         nui.get("btn_addSubDict").enable();
         nui.get("btn_editDict").enable();
         nui.get("btn_removeDict").enable();
-        seldictid = grid.getSelected().ID;
+        seldictid = grid.getSelected().id;
     } else {
         nui.get("btn_addSubDict").disable();
         nui.get("btn_editDict").disable();

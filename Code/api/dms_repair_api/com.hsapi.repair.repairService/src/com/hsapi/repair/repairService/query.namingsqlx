@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryMtHistoryList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			c.ORGNAME orgname,
+			a.id id,
+			a.status status,
+			a.enter_date enterDate,
+			a.plan_finish_date planFinishDate,
+			a.service_code serviceCode,
+			a.mt_advisor mtAdvisor,
+			a.car_no carNo,
+			a.service_card serviceCard,
+			d.car_brand_id,
+			e.car_brand_zh carBrandName,
+			d.car_model carModel,
+			a.checker checker,
+			a.guest_id guestId,
+			f.NAME guestName,
+			a.service_type_id serviceTypeId,
+			h.NAME serviceTypeName,
+			a.mt_type mtType,
+			g.NAME mtTypeName,
+			d.insure_comp_code insureCompCode,
+			i.full_name insureFullName,
+			a.sure_mt_date sureMtDate,
+			a.out_date outDate,
+			a.is_car_wash isCarWash,
+			a.remark remark,
+			b.item_amt itemAmt,
+			b.item_pref_rate/100.0 itemPrefRate,
+			b.item_pref_amt itemPrefAmt,
+			b.item_subtotal itemSutotal,
+			b.part_amt partAmt,
+			b.part_pref_rate/100.0 partPrefRate,
+			b.part_pref_amt partPrefAmt,
+			b.part_subtotal partSubtotal,
+			b.mt_amt mtAmt,
+			b.part_manage_exp partManageExp,
+			b.material_exp materialExp,
+			b.allowance_amt allowanceAmt,
+			b.other_exp otherExp,
+			b.total_pref_rate totalPrefRate,
+			b.total_pref_amt totalPrefAmt,
+			b.bala_amt balaAmt,
+			b.bill_amt billAmt 
+		FROM
+			rps_maintain a
+			INNER JOIN rps_settlement b ON ( a.id = b.service_id )
+			INNER JOIN dms_system.org_organization c ON ( a.orgid = c.orgid )
+			INNER JOIN rpb_car d ON ( a.car_id = d.id )
+			LEFT JOIN wb_common.com_car_brand e ON ( d.car_brand_id = e.id )
+			INNER JOIN rpb_contactor f ON ( a.contactor_id = f.id )
+			LEFT JOIN wb_common.com_datadictionaries h ON ( a.service_type_id = h.customid )
+			LEFT JOIN wb_common.com_dataitems g ON ( a.mt_type = g.customid )
+			LEFT JOIN wb_common.com_guest i ON ( i.id = d.insure_comp_code )
+		where
+			1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid"> 
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateIsNotNull"> 
+                (a.out_date is not null)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateIsNull"> 
+                (a.out_date is null)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="contactorId"> 
+                (a.contactor_id = #contactorId#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="serviceTypeId"> 
+                (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId"> 
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="underpanNo"> 
+                (d.underpan_no = #underpanNo#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoList"> 
+                (d.car_no in ($carNoList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCodeList"> 
+                (a.service_code in ($serviceCodeList$))
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="startDate"> 
+                (date_format(a.out_date,'%Y-%m-%d') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                (date_format(a.out_date,'%Y-%m-%d') &lt;= #endDate#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="thisYear"> 
+            <!--本年  --> 
+                (date_format(a.out_date,'%Y')=date_format(now(),'%Y'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear"> 
+            <!--上年--> 
+               (date_format(a.out_date,'%Y')=date_format(DATE_SUB(now(),INTERVAL 1 YEAR),'%Y'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(DATE_SUB(now(),INTERVAL 1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (date_format(a.out_date,'%X-%V')=date_format(now(),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--本周-->
+                (date_format(a.out_date,'%X-%V')=date_format(DATE_SUB(now(),INTERVAL 7 DAY),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">  
+                (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="carNo">  
+                (d.car_no like '%$carNo$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="serviceCode">  
+                (a.service_code like '%$serviceCode$%')
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	<select id="getGuestInfoByContactorId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			a.guest_id guestId,
+			b.full_name guestName,
+			a.name contactorName,
+			c.car_no carNo,
+			a.mobile mobile,
+			a.identity identity,
+			c.car_brand_id carBrandId,
+			c.car_model carModel,
+			c.underpan_no underpanNo,
+			c.engine_no engineNo,
+			a.remark 
+		FROM
+			rpb_contactor a
+			LEFT JOIN wb_common.com_guest b ON ( a.guest_id = b.id )
+			LEFT JOIN rpb_car c ON ( a.guest_id = c.guest_id ) 
+		WHERE
+			a.id = #contactorId#
+	</select>
+</sqlMap>

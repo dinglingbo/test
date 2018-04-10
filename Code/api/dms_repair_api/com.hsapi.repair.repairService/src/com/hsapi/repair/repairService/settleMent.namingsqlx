@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+
+
+	<update id="calculateItemDiscount" parameterClass="java.util.HashMap">
+		update rps_item set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
+	</update>
+	<update id="calculatePartDiscount" parameterClass="java.util.HashMap">
+		update rps_part set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
+	</update>
+	<update id="calculateItemBillDiscount" parameterClass="java.util.HashMap">
+		update rps_item_bill set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
+	</update>
+	<update id="calculatePartBillDiscount" parameterClass="java.util.HashMap">
+		update rps_part_bill set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
+	</update>
+	<update id="updateRpsItemSubtotal" parameterClass="java.util.HashMap">
+		update rps_item set subtotal = amt, rate = 0 where service_id = #serviceId# and ifnull(package_id, '') &lt;&gt; '' 
+	</update>
+	<update id="updateRpsPartSubtotal" parameterClass="java.util.HashMap">
+		update rps_part set subtotal = amt, rate = 0, unit_price = case when qty = 0 then 0 else amt / qty end  
+		where service_id = #serviceId# and ifnull(package_id, '') &lt;&gt; ''
+	</update>
+	<update id="updateRpsPkgDifferAmt" parameterClass="java.util.HashMap">
+		update rps_package SET differ_amt = detail_amt - amt, subtotal = amt - discount_amt 
+		where service_id = #serviceId#
+	</update>
+	
+	<select id="getAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select * from (
+			(select ifnull(sum(subtotal),0) elecAmt from rps_item where service_id = #serviceId# and item_kind = '040701' and rece_type_id = '04150101') elecAmt,
+			(select ifnull(sum(subtotal),0) metalAmt from rps_item where service_id = #serviceId# and item_kind = '040702' and rece_type_id = '04150101') metalAmt,
+			(select ifnull(sum(subtotal),0) paintAmt from rps_item where service_id = #serviceId# and item_kind = '040703' and rece_type_id = '04150101') paintAmt,
+			(select ifnull(sum(amt),0) itemAmt from rps_item where service_id = #serviceId# and rece_type_id = '04150101') itemAmt,
+			(select ifnull(sum(amt),0) itemTotalAmt from rps_item where service_id = #serviceId#) itemTotalAmt,
+			(select ifnull(sum(subtotal),0) itemSubtotal from rps_item where service_id = #serviceId# and rece_type_id = '04150101') itemSubtotal,
+			(select ifnull(sum(discount_amt),0) itemPrefAmt from rps_item where service_id = #serviceId# and rece_type_id = '04150101') itemPrefAmt,
+			(select ifnull(sum(amt),0) partAmt from rps_part where service_id = #serviceId# and rece_type_id = '04150101' and is_disabled = 0) partAmt,
+			(select ifnull(sum(amt),0) partTotalAmt from rps_part where service_id = #serviceId# and is_disabled = 0) partTotalAmt,
+			(select ifnull(sum(subtotal),0) partSubtotal from rps_part where service_id = #serviceId# and rece_type_id = '04150101' and is_disabled = 0) partSubtotal,
+			(select ifnull(sum(discount_amt),0) partPrefAmt from rps_part where service_id = #serviceId# and rece_type_id = '04150101' and is_disabled = 0) partPrefAmt,
+			(select ifnull(sum(amt),0) outItemTotal from rps_item_bill where service_id = #serviceId#) outItemTotal,
+			(select ifnull(sum(amt),0) outItemAmt from rps_item_bill where service_id = #serviceId# and rece_type_id = '04150101') outItemAmt,
+			(select ifnull(sum(discount_amt),0) outItemPrefAmt from rps_item_bill where service_id = #serviceId# and rece_type_id = '04150101') outItemPrefAmt,
+			(select ifnull(sum(subtotal),0) outItemSubtotal from rps_item_bill where service_id = #serviceId# and rece_type_id = '04150101') outItemSubtotal,
+			(select ifnull(sum(amt),0) outPartTotal from rps_part_bill where service_id = #serviceId#) outPartTotal,
+			(select ifnull(sum(amt),0) outPartAmt from rps_part_bill where service_id = #serviceId# and rece_type_id = '04150101') outPartAmt,
+			(select ifnull(sum(discount_amt),0) outPartPrefAmt from rps_part_bill where service_id = #serviceId# and rece_type_id = '04150101') outPartPrefAmt,
+			(select ifnull(sum(subtotal),0) outPartSubtotal from rps_part_bill where service_id = #serviceId# and rece_type_id = '04150101') outPartSubtotal
+		)
+	</select>
+	
+	<select id="getPartCost" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			ifnull(sum(true_cost),0) partTrueCost,
+			ifnull(sum(no_tax_amt),0) partNoTaxCost,
+			ifnull(sum(tax_amt),0) partTaxCost 
+		FROM
+			wb_part.pts_repair_out 
+		WHERE
+			service_id = #serviceId#
+			AND ifnull( return_sign, 0 ) = 0
+	</select>
+	<select id="getMaterialExp" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			ifnull(sum(sell_amt),0) materialExp 
+		FROM
+			wb_part.pts_repair_out
+		WHERE
+			service_id = #serviceId#
+			AND pick_type = '050204' 
+			AND ifnull( return_sign, 0 ) = 0	
+	</select>
+	
+	<select id="getRpsPkgDetailAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPackage">
+		SELECT
+			d.package_id id,
+			sum( d.subtotal ) detailAmt 
+		FROM
+			(
+		SELECT
+			package_id,
+			sum( ifnull( subtotal, 0 ) ) subtotal 
+		FROM
+			rps_part 
+		WHERE
+			service_id = #serviceId# 
+			AND ifnull( package_id, '' ) &lt;&gt; '' 
+		GROUP BY
+			package_id UNION
+		SELECT
+			package_id,
+			sum( ifnull( subtotal, 0 ) ) subtotal 
+		FROM
+			rps_item 
+		WHERE
+			service_id = #serviceId# 
+			AND ifnull( package_id, '' ) &lt;&gt; '' 
+		GROUP BY
+			package_id 
+			) d 
+		GROUP BY
+			d.package_id		
+	</select>
+	<select id="getRpsPkgCostAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPackage">
+		SELECT
+			package_id id,
+			sum( ifnull(true_cost,0) ) costAmt
+		FROM
+			wb_part.pts_repair_out 
+		WHERE
+			service_id = #serviceId#
+			AND return_sign = 0 
+			and ifnull(package_id,'') &lt;&gt; ''
+		GROUP BY
+			package_id	
+	</select>
+	<select id="getPkgAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			b.id serviceId,
+			SUM( a.amt ) packageAmt,
+			SUM( a.differ_amt + a.discount_amt ) packageDiscountAmt,
+			SUM( a.subtotal ) packageSubtotal 
+		FROM
+			rps_package a
+			INNER JOIN rps_maintain b ON a.service_id = b.id 
+		WHERE
+			b.id = #serviceId#
+			AND a.STATUS = 1
+	</select>
+</sqlMap>

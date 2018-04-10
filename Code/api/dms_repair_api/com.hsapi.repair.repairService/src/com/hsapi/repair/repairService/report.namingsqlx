@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRepairDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.orgid orgid,
+			c.ORGNAME orgname,
+			a.service_code serviceCode,
+			a.car_no carNo,
+			a.mt_advisor mtAdvisor,
+			a.service_card serviceCard,
+			e.car_brand_zh carBrandName,
+			d.car_model carModel,
+			a.checker,
+			f.full_name guestName,
+			a.mt_type mtType,
+			a.service_type_id serviceTypeId,
+			d.insure_comp_code,
+			a.sure_mt_date sureMtDate,
+			a.out_date outDate,
+			b.item_total_amt  itemTotalAmt,
+			b.item_free_amt itemFreeAmt,
+			b.item_amt  itemAmt,
+			b.item_pref_amt itemPrefAmt,
+			b.item_pref_rate itemPreRate,
+			b.item_subtotal itemSubtotal,
+			b.part_total_amt partTotalAmt,
+			b.part_free_amt partFreeAmt,
+			b.part_amt partAmt,
+			b.part_pref_rate partPrefRate,
+			b.part_pref_amt partPrefAmt,
+			b.part_subtotal partSubtotal,
+			b.part_true_cost partTrueCost,
+			b.mt_amt mtAmt,
+			b.part_manage_exp partManageExp,
+			b.material_exp materialExp,
+			b.allowance_amt allowanceAmt,
+			b.other_exp otherExp,
+			b.total_pref_rate totalPrefRate,
+			b.total_pref_amt totalPrefAmt,
+			b.accrued_expenses_amt accuedEpensesAmt,
+			b.accrued_expenses_remark accruedExpensesRemark,
+			b.elec_amt elecAmt,
+			b.elec_deduct elecDeduct,
+			b.metal_amt metalAmt,
+			b.metal_deduct metalDeduct,
+			b.paint_amt paintAmt,
+			b.paint_deduct paintDeduct,
+			b.out_turn_up_amt outTurnUpAmt,
+			b.out_turn_up_tax_amt outTurnUpTaxAmt,
+			b.out_rebate_amt outRebateAmt,
+			b.out_total_pref_amt outTotalPrefAmt,
+			b.out_bill_bala_subtoal outBillBalaSubtotal,
+			b.out_bill_allowance outBillAllowAnce,
+			b.bala_amt balaAmt,
+			b.receivable_amt receivableAmt,
+			b.income_amt incomeAmt,
+			b.income_real_amt incomeRealAmt,
+			b.bill_amt billAmt,
+			b.plan_tax_amt planTaxAmt,
+			b.gross_profit grossProfit,
+			b.gross_profit_rate grossProfitRate,
+			b.gross_profit_remark grossProfitRemark
+		FROM
+			rps_maintain a
+			inner JOIN rps_settlement b ON ( a.id = b.service_id )
+			left join dms_system.org_organization c on (a.orgid = c.ORGID)
+			left join rpb_car d on (d.id = a.car_id)
+			left join wb_common.com_car_brand e on (e.id = d.car_brand_id)
+			left join wb_common.com_guest f on (a.guest_id = f.id)
+		where
+			1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid"> 
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateIsNotNull"> 
+                (a.out_date is not null)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateIsNull"> 
+                (a.out_date is null)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="contactorId"> 
+                (a.contactor_id = #contactorId#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="serviceTypeId"> 
+                (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId"> 
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="underpanNo"> 
+                (d.underpan_no = #underpanNo#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoList"> 
+                (d.car_no in ($carNoList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCodeList"> 
+                (a.service_code in ($serviceCodeList$))
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="startDate"> 
+                (date_format(a.out_date,'%Y-%m-%d') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                (date_format(a.out_date,'%Y-%m-%d') &lt;= #endDate#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="thisYear"> 
+            <!--本年  --> 
+                (date_format(a.out_date,'%Y')=date_format(now(),'%Y'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear"> 
+            <!--上年--> 
+               (date_format(a.out_date,'%Y')=date_format(DATE_SUB(now(),INTERVAL 1 YEAR),'%Y'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(DATE_SUB(now(),INTERVAL 1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (date_format(a.out_date,'%X-%V')=date_format(now(),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--本周-->
+                (date_format(a.out_date,'%X-%V')=date_format(DATE_SUB(now(),INTERVAL 7 DAY),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">  
+                (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="carNo">  
+                (d.car_no like '%$carNo$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="serviceCode">  
+                (a.service_code like '%$serviceCode$%')
+            </isNotEmpty>
+        </dynamic>  
+    </select>
+</sqlMap>

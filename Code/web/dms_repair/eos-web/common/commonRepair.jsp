@@ -50,9 +50,9 @@
 	}
 
 	//window._rootUrl = getRoot();
-	window._rootUrl = apiPath+repairApi+"/";
-	window._rootPartUrl = apiPath+partApi+"/";
-	window._rootSysUrl = apiPath+sysApi+"/";
+	window._rootUrl = apiPath + repairApi + "/";
+	window._rootPartUrl = apiPath + partApi + "/";
+	window._rootSysUrl = apiPath + sysApi + "/";
 	//console.log(window._rootUrl);
 	function doPost(opt) {
 		var url = opt.url;
@@ -288,6 +288,42 @@
 		params.roleId = roleId;
 		doPost({
 			url : getRoleMemberUrl,
+			data : params,
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback(null);
+			}
+		});
+	}
+	var getTeamByTypeListUrl = window._rootUrl
+			+ "com.hsapi.repair.baseData.team.getTeamByTypeList.biz.ext";
+	function getTeamByTypeList(typeList, callback) {
+		var params = {};
+		params.type = typeList;
+		doPost({
+			url : getTeamByTypeListUrl,
+			data : params,
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback(null);
+			}
+		});
+	}
+	var getTeamMemberByTeamIdListUrl = window._rootUrl
+			+ "com.hsapi.repair.baseData.team.getTeamMemberByTeamIdList.biz.ext";
+	function getTeamMemberByTeamIdList(idList, callback) {
+		var params = {};
+		params.idList = idList;
+		doPost({
+			url : getTeamMemberByTeamIdListUrl,
 			data : params,
 			success : function(data) {
 				callback && callback(data);

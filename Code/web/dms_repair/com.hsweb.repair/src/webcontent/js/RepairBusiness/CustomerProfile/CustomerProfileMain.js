@@ -26,6 +26,7 @@ function onSearch()
 function doSearch(params)
 {
     grid.load({
+    	token:token,
         params:params
     });
 }

@@ -44,6 +44,7 @@ function onSearch()
 }
 function doSearch(params)
 {
+	params.token = token;
     grid.load(params);
 }
 var resultData = {};

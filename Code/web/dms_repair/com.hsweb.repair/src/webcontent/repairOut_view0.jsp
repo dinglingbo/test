@@ -9,7 +9,7 @@
 -->
 <head>
 <title>维修出库</title>
-<script src="<%=request.getContextPath()%>/repair/js/repairOut/repairOut.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/repairOut/repairOut.js?v=1.0.1"></script>
 <style type="text/css">
 
 .form_label {

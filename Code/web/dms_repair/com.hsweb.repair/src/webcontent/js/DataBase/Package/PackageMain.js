@@ -146,6 +146,7 @@ function doSearch(params)
 	addPackage();
 	params.orgid = currOrgid;
 	leftGrid.load({
+		token:token,
 		params:params
 	});
 }
@@ -155,12 +156,14 @@ function loadRightItemGridData(packageId)
 		packageId:packageId
 	};
 	rightItemGrid.load({
+		token:token,
 		params:params
 	});
 }
 function loadRightPartGridData(packageId)
 {
 	rightPartGrid.load({
+		token:token,
 		packageId:packageId
 	});
 }

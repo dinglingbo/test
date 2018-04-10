@@ -142,7 +142,7 @@ function init()
         var row = e.record;
         brandPartGrid.load({
             partId:row.id,
-            token:""
+            token:token,
         });
     });
     partGrid.on("beforeload",function(e)
@@ -260,8 +260,8 @@ function doSearchPackage(params)
 {
     params.packageId = params.code;
     params.packageName = params.name;
-    params.token = "";
     packageGrid.load({
+    	token:token,
         p:params
     });
 }
@@ -269,16 +269,16 @@ function doSearchItem(params)
 {
     params.itemCode = params.code||"";
     params.itemName = params.name||"";
-    params.token = "";
     itemGrid.load({
+    	token:token,
         p:params
     });
 }
 function doSearchPart(params)
 {
-    params.token = "";
     brandPartGrid.clearRows();
     partGrid.load({
+    	token:token,
         p:params
     });
 }

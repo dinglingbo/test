@@ -56,6 +56,7 @@ function doSearch(params)
 {
 	params.orgid = currOrgid;
 	rightGrid.load({
+		token:token,
 		params:params
 	});
 }

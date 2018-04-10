@@ -246,6 +246,7 @@ function loadRepairOutData()
         orgid:currOrgid
     };
     repairOutGrid.load({
+    	token:token,
         params:params
     });
 }
@@ -366,7 +367,7 @@ function onFinnish()
         {
             if (action == "ok")
             {
-                reloadLeftGrid();
+            	quickSearch(3);
             }
         }
     });
@@ -403,6 +404,7 @@ function quickSearch(type) {
 function doSearch(params) {
     params.orgid = currOrgid;
     leftGrid.load({
+    	token:token,
         params: params
     });
 }
@@ -416,6 +418,7 @@ function loadRpsItemData()
         serviceId: maintain.id
     };
     rpsItemGrid.load({
+    	token:token,
         params: params
     });
 }

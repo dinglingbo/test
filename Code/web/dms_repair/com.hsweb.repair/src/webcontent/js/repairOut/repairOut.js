@@ -400,7 +400,7 @@ function repairOut()
     }
     nui.open({
         targetWindow: window,
-        url: "./repairOutDetail.html",
+        url: "com.hsweb.RepairBusiness.repairOutDetail.flow",
         title: "车间领料", width: 500, height: 350,
         allowDrag:true,
         allowResize:false,

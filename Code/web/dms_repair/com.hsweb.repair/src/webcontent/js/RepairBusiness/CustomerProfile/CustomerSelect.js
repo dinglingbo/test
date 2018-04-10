@@ -65,6 +65,7 @@ function doSearch(params)
     }
     delete params.value;
     grid.load({
+    	token:token,
         params:params
     });
 }

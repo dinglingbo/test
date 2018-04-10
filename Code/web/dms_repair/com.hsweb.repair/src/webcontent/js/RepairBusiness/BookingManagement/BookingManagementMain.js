@@ -141,6 +141,7 @@ function doSearch(params)
     }
     params.orgid = currOrgid;
     leftGrid.load({
+    	token:token,
         params:params
     });
 }
@@ -190,6 +191,7 @@ function onLeftGridRowDblClick(e)
             }
         });
         rightGrid.load({
+        	token:token,
             bookId:row.id
         });
     }

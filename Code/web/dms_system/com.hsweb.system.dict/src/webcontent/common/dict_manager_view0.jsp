@@ -116,9 +116,9 @@
                             <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editDict()"
                                id="btn_editDict">修改
                             </a>
-                            <a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeDict()"
+                            <a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeDict()" style="display:none;"
                                id="btn_removeDict">删除
-                            </a>
+                            </a>  
                         </div>
 
                         <div id="dict_tg" class="nui-treegrid" style="width:100%;height:100%;" autoLoad="false"
@@ -130,13 +130,14 @@
                              dataField="data" idField="id" treeColumn="id">
                             <div property="columns">
                                 <div type="checkcolumn"></div>
-                                <div field="dictId" visible="false">类型编码</div>
-                                <div field="customId" allowSort="true" width="20%">数据项编码</div>
+                                <div field="dictid" visible="false">类型编码</div>
+                                <div field="customid" allowSort="true" width="20%">数据项编码</div>
                                 <div field="name" allowSort="true" width="30%">数据项名称</div>
                                 <div name="id" field="id" allowSort="true" width="30%" visible="false">数据项ID</div>
                                 <div field="property1" allowSort="true" width="20%">属性值1</div>
-                                <div field="property2" allowSort="true" width="20%">属性值2</div>
+                                <div field="property2" allowSort="true" width="20%">属性值2</div>isDisabled
                                 <div field="property3" allowSort="true" width="20%">属性值3</div>
+                                <div field="isDisabled" allowSort="true" width="20%">有效 </div>
                             </div>
                         </div>
 
@@ -435,14 +436,25 @@ function checkDictSelected() {
 }
 
 function addDict() {
+    doEditDict("add");
+}
+
+function doEditDict(action){
+    var title = "添加字典项";
+    var data = {};
+    if(action == "edit"){
+        title = "修改字典项";
+        data = nui.clone(dict_tg.getSelected());
+    }
+    data.eosDictType = dict_type_tg.getSelected();
+    data.action = action;
+    
     if (checkDictTypeSelected()) {
         nui.open({
             url: "<%=contextPath%>/coframe/dict/edit_dict.jsp",
-            title: "添加字典项", width: 320, height: 230,
+            title: title, width: 320, height: 230,
             onload: function () {
                 var iframe = this.getIFrameEl();
-                var data = {action: "add"};
-                data.eosDictType = dict_type_tg.getSelected();
                 iframe.contentWindow.loadForm(data);
             },
             ondestroy: function (action) {
@@ -450,7 +462,7 @@ function addDict() {
                     dict_tg.reload();
             }
         });
-    }
+    }    
 }
 
 function addSubDict() {
@@ -475,7 +487,8 @@ function addSubDict() {
 }
 
 function editDict() {
-    if (checkDictSelected()) {
+    doEditDict("edit");
+    /*if (checkDictSelected()) {
         nui.open({
             url: "<%=contextPath%>/coframe/dict/edit_dict.jsp",
             title: "修改字典项", width: 320, height: 230,
@@ -490,7 +503,7 @@ function editDict() {
                     dict_tg.reload();
             }
         });
-    }
+    }*/
 }
 
 function removeDict() {

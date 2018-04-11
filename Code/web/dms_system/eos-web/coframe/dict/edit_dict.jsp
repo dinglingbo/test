@@ -11,7 +11,7 @@
 <div class="nui-fit" style="padding-top:5px;">
 	<form id="dict_form" method="post">	
 		<input class="nui-hidden" name="status"/>
-		<input class="nui-hidden" name="rank"/>
+		<input class="nui-hidden" name="id"/>
 		<input class="nui-hidden" name="seqno"/>
 		<input class="nui-hidden" name="action"/>
 		<table class="nui-form-table" style="width:100%;height:100%;table-layout:fixed;">
@@ -76,11 +76,10 @@
 			nui.get("dicttypeid").load([{dicttypeid:data.eosDictType.dicttypeid, dicttypename:data.eosDictType.dicttypename}]);
 			nui.get("dicttypeid").setReadOnly(true);
 		}*/
-		
         nui.get("dicttypeid").setData([data.eosDictType]);
-		form.setData(data);
+        form.setData(data);
         //alert(data.eosDictType.id);
-        //alert(nui.get("dicttypeid"));
+        //alert(data.id);
 		form.setChanged(false);
 		
 		if(data.action == 'edit'){

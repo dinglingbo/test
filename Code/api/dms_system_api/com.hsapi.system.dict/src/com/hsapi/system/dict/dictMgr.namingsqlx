@@ -36,7 +36,7 @@
     </select>
     <!--字典项-->
     <select id="queryDictItem" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT id, dictId, customId, name, property1, property2, property3, description
+    	SELECT id, dictid, customid, name, property1, property2, property3, description, is_Disabled isDisabled
     	from COM_DATAITEMS A		
 		WHERE 1=1 
 		<isNotNull property="dictid">

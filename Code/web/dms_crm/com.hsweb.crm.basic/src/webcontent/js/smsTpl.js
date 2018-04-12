@@ -21,7 +21,7 @@ function query(){
     var params = {};
     params.p = data;
     if(currTypeNode){
-        params.p.typeId = currTypeNode.CUSTOMID;
+        params.p.typeId = currTypeNode.customid;
     }
     //param.token = token;
     dgGrid.load(params,null,function(){
@@ -75,7 +75,7 @@ function setTypeName(e){
     var tmp;
     for (var i = 0; i < typeData.length; i++) {
         tmp = typeData[i];
-        if (tmp.CUSTOMID == e.value) return tmp.NAME;
+        if (tmp.customid == e.value) return tmp.name;
     }
     return "";
 }

@@ -1,38 +1,63 @@
-var basicInfoForm;//表单
-var typeId; //话术类型
-var content;//内容
+var form1;//表单
 var recorder;//建档人
 var recordDate;//建档日期
 var modifier;//修改人
 var modifyDate;//修改日期
 
+var carModelInfo;
+
 $(document).ready(function(v){
-    basicInfoForm = new nui.Form("#basicInfoForm");
-    typeId = nui.get("typeId");
-    content = nui.get("content");
+    form1 = new nui.Form("#form1");
     recorder = nui.get("recorder");
     recordDate = nui.get("recordDate");
     modifier = nui.get("modifier");
     modifyDate = nui.get("modifyDate");
+    
+    carModelInfo = nui.get("carModelInfo");
+    init();
 });
 
+function init(){
+    var url = apiPath + sysApi + "/com.hsapi.system.product.cars.carBrand.biz.ext";
+    var params = {};
+    params.token = token;
+    callAjax(url, params, processAjax, processCarBrand, null);    
+}
+
+//品牌
+function processCarBrand(data){
+    nui.get("carBrandId").setData(data);
+}
+
+//获取车型
+function getCarModel(e){
+    var url = apiPath + sysApi + "/com.hsapi.system.product.cars.carModel.biz.ext";
+    var params = {};
+    params.carBrandId = e.value;
+    params.token = token;
+    callAjax(url, params, processAjax, processCarModel, null);
+}
+
+function processCarModel(data){
+    nui.get("carModelId").setData(data);
+}
+
 function setData(data){
-    var tmpUser = modifier.getValue();
+    /*var tmpUser = modifier.getValue();
     var currDate = new Date();
-    basicInfoForm.setData(data);
-    //typeId.setData(data.artType);
+    form1.setData(data);
     if(!data.id){
         recorder.setValue(tmpUser);
         recordDate.setValue(currDate);
     }
     modifier.setValue(tmpUser);
-    modifyDate.setValue(currDate);
+    modifyDate.setValue(currDate);*/
 }
 
 function onOk(){
     //验证
-    basicInfoForm.validate();
-    if (!basicInfoForm.isValid()) return;
+    form1.validate();
+    if (!form1.isValid()) return;
 
     //$("#save").hide();
     try {
@@ -40,7 +65,7 @@ function onOk(){
             url: webPath + crmDomain + "/com.hsapi.crm.basic.crmBasic.saveSms.biz.ext",
             type: 'post',
             data: nui.encode({
-                data: basicInfoForm.getData()
+                data: form1.getData()
             }),
             cache: false,
             success: function (data) {

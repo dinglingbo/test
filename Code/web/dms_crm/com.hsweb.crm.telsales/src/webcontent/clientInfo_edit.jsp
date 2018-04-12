@@ -14,22 +14,11 @@
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=webPath + crmDomain%>/telsales/js/clientInfo_edit.js?v=1.0" type="text/javascript"></script>
     <link href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.0" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-    html, body
-    {
-        font-size:12px;
-        padding:0;
-        margin:0;
-        border:0;
-        height:100%;
-        /**overflow:hidden;**/
-    }
-    </style>
 </head>
 <body>
     <form id="form1" method="post" style="width:100%;height:92%;">
         <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:95%;" plain="false"
-             onactivechanged="changeTabs">
+             onactivechanged="">
             <!--客户信息-->
             <%@include file="/telsales/clientInfo_tab1.jsp" %>
             <!--车辆信息-->

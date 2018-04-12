@@ -9,9 +9,9 @@
                 <div id="basicInfoForm" class="form">
                     <input class="nui-hidden" name="id"/>
                     <div class="row">
-                        <span class="title title-width3 required">资料是否有效：</span>
-                        <input name="typeId"
-                               id="typeId"
+                        <span class="title title-width3 required">资料有效状态：</span>
+                        <input name="status"
+                               id="status"
                                required="true"
                                class="nui-combobox width2"
                                textField="text"
@@ -23,24 +23,23 @@
                                showNullItem="false"
                                nullItemText="请选择..."/>
                                
-                        <span class="title title-width3 required">联系方式：</span>
-                        <input name="typeId"
-                               id="typeId"
+                        <span class="title title-width3 required">跟踪方式：</span>
+                        <input name="scoutMode"
+                               id="scoutMode"
                                required="true"
                                class="nui-combobox width2"
-                               textField="NAME"
-                               valueField="CUSTOMID"
+                               textField="name"
+                               valueField="customid"
                                emptyText="请选择..."
-                               url=""
                                allowInput="false"
                                valueFromSelect="true"
                                showNullItem="false"
                                nullItemText="请选择..."/>
                     </div>
                     <div class="row">
-                        <span class="title title-width3 required">联系结果：</span>
-                        <input name="typeId"
-                               id="typeId"
+                        <span class="title title-width3 required">跟踪结果：</span>
+                        <input name="scoutResult"
+                               id="scoutResult"
                                required="true"
                                class="nui-combobox width2"
                                textField="text"
@@ -52,13 +51,13 @@
                                showNullItem="false"
                                nullItemText="请选择..."/>
                                
-                        <span class="title title-width3 required">联系状态：</span>
-                        <input name="typeId"
-                               id="typeId"
+                        <span class="title title-width3 required">跟踪状态：</span>
+                        <input name="visitStatus"
+                               id="visitStatus"
                                required="true"
                                class="nui-combobox width2"
-                               textField="NAME"
-                               valueField="CUSTOMID"
+                               textField="name"
+                               valueField="customid"
                                emptyText="请选择..."
                                url=""
                                allowInput="false"
@@ -67,31 +66,37 @@
                                nullItemText="请选择..."/>
                     </div>
                     <div class="row">
-                        <span class="title title-width3">保养到期日期：</span>
-                        <input id="recordDate" 
-                            name="recordDate" 
+                        <span class="title title-width3">下次跟踪日期：</span>
+                        <input id="nextScoutDate" 
+                            name="nextScoutDate" 
                             class="nui-datepicker width2" 
                             dateFormat="yyyy-MM-dd HH:mm:ss" 
                             emptyText="请选择日期" alwaysView="true"/>
-                        <span class="title title-width3">预计购买日期：</span>
-                        <input id="recordDate" 
-                            name="recordDate" 
-                            class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd HH:mm:ss" 
-                            emptyText="请选择日期" alwaysView="true"/>
-                    </div>
-                    <div class="row">
-                        <span class="title title-width3">下次联系日期：</span>
-                        <input id="recordDate" 
-                            name="recordDate" 
+                        <span class="title title-width3">下次保养日期：</span>
+                        <input id="careDueDate" 
+                            name="careDueDate" 
                             class="nui-datepicker width2" 
                             dateFormat="yyyy-MM-dd HH:mm:ss" 
                             emptyText="请选择日期" alwaysView="true"/>
                     </div>
                     <div class="row">
-                        <span class="title title-width3 required">联系内容：</span>
-                        <textarea id="content" 
-                            name="content" 
+                        <span class="title title-width3">商业险到期日：</span>
+                        <input id="annualInspectionDate" 
+                            name="annualInspectionDate" 
+                            class="nui-datepicker width2" 
+                            dateFormat="yyyy-MM-dd HH:mm:ss" 
+                            emptyText="请选择日期" alwaysView="true"/>
+                        <span class="title title-width3">交强险到期日：</span>
+                        <input id="insureDueDate" 
+                            name="insureDueDate" 
+                            class="nui-datepicker width2" 
+                            dateFormat="yyyy-MM-dd HH:mm:ss" 
+                            emptyText="请选择日期" alwaysView="true"/>
+                    </div>
+                    <div class="row">
+                        <span class="title title-width3 required">跟踪内容：</span>
+                        <textarea id="scoutContent" 
+                            name="scoutContent" 
                             class="mini-textarea width7" 
                             onValuechanged="setCharCount()"
                             onKeyup="content.doValueChanged()"
@@ -117,14 +122,12 @@
              showColumns="true"
              showPager="true" >                
             <div property="columns">                                              
-                <div field="pid" headerAlign="center" width="50px" align="center">联系人</div>
-                <div field="label" headerAlign="center" width="50px" align="center">联系日期</div>
-                <div field="label" headerAlign="center" width="50px" align="center">联系方式</div>
-                <div field="label" headerAlign="center" width="50px" align="center">联系结果</div>
-                <div field="label" headerAlign="center" width="50px" align="center">联系内容</div>
+                <div field="scoutMan" headerAlign="center" width="50px" align="center">跟踪员</div>
+                <div field="scoutDate" headerAlign="center" width="50px" align="center">跟踪日期</div>
+                <div field="scoutResult" headerAlign="center" width="50px" align="center">跟踪结果</div>
                 
-                <div field="label" headerAlign="center" width="50px" align="center">联系结果</div>
-                <div field="label" headerAlign="center" width="50px" align="center">联系内容</div>
+                <div field="scoutMode" headerAlign="center" width="50px" align="center">跟踪方式</div>
+                <div field="scoutContent" headerAlign="center" width="50px" align="center">跟踪内容</div>
             </div>
         </div>
     </div> 

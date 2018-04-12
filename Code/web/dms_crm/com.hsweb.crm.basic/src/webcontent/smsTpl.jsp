@@ -49,10 +49,10 @@
                         style="width:95%;height:95%;padding:5px;" 
                         showTreeIcon="true" 
                         dataField="data" 
-                        textField="NAME" 
-                        idField="CUSTOMID" 
+                        textField="name" 
+                        idField="customid" 
                         resultAsTree="false" 
-                        parentField="DICTID" 
+                        parentField="dictid" 
                         showTreeLines="true" 
                         onNodedblclick="onNodeDbClick"
                         allowDrag="true">

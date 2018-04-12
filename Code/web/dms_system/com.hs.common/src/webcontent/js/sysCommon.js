@@ -42,13 +42,13 @@ function callAjax(url, params, processAjax, callBack, obj){
 /*
 * 处理Ajax结果
 */
-function processAjax(rs, callBack){
-    if(rs.errCode != 'E'){//&& rs.result.code == '1' 第三方接口定义代码
+function processAjax(json, callBack){
+    if(json.errCode != 'E'){//&& json.result.code == '1' 第三方接口定义代码
         //nui.alert("获取数据成功！");
-        callBack(rs.result || rs.data);
+        callBack(json.result || json.data || json.rs);
     }
     else{
-        nui.alert("获取数据失败！\n\r[" + (rs.errMsg) + "]");// || rs.result.msg第三方接口定义消息
+        nui.alert("获取数据失败！\n\r[" + (json.errMsg) + "]");// || json.result.msg第三方接口定义消息
     }
 }
 

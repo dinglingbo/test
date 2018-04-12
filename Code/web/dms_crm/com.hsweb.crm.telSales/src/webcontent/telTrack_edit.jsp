@@ -14,17 +14,6 @@
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=webPath + crmDomain%>/telsales/js/telTrack_edit.js?v=1.1" type="text/javascript"></script>
     <link href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-    html, body
-    {
-        font-size:12px;
-        padding:0;
-        margin:0;
-        border:0;
-        height:100%;
-        /**overflow:hidden;**/
-    }
-    </style>
 </head>
 <body>
     <form id="form1" method="post">

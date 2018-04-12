@@ -7,8 +7,8 @@
         <div style="padding:5px;">
             <div class="row">
                 <span class="title title-width2 required">保险公司：</span>
-                <input name="typeId"
-                       id="typeId"
+                <input name="insureCompCode"
+                       id="insureCompCode"
                        required="true"
                        class="nui-combobox width6"
                        textField="NAME"
@@ -21,23 +21,23 @@
                        nullItemText="请选择..."/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">交强险到期：</span>
-                <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
                 <span class="title title-width2 required">商业险到期：</span>
-                <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                <input id="annualInspectionDate" name="annualInspectionDate" class="nui-textbox width2" required="true"/>
+                <span class="title title-width2 required">交强险到期：</span>
+                <input id="insureDueDate" name="insureDueDate" class="nui-textbox width2" required="true"/>
             </div>
             <div class="row">
                 <span class="title title-width2 required">发动机号：</span>
-                <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                <input id="engineNo" name="engineNo" class="nui-textbox width2" required="true"/>
                 <span class="title title-width2 required">保养到期：</span>
-                <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                <input id="careDueDate" name="careDueDate" class="nui-textbox width2" required="true"/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">生产到期：</span>
-                <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                <span class="title title-width2 required">生产日期：</span>
+                <input id="produceDate" name="produceDate" class="nui-textbox width2" required="true"/>
                 <span class="title title-width2 required">颜色：</span>
-                <input name="typeId"
-                       id="typeId"
+                <input name="color"
+                       id="color"
                        required="true"
                        class="nui-combobox width2"
                        textField="NAME"
@@ -51,9 +51,9 @@
             </div>
             <div class="row">
                 <span class="title title-width2 required">年审到期：</span>
-                <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                <input id="annualVerificationDueDate" name="annualVerificationDueDate" class="nui-textbox width2" required="true"/>
                 <span class="title title-width2 required">驾审到期：</span>
-                <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                <input id="drivingLicenceDueDate" name="drivingLicenceDueDate" class="nui-textbox width2" required="true"/>
             </div>
             <div class="row">
                 <span class="title title-width2 required">备注：</span>

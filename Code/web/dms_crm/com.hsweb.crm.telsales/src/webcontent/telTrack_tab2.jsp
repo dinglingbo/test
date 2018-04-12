@@ -10,15 +10,15 @@
                     <input class="nui-hidden" name="id"/>
                     <div class="row">            
                         <span class="title title-width1 required">客户名称：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>          
+                        <input id="guestName" name="guestName" class="nui-textbox width2" required="true"/>          
                         <span class="title title-width1 required">手机：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                        <input id="mobile" name="mobile" class="nui-textbox width2" required="true"/>
                     </div>
                     <div class="row">            
                         <span class="title title-width1">电话：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" />         
+                        <input id="tel" name="tel" class="nui-textbox width2" />         
                         <span class="title title-width1">地址：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" />
+                        <input id="address" name="address" class="nui-textbox width2" />
                     </div>
                 </div>    
             </fieldset>
@@ -28,29 +28,36 @@
                     <input class="nui-hidden" name="id"/>
                     <div class="row">            
                         <span class="title title-width1 required">车牌号：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>          
+                        <input id="carNo" name="carNo" class="nui-textbox width2" required="true"/>          
                         <span class="title title-width1 required">厂牌：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                        <input id="carBrandId" name="carBrandId" class="nui-textbox width2" required="true"/>
                     </div>
                     <div class="row">            
                         <span class="title title-width1 required">车型：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>          
-                        <span class="title title-width1">规格：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" />
-                    </div>
-                    <div class="row">            
-                        <span class="title title-width1">初登日期：</span>
-                        <input id="recordDate" 
-                                name="recordDate" 
+                        <input id="carModel" name="carModel" class="nui-textbox width2" required="true"/>          
+                        <span class="title title-width1">上牌日期：</span>
+                        <input id="firstRegDate" 
+                                name="firstRegDate" 
                                 class="nui-datepicker width2" 
                                 dateFormat="yyyy-MM-dd HH:mm:ss" 
                                 emptyText="请选择日期" alwaysView="true"/>          
-                        <span class="title title-width1">保险到期：</span>
-                        <input id="recordDate" 
-                                name="recordDate" 
-                                class="nui-datepicker width2" 
-                                dateFormat="yyyy-MM-dd HH:mm:ss" 
-                                emptyText="请选择日期" alwaysView="true"/>
+                    </div>
+                    <div class="row">            
+                        <span class="title title-width1">VIN：</span>
+                        <input id="underpanNo" name="underpanNo" class="nui-textbox width2" required="true"/>
+                        <span class="title title-width1">投保公司：</span>
+                        <input name="insureCompCode"
+                               id="insureCompCode"
+                               required="true"
+                               class="nui-combobox width2"
+                               textField="NAME"
+                               valueField="CUSTOMID"
+                               emptyText="请选择..."
+                               url=""
+                               allowInput="false"
+                               valueFromSelect="true"
+                               showNullItem="false"
+                               nullItemText="请选择..."/>
                     </div>
                 </div>    
             </fieldset>
@@ -62,30 +69,41 @@
                         <span class="title title-width1 required">姓名：</span>
                         <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>         
                         <span class="title title-width1 required">性别：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
+                        <input name="sex"
+                               id="sex"
+                               required="true"
+                               class="nui-combobox width2"
+                               textField="NAME"
+                               valueField="CUSTOMID"
+                               emptyText="请选择..."
+                               url=""
+                               allowInput="false"
+                               valueFromSelect="true"
+                               showNullItem="false"
+                               nullItemText="请选择..."/>
                     </div>
                     <div class="row">            
+                        <span class="title title-width1 required">联系人：</span>
+                        <input id="contacts" name="contacts" class="nui-textbox width2" required="true"/>
                         <span class="title title-width1 required">手机：</span>
                         <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
-                        <span class="title title-width1 required">特别关注：</span>
-                        <input name="typeId"
-                                   id="typeId"
-                                   required="true"
-                                   class="nui-combobox width2"
-                                   textField="NAME"
-                                   valueField="CUSTOMID"
-                                   emptyText="请选择..."
-                                   url=""
-                                   allowInput="false"
-                                   valueFromSelect="true"
-                                   showNullItem="false"
-                                   nullItemText="请选择..."/>
                     </div>
                     <div class="row">            
                         <span class="title title-width1">电话：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" />
-                        <span class="title title-width1">身份：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" />
+                        <input id="tel" name="tel" class="nui-textbox width2" />
+                        <span class="title title-width1">是否黑名单：</span>
+                        <input name="isBlack"
+                               id="isBlack"
+                               required="true"
+                               class="nui-combobox width2"
+                               textField="NAME"
+                               valueField="CUSTOMID"
+                               emptyText="请选择..."
+                               url=""
+                               allowInput="false"
+                               valueFromSelect="true"
+                               showNullItem="false"
+                               nullItemText="请选择..."/>
                     </div>
                 </div>    
             </fieldset>

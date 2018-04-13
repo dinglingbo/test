@@ -77,7 +77,7 @@
                        url=""
                        allowInput="false"
                        valueFromSelect="true"
-                       onValuechanged="getCarModel"
+                       onValuechanged="getCarModel('carModelId', e)"
                        showNullItem="false"
                        nullItemText="请选择..."/>
             </div>

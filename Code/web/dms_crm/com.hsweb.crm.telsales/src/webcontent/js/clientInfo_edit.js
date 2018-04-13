@@ -18,29 +18,30 @@ $(document).ready(function(v){
 });
 
 function init(){
+    initCarBrand("carBrandId");//车辆品牌
+    initInsureComp("insureCompCode");//保险公司
+    initDicts({color: "DDT20130726000003"});//汽车颜色
+    /*
+    //品牌
     var url = apiPath + sysApi + "/com.hsapi.system.product.cars.carBrand.biz.ext";
-    var params = {};
-    params.token = token;
-    callAjax(url, params, processAjax, processCarBrand, null);    
+    callAjax(url, {}, processAjax, processCarBrand, null); 
+
+    //保险公司
+    url = apiPath + sysApi + "/com.hsapi.system.dict.guestMgr.queryGuest.biz.ext";
+    params = {};
+    params.guestTypes = "01020104";
+    callAjax(url, params, processAjax, processInsureComp, null);   
+
+    //车辆颜色
+    url = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
+    params = {};
+    params.dictids = "DDT20130726000003"; //汽车颜色
+    callAjax(url, params, processAjax, processColor, null);
+    */
+    
 }
 
-//品牌
-function processCarBrand(data){
-    nui.get("carBrandId").setData(data);
-}
 
-//获取车型
-function getCarModel(e){
-    var url = apiPath + sysApi + "/com.hsapi.system.product.cars.carModel.biz.ext";
-    var params = {};
-    params.carBrandId = e.value;
-    params.token = token;
-    callAjax(url, params, processAjax, processCarModel, null);
-}
-
-function processCarModel(data){
-    nui.get("carModelId").setData(data);
-}
 
 function setData(data){
     /*var tmpUser = modifier.getValue();

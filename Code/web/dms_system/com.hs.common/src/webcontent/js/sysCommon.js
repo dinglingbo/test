@@ -4,6 +4,9 @@
 */
 function callNSQL(params, processAjax, callBack, obj){
 	var url = "com.hs.commons.unify.intfc.biz.ext";
+    if(params){
+        params.token = token;
+    }
 	callAjax(url, params, processAjax, callBack, obj);
 }
 
@@ -17,6 +20,10 @@ function callAjax(url, params, processAjax, callBack, obj){
             cls: 'mini-mask-loading',
             html: '加载中...'
         });
+    }
+    
+    if(params){
+        params.token = token;
     }
     
     nui.ajax({

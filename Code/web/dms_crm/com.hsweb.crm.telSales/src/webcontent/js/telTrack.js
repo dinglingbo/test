@@ -21,7 +21,6 @@ function init(){
     params.dictids = [];
     params.dictids.push("DDT20130703000021");//跟踪方式
     params.dictids.push("DDT20130703000081");//跟踪状态
-    params.token = token;
     callAjax(url, params, processAjax, processInitData, null);
 }
 

@@ -66,22 +66,3 @@ function setCharCount(){
     var txt = content.getInputText() || "";
     charCount.setValue(txt.length);
 }
-
-function onCancel(){
-    closeWindow("cancel");
-}
-
-function closeWindow(action) {
-    var a = true;
-    if (action == "cancel") {
-        a = window.confirm("是否关闭本页面？", "友情提示!");
-    }
-    
-    if (a == true) {
-        if (window.CloseOwnerWindow)
-            return window.CloseOwnerWindow(action);
-        else
-            window.close();
-    }
-    return false;
-}

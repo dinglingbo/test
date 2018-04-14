@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.eos.workflow,com.primeton.eos.richweb,com.eos.foun
- dation,com.hsapi.crm.data
-Bundle-Vendor: Guine
+Require-Bundle: com.hsapi.crm.common,com.eos.workflow,com.primeton.eos
+ .richweb,com.eos.foundation,com.hsapi.crm.data
 eos-webCtxPath: basic
+Bundle-Vendor: Guine
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.crm.basic
 Bundle-Description: 

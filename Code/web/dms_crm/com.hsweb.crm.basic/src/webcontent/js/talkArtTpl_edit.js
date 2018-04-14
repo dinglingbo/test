@@ -38,7 +38,7 @@ function onOk(){
             url: webPath + crmDomain + "/com.hsapi.crm.basic.crmBasic.saveTalkArt.biz.ext",
             type: 'post',
             data: nui.encode({
-                talkArt: basicInfoForm.getData()
+                data: basicInfoForm.getData()
             }),
             cache: false,
             success: function (data) {
@@ -57,23 +57,4 @@ function onOk(){
     }
     finally {        
     }  
-}
-
-function onCancel(){
-    closeWindow("cancel");
-}
-
-function closeWindow(action) {
-    var a = true;
-    if (action == "cancel") {
-        a = window.confirm("是否关闭本页面？", "友情提示!");
-    }
-    
-    if (a == true) {
-        if (window.CloseOwnerWindow)
-            return window.CloseOwnerWindow(action);
-        else
-            window.close();
-    }
-    return false;
 }

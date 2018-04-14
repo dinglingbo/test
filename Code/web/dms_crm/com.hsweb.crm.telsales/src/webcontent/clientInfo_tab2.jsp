@@ -26,6 +26,7 @@
                 <input id="annualInspectionDate" 
                             name="annualInspectionDate" 
                             class="nui-datepicker width2" 
+                            required="true"
                             dateFormat="yyyy-MM-dd" 
                             enabled="true" emptyText="请选择日期" alwaysView="true"/>
                 <span class="title title-width2 required">交强险到期：</span>
@@ -84,7 +85,7 @@
             </div>
             <div class="row">
                 <span class="title title-width2">备注：</span>
-                <input id="remark" name="remark" class="nui-textbox width6" required="true"/>
+                <input id="remark" name="remark" class="nui-textbox width6"/>
             </div>
         </div>
     </fieldset>

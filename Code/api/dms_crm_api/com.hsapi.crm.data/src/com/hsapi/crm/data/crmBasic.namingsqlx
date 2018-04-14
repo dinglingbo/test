@@ -2,7 +2,7 @@
 <!-- author:Guine -->
 <sqlMap>
     <!--话术模板-->
-    <select id="getTalkArtList" parameterClass="HashMap" resultClass="com.hsapi.crm.basic.crmBasic.CrmTalkArt">
+    <select id="getTalkArtList" parameterClass="HashMap" resultClass="com.hsapi.crm.data.crmBasic.CrmTalkArt">
         SELECT id, orgcode, type_id typeId, topic, source, content, recorder, 
             record_date recordDate, modifier, modify_date modifyDate, orgid
         FROM crm_talk_art
@@ -22,7 +22,7 @@
         </isNotNull>          
     </select>
     <!--短信模板-->
-    <select id="getSmsList" parameterClass="HashMap" resultClass="com.hsapi.crm.basic.crmBasic.CrmTemplateMsg">
+    <select id="getSmsList" parameterClass="HashMap" resultClass="com.hsapi.crm.data.crmBasic.CrmTemplateMsg">
         SELECT id, orgcode, type_id typeId, char_count charCount, source, content, recorder, 
             record_date recordDate, modifier, modify_date modifyDate
         FROM crm_template_msg

@@ -90,6 +90,16 @@ function charCount(objId){
     return txt.length;
 }
 
+//表单验证
+function formValidate(tform){
+    tform.validate();
+    if (!tform.isValid()){
+        nui.alert(tform.getErrors().length + "个必填项未填写，请检查所有页填写信息！")
+        return false;
+    }
+    return true;    
+}
+
 //取消
 function onCancel(){
     closeWindow("cancel"); //ok

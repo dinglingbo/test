@@ -105,7 +105,7 @@
                        class="nui-combobox width2"
                        required="true"
                        textField="carModel"
-                       valueField="id"
+                       valueField="carModelId"
                        emptyText="请选择..."
                        url=""
                        allowInput="false"

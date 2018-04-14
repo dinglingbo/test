@@ -39,13 +39,12 @@ function setData(data){
 
 function onOk(){
     //验证
-    form1.validate();
-    if (!form1.isValid()) return;
+    if(!formValidate(form1)) return;
 
     //$("#save").hide();
     try {
         nui.ajax({
-            url: webPath + crmDomain + "/com.hsapi.crm.basic.crmBasic.saveSms.biz.ext",
+            url: webPath + crmDomain + "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext",
             type: 'post',
             data: nui.encode({
                 data: form1.getData()

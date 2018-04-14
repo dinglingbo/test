@@ -1,7 +1,7 @@
 //http://14.23.35.20:6288/dms/com.hsweb.system.llq.call.doCall.biz.ext
 
 var url = "com.hsweb.system.llq.call.doCall.biz.ext";
-url = "http://g-part.cn:8070/api/sign007";
+//url = "http://g-part.cn:8070/api/sign007";
 
 function loadData(url, params, callBack){
 	callAjax(url, params, processRs);
@@ -45,7 +45,7 @@ function callAjax(url, params, processAjax, callBack){
     nui.ajax({
 		url: url,
 		type: "POST",
-        data: JSON.stringify(p),
+        data: JSON.stringify(params),
 		contentType: 'application/json;charset=utf-8',
         dataType:"json",
 		success: function (json) {
@@ -61,14 +61,16 @@ function callAjax(url, params, processAjax, callBack){
 * 处理Ajax结果
 */
 function processAjax(data, callBack){
-    /*
+    
     if(rs.errCode != 'E' && rs.result.code == '1'){
         //nui.alert("获取数据成功！");
         callBack(rs.result.data, rs.result);
     }
     else{
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");
-    }*/
+    }
+    /*
+    //极配
     var rs = eval("(" + data + ")");
     //rs = data;
     if(rs.code == '1'){
@@ -78,6 +80,7 @@ function processAjax(data, callBack){
     else{
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.msg) + "]");
     }
+    */
 }
 
 /*

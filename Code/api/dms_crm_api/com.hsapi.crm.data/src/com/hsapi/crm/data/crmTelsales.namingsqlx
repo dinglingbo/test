@@ -29,7 +29,14 @@
 	        <isNotNull property="carNo">
 	            AND car_no = #carNo#
 	        </isNotNull>
-	        
+            <isNotNull property="mobile">
+	            AND mobile = #mobile#
+	        </isNotNull>
+            
+            <isNotNull property="nextScoutDate">
+	            AND next_scout_date &gt;= #nextScoutDate#
+	        </isNotNull>
+            
 	        <isNull property="assignStatus">
 	            AND visit_man_id IS NULL
 	        </isNull>

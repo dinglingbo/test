@@ -2,7 +2,7 @@ var queryForm;
 var dgGrid;
 var form1;
 var form2;
-var currTypeNode;
+var currGuest;
 
 $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
@@ -96,14 +96,20 @@ function setTypeName(e){
 }
 
 function setScoutForm(e){
+    $(".saveGroup").show();
     form1.setData(e.record);
     form2.setData(e.record);
+    currGuest = e.record;
     //触发选择事件
     nui.get("carBrandId").doValueChanged();
 }
 
 function changeTabs(e){
     
+}
+
+function clearQueryForm(){
+    queryForm.setData({});
 }
 
 function newClient(){
@@ -120,4 +126,62 @@ function newClient(){
             dgGrid.reload();
         }
     });
+}
+
+//保存跟踪
+function saveScout(){
+    if(!formValidate(form2)) return false;
+    var url = "/com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
+    doSave(form1, url, saveClientInfo);
+}
+//保存客户信息
+function saveClientInfo(){
+    var url = "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
+    doSave(form2, url);    
+}
+
+function doSave(tform, url, callBack){
+    //验证
+    if(!formValidate(tform)) return false;
+
+    var paramData = form2.getData();
+    if(!paramData.id){
+        nui.alert("未选中客户资料!");
+        return false;
+    }
+    
+    try {
+        nui.ajax({
+            url: webPath + crmDomain + url,
+            type: 'post',
+            data: nui.encode({
+                data: tform.getData()
+            }),
+            cache: false,
+            success: function (data) {
+                if (data.errCode == "S"){
+                    nui.alert("保存成功！");
+                    if(callBack){
+                        callBack();
+                    }
+                    tform.setData(currGuest);
+                }else {
+                    nui.alert(data.errMsg);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.alert(jqXHR.responseText);
+            }
+		});
+    }
+    finally {        
+    }  
+}
+//选择话术
+function selTalkArt(){
+   
+}
+//收藏话术
+function colleTalkArt(){
+    
 }

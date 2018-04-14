@@ -117,8 +117,8 @@
                 </div>    
             </fieldset>
         </div>
-        <div style="text-align:center;padding:10px;">
-            <a id="save" class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
+        <div style="text-align:center;padding:10px;display:none;" class="saveGroup">
+            <a id="save" class="mini-button" onclick="saveClientInfo" style="width:100px;margin-right:20px;">只保存客户信息</a>
         </div>
     </form>
 </div>

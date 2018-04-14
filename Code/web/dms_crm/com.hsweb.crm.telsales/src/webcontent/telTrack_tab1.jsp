@@ -7,7 +7,10 @@
             <legend >基本信息</legend>
             <div style="padding:5px;">
                 <div id="basicInfoForm" class="form">
-                    <input class="nui-hidden" name="id"/>
+                    <input class="nui-hidden" name="guestId"/>
+                    <input class="nui-hidden" name="deputyId"/>
+                    <input class="nui-hidden" name="scoutMan"/>
+                    <input class="nui-hidden" name="carNo"/>
                     <div class="row">
                         <span class="title title-width3 required">资料有效状态：</span>
                         <input name="status"
@@ -66,15 +69,17 @@
                                nullItemText="请选择..."/>
                     </div>
                     <div class="row">
-                        <span class="title title-width3">下次跟踪日期：</span>
+                        <span class="title title-width3 required">下次跟踪日期：</span>
                         <input id="nextScoutDate" 
                             name="nextScoutDate" 
+                            required="true"
                             class="nui-datepicker width2" 
                             dateFormat="yyyy-MM-dd HH:mm:ss" 
                             emptyText="请选择日期" alwaysView="true"/>
-                        <span class="title title-width3">下次保养日期：</span>
+                        <span class="title title-width3 required">下次保养日期：</span>
                         <input id="careDueDate" 
                             name="careDueDate" 
+                            required="true"
                             class="nui-datepicker width2" 
                             dateFormat="yyyy-MM-dd HH:mm:ss" 
                             emptyText="请选择日期" alwaysView="true"/>
@@ -98,8 +103,8 @@
                         <textarea id="scoutContent" 
                             name="scoutContent" 
                             class="mini-textarea width7" 
-                            onValuechanged="setCharCount()"
-                            onKeyup="content.doValueChanged()"
+                            onValuechanged=""
+                            onKeyup=""
                             style="height: 160px;" 
                             emptyText="请输入短信内容"
                             required="true">
@@ -108,10 +113,10 @@
                 </div>
             </div>
         </fieldset>
-        <div style="text-align:center;padding:10px;">
-            <a id="save" class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
-            <a id="save" class="mini-button" onclick="onOk" style="width:70px;margin-right:20px;">选择话术</a>
-            <a id="save" class="mini-button" onclick="onOk" style="width:70px;margin-right:20px;">收藏话术</a>
+        <div style="text-align:center;padding:10px;display:none;" class="saveGroup">
+            <a id="saveScout" class="mini-button" onclick="saveScout" style="width:70px;margin-right:20px;">保存所有</a>
+            <a id="selTalkArt" class="mini-button" onclick="selTalkArt" style="width:70px;margin-right:20px;">选择话术</a>
+            <a id="colleTalkArt" class="mini-button" onclick="colleTalkArt" style="width:70px;margin-right:20px;">收藏话术</a>
         </div>
     </form>
     

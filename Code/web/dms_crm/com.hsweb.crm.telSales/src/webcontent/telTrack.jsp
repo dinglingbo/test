@@ -21,7 +21,7 @@
     <table style="width:100%;">
         <tr>
             <td><!-- style="white-space:nowrap;"-->
-                <label style="font-family:Verdana;">快速查询：</label>
+                <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
                 <label style="font-family:Verdana;">跟踪状态：</label>
                 <input name="visitStatus"
                     id="query_visitStatus"
@@ -39,9 +39,13 @@
                 
                 <label style="font-family:Verdana;">手机号：</label>
                 <input class="nui-textbox" name="mobile" id="query_mobile" enabled="true"/>
-                
-                <label style="font-family:Verdana;">车辆状态：</label>
+
                 <label style="font-family:Verdana;">下次跟踪时间：</label>
+                <input id="query_nextScoutDate" 
+                    name="nextScoutDate" 
+                    class="nui-datepicker width2" 
+                    dateFormat="yyyy-MM-dd" 
+                    emptyText="请选择日期" alwaysView="true"/>
                 <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
                 
                 <li class="separator"></li>

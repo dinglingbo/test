@@ -30,8 +30,8 @@
                 <span class="title title-width1 required">性别：</span>
                 <input name="sex"
                        id="sex"
-                       required="true"
                        class="nui-combobox width2"
+                       required="true"
                        textField="text"
                        valueField="value"
                        emptyText="请选择..."
@@ -69,8 +69,8 @@
                 <input id="carBrandName" name="carBrandName" class="nui-hidden" required="true"/>
                 <input name="carBrandId"
                        id="carBrandId"
-                       required="true"
                        class="nui-combobox width2"
+                       required="true"
                        textField="nameCn"
                        valueField="id"
                        emptyText="请选择..."
@@ -87,23 +87,23 @@
                 <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query">解析</a>
             </div>
             <div class="row">
-                <span class="title title-width1 required">车型信息：</span>
+                <span class="title title-width1">车型信息：</span>
                 <textarea id="carModelInfo" 
                     name="carModelInfo" 
                     class="mini-textarea width6" 
                     onValuechanged=""
                     onKeyup="carModelInfo.doValueChanged()"
                     style="height: 80px;" 
-                    emptyText="请输入短信内容"
-                    required="true">
+                    emptyText="请输入内容"
+                    >
                 </textarea>
             </div>
             <div class="row">
                 <span class="title title-width1 required">车型：</span>
                 <input name="carModelId"
                        id="carModelId"
-                       required="true"
                        class="nui-combobox width2"
+                       required="true"
                        textField="carModel"
                        valueField="id"
                        emptyText="请选择..."
@@ -113,7 +113,12 @@
                        showNullItem="false"
                        nullItemText="请选择..."/>
                 <span class="title title-width1 required">上牌日期：</span>
-                <input id="firstRegDate" name="firstRegDate" class="nui-textbox width2" required="true"/>
+                <input id="firstRegDate" 
+                            name="firstRegDate" 
+                            class="nui-datepicker width2" 
+                            required="true"
+                            dateFormat="yyyy-MM-dd" 
+                            enabled="true" emptyText="请选择日期" alwaysView="true"/>
             </div>
         </div>
     </fieldset>

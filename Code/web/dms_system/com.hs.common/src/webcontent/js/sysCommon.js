@@ -81,3 +81,32 @@ Number.prototype.toFixed = function( digits ){//处理部分浏览器不兼容�
     }
     return (parseInt(this * Math.pow(10, digits) + 0.5)/Math.pow(10, digits)).toString();
 }
+
+//字数统计
+function charCount(objId){
+    var obj = nui.get("objId");
+    var txt = obj.getInputText() || "";
+    //target.setValue(txt.length);
+    return txt.length;
+}
+
+//取消
+function onCancel(){
+    closeWindow("cancel"); //ok
+}
+
+//关闭
+function closeWindow(action) {
+    var a = true;
+    if (action == "cancel") {
+        a = window.confirm("是否关闭本页面？", "友情提示!");
+    }
+    
+    if (a == true) {
+        if (window.CloseOwnerWindow)
+            return window.CloseOwnerWindow(action);
+        else
+            window.close();
+    }
+    return false;
+}

@@ -20,25 +20,7 @@ $(document).ready(function(v){
 function init(){
     initCarBrand("carBrandId");//车辆品牌
     initInsureComp("insureCompCode");//保险公司
-    initDicts({color: "DDT20130726000003"});//汽车颜色
-    /*
-    //品牌
-    var url = apiPath + sysApi + "/com.hsapi.system.product.cars.carBrand.biz.ext";
-    callAjax(url, {}, processAjax, processCarBrand, null); 
-
-    //保险公司
-    url = apiPath + sysApi + "/com.hsapi.system.dict.guestMgr.queryGuest.biz.ext";
-    params = {};
-    params.guestTypes = "01020104";
-    callAjax(url, params, processAjax, processInsureComp, null);   
-
-    //车辆颜色
-    url = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
-    params = {};
-    params.dictids = "DDT20130726000003"; //汽车颜色
-    callAjax(url, params, processAjax, processColor, null);
-    */
-    
+    initDicts({color: "DDT20130726000003"});//车辆颜色
 }
 
 
@@ -91,23 +73,4 @@ function setCharCount(){
     var charCount = nui.get("charCount");
     var txt = content.getInputText() || "";
     charCount.setValue(txt.length);
-}
-
-function onCancel(){
-    closeWindow("cancel");
-}
-
-function closeWindow(action) {
-    var a = true;
-    if (action == "cancel") {
-        a = window.confirm("是否关闭本页面？", "友情提示!");
-    }
-    
-    if (a == true) {
-        if (window.CloseOwnerWindow)
-            return window.CloseOwnerWindow(action);
-        else
-            window.close();
-    }
-    return false;
 }

@@ -11,6 +11,7 @@
                        id="insureCompCode"
                        required="true"
                        class="nui-combobox width6"
+                       required="true"
                        textField="fullName"
                        valueField="code"
                        emptyText="请选择..."
@@ -22,19 +23,31 @@
             </div>
             <div class="row">
                 <span class="title title-width2 required">商业险到期：</span>
-                <input id="annualInspectionDate" name="annualInspectionDate" class="nui-textbox width2" required="true"/>
+                <input id="annualInspectionDate" 
+                            name="annualInspectionDate" 
+                            class="nui-datepicker width2" 
+                            dateFormat="yyyy-MM-dd" 
+                            enabled="true" emptyText="请选择日期" alwaysView="true"/>
                 <span class="title title-width2 required">交强险到期：</span>
-                <input id="insureDueDate" name="insureDueDate" class="nui-textbox width2" required="true"/>
+                <input id="insureDueDate" 
+                            name="insureDueDate" 
+                            class="nui-datepicker width2" 
+                            required="true"
+                            dateFormat="yyyy-MM-dd" 
+                            enabled="true" emptyText="请选择日期" alwaysView="true"/>
             </div>
             <div class="row">
                 <span class="title title-width2 required">发动机号：</span>
                 <input id="engineNo" name="engineNo" class="nui-textbox width2" required="true"/>
                 <span class="title title-width2 required">保养到期：</span>
-                <input id="careDueDate" name="careDueDate" class="nui-textbox width2" required="true"/>
+                <input id="careDueDate" 
+                            name="careDueDate" 
+                            class="nui-datepicker width2" 
+                            required="true"
+                            dateFormat="yyyy-MM-dd" 
+                            enabled="true" emptyText="请选择日期" alwaysView="true"/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">生产日期：</span>
-                <input id="produceDate" name="produceDate" class="nui-textbox width2" required="true"/>
                 <span class="title title-width2 required">颜色：</span>
                 <input name="color"
                        id="color"
@@ -48,15 +61,29 @@
                        valueFromSelect="true"
                        showNullItem="false"
                        nullItemText="请选择..."/>
+                <span class="title title-width2">生产日期：</span>
+                <input id="produceDate" 
+                            name="produceDate" 
+                            class="nui-datepicker width2" 
+                            dateFormat="yyyy-MM-dd" 
+                            enabled="true" emptyText="请选择日期" alwaysView="true"/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">年审到期：</span>
-                <input id="annualVerificationDueDate" name="annualVerificationDueDate" class="nui-textbox width2" required="true"/>
-                <span class="title title-width2 required">驾审到期：</span>
-                <input id="drivingLicenceDueDate" name="drivingLicenceDueDate" class="nui-textbox width2" required="true"/>
+                <span class="title title-width2">年审到期：</span>
+                <input id="annualVerificationDueDate" 
+                            name="annualVerificationDueDate" 
+                            class="nui-datepicker width2" 
+                            dateFormat="yyyy-MM-dd" 
+                            enabled="true" emptyText="请选择日期" alwaysView="true"/>
+                <span class="title title-width2">驾审到期：</span>
+                <input id="drivingLicenceDueDate" 
+                            name="drivingLicenceDueDate" 
+                            class="nui-datepicker width2" 
+                            dateFormat="yyyy-MM-dd" 
+                            enabled="true" emptyText="请选择日期" alwaysView="true"/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">备注：</span>
+                <span class="title title-width2">备注：</span>
                 <input id="remark" name="remark" class="nui-textbox width6" required="true"/>
             </div>
         </div>

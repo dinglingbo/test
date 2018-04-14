@@ -7,6 +7,8 @@
         <div style="padding:5px;">
             <input class="nui-hidden" name="id"/>
             <input class="nui-hidden" name="guestId"/>
+            <input class="nui-hidden" id="visitStatus" name="visitStatus"/>
+            <input class="nui-hidden" id="status" name="status"/>
             <input id="recorder" name="recorder" style="display:none;" class="nui-textbox width2"/>
             <input id="recordDate" 
                 name="recordDate" 

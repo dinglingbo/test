@@ -26,15 +26,17 @@ function init(){
 
 
 function setData(data){
-    /*var tmpUser = modifier.getValue();
+    var tmpUser = modifier.getValue();
     var currDate = new Date();
     form1.setData(data);
     if(!data.id){
         recorder.setValue(tmpUser);
         recordDate.setValue(currDate);
+        nui.get("visitStatus").setValue(0);
+        nui.get("status").setValue(0);
     }
     modifier.setValue(tmpUser);
-    modifyDate.setValue(currDate);*/
+    modifyDate.setValue(currDate);
 }
 
 function onOk(){

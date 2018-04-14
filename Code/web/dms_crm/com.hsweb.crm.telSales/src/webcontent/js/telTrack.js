@@ -1,11 +1,13 @@
 var queryForm;
-var tree1;
 var dgGrid;
+var form1;
+var form2;
 var currTypeNode;
 
 $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
-    tree1 = nui.get("tree1");
+    form1 = new nui.Form("#form1");
+    form2 = new nui.Form("#form2");
     dgGrid = nui.get("dgGrid");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
@@ -14,27 +16,16 @@ $(document).ready(function(v){
     query();
 });
 
-
 function init(){
-    var url = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
-    var params = {};
-    params.dictids = [];
-    params.dictids.push("DDT20130703000021");//跟踪方式
-    params.dictids.push("DDT20130703000081");//跟踪状态
-    callAjax(url, params, processAjax, processInitData, null);
+    initCarBrand("carBrandId");//车辆品牌
+    initInsureComp("insureCompCode");//保险公司
+    initDicts({
+        scoutMode: "DDT20130703000021",//跟踪方式
+        visitStatus: "DDT20130703000081",//跟踪状态
+        query_visitStatus: "DDT20130703000081"//跟踪状态
+    });
 }
 
-function processInitData(data){
-    var tmpList = data.filter(function(v){
-        return  "DDT20130703000021" == v.dictid;
-    });
-    nui.get("scoutMode").setData(tmpList);
-    
-    tmpList = data.filter(function(v){
-        return  "DDT20130703000081" == v.dictid;
-    });
-    nui.get("visitStatus").setData(tmpList);
-}
 /*
  *查询
  **/
@@ -42,10 +33,6 @@ function query(){
     var data = queryForm.getData();
     var params = {};
     params.p = data;
-    if(currTypeNode){
-        params.p.typeId = currTypeNode.CUSTOMID;
-    }
-    //param.token = token;
     dgGrid.load(params,null,function(){
         //失败;
         nui.alert("数据加载失败！");
@@ -92,6 +79,12 @@ function editWin(title, data){
     });
 }
 
+//所在分店
+function setCompName(e){
+    
+}
+
+
 function setTypeName(e){
     var typeData = tree1.getData();
     var tmp;
@@ -100,6 +93,13 @@ function setTypeName(e){
         if (tmp.CUSTOMID == e.value) return tmp.NAME;
     }
     return "";
+}
+
+function setScoutForm(e){
+    form1.setData(e.record);
+    form2.setData(e.record);
+    //触发选择事件
+    nui.get("carBrandId").doValueChanged();
 }
 
 function changeTabs(e){

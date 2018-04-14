@@ -45,13 +45,17 @@ function processInsureComp(data){
 }
 
 //数据字典
-function initDicts(dictDefs){//dictDefs[{id1: dictid1}, {id2: dictid2}...]
+function initDicts(dictDefs){//dictDefs{id1: dictid1, id2: dictid2}
     var dictids = [];
+    var o = {};
     for(var i in dictDefs){
         if(!checkObjExists(i, dictDefs[i])){
             return;
         }
-        dictids.push(dictDefs[i]);
+        if(!o[dictDefs[i]]){
+            o[dictDefs[i]] = 1;
+            dictids.push(dictDefs[i]);            
+        }
     }
     _dictDefs = dictDefs;
 

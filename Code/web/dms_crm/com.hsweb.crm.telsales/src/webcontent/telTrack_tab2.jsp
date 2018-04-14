@@ -10,15 +10,47 @@
                     <input class="nui-hidden" name="id"/>
                     <div class="row">            
                         <span class="title title-width1 required">客户名称：</span>
-                        <input id="guestName" name="guestName" class="nui-textbox width2" required="true"/>          
-                        <span class="title title-width1 required">手机：</span>
-                        <input id="mobile" name="mobile" class="nui-textbox width2" required="true"/>
+                        <input id="guestName" name="guestName" class="nui-textbox width2" required="true"/>   
+                        <span class="title title-width2 required">联系人：</span>
+                        <input id="contacts" name="contacts" class="nui-textbox width2" required="true"/>                        
                     </div>
                     <div class="row">            
-                        <span class="title title-width1">电话：</span>
+                        <span class="title title-width1 required">手机：</span>
+                        <input id="mobile" name="mobile" class="nui-textbox width2" required="true"/>
+                        <span class="title title-width2">电话：</span>
                         <input id="tel" name="tel" class="nui-textbox width2" />         
+                    </div>
+                    <div class="row">            
+                        <span class="title title-width1 required">性别：</span>
+                        <input name="sex"
+                            id="sex"
+                            class="nui-combobox width2"
+                            required="true"
+                            textField="text"
+                            valueField="value"
+                            emptyText="请选择..."
+                            data = "const_gender"
+                            allowInput="false"
+                            valueFromSelect="true"
+                            showNullItem="false"
+                            nullItemText="请选择..."/>
+                        <span class="title title-width2">是否黑名单：</span>
+                        <input name="isBlack"
+                               id="isBlack"
+                               required="true"
+                               class="nui-combobox width2"
+                               textField="text"
+                               valueField="value"
+                               emptyText="请选择..."
+                               data="const_is"
+                               allowInput="false"
+                               valueFromSelect="true"
+                               showNullItem="false"
+                               nullItemText="请选择..."/>
+                    </div>
+                    <div class="row">            
                         <span class="title title-width1">地址：</span>
-                        <input id="address" name="address" class="nui-textbox width2" />
+                        <input id="address" name="address" class="nui-textbox width6" />
                     </div>
                 </div>    
             </fieldset>
@@ -29,12 +61,35 @@
                     <div class="row">            
                         <span class="title title-width1 required">车牌号：</span>
                         <input id="carNo" name="carNo" class="nui-textbox width2" required="true"/>          
-                        <span class="title title-width1 required">厂牌：</span>
-                        <input id="carBrandId" name="carBrandId" class="nui-textbox width2" required="true"/>
+                        <span class="title title-width1 required">品牌：</span>
+                        <input name="carBrandId"
+                            id="carBrandId"
+                            class="nui-combobox width2"
+                            required="true"
+                            textField="nameCn"
+                            valueField="id"
+                            emptyText="请选择..."
+                            url=""
+                            allowInput="false"
+                            valueFromSelect="true"
+                            onValuechanged="getCarModel('carModelId', e)"
+                            showNullItem="false"
+                            nullItemText="请选择..."/>
                     </div>
                     <div class="row">            
                         <span class="title title-width1 required">车型：</span>
-                        <input id="carModel" name="carModel" class="nui-textbox width2" required="true"/>          
+                        <input name="carModelId"
+                            id="carModelId"
+                            class="nui-combobox width2"
+                            required="true"
+                            textField="carModel"
+                            valueField="carModelId"
+                            emptyText="请选择..."
+                            url=""
+                            allowInput="false"
+                            valueFromSelect="true"
+                            showNullItem="false"
+                            nullItemText="请选择..."/>       
                         <span class="title title-width1">上牌日期：</span>
                         <input id="firstRegDate" 
                                 name="firstRegDate" 
@@ -50,54 +105,8 @@
                                id="insureCompCode"
                                required="true"
                                class="nui-combobox width2"
-                               textField="NAME"
-                               valueField="CUSTOMID"
-                               emptyText="请选择..."
-                               url=""
-                               allowInput="false"
-                               valueFromSelect="true"
-                               showNullItem="false"
-                               nullItemText="请选择..."/>
-                    </div>
-                </div>    
-            </fieldset>
-            <fieldset style="border:solid 1px #aaa;padding:3px;">
-                <legend >联系人信息</legend>
-                <div style="padding:5px;">
-                    <input class="nui-hidden" name="id"/>
-                    <div class="row">            
-                        <span class="title title-width1 required">姓名：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>         
-                        <span class="title title-width1 required">性别：</span>
-                        <input name="sex"
-                               id="sex"
-                               required="true"
-                               class="nui-combobox width2"
-                               textField="NAME"
-                               valueField="CUSTOMID"
-                               emptyText="请选择..."
-                               url=""
-                               allowInput="false"
-                               valueFromSelect="true"
-                               showNullItem="false"
-                               nullItemText="请选择..."/>
-                    </div>
-                    <div class="row">            
-                        <span class="title title-width1 required">联系人：</span>
-                        <input id="contacts" name="contacts" class="nui-textbox width2" required="true"/>
-                        <span class="title title-width1 required">手机：</span>
-                        <input id="charCount" name="charCount" class="nui-textbox width2" required="true"/>
-                    </div>
-                    <div class="row">            
-                        <span class="title title-width1">电话：</span>
-                        <input id="tel" name="tel" class="nui-textbox width2" />
-                        <span class="title title-width1">是否黑名单：</span>
-                        <input name="isBlack"
-                               id="isBlack"
-                               required="true"
-                               class="nui-combobox width2"
-                               textField="NAME"
-                               valueField="CUSTOMID"
+                               textField="fullName"
+                               valueField="code"
                                emptyText="请选择..."
                                url=""
                                allowInput="false"

@@ -34,6 +34,17 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
+                <input name="artType"
+                    id="artType"
+                    visible="false"
+                    class="nui-combobox width2"
+                    textField="name"
+                    valueField="customid"
+                    emptyText="请选择..."
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
                 <label style="font-family:Verdana;">跟踪状态：</label>
                 <input name="visitStatus"
                     id="query_visitStatus"
@@ -137,7 +148,7 @@
         <div showCollapseButton="false" style="border:0;">
             <div class="nui-fit">
                 <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
-                     onactivechanged="changeTabs" >
+                     onactivechanged="" >
                     <!--联系内容-->
                     <%@include file="/telsales/telTrack_tab1.jsp" %>
                     <!--客户资料-->

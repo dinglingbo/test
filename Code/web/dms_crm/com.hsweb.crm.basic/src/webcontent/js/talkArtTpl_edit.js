@@ -4,6 +4,7 @@ var recorder;//建档人
 var recordDate;//建档日期
 var modifier;//修改人
 var modifyDate;//修改日期
+var action;
 
 $(document).ready(function(v){
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -25,6 +26,10 @@ function setData(data){
     }
     modifier.setValue(tmpUser);
     modifyDate.setValue(currDate);
+}
+
+function getData(){
+    return 
 }
 
 function onOk(){

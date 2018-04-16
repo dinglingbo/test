@@ -2,6 +2,7 @@ var queryForm;
 var tree1;
 var dgGrid;
 var currTypeNode;
+var currRow;
 
 $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
@@ -9,6 +10,9 @@ $(document).ready(function(v){
     dgGrid = nui.get("dgGrid");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
+    });
+    initDicts({
+        tree1: "DDT20130725000001"//话术类型
     });
     query();
 });
@@ -38,6 +42,34 @@ function onNodeDbClick(e){
     
     currTypeNode = node;
     query();    
+}
+
+function getData(){
+    if(currRow){
+        return currRow;
+    }else{
+        return {};
+    }
+}
+
+function setData(data){
+    if(data.action=="sel"){
+        $(".selgroup").show();
+        $(".editgroup").hide();
+    }else{
+        $(".selgroup").hide();
+        $(".editgroup").show();
+    }
+}
+
+function doSelect(){
+    var row = dgGrid.getSelected();
+    if (row) {
+        currRow = row;
+        closeWindow("ok");
+    } else {
+        alert("请选中一条记录");
+    }
 }
 
 function add(){

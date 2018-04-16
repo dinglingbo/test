@@ -19,7 +19,7 @@
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
     <table style="width:100%;">
         <tr>
-            <td style="white-space:nowrap;">
+            <td style="white-space:;"><!--nowrap-->
                 <label style="font-family:Verdana;">快速查询：</label>
                 <label style="font-family:Verdana;">话术来源：</label>
                 <input class="nui-textbox" name="source" id="source" enabled="true"/>
@@ -28,8 +28,14 @@
                 <label style="font-family:Verdana;">创建人：</label>
                 <input class="nui-textbox" name="recorder" id="recorder" enabled="true"/>
                 <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">新增话术</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">修改话术</a>
+                <span class="editgroup">
+                    <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">新增话术</a>
+                    <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">修改话术</a>
+                </span>
+                <span class="selgroup" style="display:none;">
+                    <a class="nui-button" iconCls="icon-edit" plain="true" onclick="doSelect" id="select" enabled="true">选择话术</a>
+                    <a class="nui-button" iconCls="icon-edit" plain="true" onclick="onCancel" id="cancel" enabled="true">取消选择</a>
+                </span>
             </td>
         </tr>
     </table>
@@ -45,7 +51,6 @@
                      showFooter="false"
                      style="width:100%;height:100%;border: 0;">
                     <ul id="tree1" class="nui-tree" 
-                        url="<%=apiPath + sysApi%>/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130725000001&page/length=200&token=<%=token%>" 
                         style="width:95%;height:95%;padding:5px;" 
                         showTreeIcon="true" 
                         dataField="data" 
@@ -72,7 +77,7 @@
                          pageSize="50" sizeList=[20,50,100] 
                          selectOnLoad="true"
                          ondrawcell=""
-                         onrowdblclick=""
+                         onRowdblclick="doSelect"
                          dataField="rs"
                          sortMode="client"
                          allowcellwrap="true"

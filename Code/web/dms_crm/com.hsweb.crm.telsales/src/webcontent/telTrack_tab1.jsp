@@ -133,9 +133,9 @@
             <div property="columns">                                              
                 <div field="scoutMan" headerAlign="center" width="50px" align="center">跟踪员</div>
                 <div field="scoutDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" width="50px" align="center">跟踪日期</div>
-                <div field="scoutResult" headerAlign="center" width="50px" renderParam="scoutResult, value, text" renderer="function(){alert(1)}" align="center">跟踪结果</div>
+                <div field="scoutResult" headerAlign="center" width="50px" align="center">跟踪结果</div>
                 
-                <div field="scoutMode" headerAlign="center" width="50px" renderer="setColVal('scoutMode', 'customid', 'name', e)" align="center">跟踪方式</div>
+                <div field="scoutMode" headerAlign="center" width="50px" align="center">跟踪方式</div>
                 <div field="scoutContent" headerAlign="center" width="50px" align="center">跟踪内容</div>
             </div>
         </div>

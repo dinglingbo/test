@@ -15,8 +15,6 @@ $(document).ready(function(v){
     	e.data.token = token;
     });
     dgGrid.on("drawcell", function (e) { //表格绘制
-        var record = e.record;
-        var column = e.column;
         var field = e.field;
         if(field == "orgid"){
             e.cellHtml = setColVal('query_orgid', 'orgid', 'orgname', e.value);
@@ -26,6 +24,14 @@ $(document).ready(function(v){
             e.cellHtml = setColVal('carModelId', 'carModelId', 'carModel', e.value);
         }else if(field == "visitStatus"){//跟踪状态
             e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
+        }
+    });
+    dgScoutDetail.on("drawcell", function (e) { //表格绘制
+        var field = e.field;
+        if(field == "scoutResult"){//跟踪结果
+            e.cellHtml = setColVal('scoutResult', 'value', 'text', e.value);
+        }else if(field == "scoutMode"){//跟踪方式
+            e.cellHtml = setColVal('scoutMode', 'customid', 'name', e.value);
         }
     });
     init();
@@ -39,7 +45,8 @@ function init(){
     initDicts({
         scoutMode: "DDT20130703000021",//跟踪方式
         visitStatus: "DDT20130703000081",//跟踪状态
-        query_visitStatus: "DDT20130703000081"//跟踪状态
+        query_visitStatus: "DDT20130703000081",//跟踪状态
+        artType: "DDT20130725000001"//话术类型        
     });
 }
 
@@ -54,19 +61,6 @@ function query(){
         //失败;
         nui.alert("数据加载失败！");
     });
-}
-
-function testa(tt){
-    alert(tt);
-}
-function onNodeDbClick(e){
-    var node = e.node || currTypeNode;
-    if(!node){
-        return;
-    }
-    
-    currTypeNode = node;
-    query();    
 }
 
 function add(){
@@ -136,10 +130,6 @@ function setScoutForm(e){
     dgScoutDetail.load(params);
 }
 
-function changeTabs(e){
-    
-}
-
 function clearQueryForm(){
     queryForm.setData({});
 }
@@ -162,22 +152,12 @@ function newClient(){
 
 //保存跟踪
 function saveScout(){
-    //if(!formValidate(form2)) return false;
     var url = "/com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
     doSave(form1, url);
 }
 //保存客户信息
 function saveClientInfo(){
     var url = "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
-    /*
-    //同步客户信息
-    var scoutData = form1.getData();
-    var guestData = form2.getData();
-    for(var i in scoutData){
-        guestData[i] = scoutData[i];
-    }
-    form2.setData(guestData);*/
-    
     doSave(form2, url);    
 }
 
@@ -221,9 +201,35 @@ function doSave(tform, url, callBack){
 }
 //选择话术
 function selTalkArt(){
-   
+   var data = {action: "sel"};
+   data.url = "/basic/talkArtTpl.jsp";
+   data.width = 680;
+   data.height = 520;
+   openTalkArt(data, "选择话术")
 }
 //收藏话术
 function colleTalkArt(){
-    
+    var data = {action: "new"};
+    data.artType = nui.get("artType").getData();
+    data.url = "/com.hsweb.crm.basic.talkArtTpl_edit.flow";
+    data.width = 480;
+    data.height = 420;
+    data.content = nui.get("scoutContent").getValue();
+    openTalkArt(data, "收藏话术")
+}
+
+function openTalkArt(data, title){
+    mini.open({
+        url: webPath + crmDomain + data.url,
+        title: title, width: data.width, height: data.height,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action) {
+            if(action == "ok"){
+                nui.get("scoutContent").setValue(this.getIFrameEl().contentWindow.getData().content);
+            }
+        }
+    });
 }

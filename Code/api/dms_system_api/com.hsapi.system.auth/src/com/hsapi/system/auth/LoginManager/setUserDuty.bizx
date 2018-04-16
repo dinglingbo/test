@@ -59,7 +59,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="posi" type="query" value="com.hsapi.system.data.sys.VwUserPosition[]" valueType="DataObject">dutys</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -96,6 +96,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">currDuty/orgname</process:from>
       <process:to type="query">m:userObject/attributes/currOrgName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">currDuty/orgid</process:from>
+      <process:to type="query">m:userObject/userOrgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">currDuty/orgname</process:from>
+      <process:to type="query">m:userObject/userOrgName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">

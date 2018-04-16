@@ -3,10 +3,7 @@
 * 命名SQL通用查询(可行转置列)
 */
 function callNSQL(params, processAjax, callBack, obj){
-	var url = "com.hs.commons.unify.intfc.biz.ext";
-    if(params){
-        params.token = token;
-    }
+	var url = "com.hs.common.unify.intfc.biz.ext";
 	callAjax(url, params, processAjax, callBack, obj);
 }
 
@@ -52,7 +49,7 @@ function callAjax(url, params, processAjax, callBack, obj){
 function processAjax(json, callBack){
     if(json.errCode != 'E'){//&& json.result.code == '1' 第三方接口定义代码
         //nui.alert("获取数据成功！");
-        callBack(json.result || json.data || json.rs);
+        callBack(json.result || json.data || json.rs, json);
     }
     else{
         nui.alert("获取数据失败！\n\r[" + (json.errMsg) + "]");// || json.result.msg第三方接口定义消息

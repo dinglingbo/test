@@ -8,6 +8,7 @@
                 <legend >客户信息</legend>
                 <div style="padding:5px;">
                     <input class="nui-hidden" name="id"/>
+                    
                     <div class="row">            
                         <span class="title title-width1 required">客户名称：</span>
                         <input id="guestName" name="guestName" class="nui-textbox width2" required="true"/>   
@@ -78,6 +79,7 @@
                     </div>
                     <div class="row">            
                         <span class="title title-width1 required">车型：</span>
+                        <input class="nui-hidden" id="_carModel" name="carModel"/>
                         <input name="carModelId"
                             id="carModelId"
                             class="nui-combobox width2"
@@ -85,7 +87,7 @@
                             textField="carModel"
                             valueField="carModelId"
                             emptyText="请选择..."
-                            url=""
+                            onValuechanged="nui.get('_carModel').setValue(this.text)"
                             allowInput="false"
                             valueFromSelect="true"
                             showNullItem="false"
@@ -118,7 +120,7 @@
             </fieldset>
         </div>
         <div style="text-align:center;padding:10px;display:none;" class="saveGroup">
-            <a id="save" class="mini-button" onclick="saveClientInfo" style="width:100px;margin-right:20px;">只保存客户信息</a>
+            <a id="save" class="mini-button" onclick="saveClientInfo" style="width:60px;margin-right:20px;">保存</a>
         </div>
     </form>
 </div>

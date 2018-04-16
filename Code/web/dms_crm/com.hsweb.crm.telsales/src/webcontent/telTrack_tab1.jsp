@@ -105,7 +105,7 @@
                             class="mini-textarea width7" 
                             onValuechanged=""
                             onKeyup=""
-                            style="height: 160px;" 
+                            style="height: 120px;" 
                             emptyText="请输入短信内容"
                             required="true">
                         </textarea>
@@ -114,24 +114,28 @@
             </div>
         </fieldset>
         <div style="text-align:center;padding:10px;display:none;" class="saveGroup">
-            <a id="saveScout" class="mini-button" onclick="saveScout" style="width:70px;margin-right:20px;">保存所有</a>
+            <a id="saveScout" class="mini-button" onclick="saveScout" style="width:60px;margin-right:20px;">保存</a>
             <a id="selTalkArt" class="mini-button" onclick="selTalkArt" style="width:70px;margin-right:20px;">选择话术</a>
             <a id="colleTalkArt" class="mini-button" onclick="colleTalkArt" style="width:70px;margin-right:20px;">收藏话术</a>
         </div>
     </form>
     
     <div class="nui-fit">   
-        <div id="dg2" class="nui-datagrid"
-             allowCellEdit="true" allowCellSelect="true"
+        <div id="dgScoutDetail" class="nui-datagrid"
+             allowCellEdit="false" allowCellSelect="true"
              style="width:100%;height:100%;"
+             url="<%=webPath + sysDomain%>/com.hs.common.unify.intfc.biz.ext"
+             dataField="result"
              showColumns="true"
-             showPager="true" >                
+             allowcellwrap="true"
+             showPager="true"
+             totalField="page.count">                
             <div property="columns">                                              
                 <div field="scoutMan" headerAlign="center" width="50px" align="center">跟踪员</div>
-                <div field="scoutDate" headerAlign="center" width="50px" align="center">跟踪日期</div>
-                <div field="scoutResult" headerAlign="center" width="50px" align="center">跟踪结果</div>
+                <div field="scoutDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" width="50px" align="center">跟踪日期</div>
+                <div field="scoutResult" headerAlign="center" width="50px" renderParam="scoutResult, value, text" renderer="function(){alert(1)}" align="center">跟踪结果</div>
                 
-                <div field="scoutMode" headerAlign="center" width="50px" align="center">跟踪方式</div>
+                <div field="scoutMode" headerAlign="center" width="50px" renderer="setColVal('scoutMode', 'customid', 'name', e)" align="center">跟踪方式</div>
                 <div field="scoutContent" headerAlign="center" width="50px" align="center">跟踪内容</div>
             </div>
         </div>

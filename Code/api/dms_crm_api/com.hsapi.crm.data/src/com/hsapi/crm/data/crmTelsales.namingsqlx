@@ -34,7 +34,7 @@
 	        </isNotNull>
             
             <isNotNull property="nextScoutDate">
-	            AND next_scout_date &gt;= #nextScoutDate#
+	            AND next_scout_date &lt;= #nextScoutDate#
 	        </isNotNull>
             
 	        <isNull property="assignStatus">
@@ -50,5 +50,11 @@
 	        <isNotNull property="visitManId">
 	            AND visit_man_id = #visitManId#
 	        </isNotNull>
+   	</select>
+    <select id="getScoutDetail" parameterClass="HashMap" resultClass="HashMap">
+    	select id, scout_content scoutContent, scout_mode scoutMode, scout_result scoutResult, scout_man scoutMan, 
+        scout_date scoutDate
+        FROM crm_talk_detail
+		WHERE orgid = #orgid# And guest_id = #guestId#            
    	</select>
 </sqlMap>

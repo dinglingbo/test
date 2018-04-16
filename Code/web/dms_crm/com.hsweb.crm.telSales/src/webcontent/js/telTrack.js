@@ -1,5 +1,6 @@
 var queryForm;
 var dgGrid;
+var dgScoutDetail;
 var form1;
 var form2;
 var currGuest;
@@ -9,14 +10,30 @@ $(document).ready(function(v){
     form1 = new nui.Form("#form1");
     form2 = new nui.Form("#form2");
     dgGrid = nui.get("dgGrid");
+    dgScoutDetail = nui.get("dgScoutDetail");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
+    });
+    dgGrid.on("drawcell", function (e) { //表格绘制
+        var record = e.record;
+        var column = e.column;
+        var field = e.field;
+        if(field == "orgid"){
+            e.cellHtml = setColVal('query_orgid', 'orgid', 'orgname', e.value);
+        }else if(field == "carBrandId"){//品牌
+            e.cellHtml = setColVal('carBrandId', 'id', 'nameCn', e.value);
+        }else if(field == "carModelId"){//车型
+            e.cellHtml = setColVal('carModelId', 'carModelId', 'carModel', e.value);
+        }else if(field == "visitStatus"){//跟踪状态
+            e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
+        }
     });
     init();
     query();
 });
 
 function init(){
+    initComp("query_orgid");//公司组织
     initCarBrand("carBrandId");//车辆品牌
     initInsureComp("insureCompCode");//保险公司
     initDicts({
@@ -39,6 +56,9 @@ function query(){
     });
 }
 
+function testa(tt){
+    alert(tt);
+}
 function onNodeDbClick(e){
     var node = e.node || currTypeNode;
     if(!node){
@@ -79,20 +99,18 @@ function editWin(title, data){
     });
 }
 
-//所在分店
-function setCompName(e){
-    
-}
-
-
-function setTypeName(e){
-    var typeData = tree1.getData();
-    var tmp;
-    for (var i = 0; i < typeData.length; i++) {
-        tmp = typeData[i];
-        if (tmp.CUSTOMID == e.value) return tmp.NAME;
+function setColVal(dataFrom, value, name, eValue){
+    var dataList;
+    if(typeof dataFrom=="string"){
+        dataList = nui.get(dataFrom).getData();
+    }else{
+        dataList = dataFrom;
     }
-    return "";
+    
+    for (var i = 0; i < dataList.length; i++) {
+        if (dataList[i][value] == eValue) return dataList[i][name];
+    }
+    return eValue;
 }
 
 function setScoutForm(e){
@@ -102,6 +120,20 @@ function setScoutForm(e){
     currGuest = e.record;
     //触发选择事件
     nui.get("carBrandId").doValueChanged();
+    
+    var params = {
+        "p":{
+            "def":{
+                "ds":"DB10_MYSQL_WB_CRM", //数据源 必填
+                "url":"com.hsapi.crm.data.crmTelsales.getScoutDetail",  //命名SQL路径 必填
+                "page":true
+            },
+            "orgid": currOrgId,
+            "guestId": currGuest.guestId
+        },
+        token:token
+    }
+    dgScoutDetail.load(params);
 }
 
 function changeTabs(e){
@@ -130,13 +162,22 @@ function newClient(){
 
 //保存跟踪
 function saveScout(){
-    if(!formValidate(form2)) return false;
+    //if(!formValidate(form2)) return false;
     var url = "/com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
-    doSave(form1, url, saveClientInfo);
+    doSave(form1, url);
 }
 //保存客户信息
 function saveClientInfo(){
     var url = "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
+    /*
+    //同步客户信息
+    var scoutData = form1.getData();
+    var guestData = form2.getData();
+    for(var i in scoutData){
+        guestData[i] = scoutData[i];
+    }
+    form2.setData(guestData);*/
+    
     doSave(form2, url);    
 }
 
@@ -164,7 +205,8 @@ function doSave(tform, url, callBack){
                     if(callBack){
                         callBack();
                     }
-                    tform.setData(currGuest);
+                    //tform.setData(currGuest);
+                    dgGrid.reload();
                 }else {
                     nui.alert(data.errMsg);
                 }

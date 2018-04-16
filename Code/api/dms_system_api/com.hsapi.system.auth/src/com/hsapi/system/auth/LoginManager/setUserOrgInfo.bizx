@@ -51,12 +51,24 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">u/userid</process:from>
+      <process:from type="query" pattern="reference">u/operatorid</process:from>
       <process:to type="query">m:userObject/userId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">u/userName</process:from>
       <process:to type="query">m:userObject/userName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/realname</process:from>
+      <process:to type="query">m:userObject/userRealName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/operatorid</process:from>
+      <process:to type="query">m:userObject/attributes/currUserId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/userName</process:from>
+      <process:to type="query">m:userObject/attributes/currUserName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">u/empcode</process:from>
@@ -408,7 +420,7 @@
       <process:partner type="literal">this.setUserDuty</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">u/operatorid</process:inputVariable>
-        <process:inputVariable id="1" name="currDutyId" type="literal" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="1" name="currDutyId" type="literal" value="String" valueType="Primitive" pattern="reference"/>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>

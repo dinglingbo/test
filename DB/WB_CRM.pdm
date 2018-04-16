@@ -14560,10 +14560,11 @@ LABL 0 新宋体,8,N</a:FontList>
 <a:Code>visit_status</a:Code>
 <a:CreationDate>1522137418</a:CreationDate>
 <a:Creator>Guine</a:Creator>
-<a:ModificationDate>1522137629</a:ModificationDate>
+<a:ModificationDate>1523851353</a:ModificationDate>
 <a:Modifier>Guine</a:Modifier>
 <a:Comment>跟踪状态</a:Comment>
-<a:DataType>tinyint</a:DataType>
+<a:DataType>varchar(10)</a:DataType>
+<a:Length>10</a:Length>
 </o:Column>
 <o:Column Id="o857">
 <a:ObjectID>7B087353-F2E4-4C84-9673-94E5D7E2CD44</a:ObjectID>

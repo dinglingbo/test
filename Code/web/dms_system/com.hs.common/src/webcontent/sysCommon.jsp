@@ -100,14 +100,24 @@
 	}
 	<%
 	HttpSession session = request.getSession(false);
-	String token="";
+    String orgId="";
+    String orgName="";
+    String userId="";
+	String userName="";
+    String userRealName="";
+    String token="";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>alert(123);backToLogin();<%
 	}else{
 		IUserObject u = (IUserObject) session.getAttribute("userObject");		
 		if (u != null) {
-			String orgId = u.getUserOrgId();
+			orgId = u.getUserOrgId();
+            orgName = u.getUserOrgName();
+            userId = u.getUserId();
+            userName = u.getUserName();
+            userRealName = u.getUserRealName();
+            
 			String noOrgId = "N";
             try {
 				attr = u.getAttributes();
@@ -133,7 +143,12 @@
 	}
 	%>
 	
-	var token = "<%=token %>";
+	var currOrgId = "<%=orgId %>";
+    var currOrgName = "<%=orgName %>";
+    var currUserId = "<%=userId %>";
+	var currUserName = "<%=userName %>";
+    var currUserRealName = "<%=userRealName %>";
+    var token = "<%=token %>";
     //alert("token=" + token);
 </script>
 <script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>

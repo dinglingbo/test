@@ -63,6 +63,10 @@
       <process:from type="query" pattern="reference">m:userObject/attributes/currGoverCompCodes</process:from>
       <process:to type="query">p/currGoverCompCodes</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="208" y="222"/>

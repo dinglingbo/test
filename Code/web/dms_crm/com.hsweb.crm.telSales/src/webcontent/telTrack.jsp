@@ -22,6 +22,18 @@
         <tr>
             <td><!-- style="white-space:nowrap;"-->
                 <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
+                <input name="orgid"
+                    id="query_orgid"
+                    visible="false"
+                    class="nui-combobox width2"
+                    textField="orgname"
+                    valueField="orgid"
+                    emptyText="请选择..."
+                    url=""
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
                 <label style="font-family:Verdana;">跟踪状态：</label>
                 <input name="visitStatus"
                     id="query_visitStatus"
@@ -86,10 +98,10 @@
                             <div headerAlign="center"><strong>车辆信息</strong>
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
-                                    <div field="orgid" width="70" headerAlign="center" renderer="setCompName" allowSort=false>所在分店</div>
+                                    <div field="orgid" width="70" headerAlign="center" allowSort=false>所在分店</div>
                                     <div field="carNo" width="50" headerAlign="center" allowSort=false>车牌号</div>
-                                    <div field="carBrandId" width="40" headerAlign="center" allowSort=false>品牌</div>
-                                    <div field="carModel" width="40" headerAlign="center" renderer="" allowSort=false>车型</div>
+                                    <div field="carBrandId" width="40" headerAlign="center">品牌</div>
+                                    <div field="carModel" width="40" headerAlign="center">车型</div>
                                     <div field="underpanNo" width="70" headerAlign="center" allowSort=false>VIN</div>
                                     <div field="firstRegDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
@@ -112,7 +124,7 @@
                             <div headerAlign="center"><strong>联系状态</strong>
                                 <div property="columns">
                                     <div field="visitManId" width="40" headerAlign="center" summaryType="" allowSort=false>营销员</div>
-                                    <div field="visitStatus" width="60" headerAlign="center" summaryType="" allowSort=false>联系状态</div>
+                                    <div field="visitStatus" width="60" headerAlign="center">跟踪状态</div>
                                     <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>上次联系时间</div>
                                     <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>下次联系时间</div>
                                 </div>

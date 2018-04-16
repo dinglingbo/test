@@ -36,6 +36,7 @@
 			<configValue key="DB06_ORA_WB_FINANCIAL">DB06_ORA_WB_FINANCIAL</configValue>
 			<configValue key="DB07_ORA_WB_OA">DB07_ORA_WB_OA</configValue>
 			<configValue key="DB08_ORA_WB_BEAUTY">DB08_ORA_WB_BEAUTY</configValue>
+			<configValue key="DB10_MYSQL_WB_CRM">DB10_MYSQL_WB_CRM</configValue>
 		</group>
 	</module>
 </contribution>

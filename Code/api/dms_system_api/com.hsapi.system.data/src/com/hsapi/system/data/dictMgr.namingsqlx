@@ -55,5 +55,11 @@
     	FROM com_role_member
 		WHERE role_id = #roleId#
 			AND orgId = #orgId#
-    </select> 
+    </select>
+    <!--组织列表查询(集团、公司)-->
+    <select id="queryOrgs" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT orgid, orgcode, orgname 
+    	FROM ORG_ORGANIZATION
+		WHERE orgtype in('h', 'b') AND status = 'running'
+    </select>
 </sqlMap>

@@ -6,6 +6,17 @@ var _sysApiRoot = apiPath + sysApi;
 var _initDmsObj = {}
 var _dictDefs;//字典
 
+//公司组织
+function initComp(id){
+    if(checkObjExists(id, "initComp")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.org.getComps.biz.ext";
+        callAjax(url, {}, processAjax, processComp, null); 
+    }
+}
+function processComp(data){
+    _initDmsObj["initComp"].setData(data);
+}
+
 //车辆品牌
 function initCarBrand(id){
     if(checkObjExists(id, "initCarBrand")){
@@ -23,7 +34,6 @@ function getCarModel(id, e){
         var url = _sysApiRoot + "/com.hsapi.system.product.cars.carModel.biz.ext";
         var params = {};
         params.carBrandId = e.value;
-        params.token = token;
         callAjax(url, params, processAjax, processCarModel, null);
     }
 }

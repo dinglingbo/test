@@ -102,6 +102,7 @@
             </div>
             <div class="row">
                 <span class="title title-width1 required">车型：</span>
+                <input class="nui-hidden" id="_carModel" name="carModel"/>
                 <input name="carModelId"
                        id="carModelId"
                        class="nui-combobox width2"
@@ -109,7 +110,7 @@
                        textField="carModel"
                        valueField="carModelId"
                        emptyText="请选择..."
-                       url=""
+                       onValuechanged="nui.get('_carModel').setValue(this.text)"
                        allowInput="false"
                        valueFromSelect="true"
                        showNullItem="false"

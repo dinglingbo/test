@@ -49,6 +49,10 @@
       <process:from type="query" pattern="reference">seriesId</process:from>
       <process:to type="query">cond/_expr[2]/carSeriesId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">carModelId</process:from>
+      <process:to type="query">cond/_expr[3]/id</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="230" y="116"/>
@@ -87,6 +91,7 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>
@@ -119,11 +124,11 @@
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">carModel</process:from>
-      <process:to type="query">cond/_expr[3]/carModel</process:to>
+      <process:to type="query">cond/_expr[4]/carModel</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">cond/_expr[3]/_op</process:to>
+      <process:to type="query">cond/_expr[4]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -140,6 +145,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="brandId" primitiveType="String"/>
     <process:input description="" isArray="false" name="seriesId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="carModelId" primitiveType="String"/>
     <process:input description="" isArray="false" name="carModel" primitiveType="String"/>
   </process:inputs>
   <process:outputs>

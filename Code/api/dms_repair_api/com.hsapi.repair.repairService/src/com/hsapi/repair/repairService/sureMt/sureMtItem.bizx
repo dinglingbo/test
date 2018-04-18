@@ -214,10 +214,6 @@
       <process:to type="query">item/amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">itemQuote/amt</process:from>
-      <process:to type="query">item/rate</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">itemQuote/discountAmt</process:from>
       <process:to type="query">item/discountAmt</process:to>
     </process:copy>

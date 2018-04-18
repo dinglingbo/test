@@ -110,7 +110,11 @@
 			rps_item a
 		WHERE
 			a.service_id = #serviceId#
-		and ifnull(a.package_id,'') = ''
+		<dynamic>
+            <isNull prepend="and" property="withPkg">
+                (ifnull(a.package_id,'') = '')
+            </isNull>
+        </dynamic> 
 	</select>
 	<select id="getRpsItemQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
@@ -154,8 +158,12 @@
 			rps_part a
 		WHERE
 			a.service_id = #serviceId#
-			and ifnull(a.package_id,'') = ''
 			and a.status &lt; 11
+		<dynamic>
+            <isNull prepend="and" property="withPkg">
+                (ifnull(a.package_id,'') = '')
+            </isNull>
+        </dynamic> 
 	</select>
 	<select id="getRpsPartQuoteByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
@@ -177,7 +185,11 @@
 			rps_part_quote a
 		WHERE
 			a.service_id = #serviceId#
-			and ifnull(a.package_id,'') = ''
+		<dynamic>
+            <isNull prepend="and" property="withPkg">
+                (ifnull(a.package_id,'') = '')
+            </isNull>
+        </dynamic> 
 	</select>
 	
 	<select id="getRpsPackageByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -415,7 +427,7 @@
 			rps_part 
 		WHERE
 			service_id = #serviceId#
-			AND is_disabled = 0	
+			AND is_disabled = 0
 	</select>
 	<select id="getRpsItemBillByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
@@ -437,6 +449,7 @@
 			rps_item_bill a
 		WHERE
 			a.service_id = #serviceId#
+			AND ifnull( a.package_id, '' ) = ''
 	</select>
 	<select id="getRpsPartBillByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
@@ -459,6 +472,6 @@
 			rps_part_bill a
 		WHERE
 			a.service_id = #serviceId#
-		limit 1
+			AND ifnull( a.package_id, '' ) = ''
 	</select>
 </sqlMap>

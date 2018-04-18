@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,149 +11,116 @@
 -->
 <head>
 <title>维修客户选择</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js"
-	type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairCustomer.js?v=1.0.0"></script>
+<style type="text/css">
+table {
+	font-size: 12px;
+}
+
+.form_label {
+	text-align: right;
+}
+
+.required {
+	color: red;
+}
+</style>
 
 </head>
-<body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div  class="nui-toolbar"  style="height:26px">
-		<div class="nui-form1" id="form1" style="height: 100%">
-			<input class="nui-hidden" name="criteria/_entity" value="" />
-			<table class="table" id="table1" style="height: 100%;">
-				<tr style="display: block; margin:-2px 0 0 0">
-					<td>
-						<label style="font-family:Verdana;">查询选项：</label>
-					</td>
-					<td>
-						<input class="nui-combobox" width="80px" emptyText="请选择..." /> 
-					</td>
-					<td>
-						<label>查询值：</label>
-					</td>
-					<td>
-						<input class="nui-textbox" width="120px"/> 
-					</td>
-					<td>
-						<span style="widht:0;height:100%;border:0.6px solid #AAAAAA;margin: 0 0 0 5px" ></span>
-					</td>
-					<td>
-						<a class="nui-button" iconCls="icon-search" onclick="search()" plain="true">查询（Q）</a>
-						<a class="nui-button" iconCls="icon-downgrade" onclick="search()" plain="true">下一页(P)</a>
-						<a class="nui-button" iconCls="icon-ok" onclick="search()" plain="true">选择（X）</a>
-						<a class="nui-button" iconCls="icon-no" onclick="search()" plain="true">关闭（C）</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<div class="nui-fit">
-		<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 100%;"
-			url=""
-			pageSize="20" showPageInfo="true" multiSelect="true"
-			showPageIndex="false" showPage="true" showPageSize="false"
-			showReloadButton="false" showPagerButtonIcon="false"
-			totalCount="total" onselectionchanged="selectionChanged"
-			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="5">
+<body>
+<div class="nui-toolbar" style="border-bottom: 0;">
+    <div class="nui-form1" id="queryInform">
+        <table class="table">
+            <tr>
+                <td>
+                    <label style="font-family:Verdana;">查询选项：</label>
+                </td>
+                <td>
+                    <input class="nui-combobox" emptyText="请选择..." value="serviceCode"
+                           data="[{id:'serviceCode',text:'工单号'},{id:'carNo',text:'车牌号'},{id:'guestName',text:'客户名称'},{id:'carModel',text:'车型'},{id:'underpanNo',text:'底盘号'},{id:'mobile',text:'手机号'}]"
+                           id="queryField"/>
+                </td>
+                <td>
+                    <label>查询值：</label>
+                </td>
+                <td>
+                    <input class="nui-textbox" id="queryValue"/>
+                </td>
+                <td>
+                    <a class="nui-button" iconCls="icon-search" onclick="onSearch()" plain="true">查询</a>
+                    <a class="nui-button" iconCls="icon-ok" onclick="onOk()" plain="true">选择</a>
+                    <a class="nui-button" iconCls="icon-no" onclick="onCancel()" plain="true">关闭</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="nui-fit">
+    <div id="leftGrid"
+         dataField="list"
+         class="nui-datagrid" style="width: 100%; height: 100%;"
+         pageSize="50"
+         selectOnLoad="true"
+         totalField="page.count"
+         sortMode="client"
+         allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="5">
+        <div property="columns">
+            <div type="indexcolumn" headerAlign="center" allowSort="true" width="30">序号</div>
+            <div header="基本信息" headerAlign="center">
+                <div property="columns">
+                    <div field="orgid" headerAlign="center" allowSort="true" visible="true" header="公司名称"></div>
+                    <div field="serviceCode" headerAlign="center" allowSort="true" visible="true" header="工单号"></div>
+                    <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" header="维修顾问"></div>
+                    <div field="carNo" headerAlign="center" allowSort="true" visible="true" header="车牌号"></div>
+                    <div field="serviceCard" headerAlign="center" allowSort="true" visible="true" header="接车卡号"></div>
+                </div>
+            </div>
+            <div header="辅助信息" headerAlign="center">
+                <div property="columns">
+                    <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
+                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
+                    <div field="checker" headerAlign="center" allowSort="true" visible="true" header="质检员"></div>
+                    <div field="contactorName" headerAlign="center" allowSort="true" visible="true" header="客户名称"></div>
+                    <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" header="业务类型"></div>
+                    <div field="mtType" headerAlign="center" allowSort="true" visible="true" header="维修类型"></div>
+                    <div field="insureCompCode" headerAlign="center" allowSort="true" visible="true" header="投保公司"></div>
+                    <div field="sureMtDate" headerAlign="center" allowSort="true" visible="true" header="维修日期" dateFormat="yyyy-MM-dd"></div>
+                    <div field="outDate" headerAlign="center" allowSort="true" visible="true" header="离厂日期" dateFormat="yyyy-MM-dd"></div>
+                    <div field="remark" headerAlign="center" allowSort="true" visible="true" header="备注"></div>
+                </div>
+            </div>
+            <div header="维修项目" headerAlign="center">
+                <div property="columns">
+                    <div field="itemAmt" headerAlign="center" allowSort="true" visible="true" header="项目金额" datatype="float" align="right"></div>
+                    <div field="itemPrefRate" headerAlign="center" allowSort="true" visible="true" header="优惠率" datatype="float" align="right" numberFormat="p" decimalPlaces="4"></div>
+                    <div field="itemPrefAmt" headerAlign="center" allowSort="true" visible="true" header="优惠金额" datatype="float" align="right"></div>
+                    <div field="itemSutotal" headerAlign="center" allowSort="true" visible="true" header="项目小计" datatype="float" align="right"></div>
+                </div>
+            </div>
+            <div header="材料信息" headerAlign="center">
+                <div property="columns">
+                    <div field="partAmt" headerAlign="center" allowSort="true" visible="true" header="材料金额" datatype="float" align="right"></div>
+                    <div field="partPrefRate" headerAlign="center" allowSort="true" visible="true" header="优惠率" datatype="float" align="right" numberFormat="p" decimalPlaces="4"></div>
+                    <div field="partPrefAmt" headerAlign="center" allowSort="true" visible="true" header="优惠金额" datatype="float" align="right"></div>
+                    <div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" header="材料小计" datatype="float" align="right"></div>
+                </div>
+            </div>
+            <div header="金额信息" headerAlign="center">
+                <div property="columns">
+                    <div field="mtAmt" headerAlign="center" allowSort="true" visible="true" header="维修金额" datatype="float" align="right"></div>
+                    <div field="partManageExp" headerAlign="center" allowSort="true" visible="true" header="材料管理费" datatype="float" align="right"></div>
+                    <div field="materialExp" headerAlign="center" allowSort="true" visible="true" header="辅料费" datatype="float" align="right"></div>
+                    <div field="allowanceAmt" headerAlign="center" allowSort="true" visible="true" header="折让金额" datatype="float" align="right"></div>
+                    <div field="otherExp" headerAlign="center" allowSort="true" visible="true" header="其他费用" datatype="float" align="right"></div>
+                    <div field="totalPrefRate" headerAlign="center" allowSort="true" visible="true" header="整单优惠率" datatype="float" align="right" numberFormat="p" decimalPlaces="4"></div>
+                    <div field="totalPrefAmt" headerAlign="center" allowSort="true" visible="true" header="总优惠金额" datatype="float" align="right"></div>
+                    <div field="balaAmt" headerAlign="center" allowSort="true" visible="true" header="结算金额" datatype="float" align="right"></div>
+                    <div field="billAmt" headerAlign="center" allowSort="true" visible="true" header="发票金额" datatype="float" align="right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-			<div property="columns">
-				<div type="indexcolumn" headerAlign="center" allowSort="true" width="30px">序号</div>
-				<div header="基本信息" headerAlign="center">
-					<div property="columns">
-						<div  field="type" headerAlign="center"
-							allowSort="true" visible="true" width="70px">公司名称</div>
-						<div  field="name" headerAlign="center"
-							allowSort="true" visible="true" width="140px">工单号</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="75px">维修顾问</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="65px">车牌号</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="75px">接车卡号</div>
-					</div>
-				</div>
-				<div header="辅助信息" headerAlign="center">
-					<div property="columns">
-						<div  field="type" headerAlign="center"
-							allowSort="true" visible="true" width="60px">品牌</div>
-						<div  field="name" headerAlign="center"
-							allowSort="true" visible="true" width="150px">车型</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="60px">质检员</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="80px">客户名称</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="80px">业务类型</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="80px">维修类型</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="100px">投保公司</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="100px">维修日期</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="100px">离厂日期</div>
-						<div  field="isDisabled" headerAlign="center"
-							allowSort="true" visible="true" width="120px">备注</div>
-					</div>
-				</div>
-				<div header="维修项目" headerAlign="center">
-					<div property="columns">
-						<div  field="type" headerAlign="center"
-							allowSort="true" visible="true" width="80px">项目金额</div>
-						<div  field="name" headerAlign="center"
-							allowSort="true" visible="true" width="60px">优惠率</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="80px">优惠金额</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="80px">项目小计</div>
-					</div>
-				</div>
-				<div header="材料信息" headerAlign="center">
-					<div property="columns">
-						<div  field="type" headerAlign="center"
-							allowSort="true" visible="true" width="80px">材料金额</div>
-						<div  field="name" headerAlign="center"
-							allowSort="true" visible="true" width="60px">优惠率</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="80px">优惠金额</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="80px">材料小计</div>
-					</div>
-				</div>
-				<div header="金额信息" headerAlign="center">
-					<div property="columns">
-						<div  field="type" headerAlign="center"
-							allowSort="true" visible="true" width="80px">维修金额</div>
-						<div  field="name" headerAlign="center"
-							allowSort="true" visible="true" width="100px">材料管理费</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="60px">辅料费</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="80px">折让金额</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="80px">其他费用</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="100px">整单优惠率</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="100px">总优惠金额</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="80px">结算金额</div>
-						<div  field="captainName" headerAlign="center"
-							allowSort="true" visible="true" width="8，，0px">发票金额</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-		
-		
-
-
-
-	<script type="text/javascript">
-    	nui.parse();
-    	
-    </script>
 </body>
 </html>

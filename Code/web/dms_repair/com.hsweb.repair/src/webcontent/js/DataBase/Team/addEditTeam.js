@@ -88,8 +88,9 @@ var requiredField = {
 var saveUrl = baseUrl+"com.hsapi.repair.baseData.team.saveTeam.biz.ext";
 function onOk()
 {
-    var data = basicInfoForm.getData();
-    console.log(data);
+	var data = basicInfoForm.getData();
+    //console.log(data);
+    data.captainName = nui.get("captainId").getText();
     for(var key in requiredField)
     {
         if(!data[key] || data[key].trim().length==0)
@@ -134,4 +135,41 @@ function CloseWindow(action)
 }
 function onCancel(e) {
     CloseWindow("cancel");
+}
+function selectCaptain(elId)
+{
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.repair.common.empSelect.flow",
+        title: "选择用户", width: 300, height: 500,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+                multiSelect:false
+            };
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                var empList = data.empList;
+                var emp = empList[0];
+                console.log(emp);
+                if(nui.get(elId))
+                {
+                    nui.get(elId).setValue(emp.nodeId);
+                    if(nui.get(elId).setText)
+                    {
+                        nui.get(elId).setText(emp.nodeName);
+                    }
+                }
+            }
+        }
+    });
 }

@@ -152,6 +152,7 @@ function saveTeamMember(empList)
                 nui.unmask();
                 if(data && data.errCode == "S")
                 {
+                	rightGrid.reload();
                     nui.alert("保存成功");
                 }
                 else{

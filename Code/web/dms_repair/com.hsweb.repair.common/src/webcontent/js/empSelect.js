@@ -33,6 +33,15 @@ function onDrawTreeNode(e)
         e.showCheckBox = false;
     }
 }
+var multiSelect = true;
+function setData(data)
+{
+    data = data||{};
+    if(data.multiSelect === false || data.multiSelect === 0)
+    {
+        multiSelect = false;
+    }
+}
 var resultData = {};
 function getData(){
     return resultData;
@@ -42,6 +51,11 @@ function onOk()
     var empList = tree.getCheckedNodes(false);
     if(empList.length>0)
     {
+    	if(!multiSelect && empList.length>1)
+        {
+            nui.alert("只能选择一个用户");
+            return;
+        }
         resultData.empList = empList;
         CloseWindow("ok");
     }

@@ -53,6 +53,8 @@
 	window._rootUrl = apiPath + repairApi + "/";
 	window._rootPartUrl = apiPath + partApi + "/";
 	window._rootSysUrl = apiPath + sysApi + "/";
+	window._rootCrmUrl = apiPath + crmApi + "/";
+	window._webCrmUrl = webPath + crmDomain + "/";
 	//console.log(window._rootUrl);
 	function doPost(opt) {
 		var url = opt.url;
@@ -324,6 +326,39 @@
 		params.idList = idList;
 		doPost({
 			url : getTeamMemberByTeamIdListUrl,
+			data : params,
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback(null);
+			}
+		});
+	}
+	var getOrgListUrl = window._rootPartUrl
+			+ "com.hsapi.part.common.svr.getOrgList.biz.ext";
+	function getOrgList(callback) {
+		doPost({
+			url : getOrgListUrl,
+			data : {},
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback(null);
+			}
+		});
+	}
+	var getDeductRateUrl = window._rootUrl
+			+ "com.hsapi.repair.common.svr.getDeductRate.biz.ext";
+	function getDeductRate(itemKindList, callback) {
+		var params = {};
+		doPost({
+			url : getDeductRateUrl,
 			data : params,
 			success : function(data) {
 				callback && callback(data);

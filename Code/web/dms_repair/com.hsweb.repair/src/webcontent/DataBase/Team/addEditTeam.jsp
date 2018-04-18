@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增、编辑班组</title>
-<script	src="<%= request.getContextPath() %>/repair/js/DataBase/Team/addEditTeam.js?v=1.0.0"  type="text/javascript"></script>
+<script	src="<%= request.getContextPath() %>/repair/js/DataBase/Team/addEditTeam.js?v=1.0.2"  type="text/javascript"></script>
 <style type="text/css">
 table {
 	width: 100%;
@@ -67,14 +67,14 @@ table .title {
                 <label>班组长名称：</label>
             </td>
             <td>
-                <input name="captainName" class="nui-textbox" style="width: 100%;"/>
+                <input class="nui-buttonedit" name="captainId" id="captainId" onclick="selectCaptain('captainId')" width="100%"/>
             </td>
         </tr>
     </table>
 </div>
 <div style="text-align:center;padding:10px;">
-    <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
-    <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
+    <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
+    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
 </div>
 </body>
 </html>

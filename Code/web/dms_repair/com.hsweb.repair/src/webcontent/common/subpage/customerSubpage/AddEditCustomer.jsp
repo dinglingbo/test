@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.13"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.14"></script>
 <style type="text/css">
 
 table {
@@ -121,7 +121,7 @@ table {
                                     <label>车架号(VIN)：</label>
                                 </td>
                                 <td colspan="2">
-                                    <input class="nui-textbox" name="underpanNo" width="100%"/>
+                                    <input class="nui-textbox" id="underpanNo" name="underpanNo" width="100%"/>
                                 </td>
                                 <td>
                                     <a class="nui-button" onclick="onParseUnderpanNo()">解析</a>
@@ -132,7 +132,7 @@ table {
                                     <label>车型信息：</label>
                                 </td>
                                 <td colspan="3">
-                                    <textarea class="nui-textarea" name="carModelInfo" width="100%"></textarea>
+                                    <textarea class="nui-textarea" id="carModelInfo" name="carModelInfo" width="100%"></textarea>
                                 </td>
                             </tr>
                             <tr>

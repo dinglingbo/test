@@ -11,7 +11,7 @@
 -->
 <head>
 <title>班组定义</title>
-<script type="text/javascript" src="<%= request.getContextPath() %>/repair/js/DataBase/Team/TeamMain.js?v=1.0.17"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/repair/js/DataBase/Team/TeamMain.js?v=1.1.0"></script>
 </head>
 <body >
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">

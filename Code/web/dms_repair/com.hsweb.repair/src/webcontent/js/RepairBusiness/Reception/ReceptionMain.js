@@ -1562,6 +1562,7 @@ function add()
             var code = data.code;
             if(!code)
             {
+            	nui.unmask();
                 nui.alert("获取单号失败");
                 return;
             }

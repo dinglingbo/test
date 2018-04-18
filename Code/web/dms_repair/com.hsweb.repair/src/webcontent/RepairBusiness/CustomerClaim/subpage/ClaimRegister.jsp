@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
-	
+	pageEncoding="UTF-8" session="false"%>
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -9,254 +10,234 @@
   - Description:
 -->
 <head>
-<title>索赔登记（登记和处理）</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <style type="text/css">
-    	#textarea{
-    		width: 780px;
-    		height: 136px;
-    	}
-    	#basetd1{
-    		width:120px
-    	}
-    	#basetd2{
-    		width:62px
-    	}
-    </style>
+<title>索赔登记</title>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerClaim/subpage/ClaimRegister.js?v=1.0.0"></script>
+<style type="text/css">
+table {
+	font-size: 12px;
+}
+
+.form_label {
+	width: 60px;;
+	text-align: right;
+}
+
+.required {
+	color: red;
+}
+</style>
 </head>
-<body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
-	<div  class="nui-toolbar"  style="width:100%;height:24px">
-		<a class="nui-button" iconCls="icon-save" onclick="save()" plain="true">保存</a>
-		<a class="nui-button" iconCls="icon-ok" onclick="ok()" plain="true">过账</a>
-		<a class="nui-button" iconCls="icon-no" onclick="onClose()" plain="true" >关闭</a>
+<body>
+	<div class="nui-toolbar"  style="border-bottom: 0;">
+		<a class="nui-button" iconCls="icon-save" onclick="save()" plain="true" id="saveBtn">保存</a>
+		<a class="nui-button" iconCls="icon-ok" onclick="onOk()" plain="true" id="okBtn">过账</a>
+		<a class="nui-button" iconCls="icon-no" onclick="onCancel()" plain="true" >关闭</a>
 	</div>
-	<div  class="nui-panel" showToolbar="false" title="基本信息" showFooter="false" style="width:99%;height:100px;margin: 4px;">
-		<table>
-			<tr style="display: block; margin:0">
-				<td width="60px">
-					<label>索赔单号：</label>
-				</td>
-				<td>
-					<input class="nui-textbox" id="basetd1" /> 
-				</td>
-				<td width="60px">
-					<label>索赔类型：</label>
-				</td>
-				<td>
-					<input class="nui-combobox" id="basetd1" /> 
-				</td>
-				<td width="60px">
-					<label>业务单号：</label>
-				</td>
-				<td>
-					<input class="nui-buttonedit" onclick="repairCustomer()" width="250px"/> 
-				</td>
-			</tr>
-			<tr style="display: block; margin: 3px 0 -1px 0">
-				<td width="60px">
-					<label>车牌号：</label>
-				</td>
-				<td>
-					<input class="nui-textbox" id="basetd1" /> 
-				</td>
-				<td width="60px">
-					<label>车辆厂牌：</label>
-				</td>
-				<td>
-					<input class="nui-combobox" id="basetd1" /> 
-				</td>
-				<td width="60px">
-					<label>车型：</label>
-				</td>
-				<td>
-					<input class="nui-textbox" id="basetd1" />  
-				</td>
-				<td width="60px">
-					<label>维修顾问：</label>
-				</td>
-				<td>
-					<input class="nui-textbox" id="basetd2" />  
-				</td>
-				<td >
-					<label>联系人：</label>
-				</td>
-				<td>
-					<input class="nui-textbox" id="basetd2" />  
-				</td>
-			</tr>
-		</table>
-	</div>
-	<div id="mainTabs" class="nui-tabs" activeIndex="0" style="width:99%; height: 76.5%;margin: 4px" plain="false" onactivechanged="">
-		<div title="索赔描述" >
+	<div  class="nui-panel" showToolbar="false" title="基本信息" showFooter="false" style="width:100%;height:110px;">
+		<div id="basicInfoForm">
+			<input class="nui-hidden" name="id" id="id"/>
 			<table>
-				<tr style="display: block; margin:0">
-					<td width="60px">
-						<label>客户描述：</label>
+				<tr>
+					<td>
+						<label>索赔单号：</label>
 					</td>
 					<td>
-						<input class="nui-textarea" id="textarea" /> 
+						<input class="nui-textbox" enabled="false" id="serviceCode" name="serviceCode"/>
+					</td>
+					<td>
+						<label>索赔类型：</label>
+					</td>
+					<td>
+						<input class="nui-combobox" id="claimsType"
+							   valueField="customid" textField="name"
+							   name="claimsType"/>
+					</td>
+					<td>
+						<label>业务单号：</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-buttonedit"  name="serviceId" id="serviceId"
+							   allowInput="false"
+							   onbuttonclick="repairCustomer()" style="width: 100%"/>
 					</td>
 				</tr>
-				<tr style="display: block; margin:0">
-					<td width="60px">
-						<label>处理描述：</label>
+				<tr>
+					<td>
+						<label>车牌号：</label>
 					</td>
 					<td>
-						<input class="nui-textarea" id="textarea" /> 
-					</td>
-				</tr>
-				<tr style="display: block; margin:0">
-					<td width="60px">
-						<label>防范措施：</label>
+						<input class="nui-textbox"   enabled="false" name="carNo" id="carNo"/>
 					</td>
 					<td>
-						<input class="nui-textarea" id="textarea" /> 
+						<label>车辆厂牌：</label>
+					</td>
+					<td>
+						<input class="nui-combobox"  enabled="false"
+							   valueField="id" textField="carBrandZh"
+							   name="carBrandId" id="carBrandId"/>
+					</td>
+					<td>
+						<label>车型：</label>
+					</td>
+					<td>
+						<input class="nui-textbox"  enabled="false" name="carModel" id="carModel"/>
+					</td>
+					<td>
+						<label>维修顾问：</label>
+					</td>
+					<td>
+						<input class="nui-textbox"  enabled="false" name="mtAdvisor" id="mtAdvisor"/>
+					</td>
+					<td >
+						<label>联系人：</label>
+					</td>
+					<td>
+						<input class="nui-textbox" enabled="false" name="contactorName" id="contactorName"/>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<div title="索赔项目" >
-			<div  class="nui-splitter" style="width:100%;height:100%;" vertical="true" allowResize="false">
-			    <div size="50%" showCollapseButton="false">
-			        <div class="nui-fit">
-						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 100%;"url=""
-							pageSize="20" showPageInfo="false" multiSelect="true" showPageIndex="false" showPageSize="false"
-							showReloadButton="false" showPagerButtonIcon="false"
-							totalCount="total" allowSortColumn="true" virtualScroll="true" virtualColumns="true">
-		
-							<div property="columns">
-								<div  field="name" headerAlign="center" allowSort="true"
-									visible="true" width="120px">项目名称</div>
-								<div  field="captainName" headerAlign="center"
-									allowSort="true" visible="true" width="70px">收费类型</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="50px">工种</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="50px">工时</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="70px">金额小计</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="70px">班组</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="60px">承修人</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="120px">项目编码</div>
-							</div>
-						</div>
-		    		</div>
-		    	</div>
-			    <div showCollapseButton="false">
-			        <div>
-			        	<table>
-			        		<tr>
-			        			<td>
-				        			<a class="nui-button" iconCls="icon-ok" onclick="save()" plain="true">选择索赔</a>
-									<a class="nui-button" iconCls="icon-remove" onclick="ok()" plain="true">删除</a>
-			        			</td>
-			        		</tr>
-			        	</table>
-			        </div>
-			        <div class="nui-fit">
-						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"style="width: 100%; height: 100%;"
-							url=""
-							pageSize="20" showPageInfo="false" multiSelect="true" showPageIndex="false" showPageSize="false"
-							showReloadButton="false" showPagerButtonIcon="false" totalCount="total"
-							allowSortColumn="true" virtualScroll="true" virtualColumns="true">
-		
-							<div property="columns">
-								<div  field="name" headerAlign="center" allowSort="true"
-									visible="true" width="160px">项目名称</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="60px">工种</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="80px">班组</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="60px">主修人</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="90px">金额</div>
-								<div  field="isDisabled" headerAlign="center"
-									allowSort="true" visible="true" width="150px">备注</div>
-							</div>
-						</div>
-		    		</div>
-			    </div>
+	</div>
+	<div class="nui-fit">
+		<div id="mainTabs" class="nui-tabs" activeIndex="0"
+			 style="width:100%; height:100%;" plain="false">
+			<div title="索赔描述" >
+				<table style="width: 100%;">
+					<tr>
+						<td class="form_label">
+							<label>客户描述：</label>
+						</td>
+						<td>
+							<input class="nui-textarea" style="width: 100%;height: 150px;" id="clientDescription"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="form_label">
+							<label>处理描述：</label>
+						</td>
+						<td>
+							<input class="nui-textarea" style="width: 100%;height: 150px;" id="processDescription"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="form_label">
+							<label>防范措施：</label>
+						</td>
+						<td>
+							<input class="nui-textarea" style="width: 100%;height: 150px;" id="precautions"/>
+						</td>
+					</tr>
+				</table>
 			</div>
-		</div>
-		<div title="索赔配件" >
-			<div  class="nui-splitter" style="width:100%;height:100%;" vertical="true" allowResize="false">
-			    <div size="50%" showCollapseButton="false">
-			        <div class="nui-fit">
-						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid" style="width: 100%; height: 100%;"url=""
-							pageSize="20" showPageInfo="false" multiSelect="true" showPageIndex="false" showPageSize="false"
-							showReloadButton="false" showPagerButtonIcon="false"
-							totalCount="total" allowSortColumn="true" virtualScroll="true" virtualColumns="true">
-		
-							<div property="columns">
-								<div  field="name" headerAlign="center" allowSort="true" visible="true" width="130px">零件名称</div>
-								<div  field="captainName" headerAlign="center" allowSort="true" visible="true" width="80px">收费类型</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="80px">数量</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="100px">单价</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="100px">金额</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="130px">零件编码</div>
+			<div title="索赔项目" >
+				<div  class="nui-splitter" style="width:100%;height:100%;" vertical="true"
+					  borderStyle="border:0;"
+					  allowResize="false">
+					<div size="50%" showCollapseButton="false" style="border: 0;">
+						<div class="nui-fit">
+							<div id="rpsItemGrid"
+								 dataField="list"
+								 class="nui-datagrid"
+								 style="width: 100%; height: 100%;"
+								 sortMode="client" showPager="false"
+								 allowSortColumn="true">
+								<div property="columns">
+									<div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
+									<div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+									<div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
+									<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">工时</div>
+									<div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额小计</div>
+									<div field="className" headerAlign="center" allowSort="true" visible="true" width="80">班组</div>
+									<div field="worker" headerAlign="center" allowSort="true" visible="true" width="80">承修人</div>
+									<div field="itemCode" headerAlign="center" allowSort="true" visible="true" width="">项目编码</div>
+								</div>
 							</div>
 						</div>
-		    		</div>
-			    </div>
-			    <div showCollapseButton="false">
-			        <div>
-			        	<table>
-			        		<tr>
-			        			<td>
-				        			<a class="nui-button" iconCls="icon-ok" onclick="save()" plain="true">选择索赔</a>
-									<a class="nui-button" iconCls="icon-remove" onclick="ok()" plain="true">删除</a>
-			        			</td>
-			        		</tr>
-			        	</table>
-			        </div>
-			        <div class="nui-fit">
-						<div id="datagrid1" dataField="rpbclass" class="nui-datagrid"style="width: 100%; height: 100%;"
-							url=""
-							pageSize="20" showPageInfo="false" multiSelect="true" showPageIndex="false" showPageSize="false"
-							showReloadButton="false" showPagerButtonIcon="false" totalCount="total"
-							allowSortColumn="true" virtualScroll="true" virtualColumns="true">
-		
-							<div property="columns">
-								<div  field="name" headerAlign="center" allowSort="true"
-									visible="true" width="160px">零件名称</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="70px">数量</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="80px">单价</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="100px">金额</div>
-								<div  field="isDisabled" headerAlign="center" allowSort="true" visible="true" width="150px">备注</div>
+					</div>
+					<div showCollapseButton="false">
+						<div class="nui-toolbar"  style="border-bottom: 0;border-top: 0;">
+							<table>
+								<tr>
+									<td>
+										<a class="nui-button" iconCls="icon-ok" onclick="addItem()" plain="true">选择索赔</a>
+										<a class="nui-button" iconCls="icon-remove" onclick="delItem()" plain="true">删除</a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="nui-fit">
+							<div id="claimsItemGrid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
+								 sortMode="client" showPager="false"
+								 allowSortColumn="true">
+								<div property="columns">
+									<div field="itemName" headerAlign="center" allowSort="true"
+										  visible="true" width="160px">项目名称</div>
+									<div field="itemKind" headerAlign="center"
+										  allowSort="true" visible="true">工种</div>
+									<div  field="className" headerAlign="center"
+										  allowSort="true" visible="true" width="80px">班组</div>
+									<div  field="worker" headerAlign="center"
+										  allowSort="true" visible="true">主修人</div>
+									<div  field="amt" headerAlign="center"
+										  allowSort="true" visible="true" width="90px">金额</div>
+									<div  field="remark" headerAlign="center"
+										  allowSort="true" visible="true" width="150px">备注</div>
+								</div>
 							</div>
 						</div>
-		    		</div>
-			    </div>
+					</div>
+				</div>
+			</div>
+			<div title="索赔配件" >
+				<div  class="nui-splitter" style="width:100%;height:100%;" vertical="true"
+					  borderStyle="border:0;"
+					  allowResize="false">
+					<div size="50%" showCollapseButton="false" style="border: 0;">
+						<div class="nui-fit">
+							<div id="rpsPartGrid" dataField="list" class="nui-datagrid"
+								 sortMode="client" showPager="false"
+								 style="width: 100%; height: 100%;"
+								 allowSortColumn="true">
+								<div property="columns">
+									<div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
+									<div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+									<div field="qty" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">数量</div>
+									<div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">单价</div>
+									<div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
+									<div field="partCode" headerAlign="center" allowSort="true" visible="true" width="">零件编码</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div showCollapseButton="false">
+						<div class="nui-toolbar" style="border-bottom: 0;border-top: 0;">
+							<table>
+								<tr>
+									<td>
+										<a class="nui-button" iconCls="icon-ok" onclick="addPart()" plain="true">选择索赔</a>
+										<a class="nui-button" iconCls="icon-remove" onclick="delPart()" plain="true">删除</a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="nui-fit">
+							<div id="claimsPartGrid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
+								 sortMode="client" showPager="false"
+								 allowSortColumn="true">
+								<div property="columns">
+									<div  field="partName" headerAlign="center" allowSort="true"
+										  visible="true" width="160px">零件名称</div>
+									<div  field="qty" headerAlign="center" allowSort="true" visible="true" width="70px">数量</div>
+									<div  field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80px">单价</div>
+									<div  field="amt" headerAlign="center" allowSort="true" visible="true" width="100px">金额</div>
+									<div  field="remark" headerAlign="center" allowSort="true" visible="true" width="150px">备注</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-	<script type="text/javascript">
-    	nui.parse();
-    	
-    	
-    	function repairCustomer(){
-    		nui.open({
-    			url:"../../common/RepairCustomer.jsp",
-    			title:"维修客户选择",width:880,height:500,
-    			onload:function(){
-    			    var iframe = this.getIFrameEl();
-    			    var data = {pageType:"add"};
-    			    iframe.contentWindow.setData(data);
-    			},
-    			
-    		    ondestroy:function(action){
-    		    grid.reload();
-    		}	
-    		});
-    	}
-    	
-    </script>
 </body>
 </html>

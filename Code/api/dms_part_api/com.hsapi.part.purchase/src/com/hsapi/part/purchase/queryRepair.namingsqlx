@@ -88,4 +88,50 @@
             </isNotEmpty>
         </dynamic> 
     </select>
+    
+    <select id="queryRepairOutListByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.source_id sourceId,
+			a.root_id rootId,
+			a.orgid orgid,
+			a.service_id serviceId,
+			a.car_no carNo,
+			a.car_id carId,
+			a.part_id partId,
+			a.part_code partCode,
+			a.part_name partName,
+			a.unit unit,
+			out_qty outQty,
+			tax_unit_price taxUnitPrice,
+			tax_amt taxAmt,
+			no_tax_unit_price noTaxUnitPrcie,
+			no_tax_amt noTaxAmt,
+			true_unit_price trueUnitPrice,
+			true_cost trueCost,
+			sell_unit_price sellUnitPrice,
+			sell_amt sellAmt,
+			(sell_amt - true_cost) grossProfit,
+			auditor,
+			audit_sign auditSign,
+			audit_date auditDate,
+			pick_man pickMan,
+			pick_date pickDate,
+			pick_type pickType,
+			return_sign returnSign,
+			out_return_sign outReturnSign,
+			return_man returnMan,
+			return_date returnDate,
+			a.return_remark returnRemark,
+			a.recorder recorder,
+			a.record_date recordDate,
+			b.stock_location stockLocation 
+		FROM
+			pts_repair_out a
+			LEFT JOIN pts_cyc_org b ON a.part_id = b.part_id 
+		WHERE
+			a.orgid = b.orgid 
+			AND a.service_id = #serviceId#
+			AND ifnull(a.return_sign, 0 ) = 0
+    </select>
 </sqlMap>

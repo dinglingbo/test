@@ -14,7 +14,7 @@
 			a.mt_advisor mtAuditor,
 			a.service_code serviceCode,
 			a.car_no carNo,
-			c.car_brand_zh carBrandName 
+			c.car_brand_zh carBrandName
 		FROM
 			rps_maintain a
 			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
@@ -42,7 +42,6 @@
 			a.service_code serviceCode,
 			a.car_no carNo,
 			b.car_brand_id carBrandId,
-			c.car_brand_zh carBrandName,
 			a.service_type_id serviceTypeId,
 			a.mt_type mtType,
 			a.mt_advisor_id mtAdvisorId,
@@ -64,7 +63,6 @@
 			b.engine_no engineNo,
 			d.name contactorName,
 			d.identity identity,
-			f.name identityName,
 			d.mobile mobile,
 			e.full_name guestFullName,
 			a.guest_id guestId,
@@ -75,14 +73,15 @@
 			a.out_bill_sign outBillSign,
 			a.out_enter_date outEnterDate,
 			a.out_leave_date outLeaveDate,
-			a.out_print_date outPrintDate
+			a.out_print_date outPrintDate,
+			a.out_date outDate,
+			a.comp_come_times compComeTimes,
+			e.mobile guestMobile
 		FROM
 			rps_maintain a
 			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
-			LEFT JOIN wb_common.com_car_brand c ON ( b.car_brand_id = c.id ) 
 			left join rpb_contactor d on (a.contactor_id = d.id)
 			left join wb_common.com_guest e on (a.guest_id = e.id)
-			left join wb_common.com_dataitems f on (d.identity = f.customid)
 		WHERE
 			a.id = #id# 
 	</select>
@@ -94,10 +93,8 @@
 			a.item_code itemCode,
 			a.amt amt,
 			a.rece_type_id receTypeId,
-			c.name receTypeName,
 			a.item_time itemTime,
 			a.item_kind itemKind,
-			b.name itemKindName,
 			a.status status,
 			a.unit_price unitPrice,
 			a.rate/100.0 rate,
@@ -111,8 +108,6 @@
 			a.remark
 		FROM
 			rps_item a
-			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
-			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
 		and ifnull(a.package_id,'') = ''
@@ -125,18 +120,14 @@
 			a.item_code itemCode,
 			a.amt amt,
 			a.rece_type_id receTypeId,
-			c.name receTypeName,
 			a.item_time itemTime,
 			a.item_kind itemKind,
-			b.name itemKindName,
 			a.status status,
 			a.unit_price unitPrice,
 			a.rate/100.0 rate,
 			a.subtotal subtotal
 		FROM
 			rps_item_quote a
-			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
-			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
 		and ifnull(a.package_id,'') = ''
@@ -153,7 +144,6 @@
 			a.part_code partCode,
 			a.amt amt,
 			a.rece_type_id receTypeId,
-			c.name receTypeName,
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,
@@ -162,7 +152,6 @@
 			a.discount_amt discountAmt
 		FROM
 			rps_part a
-			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
 			and ifnull(a.package_id,'') = ''
@@ -179,7 +168,6 @@
 			a.part_code partCode,
 			a.amt amt,
 			a.rece_type_id receTypeId,
-			c.name receTypeName,
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,
@@ -187,7 +175,6 @@
 			a.subtotal subtotal
 		FROM
 			rps_part_quote a
-			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
 			and ifnull(a.package_id,'') = ''
@@ -241,10 +228,8 @@
 			a.item_code itemCode,
 			a.amt amt,
 			a.rece_type_id receTypeId,
-			c.name receTypeName,
 			a.item_time itemTime,
 			a.item_kind itemKind,
-			b.name itemKindName,
 			a.status status,
 			a.unit_price unitPrice,
 			a.rate rate,
@@ -253,8 +238,6 @@
 			a.discount_amt discountAmt
 		FROM
 			rps_item_quote a
-			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
-			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.package_id = #packageId#
 	</select>
@@ -442,10 +425,8 @@
 			a.item_code itemCode,
 			a.amt amt,
 			a.rece_type_id receTypeId,
-			c.name receTypeName,
 			a.item_time itemTime,
 			a.item_kind itemKind,
-			b.name itemKindName,
 			a.status status,
 			a.unit_price unitPrice,
 			a.rate/100.0 rate,
@@ -454,8 +435,6 @@
 			a.remark
 		FROM
 			rps_item_bill a
-			LEFT JOIN wb_common.com_datadictionaries b ON ( a.item_kind = b.customid ) 
-			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
 	</select>
@@ -470,7 +449,6 @@
 			a.part_code partCode,
 			a.amt amt,
 			a.rece_type_id receTypeId,
-			c.name receTypeName,
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,
@@ -479,7 +457,6 @@
 			a.discount_amt discountAmt
 		FROM
 			rps_part_bill a
-			LEFT JOIN wb_common.com_dataitems c ON ( a.rece_type_id = c.customid ) 
 		WHERE
 			a.service_id = #serviceId#
 		limit 1

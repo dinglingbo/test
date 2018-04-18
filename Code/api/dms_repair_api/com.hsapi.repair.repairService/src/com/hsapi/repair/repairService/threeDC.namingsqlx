@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryScoutList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.car_id carId,
+			a.service_code serviceCode,
+			a.car_no carNo,
+			a.mt_advisor mtAdvisor,
+			ifnull( DATEDIFF( now( ), a.out_date ), 0 ) leaveDay,
+			a.contactor_id contactorId,
+			c.care_cycle careCycle,
+			c.care_due_date careDueDate 
+		FROM
+			rps_maintain a
+			INNER JOIN wb_crm.crm_guest_scout b ON ( a.id = b.service_id )
+			INNER JOIN rpb_car c ON ( a.car_id = c.id )
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="highLeaveDay">
+                (ifnull( DATEDIFF( now( ), a.out_date ), 0 ) &lt;= #highLeaveDay#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">  
+                (a.status = #status#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<select id="getScoutDetailByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.service_id serviceId,
+			a.car_id carId,
+			c.quality_degree qualityDegree,
+			c.service_degree serviceDegree,
+			c.time_degree timeDegree,
+			c.price_degree priceDegree,
+			c.mode mode,
+			b.care_due_date careDueDate,
+			b.care_cycle careCycle,
+			c.content content,
+			c.scout_man scoutMan,
+			c.detail_id detailId,
+			c.scout_date scoutDate
+		FROM
+			wb_crm.crm_guest_scout a
+			INNER JOIN rpb_car b ON ( a.car_id = b.id )
+			INNER JOIN wb_crm.crm_3dc_scout_detail c on (c.service_id = a.service_id)
+		where a.service_id = #serviceId#
+	</select>
+</sqlMap>

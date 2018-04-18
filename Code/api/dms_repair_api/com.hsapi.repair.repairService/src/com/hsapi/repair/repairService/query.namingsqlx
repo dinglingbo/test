@@ -9,8 +9,8 @@
     </resultMap>
     <select id="queryMtHistoryList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
-			c.ORGNAME orgname,
 			a.id id,
+			a.orgid orgid,
 			a.status status,
 			a.enter_date enterDate,
 			a.plan_finish_date planFinishDate,
@@ -18,18 +18,14 @@
 			a.mt_advisor mtAdvisor,
 			a.car_no carNo,
 			a.service_card serviceCard,
-			d.car_brand_id,
-			e.car_brand_zh carBrandName,
+			d.car_brand_id carBrandId,
 			d.car_model carModel,
 			a.checker checker,
 			a.guest_id guestId,
-			f.NAME guestName,
+			f.NAME contactorName,
 			a.service_type_id serviceTypeId,
-			h.NAME serviceTypeName,
 			a.mt_type mtType,
-			g.NAME mtTypeName,
 			d.insure_comp_code insureCompCode,
-			i.full_name insureFullName,
 			a.sure_mt_date sureMtDate,
 			a.out_date outDate,
 			a.is_car_wash isCarWash,
@@ -54,13 +50,8 @@
 		FROM
 			rps_maintain a
 			INNER JOIN rps_settlement b ON ( a.id = b.service_id )
-			INNER JOIN dms_system.org_organization c ON ( a.orgid = c.orgid )
 			INNER JOIN rpb_car d ON ( a.car_id = d.id )
-			LEFT JOIN wb_common.com_car_brand e ON ( d.car_brand_id = e.id )
 			INNER JOIN rpb_contactor f ON ( a.contactor_id = f.id )
-			LEFT JOIN wb_common.com_datadictionaries h ON ( a.service_type_id = h.customid )
-			LEFT JOIN wb_common.com_dataitems g ON ( a.mt_type = g.customid )
-			LEFT JOIN wb_common.com_guest i ON ( i.id = d.insure_comp_code )
 		where
 			1 = 1
 		<dynamic>

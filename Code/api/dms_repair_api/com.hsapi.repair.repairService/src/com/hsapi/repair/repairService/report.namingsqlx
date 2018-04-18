@@ -10,18 +10,17 @@
     <select id="queryRepairDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.orgid orgid,
-			c.ORGNAME orgname,
 			a.service_code serviceCode,
 			a.car_no carNo,
 			a.mt_advisor mtAdvisor,
 			a.service_card serviceCard,
-			e.car_brand_zh carBrandName,
+			d.car_brand_id carBrandId,
 			d.car_model carModel,
-			a.checker,
+			a.checker checker,
 			f.full_name guestName,
 			a.mt_type mtType,
 			a.service_type_id serviceTypeId,
-			d.insure_comp_code,
+			d.insure_comp_code insureCompCode,
 			a.sure_mt_date sureMtDate,
 			a.out_date outDate,
 			b.item_total_amt  itemTotalAmt,
@@ -66,12 +65,14 @@
 			b.plan_tax_amt planTaxAmt,
 			b.gross_profit grossProfit,
 			b.gross_profit_rate grossProfitRate,
-			b.gross_profit_remark grossProfitRemark
+			b.gross_profit_remark grossProfitRemark,
+			b.free_pref_allowance_amt freePrefAllowanceAmt,
+			a.contactor_id contactorId,
+			b.card_amt cardAmt
 		FROM
 			rps_maintain a
 			inner JOIN rps_settlement b ON ( a.id = b.service_id )
-			left join dms_system.org_organization c on (a.orgid = c.ORGID)
-			left join rpb_car d on (d.id = a.car_id)
+			inner JOIN rpb_car d on (d.id = a.car_id)
 			left join wb_common.com_car_brand e on (e.id = d.car_brand_id)
 			left join wb_common.com_guest f on (a.guest_id = f.id)
 		where
@@ -155,5 +156,282 @@
                 (a.service_code like '%$serviceCode$%')
             </isNotEmpty>
         </dynamic>  
+    </select>
+    
+    <select id="queryRepairAnaylsisList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			$groupField$ groupName,
+			count(case when a.chain_come_times = 1 then 1 end) newGeust,
+			count(1) settlementGeust,
+			sum(b.item_total_amt)  itemTotalAmt,
+			sum(b.item_free_amt) itemFreeAmt,
+			sum(b.item_amt)  itemAmt,
+			sum(b.item_pref_amt) itemPrefAmt,
+			sum(b.item_subtotal) itemSubtotal,
+			sum(b.part_total_amt) partTotalAmt,
+			sum(b.part_free_amt) partFreeAmt,
+			sum(b.part_amt) partAmt,
+			sum(b.part_pref_amt) partPrefAmt,
+			sum(b.part_subtotal) partSubtotal,
+			sum(b.part_true_cost) partTrueCost,
+			sum(b.mt_amt) mtAmt,
+			sum(b.part_manage_exp) partManageExp,
+			sum(b.material_exp) materialExp,
+			sum(b.allowance_amt) allowanceAmt,
+			sum(b.other_exp) otherExp,
+			sum(b.total_pref_amt) totalPrefAmt,
+			sum(b.accrued_expenses_amt) accuedEpensesAmt,
+			sum(b.elec_amt) elecAmt,
+			sum(b.elec_deduct) elecDeduct,
+			sum(b.metal_amt) metalAmt,
+			sum(b.metal_deduct) metalDeduct,
+			sum(b.paint_amt) paintAmt,
+			sum(b.paint_deduct) paintDeduct,
+			sum(b.out_turn_up_amt) outTurnUpAmt,
+			sum(b.out_turn_up_tax_amt) outTurnUpTaxAmt,
+			sum(b.out_rebate_amt) outRebateAmt,
+			sum(b.out_total_pref_amt) outTotalPrefAmt,
+			sum(b.out_bill_bala_subtoal) outBillBalaSubtotal,
+			sum(b.out_bill_allowance) outBillAllowAnce,
+			sum(b.bala_amt) balaAmt,
+			sum(b.receivable_amt) receivableAmt,
+			sum(b.income_amt) incomeAmt,
+			sum(b.income_real_amt) incomeRealAmt,
+			sum(b.bill_amt) billAmt,
+			sum(b.plan_tax_amt) planTaxAmt,
+			sum(b.gross_profit) grossProfit,
+			sum(b.free_pref_allowance_amt) freePrefAllowanceAmt,
+			sum(b.card_amt) cardAmt,
+			(case when count(1) = 0 then 0 else sum(b.bala_amt) / count(1) end) unitBalaAmt,
+			(CASE WHEN sum(b.item_amt) = 0 THEN 0 ELSE sum(b.item_pref_amt)/sum(b.item_amt) END) itemPrefRate,
+			(CASE WHEN sum(b.part_amt) = 0 THEN 0 ELSE sum(b.part_pref_amt) / sum(b.part_amt) END) partPrefRate,
+			(CASE WHEN sum(b.mt_amt) = 0 THEN 0 ELSE sum(b.total_pref_amt) / sum(b.mt_amt) END) totalPrefRate,
+			(CASE WHEN sum(b.bala_amt) = 0 THEN 0 ELSE sum(b.gross_profit) / sum(b.bala_amt) END) grossProfitRate
+		FROM
+			rps_maintain a
+			INNER JOIN rps_settlement b ON ( a.id = b.service_id )
+			INNER JOIN rpb_contactor AS d ON a.contactor_id = d.id
+			INNER JOIN rpb_car AS e ON a.car_id = e.id 
+		where
+			a.status = 4<!-- 6 -->
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid"> 
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateIsNotNull"> 
+                (a.out_date is not null)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateIsNull"> 
+                (a.out_date is null)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="contactorId"> 
+                (a.contactor_id = #contactorId#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="serviceTypeId"> 
+                (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId"> 
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="underpanNo"> 
+                (d.underpan_no = #underpanNo#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoList"> 
+                (d.car_no in ($carNoList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCodeList"> 
+                (a.service_code in ($serviceCodeList$))
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="startDate"> 
+                (date_format(a.out_date,'%Y-%m-%d') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                (date_format(a.out_date,'%Y-%m-%d') &lt;= #endDate#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="thisYear"> 
+            <!--本年  --> 
+                (date_format(a.out_date,'%Y')=date_format(now(),'%Y'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear"> 
+            <!--上年--> 
+               (date_format(a.out_date,'%Y')=date_format(DATE_SUB(now(),INTERVAL 1 YEAR),'%Y'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(DATE_SUB(now(),INTERVAL 1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (date_format(a.out_date,'%X-%V')=date_format(now(),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--本周-->
+                (date_format(a.out_date,'%X-%V')=date_format(DATE_SUB(now(),INTERVAL 7 DAY),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">  
+                (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="carNo">  
+                (d.car_no like '%$carNo$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="serviceCode">  
+                (a.service_code like '%$serviceCode$%')
+            </isNotEmpty>
+        </dynamic> 
+        group by $groupField$
+    </select>
+    
+    <select id="queryWorkEfficList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	select c.orgid orgid,
+			b.class_code classCode,
+			b.class_name className,
+			b.worker_id workerId,
+			b.worker worker,
+			ifnull(sum(case when DAY($countField2$) = 1 then $countField1$ end),0) t1,
+			ifnull(sum(case when DAY($countField2$) = 2 then $countField1$ end),0) t2,
+			ifnull(sum(case when DAY($countField2$) = 3 then $countField1$ end),0) t3,
+			ifnull(sum(case when DAY($countField2$) = 4 then $countField1$ end),0) t4,
+			ifnull(sum(case when DAY($countField2$) = 5 then $countField1$ end),0) t5,
+			ifnull(sum(case when DAY($countField2$) = 6 then $countField1$ end),0) t6,
+			ifnull(sum(case when DAY($countField2$) = 7 then $countField1$ end),0) t7,
+			ifnull(sum(case when DAY($countField2$) = 8 then $countField1$ end),0) t8,
+			ifnull(sum(case when DAY($countField2$) = 9 then $countField1$ end),0) t9,
+			ifnull(sum(case when DAY($countField2$) = 10 then $countField1$ end),0) t10,
+			ifnull(sum(case when DAY($countField2$) = 11 then $countField1$ end),0) t11,
+			ifnull(sum(case when DAY($countField2$) = 12 then $countField1$ end),0) t12,
+			ifnull(sum(case when DAY($countField2$) = 13 then $countField1$ end),0) t13,
+			ifnull(sum(case when DAY($countField2$) = 14 then $countField1$ end),0) t14,
+			ifnull(sum(case when DAY($countField2$) = 15 then $countField1$ end),0) t15,
+			ifnull(sum(case when DAY($countField2$) = 16 then $countField1$ end),0) t16,
+			ifnull(sum(case when DAY($countField2$) = 17 then $countField1$ end),0) t17,
+			ifnull(sum(case when DAY($countField2$) = 18 then $countField1$ end),0) t18,
+			ifnull(sum(case when DAY($countField2$) = 19 then $countField1$ end),0) t19,
+			ifnull(sum(case when DAY($countField2$) = 20 then $countField1$ end),0) t20,
+			ifnull(sum(case when DAY($countField2$) = 21 then $countField1$ end),0) t21,
+			ifnull(sum(case when DAY($countField2$) = 22 then $countField1$ end),0) t22,
+			ifnull(sum(case when DAY($countField2$) = 23 then $countField1$ end),0) t23,
+			ifnull(sum(case when DAY($countField2$) = 24 then $countField1$ end),0) t24,
+			ifnull(sum(case when DAY($countField2$) = 25 then $countField1$ end),0) t25,
+			ifnull(sum(case when DAY($countField2$) = 26 then $countField1$ end),0) t26,
+			ifnull(sum(case when DAY($countField2$) = 27 then $countField1$ end),0) t27,
+			ifnull(sum(case when DAY($countField2$) = 28 then $countField1$ end),0) t28,
+			ifnull(sum(case when DAY($countField2$) = 29 then $countField1$ end),0) t29,
+			ifnull(sum(case when DAY($countField2$) = 30 then $countField1$ end),0) t30,
+			ifnull(sum(case when DAY($countField2$) = 31 then $countField1$ end),0) t31,
+			ifnull(sum($countField1$),0) tall
+		from
+		rpb_class_member a inner join rps_item b on a.id = b.worker_id
+		inner join rps_maintain c on c.id = b.service_id
+		where year($countField2$) = #year# and month($countField2$) = #month#
+		and c.orgid = #orgid#
+		group by c.orgid, b.class_code, b.class_name, b.worker_id, b.worker
+    </select>
+    
+    <select id="queryTeamPreformanceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			A.CODE code,
+			A.type type,
+			A.NAME name,
+			B.service_id_count serviceIdCount,
+			A.TMen tmen,
+			B.item_amt itemAmt,
+			item_deduct itemDeduct,
+			(B.item_amt / A.TMen) perItemAmt,
+			(B.item_deduct / A.TMen) perItemDeduct
+		FROM
+			(
+		SELECT
+			a.id,
+			a.orgid,
+			a.NAME,
+			a.type,
+			a.CODE,
+			a.captain_name,
+			COUNT( * ) TMen 
+		FROM
+			rpb_class a
+			LEFT JOIN rpb_class_member b ON a.id = b.class_id 
+			AND a.orgid = b.orgid 
+		WHERE
+			a.orgid = #orgid#
+		GROUP BY
+			a.id,
+			a.orgid,
+			a.NAME,
+			a.type,
+			a.CODE,
+			a.captain_name 
+			) A
+			INNER JOIN (
+		SELECT
+			b.class_code,
+			COUNT( DISTINCT a.id ) service_id_count,
+			SUM( b.amt ) item_amt,
+			SUM( deduct_amt ) item_deduct 
+		FROM
+			rps_maintain a
+			LEFT JOIN rps_item b ON a.id = b.service_id
+			LEFT JOIN rps_settlement c ON a.id = c.service_id 
+		WHERE
+			a.orgid = #orgid#
+			AND A.STATUS = 6
+			AND DATE_FORMAT(a.out_date,'%Y-%m-%d') &gt;= #startDate#
+			AND DATE_FORMAT(a.out_date,'%Y-%m-%d') &lt;= #endDate#
+			AND b.rece_type_id = '04150101' 
+		GROUP BY
+			B.class_code 
+			) B ON B.class_code = A.CODE
+    </select>
+    
+    <select id="queryTeamMemberPreformanceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			A.service_id serviceId,
+			b.service_code serviceCode,
+			B.car_no carNo,
+			B.out_date outDate,
+			A.item_name itemName,
+			A.amt amt,
+			A.item_kind itemKind,
+			A.class_name className,
+			A.worker worker,
+			D.item_pref_rate itemPrefRate,
+			deduct_amt AS deductAmt,
+			item_subtotal itemSubtotal 
+		FROM
+			rps_item A
+			LEFT JOIN rps_maintain B ON A.service_id = B.id
+			INNER JOIN rps_settlement D ON A.service_id = D.service_id 
+		WHERE
+			B.orgid = #orgid#
+			AND DATE_FORMAT( B.out_date, '%Y-%m-%d' ) &gt;= #startDate#
+			AND DATE_FORMAT( B.out_date, '%Y-%m-%d' ) &lt;= #endDate#
+			AND A.rece_type_id = '04150101' 
+			AND B.STATUS = 6
+		<dynamic>
+			<isNotEmpty prepend="and" property="workerId"> 
+                A.worker_id = #workerId#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="classCode"> 
+                a.class_code = #classCode#
+            </isNotEmpty>
+        </dynamic>
+		ORDER BY
+			A.service_id
     </select>
 </sqlMap>

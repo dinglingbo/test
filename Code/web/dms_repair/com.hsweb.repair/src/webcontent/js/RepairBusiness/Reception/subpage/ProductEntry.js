@@ -106,7 +106,7 @@ function init()
         td.appendChild(detailGrid_Form);
         detailGrid_Form.style.display = "block";
         packageDetail.clearRows();
-        loadPackageDetailByPkgId(row.packageId,function(){});
+        loadPackageDetailByPkgId(row.id,function(){});
     });
     var itemGridUrl = baseUrl+"com.hsapi.system.product.items.getItem.biz.ext";
     itemGrid = nui.get("itemGrid");
@@ -339,7 +339,7 @@ function doSelect(idx)
             doCallback();
         }
         else{
-            loadPackageDetailByPkgId(row.packageId,function()
+            loadPackageDetailByPkgId(row.id,function()
             {
                 list = packageDetail.getData();
                 doCallback();

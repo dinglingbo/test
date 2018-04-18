@@ -62,6 +62,19 @@ var mtTypeHash = {};
 var serviceTypeIdHash = {};
 var serviceTypeIdEl = null;
 var mtTypeEl = null;
+var itemKindHash = {};
+var receTypeHash = {};
+function onDrawCell(e)
+{
+    var field = e.field;
+    if(field == "receTypeId" && receTypeHash[e.value])
+    {
+        e.cellHtml = receTypeHash[e.value].name;
+    }
+    else if (field == "itemKind" && itemKindHash[e.value]) {
+        e.cellHtml = itemKindHash[e.value].name;
+    }
+}
 function init(callback) {
     serviceTypeIdEl = nui.get("serviceTypeId");
     mtTypeEl = nui.get("mtType");
@@ -90,7 +103,7 @@ function init(callback) {
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDatadictionaries', 'getDictItems', 'getRoleMember','getAllCarBrand'];
+    	var keyList = ['getDatadictionaries', 'getRoleMember','getAllCarBrand','getDictItems','getDatadictionaries2'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -110,21 +123,34 @@ function init(callback) {
         hash.getDatadictionaries = true;
         checkComplete();
     });
+    var pId2 = "DDT20130703000057";
+    getDatadictionaries(pId2, function (data) {
+        data = data || {};
+        var list = data.list || [];
+        list.forEach(function (v) {
+            itemKindHash[v.customid] = v;
+        });
+        hash.getDatadictionaries2 = true;
+        checkComplete();
+    });
+    initDicts({
+        enterOilMass: "DDT20130703000051",//进厂油量
+        identity: "DDT20130703000077"//客户身份
+    });
     var dictIdList = [];
-    dictIdList.push("DDT20130703000051");//进厂油量
-    dictIdList.push("DDT20130703000077");//客户身份
+    dictIdList.push("DDT20130706000013");//收费类型
+    dictIdList.push("DDT20130706000014");//收费类型
     getDictItems(dictIdList, function (data) {
         data = data || {};
         var itemList = data.dataItems || [];
-        var enterOilMassList = itemList.filter(function (v) {
-            return "DDT20130703000051" == v.dictid;
+        var receTypeList = itemList.filter(function (v)
+        {
+            if("DDT20130706000013" == v.dictid || "DDT20130706000014" == v.dictid)
+            {
+                receTypeHash[v.customid] = v;
+                return true;
+            }
         });
-        nui.get("enterOilMass").setData(enterOilMassList);
-        var identityList = itemList.filter(function (v) {
-            return "DDT20130703000077" == v.dictid;
-        });
-        nui.get("identity").setData(identityList);
-
         hash.getDictItems = true;
         checkComplete();
     });
@@ -163,7 +189,7 @@ function searchStock(type)
     }
     params.orgid = currOrgid;
     stockGrid.load({
-    	token:token,
+        token:token,
         params:params
     });
 }
@@ -207,7 +233,7 @@ function onSearch()
 function doSearch(params) {
     params.orgid = currOrgid;
     leftGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
@@ -230,7 +256,7 @@ function onSearchItem() {
 function doSearchItem(params) {
     params.orgid = currOrgid;
     itemGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
@@ -315,7 +341,7 @@ function selectPackage() {
             var iframe = this.getIFrameEl();
             var params = {};
             iframe.contentWindow.setData(params, function (data, callback) {
-            	console.log(data);
+                console.log(data);
                 var _package = {};
                 var tmpPkg = data.package;
                 _package.serviceId = maintain.id;
@@ -462,7 +488,7 @@ function loadPackageGridData()
                 packageId: row.id
             };
             packageDetailGrid.load({
-            	token:token,
+                token:token,
                 params: params
             });
         });
@@ -475,7 +501,7 @@ function loadPackageGridData()
         serviceId: maintain.id
     };
     packageGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
@@ -607,6 +633,7 @@ function loadRpsItemQuoteData() {
             if (e.field == "status") {
                 e.cellHtml = statusHash2[e.value];
             }
+            onDrawCell(e);
         });
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
         rpsItemQuoteGrid.setUrl(rpsItemGridUrl);
@@ -619,97 +646,83 @@ function loadRpsItemQuoteData() {
         serviceId: maintain.id
     };
     rpsItemQuoteGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
-function addOrEditRpsItemQuote(idx)
-{
+function addOrEditRpsItemQuote(idx) {
     var maintain = basicInfoForm.getData();
-    if(!maintain.id)
-    {
+    if (!maintain.id) {
         return;
     }
     nui.open({
         targetWindow: window,
-        url:"com.hsweb.RepairBusiness.addEditItem.flow",
-        title:"维修项目录入",
-        width:600,
-        height:200,
-        allowResize:false,
-        onload: function()
-        {
+        url: "com.hsweb.RepairBusiness.addEditItem.flow",
+        title: "维修项目录入",
+        width: 600,
+        height: 200,
+        allowResize: false,
+        onload: function () {
             var list = rpsItemQuoteGrid.getData();
             var iframe = this.getIFrameEl();
             var params = {
-                serviceId:maintain.id,
-                sourceCode:"rpsItemQuote",
-                editType:"new",
-                list:list
+                serviceId: maintain.id,
+                sourceCode: "rpsItemQuote",
+                editType: "new",
+                list: list
             };
-            if(idx >= 0)
-            {
+            if (idx >= 0) {
                 params.idx = idx;
                 params.editType = "edit";
             }
             iframe.contentWindow.setData(params);
         },
-        ondestroy:function(action)
-        {
-            if(action == "ok")
-            {
+        ondestroy: function (action) {
+            if (action == "ok") {
                 nui.alert("保存成功");
-                loadRpsItemGridData();
+                loadRpsItemQuoteData();
             }
         }
     });
 }
-function addRpsItemQuote()
-{
+function addRpsItemQuote() {
     addOrEditRpsItemQuote();
 }
-function editRpsItemQuote()
-{
+function editRpsItemQuote() {
     var row = rpsItemQuoteGrid.getSelected();
     var idx = 0;
-    if(row)
-    {
+    if (row) {
         idx = rpsItemQuoteGrid.indexOf(row);
     }
     addOrEditRpsItemQuote(idx);
 }
-function removeRpsItemQuote()
-{
+function removeRpsItemQuote() {
     var row = rpsItemQuoteGrid.getSelected();
-    if(row && row.itemId && row.serviceId)
-    {
-        var deleteItemUrl = baseUrl+"com.hsapi.repair.repairService.crud.deleteRpsItemQuote.biz.ext";
+    if (row && row.itemId && row.serviceId) {
+        var deleteItemUrl = baseUrl + "com.hsapi.repair.repairService.crud.deleteRpsItemQuote.biz.ext";
         nui.mask({
-            html:'删除中..'
+            html: '删除中..'
         });
         doPost({
-            url:deleteItemUrl,
-            data:{
-                item:{
-                    itemId:row.itemId,
-                    serviceId:row.serviceId
+            url: deleteItemUrl,
+            data: {
+                item: {
+                    itemId: row.itemId,
+                    serviceId: row.serviceId
                 }
             },
-            success:function(data)
-            {
+            success: function (data) {
                 nui.unmask();
-                data = data||{};
-                if(data.errCode == "S")
-                {
+                data = data || {};
+                if (data.errCode == "S") {
                     nui.alert("删除成功");
-                    loadRpsItemGridData();
+                    loadRpsItemQuoteData();
                 }
-                else{
-                    nui.alert(data.errMsg||"删除失败");
+                else {
+                    nui.alert(data.errMsg || "删除失败");
                 }
             },
-            error:function(jqXHR, textStatus, errorThrown)
-            {
+            error: function (jqXHR, textStatus, errorThrown) {
                 nui.unmask();
                 console.log(jqXHR.responseText);
                 nui.alert("网络出错");
@@ -720,7 +733,7 @@ function removeRpsItemQuote()
 function sureMtItem()
 {
     var maintain = basicInfoForm.getData();
-    if(maintain.status == 0)
+    if(maintain.status < 2)
     {
         return;
     }
@@ -767,6 +780,7 @@ function loadRpsPartQuoteData() {
             if (e.field == "status") {
                 e.cellHtml = statusHash2[e.value];
             }
+            onDrawCell(e);
         });
         var rpsPartQuoteGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartQuoteByServiceId.biz.ext";
         rpsPartQuoteGrid.setUrl(rpsPartQuoteGridUrl);
@@ -779,97 +793,83 @@ function loadRpsPartQuoteData() {
         serviceId: maintain.id
     };
     rpsPartQuoteGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
-function addOrEditRpsPartQuote(idx)
-{
+function addOrEditRpsPartQuote(idx) {
     var maintain = basicInfoForm.getData();
-    if(!maintain.id)
-    {
+    if (!maintain.id) {
         return;
     }
     nui.open({
         targetWindow: window,
-        url:"com.hsweb.RepairBusiness.addEditMaterial.flow",
-        title:"维修材料录入",
-        width:600,
-        height:200,
-        allowResize:false,
-        onload: function()
-        {
+        url: "com.hsweb.RepairBusiness.addEditMaterial.flow",
+        title: "维修材料录入",
+        width: 600,
+        height: 200,
+        allowResize: false,
+        onload: function () {
             var list = rpsPartQuoteGrid.getData();
             var iframe = this.getIFrameEl();
             var params = {
-                serviceId:maintain.id,
-                sourceCode:"rpsPartQuote",
-                editType:"new",
-                list:list
+                serviceId: maintain.id,
+                sourceCode: "rpsPartQuote",
+                editType: "new",
+                list: list
             };
-            if(idx >= 0)
-            {
+            if (idx >= 0) {
                 params.idx = idx;
                 params.editType = "edit";
             }
             iframe.contentWindow.setData(params);
         },
-        ondestroy:function(action)
-        {
-            if(action == "ok")
-            {
+        ondestroy: function (action) {
+            if (action == "ok") {
                 nui.alert("保存成功");
                 loadRpsPartQuoteData();
             }
         }
     });
 }
-function addRpsPartQuote()
-{
+function addRpsPartQuote() {
     addOrEditRpsPartQuote();
 }
-function editRpsPartQuote()
-{
+function editRpsPartQuote() {
     var row = rpsPartQuoteGrid.getSelected();
     var idx = 0;
-    if(row)
-    {
+    if (row) {
         idx = rpsPartQuoteGrid.indexOf(row);
     }
     addOrEditRpsPartQuote(idx);
 }
-function removeRpsPartQuote()
-{
+function removeRpsPartQuote() {
     var row = rpsPartQuoteGrid.getSelected();
-    if(row && row.partId && row.serviceId)
-    {
-        var deleteItemUrl = baseUrl+"com.hsapi.repair.repairService.crud.deleteRpsPartQuote.biz.ext";
+    if (row && row.partId && row.serviceId) {
+        var deleteItemUrl = baseUrl + "com.hsapi.repair.repairService.crud.deleteRpsPartQuote.biz.ext";
         nui.mask({
-            html:'删除中..'
+            html: '删除中..'
         });
         doPost({
-            url:deleteItemUrl,
-            data:{
-                item:{
-                    partId:row.partId,
-                    serviceId:row.serviceId
+            url: deleteItemUrl,
+            data: {
+                item: {
+                    partId: row.partId,
+                    serviceId: row.serviceId
                 }
             },
-            success:function(data)
-            {
+            success: function (data) {
                 nui.unmask();
-                data = data||{};
-                if(data.errCode == "S")
-                {
+                data = data || {};
+                if (data.errCode == "S") {
                     nui.alert("删除成功");
                     loadRpsPartQuoteData();
                 }
-                else{
-                    nui.alert(data.errMsg||"删除失败");
+                else {
+                    nui.alert(data.errMsg || "删除失败");
                 }
             },
-            error:function(jqXHR, textStatus, errorThrown)
-            {
+            error: function (jqXHR, textStatus, errorThrown) {
                 nui.unmask();
                 console.log(jqXHR.responseText);
                 nui.alert("网络出错");
@@ -880,7 +880,7 @@ function removeRpsPartQuote()
 function sureMtPart()
 {
     var maintain = basicInfoForm.getData();
-    if(maintain.status == 0)
+    if(maintain.status < 2)
     {
         return;
     }
@@ -944,6 +944,10 @@ function loadRpsItemData() {
         rpsItemGrid.on("load",function(){
             rpsItemPartAmtAmtCal();
         });
+        rpsItemGrid.on("drawcell", function (e)
+        {
+            onDrawCell(e);
+        });
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemByServiceId.biz.ext";
         rpsItemGrid.setUrl(rpsItemGridUrl);
     }
@@ -955,7 +959,7 @@ function loadRpsItemData() {
         serviceId: maintain.id
     };
     rpsItemGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
@@ -966,7 +970,7 @@ function addOrEditRpsItem(idx) {
     }
     nui.open({
         targetWindow: window,
-        url: "./subpage/addEditItem.html",
+        url: "com.hsweb.RepairBusiness.addEditItem.flow",
         title: "维修项目录入",
         width: 600,
         height: 200,
@@ -1047,6 +1051,9 @@ function loadRpsPartData() {
         rpsPartGrid.on("load",function(){
             rpsItemPartAmtAmtCal();
         });
+        rpsPartGrid.on("drawcell", function (e) {
+            onDrawCell(e);
+        });
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
         rpsPartGrid.setUrl(rpsItemGridUrl);
     }
@@ -1058,7 +1065,7 @@ function loadRpsPartData() {
         serviceId: maintain.id
     };
     rpsPartGrid.load({
-    	token:token,
+        token:token,
         params: params
     });
 }
@@ -1104,7 +1111,7 @@ function addOrEditRpsPart(idx) {
     }
     nui.open({
         targetWindow: window,
-        url: "./subpage/addEditMaterial.html",
+        url: "com.hsweb.RepairBusiness.addEditMaterial.flow",
         title: "维修材料录入",
         width: 600,
         height: 200,
@@ -1143,235 +1150,234 @@ function editRpsPart()
 }
 //维修项目/材料end
 
-
 //出单项目/材料start
 function rpsItemPartBillAmtAmtCal()
 {
-  if(!rpsItemBillGrid || !rpsPartBillGrid)
-  {
-      return;
-  }
-  var itemList = rpsItemBillGrid.getData();
-  var i,sum = 0;
-  for(i=0;i<itemList.length;i++)
-  {
-      sum += itemList[i].amt;
-  }
-  var partList = rpsPartBillGrid.getData();
-  for(i=0;i<partList.length;i++)
-  {
-      sum += partList[i].amt;
-  }
-  sum = sum.toFixed(2);
-  $("#rpsItemPartBillAmt").html(sum);
+    if(!rpsItemBillGrid || !rpsPartBillGrid)
+    {
+        return;
+    }
+    var itemList = rpsItemBillGrid.getData();
+    var i,sum = 0;
+    for(i=0;i<itemList.length;i++)
+    {
+        sum += itemList[i].amt;
+    }
+    var partList = rpsPartBillGrid.getData();
+    for(i=0;i<partList.length;i++)
+    {
+        sum += partList[i].amt;
+    }
+    sum = sum.toFixed(2);
+    $("#rpsItemPartBillAmt").html(sum);
 }
 var rpsItemBillGrid = null;
 function loadRpsItemBillData()
 {
-  if(!rpsItemBillGrid)
-  {
-      rpsItemBillGrid = nui.get("rpsItemBillGrid");
-      rpsItemBillGrid.on("load",function(){
-          rpsItemPartBillAmtAmtCal();
-      });
-      var url = baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemBillByServiceId.biz.ext";
-      rpsItemBillGrid.setUrl(url);
-  }
-  var maintain = basicInfoForm.getData();
-  if (!maintain.id) {
-      return;
-  }
-  var params = {
-      serviceId: maintain.id
-  };
-  rpsItemBillGrid.load({
-	  token:token,
-      params: params
-  });
+    if(!rpsItemBillGrid)
+    {
+        rpsItemBillGrid = nui.get("rpsItemBillGrid");
+        rpsItemBillGrid.on("load",function(){
+            rpsItemPartBillAmtAmtCal();
+        });
+        var url = baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemBillByServiceId.biz.ext";
+        rpsItemBillGrid.setUrl(url);
+    }
+    var maintain = basicInfoForm.getData();
+    if (!maintain.id) {
+        return;
+    }
+    var params = {
+        serviceId: maintain.id
+    };
+    rpsItemBillGrid.load({
+        token:token,
+        params: params
+    });
 }
 function addOrEditRpsItemBill(idx) {
-  var maintain = basicInfoForm.getData();
-  if (!maintain.id) {
-      return;
-  }
-  nui.open({
-      targetWindow: window,
-      url: "./subpage/addEditItem.html",
-      title: "维修项目录入",
-      width: 600,
-      height: 200,
-      allowResize: false,
-      onload: function () {
-          var list = rpsItemBillGrid.getData();
-          var iframe = this.getIFrameEl();
-          var params = {
-              serviceId: maintain.id,
-              sourceCode: "rpsItemBill",
-              editType: "new",
-              list: list
-          };
-          if (idx >= 0) {
-              params.idx = idx;
-              params.editType = "edit";
-          }
-          iframe.contentWindow.setData(params);
-      },
-      ondestroy: function (action) {
-          if (action == "ok") {
-              nui.alert("保存成功");
-              loadRpsItemBillData();
-          }
-      }
-  });
+    var maintain = basicInfoForm.getData();
+    if (!maintain.id) {
+        return;
+    }
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.RepairBusiness.addEditItem.flow",
+        title: "维修项目录入",
+        width: 600,
+        height: 200,
+        allowResize: false,
+        onload: function () {
+            var list = rpsItemBillGrid.getData();
+            var iframe = this.getIFrameEl();
+            var params = {
+                serviceId: maintain.id,
+                sourceCode: "rpsItemBill",
+                editType: "new",
+                list: list
+            };
+            if (idx >= 0) {
+                params.idx = idx;
+                params.editType = "edit";
+            }
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+            if (action == "ok") {
+                nui.alert("保存成功");
+                loadRpsItemBillData();
+            }
+        }
+    });
 }
 function addRpsItemBill() {
-  addOrEditRpsItemBill();
+    addOrEditRpsItemBill();
 }
 function editRpsItemBill() {
-  var row = rpsItemBillGrid.getSelected();
-  var idx = 0;
-  if (row) {
-      idx = rpsItemBillGrid.indexOf(row);
-  }
-  addOrEditRpsItemBill(idx);
+    var row = rpsItemBillGrid.getSelected();
+    var idx = 0;
+    if (row) {
+        idx = rpsItemBillGrid.indexOf(row);
+    }
+    addOrEditRpsItemBill(idx);
 }
 function removeRpsItemBill() {
-  var row = rpsItemBillGrid.getSelected();
-  if (row && row.itemId && row.serviceId) {
-      var deleteItemUrl = baseUrl + "com.hsapi.repair.repairService.crud.deleteRpsItemBill.biz.ext";
-      nui.mask({
-          html: '删除中..'
-      });
-      doPost({
-          url: deleteItemUrl,
-          data: {
-              item: {
-                  itemId: row.itemId,
-                  serviceId: row.serviceId
-              }
-          },
-          success: function (data) {
-              nui.unmask();
-              data = data || {};
-              if (data.errCode == "S") {
-                  nui.alert("删除成功");
-                  loadRpsItemBillData();
-              }
-              else {
-                  nui.alert(data.errMsg || "删除失败");
-              }
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-              nui.unmask();
-              console.log(jqXHR.responseText);
-              nui.alert("网络出错");
-          }
-      });
-  }
+    var row = rpsItemBillGrid.getSelected();
+    if (row && row.itemId && row.serviceId) {
+        var deleteItemUrl = baseUrl + "com.hsapi.repair.repairService.crud.deleteRpsItemBill.biz.ext";
+        nui.mask({
+            html: '删除中..'
+        });
+        doPost({
+            url: deleteItemUrl,
+            data: {
+                item: {
+                    itemId: row.itemId,
+                    serviceId: row.serviceId
+                }
+            },
+            success: function (data) {
+                nui.unmask();
+                data = data || {};
+                if (data.errCode == "S") {
+                    nui.alert("删除成功");
+                    loadRpsItemBillData();
+                }
+                else {
+                    nui.alert(data.errMsg || "删除失败");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.unmask();
+                console.log(jqXHR.responseText);
+                nui.alert("网络出错");
+            }
+        });
+    }
 }
 
 var rpsPartBillGrid = null;
 function loadRpsPartBillData() {
-  if (!rpsPartBillGrid) {
-      rpsPartBillGrid = nui.get("rpsPartBillGrid");
-      rpsPartBillGrid.on("load",function(){
-          rpsItemPartBillAmtAmtCal();
-      });
-      var url = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartBillByServiceId.biz.ext";
-      rpsPartBillGrid.setUrl(url);
-  }
-  var maintain = basicInfoForm.getData();
-  if (!maintain.id) {
-      return;
-  }
-  var params = {
-      serviceId: maintain.id
-  };
-  rpsPartBillGrid.load({
-	  token:token,
-      params: params
-  });
+    if (!rpsPartBillGrid) {
+        rpsPartBillGrid = nui.get("rpsPartBillGrid");
+        rpsPartBillGrid.on("load",function(){
+            rpsItemPartBillAmtAmtCal();
+        });
+        var url = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartBillByServiceId.biz.ext";
+        rpsPartBillGrid.setUrl(url);
+    }
+    var maintain = basicInfoForm.getData();
+    if (!maintain.id) {
+        return;
+    }
+    var params = {
+        serviceId: maintain.id
+    };
+    rpsPartBillGrid.load({
+        token:token,
+        params: params
+    });
 }
 function removeRpsPartBill() {
-  var row = rpsPartBillGrid.getSelected();
-  if (row && row.partId && row.serviceId) {
-      var deletePartUrl = baseUrl + "com.hsapi.repair.repairService.crud.deleteRpsPartBill.biz.ext";
-      nui.mask({
-          html: '删除中..'
-      });
-      doPost({
-          url: deletePartUrl,
-          data: {
-              part: {
-                  partId: row.partId,
-                  serviceId: row.serviceId
-              }
-          },
-          success: function (data) {
-              nui.unmask();
-              data = data || {};
-              if (data.errCode == "S") {
-                  nui.alert("删除成功");
-                  loadRpsPartBillData();
-              }
-              else {
-                  nui.alert(data.errMsg || "删除失败");
-              }
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-              nui.unmask();
-              console.log(jqXHR.responseText);
-              nui.alert("网络出错");
-          }
-      });
-  }
+    var row = rpsPartBillGrid.getSelected();
+    if (row && row.partId && row.serviceId) {
+        var deletePartUrl = baseUrl + "com.hsapi.repair.repairService.crud.deleteRpsPartBill.biz.ext";
+        nui.mask({
+            html: '删除中..'
+        });
+        doPost({
+            url: deletePartUrl,
+            data: {
+                part: {
+                    partId: row.partId,
+                    serviceId: row.serviceId
+                }
+            },
+            success: function (data) {
+                nui.unmask();
+                data = data || {};
+                if (data.errCode == "S") {
+                    nui.alert("删除成功");
+                    loadRpsPartBillData();
+                }
+                else {
+                    nui.alert(data.errMsg || "删除失败");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.unmask();
+                console.log(jqXHR.responseText);
+                nui.alert("网络出错");
+            }
+        });
+    }
 }
 function addOrEditRpsPartBill(idx) {
-  var maintain = basicInfoForm.getData();
-  if (!maintain.id) {
-      return;
-  }
-  nui.open({
-      targetWindow: window,
-      url: "./subpage/addEditMaterial.html",
-      title: "维修材料录入",
-      width: 600,
-      height: 200,
-      allowResize: false,
-      onload: function () {
-          var list = rpsPartBillGrid.getData();
-          var iframe = this.getIFrameEl();
-          var params = {
-              serviceId: maintain.id,
-              sourceCode: "rpsPartBill",
-              editType: "new",
-              list: list
-          };
-          if (idx >= 0) {
-              params.idx = idx;
-              params.editType = "edit";
-          }
-          iframe.contentWindow.setData(params);
-      },
-      ondestroy: function (action) {
-          if (action == "ok") {
-              nui.alert("保存成功");
-              loadRpsPartBillData();
-          }
-      }
-  });
+    var maintain = basicInfoForm.getData();
+    if (!maintain.id) {
+        return;
+    }
+    nui.open({
+        targetWindow: window,
+        url: "com.hsweb.RepairBusiness.addEditMaterial.flow",
+        title: "维修材料录入",
+        width: 600,
+        height: 200,
+        allowResize: false,
+        onload: function () {
+            var list = rpsPartBillGrid.getData();
+            var iframe = this.getIFrameEl();
+            var params = {
+                serviceId: maintain.id,
+                sourceCode: "rpsPartBill",
+                editType: "new",
+                list: list
+            };
+            if (idx >= 0) {
+                params.idx = idx;
+                params.editType = "edit";
+            }
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+            if (action == "ok") {
+                nui.alert("保存成功");
+                loadRpsPartBillData();
+            }
+        }
+    });
 }
 function addRpsPartBill() {
-  addOrEditRpsPartBill();
+    addOrEditRpsPartBill();
 }
 function editRpsPartBill()
 {
-  var row = rpsPartBillGrid.getSelected();
-  var idx = 0;
-  if (row) {
-      idx = rpsPartBillGrid.indexOf(row);
-  }
-  addOrEditRpsPartBill(idx);
+    var row = rpsPartBillGrid.getSelected();
+    var idx = 0;
+    if (row) {
+        idx = rpsPartBillGrid.indexOf(row);
+    }
+    addOrEditRpsPartBill(idx);
 }
 //出单项目/材料end
 
@@ -1452,7 +1458,7 @@ function getMaintainById(id) {
             id: id
         },
         success: function (data) {
-        	nui.unmask();
+            nui.unmask();
             data = data || {};
             var maintain = data.maintain;
             if(!maintain)
@@ -1516,17 +1522,14 @@ function getMaintainById(id) {
         }
     });
 }
-function selectCustomer(callback)
-{
+function selectCustomer(callback) {
     nui.open({
         url: "com.hsweb.RepairBusiness.Customer.flow",
-        title: "客户选择", width: 800, height:450,
+        title: "客户选择", width: 800, height: 450,
         onload: function () {
         },
-        ondestroy: function (action)
-        {
-            if("ok" == action)
-            {
+        ondestroy: function (action) {
+            if ("ok" == action) {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
@@ -1535,62 +1538,52 @@ function selectCustomer(callback)
         }
     });
 }
-function reload()
-{
+function reload() {
     leftGrid.reload();
 }
-function add()
-{
-    selectCustomer(function(car)
-    {
+function add() {
+    selectCustomer(function (car) {
         var maintain = {
-            guestId:car.guestId,
-            contactorId:car.contactorId,
-            carId:car.id,
-            carNo:car.carNo,
-            carVin:car.underpanNo,
-            serviceTypeId:"0",
-            mtType:"0",
-            mtAdvisor:currUserName,
-            insureCompCode:car.insureCompCode
+            guestId: car.guestId,
+            contactorId: car.contactorId,
+            carId: car.id,
+            carNo: car.carNo,
+            carVin: car.underpanNo,
+            serviceTypeId: "0",
+            mtType: "0",
+            mtAdvisor: currUserName,
+            insureCompCode: car.insureCompCode
         };
         nui.mask({
-            html:'保存中..'
+            html: '保存中..'
         });
-        getServiceCode(function(data)
-        {
+        getServiceCode(function (data) {
             var code = data.code;
-            if(!code)
-            {
-            	nui.unmask();
+            if (!code) {
+                nui.unmask();
                 nui.alert("获取单号失败");
                 return;
             }
             maintain.serviceCode = code;
-            saveMaintain(maintain,function(data)
-            {
+            saveMaintain(maintain, function (data) {
                 nui.unmask();
-                data = data||{};
-                if(data.errCode == "S")
-                {
+                data = data || {};
+                if (data.errCode == "S") {
                     reload();
                 }
-                else{
-                    nui.alert(data.errMsg||"新增失败");
+                else {
+                    nui.alert(data.errMsg || "新增失败");
                 }
             });
         });
     });
 }
-function changeCar()
-{
+function changeCar() {
     var maintain = basicInfoForm.getData();
-    if(!maintain.id)
-    {
+    if (!maintain.id) {
         return;
     }
-    selectCustomer(function(car)
-    {
+    selectCustomer(function (car) {
 
         maintain.carId = car.id;
         maintain.carNo = car.carNo;
@@ -1606,43 +1599,38 @@ function changeCar()
         basicInfoForm.setData(maintain);
     });
 }
-function getServiceCode(callback)
-{
-    callback = callback||function(){};
+function getServiceCode(callback) {
+    callback = callback || function () {
+        };
     var billTypeCode = "BJD";
-    getCompBillNO(billTypeCode,function(data)
-    {
-        data = data||{};
+    getCompBillNO(billTypeCode, function (data) {
+        data = data || {};
         var code = data.serviceno;
         callback && callback({
-            code:code
+            code: code
         });
     });
 }
-var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
-function saveMaintain(maintain,callback)
-{
+var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
+function saveMaintain(maintain, callback) {
     doPost({
-        url:saveUrl,
-        data:{
-            maintain:maintain
+        url: saveUrl,
+        data: {
+            maintain: maintain
         },
-        success:function(data)
-        {
+        success: function (data) {
             callback && callback(data);
         },
-        error:function(jqXHR, textStatus, errorThrown){
+        error: function (jqXHR, textStatus, errorThrown) {
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
             callback({});
         }
     });
 }
-function save()
-{
+function save() {
     var maintain = basicInfoForm.getData();
-    if(!maintain.id)
-    {
+    if (!maintain.id) {
         nui.alert("数据错误");
         return;
     }
@@ -1657,19 +1645,17 @@ function save()
         }
     }
     nui.mask({
-        html:'保存中..'
+        html: '保存中..'
     });
-    saveMaintain(maintain,function(data)
-    {
+    saveMaintain(maintain, function (data) {
         nui.unmask();
-        data = data||{};
-        if(data.errCode == "S")
-        {
+        data = data || {};
+        if (data.errCode == "S") {
             reload();
             nui.alert("保存成功");
         }
-        else{
-            nui.alert(data.errMsg||"保存失败");
+        else {
+            nui.alert(data.errMsg || "保存失败");
         }
     });
 }
@@ -1727,11 +1713,123 @@ function sureMt() {
             }
         });
     });
-
 }
-function entry() 
+function addItemQuote(tmpItem)
 {
-	var maintain = basicInfoForm.getData();
+    var insList = [];
+    var item = {
+        itemCode:tmpItem.itemCode,
+        itemId:tmpItem.itemId,
+        itemKind:tmpItem.itemKind,
+        itemName:tmpItem.itemName,
+        itemNameId:tmpItem.itemNameId,
+        itemCarId:tmpItem.carModelId,
+        itemIsNeed:1,
+        receTypeId:"04150101",
+        itemTime:tmpItem.astandTime,
+        unitPrice:tmpItem.price,
+        amt:tmpItem.astandSum,
+        pkgitemamt:0,
+        rate:0,
+        discountAmt:0,
+        status:0
+    };
+    insList.push(item);
+    saveItem(insList,[],function(data)
+    {
+        data = data||{};
+        if(data.errCode=="S")
+        {
+            loadRpsItemQuoteData();
+        }
+    });
+}
+function addPackage(data)
+{
+    var maintain = basicInfoForm.getData();
+    var _package = {};
+    var tmpPkg = data.pkg;
+    _package.serviceId = maintain.id;
+    _package.packageId = tmpPkg.packageId;
+    _package.packageName = tmpPkg.packageName;
+    _package.packageTypeId = tmpPkg.packageTypeId;
+    _package.receTypeId = "04150101";
+    _package.pkgamt = tmpPkg.packageAmt;
+    _package.amt = tmpPkg.packageAmt;
+    _package.detailAmt = 0;
+    _package.subtotal = tmpPkg.package4sAmt;
+    _package.amt4s = tmpPkg.package4sAmt;
+    _package.differAmt = 0;
+    _package.costAmt = 0;
+    _package.discountAmt = 0;
+    _package.rate = 0;
+    _package.status = 0;
+    _package.isDisabled = 0;
+    var tmpItemList = data.itemList;
+    var itemList = tmpItemList.map(function (v) {
+        return {
+            itemId: v.itemId,
+            itemCode: v.itemCode,
+            itemName: v.itemName,
+            itemIsNeed: 1,
+            receTypeId: _package.receTypeId,
+            serviceId: _package.serviceId,
+            itemKind: v.itemKind,
+            itemTime: v.qty||0,
+            unitPrice: v.price||0,
+            pkgitemamt: v.amt||0,
+            amt: v.amt||0,
+            rate: 0,
+            discountAmt: 0,
+            subtotal: v.amt||0,
+            status: 0
+        }
+    });
+    var tmpPartList = data.partList;
+    var partList = tmpPartList.map(function (v) {
+        return {
+            receTypeId: _package.receTypeId,
+            serviceId: _package.serviceId,
+            partId: v.partId,
+            partCode: v.itemCode,
+            partName: v.itemName,
+            partNameId:v.itemNameId,
+            partBrandId:v.partBrandId,
+            partIsNeed: 1,
+            qty: v.qty||0,
+            unit: v.unit,
+            unitPrice: v.price||0,
+            amt: v.amt||0,
+            rate: 0,
+            discountAmt: 0,
+            subtotal: v.amt||0,
+            status: 0
+        };
+    });
+    itemList.forEach(function(v){
+        _package.detailAmt += v.amt;
+    });
+    partList.forEach(function(v){
+        _package.detailAmt += v.amt;
+    });
+    _package.differAmt = _package.amt - _package.detailAmt;
+    var par = {
+        pkg: _package,
+        itemList: itemList,
+        partList: partList
+    };
+    savePackage(par, function (data) {
+        data = data || {};
+        if (data.errCode == "S") {
+            loadPackageGridData();
+        }
+        else {
+        }
+    });
+}
+function entry()
+{
+    var maintain = basicInfoForm.getData();
     if(!maintain.id)
     {
         return;
@@ -1866,9 +1964,9 @@ function selectReport()
         }
     });
 }
-function settlement() 
+function settlement()
 {
-	var maintain = basicInfoForm.getData();
+    var maintain = basicInfoForm.getData();
     if(!maintain.id)
     {
         return;
@@ -2010,7 +2108,7 @@ function returnList()
         {
             if(action == "ok")
             {
-                quickSearch(2);
+                quickSearch(0);
             }
         }
     });

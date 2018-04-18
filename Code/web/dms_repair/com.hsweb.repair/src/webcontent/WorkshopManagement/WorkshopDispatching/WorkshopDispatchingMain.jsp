@@ -11,7 +11,7 @@
 -->
 <head>
 <title>车间派工</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/WorkshopDispatching/WorkshopDispatchingMain.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/WorkshopDispatching/WorkshopDispatchingMain.js?v=1.0.3"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -324,7 +324,7 @@ table {
                                         <div field="itemName" headerAlign="center" allowSort="true" visible="true"
                                              width="100">维修项目
                                         </div>
-                                        <div field="itemKindName" headerAlign="center" allowSort="true" visible="true">工种
+                                        <div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种
                                         </div>
                                         <div field="itemTime" headerAlign="center" allowSort="true" visible="true">工时
                                         </div>

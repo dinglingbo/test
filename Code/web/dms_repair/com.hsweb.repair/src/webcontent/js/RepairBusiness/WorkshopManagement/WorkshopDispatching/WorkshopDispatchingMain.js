@@ -10,6 +10,19 @@ var rpsItemGrid = null;
 var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemByServiceId.biz.ext";
 var repairOutGrid = null;
 var repairOutGridUrl  = window._rootPartUrl + "com.hsapi.part.purchase.repair.queryRepairOutList.biz.ext";
+var itemKindHash = {};
+var receTypeHash = {};
+function onDrawCell(e)
+{
+    var field = e.field;
+    if(field == "receTypeId" && receTypeHash[e.value])
+    {
+        e.cellHtml = receTypeHash[e.value].name;
+    }
+    else if (field == "itemKind" && itemKindHash[e.value]) {
+        e.cellHtml = itemKindHash[e.value].name;
+    }
+}
 $(document).ready(function (v)
 {
     repairOutGrid = nui.get("repairOutGrid");
@@ -26,6 +39,7 @@ $(document).ready(function (v)
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value+1];
         }
+        onDrawCell(e);
     });
     rpsItemGrid.setUrl(rpsItemGridUrl);
 
@@ -133,7 +147,7 @@ function init(callback)
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDatadictionaries', 'getDictItems','getAllCarBrand','getTeamByTypeList'];
+    	var keyList = ['getDatadictionaries2','getDatadictionaries', 'getDictItems','getAllCarBrand','getTeamByTypeList'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -142,6 +156,16 @@ function init(callback)
         nui.unmask();
         callback && callback();
     };
+    var pId2 = "DDT20130703000057";
+    getDatadictionaries(pId2, function (data) {
+        data = data || {};
+        var list = data.list || [];
+        list.forEach(function (v) {
+            itemKindHash[v.customid] = v;
+        });
+        hash.getDatadictionaries2 = true;
+        checkComplete();
+    });
     var pId = "DDT20130703000055";
     getDatadictionaries(pId, function (data) {
         data = data || {};
@@ -415,7 +439,8 @@ function loadRpsItemData()
         return;
     }
     var params = {
-        serviceId: maintain.id
+        serviceId: maintain.id,
+        withPkg:1
     };
     rpsItemGrid.load({
     	token:token,

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修接待</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.0.5"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.0.11"></script>
 <style type="text/css">
 
 .form_label {
@@ -27,7 +27,7 @@
 </head>
 <body>
 <div class="nui-toolbar" style="border-bottom: 0;">
-    <div class="nui-form1" id="form1">
+    <div class="nui-form1">
         <input class="nui-hidden" name="id"/>
         <table class="table" id="table1">
             <tr>
@@ -380,7 +380,7 @@
                                         <div header="项目基本信息" headerAlign="center">
                                             <div property="columns">
                                                 <div field="name" headerAlign="center" allowSort="true" width="">名称</div>
-                                                <div field="itemKindName" headerAlign="center" allowSort="true" width="40px">工种</div>
+                                                <div field="itemKind" headerAlign="center" allowSort="true" width="40px">工种</div>
                                                 <div field="typeName" headerAlign="center" allowSort="true" width="100px">类型</div>
                                             </div>
                                         </div>
@@ -497,13 +497,13 @@
                                     <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                     <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
                                     <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80">金额小计</div>
-                                    <div field="receTypeName" headerAlign="center"
+                                    <div field="receTypeId" headerAlign="center"
                                          allowSort="true" visible="true" width="80">收费类型
                                     </div>
                                     <div field="itemTime" headerAlign="center"
                                          allowSort="true" visible="true" width="80">工时
                                     </div>
-                                    <div field="itemKindName" headerAlign="center"
+                                    <div field="itemKind" headerAlign="center"
                                          allowSort="true" visible="true" width="80">工种
                                     </div>
                                     <div field="status" headerAlign="center"
@@ -540,7 +540,7 @@
                                         <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                         <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
                                         <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80">金额小计</div>
-                                        <div field="receTypeName" headerAlign="center"
+                                        <div field="receTypeId" headerAlign="center"
                                              allowSort="true" visible="true" width="80">收费类型
                                         </div>
                                         <div field="qty" headerAlign="center"
@@ -590,13 +590,13 @@
                                     <div property="columns">
                                         <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                         <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
-                                        <div field="receTypeName" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+                                        <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
                                         <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
                                         <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
                                         <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
                                         <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">小计</div>
                                         <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">工时</div>
-                                        <div field="itemKindName" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
+                                        <div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
                                         <div field="className" headerAlign="center" allowSort="true" visible="true" width="80">班组</div>
                                         <div field="worker" headerAlign="center" allowSort="true" visible="true" width="80">承修人</div>
                                         <div field="itemCode" headerAlign="center" allowSort="true" visible="true" width="">项目编码</div>
@@ -625,7 +625,7 @@
                                     <div property="columns">
                                         <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                         <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
-                                        <div field="receTypeName" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+                                        <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
                                         <div field="qty" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">数量</div>
                                         <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">单价</div>
                                         <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
@@ -699,12 +699,12 @@
                                             <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                             <div field="itemCode" headerAlign="center" allowSort="true" visible="true" width="">项目编码</div>
                                             <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
-                                            <div field="receTypeName" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+                                            <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
                                             <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
                                             <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
                                             <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
                                             <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">小计</div>
-                                            <div field="itemKindName" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
+                                            <div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
                                             <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">工时</div>
                                         </div>
                                     </div>
@@ -732,7 +732,7 @@
                                         <div property="columns">
                                             <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                             <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
-                                            <div field="receTypeName" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+                                            <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
                                             <div field="qty" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">数量</div>
                                             <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">单价</div>
                                             <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>

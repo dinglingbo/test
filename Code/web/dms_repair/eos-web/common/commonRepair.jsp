@@ -1,3 +1,4 @@
+
 <%@page import="com.eos.data.datacontext.IUserObject"%>
 <%@page import="com.eos.data.datacontext.DataContextManager"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
@@ -196,9 +197,13 @@
 	}
 	var getCarModelByBrandIdUrl = window._rootUrl
 			+ "com.hsapi.repair.common.common.getCarModelByBrandId.biz.ext";
-	function getCarModelByBrandId(brandId, callback) {
+	function getCarModelByBrandId(brandId, callback,carModelId) {
 		var params = {};
 		params.brandId = brandId;
+		if(carModelId)
+		{
+			params.carModelId = carModelId;
+		}
 		doPost({
 			url : getCarModelByBrandIdUrl,
 			data : params,
@@ -361,6 +366,25 @@
 			url : getDeductRateUrl,
 			data : params,
 			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+				callback && callback(null);
+			}
+		});
+	}
+	var getCarVinModelUrl = window._rootUrl
+			+ "com.hsapi.system.product.cars.carVinModel.biz.ext";
+	function getCarVinModel(vin, callback) {
+		var params = {};
+		params.vin = vin;
+		doPost({
+			url : getCarVinModelUrl,
+			data : params,
+			success : function(data) {
+				//data.rs;
 				callback && callback(data);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

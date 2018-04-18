@@ -67,10 +67,6 @@ function init(callback)
         checkComplete();
     });
 }
-function onParseUnderpanNo()
-{
-    //解析车架号
-}
 var carList = [{}];
 var carHash = {};
 var currCarIdx = 0;
@@ -356,13 +352,17 @@ function onParseUnderpanNo()
             var carVinModel = list[0];
             carVinModel = carVinModel||{};
             carVinModel.vin = vin;
-       //     console.log(carVinModel);
-            nui.get("carBrandId").setValue(carVinModel.carBrandId);
-            nui.get("carModelId").setValue(carVinModel.carModelId);
+            console.log(carVinModel);
+         //   nui.get("carBrandId").setValue(carVinModel.carBrandId);
+         //   nui.get("carModelId").setValue(carVinModel.carModelId);
+         //   nui.get("carModelId").setText(carVinModel.carModelName);
             var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
             carModelInfo += "车型:"+carVinModel.carModelName+"\n";
             carModelInfo += "车系:"+carVinModel.carLineName+"\n";
             nui.get("carModelInfo").setValue(carModelInfo);
+            //getCarModelByBrandId(carVinModel.carBrandId,function(data){
+            //    console.log(data);
+            //},carVinModel.carModelId);
         }
     });
 }

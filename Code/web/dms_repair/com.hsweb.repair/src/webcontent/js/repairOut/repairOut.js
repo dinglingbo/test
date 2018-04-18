@@ -353,7 +353,8 @@ function loadRpsPartData()
         return;
     }
     var params = {
-        serviceId: maintain.id
+        serviceId: maintain.id,
+        withPkg:1
     };
     rpsPartGrid.load({
         params: params
@@ -379,7 +380,8 @@ function loadRpsPartQuoteData()
         return;
     }
     var params = {
-        serviceId: maintain.id
+        serviceId: maintain.id,
+        withPkg:1
     };
     rpsPartQuoteGrid.load({
         params: params

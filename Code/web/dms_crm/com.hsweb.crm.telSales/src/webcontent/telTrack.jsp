@@ -101,7 +101,7 @@
                         allowcellwrap="true"
                         virtualColumns="true"
                         idField="id"
-                        url="<%=apiPath + crmApi%>/com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext"
+                        url="<%=apiPath + crmApi%>/com.hsapi.crm.telsales.crmTelsales.getScoutGuestList.biz.ext"
                         showSummaryRow="true">
                         <div property="columns">
                             <div type="checkcolumn" width="20"></div>

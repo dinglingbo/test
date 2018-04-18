@@ -20,48 +20,61 @@
     <table style="width:100%;">
         <tr>
             <td ><!--style="white-space:nowrap;"-->
-                <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu1" id="assignStatus">所有</a>
+                <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
+                <a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu1" value="-1" id="assignStatus">所有</a>
                 <ul id="popupMenu1" class="nui-menu" style="display:none;">
-                    <li iconCls="icon-tip" onclick="setMenu1(this, menuAssignStatus, -1)" id="type0">所有</li>
-                    <li iconCls="icon-tip" onclick="setMenu1(this, menuAssignStatus, 0)" id="type0">未分配</li>
-                    <li iconCls="icon-tip" onclick="setMenu1(this, menuAssignStatus, 1)" id="type1">已分配</li>
-                    <li iconCls="icon-tip" onclick="setMenu1(this, menuAssignStatus, 2)" id="type2">今日待跟踪</li>
+                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus, -1)" id="typeAll">所有</li>
+                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus, 0)" id="type0">未分配</li>
+                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus, 1)" id="type1">已分配</li>
+                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus, 2)" id="type2">今日待跟踪</li>
+                    <!--
                     <li class="separator"></li>
                     <li iconCls="icon-tip" onclick="openMore()" id="type3">更多</li>
+                    -->
                 </ul>
                 
-                <label style="font-family:Verdana;">车牌号：</label>
-                <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
-                
-                <label style="font-family:Verdana;">联系状态：</label>
-                <input name="visitStatus"
-                    id="visitStatus"
-                    required="true"
+                <input name="orgid"
+                    id="query_orgid"
+                    visible="false"
                     class="nui-combobox width2"
-                    textField="NAME"
-                    valueField="CUSTOMID"
+                    textField="orgname"
+                    valueField="orgid"
                     emptyText="请选择..."
-                    url="<%=apiPath + sysApi%>/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000081&page/length=200&token=<%=token%>"
                     allowInput="false"
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
+                
+                <label style="font-family:Verdana;">车牌号：</label>
+                <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
+                
+                <label style="font-family:Verdana;">跟踪状态：</label>
+                <input name="visitStatus"
+                    id="visitStatus"
+                    required="true"
+                    class="nui-combobox width2"
+                    textField="name"
+                    valueField="customid"
+                    emptyText="请选择..."
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
+                <!--
                 <label style="font-family:Verdana;">来厂状态：</label>
                 <input name="isCome"
                     id="isCome"
                     required="true"
                     class="nui-combobox width1"
-                    textField="NAME"
-                    valueField="CUSTOMID"
+                    textField="name"
+                    valueField="customid"
                     emptyText="请选择..."
-                    url="<%=apiPath + sysApi%>/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20150303000004&page/length=200&token=<%=token%>"
                     allowInput="false"
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
+                -->
                 <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
-                <a class="nui-button" iconCls="icon-clear" plain="true" onclick="query()" id="query" enabled="true">清空</a>
                 
                 <li class="separator"></li>
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">设为继续跟踪</a>
@@ -72,12 +85,10 @@
                 <label style="font-family:Verdana;">分配给：</label>
                 <input name="tracker"
                     id="tracker"
-                    required="true"
                     class="nui-combobox width1"
                     textField="empName"
                     valueField="empId"
                     emptyText="请选择..."
-                    url=""
                     allowInput="false"
                     valueFromSelect="true"
                     showNullItem="false"
@@ -98,7 +109,6 @@
                      showFooter="false"
                      style="width:100%;height:60%;border: 0;">
                     <ul id="tree1" class="nui-tree" 
-                        url="<%=apiPath + sysApi%>/com.hsapi.system.product.cars.carBrand.biz.ext?token=<%=token%>" 
                         style="width:100%;height:95%;padding:5px;" 
                         showTreeIcon="true" 
                         dataField="rs" 
@@ -116,7 +126,6 @@
                      showFooter="false"
                      style="width:100%;height:40%;border: 0;">
                     <ul id="tree2" class="nui-tree" 
-                        url="<%=apiPath + sysApi%>/com.hsapi.system.dict.roleMgr.queryRoleMember.biz.ext?roleId=010815&page/length=200&token=<%=token%>" 
                         style="width:100%;height:95%;padding:5px;" 
                         showTreeIcon="true" 
                         dataField="data" 
@@ -144,34 +153,34 @@
                          selectOnLoad="true"
                          ondrawcell=""
                          onrowdblclick=""
-                         dataField="rs"
+                         dataField="data"
                          sortMode="client"
                          allowcellwrap="true"
                          idField="id"
                          url="<%=apiPath + crmApi%>/com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext"
                          showSummaryRow="true">
                         <div property="columns">
-                            <div type="checkcolumn" width="10"></div>
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
+                            <div type="checkboxcolumn" width="20"></div>
+                            <div type="indexcolumn" width="30" summaryType="count">序号</div>
                             <div headerAlign="center"><strong>车辆信息</strong>
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
-                                    <div field="orgid" width="50" headerAlign="center" renderer="setTypeName" allowSort=false>所在分店</div>
-                                    <div field="carNo" width="30" headerAlign="center" allowSort=false>车牌号</div>
-                                    <div field="carBrandId" width="30" headerAlign="center" allowSort=false>品牌</div>
-                                    <div field="carModel" width="30" headerAlign="center" allowSort=false>车型</div>
-                                    <div field="underpanNo" width="30" headerAlign="center" allowSort=false>VIN</div>
-                                    <div field="firstRegDate" width="30" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>初登日期</div>
-                                    <div field="annualInspectionDate" width="30" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>保险到期</div>
-                                    <div field="recorder" width="30" headerAlign="center" allowSort=false>建档人</div>
-                                    <div field="recordDate" width="30" headerAlign="center" allowSort=false>建档日期</div>
+                                    <div field="orgid" width="60" headerAlign="center" allowSort=false>所在分店</div>
+                                    <div field="carNo" width="70" headerAlign="center" allowSort=false>车牌号</div>
+                                    <div field="carBrandId" width="50" headerAlign="center" allowSort=false>品牌</div>
+                                    <div field="carModel" width="60" headerAlign="center" allowSort=false>车型</div>
+                                    <div field="underpanNo" width="60" headerAlign="center" allowSort=false>VIN</div>
+                                    <div field="firstRegDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
+                                    <div field="annualInspectionDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
+                                    <div field="recorder" width="60" headerAlign="center" allowSort=false>建档人</div>
+                                    <div field="recordDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>建档日期</div>
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>客户信息</strong>
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
                                     <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
-                                    <div field="address" width="30" headerAlign="center" summaryType="" allowSort=false>地址</div>
+                                    <div field="address" width="50" headerAlign="center" summaryType="" allowSort=false>地址</div>
                                     <!--
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>客户等级</div>
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>来厂次数</div>
@@ -181,10 +190,10 @@
                             </div>
                             <div headerAlign="center"><strong>联系状态</strong>
                                 <div property="columns">
-                                    <div field="visitManId" width="80" headerAlign="center" summaryType="" allowSort=false>营销员</div>
-                                    <div field="visitStatus" width="30" headerAlign="center" summaryType="" allowSort=false>联系状态</div>
-                                    <div field="priorScoutDate" width="30" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>上次联系时间</div>
-                                    <div field="nextScoutDate" width="30" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>下次联系时间</div>
+                                    <div field="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
+                                    <div field="visitStatus" width="70" headerAlign="center" summaryType="" allowSort=false>联系状态</div>
+                                    <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>上次联系时间</div>
+                                    <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>下次联系时间</div>
                                 </div>
                             </div>
                         </div>

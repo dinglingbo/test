@@ -4,7 +4,6 @@
  
 var _sysApiRoot = apiPath + sysApi;
 var _initDmsObj = {}
-var _dictDefs;//字典
 
 //公司组织
 function initComp(id){
@@ -56,34 +55,54 @@ function processInsureComp(data){
 
 //数据字典
 function initDicts(dictDefs){//dictDefs{id1: dictid1, id2: dictid2}
-    var dictids = [];
-    var o = {};
-    for(var i in dictDefs){
-        if(!checkObjExists(i, dictDefs[i])){
-            return;
-        }
-        if(!o[dictDefs[i]]){
-            o[dictDefs[i]] = 1;
-            dictids.push(dictDefs[i]);            
-        }
-    }
-    _dictDefs = dictDefs;
-
     var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
     params = {};
-    params.dictids = dictids; 
+    params.dictids = filterParam("_dictDefs", dictDefs); 
     callAjax(url, params, processAjax, processDictids, null);
 }
 function processDictids(data){
-    var tmpList;
-    for(var i in _dictDefs){
-        if(checkObjExists(i, _dictDefs[i])){
-            tmpList = data.filter(function(v){
-                return v.dictid == _dictDefs[i];
-            });
-            _initDmsObj[_dictDefs[i]].setData(tmpList);
+    adapterData(_initDmsObj["_dictDefs"], data, "dictid");
+}
+
+//角色字典
+function initRoleMembers(dictDefs){//dictDefs{id1: dictid1, id2: dictid2}
+    var url = _sysApiRoot + "/com.hsapi.system.dict.roleMgr.queryRoleMember.biz.ext";
+    params = {};
+    params.roleId = filterParam("_roleDefs", dictDefs); ; 
+    callAjax(url, params, processAjax, processRoleMembers, null);
+}
+function processRoleMembers(data){
+    adapterData(_initDmsObj["_roleDefs"], data, "roleId");
+}
+
+//filter Param
+function filterParam(paramName, paramDef){
+    var params = [];
+    var o = {};
+    for(var i in paramDef){
+        if(!checkObjExists(i, paramDef[i])){
+            return;
+        }
+        if(!o[paramDef[i]]){
+            o[paramDef[i]] = 1;
+            params.push(paramDef[i]);            
         }
     }
+    _initDmsObj[paramName] = paramDef;
+    return params;
+}
+
+//adapter Data
+function adapterData(_defs, data, key){
+    var tmpList;
+    for(var i in _defs){
+        if(checkObjExists(i, _defs[i])){
+            tmpList = data.filter(function(v){
+                return v[key] == _defs[i];
+            });
+            _initDmsObj[_defs[i]].setData(tmpList);
+        }
+    } 
 }
 
 function checkObjExists(id, key){

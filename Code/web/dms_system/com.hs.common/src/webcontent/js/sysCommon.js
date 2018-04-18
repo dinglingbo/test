@@ -117,3 +117,18 @@ function closeWindow(action) {
     }
     return false;
 }
+
+//设置dataGrid的Column字典值(值，中文)
+function setColVal(dataFrom, value, name, eValue){//数据源（控件），值，中文，实际值
+    var dataList;
+    if(typeof dataFrom=="string"){
+        dataList = nui.get(dataFrom).getData();
+    }else{
+        dataList = dataFrom;
+    }
+    
+    for (var i = 0; i < dataList.length; i++) {
+        if (dataList[i][value] == eValue) return dataList[i][name];
+    }
+    return eValue;
+}

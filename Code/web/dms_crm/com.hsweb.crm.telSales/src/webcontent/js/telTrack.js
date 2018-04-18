@@ -93,20 +93,6 @@ function editWin(title, data){
     });
 }
 
-function setColVal(dataFrom, value, name, eValue){
-    var dataList;
-    if(typeof dataFrom=="string"){
-        dataList = nui.get(dataFrom).getData();
-    }else{
-        dataList = dataFrom;
-    }
-    
-    for (var i = 0; i < dataList.length; i++) {
-        if (dataList[i][value] == eValue) return dataList[i][name];
-    }
-    return eValue;
-}
-
 function setScoutForm(e){
     $(".saveGroup").show();
     form1.setData(e.record);

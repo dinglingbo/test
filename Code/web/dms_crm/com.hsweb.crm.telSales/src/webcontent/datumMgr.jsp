@@ -12,6 +12,7 @@
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
+    <script src="<%=crmDomain%>/common/crmcommon.js?v=1.0" type="text/javascript"></script> 
     <script src="<%=crmDomain%>/telsales/js/datumMgr.js?v=1.0" type="text/javascript"></script> 
 </head>
 <body>
@@ -77,9 +78,9 @@
                 <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
                 
                 <li class="separator"></li>
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">设为继续跟踪</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">设为结束跟踪</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">资料修改</a>
+                <a class="nui-button" iconCls="icon-add" plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true">设为继续跟踪</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true">设为结束跟踪</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editGuestInfo()" id="edit" enabled="true">资料修改</a>
                 
                 <li class="separator"></li>
                 <label style="font-family:Verdana;">分配给：</label>
@@ -93,7 +94,7 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">确定</a>
+                <a class="nui-button" iconCls="icon-add" plain="true" onclick="assignTracker()" id="add" enabled="true">确定</a>
             </td>
         </tr>
     </table>
@@ -157,10 +158,11 @@
                          sortMode="client"
                          allowcellwrap="true"
                          idField="id"
+                         multiSelect="true"
                          url="<%=apiPath + crmApi%>/com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext"
                          showSummaryRow="true">
                         <div property="columns">
-                            <div type="checkboxcolumn" width="20"></div>
+                            <div type="checkcolumn" width="25"></div>
                             <div type="indexcolumn" width="30" summaryType="count">序号</div>
                             <div headerAlign="center"><strong>车辆信息</strong>
                                 <div property="columns">
@@ -191,7 +193,7 @@
                             <div headerAlign="center"><strong>联系状态</strong>
                                 <div property="columns">
                                     <div field="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
-                                    <div field="visitStatus" width="70" headerAlign="center" summaryType="" allowSort=false>联系状态</div>
+                                    <div field="visitStatus" width="70" headerAlign="center" summaryType="" allowSort=false>跟踪状态</div>
                                     <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>上次联系时间</div>
                                     <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>下次联系时间</div>
                                 </div>

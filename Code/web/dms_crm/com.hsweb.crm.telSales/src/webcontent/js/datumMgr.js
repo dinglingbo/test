@@ -91,20 +91,6 @@ function getQueryValue(){
     var params = queryForm.getData();
     params.assignStatus = assignStatus.getValue();
     
-    /*var d = assignStatus.getValue();
-
-    if (d == 0) {//未分配
-        params.assignStatus = 0;
-        currType2Node = null;
-    } else if (d == 1) {//已分配
-        params.assignStatus = 1;
-        currType2Node = null;
-    } else if (d == 2) {//今日待跟踪
-        params.assignStatus = 2;
-    } else {//所有
-        params.assignStatus = -1;
-    }*/
-    
     if(currType1Node){//品牌
         params.carBrandId = currType1Node.id;
     }
@@ -138,11 +124,47 @@ function onType2DbClick(e){
     query();    
 }
 
+//设置跟踪状态、营销员
+function updateField(field, value){
+    var rows = dgGrid.getSelecteds();
+    if(rows.length==0){
+        nui.alert("请选择记录数据！");
+        return;
+    }
+    var params = [];
+    for(var i=rows.length - 1; i>=0; i--){
+        var obj={id: rows[i].id};
+        obj[field] = value;
+        params.push(obj);
+    }
+    
+    var url = _crmApiRoot + "/com.hsapi.crm.telsales.crmTelsales.updateGuest.biz.ext";
+    callAjax(url, {datas: params}, processAjax, reLoadMain, null);
+}
+
+//分配营销员
+function assignTracker(){
+    var value = tracker.getValue();
+    if(!value){
+        nui.alert("请选择营销员！");
+        return false;
+    }
+    updateField("visitManId", value);
+}
+
+function reLoadMain(data, json){
+    if(json.errCode == "S"){
+        nui.alert("设置成功！");
+        dgGrid.reload();
+    }
+}
+
 function add(){
     editWin("新增模板", {});
 }
 
-function edit(){
+//修改资料
+function editGuestInfo(){
     var row = dgGrid.getSelected();
     if (row) {
         editWin("修改模板", row);
@@ -153,9 +175,9 @@ function edit(){
 
 function editWin(title, data){
     data.artType = tree1.getData();
-    mini.open({
-        url: webPath + crmDomain + "/com.hsweb.crm.basic.smsTpl_edit.flow",
-        title: title, width: 500, height: 420,
+    nui.open({
+        url: _crmWebRoot + "/com.hsweb.crm.telsales.clientInfo_edit.flow",
+        title: title, width: 520, height: 520,
         onload: function () {
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };

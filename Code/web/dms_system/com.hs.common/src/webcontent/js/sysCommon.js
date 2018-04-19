@@ -32,7 +32,12 @@ function callAjax(url, params, processAjax, callBack, obj){
             if(obj){
                 nui.unmask(obj);
             }
-            processAjax(json, callBack);
+            
+            if(processAjax){
+                processAjax(json, callBack);                
+            }else if(callBack){
+                callBack(json.result || json.data || json.rs, json);
+            }
 		},
 		error: function () {
 			nui.alert("获取数据遇到错误！");
@@ -49,10 +54,19 @@ function callAjax(url, params, processAjax, callBack, obj){
 function processAjax(json, callBack){
     if(json.errCode != 'E'){//&& json.result.code == '1' 第三方接口定义代码
         //nui.alert("获取数据成功！");
-        callBack(json.result || json.data || json.rs, json);
+        if(callBack){
+            callBack(json.result || json.data || json.rs, json);
+        }
     }
     else{
-        nui.alert("获取数据失败！\n\r[" + (json.errMsg) + "]");// || json.result.msg第三方接口定义消息
+        //nui.alert("获取数据失败！\n\r[" + (json.errMsg) + "]");// || json.result.msg第三方接口定义消息
+        nui.alert(json.errMsg || "操作失败！");
+    }
+}
+
+function showSuccess(data json){
+    if(json.errCode == 'S'){
+        nui.alert(json.errMsg || "操作成功！");        
     }
 }
 

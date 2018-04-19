@@ -37,6 +37,7 @@ function setData(data){
     }
     modifier.setValue(tmpUser);
     modifyDate.setValue(currDate);
+    nui.get("carBrandId").doValueChanged();
 }
 
 function onOk(){

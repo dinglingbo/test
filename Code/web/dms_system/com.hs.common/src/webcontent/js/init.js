@@ -19,7 +19,8 @@ function processComp(data){
 //车辆品牌
 function initCarBrand(id){
     if(checkObjExists(id, "initCarBrand")){
-        var url = _sysApiRoot + "/com.hsapi.system.product.cars.carBrand.biz.ext";
+        //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carBrand.biz.ext";
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarBrand.biz.ext";
         callAjax(url, {}, processAjax, processCarBrand, null); 
     }
 }
@@ -30,7 +31,8 @@ function processCarBrand(data){
 //获取车型(选择品牌触发)
 function getCarModel(id, e){
     if(checkObjExists(id, "getCarModel")){
-        var url = _sysApiRoot + "/com.hsapi.system.product.cars.carModel.biz.ext";
+        //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carModel.biz.ext";
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarModel.biz.ext";
         var params = {};
         params.carBrandId = e.value;
         callAjax(url, params, processAjax, processCarModel, null);

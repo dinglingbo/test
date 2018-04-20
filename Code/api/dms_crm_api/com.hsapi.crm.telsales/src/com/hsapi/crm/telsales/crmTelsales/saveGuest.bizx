@@ -23,7 +23,8 @@
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
       <sourceNode>start0</sourceNode>
@@ -44,36 +45,10 @@
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="saveEntity" displayName="saveEntity" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link11</targetConnections>
-    <targetConnections>link15</targetConnections>
-    <location x="498" y="214"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.crm.common.logicflow.saveEntity</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">data</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="482" y="249"/>
-    <figSize height="17" width="58"/>
-    <node>subprocess0</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="guestId" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="350" y="208"/>
@@ -144,6 +119,33 @@
     <location x="348" y="96"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="saveEntity" displayName="saveEntity" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link15</targetConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="498" y="214"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.unify.saveEntity</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">DB10_MYSQL_WB_CRM</process:inputVariable>
+        <process:inputVariable id="1" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">data</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="482" y="249"/>
+    <figSize height="17" width="58"/>
+    <node>subprocess1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

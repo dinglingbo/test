@@ -102,6 +102,7 @@
             <div title="退货信息" class="nui-panel"
                  style="width:100%;height: 150px;">
                 <div id="basicInfoForm" class="form">
+                	<input class="nui-hidden" name="id"/>
                     <input class="nui-hidden" name="outCode"/>
                     <input class="nui-hidden" name="taxSign" id="taxSign"/>
                     <input class="nui-hidden" name="billTaxRate" id="billTaxRate"/>

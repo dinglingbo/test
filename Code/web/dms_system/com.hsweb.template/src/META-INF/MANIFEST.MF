@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Require-Bundle: com.eos.foundation
-eos-webCtxPath: template
-Bundle-Vendor: Guine
-Bundle-Version: 1.0.0
-Bundle-Name: com.hsweb.template
-Bundle-Description: 
-Bundle-SymbolicName: com.hsweb.template
-

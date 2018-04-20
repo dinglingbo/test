@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.primeton.eos.richweb,com.eos.foundation,com.eos.wo
- rkflow
-eos-webCtxPath: frm
+Require-Bundle: com.eos.workflow,com.hs.common,com.primeton.eos.richwe
+ b,com.eos.foundation
 Bundle-Vendor: Guine
+eos-webCtxPath: frm
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.frm
 Bundle-Description: 

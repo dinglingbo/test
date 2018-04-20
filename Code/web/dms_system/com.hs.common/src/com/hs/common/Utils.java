@@ -164,7 +164,7 @@ public class Utils {
 			return "";
 		}
 	}
-	
+
 	@Bizlet("反序列化压缩对象")
 	public static Object gzipStr2Obj(String str) {
 		try {
@@ -304,10 +304,32 @@ public class Utils {
 		String ip = getIpAddr(request);
 		return MD5.crypt(createSessionId() + ip);
 	}
-	
+
 	@Bizlet("hashCode")
 	public static Integer hashCode(Object obj) {
 		return obj.hashCode();
+	}
+
+	/**
+	 * 必填校验
+	 * 
+	 * @param checkObject
+	 *            要校验的DynamicObject
+	 * @param keys
+	 *            要校验的DynamicObject的key字符串数组
+	 * @return 如果DynamicObject的key都有值（不为null和""，则返回"0"，否则返回该key）
+	 */
+	@Bizlet("Empty Check")
+	public static String emptyCheck(DataObject checkObject, String propertys) {
+		String[] keys = propertys.split(",");
+		for (int i = 0; i < keys.length; i++) {
+			propertys = keys[i].replaceAll(" ", "");
+			if ((checkObject.get(propertys) == null)
+					|| (checkObject.get(propertys).toString().equals(""))) {
+				return "属性【" + propertys + "】值为空！";
+			}
+		}
+		return "0";
 	}
 
 	/*
@@ -329,12 +351,12 @@ public class Utils {
 		 * (UserObject) SerializeUtil.decompressUnserialize(abc);
 		 * System.out.println(userObj.getSessionId());
 		 */
-		//System.out.println(createSessionId());
-		//System.out.println(createSessionId());
-		
-		String a="sfd";
+		// System.out.println(createSessionId());
+		// System.out.println(createSessionId());
+
+		String a = "sfd";
 		a.hashCode();
-		Map map=new HashMap();
+		Map map = new HashMap();
 		map.put("disct", "DDT2017092200015");
 		System.out.println(Utils.obj2json(map));
 

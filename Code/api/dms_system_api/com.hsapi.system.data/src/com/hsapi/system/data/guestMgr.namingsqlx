@@ -4,7 +4,7 @@
 
     <!--字典项-->
     <select id="queryGuest" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT code, full_name fullName, short_name shortName, guest_type guestType, is_disabled isDisabled
+    	SELECT id, code, full_name fullName, short_name shortName, guest_type guestType, is_disabled isDisabled
         FROM com_guest A
 		WHERE 1=1 
 		<isNotNull property="guestType">

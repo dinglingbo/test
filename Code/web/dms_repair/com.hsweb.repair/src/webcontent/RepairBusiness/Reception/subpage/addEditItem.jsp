@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目录入</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/addEditItem.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/addEditItem.js?v=1.0.1"></script>
 <style type="text/css">
 
 .form_label {

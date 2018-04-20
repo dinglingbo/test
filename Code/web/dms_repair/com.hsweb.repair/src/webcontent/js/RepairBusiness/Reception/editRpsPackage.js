@@ -6,6 +6,8 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var itemGrid = null;
 var partGrid = null;
 var basicInfoForm = null;
+var itemKindHash = {};
+var isNeedHash = ["辅助","必要"];
 $(document).ready(function (v)
 {
 });
@@ -13,6 +15,17 @@ function init()
 {
     basicInfoForm = new nui.Form("#basicInfoForm");
     itemGrid = nui.get("itemGrid");
+    itemGrid.on("drawcell",function(e){
+        var field = e.field;
+        if(field == "itemKind" && itemKindHash[e.value])
+        {
+            e.cellHtml = itemKindHash[e.value].name;
+        }
+        else if(field == "itemIsNeed" && isNeedHash[e.value])
+        {
+            e.cellHtml = isNeedHash[e.value];
+        }
+    });
     itemGrid.on("cellcommitedit",function(e)
     {
         var row = e.record;
@@ -28,6 +41,13 @@ function init()
         calculateAmt();
     });
     partGrid = nui.get("partGrid");
+    partGrid.on("drawcell",function(e){
+        var field = e.field;
+        if(field == "partIsNeed" && isNeedHash[e.value])
+        {
+            e.cellHtml = isNeedHash[e.value];
+        }
+    });
     partGrid.on("cellcommitedit",function(e)
     {
         var row = e.record;
@@ -100,6 +120,8 @@ function getPackageById(id,callback)
 function setData(data)
 {
     init();
+    data = data||{};
+    itemKindHash = data.itemKindHash||{};
     var pkgId = data.packageId;
     nui.mask({
         html:'数据加载中..'

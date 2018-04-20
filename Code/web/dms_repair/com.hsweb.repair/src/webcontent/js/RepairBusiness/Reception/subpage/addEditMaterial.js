@@ -131,6 +131,10 @@ function setData(data)
             saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveRpsPartQuote.biz.ext";
             nui.get("addBtn").show();
         }
+        else if(sourceCode == "rpsPartBill")
+        {
+            saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveRpsPartBill.biz.ext";
+        }
         else{
             nui.alert("未知调用");
             return;

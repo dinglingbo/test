@@ -220,7 +220,7 @@ function getSearchParams()
     var params = {
         carBrandId:carInfo.carBrandId,
         carLevelId:carInfo.carLevelId,
-        carLineId:carInfo.carLineID,
+        carLineId:carInfo.carLineId,
         carModelId:carInfo.carModelId
     };
     var queryItem = nui.get("queryItem").getValue();

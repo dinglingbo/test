@@ -22,6 +22,7 @@
 			d.car_model carModel,
 			a.checker checker,
 			a.guest_id guestId,
+			f.id contactorId,
 			f.NAME contactorName,
 			a.service_type_id serviceTypeId,
 			a.mt_type mtType,

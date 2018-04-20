@@ -200,6 +200,7 @@ function updateOutRebateAmt()
     }
 }
 var maintain = {};
+var guest = {};
 function setData(data)
 {
     init();
@@ -213,8 +214,9 @@ function setData(data)
         data = data||{};
         if(data.errCode == "S")
         {
-            var settlement = data.settlement;
-            maintain = data.maintain;
+        	var settlement = data.settlement||{};
+            maintain = data.maintain||{};
+            guest = data.guest||{};
             for(var key in settlement)
             {
                 if(typeof settlement[key] == "number")
@@ -395,58 +397,61 @@ function doTransferBill()
     var serviceId = maintain.id;
     var serviceCode = maintain.serviceCode;
     var guestId = maintain.guestId;
-    var guestName = maintain.fullName;
+    var guestName = guest.fullName;
     var carNo = maintain.carNo;
     var amt = data.receivableAmt;
     var billAmt = data.billAmt;
     var outRebateAmt = data.outRebateAmt;
     var accruedExpensesAmt = data.accruedExpensesAmt;
     var params = {
-        orgid:currOrgid,
         rpType:1,
         guestId:guestId,
-        guestName:guestName,
+        guestFullName:guestName,
         serviceId:serviceId,
         serviceCode:serviceCode,
         serviceTypeId:"02020103",
         rpAmt:amt,
         billAmt:billAmt,
-        recorder:currUserName,
-        remark:carNo
+        remark:carNo,
+        isPrimaryBusiness:1,
+        rpAmtYes:0,
+        rpAmtNo:amt
     };
     spRpAccountPost(params,function()
     {
         if(outRebateAmt > 0)
         {
             var params1 = {
-                orgid:currOrgid,
                 rpType:-1,
                 guestId:guestId,
-                guestName:guestName,
+                guestFullName:guestName,
                 serviceId:serviceId,
                 serviceCode:serviceCode,
                 serviceTypeId:"02020216",
                 rpAmt:outRebateAmt,
                 billAmt:0,
-                recorder:currUserName,
-                remark:carNo
+                remark:carNo,
+                isPrimaryBusiness:1,
+                rpAmtYes:0,
+                rpAmtNo:outRebateAmt
             };
             spRpAccountPost(params1,function()
             {
                 if(accruedExpensesAmt)
                 {
                     var params2 = {
-                        orgid:currOrgid,
                         rpType:-1,
                         guestId:guestId,
-                        guestName:guestName,
+                        guestFullName:guestName,
                         serviceId:serviceId,
                         serviceCode:serviceCode,
                         serviceTypeId:"02020217",
                         rpAmt:accruedExpensesAmt,
                         billAmt:0,
-                        recorder:currUserName,
-                        remark:carNo
+                        remark:carNo,
+                        isPrimaryBusiness:1,
+                        rpAmtYes:0,
+                        rpAmtNo:accruedExpensesAmt
                     };
                     spRpAccountPost(params2,function()
                     {
@@ -465,10 +470,12 @@ function doTransferBill()
 }
 function spRpAccountPost(params,callback)
 {
-    var url = baseUrl+"";
+    var url = window._rootFrmUrl+"com.hsapi.frm.arap.createArapService.biz.ext";
     doPost({
         url:url,
-        data:params,
+        data:{
+            data:params
+        },
         success:function(data)
         {
             nui.unmask();

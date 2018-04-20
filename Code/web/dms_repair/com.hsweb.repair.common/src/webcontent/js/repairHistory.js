@@ -7,16 +7,14 @@ var leftGridUrl = baseUrl + "com.hsapi.repair.repairService.query.queryMtHistory
 
 $(document).ready(function (v)
 {
-    setData({
-        contactorId:1
-    });
+    //setData({
+    //    contactorId:1
+    //});
 });
-var mtTypeHash = {};
-var serviceTypeIdHash = {};
 var basicInfoForm = null;
 var guestInfoForm = null;
 var serviceTypeIdEl = null;
-function init()
+function init(callback)
 {
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setEnabled(false);
@@ -24,6 +22,7 @@ function init()
     guestInfoForm.setEnabled(false);
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("drawcell",onDrawCell);
     leftGrid.on("rowdblclick", function (e) {
         var row = e.record;
         onRowDblClick();
@@ -36,59 +35,64 @@ function init()
             });
         }
     });
-    var roleId = [];
-    roleId.push("010802");
-    getRoleMember(roleId, function (data) {
-        data = data || {};
-        var list = data.members || [];
-        nui.get("mtAdvisorId").setData(list);
+
+    var hash = {};
+    nui.mask({
+        html: '数据加载中..'
+    });
+    var checkComplete = function () {
+        var keyList = ['initRoleMembers','getDatadictionaries',"initDicts","initComp","initCarBrand"];
+        for (var i = 0; i < keyList.length; i++) {
+            if (!hash[keyList[i]]) {
+                return;
+            }
+        }
+        nui.unmask();
+        callback && callback();
+    };
+    initRoleMembers({
+        mtAdvisorId:"010802"
+    },function(){
+        hash.initRoleMembers = true;
+        checkComplete();
+    });
+    initDicts({
+        identity:"DDT20130703000077"//客户身份
+    },function(){
+        hash.initDicts = true;
+        checkComplete();
     });
     var pId = "DDT20130703000055";
-    serviceTypeIdEl = nui.get("serviceTypeId");
+    var serviceTypeIdEl = nui.get("serviceTypeId");
     getDatadictionaries(pId, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            serviceTypeIdHash[v.customid] = v;
-        });
         serviceTypeIdEl.setData(list);
+        hash.getDatadictionaries = true;
+        checkComplete();
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130703000077");//客户身份
-    getDictItems(dictIdList,function(data)
-    {
-        data = data||{};
-        var itemList = data.dataItems||[];
-        var identityList = itemList.filter(function(v){
-            return  "DDT20130703000077" == v.dictid;
-        });
-        nui.get("identity").setData(identityList);
+    initComp("orgId",function(){
+        hash.initComp = true;
+        checkComplete();
     });
-    getAllCarBrand(function(data)
+    initCarBrand("carBrandId",function()
     {
-        var list = data.carBrands;
-        var carBrandIdEl = nui.get("carBrandId");
-        carBrandIdEl.setData(list);
+        hash.initCarBrand = true;
+        checkComplete();
     });
     serviceTypeIdEl.on("valuechanged", function (data)
     {
         var serviceTypeId = serviceTypeIdEl.getValue();
-        var mtTypeEl = nui.get("mtType");
-        if(serviceTypeIdHash[serviceTypeId])
+        var list = serviceTypeIdEl.getData();
+        for(var i=0;i<list.length;i++)
         {
-            var id = serviceTypeIdHash[serviceTypeId].id;
-            if (mtTypeHash[id]) {
-                mtTypeEl.setData(mtTypeHash[id]);
-            }
-            else {
-                var dictIdList = [];
-                dictIdList.push(id);
-                getDictItems(dictIdList, function (data) {
-                    data = data || {};
-                    var itemList = data.dataItems || [];
-                    mtTypeHash[id] = itemList;
-                    mtTypeEl.setData(mtTypeHash[id]);
+            if(list[i].id == serviceTypeId)
+            {
+                var mtTypeEl = nui.get("mtType");
+                initDicts({
+                    mtType:id
                 });
+                break;
             }
         }
     });
@@ -114,22 +118,25 @@ function getGuestInfoByContactorId(contactorId,callback)
 }
 function setData(data)
 {
-    init();
-    data = data||{};
-    var contactorId = data.contactorId;
-    getGuestInfoByContactorId(contactorId,function(data)
-    {
+    init(function(){
+    	debugger;
         data = data||{};
-        var guest = data.guest;
-        if(guest && guest.id)
+        var contactorId = data.contactorId;
+        getGuestInfoByContactorId(contactorId,function(data)
         {
-            guestInfoForm.setData(guest);
-        }
-    });
-    doSearch({
-        contactorId:contactorId
+            data = data||{};
+            var guest = data.guest;
+            if(guest && guest.id)
+            {
+                guestInfoForm.setData(guest);
+            }
+        });
+        doSearch({
+            contactorId:contactorId
+        });
     });
 }
+
 
 function onRowDblClick(e)
 {

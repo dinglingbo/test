@@ -257,6 +257,8 @@ function getMaintainById(id)
 }
 function reloadLeftGrid()
 {
+	basicInfoForm.clear();
+    rpsItemGrid.clearRows();
     leftGrid.reload();
 }
 
@@ -273,6 +275,7 @@ function onSearch()
 }
 function doSearch(params) {
     params.orgid = currOrgid;
+    params.status = 2;
     leftGrid.load({
         token:token,
         params: params

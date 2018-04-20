@@ -9,7 +9,7 @@
 -->
 <head>
 <title>维修历史</title>
-<script src="<%=request.getContextPath()%>/commonRepair/js/repairHistory.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/commonRepair/js/repairHistory.js?v=1.0.2"></script>
 <style type="text/css">
 
 .form_label {
@@ -19,6 +19,7 @@
 </style>
 </head>
 <body>
+<input class="nui-combobox" id="orgId" visible="false"/>
 <div class="nui-panel" title="客户基本信息" borderStyle="border-bottom: 0; " style="width: 100%; ">
     <div id="guestInfoForm">
         <table class="nui-form-table">
@@ -64,7 +65,7 @@
                 </td>
                 <td>
                     <input class="nui-combobox" name="carBrandId" id="carBrandId"
-                           textField="carBrandZh"
+                           textField="nameCn"
                            valueField="id"/>
                 </td>
                 <td class="form_label">
@@ -117,7 +118,7 @@
                      sortMode="client"
                      allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="5">
                     <div property="columns">
-                        <div field="orgname" headerAlign="center" allowSort="true" visible="true" header="分店名称"></div>
+                        <div field="orgid" headerAlign="center" allowSort="true" visible="true" header="分店名称"></div>
                         <div field="serviceCode" headerAlign="center" allowSort="true" visible="true" header="维修工单号"></div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/RepairArchives/RepairProfileMain.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/RepairArchives/RepairProfileMain.js?v=1.0.2"></script>
 <style type="text/css">
 
 .form_label {
@@ -21,6 +21,10 @@
 </style>
 </head>
 <body>
+<input class="nui-combobox" id="mtType1" visible="false"/>
+<input class="nui-combobox" id="mtType2" visible="false"/>
+<input class="nui-combobox" id="orgId" visible="false"/>
+<input class="nui-combobox" id="insureComp" visible="false"/>
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table">
@@ -83,7 +87,7 @@
                         <div type="indexcolumn" headerAlign="center" width="30">序号</div>
                         <div header="基本信息" headerAlign="center">
                             <div property="columns">
-                                <div field="orgname" headerAlign="center" allowSort="true" visible="true" header="公司名称"></div>
+                                <div field="orgid" headerAlign="center" allowSort="true" visible="true" header="公司名称"></div>
                                 <div field="serviceCode" headerAlign="center" allowSort="true" visible="true" header="工单号"></div>
                                 <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" header="维修顾问"></div>
                                 <div field="carNo" headerAlign="center" allowSort="true" visible="true" header="车牌号"></div>
@@ -92,13 +96,13 @@
                         </div>
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carBrandName" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
+                                <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
                                 <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
                                 <div field="checker" headerAlign="center" allowSort="true" visible="true" header="质检员"></div>
-                                <div field="guestName" headerAlign="center" allowSort="true" visible="true" header="客户名称"></div>
-                                <div field="serviceTypeName" headerAlign="center" allowSort="true" visible="true" header="业务类型"></div>
-                                <div field="mtTypeName" headerAlign="center" allowSort="true" visible="true" header="维修类型"></div>
-                                <div field="insureFullName" headerAlign="center" allowSort="true" visible="true" header="投保公司"></div>
+                                <div field="contactorName" headerAlign="center" allowSort="true" visible="true" header="客户名称"></div>
+                                <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" header="业务类型"></div>
+                                <div field="mtType" headerAlign="center" allowSort="true" visible="true" header="维修类型"></div>
+                                <div field="insureCompCode" headerAlign="center" allowSort="true" visible="true" header="投保公司"></div>
                                 <div field="sureMtDate" headerAlign="center" allowSort="true" visible="true" header="维修日期" dateFormat="yyyy-MM-dd"></div>
                                 <div field="outDate" headerAlign="center" allowSort="true" visible="true" header="离厂日期" dateFormat="yyyy-MM-dd"></div>
                                 <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isCarWash" headerAlign="center" allowSort="true" visible="true" header="是否洗车"></div>
@@ -366,7 +370,29 @@
                     </div>
                 </div>
                 <div title="辅料清单">
-
+					<div id="auxiliaryGrid" dataField="list" class="nui-datagrid"
+                         style="width: 100%; height: 100%;"
+                         showPager="false"
+                         sortMode="client"
+                         allowSortColumn="true">
+                        <div property="columns">
+                            <div field="partCode" headerAlign="center" allowSort="true"
+                                 visible="true" width="">辅料编码
+                            </div>
+                            <div field="partName" headerAlign="center" allowSort="true"
+                                 visible="true" width="">辅料名称
+                            </div>
+                            <div field="outQty" headerAlign="center" datatype="int" align="right"
+                                 allowSort="true" visible="true" width="">数量
+                            </div>
+                            <div field="trueUnitPrice" headerAlign="center" datatype="float" align="right"
+                                 allowSort="true" visible="true" width="">单价
+                            </div>
+                            <div field="trueCost" headerAlign="center" datatype="float" align="right"
+                                 allowSort="true" visible="true" width="">金额
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div title="出车报告">
                     <div class="nui-fit">

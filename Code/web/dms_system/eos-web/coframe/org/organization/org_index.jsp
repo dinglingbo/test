@@ -13,7 +13,7 @@
 	// 机构代码
 	String orgCode = ResourcesMessageUtil.getI18nResourceMessage("orgCode"); 
 	// 机构名称
-	String orgName = ResourcesMessageUtil.getI18nResourceMessage("orgName"); 
+	//String orgName = ResourcesMessageUtil.getI18nResourceMessage("orgName"); 
 	// 机构类型
 	String orgType = ResourcesMessageUtil.getI18nResourceMessage("orgType"); 
  	// 机构等级

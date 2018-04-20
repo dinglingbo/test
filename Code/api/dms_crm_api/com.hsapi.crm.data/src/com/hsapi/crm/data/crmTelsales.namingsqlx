@@ -7,7 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    <select id="getDatumMgrList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    <sql id="guest_column">
     	SELECT id, orgid, car_no carNo, guest_id guestId, guest_name guestName, address, contacts, sex, mobile, tel,
     		car_model_id carModelId, car_brand_id carBrandId, car_model carModel, 
     		produce_date produceDate, engine_no engineNo, underpan_no underpanNo, color, 
@@ -22,34 +22,64 @@
     		first_scout_date firstScoutDate, is_black isBlack, status, recorder, 
     		record_date recordDate, modifier, modify_date modifyDate
 		FROM crm_guest
-		WHERE orgid = #orgid#
-	        <isNotNull property="visitStatus">
-	            AND visit_status = #visitStatus#
-	        </isNotNull>
-	        <isNotNull property="carNo">
-	            AND car_no = #carNo#
-	        </isNotNull>
-            <isNotNull property="mobile">
-	            AND mobile = #mobile#
-	        </isNotNull>
-            
-            <isNotNull property="nextScoutDate">
-	            AND next_scout_date &lt;= #nextScoutDate#
-	        </isNotNull>
-            
-	        <isNull property="assignStatus">
-	            AND visit_man_id IS NULL
-	        </isNull>
-	        <isNotNull property="assignStatus">
-	            AND visit_man_id IS NOT NULL
-	        </isNotNull>
-	        
-	        <isNotNull property="carBrandId">
-	            AND car_brand_id = #carBrandId#
-	        </isNotNull>
-	        <isNotNull property="visitManId">
-	            AND visit_man_id = #visitManId#
-	        </isNotNull>
+        WHERE orgid = #orgid#
+    </sql>
+    <select id="getDatumMgrList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	<include refid="guest_column" />
+    
+        <isNotNull property="visitStatus">
+            AND visit_status = #visitStatus#
+        </isNotNull>
+        <isNotNull property="carNo">
+            AND car_no = #carNo#
+        </isNotNull>
+        <isNotNull property="mobile">
+            AND mobile = #mobile#
+        </isNotNull>
+        
+        <isEqual property="assignStatus" compareValue="-1">
+        </isEqual>
+        <isEqual property="assignStatus" compareValue="0">
+            AND LENGTH(IFNULL(visit_man_id,"")) = 0
+        </isEqual>
+        <isEqual property="assignStatus" compareValue="1">
+            AND LENGTH(IFNULL(visit_man_id,"")) &gt; 0
+        </isEqual>
+        <isEqual property="assignStatus" compareValue="2"> 
+            AND next_scout_date &lt; DATE_FORMAT(date_add(now(),interval 1 day),'%Y-%m-%d')
+        </isEqual>
+     
+        
+        <isNotNull property="carBrandId">
+            AND car_brand_id = #carBrandId#
+        </isNotNull>
+        <isNotNull property="visitManId">
+            AND visit_man_id = #visitManId#
+        </isNotNull>
+   	</select>
+    <select id="getScoutGuestList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	<include refid="guest_column" />
+    
+        <isNotNull property="visitStatus">
+            AND visit_status = #visitStatus#
+        </isNotNull>
+        <isNotNull property="carNo">
+            AND car_no = #carNo#
+        </isNotNull>
+        <isNotNull property="mobile">
+            AND mobile = #mobile#
+        </isNotNull>
+        
+        <isNotNull property="nextScoutDate">
+            AND next_scout_date &lt;= #nextScoutDate#
+        </isNotNull>
+        
+        <isNotNull property="carBrandId">
+            AND car_brand_id = #carBrandId#
+        </isNotNull>
+        <isNotNull property="visitManId">
+            AND visit_man_id = #visitManId#
+        </isNotNull>
    	</select>
     <select id="getScoutDetail" parameterClass="HashMap" resultClass="HashMap">
     	select id, scout_content scoutContent, scout_mode scoutMode, scout_result scoutResult, scout_man scoutMan, 

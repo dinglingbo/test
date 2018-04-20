@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.primeton.eos.richweb,com.eos.foundation,com.eos.wo
+ rkflow
+eos-webCtxPath: frm
+Bundle-Vendor: Guine
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.frm
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.frm
+

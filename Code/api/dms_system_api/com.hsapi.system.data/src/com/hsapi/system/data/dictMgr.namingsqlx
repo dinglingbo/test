@@ -51,7 +51,7 @@
     </select>
     <!--角色成员010815/营销员，-->
     <select id="queryRoleMember" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT orgId, empId, empName 
+    	SELECT orgId, empId, empName empName, role_id roleId
     	FROM com_role_member
 		WHERE role_id = #roleId#
 			AND orgId = #orgId#

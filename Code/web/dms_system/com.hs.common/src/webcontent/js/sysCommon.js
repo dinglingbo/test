@@ -32,7 +32,12 @@ function callAjax(url, params, processAjax, callBack, obj){
             if(obj){
                 nui.unmask(obj);
             }
-            processAjax(json, callBack);
+            
+            if(processAjax){
+                processAjax(json, callBack);                
+            }else if(callBack){
+                callBack(json.result || json.data || json.rs, json);
+            }
 		},
 		error: function () {
 			nui.alert("获取数据遇到错误！");
@@ -49,10 +54,19 @@ function callAjax(url, params, processAjax, callBack, obj){
 function processAjax(json, callBack){
     if(json.errCode != 'E'){//&& json.result.code == '1' 第三方接口定义代码
         //nui.alert("获取数据成功！");
-        callBack(json.result || json.data || json.rs, json);
+        if(callBack){
+            callBack(json.result || json.data || json.rs, json);
+        }
     }
     else{
-        nui.alert("获取数据失败！\n\r[" + (json.errMsg) + "]");// || json.result.msg第三方接口定义消息
+        //nui.alert("获取数据失败！\n\r[" + (json.errMsg) + "]");// || json.result.msg第三方接口定义消息
+        nui.alert(json.errMsg || "操作失败！");
+    }
+}
+
+function showSuccess(data json){
+    if(json.errCode == 'S'){
+        nui.alert(json.errMsg || "操作成功！");        
     }
 }
 
@@ -116,4 +130,19 @@ function closeWindow(action) {
             window.close();
     }
     return false;
+}
+
+//设置dataGrid的Column字典值(值，中文)
+function setColVal(dataFrom, value, name, eValue){//数据源（控件），值，中文，实际值
+    var dataList;
+    if(typeof dataFrom=="string"){
+        dataList = nui.get(dataFrom).getData();
+    }else{
+        dataList = dataFrom;
+    }
+    
+    for (var i = 0; i < dataList.length; i++) {
+        if (dataList[i][value] == eValue) return dataList[i][name];
+    }
+    return eValue;
 }

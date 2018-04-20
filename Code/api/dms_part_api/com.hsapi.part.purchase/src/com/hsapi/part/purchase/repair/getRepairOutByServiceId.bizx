@@ -77,11 +77,10 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-04-17 15:56:34" date="2018-04-17Z" description="" name="getRepairOutByServiceId" version="7.0.0.0"/>
-  <process:variables>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-  </process:variables>
+  <process:variables/>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="list"/>

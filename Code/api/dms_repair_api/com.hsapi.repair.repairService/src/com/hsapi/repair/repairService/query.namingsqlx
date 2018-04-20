@@ -90,7 +90,7 @@
             </isNotEmpty>
 			<isNotEmpty prepend="and" property="thisYear"> 
             <!--本年  --> 
-                (date_format(a.out_date,'%Y')=date_format(now(),'%Y'))
+                (date_format(a.enter_date,'%Y')=date_format(now(),'%Y'))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="lastYear"> 
             <!--上年--> 

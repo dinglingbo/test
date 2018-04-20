@@ -262,7 +262,7 @@ function doSearchItem(params) {
 }
 function reloadLeftGrid()
 {
-    leftGrid.reload();
+	reload();
 }
 function selectItem() {
     var row = itemGrid.getSelected();
@@ -520,7 +520,8 @@ function editRpsPackage() {
         onload: function () {
             var iframe = this.getIFrameEl();
             var params = {
-                packageId: row.id
+                packageId: row.id,
+                itemKindHash:itemKindHash
             };
             iframe.contentWindow.setData(params);
         },
@@ -1539,6 +1540,18 @@ function selectCustomer(callback) {
     });
 }
 function reload() {
+	basicInfoForm.clear();
+    packageGrid.clearRows();
+    rpsItemGrid.clearRows();
+    rpsPartGrid.clearRows();
+    rpsPartQuoteGrid.clearRows();
+    rpsItemQuoteGrid.clearRows();
+
+    if(rpsPartBillGrid)
+    {
+        rpsPartBillGrid.clearRows();
+        rpsItemBillGrid.clearRows();
+    }
     leftGrid.reload();
 }
 function add() {
@@ -1750,16 +1763,17 @@ function addPackage(data)
     var _package = {};
     var tmpPkg = data.pkg;
     _package.serviceId = maintain.id;
+    _package.packageCarmtId = tmpPkg.id;
     _package.packageId = tmpPkg.packageId;
     _package.packageName = tmpPkg.packageName;
     _package.packageTypeId = tmpPkg.packageTypeId;
     _package.receTypeId = "04150101";
     _package.pkgamt = tmpPkg.packageAmt;
     _package.amt = tmpPkg.packageAmt;
-    _package.detailAmt = 0;
-    _package.subtotal = tmpPkg.package4sAmt;
+    _package.detailAmt = tmpPkg.packageTotal;
+    _package.subtotal = tmpPkg.packageAmt;
     _package.amt4s = tmpPkg.package4sAmt;
-    _package.differAmt = 0;
+    _package.differAmt = tmpPkg.packageAmt - tmpPkg.packageTotal;
     _package.costAmt = 0;
     _package.discountAmt = 0;
     _package.rate = 0;
@@ -1806,13 +1820,13 @@ function addPackage(data)
             status: 0
         };
     });
-    itemList.forEach(function(v){
-        _package.detailAmt += v.amt;
-    });
-    partList.forEach(function(v){
-        _package.detailAmt += v.amt;
-    });
-    _package.differAmt = _package.amt - _package.detailAmt;
+  //itemList.forEach(function(v){
+    //    _package.detailAmt += v.amt;
+    //});
+    //partList.forEach(function(v){
+    //    _package.detailAmt += v.amt;
+    //});
+    //_package.differAmt = _package.amt - _package.detailAmt;
     var par = {
         pkg: _package,
         itemList: itemList,
@@ -1894,8 +1908,7 @@ function noRepair()
         {
             if("ok"==action)
             {
-                basicInfoForm.clear();
-                leftGrid.reload();
+            	reload();
             }
         }
     });
@@ -1984,7 +1997,7 @@ function settlement()
         },
         ondestroy: function (action)
         {
-            leftGrid.reload();
+            reload();
         }
     });
 }
@@ -2013,7 +2026,7 @@ function addOrEdit(guest)
         {
             if(action  == "ok")
             {
-                grid.reload();
+            	reload();
             }
         }
     });

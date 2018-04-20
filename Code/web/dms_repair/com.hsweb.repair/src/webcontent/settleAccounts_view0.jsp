@@ -9,7 +9,7 @@
 -->
 <head>
 <title>完工结算</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/settleAccounts.js?v=1.0.2"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/settleAccounts.js?v=1.0.3"></script>
 <style type="text/css">
 table {
 	font-size: 12px;

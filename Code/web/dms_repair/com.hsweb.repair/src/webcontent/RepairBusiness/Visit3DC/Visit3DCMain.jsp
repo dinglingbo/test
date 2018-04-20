@@ -11,7 +11,7 @@
 -->
 <head>
 <title>3DC回访</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Visit3DC/Visit3DCMain.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Visit3DC/Visit3DCMain.js?v=1.0.3"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -69,7 +69,7 @@ table {
                      dataField="list"
                      pageSize="20"
                      selectOnLoad="true"
-                     totalCount="page.count"
+                     totalField="page.count"
                      allowSortColumn="true">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" allowSort="true" width="30px">序号</div>

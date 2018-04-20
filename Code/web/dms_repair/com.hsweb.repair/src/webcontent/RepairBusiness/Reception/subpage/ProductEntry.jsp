@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.0.2"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.0.3"></script>
 <style type="text/css">
 
 table {
@@ -248,7 +248,7 @@ table {
 								<div header="工时费" headerAlign="center">
 									<div property="columns">
 										<div field="astandSum" headerAlign="center" allowSort="true" header="工时金额"></div>
-										<div field="4SSum" headerAlign="center" allowSort="true" header="市场金额"></div>
+										<div field="4sSum" headerAlign="center" allowSort="true" header="市场金额"></div>
 									</div>
 								</div>
 								<div header="" headerAlign="center">

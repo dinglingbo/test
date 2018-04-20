@@ -311,6 +311,8 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
+            	var transferBillBtn = nui.get("transferBillBtn");
+                transferBillBtn.enable();
                 nui.alert("保存成功","提示",function(){
                     //   CloseWindow("ok");
                 });
@@ -383,7 +385,138 @@ function transferBill()
                 nui.alert("工单号不在预结算状态，不允许转单，请打开工单号重试！");
                 return;
             }
-
+            doTransferBill();
+        }
+    });
+}
+function doTransferBill()
+{
+    var data = basicInfoForm.getData();
+    var serviceId = maintain.id;
+    var serviceCode = maintain.serviceCode;
+    var guestId = maintain.guestId;
+    var guestName = maintain.fullName;
+    var carNo = maintain.carNo;
+    var amt = data.receivableAmt;
+    var billAmt = data.billAmt;
+    var outRebateAmt = data.outRebateAmt;
+    var accruedExpensesAmt = data.accruedExpensesAmt;
+    var params = {
+        orgid:currOrgid,
+        rpType:1,
+        guestId:guestId,
+        guestName:guestName,
+        serviceId:serviceId,
+        serviceCode:serviceCode,
+        serviceTypeId:"02020103",
+        rpAmt:amt,
+        billAmt:billAmt,
+        recorder:currUserName,
+        remark:carNo
+    };
+    spRpAccountPost(params,function()
+    {
+        if(outRebateAmt > 0)
+        {
+            var params1 = {
+                orgid:currOrgid,
+                rpType:-1,
+                guestId:guestId,
+                guestName:guestName,
+                serviceId:serviceId,
+                serviceCode:serviceCode,
+                serviceTypeId:"02020216",
+                rpAmt:outRebateAmt,
+                billAmt:0,
+                recorder:currUserName,
+                remark:carNo
+            };
+            spRpAccountPost(params1,function()
+            {
+                if(accruedExpensesAmt)
+                {
+                    var params2 = {
+                        orgid:currOrgid,
+                        rpType:-1,
+                        guestId:guestId,
+                        guestName:guestName,
+                        serviceId:serviceId,
+                        serviceCode:serviceCode,
+                        serviceTypeId:"02020217",
+                        rpAmt:accruedExpensesAmt,
+                        billAmt:0,
+                        recorder:currUserName,
+                        remark:carNo
+                    };
+                    spRpAccountPost(params2,function()
+                    {
+                        afterTransferBill(serviceId);
+                    });
+                }
+                else{
+                    afterTransferBill(serviceId);
+                }
+            });
+        }
+        else{
+            afterTransferBill(serviceId);
+        }
+    });
+}
+function spRpAccountPost(params,callback)
+{
+    var url = baseUrl+"";
+    doPost({
+        url:url,
+        data:params,
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                callback && callback();
+            }
+            else{
+                console.log(data.errMsg);
+                nui.alert("转单失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+            nui.unmask();
+            nui.alert("网络出错");
+        }
+    });
+}
+function afterTransferBill(serviceId)
+{
+    var url = baseUrl+"com.hsapi.repair.repairService.settlement.afterTransferBill.biz.ext";
+    doPost({
+        url:url,
+        data:{
+            serviceId:serviceId
+        },
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                nui.alert("转单成功","提示",function()
+                {
+                    CloseWindow("ok");
+                });
+            }
+            else{
+                console.log(data.errMsg);
+                nui.alert("转单失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+            nui.unmask();
+            nui.alert("网络出错");
         }
     });
 }

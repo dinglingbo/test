@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/RepairArchives/RepairProfileMain.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/RepairArchives/RepairProfileMain.js?v=1.0.1"></script>
 <style type="text/css">
 
 .form_label {

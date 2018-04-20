@@ -494,15 +494,17 @@ function choiceScript()
         title: "话术模板", width: 880, height: 630,
         onload: function () {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData();
+            var params = {
+            	action:"sel"
+            };
+            iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {
         	if(action == "ok")
             {
                 var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                var art = data.art;
+                var art = iframe.contentWindow.getData();
                 nui.get("content").setValue(art.content);
             }
         }

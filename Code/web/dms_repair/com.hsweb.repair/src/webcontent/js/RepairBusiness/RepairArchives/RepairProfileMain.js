@@ -414,7 +414,7 @@ function showCustomer()
 }
 function selectCustomer(elId) {
     nui.open({
-        url: "../common1/Customer.html",
+        url: "com.hsweb.RepairBusiness.Customer.flow",
         title: "客户选择", width: 800, height: 450,
         onload: function () {
         },

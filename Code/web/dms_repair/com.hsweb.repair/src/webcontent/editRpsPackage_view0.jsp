@@ -9,7 +9,7 @@
 -->
 <head>
 <title>修改套餐</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/editRpsPackage.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/editRpsPackage.js?v=1.0.2"></script>
 <style type="text/css">
 
 table {
@@ -82,11 +82,13 @@ table {
                 <div property="columns">
                     <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                     <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="">工时名称</div>
-                    <div field="remark" headerAlign="center" allowSort="true" visible="true" width="100">备注</div>
-                    <div field="itemKindName" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
+                    <div field="remark" headerAlign="center" allowSort="true" visible="true" width="100" header="备注">
+                        <input property="editor" class="nui-textbox" style="width:100%;"/>
+                    </div>
+                    <div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
                     <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80">工时</div>
                     <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" header="工时金额" align="right">
-                        <input property="editor" class="mini-spinner"  minValue="0" maxValue="100000000" showButton="false" style="width:100%;"/>
+                        <input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false" style="width:100%;"/>
                     </div>
                     <div field="itemIsNeed" headerAlign="center" allowSort="true" visible="true" width="80">必要性</div>
                 </div>

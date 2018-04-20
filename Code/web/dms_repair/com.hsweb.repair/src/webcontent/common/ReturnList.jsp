@@ -36,7 +36,7 @@ table {
         <td>
             <input id="oldStatus" class="nui-combobox"
                    enabled="false"
-                   data="[{id:3,text:'完工总检'},{id:4,text:'预结算'},{id:5,text:'待结算'}]"
+                   data="[{id:3,text:'完工总检'},{id:4,text:'预结算'}]"
                    style="width: 100%;"/>
         </td>
     </tr>

@@ -64,7 +64,7 @@ function processAjax(json, callBack){
     }
 }
 
-function showSuccess(data json){
+function showSuccess(data, json){
     if(json.errCode == 'S'){
         nui.alert(json.errMsg || "操作成功！");        
     }

@@ -17,7 +17,7 @@
 			d.car_brand_id carBrandId,
 			d.car_model carModel,
 			a.checker checker,
-			f.full_name guestName,
+			e.name guestName,
 			a.mt_type mtType,
 			a.service_type_id serviceTypeId,
 			d.insure_comp_code insureCompCode,
@@ -73,8 +73,7 @@
 			rps_maintain a
 			inner JOIN rps_settlement b ON ( a.id = b.service_id )
 			inner JOIN rpb_car d on (d.id = a.car_id)
-			left join wb_common.com_car_brand e on (e.id = d.car_brand_id)
-			left join wb_common.com_guest f on (a.guest_id = f.id)
+			inner join rpb_contactor e on (e.id = a.contactor_id)
 		where
 			1 = 1
 		<dynamic>
@@ -112,9 +111,9 @@
                 (date_format(a.out_date,'%Y-%m-%d') &lt;= #endDate#)
             </isNotEmpty>
 			<isNotEmpty prepend="and" property="thisYear"> 
-            <!--本年  --> 
+            <!--本年  -->
                 (date_format(a.out_date,'%Y')=date_format(now(),'%Y'))
-            </isNotEmpty>
+            </isNotEmpty> 
             <isNotEmpty prepend="and" property="lastYear"> 
             <!--上年--> 
                (date_format(a.out_date,'%Y')=date_format(DATE_SUB(now(),INTERVAL 1 YEAR),'%Y'))
@@ -213,7 +212,7 @@
 			INNER JOIN rpb_contactor AS d ON a.contactor_id = d.id
 			INNER JOIN rpb_car AS e ON a.car_id = e.id 
 		where
-			a.status = 4<!-- 6 -->
+			a.status = 6<!-- 6 -->
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid"> 
                 (a.orgid = #orgid#)

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修营业分析</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusinessAnalysis/RepairBusinessAnalysisMain.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusinessAnalysis/RepairBusinessAnalysisMain.js?v=1.0.2"></script>
 <style type="text/css">
 .form_label {
 	width: 72px;
@@ -20,6 +20,12 @@
 </style>
 </head>
 <body>
+<input class="nui-combobox" id="mtType1" visible="false"/>
+<input class="nui-combobox" id="mtType2" visible="false"/>
+<input class="nui-combobox" id="guestSource" visible="false"/>
+<input class="nui-combobox" id="carBrand" visible="false"/>
+<input class="nui-combobox" id="insureComp" visible="false"/>
+<input class="nui-combobox" id="orgId" visible="false"/>
 <div class="nui-toolbar" style="border-bottom: 0;">
 	<div class="nui-form1" id="queryInfoForm">
 		<table class="table">
@@ -192,7 +198,7 @@
 				</td>
 				<td class="form_label">维修顾问:</td>
 				<td colspan="1">
-					<input class="nui-combobox" emptyText="请选择..." id="mtAdvisorId-ad" name="mtAdvisorId" valueField="empid" textField="empname"/>
+					<input class="nui-combobox" emptyText="请选择..." id="mtAdvisorId-ad" name="mtAdvisorId" valueField="empId" textField="empName"/>
 				</td>
 			</tr>
 			<tr>

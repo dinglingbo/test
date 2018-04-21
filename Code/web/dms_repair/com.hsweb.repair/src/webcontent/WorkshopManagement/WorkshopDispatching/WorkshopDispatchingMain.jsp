@@ -11,7 +11,7 @@
 -->
 <head>
 <title>车间派工</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/WorkshopDispatching/WorkshopDispatchingMain.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/WorkshopDispatching/WorkshopDispatchingMain.js?v=1.0.4"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -253,7 +253,7 @@ table {
                                     </td>
                                     <td>
                                         <input class="nui-combobox" name="carBrandId"
-                                               valueField="id" textField="carBrandZh"
+                                               valueField="id" textField="nameCn"
                                                id="carBrand"/>
                                     </td>
                                     <td class="form_label">
@@ -297,7 +297,7 @@ table {
                                     <input class="nui-combobox" textField="name" valueField="id" id="team"
                                            allowInput="false"/>
                                     <label>承修人：</label>
-                                    <input class="nui-combobox" textField="emplName" valueField="emplId" id="teamMember"
+                                    <input class="nui-combobox" textField="emplName" valueField="id" id="teamMember"
                                            allowInput="false"/>
                                 </td>
                             </tr>

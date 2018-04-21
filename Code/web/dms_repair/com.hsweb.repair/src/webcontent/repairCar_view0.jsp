@@ -9,7 +9,7 @@
 -->
 <head>
 <title>维修车辆</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/RepairArchives/repairCar.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/RepairArchives/repairCar.js?v=1.0.3"></script>
 <style type="text/css">
 
 .form_label {
@@ -19,6 +19,9 @@
 </style>
 </head>
 <body>
+<input class="nui-combobox" id="receType1" visible="false"/>
+<input class="nui-combobox" id="receType2" visible="false"/>
+<input class="nui-combobox" id="carBrand" visible="false"/>
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table">
@@ -72,7 +75,7 @@
                         <div field="carNo" headerAlign="center" allowSort="true" visible="true" header="车牌号"></div>
                         <div field="status" headerAlign="center" allowSort="true" visible="true" header="进程"></div>
                         <div field="serviceCode" headerAlign="center" allowSort="true" visible="true" header="工单号"></div>
-                        <div field="carBrandName" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
+                        <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
                         <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
                         <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" header="维修顾问"></div>
                         <div field="enterDate" headerAlign="center" allowSort="true" visible="true" header="进厂时间" dateFormat="yyyy-MM-dd"></div>
@@ -98,7 +101,7 @@
                                 <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                 <div field="itemCode" headerAlign="center" allowSort="true" visible="true" width="">项目编码</div>
                                 <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
-                                <div field="itemKindName" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
+                                <div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
                                 <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">工时</div>
                                 <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额小计</div>
                                 <div field="className" headerAlign="center" allowSort="true" visible="true" width="80">班组</div>
@@ -118,7 +121,7 @@
                             <div property="columns">
                                 <div headerAlign="center" type="indexcolumn" width="30">序号</div>
                                 <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
-                                <div field="receTypeName" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
+                                <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
                                 <div field="qty" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">数量</div>
                                 <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">单价</div>
                                 <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>

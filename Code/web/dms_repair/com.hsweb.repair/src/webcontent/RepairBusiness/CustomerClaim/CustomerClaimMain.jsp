@@ -86,7 +86,7 @@ table {
     <div id="leftGrid" dataField="list" class="nui-datagrid"
          style="width: 100%; height: 100%;"
          pageSize="20"
-         totalCount="page.count"
+         totalField="page.count"
          sortMode="client"
          selectOnLoad="true"
          allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="4">

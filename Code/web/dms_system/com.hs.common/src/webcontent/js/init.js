@@ -3,10 +3,18 @@
  */
  
 var _sysApiRoot = apiPath + sysApi;
-var _initDmsObj = {}
-
+var _initDmsObj = {};
+var _initDmsCallback = {};
+var _initDmsHash = {
+	carBrand:{},//车辆品牌
+	comp:{},//组织,
+	insureComp:{},//保险公司,
+	dict:{},//数据字典
+};
+window._initDmsHash = _initDmsHash;
 //公司组织
-function initComp(id){
+function initComp(id,callback){
+	_initDmsCallback["initComp"] = callback;
     if(checkObjExists(id, "initComp")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.org.getComps.biz.ext";
         callAjax(url, {}, processAjax, processComp, null); 
@@ -14,10 +22,13 @@ function initComp(id){
 }
 function processComp(data){
     _initDmsObj["initComp"].setData(data);
+    setDataToHash(data,"comp","orgid");
+    _initDmsCallback["initComp"] && _initDmsCallback["initComp"]();
 }
 
 //车辆品牌
-function initCarBrand(id){
+function initCarBrand(id,callback){
+	_initDmsCallback["initCarBrand"] = callback;
     if(checkObjExists(id, "initCarBrand")){
         //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carBrand.biz.ext";
         var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarBrand.biz.ext";
@@ -26,6 +37,8 @@ function initCarBrand(id){
 }
 function processCarBrand(data){
     _initDmsObj["initCarBrand"].setData(data);
+    setDataToHash(data,"carBrand","id");
+    _initDmsCallback["initCarBrand"] && _initDmsCallback["initCarBrand"]();
 }
 
 //获取车型(选择品牌触发)
@@ -43,7 +56,8 @@ function processCarModel(data){
 }
 
 //保险公司
-function initInsureComp(id){
+function initInsureComp(id,callback){
+	_initDmsCallback["initInsureComp"] = callback;
     if(checkObjExists(id, "initInsureComp")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.guestMgr.queryGuest.biz.ext";
         params = {};
@@ -53,32 +67,35 @@ function initInsureComp(id){
 }
 function processInsureComp(data){
     _initDmsObj["initInsureComp"].setData(data);
+    setDataToHash(data,"insureComp","id");
+    _initDmsCallback["initInsureComp"] && _initDmsCallback["initInsureComp"]();
 }
 
 //数据字典
-function initDicts(dictDefs){//dictDefs{id1: dictid1, id2: dictid2}
+function initDicts(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}
+	_initDmsCallback["initDicts"] = callback;
     var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
     params = {};
-    params.dictids = filterParam("_dictDefs", dictDefs);
-    if(params.dictids.length>0){
-        callAjax(url, params, processAjax, processDictids, null);
-    }
+    params.dictids = filterParam("_dictDefs", dictDefs); 
+    callAjax(url, params, processAjax, processDictids, null);
 }
 function processDictids(data){
     adapterData(_initDmsObj["_dictDefs"], data, "dictid");
+    setDataToHash(data,"dict","customid");
+    _initDmsCallback["initDicts"]  && _initDmsCallback["initDicts"]();
 }
 
 //角色字典
-function initRoleMembers(dictDefs){//dictDefs{id1: dictid1, id2: dictid2}
+function initRoleMembers(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}
+	_initDmsCallback["initRoleMembers"] = callback;
     var url = _sysApiRoot + "/com.hsapi.system.dict.roleMgr.queryRoleMember.biz.ext";
     params = {};
-    params.roleId = filterParam("_roleDefs", dictDefs);
-    if(params.roleId.length>0){
-        callAjax(url, params, processAjax, processRoleMembers, null);
-    }
+    params.roleId = filterParam("_roleDefs", dictDefs); ; 
+    callAjax(url, params, processAjax, processRoleMembers, null);
 }
 function processRoleMembers(data){
     adapterData(_initDmsObj["_roleDefs"], data, "roleId");
+    _initDmsCallback["initRoleMembers"]  && _initDmsCallback["initRoleMembers"]();
 }
 
 //filter Param
@@ -119,4 +136,15 @@ function checkObjExists(id, key){
     nui.alert("对象【" + id + "】不存在！");
         return false;
     }
+}
+function setDataToHash(data,key,idFiled)
+{
+	if(_initDmsHash[key] && data.forEach)
+	{
+		data.forEach(function(v)
+		{
+			v[idFiled] && (_initDmsHash[key][v[idFiled]] = v);
+		});
+		console.log(_initDmsHash);
+	}
 }

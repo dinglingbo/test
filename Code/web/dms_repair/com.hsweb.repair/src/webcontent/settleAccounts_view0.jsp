@@ -9,7 +9,7 @@
 -->
 <head>
 <title>完工结算</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/settleAccounts.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/settleAccounts.js?v=1.0.6"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -294,7 +294,7 @@ table {
 <div style="text-align:right;padding:10px;">
     <a class="nui-button" onclick="setRate" id="setRateBtn" style="margin-right:20px;">优惠设置</a>
     <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
-    <a class="nui-button" onclick="transferBill" enabled="false" style="width:60px;margin-right:20px;">转单</a>
+    <a class="nui-button" onclick="transferBill" id="transferBillBtn" enabled="false" style="width:60px;margin-right:20px;">转单</a>
     <a class="nui-button" onclick="onCancel" style="width:60px;">关闭</a>
 </div>
 </body>

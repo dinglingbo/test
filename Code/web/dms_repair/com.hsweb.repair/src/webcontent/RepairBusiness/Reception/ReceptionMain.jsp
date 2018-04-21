@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修接待</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.0.16"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.0"></script>
 <style type="text/css">
 
 .form_label {
@@ -26,6 +26,8 @@
 
 </head>
 <body>
+<input class="nui-combobox" id="receType1" visible="false"/>
+<input class="nui-combobox" id="receType2" visible="false"/>
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1">
         <input class="nui-hidden" name="id"/>
@@ -90,7 +92,7 @@
                     <div field="carNo" headerAlign="center" allowSort="true"
                          visible="true" width="50">车牌
                     </div>
-                    <div field="carBrandName" headerAlign="center" allowSort="true"
+                    <div field="carBrandId" headerAlign="center" allowSort="true"
                          visible="true" width="60">品牌
                     </div>
                     <div field="status" headerAlign="center"
@@ -149,7 +151,7 @@
                                     </td>
                                     <td>
                                         <input class="nui-combobox" name="mtAdvisorId" id="mtAdvisorId"
-                                               valueField="empid" textField="empname"
+                                               valueField="empId" textField="empName"
                                                allowInput="false"/>
                                     </td>
                                     <td class="form_label">
@@ -763,32 +765,27 @@
                     </div>
                 </div>
                 <div title="辅料清单">
-                    <div id="datagrid1" dataField="rpbclass" class="nui-datagrid"
+                    <div id="auxiliaryGrid" dataField="list" class="nui-datagrid"
                          style="width: 100%; height: 100%;"
-                         url=""
-                         pageSize="20" showPageInfo="false" multiSelect="true"
-                         showPageIndex="false" showPage="false" showPageSize="false"
-                         showReloadButton="false" showPagerButtonIcon="false"
-                         totalCount="total" onselectionchanged="selectionChanged"
-                         allowSortColumn="true" virtualScroll="true" virtualColumns="true">
-
+                         showPager="false"
+                         sortMode="client"
+                         allowSortColumn="true">
                         <div property="columns">
-                            <div field="type" headerAlign="center" allowSort="true"
-                                 visible="true" width="20%">辅料编码
+                            <div field="partCode" headerAlign="center" allowSort="true"
+                                 visible="true" width="">辅料编码
                             </div>
-                            <div field="name" headerAlign="center" allowSort="true"
-                                 visible="true" width="25%">辅料名称
+                            <div field="partName" headerAlign="center" allowSort="true"
+                                 visible="true" width="">辅料名称
                             </div>
-                            <div field="captainName" headerAlign="center"
-                                 allowSort="true" visible="true" width="15%">数量
+                            <div field="outQty" headerAlign="center" datatype="int" align="right"
+                                 allowSort="true" visible="true" width="">数量
                             </div>
-                            <div field="isDisabled" headerAlign="center"
-                                 allowSort="true" visible="true" width="20%">单价
+                            <div field="trueUnitPrice" headerAlign="center" datatype="float" align="right"
+                                 allowSort="true" visible="true" width="">单价
                             </div>
-                            <div field="isDisabled" headerAlign="center"
-                                 allowSort="true" visible="true" width="20%">金额
+                            <div field="trueCost" headerAlign="center" datatype="float" align="right"
+                                 allowSort="true" visible="true" width="">金额
                             </div>
-
                         </div>
                     </div>
                 </div>

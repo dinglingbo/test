@@ -14,14 +14,14 @@
 			a.mt_advisor mtAuditor,
 			a.service_code serviceCode,
 			a.car_no carNo,
-			c.car_brand_zh carBrandName
+			b.car_brand_id carBrandId
 		FROM
 			rps_maintain a
 			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
-			LEFT JOIN wb_common.com_car_brand c ON ( b.car_brand_id = c.id ) 
 		WHERE
 			a.orgid = #orgid#
 			and a.quote_file_sign = 0
+			and a.status &lt; 5
 		<dynamic>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
@@ -64,7 +64,6 @@
 			d.name contactorName,
 			d.identity identity,
 			d.mobile mobile,
-			e.full_name guestFullName,
 			a.guest_id guestId,
 			a.contactor_id contactorId,
 			a.car_id carId,
@@ -75,13 +74,11 @@
 			a.out_leave_date outLeaveDate,
 			a.out_print_date outPrintDate,
 			a.out_date outDate,
-			a.comp_come_times compComeTimes,
-			e.mobile guestMobile
+			a.comp_come_times compComeTimes
 		FROM
 			rps_maintain a
 			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
 			left join rpb_contactor d on (a.contactor_id = d.id)
-			left join wb_common.com_guest e on (a.guest_id = e.id)
 		WHERE
 			a.id = #id# 
 	</select>

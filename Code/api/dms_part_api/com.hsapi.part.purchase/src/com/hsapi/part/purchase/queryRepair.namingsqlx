@@ -133,5 +133,10 @@
 			a.orgid = b.orgid 
 			AND a.service_id = #serviceId#
 			AND ifnull(a.return_sign, 0 ) = 0
+		<dynamic>
+			<isNotEmpty prepend="and" property="pickType">  
+                (a.pick_type = #pickType#)
+            </isNotEmpty>
+        </dynamic> 
     </select>
 </sqlMap>

@@ -26,26 +26,53 @@ $(document).ready(function (v)
             });
         }
     });
-    var roleId = [];
-    roleId.push("010802");
-    getRoleMember(roleId, function (data) {
-        data = data || {};
-        var list = data.members || [];
-       nui.get("mtAdvisorId").setData(list);
+    leftGrid.on("drawcell",onDrawCell);
+    var hash = {};
+//    nui.mask({
+//        html: '数据加载中..'
+//    });
+    var checkComplete = function () {
+        var keyList = ['initRoleMembers','getDatadictionaries',"initDicts","initComp","initInsureComp"];
+        for (var i = 0; i < keyList.length; i++) {
+            if (!hash[keyList[i]]) {
+                return;
+            }
+        }
+        nui.unmask();
+        quickSearch(0);
+    };
+    initRoleMembers({
+        mtAdvisorId:"010802"
+    },function(){
+        var list = nui.get("mtAdvisorId").getData();
         nui.get("mtAdvisorId-ad").setData(list);
+        hash.initRoleMembers = true;
+        checkComplete();
+    });
+    initDicts({
+        mtType1: "DDT20130705000002",//维修类型，普通
+        mtType2: "DDT20130705000003"//维修类型，事故
+    },function(){
+        hash.initDicts = true;
+        checkComplete();
     });
     var pId = "DDT20130703000055";
     var serviceTypeIdEl = nui.get("serviceTypeId");
-    var serviceTypeIdHash = {};
     getDatadictionaries(pId, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            serviceTypeIdHash[v.customid] = v;
-        });
         serviceTypeIdEl.setData(list);
+        hash.getDatadictionaries = true;
+        checkComplete();
     });
-    quickSearch(0);
+    initComp("orgId",function(data){
+        hash.initComp = true;
+        checkComplete();
+    });
+    initInsureComp("insureComp",function(){
+        hash.initInsureComp = true;
+        checkComplete();
+    });
 });
 function advancedSearch()
 {
@@ -102,6 +129,7 @@ function onRowDblClick(e)
     loadRpsItemData(row);
     loadRpsItemBillData(row);
     loadRpsPartBillData(row);
+    loadAuxiliaryGridData(row);
     getMaintainById(row.id);
 }
 var searchByDateBtnTextHash = ["本日","昨日","本周","上周","本月","上月","本年","上年"];
@@ -162,6 +190,27 @@ function doSearch(params) {
     params.orgid = currOrgid;
     leftGrid.load({
         token:token,
+        params: params
+    });
+}
+var auxiliaryGrid = null;
+function loadAuxiliaryGridData(maintain)
+{
+    if(!auxiliaryGrid)
+    {
+        auxiliaryGrid = nui.get("auxiliaryGrid");
+        var url = window._rootPartUrl + "com.hsapi.part.purchase.repair.getRepairOutByServiceId.biz.ext";
+        auxiliaryGrid.setUrl(url);
+    }
+    if (!maintain.id) {
+        return;
+    }
+    var params = {
+        pickType: "050204"
+    };
+    auxiliaryGrid.load({
+        token:token,
+        serviceId: maintain.id,
         params: params
     });
 }

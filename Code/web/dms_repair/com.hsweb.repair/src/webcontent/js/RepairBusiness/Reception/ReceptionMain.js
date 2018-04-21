@@ -41,6 +41,7 @@ $(document).ready(function (v)
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }
+        onDrawCell(e);
     });
     leftGrid.on("rowdblclick", function (e) {
         var row = e.record;
@@ -64,17 +65,6 @@ var serviceTypeIdEl = null;
 var mtTypeEl = null;
 var itemKindHash = {};
 var receTypeHash = {};
-function onDrawCell(e)
-{
-    var field = e.field;
-    if(field == "receTypeId" && receTypeHash[e.value])
-    {
-        e.cellHtml = receTypeHash[e.value].name;
-    }
-    else if (field == "itemKind" && itemKindHash[e.value]) {
-        e.cellHtml = itemKindHash[e.value].name;
-    }
-}
 function init(callback) {
     serviceTypeIdEl = nui.get("serviceTypeId");
     mtTypeEl = nui.get("mtType");
@@ -103,7 +93,7 @@ function init(callback) {
         html: '数据加载中..'
     });
     var checkComplete = function () {
-    	var keyList = ['getDatadictionaries', 'getRoleMember','getAllCarBrand','getDictItems','getDatadictionaries2'];
+        var keyList = ['getDatadictionaries', 'getRoleMember','getAllCarBrand','getDictItems'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -120,54 +110,37 @@ function init(callback) {
             serviceTypeIdHash[v.customid] = v;
         });
         serviceTypeIdEl.setData(list);
-        hash.getDatadictionaries = true;
-        checkComplete();
-    });
-    var pId2 = "DDT20130703000057";
-    getDatadictionaries(pId2, function (data) {
-        data = data || {};
-        var list = data.list || [];
-        list.forEach(function (v) {
-            itemKindHash[v.customid] = v;
+        var pId2 = "DDT20130703000057";
+        getDatadictionaries(pId2, function (data) {
+            data = data || {};
+            var list = data.list || [];
+            list.forEach(function (v) {
+                itemKindHash[v.customid] = v;
+            });
+            hash.getDatadictionaries = true;
+            checkComplete();
         });
-        hash.getDatadictionaries2 = true;
-        checkComplete();
     });
     initDicts({
         enterOilMass: "DDT20130703000051",//进厂油量
-        identity: "DDT20130703000077"//客户身份
-    });
-    var dictIdList = [];
-    dictIdList.push("DDT20130706000013");//收费类型
-    dictIdList.push("DDT20130706000014");//收费类型
-    getDictItems(dictIdList, function (data) {
-        data = data || {};
-        var itemList = data.dataItems || [];
-        var receTypeList = itemList.filter(function (v)
-        {
-            if("DDT20130706000013" == v.dictid || "DDT20130706000014" == v.dictid)
-            {
-                receTypeHash[v.customid] = v;
-                return true;
-            }
-        });
+        identity: "DDT20130703000077",//客户身份
+        receType1:"DDT20130706000013",//收费类型
+        receType2:"DDT20130706000014"//免费类型
+    },function(){
+        console.log("xxxxxxxx");
         hash.getDictItems = true;
         checkComplete();
     });
-    var roleId = [];
-    roleId.push("010802");
-    getRoleMember(roleId, function (data) {
-        data = data || {};
-        var list = data.members || [];
-        nui.get("mtAdvisorId").setData(list);
+    initRoleMembers({
+        mtAdvisorId:"010802"
+    },function(){
+        console.log("initRoleMembers xxxx");
         hash.getRoleMember = true;
         checkComplete();
     });
-    getAllCarBrand(function(data)
+    initCarBrand("carBrand",function()
     {
-        data = data||[];
-        var carBrandList = data.carBrands||[];
-        nui.get("carBrand").setData(carBrandList);
+        console.log("initCarBrand xxxx");
         hash.getAllCarBrand = true;
         checkComplete();
     });
@@ -1515,6 +1488,7 @@ function getMaintainById(id) {
             loadPackageGridData();
             loadRpsItemData();
             loadRpsPartData();
+            loadAuxiliaryGridData();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //  nui.alert(jqXHR.responseText);
@@ -1523,6 +1497,29 @@ function getMaintainById(id) {
         }
     });
 }
+var auxiliaryGrid = null;
+function loadAuxiliaryGridData()
+{
+    if(!auxiliaryGrid)
+    {
+        auxiliaryGrid = nui.get("auxiliaryGrid");
+        var url = window._rootPartUrl + "com.hsapi.part.purchase.repair.getRepairOutByServiceId.biz.ext";
+        auxiliaryGrid.setUrl(url);
+    }
+    var maintain = basicInfoForm.getData();
+    if (!maintain.id) {
+        return;
+    }
+    var params = {
+        pickType: "050204"
+    };
+    auxiliaryGrid.load({
+        token:token,
+        serviceId: maintain.id,
+        params: params
+    });
+}
+
 function selectCustomer(callback) {
     nui.open({
         url: "com.hsweb.RepairBusiness.Customer.flow",

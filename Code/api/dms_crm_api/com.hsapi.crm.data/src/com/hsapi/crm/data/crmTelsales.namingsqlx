@@ -24,6 +24,7 @@
 		FROM crm_guest
         WHERE orgid = #orgid#
     </sql>
+    <!--客户资料列表-->
     <select id="getDatumMgrList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	<include refid="guest_column" />
     
@@ -57,6 +58,7 @@
             AND visit_man_id = #visitManId#
         </isNotNull>
    	</select>
+    <!--跟踪客户列表-->
     <select id="getScoutGuestList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	<include refid="guest_column" />
     
@@ -81,10 +83,36 @@
             AND visit_man_id = #visitManId#
         </isNotNull>
    	</select>
+    <!--跟踪明细-->
     <select id="getScoutDetail" parameterClass="HashMap" resultClass="HashMap">
     	select id, scout_content scoutContent, scout_mode scoutMode, scout_result scoutResult, scout_man scoutMan, 
         scout_date scoutDate
         FROM crm_talk_detail
 		WHERE orgid = #orgid# And guest_id = #guestId#            
+   	</select>
+    <!--业绩录入-->
+    <sql id="achieve_column">
+        select id, service_id serviceId, car_no carNo, deputy_id deputyId, type, status, audit_date auditDate, 
+        audit_reamrk auditReamrk, grade_remark gradeRemark, recorder, record_date recordDate, modifier, orgid,
+        modify_date modifyDate
+        FROM crm_talk_grade
+		WHERE orgid = #orgid#
+    </sql>
+    <select id="getAchieveList" parameterClass="HashMap" resultClass="HashMap">
+    	<include refid="achieve_column" />
+        And deputy_id = #deputyId# 
+        ORDER BY record_date DESC
+   	</select>
+    <!--业绩管理-->
+    <select id="getAchieveMgrList" parameterClass="HashMap" resultClass="HashMap">
+    	<include refid="achieve_column" />
+        
+        <isNotNull property="deputyId">
+            AND deputy_id = #deputyId#
+        </isNotNull>
+        <isNotNull property="status">
+            AND status = #status#
+        </isNotNull>
+        ORDER BY record_date DESC
    	</select>
 </sqlMap>

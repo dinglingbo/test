@@ -59,8 +59,10 @@ function processInsureComp(data){
 function initDicts(dictDefs){//dictDefs{id1: dictid1, id2: dictid2}
     var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
     params = {};
-    params.dictids = filterParam("_dictDefs", dictDefs); 
-    callAjax(url, params, processAjax, processDictids, null);
+    params.dictids = filterParam("_dictDefs", dictDefs);
+    if(params.dictids.length>0){
+        callAjax(url, params, processAjax, processDictids, null);
+    }
 }
 function processDictids(data){
     adapterData(_initDmsObj["_dictDefs"], data, "dictid");
@@ -70,8 +72,10 @@ function processDictids(data){
 function initRoleMembers(dictDefs){//dictDefs{id1: dictid1, id2: dictid2}
     var url = _sysApiRoot + "/com.hsapi.system.dict.roleMgr.queryRoleMember.biz.ext";
     params = {};
-    params.roleId = filterParam("_roleDefs", dictDefs); ; 
-    callAjax(url, params, processAjax, processRoleMembers, null);
+    params.roleId = filterParam("_roleDefs", dictDefs);
+    if(params.roleId.length>0){
+        callAjax(url, params, processAjax, processRoleMembers, null);
+    }
 }
 function processRoleMembers(data){
     adapterData(_initDmsObj["_roleDefs"], data, "roleId");

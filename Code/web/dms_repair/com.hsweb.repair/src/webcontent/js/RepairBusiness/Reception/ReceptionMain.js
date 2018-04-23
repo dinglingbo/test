@@ -12,7 +12,7 @@ var stockGrid = null;
 var mainTabs = null;
 var reportTab = null;
 var billTab = null;
-$(document).ready(function (v)
+$(document).ready(function ()
 {
     mainTabs = nui.get("mainTabs");
     reportTab = mainTabs.getTab("report");
@@ -22,6 +22,7 @@ $(document).ready(function (v)
     stockGrid.setUrl(stockGridUrl);
     itemGrid = nui.get("itemGrid");
     itemGrid.setUrl(itemGridUrl);
+    itemGrid.on("drawcell",onDrawCell);
     tree1 = nui.get("tree1");
     var parentId = "DDT20130703000063";
     getDatadictionaries(parentId, function (data) {
@@ -66,25 +67,20 @@ var mtTypeEl = null;
 var itemKindHash = {};
 var receTypeHash = {};
 function init(callback) {
-    serviceTypeIdEl = nui.get("serviceTypeId");
+	serviceTypeIdEl = nui.get("serviceTypeId");
     mtTypeEl = nui.get("mtType");
     serviceTypeIdEl.on("valuechanged", function (data) {
         var serviceTypeId = serviceTypeIdEl.getValue();
-        if(serviceTypeIdHash[serviceTypeId])
+        var list = serviceTypeIdEl.getData();
+        for(var i=0;i<list.length;i++)
         {
-            var id = serviceTypeIdHash[serviceTypeId].id;
-            if (mtTypeHash[id]) {
-                mtTypeEl.setData(mtTypeHash[id]);
-            }
-            else {
-                var dictIdList = [];
-                dictIdList.push(id);
-                getDictItems(dictIdList, function (data) {
-                    data = data || {};
-                    var itemList = data.dataItems || [];
-                    mtTypeHash[id] = itemList;
-                    mtTypeEl.setData(mtTypeHash[id]);
+            if(list[i].customid == serviceTypeId)
+            {
+                var mtTypeEl = nui.get("mtType");
+                initDicts({
+                    mtType:list[i].id
                 });
+                break;
             }
         }
     });
@@ -93,7 +89,7 @@ function init(callback) {
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDatadictionaries', 'getRoleMember','getAllCarBrand','getDictItems'];
+        var keyList = ['getDatadictionaries','initCarBrand','initDicts'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -102,21 +98,15 @@ function init(callback) {
         nui.unmask();
         callback && callback();
     };
-    var pId = "DDT20130703000055";
+    var pId = "DDT20130703000055";//业务类型
     getDatadictionaries(pId, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            serviceTypeIdHash[v.customid] = v;
-        });
         serviceTypeIdEl.setData(list);
-        var pId2 = "DDT20130703000057";
+        var pId2 = "DDT20130703000057";//工种
         getDatadictionaries(pId2, function (data) {
             data = data || {};
             var list = data.list || [];
-            list.forEach(function (v) {
-                itemKindHash[v.customid] = v;
-            });
             hash.getDatadictionaries = true;
             checkComplete();
         });
@@ -127,21 +117,16 @@ function init(callback) {
         receType1:"DDT20130706000013",//收费类型
         receType2:"DDT20130706000014"//免费类型
     },function(){
-        console.log("xxxxxxxx");
-        hash.getDictItems = true;
+        hash.initDicts = true;
         checkComplete();
     });
     initRoleMembers({
-        mtAdvisorId:"010802"
+        mtAdvisorId:"010802"//维修顾问
     },function(){
-        console.log("initRoleMembers xxxx");
-        hash.getRoleMember = true;
-        checkComplete();
     });
     initCarBrand("carBrand",function()
     {
-        console.log("initCarBrand xxxx");
-        hash.getAllCarBrand = true;
+        hash.initCarBrand = true;
         checkComplete();
     });
 }

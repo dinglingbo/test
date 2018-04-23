@@ -49,25 +49,20 @@ var receTypeHash = {};
 var itemKindHash = {};
 var artType = [];
 function init(callback) {
-    serviceTypeIdEl = nui.get("serviceTypeId");
+	serviceTypeIdEl = nui.get("serviceTypeId");
     mtTypeEl = nui.get("mtType");
     serviceTypeIdEl.on("valuechanged", function (data) {
         var serviceTypeId = serviceTypeIdEl.getValue();
-        if(serviceTypeIdHash[serviceTypeId])
+        var list = serviceTypeIdEl.getData();
+        for(var i=0;i<list.length;i++)
         {
-            var id = serviceTypeIdHash[serviceTypeId].id;
-            if (mtTypeHash[id]) {
-                mtTypeEl.setData(mtTypeHash[id]);
-            }
-            else {
-                var dictIdList = [];
-                dictIdList.push(id);
-                getDictItems(dictIdList, function (data) {
-                    data = data || {};
-                    var itemList = data.dataItems || [];
-                    mtTypeHash[id] = itemList;
-                    mtTypeEl.setData(mtTypeHash[id]);
+            if(list[i].customid == serviceTypeId)
+            {
+                var mtTypeEl = nui.get("mtType");
+                initDicts({
+                    mtType:list[i].id
                 });
+                break;
             }
         }
     });
@@ -76,7 +71,7 @@ function init(callback) {
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDatadictionaries','getDatadictionaries2', 'getDictItems', 'getRoleMember','getAllCarBrand'];
+        var keyList = ['getDatadictionaries','initCarBrand','initDicts'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -85,73 +80,37 @@ function init(callback) {
         nui.unmask();
         callback && callback();
     };
-    var pId = "DDT20130703000055";
+    var pId = "DDT20130703000055";//业务类型
     getDatadictionaries(pId, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            serviceTypeIdHash[v.customid] = v;
-        });
         serviceTypeIdEl.setData(list);
-        hash.getDatadictionaries = true;
+        var pId2 = "DDT20130703000057";//工种
+        getDatadictionaries(pId2, function (data) {
+            data = data || {};
+            var list = data.list || [];
+            hash.getDatadictionaries = true;
+            checkComplete();
+        });
+    });
+    initDicts({
+        identity: "DDT20130703000077",//客户身份
+        receType1:"DDT20130706000013",//收费类型
+        receType2:"DDT20130706000014",//免费类型
+        mode:"DDT20130703000021",//回访方式
+        artType:"DDT20130725000001"//话术类别
+    },function(){
+        artType = nui.get("artType").getData();
+        hash.initDicts = true;
         checkComplete();
     });
-    var pId2 = "DDT20130703000057";
-    getDatadictionaries(pId2, function (data) {
-        data = data || {};
-        var list = data.list || [];
-        list.forEach(function (v) {
-            itemKindHash[v.customid] = v;
-        });
-        hash.getDatadictionaries2 = true;
-        checkComplete();
+    initRoleMembers({
+        mtAdvisorId:"010802"//维修顾问
+    },function(){
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130703000077");//客户身份
-    dictIdList.push("DDT20130706000013");//收费类型
-    dictIdList.push("DDT20130706000014");//收费类型
-    dictIdList.push("DDT20130703000021");//回访方式
-    dictIdList.push("DDT20130725000001");//话术类别
-    getDictItems(dictIdList, function (data) {
-        data = data || {};
-        var itemList = data.dataItems || [];
-        artType = itemList.filter(function (v) {
-            return "DDT20130725000001" == v.dictid;
-        });
-        var identityList = itemList.filter(function (v) {
-            return "DDT20130703000077" == v.dictid;
-        });
-        nui.get("identity").setData(identityList);
-        var receTypeList = itemList.filter(function (v)
-        {
-            if("DDT20130706000013" == v.dictid || "DDT20130706000014" == v.dictid)
-            {
-                receTypeHash[v.customid] = v;
-                return true;
-            }
-        });
-        var modeList = itemList.filter(function (v) {
-            return "DDT20130703000021" == v.dictid;
-        });
-        nui.get("mode").setData(modeList);
-        hash.getDictItems = true;
-        checkComplete();
-    });
-    var roleId = [];
-    roleId.push("010802");
-    getRoleMember(roleId, function (data) {
-        data = data || {};
-        var list = data.members || [];
-        nui.get("mtAdvisorId").setData(list);
-        hash.getRoleMember = true;
-        checkComplete();
-    });
-    getAllCarBrand(function(data)
+    initCarBrand("carBrand",function()
     {
-        data = data||[];
-        var carBrandList = data.carBrands||[];
-        nui.get("carBrand").setData(carBrandList);
-        hash.getAllCarBrand = true;
+        hash.initCarBrand = true;
         checkComplete();
     });
 }
@@ -265,7 +224,13 @@ function loadRpsItemQuoteData() {
     if (!rpsItemQuoteGrid) {
         rpsItemQuoteGrid = nui.get("rpsItemQuoteGrid");
         rpsItemQuoteGrid.on("drawcell", function (e) {
-            onDrawCell(e);
+        	var field = e.field;
+            if (field == "status") {
+                e.cellHtml = statusHash2[e.value];
+            }
+            else{
+                onDrawCell(e);
+            }
         });
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
         rpsItemQuoteGrid.setUrl(rpsItemGridUrl);
@@ -289,7 +254,13 @@ function loadRpsPartQuoteData() {
         rpsPartQuoteGrid = nui.get("rpsPartQuoteGrid");
         rpsPartQuoteGrid.on("drawcell", function (e)
         {
-            onDrawCell(e);
+        	var field = e.field;
+            if (field == "status") {
+                e.cellHtml = statusHash2[e.value];
+            }
+            else{
+                onDrawCell(e);
+            }
         });
         var rpsPartQuoteGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartQuoteByServiceId.biz.ext";
         rpsPartQuoteGrid.setUrl(rpsPartQuoteGridUrl);
@@ -316,7 +287,13 @@ function loadRpsItemData() {
         rpsItemGrid.setUrl(rpsItemGridUrl);
         rpsItemGrid.on("drawcell",function(e)
         {
-            onDrawCell(e);
+        	var field = e.field;
+            if (field == "status") {
+                e.cellHtml = statusHash2[e.value];
+            }
+            else{
+                onDrawCell(e);
+            }
         });
     }
     var maintain = basicInfoForm.getData();
@@ -341,7 +318,13 @@ function loadRpsPartData() {
         rpsPartGrid.setUrl(rpsItemGridUrl);
         rpsPartGrid.on("drawcell",function(e)
         {
-            onDrawCell(e);
+        	var field = e.field;
+            if (field == "status") {
+                e.cellHtml = statusHash2[e.value];
+            }
+            else{
+                onDrawCell(e);
+            }
         });
     }
     var maintain = basicInfoForm.getData();
@@ -365,6 +348,7 @@ function loadRpsItemBillData()
     if(!rpsItemBillGrid)
     {
         rpsItemBillGrid = nui.get("rpsItemBillGrid");
+        rpsItemBillGrid.on("drawcell",onDrawCell);
         var url = baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemBillByServiceId.biz.ext";
         rpsItemBillGrid.setUrl(url);
         rpsItemBillGrid.on("drawcell",function(e)
@@ -389,6 +373,7 @@ var rpsPartBillGrid = null;
 function loadRpsPartBillData() {
     if (!rpsPartBillGrid) {
         rpsPartBillGrid = nui.get("rpsPartBillGrid");
+        rpsPartBillGrid.on("drawcell",onDrawCell);
         var url = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartBillByServiceId.biz.ext";
         rpsPartBillGrid.setUrl(url);
         rpsPartBillGrid.on("drawcell",function(e)
@@ -447,20 +432,6 @@ function getMaintainById(id) {
             nui.unmask();
         }
     });
-}
-function onDrawCell(e)
-{
-    var field = e.field;
-    if(field == "receTypeId" && receTypeHash[e.value])
-    {
-        e.cellHtml = receTypeHash[e.value].name;
-    }
-    else if (field == "status") {
-        e.cellHtml = statusHash2[e.value];
-    }
-    else if (field == "itemKind" && itemKindHash[e.value]) {
-        e.cellHtml = itemKindHash[e.value].name;
-    }
 }
 
 function reload() {

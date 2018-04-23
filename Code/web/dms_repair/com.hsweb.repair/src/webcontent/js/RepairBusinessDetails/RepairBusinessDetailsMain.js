@@ -20,35 +20,13 @@ $(document).ready(function (v)
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
-    grid.on("drawcell",function(e)
-    {
-        if(e.field == "serviceTypeId" && serviceTypeIdHash[e.value])
-        {
-            e.cellHtml = serviceTypeIdHash[e.value].name;
-        }
-        else if(e.field == "mtType" && mtTypeHash[e.value])
-        {
-            e.cellHtml = mtTypeHash[e.value].name;
-        }
-        else if(e.field == "orgid" && orgHash[e.value])
-        {
-            e.cellHtml = orgHash[e.value].orgname;
-        }
-        else if(e.field == "carBrandId" && carBrandHash[e.value])
-        {
-            e.cellHtml = carBrandHash[e.value].carBrandZh;
-        }
-        else if(e.field == "insureCompCode" && insuranceHash[e.value])
-        {
-            e.cellHtml = insuranceHash[e.value].fullName;
-        }
-    });
+    grid.on("drawcell",onDrawCell);
     var hash = {};
     nui.mask({
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getRoleMember', 'getDatadictionaries','getOrgList','getAllCarBrand',"getAllInsuranceCompany"];
+        var keyList = ['initRoleMembers', 'getDatadictionaries','initComp','initCarBrand',"initInsureComp"];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -57,77 +35,37 @@ $(document).ready(function (v)
         nui.unmask();
         quickSearch(0);
     };
-    var roleId = [];
-    roleId.push("010802");//维修顾问
-    getRoleMember(roleId, function (data) {
-        data = data || {};
-        var list = data.members || [];
-        list.forEach(function(v){
-            mtAdvisorIdHash[v.id] = v;
-        });
-        nui.get("mtAdvisorId-ad").setData(list);
-        hash.getRoleMember = true;
+    initRoleMembers({
+        "mtAdvisorId-ad":"010802"
+    },function(){
+        hash.initRoleMembers = true;
         checkComplete();
     });
     var pId = "DDT20130703000055";//业务类型
-    var serviceTypeIdEl = nui.get("serviceTypeId");
     getDatadictionaries(pId, function (data) {
-        data = data || {};
+    	data = data || {};
         var list = data.list || [];
-        var dictIdList = [];
-        list.forEach(function (v) {
-            dictIdList.push(v.id);
-            serviceTypeIdHash[v.customid] = v;
-        });
-        serviceTypeIdEl.setData(list);
-        //维修类型
-        dictIdList.push("DDT20130703000075");//客户来源
-        getDictItems(dictIdList, function (data) {
-            data = data || {};
-            var itemList = data.dataItems || [];
-            var guestSourceList = itemList.filter(function(v){
-                return v.dictid == "DDT20130703000075";
-            });
-            guestSourceList.forEach(function(v){
-                guestSourceHash[v.customid] = v;
-            });
-            var mtTypeList = itemList.filter(function(v){
-                return v.dictid != "DDT20130703000075";
-            });
-            mtTypeList.forEach(function(v){
-                mtTypeHash[v.customid] = v;
-            });
+        nui.get("serviceTypeId").setData(list);
+        initDicts({
+            mtType1: "DDT20130705000002",//维修类型，普通
+            mtType2: "DDT20130705000003",//维修类型，事故
+            guestSource:"DDT20130703000075"//客户来源
+        },function(){
             hash.getDatadictionaries = true;
             checkComplete();
         });
     });
-    getOrgList(function(data)
+    initComp("orgId",function(){
+        hash.initComp = true;
+        checkComplete();
+    });
+    initInsureComp("insureComp",function(){
+        hash.initInsureComp = true;
+        checkComplete();
+    });
+    initCarBrand("carBrand",function()
     {
-        data = data||{};
-        var orgList = data.orgList||[];
-        orgList.forEach(function(v){
-            orgHash[v.orgid] = v;
-        });
-        hash.getOrgList = true;
-        checkComplete();
-    });
-    getAllCarBrand(function(data){
-
-        data = data||{};
-        var carBrands = data.carBrands||[];
-        carBrands.forEach(function(v){
-            carBrandHash[v.id] = v;
-        });
-        hash.getAllCarBrand = true;
-        checkComplete();
-    });
-    getAllInsuranceCompany(function(data){
-        data = data||{};
-        var list = data.list||[];
-        list.forEach(function(v){
-            insuranceHash[v.id] = v;
-        });
-        hash.getAllInsuranceCompany = true;
+        hash.initCarBrand = true;
         checkComplete();
     });
 });

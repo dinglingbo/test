@@ -4,11 +4,21 @@
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGrid = null;
 var leftGridUrl = baseUrl + "com.hsapi.repair.repairService.query.queryMtHistoryList.biz.ext";
-
+var statusHash = ["", "在报价", "在维修","已完工","在结算","预结算"];
 $(document).ready(function (v)
 {
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("drawcell",function(e){
+        var field = e.field;
+        if(field == "status")
+        {
+            e.cellHtml = statusHash[e.value];
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
     leftGrid.on("rowdblclick", function (e) {
         var row = e.record;
         onRowDblClick();
@@ -21,7 +31,39 @@ $(document).ready(function (v)
             });
         }
     });
-    onSearch();
+    var hash = {};
+    nui.mask({
+        html: '数据加载中..'
+    });
+    var checkComplete = function () {
+    	var keyList = ['getDatadictionaries',"initDicts","initCarBrand"];
+        for (var i = 0; i < keyList.length; i++) {
+            if (!hash[keyList[i]]) {
+                return;
+            }
+        }
+        nui.unmask();
+        onSearch();
+    };
+    initDicts({
+        receType1:"DDT20130706000013",//收费类型
+        receType2:"DDT20130706000014"//免费类型
+    },function(){
+        hash.initDicts = true;
+        checkComplete();
+    });
+    var pId2 = "DDT20130703000057";//工种
+    getDatadictionaries(pId2, function (data) {
+        data = data || {};
+        var list = data.list || [];
+        hash.getDatadictionaries = true;
+        checkComplete();
+    });
+    initCarBrand("carBrand",function()
+    {
+        hash.initCarBrand = true;
+        checkComplete();
+    });
 });
 
 function onRowDblClick(e)
@@ -64,6 +106,7 @@ var rpsItemGrid = null;
 function loadRpsItemData(row) {
     if (!rpsItemGrid) {
         rpsItemGrid = nui.get("rpsItemGrid");
+        rpsItemGrid.on("drawcell",onDrawCell);
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemByServiceId.biz.ext";
         rpsItemGrid.setUrl(rpsItemGridUrl);
     }
@@ -82,6 +125,7 @@ var rpsPartGrid = null;
 function loadRpsPartData(row) {
     if (!rpsPartGrid) {
         rpsPartGrid = nui.get("rpsPartGrid");
+        rpsPartGrid.on("drawcell",onDrawCell);
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
         rpsPartGrid.setUrl(rpsItemGridUrl);
     }

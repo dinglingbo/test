@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修完工</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/RepairFinish/RepairFinishMain.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/RepairFinish/RepairFinishMain.js?v=1.0.3"></script>
 <style type="text/css">
 
 table {
@@ -118,7 +118,7 @@ table {
 										<div field="itemName" headerAlign="center" allowSort="true" visible="true"
 											 width="100">维修项目
 										</div>
-										<div field="itemKindName" headerAlign="center" allowSort="true" visible="true">工种
+										<div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种
 										</div>
 										<div field="itemTime" headerAlign="center" allowSort="true" visible="true">工时
 										</div>
@@ -228,7 +228,7 @@ table {
 										<label>维修顾问：</label>
 									</td>
 									<td>
-										<input class="nui-textbox" name="mtAdvisorId" id="mtAdvisorId"
+										<input class="nui-textbox" name="mtAdvisor"
 											   allowInput="false"/>
 									</td>
 								</tr>
@@ -346,7 +346,7 @@ table {
 									</td>
 									<td>
 										<input class="nui-combobox" name="carBrandId"
-											   valueField="id" textField="carBrandZh"
+											   valueField="id" textField="nameCn"
 											   id="carBrand"/>
 									</td>
 									<td class="form_label">

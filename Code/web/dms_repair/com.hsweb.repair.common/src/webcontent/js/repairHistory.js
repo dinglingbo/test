@@ -57,19 +57,26 @@ function init(callback)
         checkComplete();
     });
     initDicts({
-        identity:"DDT20130703000077"//客户身份
+        identity:"DDT20130703000077",//客户身份
+        receType1:"DDT20130706000013",//收费类型
+        receType2:"DDT20130706000014"//免费类型
     },function(){
         hash.initDicts = true;
         checkComplete();
     });
-    var pId = "DDT20130703000055";
-    var serviceTypeIdEl = nui.get("serviceTypeId");
+    var pId = "DDT20130703000055";//业务类型
+    serviceTypeIdEl = nui.get("serviceTypeId");
     getDatadictionaries(pId, function (data) {
         data = data || {};
         var list = data.list || [];
         serviceTypeIdEl.setData(list);
-        hash.getDatadictionaries = true;
-        checkComplete();
+        var pId2 = "DDT20130703000057";//工种
+        getDatadictionaries(pId2, function (data) {
+            data = data || {};
+            var list = data.list || [];
+            hash.getDatadictionaries = true;
+            checkComplete();
+        });
     });
     initComp("orgId",function(){
         hash.initComp = true;
@@ -86,11 +93,11 @@ function init(callback)
         var list = serviceTypeIdEl.getData();
         for(var i=0;i<list.length;i++)
         {
-            if(list[i].id == serviceTypeId)
+        	if(list[i].customid == serviceTypeId)
             {
                 var mtTypeEl = nui.get("mtType");
                 initDicts({
-                    mtType:id
+                    mtType:list[i].id
                 });
                 break;
             }
@@ -119,7 +126,6 @@ function getGuestInfoByContactorId(contactorId,callback)
 function setData(data)
 {
     init(function(){
-    	debugger;
         data = data||{};
         var contactorId = data.contactorId;
         getGuestInfoByContactorId(contactorId,function(data)
@@ -148,6 +154,7 @@ function onRowDblClick(e)
     loadRpsItemData(row);
     loadRpsItemBillData(row);
     loadRpsPartBillData(row);
+    loadAuxiliaryGridData(row);
     getMaintainById(row.id);
 }
 
@@ -166,6 +173,9 @@ function loadRpsItemQuoteData(row) {
         rpsItemQuoteGrid.on("drawcell", function (e) {
             if (e.field == "status") {
                 e.cellHtml = statusHash2[e.value];
+            }
+            else{
+                onDrawCell(e);
             }
         });
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
@@ -191,6 +201,9 @@ function loadRpsPartQuoteData(row) {
             if (e.field == "status") {
                 e.cellHtml = statusHash2[e.value];
             }
+            else{
+                onDrawCell(e);
+            }
         });
         var rpsPartQuoteGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartQuoteByServiceId.biz.ext";
         rpsPartQuoteGrid.setUrl(rpsPartQuoteGridUrl);
@@ -210,6 +223,7 @@ var rpsItemGrid = null;
 function loadRpsItemData(row) {
     if (!rpsItemGrid) {
         rpsItemGrid = nui.get("rpsItemGrid");
+        rpsItemGrid.on("drawcell",onDrawCell);
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemByServiceId.biz.ext";
         rpsItemGrid.setUrl(rpsItemGridUrl);
     }
@@ -228,6 +242,7 @@ var rpsPartGrid = null;
 function loadRpsPartData(row) {
     if (!rpsPartGrid) {
         rpsPartGrid = nui.get("rpsPartGrid");
+        rpsPartGrid.on("drawcell",onDrawCell);
         var rpsItemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
         rpsPartGrid.setUrl(rpsItemGridUrl);
     }
@@ -248,6 +263,7 @@ function loadRpsItemBillData(row)
     if(!rpsItemBillGrid)
     {
         rpsItemBillGrid = nui.get("rpsItemBillGrid");
+        rpsItemBillGrid.on("drawcell",onDrawCell);
         var url = baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemBillByServiceId.biz.ext";
         rpsItemBillGrid.setUrl(url);
     }
@@ -266,6 +282,7 @@ var rpsPartBillGrid = null;
 function loadRpsPartBillData(row) {
     if (!rpsPartBillGrid) {
         rpsPartBillGrid = nui.get("rpsPartBillGrid");
+        rpsPartBillGrid.on("drawcell",onDrawCell);
         var url = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartBillByServiceId.biz.ext";
         rpsPartBillGrid.setUrl(url);
     }
@@ -310,5 +327,26 @@ function getMaintainById(id) {
             console.log(jqXHR.responseText);
             nui.unmask();
         }
+    });
+}
+var auxiliaryGrid = null;
+function loadAuxiliaryGridData(maintain)
+{
+    if(!auxiliaryGrid)
+    {
+        auxiliaryGrid = nui.get("auxiliaryGrid");
+        var url = window._rootPartUrl + "com.hsapi.part.purchase.repair.getRepairOutByServiceId.biz.ext";
+        auxiliaryGrid.setUrl(url);
+    }
+    if (!maintain.id) {
+        return;
+    }
+    var params = {
+        pickType: "050204"
+    };
+    auxiliaryGrid.load({
+        token:token,
+        serviceId: maintain.id,
+        params: params
     });
 }

@@ -341,7 +341,7 @@ function getCarVinModel(vin, callback) {
 		}
 	});
 }
-var dictField = ["receTypeId","mtType","itemKind","serviceTypeId"];
+var dictField = ["receTypeId","mtType","itemKind","serviceTypeId","guestSource"];
 function onDrawCell(e) {
 	var hash = _initDmsHash || {};
 	var field = e.field;

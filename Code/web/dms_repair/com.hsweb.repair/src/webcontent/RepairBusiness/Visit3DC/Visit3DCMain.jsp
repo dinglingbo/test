@@ -11,7 +11,7 @@
 -->
 <head>
 <title>3DC回访</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Visit3DC/Visit3DCMain.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Visit3DC/Visit3DCMain.js?v=1.0.6"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -27,6 +27,9 @@ table {
 </style>
 </head>
 <body>
+<input class="nui-combobox" id="artType" visible="false"/>
+<input class="nui-combobox" id="receType1" visible="false"/>
+<input class="nui-combobox" id="receType2" visible="false"/>
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table" id="table1">
@@ -156,7 +159,7 @@ table {
                                 </td>
                                 <td>
                                     <input class="nui-combobox" name="carBrandId"
-                                           valueField="id" textField="carBrandZh"
+                                           valueField="id" textField="nameCn"
                                            id="carBrand"/>
                                 </td>
                                 <td class="form_label">
@@ -210,7 +213,7 @@ table {
                                 </td>
                                 <td>
                                     <input class="nui-combobox" name="mtAdvisorId" id="mtAdvisorId"
-                                           valueField="empid" textField="empname"
+                                           valueField="empId" textField="empName"
                                            allowInput="false"/>
                                 </td>
                             </tr>

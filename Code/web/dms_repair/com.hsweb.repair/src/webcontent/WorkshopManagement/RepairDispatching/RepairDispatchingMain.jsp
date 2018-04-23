@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修派工</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/RepairDispatching/RepairDispatchingMain.js?v=1.0.2"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/WorkshopManagement/RepairDispatching/RepairDispatchingMain.js?v=1.0.3"></script>
 <style type="text/css">
 
 table {
@@ -117,7 +117,7 @@ table {
 								</td>
 								<td>
 									<label>承修人：</label>
-									<input class="nui-combobox" textField="emplName" valueField="emplId" id="teamMember"
+									<input class="nui-combobox" textField="emplName" valueField="id" id="teamMember"
 										   allowInput="false"/>
 									<a class="nui-button" iconCls="icon-user" onclick="dispatching()" plain="true">派工处理</a>
 									<a class="nui-button" iconCls="icon-cancel" onclick="cancelDispatching()" plain="true">取消派工</a>
@@ -198,7 +198,7 @@ table {
 										<label>维修顾问：</label>
 									</td>
 									<td>
-										<input class="nui-textbox" name="mtAdvisorId" id="mtAdvisorId"
+										<input class="nui-textbox" name="mtAdvisor"
 											   allowInput="false"/>
 									</td>
 								</tr>
@@ -316,7 +316,7 @@ table {
 									</td>
 									<td>
 										<input class="nui-combobox" name="carBrandId"
-											   valueField="id" textField="carBrandZh"
+											   valueField="id" textField="nameCn"
 											   id="carBrand"/>
 									</td>
 									<td class="form_label">

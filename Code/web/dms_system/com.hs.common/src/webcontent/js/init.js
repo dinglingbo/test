@@ -23,7 +23,7 @@ function initComp(id,callback){
 function processComp(data){
     _initDmsObj["initComp"].setData(data);
     setDataToHash(data,"comp","orgid");
-    _initDmsCallback["initComp"] && _initDmsCallback["initComp"]();
+    _initDmsCallback["initComp"] && _initDmsCallback["initComp"]() && (_initDmsCallback["initComp"] = null);
 }
 
 //车辆品牌
@@ -38,7 +38,7 @@ function initCarBrand(id,callback){
 function processCarBrand(data){
     _initDmsObj["initCarBrand"].setData(data);
     setDataToHash(data,"carBrand","id");
-    _initDmsCallback["initCarBrand"] && _initDmsCallback["initCarBrand"]();
+    _initDmsCallback["initCarBrand"] && _initDmsCallback["initCarBrand"]() && (_initDmsCallback["initCarBrand"] = null);
 }
 
 //获取车型(选择品牌触发)
@@ -68,7 +68,7 @@ function initInsureComp(id,callback){
 function processInsureComp(data){
     _initDmsObj["initInsureComp"].setData(data);
     setDataToHash(data,"insureComp","id");
-    _initDmsCallback["initInsureComp"] && _initDmsCallback["initInsureComp"]();
+    _initDmsCallback["initInsureComp"] && _initDmsCallback["initInsureComp"]() && (_initDmsCallback["initInsureComp"] = null);
 }
 
 //数据字典
@@ -82,7 +82,7 @@ function initDicts(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}
 function processDictids(data){
     adapterData(_initDmsObj["_dictDefs"], data, "dictid");
     setDataToHash(data,"dict","customid");
-    _initDmsCallback["initDicts"]  && _initDmsCallback["initDicts"]();
+    _initDmsCallback["initDicts"]  && _initDmsCallback["initDicts"]() && (_initDmsCallback["initDicts"] = null);
 }
 
 //角色字典
@@ -95,7 +95,7 @@ function initRoleMembers(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid
 }
 function processRoleMembers(data){
     adapterData(_initDmsObj["_roleDefs"], data, "roleId");
-    _initDmsCallback["initRoleMembers"]  && _initDmsCallback["initRoleMembers"]();
+    _initDmsCallback["initRoleMembers"]  && _initDmsCallback["initRoleMembers"]() && (_initDmsCallback["initRoleMembers"] = null);
 }
 
 //filter Param
@@ -145,6 +145,6 @@ function setDataToHash(data,key,idFiled)
 		{
 			v[idFiled] && (_initDmsHash[key][v[idFiled]] = v);
 		});
-		console.log(_initDmsHash);
+	//	console.log(_initDmsHash);
 	}
 }

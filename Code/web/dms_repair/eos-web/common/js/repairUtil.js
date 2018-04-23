@@ -2,6 +2,21 @@
 /**
  * 
  */
+var SERVICE_TYPE = "DDT20130703000055";//业务类型
+var MT_TYPE_1 = "DDT20130705000002";//维修类型，普通
+var MT_TYPE_2 = "DDT20130705000003";//维修类型，事故
+var GUEST_SOURCE = "DDT20130703000075";//客户来源
+var NO_MT_TYPE_1 = "DDT20130705000008";//未修类型1,流失主要原因
+var NO_MT_TYPE_2 = "DDT20130705000009";//未修类型2,流失未修次要原因
+var ITEM_KIND = "DDT20130703000057";//工种
+var BOOK_STATUS = "DDT20130703000059";//预约状态
+var PREBOOK_CATEGORY = "DDT20140315000001";//预约分类,
+var PREBOOK_ITEM = "DDT20130705000001";//预约项目
+var SCOUT_MODE = "DDT20130703000021";//跟进方式
+var IS_USABLED = "DDT20130703000081";//跟踪状态
+var RECE_TYPE_1 = "DDT20130706000013";//收费类型,收费
+var RECE_TYPE_2 = "DDT20130706000014";//收费类型,免费
+var CLAIMS_TYPE = "DDT20150726000001";//索赔类型
 function doPost(opt) {
 	var url = opt.url;
 	var data = opt.data;
@@ -341,7 +356,7 @@ function getCarVinModel(vin, callback) {
 		}
 	});
 }
-var dictField = ["receTypeId","mtType","itemKind","serviceTypeId","guestSource"];
+var dictField = ["claimsType","bookStatus","receTypeId","mtType","itemKind","serviceTypeId","guestSource","scoutMode","isUsabled","noMtType"];
 function onDrawCell(e) {
 	var hash = _initDmsHash || {};
 	var field = e.field;
@@ -363,4 +378,56 @@ function onDrawCell(e) {
 		var insureComp = hash.insureComp || {};
 		insureComp[value] && (e.cellHtml = insureComp[value].fullName);
 	}
+}
+function getDate(type)
+{
+	var now = (new Date(currentTimeMillis));
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var date = now.getDate();
+    var startDate,endDate;
+    switch(type)
+    {
+    	case 0://本日
+    		startDate = new Date(now);
+            endDate = new Date(now);
+    		break;
+    	case 1://昨日
+    		startDate = new Date(now);
+    		startDate.setDate(startDate.getDate()-1);
+            endDate = startDate;
+    		break;
+    	case 2://本周
+    		startDate = new Date(now);
+    		startDate.setDate(startDate.getDate()-startDate.getDay());
+            endDate = new Date(now);
+            endDate.setDate(endDate.getDate()-(6-endDate.getDay()));
+    		break;
+    	case 3://上周
+    		startDate = new Date(now);
+    		startDate.setDate(startDate.getDate()-startDate.getDay()-7);
+    		endDate = new Date(now);
+    		endDate.setDate(endDate.getDate()-endDate.getDay()-1);
+    		break;
+        case 4://本月
+            startDate = new Date(year,month,1);
+            endDate = new Date(year,month+1,0);
+            break;
+        case 5://上月
+            startDate = new Date(year,month-1,1);
+            endDate = new Date(year,month,0);
+            break;
+        case 6://本年
+            startDate = new Date(year,0,1);
+            endDate = new Date(year,12,0);
+            break;
+        case 7://上年
+            startDate = new Date(year-1,month,1);
+            endDate = new Date(year-1,month+1,0);
+            break;
+    }
+    return {
+    	startDate:startDate,
+    	endDate:endDate
+    };
 }

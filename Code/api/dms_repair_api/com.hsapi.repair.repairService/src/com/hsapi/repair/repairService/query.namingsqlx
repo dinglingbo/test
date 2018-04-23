@@ -156,4 +156,66 @@
 		WHERE
 			a.id = #contactorId#
 	</select>
+	
+	<select id="queryNoRepairList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.service_code serviceCode,
+			a.id id,
+			a.car_no carNo,
+			a.mt_advisor mtAdvisor,
+			b.car_brand_id carBrandId,
+			b.car_model carModel,
+			c.name contactorName,
+			a.service_type_id serviceTypeId,
+			a.mt_type mtType,
+			a.no_mt_file_man noMtFileMan,
+			a.quote_date quoteDate,
+			a.no_mt_file_date noMtFileDate,
+			a.no_mt_type noMtType,
+			a.no_mt_reason noMtReason
+		FROM
+			rps_maintain a
+			inner join rpb_car b on (a.car_id = b.id)
+			inner join rpb_contactor c on (a.contactor_id = c.id)
+		<dynamic>
+			<isEqual prepend="and" property="status" compareValue="6">
+			inner join(
+				SELECT
+					DISTINCT service_id 
+				FROM
+					rps_part_quote a
+					where a.status = 0
+					union
+				SELECT
+					DISTINCT service_id 
+				FROM
+					rps_item_quote a
+					where a.status = 0) d on (a.id = d.service_id)
+			</isEqual>
+		</dynamic>
+		where a.orgid = #orgid#
+		<dynamic>
+			<isNotEmpty prepend="and" property="status"> 
+                (a.status = #status#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCodeList"> 
+                (a.service_code in ($serviceCodeList$))
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="startDate"> 
+                (date_format(a.no_mt_file_date,'%Y-%m-%d') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                (date_format(a.no_mt_file_date,'%Y-%m-%d') &lt;= #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">  
+                (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+        </dynamic> 
+	</select>
 </sqlMap>

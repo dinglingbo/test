@@ -11,7 +11,7 @@
 -->
 <head>
 <title>预约跟踪</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/ReservationTracking.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/ReservationTracking.js?v=1.0.2"></script>
 <style type="text/css">
 table {
 	font-size: 12px;

@@ -43,13 +43,13 @@ function query(){
 }
 
 function add(){
-    editWin("新增模板", {});
+    editWin("收支项目设置", {});
 }
 
 function edit(){
     var row = dgGrid.getSelected();
     if (row) {
-        editWin("修改模板", row);
+        editWin("收支项目设置", row);
     } else {
         alert("请选中一条记录");
     }

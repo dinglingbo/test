@@ -206,7 +206,7 @@ function getPrebookById(id,callback)
 function history() 
 {
 	var row = leftGrid.getSelected();
-    if(!row)
+	if(!row || !row.guestId)
     {
         return;
     }
@@ -216,7 +216,7 @@ function history()
         onload: function () {
             var iframe = this.getIFrameEl();
             var params = {
-                contactorId:row.contactorId
+            	guestId:row.guestId
             };
             iframe.contentWindow.setData(params);
         },

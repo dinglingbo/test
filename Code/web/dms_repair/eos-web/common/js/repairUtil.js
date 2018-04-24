@@ -17,6 +17,10 @@ var IS_USABLED = "DDT20130703000081";//跟踪状态
 var RECE_TYPE_1 = "DDT20130706000013";//收费类型,收费
 var RECE_TYPE_2 = "DDT20130706000014";//收费类型,免费
 var CLAIMS_TYPE = "DDT20150726000001";//索赔类型
+var PKG_TYPE = "DDT20130706000017";//维修套餐类别
+var CAR_SPEC = "DDT20130722000001";//车辆规格
+var KILO_TYPE = "DDT20130722000002";//里程类别
+var IDENTITY = "DDT20130703000077";//客户身份
 function doPost(opt) {
 	var url = opt.url;
 	var data = opt.data;
@@ -356,7 +360,7 @@ function getCarVinModel(vin, callback) {
 		}
 	});
 }
-var dictField = ["claimsType","bookStatus","receTypeId","mtType","itemKind","serviceTypeId","guestSource","scoutMode","isUsabled","noMtType"];
+var dictField = ["type","claimsType","bookStatus","receTypeId","mtType","itemKind","serviceTypeId","guestSource","scoutMode","isUsabled","noMtType"];
 function onDrawCell(e) {
 	var hash = _initDmsHash || {};
 	var field = e.field;

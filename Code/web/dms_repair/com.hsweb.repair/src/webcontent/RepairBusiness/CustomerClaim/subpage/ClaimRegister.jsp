@@ -75,7 +75,7 @@ table {
                 </td>
                 <td>
                     <input class="nui-combobox" enabled="false"
-                           valueField="id" textField="carBrandZh"
+                           valueField="id" textField="nameCn"
                            name="carBrandId" id="carBrandId"/>
                 </td>
                 <td>

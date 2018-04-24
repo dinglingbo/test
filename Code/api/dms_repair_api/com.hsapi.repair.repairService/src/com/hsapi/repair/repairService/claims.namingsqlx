@@ -43,7 +43,7 @@
 			inner join rps_maintain b on (a.service_id = b.id)
 			inner join rpb_contactor c on (b.contactor_id = c.id)
 			inner join rpb_car d on (b.car_id = d.id)
-		<!--WHERE
+		WHERE
 			a.orgid = #orgid#
 		<dynamic>
             <isNotEmpty prepend="and" property="isSettle">  
@@ -52,7 +52,7 @@
             <isNotEmpty prepend="and" property="claimsId">  
                 (a.id = #claimsId#)
             </isNotEmpty>
-        </dynamic>	-->
+        </dynamic>
     </select>
     
     <select id="queryClaimsList4Part" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

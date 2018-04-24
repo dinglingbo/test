@@ -1,28 +1,28 @@
-var basicInfoForm;//表单
+var form1;//表单
 var itemTypeId; //话术类型
 var action;
 
 $(document).ready(function(v){
-    basicInfoForm = new nui.Form("#basicInfoForm");
+    form1 = new nui.Form("#form1");
     itemTypeId = nui.get("itemTypeId");
 });
 
 function setData(data){
-    basicInfoForm.setData(data);
-    itemTypeId.setData(data.itemTypeId);
+    form1.setData(data);
+    itemTypeId.setData(data.itemType);
 }
 
 function onOk(){
     //验证
-    basicInfoForm.validate();
-    if (!basicInfoForm.isValid()) return;
+    form1.validate();
+    if (!form1.isValid()) return;
 
     try {
         nui.ajax({
             url: webPath + crmDomain + "/com.hsapi.crm.basic.crmBasic.saveTalkArt.biz.ext",
             type: 'post',
             data: nui.encode({
-                data: basicInfoForm.getData()
+                data: form1.getData()
             }),
             cache: false,
             success: function (data) {

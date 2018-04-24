@@ -21,28 +21,28 @@
                     <input class="nui-hidden" name="id"/>
                     <table>
                         <tr>
-                            <td style="width:70px;">项目名称：</td>
+                            <td class="title required">项目名称：</td>
                             <td style="width:150px;">    
                                 <input id="name" name="name" class="nui-textbox" required="true"/>
                             </td>                          
                         </tr>
                         <tr>
-                            <td style="width:70px;">助记码：</td>
+                            <td class="title required">助记码：</td>
                             <td >                        
                                 <input id="code" name="code" class="nui-textbox" required="true"/>
                             </td>                            
                         </tr>
                         <tr>
-                            <td >收支类型：</td>
+                            <td class="title required">收支类型：</td>
                             <td >    
                                 <div id="itemTypeId" name="itemTypeId" class="nui-radiobuttonlist" 
                                 repeatItems="2" repeatLayout="table" repeatDirection="horizontal" textField="name" 
-                                valueField="customid" data="const_yesno" required="true">
+                                valueField="customid" required="true">
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td >是否主营业务项目：</td>
+                            <td class="title required">是否主营业务项目：</td>
                             <td >    
                                 <div id="isPrimaryBusiness" name="isPrimaryBusiness" class="nui-radiobuttonlist" 
                                 repeatItems="2" repeatLayout="flow" repeatDirection="horizontal" textField="text" 

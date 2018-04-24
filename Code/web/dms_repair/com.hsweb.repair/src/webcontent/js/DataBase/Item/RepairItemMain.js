@@ -20,11 +20,8 @@ $(document).ready(function()
 		var itemKind = nui.get("itemKind");
 		itemKind.setData(list);
 	});
-	getAllCarBrand(function(data)
+	initCarBrand("carBrandId",function()
 	{
-		var list = data.carBrands;
-		var carBrandId = nui.get("carBrandId");
-		carBrandId.setData(list);
 	});
 	tree1.on("nodedblclick",function(e)
 	{
@@ -37,6 +34,7 @@ $(document).ready(function()
 	//右边区域
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
+	rightGrid.on("drawcell",onDrawCell);
 	onSearch();
 });
 function onClear(){

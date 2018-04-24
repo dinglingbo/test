@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.8"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.9"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -86,7 +86,7 @@ table {
 					<td>
 						<input class="nui-combobox" name="carBrandId" id="carBrandId"
 							   valueField="id"
-							   textField="carBrandZh"
+							   textField="nameCn"
 							   width="100%"/>
 					</td>
 					<td class="form_label required">
@@ -94,7 +94,7 @@ table {
 					</td>
 					<td>
 						<input class="nui-combobox" name="carModelId" id="carModelId"
-							   valueField="id"
+							   valueField="carModelId"
 							   textField="carModel"
 							   width="100%"/>
 					</td>

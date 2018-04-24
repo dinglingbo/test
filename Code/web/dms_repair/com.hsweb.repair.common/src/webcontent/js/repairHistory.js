@@ -25,7 +25,7 @@ function init(callback)
     leftGrid.on("drawcell",onDrawCell);
     leftGrid.on("rowdblclick", function (e) {
         var row = e.record;
-        onRowDblClick();
+        onRowDblClick(e);
     });
     leftGrid.on("load", function () {
         var row = leftGrid.getSelected();
@@ -125,20 +125,11 @@ function getGuestInfoByContactorId(contactorId,callback)
 }
 function setData(data)
 {
-    init(function(){
+	init(function(){
         data = data||{};
-        var contactorId = data.contactorId;
-        getGuestInfoByContactorId(contactorId,function(data)
-        {
-            data = data||{};
-            var guest = data.guest;
-            if(guest && guest.id)
-            {
-                guestInfoForm.setData(guest);
-            }
-        });
+        var guestId = data.guestId;
         doSearch({
-            contactorId:contactorId
+            guestId:guestId
         });
     });
 }
@@ -156,6 +147,11 @@ function onRowDblClick(e)
     loadRpsPartBillData(row);
     loadAuxiliaryGridData(row);
     getMaintainById(row.id);
+    getGuestInfoByContactorId(row.contactorId,function(data){
+        data = data||{};
+        var guest = data.guest||{};
+        guestInfoForm.setData(guest);
+    });
 }
 
 function doSearch(params) {

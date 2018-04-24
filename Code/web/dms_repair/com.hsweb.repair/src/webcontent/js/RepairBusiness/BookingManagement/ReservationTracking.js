@@ -22,7 +22,7 @@ function init(callback)
     });
     var checkComplete = function()
     {
-        var keyList = ['getDictItems'];
+        var keyList = ['initDicts'];
         for(var i=0;i<keyList.length;i++)
         {
             if(!hash[keyList[i]])
@@ -33,22 +33,11 @@ function init(callback)
         nui.unmask();
         callback && callback();
     };
-    var dictIdList = [];
-    dictIdList.push("DDT20130703000021");//跟进方式
-    dictIdList.push("DDT20130703000081");//跟踪状态
-    getDictItems(dictIdList,function(data)
-    {
-        data = data||{};
-        var itemList = data.dataItems||[];
-        var scoutModeList = itemList.filter(function(v){
-            return  "DDT20130703000021" == v.dictid;
-        });
-        nui.get("scoutMode").setData(scoutModeList);
-        var isUsabledList = itemList.filter(function(v){
-            return  "DDT20130703000081" == v.dictid;
-        });
-        nui.get("isUsabled").setData(isUsabledList);
-        hash.getDictItems = true;
+    initDicts({
+        scoutMode: "DDT20130703000021",//跟进方式
+        isUsabled: "DDT20130703000081"//跟踪状态
+    },function(){
+        hash.initDicts = true;
         checkComplete();
     });
 }

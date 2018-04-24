@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.12"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.13"></script>
 
 </head>
 
@@ -23,7 +23,7 @@
 				<td>
 					<label style="font-family:Verdana;">快速查询：</label>
 					<label class="form_label">品牌：</label>
-					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="carBrandZh"/>
+					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="nameCn"/>
 					<label class="form_label">类型：</label>
 					<input class="nui-combobox" name="type" id="type-search" valueField="customid" textField="name"/>
 					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
@@ -60,7 +60,7 @@
 						<div header="套餐信息" headerAlign="center">
 							<div property="columns">
 								<div field="name" headerAlign="center" allowSort="true" visible="true">套餐名称</div>
-								<div field="carBrandName" headerAlign="center" allowSort="true" visible="true">品牌</div>
+								<div field="carBrandId" headerAlign="center" allowSort="true" visible="true">品牌</div>
 								<div field="carModel" headerAlign="center" allowSort="true" visible="true">车型</div>
 								<div field="amount" headerAlign="center" allowSort="true" visible="true">套餐金额</div>
 							</div>
@@ -128,7 +128,7 @@
 								</td>
 								<td>
 									<input name="carBrandId" id="carBrandId" class="nui-combobox" allowInput="false"
-										   textField="carBrandZh"
+										   textField="nameCn"
 										   valueField="id" showNullItem="false"/>
 								</td>
 								<td class="form_label">
@@ -138,7 +138,7 @@
 									<input name="carModelId" id="carModelId" class="nui-combobox" allowInput="false"
 										   textField="carModel"
 										   width="100%"
-										   valueField="id" showNullItem="false"/>
+										   valueField="carModelId" showNullItem="false"/>
 								</td>
 								<td class="form_label">
 									<label>是否共享：</label>
@@ -188,7 +188,7 @@
 												<div property="columns">
 													<div field="itemCode" headerAlign="center" allowSort="true" visible="true">工时编码</div>
 													<div field="itemName" headerAlign="center" allowSort="true" visible="true">工时名称</div>
-													<div field="itemKindName" headerAlign="center" allowSort="true" visible="true">工种</div>
+													<div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种</div>
 													<div field="itemTime" headerAlign="center" allowSort="true" visible="true">标准工时</div>
 													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true">工时单价</div>
 													<div field="amt" headerAlign="center" allowSort="true" visible="true">工时费</div>

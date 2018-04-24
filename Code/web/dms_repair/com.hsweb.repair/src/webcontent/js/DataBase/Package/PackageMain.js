@@ -15,6 +15,7 @@ $(document).ready(function (v)
 {
 	leftGrid = nui.get("leftGrid"); 
 	leftGrid.setUrl(leftGridUrl);
+	leftGrid.on("drawcell",onDrawCell);
 	leftGrid.on("rowclick",function(e)
 	{
 		onLeftGridRowClick(e);
@@ -25,7 +26,7 @@ $(document).ready(function (v)
 
 	rightItemGrid = nui.get("itemGrid");
 	rightItemGrid.setUrl(rightItemGridUrl);
-	
+	rightItemGrid.on("drawcell",onDrawCell);
 	rightPartGrid = nui.get("rightPartGrid");
 	rightPartGrid.setUrl(rightPartGridUrl);
 	rightPartGrid.on("cellendedit",function(e)
@@ -49,27 +50,15 @@ $(document).ready(function (v)
 	carBrandIdEl = nui.get("carBrandId");
 	carModelIdEl = nui.get("carModelId");
 	init();
-
-	onSearch();
 });
 function init()
 {
 	carBrandIdEl.on("valuechanged",function()
 	{
 		var carBrandId = carBrandIdEl.getValue();
-		if(carModelIdHash[carBrandId])
-		{
-			carModelIdEl.setData(carModelIdHash[carBrandId]);
-		}
-		else
-		{
-			getCarModelByBrandId(carBrandId,function(data)
-			{
-				var list = data.list||[];
-				carModelIdHash[carBrandId] = list;
-				carModelIdEl.setData(carModelIdHash[carBrandId]);
-			});
-		}
+		getCarModel("carModelId",{
+			value:carBrandId
+		});
 	});
 	var elList = basicInfoForm.getFields();
 	var nameList = ["amount"];
@@ -85,20 +74,41 @@ function init()
 			});
 		}
 	});
-	var dictIdList = [];
-	dictIdList.push("DDT20130706000017");
-	getDictItems(dictIdList,function(data)
-	{
-		data = data||{};
-		var list = data.dataItems||[];
-		nui.get("type").setData(list);
-		nui.get("type-search").setData(list);
+
+	var hash = {};
+	nui.mask({
+		html: '数据加载中..'
 	});
-	getAllCarBrand(function(data)
+	var checkComplete = function () {
+		var keyList = ['initDicts','initCarBrand',"getDatadictionaries"];
+		for (var i = 0; i < keyList.length; i++) {
+			if (!hash[keyList[i]]) {
+				return;
+			}
+		}
+		nui.unmask();
+		onSearch();
+	};
+	var pId2 = ITEM_KIND;//工种
+	getDatadictionaries(pId2, function (data) 
 	{
-		var list = data.carBrands||[];
-		carBrandIdEl.setData(list);
+		hash.getDatadictionaries = true;
+		checkComplete();
+	});
+	initDicts({
+		type:PKG_TYPE
+	},function(){
+		var list = nui.get("type").getData();
+		nui.get("type-search").setData(list);
+		hash.initDicts = true;
+		checkComplete();
+	});
+	initCarBrand("carBrandId",function()
+	{
+		var list = carBrandIdEl.getData();
 		nui.get("carBrandId-search").setData(list);
+		hash.initCarBrand = true;
+		checkComplete();
 	});
 }
 function onInputBlur(e)

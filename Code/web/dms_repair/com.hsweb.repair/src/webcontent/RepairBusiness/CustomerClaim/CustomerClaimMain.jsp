@@ -29,6 +29,8 @@ table {
 
 </head>
 <body>
+<input class="nui-combobox" id="carBrand" visible="false"/>
+<input class="nui-combobox" id="claimsType" visible="false"/>
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table" id="table1">

@@ -21,17 +21,19 @@ $(document).ready(function ()
 });
 function init(callback)
 {
-    claimsItemGrid = nui.get("claimsItemGrid");
+	claimsItemGrid = nui.get("claimsItemGrid");
     claimsItemGrid.setUrl(claimsItemGridUrl);
+    claimsItemGrid.on("drawcell",onDrawCell);
     claimsPartGrid = nui.get("claimsPartGrid");
     claimsPartGrid.setUrl(claimsPartGridUrl);
+    claimsPartGrid.on("drawcell",onDrawCell);
     basicInfoForm = new nui.Form("#basicInfoForm");
     var hash = {};
     nui.mask({
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDictItems','getAllCarBrand','getDatadictionaries2',"getDeductRate"];
+        var keyList = ['initDicts','initCarBrand','getDatadictionaries',"getDeductRate"];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -54,47 +56,24 @@ function init(callback)
         hash.getDeductRate = true;
         checkComplete();
     });
-    var pId2 = "DDT20130703000057";
+    var pId2 = ITEM_KIND;
     getDatadictionaries(pId2, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            itemKindHash[v.customid] = v;
-        });
-        hash.getDatadictionaries2 = true;
+        hash.getDatadictionaries = true;
         checkComplete();
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130706000013");//收费类型
-    dictIdList.push("DDT20130706000014");//收费类型
-    dictIdList.push("DDT20150726000001");//索赔类型
-    getDictItems(dictIdList, function (data) {
-        data = data || {};
-        var itemList = data.dataItems || [];
-        var receTypeList = itemList.filter(function (v)
-        {
-            if("DDT20130706000013" == v.dictid || "DDT20130706000014" == v.dictid)
-            {
-                receTypeHash[v.customid] = v;
-                return true;
-            }
-        });
-        var claimsTypeList = itemList.filter(function (v) {
-            return "DDT20150726000001" == v.dictid;
-        });
-        nui.get("claimsType").setData(claimsTypeList);
-        hash.getDictItems = true;
+    initDicts({
+        receType1:RECE_TYPE_1,//收费类型,收费
+        receType2:RECE_TYPE_2,//收费类型,免费
+        claimsType:CLAIMS_TYPE//索赔类型
+    },function(){
+        hash.initDicts = true;
         checkComplete();
     });
-    getAllCarBrand(function(data)
+    initCarBrand("carBrandId",function()
     {
-        data = data||{};
-        var carBrandList = data.carBrands||[];
-        //carBrandList.forEach(function (v) {
-        //    carBrandHash[v.id] = v;
-        //});
-        nui.get("carBrandId").setData(carBrandList);
-        hash.getAllCarBrand = true;
+        hash.initCarBrand = true;
         checkComplete();
     });
 }
@@ -171,17 +150,6 @@ function loadRpsPartData() {
         token:token,
         params: params
     });
-}
-function onDrawCell(e)
-{
-    var field = e.field;
-    if(field == "receTypeId" && receTypeHash[e.value])
-    {
-        e.cellHtml = receTypeHash[e.value].name;
-    }
-    else if (field == "itemKind" && itemKindHash[e.value]) {
-        e.cellHtml = itemKindHash[e.value].name;
-    }
 }
 function delItem()
 {

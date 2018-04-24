@@ -17,7 +17,6 @@
 			a.car_model_id carModelId,
 			a.car_model carModel,
 			a.car_brand_id carBrandId,
-			c.car_brand_zh carBrandName,
 			a.engine_no engineNo,
 			a.underpan_no underpanNo,
 			a.annual_inspection_date annualInspectionDate,
@@ -29,11 +28,57 @@
 			a.recorder recorder,
 			a.record_date recordDate,
 			a.produce_date produceDate,
-			a.color color
+			a.color color,
+			a.chain_come_times chainComeTimes,
+			ifnull( DATEDIFF( now( ), a.last_leave_date ), 0 ) leaveDay
 		FROM
-			rpb_car a
-			inner join wb_common.com_guest b on (a.guest_id = b.id)
-			left join wb_common.com_car_brand c on (a.car_brand_id = c.id)
+			wb_common.com_guest b
+			inner join rpb_car a on (a.guest_id = b.id)
+		where b.guest_type = '01020103'
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterStart">  
+                (date_format(a.last_come_date,'%Y-%m-%d') &gt;= #lastEnterStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterEnd">  
+                (date_format(a.last_come_date,'%Y-%m-%d') &lt;= #lastEnterEnd#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterStart">  
+                (date_format(a.first_come_date,'%Y-%m-%d') &gt;= #firstEnterStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterEnd">  
+                (date_format(a.first_come_date,'%Y-%m-%d') &lt;= #firstEnterEnd#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterStart">  
+                (date_format(a.last_leave_date,'%Y-%m-%d') &gt;= #lastOutStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterEnd">  
+                (date_format(a.last_leave_date,'%Y-%m-%d') &lt;= #lastOutStart#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="lastEnterStart">  
+                (date_format(a.record_date,'%Y-%m-%d') &gt;= #recordStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastEnterEnd">  
+                (date_format(a.record_date,'%Y-%m-%d') &lt;= #recordEnd#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carModelId">  
+                (a.car_model_id = #carModelId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (a.guestId = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carBrandId">  
+                (a.car_brand_id = #carBrandId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="underpanNo">  
+                (a.underpan_no like '%$underpanNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (b.mobile like '%$mobile$%')
+            </isNotEmpty>
+        </dynamic>
 	</select>
 	<select id="queryCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT

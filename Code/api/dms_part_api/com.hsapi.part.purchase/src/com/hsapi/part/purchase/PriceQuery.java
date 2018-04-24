@@ -4,6 +4,8 @@
 package com.hsapi.part.purchase;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -27,6 +29,9 @@ import com.hs.common.JsonUtils;
 import com.primeton.bfs.engine.json.JSONArray;
 import com.primeton.bfs.engine.json.JSONException;
 import com.primeton.bfs.engine.json.JSONObject;
+import com.primeton.ext.das.common.DASResourceCache;
+import com.primeton.ext.das.common.DASXSDLoader;
+import com.primeton.ext.das.common.fileloader.DASFileCacher;
 
 import commonj.sdo.ChangeSummary;
 import commonj.sdo.DataGraph;

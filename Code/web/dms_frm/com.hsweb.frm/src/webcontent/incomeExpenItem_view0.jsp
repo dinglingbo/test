@@ -9,7 +9,7 @@
 <head>
 <title>收支项目设置</title> 
 	<%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/frm/js/setting/incomeExpenItem.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=frmDomain%>/frm/js/setting/incomeExpenItem.js?v=1.0" type="text/javascript"></script>
 </head>
 <body>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
@@ -58,12 +58,6 @@
 </div>
 
 <div class="nui-fit">
-    <!--
-    <div class="nui-panel" title="收支项目设置" style="width:100%;height:100%;"
-         showToolbar="false" showCollapseButton="false" showFooter="false" allowResize="false">
-    -->
-
-        <%-- 主列表 --%>
         <div class="nui-fit">
             <div id="dgGrid" class="nui-treegrid" style="width:100%;height:100%;"
                  showPager="true" pageSize="10" sizeList="[10,20,50]" allowAlternating="true"

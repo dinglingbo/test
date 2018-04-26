@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:chenziming -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="queryRpsInsuranceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.status status,
+			b.car_no carNo,
+			a.insurance_man insuranceMan,
+			b.car_brand_id carBrandId,
+			b.car_model carModel,
+			a.insurance_sali_date insuranceSaliDate,
+			a.insurance_sali_due insuranceSaliDue,
+			a.insurance_biz_date insuranceBizDate,
+			a.insurance_biz_due insuranceBizDue,
+			a.service_code serviceCode
+		FROM
+			rps_insurance_main a
+			inner join rpb_car b on (a.car_id = b.id)
+		where a.orgid = #orgid#
+		<dynamic>
+			<isNotEmpty prepend="and" property="insuranceSaliNo">  
+	            (a.insurance_sali_no like '%$insuranceSaliNo$%')
+	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="insuranceBizNo">  
+	            (a.insurance_biz_no like '%$insuranceBizNo$%')
+	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="carNo">  
+	            (b.car_no like '%$carNo$%')
+	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="carNoList">  
+	            (b.car_no in ($carNoList$))
+	        </isNotEmpty>
+			<isNotEmpty prepend="and" property="underpanNo">  
+	            (b.underpan_no like '%$underpanNo$%')
+	        </isNotEmpty>
+			<isNotEmpty prepend="and" property="startDate">  
+	            (date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
+	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="endDate">  
+	            (date_format(a.record_date,'%Y-%m-%d') &lt;= #endDate#)
+	        </isNotEmpty>
+	    </dynamic>
+    </select>
+    <select id="getRpsInsuranceMainById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.status status,
+			a.car_id carId,
+			a.insurance_amt insuranceAmt,
+			a.insurance_sali_amt insuranceSaliAmt,
+			a.insurance_biz_amt insuranceBizAmt,
+			a.car_boart_tax carBoartTax,
+			a.insurance_sali_rate insuranceSaliRate,
+			a.insurance_biz_rate insuranceBizRate,
+			a.commission_amt commissionAmt,
+			a.order_type orderType,
+			a.mobile mobile,
+			b.car_no carNo,
+			a.insurance_man insuranceMan,
+			b.car_brand_id carBrandId,
+			b.car_model carModel,
+			b.underpan_no underpanNo,
+			b.engine_no engineNo,
+			a.insurance_sali_date insuranceSaliDate,
+			a.insurance_sali_due insuranceSaliDue,
+			a.insurance_biz_date insuranceBizDate,
+			a.insurance_biz_due insuranceBizDue,
+			a.service_code serviceCode,
+			a.buy_date buyDate,
+			a.insurance_commissioner insuranceCommissioner,
+			a.recorder recorder,
+			a.insurance_type insuranceType,
+			a.insurance_sali_no insuranceSaliNo,
+			a.insurance_sali_comany insuranceSaliComany,
+			a.insurance_sali_content insuranceSaliContent,
+			a.insurance_biz_no insuranceBizNo,
+			a.insurance_biz_comany insuranceBizComany,
+			a.insurance_biz_content insuranceBizContent,
+			c.full_name guestFullName,
+			a.gross_profit grossProfit,
+			a.othet_expense othetExpense,
+			a.discount discount,
+			a.guest_id guestId
+		FROM
+			rps_insurance_main a
+			inner join rpb_car b on (a.car_id = b.id)
+			inner join wb_common.com_guest c on (a.guest_id = c.id)
+    	where a.id = #id#
+    </select>
+</sqlMap>

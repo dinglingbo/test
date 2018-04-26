@@ -83,6 +83,7 @@
 	<select id="queryCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id id,
+			a.id carId,
 			a.orgid orgid,
 			a.car_no carNo,
 			a.guest_id guestId,
@@ -90,7 +91,6 @@
 			a.car_model_id carModelId,
 			a.car_model carModel,
 			a.car_brand_id carBrandId,
-			c.car_brand_zh carBrandName,
 			a.engine_no engineNo,
 			a.underpan_no underpanNo,
 			a.annual_inspection_date annualInspectionDate,
@@ -105,7 +105,6 @@
 			a.color color,
 			d.name contactName,
 			d.identity identity,
-			e.name identityName,
 			d.mobile mobile,
 			d.tel tel,
 			d.id contactorId
@@ -113,8 +112,6 @@
 			rpb_car a
 			inner join wb_common.com_guest b on (a.guest_id = b.id)
 			inner join rpb_contactor d on (b.id = d.guest_id)
-			left join wb_common.com_car_brand c on (a.car_brand_id = c.id)
-			left join wb_common.com_dataitems e on (d.identity = e.customid)
 		WHERE 1=1
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  

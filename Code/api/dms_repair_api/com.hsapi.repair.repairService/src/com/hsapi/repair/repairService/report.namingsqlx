@@ -433,4 +433,114 @@
 		ORDER BY
 			A.service_id
     </select>
+    
+    <select id="queryPreBookAnaylsisList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			$groupField$ groupName,
+			count( 1 ) tcount,
+			count( CASE WHEN predict_come_date &lt; now() AND book_status = '040901' THEN 1 END ) dq,
+			count( CASE WHEN predict_come_date &gt; now() AND book_status = '040901' THEN 1 END ) zyy,
+			count( CASE WHEN book_status = '040902' THEN 1 END ) bj,
+			count( CASE WHEN book_status = '040903' THEN 1 END ) ls
+		FROM
+			rps_prebook 
+		WHERE
+			orgid = #orgid#
+			AND (record_date BETWEEN #startDate# AND #endDate#) 
+		GROUP BY
+			$groupField$
+    </select>
+    
+    <select id="queryRpsInsuranceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id id,
+			a.guest_id guestId,
+			a.car_id carId,
+			a.insurance_man insuranceMan,
+			a.insurance_type insuranceType,
+			a.mobile mobile,
+			a.buy_date butDate,
+			a.insurance_commissioner insuranceCommissioner,
+			a.insurance_amt insuranceAmt,
+			a.insurance_sali_date insuranceSaliDate,
+			a.insurance_sali_due insuranceSaliDue,
+			a.insurance_biz_date insuranceBizDate,
+			a.insurance_biz_due insuranceBizDue,
+			a.STATUS status,
+			a.insurance_sali_comany insuranceSaliComany,
+			a.insurance_biz_comany insuranceBizComany,
+			a.insurance_sali_amt insuranceSaliAmt,
+			a.insurance_biz_amt insuranceBizAmt,
+			a.car_boart_tax carBoartTax,
+			a.insurance_sali_rate/100 insuranceSaliRate,
+			a.insurance_biz_rate/100 insuranceBizRate,
+			a.commission_amt commissionAmt,
+			a.discount discount,
+			a.othet_expense othetExpense,
+			a.gross_profit grossProfit,
+			a.remark,
+			a.recorder,
+			a.record_date recordDate,
+			c.car_no carNo,
+			c.car_brand_id carBrandId,
+			c.car_model carModel,
+			c.underpan_no underpanNo,
+			c.engine_no engineNo,
+			b.full_name guestFullName,
+			b.contactor_tel contactorTel,
+			b.tel,
+			b.mobile AS Expr,
+			a.service_code serviceCode
+		FROM
+			wb_common.com_guest AS b
+			INNER JOIN rps_insurance_main AS a ON b.id = a.guest_id
+			LEFT JOIN rpb_car AS c ON b.id = c.guest_id 
+			AND a.car_id = c.id 
+		WHERE
+			1 = 1 
+			AND a.orgid = #orgid#
+			AND a.sett_date BETWEEN #startDate# AND #endDate#
+			AND a.STATUS = 2
+		<dynamic>
+			<isNotEmpty prepend="and" property="insuranceType"> 
+                A.insurance_type = #insuranceType#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="insuranceCommissioner"> 
+                a.insurance_commissioner = #insuranceCommissioner#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId"> 
+                a.guest_id = #guestId#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCodeList"> 
+                a.service_code in ($serviceCodeList$)
+            </isNotEmpty>
+        </dynamic>
+    </select>
+    
+    <select id="queryCarBaseList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			id,
+			orgid,
+			current_year currentYear,
+			current_month currentMonth,
+			current_day currentDay,
+			begin_period_qty beginPeriodQty,
+			end_period_qty endPeriodQty,
+			flow_in_qty flowInQty,
+			flow_out_qty flowOutQty,
+			flow_back_qty flowBackQty,
+			new_qty newQty,
+			begin_period_lost_qty beginPeriodLostQty,
+			end_period_lost_qty endPeriodLostQty,
+			lost_qty listQty,
+			lost_rate lostRate,
+			recorde_date recordeDate 
+		FROM
+			rps_guest_lost 
+		WHERE
+			recorde_date > DATE_SUB( now( ), INTERVAL 1 MONTH ) 
+			AND current_year = #currentYear#
+			AND current_month = #currentMonth#
+			AND current_day = #currentDay#
+    </select>
 </sqlMap>

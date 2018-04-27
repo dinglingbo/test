@@ -1,4 +1,5 @@
 
+
 /**
  * 
  */
@@ -21,6 +22,8 @@ var PKG_TYPE = "DDT20130706000017";//维修套餐类别
 var CAR_SPEC = "DDT20130722000001";//车辆规格
 var KILO_TYPE = "DDT20130722000002";//里程类别
 var IDENTITY = "DDT20130703000077";//客户身份
+var INSURANCE_TYPE = "DDT20140427000001";//保险销售分类
+var INSURANCE_DETAIL = "DDT20130703000028";//险种
 function doPost(opt) {
 	var url = opt.url;
 	var data = opt.data;
@@ -360,7 +363,9 @@ function getCarVinModel(vin, callback) {
 		}
 	});
 }
-var dictField = ["type","claimsType","bookStatus","receTypeId","mtType","itemKind","serviceTypeId","guestSource","scoutMode","isUsabled","noMtType"];
+var dictField = ["prebookCategory","prebookItem","insuranceId","type","claimsType","bookStatus","receTypeId","mtType","itemKind","serviceTypeId","guestSource","scoutMode","isUsabled","noMtType"];
+dictField.push("insuranceType");
+var insureField = ["insureCompCode","insuranceSaliComany","insuranceBizComany"];
 function onDrawCell(e) {
 	var hash = _initDmsHash || {};
 	var field = e.field;
@@ -377,7 +382,7 @@ function onDrawCell(e) {
 		var comp = hash.comp || {};
 		comp[value] && (e.cellHtml = comp[value].orgname);
 	}
-	else if(field == "insureCompCode")
+	else if (insureField.indexOf(field) > -1)
 	{
 		var insureComp = hash.insureComp || {};
 		insureComp[value] && (e.cellHtml = insureComp[value].fullName);
@@ -405,7 +410,7 @@ function getDate(type)
     		startDate = new Date(now);
     		startDate.setDate(startDate.getDate()-startDate.getDay());
             endDate = new Date(now);
-            endDate.setDate(endDate.getDate()-(6-endDate.getDay()));
+            endDate.setDate(endDate.getDate()-endDate.getDay()+6);
     		break;
     	case 3://上周
     		startDate = new Date(now);
@@ -426,12 +431,38 @@ function getDate(type)
             endDate = new Date(year,12,0);
             break;
         case 7://上年
-            startDate = new Date(year-1,month,1);
-            endDate = new Date(year-1,month+1,0);
+        	startDate = new Date(year-1,0,1);
+            endDate = new Date(year-1,12,0);
             break;
     }
     return {
     	startDate:startDate,
     	endDate:endDate
     };
+}
+function SelectCustomer(params)
+{
+    nui.open({
+        url: window._webRepairUrl+"com.hsweb.RepairBusiness.Customer.flow",
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                var name = guest.guestFullName;
+                for(var key in params)
+                {
+                    if(params[key] && nui.get(params[key]))
+                    {
+                        nui.get(params[key]).setValue(guest[key]);
+                    }
+                }
+                var tmp = nui.get(params["guestId"]);
+                tmp && tmp.setText && tmp.setText(name);
+            }
+        }
+    });
 }

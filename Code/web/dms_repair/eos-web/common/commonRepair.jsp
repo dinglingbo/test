@@ -51,12 +51,16 @@
 	}
 
 	//window._rootUrl = getRoot();
-	window._rootUrl = apiPath + repairApi + "/";
+	window._rootRepairUrl = apiPath + repairApi + "/";
 	window._rootPartUrl = apiPath + partApi + "/";
 	window._rootSysUrl = apiPath + sysApi + "/";
 	window._rootCrmUrl = apiPath + crmApi + "/";
+	window._rootFrmUrl = apiPath + frmApi + "/";
+	
+	window._rootUrl = window._rootRepairUrl;
+	
 	window._webCrmUrl = webPath + crmDomain + "/";
-	window._rootFrmUrl = window._rootFrmUrl + "/";
+	window._webRepairUrl = webPath + repairDomain + "/";
 	//console.log(window._rootUrl);
 </script>
 <script src="<%=request.getContextPath()%>/common/js/repairUtil.js?v=1.0.3" type="text/javascript"></script>

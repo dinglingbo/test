@@ -1,5 +1,6 @@
 
 
+
 /**
  * 
  */
@@ -31,6 +32,7 @@ function doPost(opt) {
 	};
 	var error = opt.error || function() {
 	};
+	data.userId = currUserId;
 	data.orgid = currOrgid;
 	data.userName = currUserName;
 	data.token = token;

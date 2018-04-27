@@ -1639,6 +1639,7 @@ function save() {
             maintain.outPrintDate = nui.get("outPrintDate").getValue();
         }
     }
+    maintain.mtAdvisor = nui.get("mtAdvisorId").getText();
     nui.mask({
         html: '保存中..'
     });

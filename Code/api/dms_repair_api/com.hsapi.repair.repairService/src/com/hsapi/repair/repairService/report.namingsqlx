@@ -543,4 +543,359 @@
 			AND current_month = #currentMonth#
 			AND current_day = #currentDay#
     </select>
+    <select id="queryCarSellAfterList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			orgid,
+			count( 1 ) value,
+			0 type <!--报价车次-->
+		FROM
+			rps_maintain
+		where quote_date between #startDate# and #endDate#
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			1 type <!--报价未修车次-->
+		FROM
+			rps_maintain
+		where no_mt_file_date between #startDate# and #endDate#
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			2 type <!---维修车次-->
+		FROM
+			rps_maintain
+		where sure_mt_date between #startDate# and #endDate#
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			3 type  <!---事故车次-->
+		FROM
+			rps_maintain
+		where sure_mt_date between #startDate# and #endDate# and service_type_id = '040502'
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			4 type <!---完工车次-->
+		FROM
+			rps_maintain
+		where check_date between #startDate# and #endDate#
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			5 type <!---结算车次-->
+		FROM
+			rps_maintain
+		where out_date between #startDate# and #endDate# and status = 6
+		group by orgid
+		union all
+		SELECT
+			a.orgid orgid,
+			sum(b.bala_amt) value,
+			6 type <!---结算金额-->
+		FROM
+			rps_maintain a inner join rps_settlement b on (a.id = b.service_id)
+		where a.out_date between #startDate# and #endDate# and a.status = 6
+		group by a.orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			7 type <!---首次到店客户-->
+		FROM
+			rps_guest_file
+		where record_date between #startDate# and #endDate#
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			8 type <!---在修事故车次-->
+		FROM
+			rps_maintain
+		where status &lt; 6 and service_type_id = '040502'
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			SUM(item_amt + part_amt) value,
+			9 type <!---在修事故金额-->
+		FROM
+			rps_maintain
+		where status &lt; 6 and service_type_id = '040502'
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			count( 1 ) value,
+			10 type <!---在修事故车次-->
+		FROM
+			rps_maintain
+		where status &lt; 6 and service_type_id = '040501'
+		group by orgid
+		union all
+		SELECT
+			orgid,
+			SUM(item_amt + part_amt) value,
+			11 type <!---在修普通金额-->
+		FROM
+			rps_maintain
+		where status &lt; 6 and service_type_id = '040501'
+		group by orgid
+		union all
+		SELECT
+			a.orgid orgid,
+			sum(b.gross_profit) value,
+			12 type <!---毛利-->
+		FROM
+			rps_maintain a inner join rps_settlement b on (a.id = b.service_id)
+		where a.out_date between #startDate# and #endDate# and a.status = 6
+		group by a.orgid
+    </select>
+    
+    
+    <select id="queryCardRechargeList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			A.guest_id guestId,
+			A.recharge_amt rechargeAmt,
+			A.pref_amt prefAmt,
+			A.largess_amt largessAmt,
+			A.rece_amt receAmt,
+			A.recharge_date rechargeDate,
+			(
+		CASE
+			WHEN a.bala_amt > a.largess_amt THEN
+			a.consumable_amt - a.largess_amt - ( a.consumable_amt - a.bala_amt ) ELSE 0 
+		END 
+			) cardBalaAmt,
+			( CASE WHEN a.bala_amt > a.largess_amt THEN a.largess_amt ELSE a.bala_amt END ) largessBalaAmt,
+			a.id id,
+			B.full_name fullName,
+			B.mobile mobile,
+			b.card_no cardNo,
+			A.consumable_amt consumableAmt,
+			A.bala_amt balaAmt,
+			A.integral integral,
+			A.recorder recorder,
+			A.record_date recordDate,
+			A.remark remark 
+		FROM
+			com_card_recharge A
+			INNER JOIN com_guest B ON A.guest_id = B.id
+			LEFT JOIN com_card_sell C ON C.id = A.card_sell_id 
+		WHERE
+			c.orgid = 2
+		<dynamic>
+			<isNotEmpty prepend="and" property="startDate"> 
+                DATE_FORMAT(A.recharge_date,'%Y-%m-%d') &gt;= #startDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate"> 
+                DATE_FORMAT(A.recharge_date,'%Y-%m-%d') &gt;= #endDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="cardNo"> 
+                b.card_no like '%$cardNo$%'
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName"> 
+                B.full_name like '%$guestFullName$%'
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="rechargeAmtStart"> 
+                A.recharge_amt &gt;= #rechargeAmtStart#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="rechargeAmtEnd"> 
+                A.recharge_amt &lt;= #rechargeAmtEnd#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAmtStart"> 
+                A.bala_amt &gt;= #balaAmtStart#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAmtEnd"> 
+                A.bala_amt &lt;= #balaAmtEnd#
+            </isNotEmpty>
+        </dynamic>
+    </select>
+    
+    
+    <select id="queryCustomerCarDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.orgid orgid,
+			a.service_id serviceId,
+			e.service_code serviceCode,
+			e.mt_advisor mtAdvisor,
+			b.car_no carNo,
+			b.car_brand_id carBrandId,
+			b.car_model carModel,
+			b.engine_no engineNo,
+			b.underpan_no underpanNo,
+			b.last_come_date lastComeDate,
+			b.last_leave_date lastLeaveDate,
+			b.chain_come_times chainComeTimes,
+			ifnull(DATEDIFF(b.last_leave_date,now()),0) leaveDay,
+			b.insure_due_date insureDueDate,
+			b.annual_inspection_date annualInspectionDate,
+			b.insure_comp_code insureCompCode,
+			b.produce_date produceDate,
+			b.color,
+			c.full_name guestFullName,
+			c.record_date recordDate
+		FROM
+			rps_repair_record a
+			LEFT JOIN rps_maintain e ON ( a.service_id = e.id )
+			LEFT JOIN rpb_car b ON e.car_id = b.id
+			LEFT JOIN wb_common.com_guest c ON c.id = b.guest_id
+			LEFT JOIN rpb_guest d ON d.id = b.guest_id 
+		WHERE
+			( a.orgid = #orgid# )
+		<dynamic>
+            <isEqual prepend="and" property="queryType" compareValue="3">
+			<!-- 流入车辆 -->
+                (
+				a.orgid &lt;&gt; prev_comp_code 
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="4">
+			<!-- 流出车辆 -->
+                (
+				a.orgid &lt;&gt; prev_comp_code and a.prev_comp_code = #orgid#
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="5">
+			<!-- 回流车辆 -->
+                (
+				prev_comp_code = a.orgid 
+				AND chain_status = 4 
+				AND leave_days &gt; 120 
+				AND enter_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 30 day)
+				AND #queryDate#
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="7">
+			<!-- 期初流失 -->
+                (
+				a.leave_date &lt; DATE_SUB(#queryDate#,INTERVAL 30 day)
+				AND DATEDIFF(a.leave_date, DATE_SUB(#queryDate#,INTERVAL 30 day)) &gt; 120 
+				AND a.orgid = ifnull( prev_comp_code, a.orgid )
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="8">
+			<!-- 期末流失 -->
+                (
+				a.leave_date &lt; #queryDate#
+				AND DATEDIFF(a.leave_date,DATE_SUB(#queryDate#,INTERVAL 30 data)) &gt; 120 
+				AND a.orgid = IFNULL( a.prev_comp_code, a.orgid )
+				) 
+            </isEqual>
+        </dynamic>
+			AND a.service_id IN (
+			SELECT
+				MAX( service_id ) 
+			FROM
+				rps_repair_record 
+			WHERE
+				( orgid = #orgid# ) 
+		<dynamic>
+			<isEqual prepend="and" property="queryType" compareValue="1">
+			<!-- 期初车辆 -->
+                (
+					enter_date BETWEEN DATE_SUB(#queryDate#, INTERVAL 150 DAY ) 
+					AND DATE_SUB(#queryDate#, INTERVAL 30 DAY ) 
+					OR leave_date BETWEEN DATE_SUB(#queryDate#, INTERVAL 150 DAY ) 
+					AND DATE_SUB(#queryDate#, INTERVAL 30 DAY ) 
+					OR (
+						enter_date &lt; DATE_SUB(#queryDate#, INTERVAL 150 DAY ) AND ( leave_date &gt; DATE_SUB(#queryDate#, INTERVAL 30 DAY ) 
+							OR leave_date IS NULL 
+						) 
+					) 
+				)
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="2">
+			<!-- 期末车辆 -->
+                (
+				enter_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 120 day)
+				AND #queryDate#
+				OR leave_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 120 day)
+				AND #queryDate#
+				OR ( enter_date &lt; DATE_SUB(#queryDate#,INTERVAL 120 day) AND ( leave_date &gt; #queryDate# OR leave_date IS NULL ) ) 
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="3">
+			<!-- 流入车辆 -->
+                (
+				enter_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 150 day)
+					AND #queryDate#
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="4">
+			<!-- 流出车辆 -->
+                (
+				enter_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 150 day)
+					AND #queryDate#
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="5">
+			<!-- 回流车辆 -->
+                (
+				enter_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 150 day)
+					AND #queryDate#
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="7">
+			<!-- 期初流失 -->
+                (
+				leave_date &lt; DATE_SUB(#queryDate#,INTERVAL 30 day)
+				) 
+            </isEqual>
+            <isEqual prepend="and" property="queryType" compareValue="8">
+			<!-- 期末流失 -->
+                (
+				leave_date &lt; #queryDate#
+				) 
+            </isEqual>
+        </dynamic>
+			GROUP BY
+			car_id 
+		)
+    </select>
+    
+    <select id="queryNewCustomerCarDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.orgid orgid,
+			a.service_id serviceId,
+			e.service_code serviceCode,
+			e.mt_advisor mtAdvisor,
+			b.car_no carNo,
+			b.car_brand_id carBrandId,
+			b.car_model carModel,
+			b.engine_no engineNo,
+			b.underpan_no underpanNo,
+			b.last_come_date lastComeDate,
+			b.last_leave_date lastLeaveDate,
+			b.chain_come_times chainComeTimes,
+			ifnull(DATEDIFF(b.last_leave_date,now()),0) leaveDay,
+			b.insure_due_date insureDueDate,
+			b.annual_inspection_date annualInspectionDate,
+			b.insure_comp_code insureCompCode,
+			b.produce_date produceDate,
+			b.color,
+			c.full_name guestFullName,
+			c.record_date recordDate
+		FROM
+			rps_repair_record a
+			LEFT JOIN rps_maintain e ON ( a.service_id = e.id )
+			LEFT JOIN rpb_car b ON e.car_id = b.id
+			LEFT JOIN wb_common.com_guest c ON c.id = b.guest_id
+			LEFT JOIN rpb_guest d ON d.id = b.guest_id 
+		WHERE
+			( a.orgid = #orgid# )
+			AND a.chain_status = 1 
+			AND a.enter_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 30 day)
+			AND #queryDate#
+    </select>
 </sqlMap>

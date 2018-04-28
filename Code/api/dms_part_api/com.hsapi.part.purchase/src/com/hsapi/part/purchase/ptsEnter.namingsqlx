@@ -140,6 +140,7 @@
 			d.unit unit,
 			a.prev_out_detail_id sourceId,
 			a.root_enter_detail_id rootId,
+			d.part_name_id partNameId,
 		(CASE
 			WHEN a.tax_sign = 0 THEN
 			a.no_tax_unit_price ELSE a.tax_unit_price 

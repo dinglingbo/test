@@ -13,7 +13,7 @@
     <targetConnections>link8</targetConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link13</targetConnections>
-    <location x="420" y="55"/>
+    <location x="536" y="55"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -27,7 +27,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="422" y="91"/>
+    <location x="538" y="91"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -47,7 +47,8 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="152" y="105"/>
+    <targetConnections>link1</targetConnections>
+    <location x="268" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -63,7 +64,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">storehouse/modifier</process:to>
     </process:copy>
     <process:copy>
@@ -72,7 +73,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="154" y="141"/>
+    <location x="270" y="141"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -83,7 +84,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="226" y="199"/>
+    <location x="342" y="199"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -99,11 +100,11 @@
       <process:to type="query">storehouse/isLock</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">storehouse/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">storehouse/recorder</process:to>
     </process:copy>
     <process:copy>
@@ -112,7 +113,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="224" y="235"/>
+    <location x="340" y="235"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -126,7 +127,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="330" y="195"/>
+    <location x="446" y="195"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -140,7 +141,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="309" y="231"/>
+    <location x="425" y="231"/>
     <figSize height="17" width="64"/>
     <node>invokePojo2</node>
   </nodes>
@@ -154,7 +155,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="229" y="28"/>
+    <location x="345" y="28"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -168,7 +169,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="204" y="64"/>
+    <location x="320" y="64"/>
     <figSize height="17" width="73"/>
     <node>invokePojo3</node>
   </nodes>
@@ -179,7 +180,7 @@
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link12</targetConnections>
-    <location x="264" y="97"/>
+    <location x="380" y="97"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -192,7 +193,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="262" y="133"/>
+    <location x="378" y="133"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -202,7 +203,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="120" y="199"/>
+    <location x="236" y="199"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -215,7 +216,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="89" y="235"/>
+    <location x="205" y="235"/>
     <figSize height="17" width="85"/>
     <node>invokePojo4</node>
   </nodes>
@@ -224,8 +225,18 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">orgid</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <location x="69" y="45"/>
+    <location x="120" y="105"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -238,9 +249,32 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="44" y="81"/>
+    <location x="95" y="141"/>
     <figSize height="17" width="72"/>
     <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="206" y="31"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:to type="query">userName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="204" y="67"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -254,6 +288,8 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.com.ComStore" name="storehouse"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="S/E" isArray="false" name="errCode" primitiveType="String"/>

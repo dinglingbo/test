@@ -292,6 +292,11 @@ function setData(data,ck)
     vinEl.setValue(vin);
     vinEl.doValueChanged();
 }
+function getItemKind(item_kind)
+{
+    item_kind = item_kind == 'JD' ? '040701' : item_kind == 'BJ' ? '040702' : item_kind == 'PQ' ? '040703' : item_kind == 'MR' ? '040705' : '040701';
+    return item_kind;
+}
 function doSelect(idx)
 {
     var result = {};
@@ -304,6 +309,8 @@ function doSelect(idx)
     else if(idx == 1){
         result.item = itemGrid.getSelected();
         row = result.item;
+        var item_kind = getItemKind(row.itemKind);
+        row.itemKind = item_kind
     }
     if(!row)
     {
@@ -318,8 +325,7 @@ function doSelect(idx)
             {
                 if(v.itemKind)
                 {
-                    var item_kind = v.itemKind;
-                    item_kind = item_kind == 'JD' ? '040701' : item_kind == 'BJ' ? '040702' : item_kind == 'PQ' ? '040703' : item_kind == 'MR' ? '040705' : '040701';
+                    var item_kind = getItemKind(v.itemKind);
                     v.itemKind = item_kind;
                 }
             });
@@ -332,7 +338,15 @@ function doSelect(idx)
             });
             result.itemList = itemList;
             result.partList = partList;
-            callback && callback(result);
+            callback && callback(result,function(){
+                nui.showTips({
+                    content: "<b>成功</b> <br/>套餐添加成功",
+                    state: "success",
+                    x: "center",
+                    y: "top",
+                    timeout: 3000
+                });
+            });
         };
         if(list.length > 0)
         {

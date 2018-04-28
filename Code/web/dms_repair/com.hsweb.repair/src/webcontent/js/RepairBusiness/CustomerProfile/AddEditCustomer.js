@@ -8,7 +8,7 @@ var carInfoFrom = null;
 var basicInfoForm = null;
 function init(callback)
 {
-    var addEditCustomerPage = nui.get("addEditCustomerPage");
+	var addEditCustomerPage = nui.get("addEditCustomerPage");
     basicInfoForm = new nui.Form("#basicInfoForm");
     contactInfoForm = new nui.Form("#contactInfoForm");
     carInfoFrom = new nui.Form("#carInfoFrom");
@@ -18,7 +18,7 @@ function init(callback)
     });
     var checkComplete = function()
     {
-        var keyList = ['getAllInsuranceCompany','getDictItems'];
+    	var keyList = ['initInsureComp','initDicts'];
         for(var i=0;i<keyList.length;i++)
         {
             if(!hash[keyList[i]])
@@ -31,39 +31,17 @@ function init(callback)
         addEditCustomerPage.unmask();
         callback && callback();
     };
-    getAllInsuranceCompany(function(data)
-    {
-        var insuranceList = data.list;
-        nui.get("insureCompCode").setData(insuranceList);
-        hash.getAllInsuranceCompany = true;
+    initInsureComp("insureCompCode",function(){
+        hash.initInsureComp = true;
         checkComplete();
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130722000001");//车辆规格
-    dictIdList.push("DDT20130722000002");//里程类别
-    dictIdList.push("DDT20130703000075");//客户来源
-    dictIdList.push("DDT20130703000077");//客户身份
-    dictIdList.push("DDT20130703000030");//性别
-    getDictItems(dictIdList,function(data)
-    {
-        var itemList = data.dataItems;
-        var carSpecList = itemList.filter(function(v){
-            return  "DDT20130722000001" == v.dictid;
-        });
-        nui.get("carSpec").setData(carSpecList);
-        var kiloTypeList = itemList.filter(function(v){
-            return  "DDT20130722000002" == v.dictid;
-        });
-        nui.get("kiloType").setData(kiloTypeList);
-        var sourceList = itemList.filter(function(v){
-            return  "DDT20130703000075" == v.dictid;
-        });
-        nui.get("source").setData(sourceList);
-        var identityList = itemList.filter(function(v){
-            return  "DDT20130703000077" == v.dictid;
-        });
-        nui.get("identity").setData(identityList);
-        hash.getDictItems = true;
+    initDicts({
+        carSpec:CAR_SPEC,//车辆规格
+        kiloType:KILO_TYPE,//里程类别
+        source:GUEST_SOURCE,//客户来源
+        identity:IDENTITY //客户身份
+    },function(){
+        hash.initDicts = true;
         checkComplete();
     });
 }
@@ -74,6 +52,7 @@ function updateCarBtnState()
 {
     var car = carList[currCarIdx];
     carInfoFrom.setData(car);
+    nui.get("carModelId").setText(car.carModel);
     if(car.id)
     {
         nui.get("carNo").disable();
@@ -194,6 +173,7 @@ var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.
 function onOk()
 {
     var guest = basicInfoForm.getData();
+    guest.guestType = "01020103";
     carList[currCarIdx] = carInfoFrom.getData();
     carList[currCarIdx].carModel = nui.get("carModelId").getText();
     var i,key,tmp;

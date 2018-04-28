@@ -8,43 +8,79 @@
 -->
 <head>
 <title>收支项目设置</title> 
+	<%@include file="/common/sysCommon.jsp" %>
+    <script src="<%=frmDomain%>/frm/js/setting/incomeExpenItem.js?v=1.0" type="text/javascript"></script>
 </head>
 <body>
+<div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
+    <table style="width:100%;">
+        <tr>
+            <td><!-- style="white-space:nowrap;"-->
+                <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
+                
+                <label style="font-family:Verdana;">项目名称：</label>
+                <input class="nui-textbox" name="name" id="name" enabled="true"/>
+                
+                <label style="font-family:Verdana;">助记码：</label>
+                <input class="nui-textbox" name="code" id="code" enabled="true"/>
+                <input name="itemTypeId"
+                    id="itemTypeId"
+                    visible="false"
+                    class="nui-combobox width2"
+                    textField="name"
+                    valueField="customid"
+                    emptyText="请选择..."
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
+                <input name="isPrimaryBusiness"
+                    id="isPrimaryBusiness"
+                    visible="false"
+                    class="nui-combobox width2"
+                    textField="text"
+                    valueField="value"
+                    data="const_yesno"
+                    emptyText="请选择..."
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
+                <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
+                
+                <li class="separator"></li>
+                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">新增</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">修改</a>
+                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="del()" id="del" enabled="true">删除</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
-
-<form id="form1" action="com.hsweb.frm.incomeExpenItem.flow"  method="post">
-	<h:hidden name="_eosFlowKey" property="_eosFlowKey"></h:hidden>
-	
-		
-	<table cellPadding="0" style="width:80%" class="pg_result" align="left" 
-
-cellSpacing="1" border="1">
-  		<tr bgcolor="#99FFFF"> 
-    		<td colspan="4" align="center">???????????</td>
-	    </tr>
-	    <tr bgcolor="#CCCCFF"> 
-	    	<td style="width:10%">???????</td>
-	    	<td style="width:10%">???????</td>
-	    	<td style="width:10%">????????</td>
-	    	<td style="width:25%">?????</td>
-	    </tr>
-	    
-	    
-  </table>
-  <input id="action" type="hidden" name="_eosFlowAction" value="action1">
-  
-  	<script type="text/javascript">
-		function selectAction(action){			
-			document.getElementById("action").value=action;
-			document.getElementById("form1").submit();
-		}		
-	</script>
-	
-  <input type="button" align="left" value="??"  onclick="selectAction('action1');">
-</form>
-
-
-
-
+<div class="nui-fit">
+        <div class="nui-fit">
+            <div id="dgGrid" class="nui-treegrid" style="width:100%;height:100%;"
+                 showPager="true" pageSize="10" sizeList="[10,20,50]" allowAlternating="true"
+                 multiSelect="true"
+                 url="<%=apiPath + frmApi%>/com.hsapi.frm.setting.queryIncomeExpenItem.biz.ext"
+                 onselectionchanged="onDictTypeSelected" ondrawnode="onDictTypeDrawNode"
+                 onload="onDictTypeLoad"
+                 dataField="data" idField="id" treeColumn="name" parentField="parentId">
+                <div property="columns" width="20">
+                    <div type="checkcolumn" width="10%"></div>
+                    <div field="orgid"  visible="false" headerAlign="center" width="20%">所属机构</div>
+                    <div field="name" allowSort="true" headerAlign="center" width="20%">项目名称</div>
+                    <div field="code" allowSort="true" headerAlign="center" width="20%">助记码</div>
+                    <div field="itemTypeId" allowSort="true" headerAlign="center" width="25%">收支类型</div>
+                    <div field="parentName" allowSort="true" headerAlign="center" width="20%">上级项目</div>
+                    <div field="parentId" allowSort="true" headerAlign="center" width="20%" visible="false">上级ID</div>
+                    <div field="isPrimaryBusiness" allowSort="true" headerAlign="center" width="20%">主营业务</div>
+                </div>
+            </div>
+        </div>
+    <!--
+    </div>
+    -->
+</div>
 </body>
 </html>

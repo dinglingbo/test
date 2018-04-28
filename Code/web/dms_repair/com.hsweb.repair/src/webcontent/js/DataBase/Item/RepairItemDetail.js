@@ -33,19 +33,9 @@ function init(callback)
 	carBrandIdEl.on("valuechanged",function()
 	{
 		var carBrandId = carBrandIdEl.getValue();
-		if(carModelIdHash[carBrandId])
-		{
-			carModelIdEl.setData(carModelIdHash[carBrandId]);
-		}
-		else
-		{
-			getCarModelByBrandId(carBrandId,function(data)
-			{
-				var list = data.list||[];
-				carModelIdHash[carBrandId] = list;
-				carModelIdEl.setData(carModelIdHash[carBrandId]);
-			});
-		}
+		getCarModel("carModelId",{
+			value:carBrandId
+		});
 	});
 	var elList = basicInfoForm.getFields();
 	var nameList = ["itemTime","unitPrice","deductAmt","amt"];

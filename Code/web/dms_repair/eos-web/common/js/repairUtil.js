@@ -1,7 +1,32 @@
 
+
+
+
 /**
  * 
  */
+var SERVICE_TYPE = "DDT20130703000055";//业务类型
+var MT_TYPE_1 = "DDT20130705000002";//维修类型，普通
+var MT_TYPE_2 = "DDT20130705000003";//维修类型，事故
+var GUEST_SOURCE = "DDT20130703000075";//客户来源
+var NO_MT_TYPE_1 = "DDT20130705000008";//未修类型1,流失主要原因
+var NO_MT_TYPE_2 = "DDT20130705000009";//未修类型2,流失未修次要原因
+var ITEM_KIND = "DDT20130703000057";//工种
+var BOOK_STATUS = "DDT20130703000059";//预约状态
+var PREBOOK_CATEGORY = "DDT20140315000001";//预约分类,
+var PREBOOK_ITEM = "DDT20130705000001";//预约项目
+var SCOUT_MODE = "DDT20130703000021";//跟进方式
+var IS_USABLED = "DDT20130703000081";//跟踪状态
+var RECE_TYPE_1 = "DDT20130706000013";//收费类型,收费
+var RECE_TYPE_2 = "DDT20130706000014";//收费类型,免费
+var CLAIMS_TYPE = "DDT20150726000001";//索赔类型
+var PKG_TYPE = "DDT20130706000017";//维修套餐类别
+var CAR_SPEC = "DDT20130722000001";//车辆规格
+var KILO_TYPE = "DDT20130722000002";//里程类别
+var IDENTITY = "DDT20130703000077";//客户身份
+var INSURANCE_TYPE = "DDT20140427000001";//保险销售分类
+var INSURANCE_DETAIL = "DDT20130703000028";//险种
+var ENTER_OIL_MASS = "DDT20130703000051";//进厂油量
 function doPost(opt) {
 	var url = opt.url;
 	var data = opt.data;
@@ -9,6 +34,7 @@ function doPost(opt) {
 	};
 	var error = opt.error || function() {
 	};
+	data.userId = currUserId;
 	data.orgid = currOrgid;
 	data.userName = currUserName;
 	data.token = token;
@@ -322,7 +348,7 @@ function getDeductRate(itemKindList, callback) {
 		}
 	});
 }
-var getCarVinModelUrl = window._rootUrl
+var getCarVinModelUrl = window._rootSysUrl
 		+ "com.hsapi.system.product.cars.carVinModel.biz.ext";
 function getCarVinModel(vin, callback) {
 	var params = {};
@@ -341,7 +367,9 @@ function getCarVinModel(vin, callback) {
 		}
 	});
 }
-var dictField = ["receTypeId","mtType","itemKind","serviceTypeId","guestSource"];
+var dictField = ["prebookCategory","prebookItem","insuranceId","type","claimsType","bookStatus","receTypeId","mtType","itemKind","serviceTypeId","guestSource","scoutMode","isUsabled","noMtType"];
+dictField.push("insuranceType");
+var insureField = ["insureCompCode","insuranceSaliComany","insuranceBizComany"];
 function onDrawCell(e) {
 	var hash = _initDmsHash || {};
 	var field = e.field;
@@ -358,9 +386,87 @@ function onDrawCell(e) {
 		var comp = hash.comp || {};
 		comp[value] && (e.cellHtml = comp[value].orgname);
 	}
-	else if(field == "insureCompCode")
+	else if (insureField.indexOf(field) > -1)
 	{
 		var insureComp = hash.insureComp || {};
 		insureComp[value] && (e.cellHtml = insureComp[value].fullName);
 	}
+}
+function getDate(type)
+{
+	var now = (new Date(currentTimeMillis));
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var date = now.getDate();
+    var startDate,endDate;
+    switch(type)
+    {
+    	case 0://本日
+    		startDate = new Date(now);
+            endDate = new Date(now);
+    		break;
+    	case 1://昨日
+    		startDate = new Date(now);
+    		startDate.setDate(startDate.getDate()-1);
+            endDate = startDate;
+    		break;
+    	case 2://本周
+    		startDate = new Date(now);
+    		startDate.setDate(startDate.getDate()-startDate.getDay());
+            endDate = new Date(now);
+            endDate.setDate(endDate.getDate()-endDate.getDay()+6);
+    		break;
+    	case 3://上周
+    		startDate = new Date(now);
+    		startDate.setDate(startDate.getDate()-startDate.getDay()-7);
+    		endDate = new Date(now);
+    		endDate.setDate(endDate.getDate()-endDate.getDay()-1);
+    		break;
+        case 4://本月
+            startDate = new Date(year,month,1);
+            endDate = new Date(year,month+1,0);
+            break;
+        case 5://上月
+            startDate = new Date(year,month-1,1);
+            endDate = new Date(year,month,0);
+            break;
+        case 6://本年
+            startDate = new Date(year,0,1);
+            endDate = new Date(year,12,0);
+            break;
+        case 7://上年
+        	startDate = new Date(year-1,0,1);
+            endDate = new Date(year-1,12,0);
+            break;
+    }
+    return {
+    	startDate:startDate,
+    	endDate:endDate
+    };
+}
+function SelectCustomer(params)
+{
+    nui.open({
+        url: window._webRepairUrl+"com.hsweb.RepairBusiness.Customer.flow",
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                var name = guest.guestFullName;
+                for(var key in params)
+                {
+                    if(params[key] && nui.get(params[key]))
+                    {
+                        nui.get(params[key]).setValue(guest[key]);
+                    }
+                }
+                var tmp = nui.get(params["guestId"]);
+                tmp && tmp.setText && tmp.setText(name);
+            }
+        }
+    });
 }

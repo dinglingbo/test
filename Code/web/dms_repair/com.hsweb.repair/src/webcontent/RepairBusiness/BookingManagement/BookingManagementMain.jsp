@@ -11,7 +11,7 @@
 -->
 <head>
 <title>预约管理</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementMain.js?v=1.0.12"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementMain.js?v=1.0.21"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -29,6 +29,9 @@ table {
 
 </head>
 <body>
+<input id="scoutMode" class="nui-combobox" visible="false"/>
+<input id="isUsabled" class="nui-combobox" visible="false"/>
+<input id="bookStatus" class="nui-combobox" visible="false"/>
 <div class="nui-toolbar" style="border-bottom:0;">
     <div class="nui-form1" id="queryForm">
         <table class="table" id="table1">
@@ -42,11 +45,11 @@ table {
                     <label>车牌号：</label>
                     <input class="nui-textbox" name="carNo"/>
                     <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                    <a class="nui-button" plain="true" onclick="onMore()">更多</a>
+                    <a class="nui-button" onclick="advancedSearch()" plain="true">更多</a>
                     <span class="separator"></span>
                     <label>仅显示本人预约</label>
                     <div class="nui-checkbox" name="showMeOnly" id="showMeOnly" trueValue="1" falseValue="0" value="1"></div>
-                </td>
+    </td>
             </tr>
         </table>
     </div>
@@ -71,22 +74,24 @@ table {
     <div class="nui-splitter" style="width: 100%; height: 100%;"
          borderStyle="border:0"
          allowResize="false">
-        <div size="250" showCollapseButton="false" style="border:0;">
+        <div size="300" showCollapseButton="false" style="border:0;">
             <div class="nui-fit">
                 <div id="leftGrid" class="nui-datagrid"
                      style="width: 100%; height: 100%;"
                      pageSize="20"
                      dataField="list"
                      showPageSize="false"
+                     selectOnLoad="true"
+                     sortMode="client"
                      showReloadButton="false" showPagerButtonIcon="true"
-                     totalCount="page.count"
+                     totalField="page.count"
                      allowSortColumn="true">
                     <div property="columns">
                         <div field="carNo" headerAlign="center" allowSort="true"
-                             visible="true" width="30%">车牌号
+                             visible="true" width="">车牌号
                         </div>
-                        <div field="bookStatusName" headerAlign="center" allowSort="true"
-                             visible="true" width="30%">预约状态
+                        <div field="bookStatus" headerAlign="center" allowSort="true"
+                             visible="true" width="">预约状态
                         </div>
                         <div field="predictComeDate" headerAlign="center"
                              dateFormat="yyyy-MM-dd"
@@ -119,7 +124,7 @@ table {
                                 </td>
                                 <td>
                                     <input class="nui-combobox" name="carBrandId" id="carBrandId"
-                                           textField="carBrandZh"
+                                           textField="nameCn"
                                            valueField="id"/>
                                 </td>
                             </tr>
@@ -130,8 +135,8 @@ table {
                                 <td colspan="5">
                                     <input class="nui-combobox"
                                            width="100%"
-                                           textField="name"
-                                           valueField="id"
+                                           textField="carModel"
+                                           valueField="carModelId"
                                            id="carSeriesId"
                                            name="carSeriesId"/>
                                 </td>
@@ -237,11 +242,11 @@ table {
                                              dateFormat="yyyy-MM-dd"
                                              allowSort="true" visible="true" width="100">跟踪日期
                                         </div>
-                                        <div field="scoutModeName"
+                                        <div field="scoutMode"
                                              headerAlign="center" allowSort="true" visible="true"
                                              width="100">跟踪方式
                                         </div>
-                                        <div field="isUsabledName" headerAlign="center"
+                                        <div field="isUsabled" headerAlign="center"
                                              allowSort="true" visible="true" width="100">跟踪结果
                                         </div>
                                         <div field="nextScoutDate" headerAlign="center"
@@ -262,6 +267,67 @@ table {
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div id="advancedSearchWin" class="nui-window"
+     title="高级查询" style="width:416px;height:180px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="false">
+    <div id="advancedSearchForm" class="form">
+        <table style="width:100%;">
+            <tr>
+                <td class="form_label">预计来厂 从:</td>
+                <td>
+                    <input name="startDate"
+                           width="100%"
+                           allowInput="false"
+                           class="nui-datepicker"/>
+                </td>
+                <td class="form_label">至:</td>
+                <td>
+                    <input name="endDate"
+                           class="nui-datepicker"
+                           format="yyyy-MM-dd"
+                           timeFormat="H:mm:ss"
+                           showTime="false"
+                           allowInput="false"
+                           showOkButton="false"
+                           width="100%"
+                           showClearButton="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form_label">品牌:</td>
+                <td colspan="1">
+                    <input class="nui-combobox" name="carBrandId"
+                           valueField="id" textField="nameCn"
+                           id="carBrandId-ad"/>
+                </td>
+                <td class="form_label">车牌号:</td>
+                <td colspan="1">
+                    <input class="nui-textbox" name="carNo"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form_label">预约类型:</td>
+                <td colspan="1">
+                    <input class="nui-combobox" name="prebookItem"
+                           valueField="customid" textField="name"
+                           id="prebookItem-ad"/>
+                </td>
+                <td class="form_label">车牌号:</td>
+                <td colspan="1">
+                    <input class="nui-textbox" name="carNo"/>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align:center;padding:10px;">
+            <a class="nui-button" onclick="onAdvancedSearchClear" style="width:60px;margin-right:20px;">清除</a>
+            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
+            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
         </div>
     </div>
 </div>

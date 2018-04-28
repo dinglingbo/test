@@ -512,7 +512,7 @@
 			c.name carTypeNameF,
 			b.car_type_id_s carTypeIdS,
 			b.car_type_id_t carTypeIdT,
-			e.ORGNAME orgName,
+			a.orgid orgid,
 			b.common_code commonCode,
 			f.name qualityTypeName,
 			f.name partBrandName
@@ -520,7 +520,6 @@
 			pts_cyc_store a
 			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id ) 
 			LEFT JOIN wb_common.com_part_type c on ( b.car_type_id_f = c.id)
-			LEFT JOIN dms_system.org_organization e on (a.orgid = e.ORGID)
 			left join wb_common.com_part_brand f on (b.quality_type_id = f.id)
 			left join wb_common.com_part_brand g on (b.part_brand_id = f.id)
 		WHERE
@@ -567,9 +566,6 @@
             <!--低于下限-->
                 (a.stock_qty &lt; ifnull(a.stock_down_limit,0))
             </isNotEmpty>
-            <isNotEmpty prepend="order by" property="sortField">  
-                $sortField$ $sortOrder$
-            </isNotEmpty>  
         </dynamic>  
     </select>
 </sqlMap>

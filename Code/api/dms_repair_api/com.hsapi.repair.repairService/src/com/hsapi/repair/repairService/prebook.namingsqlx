@@ -11,13 +11,14 @@
 		SELECT
 			a.id id,
 			a.car_no carNo,
-			b.NAME bookStatusName,
+			a.book_status bookStatus,
+			a.contactor_id contactorId,
 			a.predict_come_date predictComeDate
 		FROM
 			rps_prebook a
-			LEFT JOIN wb_common.com_dataitems b ON ( a.book_status = b.customid )
 		WHERE
 			a.orgid = #orgid#
+			and a.book_status = '040901'
 		<dynamic>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 
@@ -46,14 +47,10 @@
 			a.scout_date scoutDate,
 			a.next_scout_date nextScoutDate,
 			a.scout_mode scoutMode,
-			b.name scoutModeName,
 			a.is_usabled isUsabled,
-			c.name isUsabledName,
 			a.scout_content scoutContent
 		FROM
 			rps_prebook_tel_scout a
-			left join wb_common.com_dataitems b on (a.scout_mode = b.customid)
-			left join wb_common.com_dataitems c on (a.is_usabled = c.customid)
 		WHERE
 			a.service_id = #serviceId#
 	</select>

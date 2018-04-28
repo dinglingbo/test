@@ -21,17 +21,19 @@ $(document).ready(function ()
 });
 function init(callback)
 {
-    claimsItemGrid = nui.get("claimsItemGrid");
+	claimsItemGrid = nui.get("claimsItemGrid");
     claimsItemGrid.setUrl(claimsItemGridUrl);
+    claimsItemGrid.on("drawcell",onDrawCell);
     claimsPartGrid = nui.get("claimsPartGrid");
     claimsPartGrid.setUrl(claimsPartGridUrl);
+    claimsPartGrid.on("drawcell",onDrawCell);
     basicInfoForm = new nui.Form("#basicInfoForm");
     var hash = {};
     nui.mask({
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDictItems','getAllCarBrand','getDatadictionaries2',"getDeductRate"];
+        var keyList = ['initDicts','initCarBrand','getDatadictionaries',"getDeductRate"];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -54,47 +56,24 @@ function init(callback)
         hash.getDeductRate = true;
         checkComplete();
     });
-    var pId2 = "DDT20130703000057";
+    var pId2 = ITEM_KIND;
     getDatadictionaries(pId2, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            itemKindHash[v.customid] = v;
-        });
-        hash.getDatadictionaries2 = true;
+        hash.getDatadictionaries = true;
         checkComplete();
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130706000013");//收费类型
-    dictIdList.push("DDT20130706000014");//收费类型
-    dictIdList.push("DDT20150726000001");//索赔类型
-    getDictItems(dictIdList, function (data) {
-        data = data || {};
-        var itemList = data.dataItems || [];
-        var receTypeList = itemList.filter(function (v)
-        {
-            if("DDT20130706000013" == v.dictid || "DDT20130706000014" == v.dictid)
-            {
-                receTypeHash[v.customid] = v;
-                return true;
-            }
-        });
-        var claimsTypeList = itemList.filter(function (v) {
-            return "DDT20150726000001" == v.dictid;
-        });
-        nui.get("claimsType").setData(claimsTypeList);
-        hash.getDictItems = true;
+    initDicts({
+        receType1:RECE_TYPE_1,//收费类型,收费
+        receType2:RECE_TYPE_2,//收费类型,免费
+        claimsType:CLAIMS_TYPE//索赔类型
+    },function(){
+        hash.initDicts = true;
         checkComplete();
     });
-    getAllCarBrand(function(data)
+    initCarBrand("carBrandId",function()
     {
-        data = data||{};
-        var carBrandList = data.carBrands||[];
-        //carBrandList.forEach(function (v) {
-        //    carBrandHash[v.id] = v;
-        //});
-        nui.get("carBrandId").setData(carBrandList);
-        hash.getAllCarBrand = true;
+        hash.initCarBrand = true;
         checkComplete();
     });
 }
@@ -171,17 +150,6 @@ function loadRpsPartData() {
         token:token,
         params: params
     });
-}
-function onDrawCell(e)
-{
-    var field = e.field;
-    if(field == "receTypeId" && receTypeHash[e.value])
-    {
-        e.cellHtml = receTypeHash[e.value].name;
-    }
-    else if (field == "itemKind" && itemKindHash[e.value]) {
-        e.cellHtml = itemKindHash[e.value].name;
-    }
 }
 function delItem()
 {
@@ -497,6 +465,7 @@ function claimsSett(claimMain)
     nui.mask({
         html: '过账中..'
     });
+
     var Url = baseUrl + "com.hsapi.repair.repairService.claims.claimsSett.biz.ext";
     doPost({
         url: Url,
@@ -516,7 +485,32 @@ function claimsSett(claimMain)
             {
                 if(main.balanceAmt>0)
                 {
-                    nui.alert("已经生成应付帐款单。xxx");
+                    var params = {
+                        rpType: -1,
+                        guestId: claimMain.guestId,
+                        guestFullName: claimMain.guestFullName,
+                        serviceId: claimMain.id,
+                        serviceCode: claimMain.serviceCode,
+                        serviceTypeId: "02020220",
+                        rpAmt: claimMain.balanceAmt,
+                        billAmt: 0,
+                        remark: claimMain.remark,
+                        isPrimaryBusiness: 1,
+                        rpAmtYes: 0,
+                        rpAmtNo: claimMain.balanceAmt
+                    };
+                    spRpAccountPost(params,function(data)
+                    {
+                        data = data||{};
+                        if(data.errCode == "S")
+                        {
+                            nui.alert("已经生成应付帐款单。");
+                        }
+                        else{
+                            nui.alert("生成应付帐款单失败。");
+                        }
+                    });
+
                 }
                 else{
                     nui.alert("已经生成应付帐款单。");
@@ -530,6 +524,34 @@ function claimsSett(claimMain)
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
             nui.unmask();
+        }
+    });
+}
+function spRpAccountPost(params,callback)
+{
+    var url = window._rootFrmUrl+"com.hsapi.frm.arap.createArapService.biz.ext";
+    doPost({
+        url:url,
+        data:{
+            data:params
+        },
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                callback && callback();
+            }
+            else{
+                console.log(data.errMsg);
+                nui.alert("提交失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+            nui.unmask();
+            nui.alert("网络出错");
         }
     });
 }

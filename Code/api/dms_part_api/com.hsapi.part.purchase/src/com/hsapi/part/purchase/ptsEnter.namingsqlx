@@ -109,4 +109,95 @@
 		    ON A.ID = B.ENTER_ID
 		 WHERE A.ID = #enterId#
 	</select>
+	
+	
+	<select id="queryEnterStockList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			b.store_id storeId,
+			b.guest_id guestId,
+			b.guest_full_name guestFullName,
+			a.detail_id detailId,
+			a.part_id partId,
+			d.CODE partCode,
+			d.NAME partName,
+			d.full_name partFullName,
+			d.apply_carbrand_id carBrandId,
+			d.quality_type_id qualityTypeId,
+			d.part_brand_id partBrandId,
+			d.produce_type_id produceTypeId,
+			d.produce_factory produceFactory,
+			d.common_code commonCode,
+			d.apply_car_model carModel,
+			d.apply_car_model applyCarModel,
+			d.part_type_id partTypeId,
+			a.outable_qty outableQty,
+			a.no_tax_unit_price noTaxUnitPrice,
+			a.tax_unit_price taxUnitPrice,
+			a.tax_sign taxSign,
+			c.stock_location stockLocation,
+			CEILING( CASE WHEN c.suggest_price = 0 THEN a.suggest_price ELSE c.suggest_price END ) suggestPrice,
+			c.suggest_price assignPrice,
+			d.unit unit,
+			a.prev_out_detail_id sourceId,
+			a.root_enter_detail_id rootId,
+			d.part_name_id partNameId,
+		(CASE
+			WHEN a.tax_sign = 0 THEN
+			a.no_tax_unit_price ELSE a.tax_unit_price 
+			END) price,
+			a.remark AS detailRemark,
+			b.remark remark 
+		FROM
+			pts_enter_detail a
+			INNER JOIN pts_enter_main b ON a.enter_id = b.id
+			INNER JOIN pts_cyc_org c ON a.part_id = c.part_id 
+			AND b.orgid = c.orgid
+			INNER JOIN wb_common.com_attribute d ON d.id = a.part_id 
+		WHERE
+			b.orgid = #orgid#
+			AND a.outable_qty &gt; 0 
+			AND b.bill_status &lt;&gt; 0
+		<dynamic>
+			<isNotEmpty prepend="and" property="storeId">  
+                (b.store_id = #storeId#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="carBrand">  
+                (d.apply_carbrand_id = #carBrand#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="storeLocation">  
+                (c.stock_location = #storeLocation#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="enterCode">  
+                 (b.enter_code like '%$enterCode$')
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="endOfCode">  
+                (d.CODE like '%$endOfCode$')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (d.NAME like '%$name$%' or d.full_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">  
+                (d.NAME like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (d.CODE like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="py">  
+                (d.name_py like '%$py$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">  
+                (d.apply_car_model like '%$carModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="remark1">  
+                (a.remark like '%$remark1$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                (d.CODE in ($partCodeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(a.record_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty> 
+        </dynamic>
+	</select>
 </sqlMap>

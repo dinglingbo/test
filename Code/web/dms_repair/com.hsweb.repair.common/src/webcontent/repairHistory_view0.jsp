@@ -9,7 +9,7 @@
 -->
 <head>
 <title>维修历史</title>
-<script src="<%=request.getContextPath()%>/commonRepair/js/repairHistory.js?v=1.0.7"></script>
+<script src="<%=request.getContextPath()%>/commonRepair/js/repairHistory.js?v=1.1.0"></script>
 <style type="text/css">
 
 .form_label {
@@ -94,7 +94,7 @@
                     <label>来厂次数：</label>
                 </td>
                 <td>
-                    <input class="nui-textbox" name="comeTime"/>
+                    <input class="nui-textbox" name="chainComeTimes"/>
                 </td>
                 <td class="form_label">
                     <label>客户备注：</label>

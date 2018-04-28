@@ -60,7 +60,7 @@
                         <!--style=" margin-top:10px; width: 100%; height: 160px;"-->
                         <textarea id="content" 
                             name="content" 
-                            class="mini-textarea width6" 
+                            class="nui-textarea width6" 
                             style="height: 160px;" 
                             emptyText="请输入话术内容"
                             required="true">
@@ -90,8 +90,8 @@
             </div>
         </fieldset>
         <div style="text-align:center;padding:10px;">
-            <a id="save" class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+            <a id="save" class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
+            <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
         </div>
     </form>
 </body>

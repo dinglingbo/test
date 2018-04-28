@@ -18,39 +18,42 @@ var carBrandIdEl = null;
 var carSeriesIdEl = null;
 var carSeriesIdHash = {};
 var queryForm = null;
+var advancedSearchWin = null;
+var advancedSearchForm = null;
+var advancedSearchFormData = null;
 function init(callback)
 {
+	advancedSearchWin = nui.get("advancedSearchWin");
+	advancedSearchForm = new nui.Form("#advancedSearchWin");
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("load",function(){
+        var row = leftGrid.getSelected();
+        if(row)
+        {
+            onLeftGridRowDblClick({
+                record:row
+            });
+        }
+    });
     leftGrid.on("rowdblclick",function(e)
     {
         onLeftGridRowDblClick(e);
     });
+    leftGrid.on("drawcell",onDrawCell);
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("drawcell",onDrawCell);
     basicInfoForm = new nui.Form("#basicInfoForm");
     queryForm = new nui.Form("#queryForm");
     carBrandIdEl = nui.get("carBrandId");
     carSeriesIdEl = nui.get("carSeriesId");
     carBrandIdEl.on("valuechanged",function()
     {
-        var carBrandId = carBrandIdEl.getValue();
-        console.log(carBrandId);
-        if(carSeriesIdHash[carBrandId])
-        {
-         //   console.log(carSeriesIdHash[carBrandId]);
-            carSeriesIdEl.setData(carSeriesIdHash[carBrandId]);
-        }
-        else
-        {
-         //   console.log("getCarSeriesByBrandId");
-            getCarSeriesByBrandId(carBrandId,function(data)
-            {
-                var list = data.list||[];
-                carSeriesIdHash[carBrandId] = list;
-                carSeriesIdEl.setData(carSeriesIdHash[carBrandId]);
-            });
-        }
+    	var carBrandId = carBrandIdEl.getValue();
+        getCarModel("carSeriesId",{
+            value:carBrandId
+        });
     });
     var hash = {};
     nui.mask({
@@ -58,7 +61,7 @@ function init(callback)
     });
     var checkComplete = function()
     {
-        var keyList = ['getAllCarBrand','getDictItems'];
+        var keyList = ['initCarBrand','initDicts'];
         for(var i=0;i<keyList.length;i++)
         {
             if(!hash[keyList[i]])
@@ -69,29 +72,23 @@ function init(callback)
         nui.unmask();
         callback && callback();
     };
-    getAllCarBrand(function(data)
+    initCarBrand("carBrandId",function()
     {
-        var list = data.carBrands;
-        carBrandIdEl.setData(list);
-        hash.getAllCarBrand = true;
+    	var list = nui.get("carBrandId").getData();
+        nui.get("carBrandId-ad").setData(list);
+        hash.initCarBrand = true;
         checkComplete();
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130705000001");//预约项目
-    dictIdList.push("DDT20140315000001");//预约分类
-    getDictItems(dictIdList,function(data)
-    {
-        data = data||{};
-        var itemList = data.dataItems||[];
-        var prebookItemList = itemList.filter(function(v){
-            return  "DDT20130705000001" == v.dictid;
-        });
-        nui.get("prebookItem").setData(prebookItemList);
-        var prebookCategoryList = itemList.filter(function(v){
-            return  "DDT20140315000001" == v.dictid;
-        });
-        nui.get("prebookCategory").setData(prebookCategoryList);
-        hash.getDictItems = true;
+    initDicts({
+        scoutMode: SCOUT_MODE,//跟进方式
+        isUsabled: IS_USABLED,//跟踪状态
+        prebookItem: PREBOOK_ITEM,//预约项目
+        prebookCategory: PREBOOK_CATEGORY,//预约分类,
+        bookStatus:BOOK_STATUS //预约状态
+    },function(){
+    	var list = nui.get("prebookItem").getData();
+        nui.get("prebookItem-ad").setData(list);
+        hash.initDicts = true;
         checkComplete();
     });
 }
@@ -215,18 +212,24 @@ function getPrebookById(id,callback)
         }
     });
 }
-function history() {
+function history() 
+{
+	var row = leftGrid.getSelected();
+	if(!row || !row.guestId)
+    {
+        return;
+    }
     nui.open({
-        url: "../../common/History.jsp",
+        url: "com.hsweb.repair.common.repairHistory.flow",
         title: "维修历史", width: 850, height: 640,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var data = {pageType: "history"};
-            iframe.contentWindow.setData(data);
+            var params = {
+            	guestId:row.guestId
+            };
+            iframe.contentWindow.setData(params);
         },
-
         ondestroy: function (action) {
-            grid.reload();
         }
     });
 }
@@ -248,6 +251,10 @@ function onMore() {
 function fllowUp()
 {
     var prebook = basicInfoForm.getData();
+    if(!prebook.id)
+    {
+        return;
+    }
     prebook.carNo = nui.get("carId").getText();
     prebook.carBrandName = nui.get("carBrandId").getText();
     prebook.carSeriesName = nui.get("carSeriesId").getText();
@@ -271,22 +278,63 @@ function fllowUp()
         }
     });
 }
-
-function quote() {
-    nui.open({
-        url: "../../common/subpage/customerSubpage/AddEditCustomer.jsp",
-        title: "客户资料", width: 450, height: 650,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var data = {pageType: "add"};
-            iframe.contentWindow.setData(data);
-        },
-
-        ondestroy: function (action) {
-            grid.reload();
-        }
+function getMaintainServiceCode(callback)
+{
+    callback = callback||function(){};
+    var billTypeCode = "BJD";
+    getCompBillNO(billTypeCode,function(data)
+    {
+        data = data||{};
+        var code = data.serviceno;
+        callback && callback({
+            code:code
+        });
     });
-
+}
+function quote()
+{
+    var prebook = basicInfoForm.getData();
+    if(!prebook.id && prebook)
+    {
+        return;
+    }
+    nui.mask({
+        html: '保存中..'
+    });
+    getMaintainServiceCode(function (data) {
+        var code = data.code;
+        if (!code) {
+            nui.unmask();
+            nui.alert("获取单号失败");
+            return;
+        }
+        var params = {};
+        params.serviceCode = code;
+        params.id = prebook.id;
+        var url = baseUrl+"com.hsapi.repair.repairService.crud.prebookTransToQuote.biz.ext";
+        doPost({
+            url: url,
+            data:params,
+            success: function (data) {
+                nui.unmask();
+                data = data||{};
+                if(data.errCode == "S")
+                {
+                    nui.alert("转入报价成功");
+                    reload();
+                }
+                else{
+                    nui.alert(data.errMsg||"转入报价失败");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //  nui.alert(jqXHR.responseText);
+                nui.unmask();
+                console.log(jqXHR.responseText);
+                nui.alert("网络出错，转入报价失败");
+            }
+        });
+    });
 }
 function selectCar()
 {
@@ -317,6 +365,9 @@ function selectCar()
 }
 function reload()
 {
+	resetBtn();
+    basicInfoForm.clear();
+    rightGrid.clearRows();
     leftGrid.reload();
 }
 function add()
@@ -424,4 +475,42 @@ function getServiceCode(callback)
             code:code
         });
     });
+}
+
+function advancedSearch()
+{
+    advancedSearchWin.show();
+}
+function onAdvancedSearchOk()
+{
+    var searchData = advancedSearchForm.getData();
+    var i,tmpList;
+    if(!searchData.startDate || !searchData.endDate)
+    {
+        nui.alert("结算起始日期和终止日期不能为空");
+        return;
+
+    }
+    searchData.startDate = searchData.startDate.substr(0,10);
+    searchData.endDate = searchData.endDate.substr(0,10);
+    if(searchData.serviceCodeList)
+    {
+        tmpList = searchData.serviceCodeList.split("\n");
+        for(i=0;i<tmpList.length;i++)
+        {
+            tmpList[i] = "'"+tmpList[i]+"'";
+        }
+        searchData.serviceCodeList = tmpList.join(",");
+    }
+    advancedSearchWin.hide();
+    searchData = getAnayType(searchData);
+    doSearch(searchData);
+}
+function onAdvancedSearchCancel()
+{
+    advancedSearchWin.hide();
+}
+function onAdvancedSearchClear()
+{
+    advancedSearchForm.clear();
 }

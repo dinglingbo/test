@@ -55,7 +55,7 @@
                         <span class="title title-width1 required">短信内容：</span>
                         <textarea id="content" 
                             name="content" 
-                            class="mini-textarea width6" 
+                            class="nui-textarea width6" 
                             onValuechanged="setCharCount()"
                             onKeyup="content.doValueChanged()"
                             style="height: 160px;" 
@@ -91,8 +91,8 @@
             </div>
         </fieldset>
         <div style="text-align:center;padding:10px;">
-            <a id="save" class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+            <a id="save" class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
+            <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
         </div>
     </form>
 </body>

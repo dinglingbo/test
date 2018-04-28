@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修接待</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.4"></script>
 <style type="text/css">
 
 .form_label {
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div showCollapseButton="false" style="border: 0;">
-            <div id="mainTabs" class="nui-tabs" activeIndex="2" style="width: 100%; height: 100%;" plain="false">
+            <div id="mainTabs" class="nui-tabs" activeIndex="0" style="width: 100%; height: 100%;" plain="false">
                 <div title="基本信息">
                     <div class="nui-form" id="basicInfoForm">
                         <input class="nui-hidden" name="id"/>
@@ -372,7 +372,7 @@
                                      style="width: 100%; height: 100%;"
                                      borderStyle="border:0"
                                      pageSize="50"
-                                     multiSelect="true"
+                                     totalField="page.count"
                                      showPageSize="true"
                                      allowSortColumn="true"
                                      selectOnLoad="true"
@@ -796,7 +796,7 @@
                                 <tr>
                                     <td style="white-space:nowrap;">
                                         <label style="font-family:Verdana;">尾号：</label>
-                                        <input class="nui-textbox" width="100" name="partId"/>
+                                        <input class="nui-textbox" width="100" name="endOfCode"/>
                                         <label style="font-family:Verdana;">简称：</label>
                                         <input class="nui-textbox" width="100" name="shortName"/>
                                         <label style="font-family:Verdana;">名称：</label>
@@ -809,7 +809,7 @@
                                         <input id="carBrand"
                                                name="carBrand"
                                                class="nui-combobox width1"
-                                               textField="carBrandZh"
+                                               textField="nameCn"
                                                valueField="id"
                                                emptyText="请选择..."
                                                url=""
@@ -828,9 +828,10 @@
                     <div class="nui-fit">
                         <div id="stockGrid" class="nui-datagrid"
                              style="width: 100%; height: 100%;"
-                             dataField="ptsStockCycList"
+                             dataField="list"
                              pageSize="20"
-                             totalCount="page.count"
+                             sortMode="client"
+                             totalField="page.count"
                              allowSortColumn="true">
                             <div property="columns">
                                 <div headerAlign="center" type="indexcolumn" width="30">序号</div>
@@ -838,20 +839,20 @@
                                     <div property="columns">
                                         <div field="partCode" headerAlign="center" allowSort="true" visible="true" header="零件编码"></div>
                                         <div field="partName" headerAlign="center" allowSort="true" visible="true" header="零件名称"></div>
-                                        <div field="stockQty" headerAlign="center" allowSort="true" visible="true" header="数量"></div>
+                                        <div field="outableQty" headerAlign="center" allowSort="true" visible="true" header="数量" datatype="int" align="right"></div>
                                     </div>
                                 </div>
                                 <div field="type" headerAlign="center" header="售价信息">
                                     <div property="columns">
-                                        <div field="lastSellPrice" headerAlign="center" allowSort="true" visible="true" header="指定销价"></div>
-                                        <div field="suggestPrice" headerAlign="center" allowSort="true" visible="true" header="建议销价"></div>
+                                        <div field="assignPrice" headerAlign="center" allowSort="true" visible="true" header="指定销价" datatype="float" align="right"></div>
+                                        <div field="suggestPrice" headerAlign="center" allowSort="true" visible="true" header="建议销价" datatype="float" align="right"></div>
                                     </div>
                                 </div>
                                 <div field="type" headerAlign="center" header="配件辅助信息">
                                     <div property="columns">
-                                        <div field="storeLocation" headerAlign="center" allowSort="true" visible="true" header="仓位"></div>
+                                        <div field="stockLocation" headerAlign="center" allowSort="true" visible="true" header="仓位"></div>
                                         <div field="" headerAlign="center" allowSort="true" visible="true" header="类型"></div>
-                                        <div field="applyCarModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
+                                        <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
                                         <div field="unit" headerAlign="center" allowSort="true" visible="true" header="单位"></div>
                                     </div>
                                 </div>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Guine -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!--字典定义-->
+    <select id="queryIncomeExpenItem" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT A.id, orgid, code, name, item_type_id itemTypeId, is_primary_business isPrimaryBusiness, parent_id parentId, 
+        is_end isEnd, level_num levelNum, is_disabled isDisabled, modifier, modify_date modifyDate, B.num
+        FROM fib_income_expenses A
+		LEFT JOIN(
+			select A.ID, CASE WHEN COUNT(B.id)>0 then 1 ELSE 0 END NUM 
+			from fib_income_expenses A 
+			LEFT JOIN fib_income_expenses B ON B.parent_id=A.ID
+			GROUP BY A.ID
+		)B ON A.ID=B.ID
+		WHERE 
+		<isNull property="parentId">
+			LENGTH(IFNULL(A.parent_id,''))=0
+		</isNull>
+        <isNotNull property="parentId">
+			A.parent_id = #parentId#
+		</isNotNull>
+        
+		<isNotNull property="code">
+			AND A.code like '%$code$%'
+		</isNotNull>
+        <isNotNull property="name">
+			AND A.name like '%$name$%'
+		</isNotNull>
+    </select>
+</sqlMap>

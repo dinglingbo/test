@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.16"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.20"></script>
 <style type="text/css">
 
 table {
@@ -273,7 +273,9 @@ table {
                                     <label>性别：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-combobox" name="sex" name="date1" width="100%"/>
+                                    <input class="nui-combobox" name="sex"
+                                           data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]"
+                                           width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -312,7 +314,9 @@ table {
                                     <label>生日类型：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-combobox" name="birthdayType" width="100%"/>
+                                    <input class="nui-combobox" name="birthdayType"
+                                           data="[{id:0,text:'农历'},{id:1,text:'阳历'}]"
+                                           width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>生日：</label>

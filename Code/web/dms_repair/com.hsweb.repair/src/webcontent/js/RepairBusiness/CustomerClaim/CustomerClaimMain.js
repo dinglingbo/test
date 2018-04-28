@@ -27,9 +27,9 @@ $(document).ready(function ()
         {
             e.cellHtml = e.value == 1?"已审":"未审";
         }
-        else if(field == "carBrandId" && carBrandHash[e.value])
+        else
         {
-            e.cellHtml = carBrandHash[e.value].carBrandZh;
+            onDrawCell(e);
         }
     });
     var hash = {};
@@ -37,7 +37,7 @@ $(document).ready(function ()
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDictItems','getAllCarBrand','getDatadictionaries2'];
+        var keyList = ['initDicts','initCarBrand'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -46,47 +46,15 @@ $(document).ready(function ()
         nui.unmask();
         onSearch();
     };
-    var pId2 = "DDT20130703000057";
-    getDatadictionaries(pId2, function (data) {
-        data = data || {};
-        var list = data.list || [];
-        list.forEach(function (v) {
-            itemKindHash[v.customid] = v;
-        });
-        hash.getDatadictionaries2 = true;
+    initDicts({
+        claimsType:CLAIMS_TYPE
+    },function(){
+        hash.initDicts = true;
         checkComplete();
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130706000013");//收费类型
-    dictIdList.push("DDT20130706000014");//收费类型
-    dictIdList.push("DDT20150726000001");//索赔类型
-    getDictItems(dictIdList, function (data) {
-        data = data || {};
-        var itemList = data.dataItems || [];
-        var receTypeList = itemList.filter(function (v)
-        {
-            if("DDT20130706000013" == v.dictid || "DDT20130706000014" == v.dictid)
-            {
-                receTypeHash[v.customid] = v;
-                return true;
-            }
-        });
-        var claimsTypeList = itemList.filter(function (v) {
-            return "DDT20150726000001" == v.dictid;
-        });
-     //   nui.get("claimsType").setData(claimsTypeList);
-        hash.getDictItems = true;
-        checkComplete();
-    });
-    getAllCarBrand(function(data)
+    initCarBrand("carBrand",function()
     {
-        data = data||{};
-        var carBrandList = data.carBrands||[];
-        carBrandList.forEach(function (v) {
-            carBrandHash[v.id] = v;
-        });
-      //  nui.get("carBrandId").setData(carBrandList);
-        hash.getAllCarBrand = true;
+        hash.initCarBrand = true;
         checkComplete();
     });
 });

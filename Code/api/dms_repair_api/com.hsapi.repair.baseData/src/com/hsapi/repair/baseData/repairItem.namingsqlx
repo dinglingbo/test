@@ -13,24 +13,18 @@
 			a.orgid orgid,
 			a.code code,
 			a.type type,
-			b.name typeName,
 			a.name name,
 			a.car_brand_id carBrandId,
-			c.car_brand_zh carBrandName,
 			a.car_model_id carModelId,
 			d.car_model carModel,
 			a.item_kind itemKind,
-			e.name itemKindName,
 			a.item_time itemTime,
 			a.unit_price unitPrice,
 			a.amt amt,
 			a.deduct_amt deductAmt
 		FROM
 			rpb_item a
-			left join wb_common.com_datadictionaries b on (a.type = b.customid)
-			left join wb_common.com_car_brand c on (a.car_brand_id = c.id)
 			left join wb_common.com_car_model d on (a.car_model_id = d.id)
-			left join wb_common.com_datadictionaries e on (a.item_kind = e.customid)
 		WHERE a.orgid = #orgid#
 		<dynamic>
     		<isNotEmpty prepend="and" property="itemKind">  

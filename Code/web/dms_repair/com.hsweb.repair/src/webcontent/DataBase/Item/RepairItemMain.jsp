@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.5" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.6" type="text/javascript"></script>
 
 </head>
 <body>
@@ -36,7 +36,7 @@
 					<input id="carBrandId"
 						   name="carBrandId"
 						   class="nui-combobox width1"
-						   textField="carBrandZh"
+						   textField="nameCn"
 						   valueField="id"
 						   emptyText="请选择..."
 						   url=""
@@ -94,6 +94,8 @@
 					 url=""
 					 borderStyle="border:0"
 					 pageSize="50"
+					 totalField="page.count"
+					 sortMode="client"
 					 multiSelect="true"
 					 showPageSize="true"
 					 allowSortColumn="true"
@@ -106,9 +108,9 @@
 							<div property="columns">
 								<div field="code" headerAlign="center" width="100px">项目编号</div>
 								<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
-								<div field="itemKindName" headerAlign="center" allowSort="true" width="40px">工种</div>
-								<div field="typeName" headerAlign="center" allowSort="true" width="100px">项目类型</div>
-								<div field="carBrandName" headerAlign="center" allowSort="true" width="60px">品牌</div>
+								<div field="itemKind" headerAlign="center" allowSort="true" width="40px">工种</div>
+								<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
+								<div field="carBrandId" headerAlign="center" allowSort="true" width="60px">品牌</div>
 								<div field="carModel" headerAlign="center" allowSort="true" width="60px">车型</div>
 							</div>
 						</div>

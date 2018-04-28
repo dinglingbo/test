@@ -5,6 +5,16 @@
       <sourceNode>start0</sourceNode>
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">orgid</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="20" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -66,7 +76,7 @@
       <process:to type="query">part/modifyDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">part/modifier</process:to>
     </process:copy>
   </nodes>
@@ -169,11 +179,11 @@
       <process:to type="query">part/recordDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">part/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">part/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -202,6 +212,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
+    <targetConnections>link11</targetConnections>
     <location x="83" y="170"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
@@ -233,7 +244,7 @@
       <process:to type="query">part/uniformDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">part/uniformMan</process:to>
     </process:copy>
   </nodes>
@@ -316,6 +327,29 @@
     <figSize height="17" width="85"/>
     <node>invokePojo4</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo3</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="49" y="260"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:to type="query">userName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="47" y="296"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-01-27 15:48:32" date="2018-01-27Z" description="保存配件" name="savePart" version="7.0.0.0"/>
@@ -326,6 +360,8 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.com.ComAttribute" name="part"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="S/E" isArray="false" name="errCode" primitiveType="String"/>

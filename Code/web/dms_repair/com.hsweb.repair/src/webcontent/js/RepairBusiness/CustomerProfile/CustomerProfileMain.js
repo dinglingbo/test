@@ -5,13 +5,53 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var grid = null;
 var gridUrl = baseUrl+"com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
 var queryForm = null;
+var advancedSearchWin = null;
+var advancedSearchForm = null;
+var advancedSearchFormData = null;
+var carBrandIdEl = null;
+var carModelIdEl = null;
+var carModelIdHash = {};
 $(document).ready(function(v){
 
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
+    grid.on("drawcell",onDrawCell);
     queryForm = new nui.Form("#queryForm");
+    advancedSearchWin = nui.get("advancedSearchWin");
+    advancedSearchForm = new nui.Form("#advancedSearchWin");
 
-
+    carBrandIdEl = nui.get("carBrandId");
+    carModelIdEl = nui.get("carModelId");
+    var hash = {};
+    nui.mask({
+        html: '数据加载中..'
+    });
+    var checkComplete = function () {
+        var keyList = ['initCarBrand',"initInsureComp"];
+        for (var i = 0; i < keyList.length; i++) {
+            if (!hash[keyList[i]]) {
+                return;
+            }
+        }
+        nui.unmask();
+        onSearch();
+    };
+    initCarBrand("carBrandId",function()
+    {
+        hash.initCarBrand = true;
+        checkComplete();
+    });
+    carBrandIdEl.on("valuechanged",function()
+    {
+        var carBrandId = carBrandIdEl.getValue();
+        getCarModel("carModelId",{
+            value:carBrandId
+        });
+    });
+    initInsureComp("insureComp",function(){
+        hash.initInsureComp = true;
+        checkComplete();
+    });
 });
 function getSearchParams()
 {
@@ -23,14 +63,112 @@ function onSearch()
     var params = getSearchParams();
     doSearch(params);
 }
+var currType = 0;
+function quickSearch(type)
+{
+    currType = type;
+    if($("a[id*='type']").length>0)
+    {
+        $("a[id*='type']").css("color","black");
+    }
+    if($("#type"+type).length>0)
+    {
+        $("#type"+type).css("color","blue");
+    }
+    var params = {};
+    switch(type)
+    {
+        case 0:
+            params.todayEnter = 1;
+            break;
+        case 1:
+            params.yesterdayEnter = 1;
+            break;
+        case 2:
+            params.todayNew = 1;
+            break;
+        case 3:
+            params.thisMonthNew = 1;
+            break;
+        case 4:
+            params.thisMonthEnter = 1;
+            break;
+        case 5:
+            params.thisMonthLoss = 1;
+            break;
+        case 6:
+            params.lastMonthLoss = 1;
+            break;
+        default:
+            break;
+    }
+}
 function doSearch(params)
 {
     grid.load({
-    	token:token,
+        token:token,
         params:params
     });
 }
+function advancedSearch()
+{
+    advancedSearchWin.show();
+    advancedSearchForm.clear();
+    if(advancedSearchFormData)
+    {
+        advancedSearchForm.setData(advancedSearchFormData);
+    }
+}
+function onAdvancedSearchOk()
+{
+    var searchData = advancedSearchForm.getData();
+    for(var key in searchData)
+    {
+        advancedSearchFormData[key] = searchData[key];
+    }
+    var i;
+    if(searchData.lastEnterStart)
+    {
+        searchData.lastEnterStart = searchData.lastEnterStart.substr(0,10);
+    }
+    if(searchData.lastEnterEnd)
+    {
+        searchData.lastEnterEnd = searchData.lastEnterEnd.substr(0,10);
+    }
 
+    if(searchData.firstEnterStart)
+    {
+        searchData.firstEnterStart = searchData.firstEnterStart.substr(0,10);
+    }
+    if(searchData.firstEnterEnd)
+    {
+        searchData.firstEnterEnd = searchData.firstEnterEnd.substr(0,10);
+    }
+
+    if(searchData.lastOutStart)
+    {
+        searchData.lastOutStart = searchData.lastOutStart.substr(0,10);
+    }
+    if(searchData.lastOutEnd)
+    {
+        searchData.lastOutEnd = searchData.lastOutEnd.substr(0,10);
+    }
+
+    if(searchData.recordStart)
+    {
+        searchData.recordStart = searchData.recordStart.substr(0,10);
+    }
+    if(searchData.recordEnd)
+    {
+        searchData.recordEnd = searchData.recordEnd.substr(0,10);
+    }
+    advancedSearchWin.hide();
+    doSearch(searchData);
+}
+function onAdvancedSearchCancel(){
+    advancedSearchForm.clear();
+    advancedSearchWin.hide();
+}
 function addOrEditCustomer(guest)
 {
     var title = "新增客户资料";
@@ -105,69 +243,24 @@ function split() {
     });
 }
 
-function history() {
+function history()
+{
+	var row = grid.getSelected();
+	if(!row || !row.guestId)
+    {
+        return;
+    }
     nui.open({
-        url: "../../common/History.jsp",
+        url: "com.hsweb.repair.common.repairHistory.flow",
         title: "维修历史", width: 850, height: 640,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var data = {pageType: "history"};
-            iframe.contentWindow.setData(data);
+            var params = {
+                guestId:row.guestId
+            };
+            iframe.contentWindow.setData(params);
         },
-
         ondestroy: function (action) {
-            grid.reload();
         }
     });
-}
-function onMore() {
-    nui.open({
-        url: "./subpage/More.jsp",
-        title: "高级查询", width: 450, height: 300,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var data = {pageType: "more"};
-            iframe.contentWindow.setData(data);
-        },
-
-        ondestroy: function (action) {
-            grid.reload();
-        }
-    });
-}
-
-//重新刷新页面
-function refresh() {
-    var form = new nui.Form("#form1");
-    var json = form.getData(false, false);
-    grid.load(json);
-    nui.get("update").enable();
-}
-//查询
-function search() {
-    var form = new nui.Form("#form1");
-    var json = form.getData(false, false)
-    grid.load(json);
-}
-//重置查询条件
-function reset() {
-    var form = new nui.Form("#form1");
-    grid.reset();
-}
-//enter键触发
-function onKeyEnter(e) {
-    search();
-}
-//选择列（判定，大于一编辑禁用）
-function selectionChanged() {
-    var rows = grid.getSelecteds();
-    if (rows.length > 1) {
-        nui.get("update").disable();
-    } else {
-        nui.get("update").enable();
-    }
-}
-function onIsDisabled(e) {
-    if (e.value == 1) return "禁用";
-    if (e.value == 0) return "启用";
 }

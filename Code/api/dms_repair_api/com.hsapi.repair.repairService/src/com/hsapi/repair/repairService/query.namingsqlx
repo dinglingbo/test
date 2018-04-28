@@ -55,6 +55,7 @@
 			INNER JOIN rpb_contactor f ON ( a.contactor_id = f.id )
 		where
 			a.orgid = #orgid#
+			and a.status = 6
 		<dynamic>
 			<isNotEmpty prepend="and" property="guestId"> 
                 (a.guest_id = #guestId#)

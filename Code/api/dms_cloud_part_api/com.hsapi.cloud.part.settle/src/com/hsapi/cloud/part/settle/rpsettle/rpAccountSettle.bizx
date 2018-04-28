@@ -284,7 +284,7 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign5</targetNode>
@@ -315,7 +315,7 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign5" name="赋值5" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>transactioncommit0</targetNode>

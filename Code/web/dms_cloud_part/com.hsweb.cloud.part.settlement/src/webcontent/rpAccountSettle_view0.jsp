@@ -28,6 +28,46 @@
 .mini-panel-body {
     padding: 0;
 }
+
+.panelwidth{
+    width: 600px;
+}
+.panelwidth1{
+    width: 300px;
+}
+.tmargin{
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+.tmargin1{
+    margin-left: 20px;
+}
+.twidth{
+    width:200px;
+}
+
+.vpanel{
+    border:1px solid #d9dee9;
+    margin:10px 0px 0px 20px;
+    height:248px;
+    float:left;
+}
+.vpanel_heading{
+    border-bottom:1px solid #d9dee9;
+    width:100%;
+    height:28px;
+    line-height:28px;
+}
+.vpanel_heading span{
+    margin:0 0 0 20px;
+    font-size:16px;
+    font-weight:normal;
+}
+.vpanel_bodyww{
+    padding : 10 10 10 10px !important
+
+}
 </style>
 </head>
 <body>
@@ -499,12 +539,54 @@
 </div>
 
 <div id="auditWin" class="nui-window"
-     title="对账确认" style="width:350px;height:230px;"
+     title="对账确认" style="width:350px;height:300px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
     <div id="advancedSearchForm" class="form">
-        <table style="width:100%;" >
+
+
+        <div class="vpanel panelwidth1" style="height:auto;">
+            <div class="vpanel_body">
+                <table class="tmargin tmargin1">
+                    <tr>
+                        <td id="balanceGuestName" style="text-align:left;" colSpan="2">对账单位：</td>
+                    </tr>
+                    <tr>
+                        <td id="balanceBillCount" style="text-align:left;">对账单据数：</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth1" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应收</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center;width:50%">合计应收:</td>
+                        <td id="rAmt" style="text-align:left;width:50%;color:blue;text-decoration:underline"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth1" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应付</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center;width:50%">合计应付:</td>
+                        <td id="pAmt" style="text-align:left;width:50%;color:blue;text-decoration:underline"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <!-- <table style="width:100%;" >
             <tr>
                 <td id="balanceGuestName" style="text-align:left;" colSpan="2">对账单位：</td>
             </tr>
@@ -525,7 +607,7 @@
                 <td style="text-align:center;width:50%">合计应付:</td>
                 <td id="pAmt" style="text-align:left;width:50%;color:blue;text-decoration:underline"></td>
             </tr>
-        </table>
+        </table> -->
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="balanceOK" style="width:60px;margin-right:20px;">确定</a>
             <a class="nui-button" onclick="balanceCancel" style="width:60px;">取消</a>
@@ -534,12 +616,98 @@
 </div>
 
 <div id="settleWin" class="nui-window"
-     title="结算" style="width:500px;height:250px;"
+     title="结算" style="width:650px;height:450px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
     <div id="settleSearchForm" class="form">
-        <table style="width:100%;"  style="border-collapse:separate; border-spacing:10px;">
+
+        <div class="vpanel panelwidth" style="height:auto;">
+            <div class="vpanel_body">
+                <table class="tmargin tmargin1">
+                    <tr>
+                        <td id="settleGuestName" style="text-align:left;" colSpan="7">结算单位：</td>
+                    </tr>
+                    <tr>
+                        <td id="settleBillCount" style="text-align:left;" colSpan="8">结算单据数：</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div id="rtTr" class="vpanel panelwidth" style="height:auto;">
+            <div id="rtTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应收</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr id="rcTr">
+                        <td style="text-align:center" width="60px">应收金额:</td>
+                        <td id="rRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">实收金额:</td>
+                        <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">优惠金额:</td>
+                        <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div id="ptTr" class="vpanel panelwidth" style="height:auto;">
+            <div id="ptTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应付</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr id="pcTr">
+                        <td style="text-align:center" width="60px">应付金额:</td>
+                        <td id="pRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">实付金额:</td>
+                        <td id="pTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">免付金额:</td>
+                        <td id="pVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>合计</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center" width="60px">合计金额:</td>
+                        <td id="rpAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        
+
+        <div class="vpanel_body">
+            <table class="tmargin">
+                <tr>
+                    <td style="text-align:center" width="60px">备注:</td>
+                    <td id="rpRemark" style="text-align:left;" width="500px">
+                        <input id="rpTextRemark" width="80%" emptyText="" class="nui-textbox"/>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <!-- <table style="width:100%;"  style="border-collapse:separate; border-spacing:10px;">
             <tr>
                 <td id="settleGuestName" style="text-align:left;" colSpan="7">结算单位：</td>
             </tr>
@@ -591,7 +759,7 @@
                     <input id="rpTextRemark" width="80%" emptyText="" class="nui-textbox"/>
                 </td>
             </tr>
-        </table>
+        </table> -->
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="settleOK" style="width:60px;margin-right:20px;">确定</a>
             <a class="nui-button" onclick="settleCancel" style="width:60px;">取消</a>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>维修出库</title>
-<script src="<%=request.getContextPath()%>/repair/js/repairOut/repairOut.js?v=1.0.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/repairOut/repairOut.js?v=1.0.8"></script>
 <style type="text/css">
 
 .form_label {
@@ -19,7 +19,6 @@
 </style>
 </head>
 <body>
-
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <div class="form" id="queryForm">
         <table style="width:100%;">
@@ -209,8 +208,8 @@
                             <div class="nui-splitter" style="width:100%;height:100%;"
                                  borderStyle="border:0;"
                                  allowResize="false">
-                                <div size="200" showCollapseButton="false" style="border:0;">
-                                    <div id="queryInfoForm" >
+                                <div size="220" showCollapseButton="false" style="border:0;overflow:auto;">
+                                    <div id="queryInfoForm">
                                         <table>
                                             <tr>
                                                 <td>
@@ -230,7 +229,7 @@
                                                     <label>尾号：</label>
                                                 </td>
                                                 <td>
-                                                    <input id=""  name="username"
+                                                    <input id=""  name="endOfCode"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -239,7 +238,7 @@
                                                     <label>采购单号：</label>
                                                 </td>
                                                 <td>
-                                                    <input name="username"
+                                                    <input name="enterCode"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -248,7 +247,7 @@
                                                     <label>编码：</label>
                                                 </td>
                                                 <td>
-                                                    <input name="username"
+                                                    <input name="partCode"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -257,7 +256,7 @@
                                                     <label>名称：</label>
                                                 </td>
                                                 <td>
-                                                    <input name="username"
+                                                    <input name="name"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -266,7 +265,7 @@
                                                     <label>仓位：</label>
                                                 </td>
                                                 <td>
-                                                    <input name="username"
+                                                    <input name="storeLocation"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -275,7 +274,7 @@
                                                     <label>拼音：</label>
                                                 </td>
                                                 <td>
-                                                    <input name="username"
+                                                    <input name="py"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -285,7 +284,7 @@
                                                 </td>
                                                 <td>
                                                     <input id="carBrand"
-                                                           name="carBrandId"
+                                                           name="carBrand"
                                                            class="nui-combobox width1"
                                                            textField="carBrandZh"
                                                            valueField="id"
@@ -301,7 +300,7 @@
                                                     <label>车型：</label>
                                                 </td>
                                                 <td>
-                                                    <input name="username"
+                                                    <input name="carModel"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -310,7 +309,7 @@
                                                     <label>备注：</label>
                                                 </td>
                                                 <td>
-                                                    <input name="username"
+                                                    <input name="remark"
                                                            class="nui-textbox"  />
                                                 </td>
                                             </tr>
@@ -331,7 +330,7 @@
                                          showPager="true"
                                          totalField="page.count"
                                          pageSize="20"
-                                         dataField="ptsEnterMainDetailList"
+                                         dataField="list"
                                          borderStyle="border-top:0;border-right:0;border-bottom:0"
                                          frozenStartColumn="0"
                                          frozenEndColumn="6">
@@ -343,20 +342,20 @@
                                                     <div field="partCode" width="80" header="配件编码" headerAlign="center"></div>
                                                     <div field="outableQty" width="60" allowSort="true" header="数量" headerAlign="center" align="center"></div>
                                                     <div field="unit" width="40" header="单位" headerAlign="center" align="center"></div>
-                                                    <div field="noTaxUnitPrice" width="60" allowSort="true" header="入库单价" headerAlign="center" align="center"></div>
+                                                    <div field="price" width="60" allowSort="true" header="入库单价" headerAlign="center" align="center"></div>
                                                     <div field="suggestPrice" width="60" allowSort="true" header="建议售价" headerAlign="center" align="center"></div>
                                                 </div>
                                             </div>
                                             <div header="配件辅助信息" headerAlign="center">
                                                 <div property="columns">
-                                                    <div field="qualityTypeName" width="120" header="品质" headerAlign="center"></div>
-                                                    <div field="partBrandName" width="100" header="品牌" headerAlign="center"></div>
+                                                    <div field="qualityTypeId" width="120" header="品质" headerAlign="center"></div>
+                                                    <div field="partBrandId" width="100" header="品牌" headerAlign="center"></div>
                                                     <div field="guestFullName" width="100" allowSort="true" header="供应商" headerAlign="center"></div>
                                                     <div field="storeLocation" width="100" header="仓位"></div>
                                                     <div field="applyCarModel" width="100" allowSort="true" header="车型" headerAlign="center"></div>
-                                                    <div field="" width="100" allowSort="true" header="类别" headerAlign="center"></div>
-                                                    <div field="" width="100" allowSort="true" header="生产厂家" headerAlign="center"></div>
-                                                    <div field="remark" width="100" allowSort="true" header="入库分配" headerAlign="center"></div>
+                                                    <div field="partTypeId" width="100" allowSort="true" header="类别" headerAlign="center"></div>
+                                                    <div field="produceFactory" width="100" allowSort="true" header="生产厂家" headerAlign="center"></div>
+                                                    <div field="detailRemark" width="100" allowSort="true" header="入库分配" headerAlign="center"></div>
                                                     <div field="commonCode" width="100" allowSort="true" header="通用编码" headerAlign="center"></div>
                                                 </div>
                                             </div>
@@ -520,7 +519,7 @@
                                 </div>
                                 <div field="status" headerAlign="center" allowSort="true" visible="true">状态
                                 </div>
-                                <div field="itemKindName" headerAlign="center" allowSort="true" visible="true">工种
+                                <div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种
                                 </div>
                                 <div field="itemTime" headerAlign="center" allowSort="true" visible="true">工时
                                 </div>
@@ -553,7 +552,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

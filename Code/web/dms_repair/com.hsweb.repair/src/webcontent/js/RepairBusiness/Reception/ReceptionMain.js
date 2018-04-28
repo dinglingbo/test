@@ -17,7 +17,7 @@ $(document).ready(function ()
     mainTabs = nui.get("mainTabs");
     reportTab = mainTabs.getTab("report");
     billTab = mainTabs.getTab("bill");
-    var stockGridUrl = window._rootPartUrl + "com.hsapi.part.purchase.svr.queryPtsStockCycVListWithPage.biz.ext";
+    var stockGridUrl = window._rootPartUrl + "com.hsapi.part.purchase.svr.queryEnterStockList.biz.ext";
     stockGrid = nui.get("stockGrid");
     stockGrid.setUrl(stockGridUrl);
     itemGrid = nui.get("itemGrid");
@@ -136,7 +136,7 @@ function searchStock(type)
     var params = {};
     if(type == 1)
     {
-
+    	params.today = 1;
     }
     else{
         if(!queryForm)

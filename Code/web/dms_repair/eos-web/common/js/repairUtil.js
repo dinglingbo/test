@@ -1,6 +1,7 @@
 
 
 
+
 /**
  * 
  */
@@ -25,6 +26,7 @@ var KILO_TYPE = "DDT20130722000002";//里程类别
 var IDENTITY = "DDT20130703000077";//客户身份
 var INSURANCE_TYPE = "DDT20140427000001";//保险销售分类
 var INSURANCE_DETAIL = "DDT20130703000028";//险种
+var ENTER_OIL_MASS = "DDT20130703000051";//进厂油量
 function doPost(opt) {
 	var url = opt.url;
 	var data = opt.data;

@@ -11,7 +11,7 @@ var queryInfoForm = null;
 var leftGrid = null;
 var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var rightGrid = null;
-var rightGridUrl = window._rootPartUrl+"com.hsapi.part.purchase.svr.queryPtsEnterMainDetailWithPage.biz.ext";
+var rightGridUrl = window._rootPartUrl+"com.hsapi.part.purchase.svr.queryEnterStockList.biz.ext";
 var rpsPartGrid = null;
 var rpsPartGridUrl = baseUrl+"com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
 var rightGrid1 = null;
@@ -95,13 +95,17 @@ $(document).ready(function()
         if (e.field == "status") {
             e.cellHtml = statusHash3[e.value];
         }
+        else{
+            onDrawCell(e);
+        }
     });
 
     rightGrid5 = nui.get("rightGrid5");
-    console.log(rightGrid5);
+ //   console.log(rightGrid5);
     rightGrid5.setUrl(rightGrid5Url);
-    init();
-    quickSearch(2);
+    init(function(){
+        quickSearch(2);
+    });
 });
 var serviceTypeIdHash = {};
 var serviceTypeIdEl = null;
@@ -136,7 +140,7 @@ function init(callback)
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDatadictionaries', 'getDictItems','getAllCarBrand','getStorehouse','getRoleMember'];
+        var keyList = ['getDatadictionaries', 'initDicts','initCarBrand','getStorehouse','initRoleMembers'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -145,36 +149,27 @@ function init(callback)
         nui.unmask();
         callback && callback();
     };
-    var pId = "DDT20130703000055";
+    var pId = SERVICE_TYPE;
     getDatadictionaries(pId, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            serviceTypeIdHash[v.customid] = v;
-        });
         serviceTypeIdEl.setData(list);
-        hash.getDatadictionaries = true;
-        checkComplete();
-    });
-    var dictIdList = [];
-    dictIdList.push("DDT20130703000051");//进厂油量
-    getDictItems(dictIdList, function (data) {
-        data = data || {};
-        var itemList = data.dataItems || [];
-        var enterOilMassList = itemList.filter(function (v) {
-            return "DDT20130703000051" == v.dictid;
+        var pId = ITEM_KIND;
+        getDatadictionaries(pId, function (data) 
+        {
+            hash.getDatadictionaries = true;
+            checkComplete();
         });
-        nui.get("enterOilMass").setData(enterOilMassList);
-
-        hash.getDictItems = true;
+    });
+    initDicts({
+        enterOilMass:ENTER_OIL_MASS,//进厂油量
+    },function(){
+        hash.initDicts = true;
         checkComplete();
     });
-    getAllCarBrand(function(data)
+    initCarBrand("carBrand",function()
     {
-        data = data||[];
-        var carBrandList = data.carBrands||[];
-        nui.get("carBrand").setData(carBrandList);
-        hash.getAllCarBrand = true;
+        hash.initCarBrand = true;
         checkComplete();
     });
     getStorehouse(function(data){
@@ -188,13 +183,10 @@ function init(callback)
         hash.getStorehouse = true;
         checkComplete();
     });
-    var roleId = [];
-    roleId.push("010817");
-    getRoleMember(roleId, function (data) {
-        data = data || {};
-        var list = data.members || [];
-        nui.get("pickMan").setData(list);
-        hash.getRoleMember = true;
+    initRoleMembers({
+        pickMan:"010817"
+    },function(){
+        hash.initRoleMembers = true;
         checkComplete();
     });
 }
@@ -238,6 +230,12 @@ function doSearch(params) {
 function onSearch2(type)
 {
     var params = queryInfoForm.getData();
+    if(type == 1)
+    {
+        params = {
+            today:1
+        };
+    }
     doSearch2(params);
 }
 function doSearch2(params)

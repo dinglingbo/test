@@ -1740,7 +1740,7 @@ function addItemQuote(tmpItem)
         }
     });
 }
-function addPackage(data)
+function addPackage(data,callback)
 {
     var maintain = basicInfoForm.getData();
     var _package = {};
@@ -1817,7 +1817,9 @@ function addPackage(data)
     };
     savePackage(par, function (data) {
         data = data || {};
-        if (data.errCode == "S") {
+        if (data.errCode == "S")
+        {
+            callback && callback();
             loadPackageGridData();
         }
         else {
@@ -1840,7 +1842,7 @@ function entry()
             var data = {
                 vin:carVin
             };
-            iframe.contentWindow.setData(data,function(data)
+            iframe.contentWindow.setData(data,function(data,callback)
             {
                 console.log(data);
                 if(data.item)
@@ -1849,7 +1851,7 @@ function entry()
                     addItemQuote(tmpItem);
                 }
                 else{
-                    addPackage(data);
+                    addPackage(data,callback);
                 }
 
             });

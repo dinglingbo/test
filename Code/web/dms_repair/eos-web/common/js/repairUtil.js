@@ -348,7 +348,7 @@ function getDeductRate(itemKindList, callback) {
 		}
 	});
 }
-var getCarVinModelUrl = window._rootUrl
+var getCarVinModelUrl = window._rootSysUrl
 		+ "com.hsapi.system.product.cars.carVinModel.biz.ext";
 function getCarVinModel(vin, callback) {
 	var params = {};

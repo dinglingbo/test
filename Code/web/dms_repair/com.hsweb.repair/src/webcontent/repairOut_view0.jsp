@@ -9,7 +9,7 @@
 -->
 <head>
 <title>维修出库</title>
-<script src="<%=request.getContextPath()%>/repair/js/repairOut/repairOut.js?v=1.0.8"></script>
+<script src="<%=request.getContextPath()%>/repair/js/repairOut/repairOut.js?v=1.0.10"></script>
 <style type="text/css">
 
 .form_label {
@@ -375,7 +375,7 @@
                                        emptyText="请选择..."
                                        showNullItem="true"
                                        class="nui-combobox"
-                                       valueField="empname" textField="empname"/>
+                                       valueField="empName" textField="empName"/>
                                 <a class="nui-button" iconCls="icon-ok" plain="true" onclick="repairOut()" enabled="true" id="selectOut">选择出库</a>
                             </div>
                         </div>

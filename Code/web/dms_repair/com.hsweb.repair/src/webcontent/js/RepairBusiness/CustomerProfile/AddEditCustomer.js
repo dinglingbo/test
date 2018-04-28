@@ -52,6 +52,7 @@ function updateCarBtnState()
 {
     var car = carList[currCarIdx];
     carInfoFrom.setData(car);
+    nui.get("carModelId").setText(car.carModel);
     if(car.id)
     {
         nui.get("carNo").disable();

@@ -100,6 +100,8 @@ $(document).ready(function(v)
             }
         });
     });
+
+    quickSearch(currType);
 });
 function getSearchParam(){
     var params = {};

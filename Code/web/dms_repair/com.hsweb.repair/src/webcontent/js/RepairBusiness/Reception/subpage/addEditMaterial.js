@@ -222,7 +222,7 @@ function selectPartName()
 {
     nui.open({
         targetWindow: window,
-        url: "../../view/common/partNameSelectView.html",
+        url: webPath+partDomain+"/com.hsweb.part.common.partNameSelect.flow",
         title: "配件名称查询",
         width:900, height: 650,
         allowDrag:true,

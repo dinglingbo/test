@@ -33,16 +33,20 @@ var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var billStatusHash = {
-    "0":"未审",
-    "1":"已审",
+    "0":"未审核",
+    "1":"已审核",
     "2":"已过账",
     "3":"已取消"
 };
 var accountList = [
-    {id:0,text:"未审"},
-    {id:1,text:"已审"},
+    {id:0,text:"未审核"},
+    {id:1,text:"已审核"},
     {id:2,text:"全部"}
 ];
+var accountSignHash = {
+    "0":"未审核",
+    "1":"已审核"
+};
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -373,6 +377,12 @@ function onDrawCell(e)
             var nowTime = (new Date()).getTime();
             var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
             e.cellHtml = dayCount+1;
+            break;
+        case "accountSign":
+            if(accountSignHash && accountSignHash[e.value])
+            {
+                e.cellHtml = accountSignHash[e.value];
+            }
             break;
         default:
             break;

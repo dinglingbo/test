@@ -28,6 +28,40 @@
 .mini-panel-body {
     padding: 0;
 }
+
+.panelwidth{
+    width: 300px;
+}
+.tmargin{
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+.twidth{
+    width:200px;
+}
+
+.vpanel{
+    border:1px solid #d9dee9;
+    margin:10px 0px 0px 20px;
+    height:248px;
+    float:left;
+}
+.vpanel_heading{
+    border-bottom:1px solid #d9dee9;
+    width:100%;
+    height:28px;
+    line-height:28px;
+}
+.vpanel_heading span{
+    margin:0 0 0 20px;
+    font-size:16px;
+    font-weight:normal;
+}
+.vpanel_bodyww{
+    padding : 10 10 10 10px !important
+
+}
 </style>
 </head>
 <body>
@@ -61,12 +95,12 @@
 
                 <span class="separator"></span> 
                 <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
-                <input id="serviceMan" width="120px" emptyText="业务员" class="nui-textbox"/>
+                <input id="serviceMan" width="60px" emptyText="业务员" class="nui-textbox"/>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择往来单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <input class="nui-combobox" name="accountSign" id="accountSign" value="0"
-                     nullitemtext="请选择..." emptyText="单据状态" data="accountList" width="70px" />
+                     nullitemtext="请选择..." emptyText="单据状态" data="accountList" width="60px" />
                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 
                 <span class="separator"></span>
@@ -102,6 +136,9 @@
             <div field="enterTypeId" width="60" headerAlign="center" header="业务类型"></div>
             <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
             <div allowSort="true" field="billDate" headerAlign="center" header="单据日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+            <div field="accountSign" width="60" headerAlign="center" header="审核状态"></div>
+            <div field="accountor" width="60" headerAlign="center" header="审核人"></div>
+            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
             <div field="remark" width="120" headerAlign="center" header="备注"></div>
 
         </div>
@@ -328,12 +365,54 @@
 </div>
 
 <div id="auditWin" class="nui-window"
-     title="单据审核" style="width:350px;height:230px;"
+     title="单据审核" style="width:350px;height:300px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
     <div id="advancedSearchForm" class="form">
-        <table style="width:100%;" >
+        <div class="vpanel panelwidth" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应收</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center;width:25%">应收金额:</td>
+                        <td id="pAmt" style="text-align:left;width:25%;color:blue;text-decoration:underline"></td>
+                     
+                        <td style="text-align:center;width:25%">审核金额:</td>
+                        <td id="pAuditAmt" style="text-align:left;width:25%;color:blue;text-decoration:underline"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应付</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center;width:25%">应付金额:</td>
+                        <td id="rAmt" style="text-align:left;width:25%;color:blue;text-decoration:underline"></td>
+                   
+                        <td style="text-align:center;width:25%;">审核金额:</td>
+                        <td id="rAuditAmt" style="text-align:left;width:25%;color:blue;text-decoration:underline"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth" style="height:auto;">
+            <div class="vpanel_body">
+                <table class="tmargin twidth">
+                    <tr>
+                        <td id="billCount" style="text-align:center;;width:100%;">审核单据数：</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <!-- <table style="width:100%;" >
             <tr>
                 <td id="billCount" style="text-align:left;">审核单据数：</td>
             </tr>
@@ -359,7 +438,7 @@
                 <td style="text-align:center;width:50%;">审核金额:</td>
                 <td id="rAuditAmt" style="text-align:left;width:50%;color:blue;text-decoration:underline"></td>
             </tr>
-        </table>
+        </table> -->
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="auditOK" style="width:60px;margin-right:20px;">确定</a>
             <a class="nui-button" onclick="auditCancel" style="width:60px;">取消</a>

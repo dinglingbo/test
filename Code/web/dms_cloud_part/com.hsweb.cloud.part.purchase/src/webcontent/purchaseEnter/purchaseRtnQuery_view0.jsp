@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>销售出库查询</title>
+<title>采购退货查询</title>
 <script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseRtnQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {

@@ -67,8 +67,8 @@ $(document).ready(function(v)
     gsparams.endDate = addDate(getNowEndDate(), 1);
     gsparams.auditSign = 0;
 
-    sOutDate = nui.get("sOrderDate");
-    eOutDate = nui.get("eOrderDate");
+    sOutDate = nui.get("sOutDate");
+    eOutDate = nui.get("eOutDate");
 
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");

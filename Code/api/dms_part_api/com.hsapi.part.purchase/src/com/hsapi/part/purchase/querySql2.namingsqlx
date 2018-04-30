@@ -335,8 +335,8 @@
 		       FROM
 					pts_invoicing_store_detail a 
 				WHERE
-					a.orgid = 6 
-					AND a.store_id = 2 
+					a.orgid = #orgid#
+					AND a.store_id = #storeId#
 					<dynamic>
 						<isNotEmpty prepend="and" property="startDate">  
 							(date_format(a.record_date,'%Y-%m-%d')&gt;=#startDate#)

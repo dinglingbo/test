@@ -11,7 +11,7 @@
 -->
 <head>
 <title>索赔登记</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerClaim/subpage/ClaimRegister.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerClaim/subpage/ClaimRegister.js?v=1.0.4"></script>
 <style type="text/css">
 table {
 	font-size: 12px;

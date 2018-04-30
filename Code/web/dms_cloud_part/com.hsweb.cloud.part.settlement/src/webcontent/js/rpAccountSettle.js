@@ -411,6 +411,12 @@ function onDrawCell(e)
                 e.cellHtml = settleStatusHash[e.value];
             }
             break;
+        case "nowAmt":
+            e.cellStyle= 'background-color:#90EE90';
+            break;
+        case "nowVoidAmt":
+            e.cellStyle= 'background-color:#90EE90';
+            break;
         default:
             break;
     }
@@ -432,6 +438,18 @@ function onrpRightGridDrawCell(e){
                 e.cellHtml = 0;
             }
             break;
+        case "amt2":
+            var row = e.row;
+            if(row.billDc == 1){
+                e.cellStyle= 'background-color:#90EE90';
+            }
+            break;
+        case "amt3":
+            var row = e.row;
+            if(row.billDc == 1){
+                e.cellStyle= 'background-color:#90EE90';
+            }
+            break;
         case "amt4":
             var row = e.row;
             if(row.billDc == 1) {
@@ -446,6 +464,18 @@ function onrpRightGridDrawCell(e){
                 e.cellHtml = row.rpAmt;
             }else{
                 e.cellHtml = 0;
+            }
+            break;
+        case "amt12":
+            var row = e.row;
+            if(row.billDc == -1){
+                e.cellStyle= 'background-color:#90EE90';
+            }
+            break;
+        case "amt13":
+            var row = e.row;
+            if(row.billDc == -1){
+                e.cellStyle= 'background-color:#90EE90';
             }
             break;
         case "amt14":
@@ -941,8 +971,12 @@ function doSettle(){
             document.getElementById('rcTr').style.display = "";
             document.getElementById('ptTr').style.display = "none";
             document.getElementById('pcTr').style.display = "none";
+        }else{
+            document.getElementById('rtTr').style.display = "";
+            document.getElementById('rcTr').style.display = "";
+            document.getElementById('ptTr').style.display = "";
+            document.getElementById('pcTr').style.display = "";
         }
-
         var rtn = getSettleAmount(rows);
         var errCode = rtn.errCode;
         if(errCode != 'S') {

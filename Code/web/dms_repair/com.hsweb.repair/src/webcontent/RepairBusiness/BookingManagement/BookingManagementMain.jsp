@@ -11,7 +11,7 @@
 -->
 <head>
 <title>预约管理</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementMain.js?v=1.0.17"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementMain.js?v=1.0.21"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -81,6 +81,8 @@ table {
                      pageSize="20"
                      dataField="list"
                      showPageSize="false"
+                     selectOnLoad="true"
+                     sortMode="client"
                      showReloadButton="false" showPagerButtonIcon="true"
                      totalField="page.count"
                      allowSortColumn="true">

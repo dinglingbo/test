@@ -18,6 +18,7 @@
 			rps_prebook a
 		WHERE
 			a.orgid = #orgid#
+			and a.book_status = '040901'
 		<dynamic>
             <isNotEmpty prepend="and" property="thisMonth"> 
             <!--本月 --> 

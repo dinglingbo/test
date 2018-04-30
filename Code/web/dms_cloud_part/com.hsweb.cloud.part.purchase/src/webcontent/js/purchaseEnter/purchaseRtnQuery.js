@@ -96,10 +96,12 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-                quickSearch(currType);
+                
             }
         });
     });
+
+    quickSearch(currType);
 });
 function getSearchParam(){
     var params = {};

@@ -2,31 +2,30 @@
  * Created by Administrator on 2018/2/7.
  */
 window._rootPartUrl = "http://127.0.0.1:8080/default/";
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 var queryForm = null;
 var queryInfoForm = null;
 
 
 var leftGrid = null;
-var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+var leftGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var rightGrid = null;
-var rightGridUrl = window._rootPartUrl+"com.hsapi.part.purchase.svr.queryPtsEnterMainDetailWithPage.biz.ext";
+var rightGridUrl = window._rootPartUrl + "com.hsapi.part.purchase.svr.queryEnterStockList.biz.ext";
 var rpsPartGrid = null;
-var rpsPartGridUrl = baseUrl+"com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
+var rpsPartGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
 var rightGrid1 = null;
-var rightGrid1Url = window._rootPartUrl+"com.hsapi.part.purchase.repair.queryRepairOutList.biz.ext";
+var rightGrid1Url = window._rootPartUrl + "com.hsapi.part.purchase.repair.queryRepairOutList.biz.ext";
 var rpsPartQuoteGrid = null;
-var rpsPartQuoteGridUrl = baseUrl+"com.hsapi.repair.repairService.svr.getRpsPartQuoteByServiceId.biz.ext";
+var rpsPartQuoteGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartQuoteByServiceId.biz.ext";
 var rpsItemGrid = null;
-var itemGridUrl = baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemByServiceId.biz.ext";
+var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemByServiceId.biz.ext";
 var rightGrid5 = null;
-var rightGrid5Url = baseUrl+"";
-var statusHash = ["", "在报价", "在维修","已完工"];
-var statusHash2 = ["在报价", "在维修","已领料"];
-var statusHash3 = ["在报价", "在维修","已完工"];
-$(document).ready(function()
-{
+var rightGrid5Url = baseUrl + "";
+var statusHash = ["", "在报价", "在维修", "已完工"];
+var statusHash2 = ["在报价", "在维修", "已领料"];
+var statusHash3 = ["在报价", "在维修", "已完工"];
+$(document).ready(function () {
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setEnabled(false);
     queryForm = new nui.Form("#queryForm");
@@ -67,16 +66,13 @@ $(document).ready(function()
 
     rightGrid1 = nui.get("rightGrid1");
     rightGrid1.setUrl(rightGrid1Url);
-    rightGrid1.on("drawcell",function(e)
-    {
+    rightGrid1.on("drawcell", function (e) {
         var maintain = basicInfoForm.getData();
-        if(e.field == "action")
-        {
+        if (e.field == "action") {
             var row = e.record;
             console.log(maintain);
-            if(maintain.status == 2 && maintain.partAuditSign != 1)
-            {
-                e.cellHtml = "<a href='javascript:;' onclick='returnStore("+row.id+")'>退回</a>";
+            if (maintain.status == 2 && maintain.partAuditSign != 1) {
+                e.cellHtml = "<a href='javascript:;' onclick='returnStore(" + row.id + ")'>退回</a>";
             }
         }
     });
@@ -95,39 +91,36 @@ $(document).ready(function()
         if (e.field == "status") {
             e.cellHtml = statusHash3[e.value];
         }
+        else {
+            onDrawCell(e);
+        }
     });
 
     rightGrid5 = nui.get("rightGrid5");
-    console.log(rightGrid5);
+    //   console.log(rightGrid5);
     rightGrid5.setUrl(rightGrid5Url);
-    init();
-    quickSearch(2);
+    init(function () {
+        quickSearch(2);
+    });
 });
 var serviceTypeIdHash = {};
 var serviceTypeIdEl = null;
 var mtTypeEl = null;
 var mtTypeHash = {};
-function init(callback)
-{
+function init(callback) {
     serviceTypeIdEl = nui.get("serviceTypeId");
     mtTypeEl = nui.get("mtType");
     serviceTypeIdEl.on("valuechanged", function (data) {
         var serviceTypeId = serviceTypeIdEl.getValue();
-        if(serviceTypeIdHash[serviceTypeId])
-        {
-            var id = serviceTypeIdHash[serviceTypeId].id;
-            if (mtTypeHash[id]) {
-                mtTypeEl.setData(mtTypeHash[id]);
-            }
-            else {
-                var dictIdList = [];
-                dictIdList.push(id);
-                getDictItems(dictIdList, function (data) {
-                    data = data || {};
-                    var itemList = data.dataItems || [];
-                    mtTypeHash[id] = itemList;
-                    mtTypeEl.setData(mtTypeHash[id]);
+        var list = serviceTypeIdEl.getData();
+        for (var i = 0; i < list.length; i++) {
+            if (serviceTypeId == list[i].customid) {
+                var id = list[i].id;
+                initDicts({
+                    mtType: id
+                }, function () {
                 });
+                break;
             }
         }
     });
@@ -136,7 +129,7 @@ function init(callback)
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['getDatadictionaries', 'getDictItems','getAllCarBrand','getStorehouse','getRoleMember'];
+        var keyList = ['getDatadictionaries', 'initDicts', 'initCarBrand', 'getStorehouse', 'initRoleMembers'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -145,56 +138,41 @@ function init(callback)
         nui.unmask();
         callback && callback();
     };
-    var pId = "DDT20130703000055";
+    var pId = SERVICE_TYPE;
     getDatadictionaries(pId, function (data) {
         data = data || {};
         var list = data.list || [];
-        list.forEach(function (v) {
-            serviceTypeIdHash[v.customid] = v;
-        });
         serviceTypeIdEl.setData(list);
-        hash.getDatadictionaries = true;
-        checkComplete();
-    });
-    var dictIdList = [];
-    dictIdList.push("DDT20130703000051");//进厂油量
-    getDictItems(dictIdList, function (data) {
-        data = data || {};
-        var itemList = data.dataItems || [];
-        var enterOilMassList = itemList.filter(function (v) {
-            return "DDT20130703000051" == v.dictid;
+        var pId = ITEM_KIND;
+        getDatadictionaries(pId, function (data) {
+            hash.getDatadictionaries = true;
+            checkComplete();
         });
-        nui.get("enterOilMass").setData(enterOilMassList);
-
-        hash.getDictItems = true;
+    });
+    initDicts({
+        enterOilMass: ENTER_OIL_MASS,//进厂油量
+    }, function () {
+        hash.initDicts = true;
         checkComplete();
     });
-    getAllCarBrand(function(data)
-    {
-        data = data||[];
-        var carBrandList = data.carBrands||[];
-        nui.get("carBrand").setData(carBrandList);
-        hash.getAllCarBrand = true;
+    initCarBrand("carBrand", function () {
+        hash.initCarBrand = true;
         checkComplete();
     });
-    getStorehouse(function(data){
-        data = data||[];
-        var list = data.storehouse||[];
+    getStorehouse(function (data) {
+        data = data || [];
+        var list = data.storehouse || [];
         nui.get("storeId").setData(list);
-        if(list.length>0)
-        {
+        if (list.length > 0) {
             nui.get("storeId").setValue(list[0].id);
         }
         hash.getStorehouse = true;
         checkComplete();
     });
-    var roleId = [];
-    roleId.push("010817");
-    getRoleMember(roleId, function (data) {
-        data = data || {};
-        var list = data.members || [];
-        nui.get("pickMan").setData(list);
-        hash.getRoleMember = true;
+    initRoleMembers({
+        pickMan: "010817"
+    }, function () {
+        hash.initRoleMembers = true;
         checkComplete();
     });
 }
@@ -235,24 +213,25 @@ function doSearch(params) {
     });
 }
 
-function onSearch2(type)
-{
+function onSearch2(type) {
     var params = queryInfoForm.getData();
+    if (type == 1) {
+        params = {
+            today: 1
+        };
+    }
     doSearch2(params);
 }
-function doSearch2(params)
-{
+function doSearch2(params) {
     params.orgid = currOrgid;
     rightGrid.load({
-        params:params
+        params: params
     });
 }
-function reloadLeftGrid()
-{
+function reloadLeftGrid() {
     leftGrid.reload();
 }
-function getMaintainById(id)
-{
+function getMaintainById(id) {
     var getMaintainByIdUrl = baseUrl + "com.hsapi.repair.repairService.svr.getMaintainById.biz.ext";
     nui.mask({
         html: '数据加载中..'
@@ -273,20 +252,17 @@ function getMaintainById(id)
             loadRpsPartQuoteData();
             loadRightGrid1Data();
 
-            if(maintain.status != 2)
-            {
+            if (maintain.status != 2) {
                 nui.get("auditBtn").disable();
                 nui.get("antiAuditBtn").disable();
                 nui.get("selectOut").disable();
             }
-            else if(maintain.partAuditSign != 1)
-            {
+            else if (maintain.partAuditSign != 1) {
                 nui.get("auditBtn").enable();
                 nui.get("antiAuditBtn").disable();
                 nui.get("selectOut").enable();
             }
-            else
-            {
+            else {
                 nui.get("auditBtn").disable();
                 nui.get("antiAuditBtn").enable();
                 nui.get("selectOut").disable();
@@ -299,12 +275,9 @@ function getMaintainById(id)
         }
     });
 }
-function returnStore(id)
-{
-    var row = rightGrid1.findRow(function(v)
-    {
-        if(v.id = id)
-        {
+function returnStore(id) {
+    var row = rightGrid1.findRow(function (v) {
+        if (v.id = id) {
             return true;
         }
     });
@@ -312,27 +285,23 @@ function returnStore(id)
         targetWindow: window,
         url: "com.hsweb.RepairBusiness.repairOutReturn.flow",
         title: "车间退回", width: 500, height: 400,
-        allowDrag:true,
-        allowResize:false,
-        onload: function ()
-        {
+        allowDrag: true,
+        allowResize: false,
+        onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData({
-                part:row
+                part: row
             });
         },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
+        ondestroy: function (action) {
+            if (action == "ok") {
                 loadRightGrid1Data();
                 rightGrid.reload();
             }
         }
     });
 }
-function loadRightGrid1Data()
-{
+function loadRightGrid1Data() {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
@@ -343,25 +312,23 @@ function loadRightGrid1Data()
     params.returnSign = 0;
     params.orgid = currOrgid;
     rightGrid1.load({
-        params:params
+        params: params
     });
 }
-function loadRpsPartData()
-{
+function loadRpsPartData() {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
     }
     var params = {
         serviceId: maintain.id,
-        withPkg:1
+        withPkg: 1
     };
     rpsPartGrid.load({
         params: params
     });
 }
-function loadRpsItemData()
-{
+function loadRpsItemData() {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
@@ -373,30 +340,27 @@ function loadRpsItemData()
         params: params
     });
 }
-function loadRpsPartQuoteData()
-{
+function loadRpsPartQuoteData() {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
     }
     var params = {
         serviceId: maintain.id,
-        withPkg:1
+        withPkg: 1
     };
     rpsPartQuoteGrid.load({
         params: params
     });
 }
 
-function repairOut()
-{
+function repairOut() {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
     }
     var row = rightGrid.getSelected();
-    if(!row)
-    {
+    if (!row) {
         nui.alert("请选择要出库的配件");
         return;
     }
@@ -404,54 +368,50 @@ function repairOut()
         targetWindow: window,
         url: "com.hsweb.RepairBusiness.repairOutDetail.flow",
         title: "车间领料", width: 500, height: 350,
-        allowDrag:true,
-        allowResize:false,
-        onload: function ()
-        {
+        allowDrag: true,
+        allowResize: false,
+        onload: function () {
             var iframe = this.getIFrameEl();
             var params = {};
             var out = {
-                serviceId:maintain.id,
-                serviceCode:maintain.serviceCode,
-                carNo:maintain.carNo,
-                carId:maintain.carId,
-                vin:maintain.vin,
-                partId:row.partId,
-                partCode:row.partCode,
-                partName:row.partName,
-                partNameId:row.partNameId,
-                partFullName:row.partFullName,
-                unit:row.unit,
-                outableQty:row.outableQty,
-                noTaxUnitPrice:row.noTaxUnitPrice,
-                taxUnitPrice:row.taxUnitPrice,
-                taxSign:row.taxSign,
-                detailId:row.detailId,
-                storeId:row.storeId,
-                pickMan:nui.get("pickMan").getValue()
+                serviceId: maintain.id,
+                serviceCode: maintain.serviceCode,
+                carNo: maintain.carNo,
+                carId: maintain.carId,
+                vin: maintain.vin,
+                partId: row.partId,
+                partCode: row.partCode,
+                partName: row.partName,
+                partNameId: row.partNameId,
+                partFullName: row.partFullName,
+                unit: row.unit,
+                outableQty: row.outableQty,
+                noTaxUnitPrice: row.noTaxUnitPrice,
+                taxUnitPrice: row.taxUnitPrice,
+                taxSign: row.taxSign,
+                detailId: row.detailId,
+                storeId: row.storeId,
+                pickMan: nui.get("pickMan").getValue()
             };
             var pickManList = nui.get("pickMan").getData();
             params.out = out;
             params.pickManList = pickManList;
             iframe.contentWindow.setData(params);
         },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
-            {
+        ondestroy: function (action) {
+            if (action == "ok") {
                 rightGrid.reload();
                 loadRightGrid1Data();
             }
         }
     });
 }
-function audit()
-{
+function audit() {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
     }
-    var url = baseUrl+"com.hsapi.repair.repairService.work.partAudit.biz.ext";
+    var url = baseUrl + "com.hsapi.repair.repairService.work.partAudit.biz.ext";
     nui.mask({
         html: '审核中..'
     });
@@ -463,13 +423,12 @@ function audit()
         success: function (data) {
             nui.unmask();
             data = data || {};
-            if(data.errCode == "S")
-            {
+            if (data.errCode == "S") {
                 nui.alert("审核成功");
                 reloadLeftGrid();
             }
-            else{
-                nui.alert(data.errMsg||"审核失败");
+            else {
+                nui.alert(data.errMsg || "审核失败");
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -480,13 +439,12 @@ function audit()
         }
     });
 }
-function antiAudit()
-{
+function antiAudit() {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
     }
-    var url = baseUrl+"com.hsapi.repair.repairService.work.antiPartAudit.biz.ext";
+    var url = baseUrl + "com.hsapi.repair.repairService.work.antiPartAudit.biz.ext";
     nui.mask({
         html: '反审核中..'
     });
@@ -498,13 +456,12 @@ function antiAudit()
         success: function (data) {
             nui.unmask();
             data = data || {};
-            if(data.errCode == "S")
-            {
+            if (data.errCode == "S") {
                 nui.alert("反审核成功");
                 reloadLeftGrid();
             }
-            else{
-                nui.alert(data.errMsg||"反审核失败");
+            else {
+                nui.alert(data.errMsg || "反审核失败");
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -516,8 +473,7 @@ function antiAudit()
     });
 }
 
-function addOrEditRpsPart(idx)
-{
+function addOrEditRpsPart(idx) {
     var maintain = basicInfoForm.getData();
     if (!maintain.id) {
         return;
@@ -552,27 +508,23 @@ function addOrEditRpsPart(idx)
         }
     });
 }
-function onAddMaterial()
-{
+function onAddMaterial() {
     addOrEditRpsPart();
 }
-function onEditMaterial()
-{
+function onEditMaterial() {
     var row = rpsPartGrid.getSelected();
     var idx = 0;
-    if(row)
-    {
+    if (row) {
         idx = rpsPartGrid.indexOf(row);
     }
     addOrEditRpsPart(idx);
 }
-function onDeleteMaterial(){
+function onDeleteMaterial() {
     removeRpsPart();
 }
 function removeRpsPart() {
     var row = rpsPartGrid.getSelected();
-    if (row && row.partId && row.serviceId)
-    {
+    if (row && row.partId && row.serviceId) {
         var deletePartUrl = baseUrl + "com.hsapi.repair.repairService.sureMt.deleteRpsPart.biz.ext";
         nui.mask({
             html: '删除中..'
@@ -604,7 +556,6 @@ function removeRpsPart() {
         });
     }
 }
-function onSaveMaterial()
-{
+function onSaveMaterial() {
 
 }

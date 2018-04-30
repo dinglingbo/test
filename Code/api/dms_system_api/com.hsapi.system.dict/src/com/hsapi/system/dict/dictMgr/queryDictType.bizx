@@ -55,7 +55,7 @@
       <targetNode>invokePojo2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NOTNULL">
-          <process:leftOperand type="query">ID</process:leftOperand>
+          <process:leftOperand type="query">id</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

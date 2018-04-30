@@ -56,7 +56,7 @@ function processCarModel(data){
 }
 
 //保险公司
-function initInsureComp(id,callback){
+function initInsureComp(id,callback){ //险种：DDT20130703000028
 	_initDmsCallback["initInsureComp"] = callback;
     if(checkObjExists(id, "initInsureComp")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.guestMgr.queryGuest.biz.ext";

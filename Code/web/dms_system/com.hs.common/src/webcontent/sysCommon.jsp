@@ -2,6 +2,10 @@
 <%@ page language="java" import="com.eos.data.datacontext.IUserObject"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext,com.eos.data.datacontext.UserObject,com.eos.data.datacontext.DataContextManager"%>
 <%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
+<%@ taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
+<%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
+<%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
+<%@ taglib uri="http://eos.primeton.com/tags/eos" prefix="e"%>
 
 <%
 	//应用地址
@@ -38,23 +42,8 @@
 	// 设置Cookie的生命周期,如果设置为负值的话,关闭浏览器就失效.
 	cookie.setMaxAge(-1);
 	response.addCookie(cookie);
+    String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
-<%@ taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
-<%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
-<%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
-<%@ taglib uri="http://eos.primeton.com/tags/eos" prefix="e"%>
-<% String currentLanguage = request.getLocale().getLanguage().toLowerCase();%>
-<style type="text/css">
-    html, body
-    {
-        font-size:12px;
-        padding:0;
-        margin:0;
-        border:0;
-        height:100%;
-        /**overflow:hidden;**/
-    }
-</style>
 
 <script src="<%=contextPath%>/common/nui/nui.js" type="text/javascript"></script>
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
@@ -80,25 +69,8 @@
 	$(function(){
 		nui.context='<%=contextPath %>'
 	})
-	
-	function backToLogin(){
-		var url = window.location.pathname;
-		/* for(var i=0;i<excludedFlows.length;i++){
-			if(url && ''!=url
-				&& -1!=url.lastIndexOf(excludedFlows[i])){//例外的不拦截
-				return false;
-			}
-		} */
-		if(window.parent!=window
-			&& ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
-			window.parent.backToLogin();
-		}else{
-		//	debugger;
-			alert("登录超时，正在跳转！");
-            window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
-		}
-	}
-	<%
+    
+    <%
 	HttpSession session = request.getSession(false);
     String orgId="";
     String orgName="";
@@ -141,8 +113,7 @@
             }
 		}
 	}
-	%>
-	
+    %>	
 	var currOrgId = "<%=orgId %>";
     var currOrgName = "<%=orgName %>";
     var currUserId = "<%=userId %>";
@@ -150,7 +121,37 @@
     var currUserRealName = "<%=userRealName %>";
     var token = "<%=token %>";
     //alert("token=" + token);
+    
+    function backToLogin(){
+		var url = window.location.pathname;
+		/* for(var i=0;i<excludedFlows.length;i++){
+			if(url && ''!=url
+				&& -1!=url.lastIndexOf(excludedFlows[i])){//例外的不拦截
+				return false;
+			}
+		} */
+		if(window.parent!=window
+			&& ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
+			window.parent.backToLogin();
+		}else{
+		//	debugger;
+			alert("登录超时，正在跳转！");
+            window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
+		}
+	}
 </script>
 <script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
 <script src="<%=sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
 <script src="<%=sysDomain%>/common/js/init.js?v=1.0" type="text/javascript"></script>
+<link href="<%=sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
+<style type="text/css">
+    html, body
+    {
+        font-size:12px;
+        padding:0;
+        margin:0;
+        border:0;
+        height:100%;
+        /**overflow:hidden;**/
+    }
+</style>

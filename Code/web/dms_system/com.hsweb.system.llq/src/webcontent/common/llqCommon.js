@@ -2,6 +2,7 @@
 
 var url = "com.hsweb.system.llq.call.doCall.biz.ext";
 url = "http://g-part.cn:8071/api/sign007";
+url = "https://jp-part.xyz/007/api/signfrom007";//?access_token=8a6b82f8-8392-48d0-ba8f-d93b8154409b
 
 function loadData(url, params, callBack){
 	callAjax(url, params, processRs);
@@ -10,6 +11,7 @@ function loadData(url, params, callBack){
 		type: "post",
 		cache: false,
         data: params,
+        timeout : 60000,
 		contentType: 'text/json',
 		success: function (json) {
             if(json.result.code == '1'){
@@ -22,7 +24,13 @@ function loadData(url, params, callBack){
 		},
 		error: function () {
 			nui.alert("获取数据遇到错误！");
-		}
+		},
+        complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+    　　　　if(status=='timeout'){//超时,status还有success,error等值的情况
+     　　　　　 ajaxTimeoutTest.abort();
+    　　　　　  alert("超时");
+    　　　　}
+    　　}
 	});
 }
 
@@ -34,6 +42,7 @@ function callAjax(url, params, processAjax, callBack){
     var p = {}
     p.url = params.url.replace("//llq.", "//llqapitm.")
     p.data = [];
+    p.access_token="8a6b82f8-8392-48d0-ba8f-d93b8154409b";
     var obj = params.params;
     for(var k in obj){//用javascript的for/in循环遍历对象的属性 
         var tmp = {};

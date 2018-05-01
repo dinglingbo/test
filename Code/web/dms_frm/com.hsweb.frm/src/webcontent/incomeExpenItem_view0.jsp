@@ -1,9 +1,11 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/common.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false" %>
+	
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
   - Author(s): Guine
-  - Date: 2018-04-23 11:00:21
+  - Date: 2018-03-26 10:16:08
   - Description:
 -->
 <head>
@@ -50,6 +52,7 @@
                 
                 <li class="separator"></li>
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">新增</a>
+                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addSub()" id="addSub" enabled="true">新增子项</a>
                 <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">修改</a>
                 <a class="nui-button" iconCls="icon-edit" plain="true" onclick="del()" id="del" enabled="true">删除</a>
             </td>
@@ -60,21 +63,19 @@
 <div class="nui-fit">
         <div class="nui-fit">
             <div id="dgGrid" class="nui-treegrid" style="width:100%;height:100%;"
-                 showPager="true" pageSize="10" sizeList="[10,20,50]" allowAlternating="true"
-                 multiSelect="true"
+                 showPager="false" pageSize="10" sizeList="[10,20,50]" allowAlternating="true"
+                 multiSelect="true" totalField="page.count"
                  url="<%=apiPath + frmApi%>/com.hsapi.frm.setting.queryIncomeExpenItem.biz.ext"
-                 onselectionchanged="onDictTypeSelected" ondrawnode="onDictTypeDrawNode"
-                 onload="onDictTypeLoad"
-                 dataField="data" idField="id" treeColumn="name" parentField="parentId">
+                 dataField="data" idField="id" treeColumn="treeName" parentField="parentId">
                 <div property="columns" width="20">
                     <div type="checkcolumn" width="10%"></div>
                     <div field="orgid"  visible="false" headerAlign="center" width="20%">所属机构</div>
-                    <div field="name" allowSort="true" headerAlign="center" width="20%">项目名称</div>
+                    <div field="name" name="treeName" allowSort="true" headerAlign="center" width="20%">项目名称</div>
                     <div field="code" allowSort="true" headerAlign="center" width="20%">助记码</div>
                     <div field="itemTypeId" allowSort="true" headerAlign="center" width="25%">收支类型</div>
+                    <div field="isPrimaryBusiness" allowSort="true" headerAlign="center" width="20%">主营业务</div>
                     <div field="parentName" allowSort="true" headerAlign="center" width="20%">上级项目</div>
                     <div field="parentId" allowSort="true" headerAlign="center" width="20%" visible="false">上级ID</div>
-                    <div field="isPrimaryBusiness" allowSort="true" headerAlign="center" width="20%">主营业务</div>
                 </div>
             </div>
         </div>

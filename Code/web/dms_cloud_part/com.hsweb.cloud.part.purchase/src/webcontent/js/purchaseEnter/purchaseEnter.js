@@ -302,6 +302,7 @@ function quickSearch(type){
             var menunametype = nui.get("menunametype");
             menunametype.setText(querytypename);
     }
+    gsparams.enterTypeId = '050101';
     doSearch(gsparams);
 }
 function onSearch(){
@@ -352,6 +353,7 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
+    params.enterTypeId = '050101';
 	leftGrid.load({
 		params : params,
         token : token
@@ -514,7 +516,7 @@ function add()
     nui.get("taxRate").setValue(0.17);
     nui.get("taxSign").setValue(1);
     nui.get("enterDate").setValue(new Date());
-    nui.get("enterMan").setValue(currUserName);
+    nui.get("orderMan").setValue(currUserName);
     
     var guestId = nui.get("guestId");
     guestId.focus();

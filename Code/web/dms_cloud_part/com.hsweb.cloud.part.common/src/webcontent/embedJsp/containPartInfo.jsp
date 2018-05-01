@@ -35,18 +35,22 @@
                     <input id="partBrandId"
                            name="partBrandId"
                            class="nui-combobox width1"
+                           width="80"
                            textField="name"
                            valueField="id"
-                           emptyText="品牌"
+                           emptyText="请选择品牌"
                            url=""
                            allowInput="true"
                            showNullItem="false"
-                           nullItemText="请选择..."/>
+                           nullItemText="请选择品牌"/>
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                    <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
-                    <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a>
-                    <a class="nui-button" iconCls="icon-add" plain="true" onclick="addPart()">新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+
+                    <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                    <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                    <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a> -->
+                    <a class="nui-button" iconCls="" plain="true" onclick="addPart()">新增</a>
                     
                 </td>
             </tr>

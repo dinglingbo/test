@@ -322,6 +322,7 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
+    params.enterTypeId = '050203';
 	//目前没有区域盘亏出库，采退入库  params.enterTypeId = '050101';
 	leftGrid.load({
 		params : params,
@@ -831,6 +832,9 @@ function addSellOutDetail(part)
             part.taxPrice = part.taxPrice;
             part.noTaxPrice = part.noTaxPrice;
             part.enterPrice = part.enterPrice;
+            part.qty = 1;
+            part.price = part.enterPrice;
+            part.amt = part.enterPrice;
 
             iframe.contentWindow.setData({
                 part:part
@@ -866,6 +870,9 @@ function addSellOutDetail(part)
                 outDetail.enterPrice = data.enterPrice;
                 outDetail.enterAmt = data.qty * data.enterPrice;
                 outDetail.taxDiff = outDetail.taxAmt - outDetail.noTaxAmt;
+                outDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
+                outDetail.originId = data.originId;
+                outDetail.originGuestId = data.originGuestId;
 
                 outDetail.comOemCode = data.oemCode;
                 outDetail.comSpec = data.spec;

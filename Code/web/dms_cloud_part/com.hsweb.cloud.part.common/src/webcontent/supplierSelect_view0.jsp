@@ -22,12 +22,12 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-                <label style="font-family:Verdana;">名称：</label>
-                <input class="nui-textbox" width="100" id="name"/>
-                <label style="font-family:Verdana;">编码：</label>
-                <input class="nui-textbox" width="100" id="code"/>
-                <label style="font-family:Verdana;">电话：</label>
-                <input class="nui-textbox" width="100" id="phone"/>
+                <!-- <label style="font-family:Verdana;">名称：</label> -->
+                <input class="nui-textbox" emptyText="名称" width="100" id="name"/>
+                <!-- <label style="font-family:Verdana;">编码：</label> -->
+                <input class="nui-textbox" emptyText="编码" width="100" id="code"/>
+                <!-- <label style="font-family:Verdana;">电话：</label> -->
+                <input class="nui-textbox" emptyText="电话" width="100" id="phone"/>
                 <!--<label style="font-family:Verdana;">类型：</label>-->
                 <!--<input id="type"-->
                        <!--class="nui-combobox width1"-->
@@ -42,13 +42,13 @@
                 <label style="font-family:Verdana;">显示禁用：</label>
                 <input class="nui-checkbox" width="100" id="showDisabled" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选择</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                 <span class="separator"></span>
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-close" plain="true" onclick="onCancel()">关闭 </a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭 </a>
             </td>
         </tr>
     </table>

@@ -247,8 +247,8 @@ function quickSearch(type){
         var menunamedate = nui.get("menunamedate");
         menunamedate.setText(queryname);
     }else if(querysign == 2){
-            var menunametype = nui.get("menunametype");
-            menunametype.setText(querytypename);
+        var menunametype = nui.get("menunametype");
+        menunametype.setText(querytypename);
     }
     doSearch(gsparams);
 
@@ -301,6 +301,7 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
+    params.enterTypeId = '050103';
 	leftGrid.load({
 		params : params,
         token : token
@@ -525,7 +526,7 @@ function getMainData()
 var requiredField = {
     //guestId : "供应商",
 	storeId : "仓库",
-    enterMan: "盘点员",
+    orderMan: "盘点员",
     enterDate : "盘点日期",
     taxRate : "开票税点"
 };

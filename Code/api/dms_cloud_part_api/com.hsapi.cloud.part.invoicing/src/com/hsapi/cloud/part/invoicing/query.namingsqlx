@@ -183,6 +183,8 @@
 			b.pack_amt as packAmt,
 			b.scrap_qty as scrapQty,
 			b.store_shelf as storeShelf,
+			b.origin_id as originId,
+			b.origin_guest_id as originGuestId,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,
@@ -446,6 +448,8 @@
 			b.receive_store_id as receiveStoreId,
 			b.sell_amt - b.enter_amt as maoLi,
 			b.sell_price - b.enter_price as lossPrice,
+			b.origin_id as originId,
+			b.origin_guest_id as originGuestId,
 			case when b.sell_amt = 0 then 0 else 100.0 * b.enter_amt/b.sell_amt end as costRate,
 			case when b.sell_amt = 0 then 0 else 100.0 * (b.sell_amt - b.enter_amt)/b.sell_amt end as maoLiRate,
 			c.`code` as comPartCode,
@@ -586,6 +590,8 @@
 			b.receive_store_id as receiveStoreId,
 			b.sell_amt - b.enter_amt as maoLi,
 			b.sell_price - b.enter_price as lossPrice,
+			b.origin_id as originId,
+			b.origin_guest_id as originGuestId,
 			case when b.sell_amt = 0 then 0 else 100.0 * b.enter_amt/b.sell_amt end as costRate,
 			case when b.sell_amt = 0 then 0 else 100.0 * (b.sell_amt - b.enter_amt)/b.sell_amt end as maoLiRate,
 			c.`code` as comPartCode,
@@ -728,6 +734,8 @@
 			b.pack_amt as packAmt,
 			b.scrap_qty as scrapQty,
 			b.store_shelf as storeShelf,
+			b.origin_id as originId,
+			b.origin_guest_id as originGuestId,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,
@@ -740,16 +748,16 @@
 			c.spec as spec,
 			d.full_name as guestFullName,
 			d.short_name as guestShortName,
-			h.full_name as guestSupplierFullName,
-			h.short_name as guestSupplierShortName
+			g.full_name as guestSupplierFullName,
+			g.short_name as guestSupplierShortName
 		FROM
 			pj_enter_main_chk a
 		INNER JOIN pj_enter_detail_chk b ON a.id = b.main_id
 		INNER JOIN wb_common.com_attribute c ON b.part_id = c.id
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
-		LEFT JOIN pj_enter_detail_chk e on b.root_id = e.id
-		LEFT JOIN pj_enter_main_chk f on e.main_id = f.id
-		LEFT JOIN wb_common.com_guest g on f.guest_id = g.id
+		<!--LEFT JOIN pj_enter_detail_chk e on b.root_id = e.id
+		LEFT JOIN pj_enter_main_chk f on e.main_id = f.id-->
+		inner JOIN wb_common.com_guest g on b.origin_guest_id = g.id
 		WHERE
 			a.audit_sign = 1
 			AND a.enter_type_id = '050102'
@@ -796,7 +804,7 @@
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestSupplierId">  
-                    (f.guest_id = #guestSupplierId#)
+                    (b.guest_id = #guestSupplierId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderMan">  
                     (A.order_man = #orderMan#)
@@ -999,6 +1007,8 @@
 			b.pack_amt as packAmt,
 			b.scrap_qty as scrapQty,
 			b.store_shelf as storeShelf,
+			b.origin_id as originId,
+			b.origin_guest_id as originGuestId,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,
@@ -1009,16 +1019,19 @@
 			c.apply_car_model as applyCarModel,
 			c.apply_carbrand_id as applyCarbrandId,
 			c.spec as spec,
-			ifnull(g.full_name, d.full_name) as guestFullName,
-			ifnull(g.short_name, d.short_name) as guestShortName
+			<!--ifnull(g.full_name, d.full_name) as guestFullName,
+			ifnull(g.short_name, d.short_name) as guestShortName-->
+			g.full_name as guestFullName,
+			g.short_name as guestShortName
 		FROM
 			pj_enter_main_chk a
 		INNER JOIN pj_enter_detail_chk b ON a.id = b.main_id
 		INNER JOIN wb_common.com_attribute c ON b.part_id = c.id
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
-		left join pj_enter_detail_chk e on b.root_id = e.id
+		<!--left join pj_enter_detail_chk e on b.root_id = e.id
 		left join pj_enter_main_chk f on e.main_id = f.id
-		left join wb_common.com_guest g on f.guest_id = g.id
+		left join wb_common.com_guest g on f.guest_id = g.id-->
+		inner join wb_common.com_guest g on b.origin_guest_id = g.id
 		WHERE
 			a.audit_sign = 1
 			and (b.outable_qty > 0)
@@ -1062,7 +1075,7 @@
                     (b.PART_ID = #partId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
-                    (A.guest_id = #guestId#)
+                    (b.origin_guest_id = #guestId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderMan">  
                     (A.order_man = #orderMan#)
@@ -1138,6 +1151,7 @@
 			b.pack_amt as packAmt,
 			b.scrap_qty as scrapQty,
 			b.store_shelf as storeShelf,
+			b.origin_id as originId,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,
@@ -1274,6 +1288,7 @@
 			b.receive_store_id as receiveStoreId,
 			b.sell_amt - b.enter_amt as maoLi,
 			b.sell_price - b.enter_price as lossPrice,
+			b.origin_id as originId,
 			case when b.sell_amt = 0 then 0 else 100.0 * b.enter_amt/b.sell_amt end as costRate,
 			case when b.sell_amt = 0 then 0 else 100.0 * (b.sell_amt - b.enter_amt)/b.sell_amt end as maoLiRate,
 			c.`code` as comPartCode,

@@ -66,7 +66,7 @@
       <process:to type="query">page/length</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
     </process:copy>
   </nodes>

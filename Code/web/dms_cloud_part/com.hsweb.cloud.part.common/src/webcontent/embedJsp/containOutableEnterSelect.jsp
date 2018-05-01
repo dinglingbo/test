@@ -9,7 +9,7 @@
 -->
 <head>
 <title>入库记录选择</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containOutableEnterSelect.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containOutableEnterSelect.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -24,50 +24,50 @@
             <tr>
                 <td style="white-space:nowrap;">
                     <input class="nui-hidden" width="100" id="search-guestId" name="guestId"/>
-                    <label style="font-family:Verdana;">仓库：</label>
+                    <!-- <label style="font-family:Verdana;">仓库：</label> -->
                     <input id="storeId"
                            name="storeId"
                            class="nui-combobox width1"
-                           width="60"
+                           width="90"
                            textField="name"
                            valueField="id"
-                           emptyText="请选择..."
+                           emptyText="请选择仓库"
                            url=""
                            allowInput="true"
                            showNullItem="false"
-                           nullItemText="请选择..."/>
+                           nullItemText="请选择仓库"/>
                     <span class="separator"></span>
-                    <label style="font-family:Verdana;">编码：</label>
-                    <input class="nui-textbox" width="100" id="search-code" name="code"/>
-                    <label style="font-family:Verdana;">名称：</label>
-                    <input class="nui-textbox" width="100" id="search-name" name="name"/>
-                    <label style="font-family:Verdana;">车型：</label>
-                    <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
-                    <label style="font-family:Verdana;">拼音：</label>
-                    <input class="nui-textbox" width="50" id="search-namePy" name="namePy"/>
-                    <label style="font-family:Verdana;">品牌：</label>
+                    <!-- <label style="font-family:Verdana;">编码：</label> -->
+                    <input class="nui-textbox" emptyText="编码" width="80" id="search-code" name="code"/>
+                    <!-- <label style="font-family:Verdana;">名称：</label> -->
+                    <input class="nui-textbox" emptyText="名称" width="80" id="search-name" name="name"/>
+                    <!-- <label style="font-family:Verdana;">车型：</label> -->
+                    <input class="nui-textbox" emptyText="车型" width="80" id="search-applyCarModel" name="applyCarModel"/>
+                    <!-- <label style="font-family:Verdana;">拼音：</label> -->
+                    <input class="nui-textbox" emptyText="拼音" width="50" id="search-namePy" name="namePy"/>
+                    <!-- <label style="font-family:Verdana;">品牌：</label> -->
                     <input id="partBrandId"
                            name="partBrandId"
                            class="nui-combobox width1"
-                           width="60"
+                           width="90"
                            textField="name"
                            valueField="id"
-                           emptyText="请选择..."
+                           emptyText="请选择品牌"
                            url=""
                            allowInput="true"
                            showNullItem="false"
-                           nullItemText="请选择..."/>
-                    <input id="search_showAll" 
+                           nullItemText="请选择品牌"/>
+                    <!-- <input id="search_showAll" 
                             name="isShow" 
                             enabled="true" 
                             class="nui-checkbox" 
                             text="显示所有"
                             trueValue="1" 
-                            falseValue="0" />
+                            falseValue="0" /> -->
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
-                    <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
                 </td>
             </tr>
         </table>

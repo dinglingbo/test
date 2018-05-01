@@ -997,6 +997,8 @@ function addDetail(part)
                 outDetail.enterAmt = data.qty * data.enterPrice;
                 outDetail.taxDiff = outDetail.taxAmt - outDetail.noTaxAmt;
                 outDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
+                outDetail.originId = data.originId;
+                outDetail.originGuestId = data.originGuestId;
 
                 outDetail.comOemCode = data.oemCode;
                 outDetail.comSpec = data.spec;

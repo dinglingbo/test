@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditPjEnter" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、先对数据进行保存&#xD;&#xA;2、加载主表和明细表数据&#xD;&#xA;3、将未审核表数据插入到已审表&#xD;&#xA;4、删除未审表中的数据&#xD;&#xA;判断单据状态；&#xD;&#xA;判断明细数据是否被删除；&#xD;&#xA;判断数量和单价（根据需要,是否必须大于0）；&#xD;&#xA;&#xD;&#xA;1、将未审表信息插入已审表中，到已审表的数据状态需要修改，删除未审表中的数据；&#xD;&#xA;2、生成进销存流水记录&#xD;&#xA;3、更新三级仓表&#xD;&#xA;4、生成应付数据&#xD;&#xA;5、如果为销售退货，需要判断可退数量&#xD;&#xA;6、单独添加单据审核生成应收应付&#xD;&#xA;" title="DLB&#x9;17-7-19 上午11:32">
-    <location x="-140" y="-105"/>
-    <size height="303" width="448"/>
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、先对数据进行保存&#xD;&#xA;2、加载主表和明细表数据&#xD;&#xA;3、将未审核表数据插入到已审表&#xD;&#xA;4、删除未审表中的数据&#xD;&#xA;判断单据状态；&#xD;&#xA;判断明细数据是否被删除；&#xD;&#xA;判断数量和单价（根据需要,是否必须大于0）；&#xD;&#xA;&#xD;&#xA;1、将未审表信息插入已审表中，到已审表的数据状态需要修改，删除未审表中的数据；&#xD;&#xA;2、生成进销存流水记录&#xD;&#xA;3、更新三级仓表&#xD;&#xA;4、生成应付数据&#xD;&#xA;5、如果为销售退货，需要判断可退数量&#xD;&#xA;6、单独添加单据审核生成应收应付&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;origin_id             采购入库，盘盈入库&#xD;&#xA;origin_guest_id    采购入库，盘盈入库&#xD;&#xA;&#xD;&#xA;销售退货，采购退货，销售出库，移仓入库，移仓出库，盘亏出库&#xD;&#xA;" title="DLB&#x9;17-7-19 上午11:32">
+    <location x="-297" y="-179"/>
+    <size height="377" width="448"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link11" isDefault="true" type="transition">
@@ -84,6 +84,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">details.length</process:from>
       <process:to type="query">size</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/enterTypeId</process:from>
+      <process:to type="query">enterTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -628,6 +632,7 @@
     <location x="417" y="291"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="details" iterableElement="f"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -804,7 +809,7 @@
     <node>transactionrollback2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link42" name="link42" displayName="连接线" isDefault="false" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link42" name="销退" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign10</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
@@ -892,7 +897,6 @@
     <location x="856" y="100"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="details" iterableElement="enterTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -934,6 +938,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">enterTemp/enterDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterTemp/id</process:from>
+      <process:to type="query">enterTemp/originId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/guestId</process:from>
+      <process:to type="query">enterTemp/originGuestId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
@@ -1032,25 +1044,24 @@
     <figSize height="17" width="73"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign14" name="赋值14" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link44" name="link44" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>invokePojo2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
+          <process:leftOperand type="query"></process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link15" name="采购入库，添加入库日期" displayName="link19" isDefault="false" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link15" name="采购盘盈入库，添加入库日期" displayName="link19" isDefault="false" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>loopstart1</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">main/enterTypeId</process:leftOperand>
-          <process:rightOperand type="literal">050101</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>enterTypeId.equals(&quot;050101&quot;) || enterTypeId.equals(&quot;050103&quot;)</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
@@ -1089,6 +1100,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outAuditDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rtnableQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="enterTypeId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMain" name="enterMain"/>

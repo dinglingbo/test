@@ -838,6 +838,10 @@
         <result column="remark" javaType="string" property="remark"/>
         <result column="occupyQty" javaType="double" property="occupyQty"/> 
         <result column="stockOutQty" javaType="double" property="stockOutQty"/> 
+        <result column="receiveStoreId" javaType="int" property="receiveStoreId"/>
+        <result column="receiveStoreShelf" javaType="string" property="receiveStoreShelf"/>
+        <result column="originId" javaType="int" property="originId"/>
+        <result column="originGuestId" javaType="int" property="originGuestId"/>
         <result column="comPartCode" javaType="string" property="comPartCode"/>
         <result column="comPartName" javaType="string" property="comPartName"/>
         <result column="comFullName" javaType="string" property="comFullName"/>
@@ -888,6 +892,10 @@
 			M.remark,
 			M.occupyQty,
 			M.stockOutQty,
+			M.receiveStoreId,
+			M.receiveStoreShelf,
+			M.originId,
+			M.originGuestId,
 			M.comPartCode,
 			M.comPartName,
 			M.comFullName,
@@ -935,6 +943,10 @@
 			A.remark as remark,
 			A.occupy_qty as occupyQty,
 			A.stock_out_qty as stockOutQty,
+			A.receive_store_id as receiveStoreId,
+			A.receive_store_shelf as receiveStoreShelf,
+			A.origin_id as originId,
+			A.origin_guest_id as originGuestId,
 			B.`code` AS comPartCode,
 			B.`name` AS comPartName,
 			B.full_name AS comFullName,
@@ -994,6 +1006,10 @@
 			A.remark as remark,
 			A.occupy_qty as occupyQty,
 			A.stock_out_qty as stockOutQty,
+			A.receive_store_id as receiveStoreId,
+			A.receive_store_shelf as receiveStoreShelf,
+			A.origin_id as originId,
+			A.origin_guest_id as originGuestId,
 			B.`code` AS comPartCode,
 			B.`name` AS comPartName,
 			B.full_name AS comFullName,

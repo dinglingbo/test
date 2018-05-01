@@ -19,12 +19,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>subprocess1</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
@@ -34,18 +29,18 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link43" name="link43" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>assign21</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">f</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
-    <location x="426" y="238"/>
+    <location x="339" y="237"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -54,7 +49,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="428" y="274"/>
+    <location x="341" y="273"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -397,7 +392,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1000,7 +995,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="store" type="query" value="com.hsapi.cloud.part.data.com.ComStore" valueType="DataObject">storeInfo</process:outputVariable>
-        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1189,7 +1184,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="313" y="337"/>
+    <location x="340" y="337"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -1204,7 +1199,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="284" y="372"/>
+    <location x="311" y="372"/>
     <figSize height="17" width="84"/>
     <node>subprocess0</node>
   </nodes>
@@ -1296,13 +1291,44 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cdRecord</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
     <location x="596" y="456"/>
     <figSize height="17" width="73"/>
     <node>invokePojo7</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign21" name="赋值10" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link43" name="link43" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign21</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">f</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign21</sourceNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link46</targetConnections>
+    <location x="453" y="237"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign21label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
+    <location x="448" y="273"/>
+    <figSize height="17" width="39"/>
+    <node>assign21</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

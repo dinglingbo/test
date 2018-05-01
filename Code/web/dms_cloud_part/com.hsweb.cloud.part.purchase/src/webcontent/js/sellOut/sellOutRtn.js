@@ -299,6 +299,7 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
+    params.enterTypeId = '050102';
 	leftGrid.load({
 		params : params,
         token : token
@@ -887,6 +888,8 @@ function addEnterDetail(part)
                 enterDetail.systemUnitId = data.unit; 
                 enterDetail.enterUnitId = data.unit;
                 enterDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
+                enterDetail.originId = data.originId;
+                enterDetail.originGuestId = data.originGuestId;
 
                 var taxSign = data.taxSign;
                 var taxRate = data.taxRate;

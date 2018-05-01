@@ -38,38 +38,42 @@
         <tr>
             <td style="white-space:nowrap;">
                 <!-- <label style="font-family:Verdana;">配件名称/拼音：</label> -->
-                <input id="comPartNameAndPY" width="120px" emptyText="配件名称/拼音" class="nui-textbox"/>
+                <input id="comPartNameAndPY" width="80px" emptyText="配件名称/拼音" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">配件ID：</label> -->
-                <input id="comPartCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="comPartCode" width="80px" emptyText="配件编码" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
                 <input id="partBrandId"
                            name="partBrandId"
                            class="nui-combobox width1"
                            textField="name"
                            valueField="id"
-                           emptyText="品牌"
+                           width="80px"
+                           emptyText="请选择品牌"
                            url=""
                            allowInput="true"
                            showNullItem="false"
-                           nullItemText="请选择..."/>
+                           nullItemText="请选择品牌"/>
                  <input id="storeId"
                            name="storeId"
                            class="nui-combobox width1"
                            textField="name"
                            valueField="id"
-                           emptyText="仓库"
+                           width="80px"
+                           emptyText="请选择仓库"
                            url=""
                            allowInput="true"
                            showNullItem="false"
-                           nullItemText="请选择..."/>
-                <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
-                <input id="partId" width="80px" emptyText="配件ID" class="nui-textbox"/>
+                           nullItemText="请选择仓库"/>
+                <input id="storeShelf" width="60px" emptyText="仓位" class="nui-textbox"/>
+                <input id="partId" width="60px" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>
                 <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a> -->
             </td>
         </tr>
     </table>

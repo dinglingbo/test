@@ -23,30 +23,33 @@
         <table style="width:100%;">
             <tr>
                 <td style="white-space:nowrap;">
-                    <label style="font-family:Verdana;">编码：</label>
-                    <input class="nui-textbox" width="80" id="search-code" name="code"/>
-                    <label style="font-family:Verdana;">名称：</label>
-                    <input class="nui-textbox" width="80" id="search-name" name="name"/>
-                    <label style="font-family:Verdana;">车型：</label>
-                    <input class="nui-textbox" width="80" id="search-applyCarModel" name="applyCarModel"/>
-                    <label style="font-family:Verdana;">拼音：</label>
-                    <input class="nui-textbox" width="60" id="search-namePy" name="namePy"/>
-                    <label style="font-family:Verdana;">品牌：</label>
+                    <!-- <label style="font-family:Verdana;">编码：</label> -->
+                    <input class="nui-textbox" emptyText="编码" width="80" id="search-code" name="code"/>
+                    <!-- <label style="font-family:Verdana;">名称：</label> -->
+                    <input class="nui-textbox" emptyText="名称" width="80" id="search-name" name="name"/>
+                    <!-- <label style="font-family:Verdana;">车型：</label> -->
+                    <input class="nui-textbox" emptyText="车型" width="80" id="search-applyCarModel" name="applyCarModel"/>
+                    <!-- <label style="font-family:Verdana;">拼音：</label> -->
+                    <input class="nui-textbox" emptyText="拼音" width="60" id="search-namePy" name="namePy"/>
+                    <!-- <label style="font-family:Verdana;">品牌：</label> -->
                     <input id="partBrandId"
                            name="partBrandId"
                            class="nui-combobox width1"
+                           width="80"
                            textField="name"
                            valueField="id"
-                           emptyText="请选择..."
+                           emptyText="请选择品牌"
                            url=""
                            allowInput="true"
                            showNullItem="false"
-                           nullItemText="请选择..."/>
+                           nullItemText="请选择品牌"/>
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                    <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
-                    <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a>
-                    <a class="nui-button" iconCls="icon-add" plain="true" onclick="addPart()">新增</a>
+                    <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                    <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                    <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a> -->
+                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addPart()">新增</a>
                     
                 </td>
             </tr>

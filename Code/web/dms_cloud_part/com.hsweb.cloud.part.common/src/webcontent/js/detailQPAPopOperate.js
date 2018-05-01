@@ -4,6 +4,35 @@
 
 var basicInfoForm = null;
 var qtyEdit = null;
+$(document).ready(function(v)
+{
+    $("#qty").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var price = nui.get("price");
+            price.focus();
+        }
+    });
+
+    $("#price").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var amt = nui.get("amt");
+            amt.focus();
+        }
+    });
+    $("#amt").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var remark = nui.get("remark");
+            remark.focus();
+        }
+    });
+
+    $("#remark").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var chooseBtn = nui.get("chooseBtn");
+            chooseBtn.focus();
+        }
+    });
+});
 function init()
 {
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -86,6 +115,18 @@ function onOk()
         if(!data[key] || data[key].toString().trim().length==0)
         {
             nui.alert(requiredField[key]+"不能为空");
+            if(key == "qty") {
+                var qty = nui.get("qty");
+                qty.focus();
+            }
+            if(key == "price") {
+                var price = nui.get("price");
+                price.focus();
+            }
+            if(key == "amt") {
+                var amt = nui.get("amt");
+                amt.focus();
+            }
             return;
         }
     }

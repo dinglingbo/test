@@ -207,6 +207,7 @@
     <location x="469" y="63"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="sellOutDetailUpdate" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend2label" name="label" nodeType="label">

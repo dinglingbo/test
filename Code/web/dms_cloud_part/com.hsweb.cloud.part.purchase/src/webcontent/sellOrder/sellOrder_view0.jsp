@@ -68,15 +68,23 @@
                        emptyText="请选择客户..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
             </td>
             <td style="width:100%;">
                 <span class="separator"></span>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <!-- 
                 <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="addBtn">新增</a>
                 <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveBtn">保存</a>
                 <a class="nui-button" iconCls="icon-ok" plain="true" onclick="audit()" id="auditBtn">审核</a>
-                <a class="nui-button" iconCls="icon-print" plain="true" onclick="onPrint()" id="printBtn">打印</a>
+                <a class="nui-button" iconCls="icon-print" plain="true" onclick="onPrint()" id="printBtn">打印</a> -->
             </td>
         </tr>
     </table>

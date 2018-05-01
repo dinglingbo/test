@@ -442,7 +442,7 @@
     <figSize height="17" width="126"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="getPjEnterDetailById" displayName="getPjSellOutDetailById" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="getPjSellOutDetailById" displayName="getPjSellOutDetailById" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign0</targetNode>
@@ -462,8 +462,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="209" y="322"/>
-    <figSize height="17" width="119"/>
+    <location x="203" y="322"/>
+    <figSize height="17" width="130"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
@@ -558,7 +558,6 @@
     <location x="572" y="286"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="details" iterableElement="f"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -702,7 +701,7 @@
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

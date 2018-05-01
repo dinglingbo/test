@@ -895,6 +895,8 @@
         <result column="packAmt" javaType="double" property="packAmt"/>
         <result column="scrapQty" javaType="double" property="scrapQty"/>
         <result column="storeShelf" javaType="string" property="storeShelf"/>
+        <result column="originId" javaType="int" property="originId"/>
+        <result column="originGuestId" javaType="int" property="originGuestId"/>
         <result column="comPartCode" javaType="string" property="comPartCode"/>
         <result column="comPartName" javaType="string" property="comPartName"/>
         <result column="comFullName" javaType="string" property="comFullName"/>
@@ -947,6 +949,8 @@
 			M.packAmt,
 			M.scrapQty,
 			M.storeShelf,
+			M.originId,
+			M.originGuestId,
 			M.comPartCode,
 			M.comPartName,
 			M.comFullName,
@@ -996,6 +1000,8 @@
 			a.pack_amt as packAmt,
 			a.scrap_qty as scrapQty,
 			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
 			B.CODE AS comPartCode,
 			B.NAME AS comPartName,
 			B.FULL_NAME AS comFullName,
@@ -1056,6 +1062,8 @@
 			a.pack_amt as packAmt,
 			a.scrap_qty as scrapQty,
 			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
 			B.CODE AS comPartCode,
 			B.NAME AS comPartName,
 			B.FULL_NAME AS comFullName,

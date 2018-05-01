@@ -216,10 +216,11 @@
             var tmpObj={};
             for(var i=0; i<treeNodes.length; i++){
                 var node = treeNodes[i];
+                var imagePath = node.imagePath;
                 tmpObj={};
                 tmpObj.text = node.menuName;
                 tmpObj.id = node.menuPrimeKey;
-                tmpObj.iconCls = "fa fa-desktop";
+                tmpObj.iconCls = imagePath||"fa fa-th-list";
                 tmpObj.url = node.linkAction;
                 if(node.childrenMenuTreeNodeList){
                     tmpObj.children = getChildrenData(node.childrenMenuTreeNodeList);
@@ -234,10 +235,11 @@
             var tmpObj={};
             for(var i=0; i<treeNodes.length; i++){
                 var node = treeNodes[i];
+                var imagePath = node.imagePath;
                 tmpObj={};
                 tmpObj.text = node.menuName;
                 tmpObj.id = node.menuPrimeKey;
-                tmpObj.iconCls = "fa fa-desktop";
+                tmpObj.iconCls = imagePath||"fa fa-desktop";
                 tmpObj.url = defDomin + node.linkAction;
                 if(node.childrenMenuTreeNodeList){
                     tmpObj.children = getChildrenData(node.childrenMenuTreeNodeList);

@@ -10,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + cloudPartDomain%>/common/js/detailQPAPopOperate.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/detailQPAPopOperate.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -50,6 +50,8 @@
     <input class="nui-hidden" name="enterPrice"/>
     <input class="nui-hidden" name="sellPrice"/>
     <input class="nui-hidden" name="enterDate"/>
+    <input class="nui-hidden" name="originId"/>
+    <input class="nui-hidden" name="originGuestId"/>
     <table style="width: 100%" id="list_table">
         <tr>
             <td class="title">
@@ -128,8 +130,9 @@
     </table>
 </div>
 <div style="text-align:center;padding:10px;">
-    <a class="mini-button" id="chooseBtn" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-    <a class="mini-button" id="cancelBtn" onclick="onCancel" style="width:60px;">取消</a>
+    <a class="mini-button" id="chooseBtn" onclick="onOk" style="width:60px;margin-right:20px;"><span class="fa fa-save fa-lg"></span>&nbsp;确定</a>
+    <a class="mini-button" id="cancelBtn" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+    
 </div>
 
 

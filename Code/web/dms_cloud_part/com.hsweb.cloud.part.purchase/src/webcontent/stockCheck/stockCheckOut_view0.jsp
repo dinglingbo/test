@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘亏出库</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockCheckOut/stockCheckOut.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockCheckOut/stockCheckOut.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -64,15 +64,17 @@
                 </ul>
 
                
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
             </td>
             <td style="width:100%;">
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="addBtn">新增</a>
-                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveBtn">保存</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="audit()" id="auditBtn">审核</a>
-                <a class="nui-button" iconCls="icon-print" plain="true" onclick="onPrint()" id="printBtn">打印</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
             </td>
         </tr>
     </table>
@@ -203,8 +205,8 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn">添加</a>
-                            <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn">删除</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                         </td>
                     </tr>
                 </table>

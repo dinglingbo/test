@@ -420,10 +420,15 @@
     <node>invokePojo4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>subprocess1</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="-39" y="79"/>
@@ -477,7 +482,7 @@
     <figSize height="17" width="25"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值2" displayName="赋值" collapsed="false" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="XSR" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>subprocess1</targetNode>
@@ -492,8 +497,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="-41" y="171"/>
-    <figSize height="17" width="32"/>
+    <location x="-37" y="171"/>
+    <figSize height="17" width="24"/>
     <node>assign6</node>
   </nodes>
   <topRuler/>

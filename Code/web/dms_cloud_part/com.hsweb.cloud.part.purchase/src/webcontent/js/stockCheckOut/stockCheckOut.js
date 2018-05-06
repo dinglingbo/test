@@ -815,7 +815,7 @@ function addSellOutDetail(part)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            part.storeId = nui.get("storeId").getValue();
+            part.storeId = part.storeId;//nui.get("storeId").getValue();
             part.unit = part.enterUnitId;
 
             part.detailId = part.id;

@@ -39,7 +39,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "storeId">
-				AND D.STORE_ID = #storeId#
+				AND c.STORE_ID = #storeId#
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partId">
@@ -118,7 +118,7 @@
 			</isNotNull>
 						
 			<isNotNull prepend = "" property = "storeId">
-				AND D.STORE_ID = #storeId#
+				AND c.STORE_ID = #storeId#
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partId">

@@ -15,16 +15,21 @@
 		LEFT JOIN(
 			select A.ID, P.name, CASE WHEN COUNT(B.id)>0 then 1 ELSE 0 END NUM 
 			from fib_income_expenses A 
-			LEFT JOIN fib_income_expenses B ON B.parent_id=A.ID
+			LEFT JOIN fib_income_expenses B ON B.parent_id=A.ID AND B.is_disabled=0
             LEFT JOIN fib_income_expenses P ON A.parent_id = P.id
 			GROUP BY A.ID, P.name
 		)B ON A.ID=B.ID
-		WHERE 
-		<isNull property="parentId">
-			LENGTH(IFNULL(A.parent_id,''))=0
-		</isNull>
+		WHERE is_disabled = 0
+		
+        <isNull property="parentId">
+            <isNull property="code">
+                <isNull property="name">
+                    And LENGTH(IFNULL(A.parent_id,''))=0
+                </isNull>
+            </isNull>
+        </isNull>
         <isNotNull property="parentId">
-			A.parent_id = #parentId#
+			And A.parent_id = #parentId#
 		</isNotNull>
         
 		<isNotNull property="code">

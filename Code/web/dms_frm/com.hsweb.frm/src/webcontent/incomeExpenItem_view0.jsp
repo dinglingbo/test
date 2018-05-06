@@ -64,7 +64,7 @@
         <div class="nui-fit">
             <div id="dgGrid" class="nui-treegrid" style="width:100%;height:100%;"
                  showPager="false" pageSize="10" sizeList="[10,20,50]" allowAlternating="true"
-                 multiSelect="true" totalField="page.count"
+                 multiSelect="true" totalField="page.count" autoLoad="false"
                  url="<%=apiPath + frmApi%>/com.hsapi.frm.setting.queryIncomeExpenItem.biz.ext"
                  dataField="data" idField="id" treeColumn="treeName" parentField="parentId">
                 <div property="columns" width="20">

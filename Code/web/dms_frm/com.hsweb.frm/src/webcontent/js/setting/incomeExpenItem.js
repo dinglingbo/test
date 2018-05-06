@@ -7,7 +7,9 @@ $(document).ready(function(v){
     dgGrid = nui.get("dgGrid");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
-        e.data.p = {};
+        if(!e.data.p){
+            e.data.p = {};
+        }
         e.data.p.parentId = e.data.id;
     });
     dgGrid.on("drawcell", function (e) { //表格绘制
@@ -21,7 +23,7 @@ $(document).ready(function(v){
         }
     });
     init();
-    //query();
+    query();
 });
 
 function init(){
@@ -92,6 +94,32 @@ function editWin(title, data){
             dgGrid.reload();
         }
     });
+}
+
+function del(){
+    var rows = dgGrid.getSelecteds();
+    if (rows) {
+        if (confirm("确定删除此记录？")) {
+            dgGrid.loading("删除中，请稍后......");
+            var params = [];
+            var obj;
+            for(var i=0; i<rows.length; i++){
+                obj = {};
+                obj.id = rows[i].id;
+                obj.isDisabled = 1;
+                params.push(obj);
+            }
+            nui.ajax({
+                url: apiPath + frmApi + "/com.hsapi.frm.setting.updataIncomeExpItem.biz.ext",
+                data:{data:params},
+                success: function (text) {
+                    dgGrid.reload();
+                },
+                error: function () {
+                }
+            });
+        }
+    }
 }
 
 function clearQueryForm(){

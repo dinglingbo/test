@@ -76,14 +76,14 @@
                     <div class="mini-panel mini-panel-danger" title="结算账户" width="250px" showCollapseButton="false" showCloseButton="false">
                         <br />设置经营活动中的各种结算账户，如现金、工行、建行、支付宝、微信等
                         <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" >设置结算账户</a></div>
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toFiSettleAccountSet()">设置结算账户</a></div>
                     </div>
                 </td>
                 <td>
                     <div class="mini-panel mini-panel-primary" title="期初现金银行" width="250px" showCollapseButton="false" showCloseButton="false">
                         <br />设置系统启用之前各资金账户的余额
                         <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" >设置期初现金银行</a></div>
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toFiSettleAccountBalanceSet()">设置期初现金银行</a></div>
                     </div>
                 </td>
                 <td>

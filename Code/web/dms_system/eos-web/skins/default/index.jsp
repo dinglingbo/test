@@ -288,6 +288,11 @@
         $(document).click(function (event) {
             $(".dropdown").removeClass("open");
         });
+        
+        window.onbeforeunload = function () {
+	        return "离开此网站?";
+	        //return null;
+	    };
 
        
     });

@@ -345,6 +345,7 @@
     <targetConnections>link16</targetConnections>
     <targetConnections>link19</targetConnections>
     <targetConnections>link22</targetConnections>
+    <targetConnections>link24</targetConnections>
     <location x="72" y="80"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
@@ -401,6 +402,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="连接线" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">enterMain/enterTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050105</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="-145" y="79"/>
     <size height="28" width="22"/>
@@ -425,7 +436,7 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -500,6 +511,25 @@
     <location x="-37" y="171"/>
     <figSize height="17" width="24"/>
     <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="QCR" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link23</targetConnections>
+    <location x="-38" y="267"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">QCR</process:from>
+      <process:to type="query">billNoPreFix</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="-37" y="303"/>
+    <figSize height="17" width="27"/>
+    <node>assign7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

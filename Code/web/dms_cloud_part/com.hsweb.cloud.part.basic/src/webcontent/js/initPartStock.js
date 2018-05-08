@@ -585,12 +585,12 @@ function checkPartIDExists(partid){
 var editPartHash = {
 };
 function deletePart(){
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign == 1) {
-            return;
-        } 
+    var data = basicInfoForm.getData();
+    if(data && data.auditSign && data.auditSign == 1){
+        nui.alert("此单已审核!");
+        return;
     }
+
     var part = rightGrid.getSelected();
     if(!part)
     {

@@ -54,5 +54,23 @@ function toPartStockSet(){
 	window.parent.activeTab(item);
 }
 
+function toFiSettleAccountSet(){
+	var item={};
+	item.id = "initPartStock";
+	item.text = "结算账户";
+	item.url = webPath + sysDomain + "/com.hsweb.cloud.part.basic.settleAccoutSet.flow";
+	item.iconCls = "fa fa-credit-card-alt";
+	window.parent.activeTab(item);
+}
+
+function toFiSettleAccountBalanceSet(){
+	var item={};
+	item.id = "initSettleAccountBala";
+	item.text = "期初现金银行";
+	item.url = webPath + sysDomain + "/com.hsweb.cloud.part.basic.initSettleAccountBala.flow";
+	item.iconCls = "fa fa-credit-card-alt";
+	window.parent.activeTab(item);
+}
+
 
 

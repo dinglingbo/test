@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPAccountList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryQCRPBill.biz.ext";
 
 
 var mainGrid = null;
@@ -18,7 +18,7 @@ $(document).ready(function(v)
 });
 function doSearch() {
     var params = {};
-    params.auditSign = 1;
+    params.auditSign = 0;
     mainGrid.load({
         params: params,
         pageSize: 1000,
@@ -28,7 +28,7 @@ function doSearch() {
 function onrpMainGridDrawCell(e){
     switch (e.field)
     {
-        case "ramt":
+        /*case "ramt":
             var row = e.row;
             if(row.billDc == 1) {
                 e.cellHtml = row.rpAmt;
@@ -45,7 +45,7 @@ function onrpMainGridDrawCell(e){
             if(row.ramt){
                 e.cancel = true;
             }
-            break;
+            break;*/
         default:
             break;
     }
@@ -124,8 +124,9 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.saveFiSettleAccountBatch.biz.ext";
+        + "com.hsapi.cloud.part.settle.svr.saveInitRpBill.biz.ext";
 function save(){
+    var data = mainGrid.getData();
     var rpAdd = mainGrid.getChanges("added");
     var rpUpdate = mainGrid.getChanges("modified");
     var rpDelete = mainGrid.getChanges("removed");
@@ -135,14 +136,15 @@ function save(){
     if(rpAdd){
         for(var i=0; i<rpAdd.length; i++){
             var temp = rpAdd[i];
+            temp.guestName = temp.guestFullName;
             if(temp.ramt) {
                 temp.rpAmt = temp.ramt;
-                temp.rpDc = 1;
+                temp.billDc = 1;
                 temp.noCharOffAmt = temp.ramt;
             }else if(temp.pamt) {
-                temp.rpAmt = temp.ramt;
-                temp.rpDc = -1;
-                temp.noCharOffAmt = temp.ramt;
+                temp.rpAmt = temp.pamt;
+                temp.billDc = -1;
+                temp.noCharOffAmt = temp.pamt;
             }
             rpAddList.push(temp);
         }
@@ -152,16 +154,47 @@ function save(){
     if(rpUpdate){
         for(var i=0; i<rpUpdate.length; i++){
             var temp = rpUpdate[i];
-            if(temp.ramt) {
-                temp.rpAmt = temp.ramt;
-                temp.rpDc = 1;
-                temp.noCharOffAmt = temp.ramt;
-            }else if(temp.pamt) {
-                temp.rpAmt = temp.ramt;
-                temp.rpDc = -1;
-                temp.noCharOffAmt = temp.ramt;
+            temp.guestName = temp.guestFullName;
+            //如果将应收改成应付，加一个，删除一个
+            if(temp.billDc == 1) {
+
+                if(temp.ramt) {
+                    temp.rpAmt = temp.ramt;
+                    temp.billDc = 1;
+                    temp.noCharOffAmt = temp.ramt;
+                    rpUpdateList.push(temp);
+                }else if(temp.pamt) {
+                    //先添加到删除里面
+                    var t = nui.clone(temp);
+                    rpDeleteList.push(t);
+
+                    temp.id = null;
+                    temp.rpAmt = temp.pamt;
+                    temp.billDc = -1;
+                    temp.noCharOffAmt = temp.pamt;
+                    rpAddList.push(temp);
+                }
+                
+
+            }else if(temp.billDc == -1) {
+                if(temp.pamt) {
+                    temp.rpAmt = temp.pamt;
+                    temp.billDc = -1;
+                    temp.noCharOffAmt = temp.pamt;
+                    rpUpdateList.push(temp);
+                }else if(temp.ramt) {
+                    //先添加到删除里面
+                    var t = nui.clone(temp);
+                    rpDeleteList.push(t);
+
+                    temp.id = null;
+                    temp.rpAmt = temp.ramt;
+                    temp.billDc = 1;
+                    temp.noCharOffAmt = temp.ramt;
+                    rpAddList.push(temp);
+                }
             }
-            rpUpdateList.push(temp);
+
         }
 
     }
@@ -169,44 +202,97 @@ function save(){
     if(rpDelete){
         for(var i=0; i<rpDelete.length; i++){
             var temp = rpDelete[i];
+            /*temp.guestName = temp.guestFullName;
             if(temp.ramt) {
                 temp.rpAmt = temp.ramt;
-                temp.rpDc = 1;
+                temp.billDc = 1;
                 temp.noCharOffAmt = temp.ramt;
             }else if(temp.pamt) {
                 temp.rpAmt = temp.ramt;
-                temp.rpDc = -1;
+                temp.billDc = -1;
                 temp.noCharOffAmt = temp.ramt;
-            }
+            }*/
             rpDeleteList.push(temp);
         }
 
     }
 
-    if(settleAccount && settleAccount.length>0) {
+    nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
+    });
+
+    nui.ajax({
+        url : saveUrl,
+        type : "post",
+        data : JSON.stringify({
+            rpAdd: rpAddList,
+            rpUpdate: rpUpdateList,
+            rpDelete: rpDeleteList
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                nui.alert("保存成功!");
+                
+                doSearch();
+            } else {
+                nui.alert(data.errMsg || "保存失败!");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+
+    
+}
+var auditUrl = baseUrl
+        + "com.hsapi.cloud.part.settle.svr.auditInitRpBill.biz.ext";
+function audit(){
+    var rpAdd = mainGrid.getChanges("added");
+    if(rpAdd && rpAdd.length > 0){
+        nui.alert("请先保存数据再审核!");
+        return;
+    }
+
+    var rpUpdate = mainGrid.getChanges("modified");
+    if(rpUpdate && rpUpdate.length > 0){
+        nui.alert("请先保存数据再审核!");
+        return;
+    }
+
+    var rpDelete = mainGrid.getChanges("removed");
+    if(rpDelete && rpDelete.length > 0){
+        nui.alert("请先保存数据再审核!");
+        return;
+    }
+
+    var data = mainGrid.getData();
+    if(data) {
         nui.mask({
             el : document.body,
             cls : 'mini-mask-loading',
-            html : '保存中...'
+            html : '审核中...'
         });
 
         nui.ajax({
-            url : saveUrl,
+            url : auditUrl,
             type : "post",
             data : JSON.stringify({
-                rpAdd: rpAddList,
-                rpUpdate: rpUpdateList,
-                rpDelete: rpDeleteList
+                rpBill: data
             }),
             success : function(data) {
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("保存成功!");
+                    nui.alert("审核成功!");
                     
                     doSearch();
                 } else {
-                    nui.alert(data.errMsg || "保存失败!");
+                    nui.alert(data.errMsg || "审核失败!");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -214,5 +300,47 @@ function save(){
             }
         });
     }
+}
+function refresh(){
+    doSearch();
+}
+function importGuest(){
+
+    var rpAdd = mainGrid.getChanges("added");
+    if(rpAdd && rpAdd.length > 0){
+        nui.alert("请先保存数据再审核!");
+        return;
+    }
+
+    var rpUpdate = mainGrid.getChanges("modified");
+    if(rpUpdate && rpUpdate.length > 0){
+        nui.alert("请先保存数据再审核!");
+        return;
+    }
+
+    var rpDelete = mainGrid.getChanges("removed");
+    if(rpDelete && rpDelete.length > 0){
+        nui.alert("请先保存数据再审核!");
+        return;
+    }
     
+
+    nui.open({
+        targetWindow: window,
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initQCRPBillImport.flow",
+        title: "期初应收应付导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            //iframe.contentWindow.initData(data, storeId);
+        },
+        ondestroy: function (action)
+        {
+            doSearch();
+        }
+    });
 }

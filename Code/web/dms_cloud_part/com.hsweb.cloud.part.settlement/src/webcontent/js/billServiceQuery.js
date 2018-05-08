@@ -444,7 +444,50 @@ function onShowRowDetail(e) {
                 params:params,
                 token: token
             });
+            break;
+        case "050103":
+            td.appendChild(editFormPchsEnterDetail);
+            editFormPchsEnterDetail.style.display = "";
 
+            var params = {};
+            params.mainId = mainId;
+            innerPchsEnterGrid.load({
+                params:params,
+                token: token
+            });
+            break;
+        case "050203":
+            td.appendChild(editFormSellOutDetail);
+            editFormSellOutDetail.style.display = "";
+
+            var params = {};
+            params.mainId = mainId;
+            innerSellOutGrid.load({
+                params:params,
+                token: token
+            });
+            break;
+        case "050104":
+            td.appendChild(editFormPchsEnterDetail);
+            editFormPchsEnterDetail.style.display = "";
+
+            var params = {};
+            params.mainId = mainId;
+            innerPchsEnterGrid.load({
+                params:params,
+                token: token
+            });
+            break;
+        case "050204":
+            td.appendChild(editFormSellOutDetail);
+            editFormSellOutDetail.style.display = "";
+
+            var params = {};
+            params.mainId = mainId;
+            innerSellOutGrid.load({
+                params:params,
+                token: token
+            });
             break;
         default:
             break;

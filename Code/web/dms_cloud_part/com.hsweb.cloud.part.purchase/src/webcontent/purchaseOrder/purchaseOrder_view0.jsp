@@ -286,8 +286,14 @@
                                                     <td class="title">
                                                         <label>备注：</label>
                                                     </td>
-                                                    <td colspan="5">
+                                                    <td colspan="3">
                                                         <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                                                    </td>
+                                                    <td class="title">
+                                                        <label>快速添加：</label>
+                                                    </td>
+                                                    <td >
+                                                        <input class="nui-textbox" selectOnFocus="true" width="100%" id="fastPartEntry" name="fastPartEntry"/>
                                                     </td>
                                                     <td class="title">
                                                         <label>总金额：</label>
@@ -360,19 +366,19 @@
                                     	<div field="operateBtn" width="30" headerAlign="center" header="删除"></div>
                                       	<div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
                                         <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
-                                            <input property="editor" class="nui-textbox"/>
+                                            <!-- <input property="editor" class="nui-textbox"/> -->
                                         </div>
                                         <div field="comPartName" headerAlign="center" header="配件名称">
-                                            <input property="editor" class="nui-textbox"/>
+                                            <!-- <input property="editor" class="nui-textbox"/> -->
                                         </div>
                                         <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
                                         <div field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                        <div field="comUnit" width="40" headerAlign="center" header="单位"></div>
+                                        <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
                                     </div>
                                 </div>
                                 <div header="数量金额信息" headerAlign="center">
                                     <div property="columns">
-                                        <div field="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
+                                        <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
                                           <input property="editor" vtype="float" class="nui-textbox"/>
                                         </div>
                                         <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
@@ -394,8 +400,8 @@
                                           onvaluechanged="" emptyText=""  vtype="required"
                                           /> 
                             </div>  
-                          <div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
-                          <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                               
+                          <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
+                          <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                               
                                     </div>
                                 </div>
                                 <div header="不含税信息" headerAlign="center">

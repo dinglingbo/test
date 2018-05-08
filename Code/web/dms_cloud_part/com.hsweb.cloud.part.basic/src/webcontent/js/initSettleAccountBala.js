@@ -38,7 +38,7 @@ function onRenderer(e) {
     return "";
 }
 function refresh(){
-	doSearch()
+	doSearch();
 }
 
 var saveUrl = baseUrl

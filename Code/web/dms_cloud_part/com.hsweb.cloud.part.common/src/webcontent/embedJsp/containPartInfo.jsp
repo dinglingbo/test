@@ -24,13 +24,13 @@
             <tr>
                 <td style="white-space:nowrap;">
                     <!-- <label style="font-family:Verdana;">编码：</label> -->
-                    <input class="nui-textbox" width="80" id="search-code" emptyText="编码" name="code"/>
+                    <input class="nui-textbox" width="80" id="search-code" emptyText="编码" selectOnFocus="true" name="code"/>
                     <!-- <label style="font-family:Verdana;">名称：</label> -->
-                    <input class="nui-textbox" width="80" id="search-name" emptyText="名称" name="name"/>
+                    <input class="nui-textbox" width="80" id="search-name" emptyText="名称" selectOnFocus="true" name="name"/>
                     <!-- <label style="font-family:Verdana;">车型：</label> -->
-                    <input class="nui-textbox" width="80" id="search-applyCarModel" emptyText="车型" name="applyCarModel"/>
+                    <input class="nui-textbox" width="80" id="search-applyCarModel" selectOnFocus="true" emptyText="车型" name="applyCarModel"/>
                     <!-- <label style="font-family:Verdana;">拼音：</label> -->
-                    <input class="nui-textbox" width="60" id="search-namePy" emptyText="拼音" name="namePy"/>
+                    <input class="nui-textbox" width="60" selectOnFocus="true" id="search-namePy" emptyText="拼音" name="namePy"/>
                     <!-- <label style="font-family:Verdana;">品牌：</label> -->
                     <input id="partBrandId"
                            name="partBrandId"
@@ -71,6 +71,7 @@
                      pageSize="50"
                      showPager="false"
                      showLoading="true"
+                     selectOnLoad="true"
                      showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
                 <div property="columns">
                            

@@ -42,7 +42,7 @@
 				
 			<dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
-                    (a.orgid = #orgid#)
+                    (a.orgid = #orgid# or a.orgid = 0)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (a.id = #partId#)
@@ -54,7 +54,7 @@
                     (a.FULL_NAME like '%$partNameAndPY$%' or a.name_py like '%$partNameAndPY$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCode">  
-                    (a.query_code like '%$partCode$%')
+                    (a.query_code like '%$partCode$%' or a.code like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (a.code in ($partCodeList$))

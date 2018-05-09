@@ -61,6 +61,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_or[1]/_expr[2]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/itemTypeId</process:from>
+      <process:to type="query">cond/_expr[1]/itemTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="202" y="206"/>
@@ -99,7 +107,9 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
-  <process:inputs varArgs="false"/>
+  <process:inputs varArgs="false">
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+  </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FibIncomeExpenses" name="list"/>
   </process:outputs>

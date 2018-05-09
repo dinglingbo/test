@@ -205,7 +205,7 @@
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -257,7 +257,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -621,7 +621,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -720,7 +720,7 @@
       <process:to type="query">rpBillTemp/noCharOffAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">期初应付</process:from>
+      <process:from type="literal" pattern="reference">期初应付单</process:from>
       <process:to type="query">rpBillTemp/billServiceId</process:to>
     </process:copy>
   </nodes>
@@ -819,7 +819,7 @@
       <process:to type="query">rpBillTemp/noCharOffAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">期初应收</process:from>
+      <process:from type="literal" pattern="reference">期初应收单</process:from>
       <process:to type="query">rpBillTemp/billServiceId</process:to>
     </process:copy>
   </nodes>
@@ -845,7 +845,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -881,6 +881,7 @@
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="link1" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>invokePojo6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="-69" y="173"/>

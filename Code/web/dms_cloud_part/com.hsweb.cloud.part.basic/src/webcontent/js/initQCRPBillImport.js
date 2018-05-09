@@ -78,7 +78,8 @@ function sure() {
 			var newRow = {
 				guestFullName : data[i].往来单位全称||"",
 				ramt : data[i].应收||"",
-				pamt : data[i].应付||""
+				pamt : data[i].应付||"",
+				rpTypeId: 3
 			};
 			partList.push(newRow);
 		}

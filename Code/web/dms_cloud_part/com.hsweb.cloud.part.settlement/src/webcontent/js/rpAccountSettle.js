@@ -551,10 +551,12 @@ function onShowRowDetail(e) {
 
     var td = rightGrid.getRowDetailCellEl(row);
     var billTypeId = row.billTypeId;
+    var rpTypeId = row.rpTypeId;
 
     switch (billTypeId)
     {
         case 1://"050101"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormPchsEnterDetail);
             editFormPchsEnterDetail.style.display = "";
 
@@ -566,9 +568,10 @@ function onShowRowDetail(e) {
             });
             break;
         case 4://"050102"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormSellRtnDetail);
             editFormSellRtnDetail.style.display = "";
-
+            
             var params = {};
             params.mainId = mainId;
             innerSellRtnGrid.load({
@@ -578,9 +581,10 @@ function onShowRowDetail(e) {
 
             break;
         case 3://"050201"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormPchsRtnDetail);
             editFormPchsRtnDetail.style.display = "";
-
+            
             var params = {};
             params.mainId = mainId;
             innerPchsRtnGrid.load({
@@ -589,9 +593,10 @@ function onShowRowDetail(e) {
             });
             break;
         case 2://"050202"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormSellOutDetail);
             editFormSellOutDetail.style.display = "";
-
+            
             var params = {};
             params.mainId = mainId;
             innerSellOutGrid.load({

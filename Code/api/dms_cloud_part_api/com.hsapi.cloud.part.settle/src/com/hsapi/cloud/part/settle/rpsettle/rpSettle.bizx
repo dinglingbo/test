@@ -193,6 +193,10 @@
       <process:from type="query" pattern="reference">remark</process:from>
       <process:to type="query">f/remark</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">f/rpTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="352" y="206"/>
@@ -457,6 +461,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">remark</process:from>
       <process:to type="query">f/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">f/rpTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

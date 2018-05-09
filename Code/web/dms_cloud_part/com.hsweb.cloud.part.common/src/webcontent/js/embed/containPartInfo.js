@@ -16,6 +16,7 @@ var abcTypeList = [];
 var abcTypeHash = {};
 var carBrandList = [];
 var queryForm = null;
+var codeEl = null;
 $(document).ready(function() {
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
@@ -23,6 +24,8 @@ $(document).ready(function() {
     /*partGrid.on("load", function() {
         onPartGridRowClick({});
     });*/
+    codeEl = nui.get("search-code");
+    codeEl.focus();
 
     getAllPartBrand(function(data) {
         qualityList = data.quality;
@@ -70,6 +73,36 @@ $(document).ready(function() {
         });
 
 
+    });
+
+    $("#search-code").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-name").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-applyCarModel").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-namePy").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#partBrandId").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
     });
 
 });
@@ -257,4 +290,9 @@ function getData(){
 function onRowDblClick()
 {
     onOk();
+}
+function initData(partCode){
+    codeEl.setValue(partCode);
+    onSearch();
+    codeEl.focus();
 }

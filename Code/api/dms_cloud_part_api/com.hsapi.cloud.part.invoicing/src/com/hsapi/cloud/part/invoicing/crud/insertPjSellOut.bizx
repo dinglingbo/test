@@ -359,7 +359,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">sellOutMain/enterTypeId</process:leftOperand>
-          <process:rightOperand type="literal">050207</process:rightOperand>
+          <process:rightOperand type="literal">050204</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -369,7 +369,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">sellOutMain/enterTypeId</process:leftOperand>
-          <process:rightOperand type="literal">050204</process:rightOperand>
+          <process:rightOperand type="literal">050205</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -645,6 +645,7 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="-75" y="142"/>

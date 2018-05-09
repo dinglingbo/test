@@ -31,6 +31,7 @@ var auditWin = null;
 var settleWin = null;
 var gprows = null;
 var mainTabs = null;
+var settleAccountGrid = null;
 
 var storehouseHash = {};
 var billTypeIdHash = {};
@@ -68,6 +69,7 @@ $(document).ready(function(v)
     searchServiceId = nui.get("serviceId");
     comSearchGuestId = nui.get("searchGuestId");
     mainTabs = nui.get("mainTabs");
+    settleAccountGrid = nui.get("settleAccountGrid");
 
     innerPchsEnterGrid = nui.get("innerPchsEnterGrid");
     editFormPchsEnterDetail = document.getElementById("editFormPchsEnterDetail");
@@ -137,19 +139,44 @@ $(document).ready(function(v)
                     }
                 });
           //      nui.get("settType").setData(settTypeIdList);
-                var enterTypeIdList = dataItems.filter(function(v)
+                /*var enterTypeIdList = dataItems.filter(function(v)
                 {
                     if(v.dictid == "DDT20130703000064")
                     {
                         enterTypeIdHash[v.customid] = v;
                         return true;
                     }
-                });
+                });*/
                 //quickSearch(currType);
             }
         });
     });
+
+    getItemType(function(data) {
+        enterTypeIdHash = data.list || [];
+
+    });
 });
+var queryUrl = baseUrl
+        + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+function getItemType(callback) {
+    nui.ajax({
+        url : queryUrl,
+        data : {
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 function getSearchParam(){
     var params = {};
 
@@ -524,10 +551,12 @@ function onShowRowDetail(e) {
 
     var td = rightGrid.getRowDetailCellEl(row);
     var billTypeId = row.billTypeId;
+    var rpTypeId = row.rpTypeId;
 
     switch (billTypeId)
     {
-        case "050101":
+        case 1://"050101"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormPchsEnterDetail);
             editFormPchsEnterDetail.style.display = "";
 
@@ -538,10 +567,11 @@ function onShowRowDetail(e) {
                 token: token
             });
             break;
-        case "050102":
+        case 4://"050102"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormSellRtnDetail);
             editFormSellRtnDetail.style.display = "";
-
+            
             var params = {};
             params.mainId = mainId;
             innerSellRtnGrid.load({
@@ -550,10 +580,11 @@ function onShowRowDetail(e) {
             });
 
             break;
-        case "050201":
+        case 3://"050201"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormPchsRtnDetail);
             editFormPchsRtnDetail.style.display = "";
-
+            
             var params = {};
             params.mainId = mainId;
             innerPchsRtnGrid.load({
@@ -561,10 +592,11 @@ function onShowRowDetail(e) {
                 token: token
             });
             break;
-        case "050202":
+        case 2://"050202"
+            if(rpTypeId != 1) return;
             td.appendChild(editFormSellOutDetail);
             editFormSellOutDetail.style.display = "";
-
+            
             var params = {};
             params.mainId = mainId;
             innerSellOutGrid.load({
@@ -999,6 +1031,7 @@ function doSettle(){
         document.getElementById('pNoCharOffAmt').innerHTML=rtn.pNoCharOffAmt;
         document.getElementById('rpAmt').innerHTML=rtn.rpAmt;
 
+        addSettleAccountRow();
     }else{
         nui.alert("请选择单据！");
         return;
@@ -1141,12 +1174,33 @@ function settleCancel(){
     document.getElementById('rpAmt').innerHTML=0;
     nui.get('rpTextRemark').setValue("");
     settleWin.hide();
+
+    settleAccountGrid.setData([]);
 }
 var settleAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.rpAccountSettle.biz.ext";
 function settleOK(){
     var msg = checkSettleRow();
     if(msg){
         nui.alert(msg);
+        return;
+    }
+
+    var rAmt = document.getElementById('rTrueAmt').innerHTML;
+    var pAmt = document.getElementById('pTrueAmt').innerHTML;
+    var rpAmt = document.getElementById('rpAmt').innerHTML;
+    if(rAmt) {
+        rAmt = parseFloat(rAmt);
+    }else{
+        rAmt = 0;
+    }
+    if(pAmt) {
+        pAmt = parseFloat(pAmt);
+    }else{
+        pAmt = 0;
+    }
+    rpAmt = Math.abs(rAmt - pAmt);
+    msg = checkSettleAccountAmt(rpAmt);
+    if(!msg) {
         return;
     }
     
@@ -1304,6 +1358,7 @@ function settleOK(){
             account.charOffAmt =  rVoidAmt + rTrueAmt;
         }
 
+        var accountTypeList = settleAccountGrid.getData();
         nui.mask({
             el: document.body,
             cls: 'mini-mask-loading',
@@ -1316,6 +1371,7 @@ function settleOK(){
             data : JSON.stringify({
                 account : account,
                 accountDetailList : accountDetailList,
+                accountTypeList: accountTypeList,
                 token : token
             }),
             success : function(data) {
@@ -1342,4 +1398,170 @@ function settleOK(){
         return;
     }
 
+}
+function onGridbeforeselect(e){
+    var field=e.field;
+    var row = e.row;
+    if( field=="check" ){
+        var row = e.row;
+        var billDc = row.billDc;
+        var newRow = {};
+        if(billDc == 1) {
+            if(row.amt2){
+                newRow.amt2 = "";
+            }else{
+                newRow.amt2 = row.noCharOffAmt;
+            }
+        }else{
+            if(row.amt12){
+                newRow.amt12 = "";
+            }else{
+                newRow.amt12 = row.noCharOffAmt;
+            }
+        }
+        rpRightGrid.updateRow(row, newRow);
+    }
+
+
+}
+function onPGridbeforeselect(e){
+    var field=e.field;
+    var row = e.row;
+    if( field=="check" ){
+        var row = e.row;
+        var billDc = row.billDc;
+        var newRow = {nowAmt: row.noCharOffAmt};
+        if(row.nowAmt){
+            newRow.nowAmt = "";
+        }else{
+            newRow.nowAmt = row.noCharOffAmt;
+        }
+        pRightGrid.updateRow(row, newRow);
+    }
+
+}
+function onRGridbeforeselect(e){
+    var field=e.field;
+    var row = e.row;
+    if( field=="check" ){
+        var row = e.row;
+        var billDc = row.billDc;
+        var newRow = {nowAmt: row.noCharOffAmt};
+        if(row.nowAmt){
+            newRow.nowAmt = "";
+        }else{
+            newRow.nowAmt = row.noCharOffAmt;
+        }
+        rRightGrid.updateRow(row, newRow);
+    }
+}
+function onGridheadercellclick(e){
+    rpRightGrid.findRows(function(row){
+        var newRow = {};
+        var billDc = row.billDc;
+        var newRow = {};
+        if(billDc == 1) {
+            if(row.amt2){
+                newRow.amt2 = "";
+            }else{
+                newRow.amt2 = row.noCharOffAmt;
+            }
+            
+        }else{
+            if(row.amt12){
+                newRow.amt12 = "";
+            }else{
+                newRow.amt12 = row.noCharOffAmt;
+            }
+        }
+        rpRightGrid.updateRow(row, newRow);  
+        
+    });
+}
+function onPGridheadercellclick(e){
+    pRightGrid.findRows(function(row){
+        var newRow = {};
+        var billDc = row.billDc;
+        var newRow = {};
+        if(row.nowAmt){
+            newRow.nowAmt = "";
+        }else{
+            newRow.nowAmt = row.noCharOffAmt;
+        }
+        pRightGrid.updateRow(row, newRow);  
+        
+    });
+}
+function onRGridheadercellclick(e){
+    rRightGrid.findRows(function(row){
+        var newRow = {};
+        var billDc = row.billDc;
+        var newRow = {};
+        if(row.nowAmt){
+            newRow.nowAmt = "";
+        }else{
+            newRow.nowAmt = row.noCharOffAmt;
+        }
+        rRightGrid.updateRow(row, newRow);  
+        
+    });
+}
+function onActionRenderer(e) {
+    var grid = e.sender;
+    var record = e.record;
+    var uid = record._uid;
+    var rowIndex = e.rowIndex;
+
+    var s = '<a class="" href="javascript:addSettleAccountRow()">新增</a> '
+            + '<a class="" href="javascript:delRow(\'' + uid + '\')">删除</a> ';
+               
+    return s;
+}
+function addSettleAccountRow() {            
+    var row = {};
+    settleAccountGrid.addRow(row, 0);
+}
+function delRow(row_uid) {
+    var row = settleAccountGrid.getRowByUID(row_uid);
+    if (row) {
+        settleAccountGrid.removeRow(row);
+    }
+}
+//提交单元格编辑数据前激发
+function onCellCommitEdit(e) {
+    var editor = e.editor;
+    var record = e.record;
+    
+    editor.validate();
+    if (editor.isValid() == false) {
+        nui.alert("请输入数字！");
+        e.cancel = true;
+    }
+}
+function checkSettleAccountAmt(charOffAmt){
+    var tAmt = 0;
+    var rows = settleAccountGrid.findRows(function(row){
+        var settAccountId = row.settAccountId;
+        var charOffAmt = row.charOffAmt;
+        if(charOffAmt){
+            charOffAmt = parseFloat(charOffAmt);
+        }
+        tAmt += charOffAmt;
+
+        if(!row.settAccountId){
+            return true;
+        }
+    });
+
+    if(rows && rows.length > 0) {
+        nui.alert("请选择结算账户!");
+        return false;
+    }
+
+    if(tAmt!=charOffAmt){
+        nui.alert("请确定结算金额与合计金额一致!");
+        return false;
+    }
+
+    return true;
 }

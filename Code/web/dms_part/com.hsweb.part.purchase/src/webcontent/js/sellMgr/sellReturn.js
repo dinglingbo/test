@@ -94,15 +94,10 @@ $(document).ready(function(v)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
-        var dictList = [];
-        dictList.push("DDT20130703000072");
-        getDictItems(dictList,function(data)
-        {
-            var dataItems = data.dataItems||[];
-            var backReasonId = dataItems.filter(function(v){
-                return v.dictid == "DDT20130703000072";
-            });
-            nui.get("backReasonId").setData(backReasonId);
+
+        initDicts({
+            backReasonId:BACK_REASON //采购退货原因
+        },function(){
             quickSearch(menuBtnDateQuickSearch, currType, '本日');
         });
     });

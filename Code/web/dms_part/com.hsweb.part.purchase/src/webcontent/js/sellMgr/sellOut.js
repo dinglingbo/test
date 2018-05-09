@@ -111,40 +111,16 @@ $(document).ready(function(v)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        return true;
-                    }
-                });
-                nui.get("billTypeId").setData(billTypeIdList);
-            }
-            var roleId = [];
-            roleId.push("010810");//验货员
-            roleId.push("010816");//销售员
-            getRoleMember(roleId,function(data)
-            {
-            	var list = data.members;
-                var sellerList = list.filter(function(v)
-                {
-                    return v.roleId == "010816";
-                });
-                var checkerList = list.filter(function(v)
-                {
-                    return v.roleId == "010810";
-                });
+
+        initDicts({
+            billTypeId:BILL_TYPE //票据类型
+        },function(){
+            initRoleMembers({
+                checker:"010810",//验货员
+                seller:"010816"//销售员
+            },function(){
                 var checkerEl = nui.get("checker");
                 var sellerEl = nui.get("seller");
-                checkerEl.setData(checkerList);
-                sellerEl.setData(sellerList);
                 checkerEl.on("valuechanged",function()
                 {
                     var checkerEl = nui.get("checker");

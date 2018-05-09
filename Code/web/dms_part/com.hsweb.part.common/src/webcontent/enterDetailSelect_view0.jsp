@@ -18,7 +18,8 @@
 </style>
 </head>
 <body>
-
+    <input class="nui-combobox" visible="false" id="billTypeId"/>
+    <input class="nui-combobox" visible="false" id="settType"/>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <div id="queryForm" class="form">
         <table style="width:100%;">
@@ -77,7 +78,6 @@
 <div class="nui-fit">
     <div id="datagrid1" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
-         ondrawcell="onPartGridDraw"
          dataField="ptsEnterMainDetailList"
          idField="detailId"
          onrowdblclick="onOk"

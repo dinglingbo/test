@@ -23,6 +23,51 @@ $(document).ready(function(v)
     partGrid.on("beforeload",function(e){
         e.data.token = token;
     });
+    partGrid.on("drawcell",function(e)
+    {
+        if(!partTypeHash)
+        {
+            partTypeHash = {};
+            var partTypeList = tree.getList();
+            partTypeList.forEach(function(v)
+            {
+                partTypeHash[v.id] = v;
+            });
+        }
+        var field = e.field;
+        if("isUniform" == field)
+        {
+            e.cellHtml = e.value == 1?"是":"否";
+        }
+        else if("isDisabled" == field)
+        {
+            e.cellHtml = e.value == 1?"失效":"有效";
+        }
+        else if("carTypeIdF" == field || "carTypeIdS" == field || "carTypeIdT" == field)
+        {
+            if(partTypeHash && partTypeHash[e.value])
+            {
+                e.cellHtml = partTypeHash[e.value].name||"";
+            }
+        }
+        else if("qualityTypeId" == field)
+        {
+            if(qualityHash[e.value])
+            {
+                e.cellHtml = qualityHash[e.value].name||"";
+            }
+        }
+        else if("partBrandId" == field)
+        {
+            if(brandHash[e.value])
+            {
+                e.cellHtml = brandHash[e.value].name||"";
+            }
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
     tree.on("beforeload",function(e){
@@ -43,27 +88,11 @@ $(document).ready(function(v)
         {
             brandHash[v.id] = v;
         });
-        getAllCarBrand(function(data)
-        {
-            data = data||{};
-            carBrandList = data.carBrands||[];
-            console.log(carBrandList);
-            nui.get("applyCarBrandId").setData(carBrandList);
-            var dictIdList = [];
-            dictIdList.push('DDT20130703000016');//--单位
-            dictIdList.push('DDT20130703000067');//--ABC分类
-            getDictItems(dictIdList,function(data)
-            {
-                if(data && data.dataItems)
-                {
-                    var dataItems = data.dataItems||[];
-                    unitList = dataItems.filter(function(v){
-                        return v.dictid == 'DDT20130703000016';
-                    });
-                    abcTypeList = dataItems.filter(function(v){
-                        return v.dictid == 'DDT20130703000067';
-                    });
-                }
+        initCarBrand("applyCarBrandId",function(){
+            initDicts({
+                unit:UNIT,// --单位
+                abcType:ABC_TYPE // --ABC分类
+            },function(){
                 onSearch();
             });
         });
@@ -99,59 +128,6 @@ function onNodeDblClick(e)
     doSearch(partName);
 }
 var partTypeHash = null;
-function onPartGridDraw(e)
-{
-    if(!partTypeHash)
-    {
-        partTypeHash = {};
-        var partTypeList = tree.getList();
-        partTypeList.forEach(function(v)
-        {
-            partTypeHash[v.id] = v;
-        });
-    }
-
-    switch (e.field)
-    {
-	    case "isUniform":
-	        e.cellHtml = e.value == 1?"是":"否";
-	        break;
-        case "isDisabled":
-            e.cellHtml = e.value == 1?"失效":"有效";
-            break;
-        case "carTypeIdF":
-        case "carTypeIdS":
-        case "carTypeIdT":
-            if(partTypeHash[e.value])
-            {
-                e.cellHtml = partTypeHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        case "qualityTypeId":
-            if(qualityHash[e.value])
-            {
-                e.cellHtml = qualityHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        case "partBrandId":
-            if(brandHash[e.value])
-            {
-                e.cellHtml = brandHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        default:
-            break;
-    }
-}
 
 
 function reloadData()

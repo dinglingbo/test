@@ -16,6 +16,7 @@
 	text-align: right;
 }
 
+
 .title.required {
 	color: red;
 }

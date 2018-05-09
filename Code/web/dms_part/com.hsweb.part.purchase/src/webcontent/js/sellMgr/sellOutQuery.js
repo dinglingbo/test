@@ -21,6 +21,35 @@ $(document).ready(function(v)
     rightGrid.on("beforeload",function(e){
         e.data.token = token;
     });
+    rightGrid.on("drawcell",function(e)
+    {
+        var field = e.field;
+        if("partBrandId" == field)
+        {
+            if(partBrandIdHash && partBrandIdHash[e.value])
+            {
+                e.cellHtml = partBrandIdHash[e.value].name;
+            }
+        }
+        else if("storeId" == field)
+        {
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
+        }
+        else if("enterDayCount" == field)
+        {
+            var row = e.record;
+            var enterTime = (new Date(row.enterDate)).getTime();
+            var nowTime = (new Date()).getTime();
+            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
+            e.cellHtml = dayCount+1;
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -43,43 +72,12 @@ $(document).ready(function(v)
                 storehouseHash[v.customid] = v;
             }
         });
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000065');//出库类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("settType").setData(settTypeIdList);
-                var outTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000065")
-                    {
-                        outTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                quickSearch(currType);
-            }
+        initDicts({
+            outTypeId:OUT_TYPE,//出库类型
+            billTypeId:BILL_TYPE,//票据类型
+            settType:SETT_TYPE//结算方式
+        },function(){
+            quickSearch(currType);
         });
     });
 
@@ -228,50 +226,4 @@ function selectCustomer(elId)
             }
         }
     });
-}
-
-function onDrawCell(e)
-{
-    switch (e.field)
-    {
-    	case "partBrandId":
-	        if(partBrandIdHash && partBrandIdHash[e.value])
-	        {
-	            e.cellHtml = partBrandIdHash[e.value].name;
-	        }
-	        break;
-        case "enterTypeId":
-            if(enterTypeIdHash && enterTypeIdHash[e.value])
-            {
-                e.cellHtml = enterTypeIdHash[e.value].name;
-            }
-            break;
-        case "settType":
-            if(settTypeIdHash && settTypeIdHash[e.value])
-            {
-                e.cellHtml = settTypeIdHash[e.value].name;
-            }
-            break;
-        case "storeId":
-            if(storehouseHash && storehouseHash[e.value])
-            {
-                e.cellHtml = storehouseHash[e.value].name;
-            }
-            break;
-        case "backReasonId":
-            if(backReasonIdHash && backReasonIdHash[e.value])
-            {
-                e.cellHtml = backReasonIdHash[e.value].name;
-            }
-            break;
-        case "enterDayCount":
-            var row = e.record;
-            var enterTime = (new Date(row.enterDate)).getTime();
-            var nowTime = (new Date()).getTime();
-            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-            e.cellHtml = dayCount+1;
-            break;
-        default:
-            break;
-    }
 }

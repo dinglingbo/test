@@ -23,7 +23,48 @@ $(document).ready(function(v)
     grid.on("beforeload",function(e){
         e.data.token = token;
     });
-
+    grid.on("drawcell",function(e){
+        var field = e.field;
+        if("isDisabled" == field)
+        {
+            e.cellHtml = e.value == 1?"失效":"有效";
+        }
+        else if("partBrandId" == field)
+        {
+            if(partBrandIdHash  && partBrandIdHash[e.value])
+            {
+                e.cellHtml = partBrandIdHash[e.value].name;
+            }
+        }
+        else if("storeId" == field)
+        {
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
+        }
+        else if("outQty" == field)
+        {
+            e.cellHtml = row.enterQty - row.outableQty;
+        }
+        else if("carTypeIdF" == field || "carTypeIdS" == field || "carTypeIdT" == field)
+        {
+            if(partTypeHash[e.value])
+            {
+                e.cellHtml = partTypeHash[e.value].name||"";
+            }
+        }
+        else if("qualityTypeId" == field)
+        {
+            if(qualityHash[e.value])
+            {
+                e.cellHtml = qualityHash[e.value].name||"";
+            }
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     queryForm = new nui.Form("#queryForm");
@@ -38,35 +79,11 @@ $(document).ready(function(v)
                 storehouseHash[v.id] = v;
             }
         });
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000065');//出库类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("settType").setData(settTypeIdList);
-          //      quickSearch(20);
-            }
+
+        initDicts({
+            billTypeId:BILL_TYPE,//票据类型
+            settType:SETT_TYPE //结算方式
+        },function(){
         });
     });
 });

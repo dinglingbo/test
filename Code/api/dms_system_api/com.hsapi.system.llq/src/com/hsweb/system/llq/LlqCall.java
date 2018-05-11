@@ -1,5 +1,7 @@
 package com.hsweb.system.llq;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +16,7 @@ public class LlqCall {
 
 	@Bizlet("setHashKey")
 	public void setHashKey(Map<String, Object> params) {
-		String securityKey = params.get("securityKey").toString();	
+		String securityKey = params.get("securityKey").toString();
 		params.remove("securityKey");
 		Long time = (new Date()).getTime();// 1516266450.711719
 
@@ -28,7 +30,19 @@ public class LlqCall {
 			s.append(entry.getValue());
 			System.out.println(entry.getKey() + "：" + entry.getValue());
 		}
-		
+
+		//
+		Object authObj = params.get("auth");
+		if (authObj != null) {
+			try {
+				params.put("auth",
+						URLEncoder.encode(authObj.toString(), "utf-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+
 		String hash = MD5.crypt(s.toString() + securityKey);
 		System.out.println("hash=" + hash);
 		params.put("hash", hash);
@@ -44,7 +58,6 @@ public class LlqCall {
 		if (map == null || map.isEmpty()) {
 			return null;
 		}
-		
 
 		Map<String, Object> sortMap = new TreeMap<String, Object>(
 				new Comparator<String>() {

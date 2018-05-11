@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryRPAccountList.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="params/dc  1应收；-1应付；无  综合&#xD;&#xA;&#xD;&#xA;billServiceIdList 满足  'CGR00001','XSC00003',''..." title="Administrator&#x9;18-3-21 下午9:06">
-    <location x="23" y="15"/>
-    <size height="100" width="455"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="params/dc  1应收；-1应付；无  综合&#xD;&#xA;&#xD;&#xA;billServiceIdList 满足  'CGR00001','XSC00003',''...&#xD;&#xA;&#xD;&#xA;其他应收应付默认查询未审核的数据；&#xD;&#xA;系统生成的应收应付应该是查询审核的数据（只会存在审核的数据）" title="Administrator&#x9;18-3-21 下午9:06">
+    <location x="30" y="-30"/>
+    <size height="136" width="455"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link2" isDefault="true" type="transition">
@@ -215,6 +215,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">ct/_and[1]/_expr[9]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/rpTypeId</process:from>
+      <process:to type="query">ct/_and[1]/_expr[10]/rpTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">ct/_and[1]/_expr[10]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">

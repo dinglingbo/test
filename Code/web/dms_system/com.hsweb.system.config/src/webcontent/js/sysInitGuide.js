@@ -72,5 +72,21 @@ function toFiSettleAccountBalanceSet(){
 	window.parent.activeTab(item);
 }
 
+function toRPBillSet(){
+	var item={};
+	item.id = "initQCRPBill";
+	item.text = "期初应收应付";
+	item.url = webPath + sysDomain + "/com.hsweb.cloud.part.basic.initQCRPBill.flow";
+	item.iconCls = "fa fa-exchange";
+	window.parent.activeTab(item);
+}
 
+function toTeamMainSet(){
+	var item={};
+	item.id = "TeamMain";
+	item.text = "班组定义";
+	item.url = webPath + sysDomain + "/com.hsweb.repair.DataBase.TeamMain.flow";
+	item.iconCls = "fa fa-vcard";
+	window.parent.activeTab(item);
+}
 

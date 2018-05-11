@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>DMS管理系统</title>
+<title>云汽配</title>
 <style type="text/css">
 .dtHighLight{
 	background:#F0F8FF !important;
@@ -46,7 +46,7 @@
     
 <div class="navbar">
     <div class="navbar-header">
-        <div class="navbar-brand">云服务</div>
+        <div class="navbar-brand">云汽配</div>
         <div class="navbar-brand navbar-brand-compact">云</div>
     </div>
     <ul class="nav navbar-nav">

@@ -22,7 +22,7 @@ $(document).ready(function(v){
         var row = gridMainGroup.getSelected();
         if (row.auth) {
             var params = {
-                "url":"https://llq.007vin.com/ppycars/subgroup",
+                "url": llq_pre_url + "/ppycars/subgroup",
                 "params":{
                     "brand":brand,
                     "auth":unescape(row.auth)
@@ -37,7 +37,7 @@ $(document).ready(function(v){
         var row = gridSubGroup.getSelected();
         if (row.auth) {
             var params = {
-                "url":"https://llq.007vin.com/ppycars/parts",
+                "url": llq_pre_url + "/ppycars/parts",
                 "params":{
                     "brand":brand,
                     "auth":unescape(row.auth)
@@ -47,7 +47,7 @@ $(document).ready(function(v){
             callAjax(url, params, processAjax, setGridPartsData);
             
             params = {
-                "url":"https://llq.007vin.com/ppycars/subimgs",
+                "url": llq_pre_url + "/ppycars/subimgs",
                 "params":{
                     "brand":brand,
                     "auth":unescape(row.auth)
@@ -64,7 +64,7 @@ $(document).ready(function(v){
         var field = e.field;
         var value = e.value;
         if(field == "detail"){
-            var html = '<a class="icon-hedit" href="javascript:openDetail(' + record.pid + ')">' + value + '</a>';
+            var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
             e.cellHtml = html;
         }
     });
@@ -73,12 +73,13 @@ $(document).ready(function(v){
 /*
 *获取主组列表
 */
+//unescape(auth)
 function queryGroupByAuth(auth){	
     var params = {
-        "url":"https://llq.007vin.com/ppycars/group",
+        "url": llq_pre_url + "/ppycars/group",
         "params":{
             "brand":brand,
-            "auth":unescape(auth)
+            "auth":unescape(auth)//
         },
         "token": token
     }

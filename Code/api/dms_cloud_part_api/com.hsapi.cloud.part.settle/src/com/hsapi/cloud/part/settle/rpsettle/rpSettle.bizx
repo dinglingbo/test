@@ -110,6 +110,10 @@
       <process:to type="query">f/billTypeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">BillTypeCode</process:from>
+      <process:to type="query">f/billTypeCode</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">BillAmt</process:from>
       <process:to type="query">f/rpAmt</process:to>
     </process:copy>
@@ -188,6 +192,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">remark</process:from>
       <process:to type="query">f/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">f/rpTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -371,6 +379,10 @@
       <process:to type="query">f/billTypeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">BillTypeCode</process:from>
+      <process:to type="query">f/billTypeCode</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">BillAmt</process:from>
       <process:to type="query">f/rpAmt</process:to>
     </process:copy>
@@ -449,6 +461,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">remark</process:from>
       <process:to type="query">f/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">f/rpTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -650,11 +666,12 @@
     <process:input description="" isArray="false" name="GuestName" primitiveType="String"/>
     <process:input description="" isArray="false" name="ServiceId" primitiveType="String"/>
     <process:input description="" isArray="false" name="BillMainId" primitiveType="Long"/>
-    <process:input description="" isArray="false" name="BillTypeId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="BillTypeId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="BillAmt" primitiveType="Float"/>
     <process:input description="" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:input description="" isArray="false" name="dc" primitiveType="Int"/>
     <process:input description="" isArray="false" name="remark" primitiveType="String"/>
+    <process:input description="" isArray="false" name="BillTypeCode" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

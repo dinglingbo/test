@@ -29,7 +29,7 @@ $(document).ready(function(v){
         var row = gridMainGroup.getSelected();
         if (row.auth) {
             var params = {
-                "url":"https://llq.007vin.com/ppyvin/subgroup",
+                "url": llq_pre_url + "/ppyvin/subgroup",
                 "params":{
                     "vin":vin,
                     "brand":brand,
@@ -53,7 +53,7 @@ $(document).ready(function(v){
         var field = e.field;
         var value = e.value;
         if(field == "detail"){
-            var html = '<a class="icon-hedit" href="javascript:openDetail(' + record.pid + ')">' + value + '</a>';
+            var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
             e.cellHtml = html;
         }
     });
@@ -72,7 +72,7 @@ function queryVin(){
     
     if (checkVin()){
         var params = {
-            "url":"https://llq.007vin.com/ppyvin/searchvins",
+            "url": llq_pre_url + "/ppyvin/searchvins_v2",
             "params":{
                 "vin":vin
             },
@@ -129,7 +129,7 @@ function setGridCfg(data){
 function queryGroupByVin(){	
     if (checkVin()){
         var params = {
-            "url":"https://llq.007vin.com/ppyvin/group",
+            "url": llq_pre_url + "/ppyvin/group_v2",
             "params":{
                 "vin":vin,
                 "brand":brand
@@ -192,7 +192,7 @@ function setSubGroupData(data){
 function clickGdSubGroup(row){
     if (row.auth) {
         var params = {
-            "url":"https://llq.007vin.com/ppyvin/parts",
+            "url": llq_pre_url + "/ppyvin/parts",
             "params":{
                 "vin":vin,
                 "brand":brand,
@@ -204,7 +204,7 @@ function clickGdSubGroup(row){
         callAjax(url, params, processAjax, setGridPartsData);
         
         params = {
-            "url":"https://llq.007vin.com/ppycars/subimgs",
+            "url": llq_pre_url + "/ppycars/subimgs",
             "params":{
                 "brand":brand,
                 "auth":unescape(row.auth)

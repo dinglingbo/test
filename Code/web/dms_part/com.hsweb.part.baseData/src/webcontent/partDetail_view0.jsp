@@ -122,7 +122,7 @@
                 <input name="applyCarbrandId"
                        id="applyCarbrandId"
                        class="nui-combobox width1"
-                       textField="carBrandZh"
+                       textField="nameCn"
                        valueField="id"
                        emptyText="请选择..."
                        url=""

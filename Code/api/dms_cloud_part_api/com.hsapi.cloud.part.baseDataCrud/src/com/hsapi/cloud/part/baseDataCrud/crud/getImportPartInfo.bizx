@@ -634,7 +634,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">partCode</process:from>
+      <process:from type="query" pattern="reference">partCode</process:from>
       <process:to type="query">partMsg</process:to>
     </process:copy>
   </nodes>

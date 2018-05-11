@@ -9,13 +9,11 @@ $(document).ready(function(v)
     nui.mask({
         html:'数据加载中...'
     });
-    var dictIdList = [];
-    dictIdList.push("DDT20130703000074");
-    getDictItems(dictIdList,function(data)
-    {
+    initDicts({
+        returnId: RETURN_TYPE //退回原因
+    },function(){
         nui.unmask();
-        var items = data.dataItems||[];
-        nui.get("returnId").setData(items);
+        var items = nui.get("returnId").getData();
         if(items.length>0)
         {
             nui.get("returnId").setValue(items[0].customid);
@@ -40,10 +38,9 @@ function onOk()
     nui.mask({
         html:'归库中...'
     });
-    nui.ajax({
+    doPost({
         url:saveUrl,
-        type:"post",
-        data:JSON.stringify(out),
+        data:out,
         success:function(data)
         {
             nui.unmask();

@@ -10,11 +10,10 @@ $(document).ready(function(v)
     nui.mask({
         html:'数据加载中...'
     });
-    getRoleMember('010817',function(data)
-    {
+    initRoleMembers({
+        pickMan:"010817"
+    },function(){
         nui.unmask();
-        var members = data.members||[];
-        nui.get("pickMan").setData(members);
     });
 });
 function CloseWindow(action)
@@ -46,13 +45,11 @@ function onOk()
     nui.mask({
         html:'出库中...'
     });
-    nui.ajax({
+    doPost({
         url:saveUrl,
-        type:"post",
-        data:JSON.stringify({
-            out:out,
-            token:token
-        }),
+        data:{
+            out:out
+        },
         success:function(data)
         {
             nui.unmask();

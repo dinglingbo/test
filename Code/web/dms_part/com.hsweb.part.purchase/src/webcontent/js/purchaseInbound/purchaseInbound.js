@@ -45,7 +45,26 @@ $(document).ready(function(v)
     leftGrid.setUrl(leftGridUrl);
     leftGrid.on("beforeload",function(e){
     	e.data.token = token;
-    });    
+    });
+    leftGrid.on("drawcell",function(e){
+        var record = e.record,
+            column = e.column,
+            field = e.field,
+            value = e.value;
+
+        //将单据状态文本替换成图片
+        if (field == "billStatus") {
+
+            if (e.value == 0) {
+                console.log('OK' + e.value);
+                e.cellHtml = "<span class='icon-edit' style='width:20px;height:20px;display:block;'></span>"
+            } else if (e.value == 1) {
+                e.cellHtml = "<span class='icon-ok' style='width:20px;height:20px;display:block;'></span>"
+            } else if (e.value == 2) {
+                e.cellHtml = "<span class='icon-lock' style='width:20px;height:20px;display:block;'></span>"
+            }
+        }
+    });
     leftGrid.on("load",function(){
     	var data = leftGrid.getData()||[];
         var count = data.length;
@@ -115,49 +134,18 @@ $(document).ready(function(v)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        return true;
-                    }
-                });
-                nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        return true;
-                    }
-                });
-                nui.get("settType").setData(settTypeIdList);
-            }
-            var roleId = [];
-            roleId.push("010810");//验货员
-            roleId.push("010806");//采购员
-            getRoleMember(roleId,function(data)
-            {
-                var list = data.members;
-                var buyerList = list.filter(function(v)
-                {
-                    return v.roleId == "010806";
-                });
-                var checkerList = list.filter(function(v)
-                {
-                    return v.roleId == "010810";
-                });
+
+        initDicts({
+            billTypeId:BILL_TYPE,//票据类型
+            settType:SETT_TYPE //结算方式
+        },function(){
+            initRoleMembers({
+                buyer:"010806",
+                checker:"010810"
+            },function(){
+                quickSearch(menuBtnDateQuickSearch, currType, '本日');
                 var checkerEl = nui.get("checker");
                 var buyerEl = nui.get("buyer");
-                checkerEl.setData(checkerList);
-                buyerEl.setData(buyerList);
                 checkerEl.on("valuechanged",function()
                 {
                     var checkerEl = nui.get("checker");
@@ -174,7 +162,6 @@ $(document).ready(function(v)
                         buyerEl.setText(currUserName);
                     }
                 });
-                quickSearch(menuBtnDateQuickSearch, currType, '本日');
             });
         });
     });
@@ -280,26 +267,7 @@ function loadRightGridData(enterId)
         enterId:enterId
     });
 }
-function onLeftGridDrawCell(e)
-{
-    var record = e.record,
-        column = e.column,
-        field = e.field,
-        value = e.value;
 
-    //将单据状态文本替换成图片
-    if (column.field == "billStatus") {
-
-        if (e.value == 0) {
-            console.log('OK' + e.value);
-            e.cellHtml = "<span class='icon-edit' style='width:20px;height:20px;display:block;'></span>"
-        } else if (e.value == 1) {
-            e.cellHtml = "<span class='icon-ok' style='width:20px;height:20px;display:block;'></span>"
-        } else if (e.value == 2) {
-            e.cellHtml = "<span class='icon-lock' style='width:20px;height:20px;display:block;'></span>"
-        }
-    }
-}
 var currType = 0;
 function quickSearch(ctlid, value, text){
     ctlid.setValue(value);

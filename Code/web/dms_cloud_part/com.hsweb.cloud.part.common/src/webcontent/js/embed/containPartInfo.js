@@ -4,7 +4,7 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var treeUrl = baseUrl+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
-var partGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryPartList.biz.ext";
+var partGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPartJoinStockList.biz.ext";
 var partGrid = null;
 
 var qualityList = [];
@@ -16,6 +16,7 @@ var abcTypeList = [];
 var abcTypeHash = {};
 var carBrandList = [];
 var queryForm = null;
+var codeEl = null;
 $(document).ready(function() {
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
@@ -23,6 +24,8 @@ $(document).ready(function() {
     /*partGrid.on("load", function() {
         onPartGridRowClick({});
     });*/
+    codeEl = nui.get("search-code");
+    codeEl.focus();
 
     getAllPartBrand(function(data) {
         qualityList = data.quality;
@@ -70,6 +73,36 @@ $(document).ready(function() {
         });
 
 
+    });
+
+    $("#search-code").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-name").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-applyCarModel").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-namePy").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#partBrandId").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
     });
 
 });
@@ -145,11 +178,12 @@ function reloadData()
 function getSearchParams()
 {
     var params = queryForm.getData();
-    //params.code = nui.get("search-code").getValue();
-    //params.name = nui.get("search-name").getValue();
-    //params.applyCarModel = nui.get("search-applyCarModel").getValue();
-    //params.namePy = nui.get("search-namePy").getValue();
-    //params.partBrandId = nui.get("partBrandId").getValue();
+    params.partCode = nui.get("search-code").getValue();
+    params.partName = nui.get("search-name").getValue();
+    params.applyCarModel = nui.get("search-applyCarModel").getValue();
+    params.namePy = nui.get("search-namePy").getValue();
+    params.partBrandId = nui.get("partBrandId").getValue();
+    params.isDisabled = 0;
     return params;
 }
 function onSearch()
@@ -159,8 +193,10 @@ function onSearch()
 }
 function doSearch(params)
 {
+    //在GRID属性中设置每页查询的记录条数
     partGrid.load({
         params:params,
+        page:page,
         token:token
     });
 }
@@ -257,4 +293,9 @@ function getData(){
 function onRowDblClick()
 {
     onOk();
+}
+function initData(partCode){
+    codeEl.setValue(partCode);
+    onSearch();
+    codeEl.focus();
 }

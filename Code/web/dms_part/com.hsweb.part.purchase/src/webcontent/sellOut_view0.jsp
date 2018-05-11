@@ -16,6 +16,7 @@
 	text-align: right;
 }
 
+
 .title.required {
 	color: red;
 }
@@ -182,8 +183,8 @@
                                        id="checker"
                                        allowInput="false"
                                        class="nui-combobox width1"
-                                       textField="name"
-                                       valueField="name"
+                                       textField="empName"
+                                       valueField="empName"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="false"
@@ -219,8 +220,8 @@
                                        id="seller"
                                        allowInput="false"
                                        class="nui-combobox width1"
-                                       textField="name"
-                                       valueField="name"
+                                       textField="empName"
+                                       valueField="empName"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="false"

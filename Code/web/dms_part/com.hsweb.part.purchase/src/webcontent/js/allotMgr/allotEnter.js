@@ -60,20 +60,6 @@ $(document).ready(function(v)
     	e.data.token = token;
     });
     rightGrid.setUrl(rightGridUrl);
-    rightGrid.on("drawcell",function(e)
-    {
-        switch (e.field)
-        {
-            case "partBrandId":
-                if(partBrandIdHash && partBrandIdHash[e.value])
-                {
-                    e.cellHtml = partBrandIdHash[e.value].name;
-                }
-                break;
-            default:
-                break;
-        }
-    });
 
     menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
     menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");
@@ -83,22 +69,12 @@ $(document).ready(function(v)
     //console.log("xxx");
 
     nui.get("billStatus").setData(billStatusList);
-    getAllPartBrand(function(data)
-    {
-        var partBrandList = data.brand;
-        partBrandList.forEach(function(v)
-        {
-            partBrandIdHash[v.id] = v;
-        });
-    });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
-        getOrgList(function(data)
-        {
-            var orgList = data.orgList;
-            nui.get("guestId").setData(orgList);
+
+        initComp("guestId",function(){
             quickSearch(currType);
         });
     });

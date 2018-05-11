@@ -6,8 +6,7 @@
 	pageEncoding="UTF-8" session="false"%>
 <%@include file="/common/sysCommon.jsp"%>
 <script type="text/javascript">
-	
-<%IMUODataContext muo = DataContextManager.current()
+<% IMUODataContext muo = DataContextManager.current()
 					.getMUODataContext();
 			String currUserName = "";
 			String currOrgid = "";

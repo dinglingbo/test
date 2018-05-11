@@ -16,54 +16,86 @@ var abcTypeList = [];
 var carBrandList = [];
 var queryForm = null;
 $(document).ready(function() {
-	queryForm = new nui.Form("#queryForm");
-	partGrid = nui.get("partGrid");
-	partGrid.setUrl(partListUrl);
+    queryForm = new nui.Form("#queryForm");
+    partGrid = nui.get("partGrid");
+    partGrid.setUrl(partListUrl);
     partGrid.on("beforeload",function(e){
         e.data.token = token;
     });
-	partGrid.on("load", function() {
-		onPartGridRowClick({});
-	});
-	tree = nui.get("tree1");
-	tree.setUrl(treeUrl);
+    partGrid.on("load", function() {
+        onPartGridRowClick({});
+    });
+    partGrid.on("drawcell",function(e)
+    {
+        if(!partTypeHash)
+        {
+            partTypeHash = {};
+            var partTypeList = tree.getList();
+            partTypeList.forEach(function(v)
+            {
+                partTypeHash[v.id] = v;
+            });
+        }
+        var field = e.field;
+        if("isUniform" == field)
+        {
+            e.cellHtml = e.value == 1?"是":"否";
+        }
+        else if("isDisabled" == field)
+        {
+            e.cellHtml = e.value == 1?"失效":"有效";
+        }
+        else if("carTypeIdF" == field || "carTypeIdS" == field || "carTypeIdT" == field)
+        {
+            if(partTypeHash && partTypeHash[e.value])
+            {
+                e.cellHtml = partTypeHash[e.value].name||"";
+            }
+        }
+        else if("qualityTypeId" == field)
+        {
+            if(qualityHash[e.value])
+            {
+                e.cellHtml = qualityHash[e.value].name||"";
+            }
+        }
+        else if("partBrandId" == field)
+        {
+            if(brandHash[e.value])
+            {
+                e.cellHtml = brandHash[e.value].name||"";
+            }
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
+    tree = nui.get("tree1");
+    tree.setUrl(treeUrl);
     tree.on("beforeload",function(e){
         e.data.token = token;
     });
     // console.log("xxx");
 
-	getAllPartBrand(function(data) {
-		qualityList = data.quality;
-		qualityList.forEach(function(v) {
-			qualityHash[v.id] = v;
-		});
-		brandList = data.brand;
-		brandList.forEach(function(v) {
-			brandHash[v.id] = v;
-		});
-		getAllCarBrand(function(data) {
-			data = data || {};
-			carBrandList = data.carBrands || [];
-			//console.log(carBrandList);
-			nui.get("applyCarBrandId").setData(carBrandList);
-			var dictIdList = [];
-			dictIdList.push('DDT20130703000016');// --单位
-			dictIdList.push('DDT20130703000067');// --ABC分类
-			getDictItems(dictIdList, function(data) {
-				if (data && data.dataItems) {
-					var dataItems = data.dataItems || [];
-					unitList = dataItems.filter(function(v) {
-						return v.dictid == 'DDT20130703000016';
-					});
-					abcTypeList = dataItems.filter(function(v) {
-						return v.dictid == 'DDT20130703000067';
-					});
-				}
-				onSearch();
-			});
-		});
+    getAllPartBrand(function(data) {
+        qualityList = data.quality;
+        qualityList.forEach(function(v) {
+            qualityHash[v.id] = v;
+        });
+        brandList = data.brand;
+        brandList.forEach(function(v) {
+            brandHash[v.id] = v;
+        });
 
-	});
+        initCarBrand("applyCarBrandId",function(){
+            initDicts({
+                unit:UNIT,// --单位
+                abcType:ABC_TYPE // --ABC分类
+            },function(){
+                onSearch();
+            });
+        });
+    });
 
 });
 function onDrawNode(e)
@@ -96,59 +128,6 @@ function onNodeDblClick(e)
     doSearch(params);
 }
 var partTypeHash = null;
-function onPartGridDraw(e)
-{
-    if(!partTypeHash)
-    {
-        partTypeHash = {};
-        var partTypeList = tree.getList();
-        partTypeList.forEach(function(v)
-        {
-            partTypeHash[v.id] = v;
-        });
-    }
-
-    switch (e.field)
-    {
-	    case "isUniform":
-	        e.cellHtml = e.value == 1?"是":"否";
-	        break;
-        case "isDisabled":
-            e.cellHtml = e.value == 1?"失效":"有效";
-            break;
-        case "carTypeIdF":
-        case "carTypeIdS":
-        case "carTypeIdT":
-            if(partTypeHash[e.value])
-            {
-                e.cellHtml = partTypeHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        case "qualityTypeId":
-            if(qualityHash[e.value])
-            {
-                e.cellHtml = qualityHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        case "partBrandId":
-            if(brandHash[e.value])
-            {
-                e.cellHtml = brandHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        default:
-            break;
-    }
-}
 
 
 function reloadData()
@@ -160,7 +139,7 @@ function reloadData()
 }
 function getSearchParams()
 {
-	var params = queryForm.getData();
+    var params = queryForm.getData();
     if(params.showDisabled == 0)
     {
         params.isDisabled = 0;
@@ -174,13 +153,13 @@ function onSearch()
 }
 function doSearch(params)
 {
-	params.sortOrder = "ASC";
+    params.sortOrder = "ASC";
     params.sortField = "id";
     if(params.namePy)
     {
         params.namePy = params.namePy.toUpperCase();
     }
-	partGrid.load({
+    partGrid.load({
         params:params
     });
 }
@@ -209,7 +188,7 @@ function addOrEditPart(row)
         allowResize:false,
         onload: function ()
         {
-        	var iframe = this.getIFrameEl();
+            var iframe = this.getIFrameEl();
             var carBrandList = nui.get("applyCarBrandId").getData();
             var params = {
                 qualityTypeIdList:qualityList,
@@ -228,7 +207,7 @@ function addOrEditPart(row)
         {
             if(action == "ok")
             {
-            	reloadData();
+                reloadData();
             }
         }
     });
@@ -311,26 +290,6 @@ function savePart(part,successTip,errorTip)
             }
             else{
                 nui.alert(data.errMsg||errorTip||"保存失败");
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
-
-var getAllPartBrandUrl = baseUrl+"com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
-function getAllPartBrand(callback)
-{
-    nui.ajax({
-        url:getAllPartBrandUrl,
-        type:"post",
-        success:function(data)
-        {
-            if(data && data.quality && data.brand)
-            {
-                callback && callback(data);
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

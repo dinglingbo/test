@@ -46,7 +46,7 @@ $(document).ready(function(v){
             brand = row.brand;
             setTopNav(2, row.brandCn);
             var params = {
-                "url":"https://llq.007vin.com/cars/show",
+                "url": llq_pre_url + "/cars/show",
                 "params":{
                     "brand": brand
                 },
@@ -61,7 +61,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(3, row.name);
             var params = {
-                "url":"https://llq.007vin.com/cars/code",
+                "url": llq_pre_url + "/cars/code",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -79,7 +79,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(4, row.name);
             var params = {
-                "url":"https://llq.007vin.com/cars/model",
+                "url": llq_pre_url + "/cars/model",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -97,7 +97,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(5, row.name);
             var params = {
-                "url":"https://llq.007vin.com/cars/litm",
+                "url": llq_pre_url + "/cars/litm",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -115,7 +115,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(6, row.name);
             var params = {
-                "url":"https://llq.007vin.com/cars/litn",
+                "url": llq_pre_url + "/cars/litn",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -133,7 +133,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(7, row.name);
             var params = {
-                "url":"https://llq.007vin.com/cars/litf",
+                "url": llq_pre_url + "/cars/litf",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -151,7 +151,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(8, row.name);
             var params = {
-                "url":"https://llq.007vin.com/cars/litfi",
+                "url": llq_pre_url + "/cars/litfi",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -169,7 +169,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(9, row.name);
             var params = {
-                "url":"https://llq.007vin.com/cars/litsx",
+                "url": llq_pre_url + "/cars/litsx",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -188,7 +188,7 @@ $(document).ready(function(v){
 */
 function queryDg1(){	
     var params = {
-        "url":"https://llq.007vin.com/ppycars/brand",
+        "url": llq_pre_url + "/ppycars/brand",
         "params":{
         },
         "token": token

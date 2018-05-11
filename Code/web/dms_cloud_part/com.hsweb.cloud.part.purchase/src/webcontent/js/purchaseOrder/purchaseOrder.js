@@ -68,10 +68,15 @@ $(document).ready(function(v) {
 	mainTabs = nui.get("mainTabs");
 	billmainTab = mainTabs.getTab("billmain");
 	partInfoTab = mainTabs.getTab("partInfoTab");
-	document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
-	document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
-	document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
-	document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
+
+	//setTimeout(function(){ 
+		document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
+		//document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
+		//document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
+		//document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
+	//}, 3000);
+
+
 	//document.getElementById("formIframePart").contentWindow.setInitTab('purchase');
 
 	$("#guestId").bind("keydown", function (e) {
@@ -180,6 +185,28 @@ $(document).ready(function(v) {
 	gsparams.auditSign = 0;
 	quickSearch(0);
 });
+function ontopTabChanged(e){
+	var tab = e.tab;
+	var name = tab.name;
+	var url = tab.url;
+	if(!url){
+		if(name == "partInfoTab"){
+			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp", tab);
+		}else if(name == "partStockInfoTab"){
+			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp", tab);
+		}else if(name == "purchaseAdvanceTab"){
+			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp", tab);
+		}else if(name == "billmain"){
+			var guestId = nui.get("guestId");
+			if(!guestId){
+				guestId.focus();
+			}else{
+				fastPartEntryEl.focus();
+			}
+		}
+	}
+	
+}
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
 	return "purchase";
@@ -984,7 +1011,8 @@ function getPartInfo(params){
 					//var partCode = params.partCode;
 					//var partName = params.partName;
 					//var param = {code:partCode, name:partName};
-					document.getElementById("formIframePart").contentWindow.initData(params.partCode);
+					//document.getElementById("formIframePart").contentWindow.initData(params.partCode);
+					mainTabs.getTabIFrameEl(partInfoTab).contentWindow.initData(params.partCode);
 				}
 				
 			}else{

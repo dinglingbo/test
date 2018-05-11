@@ -79,36 +79,13 @@ $(document).ready(function(v)
             }
         });
     });
-    var dictIdList = [];
-    dictIdList.push('DDT20130703000008');//票据类型
-    dictIdList.push('DDT20130703000035');//结算方式
-    getDictItems(dictIdList,function(data)
-    {
+    initDicts({
+        billTypeId:BILL_TYPE,//票据类型
+        settType:SETT_TYPE //结算方式
+    },function(){
         var node = tree.getRootNode().children[0];
-        //   console.log(node);
         tree.selectNode(node);
-        if(data && data.dataItems)
-        {
-            var dataItems = data.dataItems||[];
-            var billTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000008")
-                {
-                    billTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            //      nui.get("billTypeId").setData(billTypeIdList);
-            var settTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000035")
-                {
-                    settTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            quickSearch(menuBtnDateQuickSearch, currType, '本日');
-        }
+        quickSearch(menuBtnDateQuickSearch, currType, '本日');
     });
 });
 
@@ -195,18 +172,6 @@ function onRightGrid1RowClick(e){
 function onRightGrid1DrawCell(e){
     switch (e.field)
     {
-        case "billTypeId":
-            if(billTypeIdHash && billTypeIdHash[e.value])
-            {
-                e.cellHtml = billTypeIdHash[e.value].name;
-            }
-            break;
-        case "settType":
-            if(settTypeIdHash && settTypeIdHash[e.value])
-            {
-                e.cellHtml = settTypeIdHash[e.value].name;
-            }
-            break;
         case "storeId":
             if(storehouseHash && storehouseHash[e.value])
             {
@@ -214,6 +179,7 @@ function onRightGrid1DrawCell(e){
             }
             break;
         default:
+            onDrawCell(e);
             break;
     }
 }

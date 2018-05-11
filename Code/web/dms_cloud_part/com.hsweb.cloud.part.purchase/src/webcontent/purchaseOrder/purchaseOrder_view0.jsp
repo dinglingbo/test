@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -18,6 +18,9 @@
 
 .title.required {
 	color: red;
+}
+.title.tip {
+  color: blue;
 }
 
 .title.wide {
@@ -151,7 +154,7 @@
                            activeIndex="0" 
                            style="width:100%; height: auto;" 
                            plain="false" 
-                           onactivechanged="">
+                           onactivechanged="ontopTabChanged">
                         <div title="采购订单信息" id="billmain" name="billmain" >
                           <div class="nui-fit">
                                  <fieldset id="fd1" style="width:95%;height: 120px;">
@@ -289,8 +292,8 @@
                                                     <td colspan="3">
                                                         <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                                     </td>
-                                                    <td class="title">
-                                                        <label>快速添加：</label>
+                                                    <td class="title tip">
+                                                        <label>添加配件：</label>
                                                     </td>
                                                     <td >
                                                         <input class="nui-textbox" selectOnFocus="true" width="100%" id="fastPartEntry" name="fastPartEntry"/>
@@ -309,20 +312,20 @@
                                 </fieldset>
                           </div>
                         </div>
-                        <div title="配件信息" id="partInfoTab" name="partInfoTab" >
-                          <div class="nui-fit">
+                        <div title="配件信息" id="partInfoTab" name="partInfoTab" url="" >
+                          <!-- <div class="nui-fit">
                               <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-                          </div>
+                          </div> -->
                         </div> 
-                        <div title="库存详情" name="purchaseAdvance" >
+                        <!-- <div title="库存详情" name="partStockInfoTab" url="" >
                           <div class="nui-fit">
                                 <iframe id="formIframeStock" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
                           </div>
-                        </div> 
-                        <div title="采购车" name="purchaseAdvance" >
-                          <div class="nui-fit">
+                        </div>  -->
+                        <div title="采购车" name="purchaseAdvanceTab" url="" >
+                          <!-- <div class="nui-fit">
                                 <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-                          </div>
+                          </div> -->
                         </div>   
                     </div>
 
@@ -364,7 +367,6 @@
                                 <div header="采购订单明细" headerAlign="center">
                                     <div property="columns">
                                     	<div field="operateBtn" width="30" headerAlign="center" header="删除"></div>
-                                      	<div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
                                         <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
                                             <!-- <input property="editor" class="nui-textbox"/> -->
                                         </div>
@@ -401,7 +403,8 @@
                                           /> 
                             </div>  
                           <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
-                          <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                               
+                          <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
+                                        <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>                              
                                     </div>
                                 </div>
                                 <div header="不含税信息" headerAlign="center">

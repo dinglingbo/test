@@ -27,7 +27,9 @@
 </head>
 <body>
 
-
+    <input class="nui-combobox" id="billTypeId" visible="false"/>
+    <input class="nui-combobox" id="settType" visible="false"/>
+    <input class="nui-combobox" id="enterType" visible="false"/>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
@@ -69,7 +71,6 @@
          showPager="false"
          dataField="ptsEnterMainDetailList"
          idField="detailId"
-         ondrawcell="onDrawCell"
          sortMode="client"
          url="">
         <div property="columns">

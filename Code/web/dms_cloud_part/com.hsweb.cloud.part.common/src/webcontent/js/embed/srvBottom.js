@@ -8,24 +8,35 @@ var rtnRecord = null;       //退货记录
 var partInfo = null;        //配件基础资料
 var mainrow = null;
 var gparams = {};
+var tabList = null;
+var stockselectTab = null;
+var outableRecordTab = null;
+var pchsRecordTab = null;
+var sellRecordTab = null;
+var guestPriceTab = null;
+var rtnRecordTab = null;
+var partInfoTab = null;
 $(document).ready(function(v) {
 	mainTabs = nui.get("mainTabs");
-	var tabList = mainTabs.getTabs();
-	var stockselectTab =  mainTabs.getTab("stockselect");
-	var pchsRecordTab =  mainTabs.getTab("pchsRecord");
-	var sellRecordTab =  mainTabs.getTab("sellRecord");
-	var guestPriceTab =  mainTabs.getTab("guestPrice");
-	var rtnRecordTab =  mainTabs.getTab("rtnRecord");
-	var partInfoTab =  mainTabs.getTab("partInfo");
+    tabList = mainTabs.getTabs();
+	stockselectTab =  mainTabs.getTab("stockselect");
+    outableRecordTab = mainTabs.getTab("outableRecord");
+	pchsRecordTab =  mainTabs.getTab("pchsRecord");
+	sellRecordTab =  mainTabs.getTab("sellRecord");
+	guestPriceTab =  mainTabs.getTab("guestPrice");
+	rtnRecordTab =  mainTabs.getTab("rtnRecord");
+	partInfoTab =  mainTabs.getTab("partInfo");
+
+    //mainTabs.updateTab(stockselectTab, {url: webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp"});
 
 
-    document.getElementById("bottomFormIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp";
+    /*document.getElementById("bottomFormIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp";
     document.getElementById("bottomFormIframeOutableRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomOutableRecord.jsp";
     document.getElementById("bottomFormIframePchsRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRecord.jsp";
     document.getElementById("bottomFormIframeSellRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomSellRecord.jsp";
     document.getElementById("bottomFormIframeRtnRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRtnRecord.jsp";
     document.getElementById("bottomFormIframePartInfo").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPartInfo.jsp";
-
+*/
     if(parent && parent.setBottomInit){
     	mainrow = parent.setBottomInit();
     	if(mainrow && mainrow.showTool == -1){
@@ -63,9 +74,49 @@ function setInitTab(type){
 		}
 	}
 }
+function onMainTabLoad(e){
+    //用于第一次加载完成后，如果已经加载过，此事件不会再触发
+    var tab = e.tab;
+    var name = tab.name;
+    var params = {};
+    if(!gparams.partId) gparams.partId=0;
+    if(!gparams.guestId) gparams.guestId=0;
+    if(!gparams.storeId) gparams.storeId=0;
+    switch (name)
+    {
+        case "stockselect":
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            
+            break;
+        case "outableRecord":
+            gparams.guestId=null;
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            break;
+        case "pchsRecord":
+            gparams.guestId=null;
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            break;
+        case "sellRecord":
+            gparams.guestId=null;
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            break;
+        case "guestPrice":
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            break;
+        case "rtnRecord":
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            break;
+        case "partInfo":
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            break;
+        default:
+            break;
+    }
+}
 function showTabInfo(){
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
+    var url = tab.url;
     var params = {};
     if(!gparams.partId) gparams.partId=0;
     if(!gparams.guestId) gparams.guestId=0;
@@ -73,45 +124,92 @@ function showTabInfo(){
 	switch (name)
     {
         case "stockselect":
-            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
                 document.getElementById("bottomFormIframeStock").contentWindow.doSearch(gparams);
-            }
+            }*/
+            gparams.guestId=null;
+            stockselectTab =  mainTabs.getTab("stockselect");
+            if(!url){
+                //mainTabs.updateTab(stockselectTab, {url: webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp"});
+                //mainTabs.reloadTab(stockselectTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp", stockselectTab);
+            }else {
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            }            
+            
             break;
         case "outableRecord":
-            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
             	params.partId=gparams.partId;
                 document.getElementById("bottomFormIframeOutableRecord").contentWindow.doSearch(params);
+            }*/
+            gparams.guestId=null;
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomOutableRecord.jsp", outableRecordTab);
+            }else{
+                mainTabs.getTabIFrameEl(outableRecordTab).contentWindow.doSearch(gparams);
             }
+            
         	break;
         case "pchsRecord":
-            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
             	params.partId=gparams.partId;
                 document.getElementById("bottomFormIframePchsRecord").contentWindow.doSearch(params);
+            }*/
+            gparams.guestId=null;
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRecord.jsp", pchsRecordTab);
+            }else{
+                mainTabs.getTabIFrameEl(pchsRecordTab).contentWindow.doSearch(gparams);  
             }
+            
             break;
         case "sellRecord":
-            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
                 params.partId=gparams.partId;
                 document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
+            }*/
+            gparams.guestId=null;
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomSellRecord.jsp", sellRecordTab);
+            }else{
+                mainTabs.getTabIFrameEl(sellRecordTab).contentWindow.doSearch(gparams);
             }
+            
             break;
         case "guestPrice":
-            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
                 params.partId=gparams.partId;
                 params.guestId=gparams.guestId;
                 document.getElementById("bottomFormIframeSellRecord").contentWindow.doSearch(params);
+            }*/
+            if(!url){
+                mainTabs.updateTab(guestPriceTab, {url: null});
+                mainTabs.reloadTab(guestPriceTab);
             }
+            //mainTabs.getTabIFrameEl(guestPriceTab).contentWindow.doSearch(gparams);
             break;
         case "rtnRecord":
-            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
                 params.partId=gparams.partId;
                 document.getElementById("bottomFormIframeRtnRecord").contentWindow.doSearch(params);
+            }*/
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRtnRecord.jsp", rtnRecordTab);
+            }else{
+                mainTabs.getTabIFrameEl(rtnRecordTab).contentWindow.doSearch(gparams); 
             }
+            
             break;
         case "partInfo":
-            if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
                 params.partId=gparams.partId;
                 document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
+            }*/
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomPartInfo.jsp", partInfoTab);
+            }else{
+                mainTabs.getTabIFrameEl(partInfoTab).contentWindow.doSearch(gparams);
             }
             break;
         default:

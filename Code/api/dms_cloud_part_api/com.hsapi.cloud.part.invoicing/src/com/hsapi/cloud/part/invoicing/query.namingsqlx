@@ -951,9 +951,6 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
                 </isNotEmpty> 
-                <isNotEmpty prepend="order by" property="sortField">  
-	                $sortField$ $sortOrder$
-	            </isNotEmpty> 
 	            <!--业务界面的库存详情限制50 -->
 	            <isNotEmpty prepend="" property="limitQuery">  
                     limit 50

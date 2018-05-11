@@ -66,8 +66,8 @@ function getSearchParam(){
         params.notShowAll = 1;
     }
 
-    params.comPartNameAndPY = nui.get("comPartNameAndPY").getValue();
-    params.comPartCode = nui.get("comPartCode").getValue();
+    params.partNameAndPY = nui.get("comPartNameAndPY").getValue();
+    params.partCode = nui.get("comPartCode").getValue();
     params.partBrandId = nui.get("partBrandId").getValue();
     params.storeId = nui.get("storeId").getValue();
     params.storeShelf = nui.get("storeShelf").getValue();

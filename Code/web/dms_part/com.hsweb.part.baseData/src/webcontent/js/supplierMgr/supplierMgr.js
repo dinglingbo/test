@@ -43,63 +43,50 @@ $(document).ready(function(v)
     grid.on("beforeload",function(e){
         e.data.token = token;
     });
+    grid.on("drawcell",function(e)
+    {
+        var field = e.field;
+        if("isDisabled" == field)
+        {
+            e.cellHtml = e.value==1?"是":"否";
+        }
+        else if("provinceId" == field)
+        {
+            if(provinceHash[e.value])
+            {
+                e.cellHtml = provinceHash[e.value].name;
+            }
+        }
+        else if("cityId" == field)
+        {
+            if(cityHash[e.value])
+            {
+                e.cellHtml = cityHash[e.value].name;
+            }
+        }
+        else if("tgrade" == field)
+        {
+            if(tgradeHash[e.value]){
+                e.cellHtml = tgradeHash[e.value].name||"";
+            }
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
     provinceEl = nui.get("provinceId");
     getProvinceAndCity(function(data)
     {});
-    var dictIdList = [];
-    dictIdList.push('DDT20130703000008');//票据类型
-    dictIdList.push('DDT20180105000001');//供应商负责人职务
-    dictIdList.push('DDT20130703000035');//结算方式
-    dictIdList.push('DDT20171226000001');//供应商类型
-    getDictItems(dictIdList,function(data)
-    {
-        if(data && data.dataItems)
-        {
-            var dataItems = data.dataItems||[];
-            billTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000008")
-                {
-                    billTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            settTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000035")
-                {
-                    settTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            managerDutyList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20180105000001")
-                {
-                    managerDutyHash[v.customid] = v;
-                    return true;
-                }
-            });
-            supplierTypeList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20171226000001")
-                {
-                    supplierTypeHash[v.customid] = v;
-                    return true;
-                }
-            });
-            nui.get("supplierType").setData(supplierTypeList);
-        }
-        getOrgList(function(data)
-        {
-        	var orgList = data.orgList;
-            orgList.forEach(function(v){
-            	orgHash[v.orgid] = v.orgname;
-            });
-        });
+    initDicts({
+        billTypeId:BILL_TYPE,//票据类型
+        managerDuty:MANAGER_DUTY,//供应商负责人职务
+        settType:SETT_TYPE,//结算方式
+        supplierType:SUPPLIER_TYPE //对象类型
+    },function(){
+        initComp("orgId");
     });
 });
 function onSearch(){
@@ -112,19 +99,19 @@ function search()
 }
 function getSearchParam() {
 
-	var params = {
-		fullName : nui.get("fullName").getValue(),
-		advantageCarbrandId : nui.get("advantageCarbrandId").getValue(),
-		mobile : nui.get("mobile").getValue(),
-		supplierType : nui.get("supplierType").getValue()
-	};
+    var params = {
+        fullName : nui.get("fullName").getValue(),
+        advantageCarbrandId : nui.get("advantageCarbrandId").getValue(),
+        mobile : nui.get("mobile").getValue(),
+        supplierType : nui.get("supplierType").getValue()
+    };
 
-	return params;
+    return params;
 
 }
 function doSearch(params)
 {
-	grid.load({
+    grid.load({
         params:params
     });
 }
@@ -139,7 +126,7 @@ function advancedSearch()
 }
 function onAdvancedSearchOk()
 {
-	var searchData = advancedSearchForm.getData();
+    var searchData = advancedSearchForm.getData();
     advancedSearchFormData = searchData;
     advancedSearchWin.hide();
     //console.log(searchData);
@@ -160,7 +147,7 @@ function addSuplier()
         allowResize:false,
         onload: function ()
         {
-        	var iframe = this.getIFrameEl();
+            var iframe = this.getIFrameEl();
             iframe.contentWindow.setData({
                 province:provinceList,
                 city:cityList,
@@ -173,7 +160,7 @@ function addSuplier()
         },
         ondestroy: function (action)
         {
-        	if(action == "ok")
+            if(action == "ok")
             {
                 grid.reload();
             }
@@ -221,62 +208,4 @@ function editSuplier()
 function onRowDblClick(e)
 {
     editSuplier();
-}
-
-
-
-
-function onDrawCell(e)
-{
-    switch (e.field)
-    {
-    	case "orgid":
-	        if(orgHash && orgHash[e.value])
-	        {
-	            e.cellHtml = orgHash[e.value]
-	        }
-	        break;
-        case "isDisabled":
-            e.cellHtml = e.value==1?"是":"否";
-            break;
-        case "provinceId":
-            if(provinceHash[e.value])
-            {
-                e.cellHtml = provinceHash[e.value].name;
-            }
-            break;
-        case "cityId":
-            if(cityHash[e.value])
-            {
-                e.cellHtml = cityHash[e.value].name;
-            }
-            break;
-        case "tgrade":
-            if(tgradeHash[e.value]){
-                e.cellHtml = tgradeHash[e.value].name||"";
-            }
-            break;
-        case "billTypeId":
-            if(billTypeIdHash[e.value]){
-                e.cellHtml = billTypeIdHash[e.value].name||"";
-            }
-
-            break;
-        case "settTypeId":
-            if(settTypeIdHash[e.value]){
-                e.cellHtml = settTypeIdHash[e.value].name||"";
-            }
-            break;
-        case "managerDuty":
-            if(managerDutyHash[e.value]){
-                e.cellHtml = managerDutyHash[e.value].name||"";
-            }
-            break;
-        case "supplierType":
-            if(supplierTypeHash[e.value])
-            {
-                e.cellHtml = supplierTypeHash[e.value].name||"";
-            }
-            break;
-    }
 }

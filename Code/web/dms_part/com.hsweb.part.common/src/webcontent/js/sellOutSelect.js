@@ -22,6 +22,35 @@ $(document).ready(function(v)
     grid.on("beforeload",function(e){
         e.data.token = token;
     });
+    grid.on("drawcell",function(e)
+    {
+        var field = e.field;
+        if("storeId" == field)
+        {
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
+        }
+        else if("isDisabled" == field){
+            e.cellHtml = e.value == 1?"失效":"有效";
+        }
+        else if("carTypeIdF" == field || "carTypeIdS" == field || "carTypeIdT" == field){
+            if(partTypeHash[e.value])
+            {
+                e.cellHtml = partTypeHash[e.value].name||"";
+            }
+        }
+        else if("qualityTypeId" == field){
+            if(qualityHash[e.value])
+            {
+                e.cellHtml = qualityHash[e.value].name||"";
+            }
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
 
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
@@ -37,35 +66,10 @@ $(document).ready(function(v)
                 storehouseHash[v.id] = v;
             }
         });
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000065');//出库类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //      nui.get("settType").setData(settTypeIdList);
-                //      quickSearch(20);
-            }
+        initDicts({
+            billTypeId:BILL_TYPE,//票据类型
+            settType:SETT_TYPE //结算方式
+        },function(){
         });
     });
 });
@@ -252,52 +256,6 @@ function setData(data,ck)
         nui.get("guestId1").disable();
     }
     quickSearch(currentType);
-}
-function onPartGridDraw(e)
-{
-    switch (e.field)
-    {
-        case "storeId":
-            if(storehouseHash && storehouseHash[e.value])
-            {
-                e.cellHtml = storehouseHash[e.value].name;
-            }
-            break;
-        case "isDisabled":
-            e.cellHtml = e.value == 1?"失效":"有效";
-            break;
-        case "carTypeIdF":
-        case "carTypeIdS":
-        case "carTypeIdT":
-            if(partTypeHash[e.value])
-            {
-                e.cellHtml = partTypeHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        case "qualityTypeId":
-            if(qualityHash[e.value])
-            {
-                e.cellHtml = qualityHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
-        case "partBrandId":
-            //if(brandHash[e.value])
-            //{
-            //    e.cellHtml = brandHash[e.value].name||"";
-            //}
-            //else{
-            //    e.cellHtml = "";
-            //}
-            break;
-        default:
-            break;
-    }
 }
 
 var customer = null;

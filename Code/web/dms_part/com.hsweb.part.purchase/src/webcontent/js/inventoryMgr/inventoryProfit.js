@@ -71,17 +71,9 @@ $(document).ready(function(v)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
-        var roleId = [];
-        roleId.push("010806");//盘点人
-        getRoleMember(roleId,function(data)
-        {
-            var list = data.members;
-            var buyerList = list.filter(function(v)
-            {
-                return v.roleId == "010806";
-            });
-            var buyerEl = nui.get("buyer");
-            buyerEl.setData(buyerList);
+        initRoleMembers({
+            buyer:"010806"//盘点人
+        },function(){
             quickSearch(menuBtnDateQuickSearch, currType, '本日');
         });
     });

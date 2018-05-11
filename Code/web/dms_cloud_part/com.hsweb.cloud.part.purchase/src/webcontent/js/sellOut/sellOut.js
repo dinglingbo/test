@@ -67,8 +67,8 @@ $(document).ready(function(v)
     gsparams.endDate = addDate(getNowEndDate(), 1);
     gsparams.auditSign = 0;
 
-    sOutDate = nui.get("sOrderDate");
-    eOutDate = nui.get("eOrderDate");
+    sOutDate = nui.get("sOutDate");
+    eOutDate = nui.get("eOutDate");
 
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");
@@ -997,6 +997,8 @@ function addDetail(part)
                 outDetail.enterAmt = data.qty * data.enterPrice;
                 outDetail.taxDiff = outDetail.taxAmt - outDetail.noTaxAmt;
                 outDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
+                outDetail.originId = data.originId;
+                outDetail.originGuestId = data.originGuestId;
 
                 outDetail.comOemCode = data.oemCode;
                 outDetail.comSpec = data.spec;

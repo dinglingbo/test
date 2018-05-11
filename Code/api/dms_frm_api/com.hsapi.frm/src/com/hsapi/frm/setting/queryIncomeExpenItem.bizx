@@ -26,8 +26,9 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="java.util.HashMap[]" name="data" type="query" valueType="Java">data</process:return>
-      <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
+      <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="3" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -56,7 +57,7 @@
       <targetNode>invokePojo2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NOTNULL">
-          <process:leftOperand type="query">ID</process:leftOperand>
+          <process:leftOperand type="query">p/parentId</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -273,7 +274,7 @@
   <leftRuler/>
   <process:info author="陈鹏" createTime="2013-11-29 15:32:43" date="2013-11-29Z" description="" name="查询业务字典类型" version="6.3"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="isLeaf" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isLeaf" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="p"/>
@@ -281,6 +282,7 @@
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>
+    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

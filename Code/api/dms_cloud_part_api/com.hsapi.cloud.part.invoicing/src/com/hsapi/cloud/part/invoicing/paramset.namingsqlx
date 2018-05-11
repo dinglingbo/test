@@ -7,12 +7,154 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
-    
-    <!--更新三级仓表，仓位，备注，最近入库日期，最近出库日期，最近入库单价，最近出库单价-->
-    <update id="updateStoreStockInfo" parameterClass="java.util.HashMap" >
+    	
+	<select id="queryPartInfoByParam" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.`code` as code,
+			a.`name` as name,
+			a.full_name as fullName,
+			a.brand_code as brandCode,
+			a.oem_code as oemCode,
+			a.common_code as commonCode,
+			a.query_code as queryCode,
+			a.quality_type_id as qualityType,
+			a.part_name_id as partNameId,
+			a.name_py as namePy,
+			a.name_en as nameEn,
+			a.goods_code as goodsCode,
+			a.tax_rate as taxRate,
+			a.part_brand_id as partBrandId,
+			a.apply_carbrand_id as applyCarbrandId,
+			a.apply_car_model as applyCarModel,
+			a.car_type_id_f as carTypeIdf,
+			a.car_type_id_s as carTypeIds,
+			a.car_type_id_t as carTypeIdt,
+			a.spec as spec,
+			a.direction as direction,
+			a.unit as unit
+		FROM com_attribute AS a
 
-		
-	</update>
+		WHERE
+			1 = 1
+				
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid# or a.orgid = 0)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partId">  
+                    (a.id = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partName">  
+                    (a.FULL_NAME like '%$partName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partNameAndPY">  
+                    (a.FULL_NAME like '%$partNameAndPY$%' or a.name_py like '%$partNameAndPY$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partCode">  
+                    (a.query_code like '%$partCode$%' or a.code like '%$partCode$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partCodeList">  
+                    (a.code in ($partCodeList$))
+                </isNotEmpty> 
+                <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+            </dynamic> 
+				
+	</select>
+	
+	<select id="queryPartJoinStockList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.id id,
+    		   a.orgid orgid,
+		       a.code code,
+		       a.name name,
+		       a.full_name fullName,
+		       a.brand_code brandCode,
+		       a.oem_code oemCode,
+		       a.common_code commonCode,
+		       a.query_code queryCode,
+		       a.quality_type_id qualityTypeId,
+		       a.part_name_id partNameId,
+		       a.name_py namePy,
+		       a.name_en nameEn,
+		       a.part_brand_id partBrandId,
+		       a.apply_carbrand_id applyCarBrandId,
+		       a.apply_car_model applyCarModel,
+		       a.part_type_id partTypeId,
+		       a.car_type_id_f carTypeIdF,
+		       a.car_type_id_s carTypeIdS,
+		       a.car_type_id_t carTypeIdT,
+		       a.produce_type_id produceTypeId,
+		       a.abc_type abcType,
+		       a.produce_factory produceFactory,
+		       a.unit unit,
+		       a.liquidity liquidity,
+		       a.newest_quote newestQuote,
+		       a.newest_quote_date newestQuoteDate,
+		       a.uniform_sell_price uniformSellPrice,
+		       a.is_uniform isUniform,
+		       a.uniform_date uniformDate,
+		       a.uniform_man uniformMan,
+		       a.retail_price retailPrice,
+		       a.whole_sale_price wholeSalePrice,
+		       a.spec spec,
+		       a.is_disabled isDisabled,
+		       a.is_host isHost,
+           	   b.stock_qty as stockQty,
+               b.last_enter_price as lastEnterPrice,
+			   b.last_out_price as lastOutPrice,
+               c.pchs_price as pchsPrice,
+               c.pchs_one_price as pchsOnePrice,
+			   c.pchs_two_price as pchsTwoPrice,
+           	   c.pchs_s_price as pchsSPrice,
+               c.sell_price as sellPrice,
+               c.sell_one_price as sellOnePrice,
+			   c.sell_two_price as sellTwoPrice,
+               c.sell_s_price as sellSPrice
+        FROM wb_common.com_attribute a
+				left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+        		left join pj_part_price c
+					on a.id = c.part_id and c.orgid = #orgid#
+        where 1=1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (a.PART_BRAND_ID = #partBrandId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="carTypeIdF">  
+                (a.car_type_id_f = #carTypeIdF#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">  
+                (a.car_type_id_s = #carTypeIdS#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">  
+                (a.car_type_id_t = #carTypeIdT#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partId">  
+                (a.id = #partId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partCode">  
+                (a.query_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (a.full_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">  
+                (a.apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (a.name_py like '%$namePy$' or name_py like '$namePy$%')
+            </isNotEmpty>  
+            <isNotEmpty prepend="order by " property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+        
+    </select>
     
 </sqlMap>

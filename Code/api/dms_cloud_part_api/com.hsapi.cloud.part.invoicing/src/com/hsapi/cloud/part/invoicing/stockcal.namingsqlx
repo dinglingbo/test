@@ -21,7 +21,7 @@
 				B.PREV_DETAIL_ID as preDetailId, B.ORDER_DETAIL_ID as orderDetailId,
 				B.ORDER_MAIN_ID as orderMainId, B.BRANCH_STOCK_AGE as branchStockAge,
 				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,B.GUEST_NAME as guestName,
-				B.REMARK as remark
+				B.REMARK as remark, b.origin_id as originId, b.origin_guest_id as originGuestId
 		FROM
 			PJ_ENTER_MAIN_CHK A
 		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
@@ -39,7 +39,7 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "storeId">
-				AND D.STORE_ID = #storeId#
+				AND c.STORE_ID = #storeId#
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partId">
@@ -87,18 +87,20 @@
 				B.RTN_PRICE as rtnPrice, B.RTN_AMT as rtnAmt, B.ENTER_DATE as enterDate,
 				B.PREV_DETAIL_ID as preDetailId, B.ORDER_DETAIL_ID as orderDetailId,
 				B.ORDER_MAIN_ID as orderMainId, B.BRANCH_STOCK_AGE as branchStockAge,
-				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,IFNULL(j.full_name,k.full_name) as guestName,
+				B.CHAIN_STOCK_AGE as chainStockAge, B.GUEST_ID as guestId,j.full_name as guestName,
 				B.REMARK as remark, F.CODE AS code, F.NAME as name, F.OEM_CODE as oemCode,
 				F.PART_BRAND_ID as partBrandId, F.APPLY_CAR_MODEL as carModelName,
-				F.SPEC as spec, F.DIRECTION as direction, a.audit_date as auditDate, a.service_id as serviceId
+				F.SPEC as spec, F.DIRECTION as direction, a.audit_date as auditDate, 
+				a.service_id as serviceId, b.origin_id as originId, b.origin_guest_id as originGuestId
 		FROM
 			PJ_ENTER_MAIN_CHK A
 		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID
 		INNER JOIN WB_COMMON.COM_ATTRIBUTE F ON F.ID = B.PART_ID
-		INNER JOIN WB_COMMON.COM_GUEST K ON A.GUEST_ID = K.ID
+		<!--INNER JOIN WB_COMMON.COM_GUEST K ON A.GUEST_ID = K.ID
 		LEFT JOIN PJ_ENTER_DETAIL_CHK M ON M.ID = B.ROOT_ID
 		LEFT JOIN PJ_ENTER_MAIN_CHK N ON N.ID = M.MAIN_ID
-		LEFT JOIN WB_COMMON.COM_GUEST J ON N.GUEST_ID = J.ID
+		LEFT JOIN WB_COMMON.COM_GUEST J ON N.GUEST_ID = J.ID-->
+		inner join WB_COMMON.COM_GUEST J ON b.origin_guest_id = J.ID
 		LEFT JOIN (
 			SELECT
 				C.SOURCE_ID,
@@ -116,7 +118,7 @@
 			</isNotNull>
 						
 			<isNotNull prepend = "" property = "storeId">
-				AND D.STORE_ID = #storeId#
+				AND c.STORE_ID = #storeId#
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partId">
@@ -208,7 +210,8 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "guestId">
-				AND (A.GUEST_ID = #guestId# OR N.GUEST_ID = #guestId# )
+				<!--AND (A.GUEST_ID = #guestId# OR N.GUEST_ID = #guestId# )-->
+				AND (b.origin_guest_id = #guestId#)
 			</isNotNull>
 			
 		ORDER BY
@@ -254,6 +257,8 @@
 		A.REMARK as remark,
 		A.OCCUPY_QTY as occupyQty,
 		A.STOCK_OUT_QTY as stockOutQty,
+		a.origin_id as originId,
+		a.origin_guest_id as originGuestId,
 		B.SERVICE_ID as serviceId,
 		B.OUT_DATE as outDate,
 		B.AUDIT_DATE as auditDate,

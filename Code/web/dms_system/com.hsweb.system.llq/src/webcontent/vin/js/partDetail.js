@@ -207,7 +207,7 @@ var compatible_page = 0;
 function queryCompatible(page){
     if (!detailCatch['compatible']){
         var params = {
-            "url":"https://llq.007vin.com/ppypart/partcompatiblecars",
+            "url":"https://llq.007vin.com/ppypart/parts_compatible_vehicle_v2",
             "params":{
                 "brand":brand,
                 "page":compatible_page,

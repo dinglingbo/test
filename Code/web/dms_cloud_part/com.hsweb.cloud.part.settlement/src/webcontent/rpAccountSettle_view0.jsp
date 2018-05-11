@@ -28,6 +28,50 @@
 .mini-panel-body {
     padding: 0;
 }
+
+.panelwidth{
+    width: 600px;
+}
+.panelwidth1{
+    width: 300px;
+}
+.vwidth{
+    float:left;
+    width:300px;
+}
+.tmargin{
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+.tmargin1{
+    margin-left: 20px;
+}
+.twidth{
+    width:200px;
+}
+
+.vpanel{
+    border:1px solid #d9dee9;
+    margin:10px 0px 0px 20px;
+    height:248px;
+    float:left;
+}
+.vpanel_heading{
+    border-bottom:1px solid #d9dee9;
+    width:100%;
+    height:28px;
+    line-height:28px;
+}
+.vpanel_heading span{
+    margin:0 0 0 20px;
+    font-size:16px;
+    font-weight:normal;
+}
+.vpanel_bodyww{
+    padding : 10 10 10 10px !important
+
+}
 </style>
 </head>
 <body>
@@ -96,19 +140,23 @@
                      allowCellSelect="true"
                      allowCellEdit="true"
                      multiSelect="true"
-                     pageSize="10000"
-                     sizeList="[1000,5000,10000]"
+                     pageSize="1000"
+                     sizeList="[500,1000,2000]"
                      oncellbeginedit="OnrpRightGridCellBeginEdit"
                      onshowrowdetail="onShowRowDetail"
                      showModified="false"
-                     showSummaryRow="false">
+                     showSummaryRow="false"
+                     oncellclick="onGridbeforeselect"
+                     onheadercellclick="onGridheadercellclick"
+                     oncellcommitedit="onCellCommitEdit"
+                     >
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
-                        <div type="checkcolumn" width="25"></div>
-                        <div type="expandcolumn" width="20" >#</div>
+                        <div type="checkcolumn" field="check" width="25"></div>
+                        <div type="expandcolumn"  width="20" >#</div>
                         <div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
-                        <div field="billTypeId" width="100" headerAlign="center" header="业务类型"></div>
+                        <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
                         <div header="应收信息(+)" headerAlign="center">
                             <div property="columns">
@@ -160,14 +208,17 @@
                      pageSize="10000"
                      sizeList="[1000,5000,10000]"
                      onshowrowdetail="onShowRowDetail"
+                     oncellclick="onPGridbeforeselect"
+                     onheadercellclick="onPGridheadercellclick"
+                     oncellcommitedit="onCellCommitEdit"
                      showSummaryRow="false">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
-                        <div type="checkcolumn" width="20"></div>
+                        <div type="checkcolumn" field="check" width="20"></div>
                         <div type="expandcolumn" width="20" >#</div>
                         <div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
-                        <div field="billTypeId" width="100" headerAlign="center" header="业务类型"></div>
+                        <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
                         <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应付金额"></div>
                         <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
@@ -203,14 +254,17 @@
                      pageSize="10000"
                      sizeList="[1000,5000,10000]"
                      onshowrowdetail="onShowRowDetail"
+                     oncellclick="onRGridbeforeselect"
+                     onheadercellclick="onRGridheadercellclick"
+                     oncellcommitedit="onCellCommitEdit"
                      showSummaryRow="false">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
-                        <div type="checkcolumn" width="20"></div>
+                        <div type="checkcolumn" field="check" width="20"></div>
                         <div type="expandcolumn" width="20" >#</div>
                         <div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
-                        <div field="billTypeId" width="100" headerAlign="center" header="业务类型"></div>
+                        <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
                         <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应收金额"></div>
                         <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
@@ -250,7 +304,7 @@
                         <div type="expandcolumn" width="20" >#</div>
                         <div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
-                        <div field="billTypeId" width="100" headerAlign="center" header="业务类型"></div>
+                        <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
                         <div field="rpAmt" width="60" headerAlign="center" header="应收金额"></div>
                         <div field="nowAmt" width="60" headerAlign="center" header="结算金额"></div>
@@ -499,12 +553,54 @@
 </div>
 
 <div id="auditWin" class="nui-window"
-     title="对账确认" style="width:350px;height:230px;"
+     title="对账确认" style="width:350px;height:300px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
     <div id="advancedSearchForm" class="form">
-        <table style="width:100%;" >
+
+
+        <div class="vpanel panelwidth1" style="height:auto;">
+            <div class="vpanel_body">
+                <table class="tmargin tmargin1">
+                    <tr>
+                        <td id="balanceGuestName" style="text-align:left;" colSpan="2">对账单位：</td>
+                    </tr>
+                    <tr>
+                        <td id="balanceBillCount" style="text-align:left;">对账单据数：</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth1" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应收</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center;width:50%">合计应收:</td>
+                        <td id="rAmt" style="text-align:left;width:50%;color:blue;text-decoration:underline"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth1" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应付</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center;width:50%">合计应付:</td>
+                        <td id="pAmt" style="text-align:left;width:50%;color:blue;text-decoration:underline"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <!-- <table style="width:100%;" >
             <tr>
                 <td id="balanceGuestName" style="text-align:left;" colSpan="2">对账单位：</td>
             </tr>
@@ -525,7 +621,7 @@
                 <td style="text-align:center;width:50%">合计应付:</td>
                 <td id="pAmt" style="text-align:left;width:50%;color:blue;text-decoration:underline"></td>
             </tr>
-        </table>
+        </table> -->
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="balanceOK" style="width:60px;margin-right:20px;">确定</a>
             <a class="nui-button" onclick="balanceCancel" style="width:60px;">取消</a>
@@ -534,12 +630,129 @@
 </div>
 
 <div id="settleWin" class="nui-window"
-     title="结算" style="width:500px;height:250px;"
+     title="结算" style="width:650px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
     <div id="settleSearchForm" class="form">
-        <table style="width:100%;"  style="border-collapse:separate; border-spacing:10px;">
+
+        <div class="vpanel panelwidth" style="height:auto;">
+            <div class="vpanel_body vwidth">
+                <table class="tmargin tmargin1">
+                    <tr>
+                        <td id="settleGuestName" style="text-align:left;" colSpan="7">结算单位：</td>
+                    </tr>
+                    <tr>
+                        <td id="settleBillCount" style="text-align:left;" colSpan="8">结算单据数：</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="vpanel_body vwidth">
+                <div class="nui-fit">
+                    <div id="settleAccountGrid" class="nui-datagrid" style="width:100%;height:100px;"
+                         showPager="false"
+                         dataField="detailList"
+                         idField="detailId"
+                         ondrawcell="onDrawCell"
+                         sortMode="client"
+                         url=""
+                         allowCellSelect="true"
+                         allowCellEdit="true"
+                         multiSelect="true"
+                         oncellcommitedit="onCellCommitEdit"
+                         showSummaryRow="false">
+                        <div property="columns">
+                            <div name="action" width="60" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
+                            <div field="settAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="结算账户">
+                                <input  property="editor" enabled="true" name="settleAccount" dataField="settleAccount" class="nui-combobox" valueField="id" textField="name" 
+                                          url="com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext"
+                                          onvaluechanged="" emptyText=""  vtype="required"
+                                          /> 
+                            </div>
+                            <div field="charOffAmt" width="60" headerAlign="center" summaryType="sum" header="金额">
+                                    <input property="editor" vtype="float" class="nui-textbox"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div id="rtTr" class="vpanel panelwidth" style="height:auto;">
+            <div id="rtTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应收</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr id="rcTr">
+                        <td style="text-align:center" width="60px">应收金额:</td>
+                        <td id="rRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">实收金额:</td>
+                        <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">优惠金额:</td>
+                        <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div id="ptTr" class="vpanel panelwidth" style="height:auto;">
+            <div id="ptTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应付</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr id="pcTr">
+                        <td style="text-align:center" width="60px">应付金额:</td>
+                        <td id="pRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">实付金额:</td>
+                        <td id="pTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">免付金额:</td>
+                        <td id="pVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+
+                        <td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="vpanel panelwidth" style="height:auto;">
+            <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>合计</span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr>
+                        <td style="text-align:center" width="60px">合计金额:</td>
+                        <td id="rpAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        
+
+        <div class="vpanel_body">
+            <table class="tmargin">
+                <tr>
+                    <td style="text-align:center" width="60px">备注:</td>
+                    <td id="rpRemark" style="text-align:left;" width="500px">
+                        <input id="rpTextRemark" width="80%" emptyText="" class="nui-textbox"/>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <!-- <table style="width:100%;"  style="border-collapse:separate; border-spacing:10px;">
             <tr>
                 <td id="settleGuestName" style="text-align:left;" colSpan="7">结算单位：</td>
             </tr>
@@ -591,7 +804,7 @@
                     <input id="rpTextRemark" width="80%" emptyText="" class="nui-textbox"/>
                 </td>
             </tr>
-        </table>
+        </table> -->
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="settleOK" style="width:60px;margin-right:20px;">确定</a>
             <a class="nui-button" onclick="settleCancel" style="width:60px;">取消</a>

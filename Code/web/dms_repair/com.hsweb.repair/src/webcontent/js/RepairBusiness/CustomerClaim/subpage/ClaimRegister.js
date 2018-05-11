@@ -465,6 +465,7 @@ function claimsSett(claimMain)
     nui.mask({
         html: '过账中..'
     });
+
     var Url = baseUrl + "com.hsapi.repair.repairService.claims.claimsSett.biz.ext";
     doPost({
         url: Url,
@@ -484,7 +485,32 @@ function claimsSett(claimMain)
             {
                 if(main.balanceAmt>0)
                 {
-                    nui.alert("已经生成应付帐款单。xxx");
+                    var params = {
+                        rpType: -1,
+                        guestId: claimMain.guestId,
+                        guestFullName: claimMain.guestFullName,
+                        serviceId: claimMain.id,
+                        serviceCode: claimMain.serviceCode,
+                        serviceTypeId: "02020220",
+                        rpAmt: claimMain.balanceAmt,
+                        billAmt: 0,
+                        remark: claimMain.remark,
+                        isPrimaryBusiness: 1,
+                        rpAmtYes: 0,
+                        rpAmtNo: claimMain.balanceAmt
+                    };
+                    spRpAccountPost(params,function(data)
+                    {
+                        data = data||{};
+                        if(data.errCode == "S")
+                        {
+                            nui.alert("已经生成应付帐款单。");
+                        }
+                        else{
+                            nui.alert("生成应付帐款单失败。");
+                        }
+                    });
+
                 }
                 else{
                     nui.alert("已经生成应付帐款单。");
@@ -498,6 +524,34 @@ function claimsSett(claimMain)
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
             nui.unmask();
+        }
+    });
+}
+function spRpAccountPost(params,callback)
+{
+    var url = window._rootFrmUrl+"com.hsapi.frm.arap.createArapService.biz.ext";
+    doPost({
+        url:url,
+        data:{
+            data:params
+        },
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                callback && callback();
+            }
+            else{
+                console.log(data.errMsg);
+                nui.alert("提交失败");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+            nui.unmask();
+            nui.alert("网络出错");
         }
     });
 }

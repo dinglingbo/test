@@ -2023,6 +2023,11 @@ where a.tenant_id=b.tenant_id</sql>
     <spEntitySqlView product="OSCAR" useSql="true"/>
     <spEntitySqlView product="KingbaseES" useSql="true"/>
   </nodes>
+  <nodes xsi:type="model:NPEntityNode" id="Entity8" name="Entity" nodeType="table" displayName="Entity" author="Administrator" entType="NPEntity">
+    <location x="615" y="435"/>
+    <size height="34" width="150"/>
+    <figSize height="20" width="150"/>
+  </nodes>
   <topRuler/>
   <leftRuler/>
 </model:DataSetDiagram>

@@ -74,6 +74,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link0" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="435" y="140"/>

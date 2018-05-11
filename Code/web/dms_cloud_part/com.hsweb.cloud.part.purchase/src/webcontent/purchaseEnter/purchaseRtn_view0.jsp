@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseRtn.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseRtn.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -39,46 +39,52 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
+
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)" id="type6">未审</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)" id="type7">已审</a>
-                <!-- <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(8)" id="type8">已过帐</a> -->
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(9)" id="type9">全部</a>
-                <span class="separator"></span>
+
+                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                </ul>
+
+                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">未审</a>
+
+                <ul id="popupMenuType" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(6)" id="type6">未审</li>
+                    <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(9)" id="type9">全部</li>
+                </ul>
+
                 <label style="font-family:Verdana;">供应商：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
             </td>
-        </tr>
-    </table>
-</div>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
             <td style="width:100%;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="addBtn">新增</a>
-                <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
-                <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()" id="saveBtn">保存</a>
-                <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="audit()" id="auditBtn">审核</a>
-                <a class="nui-button" iconCls="icon-print" plain="true" onclick="print()" id="printBtn">打印</a>
+                <span class="separator"></span>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
             </td>
         </tr>
     </table>
 </div>
-
 
 <div class="nui-fit">
     <div class="nui-splitter"
@@ -210,8 +216,8 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()" id="addPartBtn">添加</a>
-                            <a class="nui-button" plain="true" iconCls="icon-remove" onclick="deletePart()" id="deletePartBtn">删除</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                         </td>
                     </tr>
                 </table>

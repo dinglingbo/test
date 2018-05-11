@@ -20,7 +20,8 @@ html, body{
 </style>
 </head>
 <body>
-
+	<input class="nui-combobox" visible="false" id="billTypeId"/>
+	<input class="nui-combobox" visible="false" id="settType"/>
 	<div class="nui-toolbar" style="padding: 2px; border: 0;">
 		<table style="width: 100%;">
 			<tr>
@@ -65,7 +66,7 @@ html, body{
 					<div id="datagrid1" class="nui-datagrid" allowResize="true"
 						style="width: 100%; height: 100%;" url="" idField="id"
 						multiSelect="true" pageSize="20" dataField="customers"
-						totalField="page.count" ondrawcell="onDrawCell"
+						totalField="page.count"
 						selectOnLoad="true" frozenStartColumn="-1" frozenEndColumn="-1">
 						<div property="columns">
 							<div type="indexcolumn">序号</div>

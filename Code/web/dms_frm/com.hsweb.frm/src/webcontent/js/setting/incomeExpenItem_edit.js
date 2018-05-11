@@ -10,6 +10,9 @@ $(document).ready(function(v){
 function setData(data){
     form1.setData(data);
     itemTypeId.setData(data.itemType);
+    if(data.parentId){
+        $("#parenNode").show();
+    }
 }
 
 function onOk(){
@@ -19,7 +22,7 @@ function onOk(){
 
     try {
         nui.ajax({
-            url: webPath + crmDomain + "/com.hsapi.crm.basic.crmBasic.saveTalkArt.biz.ext",
+            url: apiPath + frmDomain + "/com.hsapi.frm.setting.saveIncomeExpItem.biz.ext",
             type: 'post',
             data: nui.encode({
                 data: form1.getData()

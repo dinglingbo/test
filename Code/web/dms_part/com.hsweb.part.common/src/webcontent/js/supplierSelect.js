@@ -22,7 +22,37 @@ $(document).ready(function(v)
     grid.on("beforeload",function(e){
         e.data.token = token;
     });
-
+    grid.on("drawcell",function(e)
+    {
+        var field = e.field;
+        if("isDisabled" == field)
+        {
+            e.cellHtml = e.value==1?"失效":"有效";
+        }
+        else if("provinceId" == field)
+        {
+            if(provinceHash[e.value])
+            {
+                e.cellHtml = provinceHash[e.value].name;
+            }
+        }
+        else if("cityId" == field)
+        {
+            if(cityHash[e.value])
+            {
+                e.cellHtml = cityHash[e.value].name;
+            }
+        }
+        else if("tgrade" == field)
+        {
+            if(tgradeHash[e.value]){
+                e.cellHtml = tgradeHash[e.value].name||"";
+            }
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
     tree = nui.get("tree1");
   //  tree.setUrl(gridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
@@ -38,32 +68,11 @@ $(document).ready(function(v)
         provinceEl = nui.get("provinceId");
         provinceEl.setData(province);
     });
-    var dictIdList = [];
-    dictIdList.push('DDT20130703000008');//票据类型
-    dictIdList.push('DDT20130703000035');//结算方式
-    getDictItems(dictIdList,function(data)
-    {
-        if(data && data.dataItems)
-        {
-            var dataItems = data.dataItems||[];
-            billTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000008")
-                {
-                    billTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            settTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000035")
-                {
-                    settTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            grid.load();
-        }
+    initDicts({
+        billTypeId:BILL_TYPE,//票据类型
+        settType:SETT_TYPE //结算方式
+    },function(){
+        grid.load();
     });
 });
 function onSearch(){
@@ -146,54 +155,6 @@ function onCancel(e) {
     CloseWindow("cancel");
 }
 
-function onDrawCell(e)
-{
-    switch (e.field)
-    {
-        case "isDisabled":
-            e.cellHtml = e.value==1?"失效":"有效";
-            break;
-        case "provinceId":
-            if(provinceHash[e.value])
-            {
-                e.cellHtml = provinceHash[e.value].name;
-            }
-            break;
-        case "cityId":
-            if(cityHash[e.value])
-            {
-                e.cellHtml = cityHash[e.value].name;
-            }
-            break;
-        case "tgrade":
-            if(tgradeHash[e.value]){
-                e.cellHtml = tgradeHash[e.value].name||"";
-            }
-            break;
-        case "billTypeId":
-            if(billTypeIdHash[e.value]){
-                e.cellHtml = billTypeIdHash[e.value].name||"";
-            }
-
-            break;
-        case "settTypeId":
-            if(settTypeIdHash[e.value]){
-                e.cellHtml = settTypeIdHash[e.value].name||"";
-            }
-            break;
-        case "managerDuty":
-            if(managerDutyHash[e.value]){
-                e.cellHtml = managerDutyHash[e.value].name||"";
-            }
-            break;
-        case "supplierType":
-            if(supplierTypeHash[e.value])
-            {
-                e.cellHtml = supplierTypeHash[e.value].name||"";
-            }
-            break;
-    }
-}
 function onNodeDblClick(e)
 {
 	var node = e.node;

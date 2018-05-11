@@ -130,7 +130,7 @@
                            emptyText="请选择..."
                            showNullItem="false"
                            class="nui-combobox" style="width: 100%"
-                           valueField="empname" textField="empname"/>
+                           valueField="empName" textField="empName"/>
                 </td>
                 <td class="form_label">
                     <label>销售金额：</label>

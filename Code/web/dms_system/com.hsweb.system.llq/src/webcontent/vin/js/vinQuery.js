@@ -72,7 +72,7 @@ function queryVin(){
     
     if (checkVin()){
         var params = {
-            "url":"https://llq.007vin.com/ppyvin/searchvins",
+            "url":"https://llq.007vin.com/ppyvin/searchvins_v2",
             "params":{
                 "vin":vin
             },
@@ -129,7 +129,7 @@ function setGridCfg(data){
 function queryGroupByVin(){	
     if (checkVin()){
         var params = {
-            "url":"https://llq.007vin.com/ppyvin/group",
+            "url":"https://llq.007vin.com/ppyvin/group_v2",
             "params":{
                 "vin":vin,
                 "brand":brand

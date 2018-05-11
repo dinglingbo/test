@@ -190,10 +190,10 @@ function doSearch(params)
         nui.alert("请输入查询条件！");
         return;
     }
-    var isShowAll = nui.get("search_showAll").getValue();
-    if(isShowAll == 1){
+    //var isShowAll = nui.get("search_showAll").getValue();
+    //if(isShowAll == 1){
         params.guestId = null;
-    }
+    //}
     partGrid.load({
         params:params,
         token:token

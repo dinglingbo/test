@@ -17,7 +17,8 @@
 </style>
 </head>
 <body>
-
+    <input class="nui-combobox" visible="false" id="settType"/>
+    <input class="nui-combobox" visible="false" id="billTypeId"/>
 <div class="nui-toolbar" style="padding:2px;border:0;">
     <table style="width:100%;">
         <tr>
@@ -74,7 +75,6 @@
                      pageSize="20"
                      dataField="suppliers"
                      totalField="page.count"
-                     ondrawcell="onDrawCell"
                      selectOnLoad="true"
                      sortMode="client"
                      frozenStartColumn="0"

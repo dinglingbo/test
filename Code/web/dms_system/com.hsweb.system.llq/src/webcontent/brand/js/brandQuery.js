@@ -33,7 +33,7 @@ $(document).ready(function(v){
         var row = dgNavigation.getSelected();
         if (row.index) {
             showRightGrid(eval('dg' + row.index));
-        }
+        }w
     });
     
     dg1.on("rowclick", function (e) {//查第2层
@@ -151,7 +151,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(8, row.name);
             var params = {
-                "url":"https://qpds.007vin.com/cars/litfi",
+                "url":"https://llq.007vin.com/cars/litfi",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           
@@ -169,7 +169,7 @@ $(document).ready(function(v){
         if (row.auth && !row.last) {
             setTopNav(9, row.name);
             var params = {
-                "url":"https://qpds.007vin.com/cars/litsx",
+                "url":"https://llq.007vin.com/cars/litsx",
                 "params":{
                     "brand": brand,
                     "auth": unescape(row.auth)                                                                           

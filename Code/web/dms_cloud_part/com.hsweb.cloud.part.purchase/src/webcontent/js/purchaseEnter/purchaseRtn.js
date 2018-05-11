@@ -17,6 +17,9 @@ var brandList = [];
 var storehouse = null;
 var auditType = 0;
 var dateType = 0;
+var gsparams = {};
+var sOutDate = null;
+var eOutDate = null;
 
 //单据状态
 var AuditSignList = [
@@ -59,6 +62,13 @@ $(document).ready(function(v)
     basicInfoForm = new nui.Form("#basicInfoForm");
     bottomInfoForm = new nui.Form("#bottomForm");
 
+    gsparams.startDate = getNowStartDate();
+    gsparams.endDate = addDate(getNowEndDate(), 1);
+    gsparams.auditSign = 0;
+
+    sOutDate = nui.get("sOutDate");
+    eOutDate = nui.get("eOutDate");
+
     //绑定表单
     //var db = new nui.DataBinding();
     //db.bindForm("basicInfoForm", leftGrid);
@@ -75,6 +85,7 @@ $(document).ready(function(v)
         });
     });
 
+    gsparams.auditSign = 0;
     quickSearch(0);
 });
 function loadMainAndDetailInfo(row)
@@ -148,63 +159,104 @@ var currType = 2;
 function quickSearch(type){
     var params = {};
     params.enterTypeId = '050201';
+    var querysign = 1;
+    var queryname = "本日";
+    var querytypename = "未审";
     switch (type)
     {
         case 0:
             params.today = 1;
             params.startDate = getNowStartDate();
             params.endDate = addDate(getNowEndDate(), 1);
+            queryname = "本日";
+            querysign = 1;
+            gsparams.startDate = getNowStartDate();
+            gsparams.endDate = addDate(getNowEndDate(), 1);
             break;
         case 1:
             params.yesterday = 1;
             params.startDate = getPrevStartDate();
             params.endDate = addDate(getPrevEndDate(), 1);
+            queryname = "昨日";
+            querysign = 1;
+            gsparams.startDate = getPrevStartDate();
+            gsparams.endDate = addDate(getPrevEndDate(), 1);
             break;
         case 2:
             params.thisWeek = 1;
             params.startDate = getWeekStartDate();
             params.endDate = addDate(getWeekEndDate(), 1);
+            queryname = "本周";
+            querysign = 1;
+            gsparams.startDate = getWeekStartDate();
+            gsparams.endDate = addDate(getWeekEndDate(), 1);
             break;
         case 3:
             params.lastWeek = 1;
             params.startDate = getLastWeekStartDate();
             params.endDate = addDate(getLastWeekEndDate(), 1);
+            queryname = "上周";
+            querysign = 1;
+            gsparams.startDate = getLastWeekStartDate();
+            gsparams.endDate = addDate(getLastWeekEndDate(), 1);
             break;
         case 4:
             params.thisMonth = 1;
             params.startDate = getMonthStartDate();
             params.endDate = addDate(getMonthEndDate(), 1);
+            queryname = "本月";
+            querysign = 1;
+            gsparams.startDate = getMonthStartDate();
+            gsparams.endDate = addDate(getMonthEndDate(), 1);
             break;
         case 5:
             params.lastMonth = 1;
             params.startDate = getLastMonthStartDate();
             params.endDate = addDate(getLastMonthEndDate(), 1);
+            queryname = "上月";
+            querysign = 1;
+            gsparams.startDate = getLastMonthStartDate();
+            gsparams.endDate = addDate(getLastMonthEndDate(), 1);
             break;
         case 6:
             params.auditSign = 0;
+            querytypename = "未审";
+            querysign = 2;
+            gsparams.auditSign = 0;
             break;
         case 7:
             params.auditSign = 1;
+            querytypename = "已审";
+            querysign = 2;
+            gsparams.auditSign = 1;
             break;
         case 8:
             params.postStatus = 1;
+            break;
+        case 9:
+            querytypename = "全部";
+            querysign = 2;
+            gsparams.auditSign = null;
             break;
         default:
             params.today = 1;
             params.startDate = getNowStartDate();
             params.endDate = addDate(getNowEndDate(), 1);
+            querytypename = "未审";
+            gsparams.startDate = getNowStartDate();
+            gsparams.endDate = addDate(getNowEndDate(), 1);
+            gsparams.auditSign = 0;
             break;
     }
     currType = type;
-    if($("a[id*='type']").length>0)
-    {
-        $("a[id*='type']").css("color","black");
+    if(querysign == 1){
+        var menunamedate = nui.get("menunamedate");
+        menunamedate.setText(queryname);
+    }else if(querysign == 2){
+            var menunametype = nui.get("menunametype");
+            menunametype.setText(querytypename);
     }
-    if($("#type"+type).length>0)
-    {
-        $("#type"+type).css("color","blue");
-    }
-    doSearch(params);
+    doSearch(gsparams);
 }
 function onSearch(){
     search();
@@ -868,6 +920,9 @@ function addSellOutDetail(part)
                 outDetail.enterPrice = data.enterPrice;
                 outDetail.enterAmt = data.qty * data.enterPrice;
                 outDetail.taxDiff = outDetail.taxAmt - outDetail.noTaxAmt;
+                outDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
+                outDetail.originId = data.originId;
+                outDetail.originGuestId = data.originGuestId;
 
                 outDetail.comOemCode = data.oemCode;
                 outDetail.comSpec = data.spec;

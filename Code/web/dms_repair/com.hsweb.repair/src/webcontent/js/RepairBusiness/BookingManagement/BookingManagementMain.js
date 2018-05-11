@@ -27,6 +27,15 @@ function init(callback)
 	advancedSearchForm = new nui.Form("#advancedSearchWin");
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.on("load",function(){
+        var row = leftGrid.getSelected();
+        if(row)
+        {
+            onLeftGridRowDblClick({
+                record:row
+            });
+        }
+    });
     leftGrid.on("rowdblclick",function(e)
     {
         onLeftGridRowDblClick(e);
@@ -242,6 +251,10 @@ function onMore() {
 function fllowUp()
 {
     var prebook = basicInfoForm.getData();
+    if(!prebook.id)
+    {
+        return;
+    }
     prebook.carNo = nui.get("carId").getText();
     prebook.carBrandName = nui.get("carBrandId").getText();
     prebook.carSeriesName = nui.get("carSeriesId").getText();
@@ -265,22 +278,63 @@ function fllowUp()
         }
     });
 }
-
-function quote() {
-    nui.open({
-        url: "../../common/subpage/customerSubpage/AddEditCustomer.jsp",
-        title: "客户资料", width: 450, height: 650,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var data = {pageType: "add"};
-            iframe.contentWindow.setData(data);
-        },
-
-        ondestroy: function (action) {
-            grid.reload();
-        }
+function getMaintainServiceCode(callback)
+{
+    callback = callback||function(){};
+    var billTypeCode = "BJD";
+    getCompBillNO(billTypeCode,function(data)
+    {
+        data = data||{};
+        var code = data.serviceno;
+        callback && callback({
+            code:code
+        });
     });
-
+}
+function quote()
+{
+    var prebook = basicInfoForm.getData();
+    if(!prebook.id && prebook)
+    {
+        return;
+    }
+    nui.mask({
+        html: '保存中..'
+    });
+    getMaintainServiceCode(function (data) {
+        var code = data.code;
+        if (!code) {
+            nui.unmask();
+            nui.alert("获取单号失败");
+            return;
+        }
+        var params = {};
+        params.serviceCode = code;
+        params.id = prebook.id;
+        var url = baseUrl+"com.hsapi.repair.repairService.crud.prebookTransToQuote.biz.ext";
+        doPost({
+            url: url,
+            data:params,
+            success: function (data) {
+                nui.unmask();
+                data = data||{};
+                if(data.errCode == "S")
+                {
+                    nui.alert("转入报价成功");
+                    reload();
+                }
+                else{
+                    nui.alert(data.errMsg||"转入报价失败");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //  nui.alert(jqXHR.responseText);
+                nui.unmask();
+                console.log(jqXHR.responseText);
+                nui.alert("网络出错，转入报价失败");
+            }
+        });
+    });
 }
 function selectCar()
 {
@@ -311,6 +365,9 @@ function selectCar()
 }
 function reload()
 {
+	resetBtn();
+    basicInfoForm.clear();
+    rightGrid.clearRows();
     leftGrid.reload();
 }
 function add()

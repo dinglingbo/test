@@ -23,41 +23,43 @@
 	      		 activeIndex="0" 
 	      		 style="width:100%; height: 100%;" 
 	      		 plain="false" 
-	      		 onactivechanged="showTabInfo">
-			    <div title="仓库信息" name="stockselect" >
-			      <div class="nui-fit">
+	      		 onactivechanged="showTabInfo"
+	      		 ontabload="onMainTabLoad"
+	      		 >
+			    <div title="仓库信息" name="stockselect" url="" >
+			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeStock" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			      </div>
+			      </div> -->
 			    </div>
-			    <div title="库存明细" name="outableRecord" >
-			      <div class="nui-fit">
+			    <div title="库存明细" name="outableRecord" url="" >
+			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeOutableRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			      </div>
+			      </div> -->
 			    </div>
-			    <div title="采购记录" name="pchsRecord" >
-			      <div class="nui-fit">
+			    <div title="采购记录" name="pchsRecord" url="" >
+			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframePchsRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			      </div>
+			      </div> -->
 			    </div>  
-			    <div title="销售记录" name="sellRecord" >
-			      <div class="nui-fit">
+			    <div title="销售记录" name="sellRecord" url="" >
+			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeSellRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			      </div>
+			      </div> -->
 			    </div> 
-			    <div title="客户销价" name="guestPrice" >
-			      <div class="nui-fit">
+			    <div title="客户销价" name="guestPrice" url="" >
+			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeGuestPrice" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			      </div>
+			      </div> -->
 			    </div> 
-			    <div title="退货记录" name="rtnRecord" >
-			      <div class="nui-fit">
+			    <div title="退货记录" name="rtnRecord" url="">
+			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeRtnRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			      </div>
+			      </div> -->
 			    </div>
-			    <div title="配件资料" name="partInfo" >
-			      <div class="nui-fit">
+			    <div title="配件资料" name="partInfo" url="" >
+			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframePartInfo" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-			      </div>
+			      </div> -->
 			    </div>  
 			</div>
       

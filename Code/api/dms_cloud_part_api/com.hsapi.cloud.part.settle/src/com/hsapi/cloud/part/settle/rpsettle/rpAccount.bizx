@@ -152,11 +152,12 @@
         <process:inputVariable id="1" name="GuestName" type="query" value="String" valueType="Primitive" pattern="reference">GuestName</process:inputVariable>
         <process:inputVariable id="2" name="ServiceId" type="query" value="String" valueType="Primitive" pattern="reference">ServiceId</process:inputVariable>
         <process:inputVariable id="3" name="BillMainId" type="query" value="Long" valueType="Primitive" pattern="reference">BillMainId</process:inputVariable>
-        <process:inputVariable id="4" name="BillTypeId" type="query" value="String" valueType="Primitive" pattern="reference">BillTypeId</process:inputVariable>
+        <process:inputVariable id="4" name="BillTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">BillTypeId</process:inputVariable>
         <process:inputVariable id="5" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">BillAmt</process:inputVariable>
         <process:inputVariable id="6" name="operateDate" type="query" value="Date" valueType="Primitive" pattern="reference">operateDate</process:inputVariable>
         <process:inputVariable id="7" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">dc</process:inputVariable>
         <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">remark</process:inputVariable>
+        <process:inputVariable id="9" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">BillTypeCode</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -329,10 +330,11 @@
     <process:input description="" isArray="false" name="GuestName" primitiveType="String"/>
     <process:input description="" isArray="false" name="ServiceId" primitiveType="String"/>
     <process:input description="" isArray="false" name="BillMainId" primitiveType="Long"/>
-    <process:input description="" isArray="false" name="BillTypeId" primitiveType="String"/>
+    <process:input description="1采，2销，3采退，4销退" isArray="false" name="BillTypeId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="BillAmt" primitiveType="Float"/>
     <process:input description="" isArray="false" name="dc" primitiveType="Int"/>
     <process:input description="" isArray="false" name="remark" primitiveType="String"/>
+    <process:input description="" isArray="false" name="BillTypeCode" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

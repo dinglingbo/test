@@ -4,6 +4,7 @@
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
+<link href="<%=webPath + cloudPartDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <script src="<%=webPath + cloudPartDomain %>/common/date.js" type="text/javascript"></script>
 <script type="text/javascript">
 	<%
@@ -137,6 +138,7 @@
 	        url:getAllPartBrandUrl,
 	        data : {token: token},
 	        type:"post",
+	        async:false,
 	        success:function(data)
 	        {
 	            if(data && data.quality && data.brand)
@@ -157,6 +159,7 @@
 	        url:getAllPartTypeUrl,
 	        data : {token: token},
 	        type:"post",
+	        async:false,
 	        success:function(data)
 	        {
 	            if(data && data.partTypes)

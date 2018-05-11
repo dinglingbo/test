@@ -73,24 +73,10 @@ $(document).ready(function(v)
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
 
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000072');//采购退货原因
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var backReasonIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000072")
-                    {
-                        //    billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                nui.get("backReasonId").setData(backReasonIdList);
-                quickSearch(menuBtnDateQuickSearch, currType, '本日');
-            }
+        initDicts({
+            backReasonId:BACK_REASON //采购退货原因
+        },function(){
+            quickSearch(menuBtnDateQuickSearch, currType, '本日');
         });
     });
 

@@ -38,21 +38,10 @@ $(document).ready(function(v)
         {
             storehouseHash[v.id] = v;
         });
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000016');//--单位
-        dictIdList.push('DDT20130703000067');//--ABC分类
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                unitList = dataItems.filter(function(v){
-                    return v.dictid == 'DDT20130703000016';
-                });
-                abcTypeList = dataItems.filter(function(v){
-                    return v.dictid == 'DDT20130703000067';
-                });
-            }
+        initDicts({
+            unit:UNIT, //--单位
+            abcType:ABC_TYPE //--ABC分类
+        },function(){
             getAllPartBrand(function(data)
             {
                 data = data||{};
@@ -66,11 +55,8 @@ $(document).ready(function(v)
                 {
                     brandHash[v.id] = v;
                 });
-                getAllCarBrand(function(data)
+                initCarBrand("carBrand",function()
                 {
-                    data = data||{};
-                    carBrandList = data.carBrands||[];
-                    nui.get("carBrand").setData(carBrandList);
                     onSearch();
                 });
             });
@@ -160,6 +146,7 @@ function onPartGridDraw(e)
             }
             break;
         default:
+            onDrawCell(e);
             break;
     }
 }

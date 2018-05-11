@@ -43,6 +43,29 @@ $(document).ready(function(v)
     grid.on("beforeload",function(e){
         e.data.token = token;
     });
+    grid.on("drawcell",function(e)
+    {
+        var field = e.field;
+        if("isDisabled" == field)
+        {
+            e.cellHtml = e.value==1?"是":"否";
+        }
+        else if("provinceId" == field)
+        {
+            e.cellHtml = provinceHash[e.value].name;
+        }
+        else if("cityId" == field)
+        {
+            e.cellHtml = cityHash[e.value].name;
+        }
+        else if("tgrade" == field)
+        {
+            e.cellHtml = tgradeHash[e.value].name;
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -50,50 +73,12 @@ $(document).ready(function(v)
 
     getProvinceAndCity(function(data)
     {});
-    var dictIdList = [];
-    dictIdList.push('DDT20130703000008');//票据类型
-    dictIdList.push('DDT20180105000001');//供应商负责人职务
-    dictIdList.push('DDT20130703000035');//结算方式
-    dictIdList.push('DDT20130703000084');//对象类型
-    getDictItems(dictIdList,function(data)
-    {
-        if(data && data.dataItems)
-        {
-            var dataItems = data.dataItems||[];
-            billTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000008")
-                {
-                    billTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            settTypeIdList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000035")
-                {
-                    settTypeIdHash[v.customid] = v;
-                    return true;
-                }
-            });
-            managerDutyList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20180105000001")
-                {
-                    managerDutyHash[v.customid] = v;
-                    return true;
-                }
-            });
-            guestTypeList = dataItems.filter(function(v)
-            {
-                if(v.dictid == "DDT20130703000084")
-                {
-                    guestTypeHash[v.customid] = v;
-                    return true;
-                }
-            });
-        }
-    });
+    initDicts({
+        billTypeId:BILL_TYPE,//票据类型
+        managerDuty:MANAGER_DUTY,//供应商负责人职务
+        settType:SETT_TYPE,//结算方式
+        guestType:GUEST_TYPE //对象类型
+    },function(){});
 });
 function onSearch(){
     search();
@@ -115,7 +100,7 @@ function getSearchParam()
 }
 function doSearch(params)
 {
-	params.guestTypeList = "'01020102','01020202'";
+    params.guestTypeList = "'01020102','01020202'";
     grid.load({
         params:params
     });
@@ -139,53 +124,6 @@ function onAdvancedSearchOk()
 function onAdvancedSearchCancel(){
     advancedSearchForm.clear();
     advancedSearchWin.hide();
-}
-function onDrawCell(e)
-{
-    switch (e.field)
-    {
-        case "isDisabled":
-            e.cellHtml = e.value==1?"是":"否";
-            break;
-        case "provinceId":
-            if(provinceHash[e.value])
-            {
-                e.cellHtml = provinceHash[e.value].name;
-            }
-            break;
-        case "cityId":
-            if(cityHash[e.value])
-            {
-                e.cellHtml = cityHash[e.value].name;
-            }
-            break;
-        case "tgrade":
-        	if(tgradeHash && tgradeHash[e.value]){
-                e.cellHtml = tgradeHash[e.value].name||"";
-            }
-            break;
-        case "billTypeId":
-            if(billTypeIdHash[e.value]){
-                e.cellHtml = billTypeIdHash[e.value].name||"";
-            }
-            break;
-        case "settTypeId":
-            if(settTypeIdHash[e.value]){
-                e.cellHtml = settTypeIdHash[e.value].name||"";
-            }
-            break;
-        case "managerDuty":
-            if(managerDutyHash[e.value]){
-                e.cellHtml = managerDutyHash[e.value].name||"";
-            }
-            break;
-        case "guestType":
-            if(guestTypeHash[e.value])
-            {
-                e.cellHtml = guestTypeHash[e.value].name||"";
-            }
-            break;
-    }
 }
 
 function addCustomer()

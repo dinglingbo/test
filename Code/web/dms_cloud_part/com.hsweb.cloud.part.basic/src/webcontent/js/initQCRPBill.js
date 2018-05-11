@@ -117,6 +117,7 @@ function OnMainGridCellBeginEdit(e){
 }
 function deleteGuest(){
     var record = mainGrid.getSelected();
+    if(record.auditSign == 1) return;
     if(!record)
     {
         return;

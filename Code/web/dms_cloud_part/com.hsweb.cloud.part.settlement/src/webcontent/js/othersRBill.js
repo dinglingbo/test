@@ -151,8 +151,26 @@ function addGuest(){
         }
     });
 }
+function OnrpMainGridCellBeginEdit(e){
+    var field=e.field; 
+    var editor = e.editor;
+    var row = e.row;
+
+    if(row.auditSign == 1){
+        e.cancel = true;
+    }
+}
+function onbillTypeChange(e){
+    var se = e.selected;
+    var billTypeCode = se.code;
+    var row = mainGrid.getSelected();
+    var newRow = {billTypeCode: billTypeCode};
+    mainGrid.updateRow(row, newRow);
+
+}
 function deleteGuest(){
     var record = mainGrid.getSelected();
+    if(record.auditSign == 1) return;
     if(!record)
     {
         return;
@@ -183,6 +201,36 @@ function save(){
     var rpAdd = mainGrid.getChanges("added");
     var rpUpdate = mainGrid.getChanges("modified");
     var rpDelete = mainGrid.getChanges("removed");
+    var rpAddList = [];
+    var rpUpdateList = [];
+    if(rpAdd){
+        for(var i=0; i<rpAdd.length; i++){
+            var temp = rpAdd[i];
+            if(temp.createDate) {
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+            }
+            if(temp.operateDate) {
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+            }
+            rpAddList.push(temp);
+        }
+
+    }
+
+    if(rpUpdate){
+        for(var i=0; i<rpUpdate.length; i++){
+            var temp = rpUpdate[i];
+            if(temp.createDate) {
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+            }
+            if(temp.operateDate) {
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+            }
+            rpUpdateList.push(temp);
+
+        }
+
+    }
     
     nui.mask({
         el : document.body,
@@ -194,8 +242,8 @@ function save(){
         url : saveUrl,
         type : "post",
         data : JSON.stringify({
-            rpAdd: rpAdd,
-            rpUpdate: rpUpdate,
+            rpAdd: rpAddList,
+            rpUpdate: rpUpdateList,
             rpDelete: rpDelete
         }),
         success : function(data) {
@@ -238,6 +286,21 @@ function audit(){
     }
 
     var data = mainGrid.getSelecteds();
+    var dataList = [];
+    if(data){
+        for(var i=0; i<data.length; i++){
+            var temp = data[i];
+            if(temp.createDate) {
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+            }
+            if(temp.operateDate) {
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+            }
+            dataList.push(temp);
+        }
+
+    }
+
     if(data) {
         nui.mask({
             el : document.body,
@@ -249,7 +312,7 @@ function audit(){
             url : auditUrl,
             type : "post",
             data : JSON.stringify({
-                rpBill: data
+                rpBill: dataList
             }),
             success : function(data) {
                 nui.unmask(document.body);

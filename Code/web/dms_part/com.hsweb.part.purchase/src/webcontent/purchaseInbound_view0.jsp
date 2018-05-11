@@ -30,7 +30,6 @@
 </style>
 </head>
 <body>
-
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
@@ -87,7 +86,6 @@
                      showPager="false"
                      selectOnLoad="true"
                      allowCellWrap="true"
-                     ondrawcell="onLeftGridDrawCell"
                      onrowdblclick="onLeftGridRowDblClick"
                      dataField="ptsEnterMainList"
                      sortMode="client"
@@ -203,8 +201,8 @@
                                 <input name="buyer"
                                         id="buyer"
                                         class="nui-combobox width1"
-                                        textField="name"
-                                        valueField="name"
+                                        textField="empName"
+                                        valueField="empName"
                                         emptyText="请选择..."
                                         url=""
                                         allowInput="false"
@@ -225,8 +223,8 @@
                                 <input name="storeKeeper"
                                        id="checker"
                                        class="nui-combobox width1"
-                                       textField="name"
-                                       valueField="name"
+                                       textField="empName"
+                                       valueField="empName"
                                        emptyText="请选择..."
                                        url=""
                                        allowInput="false"

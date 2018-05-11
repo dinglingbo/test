@@ -17,6 +17,8 @@
 </style>
 </head>
 <body>
+    <input class="nui-combobox" visible="false" id="unit"/>
+    <input class="nui-combobox" visible="false" id="abcType"/>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <div class="form" id="queryForm">
         <table style="width:100%;">
@@ -34,7 +36,7 @@
                     <input id="applyCarBrandId"
                            name="applyCarBrandId"
                            class="nui-combobox width1"
-                           textField="carBrandZh"
+                           textField="nameCn"
                            valueField="id"
                            emptyText="请选择..."
                            url=""
@@ -79,7 +81,6 @@
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""
-                     ondrawcell="onPartGridDraw"
                      idField="id"
                      totalField="page.count"
                      selectOnLoad="true"

@@ -64,7 +64,7 @@ $(document).ready(function(v){
         var field = e.field;
         var value = e.value;
         if(field == "detail"){
-            var html = '<a class="icon-hedit" href="javascript:openDetail(' + record.pid + ')">' + value + '</a>';
+            var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
             e.cellHtml = html;
         }
     });
@@ -73,12 +73,13 @@ $(document).ready(function(v){
 /*
 *获取主组列表
 */
+//unescape(auth)
 function queryGroupByAuth(auth){	
     var params = {
         "url":"https://llq.007vin.com/ppycars/group",
         "params":{
             "brand":brand,
-            "auth":unescape(auth)
+            "auth":unescape(auth)//
         },
         "token": token
     }

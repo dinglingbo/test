@@ -12,7 +12,7 @@ var queryForm = null;
 var leftGrid = null;
 var rightGrid = null;
 
-$(document).ready(function(v)
+$(document).ready(function()
 {
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);

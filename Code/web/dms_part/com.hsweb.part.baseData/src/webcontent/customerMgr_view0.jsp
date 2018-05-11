@@ -18,8 +18,11 @@
 </style>
 </head>
 <body>
-
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+    <input class="nui-combobox" visible="false" id="billTypeId"/>
+    <input class="nui-combobox" visible="false" id="managerDuty"/>
+    <input class="nui-combobox" visible="false" id="settType"/>
+    <input class="nui-combobox" visible="false" id="guestType"/>
+    <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
@@ -56,7 +59,6 @@
          pageSize="20"
          totalField="page.count"
          onrowdblclick="onRowDblClick"
-         ondrawcell="onDrawCell"
          sortMode="client"
          frozenStartColumn="0"
          frozenEndColumn="4">

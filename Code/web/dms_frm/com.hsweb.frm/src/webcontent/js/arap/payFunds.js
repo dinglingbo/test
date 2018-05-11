@@ -2,7 +2,6 @@ var queryForm;
 var dgGrid;
 var currGuest;
 var billStatusList = [{text:'挂账',value:'0'},{text:'待审核',value:'1'}];
-var onAccountTypeList = [{text:'担保挂账',value:'2'},{text:'保险挂账',value:'1'}];
 
 $(document).ready(function(v){
 
@@ -19,25 +18,18 @@ $(document).ready(function(v){
             e.cellHtml = setColVal('itemTypeId', 'customid', 'name', e.value);
         }else if(field == "billStatus"){//主营业务
             e.cellHtml = setColVal(billStatusList, 'value', 'text', e.value);
-        }else if(field=="onAccountType"){
-        	 e.cellHtml = setColVal(onAccountTypeList, 'value', 'text', e.value);
-        }
-        else if(field == "onAccountSurety"){//主营业务
-            e.cellHtml = setColVal("guarantee", 'empId', 'empName', e.value);
-        }
-    });
+     
+    }});
     
     init();
     query();
-  /*  $("button").click(function(){
-    	alert("111111");
-    });*/
+
 
 });
 
 function init(){
    
-	initRoleMembers({"guarantee":"010811"},null);
+	
 }
 /*
  *状态改变
@@ -48,11 +40,11 @@ function statuschange(){
 	if(s.billStatus==0){
 		$(shbutton).hide();
 		$(skbutton).show();
-		$(dbbutton).show();
+	
 	}else{
 		$(shbutton).show();
 		$(skbutton).hide();
-		$(dbbutton).hide();
+		
 	}}
 }
 /*
@@ -102,61 +94,7 @@ function sh(){
                 nui.alert(jqXHR.responseText);
             }
 		});
-	    dgGrid.load(params,function(){
-	        //成功;
-	       // nui.alert("数据成功！");
-	    },function(){
-	        //失败;
-	        nui.alert("数据失败！");
-	    });
-	}
-	else{
-		  nui.alert("请选中一条数据！！");
-	}
-}
-function db(){
-	var s=dgGrid.getSelected ();
-	if(s!=undefined){
-		
-		 nui.open({
-             url: "receriveFunds_gz.jsp",
-             title: "编辑员工", width: 600, height: 400,
-             onload: function () {
-                 var iframe = this.getIFrameEl();
-                 var param = { action: "edit", data: s };
-                 iframe.contentWindow.SetData(param);
-             },
-             ondestroy: function (action) {
-                 //var iframe = this.getIFrameEl();
-
-            	 dgGrid.reload();
-
-             }
-         });
-	}
-	else{
-		  nui.alert("请选中一条数据！！");
-	}
-}
-function sk(){
-	var s=dgGrid.getSelected ();
-	if(s!=undefined){
-		
-		 nui.open({
-             url: "receiveFunds_sk.jsp",
-             title: "编辑员工", width: 1150, height: 600,
-             onload: function () {
-                 var iframe = this.getIFrameEl();
-                 var param = { action: "sk", data: s };
-                 iframe.contentWindow.SetData(param);
-             },
-             ondestroy: function (action) {
-                 //var iframe = this.getIFrameEl();
-
-            	 dgGrid.reload();
-
-             }
-         });
+       
 	}
 	else{
 		  nui.alert("请选中一条数据！！");

@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/common.jsp"%>
+
 <html>
 <!-- 
   - Author(s): Guine
@@ -7,19 +7,14 @@
   - Description:
 -->
 <%
-	String contextPath = request.getContextPath();
+	//String contextPath = request.getContextPath();
 %>
 <head>
 <title>应收账款管理</title>
-<script src="<%=contextPath%>/common/nui/nui.js" type="text/javascript"></script>
-<script src="<%=contextPath%>/common/js/sysCommon.js?v=1.0"
+	<%@include file="/common/sysCommon.jsp"%>
+<script src="<%=webPath + sysDomain%>/frm/js/arap/receiveFunds.js?v=1.0"
 	type="text/javascript"></script>
-<script src="<%=contextPath%>/common/js/constantDef.js?v=1.0"
-	type="text/javascript"></script>
-<script src="<%=contextPath%>/common/js/init.js?v=1.0"
-	type="text/javascript"></script>
-<script src="<%=contextPath%>/frm/js/arap/receiveFunds.js?v=1.0"
-	type="text/javascript"></script>
+
 </head>
 <body>
 	<div class="nui-toolbar" style="padding: 2px; border-bottom: 0;"
@@ -30,26 +25,27 @@
 					<!-- style="white-space:nowrap;"--> <label
 					style="font-family: Verdana;" title="点击清空条件"><span
 						onclick="clearQueryForm()">快速查询：</span></label> <label
-					style="font-family: Verdana;">工单号：</label> <input
-					class="nui-textbox" name="code" id="code" enabled="true" /> <input
-					name="itemTypeId" id="itemTypeId" visible="false"
-					class="nui-combobox width2" textField="name" valueField="customid"
-					emptyText="请选择..." allowInput="false" valueFromSelect="true"
-					showNullItem="false" nullItemText="请选择..." /> <input
+					style="font-family: Verdana;">工单号：</label> 
+					<input
+					class="nui-textbox" name="gd" id="gd" enabled="true" /> 
+					
+					<input id="guarantee" name="onAccountSurety" 
+						class="nui-combobox" textField="empName" visible="false" valueField="empId" />
+					
+				 <input
 					name="isPrimaryBusiness" id="isPrimaryBusiness" visible="false"
 					class="nui-combobox width2" textField="text" valueField="value"
 					data="const_yesno" emptyText="请选择..." allowInput="false"
 					valueFromSelect="true" showNullItem="false" nullItemText="请选择..." />
 					<a class="nui-button" iconCls="icon-find" plain="true"
 					onclick="query()" id="query" enabled="true">查询</a>
-
-					<li class="separator"></li> <a class="nui-button" plain="true"
-					onclick="add()" id="add" enabled="true">单据审核</a> <a
-					class="nui-button" plain="true" onclick="edit()" id="edit"
+					<li class="separator"></li> 
+					<a class="nui-button" plain="true"
+					onclick="sh()" id="shbutton" enabled="true">单据审核</a>
+					 <a onclick="sk()"
+					class="nui-button" plain="true" id="skbutton"
 					enabled="true">收款</a> <a class="nui-button" plain="true"
-					onclick="del()" id="del" enabled="true">担保挂账</a> <a
-					class="nui-button" plain="true" onclick="del()" id="del"
-					enabled="true"></a>
+					 id="dbbutton" enabled="true" onclick="db()">担保挂账</a> 
 				</td>
 			</tr>
 		</table>
@@ -60,31 +56,27 @@
 			<div id="dgGrid" class="nui-datagrid"
 				style="width: 100%; height: 100%;" showPager="true" pageSize="10"
 				sizeList="[10,20,50]" allowAlternating="true" multiSelect="true"
-				url="<%=contextPath%>/com.hsapi.frm.setting.queryIncomeExpenItem.biz.ext"
-				onselectionchanged="onDictTypeSelected"
-				ondrawnode="onDictTypeDrawNode" onload="onDictTypeLoad"
+			    url="<%=apiPath + frmApi%>/com.hsapi.frm.setting.QueryInt.biz.ext" 
+				onselectionchanged="statuschange"
+				
 				dataField="data" idField="id" treeColumn="name"
 				parentField="parentId">
 				<div property="columns" width="10">
-					<div property="columns" width="50">
-
-
-						<div field="name" allowSort="true" headerAlign="center" width="50">序号</div>
-					</div>
+				 	<div type="indexcolumn" >序号</div>
+				 	<div field="id" allowSort="true" headerAlign="center"
+				 		visible="false"width="120"></div>
 					<div header="业务信息" headerAlign="center">
 						<div property="columns" width="10">
-
-
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">选择</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">工单号</div>
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">往来单位</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">业务类型</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">业务状态</div>
+	
+							<div type="checkcolumn" >选择</div>
+							<div field="serviceCode" allowSort="true" headerAlign="center"
+								width="120">工单号</div>
+							<div field="guestFullName" allowSort="true" headerAlign="center"
+								width="120">往来单位</div>
+							<div field="serviceTypeId" allowSort="true" headerAlign="center"
+								width="120">业务类型</div>
+							<div field="billStatus" allowSort="true" headerAlign="center"
+								width="120">业务状态</div>
 
 						</div>
 					</div>
@@ -92,12 +84,12 @@
 						<div property="columns" width="10">
 
 
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">应收金额</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">已收金额</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">未收金额</div>
+							<div field="rpAmt" allowSort="true" headerAlign="center"
+								width="120">应收金额</div>
+							<div field="rpAmtYes" allowSort="true" headerAlign="center"
+								width="120">已收金额</div>
+							<div field="rpAmtNo" allowSort="true" headerAlign="center"
+								width="120">未收金额</div>
 
 						</div>
 					</div>
@@ -105,8 +97,8 @@
 						<div property="columns" width="10">
 
 
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">应付金额</div>
+							<div field="paySum" allowSort="true" headerAlign="center"
+								width="120">应付金额</div>
 
 
 						</div>
@@ -115,26 +107,26 @@
 						<div property="columns" width="10">
 
 
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">发票金额</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">结账人</div>
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">结账日期</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">审核人</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">审核日期</div>
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">挂账日期</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">挂账天书</div>
-							<div field="name" allowSort="true" headerAlign="center"
-								width="20%">挂账方式</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">担保人</div>
-							<div field="code" allowSort="true" headerAlign="center"
-								width="20%">备注</div>
+							<div field="billAmt" allowSort="true" headerAlign="center"
+								width="120">发票金额</div>
+							<div field="recorder" allowSort="true" headerAlign="center"
+								width="120">结转人</div>
+							<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss"
+								width="120">结转日期</div>
+							<div field="auditor" allowSort="true" headerAlign="center"
+								width="120">审核人</div>
+							<div field="auditDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss"
+								width="125">审核日期</div>
+							<div field="onAccountDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss"
+								width="125" >挂账日期</div>
+							<div field="OwnDay" allowSort="true" headerAlign="center"
+								width="120">挂账天数</div>
+							<div field="onAccountType" allowSort="true" headerAlign="center"
+								width="120">挂账方式</div>
+							<div field="onAccountSurety" allowSort="true" headerAlign="center"
+								width="120">担保人</div>
+							<div field="remark" allowSort="true" headerAlign="center"
+								width="120">备注</div>
 
 						</div>
 					</div>

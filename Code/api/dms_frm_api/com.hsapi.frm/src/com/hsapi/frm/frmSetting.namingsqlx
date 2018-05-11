@@ -33,4 +33,39 @@
 			AND A.name like '%$name$%'
 		</isNotNull>
     </select>
-</sqlMap>
+       <select id="queryInit" parameterClass="HashMap" resultClass="HashMap">
+     	SELECT a.id, a.orgid, a.guest_id guestId, a.guest_full_name guestFullName, c.full_name fullName, a.rp_type rpType, a.service_code serviceCode, a.service_type_id serviceTypeId, 
+         a.rp_amt rpAmt, a.rp_amt_yes rpAmtYes, a.rp_amt_no rpAmtNo, a.bill_amt billAmt, a.bill_status billStatus, a.auditor, a.audit_date auditDate, a.on_account_date onAccountDate, 
+         b.pay_sum paySum, a.on_account_surety onAccountSurety, a.on_account_type onAccountType, a.remark, a.recorder, a.record_date recordDate, datediff( CURDATE(),a.audit_date) OwnDay
+ 		 FROM fis_rp_account a LEFT JOIN ( 
+         SELECT service_code,   SUM(rp_amt) pay_sum
+         FROM fis_rp_account b 
+         WHERE rp_type = -1 
+         GROUP BY service_code 
+ 		) b on a.service_code = b.service_code  
+		LEFT JOIN wb_common.com_guest c on a.guest_id = c.id 
+		WHERE a.orgid = #userOrgId# and a.rp_type = 1 
+		and a.service_type_id not in ('1', '-1') 
+		and (a.rp_amt_no &lt;&gt; 0 OR (a.rp_amt_no = 0 
+		and not exists   (select 1 from fis_rp_check_off b where a.id = b.rp_id)))
+		 <isNotNull property="guestId">
+			AND a.guest_id = #guestId#
+		</isNotNull>
+    </select>
+    <update id="updateInit" parameterClass="HashMap">
+    	update fis_rp_account
+    	set bill_status = 0
+    	where service_code=#serviceCode#
+    </update>
+    
+    <select id="getrevenueAndExpenditure" parameterClass="HashMap" resultClass="HashMap">
+    select a.id,a.orgid,a.rp_bill_id rpBillId,a.rp_id rpId,a.guest_id guestId,a.rp_mode_type rpModeType,a.check_off_amt checkOffAmt,a.check_off_man checkOffMan,a.check_off_date checkOffDate,a.bill_status billStatus,a.remark,b.service_code serviceCode from fis_rp_check_off a left join fis_rp_account b on a.rp_id = b.id 
+ 	where a.orgid = 'COM20171009000001' 
+ 	AND a.rp_bill_id IN (
+	SELECT id FROM fis_rp_bill_list WHERE orgid = 'COM20171009000001' AND rp_date gt;= '2018-05-01'
+	AND rp_date lt;= '2018-05-31 23:59:59'
+	and rp_type_id = 1
+	) ORDER BY a.rp_bill_id 
+    </select>
+    
+    </sqlMap>

@@ -156,7 +156,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -175,6 +174,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>
@@ -190,7 +190,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -210,6 +209,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>
@@ -225,7 +225,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -245,6 +244,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>
@@ -260,7 +260,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -280,6 +279,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>

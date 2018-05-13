@@ -85,6 +85,24 @@ $(document).ready(function(v)
         });
     });
 
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==78)&&(event.altKey))  {  //新建
+            add();  
+        } 
+      
+        if((keyCode==83)&&(event.altKey))  {   //保存
+            save();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印
+            onPrint();
+        } 
+     
+    }
+
     gsparams.auditSign = 0;
     quickSearch(0);
 });
@@ -441,30 +459,51 @@ function add()
         nui.confirm("您正在编辑数据,是否要继续?", "友情提示",
             function (action) { 
                 if (action == "ok") {
+
+                    setBtnable(true);
+                    setEditable(true);
+
+                    basicInfoForm.reset();
+                    rightGrid.clearRows();
+                    
+                    var newRow = { serviceId: '新采购退货', auditSign: 0};
+                    leftGrid.addRow(newRow, 0);
+                    leftGrid.clearSelect(false);
+                    leftGrid.select(newRow, false);
+                    
+                    nui.get("serviceId").setValue("新采购退货");
+                    nui.get("enterTypeId").setValue("050201");
+                    nui.get("outDate").setValue(new Date());
+                    
+                    var guestId = nui.get("guestId");
+                    guestId.focus();
+
                 }else {
                     return;
                 }
             }
         );
+    }else{
+        setBtnable(true);
+        setEditable(true);
+
+        basicInfoForm.reset();
+        rightGrid.clearRows();
+        
+        var newRow = { serviceId: '新采购退货', auditSign: 0};
+        leftGrid.addRow(newRow, 0);
+        leftGrid.clearSelect(false);
+        leftGrid.select(newRow, false);
+        
+        nui.get("serviceId").setValue("新采购退货");
+        nui.get("enterTypeId").setValue("050201");
+        nui.get("outDate").setValue(new Date());
+        
+        var guestId = nui.get("guestId");
+        guestId.focus();
     }
 
-    setBtnable(true);
-    setEditable(true);
-
-    basicInfoForm.reset();
-    rightGrid.clearRows();
     
-    var newRow = { serviceId: '新采购退货', auditSign: 0};
-    leftGrid.addRow(newRow, 0);
-    leftGrid.clearSelect(false);
-    leftGrid.select(newRow, false);
-    
-    nui.get("serviceId").setValue("新采购退货");
-    nui.get("enterTypeId").setValue("050201");
-    nui.get("outDate").setValue(new Date());
-    
-    var guestId = nui.get("guestId");
-    guestId.focus();
 }
 function onBillTypeIdChanged(e) 
 {
@@ -971,7 +1010,7 @@ function checkPartIDExists(partid){
     
     if(row) 
     {
-        return "配件ID："+partid+"在采购退货列表中已经存在，是否继续？";
+        return "配件编码："+row.comPartCode+"在采购退货列表中已经存在，是否继续？";
     }
     
     return null;
@@ -1206,4 +1245,23 @@ function setGuestInfo(params)
             console.log(jqXHR.responseText);
         }
     });
+}
+function onPrint() {
+    var row = leftGrid.getSelected();
+    if (row) {
+
+        nui.open({
+
+            url : "com.hsweb.cloud.part.purchase.purchaseRtnPrint.flow?ID="
+                    + row.id,// "view_Guest.jsp",
+            title : "采购退货打印",
+            width : 900,
+            height : 600,
+            onload : function() {
+                var iframe = this.getIFrameEl();
+                // iframe.contentWindow.setInitData(storeId, 'XSD');
+            }
+        });
+    }
+
 }

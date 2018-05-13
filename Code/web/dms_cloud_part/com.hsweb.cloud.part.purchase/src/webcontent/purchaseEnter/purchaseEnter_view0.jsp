@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseEnter.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseEnter.js?v=1.1.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -18,6 +18,10 @@
 
 .title.required {
 	color: red;
+}
+
+.title.tip {
+  color: blue;
 }
 
 .title.wide {
@@ -79,6 +83,7 @@
             <td style="width:100%;">
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addPchsOrder()" id="importBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;订单入库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -144,7 +149,7 @@
                            activeIndex="0" 
                            style="width:100%; height: auto;" 
                            plain="false" 
-                           onactivechanged="">
+                           onactivechanged="ontopTabChanged">
                         <div title="采购入库信息" id="billmain" name="billmain" >
                           <div class="nui-fit">
                                  
@@ -154,6 +159,8 @@
                                 
                                     <div id="basicInfoForm" class="form" contenteditable="false">
                                         <input class="nui-hidden" name="id"/>
+                                        <input class="nui-hidden" id="codeId" name="codeId"/>
+                                        <input class="nui-hidden" id="name="codeId"" name="code"/>
                                         <input class="nui-hidden" name="operateDate"/>
                                         <input class="nui-hidden" name="versionNo"/>
                                         <input class="nui-hidden" id="enterTypeId" name="enterTypeId"/>
@@ -184,10 +191,13 @@
                                                            valueField="id"
                                                            emptyText="请选择..."
                                                            url=""
-                                                           allowInput="false"
+                                                           valuefromselect="true"
+                                                           allowInput="true"
+                                                           selectOnFocus="true"
                                                            showNullItem="false"
                                                            width="100%"
-                                                           nullItemText="请选择..."/>
+                                                           nullItemText="请选择..."
+                                                           />
                                                 </td>
                                                 <td class="title">
                                                     <label>采购单号：</label>
@@ -242,7 +252,9 @@
                                                            valueField="customid"
                                                            emptyText="请选择..."
                                                            url=""
-                                                           allowInput="false"
+                                                           valuefromselect="true"
+                                                           allowInput="true"
+                                                           selectOnFocus="true"
                                                            showNullItem="false"
                                                            width="100%"
                                                            onvaluechanged="onBillTypeIdChanged"
@@ -259,7 +271,9 @@
                                                            valueField="customid"
                                                            emptyText="请选择..."
                                                            url=""
-                                                           allowInput="false"
+                                                           valuefromselect="true"
+                                                           allowInput="true"
+                                                           selectOnFocus="true"
                                                            showNullItem="false"
                                                            width="100%"
                                                            nullItemText="请选择..."/>
@@ -278,8 +292,14 @@
                                                 <td class="title">
                                                     <label>备注：</label>
                                                 </td>
-                                                <td colspan="5">
-                                                    <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                                                <td colspan="3">
+                                                    <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark"/>
+                                                </td>
+                                                <td class="title tip">
+                                                    <label>添加配件：</label>
+                                                </td>
+                                                <td >
+                                                    <input class="nui-textbox" selectOnFocus="true" width="100%" id="fastPartEntry" name="fastPartEntry"/>
                                                 </td>
                                                 <td class="title">
                                                     <label>总金额：</label>
@@ -295,20 +315,20 @@
                             </fieldset>
                           </div>
                         </div>
-                        <div title="配件信息" name="purchaseAdvance" >
-                          <div class="nui-fit">
+                        <div title="配件信息" id="partInfoTab" name="partInfoTab" url="" >
+                          <!-- <div class="nui-fit">
                               <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-                          </div>
+                          </div> -->
                         </div> 
-                        <div title="库存详情" name="purchaseAdvance" >
+                        <!-- <div title="库存详情" name="purchaseAdvance" >
                           <div class="nui-fit">
                                 <iframe id="formIframeStock" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
                           </div>
-                        </div> 
-                        <div title="采购车" name="purchaseAdvance" >
-                          <div class="nui-fit">
+                        </div>  -->
+                        <div title="采购车"  name="purchaseAdvanceTab" url="">
+                          <!-- <div class="nui-fit">
                                 <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-                          </div>
+                          </div> -->
                         </div>   
                     </div>
 
@@ -319,7 +339,7 @@
                                idField="id"
                                showSummaryRow="true"
                                frozenStartColumn="0"
-                               frozenEndColumn="6"
+                               frozenEndColumn="10"
                                ondrawcell="onRightGridDraw"
                                allowCellSelect="true"
                                allowCellEdit="true"
@@ -327,23 +347,23 @@
                                ondrawsummarycell="onDrawSummaryCell"
                                onselectionchanged="onRightGridSelectionChanged"
                                showModified="false"
+                               editNextOnEnterKey="true"
                                url="">
                               <div property="columns">
                                   <div type="indexcolumn">序号</div>
                                   <div header="配件信息" headerAlign="center">
                                       <div property="columns">
                                         <div field="operateBtn" width="30" headerAlign="center" header="删除"></div>
-                                        <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
-                                          <div field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                                          <div field="comPartName" headerAlign="center" header="配件名称"></div>
-                                          <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                          <div field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
-                                          <div field="comUnit" width="40" headerAlign="center" header="单位"></div>
+                                        <div field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+                                        <div field="comPartName" headerAlign="center" header="配件名称"></div>
+                                        <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                        <div field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                        <div field="comUnit" width="40" headerAlign="center" header="单位"></div>
                                       </div>
                                   </div>
                                   <div header="数量金额信息" headerAlign="center">
                                       <div property="columns">
-                                          <div field="enterQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
+                                          <div field="enterQty" name="enterQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
                                             <input property="editor" vtype="float" class="nui-textbox"/>
                                           </div>
                                           <div field="enterPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
@@ -360,8 +380,8 @@
                                   <div header="辅助信息" headerAlign="center">
                                       <div property="columns">
                                           <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-                              仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-                                            url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
+                              仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                                            url=""
                                             onvaluechanged="" emptyText=""  vtype="required"
                                             /> 
                               </div>  
@@ -369,7 +389,8 @@
                               仓位<input property="editor" class="nui-textbox"/>
                               </div>
                             <div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
-                            <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                               
+                            <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
+                                        <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>                               
                                       </div>
                                   </div>
                                   <div header="不含税信息" headerAlign="center">

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=1.0.6"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=1.1.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -351,7 +351,7 @@
                              idField="id"
                              showSummaryRow="true"
                              frozenStartColumn="0"
-                             frozenEndColumn="7"
+                             frozenEndColumn="10"
                              ondrawcell="onRightGridDraw"
                              allowCellSelect="true"
                              allowCellEdit="true"
@@ -397,8 +397,8 @@
                                 <div header="辅助信息" headerAlign="center">
                                     <div property="columns">
                                         <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-                            仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-                                          url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
+                            仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                                          url=""
                                           onvaluechanged="" emptyText=""  vtype="required"
                                           /> 
                             </div>  

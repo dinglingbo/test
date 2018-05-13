@@ -809,6 +809,7 @@
         <result column="sourceId" javaType="int" property="sourceId"/>
         <result column="rootId" javaType="int" property="rootId"/>
         <result column="storeId" javaType="int" property="storeId"/>
+        <result column="storeShelf" javaType="string" property="storeShelf"/>
         <result column="partId" javaType="int" property="partId"/>
         <result column="partCode" javaType="string" property="partCode"/>
         <result column="partName" javaType="string" property="partName"/>
@@ -863,6 +864,7 @@
 			M.sourceId,
 			M.rootId,
 			M.storeId,
+			M.storeShelf,
 			M.partId,
 			M.partCode,
 			M.partName,
@@ -914,6 +916,7 @@
 			A.source_id as sourceId,
 			A.root_id as rootId,
 			A.store_id as storeId,
+			A.store_shelf as storeShelf,
 			A.part_id as partId,
 			A.part_code as partCode,
 			A.part_name as partName,
@@ -977,6 +980,7 @@
 			A.source_id as sourceId,
 			A.root_id as rootId,
 			A.store_id as storeId,
+			A.store_shelf as storeShelf,
 			A.part_id as partId,
 			A.part_code as partCode,
 			A.part_name as partName,

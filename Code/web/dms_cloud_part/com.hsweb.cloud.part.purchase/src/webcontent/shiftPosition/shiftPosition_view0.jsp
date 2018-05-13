@@ -9,7 +9,7 @@
 -->
 <head>
 <title>移仓管理</title>
-<script src="<%= request.getContextPath() %>/purchase/js/shiftPosition/shiftPosition.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/purchase/js/shiftPosition/shiftPosition.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -200,7 +200,7 @@
                      idField="id"
                      showSummaryRow="true"
                      frozenStartColumn="0"
-                     frozenEndColumn="6"
+                     frozenEndColumn="8"
                      allowCellSelect="true"
                      allowCellEdit="true"
                      ondrawcell="onRightGridDrawCell"
@@ -212,7 +212,6 @@
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                            	<div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
                                 <div field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div field="comPartName" headerAlign="center" header="配件名称"></div>
                                 <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -224,7 +223,7 @@
                             <div property="columns">
                                 <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
                                 移出仓库<input  property="editor" enabled="false" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-                                        url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
+                                        url="" data="storehouse"
                                         onvaluechanged="" emptyText=""  vtype="required"
                                         /> 
                                 </div>  
@@ -240,7 +239,7 @@
                             <div property="columns">
                                 <div type="comboboxcolumn" field="receiveStoreId" width="60" headerAlign="center" allowSort="true">
 					        	移入仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-			                            url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
+			                            url="" data="storehouse"
 			                            onvaluechanged="" emptyText=""  vtype="required"
 			                            /> 
 					        	</div>	
@@ -251,7 +250,8 @@
                                 </div>
                                 <div field="occupyQty" visible="false" width="60" headerAlign="center" allowSort="true" header="占用数量"></div>
 				    			<div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>	
-				    			<div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>																
+				    			<div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
+                                <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>																
                             </div>
                         </div>
                         <div header="不含税成本信息" headerAlign="center">

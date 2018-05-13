@@ -11,7 +11,7 @@
 -->
 <head>
 <title>辅助查询</title>
-	<script src="<%=webPath + cloudPartDomain%>/common/js/embed/srvBottom.js?v=1.0.1"></script>
+	<script src="<%=webPath + cloudPartDomain%>/common/js/embed/srvBottom.js?v=1.0.5"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 </head>

@@ -196,7 +196,6 @@ function doSearch(params)
     //在GRID属性中设置每页查询的记录条数
     partGrid.load({
         params:params,
-        page:page,
         token:token
     });
 }

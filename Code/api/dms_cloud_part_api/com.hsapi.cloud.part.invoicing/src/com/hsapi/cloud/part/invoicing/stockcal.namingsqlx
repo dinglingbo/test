@@ -11,7 +11,7 @@
     <select id="getEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
 		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
 				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
-				B.STORE_ID as storeId, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
+				B.STORE_ID as storeId, b.store_shelf as storeShelf, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
 				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
 				B.ENTER_QTY as enterQty, B.ENTER_PRICE as enterPrice,
 				B.ENTER_AMT as enterAmt, B.OUTABLE_QTY as trueOutableQty, B.TAX_SIGN as taxSign,
@@ -78,7 +78,7 @@
     <select id="chooseEnterOutableDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap"> 
 		SELECT  b.ID as id, b.OUTABLE_QTY - IFNULL(E.SellQty, 0) AS outableQty,
 				B.MAIN_ID as mainId, B.SOURCE_ID as sourceId, B.ROOT_ID as rootId, 
-				B.STORE_ID as storeId, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
+				B.STORE_ID as storeId, b.store_shelf as storeShelf, B.PART_ID as partId, B.PART_CODE as partCode, B.PART_NAME as partName,
 				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
 				B.ENTER_QTY as enterQty, B.ENTER_PRICE as enterPrice,
 				B.ENTER_AMT as enterAmt, B.OUTABLE_QTY as trueOutableQty, B.TAX_SIGN as taxSign,

@@ -106,6 +106,9 @@
               onvaluechanged="" emptyText=""  vtype="required"
               /> 
 </div>
+<div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true">
+            仓位
+            </div>
             <div field="serviceId" align="left" width="55px" headerAlign="center" allowSort="true">
             入库单号
             </div>

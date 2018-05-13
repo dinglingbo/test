@@ -551,6 +551,7 @@
         <result column="guestId" javaType="int" property="guestId"/>
         <result column="storeId" javaType="int" property="storeId"/>
         <result column="enterTypeId" javaType="string" property="enterTypeId"/>
+        <result column="codeId" javaType="int" property="codeId"/>
         <result column="code" javaType="string" property="code"/>
         <result column="billStatusId" javaType="string" property="billStatusId"/>
         <result column="enterDate" javaType="java.sql.Timestamp" property="enterDate"/>
@@ -598,6 +599,7 @@
 			M.guestId,
 			M.storeId,
 			M.enterTypeId,
+			M.codeId,
 			M.code,
 			M.billStatusId,
 			M.enterDate,
@@ -642,6 +644,7 @@
 			A.GUEST_ID AS guestId,
 			A.STORE_ID AS storeId,
 			A.ENTER_TYPE_ID AS enterTypeId,
+			A.code_id as codeId,
 			A.CODE AS code,
 			A.BILL_STATUS_ID AS billStatusId,
 			A.ENTER_DATE AS enterDate,
@@ -752,6 +755,7 @@
 			A.GUEST_ID AS guestId,
 			A.STORE_ID AS storeId,
 			A.ENTER_TYPE_ID AS enterTypeId,
+			A.code_id as codeId,
 			A.CODE AS code,
 			A.BILL_STATUS_ID AS billStatusId,
 			A.ENTER_DATE AS enterDate,
@@ -1088,6 +1092,70 @@
         )M
         
         ORDER BY M.id asc
+    </select>
+    
+    
+    <select id="queryPjPchsOrderDetailChkList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.ID AS id,
+                A.MAIN_ID AS mainId,
+                A.STORE_ID AS storeId,
+                A.PART_ID AS partId,
+                A.PART_CODE AS partCode,
+                A.PART_NAME AS partName,
+                A.FULL_NAME AS fullName,
+                A.ENTER_UNIT_ID AS enterUnitId,
+                A.SYSTEM_UNIT_ID AS systemUnitId,
+                A.ORDER_QTY AS orderQty,
+                A.ORDER_PRICE AS orderPrice,
+                A.ORDER_AMT AS orderAmt,
+                A.TAX_SIGN AS taxSign,
+                A.TAX_RATE AS taxRate,
+                A.TAX_PRICE AS taxPrice,
+                A.TAX_AMT AS taxAmt,
+                A.NO_TAX_PRICE AS noTaxPrice,
+                A.NO_TAX_AMT AS noTaxAmt,
+                A.TAX_DIFF AS taxDiff,
+                A.TRUE_ENTER_QTY AS trueEnterQty,
+                A.TRUE_ENTER_AMT AS trueEnterAmt,
+                A.NOT_ENTER_QTY AS notEnterQty,
+                A.NOT_ENTER_AMT AS notEnterAmt,
+                A.ADJUST_QTY AS adjustQty,
+                A.IS_FINISHED AS isFinished,
+                A.FINISH_DATE AS finishDate,
+                A.PREV_DETAIL_ID AS prevDetailId,
+                A.SOURCE_DETAIL_ID AS sourceDetailId,
+                A.SOURCE_MAIN_ID AS sourceMainId,
+                A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
+                A.REMARK AS remark,
+				c.shelf as shelf,
+                B.CODE AS comPartCode,
+                B.NAME AS comPartName,
+                B.FULL_NAME AS comFullName,
+                B.BRAND_CODE AS comBrandCode,
+                B.OEM_CODE AS comOemCode,
+                B.QUALITY_TYPE_ID AS comQualityTypeId,
+                B.PART_BRAND_ID AS comPartBrandId,
+                B.APPLY_CAR_MODEL AS comApplyCarModel,
+                B.UNIT AS comUnit,
+                B.SPEC AS comSpec,
+                B.DIRECTION AS comDirection
+            FROM
+            DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK A
+            INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			left join pj_part_store_stock c on a.store_id = c.store_id and a.part_id = c.part_id
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="mainId">  
+                    (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="notFinished">  
+                    (A.IS_FINISHED = #notFinished#)
+                </isNotEmpty>
+            </dynamic>
+        
+           ORDER BY a.id asc
     </select>
     
 </sqlMap>

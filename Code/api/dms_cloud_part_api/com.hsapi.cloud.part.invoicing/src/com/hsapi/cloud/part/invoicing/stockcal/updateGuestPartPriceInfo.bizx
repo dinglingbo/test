@@ -65,22 +65,28 @@
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="165" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo synchronization="true">
-      <process:partner>com.eos.foundation.common.utils.DateUtil.getJVMDate</process:partner>
-      <process:instance/>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.common.utils.DateUtil.getJVMDate</process:partner>
+      <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables/>
     <process:outputVariables>
-      <process:outputVariable name="out0" type="query" value="java.util.Date" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.Date" valueType="Java">operateDate</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -201,15 +207,15 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">guestPrice/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">guestId</process:from>
       <process:to type="query">guestPrice/guestId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">partId</process:from>
       <process:to type="query">guestPrice/partId</process:to>
     </process:copy>
   </nodes>
@@ -279,7 +285,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -748,8 +754,8 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="guestId" primitiveType="String"/>
-    <process:input description="" isArray="false" name="partId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="partId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="price" primitiveType="Float"/>
     <process:input description="1入；-1出" isArray="false" name="dc" primitiveType="Int"/>
   </process:inputs>

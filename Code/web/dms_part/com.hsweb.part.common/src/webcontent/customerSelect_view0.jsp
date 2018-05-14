@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/commonPart/js/customerSelect.js?v=1.0.0"></script>
+<script src="<%=webPath + partDomain%>/commonPart/js/customerSelect.js?v=1.0.0"></script>
 <style type="text/css">
 html, body{
             margin:0;padding:0;border:0;width:100%;height:100%;overflow:hidden;

@@ -10,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 <script
-	src="<%= request.getContextPath() %>/purchasePart/js/purchaseInbound/enterDetailEdit.js?v=1.0.7"></script>
+	src="<%=webPath + partDomain%>/purchasePart/js/purchaseInbound/enterDetailEdit.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 60px;

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨出库查询</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/allotMgr/allotOutQuery.js?v=1.0.8"></script>
+<script src="<%=webPath + partDomain%>/purchasePart/js/allotMgr/allotOutQuery.js?v=1.0.8"></script>
 <style type="text/css">
 .title {
 	width: 60px;

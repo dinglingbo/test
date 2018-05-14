@@ -47,7 +47,7 @@ function changeTabs(e){
 function queryBasic(){
     if (!detailCatch['basic']){
         var params = {
-            "url":"https://llq.007vin.com/ppypart/partdetail",
+            "url": llq_pre_url + "/ppypart/partdetail",//ppypart/parts_baseinfo
             "params":{
                 "brand":brand,
                 "pid":pid
@@ -81,7 +81,7 @@ function setBasic(data){
 function queryPrice(){
     if (!detailCatch['price']){
         var params = {
-            "url":"https://llq.007vin.com/ppypart/partprice",
+            "url": llq_pre_url + "/ppypart/partprice",
             "params":{
                 "brand":brand,
                 "pid":pid
@@ -115,9 +115,8 @@ function onFactoryTypeRender(e) {
 */
 function queryReplace(){
     if (!detailCatch['replace']){
-        //https://llq.007vin.com/ppypart/partsreplace
         var params = {
-            "url":"https://llq.007vin.com/ppypart/parts_replacement",
+            "url": llq_pre_url + "/ppypart/parts_replacement",
             "params":{
                 "brand":brand,
                 "pid":pid
@@ -139,7 +138,7 @@ function setReplace(data){
 function queryArticle(){
     if (!detailCatch['article']){
         var params = {
-            "url":"https://llq.007vin.com/ppypart/parts_article",
+            "url": llq_pre_url + "/ppypart/parts_article",
             "params":{
                 "brand":brand,
                 "pid":pid
@@ -161,7 +160,7 @@ function setArticle(data){
 function queryCompt(){
     if (!detailCatch['compt']){
         var params = {
-            "url":"https://llq.007vin.com/ppypart/partscompt",
+            "url": llq_pre_url + "/ppypart/partscompt",
             "params":{
                 "brand":brand,
                 "pid":pid
@@ -183,7 +182,7 @@ function setCompt(data){
 function queryBaseinfo(){
     if (!detailCatch['baseinfo']){
         var params = {
-            "url":"https://llq.007vin.com/ppypart/parts_baseinfo",
+            "url": llq_pre_url + "/ppypart/parts_baseinfo",
             "params":{
                 "brand":brand,
                 "pid":pid
@@ -207,7 +206,7 @@ var compatible_page = 0;
 function queryCompatible(page){
     if (!detailCatch['compatible']){
         var params = {
-            "url":"https://llq.007vin.com/ppypart/parts_compatible_vehicle_v2",
+            "url": llq_pre_url + "/ppypart/parts_compatible_vehicle_v2",
             "params":{
                 "brand":brand,
                 "page":compatible_page,

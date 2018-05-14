@@ -73,7 +73,7 @@
     <figSize height="17" width="43"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="setHashKey" displayName="setHashKey" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="setHashKey" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo0</targetNode>
@@ -136,18 +136,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">8c3f7042d2054a5de7a8369901fd389d</process:from>
-      <process:to type="query">params/securityKey</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">5ff6df3cfc76ae9c9dfd5a89e4deeacd</process:from>
-      <process:to type="query">params/uid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">hs</process:from>
-      <process:to type="query">params/hashid</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">10967a34826f415790ee748028b6d222</process:from>
       <process:to type="query">params/securityKey</process:to>
     </process:copy>
@@ -157,6 +145,18 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">llq</process:from>
+      <process:to type="query">params/hashid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">8c3f7042d2054a5de7a8369901fd389d</process:from>
+      <process:to type="query">params/securityKey</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">5ff6df3cfc76ae9c9dfd5a89e4deeacd</process:from>
+      <process:to type="query">params/uid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">hs</process:from>
       <process:to type="query">params/hashid</process:to>
     </process:copy>
   </nodes>

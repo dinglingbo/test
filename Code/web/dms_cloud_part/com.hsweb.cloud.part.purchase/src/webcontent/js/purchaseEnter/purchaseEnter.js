@@ -756,6 +756,30 @@ function add()
 
 
 }
+function setTaxSign(billTypeId){
+    switch (billTypeId) {
+    case '010101':
+        taxSign = 0;
+        taxRate = 0.07;
+        break;
+    case '010102':
+        taxSign = 1;
+        taxRate = 0.07;
+        break;
+    case '010103':
+        taxSign = 1;
+        taxRate = 0.17;
+        break;
+    default:
+        taxSign = 0;
+        taxRate = 0.07;
+        break;
+    }
+    nui.get("taxRate").setValue(taxRate);
+    nui.get("taxSign").setValue(taxSign);
+    // 税率改变后需要更新明细数据的含税价格和不含税价格
+    calcTaxPriceInfo(taxSign, taxRate);
+}
 function onBillTypeIdChanged(e) 
 {
     var billTypeId = e.value;
@@ -948,7 +972,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.supplierSelect.flow",
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -959,7 +983,7 @@ function selectSupplier(elId)
                 isSupplier: 1,
                 isClient: 0
             };
-            iframe.contentWindow.setData(params);
+            //iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {
@@ -971,6 +995,8 @@ function selectSupplier(elId)
                 supplier = data.supplier;
                 var value = supplier.id;
                 var text = supplier.fullName;
+                var billTypeIdV = supplier.billTypeId;
+                var settTypeIdV = supplier.settTypeId;
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
@@ -979,6 +1005,11 @@ function selectSupplier(elId)
                     var row = leftGrid.getSelected();
                     var newRow = {guestFullName: text};
                     leftGrid.updateRow(row,newRow);
+
+                    nui.get("billTypeId").setValue(billTypeIdV);
+                    nui.get("settleTypeId").setValue(settTypeIdV);
+
+                    setTaxSign(billTypeIdV);
                 }
             }
         }
@@ -1412,6 +1443,7 @@ function onGuestValueChanged(e)
     //供应商中直接输入名称加载供应商信息
     var params = {};
     params.pny = e.value;
+    params.isSupplier = 1;
     setGuestInfo(params);
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1437,6 +1469,14 @@ function setGuestInfo(params)
                     var row = leftGrid.getSelected();
                     var newRow = {guestFullName: text};
                     leftGrid.updateRow(row,newRow);
+
+                    var billTypeIdV = data.billTypeId;
+                    var settTypeIdV = data.settTypeId;
+
+                    nui.get("billTypeId").setValue(billTypeIdV);
+                    nui.get("settleTypeId").setValue(settTypeIdV);
+
+                    setTaxSign(billTypeIdV);
                 }
                 else
                 {
@@ -1447,6 +1487,10 @@ function setGuestInfo(params)
                     var row = leftGrid.getSelected();
                     var newRow = {guestFullName: null};
                     leftGrid.updateRow(row,newRow);
+
+                    nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+                    nui.get("taxRate").setValue(0.17);
+                    nui.get("taxSign").setValue(1);
                 }
             }
             else

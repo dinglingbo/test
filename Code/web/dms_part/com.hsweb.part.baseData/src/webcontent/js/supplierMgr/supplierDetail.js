@@ -2,21 +2,17 @@
  * Created by Administrator on 2018/1/23.
  */
 
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var basicInfoForm = null;
-var contactInfoForm = null;
-var financeInfoForm = null;
-var otherInfoForm = null;
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var mainForm = null;
+var otherForm = null;
 
 function initForm(){
-    basicInfoForm = new nui.Form("#basicInfoForm");
-    contactInfoForm = new nui.Form("#contactInfoForm");
-    financeInfoForm = new nui.Form("#financeInfoForm");
-    otherInfoForm = new nui.Form("#otherInfoForm");
+    mainForm = new nui.Form("#mainForm");
+    otherForm = new nui.Form("#otherForm");
 }
 var billTypeId = null;
 var settTypeId = null;
-var supplierType = null;
+var guestType = null;
 var managerDuty = null;
 var tgrade = null;
 function initComboBox()
@@ -24,7 +20,7 @@ function initComboBox()
     provinceEl = nui.get("provinceId");
     billTypeId = nui.get("billTypeId");
     settTypeId = nui.get("settTypeId");
-    supplierType = nui.get("supplierType");
+    guestType = nui.get("guestType");
     managerDuty = nui.get("managerDuty");
     tgrade = nui.get("tgrade");
 }
@@ -47,7 +43,32 @@ function onValueChanged(){
     }
 }
 
-
+function format(time, format) {
+    var t = new Date(time);
+    var tf = function (i) { return (i < 10 ? '0' : '') + i; };
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a) {
+    switch (a) {
+    case 'yyyy':
+    return tf(t.getFullYear());
+    break;
+    case 'MM':
+    return tf(t.getMonth() + 1);
+    break;
+    case 'mm':
+    return tf(t.getMinutes());
+    break;
+    case 'dd':
+    return tf(t.getDate());
+    break;
+    case 'HH':
+    return tf(t.getHours());
+    break;
+    case 'ss':
+    return tf(t.getSeconds());
+    break;
+    }
+    });
+}
 function CloseWindow(action) {
     //if (action == "close" && form.isChanged()) {
     //    if (confirm("数据被修改了，是否先保存？")) {
@@ -62,11 +83,12 @@ function onCancel(e) {
 }
 var requiredField = {
     code:"供应商编码",
+    shortName:"供应商简称",
     fullName:"供应商全称",
     billTypeId:"票据类型",
     settTypeId:"结算方式",
     manager:"联系人",
-    mobile:"手机",
+    mobile:"联系人手机",
     provinceId:"省份",
     cityId:"城市"
 };
@@ -74,10 +96,8 @@ var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveSupplier.biz.ext";
 function onOk()
 {
     var dataList = [];
-    dataList[0] = basicInfoForm.getData();
-    dataList[1] = contactInfoForm.getData();
-    dataList[2] = financeInfoForm.getData();
-    dataList[3] = otherInfoForm.getData();
+    dataList[0] = mainForm.getData();
+    dataList[1] = otherForm.getData();
     var data = {};
     for(var i=0;i<dataList.length;i++)
     {
@@ -105,7 +125,7 @@ function onOk()
     else{
         data.isInternalId = "";
     }
-    console.log(data);
+    
     for(var key in requiredField)
     {
         if(!data[key] || data[key].trim().length==0)
@@ -114,8 +134,15 @@ function onOk()
             return;
         }
     }
+
+    if (data.modifyDate) {
+        data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
+    }
+
     nui.mask({
-        html:'保存中...'
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
     });
     nui.ajax({
         url:saveUrl,
@@ -152,13 +179,13 @@ var settTypeIdList = [];
 var settTypeIdHash = {};
 var managerDutyList = [];
 var managerDutyHash = {};
-var supplierTypeList = [];
-var supplierTypeHash = {};
+var guestTypeList = [];
+var guestTypeHash = {};
 function setData(data)
 {
     provinceList = data.province||[];
     provinceList.forEach(function(v){
-        provinceHash[v.id] = v;
+        provinceHash[v.code] = v;
     });
     if(!provinceEl)
     {
@@ -167,7 +194,7 @@ function setData(data)
     provinceEl.setData(provinceList);
     cityList = data.city||[];
     cityList.forEach(function(v){
-        cityHash[v.id] = v;
+        cityHash[v.code] = v;
     });
     tgradeList = data.tgrade||[];
     tgradeList.forEach(function(v){
@@ -185,27 +212,26 @@ function setData(data)
     managerDutyList.forEach(function(v){
         managerDutyHash[v.customid] = v;
     });
-    supplierTypeList = data.supplierType||[];
-    supplierTypeList.forEach(function(v){
-        supplierTypeHash[v.customid] = v;
+    guestTypeList = data.supplierType||[];
+    guestTypeList.forEach(function(v){
+        guestTypeHash[v.customid] = v;
     });
     billTypeId.setData(billTypeIdList);
     settTypeId.setData(settTypeIdList);
-    supplierType.setData(supplierTypeList);
+    guestType.setData(guestTypeList);
     managerDuty.setData(managerDutyList);
     tgrade.setData(tgradeList);
-    console.log(data);
-    if(!basicInfoForm)
+
+    if(!mainForm)
     {
         initForm();
     }
     if(data.supplier)
     {
         var supplier = data.supplier;
-        basicInfoForm.setData(supplier);
-        contactInfoForm.setData(supplier);
-        financeInfoForm.setData(supplier);
-        otherInfoForm.setData(supplier);
+        mainForm.setData(supplier);
+        otherForm.setData(supplier);
+
         onProvinceSelected("cityId");
         contactInfoForm.setData(supplier);
         nui.get("isClient").setValue(supplier.isClient);
@@ -221,7 +247,7 @@ function setData(data)
         }
     }
     else{
-        basicInfoForm.setData({
+        mainForm.setData({
             code:currentTimeMillis
         });
     }

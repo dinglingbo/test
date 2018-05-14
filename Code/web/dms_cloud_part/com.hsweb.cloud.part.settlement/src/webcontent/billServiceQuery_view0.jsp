@@ -96,9 +96,9 @@
                 <span class="separator"></span> 
                 <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
                 <input id="serviceMan" width="60px" emptyText="业务员" class="nui-hidden"/>
-                <input id="searchGuestId" class="nui-buttonedit"
+                <!-- <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择往来单位..."
-                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
+                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
                 <input class="nui-combobox" name="accountSign" id="accountSign" value="0"
                      nullitemtext="请选择..." emptyText="单据状态" data="accountList" width="60px" />
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

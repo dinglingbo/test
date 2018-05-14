@@ -1,17 +1,13 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var basicInfoForm = null;
-var contactInfoForm = null;
-var financeInfoForm = null;
-var otherInfoForm = null;
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var mainForm = null;
+var otherForm = null;
 
 function initForm(){
-    basicInfoForm = new nui.Form("#basicInfoForm");
-    contactInfoForm = new nui.Form("#contactInfoForm");
-    financeInfoForm = new nui.Form("#financeInfoForm");
-    otherInfoForm = new nui.Form("#otherInfoForm");
+    mainForm = new nui.Form("#mainForm");
+    otherForm = new nui.Form("#otherForm");
 }
 var billTypeId = null;
 var settTypeId = null;
@@ -22,7 +18,7 @@ function initComboBox()
     provinceEl = nui.get("provinceId");
     billTypeId = nui.get("billTypeId");
     settTypeId = nui.get("settTypeId");
-    managerDuty = nui.get("managerDuty");
+    //managerDuty = nui.get("managerDuty");
     tgrade = nui.get("tgrade");
 }
 $(document).ready(function(v)
@@ -44,6 +40,33 @@ function onValueChanged(){
     }
 }
 
+function format(time, format) {
+    var t = new Date(time);
+    var tf = function (i) { return (i < 10 ? '0' : '') + i; };
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a) {
+    switch (a) {
+    case 'yyyy':
+    return tf(t.getFullYear());
+    break;
+    case 'MM':
+    return tf(t.getMonth() + 1);
+    break;
+    case 'mm':
+    return tf(t.getMinutes());
+    break;
+    case 'dd':
+    return tf(t.getDate());
+    break;
+    case 'HH':
+    return tf(t.getHours());
+    break;
+    case 'ss':
+    return tf(t.getSeconds());
+    break;
+    }
+    });
+}
+
 function CloseWindow(action) {
     //if (action == "close" && form.isChanged()) {
     //    if (confirm("数据被修改了，是否先保存？")) {
@@ -59,11 +82,12 @@ function onCancel(e) {
 
 var requiredField = {
 	    code:"客户编码",
+	    shortName:"客户简称",
 	    fullName:"客户全称",
 	    billTypeId:"票据类型",
 	    settTypeId:"结算方式",
 	    manager:"联系人",
-	    mobile:"手机",
+	    mobile:"联系人手机",
 	    provinceId:"省份",
 	    cityId:"城市"
 	};
@@ -71,10 +95,8 @@ var requiredField = {
 	function onOk()
 	{
 	    var dataList = [];
-	    dataList[0] = basicInfoForm.getData();
-	    dataList[1] = contactInfoForm.getData();
-	    dataList[2] = financeInfoForm.getData();
-	    dataList[3] = otherInfoForm.getData();
+	    dataList[0] = mainForm.getData();
+	    dataList[1] = otherForm.getData();
 	    var data = {};
 	    for(var i=0;i<dataList.length;i++)
 	    {
@@ -111,13 +133,19 @@ var requiredField = {
 	            return;
 	        }
 	    }
-	    if(data.isEdit != "Y")
+
+	    if (data.modifyDate) {
+	        data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
+	    }
+	    /*if(data.isEdit != "Y")
 	    {
 	        data.guestType = '01020102';
-	    }
+	    }*/
 
 	    nui.mask({
-	        html:'保存中...'
+	        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
 	    });
 	    nui.ajax({
 	        url:saveUrl,
@@ -152,13 +180,13 @@ var requiredField = {
 	var billTypeIdHash = {};
 	var settTypeIdList = [];
 	var settTypeIdHash = {};
-	var managerDutyList = [];
-	var managerDutyHash = {};
+	//var managerDutyList = [];
+	//var managerDutyHash = {};
 	function setData(data)
 	{
 	    provinceList = data.province||[];
 	    provinceList.forEach(function(v){
-	        provinceHash[v.id] = v;
+	        provinceHash[v.code] = v;
 	    });
 	    if(!provinceEl)
 	    {
@@ -167,7 +195,7 @@ var requiredField = {
 	    provinceEl.setData(provinceList);
 	    cityList = data.city||[];
 	    cityList.forEach(function(v){
-	        cityHash[v.id] = v;
+	        cityHash[v.code] = v;
 	    });
 	    tgradeList = data.tgrade||[];
 	    tgradeList.forEach(function(v){
@@ -181,16 +209,16 @@ var requiredField = {
 	    settTypeIdList.forEach(function(v){
 	        settTypeIdHash[v.customid] = v;
 	    });
-	    managerDutyList = data.managerDuty||[];
+	    /*managerDutyList = data.managerDuty||[];
 	    managerDutyList.forEach(function(v){
 	        managerDutyHash[v.customid] = v;
-	    });
+	    });*/
 	    billTypeId.setData(billTypeIdList);
 	    settTypeId.setData(settTypeIdList);
-	    managerDuty.setData(managerDutyList);
+	    /*managerDuty.setData(managerDutyList);*/
 	    tgrade.setData(tgradeList);
-	    console.log(data);
-	    if(!basicInfoForm)
+	 
+	    if(!mainForm)
 	    {
 	        initForm();
 	    }
@@ -198,12 +226,11 @@ var requiredField = {
 	    {
 	        var supplier = data.supplier;
 	        supplier.isEdit="Y";
-	        basicInfoForm.setData(supplier);
-	        contactInfoForm.setData(supplier);
-	        financeInfoForm.setData(supplier);
-	        otherInfoForm.setData(supplier);
+	        mainForm.setData(supplier);
+	        otherForm.setData(supplier);
+
 	        onProvinceSelected("cityId");
-	        contactInfoForm.setData(supplier);
+	      
 	        nui.get("isClient").setValue(supplier.isClient);
 	        nui.get("isSupplier").setValue(supplier.isSupplier);
 	        nui.get("isDisabled").setValue(supplier.isDisabled);
@@ -217,7 +244,7 @@ var requiredField = {
 	        }
 	    }
 	    else{
-	        basicInfoForm.setData({
+	        mainForm.setData({
 	            code:currentTimeMillis
 	        });
 	    }

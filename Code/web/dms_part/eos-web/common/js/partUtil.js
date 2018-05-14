@@ -90,10 +90,10 @@ function getProvinceAndCity(callback) {
 		provinceList = window.top._provinceList;
 		cityList = window.top._cityList;
 		provinceList.forEach(function(v) {
-			provinceHash[v.id] = v;
+			provinceHash[v.code] = v;
 		});
 		cityList.forEach(function(v) {
-			cityHash[v.id] = v;
+			cityHash[v.code] = v;
 		});
 		if (provinceEl) {
 			provinceEl.setData(provinceList);
@@ -114,14 +114,14 @@ function getProvinceAndCity(callback) {
 				provinceList = window.top._provinceList;
 				window.top._cityList = data.city;
 				provinceList.forEach(function(v) {
-					provinceHash[v.id] = v;
+					provinceHash[v.code] = v;
 				});
 				if (provinceEl) {
 					provinceEl.setData(provinceList);
 				}
 				cityList = window.top._cityList;
 				cityList.forEach(function(v) {
-					cityHash[v.id] = v;
+					cityHash[v.code] = v;
 				});
 				callback && callback(data);
 			//	console.log("getProvinceAndCity from server");

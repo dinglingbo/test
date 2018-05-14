@@ -31,11 +31,12 @@ html, body{
 					style="font-family: Verdana;">编码：</label> <input
 					class="nui-textbox" width="100" id="code" /> <label
 					style="font-family: Verdana;">电话：</label> <input
-					class="nui-textbox" width="100" id="phone" /> <label
-					style="font-family: Verdana;">类型：</label> <input id="guestType"
+					class="nui-textbox" width="100" id="phone" /> 
+					<!-- <label style="font-family: Verdana;">类型：</label> <input id="guestType"
 					class="nui-combobox width1" textField="name" valueField="customid"
 					emptyText="请选择..." url="" allowInput="true" showNullItem="false"
-					nullItemText="请选择..." /> <span class="separator"></span> <label
+					nullItemText="请选择..." />  -->
+					<span class="separator"></span> <label
 					style="font-family: Verdana;">显示禁用：</label> <input
 					class="nui-checkbox" width="100" id="showDisabled" trueValue="1"
 					falseValue="0" /> <span class="separator"></span> <a

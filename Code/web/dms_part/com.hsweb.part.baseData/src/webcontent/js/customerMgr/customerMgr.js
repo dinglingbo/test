@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryCustomList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
@@ -52,15 +52,23 @@ $(document).ready(function(v)
         }
         else if("provinceId" == field)
         {
-            e.cellHtml = provinceHash[e.value].name;
+            if(provinceHash[e.value])
+            {
+                e.cellHtml = provinceHash[e.value].name||"";
+            }
         }
         else if("cityId" == field)
         {
-            e.cellHtml = cityHash[e.value].name;
+            if(cityHash[e.value])
+            {
+                e.cellHtml = cityHash[e.value].name||"";
+            }
         }
         else if("tgrade" == field)
         {
-            e.cellHtml = tgradeHash[e.value].name;
+            if(tgradeHash[e.value]){
+                e.cellHtml = tgradeHash[e.value].name||"";
+            }
         }
         else{
             onDrawCell(e);
@@ -100,7 +108,7 @@ function getSearchParam()
 }
 function doSearch(params)
 {
-    params.guestTypeList = "'01020102','01020202'";
+    //params.guestTypeList = "'01020102','01020202'";
     grid.load({
         params:params
     });
@@ -128,10 +136,13 @@ function onAdvancedSearchCancel(){
 
 function addCustomer()
 {
+    billTypeIdList = nui.get("billTypeId").getData();
+    settTypeIdList = nui.get("settType").getData();
+    managerDutyList = nui.get("managerDuty").getData();
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.baseData.customerAdd.flow?token=" + token,
-        title: "客户资料", width: 500, height: 560,
+        title: "客户资料", width: 530, height: 460,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -164,10 +175,13 @@ function editCustomer()
         nui.alert("请选择要编辑的数据");
         return;
     }
+    billTypeIdList = nui.get("billTypeId").getData();
+    settTypeIdList = nui.get("settType").getData();
+    managerDutyList = nui.get("managerDuty").getData();
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.baseData.customerAdd.flow?token=" + token,
-        title: "客户资料", width: 500, height: 560,
+        title: "客户资料", width: 530, height: 460,
         allowDrag:true,
         allowResize:false,
         onload: function ()

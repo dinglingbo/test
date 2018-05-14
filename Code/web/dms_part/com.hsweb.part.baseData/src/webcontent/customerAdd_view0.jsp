@@ -4,70 +4,75 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-01-24 23:39:36
+  - Date: 2018-01-24 23:12:35
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
-
-<script src="<%= request.getContextPath() %>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.7"></script>
+<title>供应商资料</title>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.6"></script>
 <style type="text/css">
-
 .title {
-	text-align: right;
-	display: inline-block;
+  text-align: right;
+  display: inline-block;
 }
 
 .title-width1 {
-	width: 60px;
+  width: 75px;
 }
 
 .title-width2 {
-	width: 75px;
+  width: 90px;
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}  
+.fwidtha{
+    width: 90px;
+}
+.fwidthb{
+    width: 90px;
+}
+.htr{
+    height: 20px;
+}
+.mainwidth{
+    width: 500px;
+}
+.tmargin{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vpanel{
+    border:0px solid #d9dee9;
+    margin:0px 0px 0px 0px;
+    height:248px;
+    float:left;
+}
+.vpanel_heading{
+    border-bottom:1px solid #d9dee9;
+    width:100%;
+    height:28px;
+    line-height:28px;
+}
+.vpanel_heading span{
+    margin:0 0 0 20px;
+    font-size:8px;
+    font-weight:normal;
+}
+.vpanel_bodyww{
+    padding : 10 10 10 10px !important
+
 }
 
 .required {
-	color: red;
+    color: red;
 }
 
-.row {
-	margin-top: 5px;
-}
-
-.form table {
-	/*table-layout： fixed;*/
-	
-}
-
-.width1 {
-	width: 150px;
-}
-
-.width2 {
-	width: 185px;
-}
-
-.width3 {
-	width: 403px;
-}
-
-.width4 {
-	width: 135px;
-}
-
-.width5 {
-	width: 170px;
-}
-
-.width6 {
-	width: 388px;
-}
-
-.mini-tabs-body {
-	overflow: hidden;
-}
 </style>
-
 </head>
 <body>
 
@@ -75,205 +80,216 @@
     <span>内部往来</span>
     <div id="isInternal" name="isInternal" class="nui-checkbox" text="" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></div>
     <span>客户</span>
-    <div id="isClient" name="isClient" class="nui-checkbox" text="" checked="true" trueValue="1" falseValue="0"></div>
+    <div id="isClient" name="isClient" class="nui-checkbox" text="" enabled="false" trueValue="1" falseValue="0"></div>
     <span>供应商</span>
-    <div id="isSupplier" name="isSupplier" class="nui-checkbox" text=""  trueValue="1" falseValue="0" enabled="false"></div>
+    <div id="isSupplier" name="isSupplier" class="nui-checkbox" text="" checked="true" enabled="true" trueValue="1" falseValue="0"></div>
     <span>是否禁用</span>
     <div id="isDisabled" name="isDisabled" class="nui-checkbox" text="" trueValue="1" falseValue="0"></div>
 </div>
 <div class="nui-fit">
-    <div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:100%;margin-left: 1.5%;"
+<div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:100%;margin-left: 1.5%;"
          arrowPosition="side" showNavMenu="true">
         <div name="tab1" title="基本信息">
-            <span>基本信息</span>
-            <div id="basicInfoForm" class="form">
-                <input class="nui-hidden" name="id"/>
-                <input class="nui-hidden" name="isEdit"/>
-                <div class="row">
-                    <span class="title title-width1 required">客户编码：</span>
-                    <input name="code" id="code" class="nui-textbox width1"/>
-                    <span class="title title-width1">客户简称：</span>
-                    <input name="shortName" class="nui-textbox width2" width="185"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1 required">客户全称：</span>
-                    <input name="fullName"
-                           id="fullName"
-                           class="nui-textbox width3" width="403"/>
-                    <input name="fullName1" class="nui-buttonedit width3" width="403"
-                           id="fullName1"
-                           allowInput="false"
-                           emptyText="请选择公司..."
-                           onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
-                           visible="false"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1 required">票据类型：</span>
-                    <input id="billTypeId"
-                           name="billTypeId"
-                           class="nui-combobox width1"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           nullItemText="请选择..."/>
+            <div class="nui-fit" id= "mainForm">
+              <div class="vpanel mainwidth" style="height:auto;">
+                  <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
+                  <div class="vpanel_body vpanel_bodyww">
+                      <input id="id" name="id" width="100%" class="nui-hidden" >
+                      <input id="orgid" name="orgid" width="100%" class="nui-hidden" ><!-- 
+                      <input id="recordDate" name="recordDate" width="100%" class="nui-hidden" >
+                      <input id="recorder" name="recorder" width="100%" class="nui-hidden" > -->
+                      <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
+                      <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
+                      <table class="tmargin">
+                          <tr class="htr">
+                              <td class=" right fwidtha required">客户编码:</td>
+                              <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidthb required">客户简称:</td>
+                              <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidtha required">客户全称:</td>
+                              <td colspan="3">
+                                  <input name="fullName"
+                                 id="fullName"
+                                 class="nui-textbox" width="100%"/>
+                                  <input name="fullName1" class="nui-buttonedit width3" width="403"
+                                         id="fullName1"
+                                         emptyText="请选择公司..."
+                                         allowInput="false"
+                                         onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
+                                         visible="false"/>
+                              </td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb required">票据类型:</td>
+                              <td >
+                                  <input id="billTypeId"
+                                 name="billTypeId"
+                                 class="nui-combobox"
+                                 textField="name"
+                                 valueField="customid"
+                                 emptyText="请选择..."
+                                 url=""
+                                 width="100%"
+                                 allowInput="true"
+                                 showNullItem="false"
+                                 nullItemText="请选择..."/>
+                              </td>
+                              <td class=" right fwidtha required">结算方式:</td>
+                              <td >
+                                  <input id="settTypeId"
+                                 name="settTypeId"
+                                 class="nui-combobox width2"
+                                 textField="name"
+                                 valueField="customid"
+                                 emptyText="请选择..."
+                                 url=""
+                                 width="100%"
+                                 allowInput="true"
+                                 showNullItem="false"
+                                 nullItemText="请选择..."/>
+                              </td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb required">联系人:</td>
+                              <td ><input id="manager" name="manager" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidthb required">联系人手机:</td>
+                              <td ><input id="mobile" name="mobile" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidtha required">省份:</td>
+                              <td>
+                                  <input id="provinceId" name="provinceId" class="nui-combobox" textField="name" valueField="code"     dataField="" onvaluechanged="onProvinceSelected('cityId')"
+                                  url="" valueFromSelect="true" allowinput="true" width="100%"
+                                  nullitemtext="选择省份..." emptytext="选择省份" shownullitem="true"></td>
+                              <td class=" right fwidthb required">城市:</td>
+                              <td>
+                                  <input id="cityId" name="cityId" class="nui-combobox" textField="name" valueField="code"     dataField="" 
+                                  url="" valueFromSelect="true" allowinput="true" width="100%"
+                                  nullitemtext="选择市..." emptytext="选择市" shownullitem="true">
+                              </td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">业务员:</td>
+                              <td ><input id="contactor" name="contactor" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha">业务员手机:</td>
+                              <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">电话:</td>
+                              <td colspan="3"><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">邮政编码:</td>
+                              <td>
+                                  <input id="postalCode" name="postalCode" width="100%" class="nui-textbox" >
+                              </td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">信用等级:</td>
+                              <td >
+                                 <input id="tgrade"
+                                 name="tgrade"
+                                 class="nui-combobox"
+                                 textField="name"
+                                 valueField="customid"
+                                 emptyText="请选择..."
+                                 url=""
+                                 width="100%"
+                                 allowInput="true"
+                                 showNullItem="true"
+                                 nullItemText="请选择..."/>
+                              </td>
+                              <td class=" right fwidtha">地址:</td>
+                              <td ><input id="addr" name="addr" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">邮箱:</td>
+                              <td ><input id="email" name="email" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha">QQ/微信:</td>
+                              <td ><input id="instantMsg" name="instantMsg" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidtha">备注:</td>
+                              <td colspan="3">
+                                  <input id="remark" name="remark" width="100%" class="nui-textbox" >
+                              </td>
+                          </tr>
+                      </table>
 
-                    <span class="title title-width1 required">结算方式：</span>
-                    <input id="settTypeId"
-                           name="settTypeId"
-                           class="nui-combobox width2"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           nullItemText="请选择..."/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1 required">联系人：</span>
-                    <input name="manager" class="nui-textbox" width="60"/>
-                    <span class="title title-width1" style="width: 40px;">职务：</span>
-                    <input id="managerDuty"
-                           name="managerDuty"
-                           width="110"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="true"
-                           nullItemText="请选择..."/>
-                    <span class="title title-width1 required" style="width: 40px;">手机：</span>
-                    <input name="mobile" class="nui-textbox" width="137"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">业务员：</span>
-                    <input name="contactor" class="nui-textbox width1" width="150"/>
-                    <span class="title title-width1">手机：</span>
-                    <input name="contactorTel" class="nui-textbox width2" width="185"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">电话：</span>
-                    <input name="tel" class="nui-textbox width3" width="403"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">信用等级：</span>
-                    <input id="tgrade"
-                           name="tgrade"
-                           class="nui-combobox width1"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="true"
-                           nullItemText="请选择..."/>
-                    <span class="title title-width1">备注：</span>
-                    <input name="remark" class="nui-textbox width2" />
-                </div>
-            </div>
-            <span>联系信息</span>
-            <div class="form" id="contactInfoForm">
-                <div class="row">
-                    <span class="title title-width1 required">省份：</span>
-                    <input name="provinceId"
-                           id="provinceId"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="id"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           onvaluechanged="onProvinceSelected('cityId')"
-                           nullItemText="请选择..."/>
-                    <span class="title title-width1 required">城市：</span>
-                    <input name="cityId"
-                           id="cityId"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="id"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           nullItemText="请选择..."/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">地址：</span>
-                    <input name="addr" class="nui-textbox width3"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">邮箱：</span>
-                    <input name="email" class="nui-textbox width1"/>
-                    <span class="title title-width1">QQ/微信：</span>
-                    <input name="instantMsg" class="nui-textbox width2"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">邮政编码：</span>
-                    <input name="postalCode" class="nui-textbox width3"/>
-                </div>
+                  </div>
+              </div>
+
             </div>
         </div>
         <div name="tab2" title="其他信息">
-            <span>财务信息</span>
-            <div id="financeInfoForm" class="form">
-                <input class="nui-hidden" name="id"/>
-                <div class="row">
-                    <span class="title title-width2">银行帐号：</span>
-                    <input name="accountBankNo" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">开户银行：</span>
-                    <input name="accountBank" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">纳税人编码：</span>
-                    <input name="taxpayerCode" class="nui-textbox width4"/>
-                    <span class="title title-width2">纳税人电话：</span>
-                    <input name="taxpayerTel" class="nui-textbox width5"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">纳税人名称：</span>
-                    <input name="taxpayerName" class="nui-textbox width6"/>
-                </div>
-            </div>
-            <span>其他信息</span>
-            <div class="form" id="otherInfoForm">
-                <div class="row">
-                    <span class="title title-width2">网址：</span>
-                    <input name="website" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">传真：</span>
-                    <input name="fax" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">经营地址：</span>
-                    <input name="manageAddr" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">会员卡号：</span>
-                    <input name="memCarNo" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">会员等级：</span>
-                    <input name="memLevel" class="nui-textbox width4"/>
-                    <span class="title title-width2">信誉额度：</span>
-                    <input name="creditLimit" class="nui-textbox width5"/>
-                </div>
+            <div class="nui-fit" id= "otherForm">
+              <div class="vpanel mainwidth" style="height:auto;">
+                  <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
+                  <div class="vpanel_body vpanel_bodyww">
+
+                      <table class="tmargin">
+                          <tr class="htr">
+                              <td class=" left fwidthb">财务信息</td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">银行帐号:</td>
+                              <td colspan="3"><input id="accountBankNo" name="accountBankNo" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">开户银行:</td>
+                              <td colspan="3"><input id="accountBank" name="accountBank" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">纳税人编码:</td>
+                              <td ><input id="taxpayerCode" name="taxpayerCode" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha">纳税人电话:</td>
+                              <td ><input id="taxpayerTel" name="taxpayerTel" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">纳税人名称:</td>
+                              <td colspan="3"><input id="taxpayerName" name="taxpayerName" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" left fwidthb">其他信息</td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">网址:</td>
+                              <td colspan="3"><input id="website" name="website" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">传真:</td>
+                              <td colspan="3"><input id="fax" name="fax" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">经营地址:</td>
+                              <td colspan="3"><input id="manageAddr" name="manageAddr" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">会员卡号:</td>
+                              <td colspan="3"><input id="memCarNo" name="memCarNo" width="100%" class="nui-textbox" ></td>
+                          </tr>     
+                          <tr class="htr">
+                              <td class=" right fwidthb">会员等级:</td>
+                              <td ><input id="memLevel" name="memLevel" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha">信誉额度:</td>
+                              <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
+                          </tr>                     
+                      </table>
+
+                  </div>
+              </div>
+
             </div>
         </div>
-    </div>
+</div>
 </div>
 <div style="text-align:center;padding:10px;">
     <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
     <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
 </div>
+
 
 </body>
 </html>

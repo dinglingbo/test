@@ -686,7 +686,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.customerSelect.flow",
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -697,7 +697,7 @@ function selectSupplier(elId)
                 isSupplier: 0,
                 isClient: 1
             };
-            iframe.contentWindow.setData(params);
+            //iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {
@@ -706,7 +706,7 @@ function selectSupplier(elId)
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                
-                supplier = data.supplier;
+                supplier = data.customer;
                 var value = supplier.id;
                 var text = supplier.fullName;
                 var el = nui.get(elId);
@@ -1132,6 +1132,7 @@ function onGuestValueChanged(e)
     //供应商中直接输入名称加载供应商信息
     var params = {};
     params.pny = e.value;
+    params.isClient = 1;
     setGuestInfo(params);
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";

@@ -81,7 +81,6 @@
                     <div allowSort="true" field="shortName" width="80" headerAlign="center" header="供应商简称"></div>
                     <div allowSort="true" field="fullName" width="100" headerAlign="center" header="供应商全称"></div>
                     <div allowSort="true" field="tel" width="100" headerAlign="center" header="电话"></div>
-                    <div allowSort="true" field="mobile" width="90" headerAlign="center" header="手机号码"></div>
                     <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
                     <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
                 </div>
@@ -92,7 +91,7 @@
                     <div allowSort="true" field="managerDuty" width="80" headerAlign="center">职务</div>
                     <div allowSort="true" field="mobile" width="90" headerAlign="center">联系人手机</div>
                     <div allowSort="true" field="contactor" width="80" headerAlign="center">业务员</div>
-                    <div allowSort="true" field="contactorTel" width="100" headerAlign="center">业务员电话</div>
+                    <div allowSort="true" field="contactorTel" width="100" headerAlign="center">业务员手机</div>
                 </div>
             </div>
             <div header="财务信息" headerAlign="center">

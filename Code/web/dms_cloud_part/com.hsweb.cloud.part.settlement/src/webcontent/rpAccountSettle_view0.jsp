@@ -108,15 +108,15 @@
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 
                 <span class="separator"></span>
 
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="doBalance()">确认对账</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="doSettle()">结算</a>
-                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="doUnBalance()">取消对账</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="doBalance()"><span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-check fa-lg"></span>&nbsp;结算</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="doUnBalance()"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;取消对账</a>
             </td>
         </tr>
     </table>
@@ -661,16 +661,23 @@
                          allowCellEdit="true"
                          multiSelect="true"
                          oncellcommitedit="onCellCommitEdit"
+                         oncellbeginedit="OnModelCellBeginEdit"
                          showSummaryRow="false">
                         <div property="columns">
-                            <div name="action" width="60" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
-                            <div field="settAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="结算账户">
+                            <div name="action" width="50" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
+                            <div field="settAccountId" type="comboboxcolumn" width="50" headerAlign="center" header="结算账户">
                                 <input  property="editor" enabled="true" name="settleAccount" dataField="settleAccount" class="nui-combobox" valueField="id" textField="name" 
                                           url="com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext"
+                                          onvaluechanged="onAccountValueChanged" emptyText=""  vtype="required"
+                                          /> 
+                            </div>
+                            <div field="balaTypeCode" type="comboboxcolumn" width="40" headerAlign="center" header="结算方式">
+                                <input  property="editor" enabled="true" name="list" dataField="list" class="nui-combobox" valueField="customId" textField="customName" 
+                                          url=""
                                           onvaluechanged="" emptyText=""  vtype="required"
                                           /> 
                             </div>
-                            <div field="charOffAmt" width="60" headerAlign="center" summaryType="sum" header="金额">
+                            <div field="charOffAmt" width="30" headerAlign="center" summaryType="sum" header="金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                             </div>
                         </div>

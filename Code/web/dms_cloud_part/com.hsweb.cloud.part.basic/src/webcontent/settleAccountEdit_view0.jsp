@@ -86,6 +86,34 @@
         </table>
 
     </div>
+    <div class="vpanel_body vwidth">
+        <div class="nui-fit">
+            <div id="settleAccountGrid" class="nui-datagrid" style="width:100%;height:80px;"
+                 showPager="false"
+                 dataField="list"
+                 idField="id"
+                 ondrawcell=""
+                 url=""
+                 allowCellSelect="true"
+                 allowCellEdit="true"
+                 multiSelect="true"
+                 showSummaryRow="false">
+                <div property="columns">
+                    <div name="action" width="60" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
+                    <div field="customId" type="comboboxcolumn" width="100" headerAlign="center" header="结算方式">
+                        <input  property="editor" enabled="true" name="settleAccount" data="settleList" dataField="list" class="nui-combobox" valueField="customid" textField="name"  
+                                  url="com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext?dictId=DDT20130703000031"
+                                  onvaluechanged="onSettleTypeChanged" emptyText=""  vtype="required"
+                                  /> 
+                    </div>
+                    <div field="customName" visible="false" headerAlign="center" header="结算名称"></div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
 	<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
         <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a>
         <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

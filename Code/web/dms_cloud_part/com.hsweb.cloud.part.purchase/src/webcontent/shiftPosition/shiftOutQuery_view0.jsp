@@ -110,7 +110,6 @@
             </div>
             <div header="配件信息" headerAlign="center">
                 <div property="columns">
-                	<div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>
                     <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -161,6 +160,7 @@
                 	<div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                    <div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>
                 </div>
             </div>
         </div>

@@ -95,20 +95,20 @@
 
                 <span class="separator"></span> 
                 <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
-                <input id="serviceMan" width="60px" emptyText="业务员" class="nui-textbox"/>
+                <input id="serviceMan" width="60px" emptyText="业务员" class="nui-hidden"/>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择往来单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <input class="nui-combobox" name="accountSign" id="accountSign" value="0"
                      nullitemtext="请选择..." emptyText="单据状态" data="accountList" width="60px" />
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 
                 <span class="separator"></span>
 
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="audit()">审核</a>
-                <a class="nui-button" iconCls="icon-undo" plain="true" onclick="unAudit()">反审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;反审核</a>
             </td>
         </tr>
     </table>
@@ -156,7 +156,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -175,6 +174,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>
@@ -190,7 +190,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -210,6 +209,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>
@@ -225,7 +225,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -245,6 +244,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>
@@ -260,7 +260,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -280,6 +279,7 @@
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div>
         </div>
     </div>
 </div>

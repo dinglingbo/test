@@ -110,8 +110,11 @@ $(document).ready(function(v) {
     	if(keyCode==13){
     		addInsertRow();
     	}*/
+    	if (e.keyCode == 13) {
+            fastPartEntryEl.focus();
+        }
 
-        fastPartEntryEl.focus();
+        
     	
     });
     $("#fastPartEntry").bind("keydown", function (e) {
@@ -130,15 +133,15 @@ $(document).ready(function(v) {
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;
 	  
-	    if((keyCode==65)&&(event.shiftKey))  {  //新建
+	    if((keyCode==78)&&(event.altKey))  {  //新建
 			add();	
 	    } 
 	  
-	    if((keyCode==83)&&(event.shiftKey))  {   //保存
+	    if((keyCode==83)&&(event.altKey))  {   //保存
 			save();
 	    } 
 	  
-	    if((keyCode==80)&&(event.shiftKey))  {   //打印
+	    if((keyCode==80)&&(event.altKey))  {   //打印
 			onPrint();
 	    } 
 	 
@@ -560,36 +563,65 @@ function add() {
 	if (formJson != formJsonThis && len > 0) {
 		nui.confirm("您正在编辑数据,是否要继续?", "友情提示", function(action) {
 			if (action == "ok") {
+
+				setBtnable(true);
+				setEditable(true);
+
+				basicInfoForm.reset();
+				rightGrid.clearRows();
+
+
+				var newRow = {
+					serviceId : '新采购订单',
+					auditSign : 0
+				};
+				leftGrid.addRow(newRow, 0);
+				leftGrid.clearSelect(false);
+				leftGrid.select(newRow, false);
+
+				nui.get("serviceId").setValue("新采购订单");
+				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+				nui.get("taxRate").setValue(0.17);
+				nui.get("taxSign").setValue(1);
+				nui.get("orderDate").setValue(new Date());
+				nui.get("orderMan").setValue(currUserName);
+
+				var guestId = nui.get("guestId");
+				guestId.focus();
+
 			} else {
 				return;
 			}
 		});
+	}else{
+		setBtnable(true);
+		setEditable(true);
+
+		basicInfoForm.reset();
+		rightGrid.clearRows();
+
+
+		var newRow = {
+			serviceId : '新采购订单',
+			auditSign : 0
+		};
+		leftGrid.addRow(newRow, 0);
+		leftGrid.clearSelect(false);
+		leftGrid.select(newRow, false);
+
+		nui.get("serviceId").setValue("新采购订单");
+		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+		nui.get("taxRate").setValue(0.17);
+		nui.get("taxSign").setValue(1);
+		nui.get("orderDate").setValue(new Date());
+		nui.get("orderMan").setValue(currUserName);
+
+		var guestId = nui.get("guestId");
+		guestId.focus();
+
 	}
 
-	setBtnable(true);
-	setEditable(true);
-
-	basicInfoForm.reset();
-	rightGrid.clearRows();
-
-
-	var newRow = {
-		serviceId : '新采购订单',
-		auditSign : 0
-	};
-	leftGrid.addRow(newRow, 0);
-	leftGrid.clearSelect(false);
-	leftGrid.select(newRow, false);
-
-	nui.get("serviceId").setValue("新采购订单");
-	nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-	nui.get("taxRate").setValue(0.17);
-	nui.get("taxSign").setValue(1);
-	nui.get("orderDate").setValue(new Date());
-	nui.get("orderMan").setValue(currUserName);
-
-	var guestId = nui.get("guestId");
-	guestId.focus();
+	
 }
 function onBillTypeIdChanged(e) {
 	var billTypeId = e.value;
@@ -756,7 +788,9 @@ function save() {
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				nui.alert("保存成功!");
+				nui.alert("保存成功!","",function(e){
+                    fastPartEntryEl.focus();
+                });
 				// onLeftGridRowDblClick({});
 				var pjPchsOrderMainList = data.pjPchsOrderMainList;
 				if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
@@ -766,6 +800,7 @@ function save() {
 
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(leftRow);
+
 				}
 			} else {
 				nui.alert(data.errMsg || "保存失败!");
@@ -1079,7 +1114,8 @@ function addDetail(part) {
 					var iframe = this.getIFrameEl();
 					part.storeId = nui.get("storeId").getValue();
 					iframe.contentWindow.setData({
-						part : part
+						part : part,
+						priceType : "pchsIn"
 					});
 				},
 				ondestroy : function(action) {
@@ -1134,6 +1170,41 @@ function addDetail(part) {
 				}
 			});
 }
+var partPriceUrl = baseUrl
+		+ "com.hsapi.cloud.part.invoicing.pricemanage.getPchsDefaultPrice.biz.ext";
+function getPartPrice(params){
+	var price = 0;
+	var shelf = null;
+	nui.ajax({
+		url : partPriceUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: params
+		},
+		success : function(data) {
+			var errCode = data.errCode;
+			if(errCode == "S"){
+				var priceRecord = data.priceRecord;
+				if(priceRecord.pchsPrice){
+					price = priceRecord.pchsPrice;
+				}
+				if(priceRecord.shelf){
+					shelf = priceRecord.shelf;
+				}
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+
+	var dInfo = {price: price, shelf: shelf};
+
+	return dInfo;
+}
 function addInsertRow(value) {    
     /*var rows = checkAddNewRow();
     if(rows && rows.length > 0) {
@@ -1155,6 +1226,12 @@ function addInsertRow(value) {
 	var taxSign = nui.get("taxSign").getValue();
 	var taxRate = nui.get("taxRate").getValue();
 	if(part){
+		params.partId = part.id;
+		params.storeId = storeId;
+		var dInfo = getPartPrice(params);
+		var price = dInfo.price;
+		var shelf = dInfo.shelf;
+					
 		var newRow = {
 			partId : part.id,
 			comPartCode : part.code,
@@ -1163,12 +1240,32 @@ function addInsertRow(value) {
 			comApplyCarModel : part.applyCarModel,
 			comUnit : part.unit,
 			orderQty : 1,
+			orderPrice : price,
+			orderAmt : price,
 			storeId : storeId,
 			comOemCode : part.oemCode,
 			comSpec : part.spec,
 			taxSign : taxSign,
-			taxRate : taxRate
+			taxRate : taxRate,
+			partCode : part.code,
+			partName : part.name,
+			fullName : part.fullName,
+			systemUnitId : part.unit,
+			enterUnitId : part.unit
 		};
+
+		if (taxSign == 0) { // 收据
+			newRow.noTaxAmt = price;
+			newRow.noTaxPrice = price;
+			newRow.taxAmt = price * (1.0 + parseFloat(taxRate));
+			newRow.taxPrice = price * (1.0 + parseFloat(taxRate));
+		} else {
+			newRow.taxAmt = price;
+			newRow.taxPrice = price;
+			newRow.noTaxAmt = price / (1.0 + parseFloat(taxRate));
+			newRow.noTaxPrice = price / (1.0 + parseFloat(taxRate));
+		}
+
 		rightGrid.addRow(newRow);
 		rightGrid.beginEditCell(newRow, "orderQty");
 	}
@@ -1208,7 +1305,7 @@ function checkPartIDExists(partid) {
 	});
 
 	if (row) {
-		return "配件ID：" + partid + "在采购订单列表中已经存在，是否继续？";
+		return "配件编码：" + row.comPartCode + "在采购订单列表中已经存在，是否继续？";
 	}
 
 	return null;

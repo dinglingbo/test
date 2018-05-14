@@ -57,7 +57,7 @@ function OnrpMainGridCellBeginEdit(e){
 }
 var queryUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
 function getInComeExpenses(callback) {
-    var params = {itemTypeId : -1};
+    var params = {itemTypeId : -1, isMain: 0};
     nui.ajax({
         url : queryUrl,
         data : {

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="purchaseOrderPrint.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="purchaseOrderPrint.flowx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
-    <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
+    <sourceConnections xsi:type="process:tActionLink" description="" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0" dataConvertClass="">
       <sourceNode>start0</sourceNode>
       <targetNode>view0</targetNode>
+      <process:validateRules onError="default"/>
+      <process:inputParameters/>
     </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
@@ -25,7 +27,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.cloud.part.purchase" uri="/purchase/print/purchaseOrderPrint_view0.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="purchaseOrderPrint_view0.jsp" type="view" contextPath="" contributionName="com.hsweb.cloud.part.purchase" method="forward" uri="/purchase/print/purchaseOrderPrint_view0.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
@@ -34,6 +36,8 @@
     <location x="240" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
     <location x="239" y="186"/>
@@ -43,4 +47,5 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-03-14 11:00:08" date="2018-03-14Z" description="" name="purchaseOrderPrint" version="7.0.0.0"/>
+  <process:variables/>
 </process:tPageFlow>

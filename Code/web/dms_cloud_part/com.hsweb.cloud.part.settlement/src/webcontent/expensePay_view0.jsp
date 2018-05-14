@@ -63,7 +63,7 @@
                             <input id="searchGuestId" class="nui-buttonedit"
                                    emptyText="请选择往来单位..."
                                    onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                            <a class="nui-button" iconCls="icon-search" plain="true" onclick="refresh()">查询</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
                         </td>
                     </tr>
@@ -93,10 +93,16 @@
                         <div field="billDc" width="50" headerAlign="center" visible="false"></div>
                         <div field="guestName" summaryType="count" width="50" headerAlign="center" header="往来单位名称"></div>
                         <div field="balaAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="结算账户">
-                            <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" url="" emptyText=""  vtype="required"/> 
+                            <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" onvaluechanged="onAccountValueChanged" url="" emptyText=""  vtype="required"/> 
+                        </div>
+                        <div field="balaTypeCode" type="comboboxcolumn" width="50" headerAlign="center" header="结算方式">
+                            <input  property="editor" enabled="true" name="list" dataField="list" class="nui-combobox" valueField="customId" textField="customName" 
+                                      url=""
+                                      onvaluechanged="" emptyText=""  vtype="required"
+                                      /> 
                         </div>
                         <div field="billTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="费用科目">
-                            <input  property="editor" enabled="true" id="billTypeList" name="list" data="list" dataField="list" class="nui-combobox" valueField="id" onvaluechanged="onbillTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
+                            <input  property="editor" enabled="true" id="billTypeList" name="list" data="IClist" dataField="list" class="nui-combobox" valueField="id" onvaluechanged="onbillTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
                         </div>
                         <div field="billTypeCode" headerAlign="center" visible="false" header="费用科目编码"></div>
                         <div field="charOffAmt" width="60" summaryType="sum" headerAlign="center" header="支出金额">

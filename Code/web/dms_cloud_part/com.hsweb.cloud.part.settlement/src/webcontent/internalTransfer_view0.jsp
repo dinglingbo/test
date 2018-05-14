@@ -60,7 +60,7 @@
                             <input class="nui-combobox" id="auditSign" name="auditSign" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
 
                             <span class="separator"></span> 
-                            <a class="nui-button" iconCls="icon-search" plain="true" onclick="refresh()">查询</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
                         </td>
                     </tr>
@@ -96,6 +96,12 @@
                         </div>
                         <div field="settAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="付款账户">
                             <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" onvaluechanged="onPAccountChange" url="" emptyText=""  vtype="required"/> 
+                        </div>
+                        <div field="balaTypeCode" type="comboboxcolumn" width="50" headerAlign="center" header="付款方式">
+                            <input  property="editor" enabled="true" name="list" dataField="list" class="nui-combobox" valueField="customId" textField="customName" 
+                                      url=""
+                                      onvaluechanged="" emptyText=""  vtype="required"
+                                      /> 
                         </div>
                         <div field="settAccountCode" headerAlign="center" visible="false" header=""></div>
                         <div field="settAccountName" headerAlign="center" visible="false" header=""></div>

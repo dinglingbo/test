@@ -1,11 +1,20 @@
 /**
  * Created by Administrator on 2018/1/24.
  */
-
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 var qtyEdit = null;
+var guestId = null;
+var qtyEl = null;
+var priceEl = null;
+var amtEl = null;
 $(document).ready(function(v)
 {
+
+    qtyEl = nui.get("qty");
+    priceEl = nui.get("price");
+    amtEl = nui.get("amt");
+
     $("#qty").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var price = nui.get("price");
@@ -36,9 +45,9 @@ $(document).ready(function(v)
 function init()
 {
     basicInfoForm = new nui.Form("#basicInfoForm");
-    qtyEdit = nui.get("qty");
-    qtyEdit.setValue(1);
-    qtyEdit.focus();
+    //qtyEdit = nui.get("qty");
+    qtyEl.setValue(1);
+    qtyEl.focus();
 
     getStorehouse(function(data)
     {
@@ -47,17 +56,117 @@ function init()
         
     });
 }
+var partPchsPriceUrl = baseUrl
+        + "com.hsapi.cloud.part.invoicing.pricemanage.getPchsDefaultPrice.biz.ext";
+function getPchsPartPrice(params){
+    var price = 0;
+    var shelf = null;
+    nui.ajax({
+        url : partPchsPriceUrl,
+        type : "post",
+        async: false,
+        data : {
+            params: params
+        },
+        success : function(data) {
+            var errCode = data.errCode;
+            if(errCode == "S"){
+                var priceRecord = data.priceRecord;
+                if(priceRecord.pchsPrice){
+                    price = priceRecord.pchsPrice;
+                }
+                if(priceRecord.shelf){
+                    shelf = priceRecord.shelf;
+                }
+            }
 
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+
+    var dInfo = {price: price, shelf: shelf};
+
+    return dInfo;
+}
+var partSellPriceUrl = baseUrl
+        + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
+function getSellPartPrice(params){
+    var price = 0;
+    nui.ajax({
+        url : partSellPriceUrl,
+        type : "post",
+        async: false,
+        data : {
+            params: params
+        },
+        success : function(data) {
+            var errCode = data.errCode;
+            if(errCode == "S"){
+                var priceRecord = data.priceRecord;
+                if(priceRecord.sellPrice){
+                    price = priceRecord.sellPrice;
+                }
+            }
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+
+    return price;
+}
 function setData(data)
 {
     init();
     
     data = data||{};
     var part = data.part;
+    var price = 0;
+    var shelf = null;
+    guestId = part.guestId;
 
     if(part.editType && part.editType == 'storeId') {
         nui.get("storeId").disable();
     }
+
+    if(part){
+        if(data.priceType && data.priceType == 'pchsIn') {
+            var params = {partId: part.id, storeId: part.storeId};
+            var dInfo = getPchsPartPrice(params);
+            price = dInfo.price;
+            shelf = dInfo.shelf;
+        }
+
+        if(data.priceType && data.priceType == 'sellOut') {
+            var params = {partId: part.id, guestId: guestId};
+            price = getSellPartPrice(params);
+        }
+
+        basicInfoForm.setData(part);
+
+        if(data.priceType){
+            qtyEl.setValue(1);
+            priceEl.setValue(price);
+            amtEl.setValue(price);
+        }
+        
+        /*if(part.enterTypeId && part.enterTypeId == '050101') {
+            var storeShelfEl = nui.get("storeShelf");
+            var dc = document.getElementById("storeShelf");
+            dc.innerHTML=shelf;
+            //storeShelfEl.setValue(shelf);
+            var store = document.getElementById("store");
+            store.innerHTML = dc;
+        }*/
+
+        qtyEl.focus();
+    }
+
     if(part.enterTypeId && part.enterTypeId == '050101') {
         var currentRows = document.getElementById("list_table").rows.length; 
         var insertTr = document.getElementById("list_table").insertRow(currentRows);
@@ -67,12 +176,11 @@ function setData(data)
         insertTd.innerHTML = "仓位：";
         
         insertTd = insertTr.insertCell(1);
-        insertTd.innerHTML = '<input id="storeShelf" name="storeShelf" class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>';
+        insertTd.id="store";
+        insertTd.innerHTML = '<input id="storeShelf" name="storeShelf" value='+shelf+' class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>';
+    
     }
-    if(part)
-    {
-        basicInfoForm.setData(part);
-    }
+    
 }
 var resultData = {};
 var callback = null;

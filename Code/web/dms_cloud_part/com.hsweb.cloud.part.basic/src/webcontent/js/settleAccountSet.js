@@ -118,7 +118,7 @@ function showEditModal(row, newRow, type){
 		url: "com.hsweb.cloud.part.basic.settleAccountEdit.flow",
 		title: title,
 		width: "500px",
-		height: "220px",
+		height: "300px",
         allowDrag:true,
         allowResize:false,
 		onload: function() {

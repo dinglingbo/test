@@ -63,7 +63,7 @@
                             <input id="searchGuestId" class="nui-buttonedit"
                                    emptyText="请选择往来单位..."
                                    onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                            <a class="nui-button" iconCls="icon-search" plain="true" onclick="refresh()">查询</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
                         </td>
                     </tr>

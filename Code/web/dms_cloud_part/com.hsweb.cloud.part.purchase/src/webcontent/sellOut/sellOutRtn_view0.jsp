@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售退货</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOut/sellOutRtn.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOut/sellOutRtn.js?v=1.1.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -232,7 +232,7 @@
                      idField="id"
                      showSummaryRow="true"
                      frozenStartColumn="0"
-                     frozenEndColumn="6"
+                     frozenEndColumn="10"
                      ondrawcell="onRightGridDraw"
                      allowCellSelect="true"
                      allowCellEdit="true"
@@ -244,7 +244,6 @@
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
-                            	<div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
                                 <div field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div field="comPartName" headerAlign="center" header="配件名称"></div>
                                 <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -272,12 +271,13 @@
                             <div property="columns">
                                 <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
 					        	仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-			                            url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
+			                            url="" data="storehouse"
 			                            onvaluechanged="" emptyText=""  vtype="required"
 			                            /> 
 					        	</div>	
 				    			<div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>	
-				    			<div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>																
+				    			<div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>	
+                                <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>															
                             </div>
                         </div>
                         <div header="不含税信息" headerAlign="center">

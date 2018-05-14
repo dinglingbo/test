@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pchsOrderReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34ab681a-51e3-4310-89f9-74ef07cdf8d2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="9"/>
 	<property name="ireport.callouts" value="##Mon Jul 31 14:09:04 CST 2017"/>
 	<subDataset name="dataset1" uuid="a7e249e6-3376-4b52-a342-faae67db68ea"/>
 	<subDataset name="wb_common" uuid="1f106df9-cb16-4170-94b7-3984ad400e6f">
@@ -32,92 +32,110 @@ FROM
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     A.SERVICE_ID as serviceId,
-     A.orgid as orgid,
-     A.ORDER_DATE as orderDate,
-     B.ID as id,
-     B.STORE_ID as storeId,
-     B.ENTER_UNIT_ID as enterUnitId,
-     B.ORDER_QTY as orderQty,
-     B.ORDER_PRICE as orderPrice,
-     B.ORDER_AMT as orderAmt,
-     A.TAX_RATE as taxRate,
-     A.TAX_SIGN as taxSign,
-     A.ORDER_MAN as orderMan,
-     B.REMARK AS detailRemark,
-     A.REMARK AS mainRemark,
-     C.full_name AS guestFullName,
-     C.contactor_tel as contactorTel,
-     C.addr as conAddress,
-     D.CODE as partCode,
-     D.FULL_NAME as partFullName,
-     D.NAME as partName,
-     D.brand_code as partBrandCode,
-     D.OEM_CODE as oemCode,
-     D.PART_BRAND_ID as partBrandId,
-     D.apply_car_model as carModelName,
-     D.QUALITY_TYPE_ID as qualityTypeId,
-     C.contactor as contactor
+     A.`SERVICE_ID` AS serviceId,
+     e.`name` AS compName,
+     A.`orgid` AS orgid,
+     A.`ORDER_DATE` AS orderDate,
+     A.`creator` AS creator,
+     B.`ID` AS id,
+     B.`STORE_ID` AS storeId,
+     f.`name` AS storeName,
+     B.`ENTER_UNIT_ID` AS enterUnitId,
+     B.`ORDER_QTY` AS orderQty,
+     B.`ORDER_PRICE` AS orderPrice,
+     B.`ORDER_AMT` AS orderAmt,
+     A.`TAX_RATE` AS taxRate,
+     A.`TAX_SIGN` AS taxSign,
+     A.`ORDER_MAN` AS orderMan,
+     B.`REMARK` AS detailRemark,
+     A.`REMARK` AS mainRemark,
+     C.`full_name` AS guestFullName,
+     C.`contactor_tel` AS contactorTel,
+     C.`addr` AS conAddress,
+     D.`CODE` AS partCode,
+     D.`FULL_NAME` AS partFullName,
+     D.`NAME` AS partName,
+     D.`brand_code` AS partBrandCode,
+     D.`OEM_CODE` AS oemCode,
+     D.`PART_BRAND_ID` AS partBrandId,
+     D.`apply_car_model` AS carModelName,
+     D.`QUALITY_TYPE_ID` AS qualityTypeId,
+     C.`contactor` AS contactor
 FROM
-     pj_pchs_order_main A
-   INNER JOIN pj_pchs_order_detail B ON A.ID = B.MAIN_ID
-     INNER JOIN wb_common.com_attribute D ON B.PART_ID = D.ID
-     INNER JOIN wb_common.com_guest C ON A.GUEST_ID = C.ID
+     `pj_pchs_order_main` A INNER JOIN `pj_pchs_order_detail` B ON A.`ID` = B.`MAIN_ID`
+     INNER JOIN `wb_common`.`com_attribute` D ON B.`PART_ID` = D.`ID`
+     INNER JOIN `wb_common`.`com_store` f ON B.`store_id` = f.`id`
+     INNER JOIN `wb_common`.`com_guest` C ON A.`GUEST_ID` = C.`ID`
+     INNER JOIN `wb_common`.`com_company` e ON A.`orgid` = e.`orgid`
 WHERE
      A.ID = $P{ID}
 UNION
 SELECT
-     A.SERVICE_ID as serviceId,
-     A.orgid as orgid,
-     A.ORDER_DATE as orderDate,
-     B.ID as id,
-     B.STORE_ID as storeId,
-     B.ENTER_UNIT_ID as enterUnitId,
-     B.ORDER_QTY as orderQty,
-     B.ORDER_PRICE as orderPrice,
-     B.ORDER_AMT as orderAmt,
-     A.TAX_RATE as taxRate,
-     A.TAX_SIGN as taxSign,
-     A.ORDER_MAN as orderMan,
-     B.REMARK AS detailRemark,
-     A.REMARK AS mainRemark,
-     C.full_name AS guestFullName,
-     C.contactor_tel as contactorTel,
-     C.addr as conAddress,
-     D.CODE as partCode,
-     D.FULL_NAME as partFullName,
-     D.NAME as partName,
-     D.brand_code as partBrandCode,
-     D.OEM_CODE as oemCode,
-     D.PART_BRAND_ID as partBrandId,
-     D.apply_car_model as carModelName,
-     D.QUALITY_TYPE_ID as qualityTypeId,
-     C.contactor as contactor
+     A.`SERVICE_ID` AS serviceId,
+     e.`name` AS compName,
+     A.`orgid` AS orgid,
+     A.`ORDER_DATE` AS orderDate,
+     A.`creator` AS creator,
+     B.`ID` AS id,
+     B.`STORE_ID` AS storeId,
+     f.`name` AS storeName,
+     B.`ENTER_UNIT_ID` AS enterUnitId,
+     B.`ORDER_QTY` AS orderQty,
+     B.`ORDER_PRICE` AS orderPrice,
+     B.`ORDER_AMT` AS orderAmt,
+     A.`TAX_RATE` AS taxRate,
+     A.`TAX_SIGN` AS taxSign,
+     A.`ORDER_MAN` AS orderMan,
+     B.`REMARK` AS detailRemark,
+     A.`REMARK` AS mainRemark,
+     C.`full_name` AS guestFullName,
+     C.`contactor_tel` AS contactorTel,
+     C.`addr` AS conAddress,
+     D.`CODE` AS partCode,
+     D.`FULL_NAME` AS partFullName,
+     D.`NAME` AS partName,
+     D.`brand_code` AS partBrandCode,
+     D.`OEM_CODE` AS oemCode,
+     D.`PART_BRAND_ID` AS partBrandId,
+     D.`apply_car_model` AS carModelName,
+     D.`QUALITY_TYPE_ID` AS qualityTypeId,
+     C.`contactor` AS contactor
 FROM
-     pj_pchs_order_main_chk A
-   INNER JOIN pj_pchs_order_detail_chk B ON A.ID = B.MAIN_ID
-     INNER JOIN wb_common.com_attribute D ON B.PART_ID = D.ID
-     INNER JOIN wb_common.com_guest C ON A.GUEST_ID = C.ID
+     `pj_pchs_order_main_chk` A INNER JOIN `pj_pchs_order_detail_chk` B ON A.`ID` = B.`MAIN_ID`
+     INNER JOIN `wb_common`.`com_attribute` D ON B.`PART_ID` = D.`ID`
+     INNER JOIN `wb_common`.`com_store` f ON B.`store_id` = f.`id`
+     INNER JOIN `wb_common`.`com_guest` C ON A.`GUEST_ID` = C.`ID`
+     INNER JOIN `wb_common`.`com_company` e ON A.`orgid` = e.`orgid`
 WHERE
      A.ID = $P{ID}
-ORDER BY ID]]>
+ORDER BY
+     ID ASC]]>
 	</queryString>
-	<field name="serviceId" class="java.lang.String"/>
+	<field name="serviceId" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="compName" class="java.lang.String"/>
 	<field name="orgid" class="java.lang.Integer">
 		<fieldDescription><![CDATA[??ID]]></fieldDescription>
 	</field>
 	<field name="orderDate" class="java.sql.Timestamp"/>
+	<field name="creator" class="java.lang.String">
+		<fieldDescription><![CDATA[???]]></fieldDescription>
+	</field>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[ID]]></fieldDescription>
 	</field>
 	<field name="storeId" class="java.lang.Integer"/>
+	<field name="storeName" class="java.lang.String"/>
 	<field name="enterUnitId" class="java.lang.String"/>
 	<field name="orderQty" class="java.math.BigDecimal"/>
 	<field name="orderPrice" class="java.math.BigDecimal"/>
 	<field name="orderAmt" class="java.math.BigDecimal"/>
 	<field name="taxRate" class="java.math.BigDecimal"/>
 	<field name="taxSign" class="java.lang.Integer"/>
-	<field name="orderMan" class="java.lang.String"/>
+	<field name="orderMan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="detailRemark" class="java.lang.String"/>
 	<field name="mainRemark" class="java.lang.String"/>
 	<field name="guestFullName" class="java.lang.String"/>
@@ -182,13 +200,6 @@ ORDER BY ID]]>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="0" width="240" height="20" uuid="7de78597-85ae-4b7e-ac07-d94109e1b08e"/>
-				<textElement>
-					<font fontName="黑体" size="14" isBold="true" isItalic="false" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
-				</textElement>
-				<text><![CDATA[广州华胜企业管理服务有限公司]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="16" y="34" width="51" height="14" uuid="f0783c93-a0b9-4b32-baad-3394020bd106"/>
 				<textElement>
 					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
@@ -236,34 +247,41 @@ ORDER BY ID]]>
 			<textField isBlankWhenNull="true">
 				<reportElement x="68" y="64" width="100" height="14" uuid="4e22d6c3-3d8b-4350-a4a0-be9e688e580a"/>
 				<textElement>
-					<font fontName="宋体"/>
+					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{conAddress}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="68" y="50" width="100" height="14" uuid="7c0e208d-81c9-4269-a870-a1b3f2ecadf6"/>
 				<textElement>
-					<font fontName="宋体"/>
+					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{guestFullName}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="329" y="50" width="100" height="14" uuid="3907a3a6-0825-4317-8c14-be7f9cc1e7b1"/>
 				<textElement>
-					<font fontName="宋体"/>
+					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contactor}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="489" y="49" width="100" height="14" uuid="7e2fee5e-e6bb-4ff3-b70b-2656be9732ec"/>
 				<textElement>
-					<font fontName="宋体"/>
+					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contactorTel}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="78" width="802" height="1" uuid="e2960347-020b-442f-b02b-23bbea75ad35"/>
 			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="68" y="0" width="447" height="20" uuid="ffb6c4fb-c48e-47f8-a066-f97357046045"/>
+				<textElement>
+					<font fontName="黑体" size="14" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compName}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -460,7 +478,7 @@ ORDER BY ID]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{storeId}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{storeName}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="725" y="0" width="1" height="22" uuid="2052aff2-60b7-4e09-8bfe-cacc63b2ac83"/>

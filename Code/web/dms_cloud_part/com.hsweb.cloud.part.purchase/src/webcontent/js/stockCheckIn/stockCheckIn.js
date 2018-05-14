@@ -82,6 +82,24 @@ $(document).ready(function(v)
         });
     });
 
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+      
+        if((keyCode==78)&&(event.altKey))  {  //新建
+            add();  
+        } 
+      
+        if((keyCode==83)&&(event.altKey))  {   //保存
+            save();
+        } 
+      
+        if((keyCode==80)&&(event.altKey))  {   //打印
+            onPrint();
+        } 
+     
+    }
+
     gsparams.auditSign = 0;
     quickSearch(0);
 });
@@ -264,6 +282,7 @@ function search()
 }
 function getSearchParam(){
 	var params = {};
+    params = gsparams;
     //params.guestId = nui.get("searchGuestId").getValue();
     return params;
 }
@@ -276,7 +295,7 @@ function setBtnable(flag)
         nui.get("deletePartBtn").enable();
         nui.get("saveBtn").enable();
         nui.get("auditBtn").enable();
-        nui.get("printBtn").enable();
+        //nui.get("printBtn").enable();
     }
     else
     {
@@ -285,7 +304,7 @@ function setBtnable(flag)
         nui.get("deletePartBtn").disable();
         nui.get("saveBtn").disable();
         nui.get("auditBtn").disable();
-        nui.get("printBtn").disable();
+        //nui.get("printBtn").disable();
     }
 }
 function setEditable(flag)
@@ -430,30 +449,51 @@ function add()
         nui.confirm("您正在编辑数据,是否要继续?", "友情提示",
             function (action) { 
                 if (action == "ok") {
+
+                    setBtnable(true);
+                    setEditable(true);
+
+                    basicInfoForm.reset();
+                    rightGrid.clearRows();
+                    
+                    var newRow = { serviceId: '新盘盈入库', auditSign: 0};
+                    leftGrid.addRow(newRow, 0);
+                    leftGrid.clearSelect(false);
+                    leftGrid.select(newRow, false);
+                    
+                    nui.get("serviceId").setValue("新盘盈入库");
+                    nui.get("enterTypeId").setValue("050103");
+                    //nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
+                    nui.get("taxRate").setValue(0.17);
+                    nui.get("taxSign").setValue(1);
+                    nui.get("enterDate").setValue(new Date());
+                    
+
                 }else {
                     return;
                 }
             }
         );
+    }else{
+        setBtnable(true);
+        setEditable(true);
+
+        basicInfoForm.reset();
+        rightGrid.clearRows();
+        
+        var newRow = { serviceId: '新盘盈入库', auditSign: 0};
+        leftGrid.addRow(newRow, 0);
+        leftGrid.clearSelect(false);
+        leftGrid.select(newRow, false);
+        
+        nui.get("serviceId").setValue("新盘盈入库");
+        nui.get("enterTypeId").setValue("050103");
+        //nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
+        nui.get("taxRate").setValue(0.17);
+        nui.get("taxSign").setValue(1);
+        nui.get("enterDate").setValue(new Date());
     }
 
-    setBtnable(true);
-    setEditable(true);
-
-    basicInfoForm.reset();
-    rightGrid.clearRows();
-    
-    var newRow = { serviceId: '新盘盈入库', auditSign: 0};
-    leftGrid.addRow(newRow, 0);
-    leftGrid.clearSelect(false);
-    leftGrid.select(newRow, false);
-    
-    nui.get("serviceId").setValue("新盘盈入库");
-    nui.get("enterTypeId").setValue("050103");
-    //nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
-    nui.get("taxRate").setValue(0.17);
-    nui.get("taxSign").setValue(1);
-    nui.get("enterDate").setValue(new Date());
     
 }
 function calcTaxPriceInfo(taxSign, taxRate)
@@ -843,7 +883,7 @@ function checkPartIDExists(partid){
     
     if(row) 
     {
-        return "配件ID："+partid+"在盘盈订单列表中已经存在，是否继续？";
+        return "配件编码："+row.comPartCode+"在盘盈入库列表中已经存在，是否继续？";
     }
     
     return null;
@@ -992,4 +1032,23 @@ function onGuestValueChanged(e)
     var params = {};
     params.pny = e.value;
     setGuestInfo(params);
+}
+function onPrint() {
+    var row = leftGrid.getSelected();
+    if (row) {
+
+        nui.open({
+
+            url : "com.hsweb.cloud.part.purchase.stockCheckInPrint.flow?ID="
+                    + row.id,// "view_Guest.jsp",
+            title : "盘盈入库打印",
+            width : 900,
+            height : 600,
+            onload : function() {
+                var iframe = this.getIFrameEl();
+                // iframe.contentWindow.setInitData(storeId, 'XSD');
+            }
+        });
+    }
+
 }

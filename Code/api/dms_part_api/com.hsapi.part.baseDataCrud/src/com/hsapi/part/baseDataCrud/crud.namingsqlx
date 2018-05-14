@@ -136,7 +136,7 @@
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate
 		       FROM com_guest a
-		       WHERE a.is_supplier = 1 and a.orgid = #orgid#
+		       WHERE a.is_supplier = 1 and (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
@@ -238,7 +238,7 @@
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate
 		       FROM com_guest a
-		       WHERE a.is_client = 1 and a.orgid = #orgid#
+		       WHERE a.is_client = 1 and (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')

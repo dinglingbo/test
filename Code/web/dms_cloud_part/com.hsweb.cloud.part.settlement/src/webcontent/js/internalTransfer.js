@@ -10,6 +10,7 @@ var auditSignEl = null;
 var mainGrid = null;
 var list = null;
 var accountList = null;
+var accountTypeHash = {};
 var auditSignHash = {
     "0":"否",
     "1":"是"
@@ -38,12 +39,42 @@ $(document).ready(function(v)
         accountList = data.settleAccount;
     });
 
+    getSettleType(function(data) {
+        var d = data.list || [];
+        d.filter(function(v)
+        {
+            accountTypeHash[v.customid] = v;
+            return true;
+        });
+    });
+
     doSearch();
 
 });
+var querySettleTypeUrl = baseUrl
+        + "com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext";
+function getSettleType(callback) {
+    nui.ajax({
+        url : querySettleTypeUrl,
+        data : {
+            dictId: 'DDT20130703000031',
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 var queryUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
 function getInComeExpenses(callback) {
-    var params = {itemTypeId : -1};
+    var params = {itemTypeId : -1, isMain: 0};
     nui.ajax({
         url : queryUrl,
         data : {
@@ -115,6 +146,12 @@ function onDrawCell(e)
                 e.cellHtml = auditSignHash[e.value];
             }
             break;
+        case "balaTypeCode":
+            if(accountTypeHash && accountTypeHash[e.value])
+            {
+                e.cellHtml = accountTypeHash[e.value].name;
+            }
+            break;
         default:
             break;
     }
@@ -141,7 +178,7 @@ function onPAccountChange(e){
     var code = se.code;
     var name = se.name;
     var row = mainGrid.getSelected();
-    var newRow = {settAccountCode: code, settAccountName: name};
+    var newRow = {settAccountCode: code, settAccountName: name, balaTypeCode: null};
     mainGrid.updateRow(row, newRow);
 
 }
@@ -180,6 +217,20 @@ function save(){
     }
 
     var rows = mainGrid.findRow(function(row){
+        var rpAmt = row.rpAmt;
+        if(rpAmt){
+            return false;
+        }else{
+            return true;
+        }
+    });
+
+    if(rows) {
+        nui.alert("请填写收款金额后再保存!");
+        return;
+    }
+
+    var rows = mainGrid.findRow(function(row){
         var settAccountId = row.settAccountId;
         if(settAccountId){
             return false;
@@ -190,6 +241,20 @@ function save(){
 
     if(rows) {
         nui.alert("请选择付款账户后再保存!");
+        return;
+    }
+
+    var rows = mainGrid.findRow(function(row){
+        var balaTypeCode = row.balaTypeCode;
+        if(balaTypeCode){
+            return false;
+        }else{
+            return true;
+        }
+    });
+
+    if(rows) {
+        nui.alert("请选择付款账户对应的付款方式后再保存!");
         return;
     }
 
@@ -345,11 +410,17 @@ function refresh(){
 }
 function OnrpMainGridCellBeginEdit(e){
     var column = e.column;
-    var editor = e.editor;
     var row = e.row;
+    var column = e.column;
+    var editor = e.editor;
+
     if(row.auditSign == 1){
         e.cancel = true;
     }
 
-
+    if (column.field == "balaTypeCode") {
+        var str = "accountId="+row.settAccountId;
+        var url = "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        editor.setUrl(url);
+    }
 }

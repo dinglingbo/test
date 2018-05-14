@@ -126,20 +126,40 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-          //      nui.get("settType").setData(settTypeIdList);
-                var enterTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000064")
-                    {
-                        enterTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                //quickSearch(currType);
             }
         });
     });
+
+    getItemType(function(data) {
+        var list = data.list || [];
+        list.filter(function(v)
+        {
+            enterTypeIdHash[v.code] = v;
+            return true;
+        });
+
+    });
 });
+var queryItemTypeUrl = baseUrl
+        + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+function getItemType(callback) {
+    nui.ajax({
+        url : queryItemTypeUrl,
+        data : {
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 function getSearchParam(){
     var params = {};
     params.accountSign = searchAccountSign.getValue();

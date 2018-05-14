@@ -1,29 +1,30 @@
 define(['axios'], function(axios) {
   'use strict';
   var root = webPath + sysDomain;//'http://127.0.0.1:8080/default'
+  var llq_pre_url = "https://llqapitm.007vin.com";
   var api = {
     search: {
       url: root + '/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext',
     },
     carInfo: {
       url: root + '/llq/vin/com.hsweb.system.llq.call.doCall.biz.ext',
-      originUrl: 'https://llq.007vin.com/ppyvin/searchvins'
+      originUrl:  llq_pre_url + '/ppyvin/searchvins'
     },
     carAttrGroup: {
       url: root + '/llq/vin/com.hsweb.system.llq.call.doCall.biz.ext',
-      originUrl: 'https://llq.007vin.com/ppyvin/group'
+      originUrl:  llq_pre_url + '/ppyvin/group'
     },
     carAttrSubgroup: {
       url: root + '/llq/vin/com.hsweb.system.llq.call.doCall.biz.ext',
-      originUrl: 'https://llq.007vin.com/ppyvin/subgroup'
+      originUrl:  llq_pre_url + '/ppyvin/subgroup'
     },
     carPartsText: {
       url: root + '/llq/vin/com.hsweb.system.llq.call.doCall.biz.ext',
-      originUrl: 'https://llq.007vin.com/ppyvin/parts'
+      originUrl:  llq_pre_url + '/ppyvin/parts'
     },
     carPartsImg: {
       url: root + '/llq/vin/com.hsweb.system.llq.call.doCall.biz.ext',
-      originUrl: 'https://llq.007vin.com/ppycars/subimgs'
+      originUrl:  llq_pre_url + '/ppycars/subimgs'
     } 
   }
 

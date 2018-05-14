@@ -1,7 +1,7 @@
 //http://14.23.35.20:6288/dms/com.hsweb.system.llq.call.doCall.biz.ext
 
 var url = "com.hsweb.system.llq.call.doCall.biz.ext";
-
+var llq_pre_url = "https://llqapitm.007vin.com";
 function loadData(url, params, callBack){
 	callAjax(url, params, processRs);
     nui.ajax({

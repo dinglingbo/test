@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/2.
  */
 
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var rightGrid1 = null;
 var rightGrid1Url = baseUrl+"com.hsapi.part.purchase.svr.queryPtsEnterMainList.biz.ext";
 var rightGrid2 = null;

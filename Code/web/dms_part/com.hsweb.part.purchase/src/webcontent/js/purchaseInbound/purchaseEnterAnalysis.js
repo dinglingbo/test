@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/7.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var grid = null;
 var gridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPurEnterAnalysis.biz.ext";
 $(document).ready(function(v)

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/3/8.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.part.common.svr.getLocationListByStoreId.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.part.purchase.crud.getStockListByLocIdList.biz.ext";
 var basicInfoForm = null;

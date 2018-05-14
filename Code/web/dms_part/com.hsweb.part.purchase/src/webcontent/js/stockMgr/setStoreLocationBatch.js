@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/3/7.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 $(document).ready(function(v)
 {

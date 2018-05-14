@@ -2,8 +2,8 @@
 <%@page import="com.eos.data.datacontext.DataContextManager"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/sysCommon.jsp"%>
+	pageEncoding="UTF-8" session="false"%> 
+<%@include file="/common/sysCommon.jsp"%> 
 <script type="text/javascript">
 <% IMUODataContext muo = DataContextManager.current()
 					.getMUODataContext();

@@ -11,6 +11,7 @@ var auditSignEl = null;
 var mainGrid = null;
 var list = null;
 var accountList = null;
+var accountTypeHash = {};
 var auditSignHash = {
     "0":"否",
     "1":"是"
@@ -40,9 +41,39 @@ $(document).ready(function(v)
         accountList = data.settleAccount;
     });
 
+    getSettleType(function(data) {
+        var d = data.list || [];
+        d.filter(function(v)
+        {
+            accountTypeHash[v.customid] = v;
+            return true;
+        });
+    });
+
     doSearch();
 
 });
+var querySettleTypeUrl = baseUrl
+        + "com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext";
+function getSettleType(callback) {
+    nui.ajax({
+        url : querySettleTypeUrl,
+        data : {
+            dictId: 'DDT20130703000031',
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 var queryUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
 function getInComeExpenses(callback) {
     var params = {itemTypeId : 1, isMain: 0};
@@ -114,9 +145,17 @@ function OnrpMainGridCellBeginEdit(e){
     var field=e.field; 
     var editor = e.editor;
     var row = e.row;
+    var column = e.column;
+    var editor = e.editor;
 
     if(row.auditSign == 1){
         e.cancel = true;
+    }
+
+    if (column.field == "balaTypeCode") {
+        var str = "accountId="+row.balaAccountId;
+        var url = "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        editor.setUrl(url);
     }
 }
 function onDrawCell(e)
@@ -127,6 +166,12 @@ function onDrawCell(e)
             if(auditSignHash && auditSignHash[e.value])
             {
                 e.cellHtml = auditSignHash[e.value];
+            }
+            break;
+        case "balaTypeCode":
+            if(accountTypeHash && accountTypeHash[e.value])
+            {
+                e.cellHtml = accountTypeHash[e.value].name;
             }
             break;
         default:
@@ -207,6 +252,20 @@ function save(){
 
     if(rows) {
         nui.alert("请选择结算账户后再保存!");
+        return;
+    }
+
+    var rows = mainGrid.findRow(function(row){
+        var balaTypeCode = row.balaTypeCode;
+        if(balaTypeCode){
+            return false;
+        }else{
+            return true;
+        }
+    });
+
+    if(rows) {
+        nui.alert("请选择结算账户对应的结算方式后再保存!");
         return;
     }
 
@@ -389,4 +448,11 @@ function selectSupplier(elId)
             }
         }
     });
+}
+function onAccountValueChanged(e){
+
+    var r = mainGrid.getSelected();
+    var newRow = {balaTypeCode:null};
+    mainGrid.updateRow(r,newRow);
+
 }

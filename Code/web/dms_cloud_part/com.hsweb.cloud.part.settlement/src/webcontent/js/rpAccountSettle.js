@@ -1031,6 +1031,7 @@ function doSettle(){
         document.getElementById('pNoCharOffAmt').innerHTML=rtn.pNoCharOffAmt;
         document.getElementById('rpAmt').innerHTML=rtn.rpAmt;
 
+        settleAccountGrid.setData([]);
         addSettleAccountRow();
     }else{
         nui.alert("请选择单据！");
@@ -1522,6 +1523,10 @@ function addSettleAccountRow() {
     settleAccountGrid.addRow(row, 0);
 }
 function delRow(row_uid) {
+    var data = settleAccountGrid.getData();
+    if(data && data.length == 1) {
+        return;
+    }
     var row = settleAccountGrid.getRowByUID(row_uid);
     if (row) {
         settleAccountGrid.removeRow(row);
@@ -1564,4 +1569,26 @@ function checkSettleAccountAmt(charOffAmt){
     }
 
     return true;
+}
+function OnModelCellBeginEdit(e) {
+    var row = settleAccountGrid.getSelected();
+
+    var column = e.column;
+    var editor = e.editor;
+    var row = settleAccountGrid.getSelected();
+
+
+    if (column.field == "balaTypeCode") {
+        var str = "accountId="+row.settAccountId;
+        var url = "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        editor.setUrl(url);
+    }
+
+}
+function onAccountValueChanged(e){
+
+    var r = settleAccountGrid.getSelected();
+    var newRow = {balaTypeCode:null};
+    settleAccountGrid.updateRow(r,newRow);
+
 }

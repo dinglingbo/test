@@ -495,6 +495,7 @@ function search()
 }
 function getSearchParam(){
 	var params = {};
+    params = gsparams;
     params.guestId = nui.get("searchGuestId").getValue();
     return params;
 }

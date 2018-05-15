@@ -3,6 +3,7 @@
 	<name>dms_frm_api</name>
 	<comment></comment>
 	<projects>
+		<project>dms_system</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -19,6 +20,7 @@
 				</dictionary>
 				<dictionary>
 					<key>database</key>
+					<value>dms_frm</value>
 				</dictionary>
 				<dictionary>
 					<key>server</key>

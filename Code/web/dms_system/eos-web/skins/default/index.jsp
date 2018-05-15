@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>云汽配</title>
+<title>汽配汽修云平台</title>
 <style type="text/css">
 .dtHighLight{
 	background:#F0F8FF !important;
@@ -46,18 +46,25 @@
     
 <div class="navbar">
     <div class="navbar-header">
-        <div class="navbar-brand">云汽配</div>
+        <div class="navbar-brand">汽配汽修云平台</div>
         <div class="navbar-brand navbar-brand-compact">云</div>
     </div>
     <ul class="nav navbar-nav">
         <li><a id="toggle"><span class="fa fa-bars" ></span></a></li>
-        <li class="icontop"><a href="#"><i class="fa fa-hand-pointer-o"></i><span >系统演示</span></a></li>
-        <li class="icontop"><a href="#"><i class="fa fa-puzzle-piece"></i><span >开发文档</span></a></li>
-        <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >人力资源</span></a></li>
-        <li class="icontop"><a href="#"><i class="fa  fa-cog"></i><span >系统设置</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-hand-pointer-o"></i><span >汽配云</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-puzzle-piece"></i><span >汽修云</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >EPC云</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >SRM云</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >物流云</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa  fa-cog"></i><span >SAAS租赁</span></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li ><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 代办</a></li>
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 消息</a></li>
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 公告</a></li>
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 客服</a></li>
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 续费</a></li>
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li>
         <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
         <li class="dropdown">
             <a class="dropdown-toggle userinfo">

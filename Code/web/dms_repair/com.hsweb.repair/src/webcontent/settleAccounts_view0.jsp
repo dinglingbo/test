@@ -9,7 +9,7 @@
 -->
 <head>
 <title>完工结算</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/settleAccounts.js?v=1.0.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/settleAccounts.js?v=1.0.0"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -27,6 +27,7 @@ table {
 </head>
 <body style="padding:5px;">
 <div id="basicInfoForm">
+	<input class="nui-hidden" name="serviceCode"/>
     <input class="nui-hidden" name="serviceId"/>
     <input class="nui-hidden" name="outBillBalaAmt">
     <input class="nui-hidden" name="partTrueCost">

@@ -739,7 +739,7 @@ function selectSupplier(elId)
                 isSupplier: 1,
                 isClient: 0
             };
-            iframe.contentWindow.setData(params);
+            //iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {
@@ -759,6 +759,7 @@ function selectSupplier(elId)
                     var row = leftGrid.getSelected();
                     var newRow = {guestFullName: text};
                     leftGrid.updateRow(row,newRow);
+
                 }
             }
         }
@@ -1188,6 +1189,7 @@ function onGuestValueChanged(e)
     //供应商中直接输入名称加载供应商信息
     var params = {};
     params.pny = e.value;
+    params.isSupplier = 1;
     setGuestInfo(params);
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1216,6 +1218,7 @@ function setGuestInfo(params)
                     var row = leftGrid.getSelected();
                     var newRow = {guestFullName: text};
                     leftGrid.updateRow(row,newRow);
+
                 }
                 else
                 {
@@ -1226,6 +1229,7 @@ function setGuestInfo(params)
                     var row = leftGrid.getSelected();
                     var newRow = {guestFullName: null};
                     leftGrid.updateRow(row,newRow);
+
                 }
             }
             else

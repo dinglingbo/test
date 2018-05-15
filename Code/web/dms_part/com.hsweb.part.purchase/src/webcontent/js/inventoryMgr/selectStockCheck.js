@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/3/14.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var partGridUrl = baseUrl+"com.hsapi.part.purchase.stockCheck.getStockCheckList.biz.ext";
 var partGrid = null;
 var storeIdEl = null;

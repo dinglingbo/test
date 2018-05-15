@@ -3,7 +3,7 @@
  */
 
 
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getOrgList.biz.ext";
 
 var tree = null;

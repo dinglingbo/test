@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">orgid</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
@@ -278,7 +278,7 @@
     <figSize height="17" width="15"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign0</targetNode>

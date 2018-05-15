@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
@@ -54,14 +54,14 @@ $(document).ready(function(v)
         {
             if(provinceHash[e.value])
             {
-                e.cellHtml = provinceHash[e.value].name;
+                e.cellHtml = provinceHash[e.value].name||"";
             }
         }
         else if("cityId" == field)
         {
             if(cityHash[e.value])
             {
-                e.cellHtml = cityHash[e.value].name;
+                e.cellHtml = cityHash[e.value].name||"";
             }
         }
         else if("tgrade" == field)
@@ -139,10 +139,14 @@ function onAdvancedSearchCancel(){
 
 function addSuplier()
 {
+    billTypeIdList = nui.get("billTypeId").getData();
+    supplierTypeList = nui.get("supplierType").getData();
+    settTypeIdList = nui.get("settType").getData();
+    managerDutyList = nui.get("managerDuty").getData();
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
-        title: "供应商资料", width: 530, height: 560,
+        title: "供应商资料", width: 530, height: 480,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -176,10 +180,14 @@ function editSuplier()
         nui.alert("请选择要编辑的数据");
         return;
     }
+    billTypeIdList = nui.get("billTypeId").getData();
+    supplierTypeList = nui.get("supplierType").getData();
+    settTypeIdList = nui.get("settType").getData();
+    managerDutyList = nui.get("managerDuty").getData();
     nui.open({
         targetWindow: window,
         url: "com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
-        title: "供应商资料", width: 530, height: 560,
+        title: "供应商资料", width: 530, height: 480,
         allowDrag:true,
         allowResize:false,
         onload: function ()

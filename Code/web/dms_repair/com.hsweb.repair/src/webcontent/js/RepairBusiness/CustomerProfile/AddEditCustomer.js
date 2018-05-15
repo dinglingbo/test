@@ -255,7 +255,7 @@ function onOk()
         error : function(jqXHR, textStatus, errorThrown) {
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
-            nui.alert("网络出名");
+            nui.alert("网络出错");
         }
     });
 }

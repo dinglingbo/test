@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%= request.getContextPath() %>/baseDataPart/js/storehouseMgr/storehouseDetail.js?v=1.0.5"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/storehouseMgr/storehouseDetail.js?v=1.0.5"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;
@@ -55,6 +55,8 @@
         <div class="row">
             <span class="title title-width2">是否禁用：</span>
             <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0"/>
+            <span class="title title-width2">是否可售仓：</span>
+            <input name="sellSign" class="nui-checkbox" trueValue="1" falseValue="0"/>
         </div>
     </div>
 </div>

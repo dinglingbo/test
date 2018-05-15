@@ -2,8 +2,8 @@
 <%@page import="com.eos.data.datacontext.DataContextManager"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/sysCommon.jsp"%>
+	pageEncoding="UTF-8" session="false"%> 
+<%@include file="/common/sysCommon.jsp"%> 
 <script type="text/javascript">
 <% IMUODataContext muo = DataContextManager.current()
 					.getMUODataContext();
@@ -61,7 +61,7 @@
 	window._webRepairUrl = webPath + repairDomain + "/";
 	//console.log(window._rootUrl);
 	</script>
-<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.0.5" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.0" type="text/javascript"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

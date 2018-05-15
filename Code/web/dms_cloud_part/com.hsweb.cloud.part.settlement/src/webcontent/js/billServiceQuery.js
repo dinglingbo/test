@@ -55,7 +55,7 @@ $(document).ready(function(v)
     searchEndDate = nui.get("endDate");
     searchServiceId = nui.get("serviceId");
     searchServiceMan = nui.get("serviceMan");
-    comSearchGuestId = nui.get("searchGuestId");
+    //comSearchGuestId = nui.get("searchGuestId");
     searchAccountSign = nui.get("accountSign");
 
     innerPchsEnterGrid = nui.get("innerPchsEnterGrid");
@@ -169,7 +169,7 @@ function getSearchParam(){
 
     params.serviceId = searchServiceId.getValue();
     params.serviceMan = searchServiceMan.getValue();
-    params.guestId = comSearchGuestId.getValue();
+    //params.guestId = comSearchGuestId.getValue();
     
     params.endDate = searchEndDate.getValue();
     params.startDate = searchBeginDate.getValue();
@@ -295,7 +295,7 @@ function onAdvancedSearchOk()
     //供应商
     if(searchData.guestId)
     {
-        params.guestId = nui.get("guestId").getValue();
+        params.guestId = nui.get("btnEdit2").getValue();
     }
     //订单单号
     if(searchData.serviceIdList)

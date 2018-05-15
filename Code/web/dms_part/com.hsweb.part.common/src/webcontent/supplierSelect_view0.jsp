@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商选择界面</title>
-<script src="<%= request.getContextPath() %>/commonPart/js/supplierSelect.js?v=1.0.3"></script>
+<script src="<%=webPath + partDomain%>/commonPart/js/supplierSelect.js?v=1.0.3"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -90,7 +90,7 @@
                                 <div allowSort="true" field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
                                 <div allowSort="true" field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
                                 <div allowSort="true" field="manager" width="100" headerAlign="center" header="联系人"></div>
-                                <div allowSort="true" field="mobile" width="100" headerAlign="center" header="联系电话"></div>
+                                <div allowSort="true" field="mobile" width="100" headerAlign="center" header="联系人手机"></div>
                                 <div allowSort="true" field="contactor" width="80" headerAlign="center" header="业务员"></div>
                                 <div allowSort="true" field="contactorTel" width="100" headerAlign="center" header="业务员电话"></div>
                                 <div allowSort="true" field="code" width="100" headerAlign="center" header="编码"></div>

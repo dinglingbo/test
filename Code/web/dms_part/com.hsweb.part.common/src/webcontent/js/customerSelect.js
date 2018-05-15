@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/31.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryCustomList.biz.ext";
 var treeUrl = baseUrl+"";
 
@@ -67,14 +67,14 @@ $(document).ready(function(v)
         var province = data.province;
         var city = data.city;
         cityList = city;
-        tree.loadList(province.concat(city),"id","provinceId");
+        tree.loadList(province.concat(city),"code","parentid");
         provinceEl = nui.get("provinceId");
         provinceEl.setData(province);
     });
     initDicts({
         billTypeId:BILL_TYPE,//票据类型
-        settType:SETT_TYPE,//结算方式
-        guestType:GUEST_TYPE //对象类型
+        settType:SETT_TYPE//结算方式
+        //guestType:GUEST_TYPE //对象类型
     },function(){
         grid.load();
     });
@@ -109,7 +109,7 @@ function getSearchParam()
     params.name = nui.get("name").getValue();
     params.mobile = nui.get("phone").getValue();
     params.contactorTel = params.mobile;
-    params.guestType = nui.get("guestType").getValue();
+    //params.guestType = nui.get("guestType").getValue();
     var showDisabled = nui.get("showDisabled").getValue();
     if(showDisabled == 0)
     {

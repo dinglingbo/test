@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%= request.getContextPath() %>/baseDataPart/js/partMgr/partMgr.js?v=1.0.10"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/partMgr/partMgr.js?v=1.0.10"></script>
 <style type="text/css">
 </style>
 </head>

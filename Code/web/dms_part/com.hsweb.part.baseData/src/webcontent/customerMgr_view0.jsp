@@ -10,7 +10,7 @@
 <head>
 <title>客户管理</title>
 
-<script src="<%= request.getContextPath() %>/baseDataPart/js/customerMgr/customerMgr.js?v=1.0.7"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/customerMgr/customerMgr.js?v=1.0.7"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -70,20 +70,20 @@
                     <div allowSort="true" field="code" width="100" headerAlign="center">客户编码</div>
                     <div allowSort="true" field="shortName" width="80" headerAlign="center">客户简称</div>
                     <div allowSort="true" field="fullName" width="100" headerAlign="center">客户全称</div>
-                    <div allowSort="true" field="guestType" width="100" headerAlign="center">对象类型</div>
-                </div>
-            </div>
-            <div header="客户联系方式" headerAlign="center">
-                <div property="columns">
-                    <div allowSort="true" field="tel" width="100" headerAlign="center">电话</div>
-                    <div allowSort="true" field="mobile" width="100" headerAlign="center">手机号码</div>
-                    <div allowSort="true" field="addr" width="100" headerAlign="center">地址</div>
+                    <!-- <div allowSort="true" field="guestType" width="100" headerAlign="center">对象类型</div> -->
                 </div>
             </div>
             <div header="联系人信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="contactor" width="80" headerAlign="center">联系人</div>
                     <div allowSort="true" field="contactorTel" width="100" headerAlign="center">联系人电话</div>
+                </div>
+            </div>
+            <div header="客户联系方式" headerAlign="center">
+                <div property="columns">
+                    <div allowSort="true" field="tel" width="100" headerAlign="center">电话</div>
+                    <div allowSort="true" field="mobile" width="100" headerAlign="center">业务手机</div>
+                    <div allowSort="true" field="addr" width="100" headerAlign="center">地址</div>
                 </div>
             </div>
             <div header="财务信息" headerAlign="center">

@@ -240,7 +240,7 @@ function onAdvancedSearchOk()
     //供应商
     if(searchData.guestId)
     {
-        params.guestId = nui.get("guestId").getValue();
+        searchData.guestId = nui.get("btnEdit2").getValue();
     }
     //订单单号
     if(searchData.serviceIdList)
@@ -279,7 +279,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.supplierSelect.flow",
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

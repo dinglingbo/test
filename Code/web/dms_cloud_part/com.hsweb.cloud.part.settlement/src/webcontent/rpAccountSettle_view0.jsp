@@ -105,9 +105,9 @@
 
                 <span class="separator"></span> 
                 <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
-                <input id="searchGuestId" class="nui-buttonedit"
+                <!-- <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择结算单位..."
-                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
+                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 
                 <span class="separator"></span>
@@ -284,7 +284,7 @@
                 </div>
           </div>
         </div> 
-        <div title="结算单查询" name="qRightTab" >
+        <div title="结算单查询" name="qRightTab" visible="false" >
           <div class="nui-fit">
                 <div id="qRightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      showPager="true"

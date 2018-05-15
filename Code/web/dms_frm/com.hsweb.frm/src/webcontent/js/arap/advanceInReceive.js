@@ -1,89 +1,20 @@
-var queryForm;
-var dgGrid;
-var currGuest;
-var billStatusList = [{text:'挂账',value:'0'},{text:'待审核',value:'1'}];
-var onAccountTypeList = [{text:'担保挂账',value:'2'},{text:'保险挂账',value:'1'}];
-var assignStatus;
-var timeStatus;
+
 $(document).ready(function(v){
-	assignStatus = nui.get("assignStatus");
-	timeStatus=nui.get("timeStatus");
-	queryForm = new nui.Form("#queryForm");
-    dgGrid = nui.get("dgGrid");
-    dgGrid.on("beforeload",function(e){
-    	e.data.token = token;
-    });
-    dgGrid.on("drawcell", function (e) { //表格绘制
-        var field = e.field;
-        if(field == "orgid"){
-            //e.cellHtml = setColVal('query_orgid', 'orgid', 'orgname', e.value);
-        }else if(field == "itemTypeId"){//收支类型
-            e.cellHtml = setColVal('itemTypeId', 'customid', 'name', e.value);
-        }else if(field == "billStatus"){//主营业务
-            e.cellHtml = setColVal(billStatusList, 'value', 'text', e.value);
-        }else if(field=="onAccountType"){
-        	 e.cellHtml = setColVal(onAccountTypeList, 'value', 'text', e.value);
-        }
-        else if(field == "onAccountSurety"){//主营业务
-            e.cellHtml = setColVal("guarantee", 'empId', 'empName', e.value);
-        }
-    });
-    
-    init();
-    query();
-  /*  $("button").click(function(){
-    	alert("111111");
-    });*/
+
 
 });
 
 function init(){
    
-	initRoleMembers({"guarantee":"010811"},null);
+	
 }
 /*
  *状态改变
  **/
 function statuschange(){
-	var s=dgGrid.getSelected ();
-	if(s!=undefined){
-	if(s.billStatus==0){
-		$(shbutton).hide();
-		$(skbutton).show();
-		$(dbbutton).show();
-	}else{
-		$(shbutton).show();
-		$(skbutton).hide();
-		$(dbbutton).hide();
-	}}
-}
-/*
- *查询
- **/
-function query(){
-    var data = queryForm.getData();
-    var assigntemp=assignStatus.getValue();
-    var timetemp=timeStatus.getValue();
-    var request = {
-    		"params":{
-    			"assignStatus": assigntemp,
-    			"timetemp":timetemp,
-    			"gd":data.gd
-    		}
-    };
-   
-    dgGrid.load(request,function(){
-        //成功;
-       // nui.alert("数据成功！");
-    },function(){
-        //失败;
-        nui.alert("数据失败！");
-    });
+
 }
 
-/*function add(){
-    editWin("收支项目设置", {});
-}*/
 /*
  *查询
  **/
@@ -199,36 +130,4 @@ function editWin(title, data){
 
 function clearQueryForm(){
     queryForm.setData({});
-}
-
-/*
- *设置菜单
- **/
-function setMenu1(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-    query();    
-}
-
-/*
- *设置时间菜单
- **/
-function setMenu2(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-    query();    
-}
-
-/*
- *查询
- **/
-function queryl(){
-  /*  var data = getQueryValue();
-    var params = {};
-    params.p = data;
-
-    dgGrid.load(params,null,function(){
-        //失败;
-        nui.alert("数据加载失败！");
-    });*/
 }

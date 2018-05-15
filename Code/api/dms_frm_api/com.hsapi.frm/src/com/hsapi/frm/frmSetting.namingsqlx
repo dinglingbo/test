@@ -54,9 +54,43 @@
 		and a.service_type_id not in ('1', '-1') 
 		and (a.rp_amt_no &lt;&gt; 0 OR (a.rp_amt_no = 0 
 		and not exists   (select 1 from fis_rp_check_off b where a.id = b.rp_id)))
-		 <isNotNull property="guestId">
+		<isNotNull property="guestId">
 			AND a.guest_id = #guestId#
 		</isNotNull>
+		<isNotNull property="gd">
+			AND a.service_code like '%$gd$%'
+		</isNotNull>
+		<isNotNull property="assignStatus">
+			AND a.bill_status = #assignStatus#
+		</isNotNull>
+		
+		
+		<isEqual  property="timeStatus" compareValue="today">
+	
+			AND date(a.record_date) = date(NOW())
+			
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="tomorrow">
+			AND date(a.record_date) = date(NOW())-1
+			
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="week">
+	
+			And YEARWEEK(a.record_date) = YEARWEEK(now())
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="month">
+			And MONTH(a.record_date) = MONTH(now())
+		
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="smounth">
+			And MONTH(a.record_date) = MONTH(now())-1
+
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="year">
+			And YEAR(a.record_date) = YEAR(now())
+
+		</isEqual>
+		
     </select>
     <update id="updateInit" parameterClass="HashMap">
     	update fis_rp_account
@@ -69,9 +103,98 @@
  	where a.orgid = 'COM20171009000001' 
  	AND a.rp_bill_id IN (
 	SELECT id FROM fis_rp_bill_list WHERE orgid = 'COM20171009000001' AND rp_date gt;= '2018-05-01'
-	AND rp_date lt;= '2018-05-31 23:59:59'
+	AND rp_date &lt;= '2018-05-31 23:59:59'
 	and rp_type_id = 1
 	) ORDER BY a.rp_bill_id 
     </select>
+    
+    
+     <select id="dayMoneyReporttwo" parameterClass="HashMap" resultClass="HashMap">
+   
+      	SELECT   
+        	a.id tid, b.id AS checkid, b.rp_bill_id rpBillId, a.guest_full_name guestFullName, 
+			c.service_code ServiceCode, ABS(b.check_off_amt) AS Famount ,
+			b.check_off_man checkOffMan, b.check_off_date checkOffDate, b.remark remark
+			FROM 
+			fis_rp_bill_list AS a INNER JOIN  fis_rp_check_off AS b ON a.id = b.rp_bill_id 
+			LEFT OUTER JOIN   fis_rp_account AS c ON b.rp_id = c.id 
+			<!--WHERE (a.id IN (SELECT  id FROM  fis_rp_bill_list 
+			WHERE (orgid = 'COM20171009000001') AND (rp_purpose_id = '02020108'))) -->
+			
+				<isEqual  property="timeStatus" compareValue="today">
+			
+					AND date(a.record_date) = date(NOW())
+					
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="tomorrow">
+					AND date(a.record_date) = date(NOW())-1
+					
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="week">
+			
+					And YEARWEEK(a.record_date) = YEARWEEK(now())
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="month">
+					And MONTH(a.record_date) = MONTH(now())
+				
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="smounth">
+					And MONTH(a.record_date) = MONTH(now())-1
+		
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="year">
+					And YEAR(a.record_date) = YEAR(now())
+		
+				</isEqual>
+         </select>
+      <select id="dayMoneyReportone" parameterClass="HashMap" resultClass="HashMap">
+           SELECT a.id, a.code, a.orgid, a.guest_id guestId, a.guest_full_name guestFullName , a.rp_type_id rpTypeId,
+				a.rp_mode_id rpModeId, a.rp_purpose_id rpPurposeId , a.rp_amt rpAmt, a.offset_amt offsetAmt, a.offset_amt_no offsetAmtNo,
+				a.service_ids serviceIds, a.remark remark, a.rp_man rpMan, a.record_date recordDate<!--, 
+				CASE WHEN rp_mode_id = '020101' 
+				THEN rp_amt END XJ,   CASE WHEN rp_mode_id = '020102' THEN rp_amt END SK, CASE WHEN 
+				rp_mode_id = '020103' THEN rp_amt END  HK, CASE WHEN rp_mode_id = '020104' THEN rp_amt END  ZP, 
+				 CASE WHEN rp_mode_id = '020105' THEN rp_amt END  ZZ,  CASE WHEN rp_mode_id = '020107' 
+				THEN rp_amt END DK,   
+				CASE WHEN rp_mode_id = '020107' THEN rp_amt END memberAmt, 
+				CASE WHEN rp_mode_id not in ('020101', '020102', '020105','020106','020107') THEN rp_amt END QT,  
+				 CASE WHEN rp_mode_id = '020106' THEN rp_amt END  HZ -->  
+				 FROM fis_rp_bill_list a LEFT JOIN (                    
+				SELECT rp_bill_id,  SUM(check_off_amt) SSum FROM  fis_rp_check_off C INNER JOIN 
+				fis_rp_account R ON C.rp_id = R.id  <!--WHERE rp_amt &lt; 0  -->GROUP BY rp_bill_id  ) 
+				b ON a.id = b.rp_bill_id LEFT JOIN (   SELECT  rp_bill_id, SUM(check_off_amt) FSum   
+				FROM  fis_rp_check_off C INNER JOIN fis_rp_account R ON C.rp_id = R.id  <!--WHERE  rp_amt &gt; 0  -->
+				GROUP BY rp_bill_id  ) c ON a.id = c.rp_bill_id  
+				<!--WHERE   a.orgid = 'COM20171009000001'-->
+				
+				<isEqual  property="timeStatus" compareValue="today">
+			
+					AND date(a.record_date) = date(NOW())
+					
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="tomorrow">
+					AND date(a.record_date) = date(NOW())-1
+					
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="week">
+			
+					And YEARWEEK(a.record_date) = YEARWEEK(now())
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="month">
+					And MONTH(a.record_date) = MONTH(now())
+				
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="smounth">
+					And MONTH(a.record_date) = MONTH(now())-1
+		
+				</isEqual>
+				<isEqual  property="timeStatus" compareValue="year">
+					And YEAR(a.record_date) = YEAR(now())
+		
+				</isEqual>
+				
+				ORDER BY a.id , a.service_ids 
+	</select>
+          
     
     </sqlMap>

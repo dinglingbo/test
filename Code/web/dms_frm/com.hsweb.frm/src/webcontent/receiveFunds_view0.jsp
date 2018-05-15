@@ -22,9 +22,35 @@
 		<table style="width: 100%;">
 			<tr>
 				<td>
+					
 					<!-- style="white-space:nowrap;"--> <label
 					style="font-family: Verdana;" title="点击清空条件"><span
-						onclick="clearQueryForm()">快速查询：</span></label> <label
+						onclick="clearQueryForm()">快速查询：</span></label> 
+				<a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu2"id="timeStatus" name="timeStatus">所有</a>
+               		
+               	 <ul id="popupMenu2" class="nui-menu" style="display:none;">
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus,'')" >所有</li>
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'today')" >本日</li>
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'tomorrow')" >昨日</li>
+               		<li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'week')" >本周</li>
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'month')" >本月</li>
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'smounth')" >上月</li>
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'year')" >本年</li>
+                	</ul>		
+				
+					<li class="separator"></li> 
+					<label
+					style="font-family: Verdana;" title="点击清空条件"><span
+						>业务状态：</span></label> 
+				<a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu1"  id="assignStatus" name="assignStatus">所有</a>
+                <ul id="popupMenu1" class="nui-menu" style="display:none;">
+                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus,'')" id="typeAll">所有</li>
+                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus, 0)" id="type0">挂账</li>
+                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus, 1)" id="type1">待审核</li>
+               
+                </ul>	
+                	<li class="separator"></li> 
+				<label
 					style="font-family: Verdana;">工单号：</label> 
 					<input
 					class="nui-textbox" name="gd" id="gd" enabled="true" /> 

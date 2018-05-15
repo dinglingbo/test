@@ -1,7 +1,12 @@
-
+var timeStatus;
+var queryForm;
+var dgGrid1;
+var dgGrid2;
 $(document).ready(function(v){
-
-
+	timeStatus=nui.get("timeStatus");
+	queryForm = new nui.Form("#queryForm");
+    dgGrid1 = nui.get("dgGrid1");
+    dgGrid2 = nui.get("dgGrid2");
 });
 
 function init(){
@@ -130,4 +135,40 @@ function editWin(title, data){
 
 function clearQueryForm(){
     queryForm.setData({});
+}
+
+/*
+ *查询
+ **/
+function query(){
+    var data = queryForm.getData();
+    var timetemp=timeStatus.getValue();
+    data.timetemp=timetemp;
+    var params = {
+    		"params":data
+    };
+    
+    dgGrid1.load(params,function(){
+        //成功;
+       // nui.alert("数据成功！");
+    },function(){
+        //失败;
+        nui.alert("数据失败！");
+    });
+    dgGrid2.load(params,function(){
+        //成功;
+       // nui.alert("数据成功！");
+    },function(){
+        //失败;
+        nui.alert("数据失败！");
+    });
+}
+
+/*
+ *设置时间菜单
+ **/
+function setMenu2(obj, target, value){
+    target.setValue(value);
+    target.setText(obj.getText());   
+    query();    
 }

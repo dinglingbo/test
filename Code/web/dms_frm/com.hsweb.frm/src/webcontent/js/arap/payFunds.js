@@ -2,9 +2,11 @@ var queryForm;
 var dgGrid;
 var currGuest;
 var billStatusList = [{text:'挂账',value:'0'},{text:'待审核',value:'1'}];
-
+var assignStatus;
+var timeStatus;
 $(document).ready(function(v){
-
+	assignStatus = nui.get("assignStatus");
+	timeStatus=nui.get("timeStatus");
 	queryForm = new nui.Form("#queryForm");
     dgGrid = nui.get("dgGrid");
     dgGrid.on("beforeload",function(e){
@@ -52,10 +54,14 @@ function statuschange(){
  **/
 function query(){
     var data = queryForm.getData();
+    var assigntemp=assignStatus.getValue();
+    var timetemp=timeStatus.getValue();
+    data.assigntemp=assigntemp;
+    data.timetemp=timetemp;
     var params = {
-    		
+    		"params":data
     };
-    params.p = data;
+    
     dgGrid.load(params,function(){
         //成功;
        // nui.alert("数据成功！");
@@ -129,4 +135,21 @@ function editWin(title, data){
 
 function clearQueryForm(){
     queryForm.setData({});
+}
+/*
+ *设置菜单
+ **/
+function setMenu1(obj, target, value){
+    target.setValue(value);
+    target.setText(obj.getText());   
+    query();    
+}
+
+/*
+ *设置时间菜单
+ **/
+function setMenu2(obj, target, value){
+    target.setValue(value);
+    target.setText(obj.getText());   
+    query();    
 }

@@ -36,14 +36,14 @@
         width: 30px;
     }
     .htr{
-        height: 30px;
+        height: 20px;
     }
     .mainwidth{
         width: 1100px;
     }
     .tmargin{
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     .vpanel{
@@ -79,12 +79,9 @@
         <a class="nui-button groupButton2" onclick="query_vin(0)" id="query0">上一步</a>
         <a class="nui-button groupButton2" onclick="query_vin(1)" id="query1">下一步</a>
     </div> -->
-    <hr />
     <div class="nui-fit">
-        <div class="nui-splitter" style="width:100%; height:100%;" id="queryPart" allowResize="false" handlerSize="0">
-            <div size="15%" showCollapseButton="false">
-                <div class="nui-fit" id="partForm">
-                    <table class="tmargin">
+                <div class="" id="partForm" style="width:100%;height:40px;" style="text-align:center;vertical-align:center;">
+                      <table class="tmargin" >
                           <tr class="htr">
                                 <td >
                                   <input name="applyCarbrandId"
@@ -100,43 +97,60 @@
                                    showNullItem="false"
                                    nullItemText="请选择..."/>
                                  </td>
+                                <td>
+                                    <input class="nui-textbox" width="100%" id="partCode" name="partCode" enabled="true" placeholder="输入零件号"/>
+                                </td>
+                                <td>
+                                      <a class="nui-button" onclick="queryPartInfo" style="width:100%;">查询</a>
+                                </td>
                           </tr>
-                          <tr class="htr">
-                              <td>
-                                    <textarea class="nui-textarea" emptyText="输入完整零件号" width="100%" style="height:100px;" id="partCodeList" name="partCodeList"></textarea>
-                              </td>
-                          </tr>
-                          <tr class="htr">
-                              <td>
-                                    <a class="nui-button" onclick="queryPartInfo" style="width:100%;">查询</a>
-                              </td>
-                          </tr>
-                          <tr class="htr">
-                              <td>
-                                    *说明:</br>
-                                    1.仅支持<span style="color:blue;">同一品牌</span>的零件查询；</br>
-                                    2. 查询多个零件需要换行；</br>
-                                    3.最多支持5个零件号同时查询。
-                              </td>
-                          </tr>
-                    </table>              
+                    </table>    
                 </div>
-            </div>
-            <div size="75%" showCollapseButton="false">
-                <div class="nui-fit">            
+                       
                     <div id="dgbasic" class="nui-datagrid"
-                         style="width:100%;height:100%;"
+                         style="width:100%;height:90%;"
                          showColumns="true"
                          showVGridLines="false"
+                         ondrawcell="ondrawcell"
                          showPager="fasle" >                
                         <div property="columns">                                             
-                            <div field="pid" width="30%" align="right">零件号</div>
-                            <div field="label" width="40%" align="left">名称</div>
-                            <div field="brand" width="40%" visible = "false" align="left">名称</div>
-                            <div field="action" width="30%" align="right">说明</div>
+                            <div field="pid" headerAlign="center" width="20%" align="left">零件号</div>
+                            <div field="label" headerAlign="center" width="50%" align="left">名称</div>
+                            <div field="prices" headerAlign="center" visible="false" width="10%"  align="left">价格</div>
+                            <div field="brand" headerAlign="center" width="10%"  align="left">品牌</div>
+                            <div field="remark" headerAlign="center" width="10%"  align="left">备注</div>
+                            <div field="action" headerAlign="center" width="10%" align="center">说明</div>
                         </div>
                     </div>
-                </div>
+                
+            
+    </div>
+
+    <div id="advancedSearchWin" class="nui-window"
+         title="品牌选择" style="width:220px;height:130px;"
+         showModal="true"
+         allowResize="false"
+         allowDrag="true">
+        <div id="advancedSearchForm" class="form" style="text-align:center;padding:10px;">
+            <table style="width:100%;">
+                <tr>
+                    <input name="searchCarbrandId"
+                                   id="searchCarbrandId"
+                                   class="nui-combobox"
+                                   textField="brandname"
+                                   valueField="brand"
+                                   emptyText="关联品牌"
+                                   url=""
+                                   valueFromSelect="true"
+                                   width="100%"
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   nullItemText="请选择..."/>
+                </tr>
+            </table>    
+            <div style="text-align:center;padding:10px;">
+                <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
+                <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
             </div>
         </div>
     </div>

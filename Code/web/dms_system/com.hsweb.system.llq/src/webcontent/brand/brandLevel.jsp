@@ -190,6 +190,23 @@
                         <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
                     </div>
                 </div>
+                <!--层10-->
+                <div id="dg10" 
+                    class="nui-datagrid" 
+                    style="width:100%;height:100%;display:none;"
+                    showColumns="false"
+                    showPager="false"
+                    allowcellwrap="true"
+                    showSummaryRow="true">
+                    <div property="columns">
+                        <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
+                        <div field="has_next" width="80" visible="false" headerAlign="center" allowSort=false>是否拥有下一层条件</div>
+                        <div field="last" width="150" visible="false" headerAlign="center" allowSort=false>是否是最后一层</div>
+                        <div field="code" width="120" visible="false" headerAlign="center" allowSort=false>品牌代号</div>
+                        <div field="auth" headerAlign="center" visible="false" allowSort=false>Auth串</div>
+                        <div field="name" headerAlign="center" visible="true" allowSort=false>条件名称</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 
 function initForm(){
@@ -65,6 +65,28 @@ $(document).ready(function(v)
 {
     initComboBox();
     initForm();
+
+    var dictDefs ={"unit":"DDT20130703000016"};
+    initDicts(dictDefs, null);
+
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+
+        switch(keyCode){
+            case 27:
+            window.CloseOwnerWindow("");
+            break; 
+        }
+
+        /*if((keyCode==83)&&(event.shiftKey))  {  
+            onOk();  
+        } 
+
+        if((keyCode==67)&&(event.shiftKey))  { 
+            onCancel();
+        }  */
+    }
 });
 
 
@@ -83,10 +105,10 @@ function onCancel(e) {
 
 var requiredField = {
     qualityTypeId:"配件品质",
-    partNameId:"名称",
-    code:"编码",
-    unit:"单位",
     partBrandId:"配件品牌",
+    code:"编码",
+    partNameId:"名称",
+    unit:"单位",
     abcType:"ABC分类"
 };
 var oldData = null;
@@ -94,7 +116,6 @@ var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePart.biz.ext";
 function onOk()
 {
     var data = basicInfoForm.getData();
-    console.log(data);
     for(var key in requiredField)
     {
     	if(!data[key] || data[key].toString().trim().length==0)
@@ -136,8 +157,13 @@ function onOk()
     {
     	data.brandCode = data.code;
     }
+    if (data.modifyDate) {
+        data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     nui.mask({
-        html:'保存中...'
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
     });
     nui.ajax({
         url:saveUrl,
@@ -163,6 +189,32 @@ function onOk()
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
+    });
+}
+function format(time, format) {
+    var t = new Date(time);
+    var tf = function (i) { return (i < 10 ? '0' : '') + i; };
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a) {
+    switch (a) {
+    case 'yyyy':
+    return tf(t.getFullYear());
+    break;
+    case 'MM':
+    return tf(t.getMonth() + 1);
+    break;
+    case 'mm':
+    return tf(t.getMinutes());
+    break;
+    case 'dd':
+    return tf(t.getDate());
+    break;
+    case 'HH':
+    return tf(t.getHours());
+    break;
+    case 'ss':
+    return tf(t.getSeconds());
+    break;
+    }
     });
 }
 
@@ -193,8 +245,8 @@ function setData(data)
         nui.get("applyCarModel").setValue(value);
     });
     qualityTypeId.setData(qualityTypeIdList);
-    unit.setData(unitList);
-    console.log(data);
+    //unit.setData(unitList);
+
     if(data.partData)
     {
         if(!basicInfoForm)
@@ -202,8 +254,11 @@ function setData(data)
             initForm();
         }
         var partData = data.partData;
+       
         nui.mask({
-            html:'数据加载中...'
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '数据加载中...'
         });
         getPartById(partData.id,function(data)
         {

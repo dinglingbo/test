@@ -68,7 +68,7 @@
                 <label style="font-family:Verdana;">显示零库存：</label>
                 <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             </td>
         </tr>
     </table>

@@ -188,7 +188,9 @@ function getPartById(id, callback) {
 	params.id = id;
 	doPost({
 		url : getPartByIdUrl,
-		data : JSON.stringify(params),
+		data : {
+			id: id
+		},
 		success : function(data) {
 			callback && callback(data);
 		},

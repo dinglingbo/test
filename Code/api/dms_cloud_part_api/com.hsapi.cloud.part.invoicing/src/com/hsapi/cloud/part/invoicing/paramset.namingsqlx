@@ -120,6 +120,9 @@
 					on a.id = c.part_id and c.orgid = #orgid#
         where 1=1
     	<dynamic>
+    		<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid# or a.orgid = 0)
+                </isNotEmpty>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty>

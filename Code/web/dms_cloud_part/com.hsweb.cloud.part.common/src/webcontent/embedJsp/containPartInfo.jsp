@@ -43,6 +43,17 @@
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择品牌"/>
+                    <input id="applyCarBrandId"
+                           name="applyCarBrandId"
+                           class="nui-combobox"
+                           visible="false"
+                           textField="nameCn"
+                           valueField="id"
+                           emptyText="请选择厂牌..."
+                           url=""
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
@@ -50,7 +61,7 @@
                     <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                     <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
                     <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选入</a> -->
-                    <a class="nui-button" iconCls="" plain="true" onclick="addPart()">新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     
                 </td>
             </tr>

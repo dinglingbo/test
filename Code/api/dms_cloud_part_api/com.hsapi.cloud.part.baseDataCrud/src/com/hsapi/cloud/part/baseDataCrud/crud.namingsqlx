@@ -289,4 +289,92 @@
             </isNotEmpty>  
         </dynamic>  
     </select>
+    
+    <select id="querySellStrategyGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+    		a.strategy_id as strategyId,
+			a.guest_id as guestId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark as remark,
+			b.orgid as orgid,
+			b.`name` as straName,
+			c.full_name as fullName,
+			c.short_name as shortName,
+			c.`code` as guestCode
+		from pj_sell_price_guest a
+			inner join pj_sell_price_strategy b
+				on a.strategy_id = b.id
+			inner join wb_common.com_guest c
+				on a.guest_id = c.id
+		WHERE 1 = 1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (c.full_name = #fullName#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">  
+                (c.short_name = #shortName#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (c.py_name like '%$namePy$%)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+    
+    <select id="querySellStrategyPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.strategy_id as strategyId,
+			a.part_id as partId,
+			a.sell_price as sellPrice,
+			a.whole_one_price as wholeOnePrice,
+			a.whole_two_price as wholeTwoPrice,
+			a.whole_three_price as wholeThreePrice,
+			a.whole_four_price as wholeFourPrice,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark as remark,
+			b.`name` as straName,
+			b.orgid as orgid,
+			c.`code` as partCode,
+			c.full_name as fullName,
+			c.oem_code as oemCode
+		from pj_sell_price_part a
+			inner join pj_sell_price_strategy b
+				on a.strategy_id = b.id
+			inner join wb_common.com_attribute c
+				on a.part_id = c.id
+		WHERE 1 = 1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (c.full_name = #fullName#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="queryCode">  
+                (c.c.query_code = #queryCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (c.part_brand_id = #partBrandId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (c.name_py like '%$namePy$%)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+    
 </sqlMap>

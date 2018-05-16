@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%= request.getContextPath() %>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.6"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
   text-align: right;
@@ -113,7 +113,7 @@
                                   <input name="fullName"
                                  id="fullName"
                                  class="nui-textbox" width="100%"/>
-                                  <input name="fullName1" class="nui-buttonedit width3" width="403"
+                                  <input name="fullName1" class="nui-buttonedit width3" width="100%"
                                          id="fullName1"
                                          emptyText="请选择公司..."
                                          allowInput="false"

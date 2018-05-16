@@ -42,7 +42,7 @@
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <label style="font-family:Verdana;">包含已禁用：</label>
                     <input class="nui-checkbox" trueValue="1" falseValue="0" name="showDisabled"/>
@@ -70,12 +70,12 @@
         </div>
         <div showCollapseButton="false">
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addPart()">新增</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editPart()" id="editBtn">修改</a>
-                <a class="nui-button" iconCls="icon-no" plain="true" onclick="disablePart()" id="disableBtn">禁用</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="enablePart()" id="enableBtn" visible="false">启用</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="editPart()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="disablePart()" id="disableBtn"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="enablePart()" id="enableBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;启用</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-reload" plain="true" onclick="reloadData()">刷新</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="reloadData()"><span class="fa fa-refresh fa-lg"></span>&nbsp;刷新</a>
             </div>
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"

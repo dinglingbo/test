@@ -4,289 +4,170 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-01-24 23:12:35
+  - Date: 2018-01-24 23:05:24
   - Description:
 -->
 <head>
-<title>供应商资料</title>
-<script src="<%= request.getContextPath() %>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.0.6"></script>
+<title>配件资料</title>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.12"></script>
 <style type="text/css">
+.row {
+	margin-top: 5px;
+}
+
+.width1 {
+	width: 100px;
+}
+
+.width2 {
+	width: 145px;
+}
+
+.width3 {
+	width: 290px;
+}
+
+.width4 {
+	width: 544px;
+}
+
+.width5 {
+	width: 330px;
+}
+
+.width6 {
+	width: 250px;
+}
+
 .title {
 	text-align: right;
 	display: inline-block;
 }
 
 .title-width1 {
-	width: 75px;
+	width: 60px;
 }
 
-.title-width2 {
-	width: 90px;
-}
-
-.required {
+.title.required {
 	color: red;
-}
-
-.row {
-	margin-top: 5px;
-}
-
-.form table {
-	/*table-layout： fixed;*/
-	
-}
-
-.width1 {
-	width: 150px;
-}
-
-.width2 {
-	width: 185px;
-}
-
-.width3 {
-	width: 403px;
-}
-
-.width4 {
-	width: 135px;
-}
-
-.width5 {
-	width: 170px;
-}
-
-.width6 {
-	width: 388px;
-}
-
-.mini-tabs-body {
-	overflow: hidden;
 }
 </style>
 </head>
 <body>
-
-<div style="text-align: right;">
-    <span>内部往来</span>
-    <div id="isInternal" name="isInternal" class="nui-checkbox" text="" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></div>
-    <span>客户</span>
-    <div id="isClient" name="isClient" class="nui-checkbox" text="" enabled="false" trueValue="1" falseValue="0"></div>
-    <span>供应商</span>
-    <div id="isSupplier" name="isSupplier" class="nui-checkbox" text="" checked="true" enabled="false" trueValue="1" falseValue="0"></div>
-    <span>是否禁用</span>
-    <div id="isDisabled" name="isDisabled" class="nui-checkbox" text="" trueValue="1" falseValue="0"></div>
-</div>
-<div class="nui-fit">
-    <div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:100%;margin-left: 1.5%;"
-         arrowPosition="side" showNavMenu="true">
-        <div name="tab1" title="基本信息">
-            <span>基本信息</span>
-            <div id="basicInfoForm" class="form">
-                <input class="nui-hidden" name="id"/>
-                <div class="row">
-                    <span class="title title-width1 required">供应商编码：</span>
-                    <input name="code" id="code" class="nui-textbox width1"/>
-                    <span class="title title-width1">供应商简称：</span>
-                    <input name="shortName" class="nui-textbox width2" width="185"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1 required">供应商全称：</span>
-                    <input name="fullName"
-                           id="fullName"
-                           class="nui-textbox width3" width="403"/>
-                    <input name="fullName1" class="nui-buttonedit width3" width="403"
-                           id="fullName1"
-                           emptyText="请选择公司..."
-                           allowInput="false"
-                           onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
-                           visible="false"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1 required">票据类型：</span>
-                    <input id="billTypeId"
-                           name="billTypeId"
-                           class="nui-combobox width1"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           nullItemText="请选择..."/>
-
-                    <span class="title title-width1 required">结算方式：</span>
-                    <input id="settTypeId"
-                           name="settTypeId"
-                           class="nui-combobox width2"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           nullItemText="请选择..."/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">供应类型：</span>
-                    <input id="supplierType"
-                           name="supplierType"
-                           class="nui-combobox width1"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="true"
-                           nullItemText="请选择..."/>
-
-                    <span class="title title-width2">优势品牌/产品：</span>
-                    <input name="advantageCarbrandId" class="nui-textbox width1"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1 required">联系人：</span>
-                    <input name="manager" class="nui-textbox" width="60"/>
-                    <span class="title title-width1" style="width: 40px;">职务：</span>
-                    <input id="managerDuty"
-                           name="managerDuty"
-                           width="110"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="true"
-                           nullItemText="请选择..."/>
-                    <span class="title title-width1 required" style="width: 40px;">手机：</span>
-                    <input name="mobile" class="nui-textbox" width="137"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">业务员：</span>
-                    <input name="contactor" class="nui-textbox width1" width="150"/>
-                    <span class="title title-width1">手机：</span>
-                    <input name="contactorTel" class="nui-textbox width2" width="185"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">电话：</span>
-                    <input name="tel" class="nui-textbox width3" width="403"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">信用等级：</span>
-                    <input id="tgrade"
-                           name="tgrade"
-                           class="nui-combobox width1"
-                           textField="name"
-                           valueField="customid"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="true"
-                           nullItemText="请选择..."/>
-                    <span class="title title-width1">备注：</span>
-                    <input name="remark" class="nui-textbox width2" />
-                </div>
+   <div class="nui-fit" style="padding: 10px;overflow: hidden;">
+        <span>基本信息</span>
+        <div id="basicInfoForm" class="form">
+            <input class="nui-hidden" name="id"/>
+            <input class="nui-hidden" name="isEdit"/>
+            <div class="row">
+                <span class="title title-width1 required">配件品质：</span>
+                <input name="qualityTypeId"
+                       id="qualityTypeId"
+                       class="nui-combobox width1"
+                       textField="name"
+                       valueField="id"
+                       emptyText="请选择..."
+                       url=""
+                       allowInput="true"
+                       showNullItem="false"
+                       onvaluechanged="onQualityTypeIdChanged"
+                       nullItemText="请选择..."/>
+                <span class="title title-width1 required">名称：</span>
+                <input name="partNameId" id="partNameId"
+                       class="nui-buttonedit" emptyText=""
+                       allowInput="false"
+                       onbuttonclick="onButtonEdit" selectOnFocus="true" />
+                <span class="title required">编码：</span>
+                <input name="code" class="nui-textbox width2" id="code"/>
+                <span class="title required">单位：</span>
+                <input name="unit"
+                       id="unit"
+                       class="nui-combobox width1"
+                       textField="name"
+                       valueField="name"
+                       emptyText="请选择..."
+                       url=""
+                       allowInput="true"
+                       showNullItem="false"
+                       nullItemText="请选择..."/>
             </div>
-            <span>联系信息</span>
-            <div class="form" id="contactInfoForm">
-                <div class="row">
-                    <span class="title title-width1 required">省份：</span>
-                    <input name="provinceId"
-                           id="provinceId"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="id"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           onvaluechanged="onProvinceSelected('cityId')"
-                           nullItemText="请选择..."/>
-                    <span class="title title-width1 required">城市：</span>
-                    <input name="cityId"
-                           id="cityId"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="id"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="true"
-                           showNullItem="false"
-                           nullItemText="请选择..."/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">地址：</span>
-                    <input name="addr" class="nui-textbox width3"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">邮箱：</span>
-                    <input name="email" class="nui-textbox width1"/>
-                    <span class="title title-width1">QQ/微信：</span>
-                    <input name="instantMsg" class="nui-textbox width2"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width1">邮政编码：</span>
-                    <input name="postalCode" class="nui-textbox width3"/>
-                </div>
+            <div class="row">
+                <span class="title title-width1 required">配件品牌：</span>
+                <input name="partBrandId"
+                       id="partBrandId"
+                       class="nui-combobox width1"
+                       textField="name"
+                       valueField="id"
+                       emptyText="请选择..."
+                       url=""
+                       allowInput="true"
+                       showNullItem="false"
+                       nullItemText="请选择..."/>
+                <span class="title title-width1 required">ABC分类：</span>
+                <input name="abcType"
+                       id="abcType"
+                       class="nui-combobox width2"
+                       textField="name"
+                       valueField="customid"
+                       emptyText="请选择..."
+                       url=""
+                       allowInput="true"
+                       showNullItem="false"
+                       nullItemText="请选择..."/>
+                <span class="title">型号：</span>
+                <input name="model" class="nui-textbox width3"/>
             </div>
-        </div>
-        <div name="tab2" title="其他信息">
-            <span>财务信息</span>
-            <div id="financeInfoForm" class="form">
-                <input class="nui-hidden" name="id"/>
-                <div class="row">
-                    <span class="title title-width2">银行帐号：</span>
-                    <input name="accountBankNo" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">开户银行：</span>
-                    <input name="accountBank" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">纳税人编码：</span>
-                    <input name="taxpayerCode" class="nui-textbox width4"/>
-                    <span class="title title-width2">纳税人电话：</span>
-                    <input name="taxpayerTel" class="nui-textbox width5"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">纳税人名称：</span>
-                    <input name="taxpayerName" class="nui-textbox width6"/>
-                </div>
+            <div class="row">
+                <span class="title title-width1">适用车型：</span>
+                <input name="applyCarbrandId"
+                       id="applyCarbrandId"
+                       class="nui-combobox width1"
+                       textField="nameCn"
+                       valueField="id"
+                       emptyText="请选择..."
+                       url=""
+                       allowInput="true"
+                       showNullItem="false"
+                       nullItemText="请选择..."/>
+                <input name="applyCarModel" id="applyCarModel" class="nui-textbox width4"/>
             </div>
-            <span>其他信息</span>
-            <div class="form" id="otherInfoForm">
-                <div class="row">
-                    <span class="title title-width2">网址：</span>
-                    <input name="website" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">传真：</span>
-                    <input name="fax" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">经营地址：</span>
-                    <input name="manageAddr" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">会员卡号：</span>
-                    <input name="memCarNo" class="nui-textbox width6"/>
-                </div>
-                <div class="row">
-                    <span class="title title-width2">会员等级：</span>
-                    <input name="memLevel" class="nui-textbox width4"/>
-                    <span class="title title-width2">信誉额度：</span>
-                    <input name="creditLimit" class="nui-textbox width5"/>
-                </div>
+            <div class="row">
+                <span class="title title-width1">通用编码：</span>
+                <input name="commonCode" class="nui-textbox width5"/>
+                <span class="title title-width1">规格：</span>
+                <input name="spec" class="nui-textbox width6"/>
+            </div>
+            <div class="row">
+                <span class="title title-width1">配件全称：</span>
+                <input name="fullName" class="nui-textbox width5" enabled="false"/>
+                <span class="title title-width1">生产厂家：</span>
+                <input name="produceFactory" class="nui-textbox width6"/>
+            </div>
+            <div class="row">
+                <span class="title title-width1">零售价：</span>
+                <input name="retailPrice" class="nui-textbox width1" value="0"/>
+                <span class="title title-width1">批发价：</span>
+                <input name="wholeSalePrice" class="nui-textbox width1" value="0"/>
+                <span class="title title-width1">统一价：</span>
+                <input name="uniformSellPrice" class="nui-textbox width1" value="0"/>
+                <span class="title title-width1">兑换积分：</span>
+                <input name="exchangeIntegral" class="nui-textbox width1" value="0"/>
+            </div>
+            <div class="row">
+                <span class="title title-width1">用量：</span>
+                <input name="usage" class="nui-spinner width1"  minValue="0" maxValue="1000000" value="0"/>
+                <span class="title title-width1">重量：</span>
+                <input name="weight" class="nui-textbox width1" value="0"/>
+                <span class="title title-width1">是否禁用：</span>
+                <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0"/>
+                <span class="title title-width1">统一售价：</span>
+                <input name="isUniform" class="nui-checkbox" trueValue="1" falseValue="0"/>
             </div>
         </div>
     </div>
-</div>
-<div style="text-align:center;padding:10px;">
-    <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-</div>
-
-
+    <div style="text-align:center;padding:10px;">
+        <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
+        <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+    </div>
 </body>
 </html>

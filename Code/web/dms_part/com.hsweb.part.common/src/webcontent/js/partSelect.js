@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
@@ -13,6 +13,8 @@ var brandList = [];
 var unitList = [];
 var abcTypeList = [];
 var carBrandList = [];
+var chooseType = null;
+var codeEl = null;
 
 var queryForm = null;
 $(document).ready(function(v)
@@ -20,6 +22,7 @@ $(document).ready(function(v)
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
+    codeEl = nui.get("search-code");
     partGrid.on("beforeload",function(e){
         e.data.token = token;
     });
@@ -93,10 +96,56 @@ $(document).ready(function(v)
                 unit:UNIT,// --单位
                 abcType:ABC_TYPE // --ABC分类
             },function(){
-                onSearch();
+                //onSearch();
             });
         });
     });
+
+    codeEl.focus();
+
+    $("#search-code").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-name").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-applyCarModel").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-namePy").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+
+        switch(keyCode){
+            case 27:
+            window.CloseOwnerWindow("");
+            break; 
+        }
+
+        /*if((keyCode==83)&&(event.shiftKey))  {  
+            onOk();  
+        } 
+
+        if((keyCode==67)&&(event.shiftKey))  { 
+            onCancel();
+        }  */
+    }
+
 });
 function onDrawNode(e)
 {
@@ -156,7 +205,8 @@ function doSearch(params)
         params.namePy = params.namePy.toUpperCase();
     }
     partGrid.load({
-        params:params
+        params:params,
+        token:token
     });
 }
 
@@ -175,19 +225,21 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
-        width: 740, height: 350,
+        width: 740, height: 250,
         allowDrag:true,
         allowResize:false,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
+            var carBrandList = nui.get("applyCarBrandId").getData();
             var params = {
                 qualityTypeIdList:qualityList,
                 partBrandIdList:brandList,
                 unitList:unitList,
-                abcTypeList:abcTypeList
+                abcTypeList:abcTypeList,
+                applyCarModelList:carBrandList
             };
             if(row)
             {
@@ -210,29 +262,64 @@ var callback = null;
 function onOk()
 {
     var node = partGrid.getSelected();
-    console.log(node);
-    if(!node)
+    var nodec = nui.clone(node);
+
+    if(!nodec)
     {
         return;
     }
-    var tmp = list.filter(function(v){
-        return v.partId == node.id;
-    });
-    if(tmp && tmp.length>0)
-    {
-        nui.alert("此配件已在明细中，不能重复选择");
-        return;
+
+    if(chooseType && chooseType == "cloudPart"){
+        resultData = {
+            part:nodec
+        };
+        if(!callback)
+        {
+            CloseWindow("ok");
+        }
+        else{
+            //需要判断是否已经添加了此配件
+            var checkMsg = checkcallback(resultData);
+            if(checkMsg) 
+            {
+                nui.confirm(checkMsg, "友情提示",
+                    function (action) { 
+                        if (action == "ok") {
+                            callback(resultData);
+                        }else {
+                            return;
+                        }
+                    }
+                );
+            }else
+            {
+                //弹出数量，单价和金额的编辑界面
+                callback(resultData);
+            }
+
+        }
+    }else{
+        var tmp = list.filter(function(v){
+            return v.partId == nodec.id;
+        });
+        if(tmp && tmp.length>0)
+        {
+            nui.alert("此配件已在明细中，不能重复选择");
+            return;
+        }
+        resultData = {
+            part:nodec
+        };
+        if(!callback)
+        {
+            CloseWindow("ok");
+        }
+        else{
+            callback(resultData);
+        }
     }
-    resultData = {
-        part:node
-    };
-    if(!callback)
-    {
-        CloseWindow("ok");
-    }
-    else{
-        callback(resultData);
-    }
+    
+
 }
 function getData(){
     return resultData;
@@ -243,6 +330,12 @@ function setData(data,ck)
 	list = data.list||[];
     callback = ck;
 }
+var checkcallback = null;
+function setCloudPartData(type,ck,cck){
+    chooseType = type;
+    callback = ck;
+    checkcallback = cck;
+}
 function CloseWindow(action)
 {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
@@ -250,4 +343,8 @@ function CloseWindow(action)
 }
 function onCancel(e) {
     CloseWindow("cancel");
+}
+function onRowDblClick()
+{
+    onOk();
 }

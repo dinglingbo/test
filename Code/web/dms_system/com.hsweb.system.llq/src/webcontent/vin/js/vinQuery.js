@@ -57,6 +57,8 @@ $(document).ready(function(v){
             e.cellHtml = html;
         }
     });
+    
+    $('#vin').attr('placeholder','输入17位VIN车架号');
 });
 
 /*

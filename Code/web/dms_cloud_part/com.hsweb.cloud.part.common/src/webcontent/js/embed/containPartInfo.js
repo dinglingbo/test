@@ -64,6 +64,15 @@ $(document).ready(function() {
         });
 
     });
+
+    initCarBrand("applyCarBrandId",function(){
+        /*initDicts({
+            unit:UNIT,// --单位
+            abcType:ABC_TYPE // --ABC分类
+        },function(){
+            onSearch();
+        });*/
+    });
     
     getAllPartType(function(data) {
     	partTypeList = data.partTypes;
@@ -215,19 +224,21 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partDetail.flow",
+        url: webPath+partDomain+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
-        width: 740, height: 350,
+        width: 740, height: 250,
         allowDrag:true,
         allowResize:false,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
+            var carBrandList = nui.get("applyCarBrandId").getData();
             var params = {
                 qualityTypeIdList:qualityList,
                 partBrandIdList:brandList,
                 unitList:unitList,
-                abcTypeList:abcTypeList
+                abcTypeList:abcTypeList,
+                applyCarModelList:carBrandList
             };
             if(row)
             {
@@ -239,7 +250,7 @@ function addOrEditPart(row)
         {
             if(action == "ok")
             {
-                partGrid.reload();
+                reloadData();
             }
         }
     });

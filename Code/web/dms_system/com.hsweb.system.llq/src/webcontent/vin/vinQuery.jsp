@@ -38,7 +38,8 @@
                 valueField="vin" 
                 url="<%=sysDomain%>/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext" 
                 onvaluechanged="" 
-                dataField="data"
+                emptyText="输入17位VIN车架号"
+                placeholder="data"
                 searchField="vin"
                 enterQuery="true">     
                 <div property="columns">

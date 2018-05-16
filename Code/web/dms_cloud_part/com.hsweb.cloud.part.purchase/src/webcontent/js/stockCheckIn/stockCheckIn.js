@@ -776,14 +776,14 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.partSelectView.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.partSelectView.flow?token="+token,
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData({},callback,checkcallback);
+            iframe.contentWindow.setCloudPartData("cloudPart",callback,checkcallback);
         },
         ondestroy: function (action)
         {
@@ -803,7 +803,8 @@ function addEnterDetail(part)
             var iframe = this.getIFrameEl();
             part.storeId = nui.get("storeId").getValue();
             iframe.contentWindow.setData({
-                part:part
+                part:part,
+                priceType : "pchsIn"//can find price
             });
         },
         ondestroy: function (action)

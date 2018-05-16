@@ -4,170 +4,207 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-01-24 23:05:24
+  - Date: 2018-01-24 23:12:35
   - Description:
 -->
 <head>
 <title>配件资料</title>
-<script src="<%= request.getContextPath() %>/baseDataPart/js/partMgr/partDetail.js?v=1.0.12"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.12"></script>
 <style type="text/css">
-.row {
-	margin-top: 5px;
-}
-
-.width1 {
-	width: 100px;
-}
-
-.width2 {
-	width: 145px;
-}
-
-.width3 {
-	width: 290px;
-}
-
-.width4 {
-	width: 544px;
-}
-
-.width5 {
-	width: 330px;
-}
-
-.width6 {
-	width: 250px;
-}
-
 .title {
 	text-align: right;
 	display: inline-block;
 }
 
 .title-width1 {
-	width: 60px;
+	width: 75px;
 }
 
-.title.required {
-	color: red;
+.title-width2 {
+	width: 90px;
 }
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}  
+.fwidtha{
+    width: 60px;
+}
+.fwidthb{
+    width: 60px;
+}
+.htr{
+    height: 20px;
+}
+.mainwidth{
+    width: 700px;
+}
+.tmargin{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vpanel{
+    border:0px solid #d9dee9;
+    margin:0px 0px 0px 0px;
+    height:248px;
+    float:left;
+}
+.vpanel_heading{
+    border-bottom:1px solid #d9dee9;
+    width:100%;
+    height:28px;
+    line-height:28px;
+}
+.vpanel_heading span{
+    margin:0 0 0 20px;
+    font-size:8px;
+    font-weight:normal;
+}
+.vpanel_bodyww{
+    padding : 10 10 10 10px !important
+
+}
+
+.required {
+    color: red;
+}
+
 </style>
 </head>
 <body>
-   <div class="nui-fit" style="padding: 10px;overflow: hidden;">
-        <span>基本信息</span>
-        <div id="basicInfoForm" class="form">
-            <input class="nui-hidden" name="id"/>
-            <input class="nui-hidden" name="isEdit"/>
-            <div class="row">
-                <span class="title title-width1 required">配件品质：</span>
-                <input name="qualityTypeId"
+
+<div class="nui-fit" id= "basicInfoForm">
+	<div class="vpanel mainwidth" style="height:auto;">
+      <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
+      <div class="vpanel_body vpanel_bodyww">
+  			    <input id="orgid" name="orgid" width="100%" class="nui-hidden" >
+  			    <input class="nui-hidden" name="id"/>
+  			    <input class="nui-hidden" name="isEdit"/>
+            <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
+            <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
+            <table class="tmargin">
+                <tr class="htr">
+                    <td class=" right fwidtha required">配件品质:</td>
+                    <td >
+					             <input name="qualityTypeId"
                        id="qualityTypeId"
-                       class="nui-combobox width1"
+                       class="nui-combobox"
                        textField="name"
                        valueField="id"
+                       valueFromSelect="true"
                        emptyText="请选择..."
                        url=""
+                       width="100%"
                        allowInput="true"
                        showNullItem="false"
                        onvaluechanged="onQualityTypeIdChanged"
                        nullItemText="请选择..."/>
-                <span class="title title-width1 required">名称：</span>
-                <input name="partNameId" id="partNameId"
-                       class="nui-buttonedit" emptyText=""
-                       allowInput="false"
-                       onbuttonclick="onButtonEdit" selectOnFocus="true" />
-                <span class="title required">编码：</span>
-                <input name="code" class="nui-textbox width2" id="code"/>
-                <span class="title required">单位：</span>
-                <input name="unit"
-                       id="unit"
-                       class="nui-combobox width1"
-                       textField="name"
-                       valueField="name"
-                       emptyText="请选择..."
-                       url=""
-                       allowInput="true"
-                       showNullItem="false"
-                       nullItemText="请选择..."/>
-            </div>
-            <div class="row">
-                <span class="title title-width1 required">配件品牌：</span>
-                <input name="partBrandId"
+		                </td>
+                    <td class=" right fwidtha required">配件品牌:</td>
+                    <td >
+                       <input name="partBrandId"
                        id="partBrandId"
-                       class="nui-combobox width1"
+                       class="nui-combobox"
                        textField="name"
                        valueField="id"
                        emptyText="请选择..."
                        url=""
+                       valueFromSelect="true"
+                       width="100%"
                        allowInput="true"
                        showNullItem="false"
                        nullItemText="请选择..."/>
-                <span class="title title-width1 required">ABC分类：</span>
-                <input name="abcType"
-                       id="abcType"
-                       class="nui-combobox width2"
-                       textField="name"
-                       valueField="customid"
-                       emptyText="请选择..."
-                       url=""
-                       allowInput="true"
-                       showNullItem="false"
-                       nullItemText="请选择..."/>
-                <span class="title">型号：</span>
-                <input name="model" class="nui-textbox width3"/>
-            </div>
-            <div class="row">
-                <span class="title title-width1">适用车型：</span>
-                <input name="applyCarbrandId"
+                    </td>
+                    <td class=" right fwidthb required">编码:</td>
+                    <td ><input name="code" class="nui-textbox" width="100%" id="code"/></td>
+                    <td class=" right fwidthb required">名称:</td>
+                    <td >
+                        <input name="partNameId" id="partNameId"
+                        class="nui-buttonedit" emptyText=""
+                        allowInput="false" width="100%"
+                        onbuttonclick="onButtonEdit" selectOnFocus="true" />
+                    </td>
+                </tr>
+                <tr class="htr">
+                    <td class=" right fwidthb required">单位:</td>
+                    <td >
+                        <input name="unit"
+                        id="unit"
+                        class="nui-combobox"
+                        textField="name"
+                        valueField="name"
+                        emptyText="请选择..."
+                        url=""
+                        width="100%"
+                        allowInput="true"
+                        showNullItem="false"
+                        nullItemText="请选择..."/>
+                    </td>
+                    <td class=" right fwidthb required">ABC分类:</td>
+                    <td >
+                        <input name="abcType"
+                        id="abcType"
+                        class="nui-combobox"
+                        textField="name"
+                        valueField="customid"
+                        emptyText="请选择..."
+                        url=""
+                        valueFromSelect="true"
+                        width="100%"
+                        allowInput="true"
+                        showNullItem="false"
+                        nullItemText="请选择..."/>
+                    </td>
+                    <td class=" right fwidthb">规格:</td>
+                    <td ><input name="spec" class="nui-textbox" width="100%"/></td>
+                    <td class=" right fwidthb">型号:</td>
+                    <td ><input name="model" class="nui-textbox" width="100%"/></td>
+                </tr>
+                <tr class="htr">
+                    <td class=" right fwidthb">适用车型:</td>
+                    <td >
+                      <input name="applyCarbrandId"
                        id="applyCarbrandId"
-                       class="nui-combobox width1"
+                       class="nui-combobox"
                        textField="nameCn"
                        valueField="id"
                        emptyText="请选择..."
                        url=""
+                       width="100%"
                        allowInput="true"
                        showNullItem="false"
                        nullItemText="请选择..."/>
-                <input name="applyCarModel" id="applyCarModel" class="nui-textbox width4"/>
-            </div>
-            <div class="row">
-                <span class="title title-width1">通用编码：</span>
-                <input name="commonCode" class="nui-textbox width5"/>
-                <span class="title title-width1">规格：</span>
-                <input name="spec" class="nui-textbox width6"/>
-            </div>
-            <div class="row">
-                <span class="title title-width1">配件全称：</span>
-                <input name="fullName" class="nui-textbox width5" enabled="false"/>
-                <span class="title title-width1">生产厂家：</span>
-                <input name="produceFactory" class="nui-textbox width6"/>
-            </div>
-            <div class="row">
-                <span class="title title-width1">零售价：</span>
-                <input name="retailPrice" class="nui-textbox width1" value="0"/>
-                <span class="title title-width1">批发价：</span>
-                <input name="wholeSalePrice" class="nui-textbox width1" value="0"/>
-                <span class="title title-width1">统一价：</span>
-                <input name="uniformSellPrice" class="nui-textbox width1" value="0"/>
-                <span class="title title-width1">兑换积分：</span>
-                <input name="exchangeIntegral" class="nui-textbox width1" value="0"/>
-            </div>
-            <div class="row">
-                <span class="title title-width1">用量：</span>
-                <input name="usage" class="nui-spinner width1"  minValue="0" maxValue="1000000" value="0"/>
-                <span class="title title-width1">重量：</span>
-                <input name="weight" class="nui-textbox width1" value="0"/>
-                <span class="title title-width1">是否禁用：</span>
-                <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0"/>
-                <span class="title title-width1">统一售价：</span>
-                <input name="isUniform" class="nui-checkbox" trueValue="1" falseValue="0"/>
-            </div>
+                     </td>
+                     <td colspan="6">
+                      <input name="applyCarModel" id="applyCarModel" width="100%" class="nui-textbox"/>
+                     </td>
+                </tr>
+                <tr class="htr">
+                    <td class=" right fwidthb">通用编码:</td>
+                    <td colspan="3"><input name="commonCode" class="nui-textbox" width="100%"/></td>
+                    <td class=" right fwidthb">生产厂家:</td>
+                    <td colspan="3"><input name="produceFactory" class="nui-textbox" width="100%"/></td>
+                </tr>
+                <tr class="htr">
+                    <td class=" right fwidthb">是否禁用:</td>
+                    <td ><input name="isDisabled" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/></td><td class=" right fwidthb">统一售价:</td>
+                    <td ><input name="isUniform" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/></td>
+                    <td class=" right fwidthb">配件全称:</td>
+                    <td colspan="3"><input name="fullName" class="nui-textbox" width="100%" enabled="false"/></td>
+                </tr>
+            </table>
+
         </div>
     </div>
-    <div style="text-align:center;padding:10px;">
+</div>
+<div style="text-align:center;padding:10px;">
         <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
         <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-    </div>
+</div>
+
+
 </body>
 </html>

@@ -1,16 +1,15 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + frmApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.frm.others.queryRPAccountList.biz.ext";
 
 var searchBeginDate = null;
-var searchStatus=null;
 var searchEndDate = null;
 var comSearchGuestId = null;
 var auditSignEl = null;
 var mainGrid = null;
-var list = null;
+var Rlist = null;
 var auditSignHash = {
     "0":"否",
     "1":"是"
@@ -20,7 +19,7 @@ var settleStatusHash = {
     "1":"部分结算",
     "2":"已结算"
 };
-var billStatus = [
+var auditSignList = [
     {id:0,text:"未审"},
     {id:1,text:"已审"}
 ];
@@ -33,32 +32,21 @@ $(document).ready(function(v)
     searchEndDate = nui.get("endDate");
     comSearchGuestId = nui.get("searchGuestId");
     auditSignEl = nui.get("auditSign");
-    searchStatus=nui.get("billStatus");
+
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
 
     getInComeExpenses(function(data) {
-        list = data.list;
+        Rlist = data.list;
         //billTypeListEl.setUrl(list);
     });
 
     doSearch();
 
 });
-function OnrpMainGridCellBeginEdit(e){
-    var field=e.field; 
-    var editor = e.editor;
-    var row = e.row;
-    if(field=="billTypeId"){
-         editor.setData(list);
-    }
-    if(row.auditSign == 1){
-        e.cancel = true;
-    }
-}
 var queryUrl = baseUrl + "com.hsapi.frm.setting.queryFibInComeExpenses.biz.ext";
 function getInComeExpenses(callback) {
-    var params = {itemTypeId : -1, isMain: 0};
+    var params = {itemTypeId : 1, isMain: 0};
     nui.ajax({
         url : queryUrl,
         data : {
@@ -70,7 +58,6 @@ function getInComeExpenses(callback) {
             if (data && data.list) {
                 callback && callback(data);
             }
-           
         },
         error : function(jqXHR, textStatus, errorThrown) {
             //  nui.alert(jqXHR.responseText);
@@ -80,11 +67,14 @@ function getInComeExpenses(callback) {
 }
 function doSearch() {
     var params = {};
-    params.rpType = -1;
+    params.billDc = 1;
+    params.auditSign = auditSignEl.getValue();
+    params.rpTypeId = 2;
     params.guestId = comSearchGuestId.getValue();
+    
     params.sCreateDate = searchBeginDate.getValue();
     params.eCreateDate = searchEndDate.getValue();
-    params.billStatus=searchStatus.getValue();
+
     mainGrid.load({
         params: params,
         pageSize: 1000,
@@ -122,19 +112,11 @@ function onDrawCell(e)
             break;
     }
 }
-function onbillTypeChange(e){
-    var se = e.selected;
-    var billTypeCode = se.code;
-    var row = mainGrid.getSelected();
-    var newRow = {billTypeCode: billTypeCode};
-    mainGrid.updateRow(row, newRow);
-
-}
 function addGuest(){
     var supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
         title: "选择往来单位", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -161,13 +143,30 @@ function addGuest(){
                     var shortName  = supplier.shortName;
                     var code = supplier.code;
 
-                    var newRow = {guestId: guestId, guestName: fullName, billDc: -1, rpTypeId: 2};
+                    var newRow = {guestId: guestId, guestName: fullName, billDc: 1, rpTypeId: 2};
                     mainGrid.addRow(newRow);
                 }
                 
             }
         }
     });
+}
+function OnrpMainGridCellBeginEdit(e){
+    var field=e.field; 
+    var editor = e.editor;
+    var row = e.row;
+
+    if(row.auditSign == 1){
+        e.cancel = true;
+    }
+}
+function onbillTypeChange(e){
+    var se = e.selected;
+    var billTypeCode = se.code;
+    var row = mainGrid.getSelected();
+    var newRow = {billTypeCode: billTypeCode};
+    mainGrid.updateRow(row, newRow);
+
 }
 function deleteGuest(){
     var record = mainGrid.getSelected();
@@ -186,7 +185,7 @@ function save(){
     if(data && data.length <= 0) return;
 
     var rows = mainGrid.findRow(function(row){
-        var billTypeId = row.serviceTypeId;
+        var billTypeId = row.billTypeId;
         if(billTypeId){
             return false;
         }else{

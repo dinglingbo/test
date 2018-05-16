@@ -5,6 +5,7 @@ var baseUrl = apiPath + frmApi + "/";//window._rootUrl||"http://127.0.0.1:8080/d
 var rightGridUrl = baseUrl+"com.hsapi.frm.others.queryRPAccountList.biz.ext";
 
 var searchBeginDate = null;
+var searchStatus=null;
 var searchEndDate = null;
 var comSearchGuestId = null;
 var auditSignEl = null;
@@ -19,7 +20,7 @@ var settleStatusHash = {
     "1":"部分结算",
     "2":"已结算"
 };
-var auditSignList = [
+var billStatus = [
     {id:0,text:"未审"},
     {id:1,text:"已审"}
 ];
@@ -32,7 +33,7 @@ $(document).ready(function(v)
     searchEndDate = nui.get("endDate");
     comSearchGuestId = nui.get("searchGuestId");
     auditSignEl = nui.get("auditSign");
-
+    searchStatus=nui.get("billStatus");
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
 
@@ -69,6 +70,7 @@ function getInComeExpenses(callback) {
             if (data && data.list) {
                 callback && callback(data);
             }
+           
         },
         error : function(jqXHR, textStatus, errorThrown) {
             //  nui.alert(jqXHR.responseText);
@@ -78,14 +80,11 @@ function getInComeExpenses(callback) {
 }
 function doSearch() {
     var params = {};
-    params.billDc = -1;
-    params.auditSign = auditSignEl.getValue();
-    params.rpTypeId = 2;
+    params.rpType = -1;
     params.guestId = comSearchGuestId.getValue();
-    
     params.sCreateDate = searchBeginDate.getValue();
     params.eCreateDate = searchEndDate.getValue();
-
+    params.billStatus=searchStatus.getValue();
     mainGrid.load({
         params: params,
         pageSize: 1000,
@@ -187,7 +186,7 @@ function save(){
     if(data && data.length <= 0) return;
 
     var rows = mainGrid.findRow(function(row){
-        var billTypeId = row.billTypeId;
+        var billTypeId = row.serviceTypeId;
         if(billTypeId){
             return false;
         }else{

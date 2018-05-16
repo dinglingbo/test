@@ -3,6 +3,7 @@
 	<name>dms_frm_api</name>
 	<comment></comment>
 	<projects>
+		<project>dms_system</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

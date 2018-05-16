@@ -9,7 +9,7 @@
 -->
 <head>
 <title>期初应收应付</title>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/initQCRPBill.js?v=1.0.0"></script>
+<script src="<%=webPath + sysDomain%>/frm/js/settle/initQCRPBill.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -81,7 +81,7 @@
                         <div field="pamt" width="60" summaryType="sum" headerAlign="center" header="应付">
                           <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div field="comUnit" width="40" headerAlign="center" header="备注"></div>
+                        <div field="remark" width="40" headerAlign="center" header="备注"></div>
                             
                     </div>  
                   

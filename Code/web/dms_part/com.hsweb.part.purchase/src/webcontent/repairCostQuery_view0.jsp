@@ -9,7 +9,7 @@
 -->
 <head>
 <title>在修成本查询</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/repairMgr/repairCostQuery.js?v=1.0.0"></script>
+<script src="<%=webPath + partDomain%>/purchasePart/js/repairMgr/repairCostQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

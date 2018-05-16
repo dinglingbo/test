@@ -9,7 +9,7 @@
 -->
 <head>
 <title>进销存明细</title>
-<script src="<%= request.getContextPath() %>/purchasePart/js/queryMgr/inventoryDetailQuery.js?v=1.0.3"></script>
+<script src="<%=webPath + partDomain%>/purchasePart/js/queryMgr/inventoryDetailQuery.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 60px;

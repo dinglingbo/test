@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/30.
  */
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPtsEnterMainDetail.biz.ext";
 
 var advancedSearchWin = null;

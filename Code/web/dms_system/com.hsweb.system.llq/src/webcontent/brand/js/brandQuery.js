@@ -11,6 +11,7 @@ var dg6; //层6
 var dg7; //层7
 var dg8; //层8
 var dg9; //层9
+var dg10; //层10
 var navData = [];
 
 var panel;
@@ -26,6 +27,7 @@ $(document).ready(function(v){
     dg7 = nui.get("dg7"); //层7
     dg8 = nui.get("dg8"); //层8
     dg9 = nui.get("dg9"); //层9
+    dg10 = nui.get("dg10"); //层10
     
     queryDg1();
     
@@ -33,156 +35,178 @@ $(document).ready(function(v){
         var row = dgNavigation.getSelected();
         if (row.index) {
             showRightGrid(eval('dg' + row.index));
-        }w
-    });
-    
-    dg1.on("rowclick", function (e) {//查第2层
-        /* var column = e.column;
-        var editor = e.editor;
-        field = e.field,
-        value = e.value; */
-        var row = dg1.getSelected();
-        if (row.brand) {
-            brand = row.brand;
-            setTopNav(2, row.brandCn);
-            var params = {
-                "url": llq_pre_url + "/cars/show",
-                "params":{
-                    "brand": brand
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg2);
         }
     });
     
-    dg2.on("rowclick", function (e) {//查第3层
-        var row = dg2.getSelected();
-        if (row.auth && !row.last) {
-            setTopNav(3, row.name);
-            var params = {
-                "url": llq_pre_url + "/cars/code",
-                "params":{
-                    "brand": brand,
-                    "auth": unescape(row.auth)                                                                           
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg3);
-        }else{
-            queryGroupByAuth(row.auth);
-        }
-    });
+    dg1.on("rowclick", rowClickDg1);
     
-    dg3.on("rowclick", function (e) {//查第4层
-        var row = dg3.getSelected();
-        if (row.auth && !row.last) {
-            setTopNav(4, row.name);
-            var params = {
-                "url": llq_pre_url + "/cars/model",
-                "params":{
-                    "brand": brand,
-                    "auth": unescape(row.auth)                                                                           
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg4);
-        }else{
-            queryGroupByAuth(row.auth);
-        }
-    });
+    dg2.on("rowclick", rowClickDg2);
     
-    dg4.on("rowclick", function (e) {//查第5层
-        var row = dg4.getSelected();
-        if (row.auth && !row.last) {
-            setTopNav(5, row.name);
-            var params = {
-                "url": llq_pre_url + "/cars/litm",
-                "params":{
-                    "brand": brand,
-                    "auth": unescape(row.auth)                                                                           
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg5);
-        }else{
-            queryGroupByAuth(row.auth);
-        }
-    });
+    dg3.on("rowclick", rowClickDg3);
     
-    dg5.on("rowclick", function (e) {//查第6层
-        var row = dg5.getSelected();
-        if (row.auth && !row.last) {
-            setTopNav(6, row.name);
-            var params = {
-                "url": llq_pre_url + "/cars/litn",
-                "params":{
-                    "brand": brand,
-                    "auth": unescape(row.auth)                                                                           
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg6);
-        }else{
-            queryGroupByAuth(row.auth);
-        }
-    });
+    dg4.on("rowclick", rowClickDg4);
     
-    dg6.on("rowclick", function (e) {//查第7层
-        var row = dg6.getSelected();
-        if (row.auth && !row.last) {
-            setTopNav(7, row.name);
-            var params = {
-                "url": llq_pre_url + "/cars/litf",
-                "params":{
-                    "brand": brand,
-                    "auth": unescape(row.auth)                                                                           
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg7);
-        }else{
-            queryGroupByAuth(row.auth);
-        }
-    });
+    dg5.on("rowclick", rowClickDg5);
     
-    dg7.on("rowclick", function (e) {//查第8层
-        var row = dg7.getSelected();
-        if (row.auth && !row.last) {
-            setTopNav(8, row.name);
-            var params = {
-                "url": llq_pre_url + "/cars/litfi",
-                "params":{
-                    "brand": brand,
-                    "auth": unescape(row.auth)                                                                           
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg8);
-        }else{
-            queryGroupByAuth(row.auth);
-        }
-    });
+    dg6.on("rowclick", rowClickDg6);
     
-    dg8.on("rowclick", function (e) {//查第9层
-        var row = dg8.getSelected();
-        if (row.auth && !row.last) {
-            setTopNav(9, row.name);
-            var params = {
-                "url": llq_pre_url + "/cars/litsx",
-                "params":{
-                    "brand": brand,
-                    "auth": unescape(row.auth)                                                                           
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setDg9);
-        }else{
-            queryGroupByAuth(row.auth);
-        }
-    });
-});
+    dg7.on("rowclick", rowClickDg7);
+    
+    dg8.on("rowclick", rowClickDg8);
 
+    dg9.on("rowclick", rowClickDg9);
+});
+function rowClickDg1(){
+    var row = dg1.getSelected();
+    if (row.brand) {
+        brand = row.brand;
+        setTopNav(2, row.brandCn);
+        var params = {
+            "url": llq_pre_url + "/cars/show",
+            "params":{
+                "brand": brand
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg2);
+    }
+}
+function rowClickDg2(){
+    var row = dg2.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(3, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/code",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg3);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
+function rowClickDg3(){
+    var row = dg3.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(4, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/model",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg4);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
+function rowClickDg4(){
+    var row = dg4.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(5, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/litm",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg5);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
+function rowClickDg5(){
+    var row = dg5.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(6, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/litn",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg6);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
+function rowClickDg6(){
+    var row = dg6.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(7, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/litf",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg7);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
+function rowClickDg7(){
+    var row = dg7.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(8, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/litfi",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg8);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
+function rowClickDg8(){
+    var row = dg8.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(9, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/litsx",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg9);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
+function rowClickDg9(){
+    var row = dg9.getSelected();
+    if (row.auth && !row.last) {
+        setTopNav(10, row.name);
+        var params = {
+            "url": llq_pre_url + "/cars/litsx",
+            "params":{
+                "brand": brand,
+                "auth": unescape(row.auth)                                                                           
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setDg10);
+    }else{
+        queryGroupByAuth(row.auth);
+    }
+}
 /*
 *获取品牌
 */
@@ -311,6 +335,16 @@ function setDg9(data, rs){
 }
 
 /*
+*setDg10
+*/
+function setDg10(data, rs){
+    dg10.setData(data);
+    index = 10, max = 10;
+    setNav(rs.title);
+    showRightGrid(dg10);
+}
+
+/*
 *左部grid
 */
 function showLeftGrid(gridObj){
@@ -348,6 +382,31 @@ function showRightGrid(gridObj){
         $($(".groupButton")[1]).attr("style", "background:#e0d7d7;");
     }else{
         $($(".groupButton")[1]).attr("style", "background:#ffffff;");
+    }
+
+    var data = gridObj.getData();
+    if(data && data.length == 1) {
+        var row = gridObj.getRow(0);
+        gridObj.setSelected(row);
+        if(index==1){
+            rowClickDg1();
+        }else if(index==2){
+            rowClickDg2();
+        }else if(index==3){
+            rowClickDg3();
+        }else if(index==4){
+            rowClickDg4();
+        }else if(index==5){
+            rowClickDg5();
+        }else if(index==6){
+            rowClickDg6();
+        }else if(index==7){
+            rowClickDg7();
+        }else if(index==8){
+            rowClickDg8();
+        }else if(index==9){
+            rowClickDg9();
+        }
     }
 }
 

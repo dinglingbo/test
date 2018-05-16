@@ -2,12 +2,21 @@ var mainFrame = null;
 var partForm = null;
 var applyCarBrandIdEl = null;
 var dgbasic = null;
+var advancedSearchWin = null;
+var advancedSearchForm = null;
+var searchCarbrandIdEl = null;
+var brandList = null;
+var brandHash = {};
 
 $(document).ready(function(v) {
 
     partForm = new nui.Form("#partForm");
     applyCarBrandIdEl = nui.get("applyCarBrandId");
     dgbasic = nui.get("dgbasic");
+    advancedSearchWin = nui.get("advancedSearchWin");
+    advancedSearchForm = new nui.Form("#advancedSearchForm");
+    searchCarbrandIdEl = nui.get("searchCarbrandId");
+
     queryDg1();
 
 	//$("#query0").css("color","blue");
@@ -29,55 +38,49 @@ $(document).ready(function(v) {
             e.cellHtml = html;
         }
     });
+
+    $("#partCode").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            queryPartInfo();
+        }
+    });
     
 });
-function queryPartInfo(type){
+function ondrawcell(e){
+    switch (e.field) {
+        case "brand":
+        if (brandHash && brandHash[e.value]) {
+            e.cellHtml = brandHash[e.value].brandCn;
+        }
+        break;
+    }
+}
+function queryPartInfo(){
     var data = partForm.getData();
-    if (data.partCodeList) {
-        var tmpList = data.partCodeList.split("\n");
-        /*for (i = 0; i < tmpList.length; i++) {
+    if (!data.partCode) {
+        /*var tmpList = data.partCodeList.split("\n");
+        for (i = 0; i < tmpList.length; i++) {
             tmpList[i] = "'" + tmpList[i] + "'";
-        }*/
-        data.partCodeList = tmpList.join(",");
+        }
+        data.partCodeList = tmpList.join(",");*/
+        nui.alert("请输入零件号!");
+        return;
     }
    
     var brand = data.applyCarbrandId||'';
 
     if(!brand) {
-        //queryPartBrand(data.partCodeList);
-        nui.alert("请选择品牌!");
+        queryPartBrand(data.partCode);
         return;
+    }else{
+        if(data.partCode){
+            queryBasic(brand,data.partCode);
+        } 
     }
-
-    if(data.partCodeList){
-        queryBasic(brand,data.partCodeList);
-    }
-
-	/*switch (type)
-    {
-        case 0:
-            //document.getElementById("mainFrame").src=webPath + sysDomain + "/llq/vin/vinQuery.jsp";
-            break;
-        case 1:
-            //document.getElementById("mainFrame").src=webPath + sysDomain + "/llq/brand/brandQuery.jsp";
-            break;
-        case 2:
-            //document.getElementById("mainFrame").src=webPath + sysDomain + "/common/embedJsp/containBottomStock.jsp";
-            break;
-        default:
-        	//document.getElementById("mainFrame").src=webPath + sysDomain + "/llq/vin/vinQuery.jsp";
-            break;
-    }
-
-    $("#query0").css("color","black");
-    $("#query1").css("color","black");
-    $("#query2").css("color","black");
-
-    if($("#query"+type).length>0)
-    {
-        $("#query"+type).css("color","blue");
-        $("#query"+type).css("font-weight","true");
-    }*/
+}
+function queryPartWithBrand(data){
+    
+    advancedSearchWin.show();
 }
 function queryBasic(brand,pid){
     
@@ -108,6 +111,10 @@ function queryDg1(){
 }
 function setDg1(data){
     applyCarBrandIdEl.setData(data);
+
+    data.forEach(function(v) {
+        brandHash[v.brand] = v;
+    });
 }
 function openDetail(pid){ 
     var row = dgbasic.getSelected();
@@ -139,8 +146,29 @@ function queryPartBrand(pid){
     }
     
     //$(".groupButton").hide();
-    callAjax(url, params, processAjax, getBrand);
+    callAjax(url, params, processAjax, setBrand);
 }
-function getBrand(data){
+function setBrand(data){
     var i = 0;
+    advancedSearchWin.show();
+    searchCarbrandIdEl.setData(data);
+}
+function onAdvancedSearchOk(){
+    var data = advancedSearchForm.getData()
+    var brand = data.searchCarbrandId;
+    if(!brand){
+        nui.alert("请选择品牌!");
+        return;
+    }
+
+    var data = partForm.getData();
+    var partCode = data.partCode;
+
+    queryBasic(brand,partCode);
+
+    onAdvancedSearchCancel();
+}
+function onAdvancedSearchCancel(){
+    searchCarbrandIdEl.setData([]);
+    advancedSearchWin.hide();
 }

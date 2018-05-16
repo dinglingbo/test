@@ -8,9 +8,10 @@
              style="width:100%;height:100%;"
              showColumns="true"
              showPager="fasle" >                
-            <div property="columns">                                             
-                <div field="cars_model" headerAlign="right" width="20px" align="right">车型</div>
-                <div field="year" headerAlign="left" align="left">年份</div>
+            <div property="columns">
+                <div field="brandname" headerAlign="center" align="left" width="20px">品牌</div>
+                <div field="cars_model" headerAlign="center" align="left">车型</div>
+                <div field="year" headerAlign="center" width="20px" align="left">年份</div>
             </div>
         </div>
     </div>        

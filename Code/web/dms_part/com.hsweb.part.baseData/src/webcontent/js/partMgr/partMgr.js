@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var partListUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
 var tree = null;
@@ -181,9 +181,9 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        url: webPath+partDomain+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
-        width: 740, height: 350,
+        width: 740, height: 250,
         allowDrag:true,
         allowResize:false,
         onload: function ()

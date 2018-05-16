@@ -468,6 +468,7 @@ function doTransferBill()
         }
     });
 }
+
 function spRpAccountPost(params,callback)
 {
     var url = window._rootFrmUrl+"com.hsapi.frm.arap.createArapService.biz.ext";

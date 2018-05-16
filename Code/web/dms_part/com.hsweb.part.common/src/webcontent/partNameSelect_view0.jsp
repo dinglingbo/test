@@ -21,8 +21,8 @@
             <td style="white-space:nowrap;">
                 <input class="nui-textbox" width="200" id="searchKey"/>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选择</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
             </td>
         </tr>
     </table>

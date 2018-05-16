@@ -21,7 +21,7 @@
     String repairDomain = Env.getContributionConfig("system", "url", "webDomain", "REPAIR");
     String cloudPartDomain = Env.getContributionConfig("system", "url", "webDomain", "CLOUDPART");
     String crmDomain = Env.getContributionConfig("system", "url", "webDomain", "CRM");
-    String frmDomain = Env.getContributionConfig("system", "url", "webDomain", "FRM");
+    String frmDomain = Env.getContributionConfig("system", "url", "webDomain", "FINANCIAL");
     
     //API域 访问其他API域使用：xxApi + API路径
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
@@ -29,7 +29,7 @@
     String repairApi = Env.getContributionConfig("system", "url", "apiDomain", "REPAIR");
     String cloudPartApi = Env.getContributionConfig("system", "url", "apiDomain", "CLOUDPART");
     String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
-    String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
+    String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FINANCIAL");
 	
 	String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
 	apiPath = Env.getContributionConfig("system", "url", "api", serverType);

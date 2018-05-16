@@ -20,6 +20,25 @@ $(document).ready(function(v)
         e.data.token = token;
     });
     //console.log("xxx");
+
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+
+        switch(keyCode){
+            case 27:
+            window.CloseOwnerWindow("");
+            break; 
+        }
+
+        /*if((keyCode==83)&&(event.shiftKey))  {  
+            onOk();  
+        } 
+
+        if((keyCode==67)&&(event.shiftKey))  { 
+            onCancel();
+        }  */
+    }
 });
 function onDrawNode(e)
 {

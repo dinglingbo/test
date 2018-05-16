@@ -44,7 +44,7 @@
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
                 </td>
             </tr>
@@ -70,9 +70,9 @@
         </div>
         <div showCollapseButton="false">
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addPart()">新增</a>
-                <a class="nui-button" iconCls="icon-ok" plain="true" onclick="onOk()">选择</a>
-                <a class="nui-button" iconCls="icon-close" plain="true" onclick="onCancel()">关闭</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
             </div>
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -83,6 +83,7 @@
                      url=""
                      idField="id"
                      totalField="page.count"
+                     onrowdblclick="onRowDblClick"
                      selectOnLoad="true"
                      pageSize="50"
                      sortMode="client"

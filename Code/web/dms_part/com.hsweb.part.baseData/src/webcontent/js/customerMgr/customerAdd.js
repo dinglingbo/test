@@ -124,7 +124,6 @@ var requiredField = {
 	    else{
 	        data.isInternalId = "";
 	    }
-	    console.log(data);
 	    for(var key in requiredField)
 	    {
 	        if(!data[key] || data[key].trim().length==0)
@@ -144,8 +143,8 @@ var requiredField = {
 
 	    nui.mask({
 	        el : document.body,
-        cls : 'mini-mask-loading',
-        html : '保存中...'
+        	cls : 'mini-mask-loading',
+        	html : '保存中...'
 	    });
 	    nui.ajax({
 	        url:saveUrl,

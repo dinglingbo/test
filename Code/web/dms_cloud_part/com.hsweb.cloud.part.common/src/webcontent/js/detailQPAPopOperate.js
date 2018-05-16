@@ -41,6 +41,17 @@ $(document).ready(function(v)
             chooseBtn.focus();
         }
     });
+
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+
+        switch(keyCode){
+            case 27:
+            window.CloseOwnerWindow("");
+            break; 
+        } 
+    }
 });
 function init()
 {
@@ -325,22 +336,5 @@ $("#remark").bind("keydown", function (e) {
         chooseBtn.focus();
     }
 });
-document.onkeyup=function(event){
-    var e=event||window.event;
-    var keyCode=e.keyCode||e.which;
 
-    switch(keyCode){
-        case 27:
-        window.CloseOwnerWindow("");
-        break; 
-    }
-
-    if((keyCode==83)&&(event.shiftKey))  {  
-        onOk();  
-    } 
-
-    if((keyCode==67)&&(event.shiftKey))  { 
-        onCancel();
-    }  
-}
 

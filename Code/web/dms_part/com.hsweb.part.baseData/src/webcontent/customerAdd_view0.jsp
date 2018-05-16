@@ -113,7 +113,7 @@
                                   <input name="fullName"
                                  id="fullName"
                                  class="nui-textbox" width="100%"/>
-                                  <input name="fullName1" class="nui-buttonedit width3" width="403"
+                                  <input name="fullName1" class="nui-buttonedit width3" width="100%"
                                          id="fullName1"
                                          emptyText="请选择公司..."
                                          allowInput="false"

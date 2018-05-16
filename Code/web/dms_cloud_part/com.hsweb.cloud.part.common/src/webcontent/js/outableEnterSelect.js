@@ -15,10 +15,12 @@ var abcTypeList = [];
 var abcTypeHash = {};
 var carBrandList = [];
 var queryForm = null;
+var codeEl = null;
 $(document).ready(function() {
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
+    codeEl = nui.get("search-code");
     /*partGrid.on("load", function() {
         onPartGridRowClick({});
     });*/
@@ -68,6 +70,43 @@ $(document).ready(function() {
         storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
     });
+
+    codeEl.focus();
+
+    $("#search-code").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-name").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-applyCarModel").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search-namePy").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+
+        switch(keyCode){
+            case 27:
+            window.CloseOwnerWindow("");
+            break; 
+        }
+    }
 
 });
 function onDrawNode(e)

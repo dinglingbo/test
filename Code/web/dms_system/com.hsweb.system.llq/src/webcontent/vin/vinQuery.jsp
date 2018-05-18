@@ -29,8 +29,17 @@
         </div>
         <div showCollapseButton="false" style="border:0;">
             <br/>
-            全部品牌 >
-            <div id="vin" 
+            <div class="" id="partForm" style="width:100%;height:40px;">
+                  <table class="" >
+                      <tr class="">
+                            <td >
+                                输入VIN(全部品牌)<input class="nui-textbox" width="350px" id="vin" name="vin" enabled="true" emptyText="输入VIN"/>
+                                <a class="nui-button" onclick="queryVin" style="width:100px">目录查询</a>
+                            </td>
+                      </tr>
+                </table>    
+            </div>
+            <!-- <div id="vin" 
                 class="nui-autocomplete" 
                 style="width:350px;"
                 popupWidth="400" 
@@ -46,8 +55,8 @@
                     <div header="vin" field="vin" width="50"></div>
                     <div header="品牌" field="brandname"></div>
                 </div>
-            </div>
-            <a class="nui-button" onclick="queryVin();">查&nbsp;&nbsp;询</a>
+            </div> -->
+            <!-- <a class="nui-button" onclick="queryVin();">查&nbsp;&nbsp;询</a> -->
             <br/><br/>
         </div>
     </div> 

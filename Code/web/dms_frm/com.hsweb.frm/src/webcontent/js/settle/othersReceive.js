@@ -2,22 +2,19 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + frmApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.frm.others.queryRPAccountList.biz.ext";
-var searchStatus=null;
+var rightGridUrl = baseUrl+"com.hsapi.frm.setting.queryAccountList.biz.ext";
+
 var searchBeginDate = null;
 var searchEndDate = null;
 var comSearchGuestId = null;
 var auditSignEl = null;
 var mainGrid = null;
-var Rlist = null;
+var list = null;
+var accountList = null;
+var accountTypeHash = {};
 var auditSignHash = {
     "0":"否",
     "1":"是"
-};
-var settleStatusHash = {
-    "0":"未结算",
-    "1":"部分结算",
-    "2":"已结算"
 };
 var auditSignList = [
     {id:0,text:"未审"},
@@ -25,7 +22,7 @@ var auditSignList = [
 ];
 $(document).ready(function(v)
 {
-	   searchStatus=nui.get("billStatus");
+
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(rightGridUrl);
     searchBeginDate = nui.get("beginDate");
@@ -37,13 +34,46 @@ $(document).ready(function(v)
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
 
     getInComeExpenses(function(data) {
-        Rlist = data.list;
-        //billTypeListEl.setUrl(list);
+        list = data.list;
+    });
+
+    getAccountList(function(data) {
+        accountList = data.settleAccount;
+    });
+
+    getSettleType(function(data) {
+        var d = data.list || [];
+        d.filter(function(v)
+        {
+            accountTypeHash[v.customid] = v;
+            return true;
+        });
     });
 
     doSearch();
 
 });
+var querySettleTypeUrl = baseUrl
+        + "com.hsapi.frm.setting.querySettleType.biz.ext";
+function getSettleType(callback) {
+    nui.ajax({
+        url : querySettleTypeUrl,
+        data : {
+            dictId: 'DDT20130703000031',
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 var queryUrl = baseUrl + "com.hsapi.frm.setting.queryFibInComeExpenses.biz.ext";
 function getInComeExpenses(callback) {
     var params = {itemTypeId : 1, isMain: 0};
@@ -65,19 +95,42 @@ function getInComeExpenses(callback) {
         }
     });
 }
+var queryAccountUrl = baseUrl + "com.hsapi.frm.setting.queryFiSettleAccount.biz.ext";
+function getAccountList(callback) {
+    nui.ajax({
+        url : queryAccountUrl,
+        data : {
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.settleAccount) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 function doSearch() {
     var params = {};
-    params.rpType = 1;
- 
-  
-   
+    params.rpTypeId = 1;
+    params.postStatus = auditSignEl.getValue();
+
+    params.guestId = comSearchGuestId.getValue();
+    
     params.sCreateDate = searchBeginDate.getValue();
     params.eCreateDate = searchEndDate.getValue();
-    params.billStatus=searchStatus.getValue();
+
     mainGrid.load({
         params: params,
         pageSize: 1000,
         token : token
+    });
+    mainGrid.on("drawcell", function (e){
+    	onDrawCell(e);
     });
 }
 //提交单元格编辑数据前激发
@@ -91,25 +144,50 @@ function onCellCommitEdit(e) {
         e.cancel = true;
     }
 }
+function OnrpMainGridCellBeginEdit(e){
+    var field=e.field; 
+    var editor = e.editor;
+    var row = e.row;
+    var column = e.column;
+    var editor = e.editor;
+
+    if(row.auditSign == 1){
+        e.cancel = true;
+    }
+
+    if (column.field == "settAccountCode") {
+        var str = "accountId="+row.settAccountId;
+        var url = "com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
+        editor.setUrl(url);
+    }
+}
 function onDrawCell(e)
 {
     switch (e.field)
     {
-        case "settleStatus":
-            if(settleStatusHash && settleStatusHash[e.value])
-            {
-                e.cellHtml = settleStatusHash[e.value];
-            }
-            break;
-        case "auditSign":
+        case "postStatus":
             if(auditSignHash && auditSignHash[e.value])
             {
                 e.cellHtml = auditSignHash[e.value];
             }
             break;
+        case "balaTypeCode":
+            if(accountTypeHash && accountTypeHash[e.value])
+            {
+                e.cellHtml = accountTypeHash[e.value].name;
+            }
+            break;
         default:
             break;
     }
+}
+function onbillTypeChange(e){
+    var se = e.selected;
+    var billTypeCode = se.code;
+    var row = mainGrid.getSelected();
+    var newRow = {billTypeCode: billTypeCode};
+    mainGrid.updateRow(row, newRow);
+
 }
 function addGuest(){
     var supplier = null;
@@ -142,30 +220,13 @@ function addGuest(){
                     var shortName  = supplier.shortName;
                     var code = supplier.code;
 
-                    var newRow = {guestId: guestId, guestName: fullName, billDc: 1, rpTypeId: 2};
+                    var newRow = {guestId: guestId, guestName: fullName, rpDc: 1, accountTypeId: 2, settleType:"应收"};
                     mainGrid.addRow(newRow);
                 }
                 
             }
         }
     });
-}
-function OnrpMainGridCellBeginEdit(e){
-    var field=e.field; 
-    var editor = e.editor;
-    var row = e.row;
-
-    if(row.auditSign == 1){
-        e.cancel = true;
-    }
-}
-function onbillTypeChange(e){
-    var se = e.selected;
-    var billTypeCode = se.code;
-    var row = mainGrid.getSelected();
-    var newRow = {billTypeCode: billTypeCode};
-    mainGrid.updateRow(row, newRow);
-
 }
 function deleteGuest(){
     var record = mainGrid.getSelected();
@@ -177,15 +238,15 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.frm.QCRPBill.saveInitRpBill.biz.ext";
+        + "com.hsapi.frm.setting.saveQTAccountList.biz.ext";
 function save(){
     var data = mainGrid.getData();
 
     if(data && data.length <= 0) return;
 
     var rows = mainGrid.findRow(function(row){
-        var billTypeId = row.serviceTypeId;
-        if(billTypeId){
+        var settAccountId = row.settAccountId;
+        if(settAccountId){
             return false;
         }else{
             return true;
@@ -193,39 +254,68 @@ function save(){
     });
 
     if(rows) {
-        nui.alert("请选择收支项目后再保存!");
+        nui.alert("请选择结算账户后再保存!");
         return;
     }
 
-    var rpAdd = mainGrid.getChanges("added");
-    var rpUpdate = mainGrid.getChanges("modified");
-    var rpDelete = mainGrid.getChanges("removed");
-    var rpAddList = [];
-    var rpUpdateList = [];
-    if(rpAdd){
-        for(var i=0; i<rpAdd.length; i++){
-            var temp = rpAdd[i];
+    var rows = mainGrid.findRow(function(row){
+        var settAccountCode = row.settAccountCode;
+        if(settAccountCode){
+            return false;
+        }else{
+            return true;
+        }
+    });
+
+    if(rows) {
+        nui.alert("请选择结算账户对应的结算方式后再保存!");
+        return;
+    }
+
+    var rows = mainGrid.findRow(function(row){
+        var settAccountName = row.settAccountName;
+        if(settAccountName){
+            return false;
+        }else{
+            return true;
+        }
+    });
+
+    if(rows) {
+        nui.alert("请选择费用科目后再保存!");
+        return;
+    }
+
+    var accountAdd = mainGrid.getChanges("added");
+    var accountUpdate = mainGrid.getChanges("modified");
+    var accountDelete = mainGrid.getChanges("removed");
+
+    var accountAddList = [];
+    var accountUpdateList = [];
+    if(accountAdd){
+        for(var i=0; i<accountAdd.length; i++){
+            var temp = accountAdd[i];
             if(temp.createDate) {
                 temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
                 temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
-            rpAddList.push(temp);
+            accountAddList.push(temp);
         }
 
     }
 
-    if(rpUpdate){
-        for(var i=0; i<rpUpdate.length; i++){
-            var temp = rpUpdate[i];
+    if(accountUpdate){
+        for(var i=0; i<accountUpdate.length; i++){
+            var temp = accountUpdate[i];
             if(temp.createDate) {
                 temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
                 temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
-            rpUpdateList.push(temp);
+            accountUpdateList.push(temp);
 
         }
 
@@ -241,9 +331,9 @@ function save(){
         url : saveUrl,
         type : "post",
         data : JSON.stringify({
-            rpAdd: rpAddList,
-            rpUpdate: rpUpdateList,
-            rpDelete: rpDelete
+            accountAdd: accountAddList,
+            accountUpdate: accountUpdateList,
+            accountDelete: accountDelete
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -264,7 +354,7 @@ function save(){
     
 }
 var auditUrl = baseUrl
-        + "com.hsapi.frm.QCRPBill.auditInitRpBill.biz.ext";
+        + "com.hsapi.frm.setting.auditQTAccountList.biz.ext";
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
@@ -285,7 +375,7 @@ function audit(){
     }
 
     var data = mainGrid.getSelecteds();
-    var dataList = [];
+    var accountList = [];
     if(data){
         for(var i=0; i<data.length; i++){
             var temp = data[i];
@@ -295,7 +385,7 @@ function audit(){
             if(temp.operateDate) {
                 temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
-            dataList.push(temp);
+            accountList.push(temp);
         }
 
     }
@@ -311,7 +401,7 @@ function audit(){
             url : auditUrl,
             type : "post",
             data : JSON.stringify({
-                rpBill: dataList
+                accountBill: accountList
             }),
             success : function(data) {
                 nui.unmask(document.body);
@@ -361,4 +451,11 @@ function selectSupplier(elId)
             }
         }
     });
+}
+function onAccountValueChanged(e){
+
+    var r = mainGrid.getSelected();
+    var newRow = {balaTypeCode:null};
+    mainGrid.updateRow(r,newRow);
+
 }

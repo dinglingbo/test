@@ -91,10 +91,13 @@
 				 	<div type="indexcolumn" >序号</div>
 				 	<div field="id" allowSort="true" headerAlign="center"
 				 		visible="false"width="120"></div>
+				 	
 					<div header="业务信息" headerAlign="center">
 						<div property="columns" width="10">
 	
 							<div type="checkcolumn" >选择</div>
+							<div field="rpCode" allowSort="true" headerAlign="center"
+								width="120" visible="false">订单号</div>
 							<div field="serviceCode" allowSort="true" headerAlign="center"
 								width="120">工单号</div>
 							<div field="guestFullName" allowSort="true" headerAlign="center"

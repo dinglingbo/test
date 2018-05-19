@@ -31,7 +31,7 @@ $(document).ready(function(v)
     mainGrid.setUrl(rightGridUrl);
     searchBeginDate = nui.get("beginDate");
     searchEndDate = nui.get("endDate");
-    comSearchGuestId = nui.get("searchGuestId");
+
     auditSignEl = nui.get("auditSign");
     searchStatus=nui.get("billStatus");
     searchBeginDate.setValue(getNowStartDate());
@@ -39,12 +39,14 @@ $(document).ready(function(v)
 
     getInComeExpenses(function(data) {
         list = data.list;
+        
         //billTypeListEl.setUrl(list);
     });
 
     doSearch();
 
 });
+
 function OnrpMainGridCellBeginEdit(e){
     var field=e.field; 
     var editor = e.editor;
@@ -81,7 +83,7 @@ function getInComeExpenses(callback) {
 function doSearch() {
     var params = {};
     params.rpType = -1;
-    params.guestId = comSearchGuestId.getValue();
+   
     params.sCreateDate = searchBeginDate.getValue();
     params.eCreateDate = searchEndDate.getValue();
     params.billStatus=searchStatus.getValue();
@@ -161,7 +163,7 @@ function addGuest(){
                     var shortName  = supplier.shortName;
                     var code = supplier.code;
 
-                    var newRow = {guestId: guestId, guestName: fullName, billDc: -1, rpTypeId: 2};
+                    var newRow = {guestId: guestId, guestName: fullName, rpType: -1, serviceTypeId: 2};
                     mainGrid.addRow(newRow);
                 }
                 
@@ -171,7 +173,7 @@ function addGuest(){
 }
 function deleteGuest(){
     var record = mainGrid.getSelected();
-    if(record.auditSign == 1) return;
+    if(record.billStatus == 1) return;
     if(!record)
     {
         return;

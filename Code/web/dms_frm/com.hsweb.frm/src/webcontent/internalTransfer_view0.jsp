@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>费用支出单</title>
-<script src="<%=webPath + cloudPartDomain%>/settlement/js/expensePay.js?v=2.0.0"></script>
+<title>内部转账单</title>
+<script src="<%=webPath + sysDomain%>/frm/js/settle/internalTransfer.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -44,7 +44,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="" onclick="addGuest()" id="addGuestBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="addInternalTransfer()" id="addInternalTransferBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                             <a class="nui-button" plain="true" iconCls="" onclick="deleteGuest()" id="deleteGuestBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
@@ -57,12 +57,9 @@
                             <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                             <label style="font-family:Verdana;">审核状态：</label>
-                            <input class="nui-combobox" id="auditSign" name="auditSign" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
+                            <input class="nui-combobox" id="postStatus" name="postStatus" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
 
                             <span class="separator"></span> 
-                            <input id="searchGuestId" class="nui-buttonedit"
-                                   emptyText="请选择往来单位..."
-                                   onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                             <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
                         </td>
@@ -80,42 +77,48 @@
                      allowCellSelect="true"
                      allowCellEdit="true"
                      oncellcommitedit="onCellCommitEdit"
+                     oncellbeginedit="OnrpMainGridCellBeginEdit"
                      showModified="false"
                      multiSelect="true"
-                     oncellbeginedit="OnrpMainGridCellBeginEdit"
                      pageSize="1000"
                      sizeList="[500,1000,2000]"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn" width="25">序号</div>
                         <div type="checkcolumn" field="check" width="25"></div>
-                        <div field="guestId" width="50" headerAlign="center" visible="false"></div>
-                        <div field="billDc" width="50" headerAlign="center" visible="false"></div>
-                        <div field="guestName" summaryType="count" width="50" headerAlign="center" header="往来单位名称"></div>
-                        <div field="balaAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="结算账户">
-                            <input  property="editor" enabled="true" id="balaAccountList" name="list"  class="nui-combobox" valueField="id" textField="name" onvaluechanged="onAccountValueChanged" url="" emptyText=""  vtype="required"/> 
+                        <div field="toSettAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="收款账户">
+                            <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" onvaluechanged="onRAccountChange" url="" emptyText=""  vtype="required"/> 
                         </div>
-                        <div field="balaTypeCode" type="comboboxcolumn" width="50" headerAlign="center" header="结算方式">
+                        <div field="toAccountCode" headerAlign="center"   header="" visible="false"></div><!--  visible="false"-->
+                        <div field="toSettAccountName" headerAlign="center"  header="" visible="false"></div><!--  visible="false"-->
+                        
+                        <div field="rpAmt" width="60" summaryType="sum" headerAlign="center" header="收款金额">
+                           <input property="editor" vtype="float" class="nui-textbox"/>
+                        </div>
+                        <div field="settAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="付款账户">
+                            <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" onvaluechanged="onPAccountChange" url="" emptyText=""  vtype="required"/> 
+                        </div>
+                        <div field="balaTypeCode" type="comboboxcolumn" width="50" headerAlign="center" header="付款方式">
                             <input  property="editor" enabled="true" name="list" dataField="list" class="nui-combobox" valueField="customId" textField="customName" 
-                                      url="" data="accountList"
+                                      url=""
                                       onvaluechanged="" emptyText=""  vtype="required"
                                       /> 
                         </div>
-                        <div field="billTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="费用科目">
-                            <input  property="editor" enabled="true" id="billTypeList" name="list" data="IClist" dataField="list" class="nui-combobox" valueField="id" onvaluechanged="onbillTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
+                        <div field="settAccountCode" headerAlign="center"  visible="false" header=""></div><!--  visible="false"-->
+                        <div field="settAccountName" headerAlign="center"  visible="false" header=""></div><!--  -->
+                        <div field="itemTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="费用科目">
+                            <input  property="editor" enabled="true" id="billTypeList" name="list" data="list" dataField="list" class="nui-combobox" valueField="id" onvaluechanged="onbillTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
                         </div>
-                        <div field="billTypeCode" headerAlign="center" visible="false" header="费用科目编码"></div>
-                        <div field="charOffAmt" width="60" summaryType="sum" headerAlign="center" header="支出金额">
-                           <input property="editor" vtype="float" class="nui-textbox"/>
-                        </div>
+                        <div field="itemTypeCode" headerAlign="center" header="费用科目编码" visible="false"></div><!--  -->
+                        
                         <div field="remark" width="80" headerAlign="center" header="备注">
                             <input property="editor" class="nui-textbox"/>
                         </div>
-                        <div field="auditSign" width="30" headerAlign="center" header="是否审核"></div>
-                        <div field="auditor" width="30" headerAlign="center" header="审核人"></div>
-                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                        <div field="rpAccountId" width="60" headerAlign="center" header="单号"></div>
-                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div field="postStatus" width="30" headerAlign="center" header="是否审核"></div>
+                        <div field="recorder" width="30" headerAlign="center" header="审核人"></div>
+                        <div allowSort="true" field="recordDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div field="code" width="60" headerAlign="center" header="单号"></div>
+                        
                             
                     </div>  
                   

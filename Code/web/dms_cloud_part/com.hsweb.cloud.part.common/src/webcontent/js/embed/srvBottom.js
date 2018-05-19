@@ -16,6 +16,7 @@ var sellRecordTab = null;
 var guestPriceTab = null;
 var rtnRecordTab = null;
 var partInfoTab = null;
+var chainStockTab = null;
 $(document).ready(function(v) {
 	mainTabs = nui.get("mainTabs");
     tabList = mainTabs.getTabs();
@@ -26,6 +27,7 @@ $(document).ready(function(v) {
 	guestPriceTab =  mainTabs.getTab("guestPrice");
 	rtnRecordTab =  mainTabs.getTab("rtnRecord");
 	partInfoTab =  mainTabs.getTab("partInfo");
+    chainStockTab =  mainTabs.getTab("chainStock");
 
     //mainTabs.updateTab(stockselectTab, {url: webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp"});
 
@@ -57,12 +59,52 @@ $(document).ready(function(v) {
 		}
     }
 
+    if(parent && parent.confirmType){
+        var type = parent.confirmType();
+        if(type) {
+            if(type == 'pchs'){
+                //库存明细 采购记录 销售记录  
+                mainTabs.updateTab(stockselectTab, {visible:true});
+                mainTabs.updateTab(outableRecordTab, {visible:true});
+                mainTabs.updateTab(pchsRecordTab, {visible:true});
+                mainTabs.updateTab(partInfoTab, {visible:true});
+            }else{
+                mainTabs.updateTab(stockselectTab, {visible:true});
+                mainTabs.updateTab(sellRecordTab, {visible:true});
+                mainTabs.updateTab(guestPriceTab, {visible:true});
+                mainTabs.updateTab(partInfoTab, {visible:true});
+            }
+        }else {
+            mainTabs.updateTab(stockselectTab, {visible:true});
+            mainTabs.updateTab(sellRecordTab, {visible:true});
+            mainTabs.updateTab(guestPriceTab, {visible:true});
+            mainTabs.updateTab(partInfoTab, {visible:true});
+        }
+        
+    }
+
 });
 function setInitEmbedParams(row){
 	var params = {};
 	params.storeId = row.storeId;
 	params.partId = row.partId;
 	params.guestId= row.guestId;
+
+    if(row.type && row.type == "pchs"){
+        params.storeId = null;
+        params.guestId = null;
+
+/*        mainTabs.updateTab(stockselectTab, {visible:true});
+        mainTabs.updateTab(outableRecordTab, {visible:true});
+        mainTabs.updateTab(pchsRecordTab, {visible:true});
+        mainTabs.updateTab(partInfoTab, {visible:true});*/
+    }else{
+/*        mainTabs.updateTab(stockselectTab, {visible:true});
+        mainTabs.updateTab(sellRecordTab, {visible:true});
+        mainTabs.updateTab(guestPriceTab, {visible:true});
+        mainTabs.updateTab(partInfoTab, {visible:true});*/
+    }
+
 	gparams = nui.clone(params);
 	//document.getElementById("bottomFormIframeStock").contentWindow.doSearch(params);
 	showTabInfo();
@@ -80,8 +122,8 @@ function onMainTabLoad(e){
     var name = tab.name;
     var params = {};
     if(!gparams.partId) gparams.partId=0;
-    if(!gparams.guestId) gparams.guestId=0;
-    if(!gparams.storeId) gparams.storeId=0;
+    //if(!gparams.guestId) gparams.guestId=0;
+    //if(!gparams.storeId) gparams.storeId=0;
     switch (name)
     {
         case "stockselect":
@@ -109,6 +151,9 @@ function onMainTabLoad(e){
         case "partInfo":
             mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
             break;
+        case "chainStock":
+            mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
+            break;
         default:
             break;
     }
@@ -119,8 +164,8 @@ function showTabInfo(){
     var url = tab.url;
     var params = {};
     if(!gparams.partId) gparams.partId=0;
-    if(!gparams.guestId) gparams.guestId=0;
-    if(!gparams.storeId) gparams.storeId=0;
+    //if(!gparams.guestId) gparams.guestId=0;
+    //if(!gparams.storeId) gparams.storeId=0;
 	switch (name)
     {
         case "stockselect":
@@ -210,6 +255,17 @@ function showTabInfo(){
                 mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomPartInfo.jsp", partInfoTab);
             }else{
                 mainTabs.getTabIFrameEl(partInfoTab).contentWindow.doSearch(gparams);
+            }
+            break;
+        case "chainStock":
+            /*if(document.getElementById("bottomFormIframeStock").contentWindow.doSearch){
+                params.partId=gparams.partId;
+                document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
+            }*/
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomChainStock.jsp", chainStockTab);
+            }else{
+                mainTabs.getTabIFrameEl(chainStockTab).contentWindow.doSearch(gparams);
             }
             break;
         default:

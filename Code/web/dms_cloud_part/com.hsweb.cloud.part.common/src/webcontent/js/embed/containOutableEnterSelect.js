@@ -215,7 +215,7 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partDetail.flow",
+        url: webPath+partDomain+"/com.hsweb.part.baseData.partDetail.flow?token="+token,
         title: "配件资料",
         width: 740, height: 350,
         allowDrag:true,

@@ -6,6 +6,7 @@ var dgarticle;
 var dgcompt;
 var dgbaseinfo;
 var dgcompatible;
+var dgstock;
 var ntab;
 var detailCatch = {};
 
@@ -17,6 +18,7 @@ $(document).ready(function(v){
     dgcompt = nui.get("dgcompt");
     dgbaseinfo = nui.get("dgbaseinfo");
     dgcompatible = nui.get("dgcompatible");
+    dgstock = nui.get("dgstock");
     ntab = nui.get("tabs");
 });
 
@@ -38,6 +40,8 @@ function changeTabs(e){
         queryBaseinfo();
     }else if(tab.name == 'compatible'){
         queryCompatible();
+    }else if(tab.name == 'stock'){
+        queryChainStock();
     }
 }
 
@@ -70,6 +74,8 @@ function setBasic(data){
         }
     }
     
+    ntab.updateTab(tabs[7], {visible:true});
+
     var list = processKeyValue(data.headermessage);
     dgbasic.setData(list);
     detailCatch['basic'] = data;
@@ -229,4 +235,24 @@ function setCompatible(data, rs){
     }
     dgcompatible.setData(data);
     detailCatch['compatible'] = 1;
+}
+
+/*
+*获取库存分布信息
+*/
+function queryChainStock(){
+    if (!detailCatch['stock']){
+        var params = {
+            "params":{
+                "partCode":pid
+            },
+            "token": token
+        }
+        callAjax(apiPath + cloudPartApi + "/com.hsapi.cloud.part.common.svr.queryChainStock.biz.ext", params, processAjax, setChainStock);
+    }   
+}
+
+function setChainStock(data){
+    dgstock.setData(data);
+    detailCatch['stock'] = 1;
 }

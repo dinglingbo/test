@@ -6,6 +6,10 @@ var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:
 var treeUrl = baseUrl+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
 var partGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPartJoinStockList.biz.ext";
 var partGrid = null;
+var pchsOrderAddBtn = null;
+var sellOrderAddBtn = null;
+var pchsShopAddBtn = null;
+var sellShopAddBtn = null;
 
 var qualityList = [];
 var qualityHash = {};
@@ -21,6 +25,11 @@ $(document).ready(function() {
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
+
+    pchsOrderAddBtn = nui.get("pchsOrderAddBtn");
+    sellOrderAddBtn = nui.get("sellOrderAddBtn");
+    pchsShopAddBtn = nui.get("pchsShopAddBtn");
+    sellShopAddBtn = nui.get("sellShopAddBtn");
     /*partGrid.on("load", function() {
         onPartGridRowClick({});
     });*/
@@ -114,6 +123,23 @@ $(document).ready(function() {
         }
     });
 
+    if(parent.confirmType){
+        //控制按钮显示，生成销售订单，生成采购订单，生成销售车，生成采购车
+        var type = parent.confirmType();
+        if(type) {
+            if(type == 'pchs'){
+                pchsOrderAddBtn.setVisible(true);
+                pchsShopAddBtn.setVisible(true);
+            }else{
+                sellOrderAddBtn.setVisible(true);
+                sellShopAddBtn.setVisible(true);
+            }
+        }else {
+            pchsOrderAddBtn.setVisible(true);
+            pchsShopAddBtn.setVisible(true);
+        }
+    }
+
 });
 var partTypeHash = null;
 function onPartGridDraw(e)
@@ -192,7 +218,20 @@ function getSearchParams()
     params.applyCarModel = nui.get("search-applyCarModel").getValue();
     params.namePy = nui.get("search-namePy").getValue();
     params.partBrandId = nui.get("partBrandId").getValue();
+    params.partCodeList = nui.get("partCodeList").getValue();
     params.isDisabled = 0;
+
+    var partCodeList = nui.get("partCodeList").getValue();
+    // 订单单号
+    if (partCodeList) {
+        var tmpList = partCodeList.split("\n");
+        for (i = 0; i < tmpList.length; i++) {
+            tmpList[i] = "'" + tmpList[i] + "'";
+        }
+        params.partCodeList = tmpList.join(",");
+    }
+
+
     return params;
 }
 function onSearch()
@@ -203,6 +242,8 @@ function onSearch()
 function doSearch(params)
 {
     //在GRID属性中设置每页查询的记录条数
+    params.sortField = "b.stock_qty";
+    params.sortOrder = "desc";
     partGrid.load({
         params:params,
         token:token
@@ -308,4 +349,70 @@ function initData(partCode){
     codeEl.setValue(partCode);
     onSearch();
     codeEl.focus();
+}
+function onClear(){
+    queryForm.setData([]);
+}
+function onGridSelectionChanged(){    
+    var row = partGrid.getSelected(); 
+    if(row){
+        row.partId = row.id;  
+    }else{
+        row.partId = 0;
+    }
+
+    row.storeId = null;
+    row.guestId = null;
+    row.type = "pchs";
+
+    parent.setBottomData(row);
+    /*if(row){
+    }else{
+        row = {};
+        row.guestId = null;
+        row.partId = null;
+        row.storeId = null;
+        //addInsertRow();
+    }
+    //row.guestId = nui.get('guestId').getValue();
+
+    document.getElementById("formIframe").contentWindow.setInitEmbedParams(row);*/
+
+    //如果是最后一行，则新增一行；最后一行的备注填写完后也新增一行；保存时如果存在配件内码为空则删除
+}
+function addPchsOrder(){
+    var rows = partGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
+}
+function addSellOrder(){
+    var rows = partGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
+}
+function addPchsShop(){
+    var rows = partGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
+}
+function addSellShop(){
+    var rows = partGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
 }

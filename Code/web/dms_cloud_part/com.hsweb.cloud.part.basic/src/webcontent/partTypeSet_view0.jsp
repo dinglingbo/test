@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>配件分类设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + cloudPartDomain%>/basic/js/partTypeSet.js?v=1.0.0"></script>
+    <script src="<%=webPath + cloudPartDomain%>/basic/js/partTypeSet.js?v=2.0.0"></script>
     <style type="text/css">
     body {
         margin: 0;

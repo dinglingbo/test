@@ -279,13 +279,17 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.supplierSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
         {
-
+            var iframe = this.getIFrameEl();
+            var params = {
+                isSupplier: 1
+            };
+            iframe.contentWindow.setGuestData(params);
         },
         ondestroy: function (action)
         {

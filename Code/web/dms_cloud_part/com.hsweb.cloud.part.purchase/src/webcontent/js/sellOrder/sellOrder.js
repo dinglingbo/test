@@ -250,7 +250,8 @@ function getPartPrice(params){
         type : "post",
         async: false,
         data : {
-            params: params
+            params: params,
+            token: token
         },
         success : function(data) {
             var errCode = data.errCode;
@@ -317,7 +318,8 @@ function getPartInfo(params){
         type : "post",
         async: false,
         data : {
-            params: params
+            params: params,
+            token: token
         },
         success : function(data) {
             var partlist = data.partlist;
@@ -976,7 +978,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.customerSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -984,10 +986,9 @@ function selectSupplier(elId)
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 0,
                 isClient: 1
             };
-            //iframe.contentWindow.setData(params);
+            iframe.contentWindow.setGuestData(params);
         },
         ondestroy: function (action)
         {

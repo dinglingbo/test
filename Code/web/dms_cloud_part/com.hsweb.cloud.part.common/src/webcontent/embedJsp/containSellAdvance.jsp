@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售车</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containSellAdvance.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containSellAdvance.js?v=2.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

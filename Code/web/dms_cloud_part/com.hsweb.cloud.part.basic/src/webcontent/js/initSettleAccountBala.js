@@ -66,7 +66,8 @@ function save(){
 				url : saveUrl,
 				type : "post",
 				data : JSON.stringify({
-					settleAccount: settleAccount
+					settleAccount: settleAccount,
+					token: token
 				}),
 				success : function(data) {
 					nui.unmask(document.body);
@@ -116,7 +117,8 @@ function audit(){
 				url : auditUrl,
 				type : "post",
 				data : JSON.stringify({
-					settleAccount: settleAccount
+					settleAccount: settleAccount,
+					token: token
 				}),
 				success : function(data) {
 					nui.unmask(document.body);

@@ -627,7 +627,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -635,8 +635,8 @@ function selectSupplier(elId)
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1,
-                isClient: 0
+                isSupplier: 0,
+                isClient: 1
             };
             iframe.contentWindow.setData(params);
         },

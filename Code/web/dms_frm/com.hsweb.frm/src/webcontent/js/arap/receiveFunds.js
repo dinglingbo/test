@@ -152,7 +152,7 @@ function sk(){
 		
 		 nui.open({
              url: "receiveFunds_sk.jsp",
-             title: "编辑员工", width: 1150, height: 600,
+             title: "收款", width: 1150, height: 600,
              onload: function () {
                  var iframe = this.getIFrameEl();
                  var param = { action: "sk", data: s };

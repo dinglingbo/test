@@ -16,7 +16,7 @@
 <link
 	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-	<script src="<%=webPath + sysDomain%>/frm/js/arap/receive_sk.js?v=1.0"
+	<script src="<%=webPath + sysDomain%>/frm/js/arap/receive_sk.js?v=1.4"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -58,7 +58,7 @@
 					</table>
 				</div>
 			</fieldset>
-			<fieldset style="border: solid 1px #aaa; padding: 3px;">
+			<fieldset style="border: solid 1px #aaa; padding: 3px;" id="fiebillAmt" name="fiebillAmt">
 				<legend>是否开发票: 是</legend>
 				<div style="padding: 5px;">
 					<table>
@@ -90,12 +90,14 @@
 										pageSize="10" sizeList="[10,20,50]" allowAlternating="true"
 										multiSelect="true" showSummaryRow="true"
 										url="<%=apiPath + frmApi%>/com.hsapi.frm.setting.QueryInt.biz.ext" 
-										onselectionchanged="statuschange" dataField="data" 
+										 dataField="data" 
 										idField="id" treeColumn="name" parentField="parentId">
 										<div property="columns" width="10">
 											<div type="indexcolumn">序号</div>
 											<div field="id" allowSort="true" headerAlign="center"
 												visible="false" width="120"></div>
+											<div field="rpCode" name="rpCode" allowSort="true" headerAlign="center"
+											width="120"  >订单号</div>
 											<div field="serviceTypeId" allowSort="true" headerAlign="center"
 												width="120">业务类型</div>
 											<div field="serviceCode" allowSort="true" headerAlign="center" summaryType="count" align=center width="120">工单号</div>
@@ -122,7 +124,7 @@
 								<tr>
 									<td class="title"
 										style="width: 100px; color: red; text-align: left;">支付方式：</td>
-									<td><input name="payment" textField="name" 
+								<td><input name="payment" textField="name" 
                                 valueField="customid" id="payment" class="nui-combobox" /></td>
 								</tr>
 								<tr>
@@ -137,7 +139,7 @@
 								<tr>
 									<td class="title"
 										style="width: 100px; color: red; text-align: left;">实收金额：</td>
-									<td><input class="nui-textbox width2M" onKeyup=""  onValuechanged="setCharCount()" id="recive" name="recive"
+									<td><input class="nui-textbox width2M" onKeyup=""  onValuechanged="setCharCount()" name="recive" id="recive"
 									/></td>
 								</tr>
 								<tr>
@@ -150,19 +152,18 @@
 									<td><input class="nui-textbox width2M" enabled="false"
 										name="rpAmtNo" /></td>
 								</tr>
-								<tr>
+								<tr style="display: none">
 									<td class="title" style="text-align: left;">积分：</td>
 								</tr>
-								<tr>
-									<td colspan="2"><input class="nui-textbox width2M" value="0"
-										 /></td>
+								<tr  style="display: none">
+									<td colspan="2" ><input class="nui-textbox width2M" value="0"/></td>
 								</tr>
 								<tr>
 									<td class="title" style="text-align: left;">收款备注：</td>
 								</tr>
 								<tr>
 									<td colspan="2"><input class="nui-textarea" name=remark
-										required="true"style="margin-top: 20px; width: 240px;" />
+										required="true"style=" width: 240px;" />
 								</tr>
 								
 							</table>
@@ -173,7 +174,7 @@
 						
 				</div>
 				<div style="text-align: center; padding: 1px;">
-									<a class="nui-button" onclick="onCancel" style="width: 60px;">确定(O)</a>
+									<a class="nui-button" onclick="pay" style="width: 60px;">确定(O)</a>
 									<a class="nui-button" onclick="onCancel" style="width: 60px;">取消(C)</a>
 				</div>
 			</div>

@@ -29,6 +29,7 @@
 			-->
 			<configValue key="default">default</configValue>
 			<configValue key="DB06_MYSQL_WB_FRM">DB06_MYSQL_WB_FRM</configValue>
+			<configValue key="DB02_ORA_WB_COMMON">DB02_ORA_WB_COMMON</configValue>
 		</group>
 	</module>
 </contribution>

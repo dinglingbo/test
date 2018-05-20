@@ -11,7 +11,7 @@
 <head>
 <title>车架号查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
+    <%@include file="/common/sysCommon2.jsp" %>
     <link rel="stylesheet" href="./css/index.css">
     <script data-main="./js/main.js" src="https://cdn.bootcss.com/require.js/2.1.5/require.js"></script>
   </head>

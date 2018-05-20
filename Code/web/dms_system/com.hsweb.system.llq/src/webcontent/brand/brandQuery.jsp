@@ -11,7 +11,7 @@
 <head>
 <title>车型查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
+    <%@include file="/common/sysCommon2.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
     <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=1.2" type="text/javascript"></script>

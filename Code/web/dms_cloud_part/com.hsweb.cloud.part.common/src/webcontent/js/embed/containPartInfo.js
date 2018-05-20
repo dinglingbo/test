@@ -10,6 +10,7 @@ var pchsOrderAddBtn = null;
 var sellOrderAddBtn = null;
 var pchsShopAddBtn = null;
 var sellShopAddBtn = null;
+var FStoreId = null;
 
 var qualityList = [];
 var qualityHash = {};
@@ -138,6 +139,10 @@ $(document).ready(function() {
             pchsOrderAddBtn.setVisible(true);
             pchsShopAddBtn.setVisible(true);
         }
+    }
+
+    if(parent.getParentStoreId){
+        FStoreId = parent.getParentStoreId();
     }
 
 });
@@ -380,9 +385,37 @@ function onGridSelectionChanged(){
 
     //如果是最后一行，则新增一行；最后一行的备注填写完后也新增一行；保存时如果存在配件内码为空则删除
 }
+function openGeneratePop(partList, type, title){
+    nui.open({
+        targetWindow : window,
+        url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        title : title,
+        width : 600,
+        height : 400,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+                storeId: FStoreId,
+                partList: partList,
+                type: type
+            };
+            iframe.contentWindow.setInitData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                //var data = iframe.contentWindow.getData();
+            }
+        }
+    });
+}
 function addPchsOrder(){
     var rows = partGrid.getSelecteds();
     if(rows && rows.length > 0){
+
+        openGeneratePop(rows, "pchsOrder", "新增采购订单");
 
     }else{
         nui.alert("请选择配件信息!");
@@ -393,6 +426,8 @@ function addSellOrder(){
     var rows = partGrid.getSelecteds();
     if(rows && rows.length > 0){
 
+        openGeneratePop(rows, "sellOrder", "新增销售订单");
+
     }else{
         nui.alert("请选择配件信息!");
         return;
@@ -401,18 +436,24 @@ function addSellOrder(){
 function addPchsShop(){
     var rows = partGrid.getSelecteds();
     if(rows && rows.length > 0){
+    
+        openGeneratePop(rows, "pchsCart", "添加采购车");
 
     }else{
         nui.alert("请选择配件信息!");
         return;
     }
+
 }
 function addSellShop(){
     var rows = partGrid.getSelecteds();
     if(rows && rows.length > 0){
+    
+        openGeneratePop(rows, "sellCart", "添加销售车");
 
     }else{
         nui.alert("请选择配件信息!");
         return;
     }
+
 }

@@ -83,8 +83,8 @@ $(document).ready(function(v) {
 	partInfoTab = mainTabs.getTab("partInfoTab");
 
 	//setTimeout(function(){ 
-		document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
-		document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
+	document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
+	document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
 		//document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
 		//document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
 	//}, 3000);
@@ -93,23 +93,26 @@ $(document).ready(function(v) {
 	//document.getElementById("formIframePart").contentWindow.setInitTab('purchase');
 
 	$("#guestId").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
+        /*if (e.keyCode == 13) {
             var orderMan = nui.get("orderMan");
             orderMan.focus();
+        }*/
+        if (e.keyCode == 13) {
+            addNewRow(true);
         }
     });
     $("#orderMan").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            var planArriveDate = nui.get("planArriveDate");
-            planArriveDate.focus();
-        }
-    });
-    $("#planArriveDate").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var remark = nui.get("remark");
             remark.focus();
         }
     });
+    /*$("#planArriveDate").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var remark = nui.get("remark");
+            remark.focus();
+        }
+    });*/
     $("#remark").bind("keydown", function (e) {
     	//新增一条明细
     	/*var event=e||window.e;
@@ -216,7 +219,7 @@ function ontopTabChanged(e){
 		}else if(name == "partStockInfoTab"){
 			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp", tab);
 		}else if(name == "purchaseAdvanceTab"){
-			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp", tab);
+			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containOrderCart.jsp", tab);
 			
 		}else if(name == "billmain"){
 			var guestId = nui.get("guestId");
@@ -225,7 +228,7 @@ function ontopTabChanged(e){
 			}else{
 				var data = rightGrid.getChanges();
 				if(data && data.length > 0) {
-					addNewRow();
+					addNewRow(true);
 				}else{
 					add();
 				}
@@ -235,7 +238,7 @@ function ontopTabChanged(e){
 		if(name == "billmain"){
 			var data = rightGrid.getChanges();
 			if(data && data.length > 0) {
-				addNewRow();
+				addNewRow(true);
 			}else{
 				add();
 			}
@@ -247,6 +250,9 @@ function ontopTabChanged(e){
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
 	return "pchs";
+}
+function getParentStoreId(){
+	return FStoreId;
 }
 function loadMainAndDetailInfo(row) {
 	if (row) {
@@ -281,6 +287,14 @@ function loadMainAndDetailInfo(row) {
 		// grid_details.clearRows();
 	}
 
+}
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新采购订单'){
+
+        leftGrid.removeRow(row);
+    }
 }
 function onLeftGridSelectionChanged() {
 	var row = leftGrid.getSelected();
@@ -1418,7 +1432,7 @@ function onDrawSummaryCell(e) {
 		for (var i = 0; i < rows.length; i++) {
 			orderAmt += parseFloat(rows[i].orderAmt);
 		}
-		nui.get("orderAmt").setValue(orderAmt);
+		//nui.get("orderAmt").setValue(orderAmt);
 	}
 }
 function onGuestValueChanged(e) {

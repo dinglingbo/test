@@ -2,95 +2,277 @@
  * Created by Administrator on 2018/1/24.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var mainTabs = null;
-var singleTab = null;
-var batchTab = null;
+var batchInfoForm = null;
+var mainGrid = null;
+var FStoreId = null;
+var partList = null;
+var type = null;
+var isSupplier = 0;
+var isClient = 0;
+var shortNameEl = null;
+var billTypeIdEl = null;
+var settleTypeIdEl = null;
+var guestIdEl = null;
 $(document).ready(function(v)
 {
+    mainGrid = nui.get("mainGrid");
+    batchInfoForm = new nui.Form("#batchInfoForm");
+    shortNameEl = nui.get("shortName");
+    billTypeIdEl = nui.get("billTypeId");
+    settleTypeIdEl = nui.get("settleTypeId");
+    guestIdEl = nui.get("guestId");
 
-    mainTabs = nui.get("mainTabs");
-    singleTab = mainTabs.getTab("singleTab");
-    batchTab = mainTabs.getTab("batchTab");
+    var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
+    initDicts(dictDefs, null);
 
-    qtyEl = nui.get("qty");
-    priceEl = nui.get("price");
-    amtEl = nui.get("amt");
+    guestIdEl.focus();
 
-    $("#qty").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            var price = nui.get("price");
-            price.focus();
-        }
-    });
-
-    $("#price").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            var amt = nui.get("amt");
-            amt.focus();
-        }
-    });
-    $("#amt").bind("keydown", function (e) {
+    $("#guestId").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var remark = nui.get("remark");
             remark.focus();
         }
     });
 
-    $("#remark").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            var chooseBtn = nui.get("chooseBtn");
-            chooseBtn.focus();
+
+
+});
+
+function setInitData(data)
+{
+    FStoreId = data.storeId;
+    partList = data.partList;
+    type = data.type;//采购订单  销售订单  采购车  销售车    
+    
+    if(type == "pchsOrder" || type == "pchsCart"){
+        isSupplier = 1;
+        initGridData(partList);
+    }
+
+    if(type == "sellOrder" || type == "sellCart"){
+        isClient = 1;
+        initGridData(partList);
+    }
+
+    //如果是从采购车生成采购订单，或是从销售车生成销售订单
+    if(type == "fromPchsCart"){
+        type = "pchsOrder";
+
+        initGridDataTwo(partList);
+    }
+
+    if(type == "fromSellCart"){
+        type = "sellOrder";
+        initGridDataTwo(partList);
+    }
+    
+}
+function initGridData(data){
+    var rows = [];
+    if(data && data.length>0){
+        for(var i=0; i<data.length; i++){
+            var part = data[i];
+            var partId = part.id;
+            var partCode = part.code;
+            var partName = part.name;
+            var fullName = part.fullName;
+            var unit = part.unit;
+            var orderQty = 1;
+            var orderPrice = 0;
+            var row = {partId: partId, partCode: partCode, partName: partName, 
+                       fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
+            rows.push(row);
+        }
+    }
+
+    mainGrid.setData(rows);
+}
+function initGridDataTwo(data){
+    var rows = [];
+    if(data && data.length>0){
+        for(var i=0; i<data.length; i++){
+            var part = data[i];
+            var partId = part.partId;
+            var partCode = part.partCode;
+            var partName = part.partName;
+            var fullName = part.fullName;
+            var unit = part.unit;
+            var orderQty = 1;
+            var orderPrice = 0;
+            var row = {partId: partId, partCode: partCode, partName: partName, 
+                       fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
+            rows.push(row);
+        }
+
+        var main = data[0];
+
+        guestIdEl.setValue(main.guestId);
+        guestIdEl.setText(main.guestName);
+        shortNameEl.setValue(main.shortName);
+        billTypeIdEl.setValue(main.billTypeId);
+        settleTypeIdEl.setValue(main.settleTypeId);
+    }
+
+    mainGrid.setData(rows);
+}
+var supplier = null;
+function selectSupplier(elId) {
+    supplier = null;
+    nui.open({
+        targetWindow : window,
+        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "往来单位资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {};
+            if(isSupplier == 1) {
+                params.isSupplier = 1;
+            }
+            if(isClient == 1) {
+                params.isClient = 1;
+            }
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var billTypeIdV = supplier.billTypeId;
+                var settTypeIdV = supplier.settTypeId;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+                billTypeIdEl.setValue(supplier.billTypeId);
+                settleTypeIdEl.setValue(supplier.settTypeId);
+                shortNameEl.setValue(supplier.shortName);
+
+            }
         }
     });
-
-    document.onkeyup=function(event){
-        var e=event||window.event;
-        var keyCode=e.keyCode||e.which;
-
-        switch(keyCode){
-            case 27:
-            window.CloseOwnerWindow("");
-            break; 
-        } 
+}
+function onGuestValueChanged(e) {
+    // 供应商中直接输入名称加载供应商信息
+    var params = {};
+    params.pny = e.value;
+    if(isSupplier == 1) {
+        params.isSupplier = 1;
     }
-});
-function init()
-{
-    basicInfoForm = new nui.Form("#basicInfoForm");
-    //qtyEdit = nui.get("qty");
-    qtyEl.setValue(1);
-    qtyEl.focus();
+    if(isClient == 1) {
+        params.isClient = 1;
+    }
+    setGuestInfo(params);
+}
+var getGuestInfo = baseUrl
+        + "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+function setGuestInfo(params) {
+    nui.ajax({
+        url : getGuestInfo,
+        data : {
+            params : params,
+            token : token
+        },
+        type : "post",
+        success : function(text) {
+            if (text) {
+                var supplier = text.suppliers;
+                if (supplier && supplier.length > 0) {
+                    var data = supplier[0];
+                    var value = data.id;
+                    var text = data.fullName;
+                    var el = nui.get('guestId');
+                    el.setValue(value);
+                    el.setText(text);
+                    billTypeIdEl.setValue(data.billTypeId);
+                    settleTypeIdEl.setValue(data.settTypeId);
+                    shortNameEl.setValue(data.shortName);
+                    
+                } else {
+                    var el = nui.get('guestId');
+                    el.setValue(null);
+                    el.setText(null);
+                    billTypeIdEl.setValue(null);
+                    settleTypeIdEl.setValue(null);
+                    shortNameEl.setValue(null);
+                }
+            } else {
+                el.setValue(null);
+                el.setText(null);
+                billTypeIdEl.setValue(null);
+                settleTypeIdEl.setValue(null);
+                shortNameEl.setValue(null);
+            }
 
-    getStorehouse(function(data)
-    {
-        var storehouse = data.storehouse||[];
-        nui.get("storeId").setData(storehouse);
-        
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
     });
 }
-var partPchsPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getPchsDefaultPrice.biz.ext";
-function getPchsPartPrice(params){
-    var price = 0;
-    var shelf = null;
+function onMainGridDrawCell(e) {
+    switch (e.field) {
+    case "operateBtn":
+            e.cellHtml = '<span class="fa fa-close" onClick="javascript:deletePart()" title="删除行"></span>';
+            break;
+    default:
+        break;
+    }
+}
+function deletePart() {
+    var row = mainGrid.getSelected();
+    if (row) {
+        mainGrid.removeRow(row, true);
+    }
+}
+function onCellCommitEdit(e) {
+    var editor = e.editor;
+    var record = e.record;
+    var row = e.row;
+
+    editor.validate();
+    if (editor.isValid() == false) {
+        nui.alert("请输入数字！");
+        e.cancel = true;
+    }
+}
+var generateOrderUrl = baseUrl
+        + "com.hsapi.cloud.part.invoicing.paramcrud.generateOrderByBatch.biz.ext";
+function generateOrderByBatch(main,detail,type){
+    nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
+    });
     nui.ajax({
-        url : partPchsPriceUrl,
+        url : generateOrderUrl,
         type : "post",
         async: false,
         data : {
-            params: params,
+            main: main,
+            detail: detail,
+            type: type,
             token:token
         },
         success : function(data) {
+            nui.unmask(document.body);
             var errCode = data.errCode;
             if(errCode == "S"){
-                var priceRecord = data.priceRecord;
-                if(priceRecord.pchsPrice){
-                    price = priceRecord.pchsPrice;
-                }
-                if(priceRecord.shelf){
-                    shelf = priceRecord.shelf;
-                }
+                nui.alert("操作成功!","",function(){
+                    if(type == "pchsOrder" || type == "sellOrder"){
+                        //更新采购车或是销售车的状态
+                    }
+                    CloseWindow("ok");
+                });
+            } else {
+                nui.alert(data.errMsg || "操作失败!");
             }
 
         },
@@ -99,245 +281,50 @@ function getPchsPartPrice(params){
             console.log(jqXHR.responseText);
         }
     });
-
-    var dInfo = {price: price, shelf: shelf};
-
-    return dInfo;
 }
-var partSellPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
-function getSellPartPrice(params){
-    var price = 0;
-    nui.ajax({
-        url : partSellPriceUrl,
-        type : "post",
-        async: false,
-        data : {
-            params: params,
-            token: token
-        },
-        success : function(data) {
-            var errCode = data.errCode;
-            if(errCode == "S"){
-                var priceRecord = data.priceRecord;
-                if(priceRecord.sellPrice){
-                    price = priceRecord.sellPrice;
-                }
-            }
-
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-
-    return price;
-}
-function setData(data)
-{
-    init();
-    
-    data = data||{};
-    var part = data.part;
-    var price = 0;
-    var shelf = null;
-    guestId = part.guestId;
-
-    if(part.editType && part.editType == 'storeId') {
-        nui.get("storeId").disable();
-    }
-
-    if(part){
-        if(data.priceType && data.priceType == 'pchsIn') {
-            var params = {partId: part.id, storeId: part.storeId};
-            var dInfo = getPchsPartPrice(params);
-            price = dInfo.price;
-            shelf = dInfo.shelf;
-        }
-
-        if(data.priceType && data.priceType == 'sellOut') {
-            var params = {partId: part.id, guestId: guestId};
-            price = getSellPartPrice(params);
-        }
-
-        basicInfoForm.setData(part);
-
-        if(data.priceType){
-            qtyEl.setValue(1);
-            priceEl.setValue(price);
-            amtEl.setValue(price);
-        }
-        
-        /*if(part.enterTypeId && part.enterTypeId == '050101') {
-            var storeShelfEl = nui.get("storeShelf");
-            var dc = document.getElementById("storeShelf");
-            dc.innerHTML=shelf;
-            //storeShelfEl.setValue(shelf);
-            var store = document.getElementById("store");
-            store.innerHTML = dc;
-        }*/
-
-        qtyEl.focus();
-    }
-
-    if(part.enterTypeId && part.enterTypeId == '050101') {
-        var currentRows = document.getElementById("list_table").rows.length; 
-        var insertTr = document.getElementById("list_table").insertRow(currentRows);
-        var insertTd = insertTr.insertCell(0);
-        insertTd.style.textAlign="right";
-        insertTd.style.width="60px";
-        insertTd.innerHTML = "仓位：";
-        
-        insertTd = insertTr.insertCell(1);
-        insertTd.id="store";
-        insertTd.innerHTML = '<input id="storeShelf" name="storeShelf" value='+shelf+' class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>';
-    
-    }
-    
-}
-var resultData = {};
-var callback = null;
-function getData(){
-    var dc = document.getElementById("storeShelf");
-    if(dc){
-        resultData.storeShelf = dc.value;
-    }
-    return resultData;
-}
-
-var requiredField = {
-    qty:"数量",
-    price:"单价",
-    amt:"金额"
-};
 function onOk()
 {
-    basicInfoForm.validate();
-    if (basicInfoForm.isValid() == false) {
-        nui.alert("请输入数字！");
+
+    var data = batchInfoForm.getData();
+    if(!data.guestId){
+        nui.alert("请选择往来单位!");
         return;
     }
 
-    var data = basicInfoForm.getData();
-    
-/*    data.taxSign = 0;
-    data.taxRate = ".07";
-    var totalTaxRate = parseFloat(1+data.taxRate);
-    data.taxUnitPrice = (totalTaxRate*data.noTaxUnitPrice).toFixed(2);//含税单价=税率*
-    data.taxAmt = (data.taxUnitPrice*data.enterQty).toFixed(2);//含税总额
-    data.noTaxAmt = (data.noTaxUnitPrice*data.enterQty).toFixed(2);//不含税总额
-    data.taxRateAmt = (data.taxAmt-data.noTaxAmt).toFixed(2);//税额
-    data.outableQty = data.enterQty;
-    data.suggestPrice = 0;
-    data.suggestAmt = 0;*/
-    //return;
-    for(var key in requiredField)
-    {
-        if(!data[key] || data[key].toString().trim().length==0)
-        {
-            nui.alert(requiredField[key]+"不能为空");
-            if(key == "qty") {
-                var qty = nui.get("qty");
-                qty.focus();
-            }
-            if(key == "price") {
-                var price = nui.get("price");
-                price.focus();
-            }
-            if(key == "amt") {
-                var amt = nui.get("amt");
-                amt.focus();
-            }
-            return;
-        }
+    var detail = mainGrid.getData();
+    if(detail.length <= 0){
+        nui.alert("明细为空!");
+        return;
     }
-    resultData = data; 
-    CloseWindow("ok");
+
+    var guestIdEl = nui.get("guestId");
+    var main = {};
+    main.guestId = guestIdEl.getValue();
+    main.guestName = guestIdEl.getText();
+    main.shortName = shortNameEl.getValue();
+    main.storeId = FStoreId;
+    if(type == "pchsCart"){
+        main.shopType = 1;
+    }
+    if(type == "sellCart"){
+        main.shopType = -1;
+    }
+    main.remark = data.remark;
+    main.billTypeId = data.billTypeId;
+    main.settleTypeId = data.settleTypeId;
+
+
+
+    generateOrderByBatch(main, detail, type);
+
 }
 
 function CloseWindow(action) {
-    //if (action == "close" && form.isChanged()) {
-    //    if (confirm("数据被修改了，是否先保存？")) {
-    //        return false;
-    //    }
-    //}
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
 function onCancel(e) {
     CloseWindow("cancel");
 }
-function calc(type){
-    var qty = nui.get("qty").getValue();
-    var price = nui.get("price").getValue();
-    var amt = nui.get("amt").getValue();
-    
-    if(qty == null || qty == '') {
-        nui.get("qty").setValue(0);
-    }else if(qty < 0) {
-        nui.get("qty").setValue(0);
-    }
-    
-    if(price == null || price == '') {
-        nui.get("price").setValue(0);
-    }else if(price < 0) {
-        nui.get("price").setValue(0);
-    }
-    
-    if(amt == null || amt == '') {
-        nui.get("amt").setValue(0);
-    }else if(amt < 0) {
-        nui.get("amt").setValue(0);
-    }
-    
-    qty = nui.get("qty").getValue();
-    price = nui.get("price").getValue();
-    amt = nui.get("amt").getValue();
-    
-    if(type == 'qty'){
-        nui.get("amt").setValue(qty * price);
-    }
-    
-    if(type == 'price'){
-        nui.get("amt").setValue(qty * price);
-    }
-    
-    if(type == 'amt'){
-        if(qty > 0) {
-            nui.get("price").setValue(amt / qty);
-        }else {
-            nui.get("qty").setValue(0);
-            nui.get("amt").setValue(0);
-        }
-    }
-}
-$("#qty").bind("keyup", function (e) {
-    if (e.keyCode == 13) {
-        var priceEdit = nui.get("price");
-        priceEdit.focus();
-    }
-});
-
-$("#price").bind("keydown", function (e) {
-    if (e.keyCode == 13) {
-        var amtEdit = nui.get("amt");
-        amtEdit.focus();
-    }
-});
-
-$("#amt").bind("keydown", function (e) {
-    if (e.keyCode == 13) {
-        var remarkEdit = nui.get("remark");
-        remarkEdit.focus();
-    }
-});
-
-$("#remark").bind("keydown", function (e) {
-    if (e.keyCode == 13) {
-        var chooseBtn = nui.get("chooseBtn");
-        chooseBtn.focus();
-    }
-});
 
 

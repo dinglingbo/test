@@ -70,6 +70,7 @@
                    ondrawcell="onLeftGridDrawCell"
                    onrowdblclick=""
                    onselectionchanged="onLeftGridSelectionChanged"
+                   onbeforedeselect="onLeftGridBeforeDeselect"
                    dataField="pjPchsOrderMainList"
                    url="">
                   <div property="columns">

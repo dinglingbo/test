@@ -112,9 +112,12 @@ $(document).ready(function(v)
     //document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
     
     $("#guestId").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
+        /*if (e.keyCode == 13) {
             var orderMan = nui.get("orderMan");
             orderMan.focus();
+        }*/
+        if (e.keyCode == 13) {
+            addNewRow(true);
         }
     });
 
@@ -246,11 +249,11 @@ function addInsertRow(value,row) {
         if(row){
             rightGrid.updateRow(row,newRow);
             //rightGrid.beginEditCell(row, "enterQty");
-            rightGrid.beginEditCell(rightGrid.getSelected(), "comUnit");
+            rightGrid.beginEditCell(row, "comUnit");
         }else{
             rightGrid.addRow(newRow);
             //rightGrid.beginEditCell(newRow, "enterQty");
-            rightGrid.beginEditCell(rightGrid.getSelected(), "comUnit");
+            rightGrid.beginEditCell(row, "comUnit");
         }
 
         return true;
@@ -357,7 +360,7 @@ function ontopTabChanged(e){
         }else if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0) {
-                addNewRow();
+                addNewRow(true);
             }else{
                 add();
             }
@@ -366,7 +369,7 @@ function ontopTabChanged(e){
         if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0) {
-                addNewRow();
+                addNewRow(true);
             }else{
                 add();
             }

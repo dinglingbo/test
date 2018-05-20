@@ -389,6 +389,18 @@
       <process:from type="query" pattern="reference">taxRate</process:from>
       <process:to type="query">tmp/taxRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/rtnPrice</process:from>
+      <process:to type="query">rtnPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">orderQty*rtnPrice</process:from>
+      <process:to type="query">rtnAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mRtnAmt+rtnAmt</process:from>
+      <process:to type="query">mRtnAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="68" y="93"/>
@@ -557,7 +569,7 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -990,6 +1002,10 @@
       <process:from type="query" pattern="reference">mOrderQty</process:from>
       <process:to type="query">enterMain/enterQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mRtnAmt</process:from>
+      <process:to type="query">enterMain/sellRtnAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
     <location x="561" y="95"/>
@@ -1008,6 +1024,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxRate" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rtnPrice" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rtnAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxAmt" primitiveType="Float"/>
@@ -1016,6 +1034,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mNoTaxAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOrderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mOrderQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="mRtnAmt" primitiveType="Float"/>
     <process:variable description="010101 收据 010102 普票 010103 增票" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">

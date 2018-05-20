@@ -82,7 +82,8 @@ function saveType(type){
 		url : saveUrl,
 		type : "post",
 		data : JSON.stringify({
-			comPartType: data
+			comPartType: data,
+			token: token
 		}),
 		success : function(data) {
 			nui.unmask(document.body);

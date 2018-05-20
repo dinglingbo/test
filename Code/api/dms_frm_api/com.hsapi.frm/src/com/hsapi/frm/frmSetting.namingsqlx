@@ -40,7 +40,7 @@
 		</isNotNull>
     </select>
        <select id="queryInit" parameterClass="HashMap" resultClass="HashMap">
-     	SELECT a.id, a.orgid, a.guest_id guestId, a.guest_full_name guestFullName, c.full_name fullName, a.rp_type rpType, a.service_code serviceCode, a.service_type_id serviceTypeId, 
+     	SELECT a.rp_code rpCode,a.id, a.orgid, a.guest_id guestId, a.guest_full_name guestFullName, c.full_name fullName, a.rp_type rpType, a.service_code serviceCode, a.service_type_id serviceTypeId, 
          a.rp_amt rpAmt, a.rp_amt_yes rpAmtYes, a.rp_amt_no rpAmtNo, a.bill_amt billAmt, a.bill_status billStatus, a.auditor, a.audit_date auditDate, a.on_account_date onAccountDate, 
          b.pay_sum paySum, a.on_account_surety onAccountSurety, a.on_account_type onAccountType, a.remark, a.recorder, a.record_date recordDate, datediff( CURDATE(),a.audit_date) OwnDay
  		 FROM fis_rp_account a LEFT JOIN ( 
@@ -50,8 +50,8 @@
          GROUP BY service_code 
  		) b on a.service_code = b.service_code  
 		LEFT JOIN wb_common.com_guest c on a.guest_id = c.id 
-		WHERE a.orgid = #userOrgId# and a.rp_type = 1 
-		and a.service_type_id not in ('1', '-1') 
+		WHERE a.rp_amt &gt;0 and a.orgid = #userOrgId# and a.rp_type = 1 
+		<!--and a.service_type_id not in ('1', '-1') 
 		and (a.rp_amt_no &lt;&gt; 0 OR (a.rp_amt_no = 0 
 		and not exists   (select 1 from fis_rp_check_off b where a.id = b.rp_id)))
 		<isNotNull property="guestId">
@@ -90,7 +90,7 @@
 			And YEAR(a.record_date) = YEAR(now())
 
 		</isEqual>
-		
+		-->
     </select>
     <update id="updateInit" parameterClass="HashMap">
     	update fis_rp_account

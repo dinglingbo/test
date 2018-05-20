@@ -9,7 +9,7 @@
 -->
 <head>
 <title>期初应收应付</title>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/initQCRPBill.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/initQCRPBill.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -44,7 +44,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="" onclick="addGuest()" id="addGuestBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加供应商</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="addGuest()" id="addGuestBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加往来单位</a>
                             <a class="nui-button" plain="true" iconCls="" onclick="deleteGuest()" id="deleteGuestBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>

@@ -373,7 +373,9 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="545" horizontal="true"/>
+  </topRuler>
   <leftRuler>
     <guides position="143" horizontal="true"/>
   </leftRuler>

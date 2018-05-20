@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
     width: 90px;

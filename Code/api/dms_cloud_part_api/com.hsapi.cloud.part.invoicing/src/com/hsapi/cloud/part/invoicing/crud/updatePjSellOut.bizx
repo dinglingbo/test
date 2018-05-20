@@ -867,7 +867,6 @@
     <location x="1673" y="60"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart3label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="sellOutDetailList" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend3label" name="label" nodeType="label">

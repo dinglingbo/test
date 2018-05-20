@@ -71,10 +71,10 @@
                 </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
-                    (A.AUDIT_DATE &gt;= #startDate#)
+                    (A.CREATE_DATE &gt;= #startDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="endDate">  
-                    (A.AUDIT_DATE &lt; #endDate#)
+                    (A.CREATE_DATE &lt; #endDate#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
@@ -1753,6 +1753,46 @@
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
             </dynamic> 
+				
+	</select>
+	
+	<select id="queryChainStockList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			b.short_name as shortName,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.outable_qty as outableQty,
+			c.sell_price as sellPrice,
+			b.manager as manager,
+			b.mobile as mobile,
+			b.contactor as contactor,
+			b.contactor_tel as contactorTel,
+			b.addr as address
+		FROM
+		pj_part_store_stock a
+		inner join wb_common.com_guest b
+		on a.orgid = b.is_internal_id
+		left join pj_part_price c
+		on a.part_id = c.part_id and a.orgid = c.orgid
+		WHERE 1 = 1
+				
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid != #orgid#)
+                </isNotEmpty>                
+                <isNotEmpty prepend="and" property="storeId">  
+                    (a.store_id = #storeId#)
+                </isNotEmpty>
+                <!--库存查询默认查询库存大于0 -->
+                <isNotEmpty prepend="and" property="notShowAll">
+	                (a.outable_qty > 0)
+	            </isNotEmpty>
+                <isNotEmpty prepend="and" property="partId">  
+                    (a.PART_ID = #partId#)
+                </isNotEmpty>
+            </dynamic> 
+            
+            order by a.outable_qty desc
 				
 	</select>
     

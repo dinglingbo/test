@@ -136,7 +136,8 @@ function saveType(type){
 			settleAccount: data,
 			settleTypeAdd: settleTypeAdd,
 			settleTypeDelete: settleTypeDelete,
-			settleTypeUpdate: settleTypeUpdate
+			settleTypeUpdate: settleTypeUpdate,
+			token: token
 		}),
 		success : function(data) {
 			nui.unmask(document.body);

@@ -135,6 +135,9 @@ function doSearch() {
 		pageSize : 1000,
 		token : token
 	});
+	  mainGrid.on("drawcell", function (e){
+	    	onDrawCell(e);
+	    });
 }
 // 提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
@@ -147,21 +150,25 @@ function onCellCommitEdit(e) {
 		e.cancel = true;
 	}
 }
-function onDrawCell(e) {
-	switch (e.field) {
-	case "auditSign":
-		if (auditSignHash && auditSignHash[e.value]) {
-			e.cellHtml = auditSignHash[e.value];
-		}
-		break;
-	case "balaTypeCode":
-		if (accountTypeHash && accountTypeHash[e.value]) {
-			e.cellHtml = accountTypeHash[e.value].name;
-		}
-		break;
-	default:
-		break;
-	}
+function onDrawCell(e)
+{
+    switch (e.field)
+    {
+        case "postStatus":
+            if(auditSignHash && auditSignHash[e.value])
+            {
+                e.cellHtml = auditSignHash[e.value];
+            }
+            break;
+        case "balaTypeCode":
+            if(accountTypeHash && accountTypeHash[e.value])
+            {
+                e.cellHtml = accountTypeHash[e.value].name;
+            }
+            break;
+        default:
+            break;
+    }
 }
 function onbillTypeChange(e) {
 	var se = e.selected;

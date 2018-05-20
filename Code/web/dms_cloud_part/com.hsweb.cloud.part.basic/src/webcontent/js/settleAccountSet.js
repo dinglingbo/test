@@ -64,7 +64,8 @@ function deleteType(){
 						url : deleteUrl,
 						type : "post",
 						data : JSON.stringify({
-							id: row.id
+							id: row.id,
+							token: token
 						}),
 						success : function(data) {
 							nui.unmask(document.body);
@@ -115,7 +116,7 @@ function showEditModal(row, newRow, type){
 	}
 
 	nui.open({
-		url: "com.hsweb.cloud.part.basic.settleAccountEdit.flow",
+		url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.basic.settleAccountEdit.flow?token="+token,
 		title: title,
 		width: "500px",
 		height: "300px",

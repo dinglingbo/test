@@ -65,7 +65,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-    //params.sortField = "audit_date";
+    //params.sortField = "b.stock_qty";
     //params.sortOrder = "desc";
     rightGrid.load({
         params:params,

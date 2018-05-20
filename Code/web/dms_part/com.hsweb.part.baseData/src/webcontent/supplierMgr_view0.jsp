@@ -45,9 +45,9 @@
                 <label style="font-family:Verdana;">联系人电话：</label>
                 <input class="nui-textbox" width="100" id="mobile"/>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
             </td>
         </tr>
     </table>
@@ -56,8 +56,8 @@
     <table style="width:100%;">
         <tr>
             <td style="width:100%;">
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="addSuplier">新增</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editSuplier">修改</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addSuplier"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="editSuplier"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
             </td>
         </tr>
     </table>

@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon2.jsp" %>
     <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
     <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.1" type="text/javascript"></script>    
 </head>
 <body>

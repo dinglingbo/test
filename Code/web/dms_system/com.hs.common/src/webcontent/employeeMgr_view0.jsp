@@ -12,6 +12,7 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 	<script src="<%= request.getContextPath() %>/common/js/employeeQuery.js?v=1.0.0"></script>
+	<script src="<%= request.getContextPath() %>/common/js/date.js?v=1.0.0"></script>
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 	<div  class="nui-toolbar"  style="height:26px">

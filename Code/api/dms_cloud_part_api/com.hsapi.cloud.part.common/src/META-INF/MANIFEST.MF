@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.cloud.part.data
-Bundle-Vendor: Administrator
+Require-Bundle: com.hsapi.cloud.part.data,com.eos.foundation
 eos-webCtxPath: common
+Bundle-Vendor: Administrator
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.cloud.part.common
 Bundle-Description: 

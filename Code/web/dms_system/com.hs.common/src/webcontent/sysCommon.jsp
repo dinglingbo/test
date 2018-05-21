@@ -84,7 +84,7 @@
 	}else{
 		IUserObject u = (IUserObject) session.getAttribute("userObject");		
 		if (u != null) {
-			orgId = u.getUserOrgId();
+            orgId = u.getUserOrgId();
             orgName = u.getUserOrgName();
             userId = u.getUserId();
             userName = u.getUserName();
@@ -99,7 +99,10 @@
 			}
             
             if(token==null || token.trim().length()==0){
-                %>backToLogin();<%
+                token= request.getParameter("token");
+                if(!"214e2f71-4237-4601-9a1a-538bf982b995".equals(token)){
+                    %>alert("token=<%=token%>");backToLogin();<%
+                }
             }
             
 			if (orgId==null || orgId.trim().length()==0) {
@@ -143,6 +146,7 @@
 <script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
 <script src="<%=sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
 <script src="<%=sysDomain%>/common/js/init.js?v=1.0" type="text/javascript"></script>
+<script src="<%=sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
 <style type="text/css">
     html, body

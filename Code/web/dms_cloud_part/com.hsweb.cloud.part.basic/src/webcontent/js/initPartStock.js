@@ -469,14 +469,14 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.partSelectView.flow",
+        url: webPath + partDomain +"/com.hsweb.part.common.partSelectView.flow?token="+token,//"com.hsweb.cloud.part.common.partSelectView.flow",
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData({},callback,checkcallback);
+            iframe.contentWindow.setData("cloudPart",callback,checkcallback);
         },
         ondestroy: function (action)
         {
@@ -487,7 +487,7 @@ function addEnterDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -720,7 +720,7 @@ function onGuestValueChanged(e)
 function open(){
     nui.open({
         targetWindow: window,
-        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initPartStockSelect.flow",
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initPartStockSelect.flow?token="+token,
         title: "期初入库单选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -760,7 +760,7 @@ function importPart(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initPartStockImport.flow",
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initPartStockImport.flow?token="+token,
         title: "库存导入", 
         width: 930, 
         height: 560,

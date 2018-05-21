@@ -30,6 +30,9 @@
 			<configValue key="default">default</configValue>
 			<configValue key="part">DB09_ORA_DMS_CLOUD_PART</configValue>
 			<configValue key="common">DB02_ORA_WB_COMMON</configValue>
+			<configValue key="WBSCMBranch">WBSCMBranch</configValue>
+			<configValue key="WBSCMCenter">WBSCMCenter</configValue>
+			<configValue key="JPPart">JPPart</configValue>
 		</group>
 	</module>
 </contribution>

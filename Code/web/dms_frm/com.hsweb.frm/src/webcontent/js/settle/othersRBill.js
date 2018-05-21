@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + frmApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.frm.others.queryRPAccountList.biz.ext";
-
+var searchStatus=null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var comSearchGuestId = null;
@@ -25,7 +25,7 @@ var auditSignList = [
 ];
 $(document).ready(function(v)
 {
-
+	   searchStatus=nui.get("billStatus");
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(rightGridUrl);
     searchBeginDate = nui.get("beginDate");
@@ -67,14 +67,13 @@ function getInComeExpenses(callback) {
 }
 function doSearch() {
     var params = {};
-    params.billDc = 1;
-    params.auditSign = auditSignEl.getValue();
-    params.rpTypeId = 2;
-    params.guestId = comSearchGuestId.getValue();
-    
+    params.rpType = 1;
+ 
+  
+   
     params.sCreateDate = searchBeginDate.getValue();
     params.eCreateDate = searchEndDate.getValue();
-
+    params.billStatus=searchStatus.getValue();
     mainGrid.load({
         params: params,
         pageSize: 1000,
@@ -185,7 +184,7 @@ function save(){
     if(data && data.length <= 0) return;
 
     var rows = mainGrid.findRow(function(row){
-        var billTypeId = row.billTypeId;
+        var billTypeId = row.serviceTypeId;
         if(billTypeId){
             return false;
         }else{

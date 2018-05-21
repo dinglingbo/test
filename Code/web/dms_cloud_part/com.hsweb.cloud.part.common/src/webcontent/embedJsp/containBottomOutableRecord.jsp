@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购记录</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomOutableRecord.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomOutableRecord.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -59,12 +59,12 @@
             <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可出库数量"></div>
             <div field="orderMan" width="60" headerAlign="center" header="入库员"></div>
             <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
-            <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
+            <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div><!-- 
             <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
             <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
             <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
             <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
-            <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+            <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div> -->
             <div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
             <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
             <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>

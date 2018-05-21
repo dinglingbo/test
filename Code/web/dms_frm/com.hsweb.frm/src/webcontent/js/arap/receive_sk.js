@@ -1,6 +1,7 @@
 var form1;
 var dgGrid;
 var content;
+
 $(document).ready(function(v) {
 
 	form1 = new nui.Form("#form1");
@@ -39,7 +40,11 @@ var mentt = [ {
 function SetData(param) {
 	form1.setData(param.data);
 	query(param.data);
-	/* if (param.action == "edit") {
+	
+	//nui.alert(param.data.billAmt);
+	if(param.data.billAmt==0)
+	$("#fiebillAmt").hide();
+		/* if (param.action == "edit") {
 	          //跨页面传递的数据对象，克隆后才可以安全使用
 	          data = nui.clone(data);
 
@@ -62,7 +67,7 @@ function onOk() {
 					nui.alert("挂账成功！");
 					closeWindow("ok");
 				} else {
-					nui.alert("挂账失败！");
+					closeWindow("ok");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -75,6 +80,56 @@ function onOk() {
 function GetData() {
 	var o = form1.getData();
 	return o;
+}
+function pay(){
+	var payment=nui.get('payment').getValue();
+	var revive=nui.get('recive').getValue();
+    var row = dgGrid.getSelected();
+    if (row) {
+    	if(revive==""){
+    		nui.alert("请输入金额！");
+    		return ;
+    	}
+    	else if(payment==""){
+    		nui.alert("请选择付款方式!！");
+    		return ;
+    	}
+    	var rpcode=row.rpCode;
+    	var guestid=row.guestId;
+    	var fullname=row.fullName;
+    	var s ={
+    		"fullname":fullname,
+    		"guestid":guestid,
+    		"rpcode":rpcode,
+    		"revive":revive,
+    		"payment":payment,
+    		"rpTypeId":"-1",
+    		"row":row
+    	};
+    	nui.ajax({
+			url : apiPath + frmApi
+					+ "/com.hsapi.frm.arap.saveFisRpBillList.biz.ext",
+			type : 'post',
+			data : nui.encode({
+				"params" : s
+				}),
+			success : function(data) {
+				if (data.errCode == "S") {
+					nui.alert("挂账成功！");
+					closeWindow("ok");
+				} else {
+					nui.alert("挂账失败！");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				nui.alert(jqXHR.responseText);
+			}
+		});
+    } else {
+        alert("请选中一条记录");
+    }
+   
+	
 }
 function setCharCount(){
 

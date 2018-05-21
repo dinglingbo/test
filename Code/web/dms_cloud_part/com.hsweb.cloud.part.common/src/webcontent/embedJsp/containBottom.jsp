@@ -11,7 +11,7 @@
 -->
 <head>
 <title>辅助查询</title>
-	<script src="<%=webPath + cloudPartDomain%>/common/js/embed/srvBottom.js?v=1.0.5"></script>
+	<script src="<%=webPath + cloudPartDomain%>/common/js/embed/srvBottom.js?v=2.0.0"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 </head>
@@ -26,37 +26,42 @@
 	      		 onactivechanged="showTabInfo"
 	      		 ontabload="onMainTabLoad"
 	      		 >
-			    <div title="仓库信息" name="stockselect" url="" >
+			    <div title="本店库存" name="stockselect" url="" visible="false" >
 			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeStock" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div> -->
 			    </div>
-			    <div title="库存明细" name="outableRecord" url="" >
+			    <div title="库存分布" name="chainStock" url="">
+			      <!-- <div class="nui-fit">
+			      		<iframe id="bottomFormIframeStock" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+			      </div> -->
+			    </div>
+			    <div title="库存明细" name="outableRecord" url="" visible="false" >
 			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeOutableRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div> -->
 			    </div>
-			    <div title="采购记录" name="pchsRecord" url="" >
+			    <div title="采购记录" name="pchsRecord" url="" visible="false" >
 			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframePchsRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div> -->
 			    </div>  
-			    <div title="销售记录" name="sellRecord" url="" >
+			    <div title="销售记录" name="sellRecord" url="" visible="false" >
 			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeSellRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div> -->
 			    </div> 
-			    <div title="客户销价" name="guestPrice" url="" >
+			    <div title="客户销价" name="guestPrice" url="" visible="false" >
 			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeGuestPrice" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div> -->
 			    </div> 
-			    <div title="退货记录" name="rtnRecord" url="">
+			    <div title="退货记录" name="rtnRecord" url="" visible="false">
 			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframeRtnRecord" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div> -->
 			    </div>
-			    <div title="配件资料" name="partInfo" url="" >
+			    <div title="配件资料" name="partInfo" url="" visible="false" >
 			      <!-- <div class="nui-fit">
 			      		<iframe id="bottomFormIframePartInfo" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
 			      </div> -->

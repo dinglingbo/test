@@ -9,7 +9,7 @@
 -->
 <head>
 <title>入库记录选择</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/outableEnterSelect.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/outableEnterSelect.js?v=2.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

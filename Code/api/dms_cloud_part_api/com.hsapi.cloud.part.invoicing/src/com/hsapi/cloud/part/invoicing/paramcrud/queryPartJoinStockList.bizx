@@ -43,14 +43,6 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">sortField</process:from>
-      <process:to type="query">params/sortField</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">sortOrder</process:from>
-      <process:to type="query">params/sortOrder</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
     </process:copy>

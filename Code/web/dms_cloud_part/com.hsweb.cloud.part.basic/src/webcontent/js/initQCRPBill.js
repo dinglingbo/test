@@ -65,7 +65,7 @@ function addGuest(){
     var supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "往来单位", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -73,10 +73,8 @@ function addGuest(){
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1,
-                isClient: 1
             };
-            iframe.contentWindow.setData(params);
+            iframe.contentWindow.setGuestData(params);
         },
         ondestroy: function (action)
         {
@@ -230,7 +228,8 @@ function save(){
         data : JSON.stringify({
             rpAdd: rpAddList,
             rpUpdate: rpUpdateList,
-            rpDelete: rpDeleteList
+            rpDelete: rpDeleteList,
+            token: token
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -283,7 +282,8 @@ function audit(){
             url : auditUrl,
             type : "post",
             data : JSON.stringify({
-                rpBill: data
+                rpBill: data,
+                token: token
             }),
             success : function(data) {
                 nui.unmask(document.body);
@@ -328,7 +328,7 @@ function importGuest(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initQCRPBillImport.flow",
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initQCRPBillImport.flow?token="+token,
         title: "期初应收应付导入", 
         width: 930, 
         height: 560,

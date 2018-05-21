@@ -29,8 +29,8 @@
                 <tr>
                     <td style="white-space:nowrap;">
                         <label style="font-family:Verdana;">仓库定义:</label>
-                        <a class="nui-button" plain="true" iconCls="icon-add" onclick="onAddNode()">新增</a>
-                        <a class="nui-button" plain="true" iconCls="icon-edit" onclick="onEditNode()">修改</a>
+                        <a class="nui-button" plain="true" iconCls="" onclick="onAddNode()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                        <a class="nui-button" plain="true" iconCls="" onclick="onEditNode()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     </td>
                 </tr>
             </table>
@@ -51,10 +51,10 @@
                 <tr>
                     <td style="white-space:nowrap;">
                     	 <label style="font-family:Verdana;">仓位定义:</label>
-                        <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPosition()">新增仓位</a>
-                        <a class="nui-button" plain="true" iconCls="icon-save" onclick="savePosition()">保存</a>
-                        <a class="nui-button" plain="true" iconCls="icon-no" onclick="disableLocation()" id="disableBtn">禁用</a>
-                        <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableLocation()" id="enableBtn" visible="false">启用</a>
+                        <a class="nui-button" plain="true" iconCls="" onclick="addPosition()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增仓位</a>
+                        <a class="nui-button" plain="true" iconCls="" onclick="savePosition()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" plain="true" iconCls="" onclick="disableLocation()" id="disableBtn"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
+                        <a class="nui-button" plain="true" iconCls="" onclick="enableLocation()" id="enableBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;启用</a>
                     </td>
                 </tr>
             </table>

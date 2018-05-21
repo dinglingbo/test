@@ -142,6 +142,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="197" y="152"/>
@@ -169,19 +170,19 @@
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">f/auditSign</process:to>
+      <process:to type="query">f/postStatus</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">f/auditDate</process:to>
+      <process:to type="query">f/recordDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
-      <process:to type="query">f/auditorId</process:to>
+      <process:to type="query">f/name</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">f/auditor</process:to>
+      <process:to type="query">f/recorder</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">f/charOffAmt</process:from>
@@ -289,7 +290,7 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">f/auditSign</process:leftOperand>
+          <process:leftOperand type="query">f/postStatus</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -373,6 +374,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="480" y="150"/>
@@ -415,12 +417,12 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.settle.rpsettle.initialAccountBalance</process:partner>
+      <process:partner type="literal">this.initialAccountBalance</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="settAccountId" type="query" value="Long" valueType="Primitive" pattern="reference">f/balaAccountId</process:inputVariable>
+        <process:inputVariable id="0" name="settAccountId" type="query" value="Long" valueType="Primitive" pattern="reference">f/settAccountId</process:inputVariable>
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">f/fYear</process:inputVariable>
         <process:inputVariable id="2" name="FMonth" type="query" value="Int" valueType="Primitive" pattern="reference">f/fMonth</process:inputVariable>
-        <process:inputVariable id="3" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">f/rpDc</process:inputVariable>
+        <process:inputVariable id="3" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">f/postStatus</process:inputVariable>
         <process:inputVariable id="4" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/charOffAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -481,13 +483,13 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-08 00:14:25" date="2018-05-07Z" description="" name="auditInitRpBill" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.setting.FibSettAccount" name="f"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.fib.FisRpBillList" name="f"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.FiRpAccountDType" name="type"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiRpAccountDType" name="typeList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.fib.FibAccountDType" name="type"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.frm.fib.FibAccountDType" name="typeList"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.frm.setting.FibSettAccount" name="accountBill"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.frm.fib.FisRpBillList" name="accountBill"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

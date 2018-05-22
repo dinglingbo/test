@@ -31,6 +31,7 @@ function loadData(url, params, callBack){
 
 function callAjax(url, params, processAjax, callBack){
     //url = url.replace("llq.","llqapitm.");
+    params.token = "214e2f71-4237-4601-9a1a-538bf982b995";
 	nui.ajax({
 		url: url,
 		type: "post",

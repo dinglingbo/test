@@ -80,7 +80,7 @@
     String token="";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
-		%>alert(123);backToLogin();<%
+		
 	}else{
 		IUserObject u = (IUserObject) session.getAttribute("userObject");		
 		if (u != null) {
@@ -100,9 +100,7 @@
             
             if(token==null || token.trim().length()==0){
                 token= request.getParameter("token");
-                if(!"214e2f71-4237-4601-9a1a-538bf982b995".equals(token)){
-                    %>alert("token=<%=token%>");backToLogin();<%
-                }
+               
             }
             
 			if (orgId==null || orgId.trim().length()==0) {

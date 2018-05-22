@@ -11,8 +11,8 @@
 <head>
     <title>车架号/车型/零件号</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=sysDomain%>/llq/vin/js/vinLinkMain.js?v=1.2.0" type="text/javascript"></script>
+    <%@include file="/common/sysCommon2.jsp" %>
+    <script src="<%=sysDomain%>/llq/vin/js/vinLinkMain.js?v=1.0.0" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -75,8 +75,8 @@
 <body>
     <div class="nui-toolbar" style="padding:10px;border-top:0;border-left:0;border-right:0;text-align:center;">
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(0)" id="query0">车架号查询</a>
-        <a class="nui-button" iconCls="" plain="true" onclick="query_vin(2)" id="query2">零件号查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(1)" id="query1">车型查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="query_vin(2)" id="query2">零件号查询</a>
     </div>
     <div class="nui-fit">
             <iframe id="mainFrame" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>

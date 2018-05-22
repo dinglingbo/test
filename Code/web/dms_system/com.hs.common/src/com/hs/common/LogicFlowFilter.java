@@ -79,29 +79,22 @@ public class LogicFlowFilter implements Filter {
 		}
 
 		MyHttpServletRequestWrapper requestWrapper = null;
-		MyResettableServletRequest myRequest = null;
-		BodyReaderHttpServletRequestWrapper BodyReader = null;
 		if (req instanceof HttpServletRequest) {
-			BodyReader = new BodyReaderHttpServletRequestWrapper(
-					(HttpServletRequest) req);
-
-			// myRequest = new MyResettableServletRequest((HttpServletRequest)
-			// req);
-
-			// requestWrapper = new
-			// MyHttpServletRequestWrapper((HttpServletRequest) req);
+			
+			 requestWrapper = new
+			 MyHttpServletRequestWrapper((HttpServletRequest) req);
 		}
 		// 检查是否客户端发送的请求
-		boolean b = isClientRequest(BodyReader);
+		boolean b = isClientRequest(requestWrapper);
 		if (b) {
-			chain.doFilter(BodyReader, response);
+			chain.doFilter(requestWrapper, response);
 			return;
 		}
 
 		// 检查是否为Web端发出的请求
-		boolean c = isWebRequest(BodyReader);
+		boolean c = isWebRequest(requestWrapper);
 		if (c) {
-			chain.doFilter(BodyReader, response);
+			chain.doFilter(requestWrapper, response);
 			return;
 		}
 

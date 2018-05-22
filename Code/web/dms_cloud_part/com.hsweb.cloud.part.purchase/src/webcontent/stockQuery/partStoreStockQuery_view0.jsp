@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -38,9 +38,10 @@
         <tr>
             <td style="white-space:nowrap;">
 				<!-- <label style="font-family:Verdana;">配件名称/拼音：</label> -->
+              <input id="comPartCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
 	            <input id="comPartNameAndPY" width="120px" emptyText="配件名称/拼音" class="nui-textbox"/>
 	            <!-- <label style="font-family:Verdana;">配件ID：</label> -->
-	            <input id="comPartCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
+	            
 	            <!-- <label style="font-family:Verdana;">订单单号：</label> -->
                 <input id="partBrandId"
                            name="partBrandId"
@@ -48,6 +49,7 @@
                            textField="name"
                            valueField="id"
                            emptyText="品牌"
+                           valueFromSelect="true"
                            url=""
                            allowInput="true"
                            showNullItem="false"
@@ -59,11 +61,12 @@
                            valueField="id"
                            emptyText="仓库"
                            url=""
+                           valueFromSelect="true"
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                 <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
-                <input id="partId" width="80px" emptyText="配件ID" class="nui-textbox"/>
+                <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>
                 <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
@@ -81,14 +84,14 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
-         pageSize="10000"
-         sizeList="[1000,5000,10000]"
+         pageSize="1000"
+         sizeList="[1000,2000,5000]"
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="库存信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>

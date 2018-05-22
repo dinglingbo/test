@@ -157,6 +157,11 @@ $(document).ready(function(v) {
 	 
 	}
 
+	$("partTempId").focus(function(){
+		$("orderMan").css("background-color","#FFFFCC");
+		addNewRow(true);
+	});
+
 
 	// 绑定表单
 	// var db = new nui.DataBinding();
@@ -199,14 +204,32 @@ function addNewRow(check){
 
 	}
 
+	var focusGuest = true;
+	var guestId = data.guestId;
+	if(guestId){
+		focusGuest = false;
+	}
+
 	var newRow = {};
 	if(rows && rows.length > 0){
 		var row = rows[0];
 		rightGrid.updateRow(row, newRow);
-		rightGrid.beginEditCell(row, "comPartCode");
+		if(focusGuest){
+			var guestId = nui.get("guestId");
+			guestId.focus();
+		}else{
+			rightGrid.beginEditCell(row, "comPartCode");
+		}
+		
 	}else{
 		rightGrid.addRow(newRow);
-		rightGrid.beginEditCell(newRow, "comPartCode");
+		if(focusGuest){
+			var guestId = nui.get("guestId");
+			guestId.focus();
+		}else{
+			rightGrid.beginEditCell(newRow, "comPartCode");
+		}
+		
 	}
 }
 function ontopTabChanged(e){
@@ -222,16 +245,11 @@ function ontopTabChanged(e){
 			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containOrderCart.jsp", tab);
 			
 		}else if(name == "billmain"){
-			var guestId = nui.get("guestId");
-			if(!guestId.getValue()){
-				guestId.focus();
+			var data = rightGrid.getChanges();
+			if(data && data.length > 0){
+				addNewRow(true);
 			}else{
-				var data = rightGrid.getChanges();
-				if(data && data.length > 0) {
-					addNewRow(true);
-				}else{
-					add();
-				}
+				add();
 			}
 		}
 	}else{
@@ -283,8 +301,6 @@ function loadMainAndDetailInfo(row) {
 		}
 		loadRightGridData(mainId);
 	} else {
-		// form.reset();
-		// grid_details.clearRows();
 	}
 
 }
@@ -476,14 +492,10 @@ function getSearchParam() {
 }
 function setBtnable(flag) {
 	if (flag) {
-		//nui.get("addPartBtn").enable();
-		//nui.get("deletePartBtn").enable();
 		nui.get("saveBtn").enable();
 		nui.get("auditBtn").enable();
 		//nui.get("printBtn").enable();
 	} else {
-		//nui.get("addPartBtn").disable();
-		//nui.get("deletePartBtn").disable();
 		nui.get("saveBtn").disable();
 		nui.get("auditBtn").disable();
 		//nui.get("printBtn").disable();
@@ -635,7 +647,7 @@ function add() {
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
 
-	if (formJson != formJsonThis) {// && len > 0
+	if (formJson != formJsonThis && len > 0) {// 
 		nui.confirm("您正在编辑数据,是否要继续?", "友情提示", function(action) {
 			if (action == "ok") {
 
@@ -749,6 +761,7 @@ function getModifyData(data, addList, delList){
 }
 var requiredField = {
 	guestId : "供应商",
+	orderMan : "采购员",
 	createDate : "订货日期",
 	billTypeId : "票据类型",
 	settleTypeId : "结算方式"
@@ -778,15 +791,6 @@ function save() {
 	}
 
 	data = getMainData();
-
-	/*
-	 * var enterDetailAdd = rightGrid.getChanges("added")||[]; var
-	 * enterDetailUpdate = []; for(var key in editPartHash) { if(typeof
-	 * editPartHash[key] == 'object') {
-	 * enterDetailUpdate.push(editPartHash[key]); } } var enterDetailDelete =
-	 * rightGrid.getChanges("removed")||[]; enterDetailDelete =
-	 * enterDetailDelete.filter(function(v) { return v.detailId; });
-	 */
 
 	//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
 	var detailData = rightGrid.getData();
@@ -907,6 +911,23 @@ function onRightGridDraw(e) {
 		break;
 	}
 }
+function onCellEditEnter(e){
+	var record = e.record;
+	var cell = rightGrid.getCurrentCell();//行，列
+	var orderPrice = record.orderPrice;
+	if(cell && cell.length >= 2){
+		var column = cell[1];
+		if(column.field == "orderQty"){
+			if(orderPrice){
+				addNewKeyRow();
+			}
+		}else if(column.field == "orderPrice"){
+			addNewKeyRow();
+		}else if(column.field == "remark"){
+			addNewKeyRow();
+		}
+	}
+}
 // 提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
 	var editor = e.editor;
@@ -956,7 +977,15 @@ function onCellCommitEdit(e) {
 			newRow = {
 				orderAmt : orderAmt
 			};
-			rightGrid.updateRow(e.row, newRow);			
+			rightGrid.updateRow(e.row, newRow);		
+
+			/*var newRow = {comPartCode:""};
+            rightGrid.addRow(newRow);
+
+            rightGrid.cancelEdit();
+            //rightGrid.beginEditRow(newRow);	
+            rightGrid.beginEditCell(newRow, "operateBtn");*/
+            //addNewKeyRow();
 
 		} else if (e.field == "orderAmt") {
 			var orderQty = record.orderQty;
@@ -980,6 +1009,8 @@ function onCellCommitEdit(e) {
 				};
 				rightGrid.updateRow(e.row, newRow);
 			}
+
+			//addNewKeyRow();
 
 		}else if(e.field == "comPartCode"){
 			oldValue = e.oldValue;
@@ -1007,6 +1038,8 @@ function onCellCommitEdit(e) {
 				}
 			}
     		
+		}else if(e.field == "remark"){
+			//addNewKeyRow();
 		}
 	}
 }
@@ -1717,4 +1750,39 @@ function addRtnList(partList){
 		rightGrid.addRows(rows);		
 		
 	}
+}
+function addNewKeyRow(){
+	var data = basicInfoForm.getData();
+
+    if(data.auditSign == 1){
+        e.cancel = true;
+    }
+    
+	var rows = [];
+	if(check){
+		rows = rightGrid.findRows(function(row) {
+			if (row.partId == null || row.partId == "" || row.partId == undefined)
+				return true;
+		});
+
+	}
+
+	var newRow = {};
+	if(rows && rows.length > 0){
+		var row = rows[0];
+
+		rightGrid.cancelEdit();	
+    	rightGrid.beginEditCell(row, "operateBtn");		
+
+		
+	}else{
+		var newRow = {comPartCode:""};
+	    rightGrid.addRow(newRow);
+
+	    rightGrid.cancelEdit();
+	    //rightGrid.beginEditRow(newRow);	
+	    rightGrid.beginEditCell(newRow, "operateBtn");
+		
+	}
+
 }

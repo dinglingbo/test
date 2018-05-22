@@ -39,7 +39,6 @@ var FStoreId = null;
 var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
-var isNeedNew = true;
 var isInit = false;
 
 //单据状态
@@ -350,7 +349,6 @@ function loadMainAndDetailInfo(row)
    }
 }
 function ontopTabChanged(e){
-    if(!isNeedNew) return;
     var tab = e.tab;
     var name = tab.name;
     var url = tab.url;
@@ -693,7 +691,6 @@ function checkNew()
 
 function add()
 {
-    isNeedNew = false;
     mainTabs.activeTab(billmainTab);
 
     if(isNeedSet){
@@ -766,7 +763,6 @@ function add()
         guestId.focus();
     }
 
-    isNeedNew = true;
 }
 function getMainData()
 {
@@ -819,6 +815,7 @@ function getModifyData(data, addList, delList){
 }
 var requiredField = {
     guestId : "供应商",
+    orderMan : "采购员",
     createDate : "入库日期",
 	billTypeId : "票据类型",
     settleTypeId : "结算方式"
@@ -830,9 +827,7 @@ function save() {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			nui.alert(requiredField[key] + "不能为空!");
 
-            isNeedNew = false;
             mainTabs.activeTab(billmainTab);
-            isNeedNew = true;
 			return;
 		}
 	}
@@ -981,6 +976,23 @@ function onRightGridDraw(e)
             break;
     }
 }
+function onCellEditEnter(e){
+    var record = e.record;
+    var cell = rightGrid.getCurrentCell();//行，列
+    var orderPrice = record.enterPrice;
+    if(cell && cell.length >= 2){
+        var column = cell[1];
+        if(column.field == "enterQty"){
+            if(orderPrice){
+                addNewKeyRow();
+            }
+        }else if(column.field == "enterPrice"){
+            addNewKeyRow();
+        }else if(column.field == "remark"){
+            addNewKeyRow();
+        }
+    }
+}
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
     var editor = e.editor;
@@ -1029,11 +1041,6 @@ function onCellCommitEdit(e) {
                 enterAmt: enterAmt
             };
             rightGrid.updateRow(e.row, newRow);
-
-            if(enterPrice){
-                rightGrid.commitEditRow(row);
-                //mainTabs.activeTab(billmainTab);
-            }
             
         }else if (e.field == "enterAmt") {
             var enterQty = record.enterQty;
@@ -1106,9 +1113,7 @@ function addDetail(part)
         if (!data[key] || $.trim(data[key]).length == 0) {
             nui.alert(requiredField[key] + "不能为空!");
             //如果检测到有必填字段未填写，切换到主表界面
-            isNeedNew = false;
             mainTabs.activeTab(billmainTab);
-            isNeedNew = true;
 
             return;
         }
@@ -1446,7 +1451,6 @@ function onPrint() {
 }
 function addOrderToEnter(node){
 
-    isNeedNew = false;
     mainTabs.activeTab(billmainTab);
 
     setBtnable(true);
@@ -1535,7 +1539,6 @@ function getOrderDetail(params)
         }
     });
 
-    isNeedNew = true;
 }
 function onOrderDrawCell(e){
     switch (e.field)
@@ -1571,14 +1574,30 @@ function addNewRow(check){
         });
     }
 
+    var focusGuest = true;
+    var guestId = data.guestId;
+    if(guestId){
+        focusGuest = false;
+    }
+
     var newRow = {};
     if(rows && rows.length > 0){
         var row = rows[0];
         rightGrid.updateRow(row, newRow);
-        rightGrid.beginEditCell(row, "comPartCode");
+        if(focusGuest){
+            var guestId = nui.get("guestId");
+            guestId.focus();
+        }else{
+            rightGrid.beginEditCell(row, "comPartCode");
+        }
     }else{
         rightGrid.addRow(newRow);
-        rightGrid.beginEditCell(newRow, "comPartCode");
+        if(focusGuest){
+            var guestId = nui.get("guestId");
+            guestId.focus();
+        }else{
+            rightGrid.beginEditCell(newRow, "comPartCode");
+        }
     }
 }
 function addSelectPart(){
@@ -1846,4 +1865,39 @@ function addRtnList(partList){
         rightGrid.addRows(rows);        
         
     }
+}
+function addNewKeyRow(){
+    var data = basicInfoForm.getData();
+
+    if(data.auditSign == 1){
+        e.cancel = true;
+    }
+    
+    var rows = [];
+    if(check){
+        rows = rightGrid.findRows(function(row) {
+            if (row.partId == null || row.partId == "" || row.partId == undefined)
+                return true;
+        });
+
+    }
+
+    var newRow = {};
+    if(rows && rows.length > 0){
+        var row = rows[0];
+
+        rightGrid.cancelEdit(); 
+        rightGrid.beginEditCell(row, "operateBtn");     
+
+        
+    }else{
+        var newRow = {comPartCode:""};
+        rightGrid.addRow(newRow);
+
+        rightGrid.cancelEdit();
+        //rightGrid.beginEditRow(newRow);   
+        rightGrid.beginEditCell(newRow, "operateBtn");
+        
+    }
+
 }

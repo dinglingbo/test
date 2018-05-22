@@ -42,6 +42,7 @@ $(document).ready(function(v)
     getAllPartBrand(function(data)
     {
         var partBrandList = data.brand;
+        nui.get("partBrandId").setData(partBrandList);
         partBrandList.forEach(function(v)
         {
             partBrandIdHash[v.id] = v;
@@ -50,7 +51,7 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -58,6 +59,38 @@ $(document).ready(function(v)
                 storehouseHash[v.id] = v;
             }
         });
+    });
+
+    comPartNameAndPY.focus();
+
+    $("#comPartCode").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#comPartNameAndPY").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#partBrandId").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#storeId").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#storeShelf").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
     });
 });
 function getSearchParam(){
@@ -72,8 +105,8 @@ function getSearchParam(){
         params.notShowAll = 1;
     }
 
-    params.comPartNameAndPY = nui.get("comPartNameAndPY").getValue();
-	params.comPartCode = nui.get("comPartCode").getValue();
+    params.partNameAndPY = nui.get("comPartNameAndPY").getValue();
+	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();
 	params.storeId = nui.get("storeId").getValue();
 	params.storeShelf = nui.get("storeShelf").getValue();

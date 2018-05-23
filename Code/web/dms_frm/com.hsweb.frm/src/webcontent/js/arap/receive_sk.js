@@ -17,7 +17,8 @@ function query(s) {
 
 	var p = {
 		"params" : {
-			"guestId" : s.guestId
+			"guestId" : s.guestId,
+			"rOrptemp":s.rpType
 		}
 	};
 	dgGrid.load(p, function() {
@@ -91,7 +92,7 @@ function pay(){
     		return ;
     	}
     	else if(payment==""){
-    		nui.alert("请选择付款方式!！");
+    		nui.alert("请选择收款方式!！");
     		return ;
     	}
     	var rpcode=row.rpCode;
@@ -103,7 +104,7 @@ function pay(){
     		"rpcode":rpcode,
     		"revive":revive,
     		"payment":payment,
-    		"rpTypeId":"-1",
+    		"rpType":"1",
     		"row":row
     	};
     	nui.ajax({
@@ -115,10 +116,10 @@ function pay(){
 				}),
 			success : function(data) {
 				if (data.errCode == "S") {
-					nui.alert("挂账成功！");
 					closeWindow("ok");
+					nui.alert("收款成功！");
 				} else {
-					nui.alert("挂账失败！");
+					nui.alert("收款失败！");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

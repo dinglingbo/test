@@ -39,7 +39,7 @@
 			AND A.name like '%$name$%'
 		</isNotNull>
     </select>
-       <select id="queryInit" parameterClass="HashMap" resultClass="HashMap">
+     <select id="queryInit" parameterClass="HashMap" resultClass="HashMap">
      	SELECT a.rp_code rpCode,a.id, a.orgid, a.guest_id guestId, a.guest_full_name guestFullName, c.full_name fullName, a.rp_type rpType, a.service_code serviceCode, a.service_type_id serviceTypeId, 
          a.rp_amt rpAmt, a.rp_amt_yes rpAmtYes, a.rp_amt_no rpAmtNo, a.bill_amt billAmt, a.bill_status billStatus, a.auditor, a.audit_date auditDate, a.on_account_date onAccountDate, 
          b.pay_sum paySum, a.on_account_surety onAccountSurety, a.on_account_type onAccountType, a.remark, a.recorder, a.record_date recordDate, datediff( CURDATE(),a.audit_date) OwnDay
@@ -50,8 +50,9 @@
          GROUP BY service_code 
  		) b on a.service_code = b.service_code  
 		LEFT JOIN wb_common.com_guest c on a.guest_id = c.id 
+		
 		WHERE a.rp_amt &gt;0 and a.orgid = #userOrgId# and a.rp_type = 1 
-		<!--and a.service_type_id not in ('1', '-1') 
+		and a.service_type_id not in ('1', '-1') 
 		and (a.rp_amt_no &lt;&gt; 0 OR (a.rp_amt_no = 0 
 		and not exists   (select 1 from fis_rp_check_off b where a.id = b.rp_id)))
 		<isNotNull property="guestId">
@@ -71,7 +72,7 @@
 			
 		</isEqual>
 		<isEqual  property="timeStatus" compareValue="tomorrow">
-			AND date(a.record_date) = date(NOW())-1
+			AND SELECT PERIOD_DIFF( date_format( now( ) , '%Y%m%d' ) , date_format(a.record_date, '%Y%m%d' ) )=1
 			
 		</isEqual>
 		<isEqual  property="timeStatus" compareValue="week">
@@ -83,15 +84,102 @@
 		
 		</isEqual>
 		<isEqual  property="timeStatus" compareValue="smounth">
-			And MONTH(a.record_date) = MONTH(now())-1
+			And PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( a.record_date , '%Y%m' ) ) =1
 
 		</isEqual>
 		<isEqual  property="timeStatus" compareValue="year">
 			And YEAR(a.record_date) = YEAR(now())
 
 		</isEqual>
-		-->
+
     </select>
+    
+     <select id="queryreciveInit" parameterClass="HashMap" resultClass="HashMap">
+     	SELECT
+			id,orgid,guest_id guestId,guest_full_name guestFullName,rp_type rpType,service_code serviceCode,
+			service_type_id serviceTypeId,rp_amt rpAmt,rp_amt_yes rpAmtYes,rp_amt_no rpAmtNo,bill_amt billAmt,
+			bill_status billStatus,auditor,audit_date auditDate,on_account_date onAccountDate,on_account_surety onAccountSurety,
+			on_account_type onAccountType,remark,recorder,record_date recordDate,
+			DATEDIFF(CURDATE(), a.audit_date) OwnDay
+		FROM
+			fis_rp_account a
+		WHERE
+			1 = 1
+		AND orgid = #userOrgId#
+		AND rp_type = -1
+		AND service_type_id NOT IN ('1', '-1')
+		AND rp_amt &gt;= 0
+	
+		AND (
+			rp_amt_no &lt;&gt; 0
+			OR (
+				rp_amt_no = 0
+				AND NOT EXISTS (
+					SELECT
+						1
+					FROM
+						fis_rp_check_off b
+					WHERE
+						a.id = b.rp_id
+				)
+			)
+		)	
+	
+		AND EXISTS (
+			SELECT
+				1
+			FROM
+				wb_common.com_dataitems
+			WHERE
+				DictID IN (
+					'DDT20130706000015',
+					'DDT20130706000016'
+			)
+		
+		and CustomID = a.service_type_id	
+		AND Property1 = '0') 
+			
+		<isNotNull property="guestId">
+			AND a.guest_id = #guestId#
+		</isNotNull>
+		<isNotNull property="gd">
+			AND a.service_code like '%$gd$%'
+		</isNotNull>
+		<isNotNull property="assignStatus">
+			AND a.bill_status = #assignStatus#
+		</isNotNull>
+		<isEqual  property="timeStatus" compareValue="today">
+	
+			AND date(a.record_date) = date(NOW())
+			
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="tomorrow">
+			AND SELECT PERIOD_DIFF( date_format( now( ) , '%Y%m%d' ) , date_format(a.record_date, '%Y%m%d' ) )=1
+			
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="week">
+	
+			And YEARWEEK(a.record_date) = YEARWEEK(now())
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="month">
+			And MONTH(a.record_date) = MONTH(now())
+		
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="smounth">
+			And PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( a.record_date , '%Y%m' ) ) =1
+
+		</isEqual>
+		<isEqual  property="timeStatus" compareValue="year">
+			And YEAR(a.record_date) = YEAR(now())
+
+		</isEqual>
+
+    </select>
+    
+    
+    
+    
+    
     <update id="updateInit" parameterClass="HashMap">
     	update fis_rp_account
     	set bill_status = 0

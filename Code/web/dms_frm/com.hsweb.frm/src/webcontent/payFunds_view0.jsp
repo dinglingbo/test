@@ -19,6 +19,7 @@
 <body>
 	<div class="nui-toolbar" style="padding: 2px; border-bottom: 0;"
 		id="queryForm">
+			<input class="nui-textbox" name="rOrp" id="rOrp" value="-1" style="display: none;"></input>
 		<table style="width: 100%;">
 			<tr>
 				<td>
@@ -70,7 +71,7 @@
 					<a class="nui-button" plain="true"
 					onclick="sh()" id="shbutton" enabled="true">单据审核</a> <a
 					class="nui-button" plain="true" id="skbutton"
-					enabled="true">付款</a> 
+					enabled="true" onclick="fk">付款</a> 
 				</td>
 			</tr>
 		</table>

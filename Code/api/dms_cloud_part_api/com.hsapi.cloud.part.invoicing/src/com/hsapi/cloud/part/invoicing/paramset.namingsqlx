@@ -62,6 +62,8 @@
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
             </dynamic> 
+            
+            limit 100
 				
 	</select>
 	
@@ -146,6 +148,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partName">  
                 (a.full_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                    (a.code in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarModel">  
                 (a.apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')

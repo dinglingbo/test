@@ -9,7 +9,7 @@
 -->
 <head>
 <title>结算账户修改</title>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/settleAccountEdit.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/settleAccountEdit.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
     width: 90px;

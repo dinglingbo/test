@@ -80,7 +80,8 @@ function quickComp(comp){
 		url : queryUrl,
 		type : "post",
 		data : {
-			comp: comp
+			comp: comp,
+			token: token
 		},
 		success : function(data) {
 			var compInfo = data.comp;

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>移仓出库查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/shiftPosition/shiftOutQuery.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/shiftPosition/shiftOutQuery.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;

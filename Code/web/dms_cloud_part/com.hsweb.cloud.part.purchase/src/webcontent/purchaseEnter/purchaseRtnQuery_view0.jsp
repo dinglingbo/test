@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseRtnQuery.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseRtnQuery.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -53,22 +53,20 @@
                     <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
-
-                <span class="separator"></span>
 				<label style="font-family:Verdana;">审核日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
-                <input id="partNameAndPY" width="120px" emptyText="配件名称/拼音" class="nui-textbox"/>
+                <input id="partNameAndPY" width="80px" emptyText="配件名称/拼音" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">配件ID：</label> -->
-                <input id="partCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="partCode" width="80px" emptyText="配件编码" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="120px" emptyText="采退单号" class="nui-textbox"/>
+                <input id="serviceId" width="80px" emptyText="采退单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..."
+                       emptyText="请选择供应商..." width="80px"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">可退货数大于零：</label>

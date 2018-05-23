@@ -1158,4 +1158,72 @@
            ORDER BY a.id asc
     </select>
     
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjEnterDetailByMainId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+			
+			SELECT
+			A.ID AS id,
+			A.MAIN_ID AS mainId,
+			A.SOURCE_ID AS sourceId,
+			A.ROOT_ID AS rootId,
+			A.STORE_ID AS storeId,
+			A.PART_ID AS partId,
+			A.PART_CODE AS partCode,
+			A.PART_NAME AS partName,
+			A.FULL_NAME AS fullName,
+			A.ENTER_UNIT_ID AS enterUnitId,
+			A.SYSTEM_UNIT_ID AS systemUnitId,
+			A.ENTER_QTY AS enterQty,
+			A.ENTER_PRICE AS enterPrice,
+			A.ENTER_AMT AS enterAmt,
+			A.OUTABLE_QTY AS outableQty,
+			A.TAX_SIGN AS taxSign,
+			A.TAX_RATE AS taxRate,
+			A.TAX_PRICE AS taxPrice,
+			A.TAX_AMT AS taxAmt,
+			A.NO_TAX_PRICE AS noTaxPrice,
+			A.NO_TAX_AMT AS noTaxAmt,
+			A.TAX_DIFF AS taxDiff,
+			A.RTN_PRICE AS rtnPrice,
+			A.RTN_AMT AS rtnAmt,
+			A.ENTER_DATE AS enterDate,
+			A.PREV_DETAIL_ID AS prevDetailId,
+			A.ORDER_DETAIL_ID AS orderDetailId,
+			A.ORDER_MAIN_ID AS orderMainId,
+			A.BRANCH_STOCK_AGE AS branchStockAge,
+			A.CHAIN_STOCK_AGE AS chainStockAge,
+			A.GUEST_ID AS guestId,
+			A.GUEST_NAME AS guestName,
+			A.REMARK AS remark,
+			a.pack_amt as packAmt,
+			a.scrap_qty as scrapQty,
+			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
+			B.CODE AS comPartCode,
+			B.NAME AS comPartName,
+			B.FULL_NAME AS comFullName,
+			B.BRAND_CODE AS comBrandCode,
+			B.OEM_CODE AS comOemCode,
+			B.QUALITY_TYPE_ID AS comQualityTypeId,
+			B.PART_BRAND_ID AS comPartBrandId,
+			B.APPLY_CAR_MODEL AS comApplyCarModel,
+			B.UNIT AS comUnit,
+			B.SPEC AS comSpec,
+			B.DIRECTION AS comDirection
+			FROM
+			DMS_CLOUD_PART.PJ_ENTER_DETAIL_CHK A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="mainId">  
+                    (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+            </dynamic>  
+
+        
+        ORDER BY a.id asc
+    </select>
+    
 </sqlMap>

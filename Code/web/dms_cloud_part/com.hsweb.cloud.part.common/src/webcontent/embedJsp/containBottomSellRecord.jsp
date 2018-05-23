@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售记录</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomSellRecord.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomSellRecord.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;

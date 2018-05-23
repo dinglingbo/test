@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单选择</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=2.2.0"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -67,7 +67,7 @@
 <body>
 
 
-    <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">

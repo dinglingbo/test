@@ -5,6 +5,7 @@ var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPAccountList.biz.ext";
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
+var innerStateGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -19,23 +20,31 @@ var comPartNameAndPY = null;
 var comPartCode = null;
 var comServiceId = null;
 var comSearchGuestId = null;
-var editFormPchsEnterDetail = null;
+//var editFormPchsEnterDetail = null;
 var innerPchsEnterGrid = null;
-var editFormPchsRtnDetail = null;
+//var editFormPchsRtnDetail = null;
 var innerPchsRtnGrid = null;
-var editFormSellOutDetail = null;
+//var editFormSellOutDetail = null;
 var innerSellOutGrid = null;
-var editFormSellRtnDetail = null;
+//var editFormSellRtnDetail = null;
 var innerSellRtnGrid = null;
+var editFormStatementDetail = null;
+var innerStatementGrid = null;
 var auditWin = null;
 var settleWin = null;
 var gprows = null;
 var mainTabs = null;
 var settleAccountGrid = null;
 
+var pchsEnterWin = null;
+var pchsRtnWin = null;
+var sellOutWin = null;
+var sellRtnWin = null;
+
 var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
+var enterTypeIdList = [];
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var billStatusHash = {
@@ -54,6 +63,8 @@ var balanceList = [
     {id:1,text:"已对"},
     {id:2,text:"全部"}
 ];
+var typeIdHash = {"050101":"采购入库","050102":"销售退货","050201":"采购退货","050202":"销售出库"};
+
 $(document).ready(function(v)
 {
     rpRightGrid = nui.get("rpRightGrid");
@@ -87,10 +98,19 @@ $(document).ready(function(v)
     editFormSellRtnDetail = document.getElementById("editFormSellRtnDetail");
     innerSellRtnGrid.setUrl(innerPchsGridUrl);
 
+    innerStatementGrid = nui.get("innerStatementGrid");
+    editFormStatementDetail = document.getElementById("editFormStatementDetail");
+    innerStatementGrid.setUrl(innerStateGridUrl);
+
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     auditWin = nui.get("auditWin");
     settleWin = nui.get("settleWin");
+
+    pchsEnterWin = nui.get("pchsEnterWin");
+    pchsRtnWin = nui.get("pchsRtnWin");
+    sellOutWin = nui.get("sellOutWin");
+    sellRtnWin = nui.get("sellRtnWin");
 
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
@@ -153,9 +173,13 @@ $(document).ready(function(v)
     });
 
     getItemType(function(data) {
-        enterTypeIdHash = data.list || [];
+        enterTypeIdList = data.list || [];
+        enterTypeIdList.filter(function(v){
+            enterTypeIdHash[v.code] = v;
+        });
 
     });
+    quickSearch(currType);
 });
 var queryUrl = baseUrl
         + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
@@ -390,7 +414,17 @@ function selectSupplier(elId)
         }
     });
 }
-
+function onStateDrawCell(e)
+{
+    switch (e.field){
+        case "typeCode":
+            if(typeIdHash && typeIdHash[e.value])
+            {
+                e.cellHtml = typeIdHash[e.value];
+            }
+            break;
+    }
+}
 function onDrawCell(e)
 {
     switch (e.field)
@@ -596,6 +630,70 @@ function onShowRowDetail(e) {
             if(rpTypeId != 1) return;
             td.appendChild(editFormSellOutDetail);
             editFormSellOutDetail.style.display = "";
+            
+            var params = {};
+            params.mainId = mainId;
+            innerSellOutGrid.load({
+                params:params,
+                token: token
+            });
+
+            break;
+        case 101,102,201,202://"050202"
+            td.appendChild(editFormStatementDetail);
+            editFormStatementDetail.style.display = "";
+            
+            var params = {};
+            params.mainId = mainId;
+            innerStatementGrid.load({
+                params:params,
+                token: token
+            });
+
+            break;
+        default:
+            break;
+    }
+}
+function onStatementDbClick(e){
+    var row = e.record;
+    var mainId = row.billMainId;
+    var billTypeCode = row.typeCode;
+    switch (billTypeCode)
+    {
+        case "050101":
+            pchsEnterWin.show();
+
+            var params = {};
+            params.mainId = mainId;
+            innerPchsEnterGrid.load({
+                params:params,
+                token: token
+            });
+            break;
+        case "050102"://"050102"
+            sellRtnWin.show();
+            
+            var params = {};
+            params.mainId = mainId;
+            innerSellRtnGrid.load({
+                params:params,
+                token: token
+            });
+
+            break;
+        case "050201"://"050201"
+            pchsRtnWin.show();
+            
+            var params = {};
+            params.mainId = mainId;
+            innerPchsRtnGrid.load({
+                params:params,
+                token: token
+            });
+            break;
+        case "050202"://"050202"
+            sellOutWin.show();
             
             var params = {};
             params.mainId = mainId;

@@ -77,7 +77,8 @@ function getPchsPartPrice(params){
         type : "post",
         async: false,
         data : {
-            params: params
+            params: params,
+            token:token
         },
         success : function(data) {
             var errCode = data.errCode;
@@ -111,7 +112,8 @@ function getSellPartPrice(params){
         type : "post",
         async: false,
         data : {
-            params: params
+            params: params,
+            token: token
         },
         success : function(data) {
             var errCode = data.errCode;

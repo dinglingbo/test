@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.eos.access.http.MUOCommonUtil;
 import com.eos.data.datacontext.IUserObject;
 import com.eos.data.datacontext.UserObject;
+import com.hs.reRead.BodyReaderHttpServletRequestWrapper;
 
 //import com.ybt.toolutils.HttpUtils;
 
@@ -54,6 +56,7 @@ public class LogicFlowFilter implements Filter {
 		/**
 		 * 如果根本不是逻辑流，就不要处理
 		 */
+
 		if (!isLogicFlow(url)) {
 			chain.doFilter(request, response);
 			return;
@@ -75,21 +78,22 @@ public class LogicFlowFilter implements Filter {
 			return;
 		}
 
-		// 检查是否为Web端发出的请求
-		boolean b = isWebRequest(req);
+		MyHttpServletRequestWrapper requestWrapper = null;
+		if (req instanceof HttpServletRequest) {
+			
+			 requestWrapper = new
+			 MyHttpServletRequestWrapper((HttpServletRequest) req);
+		}
+		// 检查是否客户端发送的请求
+		boolean b = isClientRequest(requestWrapper);
 		if (b) {
-			chain.doFilter(request, response);
+			chain.doFilter(requestWrapper, response);
 			return;
 		}
 
-		MyHttpServletRequestWrapper requestWrapper = null;
-		if (req instanceof HttpServletRequest) {
-			requestWrapper = new MyHttpServletRequestWrapper(
-					(HttpServletRequest) req);
-		}
-		// 检查是否客户端发送的请求
-		b = isClientRequest(requestWrapper);
-		if (b) {
+		// 检查是否为Web端发出的请求
+		boolean c = isWebRequest(requestWrapper);
+		if (c) {
 			chain.doFilter(requestWrapper, response);
 			return;
 		}
@@ -116,10 +120,11 @@ public class LogicFlowFilter implements Filter {
 	private boolean isWebRequest(HttpServletRequest req) {
 		// 直接利用会话检查
 		// 如果是某个页面流请求过来的，就认为是OK的
-		String flow = req.getHeader("Referer");
+		// String flow = req.getHeader("Referer");
+		String flow = req.getRequestURL().toString();
 		if (flow != null && flow.indexOf(".flow") >= 0) {
 			// System.out.println("页面流关联请求，不验证");
-			// return true;
+			return true;
 		}
 		return false;
 
@@ -156,7 +161,7 @@ public class LogicFlowFilter implements Filter {
 	 * @param key
 	 * @return
 	 */
-	private String charReader(MyHttpServletRequestWrapper request, String key) {
+	private String charReader(HttpServletRequestWrapper request, String key) {
 		BufferedReader br;
 		String str, wholeStr = "";
 		try {
@@ -189,7 +194,7 @@ public class LogicFlowFilter implements Filter {
 	 * @param req
 	 * @return
 	 */
-	private String getToken(MyHttpServletRequestWrapper req, String key) {
+	private String getToken(HttpServletRequestWrapper req, String key) {
 		String token = req.getParameter(key);
 		if (token == null || token.trim().length() < 2) {
 			token = charReader(req, key);
@@ -205,7 +210,7 @@ public class LogicFlowFilter implements Filter {
 	 * @param req
 	 * @return
 	 */
-	public boolean isClientRequest(MyHttpServletRequestWrapper req) {
+	public boolean isClientRequest(HttpServletRequestWrapper req) {
 		String token = getToken(req, "token");
 
 		HttpSession session = req.getSession(false);
@@ -220,10 +225,24 @@ public class LogicFlowFilter implements Filter {
 		} else {
 			// 有token时
 			String posiId = getToken(req, "posiId");
+
 			return checkToken(token, session,
 					posiId == null ? 0 : Long.valueOf(posiId));
 		}
 	}
+
+	/**
+	 * Md5检查
+	 * 
+	 * @param token
+	 * @param session
+	 * @return
+	 */
+	/*
+	 * private boolean checkMd5(String token) {
+	 * 
+	 * }
+	 */
 
 	/**
 	 * 检查token
@@ -255,6 +274,9 @@ public class LogicFlowFilter implements Filter {
 				return getUserInfo(key, keys[1], posiId, session);
 			}
 		} else {
+
+			// Utils.getIpAddr(req);
+
 			System.out.println("token不存在，未登录：" + key);
 			return false;
 		}
@@ -267,10 +289,10 @@ public class LogicFlowFilter implements Filter {
 				.decompressUnserialize(RedisUtils.hgetAndExtend(userKey,
 						"userInfo"));
 		// 是否需要更新设置token?
-		if(userObject!=null){
+		if (userObject != null) {
 			session.setAttribute("userObject", userObject);
 			System.out.println("已设置Session From Redis!");
-		}else{
+		} else {
 			System.out.println("userObject IS NUll!");
 		}
 		try {
@@ -300,8 +322,8 @@ public class LogicFlowFilter implements Filter {
 			// 逻辑流的输入参数
 			Object[] result = null;
 
-			String componentName = "com.vplus.login.auth";// 逻辑构件名称com.harson.bpmapi.auth
-			String operationName = "setUserOrgInfo";// 逻辑流名称checkToken
+			String componentName = "com.hsapi.system.auth.LoginManager";// 逻辑构件名称com.harson.bpmapi.auth
+			String operationName = "checkToken";// 逻辑流名称checkToken
 			// 逻辑流的输入参数
 			int size = 3;
 			Object[] params = new Object[size];
@@ -440,6 +462,6 @@ public class LogicFlowFilter implements Filter {
 	}
 
 	private boolean isLogicFlow(String url) {
-		return url.indexOf(".biz.ext") > 0;
+		return url.indexOf(".biz.ext") > 0 || url.indexOf(".flow") > 0;
 	}
 }

@@ -485,8 +485,8 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.fib.FisRpBillList" name="f"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.fib.FibAccountDType" name="type"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.frm.fib.FibAccountDType" name="typeList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.fib.FisRpBillListDetail" name="type"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.frm.fib.FisRpBillListDetail" name="typeList"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.frm.fib.FisRpBillList" name="accountBill"/>

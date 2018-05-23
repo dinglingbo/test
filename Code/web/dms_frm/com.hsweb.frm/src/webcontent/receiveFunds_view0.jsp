@@ -12,13 +12,14 @@
 <head>
 <title>应收账款管理</title>
 	<%@include file="/common/sysCommon.jsp"%>
-<script src="<%=webPath + sysDomain%>/frm/js/arap/receiveFunds.js?v=1.0"
+<script src="<%=webPath + sysDomain%>/frm/js/arap/receiveFunds.js?v=1.1"
 	type="text/javascript"></script>
 
 </head>
 <body>
 	<div class="nui-toolbar" style="padding: 2px; border-bottom: 0;"
 		id="queryForm">
+		<input class="nui-textbox" name="rOrp" id="rOrp" value="1" style="display: none;"></input>
 		<table style="width: 100%;">
 			<tr>
 				<td>

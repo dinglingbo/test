@@ -169,14 +169,30 @@ function addNewRow(check){
 
     }
 
+    var focusGuest = true;
+    var guestId = data.guestId;
+    if(guestId){
+        focusGuest = false;
+    }
+
     var newRow = {};
     if(rows && rows.length > 0){
         var row = rows[0];
         rightGrid.updateRow(row, newRow);
-        rightGrid.beginEditCell(row, "comPartCode");
+        if(focusGuest){
+            var guestId = nui.get("guestId");
+            guestId.focus();
+        }else{
+            rightGrid.beginEditCell(row, "comPartCode");
+        }
     }else{
         rightGrid.addRow(newRow);
-        rightGrid.beginEditCell(newRow, "comPartCode");
+        if(focusGuest){
+            var guestId = nui.get("guestId");
+            guestId.focus();
+        }else{
+            rightGrid.beginEditCell(newRow, "comPartCode");
+        }
     }
 }
 //返回类型给srvBottom，用于srvBottom初始化
@@ -230,16 +246,11 @@ function ontopTabChanged(e){
         }else if(name == "purchaseAdvanceTab"){
             mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containOrderCart.jsp", tab);
         }else if(name == "billmain"){
-            var guestId = nui.get("guestId");
-            if(!guestId.getValue()){
-                guestId.focus();
+            var data = rightGrid.getChanges();
+            if(data && data.length > 0){
+                addNewRow(true);
             }else{
-                var data = rightGrid.getChanges();
-                if(data && data.length > 0) {
-                    addNewRow(true);
-                }else{
-                    add();
-                }
+                add();
             }
         }
     }else{
@@ -749,6 +760,8 @@ function add()
                     nui.get("createDate").setValue(new Date());
                     nui.get("orderMan").setValue(currUserName);
                     
+                    addNewRow();
+
                     var guestId = nui.get("guestId");
                     guestId.focus();
 
@@ -773,6 +786,8 @@ function add()
         nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
         nui.get("createDate").setValue(new Date());
         nui.get("orderMan").setValue(currUserName);
+
+        addNewRow();
         
         var guestId = nui.get("guestId");
         guestId.focus();
@@ -838,6 +853,7 @@ function getMainData()
 }
 var requiredField = {
     guestId : "客户",
+    orderMan : "销售员",
     createDate : "订单日期",
 	billTypeId : "票据类型",
     settleTypeId : "结算方式"
@@ -1004,6 +1020,23 @@ function onRightGridDraw(e)
             break;
         default:
             break;
+    }
+}
+function onCellEditEnter(e){
+    var record = e.record;
+    var cell = rightGrid.getCurrentCell();//行，列
+    var orderPrice = record.orderPrice;
+    if(cell && cell.length >= 2){
+        var column = cell[1];
+        if(column.field == "orderQty"){
+            if(orderPrice){
+                addNewKeyRow();
+            }
+        }else if(column.field == "orderPrice"){
+            addNewKeyRow();
+        }else if(column.field == "remark"){
+            addNewKeyRow();
+        }
     }
 }
 //提交单元格编辑数据前激发
@@ -1682,4 +1715,39 @@ function addRtnList(partList){
         rightGrid.addRows(rows);        
         
     }
+}
+function addNewKeyRow(){
+    var data = basicInfoForm.getData();
+
+    if(data.auditSign == 1){
+        e.cancel = true;
+    }
+    
+    var rows = [];
+    if(check){
+        rows = rightGrid.findRows(function(row) {
+            if (row.partId == null || row.partId == "" || row.partId == undefined)
+                return true;
+        });
+
+    }
+
+    var newRow = {};
+    if(rows && rows.length > 0){
+        var row = rows[0];
+
+        rightGrid.cancelEdit(); 
+        rightGrid.beginEditCell(row, "operateBtn");     
+
+        
+    }else{
+        var newRow = {comPartCode:""};
+        rightGrid.addRow(newRow);
+
+        rightGrid.cancelEdit();
+        //rightGrid.beginEditRow(newRow);   
+        rightGrid.beginEditCell(newRow, "operateBtn");
+        
+    }
+
 }

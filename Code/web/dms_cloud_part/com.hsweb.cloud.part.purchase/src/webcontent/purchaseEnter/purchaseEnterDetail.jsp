@@ -128,7 +128,7 @@
                                                    placeholder="请选择供应商"
                                                    selectOnFocus="true" />
                                         </td>
-                                        <td class="title">
+                                        <td class="title required">
                                             <label>采购员：</label>
                                         </td>
                                         <td colspan="1">
@@ -222,6 +222,7 @@
                                allowCellSelect="true"
                                allowCellEdit="true"
                                oncellcommitedit="onCellCommitEdit"
+                               oncelleditenter="onCellEditEnter"
                                ondrawsummarycell="onDrawSummaryCell"
                                oncellbeginedit="OnrpMainGridCellBeginEdit"
                                showModified="false"
@@ -231,7 +232,7 @@
                                   <div type="indexcolumn">序号</div>
                                   <div header="配件信息" headerAlign="center">
                                       <div property="columns">
-                                        <div field="operateBtn" width="40" headerAlign="center" header="操作"></div>
+                                        <div field="operateBtn" name="operateBtn" width="40" headerAlign="center" header="操作"></div>
                                         <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
                                             <input property="editor" class="nui-textbox" />
                                         </div>

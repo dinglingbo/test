@@ -1040,4 +1040,74 @@
         ORDER BY M.id asc
     </select>
     
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjOutDetailByMainId" parameterClass="java.util.HashMap" resultMap="pjOutDetailList">
+    	
+			
+			SELECT
+			A.id as id,
+			A.main_id as mainId,
+			A.source_id as sourceId,
+			A.root_id as rootId,
+			A.store_id as storeId,
+			A.store_shelf as storeShelf,
+			A.part_id as partId,
+			A.part_code as partCode,
+			A.part_name as partName,
+			A.full_name as fullName,
+			A.out_unit_id as outUnitId,
+			A.system_unit_id as systemUnitId,
+			A.sell_qty as sellQty,
+			A.sell_price as sellPrice,
+			A.sell_amt as sellAmt,
+			A.rtnable_qty as rtnableQty,
+			A.tax_sign as taxSign,
+			A.tax_rate as taxRate,
+			A.tax_price as taxPrice,
+			A.tax_amt as taxAmt,
+			A.no_tax_price as noTaxPrice,
+			A.no_tax_amt as noTaxAmt,
+			A.tax_diff as taxDiff,
+			A.enter_price as enterPrice,
+			A.enter_amt as enterAmt,
+			A.out_to_in_qty as outToInQty,
+			A.enter_date as enterDate,
+			A.prev_detail_id as prevDetailId,
+			A.order_detail_id as orderDetailId,
+			A.order_main_id as orderMainId,
+			A.guest_id as guestId,
+			A.guest_name as guestName,
+			A.remark as remark,
+			A.occupy_qty as occupyQty,
+			A.stock_out_qty as stockOutQty,
+			A.receive_store_id as receiveStoreId,
+			A.receive_store_shelf as receiveStoreShelf,
+			A.origin_id as originId,
+			A.origin_guest_id as originGuestId,
+			B.`code` AS comPartCode,
+			B.`name` AS comPartName,
+			B.full_name AS comFullName,
+			B.brand_code AS comBrandCode,
+			B.oem_code AS comOemCode,
+			B.quality_type_id AS comQualityTypeId,
+			B.part_brand_id AS comPartBrandId,
+			B.apply_car_model AS comApplyCarModel,
+			B.unit AS comUnit,
+			B.spec AS comSpec,
+			B.direction AS comDirection
+			FROM
+			DMS_CLOUD_PART.pj_out_detail_chk A
+				INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="mainId">  
+                    (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+            </dynamic>  
+
+      
+        
+        ORDER BY a.id asc
+    </select>
+    
 </sqlMap>

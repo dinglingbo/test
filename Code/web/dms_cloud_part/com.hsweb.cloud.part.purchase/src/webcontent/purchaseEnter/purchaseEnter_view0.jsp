@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseEnter.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/purchaseEnter.js?v=2.2.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -45,7 +45,7 @@
            activeIndex="0" 
            style="width:100%; height:100%;" 
            plain="false" 
-           onactivechanged="">
+           onactivechanged="ontopTabChanged">
 
  
         <div title="采购入库" id="billmain" name="billmain" >

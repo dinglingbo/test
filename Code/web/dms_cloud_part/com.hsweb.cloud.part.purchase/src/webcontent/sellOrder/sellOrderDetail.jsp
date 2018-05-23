@@ -47,6 +47,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
            
             </td>
@@ -116,7 +117,7 @@
                                                  placeholder="请选择客户"
                                                  selectOnFocus="true" />
                                       </td>
-                                      <td class="title">
+                                      <td class="title required">
                                           <label>销售员：</label>
                                       </td>
                                       <td colspan="1">
@@ -217,6 +218,7 @@
                            allowCellSelect="true"
                            allowCellEdit="true"
                            oncellcommitedit="onCellCommitEdit"
+                           oncelleditenter="onCellEditEnter"
                            ondrawsummarycell=""
                            onselectionchanged=""
                            oncellbeginedit="OnrpMainGridCellBeginEdit"
@@ -227,7 +229,7 @@
                               <div type="indexcolumn">序号</div>
                               <div header="配件信息" headerAlign="center">
                                   <div property="columns">
-                                      <div field="operateBtn" width="50" headerAlign="center" header="删除"></div>
+                                      <div field="operateBtn" name="operateBtn" width="50" headerAlign="center" header="删除"></div>
                                       <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
                                           <input property="editor" class="nui-textbox" />
                                       </div>

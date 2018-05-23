@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOut/sellOut.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOut/sellOut.js?v=2.2.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -138,6 +138,7 @@
                                       <td colspan="3">
                                           <input id="guestId"
                                                  name="guestId"
+                                                 enabled="false"
                                                  class="nui-buttonedit"
                                                  emptyText="请选择客户..."
                                                  onbuttonclick=""
@@ -146,11 +147,11 @@
                                                  placeholder="请选择客户"
                                                  selectOnFocus="true" />
                                       </td>
-                                      <td class="title">
+                                      <td class="title required">
                                           <label>销售员：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
+                                          <input class="nui-textbox" enabled="false" id="orderMan" name="orderMan" width="100%">
                                       </td>
                                       <td class="title required">
                                           <label>订单日期：</label>
@@ -159,6 +160,7 @@
                                           <input name="createDate"
                                                  id="createDate"
                                                  width="100%"
+                                                 enabled="false"
                                                  showTime="true"
                                                  class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                                       </td>
@@ -166,7 +168,7 @@
                                           <label>往来单号：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" id="code" name="code" width="100%">
+                                          <input class="nui-textbox" enabled="false" id="code" name="code" width="100%">
                                       </td>
                                   </tr>
                                   <tr>
@@ -181,6 +183,7 @@
                                                  valueField="customid"
                                                  emptyText="请选择..."
                                                  url=""
+                                                 enabled="false"
                                                  valuefromselect="true"
                                                  allowInput="true"
                                                  selectOnFocus="true"
@@ -200,6 +203,7 @@
                                                  valueField="customid"
                                                  emptyText="请选择..."
                                                  url=""
+                                                 enabled="false"
                                                  valuefromselect="true"
                                                  allowInput="true"
                                                  selectOnFocus="true"
@@ -211,7 +215,7 @@
                                           <label>备注：</label>
                                       </td>
                                       <td colspan="3">
-                                          <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark"/>
+                                          <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark" enabled="false"/>
                                       </td>
                                       <td class="title">
                                           <label>订单号：</label>

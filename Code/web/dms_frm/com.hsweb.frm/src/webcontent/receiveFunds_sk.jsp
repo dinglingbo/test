@@ -16,7 +16,7 @@
 <link
 	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-	<script src="<%=webPath + sysDomain%>/frm/js/arap/receive_sk.js?v=1.4"
+	<script src="<%=webPath + sysDomain%>/frm/js/arap/receive_sk.js?v=1.6"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -33,8 +33,8 @@
 							<td colspan="3"><input class="nui-textbox" enabled="false"
 								name="guestFullName" style="width: 440px;" /></td>
 						</tr>
-
-
+				
+			
 						<tr>
 							<td class="title" style="width: 100px;">单位备注:</td>
 							<td colspan="3"><input class="nui-textbox" enabled="false"
@@ -103,6 +103,7 @@
 											<div field="serviceCode" allowSort="true" headerAlign="center" summaryType="count" align=center width="120">工单号</div>
 											<div field="rpAmt" allowSort="true" headerAlign="center"  summaryType="sum"  
 												width="120">应收金额</div>
+											
 											<div field="rpAmtYes" allowSort="true" summaryType="sum"  headerAlign="center"
 												width="120">已收金额</div>
 											<div field="rpAmtNo" allowSort="true" headerAlign="center"

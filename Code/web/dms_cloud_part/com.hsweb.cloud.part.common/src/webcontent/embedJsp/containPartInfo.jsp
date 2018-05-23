@@ -114,6 +114,7 @@
                            totalField="page.count"
                            pageSize="100"
                            showPager="false"
+                           allowCellSelect="true"
                            showLoading="true"
                            selectOnLoad="true"
                            multiSelect="true"

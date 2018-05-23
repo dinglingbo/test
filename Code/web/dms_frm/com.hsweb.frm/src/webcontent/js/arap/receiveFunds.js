@@ -5,11 +5,13 @@ var billStatusList = [{text:'挂账',value:'0'},{text:'待审核',value:'1'}];
 var onAccountTypeList = [{text:'担保挂账',value:'2'},{text:'保险挂账',value:'1'}];
 var assignStatus;
 var timeStatus;
+var rOrp;
 $(document).ready(function(v){
 	assignStatus = nui.get("assignStatus");
 	timeStatus=nui.get("timeStatus");
 	queryForm = new nui.Form("#queryForm");
     dgGrid = nui.get("dgGrid");
+    rOrp = nui.get("rOrp");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
@@ -64,11 +66,13 @@ function query(){
     var data = queryForm.getData();
     var assigntemp=assignStatus.getValue();
     var timetemp=timeStatus.getValue();
+    var rOrptemp=rOrp.getValue();
     var request = {
     		"params":{
     			"assignStatus": assigntemp,
     			"timetemp":timetemp,
-    			"gd":data.gd
+    			"gd":data.gd,
+    			"rOrptemp":rOrptemp
     		}
     };
    
@@ -148,6 +152,7 @@ function db(){
 }
 function sk(){
 	var s=dgGrid.getSelected ();
+	
 	if(s!=undefined){
 		
 		 nui.open({

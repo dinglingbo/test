@@ -218,7 +218,7 @@ function reloadData()
 function getSearchParams()
 {
     var params = queryForm.getData();
-    params.partCode = nui.get("search-code").getValue();
+    params.partCode = (nui.get("search-code").getValue()).replace(/\s+/g, "");
     params.partName = nui.get("search-name").getValue();
     params.applyCarModel = nui.get("search-applyCarModel").getValue();
     params.namePy = nui.get("search-namePy").getValue();
@@ -231,7 +231,7 @@ function getSearchParams()
     if (partCodeList) {
         var tmpList = partCodeList.split("\n");
         for (i = 0; i < tmpList.length; i++) {
-            tmpList[i] = "'" + tmpList[i] + "'";
+            tmpList[i] = "'" + (tmpList[i]).replace(/\s+/g, "") + "'";
         }
         params.partCodeList = tmpList.join(",");
     }

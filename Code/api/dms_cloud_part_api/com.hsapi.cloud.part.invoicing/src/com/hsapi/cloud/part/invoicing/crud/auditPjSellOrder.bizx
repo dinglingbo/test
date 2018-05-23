@@ -263,6 +263,10 @@
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">auditMain/auditorId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">auditMain/billStatusId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="627" y="323"/>
@@ -485,6 +489,16 @@
       <sourceNode>assign6</sourceNode>
       <targetNode>subprocess3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="codeId>0" displayName="连接线" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>subprocess5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">auditMain/codeId</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="870" y="287"/>
     <size height="28" width="28"/>
@@ -505,6 +519,7 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="1042" y="287"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
@@ -620,6 +635,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link31</targetConnections>
+    <targetConnections>link21</targetConnections>
     <location x="1230" y="287"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -633,6 +649,57 @@
     <location x="1228" y="323"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="updatePchsOrderStatus" displayName="updatePchsOrderStatus" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>subprocess3</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>transactionrollback3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="870" y="370"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess5label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.updatePchsOrderStatus</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="billStatusId" type="query" value="Int" valueType="Primitive" pattern="reference">auditMain/codeId</process:inputVariable>
+        <process:inputVariable id="1" name="mainId" type="literal" value="Int" valueType="Primitive" pattern="reference">4</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
+    <location x="814" y="405"/>
+    <figSize height="17" width="138"/>
+    <node>subprocess5</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback3" name="事务回滚3" displayName="事务回滚" type="transactionrollback">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactionrollback3</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="1030" y="370"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactionrollback3label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback3label" name="label" nodeType="label">
+    <location x="1016" y="406"/>
+    <figSize height="17" width="56"/>
+    <node>transactionrollback3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

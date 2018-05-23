@@ -15,7 +15,6 @@
 	width: 60px;
 	text-align: right;
 }
-
 .title.required {
 	color: red;
 }
@@ -58,6 +57,11 @@
             <!--采购订单信息-->
             <%@include file="/purchase/sellOrder/sellOrderDetail.jsp" %>
         </div>
+        <div title="待处理客户订单" name="guestOrdrTab" url="" >
+          <!-- <div class="nui-fit">
+                <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
+          </div> -->
+        </div>  
         <div title="销售车" name="purchaseAdvanceTab" url="" >
           <!-- <div class="nui-fit">
                 <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>

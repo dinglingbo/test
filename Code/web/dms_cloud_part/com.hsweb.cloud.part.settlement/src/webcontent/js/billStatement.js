@@ -165,12 +165,12 @@ function loadMainAndDetailInfo(row)
        if(row.auditSign == 1) {
             setBtnable(false);
 
-           document.getElementById("basicInfoForm").disabled=false;
+           document.getElementById("basicInfoForm").disabled=true;
            setEditable(false);
        }else {
             setBtnable(true);
 
-           document.getElementById("basicInfoForm").disabled=true;
+           document.getElementById("basicInfoForm").disabled=false;
            setEditable(true);
        }
         
@@ -865,6 +865,9 @@ function onGuestValueChanged(e)
     var params = {};
     params.pny = e.value;
     setGuestInfo(params);
+
+    var data = rightGrid.getData();
+    rightGrid.removeRows(data);
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)

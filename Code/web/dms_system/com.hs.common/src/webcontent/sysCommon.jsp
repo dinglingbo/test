@@ -156,6 +156,7 @@
         margin:0;
         border:0;
         height:100%;
+        white-space: nowrap;
         /**overflow:hidden;**/
     }
 </style>

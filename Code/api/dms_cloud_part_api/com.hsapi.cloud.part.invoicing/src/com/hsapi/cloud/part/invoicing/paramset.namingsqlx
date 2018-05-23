@@ -165,4 +165,188 @@
         
     </select>
     
+    <select id="querySellOrderByGuestId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+			a.id as id,
+			a.service_id as serviceId,
+			a.order_man as orderMan,
+		  	a.audit_date as auditDate,
+			a.order_amt as orderAmt,
+			a.remark as remark,
+		  b.full_name as fullName  
+		from pj_sell_order_main_chk a
+		inner join wb_common.com_guest b
+		on a.guest_id = b.id
+		where 1 = 1 and a.is_out = 1
+				
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isNeedPack">  
+                    (a.is_need_pack = #isNeedPack#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isCheckSend"> 
+                    (a.is_check_send = #isCheckSend#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isSend"> 
+                    (a.is_send = #isCheckSend#)
+                </isNotEmpty>
+                
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.create_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.create_date &lt; #endDate#)
+                </isNotEmpty>
+                
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.create_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.create_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (a.audit_date &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (a.audit_date &lt; #eAuditDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="orderMan">  
+                    (a.order_man = #orderMan#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.serviceId = #serviceId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (a.serviceId in ($serviceIdList$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="isSend">  
+                    (a.is_send = #isSend#)
+                </isNotEmpty>
+                
+	            <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+            </dynamic> 
+            
+				
+	</select>
+	
+	<select id="queryPJPackMainList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.service_id as serviceId,
+			a.orgid as orgid,
+			a.logistics_guest_id as logisticsGuestId,
+			a.logistics_name as logisticsName,
+			a.logistics_no as logisticsNo,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.receive_comp_name as receiveCompName,
+			a.receive_man as receiveMan,
+			a.receive_man_tel as receiveManTel,
+			a.settle_type_id as settleTypeId,
+			a.pack_man as packMan,
+			a.pack_pay_amt as packPayAmt,
+			a.arrive_pay_amt as arrivePayAmt,
+			a.true_pay_amt as truePayAmt,
+			a.pack_item as packItem,
+			a.audit_sign as auditSign,
+			a.auditor_id as auditorId,
+			a.auditor as auditor,
+			a.audit_date as auditDate,
+			a.remark as remark,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.f_year as fYear,
+			a.f_month as fMonth,
+			a.province_id as provinceId,
+			a.city_id as cityId,
+			a.county_id as countyId,
+			a.street_address as streetAddress,
+			a.address as address
+		FROM
+			pj_pack_main AS a
+
+		WHERE
+			1 = 1
+				
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="logisticsNo">  
+	                (a.logistics_no like '%$logisticsNo$%')
+	            </isNotEmpty>
+
+                
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.create_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.create_date &lt; #endDate#)
+                </isNotEmpty>
+                
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.create_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.create_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (a.audit_date &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (a.audit_date &lt; #eAuditDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="packMan">  
+                    (a.pack_man = #packMan#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id = #serviceId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (a.service_id in ($serviceIdList$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="auditSign">  
+                    (a.audit_sign = #auditSign#)
+                </isNotEmpty>
+                
+	            <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+            </dynamic> 
+				
+	</select>
+    
 </sqlMap>

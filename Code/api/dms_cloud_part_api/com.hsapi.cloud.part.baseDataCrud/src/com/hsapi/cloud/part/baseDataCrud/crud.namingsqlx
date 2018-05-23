@@ -135,7 +135,8 @@
 		       a.recorder              recorder,
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
-		       a.modify_date           modifyDate
+		       a.modify_date           modifyDate,
+		       a.is_need_pack          isNeedPack
 		       FROM com_guest a
 		       WHERE 1 = 1 and (a.orgid = #orgid# or a.orgid = 0)
 		     <!-- a.is_supplier = 1   AND a.guest_type = '01020202'-->

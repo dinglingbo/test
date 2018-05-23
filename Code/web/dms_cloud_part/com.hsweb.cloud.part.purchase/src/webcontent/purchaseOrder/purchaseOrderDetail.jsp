@@ -105,6 +105,7 @@
                           <input class="nui-hidden" name="taxSign" id="taxSign"/>
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
+                          <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>
                                   <td class="title required">

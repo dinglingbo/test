@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.foundation
+eos-webCtxPath: report
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.cloud.part.report
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.cloud.part.report
+

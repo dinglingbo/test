@@ -166,6 +166,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="504" y="287"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
@@ -261,6 +262,16 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">auditMain/isInner</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="442" y="287"/>
     <size height="28" width="28"/>
@@ -280,6 +291,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">auditMain/auditorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">auditMain/billStatusId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -574,6 +589,25 @@
     <location x="792" y="322"/>
     <figSize height="17" width="153"/>
     <node>subprocess3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="442" y="360"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">auditMain/billStatusId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="440" y="396"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

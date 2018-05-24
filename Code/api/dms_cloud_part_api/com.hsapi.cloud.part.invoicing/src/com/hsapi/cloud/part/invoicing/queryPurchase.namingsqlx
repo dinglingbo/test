@@ -1226,4 +1226,116 @@
         ORDER BY a.id asc
     </select>
     
+    <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryNotSettlePchsOrderMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+            SELECT DISTINCT
+                A.ID as id,
+                A.SERVICE_ID as serviceId,
+                A.ORGID as orgid,
+                A.GUEST_ID as guestId,
+                A.STORE_ID as storeId,
+                A.CODE as code,
+                A.ORDER_DATE as orderDate,
+                A.PLAN_ARRIVE_DATE as planArriveDate,
+                A.ORDER_MAN_ID as orderManId,
+                A.ORDER_MAN as orderMan,
+                A.BILL_TYPE_ID as billTypeId,
+                A.PAY_MODE_ID as payModeId,
+                A.TAX_SIGN as taxSign,
+                A.TAX_RATE as taxRate,
+                A.TAX_AMT as taxAmt,
+                A.NO_TAX_AMT as noTaxAmt,
+                A.TAX_DIFF as taxDiff,
+                A.ORDER_QTY as orderQty,
+                A.ORDER_ITEM as orderItem,
+                A.ORDER_AMT as orderAmt,
+                A.TRUE_ENTER_QTY as trueEnterQty,
+                A.TRUE_ENTER_AMT as trueEnterAmt,
+                A.NOT_ENTER_QTY as notEnterQty,
+                A.NOT_ENTER_AMT as notEnterAmt,
+                A.ADJUST_QTY as adjustQty,
+                A.IS_FINISHED as isFinished,
+                A.FINISH_DATE as finishDate,
+                A.SEND_TYPE_ID as sendTypeId,
+                A.PRINT_TIMES as printTimes,
+                A.PRINT_MAN_ID as printManId,
+                A.PRINT_MAN as printMan,
+                A.PRINT_DATE as printDate,
+                A.AUDIT_SIGN as auditSign,
+                A.AUDITOR_ID as auditorId,
+                A.AUDITOR as auditor,
+                A.AUDIT_DATE as auditDate,
+                A.REMARK as remark,
+                A.CREATOR_ID as creatorId,
+                A.CREATOR as creator,
+                A.CREATE_DATE as createDate,
+                A.OPERATOR_ID as operatorId,
+                A.OPERATOR as operator,
+                A.OPERATE_DATE as operateDate,
+                A.SETTLE_TYPE_ID as settleTypeId,
+                A.BILL_STATUS_ID as billStatusId,
+                c.FULL_NAME AS guestFullName,
+                c.SHORT_NAME AS guestShortName
+                FROM
+                DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+                inner join wb_common.COM_GUEST c on a.orgid = c.is_internal_id
+                where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (b.is_internal_id = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">  
+                    (a.id = #id#)
+                </isNotEmpty>
+                <!--采购订单状态  0草稿，1待入库，2待接收，3已接收，4待出库，5已出库，6部分入库，7已入库-->
+                <isNotEmpty prepend="and" property="billStatusId">  
+                    (A.BILL_STATUS_ID = #billStatusId#)
+                </isNotEmpty>
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    (A.ORDER_DATE &gt;= #sOrderDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.ORDER_DATE &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.CREATE_DATE &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.CREATE_DATE &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.CREATE_DATE &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (c.id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="auditSign">  
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.ID in ($serviceIdList$))
+                </isNotEmpty>
+            </dynamic>  
+        
+        
+        ORDER BY a.audit_date DESC
+    </select>
+    
+    
 </sqlMap>

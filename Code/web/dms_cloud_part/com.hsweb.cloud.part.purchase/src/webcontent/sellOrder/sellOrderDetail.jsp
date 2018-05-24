@@ -101,6 +101,7 @@
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
+                              <input class="nui-textbox" visible="false" id="codeId" name="codeId" width="100%">
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">
@@ -191,8 +192,11 @@
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="2">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark"/>
+                                      </td>
+                                      <td colspan="1" class="required">
+                                          <input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货" onvaluechanged="onValueChanged" trueValue="1" falseValue="0">
                                       </td>
                                       <td class="title">
                                           <label>订单号：</label>

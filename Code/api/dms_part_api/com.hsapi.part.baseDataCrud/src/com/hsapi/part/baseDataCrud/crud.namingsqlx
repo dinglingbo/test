@@ -134,7 +134,8 @@
 		       a.recorder              recorder,
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
-		       a.modify_date           modifyDate
+		       a.modify_date           modifyDate,
+		       a.is_need_pack          isNeedPack
 		       FROM com_guest a
 		       WHERE a.is_supplier = 1 and (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>
@@ -236,7 +237,8 @@
 		       a.recorder              recorder,
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
-		       a.modify_date           modifyDate
+		       a.modify_date           modifyDate,
+		       a.is_need_pack as isNeedPack
 		       FROM com_guest a
 		       WHERE a.is_client = 1 and (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>
@@ -332,7 +334,8 @@
 		       a.recorder              recorder,
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
-		       a.modify_date           modifyDate
+		       a.modify_date           modifyDate,
+		       a.is_need_pack as isNeedPack
 		       FROM com_guest a
 		       WHERE (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>

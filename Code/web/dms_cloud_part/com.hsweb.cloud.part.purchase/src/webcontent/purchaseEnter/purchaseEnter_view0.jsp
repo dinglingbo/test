@@ -59,11 +59,9 @@
               <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
           </div> -->
         </div>
-        <!-- <div title="采购车" name="purchaseAdvanceTab" url="" >
-          <div class="nui-fit">
-                <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-          </div>
-        </div>  -->  
+        <div title="待收货单" name="sellOrderTab" url="" >
+          
+        </div>
     </div>
 </div>
 

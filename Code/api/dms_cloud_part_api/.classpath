@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.cloud.part.report/bin" path="com.hsapi.cloud.part.report/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.cloud.part.settle/bin" path="com.hsapi.cloud.part.settle/src"/>
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.cloud.part.common/bin" path="com.hsapi.cloud.part.common/src"/>

@@ -239,8 +239,8 @@ function ontopTabChanged(e){
     var name = tab.name;
     var url = tab.url;
     if(!url){
-        if(name == "partInfoTab"){
-            //mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp", tab);
+        if(name == "guestOrdrTab"){
+            mainTabs.loadTab(webPath + cloudPartDomain + "/purchase/sellOrder/pchsOrderSettle_view0.jsp", tab);
         }else if(name == "partStockInfoTab"){
             mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp", tab);
         }else if(name == "purchaseAdvanceTab"){
@@ -988,6 +988,10 @@ function selectSupplier(elId)
 
                     nui.get("billTypeId").setValue(billTypeIdV);
                     nui.get("settleTypeId").setValue(settTypeIdV);
+                    nui.get("isNeedPack").setValue(supplier.isNeedPack);
+
+                    nui.get("codeId").setValue(0);
+                    nui.get("code").setValue(null);
 
                 }
             }
@@ -1466,6 +1470,10 @@ function setGuestInfo(params)
 
                     nui.get("billTypeId").setValue(billTypeIdV);
                     nui.get("settleTypeId").setValue(settTypeIdV);
+                    nui.get("isNeedPack").setValue(data.isNeedPack);
+
+                    nui.get("codeId").setValue(0);
+                    nui.get("code").setValue(null);
 
                 }
                 else
@@ -1477,6 +1485,9 @@ function setGuestInfo(params)
                     var row = leftGrid.getSelected();
                     var newRow = {guestFullName: null};
                     leftGrid.updateRow(row,newRow);
+                    nui.get("isNeedPack").setValue(0);
+                    nui.get("codeId").setValue(0);
+                    nui.get("code").setValue(null);
 
                     nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
                 }
@@ -1490,6 +1501,10 @@ function setGuestInfo(params)
                 var row = leftGrid.getSelected();
                 var newRow = {guestFullName: null};
                 leftGrid.updateRow(row,newRow);
+                nui.get("isNeedPack").setValue(0);
+
+                nui.get("codeId").setValue(0);
+                nui.get("code").setValue(null);
             }
 
 

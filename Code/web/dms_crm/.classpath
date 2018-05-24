@@ -3,6 +3,7 @@
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.crm.member/bin" path="com.hsweb.crm.member/src"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.crm.telsell/bin" path="com.hsweb.crm.telsell/src"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.crm.query/bin" path="com.hsweb.crm.query/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

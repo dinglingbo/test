@@ -65,13 +65,26 @@
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 客服</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 续费</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li>
-        <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle userinfo">
+                    <i class="fa fa-align-justify"></i><span >待处理</span><i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu pull-right">
+                <li>
+                    <a href="javascript:openGuestOrder();"><i class="fa fa-pencil-square-o"></i> 待处理客户订单</a>
+                </li>
+                <li>
+                    <a href="javascript:openSellOrder();"><i class="fa fa-pencil-square-o"></i> 待收货单</a>
+                </li>
+            </ul>
+        </li>
         <li class="dropdown">
             <a class="dropdown-toggle userinfo">
                 <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
                 <li ><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li>
+                <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
                 <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp" target="_top"><i class="fa fa-user"></i> 退出登录</a></li>
             </ul>
         </li>
@@ -183,6 +196,24 @@
 	}
 	// 退出全屏模式!
 	//exitFullscreen();
+
+    function openGuestOrder(){
+        var item={};
+        item.id = "guestOrder";
+        item.text = "待处理客户订单";
+        item.url = "/default/com.hsweb.cloud.part.purchase.pchsOrderSettle.flow";
+        item.iconCls = "fa fa-sitemap";
+        activeTab(item);
+    }
+
+    function openSellOrder(){
+        var item={};
+        item.id = "sellOrder";
+        item.text = "待收货单";
+        item.url = "/default/com.hsweb.cloud.part.purchase.sellOrderReceive.flow";
+        item.iconCls = "fa fa-sitemap";
+        activeTab(item);
+    }
 
     $(function () {
 

@@ -362,6 +362,8 @@ function ontopTabChanged(e){
             }else{
                 add();
             }
+        }else if(name == "sellOrderTab"){
+            mainTabs.loadTab(webPath + cloudPartDomain + "/purchase/purchaseEnter/sellOrderReceive_view0.jsp", tab);
         }
     }else{
         if(name == "billmain"){

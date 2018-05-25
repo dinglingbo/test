@@ -157,8 +157,10 @@ function addNewRow(check){
     var data = basicInfoForm.getData();
 
     if(data.auditSign == 1){
-        e.cancel = true;
+        return;
     }
+
+    if(data.codeId) return;
     
     var rows = [];
     if(check){
@@ -210,14 +212,24 @@ function loadMainAndDetailInfo(row)
        nui.get("guestId").setText(row.guestFullName);
 
        var row = leftGrid.getSelected();
-       if(row.auditSign == 1) {
-            document.getElementById("basicInfoForm").disabled=true;
-            setBtnable(false);
-            setEditable(false);
-       }else {
-            document.getElementById("basicInfoForm").disabled=false;
-            setBtnable(true);
-            setEditable(true);
+
+
+       if(row.codeId){
+            //可以编辑票据类型和结算方式，是否需要打包，备注，业务员；明细不能修改；如果需要，则退回
+            nui.get("guestId").disable();
+            nui.get("code").disable();
+       }else{
+           nui.get("guestId").enable();
+           nui.get("code").enable();
+           if(row.auditSign == 1) {
+                document.getElementById("basicInfoForm").disabled=true;
+                setBtnable(false);
+                setEditable(false);
+           }else {
+                document.getElementById("basicInfoForm").disabled=false;
+                setBtnable(true);
+                setEditable(true);
+           }
        }
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
@@ -747,6 +759,9 @@ function add()
                     setBtnable(true);
                     setEditable(true);
 
+                    nui.get("guestId").enable();
+                    nui.get("code").enable();
+
                     basicInfoForm.reset();
                     rightGrid.clearRows();
                     
@@ -773,6 +788,9 @@ function add()
     }else{
         setBtnable(true);
         setEditable(true);
+
+        nui.get("guestId").enable();
+        nui.get("code").enable();
 
         basicInfoForm.reset();
         rightGrid.clearRows();
@@ -1277,6 +1295,8 @@ function deletePart(){
         } 
     }
 
+    if(row.codeId) return;
+
     var part = rightGrid.getSelected();
     if(!part)
     {
@@ -1601,6 +1621,10 @@ function OnrpMainGridCellBeginEdit(e){
     var data = basicInfoForm.getData();
 
     if(data.auditSign == 1){
+        e.cancel = true;
+    }
+
+    if(data.codeId){
         e.cancel = true;
     }
 

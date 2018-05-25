@@ -29,14 +29,12 @@
                     <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">全部</li>
                 </ul>
-
-                <label style="font-family:Verdana;">客户：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择客户..."
+                       emptyText="请选择客户..." visible="false"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 
-                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" visible="false" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
@@ -45,7 +43,7 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
@@ -81,7 +79,7 @@
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
                         <div field="guestFullName" width="80" headerAlign="center" header="客户"></div>
-                        <div field="createDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="订单日期"></div>
+                        <div field="createDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="订单日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="销售员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="订单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>

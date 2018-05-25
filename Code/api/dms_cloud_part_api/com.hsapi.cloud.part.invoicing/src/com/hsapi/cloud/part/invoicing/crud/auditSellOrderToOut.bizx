@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditSellOrderToOut.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="销售出库&#xD;&#xA;1、销售订单审核后的销售出库处理&#xD;&#xA;2、如果是内部订单，需要更新订单状态&#xD;&#xA;    销售订单修改客户后需要更新 codeid为null&#xD;&#xA;3、isinner内部订单，需要更新订单状态" title="Administrator&#x9;18-5-23 下午7:30">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="销售出库&#xD;&#xA;1、销售订单审核后的销售出库处理&#xD;&#xA;2、如果是内部订单，需要更新订单状态&#xD;&#xA;    销售订单修改客户后需要更新 codeid为null&#xD;&#xA;3、isinner内部订单，需要更新订单状态&#xD;&#xA;4、订单审核后，更新采购订单为待收货 2" title="Administrator&#x9;18-5-23 下午7:30">
     <location x="-30" y="-30"/>
-    <size height="121" width="307"/>
+    <size height="166" width="307"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
@@ -55,7 +55,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">main</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -442,7 +442,7 @@
       <targetNode>transactioncommit0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -454,7 +454,7 @@
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updatePchsOrderStatus</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="billStatusId" type="literal" value="Int" valueType="Primitive" pattern="reference">5</process:inputVariable>
+        <process:inputVariable id="0" name="billStatusId" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">main/codeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>

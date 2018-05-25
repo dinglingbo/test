@@ -26,10 +26,12 @@ var billServiceIdEl = null;
 var billServiceManEl = null;
 var accountSignEl = null;
 var billStatusIdList = [
-    {id:2,text:"待接收"},
-    {id:3,text:"已接收"},
-    {id:4,text:"待出库"},
-    {id:5,text:"已出库"}
+    {id:1,text:"待发货"},
+    {id:2,text:"待收货"},
+    {id:3,text:"部分入库"},
+    {id:4,text:"全部入库"},
+    {id:5,text:"已退回"},
+    {id:6,text:"已关闭"}
 ];
 $(document).ready(function(v)
 {
@@ -97,10 +99,12 @@ $(document).ready(function(v)
 });
 var billStatusIdHash = {
     "0" : "草稿",
-    "2" : "待接收",
-    "3" : "已接收",
-    "4" : "待出库",
-    "5" : "已出库"
+    "1" : "待发货",
+    "2" : "待收货",
+    "3" : "部分入库",
+    "4" : "全部入库",
+    "5" : "已退回",
+    "6" : "已关闭"
 };
 function setInitData(guestId, ck, cck){
     callback = ck;
@@ -222,12 +226,23 @@ function onShowRowDetail(e) {
         token: token
     });
 }
+function backPchsOrder(){
+    var row = notSettleGrid.getSelected();
+    if(row){
+        var billStatusId = row.billStatusId;
+        if(billStatusId != 1){
+            nui.alert("只能退回【待发货】状态下的订单!");
+            return;
+        }
+        backPchsOrder(row.id);
+    }
+}
 function addSellOrder(){
     var row = notSettleGrid.getSelected();
     if(row){
         var billStatusId = row.billStatusId;
-        if(billStatusId != 2){
-            nui.alert("此单已接收，不能生成销售订单!");
+        if(billStatusId != 1){
+            nui.alert("只能受理【待发货】状态下的订单!");
             return;
         }
         generateSellOrder(row.id);
@@ -235,6 +250,43 @@ function addSellOrder(){
 }
 //根据采购订单内容生成销售订单
 function generateSellOrder(mainId){
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+    nui.ajax({
+        url : baseUrl + "com.hsapi.cloud.part.invoicing.ordersettle.generateSellOrder.biz.ext",
+        type : "post",
+        async: false,
+        data : {
+            pchsMainId: mainId,
+            dStoreId: FStoreId,
+            token: token
+        },
+        success : function(data) {
+            nui.unmask(document.body);
+            var errCode = data.errCode;
+            if(errCode == "S"){
+                var serviceId = data.serviceId;
+                if(serviceId){
+                    nui.alert("生成销售订单成功!单号为："+serviceId);
+                }
+
+                searchBill();
+            }else {
+                nui.alert(data.errMsg || "保存失败!");
+            }
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+//退回采购订单
+function backPchsOrder(mainId){
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',

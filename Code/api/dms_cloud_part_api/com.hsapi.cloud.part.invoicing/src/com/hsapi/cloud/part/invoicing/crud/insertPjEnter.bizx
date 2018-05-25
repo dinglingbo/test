@@ -932,7 +932,9 @@
     <figSize height="17" width="32"/>
     <node>assign16</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="142" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-26 01:42:34" date="2018-02-25Z" description="" name="newbiz" version="7.0.0.0"/>
   <process:variables>

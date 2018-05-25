@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditPjSellOrder" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、先对数据进行保存&#xD;&#xA;2、加载主表和明细表数据&#xD;&#xA;3、将未审核表数据插入到已审表&#xD;&#xA;4、删除未审表中的数据&#xD;&#xA;判断单据状态；&#xD;&#xA;判断明细数据是否被删除；&#xD;&#xA;判断数量和单价（根据需要,是否必须大于0）；&#xD;&#xA;&#xD;&#xA;1、将未审表信息插入已审表中，到已审表的数据状态需要修改，删除未审表中的数据；&#xD;&#xA;" title="DLB&#x9;17-7-19 上午11:32">
-    <location x="30" y="27"/>
-    <size height="199" width="301"/>
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、先对数据进行保存&#xD;&#xA;2、加载主表和明细表数据&#xD;&#xA;3、将未审核表数据插入到已审表&#xD;&#xA;4、删除未审表中的数据&#xD;&#xA;判断单据状态；&#xD;&#xA;判断明细数据是否被删除；&#xD;&#xA;判断数量和单价（根据需要,是否必须大于0）；&#xD;&#xA;&#xD;&#xA;1、将未审表信息插入已审表中，到已审表的数据状态需要修改，删除未审表中的数据；&#xD;&#xA;2、审核后销售订单状态billStatusId=1" title="DLB&#x9;17-7-19 上午11:32">
+    <location x="30" y="-30"/>
+    <size height="256" width="301"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link11" isDefault="true" type="transition">
@@ -489,16 +489,6 @@
       <sourceNode>assign6</sourceNode>
       <targetNode>subprocess3</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="codeId>0" displayName="连接线" type="transition">
-      <sourceNode>assign6</sourceNode>
-      <targetNode>subprocess5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="GT">
-          <process:leftOperand type="query">auditMain/codeId</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="870" y="287"/>
     <size height="28" width="28"/>
@@ -519,7 +509,6 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
-    <targetConnections>link14</targetConnections>
     <location x="1042" y="287"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
@@ -635,7 +624,6 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link31</targetConnections>
-    <targetConnections>link21</targetConnections>
     <location x="1230" y="287"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -649,57 +637,6 @@
     <location x="1228" y="323"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="updatePchsOrderStatus" displayName="updatePchsOrderStatus" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>subprocess3</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>transactionrollback3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">S</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link12</targetConnections>
-    <location x="870" y="370"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.updatePchsOrderStatus</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="billStatusId" type="query" value="Int" valueType="Primitive" pattern="reference">auditMain/codeId</process:inputVariable>
-        <process:inputVariable id="1" name="mainId" type="literal" value="Int" valueType="Primitive" pattern="reference">4</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="814" y="405"/>
-    <figSize height="17" width="138"/>
-    <node>subprocess5</node>
-  </nodes>
-  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback3" name="事务回滚3" displayName="事务回滚" type="transactionrollback">
-    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>transactionrollback3</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="1030" y="370"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactionrollback3label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback3label" name="label" nodeType="label">
-    <location x="1016" y="406"/>
-    <figSize height="17" width="56"/>
-    <node>transactionrollback3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

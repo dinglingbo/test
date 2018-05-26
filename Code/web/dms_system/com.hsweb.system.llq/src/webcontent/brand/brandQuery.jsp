@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon2.jsp" %>
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=1.3" type="text/javascript"></script>
     <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=1.2" type="text/javascript"></script>
 </head>
 <body>

@@ -50,7 +50,7 @@
       <targetNode>assign15</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -265,6 +265,10 @@
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">auditMain/auditorId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">auditMain/billStatusId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="1316" y="318"/>
@@ -282,6 +286,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">billStatusId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link27</targetConnections>
     <location x="1127" y="285"/>
     <size height="28" width="28"/>
@@ -293,6 +307,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">detail</process:from>
       <process:to type="query">auditDetailsObj</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/billStatusId</process:from>
+      <process:to type="query">billStatusId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
@@ -391,7 +409,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">main</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
@@ -405,6 +423,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="862" y="472"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -604,6 +623,29 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>transactionrollback0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="1127" y="374"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">待出库状态下的单才可以返单</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="1125" y="410"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-26 21:02:48" date="2018-02-26Z" description="" name="auditPjPchsOrder" version="7.0.0.0"/>
@@ -618,6 +660,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="auditSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billStatusId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>

@@ -14,8 +14,8 @@
     <%@include file="/common/sysCommon2.jsp" %>
     <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.4" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.4" type="text/javascript"></script>    
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -84,7 +84,7 @@
     
     
 	<div id="brandWin" class="nui-window"
-	     title="品牌查询" style="width:416px;"
+	     title="选择品牌" style="width:416px;"
 	     showModal="true"
 	     allowResize="false"
 	     allowDrag="false"><!--height:150px;-->
@@ -101,12 +101,34 @@
                 </div>
                 -->
             </div>
-            <!--
-	        <div style="text-align:center;padding:10px;">
-	            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-	            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
-	        </div>
-            -->
+	    </div>
+	</div>
+    
+    <div id="configWin" class="nui-window"
+	     title="选择配置" style="width:416px;height:150px;"
+	     showModal="true"
+	     allowResize="false"
+	     allowDrag="false"><!--height:150px;-->
+	    <div id="configForm" class="form">
+	        <div class="nui-fit">
+            </div>
+                <div id="gridConfig" 
+                    class="nui-datagrid" 
+                    style="width:100%;height:100%;"
+                    showColumns="true"
+                    showPager="false"
+                    allowcellwrap="true"
+                    allowHeaderWrap="true"
+                    showSummaryRow="true">
+                    <div property="columns">  
+                        <!--
+                        <div type="indexcolumn" width="20" summaryType="count">序号</div>
+                        <div field="field1" width="80" headerAlign="center" allowSort=false>地区</div>
+                        <div field="field1" width="80" headerAlign="center" allowSort=false>变速箱&nbsp;/&nbsp;等级</div>
+                        <div field="field2" width="150" headerAlign="center" allowSort=false>设备</div>
+                        -->
+                    </div>
+                </div>
 	    </div>
 	</div>
 </body>

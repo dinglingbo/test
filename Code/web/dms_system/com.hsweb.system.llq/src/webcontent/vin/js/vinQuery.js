@@ -8,10 +8,16 @@ var subGroups;//分组
 var gridSubGroup;//分组grid
 var gridParts;//零件
 var panel;
+
 var selectWin;
+var configWin;
+var gridConfig;
 
 $(document).ready(function(v){
     selectWin = nui.get("brandWin");
+    configWin = nui.get("configWin");
+    gridConfig = nui.get("gridConfig");
+        
     vinPartImg = $("#vin_part_img");
     gridCfg = nui.get("gridCfg");
 	gridMainGroup = nui.get("gridMainGroup");
@@ -58,6 +64,30 @@ $(document).ready(function(v){
             var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
             e.cellHtml = html;
         }
+    });
+    
+    gridConfig.on("select", function (e) {//4005选择配置
+        /* var column = e.column;
+        var editor = e.editor;
+        field = e.field,
+        value = e.value; */
+        var row = e.record;
+        if (row.auth) {
+            var params = {
+                "url": llq_pre_url + "/ppyvin/searchvins_v2",
+                "params":{
+                    "vin":vin,
+                    "brand": row.brand,
+                    "is_filter":1,
+                    "auth":unescape(row.auth)
+                },
+                "token": token
+            }
+        
+            $(".groupButton").hide();
+            callAjax(url, params, processAjax, setGridCfg);
+        }
+        closeSelectBrand(configWin);
     });
     
     $("#vin").bind("keydown", function (e) {
@@ -314,14 +344,14 @@ function setBgColor(obj){
 }
 
 /**
-*vin包含多品牌
+*vin包含多品牌(4007)
 */
 function selectBrand(data, json){
     var selectForm = new nui.Form("#brandForm");
     
     selectWin.show();
     selectForm.clear();
-    var brandTmpl = '<div class="brandsItem" onclick="closeSelectBrand();window.parent.queryBrand(\'[brand]\')">'
+    var brandTmpl = '<div class="brandsItem" onclick="closeSelectBrand(selectWin);window.parent.queryBrand(\'[brand]\')">'
               + '   <img id="brand_img_[index]" src="">'
               + '   <span>[name]</span>'
               + '</div>'
@@ -334,6 +364,48 @@ function selectBrand(data, json){
     }
 }
 
-function closeSelectBrand(){
-    selectWin.hide();
+function closeSelectBrand(obj){
+    obj.hide();
+}
+
+/**
+*vin包含多配置(4005)
+*/
+function selectConfig(data, json){
+    var selectForm = new nui.Form("#configForm");
+   
+    configWin.show();
+    selectForm.clear();
+    
+    var columns = [
+        { type: "indexcolumn", width:40, headerAlign: "center", header: "序号", summaryType: "count"},
+        { field: "auth", visible: false},
+        { field: "brand", visible: false}
+    ];
+    var titles = json.title;
+    for(var i=0; i<titles.length; i++){
+        columns.push({ field: "field" + i, width:80, headerAlign: "center", allowSort: false, header: titles[i]});
+    }
+    
+    gridConfig.set({
+        columns: columns
+    });
+    
+    var datas = [];
+    var rs = json.data;
+    var height = rs.length * 80;
+    height = height>300 ? 300 : height;
+    configWin.setStyle("width:416px;height:" + (40 + height) + "px");
+    for(var i=0; i<rs.length; i++){
+        var data = rs[i].data;
+        var obj = {};
+        obj.auth = rs[i].auth;
+        obj.brand = json.brand;
+        for(var j=0; j<data.length; j++){
+            obj["field" + j] = data[j];
+        }
+        datas.push(obj);
+    }
+    gridConfig.setData(datas);
+    gridConfig.setHeight(height);
 }

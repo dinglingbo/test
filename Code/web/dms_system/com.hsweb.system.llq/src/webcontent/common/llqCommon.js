@@ -63,9 +63,10 @@ function processAjax(rs, callBack){
     }else if(rs.errCode != 'E' && rs.result.code == '4007'){
         selectBrand(rs.result.brand_list, rs.result);//brandQuery
     }else if(rs.errCode != 'E' && rs.result.code == '4005'){
-        alert(4005);
+        //alert("该类型正在调试中，后续开放！[4005]");
+        selectConfig(rs.result.brand_list, rs.result);
     }else if(rs.errCode != 'E' && rs.result.code == '4003'){
-        alert(4003);
+        alert("该类型正在调试中，后续开放！[4003]");
     }else{
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");
     }

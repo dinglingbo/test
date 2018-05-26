@@ -32,6 +32,9 @@ table tr{
 	margin-top: 5px;
 }
 
+.width1_5 {
+	width: 70px;
+}
 .width1 {
 	width: 100px;
 }

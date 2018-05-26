@@ -124,21 +124,15 @@
     //alert("token=" + token);
     
     function backToLogin(){
-		var url = window.location.pathname;
-		/* for(var i=0;i<excludedFlows.length;i++){
-			if(url && ''!=url
-				&& -1!=url.lastIndexOf(excludedFlows[i])){//例外的不拦截
-				return false;
-			}
-		} */
+		/*
+        var url = window.location.pathname;
 		if(window.parent!=window
 			&& ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}else{
-		//	debugger;
 			alert("登录超时，正在跳转！");
             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
-		}
+		}*/
 	}
 </script>
 <script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>

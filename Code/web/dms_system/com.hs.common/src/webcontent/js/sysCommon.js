@@ -60,7 +60,11 @@ function processAjax(json, callBack){
     }
     else{
         //nui.alert("获取数据失败！\n\r[" + (json.errMsg) + "]");// || json.result.msg第三方接口定义消息
-        nui.alert(json.errMsg || "操作失败！");
+        if((json.errMsg || "操作失败！").indexOf("登录超时") > -1 ){
+            backToLogin();
+        }else{
+            nui.alert(json.errMsg || "操作失败！");
+        }
     }
 }
 

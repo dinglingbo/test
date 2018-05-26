@@ -38,7 +38,7 @@ $(document).ready(function(v){
         }
     });
     
-    dg1.on("rowclick", rowClickDg1);
+    dg1.on("select", rowClickDg1);
     
     dg2.on("rowclick", rowClickDg2);
     
@@ -252,6 +252,15 @@ function setDg1(data){
     setNav("选择品牌");
     //navData.push({index:1, title:"1 选择品牌"});
     showRightGrid(dg1);
+    
+    if(initBrand != ""){
+        var row = dg1.findRow(function(row){
+            if(row.brand == initBrand) return true;
+        });
+        if(row){
+            dg1.select(row, true);
+        }
+    }
 }
 
 /*

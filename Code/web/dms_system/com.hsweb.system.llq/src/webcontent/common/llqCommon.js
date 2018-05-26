@@ -60,6 +60,12 @@ function processAjax(rs, callBack){
         }else{
             nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");
         }
+    }else if(rs.errCode != 'E' && rs.result.code == '4007'){
+        selectBrand(rs.result.brand_list, rs.result);//brandQuery
+    }else if(rs.errCode != 'E' && rs.result.code == '4005'){
+        alert(4005);
+    }else if(rs.errCode != 'E' && rs.result.code == '4003'){
+        alert(4003);
     }else{
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");
     }

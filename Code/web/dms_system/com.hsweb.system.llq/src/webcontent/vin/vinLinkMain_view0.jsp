@@ -79,7 +79,9 @@
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(2)" id="query2">零件号查询</a>
     </div>
     <div class="nui-fit">
-            <iframe id="mainFrame" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+            <iframe id="mainFrame0" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+            <iframe id="mainFrame1" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+            <iframe id="mainFrame2" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
     </div>
 </body>
 </html>

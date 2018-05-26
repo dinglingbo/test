@@ -81,5 +81,33 @@
             </div>
         </div>
     </div>
+    
+    
+	<div id="brandWin" class="nui-window"
+	     title="品牌查询" style="width:416px;"
+	     showModal="true"
+	     allowResize="false"
+	     allowDrag="false"><!--height:150px;-->
+	    <div id="brandForm" class="form">
+	        <div class="brandsContainer">
+                <!--
+                <div class="brandsItem">
+                    <img src="https://cdns.007vin.com/img/greatwall.png">
+                    <span>长城</span>
+                </div>
+                <div class="brandsItem">
+                    <img src="https://cdns.007vin.com/img/wey.png">
+                    <span>魏派</span>
+                </div>
+                -->
+            </div>
+            <!--
+	        <div style="text-align:center;padding:10px;">
+	            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
+	            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
+	        </div>
+            -->
+	    </div>
+	</div>
 </body>
 </html>

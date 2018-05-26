@@ -8,8 +8,10 @@ var subGroups;//分组
 var gridSubGroup;//分组grid
 var gridParts;//零件
 var panel;
+var selectWin;
 
 $(document).ready(function(v){
+    selectWin = nui.get("brandWin");
     vinPartImg = $("#vin_part_img");
     gridCfg = nui.get("gridCfg");
 	gridMainGroup = nui.get("gridMainGroup");
@@ -309,4 +311,29 @@ function setBgColor(obj){
     }else{
         obj.style.background = "#e0d7d7";
     }
+}
+
+/**
+*vin包含多品牌
+*/
+function selectBrand(data, json){
+    var selectForm = new nui.Form("#brandForm");
+    
+    selectWin.show();
+    selectForm.clear();
+    var brandTmpl = '<div class="brandsItem" onclick="closeSelectBrand();window.parent.queryBrand(\'[brand]\')">'
+              + '   <img id="brand_img_[index]" src="">'
+              + '   <span>[name]</span>'
+              + '</div>'
+    $(".brandsContainer").html("");
+    var height = (55 + Math.floor(data.length /3) * 95);
+    selectWin.setStyle("width:416px;height:" + height + "px");
+    for(var i=0; i<data.length; i++){//brand
+        $(".brandsContainer").append(brandTmpl.replace("[index]", i).replace("[name]", data[i].brandname).replace("[brand]", data[i].brand));
+        document.getElementById("brand_img_" + i).src = llq_pre_url.replace("llqapitm", "cdns") + data[i].img;
+    }
+}
+
+function closeSelectBrand(){
+    selectWin.hide();
 }

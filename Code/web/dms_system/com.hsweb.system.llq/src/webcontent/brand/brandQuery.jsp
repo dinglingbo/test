@@ -30,5 +30,8 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    	var initBrand = "<b:write property="brand"/>";
+    </script>
 </body>
 </html>

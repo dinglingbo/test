@@ -2,6 +2,7 @@
 var vin; //vin
 var vin_len; //vin长度要求
 var vin_input;//vin输入
+var curr_check;//当前选择品牌
 var brand; //品牌
 var vinPartImg;//零件图片
 var gridCfg; //车辆配置
@@ -51,19 +52,7 @@ $(document).ready(function(v){
         field = e.field,
         value = e.value; */
         var row = gridMainGroup.getSelected();
-        if (row.auth) {
-            var params = {
-                "url": llq_pre_url + "/ppyvin/subgroup",
-                "params":{
-                    "vin":vin,
-                    "brand":brand,
-                    "is_filter":1,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setSubGroupData);
-        }
+        clickGdMainGroup(row);
     });
     
     gridSubGroup.on("rowclick", function (e) {//查零件信息
@@ -122,7 +111,7 @@ $(document).ready(function(v){
 */
 function queryVin(){	
     vin = vin_input.getValue();
-    
+    brand = curr_check;
     if (checkVin()){
         var params = {
             "url": llq_pre_url + "/ppyvin/searchvins_v2",
@@ -241,9 +230,33 @@ function setSubGroupData(data){
 }
 
 /*
+*主组事件
+*/
+function clickGdMainGroup(row){
+    if (row.auth) {
+        var params = {
+            "url": llq_pre_url + "/ppyvin/subgroup",
+            "params":{
+                "vin":vin,
+                "brand":brand,
+                "is_filter":1,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setSubGroupData);
+    }
+}
+
+/*
 *分组事件
 */
 function clickGdSubGroup(row){
+    if(row.has_subs){
+        clickGdMainGroup(row);
+        return;
+    }
+    
     if (row.auth) {
         var params = {
             "url": llq_pre_url + "/ppyvin/parts",
@@ -432,13 +445,14 @@ function setVinLenght(obj){
     });
     if(data.length>0){
         vin_len = data[0].value;
-        brand = data[0].brand;
+        curr_check = data[0].brand;
     }else{
         vin_len = 17;
-        brand = "all";
+        curr_check = "all";
     }
 
     var query_vin = nui.get("vin");
+    vin_input.setValue(null);
     query_vin.setEmptyText(("请输入" + obj + "后" + vin_len + "位VIN码").replace("全部品牌后", ""));
 }
 

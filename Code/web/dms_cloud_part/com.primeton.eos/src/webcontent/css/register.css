@@ -7,10 +7,15 @@
     border-radius: 4px;
     font-size: 14px;
     width: 332px;
-
-    color: #333;
+	color: #333;
 }
-
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
 .style1{
 	
 	

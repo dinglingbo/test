@@ -132,7 +132,7 @@ function db(){
 		
 		 nui.open({
              url: "receriveFunds_gz.jsp",
-             title: "编辑员工", width: 600, height: 400,
+             title: "编辑员工", width: 800, height: 600,
              onload: function () {
                  var iframe = this.getIFrameEl();
                  var param = { action: "edit", data: s };

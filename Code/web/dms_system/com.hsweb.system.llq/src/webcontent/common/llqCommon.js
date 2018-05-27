@@ -66,7 +66,7 @@ function processAjax(rs, callBack){
         //alert("该类型正在调试中，后续开放！[4005]");
         selectConfig(rs.result.brand_list, rs.result);
     }else if(rs.errCode != 'E' && rs.result.code == '4003'){
-        alert("该类型正在调试中，后续开放！[4003]");
+        selectBrand4003(rs.result.data, rs.result);
     }else{
         nui.alert("获取数据失败！\n\r[" + (rs.errMsg || rs.result.msg) + "]");
     }

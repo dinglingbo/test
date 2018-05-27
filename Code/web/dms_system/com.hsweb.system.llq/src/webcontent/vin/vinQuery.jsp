@@ -14,8 +14,19 @@
     <%@include file="/common/sysCommon2.jsp" %>
     <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.4" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.4" type="text/javascript"></script>    
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.5" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.5" type="text/javascript"></script>
+    <style>
+        .search-result-list-item-content-img{
+            width: 180px;
+            height: 108px;
+            border: 1px solid #d8d8d8;
+            margin-right: 10px;
+        }
+        .search-result-list-item-title-color{
+            color: #f35a12;
+        }
+    </style>
 </head>
 <body>
     <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
@@ -28,12 +39,19 @@
             </center>
         </div>
         <div showCollapseButton="false" style="border:0;">
-            <br/>
             <div class="" id="partForm" style="width:100%;height:40px;">
                   <table class="" >
                       <tr class="">
                             <td >
-                                输入VIN(全部品牌)<input class="nui-textbox" width="350px" id="vin" name="vin" enabled="true" emptyText="输入VIN"/>
+                                <div id="rbl_brand" class="nui-radiobuttonlist"  repeatLayout="table" 
+                                    repeatDirection="vertical" onValuechanged="setVinLenght(e.value)"
+                                    textField="text" valueField="text" value="全部品牌" data="final_data_brand">
+                                </div>
+                            </td>
+                      </tr>
+                      <tr class="">
+                            <td >
+                                输入VIN(全部品牌)<input class="nui-textbox" width="350px" id="vin" name="vin" enabled="true" emptyText="请输入17VIN"/>
                                 <a class="nui-button" onclick="queryVin" style="width:100px">目录查询</a>
                             </td>
                       </tr>
@@ -131,5 +149,30 @@
                 </div>
 	    </div>
 	</div>
+    
+    <div id="vinWin" class="nui-window"
+	     title="选择VIN" style="width:405px;height:300px;"
+	     showModal="true"
+	     allowResize="false"
+	     allowDrag="false"><!--height:150px;-->
+	    <div id="vinForm" class="form">
+            <div class="brandsContainer2">
+                <!--
+                <div class="search-result-list-item">
+                    <div class="search-result-list-item-title">
+                        <span class="search-result-list-item-title-color">1A023575</span>
+                    </div>
+                    <div class="search-result-list-item-content">
+                        <img class="search-result-list-item-content-img" src="">
+                        <div class="search-result-list-item-content-detail">
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+	    </div>
+	</div>]
 </body>
 </html>

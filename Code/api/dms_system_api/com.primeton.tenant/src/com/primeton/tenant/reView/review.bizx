@@ -908,7 +908,7 @@
       <process:to type="query">tmpCapUser/userName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/status</process:from>
+      <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">tmpCapUser/status</process:to>
     </process:copy>
     <process:copy>
@@ -930,6 +930,22 @@
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">tmpCapUser/unlocktime</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">k2xvHUmCHWw=</process:from>
+      <process:to type="query">tmpCapUser/password</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">local</process:from>
+      <process:to type="query">tmpCapUser/authmode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">default</process:from>
+      <process:to type="query">tmpCapUser/menutype</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">tmpCapUser/startdate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
@@ -968,7 +984,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link39</targetConnections>
-    <location x="3626" y="154"/>
+    <location x="3580" y="72"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo17label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -982,7 +998,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo17label" name="label" nodeType="label">
-    <location x="3601" y="190"/>
+    <location x="3555" y="108"/>
     <figSize height="17" width="73"/>
     <node>invokePojo17</node>
   </nodes>

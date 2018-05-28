@@ -3,8 +3,11 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPAccountList.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
+/*var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
+*/
+var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
@@ -63,7 +66,7 @@ var balanceList = [
     {id:1,text:"已对"},
     {id:2,text:"全部"}
 ];
-var typeIdHash = {"050101":"采购入库","050102":"销售退货","050201":"采购退货","050202":"销售出库"};
+var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
 
 $(document).ready(function(v)
 {
@@ -639,7 +642,10 @@ function onShowRowDetail(e) {
             });
 
             break;
-        case 101,102,201,202://"050202"
+        case 101:
+        case 102:
+        case 201:
+        case 202://"050202"
             td.appendChild(editFormStatementDetail);
             editFormStatementDetail.style.display = "";
             
@@ -658,7 +664,33 @@ function onShowRowDetail(e) {
 function onStatementDbClick(e){
     var row = e.record;
     var mainId = row.billMainId;
-    var billTypeCode = row.typeCode;
+    var rpDc = row.rpDc;
+    switch (rpDc)
+    {
+        case -1:
+            pchsEnterWin.show();
+
+            var params = {};
+            params.mainId = mainId;
+            innerPchsEnterGrid.load({
+                params:params,
+                token: token
+            });
+            break;
+        case 1://"050201"
+            pchsRtnWin.show();
+            
+            var params = {};
+            params.mainId = mainId;
+            innerPchsRtnGrid.load({
+                params:params,
+                token: token
+            });
+            break;
+        default:
+            break;
+    }
+    /*var billTypeCode = row.typeCode;
     switch (billTypeCode)
     {
         case "050101":
@@ -705,7 +737,7 @@ function onStatementDbClick(e){
             break;
         default:
             break;
-    }
+    }*/
 }
 function doBalance(){
     var rightGrid = null;

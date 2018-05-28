@@ -30,4 +30,12 @@
 			</isNotNull>
 	</update>
 	
+	<update id="updateSellRtnOriginId" parameterClass="java.util.HashMap" >
+		update pj_enter_detail_chk set origin_id = id 
+		where IFNULL(origin_id,0) = 0
+			<isNotNull prepend = "" property = "mainId">
+					main_id = #mainId#					
+			</isNotNull>
+	</update>
+	
 </sqlMap>

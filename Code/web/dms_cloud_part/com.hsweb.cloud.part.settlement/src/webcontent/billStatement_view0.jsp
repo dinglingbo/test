@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + cloudPartDomain%>/settlement/js/billStatement.js?v=1.1.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/settlement/js/billStatement.js?v=1.2.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -63,13 +63,12 @@
                     <li iconCls="" onclick="quickSearch(8)" id="type8">全部</li>
                 </ul>
 
-                <label style="font-family:Verdana;">往来单位：</label>
                 <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择往来单位..."
+                       emptyText="请选择往来单位..." visible="false"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <span class="separator"></span>
                 
-                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" visible="false" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
@@ -382,7 +381,7 @@
 <div id="editFormPchsEnterDetail" style="display:none;">
       <div id="innerPchsEnterGrid" class="nui-datagrid" style="width:100%;height:150px;"
            showPager="false"
-           dataField="pjEnterDetailList"
+           dataField="pjPchsOrderDetailList"
            idField="detailId"
            ondrawcell="onDrawCell"
            sortMode="client"
@@ -397,19 +396,10 @@
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
               <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-              <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="采购数量"></div>
-              <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="采购单价"></div>
-              <div allowSort="true" datatype="float" field="enterAmt" summaryType="sum" width="60" headerAlign="center" header="采购金额"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
               <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
-              <!-- 
-              <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可出库数量"></div>
-              <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
-              <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
-              <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
-              <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
-              <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
-              <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
-              <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div> -->
           </div>
       </div>
   </div>
@@ -417,7 +407,7 @@
   <div id="editFormPchsRtnDetail" style="display:none;">
       <div id="innerPchsRtnGrid" class="nui-datagrid" style="width:100%;height:150px;"
            showPager="false"
-           dataField="pjSellOutDetailList"
+           dataField="pjSellOrderDetailList"
            idField="detailId"
            ondrawcell="onDrawCell"
            sortMode="client"
@@ -432,19 +422,10 @@
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-              <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-              <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="退货单价"></div>
-              <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
               <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
-              <!-- <div field="enterPrice" width="60" headerAlign="center" header="成本单价"></div>
-              <div field="enterAmt" width="60" headerAlign="center" summaryType="sum" header="成本金额"></div>
-              <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
-              <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
-              <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
-              <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
-              <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
-              <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
-              <div allowSort="true" field="partId" width="40" summaryType="count" headerAlign="center" header="配件ID"></div> -->
           </div>
       </div>
   </div>

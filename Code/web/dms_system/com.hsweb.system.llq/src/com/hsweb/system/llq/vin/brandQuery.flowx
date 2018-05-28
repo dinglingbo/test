@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="brandQuery" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
-    <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
+    <sourceConnections xsi:type="process:tActionLink" description="" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0" dataConvertClass="">
       <sourceNode>start0</sourceNode>
       <targetNode>view0</targetNode>
+      <process:validateRules onError="default"/>
+      <process:inputParameters>
+        <process:parameter description="" historyStateLocation="client" isArray="false" name="brand" primitiveType="String"/>
+      </process:inputParameters>
     </sourceConnections>
     <location x="60" y="60"/>
     <size height="28" width="28"/>
@@ -45,4 +49,5 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-05-21 00:19:29" date="2018-05-20Z" description="" name="vinQuery" version="7.0.0.0"/>
+  <process:variables/>
 </process:tPageFlow>

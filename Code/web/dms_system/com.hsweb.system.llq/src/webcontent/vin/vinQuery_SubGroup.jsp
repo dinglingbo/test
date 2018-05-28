@@ -14,7 +14,8 @@
         allowcellwrap="true"
         showSummaryRow="true">
         <div property="columns"> 
-            <div field="auth" width="80" visible="false" allowSort="false"></div>
+            <div field="auth" visible="false"></div>
+            <div field="has_subs" visible="false"></div>
             <div type="indexcolumn" width="20" summaryType="count">序号</div>
             <div field="num" width="30" headerAlign="center" allowSort=false>主组</div>
             <div field="subgroup" width="30" headerAlign="center" allowSort=false>分组</div>

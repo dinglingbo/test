@@ -133,6 +133,32 @@ function processRoleMembers(data){
     adapterData(_initDmsObj["_roleDefs"], data, "roleId");
     _initDmsCallback["initRoleMembers"]  && _initDmsCallback["initRoleMembers"]() && (_initDmsCallback["initRoleMembers"] = null);
 }
+//省份
+function initProvince(id,callback){
+    _initDmsCallback["initProvince"] = callback;
+    if(checkObjExists(id, "initProvince")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.getProvinces.biz.ext";
+        callAjax(url, {}, processAjax, processProvince, null); 
+    }
+}
+function processProvince(data){
+    _initDmsObj["initProvince"].setData(data);
+    setDataToHash(data,"province","code");
+    _initDmsCallback["initProvince"] && _initDmsCallback["initProvince"]() && (_initDmsCallback["initProvince"] = null);
+}
+//城市
+function initCity(id,callback){
+    _initDmsCallback["initCity"] = callback;
+    if(checkObjExists(id, "initCity")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.getCitys.biz.ext";
+        callAjax(url, {}, processAjax, processCity, null); 
+    }
+}
+function processCity(data){
+    _initDmsObj["initCity"].setData(data);
+    setDataToHash(data,"city","code");
+    _initDmsCallback["initCity"] && _initDmsCallback["initCity"]() && (_initDmsCallback["initCity"] = null);
+}
 
 //filter Param
 function filterParam(paramName, paramDef){

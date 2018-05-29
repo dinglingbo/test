@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=2.2.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=2.3.0"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -109,6 +109,7 @@
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <input id="proId" width="120px" emptyText="业务单号" class="nui-combobox"/>
                 
                 <span class="separator"></span>
 

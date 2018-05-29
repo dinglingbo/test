@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+<%@include file="/common/sysCommon.jsp" %>
 <title>汽车后市场云平台</title>
 <style type="text/css">
 .dtHighLight{
@@ -83,6 +83,7 @@
                 <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
+                <li id="orgName"><a href="#">所属：</a></li>
                 <li ><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li>
                 <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
                 <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp" target="_top"><i class="fa fa-user"></i> 退出登录</a></li>
@@ -332,7 +333,7 @@
 	        //return null;
 	    };
 
-       
+       document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
     });
 
 </script>

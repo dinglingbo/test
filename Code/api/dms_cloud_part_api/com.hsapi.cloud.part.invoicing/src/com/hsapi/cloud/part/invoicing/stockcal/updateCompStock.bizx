@@ -312,9 +312,15 @@
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="入1" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign16</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link36" name="采购入库" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -1115,7 +1121,7 @@
     <figSize height="17" width="32"/>
     <node>assign13</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign16" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
       <targetNode>invokePojo0</targetNode>
@@ -1373,7 +1379,7 @@
     <figSize height="17" width="39"/>
     <node>assign22</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign23" name="赋值12" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign23" name="赋值12" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign23</sourceNode>
       <targetNode>subprocess3</targetNode>

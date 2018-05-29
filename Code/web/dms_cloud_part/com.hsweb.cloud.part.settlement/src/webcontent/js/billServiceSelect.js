@@ -1,8 +1,8 @@
 
 var baseUrl = apiPath + cloudPartApi + "/";
-var notStatementUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryRPBill.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
+var notStatementUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryOrderBill.biz.ext";
+var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var notStatementGrid = null;
 var leftGrid = null;
 var rightGrid = null;
@@ -10,10 +10,8 @@ var editFormPchsEnterDetail = null;
 var innerPchsEnterGrid = null;
 var editFormPchsRtnDetail = null;
 var innerPchsRtnGrid = null;
-var editFormSellOutDetail = null;
-var innerSellOutGrid = null;
-var editFormSellRtnDetail = null;
-var innerSellRtnGrid = null;
+var orderTypeId = 1;
+
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
@@ -29,12 +27,11 @@ var eBillAuditDateEl = null;
 var billSearchGuestIdEl = null;
 var billServiceIdEl = null;
 var billServiceManEl = null;
-var accountSignEl = null;
 
 $(document).ready(function(v)
 {
-	notStatementGrid = nui.get("notStatementGrid");
-    notStatementGrid.setUrl(notStatementUrl);	
+    notStatementGrid = nui.get("notStatementGrid");
+    notStatementGrid.setUrl(notStatementUrl);   
 
     innerPchsEnterGrid = nui.get("innerPchsEnterGrid");
     editFormPchsEnterDetail = document.getElementById("editFormPchsEnterDetail");
@@ -44,32 +41,23 @@ $(document).ready(function(v)
     editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
     innerPchsRtnGrid.setUrl(innerSellGridUrl);
 
-    innerSellOutGrid = nui.get("innerSellOutGrid");
-    editFormSellOutDetail = document.getElementById("editFormSellOutDetail");
-    innerSellOutGrid.setUrl(innerSellGridUrl);
-
-    innerSellRtnGrid = nui.get("innerSellRtnGrid");
-    editFormSellRtnDetail = document.getElementById("editFormSellRtnDetail");
-    innerSellRtnGrid.setUrl(innerPchsGridUrl);
-
     billTypeIdEl = nui.get("billTypeId");
     settleTypeIdEl = nui.get("settleTypeId");
     sBillAuditDateEl = nui.get("sBillAuditDate");
-	eBillAuditDateEl = nui.get("eBillAuditDate");
-	billSearchGuestIdEl = nui.get("searchBillGuestId");
-	billServiceIdEl = nui.get("billServiceId");
-	billServiceManEl = nui.get("billServiceMan");
-	accountSignEl = nui.get("accountSign");
+    eBillAuditDateEl = nui.get("eBillAuditDate");
+    billSearchGuestIdEl = nui.get("searchBillGuestId");
+    billServiceIdEl = nui.get("billServiceId");
+    billServiceManEl = nui.get("billServiceMan");
 
-	sBillAuditDateEl.setValue(getLastMonthStartDate());//上月开始日期
-	eBillAuditDateEl.setValue(getMonthEndDate());//本月结束日期
+    sBillAuditDateEl.setValue(getLastMonthStartDate());//上月开始日期
+    eBillAuditDateEl.setValue(getMonthEndDate());//本月结束日期
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs,function()
     {
-    	var billTypeIdList = billTypeIdEl.getData();
-    	var settTypeIdList = settleTypeIdEl.getData();
-    	billTypeIdList.filter(function(v)
+        var billTypeIdList = billTypeIdEl.getData();
+        var settTypeIdList = settleTypeIdEl.getData();
+        billTypeIdList.filter(function(v)
         {
             billTypeIdHash[v.customid] = v;
             return true;
@@ -97,11 +85,11 @@ $(document).ready(function(v)
     
 
 });
-function setInitData(guestId, ck, cck){
+function setInitData(data, ck, cck){
     callback = ck;
     checkcallback = cck;
 
-    billSearchGuestIdEl.setValue(guestId);
+    billSearchGuestIdEl.setValue(data);
 
     searchBill();
 }
@@ -111,7 +99,7 @@ var accountList = [
     {id:1,text:"已对账"},
     {id:2,text:"全部"}
 ];
-var enterTypeIdHash = {"050101":"采购入库","050102":"销售退货","050201":"采购退货","050202":"销售出库"};
+var orderTypeIdHash = {1:"采购订单",2:"销售订单"};
 var accountSignHash = {
     "0":"未对账",
     "1":"已对账"
@@ -138,10 +126,10 @@ function onDrawCell(e)
                 e.cellHtml = billStatusHash[e.value];
             }
             break;*/
-        case "enterTypeId":
-            if(enterTypeIdHash && enterTypeIdHash[e.value])
+        case "orderTypeId":
+            if(orderTypeIdHash && orderTypeIdHash[e.value])
             {
-                e.cellHtml = enterTypeIdHash[e.value];
+                e.cellHtml = orderTypeIdHash[e.value];
             }
             break;
         case "settleTypeId":
@@ -167,16 +155,11 @@ function onDrawCell(e)
     }
 }
 function getBillSearchParam(){
-	var accountSign = accountSignEl.getValue();
-	if(accountSign == 2){
-		accountSign = null;
-	}
-	var params = {};
+
+    var params = {};
     params.sAuditDate = sBillAuditDateEl.getValue();
     params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
     params.serviceId = billServiceIdEl.getValue();
-    params.serviceMan = billServiceManEl.getValue();
-    params.accountSign = accountSign;
     params.guestId = billSearchGuestIdEl.getValue();
     return params;
 }
@@ -186,11 +169,11 @@ function searchBill()
     doNotStatement(param);
 }
 function doNotStatement(params){
-	params.sortField = "auditDate";
+    params.auditSign = 1;
+    params.sortField = "auditDate";
     params.sortOrder = "desc";
     params.settleTypeId = "020502";
-    params.enterTypeIdList="'050101','050102','050201','050202'";
-    params.accountSign = 0;
+    params.stateSign = 0;
     params.isState = 0;
     notStatementGrid.load({
         params:params,
@@ -203,51 +186,30 @@ function onShowRowDetail(e) {
     
     //将editForm元素，加入行详细单元格内
     var td = notStatementGrid.getRowDetailCellEl(row);
-    var enterTypeId = row.enterTypeId;    
+    var dc = row.dc;    
 
-    switch (enterTypeId)
+    switch (dc)
     {
-        case "050101":
+        case -1:
             td.appendChild(editFormPchsEnterDetail);
             editFormPchsEnterDetail.style.display = "";
 
             var params = {};
             params.mainId = mainId;
+            params.auditSign = 1;
             innerPchsEnterGrid.load({
                 params:params,
                 token: token
             });
             break;
-        case "050102":
-            td.appendChild(editFormSellRtnDetail);
-            editFormSellRtnDetail.style.display = "";
-
-            var params = {};
-            params.mainId = mainId;
-            innerSellRtnGrid.load({
-                params:params,
-                token: token
-            });
-
-            break;
-        case "050201":
+        case 1:
             td.appendChild(editFormPchsRtnDetail);
             editFormPchsRtnDetail.style.display = "";
 
             var params = {};
             params.mainId = mainId;
+            params.auditSign = 1;
             innerPchsRtnGrid.load({
-                params:params,
-                token: token
-            });
-            break;
-        case "050202":
-            td.appendChild(editFormSellOutDetail);
-            editFormSellOutDetail.style.display = "";
-
-            var params = {};
-            params.mainId = mainId;
-            innerSellOutGrid.load({
                 params:params,
                 token: token
             });
@@ -255,61 +217,6 @@ function onShowRowDetail(e) {
         default:
             break;
     }
-}
-/*function addStatement(){
-
-    var msg = checkAccountRow(1);
-    if(msg){
-        nui.alert(msg);
-        return;
-    }
-        
-    var rows = notStatementGrid.getSelecteds();
-    var s = rows.length;
-    if(s > 0){
-        //生成新的对账单
-
-    }else{
-        nui.alert("请选择单据！");
-        return;
-    }
-}*/
-function checkAccountRow(flag){
-    var firstRow = {};
-    var guestId = null;
-
-    var rows = notStatementGrid.getSelecteds();
-    var msg = "";
-    var s = rows.length;
-    if(s > 0){
-        for(var i=0; i<s; i++){
-            var row = rows[i];
-            if(i == 0){
-                firstRow = row;
-                guestId = firstRow.guestId;
-            }else{
-                var rowGuestId = row.guestId;
-                if(guestId != rowGuestId){
-                    return "请选择相同往来单位的单据!";
-                }
-            }
-        }
-
-        for(var i=0; i<s; i++){
-            var row = rows[i];
-            var accountSign = row.accountSign;
-            var serviceId = row.serviceId;
-            if(accountSign == 1) {
-                msg += "业务单据："+serviceId+ "已对账；</br>";
-            }else if(accountSign  == 0) {
-                msg += "业务单据："+serviceId+ "未对账；</br>";
-            }
-        }
-    }else{
-        msg = "请选择单据!";
-    }
-
-    return msg;
 }
 
 var resultData = {};
@@ -332,6 +239,7 @@ function addStatement()
         CloseWindow("ok");
     }
     else{
+
         //需要判断是否已经添加了此单据
         for(var i=0; i<rows.length; i++){
             var row = rows[i];

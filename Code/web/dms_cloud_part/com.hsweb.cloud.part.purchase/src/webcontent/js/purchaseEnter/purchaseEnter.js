@@ -996,9 +996,9 @@ function unAudit()
 {
     var data = basicInfoForm.getData();
     var billStatusId = data.billStatusId;
-    var codeId = data.codeId;
+    var isInner = data.isInner;
     var mainId = data.id;
-    if(codeId){
+    if(isInner && isInner == 1){
         if(billStatusId != 1 && billStatusId != 5){
             nui.alert("【待发货】和【已退回】状态下的单才可以返单!");
             return;

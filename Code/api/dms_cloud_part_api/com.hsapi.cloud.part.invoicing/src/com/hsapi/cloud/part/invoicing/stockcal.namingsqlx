@@ -518,4 +518,100 @@
 			</isNotNull>
 		)
 	</update>
+	
+	
+	<select id="queryGuestEnterRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
+		SELECT a.id AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,
+		       b.id as mainId, b.service_id AS serviceId, b.guest_id AS guestId, a.part_id AS partId,
+		       a.part_code AS partCode, a.part_name AS partName, a.full_name as fullName, a.enter_unit_id AS unitId,
+		       a.outable_qty AS rtnableQty, a.tax_sign AS taxSign, a.tax_rate AS taxRate,
+		       a.no_tax_price AS noTaxPrice, a.tax_price AS taxPrice, a.enter_price AS enterPrice,
+			   a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId
+		FROM pj_enter_detail_chk a 
+		inner  JOIN pj_enter_main_chk b 
+			ON a.main_id = b.id
+		WHERE 1 = 1 AND b.audit_sign = 1 
+		      AND a.outable_qty > 0
+		
+		 	 <isNotNull prepend = "" property = "orgid">
+	  		
+	  		        AND b.orgid = #orgid# 
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "storeId">
+	  		
+	  		        AND a.store_id = #storeId# 
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "guestId">
+	  		
+	  		        AND (a.origin_guest_id = #guestId#)
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "partId">
+	  		
+	  		        AND a.part_id = #partId# 
+					
+			 </isNotNull>
+			 
+			 
+	  	order by b.audit_date desc
+					
+
+    </select>
+    
+    <select id="queryGuestOutRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
+		SELECT a.ID AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,
+		       b.id as mainId, b.service_id AS serviceId, b.guest_id AS guestId, a.part_id AS partId,
+		       a.part_code AS partCode, a.part_name AS partName, a.out_unit_id AS unitId,
+		       a.rtnable_qty AS rtnableQty, a.tax_sign AS taxSign, a.tax_rate AS taxRate,
+		       a.no_tax_price AS noTaxPrice, a.tax_price AS taxPrice, 
+		       CASE WHEN a.tax_sign = 1 THEN a.tax_price ELSE a.no_tax_price end AS enterPrice,
+			    a.enter_date AS enterDate, a.origin_id as originId, a.origin_guest_id as originGuestId
+		FROM pj_out_detail_chk a
+		INNER JOIN pj_out_main_chk b
+		ON a.main_id = b.id
+		WHERE 1 = 1 and b.audit_sign = 1
+		      AND a.rtnable_qty > 0
+		
+		 	 <isNotNull prepend = "" property = "orgid">
+	  		
+	  		        AND b.orgid = #orgid# 
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "storeId">
+	  		
+	  		        AND a.store_id = #storeId# 
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "guestId">
+	  		
+	  		        AND (b.guest_id = #guestId#)
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "partId">
+	  		
+	  		        AND a.part_id = #partId# 
+					
+			 </isNotNull>
+			 
+			 
+	  	order by b.audit_date desc
+					
+
+    </select>
+	
+	
+	
+	
+	
+	
+	
+	
 </sqlMap>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditPjPchsOrder.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、先对数据进行保存&#xD;&#xA;2、加载主表和明细表数据&#xD;&#xA;3、将未审核表数据插入到已审表&#xD;&#xA;4、删除未审表中的数据&#xD;&#xA;判断单据状态；&#xD;&#xA;判断明细数据是否被删除；&#xD;&#xA;判断数量和单价（根据需要,是否必须大于0）；&#xD;&#xA;&#xD;&#xA;1、将未审表信息插入已审表中，到已审表的数据状态需要修改，删除未审表中的数据；&#xD;&#xA;" title="DLB&#x9;17-7-19 上午11:32">
-    <location x="30" y="27"/>
-    <size height="199" width="301"/>
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、先对数据进行保存&#xD;&#xA;2、加载主表和明细表数据&#xD;&#xA;3、将未审核表数据插入到已审表&#xD;&#xA;4、删除未审表中的数据&#xD;&#xA;判断单据状态；&#xD;&#xA;判断明细数据是否被删除；&#xD;&#xA;判断数量和单价（根据需要,是否必须大于0）；&#xD;&#xA;&#xD;&#xA;1、将未审表信息插入已审表中，到已审表的数据状态需要修改，删除未审表中的数据；&#xD;&#xA;2、如果是销售退货，且处理的是内部退货，需要更新对方的采购退货isRtnSign=1&#xD;&#xA;" title="DLB&#x9;17-7-19 上午11:32">
+    <location x="30" y="0"/>
+    <size height="256" width="301"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link11" isDefault="true" type="transition">
@@ -87,9 +87,15 @@
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值2" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="link6" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="link6" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>

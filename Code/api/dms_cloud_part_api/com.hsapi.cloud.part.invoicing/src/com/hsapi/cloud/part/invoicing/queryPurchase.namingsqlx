@@ -1276,12 +1276,21 @@
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
                 inner join wb_common.COM_GUEST c on a.orgid = c.is_internal_id
                 where 1=1 and a.is_inner = 1 and b.is_disabled = 0 and c.is_disabled = 0
+                		  and a.order_type_id = 1
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
                     (b.is_internal_id = #orgid#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id">  
                     (a.id = #id#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="orderMan">  
+                    (A.ORDER_MAN like '%$orderMan$%')
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (A.SERVICE_ID like '%$serviceId$%')
                 </isNotEmpty>
                 <!--采购订单状态  0草稿，1待发货，2待收货，3部分入库，4全部入库，5已退回，6已关闭-->
                 <isNotEmpty prepend="and" property="billStatusId">  
@@ -1339,7 +1348,9 @@
                 A.SERVICE_ID as serviceId,
                 A.ORGID as orgid,
                 A.GUEST_ID as guestId,
+                a.order_type_id as orderTypeId,
                 A.STORE_ID as storeId,
+                A.CODE_ID AS codeId,
                 A.CODE as code,
                 A.ORDER_DATE as orderDate,
                 A.PLAN_ARRIVE_DATE as planArriveDate,
@@ -1373,13 +1384,13 @@
                 A.OPERATE_DATE as operateDate,
                 A.SETTLE_TYPE_ID as settleTypeId,
                 A.BILL_STATUS_ID as billStatusId,
-                a.order_type_id as orderTypeId,
                 a.is_inner as isInner,
                 a.is_state as isState,
                 a.state_man_id as stateManId,
                 a.state_man as stateMan,
                 a.state_sign as stateSign,
                 a.state_date as stateDate,
+                a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo
@@ -1443,6 +1454,9 @@
                 <!--审核状态-->
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id like '%$serviceId$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
                 </isNotEmpty>
@@ -1462,7 +1476,9 @@
                 A.SERVICE_ID as serviceId,
                 A.ORGID as orgid,
                 A.GUEST_ID as guestId,
+                a.order_type_id as orderTypeId,
                 A.STORE_ID as storeId,
+                A.CODE_ID AS codeId,
                 A.CODE as code,
                 A.ORDER_DATE as orderDate,
                 A.PLAN_ARRIVE_DATE as planArriveDate,
@@ -1502,6 +1518,7 @@
                 a.state_man as stateMan,
                 a.state_sign as stateSign,
                 a.state_date as stateDate,
+                a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo
@@ -1517,6 +1534,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="billStatusId"> 
                     (A.BILL_STATUS_ID = #billStatusId#)
@@ -1554,6 +1574,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id like '%$serviceId$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
                     (D.FULL_NAME like '%$partName$%')
@@ -1689,6 +1712,9 @@
             <dynamic>
                 <isNotEmpty prepend="and" property="mainId">  
                     (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
                 </isNotEmpty>
             </dynamic>  
            

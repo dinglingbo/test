@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.auditbiz.queryPjSellOrderMainList.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
@@ -213,7 +213,7 @@ function quickSearch(type){
             params.isOut = 0;
             querytypename = "未出库";
             querysign = 2;
-            gsparams.auditSign = 0;
+            gsparams.isOut = 0;
             break;
         case 7:
             params.isOut = 1;
@@ -286,6 +286,7 @@ function setEditable(flag)
 function doSearch(params) 
 {
     //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
+    params.auditSign = 1;
     leftGrid.load({
         params : params,
         token : token

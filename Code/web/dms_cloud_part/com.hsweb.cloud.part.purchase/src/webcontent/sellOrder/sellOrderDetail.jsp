@@ -99,6 +99,7 @@
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
+                              <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-textbox" visible="false" id="codeId" name="codeId" width="100%">
                               <table style="width: 100%;">
                                   <tr>

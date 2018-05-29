@@ -110,7 +110,7 @@
       <div showCollapseButton="false">
           
           <div class="nui-fit">
-              <fieldset id="fd1" style="width:95%;height:70px;">
+              <fieldset id="fd1" style="width:95%;min-width:800px;height:70px;">
                   <legend><span>采购订单信息</span></legend>
                   <div class="fieldset-body">
                   
@@ -224,8 +224,9 @@
                      
                   </div>
                 </fieldset>
-                <div class="nui-fit">
-                    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                <!-- <div class="nui-fit"> -->
+                    <div id="rightGrid" class="nui-datagrid" 
+                         style="width:100%;height:calc(100% - 86px);min-width:1124px;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"
@@ -294,7 +295,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                <!--  -->
           </div>
               
       </div>

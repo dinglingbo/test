@@ -202,6 +202,7 @@ function addNewRow(check){
 
     if(data.auditSign == 1){
         e.cancel = true;
+        return;
     }
     
 	var rows = [];
@@ -1416,29 +1417,32 @@ function deletePart() {
 function checkRightData() {
 	var msg = '';
 	var rows = rightGrid.findRows(function(row) {
-		if (row.orderQty) {
-			if (row.orderQty <= 0)
+		if(row.partId){
+			if (row.orderQty) {
+				if (row.orderQty <= 0)
+					return true;
+			} else {
 				return true;
-		} else {
-			return true;
-		}
-		if (row.orderPrice) {
-			if (row.orderPrice <= 0)
+			}
+			if (row.orderPrice) {
+				if (row.orderPrice <= 0)
+					return true;
+			} else {
 				return true;
-		} else {
-			return true;
-		}
-		if (row.orderAmt) {
-			if (row.orderAmt <= 0)
+			}
+			if (row.orderAmt) {
+				if (row.orderAmt <= 0)
+					return true;
+			} else {
 				return true;
-		} else {
-			return true;
+			}
+
+			if (row.storeId) {
+			} else {
+				return true;
+			}	
 		}
 
-		if (row.storeId) {
-		} else {
-			return true;
-		}
 	});
 
 	if (rows && rows.length > 0) {
@@ -1463,15 +1467,15 @@ function auditToEnter(){
 		var flagStr = "入库中...";
 		var flagRtn = "入库成功!";
 		auditOrder(flagSign, flagStr, flagRtn);		
+	}else if(isInner == 1 && billStatusId != 2){
+		nui.alert("等对方发货后，才可以入库!");
+		return;
 	}else if(billStatusId == 2){
 		var id = data.id||0;
 		orderEnter(id);	
 	}
 
-	if(isInner == 1 && billStatusId != 2){
-		nui.alert("等对方发货后，才可以入库!");
-		return;
-	}
+	
 
 }
 var auditUrl = baseUrl
@@ -1961,9 +1965,9 @@ function unAudit()
 {
     var data = basicInfoForm.getData();
     var billStatusId = data.billStatusId;
-    var codeId = data.codeId;
+    var isInner = data.isInner;
     var mainId = data.id;
-    if(codeId){
+    if(isInner && isInner == 1){
 	    if(billStatusId != 1 && billStatusId != 5){
 		    nui.alert("【待发货】和【已退回】状态下的单才可以返单!");
 	        return;

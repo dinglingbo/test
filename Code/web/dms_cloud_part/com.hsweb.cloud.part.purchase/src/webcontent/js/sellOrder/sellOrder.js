@@ -160,7 +160,7 @@ function addNewRow(check){
         return;
     }
 
-    if(data.codeId) return;
+    if(data.codeId && data.codeId>0) return;
     
     var rows = [];
     if(check){
@@ -214,7 +214,7 @@ function loadMainAndDetailInfo(row)
        var row = leftGrid.getSelected();
 
 
-       if(row.codeId){
+       if(row.codeId && data.codeId>0){
             //可以编辑票据类型和结算方式，是否需要打包，备注，业务员；明细不能修改；如果需要，则退回
             nui.get("guestId").disable();
             nui.get("code").disable();
@@ -447,7 +447,13 @@ function loadRightGridData(mainId)
             var data = rightGrid.getData();
             if(data && data.length <= 0){
                 addNewRow(false);
-            }   
+            }else{
+                var guestId = nui.get("guestId").getValue();
+                var changeData = rightGrid.getChanges();
+                if(changeData.length == 0 && guestId){
+                    addNewRow(false);
+                }
+            }    
         }
 
     });
@@ -854,6 +860,7 @@ function getMainData()
     data.auditSign = 0;
     data.billStatusId = '';
     data.printTimes = 0;
+    data.orderTypeId = 2;
 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
@@ -889,7 +896,7 @@ function save() {
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            nui.alert("此单已审核!");
+            nui.alert("此单已提交!");
             return;
         } 
     }else{
@@ -995,6 +1002,12 @@ function selectSupplier(elId)
                 var text = supplier.fullName;
                 var billTypeIdV = supplier.billTypeId;
                 var settTypeIdV = supplier.settTypeId;
+                var isInternal = supplier.isInternal||0;
+                if(isInternal == 1){
+                    nui.alert("不能直接向平台内单位发启销售，只能受理对方采购订单!");
+                    return;
+                }
+
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
@@ -1193,7 +1206,7 @@ function addDetail(part)
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            nui.alert("此单已审核!");
+            nui.alert("此单已提交!");
             return;
         } 
     }else{
@@ -1295,7 +1308,7 @@ function deletePart(){
         } 
     }
 
-    if(row.codeId) return;
+    if(row.codeId && data.codeId>0) return;
 
     var part = rightGrid.getSelected();
     if(!part)
@@ -1312,26 +1325,29 @@ function checkRightData()
 {
     var msg = '';
     var rows = rightGrid.findRows(function(row){
-        if(row.orderQty){
-            if(row.orderQty <= 0) return true;
-        }else{
-            return true;
+        if(row.partId){
+            if(row.orderQty){
+                if(row.orderQty <= 0) return true;
+            }else{
+                return true;
+            }
+            if(row.orderPrice){
+                if(row.orderPrice <= 0) return true;
+            }else{
+                return true;
+            }
+            if(row.orderAmt){
+                if(row.orderAmt <= 0) return true;
+            }else{
+                return true;
+            }
+            
+            if(row.storeId){
+            }else{
+                return true;
+            }       
         }
-        if(row.orderPrice){
-            if(row.orderPrice <= 0) return true;
-        }else{
-            return true;
-        }
-        if(row.orderAmt){
-            if(row.orderAmt <= 0) return true;
-        }else{
-            return true;
-        }
-        
-        if(row.storeId){
-        }else{
-            return true;
-        }
+
     });
     
     if(rows && rows.length > 0){
@@ -1349,7 +1365,7 @@ function checkStockOutQty(){
     
     if(rows && rows.length > 0){
         var comPartCode = rows[0].comPartCode;
-        msg = "配件：" + comPartCode + "缺货，不能审核！";
+        msg = "配件：" + comPartCode + "缺货，不能提交！";
     }
     return msg;
 }
@@ -1367,7 +1383,7 @@ function audit()
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            nui.alert("此单已审核!");
+            nui.alert("此单已提交!");
             return;
         } 
     }else{
@@ -1394,7 +1410,7 @@ function audit()
     var sellOrderDetailDelete = rightGrid.getChanges("removed");
     var sellOrderDetailList = rightGrid.getData();
     if(sellOrderDetailList.length <= 0) {
-        nui.alert("销售明细为空，不能审核！");
+        nui.alert("销售明细为空，不能提交！");
         return;
     }
     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
@@ -1403,7 +1419,7 @@ function audit()
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
-        html: '审核中...'
+        html: '提交中...'
     });
 
     nui.ajax({
@@ -1421,7 +1437,7 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("审核成功!");
+                nui.alert("提交成功!");
                 //onLeftGridRowDblClick({});
                 var pjSellOrderMainList = data.pjSellOrderMainList;
                 if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
@@ -1433,7 +1449,7 @@ function audit()
                     loadMainAndDetailInfo(leftRow);
                 }
             } else {
-                nui.alert(data.errMsg || "审核失败!");
+                nui.alert(data.errMsg || "提交失败!");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -1477,6 +1493,12 @@ function setGuestInfo(params)
                     var data = supplier[0];
                     var value = data.id;
                     var text = data.fullName;
+                    var isInternal = data.isInternal||0;
+                    if(isInternal == 1){
+                        nui.alert("不能直接向平台内单位发启销售，只能受理对方采购订单!");
+                        return;
+                    }
+
                     var el = nui.get('guestId');
                     el.setValue(value);
                     el.setText(text);
@@ -1624,7 +1646,7 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
-    if(data.codeId){
+    if(data.codeId && data.codeId>0){
         e.cancel = true;
     }
 
@@ -1632,7 +1654,7 @@ function OnrpMainGridCellBeginEdit(e){
 function addMorePart(){
     var row = leftGrid.getSelected();
     if(row.auditSign == 1){
-        nui.alert("此单已审核!");
+        nui.alert("此单已提交!");
         return;
     }
 

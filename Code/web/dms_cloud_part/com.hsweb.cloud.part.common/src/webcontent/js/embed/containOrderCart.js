@@ -43,6 +43,18 @@ $(document).ready(function() {
         FStoreId = parent.getParentStoreId();
     }
 
+    $("#search_code").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
+    $("#search_name").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
 });
 
 function reloadData()
@@ -91,7 +103,7 @@ function deleteCartShop(){
                 data = data || {};
                 if (data.errCode == "S") {
                     nui.alert("删除成功!","",function(e){
-                        cartGrid.removeRow(row,true);
+                        cartGrid.removeRows(rows,true);
                     });
                     
                 } else {

@@ -114,9 +114,8 @@
 
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="doBalance()"><span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
+                <a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()"><span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-check fa-lg"></span>&nbsp;结算</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="doUnBalance()"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;取消对账</a>
             </td>
         </tr>
     </table>
@@ -164,7 +163,7 @@
                                 <div field="amt2" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="amt3" width="60" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额">
+                                <div field="amt3" width="60" visible="false" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="amt4" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额"></div>
@@ -176,7 +175,7 @@
                                 <div field="amt12" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="amt13" width="60" headerAlign="center" align="right" numberFormat="0.00" header="免付金额">
+                                <div field="amt13" width="60" visible="false" headerAlign="center" align="right" numberFormat="0.00" header="免付金额">
                                     <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="amt14" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额"></div>
@@ -184,9 +183,9 @@
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                         <div field="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
-                        <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
+                        <!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
-                        <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd H:mm:ss"></div> -->
 
                     </div>
                 </div>
@@ -224,7 +223,7 @@
                         <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="免付金额">
+                        <div field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" visible="false" header="免付金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
@@ -270,7 +269,7 @@
                         <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额">
+                        <div field="nowVoidAmt" visible="false" width="60" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
@@ -328,11 +327,41 @@
 
 <!-- <div id="editFormPchsEnterDetail" style="display:none;"> -->
 <div id="pchsEnterWin" class="nui-window"
+     title="入库明细" style="width:900px;height:500px;"
+     showModal="true"
+     allowResize="true"
+     allowDrag="true">
+    <div id="innerPchsEnterGrid" class="nui-datagrid" style="width:100%;height:100%;"
+           showPager="false"
+           dataField="pjPchsOrderDetailList"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+              <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+          </div>
+      </div>
+</div>
+
+<div id="pchsEnterWinCopy" class="nui-window"
      title="采购入库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
-    <div id="innerPchsEnterGrid" class="nui-datagrid" style="width:100%;height:100%;"
+    <div id="innerPchsEnterGridCopy" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
          dataField="pjEnterDetailList"
          idField="detailId"
@@ -364,27 +393,28 @@
      allowResize="false"
      allowDrag="true">
     <div id="innerPchsRtnGrid" class="nui-datagrid" style="width:100%;height:100%;"
-         showPager="false"
-         dataField="pjSellOutDetailList"
-         idField="detailId"
-         ondrawcell="onDrawCell"
-         sortMode="client"
-         url=""
-         showSummaryRow="true">
-        <div property="columns">
-            <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
-            <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-            <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-            <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-            <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
-            <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
-            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="退货单价"></div>
-            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-        </div>
-    </div>
+           showPager="false"
+           dataField="pjSellOrderDetailList"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+              <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+          </div>
+      </div>
 </div>
 
 <!-- <div id="editFormSellOutDetail" style="display:none;"> -->
@@ -715,8 +745,8 @@
                         <td style="text-align:center" width="60px">实收金额:</td>
                         <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">优惠金额:</td>
-                        <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        <td style="text-align:center;display:none;" width="60px">优惠金额:</td>
+                        <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline;display:none;" width="60px"></td>
 
                         <td style="text-align:center" width="60px">未结金额:</td>
                         <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
@@ -737,8 +767,8 @@
                         <td style="text-align:center" width="60px">实付金额:</td>
                         <td id="pTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">免付金额:</td>
-                        <td id="pVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        <td style="text-align:center;display:none;" width="60px">免付金额:</td>
+                        <td id="pVoidAmt" style="text-align:center;color:blue;text-decoration:underline;display:none;" width="60px"></td>
 
                         <td style="text-align:center" width="60px">未结金额:</td>
                         <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>

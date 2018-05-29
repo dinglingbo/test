@@ -248,6 +248,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">auditMain/isInner</process:from>
+      <process:to type="query">isInner</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">auditMain/auditDate</process:to>
     </process:copy>
@@ -266,6 +270,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">auditMain/billStatusId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">isInner==0?1:0</process:from>
+      <process:to type="query">auditMain/isRtnSign</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -497,6 +505,10 @@
       <process:from type="query" pattern="reference">main/id</process:from>
       <process:to type="query">params/id</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">params/auditSign</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="868" y="323"/>
@@ -655,6 +667,7 @@
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="pjSellOrderMainListTemp"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="stockOutList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isInner" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMain" name="sellOrderMain"/>

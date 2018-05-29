@@ -178,7 +178,7 @@ $(document).ready(function(v)
     getItemType(function(data) {
         enterTypeIdList = data.list || [];
         enterTypeIdList.filter(function(v){
-            enterTypeIdHash[v.code] = v;
+            enterTypeIdHash[v.id] = v;
         });
 
     });

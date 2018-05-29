@@ -11,5 +11,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.cloud.part.invoicing/bin" path="com.hsapi.cloud.part.invoicing/src"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
+	<classpathentry kind="lib" path="D:/harson/eos/apache-tomcat-7.0.54/webapps/default/WEB-INF/lib/httpclient-4.3.5.jar"/>
+	<classpathentry kind="lib" path="D:/harson/eos/apache-tomcat-7.0.54/webapps/default/WEB-INF/lib/httpcore-4.3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

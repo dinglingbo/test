@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.3.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.7.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -113,7 +113,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">审核日期:</td>
+                <td class="title">提交日期:</td>
                 <td>
                     <input name="sAuditDate"
                            width="100%"

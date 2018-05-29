@@ -59,11 +59,12 @@
                          onbuttonclick="selectSupplier('searchBillGuestId')" selectOnFocus="true" />
                   <input id="billServiceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
                   <input id="billServiceMan" width="60px" emptyText="业务员" class="nui-hidden"/>
-                  <input id="billStatusId" width="60px" emptyText="状态" data="" class="nui-combobox" value="2" valuefromselect="true"/>
+                  <input id="billStatusId" width="60px" emptyText="状态" data="" class="nui-combobox" value="1" valuefromselect="true"/>
                   <a class="nui-button" iconCls="" plain="true" onclick="searchBill()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                   
                   <span class="separator"></span>
-                  <a class="nui-button" iconCls="" plain="true" onclick="addSellOrder()"><span class="fa fa-check fa-lg"></span>&nbsp;生成销售订单</a>
+                  <a class="nui-button" iconCls="" plain="true" onclick="addSellOrder()"><span class="fa fa-check fa-lg"></span>&nbsp;受理</a>
+                  <a class="nui-button" iconCls="" plain="true" onclick="backPchsOrder()"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;退回</a>
                   <input class="nui-combobox" name="billTypeId" id="billTypeId"
                        emptyText="票据类型" data="" width="60px" visible="false" />
                   <input class="nui-combobox" name="settleTypeId" id="settleTypeId" 

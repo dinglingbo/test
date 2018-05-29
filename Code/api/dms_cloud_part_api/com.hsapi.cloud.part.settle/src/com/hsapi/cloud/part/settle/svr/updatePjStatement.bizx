@@ -428,7 +428,7 @@
       <targetNode>invokePojo9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1003,7 +1003,7 @@
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1162,7 +1162,7 @@
       <targetNode>invokePojo13</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1227,10 +1227,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FYear" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FMonth" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="enterTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="enter"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="outTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="out"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="enterTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="enter"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="outTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="out"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="typeCode" primitiveType="String"/>
     <process:variable description="1应收；-1应付" historyStateLocation="client" isArray="false" name="mainDc" primitiveType="Int"/>
     <process:variable description="1应收；-1应付" historyStateLocation="client" isArray="false" name="detailDc" primitiveType="Int"/>
@@ -1244,8 +1244,8 @@
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="billAmtList"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="billAmtTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementMain" name="stateTemp"/>
-    <process:variable description="删除的记录需要更新isState=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="denter"/>
-    <process:variable description="删除的记录需要更新isState=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="dout"/>
+    <process:variable description="删除的记录需要更新isState=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="denter"/>
+    <process:variable description="删除的记录需要更新isState=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="dout"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="alength" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dlength" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="olength" primitiveType="Int"/>

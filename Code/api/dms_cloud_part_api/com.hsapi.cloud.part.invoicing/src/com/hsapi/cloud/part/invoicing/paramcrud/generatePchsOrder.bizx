@@ -437,6 +437,10 @@
       <process:to type="query">orderMain/serviceId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">orderMain/orderTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">orderMain/orgid</process:to>
     </process:copy>

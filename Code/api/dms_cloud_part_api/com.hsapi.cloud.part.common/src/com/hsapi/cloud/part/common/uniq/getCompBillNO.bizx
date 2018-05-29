@@ -291,6 +291,10 @@
       <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billTypeCode+yearmonthc+maxnostr</process:from>
+      <process:to type="query">serviceno</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="808" y="188"/>
@@ -338,6 +342,10 @@
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
+      <process:to type="query">serviceno</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billTypeCode+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>
@@ -505,9 +513,15 @@
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值6" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="733" y="55"/>

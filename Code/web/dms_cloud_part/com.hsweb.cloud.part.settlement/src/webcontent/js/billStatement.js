@@ -4,8 +4,8 @@
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryPJStatementList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailByMainId.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailByMainId.biz.ext";
+var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -56,7 +56,7 @@ var accountSignHash = {
     "0":"未对账",
     "1":"已对账"
 };
-var enterTypeIdHash = {"050101":"采购入库","050102":"销售退货","050201":"采购退货","050202":"销售出库"};
+var enterTypeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
 
 $(document).ready(function(v)
 {
@@ -77,13 +77,13 @@ $(document).ready(function(v)
     editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
     innerPchsRtnGrid.setUrl(innerSellGridUrl);
 
-    innerSellOutGrid = nui.get("innerSellOutGrid");
+/*    innerSellOutGrid = nui.get("innerSellOutGrid");
     editFormSellOutDetail = document.getElementById("editFormSellOutDetail");
     innerSellOutGrid.setUrl(innerSellGridUrl);
 
     innerSellRtnGrid = nui.get("innerSellRtnGrid");
     editFormSellRtnDetail = document.getElementById("editFormSellRtnDetail");
-    innerSellRtnGrid.setUrl(innerPchsGridUrl);
+    innerSellRtnGrid.setUrl(innerPchsGridUrl);*/
 
     gsparams.startDate = getNowStartDate();
     gsparams.endDate = addDate(getNowEndDate(), 1);
@@ -563,11 +563,11 @@ function onShowRowDetail(e) {
     
     //将editForm元素，加入行详细单元格内
     var td = rightGrid.getRowDetailCellEl(row);
-    var enterTypeId = row.typeCode;    
+    var rpDc = row.rpDc;    
 
-    switch (enterTypeId)
+    switch (rpDc)
     {
-        case "050101":
+        case -1:
             td.appendChild(editFormPchsEnterDetail);
             editFormPchsEnterDetail.style.display = "";
 
@@ -578,36 +578,13 @@ function onShowRowDetail(e) {
                 token: token
             });
             break;
-        case "050102":
-            td.appendChild(editFormSellRtnDetail);
-            editFormSellRtnDetail.style.display = "";
-
-            var params = {};
-            params.mainId = mainId;
-            innerSellRtnGrid.load({
-                params:params,
-                token: token
-            });
-
-            break;
-        case "050201":
+        case 1:
             td.appendChild(editFormPchsRtnDetail);
             editFormPchsRtnDetail.style.display = "";
 
             var params = {};
             params.mainId = mainId;
             innerPchsRtnGrid.load({
-                params:params,
-                token: token
-            });
-            break;
-        case "050202":
-            td.appendChild(editFormSellOutDetail);
-            editFormSellOutDetail.style.display = "";
-
-            var params = {};
-            params.mainId = mainId;
-            innerSellOutGrid.load({
                 params:params,
                 token: token
             });
@@ -974,7 +951,7 @@ function addDetail(rows)
         var newRow = {
             billMainId:row.mainId,
             billServiceId:row.serviceId,
-            typeCode:row.enterTypeId,
+            typeCode:row.orderTypeId,
             rpDc:row.dc,
             billAmt:row.billAmt,
             billTypeId:row.billTypeId,

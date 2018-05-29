@@ -43,7 +43,7 @@
     <location x="599" y="360"/>
     <size height="70" width="150"/>
   </nodes>
-  <nodes xsi:type="core:ContributionNodeElement" id="com.primeton.studio.sysdesign.ui.paletteEntry4" name="org.gocom.components.coframe.participantselect" displayName="选择参与者" nodeType="child" symbolicName="org.gocom.components.coframe.participantselect">
+  <nodes xsi:type="core:ContributionNodeElement" id="com.primeton.studio.sysdesign.ui.paletteEntry4" name="org.gocom.components.coframe.participantselect" displayName="选择参与�? nodeType="child" symbolicName="org.gocom.components.coframe.participantselect">
     <sourceConnections xsi:type="core:DependencyLine" id="link1" name="link1" displayName="连线">
       <sourceNode>com.primeton.studio.sysdesign.ui.paletteEntry4</sourceNode>
       <targetNode>com.primeton.studio.sysdesign.ui.paletteEntry3</targetNode>

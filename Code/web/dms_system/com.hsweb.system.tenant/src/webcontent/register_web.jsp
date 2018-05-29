@@ -15,9 +15,9 @@
 
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + sysDomain%>/eos/css/register.css"
+	href="<%= request.getContextPath() %>/tenant/css/register.css"
 	rel="stylesheet" type="text/css" />
-<script src="<%=webPath + sysDomain%>/eos/js/register.js?v=1.0"
+<script src="<%= request.getContextPath() %>/tenant/js/register.js?v=1.0"
 	type="text/javascript"></script>
 </head>
 <body>

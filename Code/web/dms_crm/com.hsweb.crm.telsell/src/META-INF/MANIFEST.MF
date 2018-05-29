@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: telsell
+Bundle-Vendor: steven
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.crm.telsell
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.crm.telsell
+

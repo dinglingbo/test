@@ -1615,8 +1615,8 @@
       <sourceNode>assign22</sourceNode>
       <targetNode>assign21</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">auditMain/settleTypeId</process:leftOperand>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">auditMain</process:leftOperand>
           <process:rightOperand type="literal">020501</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

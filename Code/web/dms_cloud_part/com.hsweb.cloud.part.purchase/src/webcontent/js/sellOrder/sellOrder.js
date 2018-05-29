@@ -336,6 +336,8 @@ function addInsertRow(value, row) {
             comApplyCarModel : part.applyCarModel,
             comUnit : part.unit,
             orderQty : 1,
+            orderPrice : price,
+            orderAmt : price,
             storeId : FStoreId,
             comOemCode : part.oemCode,
             comSpec : part.spec,

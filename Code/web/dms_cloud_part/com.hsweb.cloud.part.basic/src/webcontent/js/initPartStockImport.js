@@ -84,7 +84,7 @@ function sure() {
 				enterPrice : data[i].单价||"",
 				enterAmt : data[i].金额||"",
 				taxSign : taxSign||"",
-				taxRate : data[i].税率||"",
+				taxRate : data[i].税率||"0.07",
 				remark : data[i].备注||""
 			};
 			partList.push(newRow);

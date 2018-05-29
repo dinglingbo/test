@@ -126,17 +126,6 @@ $(document).ready(function(v) {
         
     	
     });
-    // $("#fastPartEntry").bind("keydown", function (e) {
-    // 	//新增一条明细
-    // 	var event=e||window.e;
-    // 	var keyCode=event.keyCode||event.which;
-    // 	if(keyCode==13){
-    // 		var value = fastPartEntryEl.getValue();
-    // 		if(!value) return;
-    // 		addInsertRow(fastPartEntryEl.getValue());
-    // 	}
-    	
-    // });
 
     document.onkeyup=function(event){
 	    var e=event||window.event;
@@ -152,6 +141,9 @@ $(document).ready(function(v) {
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
 			onPrint();
+	    } 
+	    if((keyCode==113))  {  
+			addMorePart();
 	    } 
 	 
 	}
@@ -1818,6 +1810,9 @@ function addMorePart(){
 	}
 	advancedAddForm.setData([]);
 	advancedAddWin.show();
+
+	var fastCodeList = nui.get("fastCodeList");
+	fastCodeList.focus();
 }
 
 function onAdvancedAddOk(){

@@ -17,6 +17,7 @@ var sEnterDate = null;
 var eEnterDate = null;
 var mainTabs = null;
 var billmainTab = null;
+var FGuestId = null;
 
 $(document).ready(function(v)
 {
@@ -43,9 +44,33 @@ $(document).ready(function(v)
         });
     });
 
+    getGuestId();
+
     add();
 
 });
+var guestUrl = baseUrl + "com.hsapi.cloud.part.common.svr.getGuestByInternalId.biz.ext";
+function getGuestId() {
+
+    nui.ajax({
+        url : guestUrl,
+        type : "post",
+        data : JSON.stringify({}),
+        success : function(data) {
+            data = data || {};
+            if (data.guest) {
+                var guest = data.guest;
+                FGuestId = guest.id;
+
+            } else {
+                console.log(data.errMsg);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 function loadMainAndDetailInfo(row)
 {
     if(row) {    
@@ -193,10 +218,6 @@ function add()
         
     nui.get("serviceId").setValue("期初入库");
     nui.get("enterTypeId").setValue("050105");
-    //nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
-    nui.get("taxRate").setValue(0.17);
-    nui.get("taxSign").setValue(1);
-    nui.get("guestId").setValue(2);
     
 }
 function calcTaxPriceInfo(taxSign, taxRate)
@@ -235,7 +256,6 @@ function getMainData()
     //汇总明细数据到主表
     data.isFinished = 0;
     data.enterTypeId = '050105';
-    data.guestId = 2;
     data.auditSign = 0;
     data.billStatusId = '';
     data.noTaxAmt = 0;
@@ -247,6 +267,11 @@ function getMainData()
     data.printTimes = 0;
     data.taxAmt = 0;
     data.taxDiff = 0;
+
+    data.guestId = FGuestId;
+    data.billTypeId = '010101';
+    data.settleTypeId = '020501';
+
     var list = rightGrid.getData();
     for(var i=0;i<list.length;i++)
     {
@@ -267,10 +292,9 @@ function getMainData()
     return data;
 }
 var requiredField = {
-    storeId : "默认仓库",
-    taxRate : "开票税点"
+    storeId : "默认仓库"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjEnter.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.saveQCEnter.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -525,8 +549,8 @@ function addEnterDetail(part)
                 enterDetail.systemUnitId = data.unit; 
                 enterDetail.enterUnitId = data.unit;
 
-                var taxSign = nui.get("taxSign").getValue();
-                var taxRate = nui.get("taxRate").getValue();
+                var taxSign = 0;
+                var taxRate = 0.07;
                 enterDetail.taxSign = taxSign;
                 enterDetail.taxRate = taxRate;
                 if (taxSign == 0) { //收据
@@ -629,7 +653,7 @@ function checkRightData()
     }
     return msg;
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjEnter.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditQCEnter.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -683,9 +707,6 @@ function audit()
                 var pjEnterMainList = data.pjEnterMainList;
                 if(pjEnterMainList && pjEnterMainList.length>0) {
                     var leftRow = pjEnterMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
                 }
@@ -698,17 +719,6 @@ function audit()
             console.log(jqXHR.responseText);
         }
     });
-}
-function onDrawSummaryCell(e)
-{
-    var rows = e.data;//rightGrid.getData();
-    if (e.field == "enterAmt") { 
-        var enterAmt = 0;
-        for (var i = 0; i < rows.length; i++) {
-            enterAmt += parseFloat(rows[i].enterAmt);
-        }
-        nui.get("enterAmt").setValue(enterAmt);
-    }
 }
 function onGuestValueChanged(e)
 {

@@ -51,7 +51,7 @@
 		        </tr>
 		    </table>
 		</div>
-                <fieldset id="fd1" style="width:95%;height: 80px;">
+                <fieldset id="fd1" style="width:95%;height: 60px;">
                     <legend><span>期初库存信息</span></legend>
                     <div class="fieldset-body">
                     
@@ -90,30 +90,12 @@
                                         <label>入库单号：</label>
                                     </td>
                                     <td>
-                                        <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新盘盈订单"/>
-                                    </td>
-                                    <td class="title required">
-                                        <label>默认税点：</label>
-                                    </td>
-                                    <td>
-                                        <input class="nui-textbox" vtype="float" id="taxRate" name="taxRate" enabled="true" width="100%">
-                                    </td>
-                                    <td colspan="2">
-                                        <input id="taxSign" name="taxSign" enabled="true" class="mini-checkbox" text="是否含税" trueValue="1" falseValue="0" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">
+                                        <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" />
+                                    </td><td class="title">
                                         <label>备注：</label>
                                     </td>
                                     <td colspan="5">
                                         <input class="nui-textbox" width="100%" id="remark" name="remark"/>
-                                    </td>
-                                    <td class="title">
-                                        <label>总金额：</label>
-                                    </td>
-                                    <td colspan="1">
-                                        <input class="nui-textbox" width="100%" id="enterAmt" name="enterAmt" enabled="false" style="text-align: right;"/>
                                     </td>
                                 </tr>
                             </table>
@@ -146,7 +128,7 @@
                      allowCellSelect="true"
                      allowCellEdit="true"
                      oncellcommitedit="onCellCommitEdit"
-                     ondrawsummarycell="onDrawSummaryCell"
+                     ondrawsummarycell=""
                      showModified="false"
                      url="">
                     <div property="columns">

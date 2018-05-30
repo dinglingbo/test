@@ -69,7 +69,7 @@
       <process:to type="query">cd/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">params/enddate</process:from>
       <process:to type="query">cd/_expr[4]/recordDate</process:to>
     </process:copy>
     <process:copy>
@@ -77,12 +77,16 @@
       <process:to type="query">cd/_expr[4]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">true</process:from>
-      <process:to type="query">page/isCount</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">params/empid</process:from>
       <process:to type="query">cd/_expr[5]/empid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[5]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -105,7 +109,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cd</process:inputVariable>
       <process:inputVariable id="2" name="pagecond" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">page</process:inputVariable>
     </process:inputVariables>

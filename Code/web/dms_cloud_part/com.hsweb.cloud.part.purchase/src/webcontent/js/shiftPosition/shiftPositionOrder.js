@@ -1192,3 +1192,58 @@ function getGuestId() {
         }
     });
 }
+
+function onExport(){
+    if (checkNew() > 0) {
+        nui.alert("请先保存数据！");
+        return;
+    }
+    var changes = rightGrid.getChanges();
+    if(changes.length>0){
+        var len = changes.length;
+        var row = changes[0];
+        if(len == 1 && !row.partId){
+        }else{
+          nui.alert("请先保存数据！");
+            return;  
+        }
+    }
+
+    var main = leftGrid.getSelected();
+    if(!main) return;
+
+    var detail = rightGrid.getData();
+    if(detail && detail.length > 0){
+        setInitExportData(main, detail);
+    }
+}
+function setInitExportData(main, detail){
+    var storeName = storeIdEl.getText();
+    var receiveStoreName = receiveStoreIdEl.getText();
+    document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
+    document.getElementById("eStoreName").innerHTML = storeName?storeName:"";
+    document.getElementById("eReceiveStoreName").innerHTML = receiveStoreName?receiveStoreName:"";
+    var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
+        "<td  colspan='1' align='left'>[comFullName]</td>" +
+        "<td  colspan='1' align='left'>[comApplyCarModel]</td>" +
+        "<td  colspan='1' align='left'>[comUnit]</td>" +
+        "<td  colspan='1' align='left'>[orderQty]</td>";
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.partId){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+                         .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
+                         .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
+                         .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
+                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:""));
+            tableExportContent.append(tr);
+        }
+        
+    }
+
+    var serviceId = main.serviceId?main.serviceId:"";
+    method5('tableExcel',"移仓单"+serviceId,'tableExportA');
+}

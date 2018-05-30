@@ -1302,3 +1302,93 @@ function checkPartIDExists(partid){
     }
     
 }
+function onExport(){
+    if (checkNew() > 0) {
+        nui.alert("请先保存数据！");
+        return;
+    }
+    var changes = rightGrid.getChanges();
+    if(changes.length>0){
+        var len = changes.length;
+        var row = changes[0];
+        if(len == 1 && !row.partId){
+        }else{
+          nui.alert("请先保存数据！");
+            return;  
+        }
+    }
+
+    var main = leftGrid.getSelected();
+    if(!main) return;
+
+    var detail = rightGrid.getData();
+    if(detail && detail.length > 0){
+        setInitExportData(main, detail);
+    }
+}
+function setInitExportData(main, detail){
+    var storeName = nui.get("storeId").getText();
+    document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
+    document.getElementById("eStoreName").innerHTML = storeName?storeName:"";
+    document.getElementById("eOrderMan").innerHTML = main.orderMan?main.orderMan:"";
+    var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
+        "<td  colspan='1' align='left'>[comFullName]</td>" +
+        "<td  colspan='1' align='left'>[comApplyCarModel]</td>" +
+        "<td  colspan='1' align='left'>[comUnit]</td>" +
+        "<td  colspan='1' align='left'>[sysQty]</td>"+
+        "<td  colspan='1' align='left'>[trueQty]</td>"+
+        "<td  colspan='1' align='center' style='color:red'>[dc]</td>" +
+        "<td  colspan='1' align='left'>[exhibitQty]</td>";
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.partId){
+            var tr = $("<tr></tr>");
+            var dc = row.dc;
+            var exhState = "";
+            var color = 'green';
+            var tdst = "";
+
+            if(dc==1){
+                exhState = "盘盈";
+                tdst = tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+                         .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
+                         .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
+                         .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
+                         .replace("[sysQty]", detail[i].sysQty?detail[i].sysQty:"")
+                         .replace("[trueQty]", detail[i].trueQty?detail[i].trueQty:"")
+                         .replace("[dc]", exhState)
+                         .replace("red", color)
+                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"");
+            }else if(dc==-1){
+                exhState = "盘亏";
+                tdst.replace("[dc]", exhState).replace("red", color);
+                tdst = tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+                         .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
+                         .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
+                         .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
+                         .replace("[sysQty]", detail[i].sysQty?detail[i].sysQty:"")
+                         .replace("[trueQty]", detail[i].trueQty?detail[i].trueQty:"")
+                         .replace("[dc]", exhState)
+                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"");
+            }else {
+                tdst = tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+                         .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
+                         .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
+                         .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
+                         .replace("[sysQty]", detail[i].sysQty?detail[i].sysQty:"")
+                         .replace("[trueQty]", detail[i].trueQty?detail[i].trueQty:"")
+                         .replace("[dc]", "")
+                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"");
+            }
+            
+            tr.append(tdst);
+            tableExportContent.append(tr);
+        }
+        
+    }
+
+    var serviceId = main.serviceId?main.serviceId:"";
+    method5('tableExcel',"盘点单"+serviceId,'tableExportA');
+}

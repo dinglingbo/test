@@ -495,6 +495,7 @@ function audit()
     var packDetailAdd = rightGrid.getChanges("added");
     var packDetailDelete = rightGrid.getChanges("removed");
     var packDetailList = rightGrid.getData();
+    packDetailAdd = formatDetailDate(packDetailAdd);
     if(packDetailList.length<=0){
         nui.alert("请添加发货明细!");
         return;
@@ -706,6 +707,18 @@ function removeChanges(added, modified, removed, all) {
 
     return all;
 }
+function formatDetailDate(added) {
+    for(var i=0; i<added.length; i++) {
+    
+       for(var j=0; j<added.length; j++) {
+            if(added[i].billDate) {
+                added[i].billDate = format(added[i].billDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+            }
+        }
+    }
+
+    return added;
+}
 function getMainData()
 {
     var data = basicInfoForm.getData();
@@ -760,6 +773,7 @@ function save() {
     var packDetailAdd = rightGrid.getChanges("added");
     var packDetailDelete = rightGrid.getChanges("removed");
     var packDetailList = rightGrid.getData();
+    packDetailAdd = formatDetailDate(packDetailAdd);
     packDetailList = removeChanges(packDetailAdd, [], packDetailDelete, packDetailList);
 
     nui.mask({

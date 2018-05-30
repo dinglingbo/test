@@ -75,6 +75,8 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <span class="separator"></span>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
            
             </td>
         </tr>
@@ -390,6 +392,33 @@
         </div>
     </div>
 </div>
+
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>
+            <td colspan="1" align="left">单号：</td>
+            <td colspan="1" align="left"><span id="eServiceId"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">移出仓库：</td>
+            <td colspan="1" align="left"><span id="eStoreName"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">移入仓库：</td>
+            <td colspan="1" align="left"><span id="eReceiveStoreName"></span></td>
+        </tr>
+        <tr>  
+            <td colspan="1" align="center">配件编码</td>
+            <td colspan="1" align="center">配件全称</td>
+            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">单位</td>
+            <td colspan="1" align="center">数量</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
 
 </body>
 </html>

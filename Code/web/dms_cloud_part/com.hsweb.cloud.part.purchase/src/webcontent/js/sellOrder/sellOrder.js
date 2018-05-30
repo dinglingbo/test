@@ -1814,3 +1814,60 @@ function addNewKeyRow(){
     }
 
 }
+function onExport(){
+    if (checkNew() > 0) {
+        nui.alert("请先保存数据！");
+        return;
+    }
+    var changes = rightGrid.getChanges();
+    if(changes.length>0){
+        var len = changes.length;
+        var row = changes[0];
+        if(len == 1 && !row.partId){
+        }else{
+          nui.alert("请先保存数据！");
+            return;  
+        }
+    }
+
+    var main = leftGrid.getSelected();
+    if(!main) return;
+
+    var detail = rightGrid.getData();
+    if(detail && detail.length > 0){
+        setInitExportData(main, detail);
+    }
+}
+function setInitExportData(main, detail){
+    document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
+    document.getElementById("eGuestName").innerHTML = main.guestFullName?main.guestFullName:"";
+    document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
+    var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
+        "<td  colspan='1' align='left'>[comFullName]</td>" +
+        "<td  colspan='1' align='left'>[comApplyCarModel]</td>" +
+        "<td  colspan='1' align='left'>[comUnit]</td>" +
+        "<td  colspan='1' align='left'>[orderQty]</td>" +
+        "<td  colspan='1' align='left'>[orderPrice]</td>" +
+        "<td  colspan='1' align='left'>[orderAmt]</td>" +
+        "<td  colspan='1' align='left'>[remark]</td>";
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.partId){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+                         .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
+                         .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
+                         .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
+                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
+                         .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
+                         .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:""));
+            tableExportContent.append(tr);
+        }
+    }
+
+    var serviceId = main.serviceId?main.serviceId:"";
+    method5('tableExcel',"销售订单"+serviceId,'tableExportA');
+}

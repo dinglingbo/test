@@ -1152,6 +1152,7 @@
 				A.operator as operator,
 				A.operate_date as operateDate,
 				A.settle_type_id as settleTypeId,
+				a.is_need_pack as isNeedPack,
                 a.rtn_reason_id as rtnReasonId,
                 a.is_rtn_sign as isRtnSign,
 				B.FULL_NAME AS guestFullName,
@@ -1275,6 +1276,7 @@
 				A.operate_date as operateDate,
 				A.settle_type_id as settleTypeId,
                 a.rtn_reason_id as rtnReasonId,
+				a.is_need_pack as isNeedPack,
                 a.is_rtn_sign as isRtnSign,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName

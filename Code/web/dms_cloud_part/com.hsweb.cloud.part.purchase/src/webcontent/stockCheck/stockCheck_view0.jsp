@@ -75,6 +75,8 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <span class="separator"></span>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
            
             </td>
         </tr>
@@ -209,17 +211,17 @@
                               </div>
                               <div header="数量金额信息" headerAlign="center">
                                   <div property="columns">
-                                      <div field="sysQty" name="sysQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="系统数量"></div>
-                                      <div field="trueQty" name="trueQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="实盘数量">
+                                      <div field="sysQty" name="sysQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="系统数量"></div>
+                                      <div field="trueQty" name="trueQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="实盘数量">
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
-                                      <div field="truePrice" name="truePrice" numberFormat="0.0000" width="50" headerAlign="center" header="成本单价">
+                                      <div field="truePrice" name="truePrice" numberFormat="0.0000" width="60" headerAlign="center" header="成本单价">
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
                                       <div field="dc" name="dc" width="50" headerAlign="center" header="盈亏状态"></div>
-                                      <div field="exhibitQty" name="exhibitQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="盈亏数量"></div>
-                                      <div field="exhibitAmt" name="exhibitAmt" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="盈亏金额"></div>
-                                      <div field="sysPrice" name="sysPrice" numberFormat="0.0000" width="50" headerAlign="center" header="系统成本"></div>
+                                      <div field="exhibitQty" name="exhibitQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="盈亏数量"></div>
+                                      <div field="exhibitAmt" name="exhibitAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="盈亏金额"></div>
+                                      <div field="sysPrice" name="sysPrice" numberFormat="0.0000" width="60" headerAlign="center" header="系统成本"></div>
                                       <div field="remark" visible="false" width="80" headerAlign="center" allowSort="true" header="备注">
                                         <input property="editor" class="nui-textbox"/>
                                       </div>
@@ -379,6 +381,36 @@
         </div>
     </div>
 </div>
+
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>
+            <td colspan="1" align="left">单号：</td>
+            <td colspan="1" align="left"><span id="eServiceId"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">盘点仓库：</td>
+            <td colspan="1" align="left"><span id="eStoreName"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">盘点员：</td>
+            <td colspan="1" align="left"><span id="eOrderMan"></span></td>
+        </tr>
+        <tr>  
+            <td colspan="1" align="center">配件编码</td>
+            <td colspan="1" align="center">配件全称</td>
+            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">单位</td>
+            <td colspan="1" align="center">系统数量</td>
+            <td colspan="1" align="center">实盘数量</td>
+            <td colspan="1" align="center">盈亏状态</td>
+            <td colspan="1" align="center">盈亏数量</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
 
 </body>
 </html>

@@ -245,5 +245,35 @@
     </div>
 </div>
 
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>
+            <td colspan="1" align="left">单号：</td>
+            <td colspan="1" align="left"><span id="eServiceId"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">客户名称：</td>
+            <td colspan="1" align="left"><span id="eGuestName"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">备注：</td>
+            <td colspan="1" align="left"><span id="eRemark"></span></td>
+        </tr>
+        <tr>  
+            <td colspan="1" align="center">配件编码</td>
+            <td colspan="1" align="center">配件全称</td>
+            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">单位</td>
+            <td colspan="1" align="center">数量</td>
+            <td colspan="1" align="center">单价</td>
+            <td colspan="1" align="center">金额</td>
+            <td colspan="1" align="center">备注</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
+
 </body>
 </html>

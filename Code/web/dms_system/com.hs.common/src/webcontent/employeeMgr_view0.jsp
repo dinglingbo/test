@@ -11,6 +11,7 @@
     <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/common/js/employeeQuery.js" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     body {

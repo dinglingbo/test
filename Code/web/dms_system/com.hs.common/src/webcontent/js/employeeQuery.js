@@ -1,7 +1,7 @@
 /**
  * Created by steven on 2018/1/31.
  */
-var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+baseUrl = apiPath + sysApi + "/";;
 var gridUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuery.biz.ext";
 nui.parse();
 var grid = nui.get("datagrid1");

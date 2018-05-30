@@ -2,15 +2,23 @@
  * Created by steven on 2018/1/31.
  */
 
-var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+baseUrl = apiPath + sysApi + "/";;
 var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeEdit.biz.ext";
 var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuery.biz.ext";
-
+var sex;
+var isservice;
 nui.parse();
-
+var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
 var sexlist = [{id: 1, name: '男'}, {id: 0, name: '女'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 
+$(document).ready(function(v) {
+	isservice=nui.get("isArtificer");
+	sex=nui.get("sex");
+	sex.setData(sexlist);
+	isservice.setData(isservicelist);
+
+});
 function SetData(data) {
 	if (!data.empid) return;
 	
@@ -36,7 +44,6 @@ function SetData(data) {
 
 var requiredField = {
     name:"姓名",
-    //post_id:"职务",
     tel:"电话"
 };
 
@@ -61,6 +68,7 @@ function save(action) {
         type:"post",
         data:JSON.stringify({
         	emp:data,
+        	token: token
         }),
         success:function(data)
         {

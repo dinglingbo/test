@@ -124,9 +124,9 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link22" name="link22" displayName="连接线" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>invokePojo7</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">empList</process:leftOperand>
@@ -174,7 +174,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">emp</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -184,43 +184,18 @@
     <figSize height="17" width="64"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="取序列" displayName="seqs" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign3</targetNode>
-    </sourceConnections>
-    <targetConnections>link4</targetConnections>
-    <location x="498" y="209"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.uniq.seqs</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="seqName" type="literal" value="String" valueType="Primitive" pattern="reference">SEQ_EMPLOYEE</process:inputVariable>
-        <process:inputVariable id="1" name="dbName" type="literal" value="String" valueType="Primitive" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="seq" type="query" value="Long" valueType="Primitive">emplid</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="493" y="244"/>
-    <figSize height="17" width="37"/>
-    <node>subprocess0</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <targetConnections>link7</targetConnections>
+    <targetConnections>link23</targetConnections>
     <location x="646" y="208"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">emplid</process:from>
-      <process:to type="query">emp/empid</process:to>
+      <process:from type="query" pattern="reference">emp/empid</process:from>
+      <process:to type="query">emplid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
@@ -511,7 +486,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">default</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapUser</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -578,7 +553,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">default</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapUser</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -587,6 +562,29 @@
     <location x="912" y="96"/>
     <figSize height="17" width="82"/>
     <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="getPrimaryKey" displayName="getPrimaryKey" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo7</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link22</targetConnections>
+    <location x="494" y="208"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo7label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">emp</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
+    <location x="463" y="244"/>
+    <figSize height="17" width="85"/>
+    <node>invokePojo7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

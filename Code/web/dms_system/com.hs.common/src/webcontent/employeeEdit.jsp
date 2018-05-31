@@ -114,16 +114,7 @@
                         <td colspan="2"><input class="mini-textbox tabwidth" id="idcardno" name="idcardno"/></td>
 
                     </tr>
-                    <tr>
-                        <td class="tbtext">家庭住址<span></span></td>
-                        <td colspan="2"><input class="mini-textbox tabwidth" id="adress" name="adress"/></td>
-
-                    </tr>
-                    <tr>
-                        <td class="tbtext">电子邮件<span></span></td>
-                        <td colspan="2"><input class="mini-textbox tabwidth" id="mail" name="mail"/></td>
-
-                    </tr>
+       
                     <tr>
                         <td class="tbtext">微信号<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" name="wechat" id="wechat"/></td>
@@ -173,8 +164,8 @@
                     
                 </table>
                 <div style="text-align: center;margin-top: 10px;margin-bottom: 20px;">
-                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('no')"><i class="fa fa-plus"></i>&nbsp;新建并继续</a>
-                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick=""><i class="fa fa-save"></i>&nbsp;保存退出</a>
+                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('yes')"><i class="fa fa-plus"></i>&nbsp;新建并继续</a>
+                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('no')"><i class="fa fa-save"></i>&nbsp;保存退出</a>
                     <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick=""><i class="fa fa-sign-out"></i>&nbsp;退出</a>
 
                 </div>

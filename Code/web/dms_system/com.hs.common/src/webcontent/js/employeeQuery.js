@@ -2,7 +2,7 @@
  * Created by steven on 2018/1/31.
  */
 baseUrl = apiPath + sysApi + "/";;
-var gridUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuery.biz.ext";
+var gridUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
 var grid;
 nui.parse();
 
@@ -105,8 +105,8 @@ function edit(action) {
 
     nui.open({
         url: baseUrl + "/common/employeeEdit.jsp",
-        width: 1200,      //宽度
-        height: 900,    //高度
+        width: 900,      //宽度
+        height: 600,    //高度
         title: "员工信息",      //标题 组织编码选择
         allowResize:true,
         onload: function () {
@@ -132,7 +132,7 @@ function edit(action) {
 *离职
 *
 */
-var dimssionUrl=baseUrl +"com.hsapi.system.employee.employeeMgr.employeeDimssion.biz.ext"
+var dimssionUrl=baseUrl +"com.hsapi.system.employee.employeeMgr.employeeDimssion.biz.ext";
 function dimssion(){
 	
 	var s=grid.getSelected ();
@@ -153,7 +153,7 @@ function dimssion(){
                 if (data.errCode == "S"){
                 	nui.unmask(document.body);
                 	nui.alert("离职成功！");
-                	dgGrid.reload();
+                	grid.reload();
                     }else {
                     nui.unmask(document.body);
                     nui.alert("离职失败！");
@@ -181,48 +181,50 @@ function dimssion(){
 *开通或关闭
 *
 */
-var stoporstartUrl=baseUrl +"com.hsapi.system.employee.employeeMgr.stopOrStartEmployee.biz.ext"
+var stoporstartUrl=baseUrl +"com.hsapi.system.employee.employeeMgr.stopOrStartEmployee.biz.ext";
 function stoporstart(){
 	
-	var s=grid.getSelected ();
-	if(s!=undefined){
-	    nui.mask({
-	        el : document.body,
-	        cls : 'mini-mask-loading',
-	        html : '停用/启用中...'
-	    });
-        nui.ajax({
-            url: stoporstartUrl,
-            type: 'post',
-            data: nui.encode({
-            	params: s
-            }),
-            cache: false,
-            success: function (data) {
-                if (data.errCode == "S"){
-                	nui.unmask(document.body);
-                	nui.alert("停用/启用成功！");
-                	dgGrid.reload();
-                    }else {
-                    nui.unmask(document.body);
-                    nui.alert("停用/启用失败！");
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
-            }
-		});
-        search();
+    var emp = {};
+    
+ 
+    	var row = grid.getSelected();
+    	if (!row) {
+    		alert("请选中一条记录");
+    		return;
+    		
+    	}
+    	
+    	emp = row;  	
+    	emp.passWord='000000';
+		  nui.open({
+		        url: baseUrl + "/common/setAccount.jsp",
+		        width: 530,      //宽度
+		        height: 180,    //高度
+		        title: "设置密码",      //标题 组织编码选择
+		        allowResize:true,
+		        onload: function () {
+		            var iframe = this.getIFrameEl();
+		            iframe.contentWindow.SetData(emp);
+		        },
+		        ondestroy: function (action) {  //弹出页面关闭前
+		            if (action == "OK") {       //如果点击“确定”
+		                alert('开通帐户成功！');
+		                /*var iframe = this.getIFrameEl();
+		                var data = iframe.contentWindow.GetData();
+		                data = nui.clone(data);    //必须。克隆数据。		               
+		                if(data){
+		                    alert('1111');
+		                }*/
+		                
+		            }
+		        }
+		    });	    
+    
 	}
-	else{
-		  nui.alert("请选中一条数据！！");
-	}
 	
 	
 	
 	
-	
-}
 
 function changebutton(){
 	var s=grid.getSelected ();

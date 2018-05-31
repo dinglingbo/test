@@ -3,8 +3,8 @@
  */
 
 baseUrl = apiPath + sysApi + "/";;
-var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeEdit.biz.ext";
-var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuery.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
+var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
 var sex;
 var isservice;
 nui.parse();
@@ -33,7 +33,8 @@ function SetData(data) {
             if (data.length <= 0) return;
             
         	var form = new nui.Form("#basicInfoForm");
-            form.setData(data.rs[0]);            
+            form.setData(data.rs[0]);    
+            nui.get("newand").setVisible(false);
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
@@ -59,7 +60,7 @@ function save(action) {
             return;
         }
     }
-    
+  
     nui.mask({
         html:'保存中...'
     });
@@ -78,15 +79,16 @@ function save(action) {
             
             if (data.errCode == 'S' && action != 'new') {
             	if (window.CloseOwnerWindow){
-            		return window.CloseOwnerWindow('OK');
+            		 closeWindow("ok");
                 } else {
-                    window.close();
+                	 closeWindow("cal");
                 }
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
+           
+            closeWindow("cal");
         }
     });
 }
@@ -96,5 +98,10 @@ function close() {
 		return window.CloseOwnerWindow('OK');
     } else {
         window.close();
+        return ;
     }
 }
+	function Oncancel(){
+     	closeWindow("cal");
+    	
+    }

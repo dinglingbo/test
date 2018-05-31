@@ -12,7 +12,7 @@
  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
     <%-- <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script> --%>
-    <script src="<%=request.getContextPath()%>/common/js/employeeQuery.js?v=1.7" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/common/js/employeeQuery.js?v=1.8" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 

@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsOrderMainDetailList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjStockShiftMainDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -187,7 +187,6 @@ function onSearch(){
 }
 function doSearch(params)
 {
-    params.orderTypeId = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({
@@ -204,9 +203,6 @@ function advancedSearch()
     if(advancedSearchFormData)
     {
         advancedSearchForm.setData(advancedSearchFormData);
-    }else{
-        nui.get("sAuditDate").setValue(getWeekStartDate());
-        nui.get("eAuditDate").setValue(addDate(getWeekEndDate(), 1));
     }
 }
 function onAdvancedSearchOk()
@@ -276,32 +272,32 @@ function onAdvancedSearchCancel(){
     advancedSearchWin.hide();
 }
 var supplier = null;
-function selectSupplier(elId)
-{
+function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
-        title: "供应商资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
+        targetWindow : window,
+        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "客户资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1
+                isClient: 1
             };
             iframe.contentWindow.setGuestData(params);
         },
-        ondestroy: function (action)
-        {
-            if(action == 'ok')
-            {
+        ondestroy : function(action) {
+            if (action == 'ok') {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
+
                 supplier = data.supplier;
                 var value = supplier.id;
                 var text = supplier.fullName;
+
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
@@ -344,12 +340,11 @@ function onDrawCell(e)
                 e.cellHtml = storehouseHash[e.value].name;
             }
             break;
-        case "enterDayCount":
-            var row = e.record;
-            var enterTime = (new Date(row.enterDate)).getTime();
-            var nowTime = (new Date()).getTime();
-            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-            e.cellHtml = dayCount+1;
+        case "receiveStoreId":
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
             break;
         default:
             break;

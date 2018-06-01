@@ -187,7 +187,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-    params.orderTypeId = 1;
+    params.orderTypeId = 4;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({
@@ -282,14 +282,14 @@ function selectSupplier(elId)
     nui.open({
         targetWindow: window,
         url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
-        title: "供应商资料", width: 980, height: 560,
+        title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1
+                isClient: 1
             };
             iframe.contentWindow.setGuestData(params);
         },

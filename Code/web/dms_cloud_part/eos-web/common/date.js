@@ -207,6 +207,81 @@ function getQuarterEndDate() {
 	return formatDate(quarterStartDate);
 }
 
+/**
+ * 得到上季度的起始日期
+ * year 这个年应该是运算后得到的当前本季度的年份
+ * month 这个应该是运算后得到的当前季度的开始月份
+ * */
+function getPriorSeasonFirstDay(year, month) {
+     var quarterMonthStart = 0;
+     var spring = 0; //春  
+     var summer = 3; //夏  
+     var fall = 6;   //秋  
+     var winter = 9; //冬  
+     //月份从0-11  
+     switch (month) {//季度的其实月份  
+         case spring:
+             //如果是第一季度则应该到去年的冬季  
+             year--;
+             month = winter;
+             break;
+         case summer:
+             month = spring;
+             break;
+         case fall:
+             month = summer;
+             break;
+         case winter:
+             month = fall;
+             break;
+
+
+     };
+
+
+     return new Date(year, month, 1);
+ };
+
+
+ /**
+ * 得到上季度的起止日期
+ * **/
+function getPreviousSeason() {
+     //起止日期数组  
+     var startStop = new Array();
+     //获得当前月份0-11  
+     var currentMonth = now.getMonth();
+     //获得当前年份4位年  
+     var currentYear = now.getFullYear();
+     //上季度的第一天  
+     var priorSeasonFirstDay = this.getPriorSeasonFirstDay(currentYear, currentMonth);
+     //上季度的最后一天  
+     var priorSeasonLastDay = new Date(priorSeasonFirstDay.getFullYear(), priorSeasonFirstDay.getMonth() + 2, this.getMonthDays(priorSeasonFirstDay.getFullYear(), priorSeasonFirstDay.getMonth() + 2));
+     //添加至数组  
+     startStop.push(priorSeasonFirstDay);
+     startStop.push(priorSeasonLastDay);
+     return startStop;
+ };
+//上季开始日期
+function getLastQuarterStart(){    
+	var d = getPriorSeasonFirstDay(nowYear, getQuarterStartMonth());
+       
+    return formatDate(d);   
+}
+//上季开始日期
+function getLastQuarterEnd(){    
+	var dayMSec = 24 * 3600 * 1000;  
+    //得到上一个季度的第一天    
+    var lastQuarterFirstDay = new Date(now.getFullYear() , now.getMonth() - 3 , 1);    
+    //得到本月第一天    
+    var nowMonthFirstDay = new Date(now.getFullYear() , now.getMonth(), 1);    
+    //得到上一个季度的最后一天的毫秒值    
+    var lastQuarterLastDayMSec = nowMonthFirstDay.getTime() - 1 * dayMSec;    
+    var lastQuarterLastDay = new Date(lastQuarterLastDayMSec);    
+         
+    return formatDate(lastQuarterLastDay);   
+}
+
 //获得上年的开始日期
 function getYearStartDate() {
 	var NowStartDate = new Date(nowYear, 0, 1);

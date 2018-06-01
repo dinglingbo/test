@@ -30,7 +30,7 @@
 			<configValue key="default">default</configValue>
 			<configValue key="DB02_ORA_WB_COMMON">DB02_ORA_WB_COMMON</configValue>
 			<configValue key="DB10_MYSQL_WB_SYS">DB10_MYSQL_WB_SYS</configValue>
-			
+			<configValue key="part">DB09_ORA_DMS_CLOUD_PART</configValue>
 		</group>
 	</module>
 </contribution>

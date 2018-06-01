@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>采购订单明细</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrderQuery.js?v=2.0.0"></script>
+<title>销售退货明细</title>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrderRtn/sellOrderRtnQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -33,7 +33,7 @@
 <body>
 
 
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
@@ -82,7 +82,7 @@
                 <input id="serviceId" width="100px" emptyText="订单单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..."
+                       emptyText="请选择客户..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
@@ -111,10 +111,10 @@
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="createDate" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
-                    <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
+                    <div allowSort="true" field="createDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="退货单号"></div>
+                    <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
+                    <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
@@ -122,7 +122,7 @@
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
-            <div header="订单信息" headerAlign="center">
+            <div header="退货信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
@@ -155,9 +155,9 @@
             </div> -->
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
+                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div><!-- 
                 	<div allowSort="true" datatype="float" summaryType="sum" field="trueEnterQty" width="60" headerAlign="center" header="已入库数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div> -->
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                 </div>
@@ -174,7 +174,7 @@
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
         	<tr>
-                <td class="title">订货日期:</td>
+                <td class="title">退货日期:</td>
                 <td>
                     <input name="sOrderDate"
                            width="100%"
@@ -215,20 +215,20 @@
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
+                    <span style="letter-spacing: 6px;">客户</span>:
                 </td>
                 <td colspan="3">
                     <input id="btnEdit2"
                            name="guestId"
                            class="nui-buttonedit"
-                           emptyText="请选择供应商..."
+                           emptyText="请选择客户..."
                            onbuttonclick="selectSupplier('btnEdit2')"
                            width="100%"
                            selectOnFocus="true" />
                 </td>
             </tr>
             <tr>
-                <td class="title">订单单号:</td>
+                <td class="title">退货单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>
@@ -249,7 +249,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">采购员:</td>
+                <td class="title">退货员:</td>
                 <td colspan="3">
                     <input id="orderMan"
                            name="orderMan"

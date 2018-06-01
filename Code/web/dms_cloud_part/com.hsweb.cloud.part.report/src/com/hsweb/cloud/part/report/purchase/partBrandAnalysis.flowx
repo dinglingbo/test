@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sellOutRtnQuery" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="partBrandAnalysis.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>
@@ -25,24 +25,24 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="sellOrderRtnQuery.jsp" type="view" contextPath="" contributionName="com.hsweb.cloud.part.purchase" method="forward" uri="/purchase/sellOrderRtn/sellOrderRtnQuery.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="partBrandAnalysis.jsp" type="view" contextPath="" method="forward" uri="/report/purchaseReport/partBrandAnalysis.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="241" y="150"/>
+    <location x="240" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
     <process:inputParameters/>
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="240" y="186"/>
+    <location x="239" y="186"/>
     <figSize height="17" width="25"/>
     <node>view0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
-  <process:info author="Administrator" createTime="2018-03-08 01:11:22" date="2018-03-07Z" description="" name="sellOutRtnSelect" version="7.0.0.0"/>
+  <process:info author="Administrator" createTime="2018-06-01 16:07:01" date="2018-06-01Z" description="" name="partBrandAnalysis" version="7.0.0.0"/>
 </process:tPageFlow>

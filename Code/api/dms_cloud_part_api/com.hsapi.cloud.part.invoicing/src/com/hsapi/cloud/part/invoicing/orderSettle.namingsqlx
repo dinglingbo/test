@@ -9,7 +9,7 @@
     </resultMap>
     
 	<update id="updatePchsOrderAllIn" parameterClass="java.util.HashMap" >
-		update pj_pchs_order_detail 
+		update pj_pchs_order_detail_chk 
 			set true_enter_qty = order_qty, 
 				true_enter_amt = order_amt,
 				not_enter_amt = 0, 

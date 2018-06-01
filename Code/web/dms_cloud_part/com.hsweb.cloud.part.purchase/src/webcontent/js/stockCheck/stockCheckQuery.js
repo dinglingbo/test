@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsOrderMainDetailList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjStockCheckMainDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -61,45 +61,10 @@ $(document).ready(function(v)
                 storehouseHash[v.id] = v;
             }
         });
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000064');//入库类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-          //      nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-          //      nui.get("settType").setData(settTypeIdList);
-                var enterTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000064")
-                    {
-                        enterTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                quickSearch(currType);
-            }
-        });
+        
     });
+
+    quickSearch(currType);
 });
 function getSearchParam(){
     var params = {};
@@ -187,7 +152,6 @@ function onSearch(){
 }
 function doSearch(params)
 {
-    params.orderTypeId = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({
@@ -204,9 +168,6 @@ function advancedSearch()
     if(advancedSearchFormData)
     {
         advancedSearchForm.setData(advancedSearchFormData);
-    }else{
-        nui.get("sAuditDate").setValue(getWeekStartDate());
-        nui.get("eAuditDate").setValue(addDate(getWeekEndDate(), 1));
     }
 }
 function onAdvancedSearchOk()
@@ -276,32 +237,32 @@ function onAdvancedSearchCancel(){
     advancedSearchWin.hide();
 }
 var supplier = null;
-function selectSupplier(elId)
-{
+function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
-        title: "供应商资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
+        targetWindow : window,
+        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "客户资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1
+                isClient: 1
             };
             iframe.contentWindow.setGuestData(params);
         },
-        ondestroy: function (action)
-        {
-            if(action == 'ok')
-            {
+        ondestroy : function(action) {
+            if (action == 'ok') {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
+
                 supplier = data.supplier;
                 var value = supplier.id;
                 var text = supplier.fullName;
+
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
@@ -320,36 +281,25 @@ function onDrawCell(e)
 	            e.cellHtml = partBrandIdHash[e.value].name;
 	        }
 	        break;
-	    case "billStatus":
-	        if(billStatusHash && billStatusHash[e.value])
-	        {
-	            e.cellHtml = billStatusHash[e.value];
-	        }
-	        break;
-        case "enterTypeId":
-            if(enterTypeIdHash && enterTypeIdHash[e.value])
-            {
-                e.cellHtml = enterTypeIdHash[e.value].name;
-            }
-            break;
-        case "settType":
-            if(settTypeIdHash && settTypeIdHash[e.value])
-            {
-                e.cellHtml = settTypeIdHash[e.value].name;
-            }
-            break;
         case "storeId":
             if(storehouseHash && storehouseHash[e.value])
             {
                 e.cellHtml = storehouseHash[e.value].name;
             }
             break;
-        case "enterDayCount":
-            var row = e.record;
-            var enterTime = (new Date(row.enterDate)).getTime();
-            var nowTime = (new Date()).getTime();
-            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-            e.cellHtml = dayCount+1;
+        case "dc":
+            if(e.value == -1)
+            {
+                e.cellHtml = '<a style="color:red;">盘亏</a>';
+            }
+            if(e.value == 0)
+            {
+                e.cellHtml = '无盈亏';
+            }
+            if(e.value == 1)
+            {
+                e.cellHtml = '<a style="color:green;">盘盈</a>';
+            }
             break;
         default:
             break;

@@ -35,6 +35,7 @@
 			<configValue key="DB05_ORA_WB_SALES">DB05_ORA_WB_SALES</configValue>
 			<configValue key="DB06_MYSQL_WB_FRM">DB06_MYSQL_WB_FRM</configValue>
 			<configValue key="DB10_MYSQL_WB_CRM">DB10_MYSQL_WB_CRM</configValue>
+			<configValue key="part">DB09_ORA_DMS_CLOUD_PART</configValue>
 		</group>
 	</module>
 </contribution>

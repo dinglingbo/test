@@ -187,6 +187,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
+    params.orderTypeId = 2;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({
@@ -272,28 +273,32 @@ function onAdvancedSearchCancel(){
     advancedSearchWin.hide();
 }
 var supplier = null;
-function selectSupplier(elId)
-{
+function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.customerSelect.flow",
-        title: "客户资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
-
+        targetWindow : window,
+        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "客户资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+                isClient: 1
+            };
+            iframe.contentWindow.setGuestData(params);
         },
-        ondestroy: function (action)
-        {
-            if(action == 'ok')
-            {
+        ondestroy : function(action) {
+            if (action == 'ok') {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
-                supplier = data.customer;
+
+                supplier = data.supplier;
                 var value = supplier.id;
                 var text = supplier.fullName;
+
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);

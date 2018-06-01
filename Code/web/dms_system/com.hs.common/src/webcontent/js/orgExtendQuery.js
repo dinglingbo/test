@@ -2,8 +2,11 @@
  * Created by steven on 2018/1/31.
  */
 baseUrl = apiPath + sysApi + "/";;
-var gridUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
+var gridUrl = baseUrl + "com.hsapi.system.employee.comCompany.comCompanyQuerys.biz.ext";
+var timeUrl = baseUrl + "com.hsapi.system.employee.comCompany.getTime.biz.ext";
 var grid;
+var time;
+var person;
 nui.parse();
 
 
@@ -42,7 +45,7 @@ function onDrawCell(e)
 {
 switch (e.field)
 {
-	case "isOpenAccount":
+/*	case "isOpenAccount":
     if(SignHash && SignHash[e.value])
     {
         e.cellHtml = SignHash[e.value];
@@ -59,7 +62,7 @@ switch (e.field)
         {
             e.cellHtml = sexSignHash[e.value];
         }  
-    break;
+    break;*/
     default:
         break;
 }
@@ -73,7 +76,7 @@ function search() {
 function getSearchParam() {
     var params = {};
     params.name = nui.get("name").getValue();
-    params.mobile = nui.get("mobile").getValue();
+   
 
     return params;
 }
@@ -88,10 +91,29 @@ function doSearch(params) {
 
 function edit(action) {    
     
-    var emp = {};
-    
+    var comCompay = {};
+
     if (action == 'new') {
-    	data = {action: action};
+    	nui.ajax({
+            url: timeUrl,
+            type: 'post',
+            data: nui.encode({
+            	
+            }),
+            cache: false,
+            success: function (data) {
+                if (data.errCode == "S"){
+                	time=data.rs.time;
+                	person=data.rs.person;
+                    }else {
+                
+                    nui.alert("失败！");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.alert(jqXHR.responseText);
+            }
+    	});
     } else {
     	var row = grid.getSelected();
     	if (!row) {
@@ -99,19 +121,28 @@ function edit(action) {
     		return;
     		
     	}
+  
     	
-    	emp.empid = row.empid;  	
+    	comCompay = row;  	
     }
 
     nui.open({
-        url: baseUrl + "/common/employeeEdit.jsp",
-        width: 900,      //宽度
+        url: baseUrl + "/common/orgExtendEdit_view0.jsp",
+        width: 1200,      //宽度
         height: 600,    //高度
-        title: "员工信息",      //标题 组织编码选择
+        title: "分店信息",      //标题 组织编码选择
         allowResize:true,
         onload: function () {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(emp);
+            if(time!=""){
+            comCompay.recordDate=time;
+            comCompay.recorder=person;
+            comCompay.modifyDate=time;
+            comCompay.modifier=person;
+            }
+            iframe.contentWindow.SetData(comCompay);
+            time="";
+            person="";
         },
         ondestroy: function (action) {  //弹出页面关闭前
         	grid.reload();

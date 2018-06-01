@@ -11,59 +11,11 @@
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%=request.getContextPath()%>/common/js/employeeEdit.js?v=1.1" type="text/javascript"></script>
+   
+    <script src="<%=request.getContextPath()%>/common/js/employeeEdit.js?v=1.9" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <style type="text/css"> 
-    body {
-       margin: 0;
-       padding: 0;
-       border: 0;
-       width: 100%;
-       height: 100%;
-       overflow: hidden;
-   }
 
 
-   table
-   {
-      font-weight:bold;
-      left:0;right:0;margin: 0 auto;
-  }
-
-
-  table tr
-  {
-      height:40px;
-  }
-  table tr td span
-  {
-      width:10px;
-      display: inline-block;
-  }
-
-  .tabwidth{
-    width:600px;
-}
-.tbtext{
-    float: right; 
-    line-height: 40px;
-}
-.mini-textbox{
-    height: 28px;
-}
-.mini-textbox-border{
-    height: 25px;
-} 
-.mini-textbox-input{/* 输入框的里面的高度 */
-    height: 24px;
-}
-
-.checkboxwidth{
-    width: 65px;
-    margin-left:20px;
-}
-</style> 
 </head>
 <body>
 
@@ -76,17 +28,21 @@
                 <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="name" name="name" /></td>
                 <td> 
                   	<div id="sex" name="sex" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" 
-                        textField="name" valueField="id" value="1"  width="100%"
+                        textField="name" valueField="id"   width="100%" value="1"
                         url="" >
                     </div> 
                      </td>
                  <td></td>
                 </tr>
+			
 
+            
+
+               
                 <tr>
                     <td class="tbtext">手机号码<span style="color:red">*</span></td>
                     <td colspan="2"><input class="mini-textbox tabwidth" id="tel" name="tel" /></td>
-
+					<td ><input class="mini-textbox tabwidth" id="empid" name="empid" visible="false" /></td>
                 </tr>
 
                 <tr>
@@ -114,16 +70,7 @@
                         <td colspan="2"><input class="mini-textbox tabwidth" id="idcardno" name="idcardno"/></td>
 
                     </tr>
-                    <tr>
-                        <td class="tbtext">家庭住址<span></span></td>
-                        <td colspan="2"><input class="mini-textbox tabwidth" id="adress" name="adress"/></td>
-
-                    </tr>
-                    <tr>
-                        <td class="tbtext">电子邮件<span></span></td>
-                        <td colspan="2"><input class="mini-textbox tabwidth" id="mail" name="mail"/></td>
-
-                    </tr>
+       
                     <tr>
                         <td class="tbtext">微信号<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" name="wechat" id="wechat"/></td>
@@ -152,30 +99,30 @@
                     <tr>
                         <td class="tbtext">积分抵扣上限金额<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" name="integralDiscountMax" id="integralDiscountMax"/></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check0" onclick="check('0');"></div></td>
                     </tr>
                     <tr>
                         <td class="tbtext">优惠最低折扣（按应收）<span></span></td>
-                        <td >工时费<input class="mini-textbox" style="margin-left:10px;"name="itemDiscountRate" id="itemDiscountRate"/><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
+                        <td >工时费<input class="mini-textbox" style="margin-left:10px;"name="itemDiscountRate" id="itemDiscountRate" value=""/><div class="nui-checkbox checkboxwidth" id="check1"   onclick="check('1');" text="无限制"></div></td>
                         <td style="float: right;line-height: 40px;">材料费<input class="mini-textbox" style="margin-left:10px;" name="partDiscountRate" id="partDiscountRate"/></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check2" onclick="check('2');"></div></td>
                     </tr> 
                     <tr>
                         <td class="tbtext">结清优惠上限金额<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" id="freeDiscountMax" name="freeDiscountMax" /></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check3" onclick="check('3');"></div></td>
                     </tr>
                     <tr>
                         <td class="tbtext">收银优惠上限金额<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" name="cashDiscountMax" id="cashDiscountMax"/></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check4" onclick="check('4');"></div></td>
                     </tr>
                     
                 </table>
                 <div style="text-align: center;margin-top: 10px;margin-bottom: 20px;">
-                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('no')"><i class="fa fa-plus"></i>&nbsp;新建并继续</a>
-                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick=""><i class="fa fa-save"></i>&nbsp;保存退出</a>
-                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick=""><i class="fa fa-sign-out"></i>&nbsp;退出</a>
+                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('yes')" id="newand" name="newand"><i class="fa fa-plus"></i>&nbsp;新建并继续</a>
+                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('no')" ><i class="fa fa-save"></i>&nbsp;保存退出</a>
+                    <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="Oncancel()"><i class="fa fa-sign-out"></i>&nbsp;退出</a>
 
                 </div>
             </div>

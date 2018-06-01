@@ -5,5 +5,5 @@ eos-webCtxPath: employee
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.system.employee
 Bundle-Description: 
-Bundle-SymbolicName: com.hsapi.system.employee
+Bundle-SymbolicName: com.hsapi.system.common
 

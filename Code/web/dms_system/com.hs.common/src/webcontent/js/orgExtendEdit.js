@@ -3,8 +3,8 @@
  */
 
 baseUrl = apiPath + sysApi + "/";;
-var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeSaves.biz.ext";
-var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.system.employee.comCompany.comCompanySave.biz.ext";
+
 var sex;
 var isservice;
 nui.parse();
@@ -13,54 +13,23 @@ var sexlist = [{id: 1, name: '女'}, {id: 0, name: '男'}]; //[{id:0, name:"女"
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 
 $(document).ready(function(v) {
-	isservice=nui.get("isArtificer");
-	sex=nui.get("sex");
-	sex.setData(sexlist);
-	isservice.setData(isservicelist);
+	
 
 });
 function SetData(data) {
-	if (!data.empid) return;
 	
-    nui.ajax({
-        url:fromUrl + "?params/empid=" + data.empid,
-        type:"post",        
-        success:function(data)
-        {
-            nui.unmask();
-            data = data || {};
-            
-            if (data.length <= 0) return;
-            
-        	var form = new nui.Form("#basicInfoForm");
-            form.setData(data.rs[0]);    
-            nui.get("newand").setVisible(false);
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });	
+	
+    		var form = new nui.Form("#basicInfoForm");
+    	
+            form.setData(data);    
+
 }
 
-var requiredField = {
-    name:"姓名",
-    tel:"电话"
-};
 
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
     
-    for(var key in requiredField)
-    {
-        if(!data[key] || data[key].trim().length==0)
-        {
-            nui.alert(requiredField[key]+"不能为空");
-            return;
-        }
-    }
-  
     nui.mask({
         html:'保存中...'
     });
@@ -68,7 +37,7 @@ function save(action) {
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-        	emp:data,
+        	com:data,
         	token: token
         }),
         success:function(data)
@@ -87,7 +56,7 @@ function save(action) {
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
-           
+        	  nui.unmask();
             closeWindow("cal");
         }
     });

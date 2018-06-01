@@ -130,6 +130,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="640" y="60"/>
@@ -243,7 +244,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>invokePojo3</targetNode>
+      <targetNode>invokePojo27</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
@@ -371,29 +372,6 @@
     <figSize height="17" width="73"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="getPrimaryKey" displayName="getPrimaryKey" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign20</targetNode>
-    </sourceConnections>
-    <targetConnections>link17</targetConnections>
-    <location x="1231" y="318"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpOrgOrganization</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="1200" y="354"/>
-    <figSize height="17" width="85"/>
-    <node>invokePojo3</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="保存组织结构扩展" displayName="保存组织结构" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
@@ -454,7 +432,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
-      <targetNode>invokePojo6</targetNode>
+      <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="2101" y="276"/>
@@ -490,29 +468,6 @@
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="getPrimaryKey2" displayName="getPrimaryKey" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo6</sourceNode>
-      <targetNode>invokePojo7</targetNode>
-    </sourceConnections>
-    <targetConnections>link10</targetConnections>
-    <location x="2249" y="276"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo6label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapRole</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
-    <location x="2214" y="312"/>
-    <figSize height="17" width="92"/>
-    <node>invokePojo6</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="保存系统管理员" displayName="保存组织结构1" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo7</sourceNode>
@@ -544,7 +499,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
-      <targetNode>invokePojo8</targetNode>
+      <targetNode>invokePojo6</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <location x="2533" y="233"/>
@@ -584,29 +539,6 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="getPrimaryKey3" displayName="getPrimaryKey2" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="link13" isDefault="true" type="transition">
-      <sourceNode>invokePojo8</sourceNode>
-      <targetNode>invokePojo9</targetNode>
-    </sourceConnections>
-    <targetConnections>link26</targetConnections>
-    <location x="2681" y="265"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo8label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapRole</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
-    <location x="2646" y="301"/>
-    <figSize height="17" width="92"/>
-    <node>invokePojo8</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo9" name="保存业务主管" displayName="保存角色" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo9</sourceNode>
@@ -638,7 +570,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="link26" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>invokePojo10</targetNode>
+      <targetNode>invokePojo8</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
@@ -675,29 +607,6 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="getPrimaryKey4" displayName="getPrimaryKey3" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="link25" isDefault="true" type="transition">
-      <sourceNode>invokePojo10</sourceNode>
-      <targetNode>invokePojo11</targetNode>
-    </sourceConnections>
-    <targetConnections>link29</targetConnections>
-    <location x="3113" y="276"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo10label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapRole</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo10label" name="label" nodeType="label">
-    <location x="3078" y="312"/>
-    <figSize height="17" width="92"/>
-    <node>invokePojo10</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="保存业务员" displayName="保存业务主管" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo11</sourceNode>
@@ -725,7 +634,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="link29" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
-      <targetNode>invokePojo12</targetNode>
+      <targetNode>invokePojo10</targetNode>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
     <location x="3397" y="276"/>
@@ -761,29 +670,6 @@
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo12" name="getPrimaryKey5" displayName="getPrimaryKey4" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="link30" isDefault="true" type="transition">
-      <sourceNode>invokePojo12</sourceNode>
-      <targetNode>invokePojo13</targetNode>
-    </sourceConnections>
-    <targetConnections>link32</targetConnections>
-    <location x="3545" y="276"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo12label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapRole</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo12label" name="label" nodeType="label">
-    <location x="3510" y="312"/>
-    <figSize height="17" width="92"/>
-    <node>invokePojo12</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo13" name="保存采购员" displayName="保存业务员" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo13</sourceNode>
@@ -811,7 +697,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="link32" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
-      <targetNode>invokePojo14</targetNode>
+      <targetNode>invokePojo12</targetNode>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
     <location x="3829" y="276"/>
@@ -847,29 +733,6 @@
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo14" name="getPrimaryKey6" displayName="getPrimaryKey5" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="link33" isDefault="true" type="transition">
-      <sourceNode>invokePojo14</sourceNode>
-      <targetNode>invokePojo15</targetNode>
-    </sourceConnections>
-    <targetConnections>link35</targetConnections>
-    <location x="3977" y="276"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo14label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapRole</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo14label" name="label" nodeType="label">
-    <location x="3942" y="312"/>
-    <figSize height="17" width="92"/>
-    <node>invokePojo14</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo15" name="保存仓库员" displayName="保存仓库员" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link37" name="link37" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo15</sourceNode>
@@ -897,7 +760,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
-      <targetNode>invokePojo16</targetNode>
+      <targetNode>invokePojo14</targetNode>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
     <location x="4261" y="276"/>
@@ -956,30 +819,6 @@
     <location x="4256" y="312"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo16" name="getPrimaryKey7" displayName="getPrimaryKey6" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="link36" isDefault="true" type="transition">
-      <sourceNode>invokePojo16</sourceNode>
-      <targetNode>invokePojo17</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link38</targetConnections>
-    <location x="4409" y="276"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo16label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpCapUser</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo16label" name="label" nodeType="label">
-    <location x="4374" y="312"/>
-    <figSize height="17" width="92"/>
-    <node>invokePojo16</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo17" name="保存capUser" displayName="保存仓库员" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
@@ -1076,7 +915,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign13</sourceNode>
-      <targetNode>invokePojo19</targetNode>
+      <targetNode>invokePojo16</targetNode>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
     <location x="4983" y="276"/>
@@ -1107,30 +946,6 @@
     <location x="4978" y="312"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo19" name="getPrimaryKey8" displayName="getPrimaryKey7" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="link39" isDefault="true" type="transition">
-      <sourceNode>invokePojo19</sourceNode>
-      <targetNode>invokePojo20</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link43</targetConnections>
-    <location x="5131" y="276"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo19label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmpEmployee</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo19label" name="label" nodeType="label">
-    <location x="5096" y="312"/>
-    <figSize height="17" width="92"/>
-    <node>invokePojo19</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo20" name="保存employee" displayName="保存capUser" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" isDefault="true" type="transition">
@@ -1220,13 +1035,13 @@
       <targetNode>assign15</targetNode>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
-    <location x="5705" y="130"/>
+    <location x="5706" y="158"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
     <process:iterate iterable="tmpCapReauth" iterableElement="item"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
-    <location x="5705" y="162"/>
+    <location x="5706" y="190"/>
     <figSize height="17" width="25"/>
     <node>loopstart0</node>
   </nodes>
@@ -1236,17 +1051,17 @@
       <targetNode>invokePojo22</targetNode>
     </sourceConnections>
     <targetConnections>link50</targetConnections>
-    <location x="5807" y="130"/>
+    <location x="5808" y="158"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="5795" y="162"/>
+    <location x="5796" y="190"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
-    <location x="5705" y="125"/>
+    <location x="5706" y="153"/>
     <size height="51" width="127"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
@@ -1258,7 +1073,7 @@
       <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link49</targetConnections>
-    <location x="5756" y="128"/>
+    <location x="5757" y="156"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
     <process:copy>
@@ -1275,7 +1090,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
-    <location x="5751" y="164"/>
+    <location x="5752" y="192"/>
     <figSize height="17" width="39"/>
     <node>assign15</node>
   </nodes>
@@ -1683,6 +1498,208 @@
     <location x="6672" y="280"/>
     <figSize height="17" width="39"/>
     <node>assign22</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo27" name="getNextSequence" displayName="getNextSequence" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo27</sourceNode>
+      <targetNode>assign20</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="1211" y="310"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo27label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">OrgOrganization.orgid</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpOrgOrganization/orgid</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo27label" name="label" nodeType="label">
+    <location x="1171" y="346"/>
+    <figSize height="17" width="103"/>
+    <node>invokePojo27</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="getNextSequence1" displayName="getNextSequence" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>invokePojo7</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="2250" y="260"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">CapRole.roleId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpCapRole/roleId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="2206" y="296"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo3</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="getNextSequence2" displayName="getNextSequence1" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="link13" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>invokePojo9</targetNode>
+    </sourceConnections>
+    <targetConnections>link26</targetConnections>
+    <location x="2685" y="239"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">CapRole.roleId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpCapRole/roleId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="2641" y="275"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo6</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="getNextSequence3" displayName="getNextSequence1" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="link25" isDefault="true" type="transition">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>invokePojo11</targetNode>
+    </sourceConnections>
+    <targetConnections>link29</targetConnections>
+    <location x="3105" y="264"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo8label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">CapRole.roleId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpCapRole/roleId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
+    <location x="3061" y="300"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo8</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="getNextSequence4" displayName="getNextSequence3" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="link30" isDefault="true" type="transition">
+      <sourceNode>invokePojo10</sourceNode>
+      <targetNode>invokePojo13</targetNode>
+    </sourceConnections>
+    <targetConnections>link32</targetConnections>
+    <location x="3545" y="260"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo10label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">CapRole.roleId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpCapRole/roleId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo10label" name="label" nodeType="label">
+    <location x="3501" y="296"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo10</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo12" name="getNextSequence5" displayName="getNextSequence4" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="link33" isDefault="true" type="transition">
+      <sourceNode>invokePojo12</sourceNode>
+      <targetNode>invokePojo15</targetNode>
+    </sourceConnections>
+    <targetConnections>link35</targetConnections>
+    <location x="3975" y="260"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo12label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">CapRole.roleId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpCapRole/roleId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo12label" name="label" nodeType="label">
+    <location x="3931" y="296"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo12</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo14" name="getNextSequence6" displayName="getNextSequence5" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="link36" isDefault="true" type="transition">
+      <sourceNode>invokePojo14</sourceNode>
+      <targetNode>invokePojo17</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link38</targetConnections>
+    <location x="4395" y="260"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo14label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">CapUser.operatorId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpCapUser/operatorId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo14label" name="label" nodeType="label">
+    <location x="4351" y="296"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo14</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo16" name="getNextSequence7" displayName="getNextSequence6" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="link39" isDefault="true" type="transition">
+      <sourceNode>invokePojo16</sourceNode>
+      <targetNode>invokePojo20</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link43</targetConnections>
+    <location x="5131" y="276"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo16label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">OrgEmployee.empid</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">tmpEmployee/empid</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo16label" name="label" nodeType="label">
+    <location x="5087" y="312"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo16</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

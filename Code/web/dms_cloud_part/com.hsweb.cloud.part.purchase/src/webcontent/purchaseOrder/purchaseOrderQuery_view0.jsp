@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>采购订单明细</title>
+<title>采购订单查询</title>
 <script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrderQuery.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
@@ -33,7 +33,7 @@
 <body>
 
 
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
@@ -111,10 +111,10 @@
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="createDate" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
+                    <div allowSort="true" field="orderDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
@@ -124,7 +124,7 @@
             </div>
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -134,12 +134,13 @@
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="数量"></div>
-                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="订单数量"></div>
+                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="订单单价"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="订单金额"></div>
+                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
             </div>
-            <!-- <div header="含税信息" headerAlign="center">
+            <div header="含税信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
                     <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
@@ -152,14 +153,15 @@
                     <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
                     <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
                 </div>
-            </div> -->
+            </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 	<div allowSort="true" datatype="float" summaryType="sum" field="trueEnterQty" width="60" headerAlign="center" header="已入库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                    <div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>
                 </div>
             </div>
         </div>
@@ -244,6 +246,15 @@
                 <td colspan="3">
                     <input id="partName"
                            name="partName"
+                           class="nui-textbox" 
+                           width="100%"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">配件ID:</td>
+                <td colspan="3">
+                    <input id="partId"
+                           name="partId"
                            class="nui-textbox" 
                            width="100%"/>
                 </td>

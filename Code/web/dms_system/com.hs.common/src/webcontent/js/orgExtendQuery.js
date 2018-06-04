@@ -7,6 +7,10 @@ var timeUrl = baseUrl + "com.hsapi.system.employee.comCompany.getTime.biz.ext";
 var grid;
 var time;
 var person;
+var provinceList=[];
+var provinceHash={};
+var cityList=[];
+var cityHash={};
 nui.parse();
 
 
@@ -34,6 +38,18 @@ $(document).ready(function(v) {
         //失败;
         nui.alert("数据失败！");
     });
+    initProvince('provinceId',function(){
+    	provinceList=nui.get('provinceId').getData();
+    	 provinceList.forEach(function(v) {
+    			provinceHash[v.code] = v;
+    		});
+    });
+    initCity('cityId',function(){
+    	 cityList=nui.get('cityId').getData();
+    	 cityList.forEach(function(v) {
+    			cityHash[v.code] = v;
+    		});
+    	 });
     grid.on("drawcell", function (e){
     	onDrawCell(e);
     });
@@ -45,26 +61,20 @@ function onDrawCell(e)
 {
 switch (e.field)
 {
-/*	case "isOpenAccount":
-    if(SignHash && SignHash[e.value])
+	case "provinceId":
+    if(provinceHash && provinceHash[e.value])
     {
-        e.cellHtml = SignHash[e.value];
+        e.cellHtml = provinceHash[e.value].name;
     }  
     break;
-    case "isDimission":
-        if(SignHash && SignHash[e.value])
-        {
-            e.cellHtml = SignHash[e.value];
-        }  
+	case "cityId":
+    if(cityHash && cityHash[e.value])
+    {
+        e.cellHtml = cityHash[e.value].name;
+    }  
     break;
-    case "sex":
-        if(sexSignHash && sexSignHash[e.value])
-        {
-            e.cellHtml = sexSignHash[e.value];
-        }  
-    break;*/
-    default:
-        break;
+	default:
+    break;
 }
 }
 
@@ -271,3 +281,123 @@ function changebutton(){
 	
 	}}
 }
+
+var getProvinceAndCityUrl = window._rootUrl
++ "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
+function getProvinceAndCity(callback) {
+if (!provinceHash) {
+	provinceHash = {};
+}
+if (!cityHash) {
+	cityHash = {};
+}
+if (window.top._provinceList && window.top._cityList) {
+	provinceList = window.top._provinceList;
+	cityList = window.top._cityList;
+	provinceList.forEach(function(v) {
+		provinceHash[v.code] = v;
+	});
+	cityList.forEach(function(v) {
+		cityHash[v.code] = v;
+	});
+	if (provinceEl) {
+		provinceEl.setData(provinceList);
+	}
+	callback && callback({
+		province : provinceList,
+		city : cityList
+	});
+	console.log("getProvinceAndCity from client");
+	return;
+}
+doPost({
+	url : getProvinceAndCityUrl,
+	data:{},
+	success : function(data) {
+		if (data && data.province) {
+			window.top._provinceList = data.province;
+			provinceList = window.top._provinceList;
+			window.top._cityList = data.city;
+			provinceList.forEach(function(v) {
+				provinceHash[v.code] = v;
+			});
+			if (provinceEl) {
+				provinceEl.setData(provinceList);
+			}
+			cityList = window.top._cityList;
+			cityList.forEach(function(v) {
+				cityHash[v.code] = v;
+			});
+			callback && callback(data);
+		//	console.log("getProvinceAndCity from server");
+		}
+	},
+	error : function(jqXHR, textStatus, errorThrown) {
+		//  nui.alert(jqXHR.responseText);
+		console.log(jqXHR.responseText);
+	}
+});
+}
+
+function changebutton(){
+	var s=grid.getSelected ();
+	if(s!= undefined ){
+	if(s.isOpenSystem==1){
+		nui.get(jy).setVisible(false);
+		nui.get(qy).setVisible(true);
+		
+	}else{
+		nui.get(jy).setVisible(true);
+		nui.get(qy).setVisible(false);
+	
+	}}
+}
+
+
+/*
+*
+*
+*开通或关闭
+*
+*/
+var stoporstartUrl=baseUrl +"com.hsapi.system.employee.comCompany.stopOrStartCompany.biz.ext";
+function stoporstart(i){
+	
+    	var row = grid.getSelected();
+    	if (!row) {
+    		alert("请选中一条记录");
+    		return;
+    		
+    	}
+    	
+    	nui.mask({
+	        el : document.body,
+	        cls : 'mini-mask-loading',
+	        html : '禁用中...'
+	    });
+        nui.ajax({
+            url: stoporstartUrl,
+            type: 'post',
+            data: nui.encode({
+            	params: row
+            }),
+            cache: false,
+            success: function (data) {
+                if (data.errCode == "S"){
+                	nui.unmask(document.body);
+                	nui.alert("禁用成功！");
+                	grid.reload();
+                    }else {
+                    nui.unmask(document.body);
+                    nui.alert("禁用失败！");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.alert(jqXHR.responseText);
+            }
+		});
+    
+	}
+	
+	
+	

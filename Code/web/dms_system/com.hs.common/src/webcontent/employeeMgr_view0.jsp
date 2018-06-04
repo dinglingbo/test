@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
-
+<%@include file="/common/sysCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -9,8 +9,7 @@
 -->
 <head>
     <title>员工管理</title>
- <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp"%>
+ 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%-- <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script> --%>
     <script src="<%=request.getContextPath()%>/common/js/employeeQuery.js?v=1.8" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">

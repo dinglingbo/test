@@ -12,9 +12,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
    
-    <script src="<%=request.getContextPath()%>/common/js/employeeEdit.js?v=1.9" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/common/js/employeeEdit.js?v=1.6" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
 
 </head>
 <body>
@@ -28,21 +27,21 @@
                 <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="name" name="name" /></td>
                 <td> 
                   	<div id="sex" name="sex" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" 
-                        textField="name" valueField="id"   width="100%" value="1"
+                        textField="name" valueField="id" value="1"  width="100%"
                         url="" >
                     </div> 
                      </td>
                  <td></td>
                 </tr>
-			
+				<tr>
+                    <td class="tbtext">测试<span style="color:red">*</span></td>
+                    <td colspan="2"><input class="mini-textbox tabwidth" id="empid" name="empid" /></td>
 
-            
-
-               
+                </tr>
                 <tr>
                     <td class="tbtext">手机号码<span style="color:red">*</span></td>
                     <td colspan="2"><input class="mini-textbox tabwidth" id="tel" name="tel" /></td>
-					<td ><input class="mini-textbox tabwidth" id="empid" name="empid" visible="false" /></td>
+
                 </tr>
 
                 <tr>
@@ -99,23 +98,23 @@
                     <tr>
                         <td class="tbtext">积分抵扣上限金额<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" name="integralDiscountMax" id="integralDiscountMax"/></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check0" onclick="check('0');"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
                     </tr>
                     <tr>
                         <td class="tbtext">优惠最低折扣（按应收）<span></span></td>
-                        <td >工时费<input class="mini-textbox" style="margin-left:10px;"name="itemDiscountRate" id="itemDiscountRate" value=""/><div class="nui-checkbox checkboxwidth" id="check1"   onclick="check('1');" text="无限制"></div></td>
+                        <td >工时费<input class="mini-textbox" style="margin-left:10px;"name="itemDiscountRate" id="itemDiscountRate" value=""/><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
                         <td style="float: right;line-height: 40px;">材料费<input class="mini-textbox" style="margin-left:10px;" name="partDiscountRate" id="partDiscountRate"/></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check2" onclick="check('2');"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
                     </tr> 
                     <tr>
                         <td class="tbtext">结清优惠上限金额<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" id="freeDiscountMax" name="freeDiscountMax" /></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check3" onclick="check('3');"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
                     </tr>
                     <tr>
                         <td class="tbtext">收银优惠上限金额<span></span></td>
                         <td colspan="2"><input class="mini-textbox tabwidth" name="cashDiscountMax" id="cashDiscountMax"/></td>
-                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制" id="check4" onclick="check('4');"></div></td>
+                        <td><div class="nui-checkbox checkboxwidth"  readOnly="false" text="无限制"></div></td>
                     </tr>
                     
                 </table>

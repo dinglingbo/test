@@ -3,13 +3,13 @@
  */
 
 baseUrl = apiPath + sysApi + "/";;
-var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeSaves.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
 var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
 var sex;
 var isservice;
 nui.parse();
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
-var sexlist = [{id: 1, name: '女'}, {id: 0, name: '男'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
+var sexlist = [{id: 1, name: '男'}, {id: 0, name: '女'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 
 $(document).ready(function(v) {
@@ -105,26 +105,3 @@ function close() {
      	closeWindow("cal");
     	
     }
-
-	function check(s){
-		if(s==0){
-			if(nui.get(check0).getValue()=='true')
-				nui.get(integralDiscountMax).setValue('-1');
-			}
-		else if(s==1){
-		if(nui.get(check1).getValue()=='true')
-			nui.get(itemDiscountRate).setValue('-1');
-		}
-		else if(s==2){
-			if(nui.get(check2).getValue()=='true')
-				nui.get(partDiscountRate).setValue('-1');
-			}
-		else if(s==3){
-			if(nui.get(check3).getValue()=='true')
-				nui.get(freeDiscountMax).setValue('-1');
-			}
-		else if(s==4){
-			if(nui.get(check4).getValue()=='true')
-				nui.get(cashDiscountMax).setValue('-1');
-			}
-		}

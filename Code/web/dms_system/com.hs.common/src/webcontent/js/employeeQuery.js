@@ -114,7 +114,6 @@ function edit(action) {
             iframe.contentWindow.SetData(emp);
         },
         ondestroy: function (action) {  //弹出页面关闭前
-        	grid.reload();
             if (action == "OK") {       //如果点击“确定”
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.GetData();

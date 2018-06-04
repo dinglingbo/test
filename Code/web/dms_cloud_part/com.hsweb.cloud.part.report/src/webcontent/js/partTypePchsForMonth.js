@@ -1,9 +1,11 @@
 var baseUrl = apiPath + cloudPartApi + "/";
-var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPartBrandAnalysis.biz.ext";
+var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsPartTypeForMonth.biz.ext";
 
 var partBrandList = [];
 var brandHash = {};
 var partBrandIdEl = null;
+var partCodeEl = null;
+var partNameEl = null;
 var beginDateEl = null;
 var endDateEl = null;
 var rightGrid = null;
@@ -15,12 +17,14 @@ var keyRtnQtyList = [];
 var keyRtnAmtList = [];
 var keyTrueQtyList = [];
 var keyTrueAmtList = [];
-
+ 
 $(document).ready(function(v) {
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
 	
 	partBrandIdEl = nui.get("partBrandId");
+    partCodeEl = nui.get("partCode");
+    partNameEl = nui.get("partName");
 	beginDateEl = nui.get("beginDate");
 	endDateEl = nui.get("endDate");
 
@@ -34,46 +38,73 @@ $(document).ready(function(v) {
     });
     rightGrid.on("preload",function(e)
     {
-        var brandList = e.result.brandList;
+        var typeList = e.result.typeList;
         var enterList = e.result.enterList;
         var rtnList = e.result.rtnList;
 
-        for(var i=0;i<brandList.length;i++)
+        for(var i=0;i<typeList.length;i++)
         {
             for(var j=0;j<enterList.length;j++)
             {
-                if(brandList[i].partBrandId == enterList[j].partBrandId)
+                if(typeList[i].carTypeIdF == enterList[j].carTypeIdF)
                 {
                     for(var k=0; k<keyEnterList.length; k++){
-                        brandList[i][keyEnterList[k]] = enterList[j][keyEnterList[k]];
+                        typeList[i][keyEnterList[k]] = enterList[j][keyEnterList[k]];
                     }
                 }
             }
 
             for(var j=0;j<rtnList.length;j++)
             {
-                if(brandList[i].partBrandId == rtnList[j].partBrandId)
+                if(typeList[i].carTypeIdF == rtnList[j].carTypeIdF)
                 {
                     for(var k=0; k<keyRtnList.length; k++){
-                        brandList[i][keyRtnList[k]] = rtnList[j][keyRtnList[k]];
+                        typeList[i][keyRtnList[k]] = rtnList[j][keyRtnList[k]];
                     }
                 }
             }
 
+            var sumEnterQty=0,sumEnterAmt=0,sumRtnQty=0,sumRtnAmt=0,sumTrueQty=0,sumTrueAmt=0;
             for(var j=0;j<keyEnterQtyList.length;j++){
-                var enterQty = brandList[i][keyEnterQtyList[j]]||0;
-                var enterAmt = brandList[i][keyEnterAmtList[j]]||0;
-                var rtnQty = brandList[i][keyRtnQtyList[j]]||0;
-                var rtnAmt = brandList[i][keyRtnAmtList[j]]||0;
-                if(enterQty!=0 || enterAmt!=0 || rtnQty!=0 || rtnAmt!=0){
-                    brandList[i][keyTrueQtyList[j]] = enterQty - rtnQty;
-                    brandList[i][keyTrueAmtList[j]] = enterAmt - rtnAmt;
+                var enterQty = typeList[i][keyEnterQtyList[j]]||0;
+                var enterAmt = typeList[i][keyEnterAmtList[j]]||0;
+                var rtnQty = typeList[i][keyRtnQtyList[j]]||0;
+                var rtnAmt = typeList[i][keyRtnAmtList[j]]||0;
+                if(enterQty!=0 || rtnQty!=0){
+                    typeList[i][keyTrueQtyList[j]] = enterQty - rtnQty;
                 }
+                if(enterAmt!=0 || rtnAmt!=0){
+                    typeList[i][keyTrueAmtList[j]] = enterAmt - rtnAmt;
+                }
+                sumEnterQty+=enterQty;
+                sumEnterAmt+=enterAmt;
+                sumRtnQty+=rtnQty;
+                sumRtnAmt+=rtnAmt;
+                sumTrueQty+=(enterQty - rtnQty);
+                sumTrueAmt+=(enterAmt - rtnAmt);
+            }
+            if(sumEnterQty!=0){
+                typeList[i]["sumEnterQty"] = sumEnterQty;
+            }
+            if(sumEnterAmt!=0){
+                typeList[i]["sumEnterAmt"] = sumEnterAmt;
+            }
+            if(sumRtnQty!=0){
+                typeList[i]["sumRtnQty"] = sumRtnQty;
+            }
+            if(sumRtnAmt!=0){
+                typeList[i]["sumRtnAmt"] = sumRtnAmt;
+            }
+            if(sumEnterQty!=0 || sumRtnQty!=0){
+                typeList[i]["sumTrueQty"] = sumTrueQty;
+            }
+            if(sumEnterAmt!=0 || sumRtnAmt!=0){
+                typeList[i]["sumTrueAmt"] = sumTrueAmt;
             }
 
         }
               
-        rightGrid.setData(brandList);
+        rightGrid.setData(typeList);
         //rightGrid.setData(brandList);
 
         keyEnterList = [];
@@ -97,7 +128,9 @@ $(document).ready(function(v) {
 });
 function getSearchParam() {
 	var params = {};
-	params.partBrandId = nui.get("partBrandId").getValue();
+    params.partBrandId = partBrandIdEl.getValue();
+    params.partNameAndPY = partNameEl.getValue();
+    params.partCode = partCodeEl.getValue();
 	return params;
 }
 var currType = 2;
@@ -148,6 +181,8 @@ function quickSearch(type){
 }
 function onSearch(){
 	var params = getSearchParam();
+    params.startDate = beginDateEl.getValue();
+    params.endDate = endDateEl.getValue();
 
     doSearch(params);
 }
@@ -179,7 +214,7 @@ function initGrid(startDate, endDate){
 	var columnsObj = {};
 	var columnsList = [];
 	columnsList.push({type: "indexcolumn", header: "序号" });
-	columnsList.push({field: "partBrandId",width:"60", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件品牌"});
+	columnsList.push({field: "carTypeIdF",width:"60", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件类型"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];
@@ -200,7 +235,7 @@ function initGrid(startDate, endDate){
 					        	{field: trueQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
 					        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
 				          	]}
-			           ]}
+			           ]};
 			columnsList.push(obj);
 
             keyEnterList.push(orderQtyColumnName);
@@ -215,6 +250,16 @@ function initGrid(startDate, endDate){
             keyTrueQtyList.push(trueQtyColumnName);
             keyTrueAmtList.push(trueAmtColumnName);
 		}
+
+        var sumObj = {header:"汇总",columns:[
+                        {field: "sumEnterQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库数量"},
+                        {field: "sumEnterAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额"},
+                        {field: "sumRtnQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
+                        {field: "sumRtnAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
+                        {field: "sumTrueQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
+                        {field: "sumTrueAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+                     ]};
+        columnsList.push(sumObj);
 	}
 	
 	rightGrid.set({

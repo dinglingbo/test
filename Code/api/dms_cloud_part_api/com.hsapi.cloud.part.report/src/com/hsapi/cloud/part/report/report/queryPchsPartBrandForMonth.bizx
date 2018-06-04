@@ -150,11 +150,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pe</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pt</process:to>
     </process:copy>
     <process:copy>

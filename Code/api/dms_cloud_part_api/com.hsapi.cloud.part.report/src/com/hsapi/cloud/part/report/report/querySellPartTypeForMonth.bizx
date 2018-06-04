@@ -131,7 +131,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="result" type="query" value="java.lang.Object[]" valueType="Java">sellList</process:outputVariable>
-        <process:outputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -150,11 +150,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pe</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pt</process:to>
     </process:copy>
     <process:copy>
@@ -230,7 +230,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="result" type="query" value="java.lang.Object[]" valueType="Java">rtnList</process:outputVariable>
-        <process:outputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

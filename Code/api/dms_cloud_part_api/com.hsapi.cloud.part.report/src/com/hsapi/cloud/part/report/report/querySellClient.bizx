@@ -99,7 +99,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -128,11 +128,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pe</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pt</process:to>
     </process:copy>
   </nodes>

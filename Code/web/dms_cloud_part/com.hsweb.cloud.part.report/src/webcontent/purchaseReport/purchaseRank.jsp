@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>采购订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.7.0"></script>
+<title>采购排行</title>
+<script src="<%=webPath + cloudPartDomain%>/report/js/purchaseRank.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -63,8 +63,8 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
 
-                <input id="storeShelf" width="100px" emptyText="配件编码" class="nui-textbox"/>
-                <input id="storeShelf" width="100px" emptyText="配件名称" class="nui-textbox"/>
+                <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择供应商..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
 
@@ -79,103 +79,104 @@
            activeIndex="0" 
            style="width:100%; height:100%;" 
            plain="true" 
-           onactivechanged="ontopTabChanged">
+           onactivechanged="">
 
-        <div title="按供应商排行" id="partInfoTab" name="partInfoTab" url="" >
+        <div title="按供应商排行" id="supplierGridTab" name="supplierGridTab" url="" >
             <div id="supplierGrid" class="nui-datagrid" style="width:1000px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
-                 idField="detailId"
-                 ondrawcell="onDrawCell"
+                 dataField="supplierList"
+                 idField="guestId"
+                 ondrawcell=""
                  sortMode="client"
                  url="" 
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="100" headerAlign="center" header="供应商名称"></div>
-                    <div allowSort="true" field="comPartName" width="50" headerAlign="center" header="供应商编码"></div>
-                    <div allowSort="true" field="comOemCode" width="80" headerAlign="center" header="供应商类型"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div allowSort="true" field="shortName" summaryType="count" width="100" headerAlign="center" header="供应商简称"></div>
+                    <div allowSort="true" field="supplierCode" width="50" headerAlign="center" header="供应商编码"></div>
+                    <div allowSort="true" field="supplierType" width="80" headerAlign="center" header="供应商类型"></div>
+                    <div allowSort="true" field="fullName" width="100" headerAlign="center" header="供应商全称"></div>
+                    <div allowSort="true" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
+                    <div allowSort="true" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
+                    <div allowSort="true" field="orderRtnQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
+                    <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
+                    <div allowSort="true" field="trueQty" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
+                    <div allowSort="true" field="trueAmt" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
                       
                 </div>
             </div>
 
         </div> 
-        <div title="按商品排行" id="billmain" name="billmain" >
+        <div title="按商品排行" id="partGridTab" name="partGridTab" >
             
             <div id="partGrid" class="nui-datagrid" style="width:1000px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
-                 idField="detailId"
+                 dataField="partList"
+                 idField="partId"
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="80" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" width="80" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" width="60" headerAlign="center" header="配件品牌"></div>
-                    <div allowSort="true" field="comPartName" width="80" headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div allowSort="true" field="partCode" summaryType="count" width="80" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="partName" width="80" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="配件品牌"></div>
+                    <div allowSort="true" field="oemCode" width="80" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
+                    <div allowSort="true" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
+                    <div allowSort="true" field="orderRtnQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
+                    <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
+                    <div allowSort="true" field="trueQty" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
+                    <div allowSort="true" field="trueAmt" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
                       
                 </div>
             </div>
 
         </div>
-        <div title="按品牌排行" name="purchaseAdvanceTab" url="" >
+        <div title="按品牌排行" name="partBrandGridTab" url="" >
           
             <div id="partBrandGrid" class="nui-datagrid" style="width:800px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
-                 idField="detailId"
+                 dataField="brandList"
+                 idField="partBrandId"
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="80" headerAlign="center" header="配件品牌"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div allowSort="true" field="partBrandId" summaryType="count" width="80" headerAlign="center" header="配件品牌"></div>
+                    <div allowSort="true" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
+                    <div allowSort="true" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
+                    <div allowSort="true" field="orderRtnQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
+                    <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
+                    <div allowSort="true" field="trueQty" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
+                    <div allowSort="true" field="trueAmt" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
                       
                 </div>
             </div>
 
         </div>
-        <div title="按配件类型排行" name="purchaseAdvanceTab" url="" >
+        <div title="按配件类型排行" name="partTypeGridTab" url="" >
           
             <div id="partTypeGrid" class="nui-datagrid" style="width:800px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
-                 idField="detailId"
+                 dataField="typeList"
+                 idField="carTypeIdF"
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="80" headerAlign="center" header="配件类型"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div allowSort="true" field="carTypeIdF" summaryType="count" width="80" headerAlign="center" header="配件类型"></div>
+                    <div allowSort="true" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
+                    <div allowSort="true" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
+                    <div allowSort="true" field="orderRtnQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
+                    <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
+                    <div allowSort="true" field="trueQty" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
+                    <div allowSort="true" field="trueAmt" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
                       
                 </div>
             </div>

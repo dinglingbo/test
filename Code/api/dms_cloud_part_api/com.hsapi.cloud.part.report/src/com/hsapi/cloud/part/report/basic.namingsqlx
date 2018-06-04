@@ -70,12 +70,12 @@
     	
             SELECT DISTINCT a.part_id as partId, b.oem_code as oemCode, b.part_brand_id as partBrandId,
 				   b.car_type_id_f as carTypeIdF, b.car_type_id_s as carTypeIdS, b.car_type_id_t as carTypeIdT,
-		           b.`code` as partCode, b.full_name as fullName, b.spec as spec, b.apply_carbrand_id as applyCarbrandId, 
-		           b.apply_car_model as applyCarModel
+		           b.`code` as partCode, b.name as partName, b.full_name as fullName, b.spec as spec, b.apply_carbrand_id as applyCarbrandId, 
+		           b.apply_car_model as applyCarModel, b.quality_type_id as qualityTypeId
 			from pj_invocing a
 			inner join wb_common.com_attribute b
 			on a.part_id = b.id
-			where 1 = 1 and a.dc = 1
+			where 1 = 1 and a.bill_type_id in ('050101','050201')
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
@@ -128,7 +128,8 @@
     
     <select id="queryInvocingInSupplier" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            SELECT DISTINCT a.guest_id as guestId, c.`code` as supplierCode, c.supplier_type as supplierType
+            SELECT DISTINCT a.guest_id as guestId, c.`code` as supplierCode, c.full_name as fullName,
+                   c.short_name as shortName, c.supplier_type as supplierType
 			from pj_invocing a
 			inner join wb_common.com_attribute b
 			on a.part_id = b.id
@@ -304,12 +305,12 @@
     	
             SELECT DISTINCT a.part_id as partId, b.oem_code as oemCode, b.part_brand_id as partBrandId,
 				   b.car_type_id_f as carTypeIdF, b.car_type_id_s as carTypeIdS, b.car_type_id_t as carTypeIdT,
-		           b.`code` as partCode, b.full_name as fullName, b.spec as spec, b.apply_carbrand_id as applyCarbrandId, 
-		           b.apply_car_model as applyCarModel
+		           b.`code` as partCode, b.name as partName, b.full_name as fullName, b.spec as spec, b.apply_carbrand_id as applyCarbrandId, 
+		           b.apply_car_model as applyCarModel, b.quality_type_id as qualityTypeId
 			from pj_invocing a
 			inner join wb_common.com_attribute b
 			on a.part_id = b.id
-			where 1 = 1 and a.dc = -1
+			where 1 = 1 and a.bill_type_id in ('050202','050102')
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
@@ -362,7 +363,8 @@
     
     <select id="queryInvocingOutClient" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            SELECT DISTINCT a.guest_id as guestId, c.`code` as clientCode, c.guest_type as guestType
+            SELECT DISTINCT a.guest_id as guestId, c.`code` as clientCode, c.full_name as fullName,
+                   c.short_name as shortName, c.guest_type as guestType
 			from pj_invocing a
 			inner join wb_common.com_attribute b
 			on a.part_id = b.id

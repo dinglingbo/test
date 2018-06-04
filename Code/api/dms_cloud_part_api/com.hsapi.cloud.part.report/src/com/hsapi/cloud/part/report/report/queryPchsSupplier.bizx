@@ -116,17 +116,18 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="315" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pe</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params</process:from>
+      <process:from type="query" pattern="value">params</process:from>
       <process:to type="query">pt</process:to>
     </process:copy>
   </nodes>
@@ -162,7 +163,7 @@
     <figSize height="17" width="13"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="出" displayName="入" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="退" displayName="入" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>end0</targetNode>

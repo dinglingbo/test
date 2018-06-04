@@ -4,8 +4,8 @@
 <html>
 
 <head>
-<title>品牌采购汇总按月排行</title>
-<script src="<%=webPath + cloudPartDomain%>/report/js/partBrandAnalysis.js?v=1.3.0"></script>
+<title>品牌销售毛利汇总按月排行</title>
+<script src="<%=webPath + cloudPartDomain%>/report/js/partBrandSellForMonth.js?v=1.0.0"></script>
 </head>
 
 <body>
@@ -34,6 +34,8 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
 
+                <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 

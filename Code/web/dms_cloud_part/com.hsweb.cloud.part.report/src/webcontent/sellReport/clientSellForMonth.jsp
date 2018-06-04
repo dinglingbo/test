@@ -4,8 +4,8 @@
 <html>
 
 <head>
-<title>供应商采购汇总按月排行</title>
-<script src="<%=webPath + cloudPartDomain%>/report/js/partBrandAnalys.js?v=1.3.0"></script>
+<title>客户销售毛利汇总按月排行</title>
+<script src="<%=webPath + cloudPartDomain%>/report/js/clientSellForMonth.js?v=1.0.0"></script>
 </head>
 
 <body>
@@ -34,6 +34,8 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
                 <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
+                <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
@@ -48,7 +50,7 @@
       <div id="rightGrid" class="nui-datagrid"
         style="width: 100%; height: 100%;" showPager="false" pageSize="10"
         sizeList="[10,20,50]" allowAlternating="true" 
-          url="" dataField="brandList" idField="partBrandId" 
+          url="" dataField="clientList" idField="guestId" 
                 ondrawcell="onRightGridDraw" sortMode="client"
                 showSummaryRow="true"
         parentField="parentId">
@@ -56,8 +58,9 @@
             <div header="   ">
               <div property="columns" width="10">
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >客户编码</div>
-                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >客户名称</div>
+                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >客户简称</div>
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >客户分类</div>
+                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >客户全称</div>
               </div>
             </div>
             <div header="2018">

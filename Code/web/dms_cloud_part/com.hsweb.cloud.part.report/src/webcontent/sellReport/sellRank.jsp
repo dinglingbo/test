@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>采购订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.7.0"></script>
+<title>销售排行</title>
+<script src="<%=webPath + cloudPartDomain%>/report/js/sellRank.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -63,10 +63,10 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
 
-                <input id="storeShelf" width="100px" emptyText="配件编码" class="nui-textbox"/>
-                <input id="storeShelf" width="100px" emptyText="配件名称" class="nui-textbox"/>
+                <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
+                <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-                <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择供应商..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
+                <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
@@ -79,45 +79,49 @@
            activeIndex="0" 
            style="width:100%; height:100%;" 
            plain="true" 
-           onactivechanged="ontopTabChanged">
+           onactivechanged="">
 
-        <div title="按客户排行" id="partInfoTab" name="partInfoTab" url="" >
-            <div id="supplierGrid" class="nui-datagrid" style="width:1000px;height:100%;"
+        <div title="按客户排行" id="clientGridTab" name="clientGridTab" url="" >
+            <div id="clientGrid" class="nui-datagrid" style="width:1000px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
-                 idField="detailId"
+                 dataField="clientList"
+                 idField="guestId"
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销成本</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销毛利</div>
+                    <div allowSort="true" field="shortName" summaryType="count" width="100" headerAlign="center" header="客户简称"></div>
+                    <div allowSort="true" field="clientCode" width="50" headerAlign="center" header="客户编码"></div>
+                    <div allowSort="true" field="guestType" width="80" headerAlign="center" header="客户类型"></div>
+                    <div allowSort="true" field="fullName" width="100" headerAlign="center" header="客户全称"></div>
+                    <div field="sellQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >销售数量</div>
+                    <div field="sellAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum"  >销售金额</div>
+                    <div field="sellRtnQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货数量</div>
+                    <div field="sellRtnAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货金额</div>
+                    <div field="trueQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销数量</div>
+                    <div field="trueAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销金额</div>
+                    <div field="trueEnterAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销成本</div>
+                    <div field="trueProfitAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销毛利</div>
                       
                 </div>
             </div>
 
         </div> 
-        <div title="按商品排行" id="billmain" name="billmain" >
+        <div title="按商品排行" id="partGridTab" name="partGridTab" >
             
             <div id="partGrid" class="nui-datagrid" style="width:1000px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
+                 dataField="partList"
                  idField="detailId"
                  ondrawcell="onDrawCell"
                  sortMode="client"
@@ -125,32 +129,36 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销成本</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销毛利</div>
+                    <div allowSort="true" field="partCode" summaryType="count" width="80" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="partName" width="80" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="配件品牌"></div>
+                    <div allowSort="true" field="oemCode" width="80" headerAlign="center" header="OEM码"></div>
+                    <div field="sellQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >销售数量</div>
+                    <div field="sellAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum"  >销售金额</div>
+                    <div field="sellRtnQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货数量</div>
+                    <div field="sellRtnAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货金额</div>
+                    <div field="trueQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销数量</div>
+                    <div field="trueAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销金额</div>
+                    <div field="trueEnterAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销成本</div>
+                    <div field="trueProfitAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销毛利</div>
                       
                 </div>
             </div>
 
         </div>
-        <div title="按品牌排行" name="purchaseAdvanceTab" url="" >
+        <div title="按品牌排行" name="partBrandGridTab" url="" >
           
             <div id="partBrandGrid" class="nui-datagrid" style="width:800px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
+                 dataField="brandList"
                  idField="detailId"
                  ondrawcell="onDrawCell"
                  sortMode="client"
@@ -158,32 +166,33 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销成本</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销毛利</div>
+                    <div allowSort="true" field="partBrandId" summaryType="count" width="80" headerAlign="center" header="配件品牌"></div>
+                    <div field="sellQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >销售数量</div>
+                    <div field="sellAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum"  >销售金额</div>
+                    <div field="sellRtnQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货数量</div>
+                    <div field="sellRtnAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货金额</div>
+                    <div field="trueQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销数量</div>
+                    <div field="trueAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销金额</div>
+                    <div field="trueEnterAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销成本</div>
+                    <div field="trueProfitAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销毛利</div>
                       
                 </div>
             </div>
 
         </div>
-        <div title="按配件类型排行" name="purchaseAdvanceTab" url="" >
+        <div title="按配件类型排行" name="partTypeGridTab" url="" >
           
             <div id="partTypeGrid" class="nui-datagrid" style="width:800px;height:100%;"
                  showPager="false"
-                 dataField="detailList"
+                 dataField="typeList"
                  idField="detailId"
                  ondrawcell="onDrawCell"
                  sortMode="client"
@@ -191,22 +200,23 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >销售金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >退货金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销数量</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销金额</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销成本</div>
-                    <div field="rpCode" allowSort="true" headerAlign="center"
-                      width="120"  >实销毛利</div>
+                    <div allowSort="true" field="carTypeIdF" summaryType="count" width="80" headerAlign="center" header="配件类型"></div>
+                    <div field="sellQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >销售数量</div>
+                    <div field="sellAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum"  >销售金额</div>
+                    <div field="sellRtnQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货数量</div>
+                    <div field="sellRtnAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >退货金额</div>
+                    <div field="trueQty" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销数量</div>
+                    <div field="trueAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销金额</div>
+                    <div field="trueEnterAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销成本</div>
+                    <div field="trueProfitAmt" allowSort="true" headerAlign="center"
+                      width="60" summaryType="sum" >实销毛利</div>
                       
                 </div>
             </div>

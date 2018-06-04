@@ -19,7 +19,7 @@
 </head>
 <body style="margin: 0; height: 100%; width: 100%; overflow: hidden">
 	<div  class="nui-toolbar"  style="height:26px">
-		<div class="nui-form1" id="form1" style="height: 100%">
+		<div class="nui-form" id="form1" style="height: 100%">
 			<input class="nui-hidden" name="criteria/_entity" value="" />
 			
 			<table class="table" id="table1" style="height: 100%;">

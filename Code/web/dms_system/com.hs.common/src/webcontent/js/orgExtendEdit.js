@@ -4,16 +4,21 @@
 
 baseUrl = apiPath + sysApi + "/";;
 var saveUrl = baseUrl + "com.hsapi.system.employee.comCompany.comCompanySave.biz.ext";
-
 var sex;
 var isservice;
 nui.parse();
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
 var sexlist = [{id: 1, name: '女'}, {id: 0, name: '男'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
-
+var list = null;
+var provinceCode = null;
 $(document).ready(function(v) {
-	
+	   getProvince(function(data) {
+	        list = data.rs;
+	        nui.get("provinceId").setData(list);
+
+	    });
+
 
 });
 function SetData(data) {
@@ -37,7 +42,7 @@ function save(action) {
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-        	com:data,
+        	comd:data,
         	token: token
         }),
         success:function(data)
@@ -75,25 +80,34 @@ function close() {
     	
     }
 
-	function check(s){
-		if(s==0){
-			if(nui.get(check0).getValue()=='true')
-				nui.get(integralDiscountMax).setValue('-1');
-			}
-		else if(s==1){
-		if(nui.get(check1).getValue()=='true')
-			nui.get(itemDiscountRate).setValue('-1');
-		}
-		else if(s==2){
-			if(nui.get(check2).getValue()=='true')
-				nui.get(partDiscountRate).setValue('-1');
-			}
-		else if(s==3){
-			if(nui.get(check3).getValue()=='true')
-				nui.get(freeDiscountMax).setValue('-1');
-			}
-		else if(s==4){
-			if(nui.get(check4).getValue()=='true')
-				nui.get(cashDiscountMax).setValue('-1');
-			}
-		}
+
+	var queryUrl = baseUrl + "com.hs.common.region.getRegin.biz.ext";
+	function getProvince(callback) {
+
+	    nui.ajax({
+	        url : queryUrl,
+	        data : {
+	        	parentId:provinceCode,
+	            token: token
+	        },
+	        type : "post",
+	        success : function(data) {
+	            if (data && data.rs) {
+	                callback && callback(data);
+	            }
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+	           console.log(jqXHR.responseText);
+	        }
+	    });
+	}
+	
+	function onProvinceChange(e){
+	    var se = e.selected;
+	    provinceCode = se.code;
+	  
+	    getProvince(function(data) {
+	    	  nui.get("cityId").setData(data.rs);
+	    });
+	}
+	

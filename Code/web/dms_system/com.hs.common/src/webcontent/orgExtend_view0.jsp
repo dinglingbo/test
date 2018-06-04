@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-    <title>Title</title>
+    <title>门店管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
     <%-- <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script> --%>
@@ -49,16 +49,19 @@
     <div class="nui-fit"> 
         <div style="width:100%;height:100%;left:0;right:0;margin: 0 auto;">
             <div class="nui-toolbar">
+           		 <input class="nui-combobox" id="provinceId" visible="false" textField="name" url="" valueField="code"/>
+				<input class="nui-combobox" id="cityId" visible="false" textField="name" url="" valueField="code"/>
                 <input id="name" name="name" class="mini-textbox" emptytext="输入公司名称查询"  width="200"/>
                 <a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
-                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick=""><i class="fa fa-ban"></i>&nbsp;禁用</a>
+                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick="stoporstart('1')"id="jy" name="jy"><i class="fa fa-ban"></i>&nbsp;禁用</a>
+                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick="stoporstart('2')" visible="false" id="qy" name="qy"><i></i>&nbsp;启用</a>
                 <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('edit')"><i class="fa fa-pencil"></i>&nbsp;修改</a>
                 <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('new')"><i class="fa fa-plus"></i>&nbsp;新增</a>
             </div> 
 
             <div class="nui-fit">
                 <div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
-                url="" idField="id" allowResize="true" 	dataField="rs" 
+                url="" idField="id" allowResize="true" 	dataField="rs"  onselectionchanged="changebutton"
                 sizeList="[20,30,50,100]" pageSize="20" >
                 <div property="columns">
                 	<div type="checkcolumn" >选择</div>

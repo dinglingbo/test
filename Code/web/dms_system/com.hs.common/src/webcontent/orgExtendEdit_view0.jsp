@@ -37,7 +37,7 @@
 
 }
 .pic { /* 页面logo图片 */
-	background-image: url(<%=request.getContextPath()%>/eos/A/jsp/Main.png);
+background-image: <%-- url(<%=request.getContextPath()%>/eos/A/jsp/Main.png) --%>;
 background-repeat: no-repeat;
 background-size: 100% 100%;
 border-radius: 4px;
@@ -139,7 +139,7 @@ table tr td span
             <tr>
                 <td class="tbtext">企业号<span></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" name="code" id="code"/></td>
-				<td><input class="nui-textbox tabwidth" name="orgid" id="orgid"/></td>
+				<td><input class="nui-textbox tabwidth" name="orgid" id="orgid" visible="false"/></td>
             </tr>    
             
             <tr>
@@ -148,11 +148,12 @@ table tr td span
 
             </tr>               
 
+		
             <tr>
                 <td style="width:100px;text-align:right;" class="tbtext">省份<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId"/></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId"  valueField="code" textField="name" data="list" onvaluechanged="onProvinceChange" /></td>
                 <td style="width:100px;text-align:right;"class="tbtext">城市<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId"/></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId" valueField="code" textField="name" /></td>
                 <td style="width:100px;text-align:right;"class="tbtext">地区<span style="color:red">*</span></td>
                 <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId" id="countyId"/></td>
 

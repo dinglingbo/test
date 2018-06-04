@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+
+<!-- 根据主表ID查询 -->
+    <select id="queryPartBrandEnter" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            select c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.order_qty) as orderQty, sum(b.order_amt) as orderAmt
+			from pj_pchs_order_main_chk a
+			inner join pj_pchs_order_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.order_type_id = 1 and a.is_finished = 1
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.AUDIT_DATE &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.AUDIT_DATE &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partBrandId">  
+                    (C.part_brand_id = #partBrandId#)
+                </isNotEmpty>
+                
+			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    
+    <select id="queryPartBrandEnterRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            select c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+						 sum(b.order_qty) as orderRtnQty, sum(b.order_amt) as orderRtnAmt
+			from pj_sell_order_main_chk a
+			inner join pj_sell_order_detail_chk b
+			on a.id = b.main_id
+			inner join wb_common.com_attribute c
+			on b.part_id = c.id
+			where 1 = 1 and a.audit_sign = 1 and a.is_out = 1 and a.order_type_id = 3
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.AUDIT_DATE &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.AUDIT_DATE &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partBrandId">  
+                    (C.part_brand_id = #partBrandId#)
+                </isNotEmpty>
+                
+			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date)
+    </select>
+    
+</sqlMap>

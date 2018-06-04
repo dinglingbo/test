@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+	<select id="queryInvocingBrand" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT DISTINCT b.part_brand_id as partBrandId
+			from pj_invocing a
+			inner join wb_common.com_attribute b
+			on a.part_id = b.id
+			where 1 = 1 
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (A.create_date &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (A.create_date &lt; #eAuditDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.create_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.create_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partBrandId">  
+                    (b.part_brand_id = #partBrandId#)
+                </isNotEmpty>
+                
+    </select>
+    
+</sqlMap>

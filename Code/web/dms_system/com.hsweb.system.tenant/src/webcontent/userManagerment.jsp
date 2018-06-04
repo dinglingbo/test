@@ -9,10 +9,10 @@
 -->
 <head>
     <title>用户管理</title>
+    <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.4"
+	type="text/javascript"></script>
     <style type="text/css">
     body {
      margin: 0;
@@ -23,27 +23,27 @@
      overflow: hidden;
  }
 
- .gridborder .mini-panel-border,.gridborder .mini-grid-border{
+ .gridborder .nui-panel-border,.gridborder .nui-grid-border{
     border-top: 0px ;
 
 }
 
-.mini-toolbar
+.nui-toolbar
 {
   font-weight:bold;
 }
 
-.mini-grid-headerCell, .mini-grid-topRightCell
+.nui-grid-headerCell, .nui-grid-topRightCell
 {
   font-weight:bold;
 }
-.mini-checkbox-check {
+.nui-checkbox-check {
 
     margin-right: 0px;
     
 }
 
-.mini-panel-border {
+.nui-panel-border {
     border-radius: 0px;
 }
 
@@ -52,12 +52,13 @@
 <body>
 
         <div class="nui-toolbar">
-
-            租户ID：<input  class="mini-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:10px;" />
-            租户名称：<input  class="mini-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:10px;" />
-            省份：<input  class="mini-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;" />
-            城市：<input  class="mini-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;" />
-            <a class="nui-button" onclick="" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
+	<div class="nui-form" id="queryForm" style="height: 100%">
+            租户ID：<input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:10px;" name="code" />
+            租户名称：<input  class="nui-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:10px;" name="tenantName" />
+            省份：<input  class="nui-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;"id="provinceId" name="provinceId" textField="name"  valueField="code" onvaluechanged="onProvinceChange" />
+            城市：<input  class="nui-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;"  id="cityId" name="cityId" textField="name"  valueField="code"/>
+        
+            <a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
             <span style="display:inline-block;">
                 <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(5)"><i class="fa fa-pencil"></i>&nbsp;修改</a>
                 <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-exchange"></i>&nbsp;启用/禁用</a>
@@ -68,29 +69,32 @@
                 <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(4)"><i class="fa fa-map"></i>&nbsp;查看发票</a>
             </span>
         </div> 
-
+	</div>
         <div class="nui-fit">
             <div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
-            bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true"
+            bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true" dataField="rs" 
             sizeList="[20,30,50,100]" pageSize="20" frozenStartColumn="0" frozenEndColumn="3">
             <div property="columns">
-                <div field="" width="80" headerAlign="center" align="center">租户ID</div>
-                <div field="" width="80" headerAlign="center" align="center">租户名称</div>
-                <div field="" width="80" headerAlign="center" align="center">省份</div>
-                <div field="" width="80" headerAlign="center" align="center">城市</div>
-                <div field="" width="80" headerAlign="center" align="center">管理员</div>
-                <div field="" width="80" headerAlign="center" align="center">联系电话</div>
-                <div field="" width="80" headerAlign="center" align="center">联系地址</div>
-                <div field="" width="80" headerAlign="center" align="center">注册时间</div>
-                <div field="" width="80" headerAlign="center" align="center">审核时间</div>
-                <div field="" width="80" headerAlign="center" align="center">开通时间</div>
-                <div field="" width="80" headerAlign="center" align="center">结束时间</div>
-                <div field="" width="80" headerAlign="center" align="center">审核人</div>
-                <div field="" width="80" headerAlign="center" align="center">业务员</div>
-                <div field="" width="80" headerAlign="center" align="center">推荐人</div>
-                <div field="" width="80" headerAlign="center" align="center">邀请号</div>
-                <div field="" width="80" headerAlign="center" align="center">下次续费时间</div>
-                <div field="" width="80" headerAlign="center" align="center">下次续费金额</div>
+            	<div type="checkcolumn" >选择</div>
+            	tenant_id
+            	 <div field="tenantId" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
+                <div field="code" width="80" headerAlign="center" align="center">租户ID</div>
+                <div field="tenantName" width="80" headerAlign="center" align="center">租户名称</div>
+                <div field="provinceId" width="80" headerAlign="center" align="center">省份</div>
+                <div field="cityId" width="80" headerAlign="center" align="center">城市</div>
+                <div field="manager" width="80" headerAlign="center" align="center">管理员</div>
+                <div field="mobile" width="80" headerAlign="center" align="center">联系电话</div>
+                <div field="address" width="80" headerAlign="center" align="center">联系地址</div>
+                <div field="recordDate" width="80" headerAlign="center" align="center">注册时间</div>
+                <div field="auditDate" width="80" headerAlign="center" align="center">审核时间</div>
+                <div field="startDate" width="80" headerAlign="center" align="center">开通时间</div>
+                <div field="endDate" width="80" headerAlign="center" align="center">结束时间</div>
+                <div field="auditMan" width="80" headerAlign="center" align="center">审核人</div>
+                <div field="salesManId" width="80" headerAlign="center" align="center">业务员</div>
+                <div field="referee" width="80" headerAlign="center" align="center">推荐人</div>
+                <div field="InvitationNumber" width="80" headerAlign="center" align="center">邀请号</div>
+                <div field="nextRenewDate" width="80" headerAlign="center" align="center">下次续费时间</div>
+                <div field="nextRenewAmt" width="80" headerAlign="center" align="center">下次续费金额</div>
             </div>
         </div>
     </div>

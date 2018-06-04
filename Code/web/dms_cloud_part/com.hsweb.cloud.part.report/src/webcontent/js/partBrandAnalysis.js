@@ -1,5 +1,5 @@
 var baseUrl = apiPath + cloudPartApi + "/";
-var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPartBrandAnalysis.biz.ext";
+var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsPartBrandForMonth.biz.ext";
 
 var partBrandList = [];
 var brandHash = {};
@@ -15,7 +15,7 @@ var keyRtnQtyList = [];
 var keyRtnAmtList = [];
 var keyTrueQtyList = [];
 var keyTrueAmtList = [];
-
+ 
 $(document).ready(function(v) {
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
@@ -60,15 +60,42 @@ $(document).ready(function(v) {
                 }
             }
 
+            var sumEnterQty=0,sumEnterAmt=0,sumRtnQty=0,sumRtnAmt=0,sumTrueQty=0,sumTrueAmt=0;
             for(var j=0;j<keyEnterQtyList.length;j++){
                 var enterQty = brandList[i][keyEnterQtyList[j]]||0;
                 var enterAmt = brandList[i][keyEnterAmtList[j]]||0;
                 var rtnQty = brandList[i][keyRtnQtyList[j]]||0;
                 var rtnAmt = brandList[i][keyRtnAmtList[j]]||0;
-                if(enterQty!=0 || enterAmt!=0 || rtnQty!=0 || rtnAmt!=0){
+                if(enterQty!=0 || rtnQty!=0){
                     brandList[i][keyTrueQtyList[j]] = enterQty - rtnQty;
+                }
+                if(enterAmt!=0 || rtnAmt!=0){
                     brandList[i][keyTrueAmtList[j]] = enterAmt - rtnAmt;
                 }
+                sumEnterQty+=enterQty;
+                sumEnterAmt+=enterAmt;
+                sumRtnQty+=rtnQty;
+                sumRtnAmt+=rtnAmt;
+                sumTrueQty+=(enterQty - rtnQty);
+                sumTrueAmt+=(enterAmt - rtnAmt);
+            }
+            if(sumEnterQty!=0){
+                brandList[i]["sumEnterQty"] = sumEnterQty;
+            }
+            if(sumEnterAmt!=0){
+                brandList[i]["sumEnterAmt"] = sumEnterAmt;
+            }
+            if(sumRtnQty!=0){
+                brandList[i]["sumRtnQty"] = sumRtnQty;
+            }
+            if(sumRtnAmt!=0){
+                brandList[i]["sumRtnAmt"] = sumRtnAmt;
+            }
+            if(sumEnterQty!=0 || sumRtnQty!=0){
+                brandList[i]["sumTrueQty"] = sumTrueQty;
+            }
+            if(sumEnterAmt!=0 || sumRtnAmt!=0){
+                brandList[i]["sumTrueAmt"] = sumTrueAmt;
             }
 
         }
@@ -200,7 +227,7 @@ function initGrid(startDate, endDate){
 					        	{field: trueQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
 					        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
 				          	]}
-			           ]}
+			           ]};
 			columnsList.push(obj);
 
             keyEnterList.push(orderQtyColumnName);
@@ -215,6 +242,16 @@ function initGrid(startDate, endDate){
             keyTrueQtyList.push(trueQtyColumnName);
             keyTrueAmtList.push(trueAmtColumnName);
 		}
+
+        var sumObj = {header:"汇总",columns:[
+                        {field: "sumEnterQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库数量"},
+                        {field: "sumEnterAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额"},
+                        {field: "sumRtnQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
+                        {field: "sumRtnAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
+                        {field: "sumTrueQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
+                        {field: "sumTrueAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+                     ]};
+        columnsList.push(sumObj);
 	}
 	
 	rightGrid.set({

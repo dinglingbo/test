@@ -81,7 +81,7 @@
            plain="true" 
            onactivechanged="ontopTabChanged">
 
-        <div title="按供应商排行" id="partInfoTab" name="partInfoTab" url="" >
+        <div title="按客户排行" id="partInfoTab" name="partInfoTab" url="" >
             <div id="supplierGrid" class="nui-datagrid" style="width:1000px;height:100%;"
                  showPager="false"
                  dataField="detailList"
@@ -92,15 +92,22 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="100" headerAlign="center" header="供应商名称"></div>
-                    <div allowSort="true" field="comPartName" width="50" headerAlign="center" header="供应商编码"></div>
-                    <div allowSort="true" field="comOemCode" width="80" headerAlign="center" header="供应商类型"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销成本</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销毛利</div>
                       
                 </div>
             </div>
@@ -118,16 +125,22 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="80" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" width="80" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" width="60" headerAlign="center" header="配件品牌"></div>
-                    <div allowSort="true" field="comPartName" width="80" headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销成本</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销毛利</div>
                       
                 </div>
             </div>
@@ -145,13 +158,22 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="80" headerAlign="center" header="配件品牌"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销成本</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销毛利</div>
                       
                 </div>
             </div>
@@ -169,13 +191,22 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="comPartCode" summaryType="count" width="80" headerAlign="center" header="配件类型"></div>
-                    <div allowSort="true" field="partBrandId" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" field="applyCarModel" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
-                    <div allowSort="true" field="enterUnitId" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
-                    <div allowSort="true" field="storeId" summaryType="sum" width="60" headerAlign="center" header="实际入库金额"></div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >销售金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >退货金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销数量</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销金额</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销成本</div>
+                    <div field="rpCode" allowSort="true" headerAlign="center"
+                      width="120"  >实销毛利</div>
                       
                 </div>
             </div>

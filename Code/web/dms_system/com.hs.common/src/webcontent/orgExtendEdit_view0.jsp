@@ -150,11 +150,11 @@ table tr td span
 
             <tr>
                 <td style="width:100px;text-align:right;" class="tbtext">省份<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId"/></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId" valueField="customid" textField="name"/></td>
                 <td style="width:100px;text-align:right;"class="tbtext">城市<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId"/></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId"  valueField="customid" textField="name"/></td>
                 <td style="width:100px;text-align:right;"class="tbtext">地区<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId" id="countyId"/></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId" id="countyId"  valueField="customid" textField="name"/></td>
 
             </tr> 
 

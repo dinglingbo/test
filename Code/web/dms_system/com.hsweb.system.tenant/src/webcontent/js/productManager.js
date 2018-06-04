@@ -2,7 +2,7 @@
  * Created by steven on 2018/1/31.
  */
 baseUrl = apiPath + sysApi + "/";;
-var gridUrl = baseUrl + "com.primeton.tenant.comTenant.comTenantQuery.biz.ext";
+var gridUrl = baseUrl + "com.primeton.tenant.comProduct.comProductQuery.biz.ext";
 var timeUrl = baseUrl + "com.hsapi.system.employee.comCompany.getTime.biz.ext";
 var grid;
 var time;
@@ -14,19 +14,18 @@ var cityHash={};
 var queryForm;
 var provinceCode;
 nui.parse();
-
+var productStatus;
+var types;
 
 var SignHash = {
 	    "0":"否",
 	    "1":"是"
 	};
 
-var sexSignHash = {
-	    "0":"男",
-	    "1":"女"
-	};
+
+
 $(document).ready(function(v) {
-	
+
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
     var request = {
@@ -41,26 +40,8 @@ $(document).ready(function(v) {
         //失败;
         nui.alert("数据失败！");
     });
-	   getProvince(function(data) {
-	        list = data.rs;
-	        nui.get("provinceId").setData(list);
+	
 
-	    });
-/*    initProvince('provinceId',function(){
-    	provinceList=nui.get('provinceId').getData();
-    	 provinceList.forEach(function(v) {
-    			provinceHash[v.code] = v;
-    		});
-    });
-    initCity('cityId',function(){
-    	 cityList=nui.get('cityId').getData();
-    	 cityList.forEach(function(v) {
-    			cityHash[v.code] = v;
-    		});
-    	 });
-    grid.on("drawcell", function (e){
-    	onDrawCell(e);
-    });*/
 });
 
 
@@ -250,60 +231,89 @@ function onProvinceChange(e){
     	  nui.get("cityId").setData(data.rs);
     });
 }
-	
+
+
 function ViewType(e){
     var tit = null;
-    var view_w = 800;
-    var view_d = 400;
     var s;
     if(e == 1){
-        tit="查看产品";
+        tit="新增产品";
     }
     if(e == 2){
-        tit="查看订单";
-        view_w = 1000;
-    }
-    if(e == 3){
-        tit="查看费用";
-    }
-    if(e == 4){
-        tit="查看发票";
-    }
-    if(e == 5){
         tit="修改产品";
-        var view_w = 580;
-        var view_d = 280;
-    	s=grid.getSelected ();
+     	s=grid.getSelected ();
     	if(s==undefined){
     		nui.alert("请选中一行")
     		return;
     	}
-    
     }
+
     nui.open({
-        url: baseUrl +"tenant/userManagerment_view.jsp",
+        url: baseUrl +"tenant/productManagerment_view.jsp",
         title: tit, 
-        width: view_w, 
-        height: view_d,
-        onload: function () {
-          var iframe = this.getIFrameEl();	
-            iframe.contentWindow.ShowGrid(e);
+        width: 630,  
+        height: 250,
+        onload: function(){
+            var iframe = this.getIFrameEl();
+            
             iframe.contentWindow.SetInitData(s);
         },
-        ondestroy: function (action) {  //弹出页面关闭前
-       
-           	    var params;
-                nui.alert("修改成功！");
-                grid.load(params,function(){
-                    //成功;
-                   // nui.alert("数据成功！");
-                },function(){
-                    //失败;
-                    nui.alert("数据失败！");
-                });
-            
+        ondestroy: function (action) {
+        	var request;
+            grid.load(request,function(){
+                //成功;
+              
+            	 nui.alert("数据成功！");
+            },function(){
+                //失败;
+                nui.alert("数据失败！");
+            });
         }
     });
 
 
+}
+var removetUrl=baseUrl +"com.primeton.tenant.comProduct.removeComProduct.biz.ext";
+function remove(){
+	
+	s=grid.getSelected ();
+	if(s==undefined){
+		nui.alert("请选中一行")
+		return;
+	}
+ 	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '删除中...'
+    });
+	   nui.ajax({
+           url: removetUrl,
+           type: 'post',
+           data: nui.encode({
+           	params: s
+           }),
+           cache: false,
+           success: function (data) {
+               if (data.errCode == "S"){
+               	nui.unmask(document.body);
+               	nui.alert("删除成功！");
+              	var request;
+                grid.load(request,function(){
+                    //成功;
+                  
+                	 nui.alert("数据成功！");
+                },function(){
+                    //失败;
+                    nui.alert("数据失败！");
+                });
+                   }else {
+                   nui.unmask(document.body);
+                   nui.alert("删除失败！");
+                 
+               }
+           },
+           error: function (jqXHR, textStatus, errorThrown) {
+               nui.alert(jqXHR.responseText);
+           }
+		});
 }

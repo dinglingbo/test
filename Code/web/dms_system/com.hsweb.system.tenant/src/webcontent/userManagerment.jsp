@@ -11,7 +11,7 @@
     <title>用户管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.4"
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -61,7 +61,7 @@
             <a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
             <span style="display:inline-block;">
                 <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(5)"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-exchange"></i>&nbsp;启用/禁用</a>
+                <a class="nui-button " style="" iconcls="" plain="false" onclick="stoporstart()"><i class="fa fa-exchange"></i>&nbsp;启用/禁用</a>
                 <span class="separator"></span>
                 <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(1)"><i class="fa fa-cubes"></i>&nbsp;查看产品</a>
                 <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(2)"><i class="fa fa-list"></i>&nbsp;查看订单</a>
@@ -76,7 +76,7 @@
             sizeList="[20,30,50,100]" pageSize="20" frozenStartColumn="0" frozenEndColumn="3">
             <div property="columns">
             	<div type="checkcolumn" >选择</div>
-            	tenant_id
+            	
             	 <div field="tenantId" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
                 <div field="code" width="80" headerAlign="center" align="center">租户ID</div>
                 <div field="tenantName" width="80" headerAlign="center" align="center">租户名称</div>
@@ -85,15 +85,15 @@
                 <div field="manager" width="80" headerAlign="center" align="center">管理员</div>
                 <div field="mobile" width="80" headerAlign="center" align="center">联系电话</div>
                 <div field="address" width="80" headerAlign="center" align="center">联系地址</div>
-                <div field="recordDate" width="80" headerAlign="center" align="center">注册时间</div>
-                <div field="auditDate" width="80" headerAlign="center" align="center">审核时间</div>
-                <div field="startDate" width="80" headerAlign="center" align="center">开通时间</div>
-                <div field="endDate" width="80" headerAlign="center" align="center">结束时间</div>
+                <div field="recordDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd H:mm:ss" >注册时间</div>
+                <div field="auditDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss" >审核时间</div>
+                <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss" >开通时间</div>
+                <div field="endDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd H:mm:ss" >结束时间</div>
                 <div field="auditMan" width="80" headerAlign="center" align="center">审核人</div>
                 <div field="salesManId" width="80" headerAlign="center" align="center">业务员</div>
                 <div field="referee" width="80" headerAlign="center" align="center">推荐人</div>
                 <div field="InvitationNumber" width="80" headerAlign="center" align="center">邀请号</div>
-                <div field="nextRenewDate" width="80" headerAlign="center" align="center">下次续费时间</div>
+                <div field="nextRenewDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">下次续费时间</div>
                 <div field="nextRenewAmt" width="80" headerAlign="center" align="center">下次续费金额</div>
             </div>
         </div>
@@ -103,43 +103,7 @@
   nui.parse();
 
 
-  function ViewType(e){
-    var tit = null;
-    var view_w = 800;
-    var view_d = 400;
-    if(e == 1){
-        tit="查看产品";
-    }
-    if(e == 2){
-        tit="查看订单";
-        view_w = 1000;
-    }
-    if(e == 3){
-        tit="查看费用";
-    }
-    if(e == 4){
-        tit="查看发票";
-    }
-    if(e == 5){
-        tit="修改产品";
-        var view_w = 580;
-        var view_d = 280;
-    }
-    nui.open({
-        url: "userMgr.flow?_eosFlowAction=action2",
-        title: tit, 
-        width: view_w, 
-        height: view_d,
-        onload: function(){
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.ShowGrid(e);
-        },
-        ondestroy: function (action) {
-        }
-    });
-
-
-}
+  
 
 
 

@@ -146,7 +146,7 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -236,7 +236,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="result" type="query" value="java.lang.Object[]" valueType="Java">rtnList</process:outputVariable>
-        <process:outputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

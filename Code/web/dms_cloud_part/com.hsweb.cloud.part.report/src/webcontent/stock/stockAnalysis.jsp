@@ -13,8 +13,8 @@
   
   
     <div class="nui-fit">
-        <div id="mainQty" style="float:left;height:50%;width:50%;" title="库存数量"> </div>
-        <div id="mainAmt" style="float:left;height:50%;width:50%;" title="库存金额"> </div>
+        <div id="mainQty" style="float:left;height:50%;width:50%;" title="库存数量"></div>
+        <div id = "mainAmt" style="float:left;height:50%;width:50%;" title="库存金额"></div>
     </div>
 
   

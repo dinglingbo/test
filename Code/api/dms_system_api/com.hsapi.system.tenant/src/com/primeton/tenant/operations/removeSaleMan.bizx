@@ -84,7 +84,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="349" y="74"/>
+    <location x="354" y="80"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -98,7 +98,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="326" y="110"/>
+    <location x="331" y="116"/>
     <figSize height="17" width="68"/>
     <node>invokePojo0</node>
   </nodes>

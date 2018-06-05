@@ -51,9 +51,9 @@ function showMainQty() {
 
 	var soption = {
 		title: {
-			text: '',
+			text: '库存数量-' + parseInt(stockQty||0),
 			subtext: '',
-			x: 'center'
+			x: 'left'
 		},
 		color: ['#3398DB', '#ff7f50','#da70d6'],
 		tooltip: {
@@ -62,13 +62,29 @@ function showMainQty() {
 	            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
 	        }
 	    },
+	    toolbox: {  
+	    	show: false,
+	        feature: {  
+	        	mark : {show: true},  
+	        	dataView : {show: true, readOnly: false}, 
+	            myTool1: {  
+	                show: true,  
+	                title: '刷新',  
+	                icon: 'fa-refresh',  
+	                onclick: function (){  
+	                    showMainQty(); 
+	                }  
+	            },  
+            	saveAsImage : {show: true}
+	        }  
+	    },
 
 	    legend: {
 	    	data: ['库存数量','出库数量','入库数量']
 	    },
 
 	    grid: {
-    		left: '3%',
+    		left: '10%',
 	    	right: '4%',
 	    /*		bottom: '3%',
 	    	containLabel: true,*/
@@ -160,9 +176,9 @@ function showMainAmt() {
 
 	var soption = {
 		title: {
-			text: '',
+			text: '库存金额-' + parseInt(stockAmt||0),
 			subtext: '',
-			x: 'center'
+			x: 'left'
 		},
 		color: ['#3398DB', '#ff7f50','#da70d6'],
 		tooltip: {
@@ -177,7 +193,7 @@ function showMainAmt() {
 	    },
 
 	    grid: {
-    		left: '3%',
+    		left: '10%',
 	    	right: '4%',
 	    /*		bottom: '3%',
 	    	containLabel: true,*/

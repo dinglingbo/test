@@ -21,7 +21,7 @@ $(document).ready(function(v) {
 
 
 });
-function SetData(data) {
+function SetInitData(data) {
 	
 	
     		var form = new nui.Form("#basicInfoForm");
@@ -34,6 +34,9 @@ function SetData(data) {
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
+    data.cityId = "";
+    data.provinceId = "";
+    data.countyId = "";
     
     nui.mask({
         html:'保存中...'

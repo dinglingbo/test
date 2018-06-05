@@ -10,6 +10,7 @@
 -->
 <head>
   <title>首页</title>
+  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.0.0"></script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -30,27 +31,27 @@
 
                   <div  id="menu1" class="demo"  style="">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toAskPartPrice()">
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
                             <p>快速报价</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toPchsOrder()">
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
                             <p>新建采购订单</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toSellOrder()">
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
                             <p>新建销售订单</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toEPC()">
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
                             <p>EPC查询</p> 
                         </a>
@@ -59,25 +60,25 @@
 
                 <div  id="menu2" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toPackOut()">
                             <i class="fa fa-truck fa-4x  fa-inverse"></i>
                             <p>打包发货</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toState()"> 
                             <i class="fa fa-copy fa-4x  fa-inverse"></i>
                             <p>月结对账</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toSettleAccount()">
                             <i class="fa fa-calculator fa-4x  fa-inverse"></i>
                             <p>应收应付结算</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="toCostOut()">
                             <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
                             <p>费用支出</p> 
                         </a>

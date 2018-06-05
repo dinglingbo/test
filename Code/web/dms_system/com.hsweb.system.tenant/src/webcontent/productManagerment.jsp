@@ -9,10 +9,10 @@
 -->
 <head>
     <title>产品管理</title>
+    <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
+	 <script src="<%= request.getContextPath() %>/tenant/js/productManager.js?v=1.8"
+	type="text/javascript"></script>
     <style type="text/css">
     body {
      margin: 0;
@@ -51,76 +51,56 @@
 </head>
 <body>
     <div class="nui-toolbar">
+<div class="nui-form" id="queryForm">
+产品名称：<input class="mini-textbox" emptytext="输入产品名称"  width="125px" style="margin-right:10px;" id="name" name="name" />
+产品状态：<input class="mini-combobox" emptytext="请选择..."  width="125px" style="margin-right:10px;" data="productStatus" idFeild="id" textFeild="text" id="status" name="status"/>
+产品分类：<input class="mini-combobox" emptytext="请选择..."  width="125px" style="margin-right:10px;" data="types" idFeild="id" textFeild="text" id="type" name="type"/>
+<a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
 
-产品名称：<input class="mini-textbox" emptytext="输入产品名称"  width="125px" style="margin-right:10px;" />
-产品状态：<input class="mini-combobox" emptytext="请选择..."  width="125px" style="margin-right:10px;" data="productStatus" idFeild="id" textFeild="text"/>
-产品分类：<input class="mini-combobox" emptytext="请选择..."  width="125px" style="margin-right:10px;" />
-<a class="nui-button" onclick="" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
 <span class="separator"></span>
 <span style="display:inline-block;">
     <a class="nui-button" plain="false" onclick="ViewType(1)"><i class="fa fa-plus"></i>&nbsp;新增</a>
     <a class="nui-button" plain="false" onclick="ViewType(2)"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-    <a class="nui-button" plain="false" onclick=""><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+    <a class="nui-button" plain="false" onclick="remove()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
     <span class="separator"></span>
-    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-long-arrow-up"></i>&nbsp;上架</a>
-    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-long-arrow-down"></i>&nbsp;下架</a>
+    <a class="nui-button " style="" iconcls="" plain="false" onclick="upOrDown('1')"><i class="fa fa-long-arrow-up"></i>&nbsp;上架</a>
+    <a class="nui-button " style="" iconcls="" plain="false" onclick="upOrDown('0')"><i class="fa fa-long-arrow-down"></i>&nbsp;下架</a>
 </span>
 </div> 
+</div>
 
 <div class="nui-fit">
     <div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
-    bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true"
+    bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true" dataField="rs" 
     sizeList="[20,30,50,100]" pageSize="20" >
     <div property="columns">
-        <div field="" width="80" headerAlign="center" align="center">产品ID</div>
-        <div field="" width="80" headerAlign="center" align="center">产品类型</div>
-        <div field="" width="80" headerAlign="center" align="center">产品名称</div>
-        <div field="" width="80" headerAlign="center" align="center">产品描述</div>
-        <div field="" width="90" headerAlign="center" align="center">是否限定周期</div>
-        <div field="" width="90" headerAlign="center" align="center">产品限定周期</div>
-        <div field="" width="95" headerAlign="center" align="center">周期内消费次数</div>
-        <div field="" width="80" headerAlign="center" align="center">排序号</div>
-        <div field="" width="80" headerAlign="center" align="center">产品状态</div>
-        <div field="" width="80" headerAlign="center" align="center">是否推荐</div>
-        <div field="" width="80" headerAlign="center" align="center">原价</div>
-        <div field="" width="80" headerAlign="center" align="center">活动价</div>
-        <div field="" width="80" headerAlign="center" align="center">建档时间</div>
-        <div field="" width="80" headerAlign="center" align="center">建档人</div>
-        <div field="" width="80" headerAlign="center" align="center">修改时间</div>
-        <div field="" width="80" headerAlign="center" align="center">修改人</div>
+    	<div type="checkcolumn" >选择</div>
+        <div field="code" width="80" headerAlign="center" align="center" id="code">产品ID</div>
+        <div field="type" width="80" headerAlign="center" align="center" id="type">产品类型</div>
+        <div field="name" width="80" headerAlign="center" align="center" id="name">产品名称</div>
+        <div field="remark" width="80" headerAlign="center" align="center" id="remark">产品描述</div>
+        <div field="isCycle" width="90" headerAlign="center" align="center" id="isCycle">是否限定周期</div>
+        <div field="cycle" width="90" headerAlign="center" align="center" id="cycle">产品限定周期</div>
+        <div field="consumptionTimes" width="95" headerAlign="center" align="center" id="consumptionTimes">周期内消费次数</div>
+        <div field="orderNumber" width="80" headerAlign="center" align="center" id="orderNumber">排序号</div>
+        <div field="status" width="80" headerAlign="center" align="center" id="status">产品状态</div>
+        <div field="isRecommend" width="80" headerAlign="center" align="center" id="isRecommend">是否推荐</div>
+        <div field="salesPrice1" width="80" headerAlign="center" align="center" id="salesPrice1">原价</div>
+        <div field="salesPrice2" width="80" headerAlign="center" align="center" id="salesPrice2">活动价</div>
+        <div field="recordDate" width="80" headerAlign="center" align="center" id="recordDate" dateFormat="yyyy-MM-dd H:mm:ss">建档时间</div>
+        <div field="recorder" width="80" headerAlign="center" align="center" id="recorder">建档人</div>
+        <div field="modifyDate" width="80" headerAlign="center" align="center" id="modifyDate" dateFormat="yyyy-MM-dd H:mm:ss">修改时间</div>
+        <div field="modifyDate" width="80" headerAlign="center" align="center" id="modifier">修改人</div>
     </div>
 </div>
 </div>
 <script type="text/javascript">
     var productStatus = [{id:"",text:"全部"},{id:"1",text:"上架"},{id:"2",text:"下架"}];
+    var types = [{id:"",text:"全部"},{id:"1",text:"上架"},{id:"2",text:"下架"}];
     nui.parse();
 
 
-  function ViewType(e){
-    var tit = null;
-    if(e == 1){
-        tit="新增产品";
-    }
-    if(e == 2){
-        tit="修改产品";
 
-    }
-
-    nui.open({
-        url: "productMgr.flow?_eosFlowAction=action2",
-        title: tit, 
-        width: 630,  
-        height: 250,
-        onload: function(){
-            var iframe = this.getIFrameEl();
-            //iframe.contentWindow.ShowGrid(e);
-        },
-        ondestroy: function (action) {
-        }
-    });
-
-
-}
 
 
 

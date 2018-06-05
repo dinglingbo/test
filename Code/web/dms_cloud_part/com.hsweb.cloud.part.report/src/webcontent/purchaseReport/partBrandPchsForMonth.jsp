@@ -5,11 +5,11 @@
 
 <head>
 <title>品牌采购汇总按月排行</title>
-<script src="<%=webPath + cloudPartDomain%>/report/js/partBrandAnalysis.js?v=1.3.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/report/js/partBrandPchsForMonth.js?v=1.6.0"></script>
 </head>
 
 <body>
-	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">

@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hs.common,com.eos.foundation
+Require-Bundle: com.hsapi.cloud.part.data,com.eos.foundation,com.hs.co
+ mmon
 Bundle-Vendor: Administrator
 eos-webCtxPath: report
 Bundle-Version: 1.0.0

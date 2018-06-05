@@ -137,7 +137,7 @@ function edit(action) {
     }
 
     nui.open({
-        url: baseUrl + "/common/orgExtendEdit_view0.jsp",
+        url: apiPath + sysDomain + "/common/orgExtendEdit_view0.jsp",
         width: 1200,      //宽度
         height: 600,    //高度
         title: "分店信息",      //标题 组织编码选择
@@ -150,7 +150,7 @@ function edit(action) {
             comCompay.modifyDate=time;
             comCompay.modifier=person;
             }
-            iframe.contentWindow.SetData(comCompay);
+            iframe.contentWindow.SetInitData(comCompay);
             time="";
             person="";
         },

@@ -46,6 +46,10 @@
       <process:to type="query">cond/_expr[1]/isdisabled</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">code</process:from>
       <process:to type="query">cond/_orderby[1]/_property</process:to>
     </process:copy>
@@ -87,7 +91,9 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
-  <process:inputs varArgs="false"/>
+  <process:inputs varArgs="false">
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+  </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComPartType" name="partTypes"/>
   </process:outputs>

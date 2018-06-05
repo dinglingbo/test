@@ -10,10 +10,8 @@ pageEncoding="UTF-8" session="false" %>
 <head>    
     <title>公共表格</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%=request.getContextPath()%>/common/nui/date.js" type="text/javascript"></script>
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+     <%@include file="/common/sysCommon.jsp"%>
+
     <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -89,52 +87,56 @@ style="width:100%;height:100%;display:none" bodyStyle="padding:0;border:0;" allo
     <div field="" name="" headeralign="center" align="center" width="70">收件人电话</div>
 </div>
 </div>
-<div id="form1"  style="width:500px;height:auto;left:0;right:0;margin:0 auto;display: none;">
+<div id="form1" class="nui-form" style="width:500px;height:auto;left:0;right:0;margin:0 auto;display: none;">
     <table style="margin-top:15px;">
         <tr>
             <td class="tbtext">租户名称：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%" /></td>
-
-        </tr>
-
+            <td colspan="3"><input class="nui-textbox" style="width:100%" name="tenantName"  id="tenantName" /></td>
+			<td><input class="nui-textbox" style="width:100%" name="tenantId"  id="tenantId" visible="false" /></td>
+	        </tr>
+	
         <tr>
             <td class="tbtext">省份：</td>
-            <td><input class="nui-combobox" style="width: 150px;"/></td>
+            <td><input class="nui-combobox" style="width: 150px;" id="provinceId" name="provinceId"/></td>
             <td class="tbtext">城市：</td>
-            <td><input class="nui-combobox" style="width: 150px;"/></td>
+            <td><input class="nui-combobox" style="width: 150px;" id="cityId" name="cityId"/></td>
 
         </tr>
         <tr>
             <td class="tbtext">管理员：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%"  /></td>
+            <td colspan="3"><input class="nui-textbox" style="width:100%" id="manager" name="manager" /></td>
             </tr>        
             <tr>
             <td class="tbtext">联系电话：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%"  /></td>
+            <td colspan="3"><input class="nui-textbox" style="width:100%"  id="mobile" name="mobile"/></td>
             </tr>        
             <tr>
             <td class="tbtext">联系地址：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%"  /></td>
+            <td colspan="3"><input class="nui-textbox" style="width:100%"  id="address" name="address"/></td>
             </tr>        
             <tr>
             <td class="tbtext">业务员：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%"  /></td>
+            <td colspan="3"><input class="nui-textbox" style="width:100%" id="salesManId" name="salesManId"/></td>
             </tr>         
             <tr>
             <td class="tbtext">推荐员：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%"  /></td>
+            <td colspan="3"><input class="nui-textbox" style="width:100%" id="referee" name="referee" /></td>
             </tr>
         </table> 
 
         <div style="text-align: center; padding: 10px;">
-            <a class="nui-button" onclick="" style="margin-right: 20px;"><i class="fa fa-save"></i>&nbsp;保存</a> 
+            <a class="nui-button" onclick="onOk()" style="margin-right: 20px;"><i class="fa fa-save"></i>&nbsp;保存</a> 
             <a class="nui-button" onclick="onCancel()"><i class="fa fa-times"></i>&nbsp;取消</a>
         </div>
     </div>
 </div >
 <script type="text/javascript">
   nui.parse();
+  var form1;
+  $(document).ready(function(v) {
+	
 
+});
   function ShowGrid(e){
     if(e == 1){
         document.getElementById("grid1").style.display = "block";
@@ -156,6 +158,36 @@ style="width:100%;height:100%;display:none" bodyStyle="padding:0;border:0;" allo
         document.getElementById("form1").style.display = "block";
         nui.layout();
     }
+}
+
+function SetInitData(data) {
+	        var form = new nui.Form("#form1");
+            form.setData(data);   
+}
+var baseUrl = apiPath + sysApi + "/";
+var updateUrl=baseUrl + "com.primeton.tenant.comTenant.updateComTenant.biz.ext";
+function onOk(){
+     var form = new nui.Form("#form1");
+     var s=form.getData();
+	nui.ajax({
+            url: updateUrl,
+            type: 'post',
+            data: nui.encode({
+            	params:s
+            }),
+            cache: false,
+            success: function (data) {
+                if (data.errCode == "S"){
+               	 closeWindow("ok");
+                    }else {
+                
+                    nui.alert("失败！");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.alert(jqXHR.responseText);
+            }
+    	});
 }
 
 </script>

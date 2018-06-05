@@ -94,7 +94,7 @@
                     </div>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>
                     <div class="mini-panel mini-panel-info" title="维修班组" width="250px" showCollapseButton="false" showCloseButton="false">
                         <br />设置车间机电、钣金、喷漆维修班组
@@ -102,7 +102,7 @@
                         <div align="center"><a class="mini-button mini-button-success" onclick="toTeamMainSet()" >设置维修班组</a></div>
                     </div>
                 </td>
-            </tr>
+            </tr> -->
         </table>
     </div>
 </body>

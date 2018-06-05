@@ -3,6 +3,7 @@ var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellClient
 
 var partBrandList = [];
 var brandHash = {};
+var guestTypeHash = {};
 var partBrandIdEl = null;
 var partCodeEl = null;
 var partNameEl = null;
@@ -173,6 +174,14 @@ $(document).ready(function(v) {
 		});
 	});
 
+    var dictDefs ={"guestType":GUEST_TYPE};
+    initDicts(dictDefs, function(){
+        var data = nui.get("guestType").getData();
+        data.forEach(function(v) {
+            guestTypeHash[v.customid] = v;
+        });
+    });
+
 });
 function getSearchParam() {
 	var params = {};
@@ -254,6 +263,13 @@ function onRightGridDraw(e) {
     			e.cellHtml = "";
     		}
     		break;
+        case "guestType":
+            if (guestTypeHash[e.value]) {
+                e.cellHtml = guestTypeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
     	default:
     		break;
 	}

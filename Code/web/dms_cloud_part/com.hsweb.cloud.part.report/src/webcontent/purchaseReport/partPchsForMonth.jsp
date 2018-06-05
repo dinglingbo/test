@@ -5,7 +5,7 @@
 
 <head>
 <title>配件采购汇总按月排行</title>
-<script src="<%=webPath + cloudPartDomain%>/report/js/partPchsForMonth.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/report/js/partPchsForMonth.js?v=1.1.0"></script>
 </head>
 
 <body>

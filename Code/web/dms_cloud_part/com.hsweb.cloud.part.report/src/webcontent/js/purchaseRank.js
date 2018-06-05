@@ -6,6 +6,9 @@ var partTypeGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsPar
 
 var partBrandList = [];
 var brandHash = {};
+var supplierTypeHash = {};
+var partTypeList = [];
+var typeHash = {};
 var partBrandIdEl = null;
 var partCodeEl = null;
 var partNameEl = null;
@@ -241,6 +244,21 @@ $(document).ready(function(v) {
 		});
 	});
 
+    getAllPartType(function(data) {
+        partTypeList = data.partTypes;
+        partTypeList.forEach(function(v) {
+            typeHash[v.id] = v;
+        });
+    });
+
+    var dictDefs ={"supplierType":SUPPLIER_TYPE};
+    initDicts(dictDefs, function(){
+        var data = nui.get("supplierType").getData();
+        data.forEach(function(v) {
+            supplierTypeHash[v.customid] = v;
+        });
+    });
+
 });
 function getSearchParam() {
 	var params = {};
@@ -340,6 +358,20 @@ function onDrawCell(e) {
     			e.cellHtml = "";
     		}
     		break;
+        case "carTypeIdF":
+            if (typeHash[e.value]) {
+                e.cellHtml = typeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
+        case "supplierType":
+            if (supplierTypeHash[e.value]) {
+                e.cellHtml = supplierTypeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
     	default:
     		break;
 	}

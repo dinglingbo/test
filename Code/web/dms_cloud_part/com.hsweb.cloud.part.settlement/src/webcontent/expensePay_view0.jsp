@@ -93,7 +93,7 @@
                         <div field="billDc" width="50" headerAlign="center" visible="false"></div>
                         <div field="guestName" summaryType="count" width="50" headerAlign="center" header="往来单位名称"></div>
                         <div field="balaAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="结算账户">
-                            <input  property="editor" enabled="true" id="balaAccountList" name="list"  class="nui-combobox" valueField="id" textField="name" onvaluechanged="onAccountValueChanged" url="" emptyText=""  vtype="required"/> 
+                            <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" onvaluechanged="onAccountValueChanged" url="" emptyText=""  vtype="required"/> 
                         </div>
                         <div field="balaTypeCode" type="comboboxcolumn" width="50" headerAlign="center" header="结算方式">
                             <input  property="editor" enabled="true" name="list" dataField="list" class="nui-combobox" valueField="customId" textField="customName" 

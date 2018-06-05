@@ -3,6 +3,8 @@ var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellPartFo
 
 var partBrandList = [];
 var brandHash = {};
+var partTypeList = [];
+var typeHash = {};
 var qualityTypeList = [];
 var qualityTypeHash = {};
 var partBrandIdEl = null;
@@ -176,6 +178,13 @@ $(document).ready(function(v) {
         });
 	});
 
+    getAllPartType(function(data) {
+        partTypeList = data.partTypes;
+        partTypeList.forEach(function(v) {
+            typeHash[v.id] = v;
+        });
+    });
+
 });
 function getSearchParam() {
 	var params = {};
@@ -261,6 +270,13 @@ function onRightGridDraw(e) {
         case "qualityTypeId":
             if (qualityTypeHash[e.value]) {
                 e.cellHtml = qualityTypeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
+        case "carTypeIdF":
+            if (typeHash[e.value]) {
+                e.cellHtml = typeHash[e.value].name || "";
             } else {
                 e.cellHtml = "";
             }

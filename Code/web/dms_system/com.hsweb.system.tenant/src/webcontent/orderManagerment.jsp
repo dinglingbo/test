@@ -11,7 +11,9 @@
     <title>订单管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/tenant/js/orderManager.js?v=1.8"
+    <script src="<%= request.getContextPath() %>/tenant/js/orderManager.js?v=1.7"
+	type="text/javascript"></script>
+	    <script src="<%= request.getContextPath() %>/common/js/date.js?v=1.9"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -75,8 +77,8 @@
                 <span style="display:inline-block;">
                     <a class="nui-button" onclick="search" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
                     <span class="separator"></span>
-                    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-clock-o"></i>&nbsp;即将到期(30天内）</a>
-                    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-window-maximize"></i>&nbsp;未付款</a>
+                    <a class="nui-button " style="" iconcls="" plain="false" onclick="exprie"><i class="fa fa-clock-o"></i>&nbsp;即将到期(30天内）</a>
+                    <a class="nui-button " style="" iconcls="" plain="false" onclick="wfk"><i class="fa fa-window-maximize"></i>&nbsp;未付款</a>
                     <span class="separator"></span>
                     <a class="nui-button " style="" iconcls="" plain="false" onclick="closeOrder"><i class="fa fa-times"></i>&nbsp;关闭未付款订单</a>
                 </span>
@@ -96,10 +98,10 @@
                     <div field="productId" width="80" headerAlign="center" align="center">产品ID</div>
                     <div field="name" width="80" headerAlign="center" align="center">产品名称</div>
                     <div field="type" width="80" headerAlign="center" align="center">产品类型</div>
-                    <div field="startDate" width="80" headerAlign="center" align="center">开通时间</div>
-                    <div field="endDate" width="80" headerAlign="center" align="center">结束时间</div>
+                    <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">开通时间</div>
+                    <div field="endDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">结束时间</div>
                     <div field="isPayment" width="80" headerAlign="center" align="center">是否付款</div>
-                    <div field="paymentDate" width="80" headerAlign="center" align="center">付款时间</div>
+                    <div field="paymentDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">付款时间</div>
                     <div field="paymentType" width="80" headerAlign="center" align="center">付款方式</div>
                     <!-- <div field="" width="80" headerAlign="center" align="center">是否生效</div> -->
                     <div field="status" width="80" headerAlign="center" align="center">订单状态</div>

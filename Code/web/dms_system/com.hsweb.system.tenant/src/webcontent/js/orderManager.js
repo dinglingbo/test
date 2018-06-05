@@ -77,7 +77,11 @@ function getSearchParam() {
     var params = queryForm.getData();
     return params;
 }
-
+function wfk(){
+	var params={};
+	params.status=0;
+	doSearch(params);
+	}
 function doSearch(params) {
     grid.load({
         params:params
@@ -138,4 +142,30 @@ function closeOrder(){
 	});
 	
 	
+}
+function exprie(){
+	var myDate = new Date();
+	var params={};
+	var tmp=parseInt(myDate.getMonth())+1;
+	params.beginDate=(myDate.getFullYear()+'-'+tmp+'-'+myDate.getDate());
+	params.endDate=getNextMonth(myDate);
+	doSearch(params);
+}
+/**
+ * 获取下一个月
+ *
+ * @date 格式为yyyy-mm-dd的日期，如：2014-01-25
+ */        
+function getNextMonth(date) {
+	var date2;
+	if(parseInt(date.getMonth())+2==12)
+		{
+		date2 =  new Date(parseInt(date.getFullYear())+1,1,date.getDate());
+		}
+		else
+		{
+		date2 =  new Date(date.getFullYear(),parseInt(date.getMonth())+1,date.getDate());
+		}
+	date2.setDate(date.getDate() + 30);
+	return (date2.getFullYear()+'-'+date2.getMonth()+'-'+date2.getDate());
 }

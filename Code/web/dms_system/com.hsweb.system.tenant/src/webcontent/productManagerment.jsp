@@ -11,7 +11,7 @@
     <title>产品管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/productManager.js?v=1.7"
+	 <script src="<%= request.getContextPath() %>/tenant/js/productManager.js?v=1.8"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -63,8 +63,8 @@
     <a class="nui-button" plain="false" onclick="ViewType(2)"><i class="fa fa-pencil"></i>&nbsp;修改</a>
     <a class="nui-button" plain="false" onclick="remove()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
     <span class="separator"></span>
-    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-long-arrow-up"></i>&nbsp;上架</a>
-    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-long-arrow-down"></i>&nbsp;下架</a>
+    <a class="nui-button " style="" iconcls="" plain="false" onclick="upOrDown('1')"><i class="fa fa-long-arrow-up"></i>&nbsp;上架</a>
+    <a class="nui-button " style="" iconcls="" plain="false" onclick="upOrDown('0')"><i class="fa fa-long-arrow-down"></i>&nbsp;下架</a>
 </span>
 </div> 
 </div>

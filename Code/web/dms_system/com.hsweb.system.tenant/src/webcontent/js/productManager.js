@@ -317,3 +317,55 @@ function remove(){
            }
 		});
 }
+
+
+
+var upOrDownUrl=baseUrl +"com.primeton.tenant.comProduct.upOrdownProduct.biz.ext";
+function upOrDown(types){
+	
+	s=grid.getSelected ();
+	if(s==undefined){
+		nui.alert("请选中一行")
+		return;
+	}
+	if(types==1)
+ 	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '上架中...'
+    });
+	else
+	 	nui.mask({
+	        el : document.body,
+	        cls : 'mini-mask-loading',
+	        html : '下架中...'
+	    });
+	   nui.ajax({
+           url: upOrDownUrl,
+           type: 'post',
+           data: nui.encode({
+           	params: s,
+           	type:types
+           }),
+           cache: false,
+           success: function (data) {
+               if (data.errCode == "S"){
+               	nui.unmask(document.body);
+               	nui.alert("成功！");
+              	var request;
+                grid.load(request,function(){
+                    nui.alert("数据成功！");
+                },function(){
+                    nui.alert("数据失败！");
+                });
+                   }else {
+                   nui.unmask(document.body);
+                   nui.alert("失败！");
+                 
+               }
+           },
+           error: function (jqXHR, textStatus, errorThrown) {
+               nui.alert(jqXHR.responseText);
+           }
+		});
+}

@@ -5,7 +5,7 @@ baseUrl = apiPath + sysApi + "/";;
 var producegridUrl = baseUrl + "com.primeton.tenant.operations.produceSaleQuery.biz.ext";
 var tenatgridUrl = baseUrl + "com.primeton.tenant.operations.tenantRnakQuery.biz.ext";
 var salegridUrl = baseUrl + "com.primeton.tenant.operations.saleMankQuery.biz.ext";
-var timeUrl = baseUrl + "com.hsapi.system.employee.comCompany.getTime.biz.ext";
+var saveUrl = baseUrl + "com.primeton.tenant.operations.updateSaleMan.biz.ext";
 var producegrid;
 var tenatgrid;
 var salegrid;
@@ -66,18 +66,25 @@ $(document).ready(function(v) {
 	   getProvince(function(data) {
 	        list = data.rs;
 	        nui.get("provinceId").setData(list);
-
-	    });
-	   getProvince(function(data) {
-	        list = data.rs;
 	        nui.get("provinceId1").setData(list);
+	        nui.get("provinceId2").setData(list);
+	        nui.get("provinceId3").setData(list);
+	    });
+/*	   getProvince(function(data) {
+	        list = data.rs;
+	        
 
 	    });
 	   getProvince(function(data) {
 	        list = data.rs;
-	        nui.get("provinceId2").setData(list);
+	     
 
 	    });
+	   getProvince(function(data) {
+	        list = data.rs;
+	        
+
+	    });*/
 /*    initProvince('provinceId',function(){
     	provinceList=nui.get('provinceId').getData();
     	 provinceList.forEach(function(v) {
@@ -342,63 +349,15 @@ function onProvinceChange2(e){
     	  nui.get("cityId2").setData(data.rs);
     });
 }
-	
-function ViewType(e){
-    var tit = null;
-    var view_w = 800;
-    var view_d = 400;
-    var s;
-    if(e == 1){
-        tit="查看产品";
-    }
-    if(e == 2){
-        tit="查看订单";
-        view_w = 1000;
-    }
-    if(e == 3){
-        tit="查看费用";
-    }
-    if(e == 4){
-        tit="查看发票";
-    }
-    if(e == 5){
-        tit="修改产品";
-        var view_w = 580;
-        var view_d = 280;
-    	s=grid.getSelected ();
-    	if(s==undefined){
-    		nui.alert("请选中一行")
-    		return;
-    	}
-    
-    }
-    nui.open({
-        url: baseUrl +"tenant/userManagerment_view.jsp",
-        title: tit, 
-        width: view_w, 
-        height: view_d,
-        onload: function () {
-          var iframe = this.getIFrameEl();	
-            iframe.contentWindow.ShowGrid(e);
-            iframe.contentWindow.SetInitData(s);
-        },
-        ondestroy: function (action) {  //弹出页面关闭前
-       
-           	    var params;
-                nui.alert("修改成功！");
-                grid.load(params,function(){
-                    //成功;
-                   // nui.alert("数据成功！");
-                },function(){
-                    //失败;
-                    nui.alert("数据失败！");
-                });
-            
-        }
+function onProvinceChange3(e){
+    var se = e.selected;
+    provinceCode = se.code;
+  
+    getProvince(function(data) {
+    	  nui.get("cityId3").setData(data.rs);
     });
-
-
 }
+
 
 
 var removetUrl=baseUrl +"com.primeton.tenant.operations.removeSaleMan.biz.ext";
@@ -446,3 +405,43 @@ function remove(){
 		});
 }
 
+
+
+function onOk() {
+    
+    var s=new nui.Form("#form1").getData();
+    saveData(s);
+}
+
+var savetUrl=baseUrl +"com.primeton.tenant.operations.updateSaleMan.biz.ext";
+function saveData(row){
+
+nui.mask({
+    el : document.body,
+    cls : 'mini-mask-loading',
+    html : '保存中...'
+});
+nui.ajax({
+    url: savetUrl,
+    type: 'post',
+    data: nui.encode({
+    	params: row
+    }),
+    cache: false,
+    success: function (data) {
+        if (data.errCode == "S"){
+        	nui.unmask(document.body);
+        	nui.alert("保存成功！");
+        	 form1.hide();
+            }else {
+            nui.unmask(document.body);
+            nui.alert("保存失败！");
+            form1.hide();
+        }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+        nui.alert(jqXHR.responseText);
+    }
+});
+
+}

@@ -38,31 +38,8 @@ $(document).ready(function(v) {
 	salegrid = nui.get("grid3");
 	salegrid.setUrl(salegridUrl);
 
-    var request = {
-    		"params":{
-    			
-    		}
-    };   
-/*    producegrid.load(request,function(){
-
-    },function(){
-        //失败;
-        nui.alert("数据失败！");
-    });
     
-    tenatgrid.load(request,function(){
 
-    },function(){
-        //失败;
-        nui.alert("数据失败！");
-    });*/
-    
-/*    salegrid.load(request,function(){
-
-    },function(){
-        //失败;
-        nui.alert("数据失败！");
-    });*/
 	   getProvince(function(data) {
 	        list = data.rs;
 	        nui.get("provinceId").setData(list);
@@ -70,21 +47,7 @@ $(document).ready(function(v) {
 	        nui.get("provinceId2").setData(list);
 	        nui.get("provinceId3").setData(list);
 	    });
-/*	   getProvince(function(data) {
-	        list = data.rs;
-	        
 
-	    });
-	   getProvince(function(data) {
-	        list = data.rs;
-	     
-
-	    });
-	   getProvince(function(data) {
-	        list = data.rs;
-	        
-
-	    });*/
 /*    initProvince('provinceId',function(){
     	provinceList=nui.get('provinceId').getData();
     	 provinceList.forEach(function(v) {

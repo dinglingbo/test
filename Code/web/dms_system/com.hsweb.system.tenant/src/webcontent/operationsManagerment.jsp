@@ -10,7 +10,9 @@
 <head>
     <title>运营管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
+    <%@include file="/common/sysCommon.jsp"%>
+   	<script src="<%= request.getContextPath() %>/tenant/js/operationsManagerment.js?v=1.8"
+	type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
     <style type="text/css"> 
@@ -54,27 +56,27 @@
         <div title="产品销售排行" name="tab1"  >
            <div class="nui-fit">
             <div class="nui-toolbar">
-
-                业务员：<input  class="nui-textbox" emptytext="输入业务员"  width="125px" style="margin-right:10px;" />
-                省份：<input  class="mini-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;" />
-                城市：<input  class="mini-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;" />
+			<div class="nui-form" id="queryForm">
+               业务员：<input  class="nui-textbox" emptytext="输入业务员"  width="125px" style="margin-right:10px;" id="salesManId" name="salesManId"/>
+            省份：<input  class="nui-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;"id="provinceId" name="provinceId" textField="name"  valueField="code" onvaluechanged="onProvinceChange" />
+            城市：<input  class="nui-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;"  id="cityId" name="cityId" textField="name"  valueField="code"/>
                 <span style="display:inline-block;">
-                    订单日期 从：<input id="date1" class="nui-datepicker" />至
-                    <input id="date2" class="nui-datepicker" />
+                    订单日期 从：<input id="date1" class="nui-datepicker" id="beginDate" name="beginDate"/>至
+                    <input id="date2" class="nui-datepicker" id="endDate" name="endDate"/>
                 </span>
-                <a class="nui-button" onclick="" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
+                <a class="nui-button" onclick="search" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
             </div>
-
+		</div>
             <div class="nui-fit">
                 <div id="grid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
-                bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true"
+                bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true" dataField="data" 
                 sizeList="[20,30,50,100]" pageSize="20" >
                 <div property="columns">
-                    <div field="" width="80" headerAlign="center" align="center">产品类型</div>
-                    <div field="" width="80" headerAlign="center" align="center">产品名称</div>
-                    <div field="" width="80" headerAlign="center" align="center">产品描述</div>
-                    <div field="" width="80" headerAlign="center" align="center">销售次数</div>
-                    <div field="" width="80" headerAlign="center" align="center">销售金额</div>
+                    <div field="type" width="80" headerAlign="center" align="center">产品类型</div>
+                    <div field="name" width="80" headerAlign="center" align="center">产品名称</div>
+                    <div field="remark" width="80" headerAlign="center" align="center">产品描述</div>
+                    <div field="count" width="80" headerAlign="center" align="center">销售次数</div>
+                    <div field="sum" width="80" headerAlign="center" align="center">销售金额</div>
                 </div>
             </div>
         </div>
@@ -86,29 +88,29 @@
     <div class="nui-fit">
 
         <div class="nui-toolbar">
-
-            业务员：<input  class="nui-textbox" emptytext="输入业务员"  width="125px" style="margin-right:10px;" />
-            省份：<input  class="mini-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;" />
-            城市：<input  class="mini-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;" />
-            <span style="display:inline-block;">
-                订单日期 从：<input id="date1" class="nui-datepicker" />至
-                <input id="date2" class="nui-datepicker" />
-            </span>
-            <a class="nui-button" onclick="" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
-        </div>
-
+	<div class="nui-form" id="queryForm1">
+               业务员：<input  class="nui-textbox" emptytext="输入业务员"  width="125px" style="margin-right:10px;" id="salesManId1" name="salesManId1"/>
+               省份：<input  class="nui-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;"id="provinceId1" name="provinceId1" textField="name"  valueField="code" onvaluechanged="onProvinceChange1" />
+               城市：<input  class="nui-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;"  id="cityId1" name="cityId1" textField="name"  valueField="code"/>
+                <span style="display:inline-block;">
+                    订单日期 从：<input id="date1" class="nui-datepicker" id="beginDate1" name="beginDate1"/>至
+                    <input id="date2" class="nui-datepicker" id="endDate1" name="endDate1"/>
+                </span>
+                <a class="nui-button" onclick="search1" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
+            </div>
+	</div>
         <div class="nui-fit">
             <div id="grid2" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
             bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true"
             sizeList="[20,30,50,100]" pageSize="20" >
             <div property="columns">
-                <div field="" width="80" headerAlign="center" align="center">省份</div>
-                <div field="" width="80" headerAlign="center" align="center">城市</div>
-                <div field="" width="80" headerAlign="center" align="center">租户ID</div>
-                <div field="" width="80" headerAlign="center" align="center">租户名称</div>
-                <div field="" width="80" headerAlign="center" align="center">联系电话</div>
-                <div field="" width="80" headerAlign="center" align="center">成交订单数量</div>
-                <div field="" width="80" headerAlign="center" align="center">成交金额</div>
+                <div field="provinceId" width="80" headerAlign="center" align="center">省份</div>
+                <div field="cityId" width="80" headerAlign="center" align="center">城市</div>
+                <div field="tenantId" width="80" headerAlign="center" align="center">租户ID</div>
+                <div field="tenantName" width="80" headerAlign="center" align="center">租户名称</div>
+                <div field="mobile" width="80" headerAlign="center" align="center">联系电话</div>
+                <div field="count" width="80" headerAlign="center" align="center">成交订单数量</div>
+                <div field="sum" width="80" headerAlign="center" align="center">成交金额</div>
             </div>
         </div>
     </div>
@@ -122,30 +124,32 @@
     <div class="nui-fit">
 
         <div class="nui-toolbar">
-            业务员：<input  class="nui-textbox" emptytext="输入业务员"  width="125px" style="margin-right:10px;" />
-            省份：<input  class="mini-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;" />
-            城市：<input  class="mini-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;" />
-            <a class="nui-button" onclick="" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
+        	<div class="nui-form" id="queryForm2">
+               业务员：<input  class="nui-textbox" emptytext="输入业务员"  width="125px" style="margin-right:10px;" id="name" name="name"/>
+               省份：<input  class="nui-combobox" emptytext="选择省份"  width="125px" style="margin-right:10px;"id="provinceId2" name="provinceId2" textField="name"  valueField="code" onvaluechanged="onProvinceChange2" />
+               城市：<input  class="nui-combobox" emptytext="选择城市"  width="125px" style="margin-right:10px;"  id="cityId2" name="cityId2" textField="name"  valueField="code"/>
+          <a class="nui-button" onclick="search2" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
             <span class="separator"></span>
             <a class="nui-button" plain="false" onclick="grid3_addRow()"><i class="fa fa-plus"></i>&nbsp;新增</a>
             <a class="nui-button" plain="false" onclick="grid3_editRow()"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-            <a class="nui-button" plain="false" onclick="deleteData()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+            <a class="nui-button" plain="false" onclick="remove()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
             <span class="separator"></span>
             <a class="nui-button" plain="false" onclick=""><i class="fa fa-calculator"></i>&nbsp;自动计算业绩</a>
         </div>
-
+	</div>
         <div class="nui-fit">
             <div id="grid3" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
             bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true"
             sizeList="[20,30,50,100]" pageSize="20" >
             <div property="columns">
-                <div field="" width="80" headerAlign="center" align="center">省份</div>
-                <div field="" width="80" headerAlign="center" align="center">城市</div>
-                <div field="" width="80" headerAlign="center" align="center">姓名</div>
-                <div field="" width="80" headerAlign="center" align="center">年龄</div>
-                <div field="" width="80" headerAlign="center" align="center">联系电话</div>
-                <div field="" width="80" headerAlign="center" align="center">租户数量</div>
-                <div field="" width="80" headerAlign="center" align="center">贡献金额</div>
+            	<div type="checkcolumn" >选择</div>
+                <div field="provinceId" width="80" headerAlign="center" align="center">省份</div>
+                <div field="cityId" width="80" headerAlign="center" align="center">城市</div>
+                <div field="name" width="80" headerAlign="center" align="center">姓名</div>
+                <div field="age" width="80" headerAlign="center" align="center">年龄</div>
+                <div field="mobile" width="80" headerAlign="center" align="center">联系电话</div>
+                <div field="salesQty" width="80" headerAlign="center" align="center">租户数量</div>
+                <div field="salesAmt" width="80" headerAlign="center" align="center">贡献金额</div>
             </div>
         </div>
     </div>
@@ -231,22 +235,6 @@ function grid3_editRow() {//列表表格 -弹出编辑--修改角色信息
         nui.alert("请选中一条记录");
     }
 
-}
-
-function deleteData(e) {//删除某条角色数据
-    var row = grid3.getSelected();
-    if (row) {
-        nui.confirm("确定删除此记录？", "友情提示", function(action) {
-            if (action == "ok") {
-                try {//删除
-                    grid1.removeRow(row,true);
-                } finally {}
-
-            }
-        });
-    } else {
-        nui.alert("请选择一条记录！");
-    }
 }
 
 function onCancel(e) {

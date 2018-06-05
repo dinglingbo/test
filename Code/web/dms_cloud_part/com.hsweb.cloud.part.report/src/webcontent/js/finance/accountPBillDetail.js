@@ -2,40 +2,26 @@
  * Created by Administrator on 2018/5/5.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = baseUrl + "com.hsapi.cloud.part.report.finance.queryRPAccountDetail.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.cloud.part.report.finance.queryRPBillDetail.biz.ext";
 var mainGrid = null;
-var accountIdEl = null;
 var beginDateEl = null;
 var endDateEl = null;
-var isMainEl = null;
 var advanceGuestIdEl = null;
-var accountList = null;
-var accountHash = {};
+var settleStatusEl = null;
 var enterTypeIdList = [];
 var enterTypeIdHash = {};
-var pList = [];
-var pHash = {};
 
 $(document).ready(function(v) {
-	mainGrid = nui.get("mainGrid");
-	mainGrid.setUrl(queryUrl);
+    mainGrid = nui.get("mainGrid");
+    mainGrid.setUrl(queryUrl);
 
-	accountIdEl = nui.get("accountId");
-	beginDateEl = nui.get("beginDate");
-	endDateEl = nui.get("endDate");
+    beginDateEl = nui.get("beginDate");
+    endDateEl = nui.get("endDate");
     advanceGuestIdEl = nui.get("advanceGuestId");
-    isMainEl = nui.get("isMain");
+    settleStatusEl = nui.get("settleStatus");
 
-	beginDateEl.setValue(getMonthStartDate());
-	endDateEl.setValue(addDate(getMonthEndDate(), 1));
-
-	getAccountList(function(data) {
-        accountList = data.settleAccount;
-        accountIdEl.setData(accountList);
-        accountList.forEach(function(v) {
-            accountHash[v.id] = v;
-        });
-    });
+    beginDateEl.setValue(getMonthStartDate());
+    endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
     getItemType(function(data) {
         enterTypeIdList = data.list || [];
@@ -45,39 +31,19 @@ $(document).ready(function(v) {
 
     });
 
-	doSearch();
+    doSearch();
 });
 function doSearch() {
-	var params = {};
-	params.id = accountIdEl.getValue();
-	params.startDate = beginDateEl.getValue();
+    var params = {};
+    params.settleStatus = settleStatusEl.getValue();
+    params.startDate = beginDateEl.getValue();
     params.endDate = endDateEl.getValue();
     params.guestId = advanceGuestIdEl.getValue();
-    params.isMain = isMainEl.getValue();
-    params.rpDc = 1;
+    params.billDc = -1;
 
-	mainGrid.load({
-		params:params,
-		token : token
-	});
-}
-var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
-function getAccountList(callback) {
-    nui.ajax({
-        url : queryAccountUrl,
-        data : {
-            token: token
-        },
-        type : "post",
-        success : function(data) {
-            if (data && data.settleAccount) {
-                callback && callback(data);
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
+    mainGrid.load({
+        params:params,
+        token : token
     });
 }
 var supplier = null;
@@ -86,7 +52,7 @@ function selectSupplier(elId) {
     nui.open({
         targetWindow : window,
         url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
-        title : "客户资料",
+        title : "供应商资料",
         width : 980,
         height : 560,
         allowDrag : true,
@@ -94,7 +60,7 @@ function selectSupplier(elId) {
         onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isClient: 1
+                isSupplier: 1
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -114,37 +80,24 @@ function selectSupplier(elId) {
         }
     });
 }
-var pList = [{id:1,text:"是"},{id:0,text:"否"}];
-var pHash = {"1":"是","0":"否"};
+var settleStatusHash = {
+    "0":"未结算",
+    "1":"部分结算",
+    "2":"已结算"
+};
+var settleStatusList = [{id:0,text:"未结算"},{id:1,text:"部分结算"},{id:2,text:"已结算"}];
 function onDrawCell(e){
     switch (e.field) {
-        case "settAccountId":
-            if (accountHash[e.value]) {
-                if(e.column.header == "账户编码"){
-                    e.cellHtml = accountHash[e.value].code || "";
-                }else if(e.column.header == "账户名称"){
-                    e.cellHtml = accountHash[e.value].name || "";
-                }else{
-                    e.cellHtml = "";
-                }
-            } else {
-                e.cellHtml = "";
-            }
-            break;
         case "billTypeId":
             if(enterTypeIdHash && enterTypeIdHash[e.value])
             {
                 e.cellHtml = enterTypeIdHash[e.value].name;
-            } else {
-                e.cellHtml = "";
             }
             break;
-        case "isPrimaryBusiness":
-            if(pHash && pHash[e.value])
+        case "settleStatus":
+            if(settleStatusHash && settleStatusHash[e.value])
             {
-                e.cellHtml = pHash[e.value];
-            } else {
-                e.cellHtml = "";
+                e.cellHtml = settleStatusHash[e.value];
             }
             break;
         default:

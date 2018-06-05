@@ -172,33 +172,34 @@
     <table style="margin-top:10px;">
                 <tr>
             <td style="width: 90px;text-align:right">姓名：</td>
-            <td colspan="3"><input class="nui-textbox" 
+            <td colspan="3"><input class="nui-textbox"  name="name"
+                style="width: 100%"  /><input class="nui-textbox"  name="id" visible="false"
                 style="width: 100%"  /></td>
             </tr>
 
         <tr>
             <td style="width: 90px;text-align:right">性别：</td>
-            <td colspan="3"><input class="nui-combobox" idField="id" textFeild="text" data="sex"
+            <td colspan="3"><input class="nui-combobox" idField="id" textFeild="text" data="sex" name="sex"
                 style="width: 100%"  /></td>
             </tr>
                     <tr>
             <td style="width: 90px;text-align:right">年龄：</td>
-            <td colspan="3"><input class="nui-textbox" 
+            <td colspan="3"><input class="nui-textbox"  name="age"
                 style="width: 100%"  /></td>
             </tr>
 
         <tr>
             <td style="width: 90px;text-align:right">电话：</td>
-            <td colspan="3"><input class="nui-textbox" 
+            <td colspan="3"><input class="nui-textbox" name="mobile"
                 style="width: 100%"  /></td>
             </tr>
 
 
         <tr>
             <td  style="width: 90px; text-align: right">省份：</td>
-            <td><input class="nui-combobox"  /></td>
+            <td><input  class="nui-combobox"   id="provinceId3" name="provinceId3" textField="name"  valueField="code" onvaluechanged="onProvinceChange3" /></td>
             <td style="width: 90px; text-align: right">城市：</td>
-            <td><input class="nui-combobox"   /></td>
+            <td><input  class="nui-combobox"   id="cityId3" name="cityId3" textField="name"  valueField="code"/></td>
 
         </tr>
 
@@ -216,21 +217,24 @@
     var sex = [{id:0,text:"男"},{id:1,text:"女"}];
     nui.parse();
 
-        var grid1 = nui.get("grid1");
-        var grid2 = nui.get("grid2");
-        var grid3 = nui.get("grid3");
 
         var form1 = nui.get("form1");
+       
 function grid3_addRow() {//列表表格 -弹出 新增角色
+	 var form1data=new nui.Form("#form1");
+    form1data.setData('');
     form1.setTitle("新增业务员");
     form1.showAtPos("center", "middle");
 }
 
 function grid3_editRow() {//列表表格 -弹出编辑--修改角色信息
-    var row = grid1.getSelected();
+    var row = salegrid.getSelected();
     if (row) {
+    	
         form1.setTitle("编辑业务员");
         form1.showAtPos("center", "middle");
+         var form1data=new nui.Form("#form1");
+    	 form1data.setData(row);
     } else {
         nui.alert("请选中一条记录");
     }

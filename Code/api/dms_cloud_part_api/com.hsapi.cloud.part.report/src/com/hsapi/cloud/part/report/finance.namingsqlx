@@ -145,6 +145,9 @@
                 <isNotEmpty prepend="and" property="endDate">  
                     (a.audit_date &lt; #endDate#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus">  
+                    (a.settle_status = #settleStatus#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
                 </isNotEmpty>
@@ -152,7 +155,7 @@
                     (a.no_char_off_amt > 0)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="billDc">  
-                    (a.bill_dc = #rpDc#)
+                    (a.bill_dc = #billDc#)
                 </isNotEmpty>
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$

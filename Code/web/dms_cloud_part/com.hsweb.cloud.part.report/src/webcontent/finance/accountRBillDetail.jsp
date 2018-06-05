@@ -10,9 +10,9 @@ pageEncoding="UTF-8" session="false" %>
 - Description:
 -->
 <head>
-    <title>收款明细</title>
+    <title>客户欠款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + cloudPartDomain%>/report/js/finance/accountRDetail.js?v=1.0.0"></script>
+    <script src="<%=webPath + cloudPartDomain%>/report/js/finance/accountRBillDetail.js?v=1.0.0"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -34,11 +34,8 @@ pageEncoding="UTF-8" session="false" %>
         <label style="font-family:Verdana;">至</label>
         <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
         
-        <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
         <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
-
-        <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-
+        <input id="settleStatus" width="100px" data="settleStatusList" textField="text" valueField="id"  emptyText="结算状态" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
         <span class="separator"></span> 
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-select fa-lg"></span>&nbsp;查询</a>
     </div>
@@ -48,15 +45,14 @@ pageEncoding="UTF-8" session="false" %>
              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
-                <div field="settAccountId" name="name" width="100"  headeralign="center" >账户名称</div>
-                <div field="billServiceId" name="name" width="100"  headeralign="center" >业务单号</div>
+                <div field="billServiceId" name="name" summaryType="count" width="100"  headeralign="center" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
-                <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>
                 <div field="shortName" name="name" width="100"  headeralign="center" >客户简称</div>
-                <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >收款金额</div>
-                <div field="auditor" name="auditor" width="60"  headeralign="center" >收款人</div>
-                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd H:mm:ss" headeralign="center" >收款日期</div>
+                <div field="rpAmt" name="rpAmt" width="50" summaryType="sum" headeralign="center" >应收金额</div>
+                <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" >已收金额</div>
+                <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" >未收金额</div>
+                <div field="settleStatus" name="settleStatus" width="100" headeralign="center" >结算状态</div>
+                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd H:mm:ss" headeralign="center" >单据日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" >客户全称</div>
            
             </div>

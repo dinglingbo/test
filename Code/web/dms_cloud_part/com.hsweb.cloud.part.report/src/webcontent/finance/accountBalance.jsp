@@ -44,7 +44,7 @@ pageEncoding="UTF-8" session="false" %>
               pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="settAccountCode" name="code" width="80" summaryType="count"  headeralign="center" >账户编码</div>
+                <div field="settAccountCode" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
                 <div field="settAccountName" name="name" width="100"  headeralign="center" >账户名称</div>
                 <div field="fyear" name="fyear" width="50"  headeralign="center" >年份</div>
                 <div field="fmonth" name="fmonth" width="50"  headeralign="center" >月份</div>

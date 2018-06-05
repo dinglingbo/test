@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+     <select id="produceSale" parameterClass="HashMap" resultClass="HashMap">
+     	SELECT a.type,a.name,a.remark,COUNT(b.product_id) count,SUM(a.sales_price1) sum
+		from com_tenant_product a,com_tenant_order b,com_tenant c
+		where a.id=b.product_id and b.tenant_id=c.tenant_id and b.status=1 
+		<isNotNull property="provinceId">
+			AND c.province_id=#provinceId#
+		</isNotNull>
+		<isNotNull property="cityId">
+			AND c.city_id=#cityId#
+		</isNotNull>
+		<isNotNull property="salesManId">
+			AND c.sales_man_id=#salesManId#
+		</isNotNull>
+		<isNotEmpty prepend="and" property="beginDate">  
+              b.record_date &gt;= #beginDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">  
+              b.record_date &lt; #endDate#
+        </isNotEmpty>
+		GROUP BY b.product_id
+		
+	 </select>
+	      <select id="tenantRank" parameterClass="HashMap" resultClass="HashMap">
+     	SELECT a.province_id provinceId,a.city_id cityId,a.tenant_id tenantId,a.tenant_name tenantName,a.mobile,COUNT(b.product_id) count,SUM(c.sales_price1) sum
+		FROM com_tenant a,com_tenant_order b,com_tenant_product c
+		where a.tenant_id=b.tenant_id and c.id=b.product_id and b.status=1
+		<isNotNull property="provinceId">
+			AND a.province_id=#provinceId#
+		</isNotNull>
+		<isNotNull property="cityId">
+			AND a.city_id=#cityId#
+		</isNotNull>
+		<isNotNull property="salesManId">
+			AND a.sales_man_id=#salesManId#
+		</isNotNull>
+		<isNotEmpty prepend="and" property="beginDate">  
+              b.record_date &gt;= #beginDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">  
+              b.record_date &lt; #endDate#
+        </isNotEmpty>
+		GROUP BY a.tenant_id
+		
+	 </select>
+</sqlMap>

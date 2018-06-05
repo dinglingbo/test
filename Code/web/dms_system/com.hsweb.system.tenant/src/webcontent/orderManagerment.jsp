@@ -10,9 +10,11 @@
 <head> 
     <title>订单管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
+        <%@include file="/common/sysCommon.jsp"%>
+    <script src="<%= request.getContextPath() %>/tenant/js/orderManager.js?v=1.7"
+	type="text/javascript"></script>
+	    <script src="<%= request.getContextPath() %>/common/js/date.js?v=1.9"
+	type="text/javascript"></script>
     <style type="text/css">
     body {
      margin: 0;
@@ -51,56 +53,58 @@
 </head>
 <body>
 
-            <div class="nui-toolbar">
+            <div class="nui-toolbar" >
+            <div class="nui-form" id="queryForm">
                 <span style="display:inline-block;">
-                    订单单号：<input  class="nui-textbox" emptytext="输入订单单号"  width="125px" style="margin-right:10px;" />
+                    订单单号：<input  class="nui-textbox" emptytext="输入订单单号"  width="125px" style="margin-right:10px;" id="id" name="name"/>
                 </span>
                 <span style="display:inline-block;">
-                    租户ID：<input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:10px;" />
+                    租户ID：<input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:10px;" id="tenantId" name="tenantId"/>
                 </span>
                 <span style="display:inline-block;">
-                    租户名称：<input  class="nui-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:10px;" />
+                    租户名称：<input  class="nui-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:10px;" id="tenantName" name="tenantName" />
                 </span>
                 <span style="display:inline-block;">
-                    联系电话：<input  class="nui-textbox" emptytext="输入电话"  width="125px" style="margin-right:10px;" />
+                    联系电话：<input  class="nui-textbox" emptytext="输入电话"  width="125px" style="margin-right:10px;" id="mobile" name="mobile"/>
                 </span>
                 <span style="display:inline-block;">
-                    付款状态：<input  class="nui-combobox" emptytext="请选择..." idField="id" textFeild="text" data="payStatus"   width="125px" style="margin-right:10px;" />
+                    付款状态：<input  class="nui-combobox" emptytext="请选择..." idField="id" textFeild="text" data="payStatus"   width="125px" style="margin-right:10px;" id="status" name="status" />
                 </span>
                 <span style="display:inline-block;">
-                    订单日期 从：<input id="date1" class="nui-datepicker" />至
-                    <input id="date2" class="nui-datepicker" />
+                    订单日期 从：<input id="startDate" name="startDate" class="nui-datepicker" />至
+                    <input id="endDate" name="endDate" class="nui-datepicker" />
                 </span>
                 <span style="display:inline-block;">
-                    <a class="nui-button" onclick="" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
+                    <a class="nui-button" onclick="search" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
                     <span class="separator"></span>
-                    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-clock-o"></i>&nbsp;即将到期(30天内）</a>
-                    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-window-maximize"></i>&nbsp;未付款</a>
+                    <a class="nui-button " style="" iconcls="" plain="false" onclick="exprie"><i class="fa fa-clock-o"></i>&nbsp;即将到期(30天内）</a>
+                    <a class="nui-button " style="" iconcls="" plain="false" onclick="wfk"><i class="fa fa-window-maximize"></i>&nbsp;未付款</a>
                     <span class="separator"></span>
-                    <a class="nui-button " style="" iconcls="" plain="false" onclick=""><i class="fa fa-times"></i>&nbsp;关闭未付款订单</a>
+                    <a class="nui-button " style="" iconcls="" plain="false" onclick="closeOrder"><i class="fa fa-times"></i>&nbsp;关闭未付款订单</a>
                 </span>
             </div> 
-
+	</div>
             <div class="nui-fit">
                 <div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
-                bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true"
+                bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true" dataField="data" 
                 sizeList="[20,30,50,100]" pageSize="20" >
                 <div property="columns">
-                    <div field="" width="80" headerAlign="center" align="center">租户ID</div>
-                    <div field="" width="80" headerAlign="center" align="center">租户名称</div>
-                    <div field="" width="80" headerAlign="center" align="center">联系电话</div>
-                    <div field="" width="80" headerAlign="center" align="center">订单单号</div>
-                    <div field="" width="80" headerAlign="center" align="center">订单时间</div>
-                    <div field="" width="80" headerAlign="center" align="center">产品ID</div>
-                    <div field="" width="80" headerAlign="center" align="center">产品名称</div>
-                    <div field="" width="80" headerAlign="center" align="center">产品类型</div>
-                    <div field="" width="80" headerAlign="center" align="center">开通时间</div>
-                    <div field="" width="80" headerAlign="center" align="center">结束时间</div>
-                    <div field="" width="80" headerAlign="center" align="center">是否付款</div>
-                    <div field="" width="80" headerAlign="center" align="center">付款时间</div>
-                    <div field="" width="80" headerAlign="center" align="center">付款方式</div>
+                	<div type="checkcolumn" >选择</div>
+                    <div field="tenantId" width="80" headerAlign="center" align="center">租户ID</div>
+                    <div field="tenantName" width="80" headerAlign="center" align="center">租户名称</div>
+                    <div field="mobile" width="80" headerAlign="center" align="center">联系电话</div>
+                    <div field="id" width="80" headerAlign="center" align="center">订单单号</div>
+                    <div field="recordDate" width="80" headerAlign="center" align="center">订单时间</div>
+                    <div field="productId" width="80" headerAlign="center" align="center">产品ID</div>
+                    <div field="name" width="80" headerAlign="center" align="center">产品名称</div>
+                    <div field="type" width="80" headerAlign="center" align="center">产品类型</div>
+                    <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">开通时间</div>
+                    <div field="endDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">结束时间</div>
+                    <div field="isPayment" width="80" headerAlign="center" align="center">是否付款</div>
+                    <div field="paymentDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">付款时间</div>
+                    <div field="paymentType" width="80" headerAlign="center" align="center">付款方式</div>
                     <!-- <div field="" width="80" headerAlign="center" align="center">是否生效</div> -->
-                    <div field="" width="80" headerAlign="center" align="center">订单状态</div>
+                    <div field="status" width="80" headerAlign="center" align="center">订单状态</div>
                 </div>
             </div>
         </div>

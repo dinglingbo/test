@@ -3,6 +3,7 @@ var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsSuppli
 
 var partBrandList = [];
 var brandHash = {};
+var supplierTypeHash = {};
 var partBrandIdEl = null;
 var partCodeEl = null;
 var partNameEl = null;
@@ -127,6 +128,14 @@ $(document).ready(function(v) {
 		});
 	});
 
+    var dictDefs ={"supplierType":SUPPLIER_TYPE};
+    initDicts(dictDefs, function(){
+        var data = nui.get("supplierType").getData();
+        data.forEach(function(v) {
+            supplierTypeHash[v.customid] = v;
+        });
+    });
+
 });
 function getSearchParam() {
 	var params = {};
@@ -208,6 +217,13 @@ function onRightGridDraw(e) {
     			e.cellHtml = "";
     		}
     		break;
+        case "supplierType":
+            if (supplierTypeHash[e.value]) {
+                e.cellHtml = supplierTypeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
     	default:
     		break;
 	}

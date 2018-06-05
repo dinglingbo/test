@@ -3,6 +3,8 @@ var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsPartTy
 
 var partBrandList = [];
 var brandHash = {};
+var partTypeList = [];
+var typeHash = {};
 var partBrandIdEl = null;
 var partCodeEl = null;
 var partNameEl = null;
@@ -125,6 +127,13 @@ $(document).ready(function(v) {
 		});
 	});
 
+    getAllPartType(function(data) {
+        partTypeList = data.partTypes;
+        partTypeList.forEach(function(v) {
+            typeHash[v.id] = v;
+        });
+    });
+
 });
 function getSearchParam() {
 	var params = {};
@@ -205,6 +214,13 @@ function onRightGridDraw(e) {
     			e.cellHtml = "";
     		}
     		break;
+        case "carTypeIdF":
+            if (typeHash[e.value]) {
+                e.cellHtml = typeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
     	default:
     		break;
 	}

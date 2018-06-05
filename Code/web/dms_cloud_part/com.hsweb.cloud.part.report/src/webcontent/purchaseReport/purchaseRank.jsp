@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购排行</title>
-<script src="<%=webPath + cloudPartDomain%>/report/js/purchaseRank.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/report/js/purchaseRank.js?v=1.2.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -67,6 +67,7 @@
                 <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择供应商..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
+                <input id="supplierType" width="100px" textField="name" valueField="customid" emptyText="供应商分类" visible="false" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
@@ -86,7 +87,7 @@
                  showPager="false"
                  dataField="supplierList"
                  idField="guestId"
-                 ondrawcell=""
+                 ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
                  showSummaryRow="true">

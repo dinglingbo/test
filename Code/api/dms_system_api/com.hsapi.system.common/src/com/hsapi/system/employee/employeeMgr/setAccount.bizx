@@ -164,12 +164,12 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
-    <location x="214" y="100"/>
+    <location x="60" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin1label" name="label" nodeType="label">
-    <location x="200" y="136"/>
+    <location x="46" y="136"/>
     <figSize height="17" width="56"/>
     <node>transactionbegin1</node>
   </nodes>
@@ -179,13 +179,13 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="110" y="100"/>
+    <location x="-85" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo8label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -198,7 +198,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
-    <location x="85" y="136"/>
+    <location x="-110" y="136"/>
     <figSize height="17" width="72"/>
     <node>invokePojo8</node>
   </nodes>
@@ -282,7 +282,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link28</targetConnections>
-    <location x="371" y="100"/>
+    <location x="344" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -290,13 +290,13 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">emp</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="346" y="136"/>
+    <location x="319" y="136"/>
     <figSize height="17" width="73"/>
     <node>invokePojo2</node>
   </nodes>
@@ -332,7 +332,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="170" y="100"/>
+    <location x="-15" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -349,14 +349,14 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="172" y="136"/>
+    <location x="-13" y="136"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link17</targetConnections>
     <targetConnections>link27</targetConnections>
-    <location x="1040" y="203"/>
+    <location x="1051" y="194"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -365,7 +365,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1038" y="239"/>
+    <location x="1049" y="230"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -374,12 +374,12 @@
       <sourceNode>start0</sourceNode>
       <targetNode>invokePojo8</targetNode>
     </sourceConnections>
-    <location x="30" y="100"/>
+    <location x="-165" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="32" y="136"/>
+    <location x="-163" y="136"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -389,7 +389,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <location x="261" y="100"/>
+    <location x="165" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -397,7 +397,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
       <process:inputVariable id="1" name="template" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">emp</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -405,7 +405,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="206" y="136"/>
+    <location x="110" y="136"/>
     <figSize height="17" width="132"/>
     <node>invokePojo0</node>
   </nodes>
@@ -415,7 +415,7 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="310" y="100"/>
+    <location x="255" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -431,7 +431,7 @@
       <process:to type="query">emp/modifyDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/Account</process:from>
+      <process:from type="query" pattern="reference">params/empid</process:from>
       <process:to type="query">emp/userId</process:to>
     </process:copy>
     <process:copy>
@@ -442,9 +442,13 @@
       <process:from type="literal" pattern="reference">k2xvHUmCHWw=</process:from>
       <process:to type="query">emp/loginPwd</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">emp/isOpenAccount</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="312" y="136"/>
+    <location x="257" y="136"/>
     <figSize height="17" width="25"/>
     <node>assign1</node>
   </nodes>

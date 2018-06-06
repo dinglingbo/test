@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
-	
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): lilium_ll
@@ -9,26 +9,24 @@
   - Description:
 -->
 <head>
-<title>Title</title>
-    <%@include file="/common/sysCommon.jsp"%>
+<title>开通账号</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  
-    
+
 </head>
 <body>
 	<div class="form" id="basicInfoForm" >
 		<table>
 		      <tr>
-                <td class="tbtext">员工姓名<span style="color:red">*</span></td>
-                <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="name" name="name" readonly="readonly"/></td>
+                <td class="tbtext">姓名：</td>
+                <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="name" name="name" readonly="readonly" enabled="false"/></td>
               	</tr>
                 <tr>
-                <td class="tbtext">请输入账号<span style="color:red">*</span></td>
-                <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="Account" name="Account" /></td>
+                <td class="tbtext">请输入登陆账号：</td>
+                <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="Account" name="Account" vtype="maxLength:20"/></td>
                 </tr>
                 <tr>
-                <td class="tbtext">密码<span style="color:red">*</span></td>
-                <td style="width:400px;"><input class="nui-textbox" value="000000" style="width: 400px;" readonly="readonly" id="passWord" name="passWord"/></td>
+                <td class="tbtext">默认密码：000000</td>
+                <input class="nui-textbox" value="000000" style="width: 400px;" readonly="readonly" id="passWord" name="passWord" visible="false"/>
                 </tr>
                  <tr>
 				 <td><input class="nui-textbox" id="empid" name="empid" visible="false"/></td>

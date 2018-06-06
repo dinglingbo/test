@@ -12,6 +12,7 @@ var accountTypeList = null;
 var accountTypeIdEl = null;
 var settleAccountGrid = null;
 var settleList = null;
+var accountTypeHash = {};
 
 $(document).ready(function(v) {
 	mainForm = new nui.Form("#editForm");
@@ -24,33 +25,16 @@ $(document).ready(function(v) {
 	settleAccountGrid = nui.get("settleAccountGrid");
 	settleAccountGrid.setUrl(queryUrl);
 
-	/*getSettleType(function(data) {
-		settleList = data.list || [];
-
-	});*/
+	getSettleType(function(data) {
+        var list = data.list || [];
+        list.filter(function(v)
+        {
+            accountTypeHash[v.customid] = v;
+            return true;
+        });
+    });
 
 });
-var querySettleTypeUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext";
-function getSettleType(callback) {
-	nui.ajax({
-		url : querySettleTypeUrl,
-		data : {
-			dictId: 'DDT20130703000031',
-			token: token
-		},
-		type : "post",
-		success : function(data) {
-			if (data && data.list) {
-				callback && callback(data);
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			//  nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
-}
 function SetData(row, newRow){
 	rowT = row;
 	newRowT = newRow;
@@ -198,4 +182,48 @@ function onSettleTypeChanged(e){
 		var newRow = {customName:row.name};
 		settleAccountGrid.updateRow(r,newRow);
 	}
+}
+function OnModelCellBeginEdit(e) {
+	var column = e.column;
+    var editor = e.editor;
+    if (e.field == "customId") {
+        var url = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext?dictId=DDT20130703000031&token=" + token;
+        editor.setUrl(url);
+    }
+
+}
+var querySettleTypeUrl = baseUrl
+		+ "com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext";
+function getSettleType(callback) {
+	nui.ajax({
+		url : querySettleTypeUrl,
+		data : {
+			dictId: 'DDT20130703000031',
+			token: token
+		},
+		type : "post",
+		success : function(data) {
+			if (data && data.list) {
+				callback && callback(data);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			//  nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+function onDrawCell(e)
+{
+    switch (e.field)
+    {
+        case "customId":
+            if(accountTypeHash && accountTypeHash[e.value])
+            {
+                e.cellHtml = accountTypeHash[e.value].name;
+            }
+            break;
+        default:
+            break;
+    }
 }

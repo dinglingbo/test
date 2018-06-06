@@ -20,8 +20,8 @@ var SignHash = {
 	};
 
 var sexSignHash = {
-	    "0":"男",
-	    "1":"女"
+	    "1":"男",
+	    "0":"女"
 	};
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");

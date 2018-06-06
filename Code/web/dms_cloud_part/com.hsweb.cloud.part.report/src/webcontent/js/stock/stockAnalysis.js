@@ -19,7 +19,7 @@ function showMainQty() {
 		url : dataurl,
 		type: 'post',
         async: false, //同步执行，返回成功后才能进行下面的操作
-        data : nui.encode({}),
+        data : nui.encode({token:token}),
         success:function(text){
         	if(text.errCode == 'S') {
         		storeArr = text.storeArr;
@@ -144,7 +144,7 @@ function showMainAmt() {
 		url : dataurl,
 		type: 'post',
         async: false, //同步执行，返回成功后才能进行下面的操作
-        data : nui.encode({}),
+        data : nui.encode({token:token}),
         success:function(text){
         	if(text.errCode == 'S') {
         		storeArr = text.storeArr;

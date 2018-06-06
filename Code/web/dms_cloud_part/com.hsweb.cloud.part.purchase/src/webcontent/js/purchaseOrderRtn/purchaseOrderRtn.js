@@ -1418,7 +1418,7 @@ function onGuestValueChanged(e)
     //供应商中直接输入名称加载供应商信息
     var params = {};
     params.pny = e.value;
-    params.isClient = 1;
+    params.isSupplier = 1;
     setGuestInfo(params);
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1717,4 +1717,53 @@ function addDetail(rows)
         rightGrid.addRow(newRow);
     }
 
+}
+var supplier = null;
+function selectSupplier(elId) {
+    supplier = null;
+    nui.open({
+        targetWindow : window,
+        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "供应商资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+                isSupplier: 1
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var billTypeIdV = supplier.billTypeId;
+                var settTypeIdV = supplier.settTypeId;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+
+                if (elId == 'guestId') {
+                    var row = leftGrid.getSelected();
+                    var newRow = {
+                        guestFullName : text,
+                        billTypeId: billTypeIdV,
+                        settleTypeId: settTypeIdV
+                    };
+                    leftGrid.updateRow(row, newRow);
+
+                    nui.get("billTypeId").setValue(billTypeIdV);
+                    nui.get("settleTypeId").setValue(settTypeIdV);
+
+                }
+            }
+        }
+    });
 }

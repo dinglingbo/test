@@ -171,4 +171,72 @@
 		where a.code = 6
 	</update>
 	
+	
+    <!--今日工作看板-->
+	<select id="queryTodayBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+				a.orgid as orgid,
+				a.orderTypeId as orderTypeId,
+				a.billStatusId as billStatusId,
+				a.guestId as guestId,
+				a.creator as creator,
+				a.auditor as auditor,
+				a.auditDate as auditDate,
+				a.remark as remark,
+				a.fullName as fullName,
+				a.shortName as shortName,
+				a.addr as addr
+			FROM
+			vw_order_main AS a
+			WHERE to_days(auditDate) = to_days(now())
+			<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+			
+			order by a.auditDate desc
+				
+    </select>
+    
+    <!--查询业务员-->
+    <select id="queryStaff" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT DISTINCT order_man as orderMan 
+			from pj_sell_order_main_chk 
+			where order_type_id = 2 and is_out= 1
+					<isNotEmpty prepend="and" property="orgid"> 
+	                    (orgid = #orgid#)
+	                </isNotEmpty>
+					<isNotEmpty prepend="and" property="startDate">  
+	                    (audit_date &gt;= #startDate#)
+	                </isNotEmpty>
+	                <isNotEmpty prepend="and" property="endDate">  
+	                    (audit_date &lt; #endDate#)
+	                </isNotEmpty>
+			
+			order by order_man
+			
+    </select>
+    
+    <!--查询业务员业绩-->
+    <select id="queryStaffAchievement" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT order_man as orderMan, sum(order_amt) as orderAmt
+			from pj_sell_order_main_chk 
+			where order_type_id = 2 and is_out= 1
+					<isNotEmpty prepend="and" property="startDate">  
+	                    (audit_date &gt;= #startDate#)
+	                </isNotEmpty>
+	                <isNotEmpty prepend="and" property="endDate">  
+	                    (audit_date &lt; #endDate#)
+	                </isNotEmpty>
+	                <isNotEmpty prepend="and" property="orgid"> 
+	                    (orgid = #orgid#)
+	                </isNotEmpty>
+			
+			group by order_man
+			order by sum(order_amt) desc
+			
+    </select>
+	
 </sqlMap>

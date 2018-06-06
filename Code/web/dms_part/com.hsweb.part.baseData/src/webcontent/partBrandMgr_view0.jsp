@@ -36,15 +36,15 @@
          allowResize="false"
          handlerSize="6"
          style="width:100%;height:100%;">
-        <div size=40%" showCollapseButton="false" style="border-right:0">
+        <div size="40%" showCollapseButton="false" style="border-right:0">
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-bottom: 0;">
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPartQuality()">新增品质</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPartQuality()" id="editLeft">修改品质</a>
-                            <a class="nui-button" plain="true" iconCls="icon-no" onclick="disablePartQuality()" id="disabledLeft" visible="false">禁用品质</a>
-                            <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enablePartQuality()" id="enabledLeft" visible="false">启用品质</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="addPartQuality()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增品质</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="editPartQuality()" id="editLeft"><span class="fa fa-edit fa-lg"></span>&nbsp;修改品质</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="disablePartQuality()" id="disabledLeft" visible="false"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用品质</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="enablePartQuality()" id="enabledLeft" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用品质</a>
                         </td>
                     </tr>
                 </table>
@@ -77,10 +77,10 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addPartBrand()" id="addRight">新增品牌</a>
-                            <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editPartBrand()" id="editRight">修改品牌</a>
-                            <a class="nui-button" plain="true" iconCls="icon-no" onclick="disablePartBrand()" id="disabledRight" visible="false">禁用品牌</a>
-                            <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enablePartBrand()" id="enabledRight" visible="false">启用品牌</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="addPartBrand()" id="addRight"><span class="fa fa-plus fa-lg"></span>&nbsp;新增品牌</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="editPartBrand()" id="editRight"><span class="fa fa-edit fa-lg"></span>&nbsp;修改品牌</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="disablePartBrand()" id="disabledRight" visible="false"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用品牌</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="enablePartBrand()" id="enabledRight" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用品牌</a>
                         </td>
                     </tr>
                 </table>

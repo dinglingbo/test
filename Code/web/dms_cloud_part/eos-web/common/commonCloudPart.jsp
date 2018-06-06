@@ -206,6 +206,12 @@
 	   }
 	   return result;
 	}
+
+	function numToMoneyField(inputString) {
+	    regExpInfo = /(\d{1,3})(?=(\d{3})+(?:$|\.))/g;
+	    var ret = inputString.toString().replace(regExpInfo, "$1,");
+	    return ret;
+	}
 	
 	//获取两个日期之间的年月数组
 	function getYearMonthList(startDate, endDate){

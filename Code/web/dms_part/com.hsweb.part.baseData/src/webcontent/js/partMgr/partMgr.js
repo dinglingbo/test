@@ -2,8 +2,9 @@
  * Created by Administrator on 2018/1/23.
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var partListUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
+var partListUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 var partGrid = null;
+var partLoalGrid = null;
 var tree = null;
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 
@@ -15,10 +16,14 @@ var unitList = [];
 var abcTypeList = [];
 var carBrandList = [];
 var queryForm = null;
+var mainTabs = null;
 $(document).ready(function() {
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partListUrl);
+    partLoalGrid = nui.get("partLoalGrid");
+    partLoalGrid.setUrl(partListUrl);
+    mainTabs = nui.get("mainTabs");
     partGrid.on("beforeload",function(e){
         e.data.token = token;
     });
@@ -36,6 +41,48 @@ $(document).ready(function() {
                 partTypeHash[v.id] = v;
             });
         }
+        var field = e.field;
+        if("isUniform" == field)
+        {
+            e.cellHtml = e.value == 1?"是":"否";
+        }
+        else if("isDisabled" == field)
+        {
+            e.cellHtml = e.value == 1?"失效":"有效";
+        }
+        else if("carTypeIdF" == field || "carTypeIdS" == field || "carTypeIdT" == field)
+        {
+            if(partTypeHash && partTypeHash[e.value])
+            {
+                e.cellHtml = partTypeHash[e.value].name||"";
+            }
+        }
+        else if("qualityTypeId" == field)
+        {
+            if(qualityHash[e.value])
+            {
+                e.cellHtml = qualityHash[e.value].name||"";
+            }
+        }
+        else if("partBrandId" == field)
+        {
+            if(brandHash[e.value])
+            {
+                e.cellHtml = brandHash[e.value].name||"";
+            }
+        }
+        else{
+            onDrawCell(e);
+        }
+    });
+    partLoalGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
+    partLoalGrid.on("load", function() {
+        onPartGridRowClick({});
+    });
+    partLoalGrid.on("drawcell",function(e)
+    {
         var field = e.field;
         if("isUniform" == field)
         {
@@ -97,6 +144,32 @@ $(document).ready(function() {
         });
     });
 
+    $("#search-code").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+    $("#search-name").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+    $("#search-applyCarModel").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+    $("#search-namePy").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+    $("#applyCarBrandId").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
+
 });
 function onDrawNode(e)
 {
@@ -136,6 +209,18 @@ function reloadData()
     {
         partGrid.reload();
     }
+    var tab = mainTabs.getActiveTab();
+    if(tab.name == "main"){
+        if(partGrid)
+        {
+            partGrid.reload();
+        }
+    }else if(tab.name == "local"){
+        if(partLoalGrid)
+        {
+            partLoalGrid.reload();
+        } 
+    }
 }
 function getSearchParams()
 {
@@ -159,15 +244,28 @@ function doSearch(params)
     {
         params.namePy = params.namePy.toUpperCase();
     }
-    partGrid.load({
-        params:params
-    });
+    var tab = mainTabs.getActiveTab();
+    if(tab.name == "main"){
+        params.orgid = 0;
+        partGrid.load({
+            params:params
+        });  
+    }else if(tab.name == "local"){
+        params.orgid = currOrgId;
+        partLoalGrid.load({
+            params:params,
+            token:token
+        });  
+    }
+
+
+
 }
 function addPart(){
     addOrEditPart();
 }
 function editPart(){
-    var row = partGrid.getSelected();
+    var row = partLoalGrid.getSelected();
     if(row && row.orgid == currOrgid)
     {
         addOrEditPart(row);
@@ -242,8 +340,7 @@ function onPartGridRowClick(e)
 }
 function disablePart()
 {
-    var row = partGrid.getSelected();
-    console.log(row);
+    var row = partLoalGrid.getSelected();
     if(!row)
     {
         nui.alert("请选择要禁用的配件");
@@ -257,7 +354,7 @@ function disablePart()
 }
 function enablePart()
 {
-    var row = partGrid.getSelected();
+    var row = partLoalGrid.getSelected();
     console.log(row);
     if(!row)
     {

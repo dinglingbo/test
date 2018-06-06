@@ -142,7 +142,7 @@
                                                  enabled="true"
                                                  class="nui-buttonedit"
                                                  emptyText="请选择供应商..."
-                                                 onbuttonclick=""
+                                                 onbuttonclick="selectSupplier('guestId')"
                                                  onvaluechanged="onGuestValueChanged"
                                                  width="100%"
                                                  placeholder="请选择供应商"

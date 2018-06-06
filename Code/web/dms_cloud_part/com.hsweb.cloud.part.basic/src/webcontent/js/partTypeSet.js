@@ -32,58 +32,9 @@ function onRenderer(e) {
 function refresh(){
 	doSearch()
 }
-var deleteUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.deleteComPartTypeById.biz.ext";
-function deleteType(){
-	var row = mainGrid.getSelected();
-	if(row && row.id){
-		var orgid = row.orgid;
-		if(currOrgId != "0" && orgid == 0) {
-			nui.alert("此记录不能删除!");
-			return;
-		}
-
-		nui.confirm("是否确定删除？", "友情提示",
-        	function (action) { 
-                if (action == "ok") {                 
-                    nui.mask({
-						el : document.body,
-						cls : 'mini-mask-loading',
-						html : '删除中...'
-					});
-
-					nui.ajax({
-						url : deleteUrl,
-						type : "post",
-						data : JSON.stringify({
-							id: row.id,
-							token: token
-						}),
-						success : function(data) {
-							nui.unmask(document.body);
-							data = data || {};
-							if (data.errCode == "S") {
-								nui.alert("删除成功!");
-								
-								doSearch();
-							} else {
-								nui.alert(data.errMsg || "删除失败!");
-							}
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							console.log(jqXHR.responseText);
-						}
-					});
-                }
-            }
-        );
-
-		
-	}else{
-		nui.alert("请选择记录！");
-	}
+function onDrawCell(e){
+	nui.alert(1);
 }
-
 //弹出界面新建后更新数据
 function addNewRow(row){
 	/*var indexArray = [];

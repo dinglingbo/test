@@ -10,7 +10,7 @@
 	//String contextPath = request.getContextPath();
 %>
 <head>
-<title>零零汽注册</title>
+<title>配思注册</title>
 
 
 <%@include file="/common/sysCommon.jsp"%>

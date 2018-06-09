@@ -1,7 +1,7 @@
 /**
  * Created by steven on 2018/1/31.
  */
-baseUrl = apiPath + sysApi + "/";;
+baseUrl = apiPath + sysApi + "/";
 var gridUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
 var grid;
 var btnisDimission;

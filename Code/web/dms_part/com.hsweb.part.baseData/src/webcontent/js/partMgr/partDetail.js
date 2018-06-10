@@ -133,12 +133,12 @@ function onOk()
     }
   //  data.abcType = "";
     data.name = nui.get("partNameId").getText();
-    data.fullName = data.name;
+    data.fullName = data.name;    
+    data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
     if(data.spec)
     {
         data.fullName = data.fullName + " " + data.spec;
     }
-    data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
     if(!data.id)
     {
         var matches = data.code.match(/([\w]*)/ig);
@@ -286,7 +286,7 @@ function onButtonEdit()
     partName = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.partNameSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.partNameSelect.flow?token="+token,
         title: "配件名称查询",
         width:900, height: 650,
         allowDrag:true,

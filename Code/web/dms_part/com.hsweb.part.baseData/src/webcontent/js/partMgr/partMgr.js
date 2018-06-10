@@ -395,3 +395,25 @@ function savePart(part,successTip,errorTip)
         }
     });
 }
+function importGuest(){
+    nui.open({
+        targetWindow: window,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.importPart.flow?token="+token,
+        title: "配件导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.initData({
+                    partBrandIdList:brandList
+                });
+        },
+        ondestroy: function (action)
+        {
+            doSearch();
+        }
+    });
+}

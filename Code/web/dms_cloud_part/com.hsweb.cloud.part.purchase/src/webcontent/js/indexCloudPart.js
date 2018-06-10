@@ -192,9 +192,9 @@ function toSellOrder(){
 }
 function toEPC(){
 	var item={};
-	item.id = "666";
+	item.id = "1521";
 	item.text = "EPC云服务";
-	item.url = webPath + cloudPartDomain + "/com.hsweb.system.llq.vin.epcService.flow";
+	item.url = webPath + sysDomain + "/com.hsweb.system.llq.vin.vinLinkMain.flow";
 	item.iconCls = "fa fa-car";
 	window.parent.activeTab(item);
 }

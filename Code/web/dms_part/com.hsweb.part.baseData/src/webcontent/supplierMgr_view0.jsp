@@ -58,6 +58,7 @@
             <td style="width:100%;">
                 <a class="nui-button" iconCls="" plain="true" onclick="addSuplier"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" id="editBtn" iconCls="" plain="true" onclick="editSuplier"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
             </td>
         </tr>
     </table>

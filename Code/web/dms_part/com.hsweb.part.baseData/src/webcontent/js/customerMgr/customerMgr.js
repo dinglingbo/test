@@ -225,3 +225,31 @@ function onGridRowClick(e)
         nui.get("editBtn").enable();
     }
 }
+function importGuest(){
+    billTypeIdList = nui.get("billTypeId").getData();
+    settTypeIdList = nui.get("settType").getData();
+
+    nui.open({
+        targetWindow: window,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.importClient.flow?token="+token,
+        title: "客户导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.initData({
+                    province:provinceList,
+                    city:cityList,
+                    billTypeId:billTypeIdList,
+                    settTypeId:settTypeIdList
+                });
+        },
+        ondestroy: function (action)
+        {
+            doSearch();
+        }
+    });
+}

@@ -191,6 +191,10 @@
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">orgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="88" y="202"/>

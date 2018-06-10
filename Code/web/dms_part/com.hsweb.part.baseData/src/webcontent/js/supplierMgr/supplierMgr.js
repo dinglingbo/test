@@ -145,7 +145,7 @@ function addSuplier()
     managerDutyList = nui.get("managerDuty").getData();
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+        url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
         title: "供应商资料", width: 530, height: 480,
         allowDrag:true,
         allowResize:false,
@@ -180,40 +180,59 @@ function editSuplier()
         nui.alert("请选择要编辑的数据");
         return;
     }
-    billTypeIdList = nui.get("billTypeId").getData();
-    supplierTypeList = nui.get("supplierType").getData();
-    settTypeIdList = nui.get("settType").getData();
-    managerDutyList = nui.get("managerDuty").getData();
-    nui.open({
-        targetWindow: window,
-        url: "com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
-        title: "供应商资料", width: 530, height: 480,
-        allowDrag:true,
-        allowResize:false,
-        onload: function ()
-        {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData({
-                province:provinceList,
-                city:cityList,
-                supplier:row,
-                supplierType:supplierTypeList,
-                billTypeId:billTypeIdList,
-                settTypeId:settTypeIdList,
-                tgrade:tgradeList,
-                managerDuty:managerDutyList
-            });
-        },
-        ondestroy: function (action)
-        {
-            if(action == "ok")
+
+    if(row && row.orgid == currOrgid)
+    {    
+        billTypeIdList = nui.get("billTypeId").getData();
+        supplierTypeList = nui.get("supplierType").getData();
+        settTypeIdList = nui.get("settType").getData();
+        managerDutyList = nui.get("managerDuty").getData();
+        nui.open({
+            targetWindow: window,
+            url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+            title: "供应商资料", width: 530, height: 480,
+            allowDrag:true,
+            allowResize:false,
+            onload: function ()
             {
-                grid.reload();
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData({
+                    province:provinceList,
+                    city:cityList,
+                    supplier:row,
+                    supplierType:supplierTypeList,
+                    billTypeId:billTypeIdList,
+                    settTypeId:settTypeIdList,
+                    tgrade:tgradeList,
+                    managerDuty:managerDutyList
+                });
+            },
+            ondestroy: function (action)
+            {
+                if(action == "ok")
+                {
+                    grid.reload();
+                }
             }
-        }
-    });
+        });
+    }
 }
 function onRowDblClick(e)
 {
     editSuplier();
+}
+function onGridRowClick(e)
+{
+    var row = e.record||grid.getSelected();
+    if(!row)
+    {
+        return;
+    }
+    if(row.orgid != currOrgid)
+    {
+        nui.get("editBtn").disable();
+    }
+    else{
+        nui.get("editBtn").enable();
+    }
 }

@@ -46,7 +46,7 @@
         <tr>
             <td style="width:100%;">
                 <a class="nui-button" iconCls="" plain="true" onclick="addCustomer"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="editCustomer"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" id="editBtn" iconCls="" plain="true" onclick="editCustomer"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
             </td>
         </tr>
     </table>
@@ -60,6 +60,7 @@
          totalField="page.count"
          onrowdblclick="onRowDblClick"
          sortMode="client"
+         onrowclick="onGridRowClick"
          frozenStartColumn="0"
          frozenEndColumn="4">
         <div property="columns">

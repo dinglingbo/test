@@ -210,4 +210,18 @@ function onRowDblClick(e)
 {
     editCustomer();
 }
-
+function onGridRowClick(e)
+{
+    var row = e.record||grid.getSelected();
+    if(!row)
+    {
+        return;
+    }
+    if(row.orgid != currOrgid)
+    {
+        nui.get("editBtn").disable();
+    }
+    else{
+        nui.get("editBtn").enable();
+    }
+}

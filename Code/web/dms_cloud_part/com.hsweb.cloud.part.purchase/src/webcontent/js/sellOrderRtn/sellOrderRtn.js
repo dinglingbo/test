@@ -715,7 +715,8 @@ function selectSupplier(elId) {
         onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isClient: 1
+                isClient: 1,
+                guestType:'01020102'
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -1257,16 +1258,12 @@ function onCellCommitEdit(e) {
         }else if(e.field == "comPartCode"){
             oldValue = e.oldValue;
             oldRow = row;
-            if(!e.value){
+            /*if(!e.value){
                 nui.alert("请输入编码!","提示",function(){
                     var row = rightGrid.getSelected();
                     rightGrid.removeRow(row);
                     addNewRow(false);
                 });
-/*
-                var newRow = {};
-                rightGrid.updateRow(row, newRow);
-                rightGrid.beginEditCell(row, "comPartCode");*/
                 return;
             }else{
                 var rs = addInsertRow(e.value,row);
@@ -1278,7 +1275,7 @@ function onCellCommitEdit(e) {
                 }else{
                     //rightGrid.beginEditCell(row, "comUnit");
                 }
-            }
+            }*/
             
         }else if(e.field == "remark"){
             //addNewKeyRow();
@@ -1299,6 +1296,25 @@ function onCellEditEnter(e){
             addNewKeyRow();
         }else if(column.field == "remark"){
             addNewKeyRow();
+        }else if(column.field == "comPartCode"){
+            if(!record.comPartCode){
+                nui.alert("请输入编码!","提示",function(){
+                    var row = rightGrid.getSelected();
+                    rightGrid.removeRow(row);
+                    addNewRow(false);
+                });
+                return;
+            }else{
+                var rs = addInsertRow(record.comPartCode,record);
+                if(!rs){
+                    var newRow = {comPartCode: ""};
+                    rightGrid.updateRow(record, newRow);
+                    rightGrid.beginEditCell(record, "comPartCode");
+                    return;
+                }else{
+                    rightGrid.beginEditCell(record, "comUnit");
+                }
+            }
         }
     }
 }

@@ -623,7 +623,8 @@ function selectSupplier(elId) {
         onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1
+                isSupplier: 1,
+                guestType:'01020202'
             };
             iframe.contentWindow.setGuestData(params);
         },

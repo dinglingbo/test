@@ -145,7 +145,7 @@
 </script>
 <script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
 <script src="<%=sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
-<script src="<%=sysDomain%>/common/js/init.js?v=1.0" type="text/javascript"></script>
+<script src="<%=sysDomain%>/common/js/init.js?v=1.1" type="text/javascript"></script>
 <script src="<%=sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
 <style type="text/css">

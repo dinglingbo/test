@@ -272,10 +272,15 @@
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值2" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link20" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="link20" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>invokePojo3</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="1104" y="313"/>

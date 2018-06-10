@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>供应商选择界面</title>
-<script src="<%=webPath + partDomain%>/commonPart/js/guestSelect.js?v=1.0.0"></script>
+<title>往来单位选择界面</title>
+<script src="<%=webPath + partDomain%>/commonPart/js/guestSelect.js?v=1.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -23,22 +23,19 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-                <label style="font-family:Verdana;">名称：</label>
-                <input class="nui-textbox" width="100" id="name"/>
-                <label style="font-family:Verdana;">编码：</label>
-                <input class="nui-textbox" width="100" id="code"/>
-                <label style="font-family:Verdana;">电话：</label>
-                <input class="nui-textbox" width="100" id="phone"/>
-                <!--<label style="font-family:Verdana;">类型：</label>-->
-                <!--<input id="type"-->
-                       <!--class="nui-combobox width1"-->
-                       <!--textField="text"-->
-                       <!--valueField="id"-->
-                       <!--emptyText="请选择..."-->
-                       <!--url=""-->
-                       <!--allowInput="true"-->
-                       <!--showNullItem="true"-->
-                       <!--nullItemText="请选择..."/>-->
+                <input emptyText="名称" class="nui-textbox" width="100" id="name"/>
+                <input emptyText="编码" class="nui-textbox" width="100" id="code"/>
+                <input emptyText="电话" class="nui-textbox" width="100" id="phone"/>
+                <input id="type"
+                       visible = "false"
+                       class="nui-combobox width1"
+                       textField="name"
+                       valueField="customid"
+                       emptyText="请选择类型"
+                       url=""
+                       allowInput="true"
+                       showNullItem="true"
+                       nullItemText="请选择..."/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示禁用：</label>
                 <input class="nui-checkbox" width="100" id="showDisabled" trueValue="1" falseValue="0"/>

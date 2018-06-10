@@ -142,6 +142,12 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeList">  
+                (guest_type in ($guestTypeList$))
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="guestType">  
+                (guest_type = #guestType#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="supplierType">  
                 (supplier_type = #supplierType#)
             </isNotEmpty>
@@ -475,5 +481,46 @@
             </isNotEmpty>  
         </dynamic>
     </select>
+    
+    <select id="queryLogisticsList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <!-- 物流公司 -->
+    	SELECT 
+			a.id id,
+			a.orgid orgid,
+			a.code code,
+			a.py_name pyName,
+			a.full_name fullName,
+			a.short_name shortName,
+			a.manager manager,
+			a.mobile mobile,
+			a.order_index orderIndex,
+			a.is_disabled isDisabled
+		FROM
+			com_guest a 
+		WHERE
+			(a.orgid = 0 or a.orgid = #orgid#)
+			and a.guest_type = '01020204'
+		<dynamic>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="name">  
+                (a.full_name like '%$name$%' or a.short_name like '%$name$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (a.full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (a.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">  
+                (a.short_name like '%$shortName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="manager">  
+                (a.manager = #manager#)
+            </isNotEmpty>
+        </dynamic>
+		order by a.order_index asc
+	</select>
     
 </sqlMap>

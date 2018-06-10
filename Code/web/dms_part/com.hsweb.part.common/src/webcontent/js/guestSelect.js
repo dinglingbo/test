@@ -103,19 +103,34 @@ function setGuestData(data){
 	if(data) {
         if(data.isSupplier){
             isSupplier = data.isSupplier;
+            if(isSupplier == 1){
+                initDicts({
+                    type:GUEST_TYPE_S
+                },null);
+            }
+            nui.get("type").show();
         }
         if(data.isClient){
             isClient = data.isClient;
+            if(isClient == 1){
+                initDicts({
+                    type:GUEST_TYPE
+                },null);
+            }
+            nui.get("type").show();
         }
         if(data.guestType){
             guestType = data.guestType;
+
+            nui.get("type").setValue(guestType);
         }
         if(data.supplierType){
             supplierType = data.supplierType;
         }
+
     }
 
-    onSearch();
+    //onSearch();
 }
 function onSearch(){
     search();

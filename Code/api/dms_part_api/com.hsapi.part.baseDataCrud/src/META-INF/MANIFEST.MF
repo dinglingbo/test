@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.part.common,com.eos.foundation,com.hsapi.par
- t.data
+Require-Bundle: com.hsapi.cloud.part.common,com.hsapi.part.common,com.
+ hsapi.part.data,com.eos.foundation
 Bundle-Vendor: chenziming
 eos-webCtxPath: baseDataCrud
 Bundle-Version: 1.0.0

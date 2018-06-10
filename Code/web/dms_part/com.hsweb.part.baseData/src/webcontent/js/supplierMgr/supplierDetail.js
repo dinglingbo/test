@@ -12,7 +12,7 @@ function initForm(){
 }
 var billTypeId = null;
 var settTypeId = null;
-var guestType = null;
+var supplierType = null;
 var managerDuty = null;
 var tgrade = null;
 function initComboBox()
@@ -20,7 +20,7 @@ function initComboBox()
     provinceEl = nui.get("provinceId");
     billTypeId = nui.get("billTypeId");
     settTypeId = nui.get("settTypeId");
-    guestType = nui.get("guestType");
+    supplierType = nui.get("supplierType");
     managerDuty = nui.get("managerDuty");
     tgrade = nui.get("tgrade");
 }
@@ -218,7 +218,7 @@ function setData(data)
     });
     billTypeId.setData(billTypeIdList);
     settTypeId.setData(settTypeIdList);
-    guestType.setData(guestTypeList);
+    supplierType.setData(guestTypeList);
     managerDuty.setData(managerDutyList);
     tgrade.setData(tgradeList);
 

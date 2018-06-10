@@ -1,0 +1,84 @@
+<antlib>
+	<taskdef name="eosCompile" classname="com.primeton.studio.ear.core.ant.task.EosCompileTask">
+		<classpath>
+			<pathelement location="${eclipse_plugins}/org.eclipse.equinox.common_3.6.200.v20130402-1505.jar"/>
+			<pathelement location="${eclipse_plugins}/org.eclipse.equinox.preferences_3.5.100.v20130422-1538.jar"/>
+			<pathelement location="${eclipse_plugins}/org.eclipse.equinox.registry_3.5.301.v20130717-1549.jar"/>
+			<pathelement location="${eclipse_plugins}/org.eclipse.core.runtime_3.9.100.v20131218-1515.jar"/>
+			<pathelement location="${eclipse_plugins}/org.eclipse.osgi_3.9.1.v20140110-1610.jar"/>
+			<pathelement location="${eclipse_plugins}/org.eclipse.core.resources_3.8.101.v20130717-0806.jar"/>
+			<pathelement location="${eclipse_plugins}/org.eclipse.core.jobs_3.5.300.v20130429-1813.jar"/>
+			<pathelement location="${eclipse_plugins}/org.eclipse.jdt.core_3.9.2.v20140114-1555.jar"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.server.library_7.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.server.library_7.1.3.0/bin"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.library_5.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.library_5.1.3.0/bin"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.runtime_5.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.runtime_5.1.3.0/bin"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.core_5.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.emf.core_5.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.sca_5.1.3.0.jar"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0/bin"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.spring.component.core_7.1.3.0.jar"/>
+			<pathelement location="${wtp_plugins}/org.eclipse.wst.wsdl_1.2.300.v201109010430.jar"/>
+			<pathelement location="D:/primeton/platform/ide/eclipse/plugins/org.apache.xerces_2.9.0.v201101211617.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.sca.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.biz.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.component.java.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.workflow.business.core_7.0.0.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.sql.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.spring.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.component.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.entity.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.wsdl.core_5.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.pageflow.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.jsp.core_7.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.xsd.core_5.1.3.0.jar"/>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.workflow.core_7.0.0.0.jar"/>
+			<pathelement location="${tempDir}/compile/classes"/>
+		</classpath>
+	</taskdef>
+	<taskdef name="ecdDeployOffLine" classname="com.primeton.studio.ear.core.ant.task.EcdDeployOffLineTask">
+		<classpath>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.core_5.1.3.0.jar"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.runtime_5.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.runtime_5.1.3.0/bin"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0/bin"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.library_5.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.library_5.1.3.0/bin"/>
+			<pathelement location="${tempDir}/compile/classes"/>
+		</classpath>
+	</taskdef>
+	<taskdef name="moveLibrary" classname="com.primeton.studio.ear.core.ant.task.MoveLibraryTask">
+		<classpath>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0/bin"/>
+		</classpath>
+	</taskdef>
+	<taskdef name="exportReport" classname="com.primeton.studio.ear.core.ant.task.ExportEarReportTask">
+		<classpath>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.ear.core_7.1.3.0/bin"/>
+		</classpath>
+	</taskdef>
+</antlib>

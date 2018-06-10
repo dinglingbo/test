@@ -4,7 +4,7 @@
 
 var baseUrl = apiPath + sysApi + "/";
 var leftGridUrl = baseUrl + "com.hsapi.system.employee.roleRight.queryRole.biz.ext";
-var saveUrl = baseUrl + "com.hsapi.system.employee.roleRight.saveRole.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.system.employee.roleRight.saveRoles.biz.ext";
 
 var leftGrid;
 var roleForm;
@@ -13,7 +13,7 @@ var action;
 $(document).ready(function(v) {
 	leftGrid = nui.get("leftGrid");
 	leftGrid.setUrl(leftGridUrl);
-    roleForm = nui.get("roleForm");
+    roleForm = new nui.get("#roleForm");
 
     queryRole();
 });
@@ -26,9 +26,27 @@ function queryRole() {
     },function(){
         nui.alert("角色下载失败！");
     });
+
+    var db = new nui.DataBinding();
+    db.bindForm("roleForm", leftGrid);    
 }
 
 function editRole(action) {
+    var row = {};
+    if (action != 'new') {
+        var row = leftGrid.getSelected();
+        if (!row) {
+            alert("请选中一条记录");
+            return;
+        }   
+    } else {
+        var timestamp = new Date().getTime();
+        var newRow = {roleName: "新角色", roleCode: timestamp};
+        leftGrid.addRow(newRow, 0);
+
+        leftGrid.deselectAll();
+        leftGrid.select(newRow);
+    }
     action = action;
     var title = action == 'new' ? '新增角色' : '修改角色';
     roleForm.setTitle(title);
@@ -36,16 +54,13 @@ function editRole(action) {
 }
 
 function save() {
-    var role = {};
+    var role = leftGrid.getChanges();
+    var json = nui.encode(role);
     
     if (action == 'new') {
         role = {action: action};
-    } else {
+    } else {            
         var row = leftGrid.getSelected();
-        if (!row) {
-            alert("请选中一条记录");
-            return;
-        }
         role.roleId = row.roleId;   
     }
 
@@ -60,17 +75,21 @@ function save() {
         type:"post",
         data:JSON.stringify({
             capRole: role,
-            tenantId: 'default',
+            //tenantId: 'default',
             token:token
         }),
         success:function(data)
         {
             nui.unmask();
-            callback && callback(data);
+            if (data.errCode == "S"){
+            }else{
+                nui.alert(data.errMsg||"保存失败");
+            }
         },
         error:function(jqXHR, textStatus, errorThrown){
             console.log(jqXHR.responseText);
-            nui.alert("保存失败！");
+            nui.unmask();
+            nui.alert("网络出错");
         }
     });
     roleForm.hide();

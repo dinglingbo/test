@@ -11,7 +11,7 @@
 <head>
     <title>角色权限管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/js/roleRightMgr.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/common/js/roleRightMgr.js?v=1.7" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     body {
@@ -65,8 +65,11 @@
                 
                 <div property="columns">
                     <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
-                    <div field="roleId"  name="roleId" width="140" headeralign="left" visible="false"><strong>角色名称</strong></div>
-                    <div field="roleName"  name="roleName" width="140" headeralign="left" ><strong>角色名称</strong></div>
+                    <div field="roleId" width="140" headeralign="left" visible="false"><strong>角色名称</strong></div>
+                    <div field="roleCode" width="140" headeralign="left" visible="false"><strong>角色编码</strong></div>
+                    <div field="tenantId" width="140" headeralign="left" visible="false"><strong>租户ID</strong></div>
+                    <div field="roleName" width="140" headeralign="left" ><strong>角色名称</strong></div>
+                    <div field="roleDesc" width="140" headeralign="left" visible="false"><strong>角色描述</strong></div>
                 </div>
             </div> 
 
@@ -112,20 +115,19 @@
     </div>
 </div>
 <div id="roleForm" class="nui-window" title="窗体" style="width:500px;height:200px;"  allowDrag="true" >
-    <input name="id" class="nui-hidden" />
+    <input id="roleId" name="roleId" class="nui-hidden" />
+    <input id="roleCode" name="roleCode" class="nui-hidden" />
+    <input id="tenantId" name="tenantId" class="nui-hidden" />
     <table style="table-layout: fixed; border-collapse:separate;border-spacing:5px; ">
         <tr>
-            <td  style="width: 90px; text-align: right">角色编码：</td>
-            <td><input class="nui-textbox" id="postCode" name="postCode" /></td>
-            <td>角色名称：</td>
-            <td><input class="nui-textbox"  id="post" name="post" /></td>
+            <td style="width: 90px;text-align:right">角色名称：</td>
+            <td><input class="nui-textbox"  id="roleName" name="roleName" style="width: 324px;"/></td>
 
         </tr>
 
         <tr>
             <td style="width: 90px;text-align:right">角色描述：</td>
-            <td colspan="3"><input class="nui-textarea" id="postRemark" name="postRemark" 
-                style="width: 324px;height:60px;"  /></td>
+            <td colspan="3"><input class="nui-textarea" id="roleDesc" name="roleDesc" style="width: 324px;height:60px;"  /></td>
             </tr>
         </table> 
 

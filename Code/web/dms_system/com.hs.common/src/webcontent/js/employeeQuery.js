@@ -215,3 +215,22 @@ function changebutton(){
         else btnisDimission.setText("复职(&D)");
 	}
 }
+function importGuest(){
+
+    nui.open({
+        targetWindow: window,
+        url: webPath + sysDomain + "/com.hs.common.importEmployee.flow?token="+token,
+        title: "员工导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+        },
+        ondestroy: function (action)
+        {
+            search();
+        }
+    });
+}

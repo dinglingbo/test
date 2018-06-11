@@ -104,19 +104,19 @@
 				<div type="indexcolumn">序号</div>
 				<div field="姓名" width="50px" summaryType="count" headerAlign="center" allowSort="true">
 					姓名<input property="editor" class="nui-textbox"/></div>
-				<div field="手机号码" width="120px" headerAlign="center" allowSort="true">
+				<div field="手机号码" width="100px" headerAlign="center" allowSort="true">
 					手机号码<input property="editor" class="nui-textbox"/></div>
-				<div field="性别" width="80px" headerAlign="center" allowSort="true">
+				<div field="性别" width="50px" headerAlign="center" allowSort="true">
 					性别<input property="editor" class="nui-textbox"/></div>
-				<div field="身份证号码" width="80px" headerAlign="center" allowSort="true">
+				<div field="身份证号码" width="100px" headerAlign="center" allowSort="true">
 					身份证号码<input property="editor" class="nui-textbox"/></div>
-				<div field="生日" width="60px" headerAlign="center" allowSort="true">
+				<div field="生日" width="100px" headerAlign="center" allowSort="true">
 					生日<input property="editor" class="nui-textbox"/></div>
-				<div field="入职日期" width="60px" headerAlign="center" allowSort="true">
+				<div field="入职日期" width="100px" headerAlign="center" allowSort="true">
 					入职日期<input property="editor" class="nui-textbox"/></div>
-				<div field="紧急联系人" width="100px" headerAlign="center" allowSort="true">
+				<div field="紧急联系人" width="50px" headerAlign="center" allowSort="true">
 					紧急联系人<input property="editor" class="nui-textbox"/></div>
-                <div field="紧急联系人电话" width="60px" headerAlign="center" allowSort="true">
+                <div field="紧急联系人电话" width="100px" headerAlign="center" allowSort="true">
                     紧急联系人电话<input property="editor" class="nui-textbox"/></div>
 			</div>
 		</div>

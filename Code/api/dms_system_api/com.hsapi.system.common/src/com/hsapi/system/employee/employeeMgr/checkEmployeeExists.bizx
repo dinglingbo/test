@@ -73,7 +73,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -87,12 +87,20 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">systemAccount</process:from>
-      <process:to type="query">cond/_expr[1]/systemAccount</process:to>
+      <process:from type="query" pattern="reference">idcardno</process:from>
+      <process:to type="query">cond/_expr[1]/idcardno</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">cond/_expr[2]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
@@ -327,7 +335,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="eId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="systemAccount" primitiveType="String"/>
+    <process:input description="" isArray="false" name="idcardno" primitiveType="String"/>
     <process:input description="add,edit" isArray="false" name="type" primitiveType="String"/>
     <process:input description="empid" isArray="false" name="id" primitiveType="Int"/>
   </process:inputs>

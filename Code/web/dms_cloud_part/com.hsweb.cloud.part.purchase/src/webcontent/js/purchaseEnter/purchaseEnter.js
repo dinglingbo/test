@@ -963,18 +963,34 @@ function onPrint() {
 
         if(!row.id) return;
 
-        nui.open({
+        var orderTypeId = row.orderTypeId;
+        if(orderTypeId == 1){
+            nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-                    + row.id,// "view_Guest.jsp",
-            title : "采购订单打印",
-            width : 900,
-            height : 600,
-            onload : function() {
-                var iframe = this.getIFrameEl();
-                // iframe.contentWindow.setInitData(storeId, 'XSD');
-            }
-        });
+                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+                        + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+                title : "进货单打印",
+                width : 900,
+                height : 600,
+                onload : function() {
+                    var iframe = this.getIFrameEl();
+                    // iframe.contentWindow.setInitData(storeId, 'XSD');
+                }
+            });
+        }else if(orderTypeId == 4){
+            nui.open({
+
+                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
+                        + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+                title : "销售退货打印",
+                width : 900,
+                height : 600,
+                onload : function() {
+                    var iframe = this.getIFrameEl();
+                    // iframe.contentWindow.setInitData(storeId, 'XSD');
+                }
+            });
+        }
     }
 
 }

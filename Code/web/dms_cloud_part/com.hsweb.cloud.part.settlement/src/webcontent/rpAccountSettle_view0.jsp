@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=2.3.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=2.3.1"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -714,7 +714,7 @@
                             <div name="action" width="50" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
                             <div field="settAccountId" type="comboboxcolumn" width="50" headerAlign="center" header="结算账户">
                                 <input  property="editor" enabled="true" name="settleAccount" dataField="settleAccount" class="nui-combobox" valueField="id" textField="name" 
-                                          url="com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext"
+                                          url=""
                                           onvaluechanged="onAccountValueChanged" emptyText=""  vtype="required"
                                           /> 
                             </div>

@@ -70,8 +70,8 @@ $(document).ready(function(v) {
             {
                 if(supplierList[i].guestId == rtnList[j].guestId)
                 {
-                    supplierList[i]["orderRtnQty"] = enterList[j]["orderRtnQty"];
-                    supplierList[i]["orderRtnAmt"] = enterList[j]["orderRtnAmt"];
+                    supplierList[i]["orderRtnQty"] = rtnList[j]["orderRtnQty"];
+                    supplierList[i]["orderRtnAmt"] = rtnList[j]["orderRtnAmt"];
                 }
             }
 
@@ -79,6 +79,7 @@ $(document).ready(function(v) {
             var enterAmt = supplierList[i]["orderAmt"]||0;
             var rtnQty = supplierList[i]["orderRtnQty"]||0;
             var rtnAmt = supplierList[i]["orderRtnAmt"]||0;
+
             if(enterQty!=0 || rtnQty!=0){
                 supplierList[i]["trueQty"] = enterQty - rtnQty;
             }
@@ -91,6 +92,7 @@ $(document).ready(function(v) {
               
         supplierGrid.setData(supplierList);
        
+        clearGrid(supplierGrid);
 
     });
 
@@ -118,8 +120,8 @@ $(document).ready(function(v) {
             {
                 if(partList[i].partId == rtnList[j].partId)
                 {
-                    partList[i]["orderRtnQty"] = enterList[j]["orderRtnQty"];
-                    partList[i]["orderRtnAmt"] = enterList[j]["orderRtnAmt"];
+                    partList[i]["orderRtnQty"] = rtnList[j]["orderRtnQty"];
+                    partList[i]["orderRtnAmt"] = rtnList[j]["orderRtnAmt"];
                 }
             }
 
@@ -139,6 +141,7 @@ $(document).ready(function(v) {
               
         partGrid.setData(partList);
        
+        clearGrid(partGrid);
 
     });
 
@@ -166,8 +169,8 @@ $(document).ready(function(v) {
             {
                 if(brandList[i].partBrandId == rtnList[j].partBrandId)
                 {
-                    brandList[i]["orderRtnQty"] = enterList[j]["orderRtnQty"];
-                    brandList[i]["orderRtnAmt"] = enterList[j]["orderRtnAmt"];
+                    brandList[i]["orderRtnQty"] = rtnList[j]["orderRtnQty"];
+                    brandList[i]["orderRtnAmt"] = rtnList[j]["orderRtnAmt"];
                 }
             }
 
@@ -187,6 +190,7 @@ $(document).ready(function(v) {
               
         partBrandGrid.setData(brandList);
     
+        clearGrid(partBrandGrid);
     });
 
     partTypeGrid.on("beforeload",function(e){
@@ -213,8 +217,8 @@ $(document).ready(function(v) {
             {
                 if(typeList[i].carTypeIdF == rtnList[j].carTypeIdF)
                 {
-                    typeList[i]["orderRtnQty"] = enterList[j]["orderRtnQty"];
-                    typeList[i]["orderRtnAmt"] = enterList[j]["orderRtnAmt"];
+                    typeList[i]["orderRtnQty"] = rtnList[j]["orderRtnQty"];
+                    typeList[i]["orderRtnAmt"] = rtnList[j]["orderRtnAmt"];
                 }
             }
 
@@ -233,6 +237,8 @@ $(document).ready(function(v) {
         }
               
         partTypeGrid.setData(typeList);
+
+        clearGrid(partTypeGrid);
     
     });
 
@@ -260,6 +266,18 @@ $(document).ready(function(v) {
     });
 
 });
+function clearGrid(grid){
+    var rows = grid.findRows(function(row){
+        var enterQty = row.orderQty||0;
+        var enterAmt = row.orderAmt||0;
+        var rtnQty = row.orderRtnQty||0;
+        var rtnAmt = row.orderRtnAmt||0;
+        if(enterQty <= 0 && enterAmt <= 0 && rtnQty <= 0 && rtnAmt <= 0){
+            return true;
+        }
+    });
+    grid.removeRows(rows);
+}
 function getSearchParam() {
 	var params = {};
     params.partBrandId = partBrandIdEl.getValue();

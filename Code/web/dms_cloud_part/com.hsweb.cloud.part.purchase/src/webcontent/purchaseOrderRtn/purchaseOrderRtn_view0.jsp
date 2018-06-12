@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.2"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -59,6 +59,7 @@
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
+                    <li iconCls="" onclick="quickSearch(8)" id="type7">已出库</li>
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..." visible="false"

@@ -3,8 +3,10 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPartStoreStock.biz.ext";
+var priceGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
+var priceGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var comPartNameAndPY = null;
@@ -24,6 +26,9 @@ $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+
+    priceGrid = nui.get("priceGrid");
+    priceGrid.setUrl(priceGridUrl);
 
     /*comPartNameAndPY = nui.get("comPartNameAndPY");
     comPartCode = nui.get("comPartCode");
@@ -68,6 +73,11 @@ function doSearch(params)
     //params.sortField = "b.stock_qty";
     //params.sortOrder = "desc";
     rightGrid.load({
+        params:params,
+        token:token
+    });
+
+    priceGrid.load({
         params:params,
         token:token
     });

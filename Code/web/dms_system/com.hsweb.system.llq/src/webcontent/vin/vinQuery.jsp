@@ -15,7 +15,7 @@
     <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.5" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.7" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.7.1" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -173,6 +173,6 @@
                 -->
             </div>
 	    </div>
-	</div>]
+	</div>
 </body>
 </html>

@@ -55,8 +55,8 @@ var abcTypeList = [
 function initComboBox()
 {
     applyCarModel = nui.get("applyCarbrandId");
-    abcType = nui.get("abcType");
-    abcType.setData(abcTypeList);
+    //abcType = nui.get("abcType");
+    //abcType.setData(abcTypeList);
     partBrandId = nui.get("partBrandId");
     qualityTypeId = nui.get("qualityTypeId");
     unit = nui.get("unit");
@@ -108,8 +108,7 @@ var requiredField = {
     partBrandId:"配件品牌",
     code:"编码",
     partNameId:"名称",
-    unit:"单位",
-    abcType:"ABC分类"
+    unit:"单位"
 };
 var oldData = null;
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePart.biz.ext";

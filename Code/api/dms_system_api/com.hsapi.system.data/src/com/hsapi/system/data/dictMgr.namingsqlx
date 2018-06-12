@@ -85,4 +85,44 @@
     	select id, parentid, name, shortname, pycode, code, areacode, postalcode 
     	from com_area where `level` = 2 and isdisabled = 0
     </select>
+    <!--配件品质   parent_id is null and is_disabled = 0 and orgid = 0   用于缓存配件品质-->
+    <select id="getPartQuality" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is null and is_disabled = 0 and orgid = 0
+    </select>
+    <!--配件品牌   parent_id is not null and is_disabled = 0 and orgid = 0  用于缓存配件品牌-->
+    <select id="getPartBrand" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is not null and is_disabled = 0 and orgid = 0
+    </select>
+    <!--配件分类    is_disabled = 0 and orgid = 0  用于缓存配件分类-->
+    <select id="getPartType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parentid as parentid,
+			   typelevel as typelevel, carbrandid as carbrandid
+		from com_part_type 
+		where isdisabled = 0 and orgid = 0
+		order by code 
+    </select>
+    <!--本机构配件品质   parent_id is null and is_disabled = 0 -->
+    <select id="getOwnPartQuality" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is null and is_disabled = 0 and orgid = #orgid#
+    </select>
+    <!--本机构配件品牌   parent_id is not null and is_disabled = 0 -->
+    <select id="getOwnPartBrand" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is not null and is_disabled = 0 and orgid = #orgid#
+    </select>
+    <!--本机构配件分类   is_disabled = 0 -->
+    <select id="getOwnPartType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parentid as parentid,
+			   typelevel as typelevel, carbrandid as carbrandid
+		from com_part_type 
+		where isdisabled = 0 and orgid = #orgid#
+		order by code 
+    </select>
 </sqlMap>

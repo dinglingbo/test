@@ -267,13 +267,22 @@ function quickSearch(type) {
         break;
     case 6:
         params.auditSign = 0;
-        querytypename = "未审";
+        params.billStatusId = 0;
+        querytypename = "草稿";
         querysign = 2;
         gsparams.auditSign = 0;
         break;
     case 7:
         params.auditSign = 1;
-        querytypename = "已审";
+        params.billStatusId = 1;
+        querytypename = "已提交";
+        querysign = 2;
+        gsparams.auditSign = 1;
+        break;
+    case 14:
+        params.auditSign = 1;
+        params.billStatusId = 4;
+        querytypename = "全部入库";
         querysign = 2;
         gsparams.auditSign = 1;
         break;
@@ -281,10 +290,11 @@ function quickSearch(type) {
         params.today = 1;
         params.startDate = getNowStartDate();
         params.endDate = addDate(getNowEndDate(), 1);
-        querytypename = "未审";
+        params.auditSign = 0;
+        params.billStatusId = 0;
+        querytypename = "草稿";
         gsparams.startDate = getNowStartDate();
         gsparams.endDate = addDate(getNowEndDate(), 1);
-        gsparams.auditSign = 0;
         break;
     }
     currType = type;
@@ -1112,9 +1122,9 @@ function onPrint() {
 
         nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-                    + row.id,// "view_Guest.jsp",
-            title : "采购订单打印",
+            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
+                    + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+            title : "销售退货打印",
             width : 900,
             height : 600,
             onload : function() {

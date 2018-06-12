@@ -2,7 +2,7 @@
  * Created by steven on 2018/1/31.
  */
 baseUrl = apiPath + sysApi + "/";;
-var gridUrl = baseUrl + "com.primeton.tenant.comProduct.comProductQuery.biz.ext";
+var storeUrl = baseUrl + "com.hsapi.system.confi.paramSet.getStoreList.biz.ext";
 
 
 var grid;
@@ -28,10 +28,44 @@ accountTypeList = [{ id: 1, name: "启用" },{ id: 0, name: "不启用" }];
 
 
 $(document).ready(function(v) {
+	
 
-		
+	getStoreList(function(data) {
+		var storeList=[];
+		storeList = data.data;
+		nui.get("defaultStore").setData(storeList);
+	});
+	getProvince(function(data) {
+	        list = data.rs;
+	        nui.get("provinceId").setData(list);
+
+	    });
+			
 });
 
+
+/*
+ * 
+ * 获取仓库列表*/
+var storeUrl = baseUrl + "com.hsapi.system.confi.paramSet.getStoreList.biz.ext";
+function getStoreList(callback){
+    nui.ajax({
+        url: storeUrl,
+        type: 'post',
+        data: nui.encode({
+        }),
+        cache: false,
+        success: function (data) {
+            if (data) {
+             callback(data);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            nui.alert(jqXHR.responseText);
+        }
+	});
+	
+}
 
 
 
@@ -196,9 +230,9 @@ function onProvinceChange(e){
     var se = e.selected;
     provinceCode = se.code;
   
-    getProvince(function(data) {
+/*    getProvince(function(data) {
     	  nui.get("cityId").setData(data.rs);
-    });
+    });*/
 }
 
 
@@ -420,15 +454,58 @@ showForm
 *
 *
 */
+var showFormUrl=baseUrl + "com.hsapi.system.confi.paramSet.saveShowSet.biz.ext";
 function showFormSet(){
 	
 	var form1=new nui.Form("#showForm");
 	var formData=form1.getData();
+	var s=[{
+		keyidId:"repair_careAlarm_default_show",
+		keyidValue:formData.repair_careAlarm_default_show
+		},{
+		keyidId:"repair__service_default_show",
+		keyidValue:formData.repair__service_default_show	
+		},{
+		keyidId:"repair__worklist_default_show",
+		keyidValue:formData.repair__worklist_default_show	
+		},{
+		keyidId:"repair__settorder_print_show",
+		keyidValue:formData.repair__settorder_print_show				
+		},
+		{
+		keyidId:"repair__default_store",
+		keyidValue:formData.defaultStore				
+		}
+		];
+	nui.ajax({
+		url:showFormUrl,
+		type:"post",
+		data:{
+			params:s
+		},
+		success: function (data) {
+               if (data.errCode == "S"){
+               	nui.unmask(document.body);
+               
+               	nui.alert("保存成功！");
+               	}
+				else{
+				nui.unmask(document.body);
+				
+               	nui.alert("保存失败！");
+               	}
+       
+           },
+           error: function (jqXHR, textStatus, errorThrown) {
+               nui.alert(jqXHR.responseText);
+           }
+	
+	});
 }
 
 /*
 returnForm
-显示设置操作
+回返操作
 *
 *
 */
@@ -445,13 +522,13 @@ function returnFormSet(){
 		},
 		success: function (data) {
                if (data.errCode == "S"){
-               	nui.unmask(document.body);
-               	if(iscopy==0)
+               
+              
                	nui.alert("保存成功！");
                	}
 				else{
-				nui.unmask(document.body);
-				if(iscopy==0)
+				
+			
                	nui.alert("保存失败！");
                	}
        

@@ -12,7 +12,7 @@
 %>
 <head>
 <title>参数设置</title>
-    <script src="<%= request.getContextPath() %>/config/js/parameterSet.js?v=1.1.8"></script>
+    <script src="<%= request.getContextPath() %>/config/js/parameterSet.js?v=1.3.6"></script>
 
 </head>
 <body>
@@ -230,17 +230,10 @@
 			对接省份:
 		    </td>
 		    <td style="width:500px;">
-		    <a class="nui-menubutton"  menu="popupMenu3"id="timeStatus" name="timeStatus" style="margin-left: 5%; width: 10%;"></a>
-		    </td>
+		    <input  class="nui-combobox" style="margin-left: 5%; width: 65%; "  emptytext="选择省份"  id="provinceId" name="provinceId" textField="name"  valueField="code" onvaluechanged="onProvinceChange" />
+			</td>
 		    <td>
-		    <ul id="popupMenu3" class="nui-menu" style="display:none;">
-                    <li>请选择</li>
-                    <li>超级管理员</li>
-                    <li>前台</li>
-                    <li>连锁店店长</li>
-               		<li>采购仓库</li>
-                    <li>维修技师</li>
-            </ul>
+		 
             </td>
 		    </tr>
 			 <tr>
@@ -408,7 +401,7 @@
                 
                 <div class="nui-panel" title="关怀提醒默认显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
-              		     显示建档人为本人的提醒：    <input  class="nui-checkbox" text="" value="N" trueValue="1" falseValue="0" name="showRecorderMyselfAlarm"/>
+              		     显示建档人为本人的提醒：    <input  class="nui-checkbox" text="" value="0" trueValue="1" falseValue="0" name="repair_careAlarm_default_show"/>
                 </div>
 
      </div>
@@ -416,7 +409,7 @@
                 
                 <div class="nui-panel" title="业务提醒默认显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
-              		     显示服务顾问为本人的工单：    <input  class="nui-checkbox" text="" value="N" trueValue="1" falseValue="0" name="showServiceMyselfOrderForFirm"/>
+              		     显示服务顾问为本人的工单：    <input  class="nui-checkbox" text="" value="0" trueValue="1" falseValue="0" name="repair__service_default_show"/>
                 </div>
 
      </div>
@@ -424,7 +417,7 @@
                 
                 <div class="nui-panel" title="工作列表默认显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
-              		     显示服务顾问为本人的工单：    <input  class="nui-checkbox" text="" value="N" trueValue="1" falseValue="0" name="showServiceMyselfOrderForWork"/>
+              		     显示服务顾问为本人的工单：    <input  class="nui-checkbox" text="" value="0" trueValue="1" falseValue="0" name="repair__worklist_default_show"/>
                 </div>
 
      </div>
@@ -433,10 +426,8 @@
                 <div class="nui-panel" title="默认仓库" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
               		
-              		     默认仓库：    <a class="nui-menubutton "  menu="#popupMenu"id="timeStatus" name="store">所有</a>
-                 	 <ul id="popupMenu" class="nui-menu" style="display:none;">
-                    <li>主仓库</li>
-                     </ul>	
+              		     默认仓库：           <input class="nui-combobox" id="defaultStore" name="defaultStore" value=""   width="70px"  textField="name" valueField="id"/>
+              
                 </div>
 
     	 </div>
@@ -444,7 +435,7 @@
                 
                 <div class="nui-panel" title="结算单打印显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
-              		   结算单打印抬头显示：    <input  class="nui-textbox" name="settPrintOrder"/>
+              		   结算单打印抬头显示：    <input  class="nui-textbox" name="repair__settorder_print_show"/>
                 </div>
 
      	</div>

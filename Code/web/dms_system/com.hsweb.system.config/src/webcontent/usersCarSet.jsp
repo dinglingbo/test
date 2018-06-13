@@ -18,11 +18,11 @@
 
 	<div id="tabs1" class="nui-tabs" activeIndex="0" style="width:95%;height:90%; margin-left: 3%; margin-top: 1% " plain="false">
 	<div title="客户级别">
-	 <div style="margin-left: 70%; margin-top: 1%; height: 5%;">
-	 <input class="nui-button"onclick="isalter" text="新建">
-	 <input class="nui-button"onclick="isalter" text="修改">
-	 <input class="nui-button"onclick="isalter" text="停用">
-	 <input class="nui-button"onclick="isalter" text="启用">
+	 <div style="margin-left: 68%; margin-top: 1%; height: 3%;">
+	 <input class="nui-button"onclick="isalter" iconCls="icon-add" text="新建">
+	 <input class="nui-button"onclick="isalter" iconCls="icon-edit" text="修改" >
+	 <input class="nui-button"onclick="isalter" iconCls="icon-remove" text="停用">
+	 <input class="nui-button"onclick="isalter" iconCls="icon-addnew" text="启用">
 	 </div>
 	 <div style="margin-left: 5%; margin-top: 1%; height: 80%;">
  
@@ -50,11 +50,11 @@
 	
 	</div>
 	<div title="客户来源">
-	 <div style="margin-left: 70%; margin-top: 1%; height: 5%;">
-	 <input class="nui-button"onclick="isalter" text="新建">
-	 <input class="nui-button"onclick="isalter" text="修改">
-	 <input class="nui-button"onclick="isalter" text="停用">
-	 <input class="nui-button"onclick="isalter" text="启用">
+	 <div style="margin-left: 68%; margin-top: 1%; height: 3%;">
+	 <input class="nui-button"onclick="isalter" iconCls="icon-add" text="新建">
+	 <input class="nui-button"onclick="isalter" iconCls="icon-edit" text="修改" >
+	 <input class="nui-button"onclick="isalter" iconCls="icon-remove" text="停用">
+	 <input class="nui-button"onclick="isalter" iconCls="icon-addnew" text="启用">
 	 </div>
 	 <div style="margin-left: 5%; margin-top: 1%; height: 80%;">
  

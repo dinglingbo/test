@@ -31,6 +31,8 @@ $(document).ready(function(v) {
       
 }
  function newRow(){
+		var form1=new nui.Form("#editform");
+		form1.setData('');
 	 	editWindow.show();
  }
  

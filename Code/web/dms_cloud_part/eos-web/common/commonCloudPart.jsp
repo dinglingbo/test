@@ -152,7 +152,7 @@
 	        }
 	    });
 	}
-	var getAllPartTypeUrl = apiPath + cloudPartApi + "/"+"com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
+	var getAllPartTypeUrl = apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
 	function getAllPartType(callback)
 	{
 	    nui.ajax({

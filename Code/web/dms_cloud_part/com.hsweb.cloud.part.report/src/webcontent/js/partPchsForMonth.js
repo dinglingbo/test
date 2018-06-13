@@ -37,6 +37,15 @@ $(document).ready(function(v) {
 
 	initGrid(getMonthStartDate(), addDate(getMonthEndDate(), 1));
 
+    keyEnterList = [];
+    keyRtnList = [];
+    keyEnterQtyList = [];
+    keyEnterAmtList = [];
+    keyRtnQtyList = [];
+    keyRtnAmtList = [];
+    keyTrueQtyList = [];
+    keyTrueAmtList = [];
+
 	rightGrid.on("beforeload",function(e){
         e.data.token = token;
     });

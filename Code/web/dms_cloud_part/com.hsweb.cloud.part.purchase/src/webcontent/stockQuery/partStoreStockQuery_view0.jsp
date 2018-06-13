@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -72,6 +72,7 @@
                 <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
             </td>
         </tr>
     </table>
@@ -109,7 +110,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                    <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
@@ -220,7 +221,33 @@
     </div>
 </div>
 
-
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+            <td colspan="1" align="center">配件编码</td>
+            <td colspan="1" align="center">配件名称</td>
+            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">品牌</td>
+            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">单位</td>
+            <td colspan="1" align="center">仓库</td>
+            <td colspan="1" align="center">仓位</td>
+            <td colspan="1" align="center">库存数量</td>
+            <td colspan="1" align="center">库存金额</td>
+            <td colspan="1" align="center">开单数量</td>
+            <td colspan="1" align="center">可售数量</td>
+            <td colspan="1" align="center">在途数量</td>
+            <td colspan="1" align="center">最近入库日期</td>
+            <td colspan="1" align="center">最近出库日期</td>
+            <td colspan="1" align="center">库存上限</td>
+            <td colspan="1" align="center">库存下限</td>
+            <td colspan="1" align="center">备注</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
 
 </body>
 </html>

@@ -61,7 +61,14 @@
                 <a class="nui-button" plain="false" onclick="deleteRole()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
 
             </div>
-            <div id="leftGrid" class="nui-datagrid" dataField="rs" style="width: 100%; height: 100%;" borderstyle="border:0;" allowcelledit="false" allowcellselect="true"  selectonload="true" showpager="false" showmodified="false"  >
+            <div class="nui-fit" >
+            <div id="leftGrid" class="nui-datagrid" dataField="rs" style="width: 100%; height: 100%;" 
+                idField="roleId" allowResize="true"
+                sizeList="[20,50,100]" 
+                pageSize="20" 
+                totalField="page.count" 
+                showPager="true" 
+                showPagerButtonIcon="true" >
                 
                 <div property="columns">
                     <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
@@ -72,6 +79,7 @@
                     <div field="roleDesc" width="140" headeralign="left" visible="false"><strong>角色描述</strong></div>
                 </div>
             </div> 
+            </div>
 
         </div>
         <div showcollapsebutton="true">

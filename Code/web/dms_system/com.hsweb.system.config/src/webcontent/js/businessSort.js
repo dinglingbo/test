@@ -71,6 +71,9 @@ $(document).ready(function(v) {
 			success: function (data) {
 	               if (data.errCode == "S"){
 	            	    nui.alert("保存成功！");
+	            		grid.load({
+	            			params:s,
+	            			});
 	               	}
 					else{
 					 	nui.alert("保存失败！");
@@ -84,9 +87,7 @@ $(document).ready(function(v) {
 		});
 	form1.setData('');
 	editWindow.hide();
-	grid.load({
-			params:s,
-	});
+
  }
 
 

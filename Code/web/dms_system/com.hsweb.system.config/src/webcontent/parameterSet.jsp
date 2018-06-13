@@ -173,8 +173,8 @@
 	 	</div>
 	 	</div>
 	 <div style=" width: 100%;height: 10%; margin-top: 3%;">
-	 	<a class="nui-button" style="margin-top: 1.5%;   float: right; margin-right:10%;">保存并复制</a>
-	 	<a class="nui-button"  style="margin-top: 1.5%;  float: right; margin-right:3%;" onclick="returnFormSet">保存</a>
+	 	
+	 	<a class="nui-button"  style="margin-top: 1.5%;  float: right; margin-right:10%;" onclick="returnFormSet">保存</a>
 	 </div>
 	 </div>
 	 </div>

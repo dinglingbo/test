@@ -12,4 +12,12 @@
 		</isNotNull>
 		ORDER BY order_index
     </select>
+    <select id="queryUserFrom" parameterClass="HashMap" resultClass="com.hsapi.system.data.repair.ComDataitems">
+    	SELECT id, name, is_disabled isDisabled,orgid
+        FROM com_dataitems
+		WHERE dictid='DDT20130703000075' and orgid ='0'  
+		<isNotNull property="userOrgid">
+			OR orgid = #userOrgid#
+		</isNotNull>
+	 </select>
 </sqlMap>

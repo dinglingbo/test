@@ -4,7 +4,8 @@
 
 var baseUrl = apiPath + sysApi + "/";
 var leftGridUrl = baseUrl + "com.hsapi.system.employee.roleRight.queryRole.biz.ext";
-var saveUrl = baseUrl + "com.hsapi.system.employee.roleRight.saveRoles.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.system.employee.roleRight.saveRole.biz.ext";
+var deleteRoleUrl = baseUrl + "com.hsapi.system.employee.roleRight.deleteRole.biz.ext";
 
 var leftGrid;
 var roleForm;
@@ -22,10 +23,9 @@ function queryRole() {
     var params = {};
     params.tenantId = 'default';
 
-    leftGrid.load(params,function(){
-    },function(){
-        nui.alert("角色下载失败！");
-    });
+    leftGrid.load({
+        params:params
+    });  
 
     var db = new nui.DataBinding();
     db.bindForm("roleForm", leftGrid);    
@@ -74,14 +74,16 @@ function save() {
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            capRole: role,
-            //tenantId: 'default',
+            capRole: role[0],
+            tenantId: 'default',
             token:token
         }),
         success:function(data)
         {
             nui.unmask();
             if (data.errCode == "S"){
+                roleForm.hide();
+                leftGrid.reload();  
             }else{
                 nui.alert(data.errMsg||"保存失败");
             }
@@ -91,9 +93,50 @@ function save() {
             nui.unmask();
             nui.alert("网络出错");
         }
+    });  
+}
+
+function deleteRole() {
+    var row = leftGrid.getSelected();
+    if (!row) {
+        alert("请选中一条记录");
+        return;
+    }
+
+    nui.confirm("确认删除吗？","提示",function(action) {
+        if (action == "ok") {
+             nui.mask({
+                el : document.body,
+                cls : 'mini-mask-loading',
+                html : '保存中...'
+            });
+
+            nui.ajax({
+                url:deleteRoleUrl,
+                type:"post",
+                data:JSON.stringify({
+                    capRole: row,
+                    tenantId: 'default',
+                    token:token
+                }),
+                success:function(data)
+                {
+                    nui.unmask();
+                    if (data.errCode == "S"){
+                       leftGrid.reload();                   
+                    }else{
+                        nui.alert(data.errMsg||"保存失败");
+                    }
+                },
+                error:function(jqXHR, textStatus, errorThrown){
+                    console.log(jqXHR.responseText);
+                    nui.unmask();
+                    nui.alert("网络出错");
+                }
+            });            
+        }
     });
-    roleForm.hide();
-    leftGrid.reload();    
+    
 }
 
 function onCancel(e) {

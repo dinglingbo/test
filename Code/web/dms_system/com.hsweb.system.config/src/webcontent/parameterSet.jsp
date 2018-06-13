@@ -12,14 +12,14 @@
 %>
 <head>
 <title>参数设置</title>
-    <script src="<%= request.getContextPath() %>/config/js/parameterSet.js?v=1.3.6"></script>
+    <script src="<%= request.getContextPath() %>/config/js/parameterSet.js?v=1.7.6"></script>
 
 </head>
 <body>
 
 <div id="tabs1" class="nui-tabs" activeIndex="0" style="width:95%;height:100%; margin-left: 3%;  " plain="false">
     <div title="免责条款" >
-  	<div id="tabs2" class="mini-tabs" activeIndex="0" style="width:93%;height:95%; margin-left:2.5%; margin-top: 1%; " plain="false">
+  	<div id="tabs2" class="nui-tabs" activeIndex="0" style="width:93%;height:95%; margin-left:2.5%; margin-top: 1%; " plain="false">
   	<div title="结算单打印内容">
   	<div style="border: solid 1px black; width: 50%;  height:80%; margin-left: 2%; margin-top: 3%;">
   	<div style="height: 5%; margin-top: 5%; margin-bottom: 5%;">
@@ -47,48 +47,74 @@
   	</div>
 	</div>
     <div title="积分设置" >
- 	<div style="border: solid 1px black; width: 40%; margin-left: 20%; margin-top: 3%;">
+   
+ 	<div style="border: solid 1px black; width: 55%; margin-left: 10%; margin-top: 3%; height: 80%;">
+ 	 <div class="nui-form" id="discountForm">
     <table style="border-spacing:0px 20px;" > 
   	<tr>
   	<td width="220px;" align="right">积分系统启用：</td>
-  	<td width="400px;"><input name="Married" class="nui-checkbox" text="" value="N" trueValue="Y" falseValue="N"/></td>
+  	<td width="400px;"><input name="integralDisabled" class="nui-checkbox" text="" value="0" trueValue="1" falseValue="0"/></td>
   	
   	</tr>		
   	<tr>
   	<td align="right">消费1元兑换：</td>
-  	<td><a class="nui-textbox"></a> 积分</td>
+  	<td><div class="nui-textbox" name="integralAdd"></div> 积分</td>
   	
   	</tr>
   	<tr>
   	<td align="right">产生积分：</td>
-  	<td><div name="countrys" class="mini-checkboxlist" repeatItems="4" repeatLayout="flow" url="<%=apiPath + frmApi%>/com.hsapi.frm.newcomponent.newbiz.biz.ext" value="cn,de,usa" textField="text" valueField="id" ></div></td>
+  	<td><div name="pointBring" id="pointBring" value="0" class="nui-checkboxlist" repeatItems="4" repeatLayout="flow"  textField="name" valueField="id" data="typeList"></div></td>
   	
   	</tr>
   	<tr>
   	<td align="right">抵扣1元消费：</td>
-  	<td><a class="nui-textbox"></a> 积分</td>
+  	<td><div class="nui-textbox" name="integralReduce"></div> 积分</td>
  
   	</tr>
   	<tr>
   	<td align="right">使用积分：</td>
-  	<td><div name="countrys" class="mini-checkboxlist" repeatItems="4" repeatLayout="flow" url="<%=apiPath + frmApi%>/com.hsapi.frm.newcomponent.newbiz.biz.ext" value="cn,de,usa" textField="text" valueField="id" ></div></td>
+  	  	<td><div name="pointUse" id="pointUse" class="nui-checkboxlist"  value="0" repeatItems="4" repeatLayout="flow"  textField="name" valueField="id" data="typeList"></div></td>
   	<td></td>
   	</tr>
   	<tr>
-  	<td align="right">积分可抵扣工时费：</td>
-  	<td><input name="Married" class="nui-checkbox" text="" value="N" trueValue="Y" falseValue="N"/></td>
+  	<td align="right">客户级别名称：</td>
+  	<td><div class="nui-textbox" name="name"></div></td>
   
   	</tr>
   	<tr>
-  	<td align="right">积分可抵扣材料费：</td>
-  	<td><input name="Married" class="nui-checkbox" text="" value="N" trueValue="Y" falseValue="N"/></td>
+  	<td align="right">折扣适用范围：</td>
+  	<td><div name="discountArea" id="discountArea" class="nui-checkboxlist"  value="0" repeatItems="4" repeatLayout="flow"  textField="name" valueField="id" data="typeList"></div></td>
   
   	</tr>  	
+  
   	</table>
-  	<div style=" width: 100%;height: 10%; margin-top: 3%;">
-	 	<a class="nui-button" style="margin-top: 1.5%;   float: right; margin-right:10%;">保存并复制</a>
-	 	<a class="nui-button"  style="margin-top: 1.5%;  float: right; margin-right:3%;">保存</a>
+  	</div>
+  	<div>
+  	<label style="margin-left: 16%;">折扣设定:</label>
+  	<div id="discountGrid" class="nui-datagrid" 
+				style="width: 60%; height: 40%; float: right; margin-right: 18%; "pageSize="10"
+				sizeList="[10,20,50]" allowAlternating="true" multiSelect="true"  oncellcommitedit="onCellCommitEdit"
+				 dataField="data" idField="id" allowCellEdit="true" allowCellSelect="true"treeColumn="name" parentField="parentId" showPager="false">
+			<div property="columns" width="10">
+				
+				<div field="name" allowSort="true" headerAlign="center" Align="center">业务类型</div>
+				<div field="packageDiscountRate" allowSort="true" headerAlign="center"  Align="right" >套餐折扣（0.1-1.00）
+					<input property="editor" class="nui-textbox"  vtype="range:0,1"   style="width:100%;  " value="0"/>
+				</div>
+				<div field="itemDiscountRate" allowSort="true" headerAlign="center"  Align="right" >工时折扣（0.1-1.00）
+					<input property="editor" class="nui-textbox"  vtype="range:0,1"   style="width:100%;  " value="0"/>
+				</div>
+				<div field="partDiscountRate" allowSort="true" headerAlign="center" Align="right">配件折扣（0.1-1.00）
+					<input property="editor" class="nui-textbox"  vtype="range:0,1"   style="width:100%; " value="0"/>
+				</div>
+	</div>
+	</div>
+	<div style=" width: 100%;height: 10%; margin-top: 25%; margin-left: 78%;">
+	 
+	 	<a class="nui-button" onclick="saveDiscount">保存</a>
 	 </div>
+  	</div>
+  	
   </div>
   
     </div>
@@ -119,27 +145,27 @@
 	 		</tr>
 	 		<tr>
 	 		<td align="center">工单</td>
-	 		<td>出厂	 <div class="nui-textbox" style="width: 10%" value="7" name="workScoutDay1"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="workScoutDisable1" id="workScoutDisable1" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30"  name="workScoutDay2"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="workScoutDisable2" id="workScoutDisable2" textField="name" valueField="id" value="1" data="accountTypeList" ></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90"  name="workScoutDay3"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="workScoutDisable3" id="workScoutDisable3" textField="name" valueField="id" value="1" data="accountTypeList" ></div></td>
+	 		<td>出厂	 <div class="nui-textbox" style="width: 10%" value="7" name="workScoutDay1"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="workScoutDisable1" id="workScoutDisable1" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30"  name="workScoutDay2"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="workScoutDisable2" id="workScoutDisable2" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90"  name="workScoutDay3"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="workScoutDisable3" id="workScoutDisable3" textField="name" valueField="id" value="1" ></div></td>
 	 		</tr>
 	 		<tr>
 	 		<td align="center">洗车单</td>
-			<td>出厂	<div class="nui-textbox" style="width: 10%" value="7" name="washScoutDay1"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="washScoutDisable1" id="washScoutDisable1" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30" name="washScoutDay2"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="washScoutDisable2" id="washScoutDisable2" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90" name="washScoutDay3"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="washScoutDisable3" id="washScoutDisable3" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
+			<td>出厂	<div class="nui-textbox" style="width: 10%" value="7" name="washScoutDay1"></div>天后 <div  class="nui-radiobuttonlist" style="display:inline-block" name="washScoutDisable1" id="washScoutDisable1" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30" name="washScoutDay2"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="washScoutDisable2" id="washScoutDisable2" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90" name="washScoutDay3"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="washScoutDisable3" id="washScoutDisable3" textField="name" valueField="id" value="1"  ></div></td>
 	 		</tr>
 	 		<tr>
 	 		<td align="center">零售单</td>
-			<td>出厂	<div class="nui-textbox" style="width: 10%" value="7" name="zeroScoutDay1"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="zeroScoutDisable1" id="zeroScoutDisable1" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30" name="zeroScoutDay2"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="zeroScoutDisable2" id="zeroScoutDisable2" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90" name="zeroScoutDay3"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="zeroScoutDisable3" id="zeroScoutDisable3" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
+			<td>出厂	<div class="nui-textbox" style="width: 10%" value="7" name="zeroScoutDay1"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="zeroScoutDisable1" id="zeroScoutDisable1" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30" name="zeroScoutDay2"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="zeroScoutDisable2" id="zeroScoutDisable2" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90" name="zeroScoutDay3"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="zeroScoutDisable3" id="zeroScoutDisable3" textField="name" valueField="id" value="1"  ></div></td>
 	 		</tr>
 	 		<tr>
 	 		<td align="center">理赔单</td>
-			<td>出厂	<div class="nui-textbox" style="width: 10%" value="7" name="claimScoutDay1"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="claimScoutDisable1" id="claimScoutDisable1" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30" name="claimScoutDay2"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="claimScoutDisable2" id="claimScoutDisable2" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
-	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90" name="claimScoutDay3"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="claimScoutDisable3" id="claimScoutDisable3" textField="name" valueField="id" value="1"  data="accountTypeList"></div></td>
+			<td>出厂	<div class="nui-textbox" style="width: 10%" value="7" name="claimScoutDay1"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="claimScoutDisable1" id="claimScoutDisable1" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="30" name="claimScoutDay2"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="claimScoutDisable2" id="claimScoutDisable2" textField="name" valueField="id" value="1"  ></div></td>
+	 		<td>出厂	<div class="nui-textbox" style="width: 10%" value="90" name="claimScoutDay3"></div>天后<div  class="nui-radiobuttonlist" style="display:inline-block" name="claimScoutDisable3" id="claimScoutDisable3" textField="name" valueField="id" value="1"  ></div></td>
 	 		</tr>
 	 		</table>
 	 		
@@ -147,15 +173,15 @@
 	 	</div>
 	 	</div>
 	 <div style=" width: 100%;height: 10%; margin-top: 3%;">
-	 	<a class="nui-button" style="margin-top: 1.5%;   float: right; margin-right:10%;">保存并复制</a>
-	 	<a class="nui-button"  style="margin-top: 1.5%;  float: right; margin-right:3%;" onclick="returnFormSet">保存</a>
+	 	
+	 	<a class="nui-button"  style="margin-top: 1.5%;  float: right; margin-right:10%;" onclick="returnFormSet">保存</a>
 	 </div>
 	 </div>
 	 </div>
 
      </div>
      <div title="财务参数设置" >
-     		<div class="mini-tabs" style="height: 90%; width:90%; margin-top: 1%; margin-left: 5%;">
+     		<div class="nui-tabs" style="height: 90%; width:90%; margin-top: 1%; margin-left: 5%;">
      		<div title="收款方式" >
      		<div style="width: 90%; margin-left: 5%; " ><a class="nui-button" style="margin-top: 1%; float: right;">修改</a></div>
      		<div id="dgGrid" class="nui-datagrid" 
@@ -201,7 +227,7 @@
 			</div>
 			</div>
 			<div title="记账方式">
-			     <div class="mini-col-6" style="margin-top: 2%;">
+			     <div class="nui-col-6" style="margin-top: 2%;">
 			                
 			                <div class="nui-panel" title="记账限额" width="80%" style="margin-left: 5%;" 
 			                    showCollapseButton="false" showCloseButton="false"  >
@@ -224,6 +250,7 @@
      	</span>
      </div>
      <div style="width: 100%; height: 75%; border: 1px; background-color: #ffffff; margin-top: 1%;">
+     	<div class="nui-form" id="repairStoreForm">
      	 <table style="border-spacing:0px 20px;" >
 		    <tr>
 		    <td  style="width:100px; text-align: right; color: red;">
@@ -240,27 +267,27 @@
 		    <td  style="text-align: right; color: red;">
 			维修厂编号:
 		    </td>
-		    <td><div class="nui-textbox" style="width: 65%;margin-left: 5%; "></div></td>
+		    <td><div class="nui-textbox" style="width: 65%;margin-left: 5%; " name="repairStoreNo"></div></td>
 		    </tr>
 		     <tr>
 		    <td  style=" text-align: right; color: red;">
 			用户名:
 		    </td>
-		    <td><div class="nui-textbox" style="width: 65%;margin-left: 5%; "></div></td>
+		    <td><div class="nui-textbox" style="width: 65%;margin-left: 5%; "  name="repairStoreName"></div></td>
 		    </tr>
 		     <tr>
 		    <td  style=" text-align: right; color: red;">
 			密码:
 		    </td>
-		    <td ><div class="nui-textbox" style="width: 65%;margin-left: 5%; "></div></td>
+		    <td ><div class="nui-textbox" style="width: 65%;margin-left: 5%; "  name="repairStorePwd"></div></td>
 		    </tr>
 		   </table>
 		 <div style=" width: 100%;height: 5%;">
-	 		<a class="nui-button" style= "float: right;">保存</a>
+	 		<a class="nui-button" style= "float: right;" onclick="repairStoreFormSet">保存</a>
 	 	 </div>
       </div>
      </div>
-   
+   </div>
      </div>
      <div title="查车模板设置" >
      <div class="nui-tabs" style="margin-left: 5%; width: 90%; height: 100%;">
@@ -397,7 +424,7 @@
      </div>
      <div title="显示设置" >
 	 <div  class="nui-form" id="showForm">
-     <div class="mini-col-6" style="margin-top: 2%;">
+     <div class="nui-col-6" style="margin-top: 2%;">
                 
                 <div class="nui-panel" title="关怀提醒默认显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
@@ -405,7 +432,7 @@
                 </div>
 
      </div>
-     <div class="mini-col-6" style="margin-top: 2%;">
+     <div class="nui-col-6" style="margin-top: 2%;">
                 
                 <div class="nui-panel" title="业务提醒默认显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
@@ -413,7 +440,7 @@
                 </div>
 
      </div>
-     <div class="mini-col-6" style="margin-top: 2%;">
+     <div class="nui-col-6" style="margin-top: 2%;">
                 
                 <div class="nui-panel" title="工作列表默认显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
@@ -421,7 +448,7 @@
                 </div>
 
      </div>
-          <div class="mini-col-6" style="margin-top: 2%;">
+          <div class="nui-col-6" style="margin-top: 2%;">
                 
                 <div class="nui-panel" title="默认仓库" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >
@@ -431,7 +458,7 @@
                 </div>
 
     	 </div>
-    	 <div class="mini-col-6" style="margin-top: 2%;">
+    	 <div class="nui-col-6" style="margin-top: 2%;">
                 
                 <div class="nui-panel" title="结算单打印显示" width="80%" style="margin-left: 10%;" 
                     showCollapseButton="false" showCloseButton="false"  >

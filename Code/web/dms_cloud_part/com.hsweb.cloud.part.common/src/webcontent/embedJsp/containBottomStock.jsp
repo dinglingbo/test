@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库信息</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomStock.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomStock.js?v=2.0.1"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -33,7 +33,7 @@
 <body>
 
 <div class="nui-fit">
-    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:40%;"
          showPager="false"
          dataField="detailList"
          idField="detailId"
@@ -60,6 +60,25 @@
             <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>
             <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限"></div>
             <div allowSort="true" field="detailRemark" width="200" headerAlign="center" header="备注"></div>
+        </div>
+    </div>
+
+    <div id="priceGrid" class="nui-datagrid" style="width:100%;height:60%;"
+         showPager="false"
+         dataField="price"
+         idField=""
+         ondrawcell=""
+         sortMode="client"
+         url=""
+         onrowdblclick=""
+         pageSize="10000"
+         sizeList="[1000,5000,10000]"
+         showSummaryRow="false">
+        <div property="columns">
+            <div allowSort="true" field="name" width="100" headerAlign="center" header="价格类型"></div>
+            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="售价"></div>
+            <div allowSort="true" datatype="float" field="operator" width="60" headerAlign="center" header="创建人"></div>
+            <div allowSort="true" field="operateDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
         </div>
     </div>
 </div>

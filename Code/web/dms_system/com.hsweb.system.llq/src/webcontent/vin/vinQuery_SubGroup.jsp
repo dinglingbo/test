@@ -16,8 +16,8 @@
         <div property="columns"> 
             <div field="auth" visible="false"></div>
             <div field="has_subs" visible="false"></div>
-            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-            <div field="num" width="30" headerAlign="center" allowSort=false>主组</div>
+            <!-- <div type="indexcolumn" width="20" summaryType="count">序号</div> -->
+            <div field="num" width="30" headerAlign="center" allowSort=false summaryType="count">主组</div>
             <div field="subgroup" width="30" headerAlign="center" allowSort=false>分组</div>
             <div field="mid" width="60" headerAlign="center" allowSort=false>图号</div>
             <div field="subgroupname" width="150" headerAlign="center" allowSort=false>名称</div>

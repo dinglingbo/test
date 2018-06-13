@@ -131,7 +131,7 @@
 			}
 		});
 	}	
-	var getAllPartBrandUrl = apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.common.svr.getAllPartBrand.biz.ext";
+	var getAllPartBrandUrl = apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryPartBrand.biz.ext";
 	function getAllPartBrand(callback)
 	{
 	    nui.ajax({
@@ -152,7 +152,7 @@
 	        }
 	    });
 	}
-	var getAllPartTypeUrl = apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
+	var getAllPartTypeUrl = apiPath + cloudPartApi + "/"+"com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
 	function getAllPartType(callback)
 	{
 	    nui.ajax({

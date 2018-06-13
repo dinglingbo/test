@@ -214,7 +214,7 @@ function loadMainAndDetailInfo(row)
        var row = leftGrid.getSelected();
 
 
-       if(row.codeId && data.codeId>0){
+       if(row.codeId && row.codeId>0){
             //可以编辑票据类型和结算方式，是否需要打包，备注，业务员；明细不能修改；如果需要，则退回
             nui.get("guestId").disable();
             nui.get("code").disable();
@@ -535,13 +535,15 @@ function quickSearch(type){
             break;
         case 6:
             params.auditSign = 0;
-            querytypename = "未审";
+            params.billStatusId = 0;
+            querytypename = "草稿";
             querysign = 2;
             gsparams.auditSign = 0;
             break;
         case 7:
             params.auditSign = 1;
-            querytypename = "已审";
+            params.billStatusId = 1;
+            querytypename = "已提交";
             querysign = 2;
             gsparams.auditSign = 1;
             break;
@@ -549,15 +551,17 @@ function quickSearch(type){
             params.postStatus = 1;
             break;
         case 9:
-            querytypename = "全部";
+            querytypename = "已出库";
+            params.billStatusId = 2;
             querysign = 2;
-            gsparams.auditSign = null;
+            gsparams.auditSign = 1;
             break;
         default:
         	params.today = 1;
             params.startDate = getNowStartDate();
             params.endDate = addDate(getNowEndDate(), 1);
-            querytypename = "未审";
+            querytypename = "草稿";
+            params.billStatusId = 0;
             gsparams.startDate = getNowStartDate();
             gsparams.endDate = addDate(getNowEndDate(), 1);
             gsparams.auditSign = 0;
@@ -1580,8 +1584,8 @@ function onPrint() {
 
         nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
-                    + row.id,// "view_Guest.jsp",
+            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
+                    + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
             title : "销售订单打印",
             width : 900,
             height : 600,

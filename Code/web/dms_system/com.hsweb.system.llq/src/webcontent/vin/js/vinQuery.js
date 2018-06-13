@@ -68,6 +68,9 @@ $(document).ready(function(v){
         if(field == "detail"){
             var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
             e.cellHtml = html;
+        }else if(field == "opt"){
+            var html = '<a class="" href="javascript:openDetail(\'' + record.pid + '\')"><i class="fa fa-shopping-cart-o"></i></a>';
+            e.cellHtml = html;
         }
     });
     
@@ -190,9 +193,9 @@ function setgridMainGroup(data){
     showLeftGrid(gridMainGroup);
     gridMainGroup.set({
         columns: [
-            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
+            /*{ type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},*/
             { field: "auth", visible: false},
-            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称"}
+            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称", summaryType: "count"}
         ]
     });
     gridMainGroup.setData(data);
@@ -407,9 +410,9 @@ function selectConfig(data, json){
     selectForm.clear();
     
     var columns = [
-        { type: "indexcolumn", width:40, headerAlign: "center", header: "序号", summaryType: "count"},
+        /*{ type: "indexcolumn", width:40, headerAlign: "center", header: "序号", summaryType: "count"},*/
         { field: "auth", visible: false},
-        { field: "brand", visible: false}
+        { field: "brand", visible: false, summaryType: "count"}
     ];
     var titles = json.title;
     for(var i=0; i<titles.length; i++){

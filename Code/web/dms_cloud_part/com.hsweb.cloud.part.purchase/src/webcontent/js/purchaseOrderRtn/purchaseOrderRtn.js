@@ -249,19 +249,22 @@ function quickSearch(type){
             gsparams.endDate = addDate(getLastMonthEndDate(), 1);
             break;
         case 6:
-            params.isOut = 0;
+            params.billStatusId = 0;
             querytypename = "草稿";
             querysign = 2;
             gsparams.auditSign = 0;
             break;
         case 7:
-            params.isOut = 1;
+            params.billStatusId = 1;
             querytypename = "已提交";
             querysign = 2;
             gsparams.auditSign = 1;
             break;
         case 8:
-            params.postStatus = 1;
+            params.billStatusId = 2;
+            querytypename = "已出库";
+            querysign = 2;
+            gsparams.auditSign = 1;
             break;
         default:
             params.today = 1;
@@ -777,8 +780,8 @@ function onPrint() {
 
         nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
-                    + row.id,// "view_Guest.jsp",
+            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
+                    + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
             title : "采购退货打印",
             width : 900,
             height : 600,

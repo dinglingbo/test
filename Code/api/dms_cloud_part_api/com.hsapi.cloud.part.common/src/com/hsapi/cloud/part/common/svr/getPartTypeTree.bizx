@@ -86,7 +86,9 @@
     <node>invokePojo0</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="240" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2018-02-24 19:22:02" date="2018-02-24Z" description="" name="getPartTypeTree" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>

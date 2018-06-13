@@ -271,11 +271,11 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">partId</process:from>
-      <process:to type="query">condPart/_expr[1]/partId</process:to>
+      <process:to type="query">condPart/_expr[2]/partId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">condPart/_expr[1]/_op</process:to>
+      <process:to type="query">condPart/_expr[2]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pchsOrderReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34ab681a-51e3-4310-89f9-74ef07cdf8d2">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="19"/>
 	<property name="ireport.y" value="9"/>
 	<property name="ireport.callouts" value="##Mon Jul 31 14:09:04 CST 2017"/>
 	<subDataset name="dataset1" uuid="a7e249e6-3376-4b52-a342-faae67db68ea"/>
@@ -30,12 +30,18 @@ FROM
 	<parameter name="ID" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="printMan" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
+     case a.bill_type_id when '010101'then '收据'when '010102'then '普票'else '增票'end AS billTypeId,
+     case a.settle_type_id when '020501'then '现结'else '月结'end AS settleTypeId,
+     case when a.is_out = 1 then '已出库' else '未出库' end as isOut,
      A.`SERVICE_ID` AS serviceId,
      e.`name` AS compName,
      A.`orgid` AS orgid,
-     A.`ORDER_DATE` AS orderDate,
+     A.`create_DATE` AS orderDate,
      A.`creator` AS creator,
      B.`ID` AS id,
      B.`STORE_ID` AS storeId,
@@ -44,24 +50,17 @@ FROM
      B.`ORDER_QTY` AS orderQty,
      B.`ORDER_PRICE` AS orderPrice,
      B.`ORDER_AMT` AS orderAmt,
-     A.`TAX_RATE` AS taxRate,
-     A.`TAX_SIGN` AS taxSign,
      A.`ORDER_MAN` AS orderMan,
      B.`REMARK` AS detailRemark,
      A.`REMARK` AS mainRemark,
      C.`full_name` AS guestFullName,
-     C.`contactor_tel` AS contactorTel,
+     C.`tel` AS contactorTel,
      C.`addr` AS conAddress,
-     D.`CODE` AS partCode,
-     D.`FULL_NAME` AS partFullName,
-     D.`NAME` AS partName,
-     D.`brand_code` AS partBrandCode,
+     b.`part_code` AS partCode,
+     b.`FULL_NAME` AS partFullName,
      D.`OEM_CODE` AS oemCode,
-     D.`PART_BRAND_ID` AS partBrandId,
-     D.`apply_car_model` AS carModelName,
-     D.`QUALITY_TYPE_ID` AS qualityTypeId,
-     C.`contactor` AS contactor,
-		 g.shelf as shelf
+     C.manager AS contactor,
+     g.shelf as shelf
 FROM
      `pj_sell_order_main` A INNER JOIN `pj_sell_order_detail` B ON A.`ID` = B.`MAIN_ID`
      INNER JOIN `wb_common`.`com_attribute` D ON B.`PART_ID` = D.`ID`
@@ -73,10 +72,13 @@ WHERE
      A.ID = $P{ID}
 UNION
 SELECT
+     case a.bill_type_id when '010101'then '收据'when '010102'then '普票'else '增票'end AS billTypeId,
+     case a.settle_type_id when '020501'then '现结'else '月结'end AS settleTypeId,
+     case when a.is_out = 1 then '已出库' else '未出库' end as isOut,
      A.`SERVICE_ID` AS serviceId,
      e.`name` AS compName,
      A.`orgid` AS orgid,
-     A.`ORDER_DATE` AS orderDate,
+     A.`create_DATE` AS orderDate,
      A.`creator` AS creator,
      B.`ID` AS id,
      B.`STORE_ID` AS storeId,
@@ -85,24 +87,17 @@ SELECT
      B.`ORDER_QTY` AS orderQty,
      B.`ORDER_PRICE` AS orderPrice,
      B.`ORDER_AMT` AS orderAmt,
-     A.`TAX_RATE` AS taxRate,
-     A.`TAX_SIGN` AS taxSign,
      A.`ORDER_MAN` AS orderMan,
      B.`REMARK` AS detailRemark,
      A.`REMARK` AS mainRemark,
      C.`full_name` AS guestFullName,
-     C.`contactor_tel` AS contactorTel,
+     C.`tel` AS contactorTel,
      C.`addr` AS conAddress,
-     D.`CODE` AS partCode,
-     D.`FULL_NAME` AS partFullName,
-     D.`NAME` AS partName,
-     D.`brand_code` AS partBrandCode,
+     b.`part_code` AS partCode,
+     b.`FULL_NAME` AS partFullName,
      D.`OEM_CODE` AS oemCode,
-     D.`PART_BRAND_ID` AS partBrandId,
-     D.`apply_car_model` AS carModelName,
-     D.`QUALITY_TYPE_ID` AS qualityTypeId,
-     C.`contactor` AS contactor,
-		 g.shelf as shelf
+     C.manager AS contactor,
+     g.shelf as shelf
 FROM
      `pj_sell_order_main_chk` A INNER JOIN `pj_sell_order_detail_chk` B ON A.`ID` = B.`MAIN_ID`
      INNER JOIN `wb_common`.`com_attribute` D ON B.`PART_ID` = D.`ID`
@@ -115,31 +110,22 @@ WHERE
 ORDER BY
      ID ASC]]>
 	</queryString>
-	<field name="serviceId" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="billTypeId" class="java.lang.String"/>
+	<field name="settleTypeId" class="java.lang.String"/>
+	<field name="isOut" class="java.lang.String"/>
+	<field name="serviceId" class="java.lang.String"/>
 	<field name="compName" class="java.lang.String"/>
-	<field name="orgid" class="java.lang.Integer">
-		<fieldDescription><![CDATA[??ID]]></fieldDescription>
-	</field>
+	<field name="orgid" class="java.lang.Integer"/>
 	<field name="orderDate" class="java.sql.Timestamp"/>
-	<field name="creator" class="java.lang.String">
-		<fieldDescription><![CDATA[???]]></fieldDescription>
-	</field>
-	<field name="id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[ID]]></fieldDescription>
-	</field>
+	<field name="creator" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
 	<field name="storeId" class="java.lang.Integer"/>
 	<field name="storeName" class="java.lang.String"/>
 	<field name="outUnitId" class="java.lang.String"/>
 	<field name="orderQty" class="java.math.BigDecimal"/>
 	<field name="orderPrice" class="java.math.BigDecimal"/>
 	<field name="orderAmt" class="java.math.BigDecimal"/>
-	<field name="taxRate" class="java.math.BigDecimal"/>
-	<field name="taxSign" class="java.lang.Integer"/>
-	<field name="orderMan" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="orderMan" class="java.lang.String"/>
 	<field name="detailRemark" class="java.lang.String"/>
 	<field name="mainRemark" class="java.lang.String"/>
 	<field name="guestFullName" class="java.lang.String"/>
@@ -147,16 +133,9 @@ ORDER BY
 	<field name="conAddress" class="java.lang.String"/>
 	<field name="partCode" class="java.lang.String"/>
 	<field name="partFullName" class="java.lang.String"/>
-	<field name="partName" class="java.lang.String"/>
-	<field name="partBrandCode" class="java.lang.String"/>
 	<field name="oemCode" class="java.lang.String"/>
-	<field name="partBrandId" class="java.lang.String"/>
-	<field name="carModelName" class="java.lang.String"/>
-	<field name="qualityTypeId" class="java.lang.String"/>
 	<field name="contactor" class="java.lang.String"/>
-	<field name="shelf" class="java.lang.String">
-		<fieldDescription><![CDATA[??]]></fieldDescription>
-	</field>
+	<field name="shelf" class="java.lang.String"/>
 	<variable name="QTY_SUM" class="java.lang.Float" calculation="Sum">
 		<variableExpression><![CDATA[$F{orderQty}]]></variableExpression>
 	</variable>
@@ -207,14 +186,14 @@ ORDER BY
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="34" width="51" height="14" uuid="f0783c93-a0b9-4b32-baad-3394020bd106"/>
+				<reportElement x="16" y="20" width="51" height="14" uuid="f0783c93-a0b9-4b32-baad-3394020bd106"/>
 				<textElement>
 					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[订单日期：]]></text>
 			</staticText>
 			<textField pattern="yyyy/MM/dd HH:mm:ss">
-				<reportElement x="68" y="34" width="100" height="14" uuid="416b3079-e7c7-4494-ae78-182f8b26255f"/>
+				<reportElement x="68" y="20" width="100" height="14" uuid="416b3079-e7c7-4494-ae78-182f8b26255f"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
@@ -288,6 +267,20 @@ ORDER BY
 					<font fontName="黑体" size="14" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{compName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="34" width="51" height="14" uuid="42a1efff-da1a-4b0d-9f26-4034fb9fc29d"/>
+				<textElement>
+					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[订单状态：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="34" width="100" height="16" uuid="71f433e4-8ff8-451e-8e4c-5da827d91515"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isOut}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -539,21 +532,21 @@ ORDER BY
 				<textElement>
 					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[业务员：]]></text>
+				<text><![CDATA[票据类型：]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="168" y="28" width="44" height="20" uuid="2ac19213-752c-4dcd-b388-7e540dfba8e8"/>
+				<reportElement x="168" y="28" width="53" height="20" uuid="2ac19213-752c-4dcd-b388-7e540dfba8e8"/>
 				<textElement>
 					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[制单人：]]></text>
+				<text><![CDATA[结算方式：]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="325" y="28" width="44" height="20" uuid="69ff16a5-c76b-40cd-8f73-5e5cc77df930"/>
 				<textElement>
 					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[审核人：]]></text>
+				<text><![CDATA[打印人：]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="471" y="28" width="44" height="20" uuid="1f7bc03a-1a14-4554-a6f1-c30e7fbaf174"/>
@@ -596,6 +589,27 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[注（白联仓库         红联财务            黄联供应商）]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="68" y="28" width="100" height="20" uuid="5cbcd06f-c711-4d1c-8e3e-0d9c3df0683a"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{billTypeId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="28" width="100" height="20" uuid="5ae8c240-8af6-4fcf-8750-b4e20db2f8d8"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{settleTypeId}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="371" y="28" width="100" height="20" uuid="2c73085d-af34-4790-ab18-672e6099bf2e"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{printMan}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

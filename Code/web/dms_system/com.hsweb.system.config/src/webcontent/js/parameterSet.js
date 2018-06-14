@@ -46,7 +46,7 @@ $(document).ready(function(v) {
 	grid=nui.get("discountGrid");
 	grid.setUrl(gridUrl);
 	grid.load({
-		params:initList,
+		params:initList
 	});		
 });
 

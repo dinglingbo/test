@@ -47,7 +47,7 @@
   	</div>
 	</div>
     <div title="客户级别设置" >
-    <%@ include file="/config/userLevelSet.jsp"%>
+   
 
  	<div style="border: solid 1px black; width: 55%; margin-left: 10%; margin-top: 3%; height: 80%;">
  	 <div class="nui-form" id="discountForm">
@@ -120,7 +120,7 @@
   	
     </div>
      <div title="回返设置" >
-     	<%@ include file="/config/visitSet.jsp"%>
+     
    <div style="background-color: #F0F0F0; width: 90%;height: 70%; margin-top: 3%; margin-left: 5%;">
 	 	<div style="width: 90%; height: 50%;  margin-left: 5%;">
 	 
@@ -186,7 +186,7 @@
      
      
      <div title="汽车电子健康档案上传设置" >	
-     <%@ include file="/config/carSet.jsp"%>
+   
  
      <div style="background-color: #F0F0F0; width: 50%;height: 42%; margin-top: 3%; margin-left: 5%;">
      <div style="height: 0.1%;width: 100%;"></div>
@@ -236,7 +236,7 @@
    </div> 
      </div>
      <div title="查车模板设置" >
-       <%@ include file="/config/searchCarSet.jsp"%>
+       
       <div class="nui-tabs" style="margin-left: 5%; width: 90%; height: 100%;">
      <div title="查车单">
      <div style="height:390%;width: 100%; background-color:#F0F0F0;">
@@ -367,10 +367,10 @@
      </div>
      <div title="接车预检单">
      </div>
-     </div> --%>
+     </div>
      </div>
      <div title="显示设置" >
-       <%@ include file="/config/showSet.jsp"%>
+  
 	  <div  class="nui-form" id="showForm">
      <div class="nui-col-6" style="margin-top: 2%;">
                 

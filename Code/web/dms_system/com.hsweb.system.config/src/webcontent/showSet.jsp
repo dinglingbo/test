@@ -66,8 +66,6 @@
     
 
 
-	<script type="text/javascript">
-    	nui.parse();
-    </script>
+	
 </body>
 </html>

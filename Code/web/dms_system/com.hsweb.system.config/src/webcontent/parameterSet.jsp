@@ -18,36 +18,30 @@
 <body>
 
 <div id="tabs1" class="nui-tabs" activeIndex="0" style="width:95%;height:100%; margin-left: 3%;  " plain="false">
-    <div title="免责条款" >
-  <%@ include file="/config/relief.jsp"%>
+     <div title="免责条款" name="1" >
+  	
+  	<iframe src="reliefSet.jsp" width="100%" height="100%"></iframe>
 	</div>
-    <div title="客户级别设置" >
-    <%@ include file="/config/userLevelSet.jsp"%>
-	 </div>
-     <div title="回返设置" >
-     	<%@ include file="/config/visitSet.jsp"%>
-     </div>
-     <div title="汽车电子健康档案上传设置" >	
-     <%@ include file="/config/carSet.jsp"%>
-
-     </div>
-     <div title="查车模板设置" >
-       <%@ include file="/config/searchCarSet.jsp"%>
+	  <div title="客户级别设置"name="2" >
    
+    <iframe src="userLevelSet.jsp" width="100%" height="100%"></iframe>
+	 </div>
+     <div title="回返设置" name="3">
+     	<iframe src="visitSet.jsp" width="100%" height="100%"></iframe>
+     </div> 
+     <div title="汽车电子健康档案上传设置"name="4" >	
+   		<iframe src="carSet.jsp" width="100%" height="100%"></iframe>
      </div>
-     <div title="显示设置" >
-       <%@ include file="/config/showSet.jsp"%>
-	
-     </div>
+     <div title="查车模板设置"  name="5">
+      		<iframe src="searchCarSet.jsp" width="100%" height="100%"></iframe>
+       </div>
+     <div title="显示设置" name="6">
+       
+			<iframe src="showSet.jsp" width="100%" height="100%"></iframe>
+     </div>  
 
 </div>
-	
+	 
 </body>
- <script type="text/javascript">
-      
-		nui.parse();
 
-      
-       
-  </script>
 </html>

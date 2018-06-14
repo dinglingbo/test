@@ -12,7 +12,7 @@
 <head>
 <title>业务分类列表</title>
 <%@include file="/common/sysCommon.jsp"%>
-<script src="<%= request.getContextPath() %>/config/js/businessSort.js?v=1.5.4"></script>
+<script src="<%= request.getContextPath() %>/config/js/businessSort.js?v=1.5.6"></script>
 
 </head>
 <body>

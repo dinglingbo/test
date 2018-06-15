@@ -10,7 +10,7 @@
 -->
 <head>
 <title>预约列表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.36"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.62"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 table {
@@ -106,7 +106,7 @@ table {
                      dataField="data" 
                      showPageSize="false"
                      selectOnLoad="true" 
-                     sortMode="client"
+                     sortMode="client"  ondrawcell="gridOnDraw"
                      showReloadButton="false" showPagerButtonIcon="true"
                      totalField="page.count"
                      allowSortColumn="true">

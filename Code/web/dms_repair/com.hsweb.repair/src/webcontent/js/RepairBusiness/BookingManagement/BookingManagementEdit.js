@@ -12,7 +12,7 @@ var carSeriesId;
 var prebookCategoryHash;
 var advancedSearchWin = null;
 var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.biz.ext";
-prebookCategoryHash=[{text:'用户主动预约',value:'0'},{text:'用户被动预约',value:'1'}];
+var prebookCategoryHash=[{text:'用户主动预约',value:'0'},{text:'用户被动预约',value:'1'}];
 $(document).ready(function(v){
 	nui.get("prebookCategory").setData(prebookCategoryHash);
 	carSeriesId=nui.get("carSeriesId");

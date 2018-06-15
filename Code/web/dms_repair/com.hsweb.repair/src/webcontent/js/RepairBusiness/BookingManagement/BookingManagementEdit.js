@@ -114,12 +114,10 @@ function doSearch(params) {
 function SetData(params){
 	basicInfoForm = new nui.Form("#basicInfoForm");	
 	basicInfoForm.setData(params.data);
-
+	
 	if(params.data.carBrandId!="") 
-	{var e={
-			value:params.data.carBrandId
-	};
-	getCarModel("carSeriesId",e);
+	{
+	getCarModel("carSeriesId",params.data.carBrandId);
 	}
 	}
 	
@@ -210,7 +208,7 @@ function onChange(e){
 
 function onBrandChange(e){
     
-        getCarModel("carSeriesId",e);
-   
+        
+        initCarMT('carSeriesId',e.value);
 }
 

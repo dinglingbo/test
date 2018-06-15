@@ -162,11 +162,13 @@ function processCity(data){
     _initDmsCallback["initCity"] && _initDmsCallback["initCity"]() && (_initDmsCallback["initCity"] = null);
 }
 //公司员工
-function initMember(callback){//dictDefs{id1: dictid1, id2: dictid2}
+function initMember(id,callback){//dictDefs{id1: dictid1, id2: dictid2}
 	_initDmsCallback["initCompMember"] = callback;
-    var url = _sysApiRoot + "/com.hsapi.system.dict.org.queryMember.biz.ext";
-    var params = {};
-    callAjax(url, params, processAjax, processMember, null);
+	if(checkObjExists(id, "getMember")){
+	    var url = _sysApiRoot + "/com.hsapi.system.dict.org.queryMember.biz.ext";
+	    var params = {};
+	    callAjax(url, params, processAjax, processMember, null);
+    }
 }
 function processMember(data){
     adapterData(_initDmsObj["initCompMember"], data, "empId");

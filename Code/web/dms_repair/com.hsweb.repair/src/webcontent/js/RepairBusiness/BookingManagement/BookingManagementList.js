@@ -127,3 +127,47 @@ function editRow(){
 
 
 }
+
+function typeChange(type,status){
+	
+	var row=upGrid.getSelected();
+	if(row==undefined){
+		nui.alert("请选中一行");
+	}
+	if(type=="确认"&&row.status=='1'){
+		nui.alert("此行已确认");
+		return;
+	}
+	if(type=="开单"&&row.status=='2'){
+		nui.alert("此行已开单");
+		return;	
+	}
+	if(type=="取消"&&row.status=='3'){
+		nui.alert("此行已取消");
+		return;
+	}
+	var s={
+			id:row.id,
+			status:status
+	};
+		nui.ajax({
+			url : baseUrl
+					+ "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
+			type : 'post',
+			data : nui.encode({
+				param : s
+			}),
+			success : function(data) {
+				if (data.errCode == "S") {
+					nui.alert(type+"成功!");
+				}else{
+					nui.alert(type+"失败!");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				nui.alert(jqXHR.responseText);
+			}
+		});
+	
+	
+}

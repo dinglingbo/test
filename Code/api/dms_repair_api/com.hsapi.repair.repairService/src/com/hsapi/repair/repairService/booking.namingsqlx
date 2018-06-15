@@ -9,7 +9,7 @@
     </resultMap>
      <select id="queryBookingList" parameterClass="HashMap" resultClass="com.hsapi.repair.data.rps.RpsPrebook">
     	SELECT id,mt_advisor mtAdvisor,car_no carNo,car_brand_id carBrandId,car_series_id carSeriesId,contactor_name contactorName,contactor_tel contactorTel,predict_come_date predictComeDate,
-    	prebook_category prebookCategory,fault_desc faultDesc,service_type_id serviceTypeId
+    	prebook_category prebookCategory,fault_desc faultDesc,service_type_id serviceTypeId,mt_advisor_id mtAdvisorId,status
 		from rps_prebook
 		where 1=1
 		 <isNotNull property="carNo">

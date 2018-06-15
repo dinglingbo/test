@@ -10,7 +10,7 @@
 -->
 <head>
 <title>预约管理</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.0.46"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.0.60"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 table {
@@ -57,16 +57,15 @@ table {
         <div showCollapseButton="false" style="border:0; ">
          
                     <div class="nui-form" id="basicInfoForm" >
-                        <input class="nui-hidden" name="id"/>
-                        <input class="nui-hidden" name="guestId" id="guestId"/>
-                        <input class="nui-hidden" name="contactorId" id="contactorId"/>
-                        <table style="border-collapse:separate; border-spacing:0px 10px;">
+                        
+                   		 <table style="border-collapse:separate; border-spacing:0px 10px;">
                             <tr>
                             <td class="form_label">
                              <label  >服务顾问：</label>
                              </td>
 		                     <td>	
-		                     <input class="nui-combobox" id="mtAdvisor" name="mtAdvisor" value=""    textField="name" valueField="id"/>
+		                     <input class="nui-combobox" id="mtAdvisorId" name="mtAdvisorId" value=""    textField="empName" valueField="empId"  onvaluechanged="onChange"/>
+		                      <input class="nui-textbox" id="mtAdvisor" name="mtAdvisor" visible="false"/>
                            	 </td>
                                 <td class="form_label">
                                     <label>车牌号：</label>
@@ -82,7 +81,7 @@ table {
                                 </td>
                                 <td>
                                     <input class="nui-combobox" name="carBrandId" id="carBrandId"
-                                           textField="nameCn"
+                                           textField="nameCn" onvaluechanged="onBrandChange"
                                            valueField="id"/>
                                 </td>
                             </tr>
@@ -121,7 +120,8 @@ table {
                                     <input class="nui-combobox" id="serviceTypeId"
                                            name="serviceTypeId"
                                            textField="name"
-                                           valueField="customid"/>
+                                           valueField="code"/>
+                                    
                                 </td>
                             </tr>
                             <tr>
@@ -140,8 +140,8 @@ table {
                                 <td>
                                     <input class="nui-combobox" name="prebookCategory"
                                            id="prebookCategory"
-                                           textField="name"
-                                           valueField="customid"/>
+                                           textField="text"
+                                           valueField="value"/>
                                 </td>
                                 <td class="form_label">
                                     

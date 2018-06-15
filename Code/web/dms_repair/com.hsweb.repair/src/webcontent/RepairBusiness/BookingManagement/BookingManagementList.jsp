@@ -10,7 +10,7 @@
 -->
 <head>
 <title>预约列表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.34"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.36"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 table {
@@ -85,9 +85,9 @@ table {
             
                 <a class="nui-button" plain="true" id="addBtn" onclick="addRow()">新增</a>
                 <a class="nui-button" plain="true" id="saveBtn" onclick="editRow()">修改</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="quote()">确认</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="quote()">开单</a>
-                <a class="nui-button" plain="true"  id="cancelBtn"  onclick="cancel()">取消</a>
+                <a class="nui-button" plain="true" iconCls="" onclick="typeChange('确认','1')">确认</a>
+                <a class="nui-button" plain="true" iconCls="" onclick="typeChange('开单','2')">开单</a>
+                <a class="nui-button" plain="true"  id="cancelBtn"  onclick="typeChange('取消','3')">取消</a>
            		<a class="nui-button" plain="true" iconCls="" id="fllowUpBtn" onclick="selectedchange()">跟踪</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="history()">服务履历</a>
             	
@@ -114,8 +114,14 @@ table {
                         <div field="id" headerAlign="center" allowSort="true"
                              visible="false" width="">id
                         </div>
-                        <div field="mtAdvisor" headerAlign="center" allowSort="true"
+                           <div field="status" headerAlign="center" allowSort="true"
+                             visible="false" width="">status
+                        </div>
+                        <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center"
                              visible="true" width="">服务顾问
+                        </div>
+                          <div field="mtAdvisorId" headerAlign="center" allowSort="true" 
+                             visible="false" width="">服务Id
                         </div>
                         <div field="carNo" headerAlign="center" allowSort="true"
                              visible="true" width="">车牌号

@@ -68,12 +68,20 @@
     	FROM com_car_brand 
 		WHERE  is_disabled=0
     </select>
+    <!--车系-->
+    <select id="getCarMT" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT a.id carMTId, a.name carMTName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
+		                a.car_factory_id as carFactoryId, a.car_factory_name as carFactoryName
+		FROM com_car_series a 
+		WHERE a.car_brand_id = #carBrandId#
+		And a.is_disabled=0
+    </select>
     <!--车型-->
     <select id="getCarModel" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT A.id carModelId, A.car_model carModel, car_brand_id carBrandId, car_brand_name carBrandName
-		FROM com_car_model A 
-		WHERE car_brand_id = #carBrandId#
-		And is_disabled=0
+    	SELECT DISTINCT a.id carModelId, a.car_model carModel, a.car_brand_id carBrandId, a.car_brand_name carBrandName
+		FROM com_car_model a 
+		WHERE a.car_brand_id = #carBrandId# and a.car_series_id = #carMTId#
+		And a.is_disabled=0
     </select>
     <!--省份-->
     <select id="getProvince" parameterClass="HashMap" resultClass="HashMap">

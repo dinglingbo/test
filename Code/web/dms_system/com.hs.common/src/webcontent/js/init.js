@@ -78,14 +78,30 @@ function processCarBrand(data){
     setDataToHash(data,"carBrand","id");
     _initDmsCallback["initCarBrand"] && _initDmsCallback["initCarBrand"]() && (_initDmsCallback["initCarBrand"] = null);
 }
+//车系
+function initCarMT(id,carBrandId){
+	_initDmsCallback["initCarMT"] = callback;
+    if(checkObjExists(id, "initCarMT")){
+        //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carBrand.biz.ext";
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarMT.biz.ext";
+        var params = {};
+        params.carBrandId = e.value;
+        callAjax(url, params, processAjax, processCarMT, null); 
+    }
+}
+function processCarMT(data){
+    _initDmsObj["initCarMT"].setData(data);
+    _initDmsCallback["initCarMT"] && _initDmsCallback["initCarMT"]() && (_initDmsCallback["initCarMT"] = null);
+}
 
 //获取车型(选择品牌触发)
-function getCarModel(id, e){
+function getCarModel(id, carBrandId, carMTId){
     if(checkObjExists(id, "getCarModel")){
         //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carModel.biz.ext";
         var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarModel.biz.ext";
         var params = {};
-        params.carBrandId = e.value;
+        params.carBrandId = carBrandId;
+        params.carMTId = carMTId;
         callAjax(url, params, processAjax, processCarModel, null);
     }
 }

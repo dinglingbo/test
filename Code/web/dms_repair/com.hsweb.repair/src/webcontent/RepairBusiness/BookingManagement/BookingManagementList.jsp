@@ -10,7 +10,7 @@
 -->
 <head>
 <title>预约列表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.33"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.34"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 table {
@@ -88,7 +88,7 @@ table {
                 <a class="nui-button" plain="true" iconCls="" onclick="quote()">确认</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="quote()">开单</a>
                 <a class="nui-button" plain="true"  id="cancelBtn"  onclick="cancel()">取消</a>
-           		<a class="nui-button" plain="true" iconCls="" id="fllowUpBtn" onclick="fllowUp()">跟踪</a>
+           		<a class="nui-button" plain="true" iconCls="" id="fllowUpBtn" onclick="selectedchange()">跟踪</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="history()">服务履历</a>
             	
            </td>
@@ -105,7 +105,7 @@ table {
                      pageSize="20"
                      dataField="data" 
                      showPageSize="false"
-                     selectOnLoad="true" onselectionchanged="selectedchange"
+                     selectOnLoad="true" 
                      sortMode="client"
                      showReloadButton="false" showPagerButtonIcon="true"
                      totalField="page.count"

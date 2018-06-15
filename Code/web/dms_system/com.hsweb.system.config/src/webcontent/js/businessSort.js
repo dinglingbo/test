@@ -53,6 +53,7 @@ $(document).ready(function(v) {
 
     return s;
 }
+ 
  function onCancel(){
 	 var form1=new nui.Form("#editform");
 	 form1.setData('');

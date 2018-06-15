@@ -79,29 +79,23 @@ function selectedchange(){
 }
 
 function addRow(){
-	var s=upGrid.getSelected ();
 	
-	if(s!=undefined){
+	
+
 		
 		 nui.open({
              url: "BookingManagementEdit.jsp",
-             title: "新增", width: 800, height: 350,
+             title: "新增", width: 800, height: 500,
              onload: function () {
-                /* var iframe = this.getIFrameEl();
-                 var param = { action: "sk", data: s };
-                 iframe.contentWindow.SetData(param);*/
+              
              },
              ondestroy: function (action) {
-                 //var iframe = this.getIFrameEl();
-
-            	 upGrid.reload();
+              	 upGrid.reload();
 
              }
          });
-	}
-	else{
-		  nui.alert("请选中一条数据！！");
-	}
+	
+	
 	
 	
 }

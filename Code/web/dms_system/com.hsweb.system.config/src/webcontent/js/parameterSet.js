@@ -23,7 +23,7 @@ var SignHash = {
 	    "0":"否",
 	    "1":"是"
 	};
-
+var showList = [{ id: 1, name: "启用" },{ id: 0, name: "禁用" }];
 
 
 
@@ -46,7 +46,7 @@ $(document).ready(function(v) {
 	grid=nui.get("discountGrid");
 	grid.setUrl(gridUrl);
 	grid.load({
-		params:initList,
+		params:initList
 	});		
 });
 
@@ -430,17 +430,17 @@ function showFormSet(){
 		keyidId:"repair_careAlarm_default_show",
 		keyidValue:formData.repair_careAlarm_default_show
 		},{
-		keyidId:"repair__service_default_show",
+		keyidId:"repair_service_default_show",
 		keyidValue:formData.repair__service_default_show	
 		},{
-		keyidId:"repair__worklist_default_show",
+		keyidId:"repair_worklist_default_show",
 		keyidValue:formData.repair__worklist_default_show	
 		},{
-		keyidId:"repair__settorder_print_show",
+		keyidId:"repair_settorder_print_show",
 		keyidValue:formData.repair__settorder_print_show				
 		},
 		{
-		keyidId:"repair__default_store",
+		keyidId:"repair_default_store",
 		keyidValue:formData.defaultStore				
 		}
 		];

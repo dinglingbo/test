@@ -14,7 +14,8 @@ var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.
 $(document).ready(function(v){
 	
 	initMember("mtAdvisor",null);
-	
+	initCarBrand("carBrandId",null);
+
 	getBisinessList(function(data) {
 		var bisinessList=[];
 		bisinessList = data.data;
@@ -45,14 +46,15 @@ function setMenu1(obj, target, value){
 
 function onOk() {
 
-	var s = GetData();
+	basicInfoForm = new nui.Form("#basicInfoForm");	
+	s=basicInfoForm.getData();
 	if (s != undefined) {
 		nui.ajax({
 			url : baseUrl
 					+ "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
 			type : 'post',
 			data : nui.encode({
-				params : s
+				param : s
 			}),
 			success : function(data) {
 				if (data.errCode == "S") {
@@ -71,7 +73,8 @@ function onOk() {
 }
 function onCancel(){
 	
-	closeWindow("ok");
+	window.CloseOwnerWindow("ok");
+	
 }
 
 
@@ -102,6 +105,11 @@ function doSearch(params) {
                nui.alert(jqXHR.responseText);
            }
        });}
+
+function SetData(params){
+	basicInfoForm = new nui.Form("#basicInfoForm");	
+	basicInfoForm.setData(params.data);
+}
 	
 function addCarBrand() {
     selectCustomer(function (car) {

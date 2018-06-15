@@ -99,3 +99,31 @@ function addRow(){
 	
 	
 }
+function editRow(){
+	
+	var row=upGrid.getSelected();
+	if(row==undefined)
+		{
+		nui.alert("请选中一条数据");
+		return;
+		}
+
+	
+	 nui.open({
+        url: "BookingManagementEdit.jsp",
+        title: "修改", width: 800, height: 500,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var param = { action: "edit", data: row };
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+         	 upGrid.reload();
+
+        }
+    });
+
+
+
+
+}

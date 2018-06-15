@@ -84,7 +84,7 @@ table {
             <td>
             
                 <a class="nui-button" plain="true" id="addBtn" onclick="addRow()">新增</a>
-                <a class="nui-button" plain="true" id="saveBtn" onclick="save()">修改</a>
+                <a class="nui-button" plain="true" id="saveBtn" onclick="editRow()">修改</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="quote()">确认</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="quote()">开单</a>
                 <a class="nui-button" plain="true"  id="cancelBtn"  onclick="cancel()">取消</a>
@@ -135,7 +135,7 @@ table {
                         <div field="serviceTypeId" headerAlign="center" allowSort="true"
                              visible="true" width="">业务类型
                         </div>
-                        <div field="predictComeDate" headerAlign="center" allowSort="true"
+                        <div field="predictComeDate" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd"
                              visible="true" width="">预计来厂
                         </div>
                         <div field="prebookCategory" headerAlign="center" allowSort="true"

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>预约管理</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.0.37"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.0.46"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 table {

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>预约列表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.31"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.33"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 table {
@@ -84,7 +84,7 @@ table {
             <td>
             
                 <a class="nui-button" plain="true" id="addBtn" onclick="addRow()">新增</a>
-                <a class="nui-button" plain="true" id="saveBtn" onclick="updataRow()">修改</a>
+                <a class="nui-button" plain="true" id="saveBtn" onclick="save()">修改</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="quote()">确认</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="quote()">开单</a>
                 <a class="nui-button" plain="true"  id="cancelBtn"  onclick="cancel()">取消</a>
@@ -112,7 +112,7 @@ table {
                      allowSortColumn="true">
                     <div property="columns">
                         <div field="id" headerAlign="center" allowSort="true"
-                             visible="true" width="">id
+                             visible="false" width="">id
                         </div>
                         <div field="mtAdvisor" headerAlign="center" allowSort="true"
                              visible="true" width="">服务顾问
@@ -132,7 +132,7 @@ table {
                         <div field="contactorTel" headerAlign="center" allowSort="true"
                              visible="true" width="">联系电话
                         </div>
-                        <div field="bookStatus" headerAlign="center" allowSort="true"
+                        <div field="serviceTypeId" headerAlign="center" allowSort="true"
                              visible="true" width="">业务类型
                         </div>
                         <div field="predictComeDate" headerAlign="center" allowSort="true"

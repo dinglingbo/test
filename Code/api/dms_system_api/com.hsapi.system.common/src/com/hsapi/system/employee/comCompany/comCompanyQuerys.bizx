@@ -6,6 +6,16 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">m:userObject/attributes/tenantId</process:leftOperand>
+          <process:rightOperand type="literal">default</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="60" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -53,6 +63,14 @@
       <process:to type="query">cd/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">cd/_expr[1]/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
@@ -69,6 +87,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="360" y="60"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -89,6 +108,37 @@
     <location x="263" y="96"/>
     <figSize height="17" width="217"/>
     <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="208" y="165"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComCompany</process:from>
+      <process:to type="query">cd/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/name</process:from>
+      <process:to type="query">cd/_expr[1]/name</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">cd/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="206" y="201"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

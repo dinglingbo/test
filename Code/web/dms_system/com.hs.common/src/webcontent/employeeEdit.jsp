@@ -11,7 +11,7 @@
 <head>
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/js/employeeEdit.js?v=1.7" type="text/javascript"></script>
+    <script src="<%=webPath + sysDomain%>/common/js/employeeEdit.js?v=1.8" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
@@ -91,7 +91,7 @@
                 </table>
             </fieldset>
         <div style="text-align: center;margin-top: 10px;margin-bottom: 20px;">
-            <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('new')" id="newand" name="newand"><i class="fa fa-plus"></i>&nbsp;新建并继续</a>
+            <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('new')" id="newand" name="newand"><i class="fa fa-plus"></i>&nbsp;保存并继续</a>
             <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('edit')" ><i class="fa fa-save"></i>&nbsp;保存退出</a>
             <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="Oncancel()"><i class="fa fa-sign-out"></i>&nbsp;退出</a>
 

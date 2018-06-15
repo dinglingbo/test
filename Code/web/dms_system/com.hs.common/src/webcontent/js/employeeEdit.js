@@ -2,28 +2,29 @@
  * Created by steven on 2018/1/31.
  */
 
-nui.parse();
-baseUrl = apiPath + sysApi + "/";
-var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
-var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
+var baseUrl = apiPath + sysApi + "/";
+var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
+//var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
 var sex;
 var isservice;
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
 var sexlist = [{id: 1, name: '男'}, {id: 0, name: '女'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
-
+var basicInfoForm = null;
 
 $(document).ready(function(v) {
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
 	sex.setData(sexlist);
 	isservice.setData(isservicelist);
+
+    basicInfoForm = new nui.Form('#basicInfoForm');
 });
 
-function SetData(data) {
+function SetInitData(data) {
 	if (!data.empid) return;
-	
-    nui.ajax({
+	basicInfoForm.setData(data);   
+    /*nui.ajax({
         url:fromUrl + "?params/empid=" + data.empid,
         type:"post",        
         success:function(data)
@@ -41,12 +42,13 @@ function SetData(data) {
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
-    });	
+    });	*/
 }
 
 var requiredField = {
     name:"姓名",
-    tel:"电话"
+    tel:"电话",
+    idcardno:"身份证号码"
 };
 
 function save(action) {
@@ -61,9 +63,13 @@ function save(action) {
             return;
         }
     }
+
+    if (form.isValid() == false) return;
   
     nui.mask({
-        html:'保存中...'
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
     });
     nui.ajax({
         url:saveUrl,
@@ -84,6 +90,9 @@ function save(action) {
                 } else {
                 	 closeWindow("cal");
                 }
+            }else{
+                basicInfoForm.setData([]); 
+                nui.get("name").focus();
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

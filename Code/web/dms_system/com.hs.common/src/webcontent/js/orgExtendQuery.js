@@ -2,7 +2,7 @@
  * Created by steven on 2018/1/31.
  */
 baseUrl = apiPath + sysApi + "/";;
-var gridUrl = baseUrl + "com.hsapi.system.employee.comCompany.comCompanyQuerys.biz.ext";
+var gridUrl = baseUrl + "com.hsapi.system.tenant.tenant.queryCompany.biz.ext";
 var timeUrl = baseUrl + "com.hsapi.system.employee.comCompany.getTime.biz.ext";
 var grid;
 var time;
@@ -103,68 +103,27 @@ function edit(action) {
     
     var comCompay = {};
 
-    if (action == 'new') {
-    	nui.ajax({
-            url: timeUrl,
-            type: 'post',
-            data: nui.encode({
-            	
-            }),
-            cache: false,
-            success: function (data) {
-                if (data.errCode == "S"){
-                	time=data.rs.time;
-                	person=data.rs.person;
-                    }else {
-                
-                    nui.alert("失败！");
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
-            }
-    	});
-    } else {
-    	var row = grid.getSelected();
-    	if (!row) {
-    		alert("请选中一条记录");
-    		return;
-    		
-    	}
-  
-    	
-    	comCompay = row;  	
+    if (action == 'edit') {
+    	var comCompay = grid.getSelected();
+        if (!comCompay) {
+            nui.alert("请选中一条记录");
+            return;
+            
+        }
     }
 
     nui.open({
-        url: apiPath + sysDomain + "/common/orgExtendEdit_view0.jsp",
+        url: webPath + sysDomain + "/com.hs.common.orgExtendEdit.flow?token="+token,
         width: 1200,      //宽度
         height: 600,    //高度
-        title: "分店信息",      //标题 组织编码选择
+        title: "公司信息",      //标题 组织编码选择
         allowResize:true,
         onload: function () {
             var iframe = this.getIFrameEl();
-            if(time!=""){
-            comCompay.recordDate=time;
-            comCompay.recorder=person;
-            comCompay.modifyDate=time;
-            comCompay.modifier=person;
-            }
             iframe.contentWindow.SetInitData(comCompay);
-            time="";
-            person="";
         },
         ondestroy: function (action) {  //弹出页面关闭前
-        	grid.reload();
-            if (action == "OK") {       //如果点击“确定”
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.GetData();
-                data = nui.clone(data);    //必须。克隆数据。		               
-                if(data){
-                    btnEdit.setValue(data.value);
-                    btnEdit.setText(data.text);
-                }
-            }
+            grid.reload();
         }
     });	    
 }
@@ -188,7 +147,8 @@ function dimssion(){
             url: dimssionUrl,
             type: 'post',
             data: nui.encode({
-            	params: s
+            	params: s,
+            	token: token
             }),
             cache: false,
             success: function (data) {
@@ -379,7 +339,8 @@ function stoporstart(i){
             url: stoporstartUrl,
             type: 'post',
             data: nui.encode({
-            	params: row
+            	params: row,
+            	token: token
             }),
             cache: false,
             success: function (data) {

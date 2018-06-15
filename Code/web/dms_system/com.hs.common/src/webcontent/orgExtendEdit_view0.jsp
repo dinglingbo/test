@@ -10,8 +10,7 @@
 <head>
     <title>门店信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=request.getContextPath()%>/common/js/orgExtendEdit.js?v=1.9" type="text/javascript"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  	<script src="<%=webPath + sysDomain%>/common/js/orgExtendEdit.js?v=1.9.1" type="text/javascript"></script>
 
   <style type="text/css">
     body {
@@ -23,7 +22,7 @@
        overflow: hidden;
    }
 
-
+    /*body.back{background:LightSteelBlue;}*/
    table
    {
 
@@ -125,7 +124,7 @@ table tr td span
 } 
 </style> 
 </head> 
-<body>
+<body class="back">
     <div class="nui-fit">  
         <div class="form"id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
            <table >
@@ -143,30 +142,32 @@ table tr td span
             </tr>    
             
             <tr>
-                <td class="tbtext">公司名称<span></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth" name="name" id="name"/></td>
+                <td class="tbtext">公司全称<span></span></td>
+                <td colspan="3"><input class="nui-textbox tabwidth" name="name" id="name"/></td>
+                <td class="tbtext">公司简称<span></span></td>
+                <td><input class="nui-textbox tabwidth" name="shortName" id="shortName"/></td>
 
             </tr>               
 
 		
             <tr>
                 <td style="width:100px;text-align:right;" class="tbtext">省份<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId"  valueField="code" textField="name" data="list" onvaluechanged="onProvinceChange" /></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId" valueFromSelect="true" allowinput="true" valueField="code" textField="name" data="list" onvaluechanged="onProvinceChange" /></td>
                 <td style="width:100px;text-align:right;"class="tbtext">城市<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId" valueField="code" textField="name" /></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId" onvaluechanged="onCityChange" valueFromSelect="true" allowinput="true" valueFromSelect="true" allowinput="true" valueField="code" textField="name" /></td>
                 <td style="width:100px;text-align:right;"class="tbtext">地区<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId" id="countyId"/></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId" valueFromSelect="true" valueField="code" textField="name" allowinput="true" id="countyId" valueFromSelect="true" allowinput="true" onvaluechanged="onCountyChange"/></td>
 
             </tr> 
 
             <tr>
                 <td class="tbtext">详细地址<span></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth" name="streetAddress" id="streetAddress"/></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="streetAddress" id="streetAddress" onvaluechanged="onStreetChange"/></td>
 
             </tr>
             <tr>
                 <td class="tbtext">组合地址<span></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth"  name="address" id="address"/></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" enabled="false" name="address" id="address"/></td>
 
             </tr>
 
@@ -186,7 +187,7 @@ table tr td span
             </tr>
             <tr>
                 <td class="tbtext">开店日期<span></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth" name="softopenDate" id="softopenDate"/></td>
+                <td colspan="5"><input class="nui-datepicker tabwidth" enabled="true" format="yyyy-MM-dd H:mm:ss" name="softOpenDate" id="softOpenDate"/></td>
 
             </tr>           
             <tr>
@@ -256,8 +257,8 @@ table tr td span
 
             <tr>
                 <td class="tbtext">建档人<span style="color:red" ></span></td>
-                <td colspan="5" ><input class="nui-textbox inline " readonly="readonly" style="" name="recorder" id="recorder" />
-                    <span style="width:450px;float: right;text-align: right;">建档日期<input class="nui-textbox inline" readonly="readonly" style="margin-left: 10px;" name="recordDate" id="recordDate"/></span>
+                <td colspan="5" ><input class="nui-textbox inline " readonly="readonly" style="" name="recorder" id="recorder" enabled="false" />
+                    <span style="width:450px;float: right;text-align: right;">建档日期<input class="nui-textbox inline" readonly="readonly" style="margin-left: 10px;" name="recordDate" id="recordDate" enabled="false"/></span>
                 </td>
 
             </tr>
@@ -265,8 +266,8 @@ table tr td span
 
             <tr>
                 <td class="tbtext">最后操作人<span style="color:red"></span></td>
-                <td colspan="5" ><input class="nui-textbox inline " style="" name="modifier" id="modifier" readonly="readonly" />
-                    <span style="width:450px;float: right;text-align: right;">最后操作日期<input readonly="readonly" class="nui-textbox inline" style="margin-left: 10px;" name="modifyDate" id="modifyDate"/></span>
+                <td colspan="5" ><input class="nui-textbox inline " style="" name="modifier" id="modifier" readonly="readonly" enabled="false"/>
+                    <span style="width:450px;float: right;text-align: right;">最后操作日期<input readonly="readonly" class="nui-textbox inline" style="margin-left: 10px;" name="modifyDate" id="modifyDate" enabled="false"/></span>
                 </td>
 
             </tr>

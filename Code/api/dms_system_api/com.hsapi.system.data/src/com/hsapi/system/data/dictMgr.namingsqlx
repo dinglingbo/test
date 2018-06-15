@@ -125,4 +125,19 @@
 		where isdisabled = 0 and orgid = #orgid#
 		order by code 
     </select>
+    <!--公司员工-->
+    <select id="queryComMember" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.empid as empId,
+			a.`name` as empName
+		FROM
+		com_member AS a
+		WHERE 1=1 and is_dimission = 0
+		<isNotNull property="orgid">
+			AND a.orgid = #orgid#
+		</isNotNull>
+        <isNull property="orgid">
+			AND a.orgid in($orgids$)
+		</isNull>
+    </select>
 </sqlMap>

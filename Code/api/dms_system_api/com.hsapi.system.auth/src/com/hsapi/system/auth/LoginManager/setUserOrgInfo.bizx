@@ -64,6 +64,10 @@
       <process:to type="query">m:userObject/userRealName</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">u/tenantId</process:from>
+      <process:to type="query">m:userObject/attributes/tenantId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">u/operatorid</process:from>
       <process:to type="query">m:userObject/attributes/currUserId</process:to>
     </process:copy>

@@ -47,6 +47,7 @@ var _initDmsHash = {
 	comp:{},//组织,
 	insureComp:{},//保险公司,
 	dict:{},//数据字典
+	member:{}
 };
 window._initDmsHash = _initDmsHash;
 //公司组织
@@ -159,6 +160,18 @@ function processCity(data){
     _initDmsObj["initCity"].setData(data);
     setDataToHash(data,"city","code");
     _initDmsCallback["initCity"] && _initDmsCallback["initCity"]() && (_initDmsCallback["initCity"] = null);
+}
+//公司员工
+function initMember(callback){//dictDefs{id1: dictid1, id2: dictid2}
+	_initDmsCallback["initCompMember"] = callback;
+    var url = _sysApiRoot + "/com.hsapi.system.dict.org.queryMember.biz.ext";
+    var params = {};
+    callAjax(url, params, processAjax, processMember, null);
+}
+function processMember(data){
+    adapterData(_initDmsObj["initCompMember"], data, "empId");
+    setDataToHash(data,"member","empId");
+    _initDmsCallback["initCompMember"]  && _initDmsCallback["initCompMember"]() && (_initDmsCallback["initCompMember"] = null);
 }
 
 //filter Param

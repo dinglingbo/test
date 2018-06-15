@@ -78,9 +78,10 @@
 	String userName="";
     String userRealName="";
     String token="";
+    String tenantId = "default";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
-		%>alert(123);backToLogin();<%
+		%>backToLogin();<%
 	}else{
 		IUserObject u = (IUserObject) session.getAttribute("userObject");		
 		if (u != null) {
@@ -91,10 +92,12 @@
             userRealName = u.getUserRealName();
             
 			String noOrgId = "N";
+			
             try {
 				attr = u.getAttributes();
 				token = attr.get("token").toString();
                 noOrgId = session.getAttribute("noOrgId").toString();
+                tenantId = attr.get("tenantId").toString();
 			} catch (Exception e) {
 			}
             
@@ -122,6 +125,7 @@
     var currUserId = "<%=userId %>";
 	var currUserName = "<%=userName %>";
     var currUserRealName = "<%=userRealName %>";
+    var currTenantId = "<%=tenantId %>";
     var token = "<%=token %>";
     //alert("token=" + token);
     

@@ -11,54 +11,73 @@
 <head>
 <title>开通账号</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+.title {
+  width: 80px;
+  text-align: right;
+}
 
+</style>
 </head>
 <body>
-	<div class="form" id="basicInfoForm" >
-		<table>
-		      <tr>
-                <td class="tbtext">姓名：</td>
-                <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="name" name="name" readonly="readonly" enabled="false"/></td>
-              	</tr>
-                <tr>
-                <td class="tbtext">请输入登陆账号：</td>
-                <td style="width:400px;"><input class="nui-textbox" style="width: 400px;" id="Account" name="Account" vtype="maxLength:20"/></td>
-                </tr>
-                <tr>
-                <td class="tbtext">默认密码：000000</td>
-                <input class="nui-textbox" value="000000" style="width: 400px;" readonly="readonly" id="passWord" name="passWord" visible="false"/>
-                </tr>
-                 <tr>
-				 <td><input class="nui-textbox" id="empid" name="empid" visible="false"/></td>
-                </tr>
-		</table>
-		<div style="text-align: center;margin-top: 10px;margin-bottom: 20px;">
-            <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="OnOk"><i class="fa fa-plus"></i>&nbsp;确认</a>
-			<a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="Oncancel"><i class="fa fa-sign-out"></i>&nbsp;退出</a>
+  <div class="nui-fit">
 
-        </div> 
-	</div>
+  	<div class="form" id="basicInfoForm" >
+  		<table>
+  		      <tr>
+                  <td class="title">姓名：</td>
+                  <td style="width:200px;">
+                      <input class="nui-textbox" width="100%" id="name" name="name" readonly="readonly" enabled="false"/></td>
+                </tr>
+                <tr>
+                  <td class="title">登陆账号：</td>
+                  <td style="width:200px;">
+                      <input class="nui-textbox" width="100%" id="Account" name="Account" vtype="maxLength:20"/></td>
+                </tr>
+                <tr>
+                  <td class="title">默认密码：</td>
+                  <td style="width:200px;">
+                    <input class="nui-textbox" value="000000" width="100%" readonly="readonly" id="passWord" name="passWord" enabled="false" visible="true"/>
+                  </td>
+                </tr>
+                <tr>
+  				 <td>
+                      <input class="nui-textbox" id="empid" name="empid" visible="false"/>
+                  </td>
+                </tr>
+  		</table>
+  		<div style="text-align: center;margin-top: 10px;margin-bottom: 20px;">
+              <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="OnOk"><i class="fa fa-plus"></i>&nbsp;确认</a>
+  			<a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="Oncancel"><i class="fa fa-sign-out"></i>&nbsp;退出</a>
+
+          </div> 
+  	</div>
+  </div>
 
 
 	<script type="text/javascript">
     	nui.parse();
      	var form;
-     	baseUrl = apiPath + sysApi + "/";;
+     	var baseUrl = apiPath + sysApi + "/";
+
+      nui.get("Account").focus();
     	$(document).ready(function(v) {
 			form = new nui.Form("#basicInfoForm");
 
 		});
-    function SetData(data) {
-	if (!data.empid) return;
-	form.setData(data);
+    function SetInitData(data) {
+    	if (!data.empid) return;
+    	form.setData(data);
     }
-    setAccountUrl=baseUrl+"com.hsapi.system.employee.employeeMgr.setAccount.biz.ext"
+    setAccountUrl=baseUrl+"com.hsapi.system.tenant.employee.openOrCloseUser.biz.ext"
     function OnOk(){
     	var tmpAccount=nui.get("Account").getValue();
     	var tmpempid=nui.get("empid").getValue();
     	var s={};
-    	s.Account=tmpAccount;
+    	s.systemAccount=tmpAccount;
+      s.name = nui.get("name").getValue();
     	s.empid=tmpempid;
+      s.isOpenAccount = 1;
     		if(tmpAccount=="")
     		{
     		nui.alert("请输入帐号！");
@@ -69,11 +88,13 @@
 	        cls : 'mini-mask-loading',
 	        html : '开通账户中...'
 	    });
- 			nui.ajax({
+ 		nui.ajax({
             url: setAccountUrl,
             type: 'post',
             data: nui.encode({
-            	params: s
+            	comMember: s,
+                type:1,
+                token:token
             }),
             cache: false,
             success: function (data) {

@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=request.getContextPath()%>/common/js/employeeQuery.js?v=1.8" type="text/javascript"></script>    
+    <script src="<%=webPath + sysDomain%>/common/js/employeeQuery.js?v=1.9.5" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -24,7 +24,7 @@
 					<input class="nui-textbox" id="name" name="meberName" onenter="" />
 					<label style="font-family:Verdana;">电话：</label>
 					<input class="nui-textbox" id="mobile" name="mobile" onenter="" />
-					<a class="nui-button"  iconCls="" onclick="search()" plain="true"><span class="fa fa-search"></span>&nbsp;查询（Q）</a>
+					<a class="nui-button"  iconCls="" onclick="search()" plain="true"><span class="fa fa-search"></span>&nbsp;查询</a>
 				</td>
 			</tr>
 		</table>
@@ -34,10 +34,10 @@
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 100%">
-					<a class="nui-button" plain="true" iconCls="" onclick="edit('new')"><span class="fa fa-plus fa-lg"></span>&nbsp;新增(N)</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="edit('edit')"><span class="fa fa-edit fa-lg"></span>&nbsp;修改(E)</a>
-					<a class="nui-button" plain="true" iconCls="" id="btnisDimission" name="btnisDimission" onclick="dimssion()"><span class="fa fa-user-times"></span>&nbsp;离职（D）</a>
-					<a class="nui-button" plain="true" id="btnisOpenAccount" name="btnisOpenAccount" iconCls="" onclick="stoporstart()" ><span class="fa fa-key"></span>&nbsp;开通账号（O）</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="edit('new')"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="edit('edit')"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+					<a class="nui-button" plain="true" iconCls="" id="btnisDimission" name="btnisDimission" onclick="dimssion()"><span class="fa fa-user-times"></span>&nbsp;离职</a>
+					<a class="nui-button" plain="true" id="btnisOpenAccount" name="btnisOpenAccount" iconCls="" onclick="stoporstart()" ><span class="fa fa-key"></span>&nbsp;开通账号</a>
                 	<a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 				</td>
 			</tr>
@@ -50,6 +50,7 @@
 			class="nui-datagrid"
 			style="width: 100%; height: 100%;"
 			url=""
+			showModified="false"
 			pageSize="50" showPageInfo="true" multiSelect="true"
 			showReloadButton="true" showPagerButtonIcon="true"
 			totalField="page.count" onselectionchanged="changebutton"
@@ -62,7 +63,7 @@
 						<div id="name" field="name" headerAlign="center" allowSort="true" visible="true" width="40px">姓名</div>
 						<div id="sex" field="sex" headerAlign="center" allowSort="true" visible="true" width="20px">性别</div>
 						<div id="idcardno" field="idcardno" headerAlign="center" allowSort="true" visible="true" >身份证</div>
-						<div id="birthday" field="birthday" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd H:mm:ss">生日</div>
+						<div id="birthday" field="birthday" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd" width="60px">生日</div>
 						<div id="tel" field="tel" headerAlign="center" allowSort="true" visible="true" width="40px">电话</div>
 						<div id="isDimission" field="isDimission" headerAlign="center" allowSort="true" visible="true" width="60px">是否离职</div>
 						<div id="isOpenAccount" field="isOpenAccount" headerAlign="center" allowSort="true" visible="true" width="60px">是否开通系统</div>

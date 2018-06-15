@@ -3,44 +3,90 @@
  */
 
 baseUrl = apiPath + sysApi + "/";;
-var saveUrl = baseUrl + "com.hsapi.system.employee.comCompany.comCompanySave.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.system.tenant.tenant.saveCompany.biz.ext";
 var sex;
 var isservice;
-nui.parse();
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
 var sexlist = [{id: 1, name: '女'}, {id: 0, name: '男'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 var list = null;
 var provinceCode = null;
+var provinceHash = null;
+var cityHash = null;
+var countyHash = null;
+var provinceEl = null;
+var cityEl = null;
+var countyEl = null;
+var streetAddressEl = null;
+var addressEl = null;
 $(document).ready(function(v) {
-	   getProvince(function(data) {
-	        list = data.rs;
-	        nui.get("provinceId").setData(list);
+    provinceEl = nui.get("provinceId");
+    cityEl = nui.get("cityId");
+    countyEl = nui.get("countyId");
+    streetAddressEl = nui.get("streetAddress");
+    addressEl = nui.get("address");
 
-	    });
+    getRegion(null,function(data) {
+        provinceHash = data.rs || [];
+        provinceEl.setData(provinceHash);
 
+    });
 
 });
 function SetInitData(data) {
-	
-	
-    		var form = new nui.Form("#basicInfoForm");
-    	
-            form.setData(data);    
+    if (data.softopenDate) {
+        data.softopenDate = format(data.softopenDate, 'yyyy-MM-dd');
+    }
+    if (data.recordDate) {
+        data.recordDate = format(data.recordDate, 'yyyy-MM-dd HH:mm:ss');
+    }
+    if (data.modifyDate) {
+        data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd');
+    }
 
+	var form = new nui.Form("#basicInfoForm");
+    form.setData(data);  
+
+    setInitRegionData(provinceEl, null);
+    if(data && data.provinceId){
+        setInitRegionData(cityEl, data.provinceId);    
+    }
+    if(data && data.cityId){
+        setInitRegionData(countyEl, data.cityId);    
+    }
 }
 
-
+var requiredField = {
+    code : "企业号",
+    name : "公司全称",
+    shortName : "公司简称",
+    provinceId : "省份",
+    cityId : "城市",
+    streetAddress : "详细地址",
+    tel : "公司电话"
+};
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
-    data.cityId = "";
+
+    for ( var key in requiredField) {
+        if (!data[key] || $.trim(data[key]).length == 0) {
+            nui.alert(requiredField[key] + "不能为空!");
+
+            return;
+        }
+    }
+
+    /*data.cityId = "";
     data.provinceId = "";
-    data.countyId = "";
+    data.countyId = "";*/
     
     nui.mask({
-        html:'保存中...'
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
     });
+
     nui.ajax({
         url:saveUrl,
         type:"post",
@@ -78,39 +124,70 @@ function close() {
         return ;
     }
 }
-	function Oncancel(){
-     	closeWindow("cal");
-    	
-    }
-
-
-	var queryUrl = baseUrl + "com.hs.common.region.getRegin.biz.ext";
-	function getProvince(callback) {
-
-	    nui.ajax({
-	        url : queryUrl,
-	        data : {
-	        	parentId:provinceCode,
-	            token: token
-	        },
-	        type : "post",
-	        success : function(data) {
-	            if (data && data.rs) {
-	                callback && callback(data);
-	            }
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-	           console.log(jqXHR.responseText);
-	        }
-	    });
-	}
+function Oncancel(){
+ 	closeWindow("cal");
 	
-	function onProvinceChange(e){
-	    var se = e.selected;
-	    provinceCode = se.code;
-	  
-	    getProvince(function(data) {
-	    	  nui.get("cityId").setData(data.rs);
-	    });
-	}
-	
+}
+
+var getRegionUrl = apiPath + sysApi + "/" + "com.hs.common.region.getRegin.biz.ext";
+function getRegion(parentId,callback) {
+    nui.ajax({
+        url : getRegionUrl,
+        data : {
+            token: token, 
+            parentId: parentId
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.rs) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+function setInitRegionData(el, value){
+    getRegion(value,function(data) {
+        hash = data.rs || [];
+        el.setData(hash);
+    });
+}
+function onProvinceChange(e){
+    var value = e.value;
+    cityEl.setValue(null);
+    countyEl.setValue(null);
+    getRegion(value,function(data) {
+        cityHash = data.rs || [];
+        cityEl.setData(cityHash);
+
+    });
+    setAddress();
+}
+function onCityChange(e){
+    var value = e.value;
+    countyEl.setValue(null);
+    getRegion(value,function(data) {
+        countyHash = data.rs || [];
+        countyEl.setData(countyHash);
+
+    });
+    setAddress();
+}
+function onCountyChange(e){
+    setAddress();
+}
+function onStreetChange(e){
+    setAddress();
+}
+function setAddress() {
+    var provinceT = provinceEl.getText()||'';
+    var cityT = cityEl.getText()||'';
+    var countyT = countyEl.getText()||'';
+    var streetAddressT = streetAddressEl.getValue()||'';
+    var address = provinceT + cityT + countyT + streetAddressT;
+    addressEl.setValue(address);
+    addressEl.getValue();
+}

@@ -11,7 +11,7 @@
 <head>
     <title>角色权限管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/js/roleRightMgr.js?v=1.7" type="text/javascript"></script>
+    <script src="<%=webPath + sysDomain%>/common/js/roleRightMgr.js?v=1.7.1" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     body {

@@ -111,9 +111,15 @@
     <node>invokePojo5</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="obj2json" displayName="obj2json" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link7" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="link7" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo6</sourceNode>
@@ -399,7 +405,9 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="371" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-03-23 08:55:46" date="2018-03-23Z" description="" name="carModel" version="7.0.0.0"/>
   <process:variables>

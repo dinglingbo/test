@@ -2,7 +2,7 @@
  * Created by steven on 2018/1/31.
  */
 baseUrl = apiPath + sysApi + "/";
-var gridUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
+var gridUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 var grid;
 var btnisDimission;
 var btnisOpenAccount;
@@ -82,7 +82,8 @@ function getSearchParam() {
 
 function doSearch(params) {
     grid.load({
-        params:params
+        params:params,
+        token:token
     });
 }
 
@@ -96,31 +97,25 @@ function edit(action) {
     } else {
     	var row = grid.getSelected();
     	if (!row) {
-    		alert("请选中一条记录");
+    		nuialert("请选中一条记录");
     		return;
     	}
-    	emp.empid = row.empid;  	
+    	emp = row;  	
     }
 
     nui.open({
-        url: baseUrl + "/common/employeeEdit.jsp",
+        url: webPath + sysDomain + "/common/employeeEdit.jsp?token="+token,
         width: 680,         //宽度
         height: 430,        //高度
         title: "员工信息",      //标题 组织编码选择
         allowResize:true,
         onload: function () {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(emp);
+            iframe.contentWindow.SetInitData(emp);
         },
         ondestroy: function (action) {  //弹出页面关闭前
-            if (action == "OK") {       //如果点击“确定”
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.GetData();
-                data = nui.clone(data);    //必须。克隆数据。		               
-                if (data) {
-                    btnEdit.setValue(data.value);
-                    btnEdit.setText(data.text);
-                }
+            if (action == "ok") {       //如果点击“确定”
+                search();
             }
         }
     });	    
@@ -131,38 +126,43 @@ function edit(action) {
 *离职
 *
 */
-var dimssionUrl=baseUrl +"com.hsapi.system.employee.employeeMgr.employeeDimssion.biz.ext";
+var dimssionUrl=baseUrl +"com.hsapi.system.tenant.employee.employeeDimssion.biz.ext";
 function dimssion(){
 	var s = grid.getSelected();
 
-	if (s!= undefined) {
+	if (s) {
 	    nui.mask({
 	        el : document.body,
 	        cls : 'mini-mask-loading',
-	        html : '离职中...'
+	        html : '处理中...'
 	    });
         nui.ajax({
             url: dimssionUrl,
             type: 'post',
+            async:false,
             data: nui.encode({
-            	params: s
+            	params: s,
+                token: token
             }),
             cache: false,
             success: function (data) {
                 if (data.errCode == "S"){
                 	nui.unmask(document.body);
                 	nui.alert("操作成功！");
-                	grid.reload();
-                    }else {
+                	//grid.reload();
+                }else {
                     nui.unmask(document.body);
                     nui.alert("操作失败！");
                 }
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 nui.alert(jqXHR.responseText);
             }
 		});
+                
         search();
+        
 	} else {
 	    nui.alert("请选中一条数据！！");
 	}
@@ -174,8 +174,7 @@ function dimssion(){
 *开通或关闭
 *
 */
-var stoporstartUrl= baseUrl +"com.hsapi.system.employee.employeeMgr.stopOrStartEmployee.biz.ext";
-
+var stoporstartUrl= baseUrl +"com.hsapi.system.tenant.employee.openOrCloseUser.biz.ext";
 function stoporstart(){
     var emp = {};
     var row = grid.getSelected();
@@ -183,36 +182,123 @@ function stoporstart(){
         alert("请选中一条记录");
         return;
     }
-    	
-    emp = row;
-    emp.passWord='000000';
-    nui.open({
-        url: baseUrl + "/common/setAccount.jsp",
-        width: 530,      //宽度
-        height: 180,    //高度
-        title: "设置密码",      //标题 组织编码选择
-        allowResize:true,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(emp);
-        },
-        ondestroy: function (action) {  //弹出页面关闭前
-            if (action == "OK") {       //如果点击“确定”
-                alert('开通帐号成功！');
+
+    if(row.isOpenAccount == 1){
+        emp.isOpenAccount = 0;
+        emp.empid = row.empid;
+        emp.systemAccount = row.systemAccount;
+
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '处理中...'
+        });
+        nui.ajax({
+            url: stoporstartUrl,
+            type: 'post',
+            async:false,
+            data: nui.encode({
+                comMember: emp,
+                type: 0,
+                token: token
+            }),
+            cache: false,
+            success: function (data) {
+                if (data.errCode == "S"){
+                    nui.unmask(document.body);
+                    nui.alert("操作成功！");
+
+                    var newRow = {isOpenAccount: 0};
+                    grid.updateRow(row, newRow);
+
+                }else {
+                    nui.unmask(document.body);
+                    nui.alert("操作失败！");
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.alert(jqXHR.responseText);
             }
-        }
-    });
+        });
+
+    }
+
+    if(row.isOpenAccount == 0 && !row.systemAccount){
+        emp = row;
+        emp.passWord='000000';
+        nui.open({
+            url: baseUrl + "/common/setAccount.jsp?token="+token,
+            width: 330,      //宽度
+            height: 180,    //高度
+            title: "设置密码",      //标题 组织编码选择
+            allowResize:true,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.SetInitData(emp);
+            },
+            ondestroy: function (action) {  //弹出页面关闭前
+                if (action == "OK") {       //如果点击“确定”
+                    nui.alert('开通帐号成功！');
+                    search();
+                }
+            }
+        });
+    }
+
+    if(row.isOpenAccount == 0 && row.systemAccount){
+        emp.isOpenAccount = 1;
+        emp.empid = row.empid;
+        emp.systemAccount = row.systemAccount;
+
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '处理中...'
+        });
+        nui.ajax({
+            url: stoporstartUrl,
+            type: 'post',
+            async:false,
+            data: nui.encode({
+                comMember: emp,
+                type: 1,
+                token: token
+            }),
+            cache: false,
+            success: function (data) {
+                if (data.errCode == "S"){
+                    nui.unmask(document.body);
+                    nui.alert("操作成功！");
+
+                    var newRow = {isOpenAccount: 1};
+                    grid.updateRow(row, newRow);
+
+                }else {
+                    nui.unmask(document.body);
+                    nui.alert("操作失败！");
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                nui.alert(jqXHR.responseText);
+            }
+        });
+
+    }
+    	
+    
 }
 	
 
 function changebutton(){
 	var s = grid.getSelected ();
-	if(s!= undefined ){
-        if (s.isOpenAccount==0) btnisOpenAccount.setText("开通账号(&O)");
-	    else btnisOpenAccount.setText("关闭账号(&O)");
+	if(s){
+        if (s.isOpenAccount==0) btnisOpenAccount.setText("<span class='fa fa-key'></span>&nbsp;开通账号");
+	    else btnisOpenAccount.setText("<span class='fa fa-key'></span>&nbsp;关闭账号");
 
-        if (s.isDimission==0) btnisDimission.setText("离职(&D)");
-        else btnisDimission.setText("复职(&D)");
+        if (s.isDimission==0) btnisDimission.setText("<span class='fa fa-user-times'></span>&nbsp;离职");
+        else btnisDimission.setText("<span class='fa fa-user'></span>&nbsp;复职");
 	}
 }
 function importGuest(){

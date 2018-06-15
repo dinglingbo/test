@@ -173,7 +173,7 @@
                                              id="planArriveDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd"/>
                                   </td>
                               </tr>
                               <tr>

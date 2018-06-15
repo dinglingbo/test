@@ -6,7 +6,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -99,7 +99,7 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">role</process:from>
-      <process:to type="query">cond1/_expr[1]/partyType</process:to>
+      <process:to type="query">cond1/_expr[1]/roleType</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.CapResauth</process:from>
@@ -107,7 +107,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">roleId</process:from>
-      <process:to type="query">cond2/_expr[1]/roleId</process:to>
+      <process:to type="query">cond2/_expr[1]/partyId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">role</process:from>
@@ -120,6 +120,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">roleId</process:from>
       <process:to type="query">cond3/_expr[1]/roleId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond3/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
@@ -153,7 +157,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond2</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -183,7 +187,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond3</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">

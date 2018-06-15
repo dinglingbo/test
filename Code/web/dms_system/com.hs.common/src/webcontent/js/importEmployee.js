@@ -110,7 +110,7 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.getImportEmployee.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.getImportEmployee.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
 		nui.mask({

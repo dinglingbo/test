@@ -688,6 +688,7 @@
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>transactioncommit0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
     <location x="962" y="80"/>

@@ -13,6 +13,7 @@ var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.
 
 $(document).ready(function(v){
 	
+	initMember("mtAdvisor",null);
 	
 	getBisinessList(function(data) {
 		var bisinessList=[];
@@ -47,18 +48,18 @@ function onOk() {
 	var s = GetData();
 	if (s != undefined) {
 		nui.ajax({
-			url : apiPath + frmApi
-					+ "/com.hsapi.frm.setting.updateguarante.biz.ext",
+			url : baseUrl
+					+ "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
 			type : 'post',
 			data : nui.encode({
 				params : s
 			}),
 			success : function(data) {
 				if (data.errCode == "S") {
-					nui.alert("挂账成功！");
-					closeWindow("ok");
+					
+					window.CloseOwnerWindow("ok");
 				} else {
-					closeWindow("ok");
+					window.CloseOwnerWindow("ok");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

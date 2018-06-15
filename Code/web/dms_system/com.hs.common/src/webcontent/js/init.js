@@ -172,7 +172,6 @@ function initMember(id,callback){//dictDefs{id1: dictid1, id2: dictid2}
 }
 function processMember(data){
     adapterData(_initDmsObj["initCompMember"], data, "empId");
-    setDataToHash(data,"member","empId");
     _initDmsCallback["initCompMember"]  && _initDmsCallback["initCompMember"]() && (_initDmsCallback["initCompMember"] = null);
 }
 

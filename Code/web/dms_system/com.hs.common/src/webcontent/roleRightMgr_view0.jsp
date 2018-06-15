@@ -55,10 +55,10 @@
     <div class="nui-splitter" style="width: 100%; height: 100%;">
         <div size="270" showcollapsebutton="true">
             <div class="nui-toolbar"  >
-                <a class="nui-button" plain="false" onclick="queryRole()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
-                <a class="nui-button" plain="false" onclick="editRole('new')"><i class="fa fa-plus"></i>&nbsp;新增</a>
-                <a class="nui-button" plain="false" onclick="editRole('edit')"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                <a class="nui-button" plain="false" onclick="deleteRole()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                <a class="nui-button" plain="true" onclick="queryRole()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                <a class="nui-button" plain="true" onclick="editRole('new')"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                <a class="nui-button" plain="true" onclick="editRole('edit')"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                <a class="nui-button" plain="true" onclick="deleteRole()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
 
             </div>
             <div class="nui-fit" >
@@ -68,6 +68,7 @@
                 pageSize="20" 
                 totalField="page.count" 
                 showPager="true" 
+                onselectionchanged="onLeftGridSelectionChanged"
                 showPagerButtonIcon="true" >
                 
                 <div property="columns">
@@ -83,10 +84,10 @@
 
         </div>
         <div showcollapsebutton="true">
-            <div id="tabs" name="tabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;padding:0px;" bodyStyle="padding:0;border:0;">
-                <div title="功能" name="tab1"  >
-                    <div class="nui-toolbar"  >
-                        <a class="nui-button" style=" "  plain="false" onclick=""><i class="fa fa-save"></i>&nbsp;保存</a>
+            <div id="mainTabs" name="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;padding:0px;" bodyStyle="padding:0;border:0;">
+                <div title="功能" name="resTab"  >
+                    <!-- <div class="nui-toolbar"  >
+                        <a class="nui-button" style=" "  plain="true" onclick=""><i class="fa fa-save"></i>&nbsp;保存</a>
 
                     </div>
                     <div class="nui-fit">
@@ -94,14 +95,44 @@
                         style="width: 100%;height:100%;" showTreeIcon="true"
                         expandOnLoad="0" resultAsTree="false" parentField="pid" 
                         idField="id"  textField="text"  expandOnNodeClick="false">
-                    </ul>
+                    </ul> -->
+                    <div class="nui-fit" style="padding:10px;">
+                        <div id="panel1" class="nui-panel" style="width:100%;height:100%;" showHeader="false"
+                            showToolbar="true" showCollapseButton="false" showFooter="false">
+                            <!--toolbar-->
+                            <div property="toolbar" style="padding:10px;">
+                                <table style="width:100%;">
+                                        <tr>
+                                        <td style="width:100%;">
+                                            <a class="nui-button" iconCls="icon-save" plain="false" onclick="saveTree" title="保存"></a>
+                                            <span class="separator"></span>
+                                            <a class="nui-button" iconCls="icon-expand" onclick="expandAll()" title="全部展开"></a>
+                                            <a class="nui-button" iconCls="icon-collapse" onclick="collapseAll()" title="全部折叠"></a>
+                                        </td>
+                                        <td style="white-space:nowrap;">
+                                            <input id="key" class="nui-textbox" style="width:100px;" onenter="onKeyEnter" emptyText="请输入查询条件" />
+                                            <a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="search()">查询</a>
+                                        </td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <!--body-->
+                            <div class="nui-fit" style="padding:0px 10px 10px 10px;">
+                                <ul id="funcTree" class="nui-tree" style="width:100%;height:100%;"
+                                    url="org.gocom.components.coframe.framework.FunctionAuth.getFunctionAuthTree.biz.ext"
+                                    idField="id" textField="text" parentField="pid" resultAsTree="false"
+                                    showTreeIcon="true" ajaxData="setRoleId" showTreeLines="true" expandOnDblClick="true" expandOnLoad="false" showCheckBox="true" checkRecursive="true">
+                                </ul>
+                            </div>
 
-                </div>
+                        </div>
+                    </div>
+
             </div>
 
-            <div title="员工" name="tab2"  >
+            <div title="员工" name="userTab"  >
                 <div class="nui-toolbar"  >
-                    <a class="nui-button" style=" "  plain="false" onclick=""><i class="fa fa-save"></i>&nbsp;保存</a>                
+                    <a class="nui-button" style=" "  plain="true" onclick=""><i class="fa fa-save"></i>&nbsp;保存</a>                
                 </div>
                 <div class="nui-fit">
 

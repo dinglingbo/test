@@ -181,7 +181,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">capRole/tenantId</process:to>
     </process:copy>
     <process:copy>

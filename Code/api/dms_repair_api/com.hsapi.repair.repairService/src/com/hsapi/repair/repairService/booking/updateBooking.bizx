@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateBooking.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="添加或修改" title="Administrator&#x9;18-6-15 下午4:05">
+    <location x="93" y="462"/>
+    <size height="100" width="197"/>
+  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link14" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
-    <location x="455" y="275"/>
+    <location x="375" y="276"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -29,9 +33,13 @@
       <process:from type="query" pattern="reference">currDate</process:from>
       <process:to type="query">param/modifyDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">param/status</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="457" y="311"/>
+    <location x="377" y="312"/>
     <figSize height="17" width="25"/>
     <node>assign1</node>
   </nodes>
@@ -256,10 +264,15 @@
     <figSize height="17" width="72"/>
     <node>invokePojo4</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="228" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-15 11:00:52" date="2018-06-15Z" description="" name="updateBooking" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tmpString" primitiveType="String"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPrebook" name="param"/>
   </process:inputs>

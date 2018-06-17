@@ -8,14 +8,19 @@ var assignStatus;
 var timeStatus;
 var rOrp;
 var statusStatus;
+var carSeriesId;
+var prebookCategoryHash;
 var advancedSearchWin = null;
 var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.biz.ext";
-
+var prebookCategoryHash=[{text:'用户主动预约',value:'0'},{text:'用户被动预约',value:'1'}];
 $(document).ready(function(v){
+	nui.get("prebookCategory").setData(prebookCategoryHash);
+	carSeriesId=nui.get("carSeriesId");
+	initMember("mtAdvisorId",null);
 	
-	initMember("mtAdvisor",null);
 	initCarBrand("carBrandId",null);
-
+	//getCarModel("carSeriesId",null);
+	
 	getBisinessList(function(data) {
 		var bisinessList=[];
 		bisinessList = data.data;
@@ -109,7 +114,12 @@ function doSearch(params) {
 function SetData(params){
 	basicInfoForm = new nui.Form("#basicInfoForm");	
 	basicInfoForm.setData(params.data);
-}
+	
+	if(params.data.carBrandId!="") 
+	{
+	getCarModel("carSeriesId",params.data.carBrandId);
+	}
+	}
 	
 function addCarBrand() {
     selectCustomer(function (car) {
@@ -189,3 +199,16 @@ function getBisinessList(callback){
 	});
 	
 }
+
+function onChange(e){
+    var value = e.selected.empName;
+    nui.get("mtAdvisor").setValue(value);
+}
+
+
+function onBrandChange(e){
+    
+        
+        initCarMT('carSeriesId',e.value);
+}
+

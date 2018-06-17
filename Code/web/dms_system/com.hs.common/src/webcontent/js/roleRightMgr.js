@@ -11,7 +11,6 @@ var leftGrid;
 var roleForm;
 var action;
 var mainTabs = null;
-var funcTree = null;
 
 $(document).ready(function(v) {
 	leftGrid = nui.get("leftGrid");
@@ -19,17 +18,14 @@ $(document).ready(function(v) {
     roleForm = new nui.get("#roleForm");
     mainTabs = nui.get("mainTabs");
 
-    funcTree = nui.get("funcTree");
-
     queryRole();
 });
 
 function queryRole() {
     var params = {};
-    params.tenantId = 'default';
-
     leftGrid.load({
-        params:params
+        params:params,
+        token:token
     });  
 
     var db = new nui.DataBinding();
@@ -148,129 +144,18 @@ function onCancel(e) {
 function onLeftGridSelectionChanged() {
     var row = leftGrid.getSelected();
 
-    //loadResAndUser(row);
+    loadResAndUser(row);
 }
 function loadResAndUser(row) {
     if (row) {
+        var roleId = row.roleId||0;
         var tab = mainTabs.getActiveTab();
-        if(tab.name == "billmain"){
-            var data = rightGrid.getData();
-            if(data && data.length <= 0){
-                addNewRow(false);
-            }   
+        if(tab.name == "resTab"){
+            mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId, tab);  
+        }else if(tab.name == "userTab"){
+            mainTabs.loadTab(webPath + sysDomain + "/common/function/employee_auth.jsp?roleId="+roleId, tab);   
         }
-
-        basicInfoForm.setData(row);
-        //bottomInfoForm.setData(row);
-        nui.get("guestId").setText(row.guestFullName);
-
-        var row = leftGrid.getSelected();
-        if (row.auditSign == 1) {
-            document.getElementById("basicInfoForm").disabled = true;
-            setBtnable(false);
-            setEditable(false);
-        } else {
-            document.getElementById("basicInfoForm").disabled = false;
-            setBtnable(true);
-            setEditable(true);
-        }
-
-        // 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
-        var data = basicInfoForm.getData();
-        data.orderAmt = data.orderAmt||0;
-        formJson = nui.encode(data);
-
-        // 加载采购订单明细表信息
-        var mainId = row.id;
-        if(!mainId){
-            mainId = -1;
-        }
-        var auditSign = data.auditSign||0;
-        loadRightGridData(mainId, auditSign);
     } else {
     }
 
-}
-
-
-function setRoleId(){
-    //var row = leftGrid.getSelected();
-    var roleId = 0;
-    return {"roleId":roleId};
-}
-
-function saveTree(){
-    var funcDatas = funcTree.getCheckedNodes();
-    var leafNodes = [];
-    for(var cursor = 0; cursor < funcDatas.length; cursor++){
-        var node = funcDatas[cursor];
-        if(funcTree.isLeaf(node)){
-            leafNodes.push(node);
-        }
-    }
-    //var row = leftGrid.getSelected();
-    var roleId = 0;
-    var json = nui.encode({functions:leafNodes,roleId:roleId});
-    $.ajax({
-        url: "org.gocom.components.coframe.framework.FunctionAuth.saveFunctionAuths.biz.ext",
-        type: 'POST',
-        data: json,
-        cache: false,
-        contentType:'text/json',
-        success: function (text) {
-            if(text.data){
-                nui.alert("权限设置成功");
-            }else{
-                nui.alert("权限设置失败");
-            }
-        },
-        error: function () {
-            nui.alert("权限设置失败");
-        }
-    });
-}
-
-function search(){
-    var filtedNodes = [];
-    var key = nui.get("key").getValue();
-    if(key == ""){
-        funcTree.clearFilter();
-    }else{
-        var rootNode = funcTree.getRootNode();
-        funcTree.cascadeChild(
-            rootNode,
-            function(node){
-                var pNode = funcTree.getParentNode(node);
-                var nofind = true;
-                for(i = 0; i < filtedNodes.length; i++){
-                    if(filtedNodes[i] == pNode.id){
-                        filtedNodes.push(node.id);
-                        nofind = false;
-                        break;
-                    }
-                }
-                if(nofind){
-                    var text = node.text ? node.text.toLowerCase() : "";
-                    if(text.indexOf(key) != -1){
-                        filtedNodes.push(node.id);
-                    }
-                }
-            }
-        );
-        funcTree.filter(function(node){
-            for(i = 0; i < filtedNodes.length; i++){
-                if(filtedNodes[i] == node.id){
-                    return true;
-                }
-            }
-        });
-    }
-}
-
-function expandAll(){
-    funcTree.expandAll();
-}
-
-function collapseAll(){
-    funcTree.collapseAll();
 }

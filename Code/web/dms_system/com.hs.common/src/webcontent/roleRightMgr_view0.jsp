@@ -85,73 +85,10 @@
         </div>
         <div showcollapsebutton="true">
             <div id="mainTabs" name="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;padding:0px;" bodyStyle="padding:0;border:0;">
-                <div title="功能" name="resTab"  >
-                    <!-- <div class="nui-toolbar"  >
-                        <a class="nui-button" style=" "  plain="true" onclick=""><i class="fa fa-save"></i>&nbsp;保存</a>
-
-                    </div>
-                    <div class="nui-fit">
-                        <ul id="rightTree" class="nui-tree" data="treedata"  showCheckBox="true"
-                        style="width: 100%;height:100%;" showTreeIcon="true"
-                        expandOnLoad="0" resultAsTree="false" parentField="pid" 
-                        idField="id"  textField="text"  expandOnNodeClick="false">
-                    </ul> -->
-                    <div class="nui-fit" style="padding:10px;">
-                        <div id="panel1" class="nui-panel" style="width:100%;height:100%;" showHeader="false"
-                            showToolbar="true" showCollapseButton="false" showFooter="false">
-                            <!--toolbar-->
-                            <div property="toolbar" style="padding:10px;">
-                                <table style="width:100%;">
-                                        <tr>
-                                        <td style="width:100%;">
-                                            <a class="nui-button" iconCls="icon-save" plain="false" onclick="saveTree" title="保存"></a>
-                                            <span class="separator"></span>
-                                            <a class="nui-button" iconCls="icon-expand" onclick="expandAll()" title="全部展开"></a>
-                                            <a class="nui-button" iconCls="icon-collapse" onclick="collapseAll()" title="全部折叠"></a>
-                                        </td>
-                                        <td style="white-space:nowrap;">
-                                            <input id="key" class="nui-textbox" style="width:100px;" onenter="onKeyEnter" emptyText="请输入查询条件" />
-                                            <a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="search()">查询</a>
-                                        </td>
-                                    </tr>
-                                </table> 
-                            </div>
-                            <!--body-->
-                            <div class="nui-fit" style="padding:0px 10px 10px 10px;">
-                                <ul id="funcTree" class="nui-tree" style="width:100%;height:100%;"
-                                    url="org.gocom.components.coframe.framework.FunctionAuth.getFunctionAuthTree.biz.ext"
-                                    idField="id" textField="text" parentField="pid" resultAsTree="false"
-                                    showTreeIcon="true" ajaxData="setRoleId" showTreeLines="true" expandOnDblClick="true" expandOnLoad="false" showCheckBox="true" checkRecursive="true">
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
-            </div>
-
-            <div title="员工" name="userTab"  >
-                <div class="nui-toolbar"  >
-                    <a class="nui-button" style=" "  plain="true" onclick=""><i class="fa fa-save"></i>&nbsp;保存</a>                
-                </div>
-                <div class="nui-fit">
-
-                    <div id="rightGrid"  class="nui-datagrid"   style="width: 100%; height:100%; border-top:0px" borderstyle="border:0;"   allowcellselect="true"  showpager="false" showmodified="false">
-                        <div property="columns">
-                            <div type="indexcolumn" name="index" width="30px" headeralign="center" align="center">  <strong>序号</strong></div>
-                            <div field="userCode" name="assessmentLat" width="100" headeralign="center" align="center">   <strong>员工编号</strong></div>
-                            <div field="name" name="productLine" width="100" headeralign="center" align="center">    <strong>员工姓名</strong></div>    
-                            <div field="department" name="productLine" width="100" headeralign="center" align="center">    <strong>所属机构</strong></div>    
-                            <div field="jurisdiction" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" align="center"><strong>授权</strong></div>    
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
+                <div title="功能" name="resTab"  url=""></div>
+                <div title="员工" name="userTab" url=""></div>
+             </div>
         </div>
-    </div>
 </div>
 <div id="roleForm" class="nui-window" title="窗体" style="width:500px;height:200px;"  allowDrag="true" >
     <input id="roleId" name="roleId" class="nui-hidden" />

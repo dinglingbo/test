@@ -30,7 +30,7 @@ FROM
 	<parameter name="ID" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="printMan" class="java.lang.Integer">
+	<parameter name="printMan" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>

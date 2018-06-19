@@ -39,7 +39,23 @@
 		where party_type = 'role' and res_state = 1 and party_id = #roleId#
     </select>
     
-    
+    <!--获取没有离职的且开通系统的员工信息-->
+    <select id="queryOrgEmpUser" parameterClass="HashMap" resultClass="HashMap">
+    	select a.empid as empid, a.tenant_id as tenantId, 
+		       a.orgid as orgid, a.name as empName, a.system_account as userId,
+		       b.name as compName, b.short_name as shortName, 0 as isCheck
+		from com_member a
+		INNER JOIN com_company b
+		on a.orgid = b.orgid
+		where is_dimission = 0 and is_open_account = 1
+    		  and a.tenant_id = #tenantId#
+    		  <isNotEmpty prepend="and" property="orgname">  
+                    (b.name like '%$orgname$%' or b.short_name like '%$orgname$%')
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="empname">  
+                    (a.name like '%$empname$%')
+              </isNotEmpty>
+    </select>
     
     
 </sqlMap>

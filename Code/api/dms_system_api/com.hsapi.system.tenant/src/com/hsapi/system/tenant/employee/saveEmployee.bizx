@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveEmployee.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、只新增员工时org_employee中user_id可以为空，empcode可以为空&#xD;&#xA;2、给员工开通账号后，user_id = empcode = 登录账号, operatorid = 用户表operatorid&#xD;&#xA;3、修改com_member名称后，需要修改org_employee名称，cap_user的用户名称&#xD;&#xA;4、empcode未赋值" title="Administrator&#x9;18-6-14 下午7:30">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、只新增员工时org_employee中user_id可以为空，empcode可以为空,org_emporg&#xD;&#xA;2、给员工开通账号后，user_id = empcode = 登录账号, operatorid = 用户表operatorid&#xD;&#xA;3、修改com_member名称后，需要修改org_employee名称，cap_user的用户名称&#xD;&#xA;4、empcode未赋值" title="Administrator&#x9;18-6-14 下午7:30">
     <location x="34" y="-63"/>
     <size height="100" width="551"/>
   </nodes>
@@ -21,7 +21,7 @@
   <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link4</targetConnections>
     <targetConnections>link8</targetConnections>
-    <location x="1230" y="174"/>
+    <location x="1304" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -30,7 +30,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1228" y="210"/>
+    <location x="1302" y="210"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -319,6 +319,22 @@
       <process:from type="query" pattern="reference">emp/orgid</process:from>
       <process:to type="query">tmpEmployee/orgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">emp/empid</process:from>
+      <process:to type="query">empOrg/empid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">emp/orgid</process:from>
+      <process:to type="query">empOrg/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">emp/tenantId</process:from>
+      <process:to type="query">empOrg/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">y</process:from>
+      <process:to type="query">empOrg/ismain</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
     <location x="813" y="210"/>
@@ -332,7 +348,8 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link25</targetConnections>
     <location x="931" y="174"/>
@@ -511,13 +528,13 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
-    <targetConnections>link42</targetConnections>
-    <location x="1050" y="174"/>
+    <targetConnections>link2</targetConnections>
+    <location x="1124" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="1040" y="210"/>
+    <location x="1114" y="210"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -547,7 +564,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="982" y="100"/>
+    <location x="1054" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo9label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -561,7 +578,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo9label" name="label" nodeType="label">
-    <location x="957" y="136"/>
+    <location x="1029" y="136"/>
     <figSize height="17" width="73"/>
     <node>invokePojo9</node>
   </nodes>
@@ -744,6 +761,30 @@
     <figSize height="17" width="32"/>
     <node>assign10</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="保存empOrg" displayName="保存employee" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <targetConnections>link42</targetConnections>
+    <location x="1029" y="174"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">default</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">empOrg</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="1003" y="210"/>
+    <figSize height="17" width="74"/>
+    <node>invokePojo3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-14 17:36:33" date="2018-06-14Z" description="" name="saveEmployee" version="7.0.0.0"/>
@@ -755,6 +796,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapUser" name="tmpCapUser"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.OrgEmployee" name="tmpObj"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.CapUser" name="tmpUser"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgEmporg" name="empOrg"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComMember" name="emp"/>

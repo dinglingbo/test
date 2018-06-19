@@ -11,7 +11,7 @@
 <head>
     <title>角色权限管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + sysDomain%>/common/js/roleRightMgr.js?v=1.7.1" type="text/javascript"></script>
+    <script src="<%=webPath + sysDomain%>/common/js/roleRightMgr.js?v=1.7.2" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     body {
@@ -84,7 +84,7 @@
 
         </div>
         <div showcollapsebutton="true">
-            <div id="mainTabs" name="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;padding:0px;" bodyStyle="padding:0;border:0;">
+            <div id="mainTabs" name="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;padding:0px;" bodyStyle="padding:0;border:0;" onactivechanged="ontopTabChanged">
                 <div title="功能" name="resTab"  url=""></div>
                 <div title="员工" name="userTab" url=""></div>
              </div>

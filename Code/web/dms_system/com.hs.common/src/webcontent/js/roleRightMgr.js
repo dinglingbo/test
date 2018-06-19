@@ -159,3 +159,16 @@ function loadResAndUser(row) {
     }
 
 }
+function ontopTabChanged(e){
+    var tab = e.tab;
+    var name = tab.name;
+
+    var row = leftGrid.getSelected();
+    var roleId = row.roleId||0;
+    if(name == "resTab"){
+        mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId, tab);  
+    }else if(name == "userTab"){
+        mainTabs.loadTab(webPath + sysDomain + "/common/function/employee_auth.jsp?roleId="+roleId, tab);   
+    }
+    
+}

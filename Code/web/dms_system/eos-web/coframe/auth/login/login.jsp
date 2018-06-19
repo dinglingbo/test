@@ -336,7 +336,7 @@ text-align:center;
 	  
 	     //var form = new nui.Form("#form1");
 	     
-	     //nui.get("userId").focus();
+	     $("#userId").focus();
 	     
 	     function onCheckUserId(e){
 	       if (e.isValid) {

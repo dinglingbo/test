@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.eos.system.utility.StringUtil"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): liuzn (mailto:liuzn@primeton.com)
@@ -11,7 +12,6 @@
 <head>
 	<title>人员授权</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<%@include file="/coframe/tools/skins/common.jsp" %>
 	<style type="text/css">
 		#employeeToolBar{
 			width: 100%;
@@ -36,16 +36,11 @@
 					<td></td>
 					<td style="width:60px; text-align:right;">机构名称：</td>
 					<td style="width:100px;">
-						<input class="nui-textbox" name="criteria._expr[0].orgname" emptyText="机构名称" style="width:100px;" />
-						<input class="nui-hidden" name="criteria._expr[0]._op" value="like" />
-						<input class="nui-hidden" name="criteria._expr[0]._likeRule" value="all" />
+						<input class="nui-textbox" id="orgname" name="orgname" emptyText="机构名称" style="width:100px;" />
 					</td>
 					<td style="width:60px; text-align:right;">员工姓名：</td>
 					<td style="width:100px;">
-						<input class="nui-textbox" name="criteria._expr[1].empname" emptyText="员工姓名" style="width:100px;" />
-						<input class="nui-hidden" name="criteria._expr[1]._op" value="like" />
-						<input class="nui-hidden" name="criteria._expr[1]._likeRule" value="all" />
-						<input class="nui-hidden" name="roleId" value="<%= StringUtil.htmlFilter(request.getParameter("roleId")) %>" />
+						<input class="nui-textbox" id="empname" name="empname" emptyText="员工姓名" style="width:100px;" />
 					</td>
 					<td style="width:70px; text-align:right;"><input class="nui-button" iconCls="icon-search" text="查询" onclick="searchEmployee" /></td>
 					<td style="width:10px;"></td>
@@ -55,13 +50,13 @@
 	</div>
 	<div class="nui-fit">
 		<div id="employeeGrid" class="nui-datagrid" style="width:100%;height:100%;"  onload="onGridLoad"
-			url="org.gocom.components.coframe.org.employeeAuth.getEmployeeAuth.biz.ext"
-			idField="empid" allowResize="false" allowCellEdit="true" sizeList="[10,20,30]" pageSize="20" multiSelect="true">
+			url="com.hsapi.system.tenant.permissions.getRoleUserValue.biz.ext"
+			idField="empid" allowResize="false" allowCellEdit="true" sizeList="[10,20,30]" pageSize="20" multiSelect="true" dataField="empUserList" showPager="false" >
 		    <div property="columns">
-		        <div field="empcode" width="120" headerAlign="center" >员工编号</div>
-		        <div field="empname" width="120" headerAlign="center" >员工姓名</div>
-		        <div field="orgname" width="120" headerAlign="center" allowSort="true">所属机构</div>
-		        <div type="checkboxcolumn" field="auth" width="120" trueValue="1" falseValue="">授权</div>
+		        <div field="userId" width="120" headerAlign="center" >登录账号</div>
+		        <div field="empName" width="120" headerAlign="center" >员工姓名</div>
+		        <div field="shortName" width="120" headerAlign="center" allowSort="true">所属机构</div>
+		        <div type="checkboxcolumn" field="isCheck" width="120" trueValue="1" falseValue="0">授权</div>
 		    </div>
 		</div>
 	</div>
@@ -74,45 +69,64 @@
 	var pageSize = employeeGrid.getPageSize();
 	<% if(null != request.getParameter("roleId") && !"".equals(request.getParameter("roleId"))){ %>
 		var roleIdData = "<%= StringUtil.htmlFilter(request.getParameter("roleId")) %>";
-		var sendData = {"page":{"begin":0,"length":pageSize},"roleId":roleIdData};
+		var sendData = {"roleId":roleIdData, token:token};
 		employeeGrid.load(sendData);
 	<% } %>
 
 	function saving(){
-		var employeeWithAuth = [];
-		var employeeNoAuth = [];
-		var employeeData = employeeGrid.getData();
+		var addList = [];
+		var deleteList = [];
+		var employeeData = employeeGrid.getChanges("modified");
 		for(var i = 0; i < employeeData.length; i++){
-			var fieldNode = {partyTypeID:"emp", id:employeeData[i].empid, code:employeeData[i].empcode, name:employeeData[i].empname};
-			if(employeeData[i].auth == "1"){
-				employeeWithAuth.push(fieldNode);
+			var fieldNode = {
+				partyId: employeeData[i].userId,
+				partyType:'user',
+				roleType:'role',
+				roleId:"<%=request.getParameter("roleId") %>"
+			};
+			if(employeeData[i].isCheck == 1){
+				addList.push(fieldNode);
 			}else{
-				employeeNoAuth.push(fieldNode);
+				deleteList.push(fieldNode);
 			}
 		}
-		var sendData = {roleId:"<%= StringUtil.htmlFilter(request.getParameter("roleId")) %>", partyWithAuth:employeeWithAuth, partyNoAuth:employeeNoAuth};
-		$.ajax({
-			url:"org.gocom.components.coframe.org.authForParty.storePartyAuth.biz.ext",
+
+		nui.mask({
+	        el : document.body,
+	        cls : 'mini-mask-loading',
+	        html : '保存中...'
+	    });
+		nui.ajax({
+			url:"com.hsapi.system.tenant.permissions.savePartyAuths.biz.ext",
 			type: "POST",
-			data: nui.encode(sendData),
+	        data:JSON.stringify({
+	            roleId:"<%=request.getParameter("roleId") %>",
+	            addList:addList,
+	            deleteList:deleteList,
+	            token:token
+	        }),
 			cache: false,
 			contentType: "text/json",
 			success: function(text){
-				var returnJson = nui.decode(text);
-				if(returnJson.saveResult){
-					nui.alert("权限设置成功");
-				}else{
-					nui.alert("权限设置失败");
-				}
+				nui.unmask();
+				if(text.errCode == 'S'){
+                    nui.alert("权限设置成功");
+            	}else{
+                    nui.alert("权限设置失败");
+                }
+                searchEmployee();
 			},
-			error: function(jqXHR, textStatus, errorThrown){}
+			error: function(jqXHR, textStatus, errorThrown){
+				nui.unmask();
+			}
 		});
 	}
 
 	function searchEmployee(){
-		var employeeForm = new nui.Form("#employeeForm");
-		var employeeFormData = employeeForm.getData(false, true);
-        employeeGrid.load(employeeFormData);
+		var p = {};
+		p.orgname = nui.get("orgname").getValue();
+		p.empname = nui.get("empname").getValue();
+        employeeGrid.load({roleId:"<%=request.getParameter("roleId") %>", p:p, token:token});
 	}
 	function onGridLoad(){
 		var data = employeeGrid.getData();

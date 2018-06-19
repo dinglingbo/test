@@ -32,7 +32,7 @@
    }
  %>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/index.js?v=1.0.0"></script>
 <style type="text/css">
 html,body {
 	height: 100%;
@@ -180,7 +180,8 @@ text-align:center;
 					</div>
 					<div>
 						<!-- <span> <label> 密码 </label> </span>  -->
-						<span> <input id="password" name="password" type="password" class="text" placeholder="请输入验证码" />
+						<span> <input id="password" name="password" type="password" class="text" placeholder="请输入密码" />
+						<input id="password1" name="password1" type="text" class="textbox" placeholder="请输入密码" style="display:none"/>
 							<a id="pwdBtn" href="##" class="pwdBtnShow" isshow="true" style="margin-top:-45px;">
 						<i class="i_icon" style="background-position: -60px -93px;"></i>
 					</a>
@@ -413,6 +414,11 @@ text-align:center;
 	        //form.validate();
 	        //if (form.isValid() == false) 
 	        	//return false;
+
+	        if($(".pwdBtnShow").attr("isshow")=="false")
+			{
+				$("#password").val($("#password1").val());
+			}
 	        
 	        document.loginForm.submit();
 	     }
@@ -420,6 +426,7 @@ text-align:center;
 	 		var validateResult = "<%=result %>";
 	 		$("#userId").val("<%=userName %>");
 	 		$("#password").val("<%=password %>");
+	 		$("#password1").val("<%=password %>");
 	 	 });
 
 

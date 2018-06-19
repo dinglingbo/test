@@ -48,17 +48,17 @@
 		if($(".pwdBtnShow").attr("isshow")=="false")
 		{
 			$(".pwdBtnShow i").css("background-position","-60px -93px");
-			$(".password").hide();
-			$(".password1").val($(".password").val());
-			$(".password1").show();
+			$("#password1").hide();
+			$("#password").val($("#password1").val());
+			$("#password").show();
 			$(".pwdBtnShow").attr("isshow","true");
 		}
 		else
 		{
 			$(".pwdBtnShow i").css("background-position","-30px -93px");
-			$(".password1").hide();
-			$(".password").val($(".password1").val());
-			$(".password").show();
+			$("#password").hide();
+			$("#password1").val($("#password").val());
+			$("#password1").show();
 			$(".pwdBtnShow").attr("isshow","false");
 		}
 		

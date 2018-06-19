@@ -19,6 +19,6 @@
         <div field="prices" width="50" headerAlign="center" allowSort=false>参考价格</div>
         <div field="" width="20" headerAlign="center" allowSort=false>说明</div>
         <div field="detail" width="20" headerAlign="center" allowSort=false></div>
-        <div field="opt" width="20" headerAlign="center" allowSort=false></div>
+        <div field="opt" width="20" headerAlign="center" align="center" allowSort=false></div>
     </div>
 </div>

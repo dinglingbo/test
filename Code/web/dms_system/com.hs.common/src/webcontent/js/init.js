@@ -78,36 +78,52 @@ function processCarBrand(data){
     setDataToHash(data,"carBrand","id");
     _initDmsCallback["initCarBrand"] && _initDmsCallback["initCarBrand"]() && (_initDmsCallback["initCarBrand"] = null);
 }
+
 //车系
-function initCarMT(id,carBrandId){
-	
-    if(checkObjExists(id, "initCarMT")){
-        //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carBrand.biz.ext";
-        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarMT.biz.ext";
+function initCarSeries(id, carBrandId){	
+    if(checkObjExists(id, "initCarSeries")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarSeries.biz.ext";
         var params = {};
         params.carBrandId = carBrandId;
-        callAjax(url, params, processAjax, processCarMT, null); 
+        callAjax(url, params, processAjax, processCarSeries, null); 
     }
 }
-function processCarMT(data){
-    _initDmsObj["initCarMT"].setData(data);
-    
+function processCarSeries(data){
+    _initDmsObj["initCarSeries"].setData(data);
+    setDataToHash(data,"carSeries","id");
+    _initDmsCallback["initCarSeries"] && _initDmsCallback["initCarSeries"]() && (_initDmsCallback["initCarSeries"] = null);    
 }
 
 //获取车型(选择品牌触发)
-function getCarModel(id, carBrandId, carMTId){
-    if(checkObjExists(id, "getCarModel")){
-        //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carModel.biz.ext";
+function initCarModel(id, carBrandId){
+    if(checkObjExists(id, "initCarModel")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarModel.biz.ext";
         var params = {};
         params.carBrandId = carBrandId;
-        params.carMTId = carMTId;
         callAjax(url, params, processAjax, processCarModel, null);
     }
 }
 function processCarModel(data){
-    _initDmsObj["getCarModel"].setData(data);
+    _initDmsObj["initCarModel"].setData(data);
+    setDataToHash(data,"carModel","id");
+    _initDmsCallback["initCarModel"] && _initDmsCallback["initCarModel"]() && (_initDmsCallback["initCarModel"] = null);        
 }
+
+
+//业务分类
+function initServiceType(id, callback){
+    _initDmsCallback["initServiceType"] = callback;
+    if(checkObjExists(id, "initServiceType")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryServiceType.biz.ext";
+        callAjax(url, {}, processAjax, processServiceType, null); 
+    }
+}
+function processServiceType(data){
+    _initDmsObj["initServiceType"].setData(data);
+    setDataToHash(data,"serviceType","id");
+    _initDmsCallback["initServiceType"] && _initDmsCallback["initServiceType"]() && (_initDmsCallback["initServiceType"] = null);
+}
+
 
 //保险公司
 function initInsureComp(id,callback){ //险种：DDT20130703000028

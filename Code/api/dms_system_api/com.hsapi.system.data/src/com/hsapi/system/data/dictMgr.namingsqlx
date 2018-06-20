@@ -69,8 +69,8 @@
 		WHERE  is_disabled=0
     </select>
     <!--车系-->
-    <select id="getCarMT" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT a.id carMTId, a.name carMTName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
+    <select id="getCarSeries" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT a.id carSeriesId, a.name carSeriesName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
 		                a.car_factory_id as carFactoryId, a.car_factory_name as carFactoryName
 		FROM com_car_series a 
 		WHERE a.car_brand_id = #carBrandId#
@@ -148,4 +148,11 @@
 			AND a.orgid in($orgids$)
 		</isNull>
     </select>
+    <!--业务分类   is_disabled = 0 -->
+    <select id="getServiceType" parameterClass="HashMap" resultClass="HashMap">
+        SELECT id as id, name as name 
+        FROM rpb_business_type 
+        where is_disabled = 0 and orgid = #orgid# 
+        order by id
+    </select>    
 </sqlMap>

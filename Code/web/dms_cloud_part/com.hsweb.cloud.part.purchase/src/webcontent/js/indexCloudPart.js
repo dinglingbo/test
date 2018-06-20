@@ -47,6 +47,7 @@ $(document).ready(function(v) {
 	    //}
 	});
 
+	//ShowRSS();
 });
 var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
 {business:"采购订单2",custom:"长荣行2",address:"上海浦东2",date:"8:50",status:"已受理2"}];
@@ -402,3 +403,97 @@ function showMain() {
                 myChart.resize(); 
             };
 } 
+
+var xmlHttp;
+
+function ShowRSS() {
+	var target = "http://www.qpcheng.cn/feed/rss.php?mid=21";
+	readRSS(target);
+}
+//-------------------------------------------------------------------------
+//创建一个实例化xmlHttp
+function createXMLHttpRequest() {
+	if (window.ActiveXObject) {
+		xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	} else if (window.XMLHttpRequest) {
+		xmlHttp = new XMLHttpRequest();
+	}
+}
+//-------------------------------------------------------------------------
+//判断状态
+function handleStateChange() {
+	if (xmlHttp.readyState == 4) {
+		if (xmlHttp.status == 200) {
+		  clearPreviousResults();
+		  parseResults();
+		}
+	}
+}
+//-------------------------------------------------------------------------
+function readRSS(url) {
+	createXMLHttpRequest();
+	xmlHttp.onreadystatechange = handleStateChange;
+	xmlHttp.open("GET", url, true);
+	xmlHttp.send(null);
+}
+
+//-------------------------------------------------------------------------
+//清除以前的RSS
+function clearPreviousResults() {
+	var ListBody = document.getElementById("results");
+	while (ListBody.childNodes.length > 0) {
+		ListBody.removeChild(ListBody.childNodes[0]);
+	}
+}
+//-------------------------------------------------------------------------
+function parseResults() {
+	var results = xmlHttp.responseXML;
+	var title = null;
+	var content = null;
+	var item = null;
+	var items = results.getElementsByTagName("item");
+	for (var i = 0; i < items.length; i++){
+		item = items[i];
+		title = item.getElementsByTagName("title")[0].firstChild.nodeValue;
+		link = item.getElementsByTagName("link")[0].firstChild.nodeValue;
+		content = item.getElementsByTagName("description")[0].firstChild.nodeValue;
+		addListRow(title, link, content);
+	}
+}
+//-------------------------------------------------------------------------
+function addListRow(title, link, content) {
+	var row = document.createElement("ul");
+	var titlecell = createMyCellWithTitle(title, link);
+	var contentcell = creatMyCellWithContent(content);
+	row.appendChild(titlecell);
+	row.appendChild(contentcell);
+	document.getElementById("newul").appendChild(row);
+}
+//-------------------------------------------------------------------------
+function createCellWithText(text) {
+	var cell = document.createElement("li");
+	var textNode = document.createTextNode(text);
+	cell.appendChild(textNode);
+	return cell;
+}
+//-------------------------------------------------------------------------
+function createMyCellWithTitle(title, link) {
+	var cell = document.createElement("div");
+	var show = '<a target=_blank href=\'' + link + '\'>' + title;
+	cell.innerHTML = show;
+	return cell
+}
+//-------------------------------------------------------------------------
+function creatMyCellWithContent(content) {
+	var cell = document.createElement("div");
+	cell.innerHTML = content;
+	return cell;
+}
+//-------------------------------------------------------------------------
+function createCellWithContent(content) {
+	var cell = document.createElement("h1");
+	var textNode = document.createTextNode(content);
+	cell.appendChild(textNode);
+	return cell;
+}
+//-------------------------------------------------------------------------

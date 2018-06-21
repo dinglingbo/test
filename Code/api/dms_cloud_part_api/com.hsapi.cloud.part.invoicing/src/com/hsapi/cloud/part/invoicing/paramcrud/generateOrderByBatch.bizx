@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateOrderByBatch" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、批量选择配件后，生成采购订单，销售订单，采购车，销售车&#xD;&#xA;2、需要往来单位ID，结算类型，结算方式&#xD;&#xA;3、配件ID，数量，单价，仓库（默认取仓库）" title="Administrator&#x9;18-5-6 下午6:06">
-    <location x="-13" y="-45"/>
-    <size height="91" width="467"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、批量选择配件后，生成采购订单，销售订单，采购车，销售车&#xD;&#xA;2、需要往来单位ID，结算类型，结算方式&#xD;&#xA;3、配件ID，数量，单价，仓库（默认取仓库）&#xD;&#xA;4、从EPC添加的配件需要判断是否存在，如果存在，需要对配件信息加工后再保存&#xD;&#xA;type = 'EPC'" title="Administrator&#x9;18-5-6 下午6:06">
+    <location x="-12" y="-60"/>
+    <size height="106" width="467"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
-    <location x="-39" y="173"/>
+    <location x="-110" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-37" y="209"/>
+    <location x="-108" y="209"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -24,19 +24,19 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="41" y="173"/>
+    <location x="-30" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="31" y="209"/>
+    <location x="-40" y="209"/>
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>assign2</targetNode>
+      <targetNode>assign8</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link22" name="link22" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -49,7 +49,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="120" y="173"/>
+    <location x="45" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -62,14 +62,14 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="122" y="209"/>
+    <location x="47" y="209"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link19</targetConnections>
     <targetConnections>link49</targetConnections>
-    <location x="690" y="173"/>
+    <location x="823" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -78,7 +78,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="692" y="209"/>
+    <location x="825" y="209"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -88,12 +88,12 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <location x="585" y="173"/>
+    <location x="718" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="575" y="209"/>
+    <location x="708" y="209"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -103,7 +103,7 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="120" y="270"/>
+    <location x="45" y="262"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -116,7 +116,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="118" y="306"/>
+    <location x="43" y="298"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -127,12 +127,12 @@
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <targetConnections>link34</targetConnections>
-    <location x="121" y="359"/>
+    <location x="46" y="359"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="111" y="395"/>
+    <location x="36" y="395"/>
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
   </nodes>
@@ -140,16 +140,6 @@
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign4</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link29" name="link29" displayName="连接线" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>assign3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">detail</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link36" name="link36" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>
@@ -191,13 +181,14 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="207" y="173"/>
+    <targetConnections>link3</targetConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="340" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="205" y="209"/>
+    <location x="338" y="209"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -207,7 +198,7 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
-    <location x="208" y="270"/>
+    <location x="129" y="262"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -220,7 +211,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="206" y="306"/>
+    <location x="127" y="298"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -245,7 +236,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link36</targetConnections>
-    <location x="343" y="60"/>
+    <location x="476" y="60"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -261,7 +252,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="299" y="95"/>
+    <location x="432" y="95"/>
     <figSize height="17" width="114"/>
     <node>subprocess0</node>
   </nodes>
@@ -271,7 +262,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
-    <location x="343" y="127"/>
+    <location x="476" y="127"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -287,7 +278,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="302" y="162"/>
+    <location x="435" y="162"/>
     <figSize height="17" width="108"/>
     <node>subprocess1</node>
   </nodes>
@@ -297,7 +288,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link43</targetConnections>
-    <location x="390" y="210"/>
+    <location x="523" y="210"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -313,7 +304,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="385" y="245"/>
+    <location x="518" y="245"/>
     <figSize height="17" width="37"/>
     <node>subprocess2</node>
   </nodes>
@@ -337,12 +328,12 @@
     <targetConnections>link38</targetConnections>
     <targetConnections>link44</targetConnections>
     <targetConnections>link46</targetConnections>
-    <location x="480" y="173"/>
+    <location x="613" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="478" y="209"/>
+    <location x="611" y="209"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -352,7 +343,7 @@
       <targetNode>subprocess2</targetNode>
     </sourceConnections>
     <targetConnections>link41</targetConnections>
-    <location x="315" y="210"/>
+    <location x="448" y="210"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -361,7 +352,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="313" y="246"/>
+    <location x="446" y="246"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -371,7 +362,7 @@
       <targetNode>subprocess3</targetNode>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
-    <location x="315" y="279"/>
+    <location x="448" y="279"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
@@ -380,7 +371,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="313" y="315"/>
+    <location x="446" y="315"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -390,7 +381,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link45</targetConnections>
-    <location x="390" y="279"/>
+    <location x="523" y="279"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -406,7 +397,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="385" y="314"/>
+    <location x="518" y="314"/>
     <figSize height="17" width="37"/>
     <node>subprocess3</node>
   </nodes>
@@ -416,12 +407,12 @@
       <targetNode>transactionrollback1</targetNode>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
-    <location x="478" y="279"/>
+    <location x="611" y="279"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="476" y="315"/>
+    <location x="609" y="315"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -431,14 +422,79 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link48</targetConnections>
-    <location x="586" y="279"/>
+    <location x="719" y="279"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback1label" name="label" nodeType="label">
-    <location x="572" y="315"/>
+    <location x="705" y="315"/>
     <figSize height="17" width="56"/>
     <node>transactionrollback1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link29" name="link29" displayName="连接线" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">detail</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="129" y="173"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="127" y="209"/>
+    <figSize height="17" width="32"/>
+    <node>assign8</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="EPC" displayName="连接线" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">main/type</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="225" y="173"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="223" y="209"/>
+    <figSize height="17" width="32"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign10" name="赋值10" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="226" y="60"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign10label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
+    <location x="221" y="96"/>
+    <figSize height="17" width="39"/>
+    <node>assign10</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

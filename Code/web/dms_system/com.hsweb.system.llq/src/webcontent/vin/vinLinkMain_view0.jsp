@@ -12,7 +12,7 @@
     <title>车架号/车型/零件号</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
-    <script src="<%=sysDomain%>/llq/vin/js/vinLinkMain.js?v=1.5" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinLinkMain.js?v=1.6" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -98,8 +98,8 @@
                         <td style="white-space:nowrap;">
                             <a class="nui-button" iconCls="" plain="true" onclick="deleteCartShop()">删除</a>
                             <span class="separator"></span>
-                            <a class="nui-button" iconCls="" visible="true" id="pchsCartBtn" plain="true" onclick="addToPchsOrder()">添加采购车</a>
-                            <a class="nui-button" iconCls="" visible="true" id="sellCartBtn" plain="true" onclick="addToSellOrder()">添加销售车</a>
+                            <a class="nui-button" iconCls="" visible="true" id="pchsCartBtn" plain="true" onclick="addToPchsCart()">添加采购车</a>
+                            <a class="nui-button" iconCls="" visible="true" id="sellCartBtn" plain="true" onclick="addToSellCart()">添加销售车</a>
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" visible="true" id="pchsOrderBtn" plain="true" onclick="generatePchsOrder()">生成采购订单</a>
                             <a class="nui-button" iconCls="" visible="true" id="sellOrderBtn" plain="true" onclick="generateSellOrder()">生成销售订单</a>

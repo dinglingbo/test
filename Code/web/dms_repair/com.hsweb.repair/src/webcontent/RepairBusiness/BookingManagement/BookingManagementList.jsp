@@ -11,7 +11,7 @@
 
 <head>
 <title>预约列表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.62"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.72"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 table {
@@ -34,31 +34,35 @@ table {
 <input id="scoutMode" class="nui-combobox" visible="false"/>
 <input id="isUsabled" class="nui-combobox" visible="false"/>
 <input id="bookStatus" class="nui-combobox" visible="false"/>
+<input id="carBrandList" class="nui-combobox" visible="false"/>
+<input id="carSeriesList" class="nui-combobox" visible="false"/>
+<input id="bisinessList" class="nui-combobox" visible="false"/>
+
 <div class="nui-toolbar" style="border-bottom:0;">
     <div class="nui-form" id="queryForm" style="width: 100%;" >
         <table style="width: 100%;" id="table1">
             <tr>
                 <td>
                     <label>快速查询：</label>
-                    <a class="nui-menubutton " menu="#popupMenu"id="timeStatus" name="timeStatus">所有</a>               		
+                    <a class="nui-menubutton " menu="#popupMenu" id="menuBtnDateQuickSearch" name="menuBtnDateQuickSearch">所有</a>               		
                		<ul id="popupMenu_date" class="nui-menu" style="display:none;">
-                        <li  onclick="quickSearch(this, timeStatus,'all')" >所有</li>
-                        <li  onclick="quickSearch(this, timeStatus, 'today')" >本日</li>
-                        <li  onclick="quickSearch(this, timeStatus, 'yesterday')" >昨日</li>
-                   		<li  onclick="quickSearch(this, timeStatus, 'week')" >本周</li>
-                        <li  onclick="quickSearch(this, timeStatus, 'lastweek')" >上周</li>
-                        <li  onclick="quickSearch(this, timeStatus, 'month')" >本月</li>
-                        <li  onclick="quickSearch(this, timeStatus, 'lastmounth')" >上月</li>
+                        <li  onclick="quickSearch(menuBtnDateQuickSearch, -1, '所有')" >所有</li>
+                        <li  onclick="quickSearch(menuBtnDateQuickSearch, 0, '本日')" >本日</li>
+                        <li  onclick="quickSearch(menuBtnDateQuickSearch, 1, '昨日')" >昨日</li>
+                   		<li  onclick="quickSearch(menuBtnDateQuickSearch, 2, '本周')" >本周</li>
+                        <li  onclick="quickSearch(menuBtnDateQuickSearch, 3, '上周')" >上周</li>
+                        <li  onclick="quickSearch(menuBtnDateQuickSearch, 4, '本月')" >本月</li>
+                        <li  onclick="quickSearch(menuBtnDateQuickSearch, 5, '上月')" >上月</li>
                 	</ul>		
 					
-					<a class="nui-menubutton " menu="#popupMenu1"id="status" name="status">所有</a>            
+					<a class="nui-menubutton " menu="#popupMenu1" id="status" name="status">所有</a>            
                    		<ul id="popupMenu_status" class="nui-menu" style="display:none;">
-                        <li  onclick="quickSearch(this, statusStatus,'')" >所有</li>
-                        <li  onclick="quickSearch(this, statusStatus, '0')" >待确认</li>
-                        <li  onclick="quickSearch(this, statusStatus, '1')" >已确认</li>
-                   		<li  onclick="quickSearch(this, statusStatus, '2')" >已开单</li>
-                        <li  onclick="quickSearch(this, statusStatus, '3')" >已取消</li>
-                        <li  onclick="quickSearch(this, statusStatus, '4')" >已评价</li>
+                        <li  onclick="quickSearch(menuBtnStatusQuickSearch, -1,'所有')" >所有</li>
+                        <li  onclick="quickSearch(menuBtnStatusQuickSearch, 0, '待确认')" >待确认</li>
+                        <li  onclick="quickSearch(menuBtnStatusQuickSearch, 1, '已确认')" >已确认</li>
+                   		<li  onclick="quickSearch(menuBtnStatusQuickSearch, 2, '已开单')" >已开单</li>
+                        <li  onclick="quickSearch(menuBtnStatusQuickSearch, 3, '已取消')" >已取消</li>
+                        <li  onclick="quickSearch(menuBtnStatusQuickSearch, 4, '已评价')" >已评价</li>
                     </ul>	
 
                     <span class="separator"></span>
@@ -67,7 +71,7 @@ table {
                     <label>手机号：</label>
                     <input class="nui-textbox" name="contactorTel"/>
                     <label style=" margin-left: 1%">服务顾问：</label>
-                   	<input class="nui-combobox" id="mtAdvisor" name="mtAdvisor"  value=""   width="70px"  textField="name" valueField="id"/>
+                   	<input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" value="" width="70px" textField="empName" valueField="empId"/>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     			</td>
@@ -80,13 +84,13 @@ table {
     <table style="width: 100%">
         <tr>
             <td>            
-                <a class="nui-button" plain="true" id="addBtn" onclick="addRow()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" plain="true" id="saveBtn" onclick="editRow()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="confirmRow()"><span class="fa fa-check fa-lg"></span>&nbsp;确认</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="newBill()"><span class="fa fa-clone fa-lg"></span>&nbsp;开单</a>
-                <a class="nui-button" plain="true"  id="cancelBtn"  onclick="cancelBill()"><span class="fa fa-times-circle"></span>&nbsp;取消</a>
-           		<a class="nui-button" plain="true" iconCls="" id="fllowUpBtn" onclick="callBill()"><span class="fa fa-comment-o fa-lg"></span>&nbsp;跟进</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="showhistory()"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;服务履历</a>            	
+                <a class="nui-button" plain="true" id="btnAdd" onclick="addRow()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" plain="true" id="btnEdit" onclick="editRow()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" plain="true" id="btnconfirm" iconCls="" onclick="confirmRow()"><span class="fa fa-check fa-lg"></span>&nbsp;确认</a>
+                <a class="nui-button" plain="true" id="btnNewBill" iconCls="" onclick="newBill()"><span class="fa fa-clone fa-lg"></span>&nbsp;开单</a>
+                <a class="nui-button" plain="true" id="btnCancel"  onclick="cancelBill()"><span class="fa fa-times-circle"></span>&nbsp;取消</a>
+           		<a class="nui-button" plain="true" id="btnCall" iconCls="" onclick="callBill()"><span class="fa fa-comment-o fa-lg"></span>&nbsp;跟进</a>
+                <a class="nui-button" plain="true" id="btnshowhistory" iconCls="" onclick="showhistory()"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;服务履历</a>            	
            </td>            
         </tr>
     </table>
@@ -102,7 +106,7 @@ table {
                 dataField="data" 
                 showPageSize="false"
                 selectOnLoad="true" 
-                sortMode="client"  ondrawcell="gridOnDraw"
+                sortMode="client" 
                 showReloadButton="false" showPagerButtonIcon="true"
                 totalField="page.count"
                 allowSortColumn="true">
@@ -110,7 +114,7 @@ table {
                     <div field="id" headerAlign="center" allowSort="true" visible="false" width="">id </div>
                     <div field="status" headerAlign="center" allowSort="true" visible="false" width="">status </div>
                     <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center" visible="true" width="">服务顾问 </div>
-                    <div field="mtAdvisorId" headerAlign="center" allowSort="true"  visible="false" width="">服务Id </div>
+                    <div field="mtAdvisorId" headerAlign="center" allowSort="true"  visible="false" width="">服务顾问Id </div>
                     <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="">车牌号 </div> 
                     <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="">品牌 </div>
                     <div field="carSeriesId" headerAlign="center" allowSort="true" visible="true" width="">车系 </div>

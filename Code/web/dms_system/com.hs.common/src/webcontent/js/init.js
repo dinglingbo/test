@@ -80,7 +80,8 @@ function processCarBrand(data){
 }
 
 //车系
-function initCarSeries(id, carBrandId){	
+function initCarSeries(id, carBrandId, callback){	
+    _initDmsCallback["initCarSeries"] = callback;
     if(checkObjExists(id, "initCarSeries")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarSeries.biz.ext";
         var params = {};

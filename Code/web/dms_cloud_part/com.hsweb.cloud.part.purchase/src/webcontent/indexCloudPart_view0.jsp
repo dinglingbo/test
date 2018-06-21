@@ -1,7 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/sysCommon.jsp"%>
 <%@include file="/common/commonCloudPart.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
   - Author(s): Administrator
@@ -10,7 +10,7 @@
 -->
 <head>
   <title>首页</title>
-  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.4.1"></script>
+  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.4.8"></script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />

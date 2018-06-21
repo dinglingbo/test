@@ -27,7 +27,7 @@ $(document).ready(function ()
             onDrawCell(e);
         }
     });
-    leftGrid.on("rowdblclick", function (e) {
+    leftGrid.on("rowclick", function (e) {
         var row = e.record;
         getMaintainById(row.id);
         loadDetailGridData(row.id);
@@ -89,9 +89,8 @@ function init(callback)
         hash.initDicts = true;
         checkComplete();
     });
-    initRoleMembers({
-        insuranceCommissioner:"010807"//车险专员
-    },function(){
+    initMember("insuranceCommissioner"//车险专员
+    ,function(){
     });
     initCarBrand("carBrandId",function()
     {
@@ -194,11 +193,14 @@ function delDetail(insuranceId)
 function add()
 {
     var data = {
-        serviceCode:"新保险单",
+        serviceCode:"新单",
         orderType:1,
         recorder:currUserName
     };
+
     basicInfoForm.setData(data);
+    nui.get("guestId").setText("请选择客户");
+    detailGrid.setData([]);
 }
 function save()
 {
@@ -233,6 +235,7 @@ function save()
                 return;
             }
             main.serviceCode = serviceCode;
+            main.orderType = '1';
             doSave(main);
         });
     }

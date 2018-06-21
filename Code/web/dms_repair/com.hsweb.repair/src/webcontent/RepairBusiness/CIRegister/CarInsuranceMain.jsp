@@ -11,7 +11,7 @@
 -->
 <head>
 <title>车险登记</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.6"></script>
 <style type="text/css">
 
 table {
@@ -50,25 +50,19 @@ table {
                     <input class="nui-textbox" name="carNo" id="carNo-search"/>
                     <label class="form_label">客户名称：</label>
                     <input class="nui-textbox" name="guestName" id="guestName"/>
-                    <a class="nui-button" iconCls="icon-search" onclick="onSearch()" plain="true">查询</a>
-                    <a class="nui-button" onclick="advancedSearch()" plain="true">更多</a>
+                    <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-binoculars fa-lg"></span>&nbsp;更多</a>
                 </td>
+                <td>
+                    <a class="nui-button" plain="true" iconCls="" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" plain="true" iconCls="" onclick="save()"><span class="fa fa-floppy-o fa-lg"></span>&nbsp;保存</a>
+                    <a class="nui-button" plain="true" iconCls="" onclick="settlement()"><span class="fa fa-cny fa-lg"></span>&nbsp;结算</a>
+                    <a class="nui-button" plain="true" iconCls="" onclick="undo()"><span class="fa fa-rotate-left fa-lg"></span>&nbsp;返单</a>
+                    <a class="nui-button" plain="true" iconCls="" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                </td>                
             </tr>
         </table>
     </div>
-</div>
-<div class="nui-toolbar" style="border-bottom: 0;">
-    <table>
-        <tr>
-            <td>
-                <a class="nui-button" plain="true" iconCls="icon-add" onclick="add()">新增</a>
-                <a class="nui-button" plain="true" iconCls="icon-save" onclick="save()">保存</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="settlement()">结算</a>
-                <a class="nui-button" plain="true" iconCls="icon-undo" onclick="undo()">返单</a>
-                <a class="nui-button" plain="true" iconCls="icon-print" onclick="print()">打印</a>
-            </td>
-        </tr>
-    </table>
 </div>
 
 <div class="nui-fit">
@@ -107,7 +101,7 @@ table {
                                      allowSort="true" visible="true" width="60px">品牌
                                 </div>
                                 <div field="carModel" headerAlign="center"
-                                     allowSort="true" visible="true" width="60px">车型
+                                     allowSort="true" visible="true" width="180px">车型
                                 </div>
                             </div>
                         </div>
@@ -148,6 +142,7 @@ table {
                 <div title="基本信息">
                     <div id="basicInfoForm">
                         <input class="nui-hidden" name="id"/>
+                        <input class="nui-hidden" name="orderType"/>                        
                         <input class="nui-hidden" name="carId" id="carId"/>
                         <input class="nui-hidden" name="insuranceAmt"/>
                         <input class="nui-hidden" name="insuranceSaliAmt"/>
@@ -170,46 +165,48 @@ table {
                                         <input class="nui-textbox" enabled="false" name="serviceCode"/>
                                     </td>
                                     <td>
+                                        <label>客户名称：</label>
+                                    </td>
+                                    <td colspan="3">
+                                        <input class="nui-buttonedit" showClose="false" onbuttonclick="selectCustomer('guestId')" id="guestId"
+                                               name="guestId"
+                                               style="width: 100%;"
+                                               allowInput="false"/>
+                                    </td>
+                                    <!-- <td>
                                         <label>客户类型：</label>
                                     <td>
                                     <td>
                                         <input class="nui-combobox"
                                                data="[{id:1,text:'售后'},{id:0,text:'销售'}]"
                                                name="orderType"/>
-                                    </td>
+                                    </td> -->
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <label>客户名称：</label>
-                                    </td>
-                                    <td>
-                                        <input class="nui-buttonedit" showClose="false" onbuttonclick="selectCustomer('guestId')" id="guestId"
-                                               name="guestId"
-                                               allowInput="false"/>
-                                    </td>
+                                <tr>                                    
                                     <td>
                                         <label>被保险人：</label>
-                                    <td>
+                                    </td>
                                     <td>
                                         <input class="nui-textbox" name="insuranceMan" id="insuranceMan"/>
                                     </td>
                                     <td>
                                         <label>联系电话：</label>
-                                    <td>
+                                    </td>
                                     <td>
                                         <input class="nui-textbox" name="mobile" id="mobile"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <label>车牌号：</label>
                                     </td>
                                     <td>
                                         <input class="nui-textbox" enabled="false" name="carNo" id="carNo"/>
                                     </td>
+                                </tr>
+                                <tr>
+                                    
                                     <td>
                                         <label>品牌：</label>
-                                    <td>
+                                    </td>
                                     <td>
                                         <input class="nui-combobox" enabled="false"
                                                valueField="id" textField="nameCn"
@@ -217,9 +214,9 @@ table {
                                     </td>
                                     <td>
                                         <label>车型：</label>
-                                    <td>
-                                    <td>
-                                        <input class="nui-textbox" enabled="false" name="carModel" id="carModel"/>
+                                    </td>
+                                    <td colspan="3">
+                                        <input class="nui-textbox" style="width: 100%;" enabled="false" name="carModel" id="carModel"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -227,17 +224,17 @@ table {
                                         <label>VIN：</label>
                                     </td>
                                     <td>
-                                        <input class="nui-textbox" enabled="false" name="underpanNo" id="underpanNo"/>
+                                        <input class="nui-textbox" style="width: 150px;"  enabled="false" name="underpanNo" id="underpanNo"/>
                                     </td>
                                     <td>
                                         <label>发动机号：</label>
-                                    <td>
+                                    </td>
                                     <td>
                                         <input class="nui-textbox" enabled="false" name="engineNo" id="engineNo"/>
                                     </td>
                                     <td>
-                                        <label>购买日期：</label>
-                                    <td>
+                                        <label>投保日期：</label>
+                                    </td>
                                     <td>
                                         <input class="nui-datepicker" format="yyyy-MM-dd" name="buyDate"
                                                timeFormat="HH:mm:ss" showTime="false" showOkButton="false" showClearButton="true"/>
@@ -245,25 +242,25 @@ table {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>车险专员：</label>
+                                        <label>销售顾问：</label>
                                     </td>
                                     <td>
-                                        <input class="nui-combobox" name="insuranceCommissioner"
+                                        <input class="nui-combobox" textField="empName" valueField="empId" name="insuranceCommissioner"
                                                id="insuranceCommissioner"/>
                                     </td>
                                     <td>
-                                        <label>制单员：</label>
-                                    <td>
-                                    <td>
-                                        <input class="nui-textbox" name="recorder"/>
-                                    </td>
-                                    <td>
                                         <label>保险类型：</label>
-                                    <td>
+                                    </td>
                                     <td>
                                         <input class="nui-combobox" name="insuranceType"
                                                valueField="customid" textField="name"
                                                id="insuranceType"/>
+                                    </td>                                    
+                                    <td>
+                                        <label>制单员：</label>
+                                    </td>
+                                    <td>
+                                        <input class="nui-textbox" enabled="false" name="recorder"/>
                                     </td>
                                 </tr>
                             </table>
@@ -275,10 +272,10 @@ table {
                                         <label>交强险保单号：</label>
                                     </td>
                                     <td>
-                                        <input class="nui-textbox" name="insuranceSaliNo"/>
+                                        <input class="nui-textbox" style="width: 200px;" name="insuranceSaliNo"/>
                                     </td>
                                     <td>
-                                        <label>投保日期：</label>
+                                        <label>生效日期：</label>
                                     </td>
                                     <td>
                                         <input class="nui-datepicker" format="yyyy-MM-dd" name="insuranceSaliDate"
@@ -323,10 +320,10 @@ table {
                                         <label>商业险保单号：</label>
                                     </td>
                                     <td>
-                                        <input class="nui-textbox" name="insuranceBizNo"/>
+                                        <input class="nui-textbox" style="width: 200px;" name="insuranceBizNo"/>
                                     </td>
                                     <td>
-                                        <label>投保日期：</label>
+                                        <label>生效日期：</label>
                                     </td>
                                     <td>
                                         <input class="nui-datepicker" format="yyyy-MM-dd" name="insuranceBizDate"

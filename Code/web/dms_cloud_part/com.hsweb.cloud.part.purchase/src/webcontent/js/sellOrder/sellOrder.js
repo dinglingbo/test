@@ -214,7 +214,7 @@ function loadMainAndDetailInfo(row)
        var row = leftGrid.getSelected();
 
 
-       if(row.codeId && data.codeId>0){
+       if(row.codeId && row.codeId>0){
             //可以编辑票据类型和结算方式，是否需要打包，备注，业务员；明细不能修改；如果需要，则退回
             nui.get("guestId").disable();
             nui.get("code").disable();
@@ -351,11 +351,11 @@ function addInsertRow(value, row) {
         if(row){
             rightGrid.updateRow(row,newRow);
             //rightGrid.beginEditCell(row, "enterQty");
-            rightGrid.beginEditCell(row, "comUnit");
+            //rightGrid.beginEditCell(row, "comUnit");
         }else{
             rightGrid.addRow(newRow);
             //rightGrid.beginEditCell(newRow, "enterQty");
-            rightGrid.beginEditCell(row, "comUnit");
+            //rightGrid.beginEditCell(row, "comUnit");
         }
 
         return true;
@@ -535,13 +535,15 @@ function quickSearch(type){
             break;
         case 6:
             params.auditSign = 0;
-            querytypename = "未审";
+            params.billStatusId = 0;
+            querytypename = "草稿";
             querysign = 2;
             gsparams.auditSign = 0;
             break;
         case 7:
             params.auditSign = 1;
-            querytypename = "已审";
+            params.billStatusId = 1;
+            querytypename = "已提交";
             querysign = 2;
             gsparams.auditSign = 1;
             break;
@@ -549,15 +551,17 @@ function quickSearch(type){
             params.postStatus = 1;
             break;
         case 9:
-            querytypename = "全部";
+            querytypename = "已出库";
+            params.billStatusId = 2;
             querysign = 2;
-            gsparams.auditSign = null;
+            gsparams.auditSign = 1;
             break;
         default:
         	params.today = 1;
             params.startDate = getNowStartDate();
             params.endDate = addDate(getNowEndDate(), 1);
-            querytypename = "未审";
+            querytypename = "草稿";
+            params.billStatusId = 0;
             gsparams.startDate = getNowStartDate();
             gsparams.endDate = addDate(getNowEndDate(), 1);
             gsparams.auditSign = 0;
@@ -988,7 +992,8 @@ function selectSupplier(elId)
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isClient: 1
+                isClient: 1,
+                guestType:'01020102'
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -1073,6 +1078,25 @@ function onCellEditEnter(e){
             addNewKeyRow();
         }else if(column.field == "remark"){
             addNewKeyRow();
+        }else if(column.field == "comPartCode"){
+            if(!record.comPartCode){
+                nui.alert("请输入编码!","提示",function(){
+                    var row = rightGrid.getSelected();
+                    rightGrid.removeRow(row);
+                    addNewRow(false);
+                });
+                return;
+            }else{
+                var rs = addInsertRow(record.comPartCode,record);
+                if(!rs){
+                    var newRow = {comPartCode: ""};
+                    rightGrid.updateRow(record, newRow);
+                    rightGrid.beginEditCell(record, "comPartCode");
+                    return;
+                }else{
+                    rightGrid.beginEditCell(record, "comUnit");
+                }
+            }
         }
     }
 }
@@ -1151,16 +1175,12 @@ function onCellCommitEdit(e) {
         }else if(e.field == "comPartCode"){
             oldValue = e.oldValue;
             oldRow = row;
-            if(!e.value){
+            /*if(!e.value){
                 nui.alert("请输入编码!","提示",function(){
                     var row = rightGrid.getSelected();
                     rightGrid.removeRow(row);
                     addNewRow(false);
                 });
-/*
-                var newRow = {};
-                rightGrid.updateRow(row, newRow);
-                rightGrid.beginEditCell(row, "comPartCode");*/
                 return;
             }else{
                 var rs = addInsertRow(e.value,row);
@@ -1170,9 +1190,8 @@ function onCellCommitEdit(e) {
                     rightGrid.beginEditCell(row, "comPartCode");
                     return;
                 }else{
-                    //rightGrid.beginEditCell(row, "comUnit");
                 }
-            }
+            }*/
             
         }
     }
@@ -1565,8 +1584,8 @@ function onPrint() {
 
         nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
-                    + row.id,// "view_Guest.jsp",
+            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
+                    + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
             title : "销售订单打印",
             width : 900,
             height : 600,

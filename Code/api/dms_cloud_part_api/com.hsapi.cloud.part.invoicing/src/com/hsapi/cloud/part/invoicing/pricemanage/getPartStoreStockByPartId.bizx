@@ -123,7 +123,7 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" lineType="note" type="exception">
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
@@ -205,6 +205,10 @@
     <location x="346" y="162"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="344" y="198"/>

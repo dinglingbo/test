@@ -140,6 +140,7 @@
 <script src="<%=sysDomain%>/common/js/init.js?v=1.0" type="text/javascript"></script>
 <script src="<%=sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
+<link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
     html, body
     {

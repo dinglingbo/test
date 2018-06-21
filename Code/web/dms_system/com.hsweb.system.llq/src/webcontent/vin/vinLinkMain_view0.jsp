@@ -12,7 +12,7 @@
     <title>车架号/车型/零件号</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
-    <script src="<%=sysDomain%>/llq/vin/js/vinLinkMain.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinLinkMain.js?v=1.5" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -77,11 +77,73 @@
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(0)" id="query0">车架号查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(1)" id="query1">车型查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(2)" id="query2">零件号查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="showPanel('')" id="query2">（购物车）</a>
     </div>
     <div class="nui-fit">
             <iframe id="mainFrame0" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             <iframe id="mainFrame1" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             <iframe id="mainFrame2" class="theIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
     </div>
+
+
+
+    <div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:450px;height:300px;" 
+        showMaxButton="true" showCollapseButton="true" showShadow="true"
+        showToolbar="true" showFooter="true" showModal="false" allowResize="true" allowDrag="true"
+        >
+        <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+            <div class="form" id="queryForm">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="white-space:nowrap;">
+                            <a class="nui-button" iconCls="" plain="true" onclick="deleteCartShop()">删除</a>
+                            <span class="separator"></span>
+                            <a class="nui-button" iconCls="" visible="true" id="pchsCartBtn" plain="true" onclick="addToPchsOrder()">添加采购车</a>
+                            <a class="nui-button" iconCls="" visible="true" id="sellCartBtn" plain="true" onclick="addToSellOrder()">添加销售车</a>
+                            <span class="separator"></span>
+                            <a class="nui-button" iconCls="" visible="true" id="pchsOrderBtn" plain="true" onclick="generatePchsOrder()">生成采购订单</a>
+                            <a class="nui-button" iconCls="" visible="true" id="sellOrderBtn" plain="true" onclick="generateSellOrder()">生成销售订单</a>
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="nui-fit">
+                <div id="cartGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                             borderStyle="border:0;"
+                             showPager="false"
+                             dataField="list"
+                             url=""
+                             showSummaryRow="true"
+                             idField="id"
+                             totalField="page.count"
+                             pageSize="100"
+                             oncellcommitedit="onCellCommitEdit"
+                             showPager="true"
+                             showLoading="false"
+                             multiSelect="true"
+                             showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
+                        <div property="columns">
+                                <div type="indexcolumn">序号</div>
+                                <div type="checkcolumn" width="25"></div>
+                                <div field="partId" width="50" visible="false" headerAlign="center">配件ID</div>
+                                <div field="pid" width="80" headerAlign="center" allowSort="true" summaryType="count">零件OE号</div>
+                                <div field="label" width="120" headerAlign="center" allowSort="true">名称</div>
+                                <div field="PCS" width="30" visible="false" headerAlign="center" allowSort="true">单位PCS</div>
+                                <div field="orderQty" width="50" headerAlign="center" allowSort="true">
+                                    数量<input property="editor" vtype="float" class="nui-textbox"/>
+                                </div>
+                                <div field="orderPrice" width="50" headerAlign="center" allowSort="true">
+                                    单价<input property="editor" vtype="float" class="nui-textbox"/>
+                                </div>
+                                <div field="remark" width="80" headerAlign="center" allowSort="true">备注<input property="editor" class="nui-textbox"/></div>
+                        </div>
+                </div>
+        </div>
+    </div>
+
+
 </body>
 </html>

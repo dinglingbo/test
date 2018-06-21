@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<eosCompile>
+	<modelFactory>
+		<factory className="com.primeton.studio.component.java.core.bizlet.BizletXmlModelFactory" priority="18000"/>
+		<factory className="com.primeton.studio.workflow.business.core.BizRelyFactory" priority="0"/>
+		<factory className="com.primeton.studio.xsd.core.XSDModelFactory" priority="0"/>
+		<factory className="com.primeton.studio.wsdl.core.WSDLModelFactory" priority="25000"/>
+		<factory className="com.primeton.studio.spring.core.SpringModelFactory" priority="5"/>
+		<factory className="com.primeton.studio.workflow.business.core.BizCatalogFactory" priority="0"/>
+		<factory className="com.primeton.studio.workflow.business.core.BizModelFactory" priority="0"/>
+		<factory className="com.primeton.studio.entity.core.DatasetModelFactory" priority="3"/>
+		<factory className="com.primeton.studio.workflow.core.WorkFlowModelFactory" priority="12500"/>
+		<factory className="com.primeton.studio.sca.core.CompositeModelFactory" priority="20000"/>
+		<factory className="com.primeton.studio.component.core.EOSComponentTypeModelFactory" priority="0"/>
+		<factory className="com.primeton.studio.component.core.ComponentTypeModelFactory" priority="19000"/>
+		<factory className="com.primeton.studio.biz.core.BizModelFactory" priority="0"/>
+		<factory className="com.primeton.studio.sql.core.NamingSqlModelFactory" priority="1"/>
+		<factory className="com.primeton.studio.pageflow.core.PfModelFactory" priority="17000"/>
+	</modelFactory>
+	<indexKeyCreator>
+		<creator className="com.primeton.studio.component.java.core.index.BizletMethodIndexKeyCreator" id="bizlet_method"/>
+		<creator className="com.primeton.studio.spring.component.core.SpringBeanIndexKeyCreator" id="springBean"/>
+		<creator className="com.primeton.studio.component.java.core.index.JavaMethodIndexKeyCreator" id="java_method"/>
+		<creator className="com.primeton.studio.component.java.core.index.JavaClassIndexKeyCreator" id="java_class"/>
+		<creator className="com.primeton.studio.jsp.core.index.PageResourceIndexKeyCreator" id="page_resource"/>
+		<creator className="com.primeton.studio.entity.core.index.DatasetIndexKeyCreator" id="dataset"/>
+		<creator className="com.primeton.studio.entity.core.index.EntityIndexKeyCreator" id="entity"/>
+		<creator className="com.primeton.studio.component.java.core.index.BizletClassIndexKeyCreator" id="bizlet_class"/>
+		<creator className="com.primeton.studio.biz.core.index.BizIndexKeyCreator" id="biz"/>
+		<creator className="com.primeton.emf.component.core.index.WSDLIndexKeyCreator" id="wsdl"/>
+		<creator className="com.primeton.emf.component.core.index.ServiceIndexKeyCreator" id="service"/>
+		<creator className="com.primeton.studio.spring.component.core.SpringFileIndexKeyCreator" id="springFile"/>
+		<creator className="com.primeton.emf.component.core.index.EOSComponentIndexKeyCreator" id="eos_component"/>
+		<creator className="com.primeton.studio.entity.core.index.XSDIndexKeyCreator" id="xsdx"/>
+		<creator className="com.primeton.studio.xsd.core.index.XSDIndexKeyCreator" id="xsd"/>
+		<creator className="com.primeton.studio.pageflow.core.index.PageflowIndexKeyCreator" id="page_flow"/>
+		<creator className="com.primeton.emf.component.core.index.CompositeIndexKeyCreator" id="composite"/>
+	</indexKeyCreator>
+	<eosSysLibrary>
+		<library path="WorkflowLibrary#com.primeton.studio.workflow.ui4eos" location="D:\primeton\platform\ide\eclipse\dropins\PLATFORM-7.5.0.0\plugins\com.primeton.studio.workflow.ui4eos_7.0.0.0/lib/bps-user-component.ecd"/>
+		<library path="RichWebLibrary#com.primeton.studio.workbench" location="D:\primeton\platform\ide\eclipse\dropins\PLATFORM-7.5.0.0\plugins\com.primeton.studio.workbench.config_7.1.3.0/lib/server-eos-richweb.ecd"/>
+		<library path="FoundationLibrary#com.primeton.studio.workbench" location="D:\primeton\platform\ide\eclipse\dropins\PLATFORM-7.5.0.0\plugins\com.primeton.studio.workbench.config_7.1.3.0/lib/server-eos-foundation.ecd"/>
+	</eosSysLibrary>
+</eosCompile>

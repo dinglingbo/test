@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+       <select id="productQuery" parameterClass="HashMap" resultClass="HashMap">
+     	SELECT a.tenant_id tenantId,a.tenant_name tenantName,a.mobile,b.id,b.record_date recordDate,b.product_id productId,c.`name`,c.type,b.start_date startDate,b.end_date endDate,b.is_payment isPayment, b.payment_date paymentDate,b.payment_type paymentType,b.`status`
+		FROM com_tenant a,com_tenant_order b,com_tenant_product c
+		WHERE a.tenant_id=b.tenant_id and b.product_id = c.id 
+		<isNotNull property="id">
+			AND b.id=#id#
+		</isNotNull>
+		<isNotNull property="tenantId">
+			AND b.tenant_id=#tenantId#
+		</isNotNull>
+		<isNotNull property="tenantName">
+			AND a.tenant_name=#tenantName#
+		</isNotNull>	
+		<isNotNull property="mobile">
+			AND a.mobile=#mobile#
+		</isNotNull>
+		<isNotNull property="status">
+			AND  b.status=#status#
+		</isNotNull>	
+		<isNotEmpty prepend="and" property="beginDate">  
+              b.record_date &gt;= #beginDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate">  
+              b.record_date &lt; #endDate#
+        </isNotEmpty>
+	
+	 </select>
+</sqlMap>

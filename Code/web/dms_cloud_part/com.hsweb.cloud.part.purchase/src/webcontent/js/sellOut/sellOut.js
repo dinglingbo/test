@@ -523,18 +523,36 @@ function onPrint() {
     var row = leftGrid.getSelected();
     if (row) {
 
-        nui.open({
+        var orderTypeId = row.orderTypeId;
+        if(orderTypeId == 2){
+            nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
-                    + row.id,// "view_Guest.jsp",
-            title : "销售出库打印",
-            width : 900,
-            height : 600,
-            onload : function() {
-                var iframe = this.getIFrameEl();
-                // iframe.contentWindow.setInitData(storeId, 'XSD');
-            }
-        });
+                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
+                        + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+                title : "销售单打印",
+                width : 900,
+                height : 600,
+                onload : function() {
+                    var iframe = this.getIFrameEl();
+                    // iframe.contentWindow.setInitData(storeId, 'XSD');
+                }
+            });
+        }else if(orderTypeId == 3){
+            nui.open({
+
+                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
+                        + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+                title : "采购退货打印",
+                width : 900,
+                height : 600,
+                onload : function() {
+                    var iframe = this.getIFrameEl();
+                    // iframe.contentWindow.setInitData(storeId, 'XSD');
+                }
+            });
+        }
+
+
     }
 
 }

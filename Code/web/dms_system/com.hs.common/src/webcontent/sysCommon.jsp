@@ -78,9 +78,10 @@
 	String userName="";
     String userRealName="";
     String token="";
+    String tenantId = "default";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
-		%>alert(123);backToLogin();<%
+		%>backToLogin();<%
 	}else{
 		IUserObject u = (IUserObject) session.getAttribute("userObject");		
 		if (u != null) {
@@ -91,10 +92,12 @@
             userRealName = u.getUserRealName();
             
 			String noOrgId = "N";
+			
             try {
 				attr = u.getAttributes();
 				token = attr.get("token").toString();
                 noOrgId = session.getAttribute("noOrgId").toString();
+                tenantId = attr.get("tenantId").toString();
 			} catch (Exception e) {
 			}
             
@@ -122,6 +125,7 @@
     var currUserId = "<%=userId %>";
 	var currUserName = "<%=userName %>";
     var currUserRealName = "<%=userRealName %>";
+    var currTenantId = "<%=tenantId %>";
     var token = "<%=token %>";
     //alert("token=" + token);
     
@@ -143,11 +147,12 @@
 		}
 	}
 </script>
-<script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
-<script src="<%=sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
-<script src="<%=sysDomain%>/common/js/init.js?v=1.0" type="text/javascript"></script>
-<script src="<%=sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
-<link href="<%=sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
+<script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.2" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.2" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
+<link href="<%=webPath + sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
+<link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
     html, body
     {

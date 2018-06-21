@@ -1220,6 +1220,9 @@
                 <!--审核状态-->
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="isOut">  
+                    (A.is_out = #isOut#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
                 </isNotEmpty>
@@ -1342,6 +1345,9 @@
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
                     (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isOut">  
+                    (A.is_out = #isOut#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))

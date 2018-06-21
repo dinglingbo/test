@@ -77,8 +77,7 @@
 <body>
 
 <div style="text-align: right;">
-    <span>内部往来</span>
-    <div id="isInternal" name="isInternal" class="nui-checkbox" text="" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></div>
+    <div id="isInternal" name="isInternal" visible="false" class="nui-checkbox" text="" onvaluechanged="" trueValue="1" falseValue="0"></div>
     <span>客户</span>
     <div id="isClient" name="isClient" class="nui-checkbox" text="" enabled="true" trueValue="1" falseValue="0"></div>
     <span>供应商</span>
@@ -204,8 +203,8 @@
                           <tr class="htr">
                               <td class=" right fwidthb">供应类型:</td>
                               <td >
-                                  <input id="guestType"
-                                 name="guestType"
+                                  <input id="supplierType"
+                                 name="supplierType"
                                  class="nui-combobox"
                                  textField="name"
                                  valueField="customid"

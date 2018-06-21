@@ -15,7 +15,7 @@
     <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.5" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.7" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.7.1" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -36,6 +36,7 @@
                 <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(gridCfg)">主&nbsp;&nbsp;组</a>
                 <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(subGroups)" onclick="">分&nbsp;&nbsp;组</a>
                 <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(gridParts)">零&nbsp;&nbsp;件</a>
+                <a class="nui-button groupButton" style="display:none;" onclick="showRightGrid(gridCfgT)">配&nbsp;&nbsp;置</a>
             </center>
         </div>
         <div showCollapseButton="false" style="border:0;">
@@ -173,6 +174,25 @@
                 -->
             </div>
 	    </div>
-	</div>]
+	</div>
+
+    <div id="winCarCfg" class="nui-window" title="车辆配置" style="width:500px;height:450px;" 
+        showMaxButton="true" showCollapseButton="true" showShadow="true"
+        showToolbar="true" showFooter="true" showModal="false" allowResize="true" allowDrag="true"
+        >
+        <div id="gridCfgT" 
+            class="nui-datagrid" 
+            style="width:100%;height:100%;"
+            showColumns="true"
+            showPager="false"
+            allowcellwrap="true"
+            showSummaryRow="true">
+            <div property="columns">  
+                <div field="field1" width="80" headerAlign="center" allowSort=false summaryType="count">分类</div>
+                <div field="field2" width="150" headerAlign="center" allowSort=false>详情</div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

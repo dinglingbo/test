@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.0.7"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.0.8"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -57,7 +57,8 @@
         <tr>
             <td style="width:100%;">
                 <a class="nui-button" iconCls="" plain="true" onclick="addSuplier"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="editSuplier"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" id="editBtn" iconCls="" plain="true" onclick="editSuplier"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
             </td>
         </tr>
     </table>
@@ -69,6 +70,7 @@
          pageSize="20"
          totalField="page.count"
          onrowdblclick="onRowDblClick"
+         onrowclick="onGridRowClick"
          sortMode="client"
          frozenStartColumn="0"
          frozenEndColumn="7">
@@ -77,7 +79,7 @@
             <!--<div type="checkcolumn" ></div>-->
             <div header="基本信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="orgid" width="100" headerAlign="center" header="店名"></div>
+                    <!-- <div allowSort="true" field="orgid" width="100" headerAlign="center" header="店名"></div> -->
                     <div allowSort="true" field="shortName" width="80" headerAlign="center" header="供应商简称"></div>
                     <div allowSort="true" field="fullName" width="100" headerAlign="center" header="供应商全称"></div>
                     <div allowSort="true" field="tel" width="100" headerAlign="center" header="电话"></div>

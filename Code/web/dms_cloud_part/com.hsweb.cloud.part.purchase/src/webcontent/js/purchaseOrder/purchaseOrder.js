@@ -140,7 +140,7 @@ $(document).ready(function(v) {
 	    } 
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
-			onPrint();
+			onPrint(0);
 	    } 
 	    if((keyCode==113))  {  
 			addMorePart();
@@ -922,7 +922,8 @@ function selectSupplier(elId) {
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var params = {
-                isSupplier: 1
+                isSupplier: 1,
+                guestType:'01020202'
             };
             iframe.contentWindow.setGuestData(params);
 		},
@@ -989,6 +990,25 @@ function onCellEditEnter(e){
 			addNewKeyRow();
 		}else if(column.field == "remark"){
 			addNewKeyRow();
+		}else if(column.field == "comPartCode"){
+			if(!record.comPartCode){
+				nui.alert("请输入编码!","提示",function(){
+					var row = rightGrid.getSelected();
+					rightGrid.removeRow(row);
+					addNewRow(false);
+				});
+				return;
+			}else{
+				var rs = addInsertRow(record.comPartCode,record);
+				if(!rs){
+					var newRow = {comPartCode: ""};
+					rightGrid.updateRow(record, newRow);
+					rightGrid.beginEditCell(record, "comPartCode");
+					return;
+				}else{
+					rightGrid.beginEditCell(record, "comUnit");
+				}
+			}
 		}
 	}
 }
@@ -1079,16 +1099,12 @@ function onCellCommitEdit(e) {
 		}else if(e.field == "comPartCode"){
 			oldValue = e.oldValue;
 			oldRow = row;
-			if(!e.value){
+			/*if(!e.value){
 				nui.alert("请输入编码!","提示",function(){
 					var row = rightGrid.getSelected();
 					rightGrid.removeRow(row);
 					addNewRow(false);
 				});
-/*
-				var newRow = {};
-				rightGrid.updateRow(row, newRow);
-				rightGrid.beginEditCell(row, "comPartCode");*/
 				return;
 			}else{
 				var rs = addInsertRow(e.value,row);
@@ -1098,9 +1114,9 @@ function onCellCommitEdit(e) {
 					rightGrid.beginEditCell(row, "comPartCode");
 					return;
 				}else{
-					//rightGrid.beginEditCell(row, "comUnit");
+					rightGrid.beginEditCell(row, "comUnit");
 				}
-			}
+			}*/
     		
 		}else if(e.field == "remark"){
 			//addNewKeyRow();
@@ -1330,10 +1346,11 @@ function addInsertRow(value,row) {
 
 		if(row){
 			rightGrid.updateRow(row,newRow);
+			//rightGrid.beginEditCell(row, "comUnit");
 		}else{
 			rightGrid.addRow(newRow);
+			//rightGrid.beginEditCell(row, "comUnit");
 		}
-		rightGrid.beginEditCell(row, "orderQty");
 	
 		return true;
 	}else{
@@ -1700,21 +1717,41 @@ function setGuestInfo(params) {
 		}
 	});
 }
-function onPrint() {
+function onPrint(type) {
 	var row = leftGrid.getSelected();
 
 	var data = rightGrid.getData();
 	if(data && data.length<=0) return;
 
-	if (row) {
+	if (row && type == 0) {
 
 		if(!row.id) return;
 
 		nui.open({
 
-			url : "com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-					+ row.id,// "view_Guest.jsp",
+			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
 			title : "采购订单打印",
+			width : 900,
+			height : 600,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				// iframe.contentWindow.setInitData(storeId, 'XSD');
+			}
+		});
+	}else if(row && type == 1){
+		if(!row.id) return;
+
+		if(row.isFinished != 1) {
+			nui.alert("全部入库后才能打印进货单!");
+			return;
+		}
+
+		nui.open({
+
+			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+			title : "进货单打印",
 			width : 900,
 			height : 600,
 			onload : function() {

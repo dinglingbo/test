@@ -1,0 +1,590 @@
+<?xml version="1.0" ?>
+<project name="Export Ear" default="main" basedir=".">
+	<property file="buildEarWar.properties"/>
+
+	<property name="javacFailOnError" value="true"/>
+	<property name="javacDebugInfo" value="on"/>
+	<property name="javacVerbose" value="false"/>
+	<property name="logExtension" value=".log"/>
+	<property name="compilerArg" value=""/>
+	<property name="javacSource" value="1.5"/>
+	<property name="javacTarget" value="1.5"/>
+	<property name="javacEncoding" value="UTF-8"/>
+	<path id="path_bootclasspath">
+		<fileset dir="${java.home}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<property name="bootclasspath" refid="path_bootclasspath"/>
+	<property name="bundleJavacSource" value="${javacSource}"/>
+	<property name="bundleJavacTarget" value="${javacTarget}"/>
+	<property name="bundleJavacEncoding" value="${javacEncoding}"/>
+	<property name="bundleBootClasspath" value="${bootclasspath}"/>
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${antcontribJarPath}" />
+		</classpath>
+	</taskdef>
+	<if>
+		<equals arg1="${appName}" arg2="" casesensitive="false" trim="true"/>
+		<then>
+			<fail message="appName is not set."/>
+		</then>
+	</if>
+	<taskdef file="eosTask.xml" />
+
+	<if>
+		<equals arg1="${serverType}" arg2="tomcat" casesensitive="false" trim="true"/>
+		<then>
+			<property name="exportType" value="war" />
+		</then>
+		<else>
+			<property name="exportType" value="ear" />
+		</else>
+	</if>
+
+	<if>
+		<equals arg1="${exportType}" arg2="ear" casesensitive="false" trim="true"/>
+		<then>
+			<property name="warHome" value="${tempDir}/ear/war" />
+		</then>
+		<else>
+			<property name="warHome" value="${tempDir}/war" />
+		</else>
+	</if>
+
+	<!-- =================================
+          target: main
+         ================================= -->
+	<target name="main"  description="main task">
+		<trycatch property="ErrMsg">
+			<try>
+				<antcall target="init"/>
+				<antcall target="copyTemplate"/>
+				<antcall target="handleServerType"/>
+				<antcall target="handleEJB"/>
+				<antcall target="handleLicense"/>
+				<antcall target="buildECD"/>
+				<antcall target="deployECDOffline"/>
+				<antcall target="pack"/>
+				<antcall target="exportReport"/>
+				<antcall target="clearTempDir"/>
+			</try>
+			<finally>
+				<antcall target="clearTempDir"/>
+            </finally>
+		</trycatch>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+	          target: init
+	          init temp dir
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<delete dir="${tempDir}" deleteonexit="true" includeemptydirs="true" />
+		<mkdir dir="${tempDir}" />
+		<mkdir dir="${earExportDir}"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: copyTemplate
+          copy template resources，ant set the value for warHome
+          ear:copy 'template/ear' to temp dir
+          war:copy 'template/ear/war' to temp dir
+         - - - - - - - - - - - - - - - - - -->
+	<target name="copyTemplate">
+		<echo message="exportType : ${exportType}"/>
+		<if>
+			<equals arg1="${exportType}" arg2="ear" casesensitive="false" trim="true"/>
+			<then>
+				<mkdir dir="${tempDir}/ear"/>
+				<copy todir="${tempDir}/ear" overwrite="true">
+					<fileset dir="${templateDir}/ear/default"/>
+				</copy>
+			</then>
+			<else>
+				<mkdir dir="${tempDir}/war"/>
+				<copy todir="${tempDir}/war" overwrite="true">
+					<fileset dir="${templateDir}/ear/default/war"/>
+				</copy>
+			</else>
+		</if>
+		<echo message="warHome : ${warHome}"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: handleServerType
+          do some special operation for each serverType.
+          1.
+          ear:copy to "tempDir/ear"
+          war:copy to "tempDir/war"
+          2.delete jars in "warHome/WEB-INF/lib" which are definied in "serverType/special.xml"
+         - - - - - - - - - - - - - - - - - -->
+	<target name="handleServerType">
+		<!-- set serverTypeDestDir and serverTemplateDir -->
+		<if>
+			<and>
+				<isset property="serverVersion"/>
+				<available property="serverVersionTemplateDir.exist" file="${templateDir}/ear/${serverType}${serverVersion}" type="dir"/>
+			</and>
+			<then>
+				<property name="baseServerDir" value="${templateDir}/ear/${serverType}${serverVersion}"/>
+			</then>
+			<else>
+				<property name="baseServerDir" value="${templateDir}/ear/${serverType}"/>
+			</else>
+		</if>
+		<if>
+			<equals arg1="${exportType}" arg2="ear" casesensitive="false" trim="true"/>
+			<then>
+				<property name="serverTemplateDir" value="${baseServerDir}"/>
+				<property name="serverTypeDestDir" value="${tempDir}/ear"/>
+			</then>
+			<else>
+				<property name="serverTemplateDir" value="${baseServerDir}/war"/>
+				<property name="serverTypeDestDir" value="${tempDir}/war"/>
+			</else>
+		</if>
+
+		<echo message="exportType : ${exportType}" />
+		<echo message="serverTemplateDir : ${serverTemplateDir}" />
+		<echo message="serverTypeDestDir : ${serverTypeDestDir}" />
+		<if>
+			<and>
+				<isset property="serverTemplateDir"/>
+				<available property="serverTemplateDir.exist" file="${serverTemplateDir}" type="dir"/>
+			</and>
+			<then>
+				<echo message="copy templates for ${serverType}" />
+				<copy todir="${serverTypeDestDir}" overwrite="true">
+					<fileset dir="${serverTemplateDir}">
+						<exclude name="special.xml"/>
+					</fileset>
+				</copy>
+			</then>
+			<else/>
+		</if>
+		<if>
+			<and>
+				<available property="special.exist" file="${baseServerDir}/special.xml" type="file"/>
+			</and>
+			<then>
+				<echo message="delete excludes jars which definied in ${baseServerDir}/special.xml" />
+				<!-- delete jars in "${warHome}/.." which are definied in "serverType/special.xml"  -->
+				<xmlproperty file="${baseServerDir}/special.xml"/>
+				<for list="${special.excludes}" param="mod" trim="true">
+					<sequential>
+						<echo message="delete @{mod}" />
+						<delete failonerror="false">
+							<fileset dir="${warHome}/..">
+							    <include name="@{mod}"/>
+							</fileset>
+						</delete>
+					</sequential>
+				</for>
+			</then>
+			<else/>
+		</if>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+          target: handleEJB
+          ear:
+          	1.replace all "@eosapp_name@" to real appName in the files of "templateDir/ear/default/META-INF" and
+          	"templateDir/ear/default/ejb/META-INF"
+          	2.add the resources of "tempDir/ear/ejb" to "tempDir/ear/eos-server-access-ejb.jar"
+          	3.delete "tempDir/ear/ejb"
+          war:copyt "templateDir/ear/default/eos-server-access-ejb.jar" to "tempDir/war/WEB-INF/lib"
+         - - - - - - - - - - - - - - - - - -->
+	<target name="handleEJB">
+		<if>
+			<equals arg1="${exportType}" arg2="ear" casesensitive="false" trim="true"/>
+			<then>
+				<replace dir="${tempDir}/ear/META-INF" encoding="UTF-8" token="@eosapp_name@" value="${appName}" />
+				<if>
+					<equals arg1="${isNeedEjb}" arg2="true" casesensitive="false" trim="true"/>
+					<then>
+						<delete file="${tempDir}/ear/META-INF/application-without-ejb.xml" failonerror="false" />
+						<replace dir="${tempDir}/ear/ejb/META-INF" encoding="UTF-8" token="@eosapp_name@" value="${appName}" />
+						<zip destfile="${tempDir}/ear/eos-server-access-ejb.jar" update="true">
+							<fileset dir="${tempDir}/ear/ejb"/>
+						</zip>
+						<delete failonerror="false">
+							<fileset dir="${tempDir}/ear/war/WEB-INF/lib">
+							    <include name="eos-server-access-ejb*.jar"/>
+							</fileset>
+						</delete>
+					</then>
+					<else>
+						<move file="${tempDir}/ear/META-INF/application-without-ejb.xml" tofile="${tempDir}/ear/META-INF/application.xml" overwrite="true" failonerror="false" />
+						<delete file="${tempDir}/ear/eos-server-access-ejb.jar" failonerror="false" />
+					</else>
+				</if>
+				<delete dir="${tempDir}/ear/ejb" includeemptydirs="true" />				
+			</then>			
+		</if>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+          target: handleLicense
+          copy license to "tempDir/ear/war/WEB-INF/primetonserver"
+         - - - - - - - - - - - - - - - - - -->
+	<target name="handleLicense">
+		<if>
+			<isset property="licensePath"/>
+			<then>
+				<if>
+					<available property="license.exist" file="${licensePath}"/>
+					<then>
+						<basename property="license.filename" file="${licensePath}"/>
+						<if>
+							<equals arg1="${license.filename}" arg2="primetonlicense.xml" casesensitive="true" trim="true"/>
+							<then>
+								<copy todir="${warHome}/WEB-INF/_srv" overwrite="true" >
+									<fileset file="${licensePath}"/>
+								</copy>
+							</then>
+							<else>
+								<echo message="the name of the license file must be primetonlicense.xml." />
+							</else>
+						</if>
+					</then>
+					<else>
+						<echo message="license file is not exist." />
+					</else>
+				</if>
+			</then>
+			<else>
+				<echo message="licensePath is not set." />
+			</else>
+		</if>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: buildECD
+          	build all resources to a ECD
+         - - - - - - - - - - - - - - - - - -->
+	<target name="buildECD">
+		<mkdir dir="${tempDir}/ecdTempDir/system"/>
+		<mkdir dir="${tempDir}/ecdTempDir/user"/>
+		<mkdir dir="${tempDir}/compile/lib"/>
+		<mkdir dir="${tempDir}/ecdTempDir/usercurrent"/>
+
+		<!-- move library to ecd temp dir 
+		<for param="projectName" trim="true" list="${projectNames}" delimiter=",">
+			<sequential>
+				<moveLibrary projectName="@{projectName}" toDir="${tempDir}/ecdTempDir"/>
+				<for list="${@{projectName}_contributionNames}" param="contributionName" trim="true">
+					<sequential>
+						<copy todir="${tempDir}/compile/classes" overwrite="true">
+							<fileset dir="${@{projectName}_projectPath}/@{contributionName}/bin"/>
+						</copy>
+					</sequential>
+				</for>
+			</sequential>
+		</for>
+		-->
+
+		<!-- unzip ecd to ${tempDir}/compile/lib 
+		<if>
+			<available property="systemEcdDir_buildEcd.exist" file="${tempDir}/ecdTempDir/system" type="dir"/>
+			<then>
+				<for param="systemEcdFileName">
+					<path>
+						<fileset dir="${tempDir}/ecdTempDir/system" includes="**/*.ecd" casesensitive="false"/>
+					</path>
+					<sequential>
+						<unzip src="@{systemEcdFileName}" dest="${tempDir}/compile/lib"/>
+					</sequential>
+				</for>
+			</then>
+			<else/>
+		</if>
+		<if>
+			<available property="userEcdDir_buildEcd.exist" file="${tempDir}/ecdTempDir/user" type="dir"/>
+			<then>
+				<for param="userEcdFileName">
+					<path>
+						<fileset dir="${tempDir}/ecdTempDir/user" includes="**/*.ecd" casesensitive="false"/>
+					</path>
+					<sequential>
+						<unzip src="@{userEcdFileName}" dest="${tempDir}/compile/lib"/>
+					</sequential>
+				</for>
+			</then>
+			<else/>
+		</if>
+		-->
+		
+		<if>
+			<equals arg1="${reBuild}" arg2="true" casesensitive="false" trim="true"/>
+			<then>
+				<antcall target="compile2ECD"/>
+			</then>
+			<else>
+				<antcall target="compile2ECDWithoutRebuild"/>
+			</else>
+		</if>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: compile2ECDWithoutRebuild
+          	build all resources without rebuild to a ECD
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile2ECDWithoutRebuild">
+		<mkdir dir="${tempDir}/ecd/${mainProjectName}"/>
+		<mkdir dir="${tempDir}/compile/${mainProjectName}"/>
+		<for param="projectName" trim="true" list="${projectNames}" delimiter=",">
+			<sequential>
+				<delete dir="${tempDir}/compile/@{projectName}" deleteonexit="true" includeemptydirs="true" />
+				<mkdir dir="${tempDir}/compile/@{projectName}"/>
+				<for list="${@{projectName}_contributionNames}" param="contributionName" trim="true">
+					<sequential>
+						<delete dir="${tempDir}/compile/@{projectName}/@{contributionName}" deleteonexit="true" includeemptydirs="true" />
+						<mkdir dir="${tempDir}/compile/@{projectName}/@{contributionName}"/>
+						<copy todir="${tempDir}/compile/@{projectName}/@{contributionName}" overwrite="true">
+							<fileset dir="${@{projectName}_projectPath}/@{contributionName}/bin"/>
+						</copy>
+					</sequential>
+				</for>
+			</sequential>
+		</for>
+
+		<antcall target="makeECD"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: compile2ECD
+          	1.compile to a ecd, then put it into "tempDir/ecdTempDir/user"
+          	2.copy all plugin libraries to "tempDir/ecdTempDir/system"
+	          	copy other libraries to "tempDir/ecdTempDir/user"
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile2ECD">
+		<echo message="Compile to ECD" />
+		<mkdir dir="${tempDir}/compile/classes"/>
+		<mkdir dir="${tempDir}/ecd/${mainProjectName}"/>
+		<mkdir dir="${tempDir}/compile/${mainProjectName}"/>
+		<!-- Java Compile -->
+		<for param="projectName" trim="true" list="${projectNames}" delimiter=",">
+			<sequential>
+				<delete dir="${tempDir}/compile/@{projectName}" deleteonexit="true" includeemptydirs="true" />
+				<mkdir dir="${tempDir}/compile/@{projectName}"/>
+				<!-- Java Compile for each contribution -->
+				<for list="${@{projectName}_contributionNames}" param="contributionName" trim="true">
+					<sequential>
+						<delete dir="${tempDir}/compile/@{projectName}/@{contributionName}" deleteonexit="true" includeemptydirs="true" />
+						<mkdir dir="${tempDir}/compile/@{projectName}/@{contributionName}"/>
+						<antcall target="contributionJavaBuild">
+							<param name="projectName" value="@{projectName}"/>
+							<param name="contributionName" value="@{contributionName}" />
+							<param name="projectPath" value="${@{projectName}_projectPath}" />
+						</antcall>
+					</sequential>
+				</for>
+			</sequential>
+		</for>
+		<!-- EOS Compile -->
+		<antcall target="eosProjectBuild"/>
+		<antcall target="makeECD"/>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: makeECD
+         - - - - - - - - - - - - - - - - - -->
+	<target name="makeECD">
+		<!-- path jars -->
+		<for param="projectName" trim="true" list="${projectNames}" delimiter=",">
+			<sequential>
+				<!-- patch a jar for a contribution, then delete the temp resources. -->
+				<for list="${@{projectName}_contributionNames}" param="contributionName" trim="true" delimiter=",">
+					<sequential>
+						<jar destfile="${tempDir}/compile/@{projectName}/@{contributionName}.jar" manifest="${tempDir}/compile/@{projectName}/@{contributionName}/META-INF/MANIFEST.MF">
+							<fileset dir="${tempDir}/compile/@{projectName}/@{contributionName}" excludes="**/*.flowx,
+										**/*.datasetx,
+										**/*.workflowx,
+										**/*.viewmodelx,
+										**/*.namingsqlx,
+										**/*.bizx,
+										**/*.metadata,
+										**/*.desc" />
+						</jar>
+						<delete dir="${tempDir}/compile/@{projectName}/@{contributionName}" deleteonexit="true" includeemptydirs="true" />
+					</sequential>
+				</for>
+				<!-- Copy WebModule, exf/config, jars to "tempDir/ecd/mainProjectName"(not copy main project) -->
+				<if>
+					<equals arg1="${mainProjectName}" arg2="@{projectName}"/>
+					<then/>
+					<else>
+						<copy todir="${tempDir}/ecd/${mainProjectName}" overwrite="true" includeemptydirs="true">
+							<fileset dir="${tempDir}/compile/@{projectName}"/>
+							<fileset dir="${@{projectName}_projectPath}">
+								<include name="eos-web/**/*.*"/>
+								<include name="exf/**/*.*"/>
+							</fileset>
+						</copy>
+					</else>
+				</if>
+			</sequential>
+		</for>
+		<!-- Copy WebModule, exf/config, jars of mainProject to "tempDir/ecd/mainProjectName" -->
+		<copy todir="${tempDir}/ecd/${mainProjectName}" overwrite="true" includeemptydirs="true">
+			<fileset dir="${tempDir}/compile/${mainProjectName}" />
+			<fileset dir="${mainProjectPath}">
+				<include name="eos-web/**/*.*"/>
+				<include name="exf/**/*.*"/>
+			</fileset>
+		</copy>
+		<!-- pack "tempDir/ecd/mainProjectName" to mainProjectName.ecd then move to "tempDir/ecdTempDir/user" -->
+		<zip encoding="UTF-8" destfile="${tempDir}/ecdTempDir/usercurrent/${mainProjectName}.ecd">
+			<fileset dir="${tempDir}/ecd/${mainProjectName}"/>
+		</zip>
+		<delete dir="${tempDir}/ecd/${mainProjectName}" deleteonexit="true" includeemptydirs="true" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: contributionJavaBuild
+          compile to "tempDir/compile", then copty to "tempDir/compile/classes"
+         - - - - - - - - - - - - - - - - - -->
+	<target name="contributionJavaBuild">
+		<!-- compile path -->
+		<path id="contribution.classpath">
+			<pathelement location="${eclipse_plugins}/org.junit4_4.1.0.1/junit-4.1.jar" />
+			<fileset dir="${eostools_plugins}/com.primeton.studio.server.library_7.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.server.library_7.1.3.0/bin"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.runtime_5.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.runtime_5.1.3.0/bin"/>
+			<fileset dir="${eostools_plugins}/com.primeton.studio.library_5.1.3.0">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${eostools_plugins}/com.primeton.studio.library_5.1.3.0/bin"/>
+			<fileset dir="${projectPath}">
+				<include name="eos-web/WEB-INF/lib/**/*.jar" />
+			</fileset>
+			<fileset dir="${tempDir}/compile/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${tempDir}/compile/classes"/>
+		</path>
+
+		<javac destdir="${tempDir}/compile/${projectName}/${contributionName}" failonerror="${javacFailOnError}" 
+			verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" 
+			bootclasspath="${bundleBootClasspath}" encoding="${bundleJavacEncoding}"
+			source="${bundleJavacSource}" target="${bundleJavacTarget}">
+			<compilerarg line="${compilerArg}" compiler="${build.compiler}" />
+			<classpath refid="contribution.classpath" />
+			<src path="${projectPath}/${contributionName}/src/" />
+
+			<compilerarg line="-log '${tempDir}/compile/${projectName}/${contributionName}${logExtension}'" compiler="${build.compiler}" />
+		</javac>
+		<copy todir="${tempDir}/compile/classes" failonerror="true" overwrite="false">
+			<fileset dir="${tempDir}/compile/${projectName}/${contributionName}" excludes="**/*.java, **/package.htm*,**/MATA-INF/sca-contribution.xml" />
+		</copy>
+		<copy todir="${tempDir}/compile/${projectName}/${contributionName}" failonerror="true" overwrite="false">
+			<fileset dir="${projectPath}/${contributionName}/src" excludes="**/*.java, **/package.htm*,**/MATA-INF/sca-contribution.xml" />
+		</copy>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+          target: eosProjectBuild
+         - - - - - - - - - - - - - - - - - -->
+	<target name="eosProjectBuild">
+		<eosCompile targetdir="${tempDir}/compile" writetoconsole="true" configFile="${configFile}">
+			<eosProjectSet eosProjectNames="${projectNames}"/>
+		</eosCompile>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - -
+          target: deployECDOffline
+         - - - - - - - - - - - - - - - - - -->
+	<target name="deployECDOffline">
+		<echo message="deploy ECD Offline" />
+		<if>
+			<available property="systemEcdDir.exist" file="${tempDir}/ecdTempDir/system" type="dir"/>
+			<then>
+				<for param="systemEcdFileName">
+					<path>
+						<fileset dir="${tempDir}/ecdTempDir/system" includes="**/*.ecd" casesensitive="false"/>
+					</path>
+					<sequential>
+						<ecdDeployOffLine warHome="${warHome}" ecdPath="@{systemEcdFileName}" system="true" />
+					</sequential>
+				</for>
+			</then>
+			<else/>
+		</if>
+		<if>
+			<available property="userEcdDir.exist" file="${tempDir}/ecdTempDir/user" type="dir"/>
+			<then>
+				<for param="userEcdFileName">
+					<path>
+						<fileset dir="${tempDir}/ecdTempDir/user" includes="**/*.ecd" casesensitive="false"/>
+					</path>
+					<sequential>
+						<ecdDeployOffLine warHome="${warHome}" ecdPath="@{userEcdFileName}" system="false" />
+					</sequential>
+				</for>
+			</then>
+			<else/>
+		</if>
+		<if>
+			<available property="userEcdDir.exist" file="${tempDir}/ecdTempDir/usercurrent" type="dir"/>
+			<then>
+				<for param="userEcdFileName">
+					<path>
+						<fileset dir="${tempDir}/ecdTempDir/usercurrent" includes="**/*.ecd" casesensitive="false"/>
+					</path>
+					<sequential>
+						<ecdDeployOffLine warHome="${warHome}" ecdPath="@{userEcdFileName}" system="false" />
+					</sequential>
+				</for>
+			</then>
+			<else/>
+		</if>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+          target: pack
+          pack to a war or ear.
+          ear:
+          	1.pack resources of "tempDir/ear/war" to "tempDir/ear/appName.war"
+          	2.delete "tempDir/ear/war"
+          	3.pack resources of "tempDir/ear" to "earExportDir/appName.ear"
+          war:pack resources of "tempDir/war" to "earExportDir/appName.war"
+         - - - - - - - - - - - - - - - - - -->
+	<target name="pack">
+		<if>
+			<equals arg1="${exportType}" arg2="ear" casesensitive="false" trim="true"/>
+			<then>
+				<delete file="${tempDir}/ear/${appName}.war" deleteonexit="true" failonerror="false"/>
+				<zip destfile="${tempDir}/ear/${appName}.war">
+					<fileset dir="${tempDir}/ear/war" excludes="**/*.mdetadata, **/*.desc"/>
+				</zip>
+				<delete dir="${tempDir}/ear/war" deleteonexit="true" includeemptydirs="true" />
+				<delete file="${earExportDir}/${appName}.ear" deleteonexit="true" failonerror="false"/>
+				<zip destfile="${earExportDir}/${appName}.ear">
+					<fileset dir="${tempDir}/ear" excludes="**/*.mdetadata, **/*.desc"/>
+				</zip>
+			</then>
+			<else>
+				<zip destfile="${earExportDir}/${appName}.war">
+					<fileset dir="${tempDir}/war" excludes="**/*.mdetadata, **/*.desc"/>
+				</zip>
+			</else>
+		</if>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+          target: exportReport
+         - - - - - - - - - - - - - - - - - -->
+	<target name="exportReport">
+		<exportReport reportFile="${reportFile}"/>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -
+          target: clearTempDir
+         - - - - - - - - - - - - - - - - - -->
+	<target name="clearTempDir">
+		<delete dir="${tempDir}" includeemptydirs="true" deleteonexit="true"/>
+	</target>
+</project>

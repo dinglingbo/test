@@ -13,8 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
     <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/part/js/partQuery.js?v=1.2.0" type="text/javascript"></script>
-
+    <script src="<%=sysDomain%>/llq/part/js/partQuery.js?v=1.2.1" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -72,6 +71,13 @@
         color: red;
     }
 
+    .b a{
+      color:black;
+    }
+    .b a:active {
+     color:black;
+    }
+
 </style>
 </head>
 <body>
@@ -111,7 +117,6 @@
                          style="width:100%;height:90%;"
                          showColumns="true"
                          showVGridLines="false"
-                         ondrawcell="ondrawcell"
                          showPager="fasle" >                
                         <div property="columns">                                             
                             <div field="pid" headerAlign="center" width="20%" align="left">零件号</div>
@@ -120,6 +125,7 @@
                             <div field="brand" headerAlign="center" width="10%"  align="left">品牌</div>
                             <div field="remark" headerAlign="center" width="10%"  align="left">备注</div>
                             <div field="action" headerAlign="center" width="10%" align="center">说明</div>
+                            <div field="opt" width="10%" headerAlign="center" align="center" allowSort=false></div>
                         </div>
                     </div>
                 

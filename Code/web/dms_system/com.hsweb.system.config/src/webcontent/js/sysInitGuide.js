@@ -11,7 +11,7 @@ function toSysSet(){
 
 function toComPartTypeSet(){
 	var item={};
-	item.id = "partTypeSet";
+	item.id = "1466";
 	item.text = "配件分类";
 	item.url = webPath + sysDomain + "/com.hsweb.cloud.part.basic.partTypeSet.flow";
 	item.iconCls = "fa fa-sitemap";
@@ -20,8 +20,8 @@ function toComPartTypeSet(){
 
 function toComAttributeSet(){
 	var item={};
-	item.id = "partMgr";
-	item.text = "配件资料";
+	item.id = "1463";
+	item.text = "配件管理";
 	item.url = webPath + sysDomain + "/com.hsweb.part.baseData.partMgr.flow";
 	item.iconCls = "fa fa-file";
 	window.parent.activeTab(item);
@@ -29,7 +29,7 @@ function toComAttributeSet(){
 
 function toComStoreSet(){
 	var item={};
-	item.id = "partMgr";
+	item.id = "1467";
 	item.text = "仓库管理";
 	item.url = webPath + sysDomain + "/com.hsweb.part.baseData.storehouseMgr.flow";
 	item.iconCls = "fa fa-file";
@@ -38,7 +38,7 @@ function toComStoreSet(){
 
 function toComGuestSet(){
 	var item={};
-	item.id = "partMgr";
+	item.id = "1462";
 	item.text = "供应商管理";
 	item.url = webPath + sysDomain + "/com.hsweb.part.baseData.supplierMgr.flow";
 	item.iconCls = "fa fa-file";
@@ -56,7 +56,7 @@ function toPartStockSet(){
 
 function toFiSettleAccountSet(){
 	var item={};
-	item.id = "initPartStock";
+	item.id = "1441";
 	item.text = "结算账户";
 	item.url = webPath + sysDomain + "/com.hsweb.cloud.part.basic.settleAccoutSet.flow";
 	item.iconCls = "fa fa-credit-card-alt";
@@ -65,7 +65,7 @@ function toFiSettleAccountSet(){
 
 function toFiSettleAccountBalanceSet(){
 	var item={};
-	item.id = "initSettleAccountBala";
+	item.id = "1422";
 	item.text = "期初现金银行";
 	item.url = webPath + sysDomain + "/com.hsweb.cloud.part.basic.initSettleAccountBala.flow";
 	item.iconCls = "fa fa-credit-card-alt";
@@ -74,7 +74,7 @@ function toFiSettleAccountBalanceSet(){
 
 function toRPBillSet(){
 	var item={};
-	item.id = "initQCRPBill";
+	item.id = "1423";
 	item.text = "期初应收应付";
 	item.url = webPath + sysDomain + "/com.hsweb.cloud.part.basic.initQCRPBill.flow";
 	item.iconCls = "fa fa-exchange";

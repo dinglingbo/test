@@ -3,7 +3,10 @@
  */
 package com.hsapi.part.common;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import com.eos.system.annotation.Bizlet;
 import com.hs.common.PY4JUtils;
@@ -61,6 +64,13 @@ public class PartCommonUtil {
 		
 		return map.get(key);
 	
+	}
+	
+	@Bizlet("")
+	public static DataObject[] add2Array(DataObject sourceDO, DataObject[] dos) {
+		List<DataObject> list = new ArrayList<DataObject>(Arrays.asList(dos));
+		list.add(sourceDO);
+		return list.toArray(new DataObject[list.size()]);
 	}
 
 }

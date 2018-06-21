@@ -52,19 +52,19 @@
     <ul class="nav navbar-nav">
         <li><a id="toggle"><span class="fa fa-bars" ></span></a></li>
         <li class="icontop"><a href="#"><i class="fa fa-hand-pointer-o"></i><span >汽配云</span></a></li>
-        <li class="icontop"><a href="#"><i class="fa fa-puzzle-piece"></i><span >汽修云</span></a></li>
+        <!-- <li class="icontop"><a href="#"><i class="fa fa-puzzle-piece"></i><span >汽修云</span></a></li>
         <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >EPC云</span></a></li>
         <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >SRM云</span></a></li>
         <li class="icontop"><a href="#"><i class="fa fa-sort-amount-asc"></i><span >物流云</span></a></li>
-        <li class="icontop"><a href="#"><i class="fa  fa-cog"></i><span >SAAS租赁</span></a></li>
+        <li class="icontop"><a href="#"><i class="fa  fa-cog"></i><span >SAAS租赁</span></a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li ><a href="#"><i class="fa fa-paper-plane"></i> 代办</a></li>
+        <!-- <li ><a href="#"><i class="fa fa-paper-plane"></i> 代办</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 消息</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 公告</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 客服</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 续费</a></li>
-        <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li>
+        <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li> -->
         <li class="dropdown">
             <a class="dropdown-toggle userinfo">
                     <i class="fa fa-align-justify"></i><span >待处理</span><i class="fa fa-angle-down"></i>
@@ -84,7 +84,7 @@
             </a>
             <ul class="dropdown-menu pull-right">
                 <li id="orgName"><a href="#">所属：</a></li>
-                <li ><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li>
+                <!-- <li ><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
                 <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
                 <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp" target="_top"><i class="fa fa-user"></i> 退出登录</a></li>
             </ul>

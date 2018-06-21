@@ -68,12 +68,20 @@
     	FROM com_car_brand 
 		WHERE  is_disabled=0
     </select>
+    <!--车系-->
+    <select id="getCarSeries" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT a.id carSeriesId, a.name carSeriesName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
+		                a.car_factory_id as carFactoryId, a.car_factory_name as carFactoryName
+		FROM com_car_series a 
+		WHERE a.car_brand_id = #carBrandId#
+		And a.is_disabled=0
+    </select>
     <!--车型-->
     <select id="getCarModel" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT A.id carModelId, A.car_model carModel, car_brand_id carBrandId, car_brand_name carBrandName
-		FROM com_car_model A 
-		WHERE car_brand_id = #carBrandId#
-		And is_disabled=0
+    	SELECT DISTINCT a.id carModelId, a.car_model carModel, a.car_brand_id carBrandId, a.car_brand_name carBrandName
+		FROM com_car_model a 
+		WHERE a.car_brand_id = #carBrandId# and a.car_series_id = #carMTId#
+		And a.is_disabled=0
     </select>
     <!--省份-->
     <select id="getProvince" parameterClass="HashMap" resultClass="HashMap">
@@ -85,4 +93,66 @@
     	select id, parentid, name, shortname, pycode, code, areacode, postalcode 
     	from com_area where `level` = 2 and isdisabled = 0
     </select>
+    <!--配件品质   parent_id is null and is_disabled = 0 and orgid = 0   用于缓存配件品质-->
+    <select id="getPartQuality" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is null and is_disabled = 0 and orgid = 0
+    </select>
+    <!--配件品牌   parent_id is not null and is_disabled = 0 and orgid = 0  用于缓存配件品牌-->
+    <select id="getPartBrand" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is not null and is_disabled = 0 and orgid = 0
+    </select>
+    <!--配件分类    is_disabled = 0 and orgid = 0  用于缓存配件分类-->
+    <select id="getPartType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parentid as parentid,
+			   typelevel as typelevel, carbrandid as carbrandid
+		from com_part_type 
+		where isdisabled = 0 and orgid = 0
+		order by code 
+    </select>
+    <!--本机构配件品质   parent_id is null and is_disabled = 0 -->
+    <select id="getOwnPartQuality" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is null and is_disabled = 0 and orgid = #orgid#
+    </select>
+    <!--本机构配件品牌   parent_id is not null and is_disabled = 0 -->
+    <select id="getOwnPartBrand" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId
+		from com_part_brand 
+		where parent_id is not null and is_disabled = 0 and orgid = #orgid#
+    </select>
+    <!--本机构配件分类   is_disabled = 0 -->
+    <select id="getOwnPartType" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, orgid as orgid, code as code, name as name, parentid as parentid,
+			   typelevel as typelevel, carbrandid as carbrandid
+		from com_part_type 
+		where isdisabled = 0 and orgid = #orgid#
+		order by code 
+    </select>
+    <!--公司员工-->
+    <select id="queryComMember" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.empid as empId,
+			a.`name` as empName
+		FROM
+		com_member AS a
+		WHERE 1=1 and is_dimission = 0
+		<isNotNull property="orgid">
+			AND a.orgid = #orgid#
+		</isNotNull>
+        <isNull property="orgid">
+			AND a.orgid in($orgids$)
+		</isNull>
+    </select>
+    <!--业务分类   is_disabled = 0 -->
+    <select id="getServiceType" parameterClass="HashMap" resultClass="HashMap">
+        SELECT id as id, name as name 
+        FROM rpb_business_type 
+        where is_disabled = 0 and orgid = #orgid# 
+        order by id
+    </select>    
 </sqlMap>

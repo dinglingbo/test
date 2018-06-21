@@ -151,7 +151,9 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="steven" createTime="2018-05-30 16:49:02" date="2018-05-30Z" description="" name="employeeDimssion" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapUser" name="tmpCapUser"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComMember" name="params"/>
   </process:inputs>

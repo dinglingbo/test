@@ -9,9 +9,9 @@
     </resultMap>
     
 	<select id="queryGuestPartSellPrice" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT a.strategy_id as stragegyId,
+    	SELECT a.strategy_id as stragegyId, b.`name` as name,
 		       c.part_id as partId,
-		       c.sell_price as sellPrice
+		       c.sell_price as sellPrice, c.operate_date operateDate, c.operator as operator
 		FROM pj_sell_price_guest a
 		inner join pj_sell_price_strategy b
 		on a.strategy_id = b.id
@@ -19,6 +19,20 @@
 		on a.strategy_id = c.strategy_id
 		where 1 = 1
 		      and b.orgid = #orgid# and c.part_id = #partId# 
+		      and (a.guest_id = #guestId#)
+        
+    </select>
+    
+    <select id="queryGuestPartSellPriceHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT b.id as stragegyId, b.`name` as name,
+		       c.part_id as partId,
+		       c.sell_price as sellPrice, c.operate_date operateDate, c.operator as operator
+		FROM pj_sell_price_strategy b
+		inner join pj_sell_price_part c
+		on b.id = c.strategy_id
+		where 1 = 1
+		      and b.orgid = #orgid# and c.part_id = #partId# 
+		      
         
     </select>
 

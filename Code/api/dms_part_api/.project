@@ -3,6 +3,7 @@
 	<name>dms_part_api</name>
 	<comment></comment>
 	<projects>
+		<project>dms_cloud_part_api</project>
 		<project>dms_system</project>
 	</projects>
 	<buildSpec>

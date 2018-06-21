@@ -16,6 +16,8 @@ var selectWin;
 var configWin;
 var gridConfig;
 var vinWin;
+var winCarCfg = null;
+var gridCfgT = null;
 
 var final_data_brand = [
     {text: "全部品牌", value: 17, brand: "all"}, 
@@ -42,6 +44,9 @@ $(document).ready(function(v){
     gridSubGroup = nui.get("gridSubGroup");
     gridParts = nui.get("gridParts");
     panel = nui.get("panel");
+
+    winCarCfg = nui.get("winCarCfg");
+    gridCfgT = nui.get("gridCfgT");
     
     //panel.hidePane(0);
     panel.hidePane(2); 
@@ -66,7 +71,10 @@ $(document).ready(function(v){
         var field = e.field;
         var value = e.value;
         if(field == "detail"){
-            var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
+            var html = '<a class="" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
+            e.cellHtml = html;
+        }else if(field == "opt"){
+            var html = '<a class="" href="javascript:addPart()"><i class="fa fa-shopping-cart"></i></a>';
             e.cellHtml = html;
         }
     });
@@ -100,7 +108,22 @@ $(document).ready(function(v){
             queryVin();
         }
     });
+
+    $("#vin_part_img").click(function(e){
+        //getMousePos(e);
+    });
+
 });
+
+function getMousePos(event) {
+   var e = event || window.event;
+   var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+   var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+   var x = e.pageX || e.clientX + scrollX;
+   var y = e.pageY || e.clientY + scrollY;
+   //alert('x: ' + x + '\ny: ' + y);
+   return { 'x': x, 'y': y };
+}
 
 /*
 *用户车架号历史查询记录（使用逻辑流，因为无法控制autocomplete发送请求的方式）
@@ -164,6 +187,8 @@ function setGridCfg(data){
             panel.hidePane(2);
         }        
     }
+
+    winCarCfg.hide();
 }
 
 /*
@@ -190,9 +215,9 @@ function setgridMainGroup(data){
     showLeftGrid(gridMainGroup);
     gridMainGroup.set({
         columns: [
-            { type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},
+            /*{ type: "indexcolumn", width:20, headerAlign: "center", header: "序号", summaryType: "count"},*/
             { field: "auth", visible: false},
-            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称"}
+            { field: "name", width:80, headerAlign: "center", allowSort: false, header: "主组名称", summaryType: "count"}
         ]
     });
     gridMainGroup.setData(data);
@@ -312,6 +337,19 @@ function openDetail(pid){
         });
     }finally{}
 }
+/*
+*添加购物车
+*/
+function addPart(){   
+    try{
+        if(parent.showPanel){
+            parent.showPanel('PART');
+        }
+        if(parent.addToCartGrid){
+            parent.addToCartGrid('VIN', gridParts.getSelected());
+        }
+    }finally{}
+}
 
 function checkVin(){
     if (vin && (vin.length == 17 || vin.length == vin_len)){
@@ -336,20 +374,37 @@ function showLeftGrid(gridObj){
 *右部grid
 */
 function showRightGrid(gridObj){
-    gridCfg.hide();
-    //gridSubGroup.hide();
-    subGroups.hide();
-    gridParts.hide();
-    
-    gridObj.show();
-    var num = (gridObj==gridCfg)? 0 : ((gridObj==subGroups)? 1 : 2);
-    $($(".groupButton")[num]).show();
-    //$($(".groupButton")[num]).click();
-    setBgColor($(".groupButton")[num]);
-    
-    if(gridObj != gridParts){//非零件
-        showLeftGrid(gridMainGroup);
+    if(gridObj==gridCfgT){
+        gridCfgT.setData([]);
+        if(winCarCfg.visible == true){
+            winCarCfg.hide();
+        }else{
+            winCarCfg.showAtPos("left", "bottom");  
+            var data = gridCfg.getData();
+            var tdata = nui.clone(data);
+            gridCfgT.setData(tdata);  
+        }
+    }else{     
+        gridCfg.hide();
+        //gridSubGroup.hide();
+        subGroups.hide();
+        gridParts.hide();
+        
+        gridObj.show();
+        var num = (gridObj==gridCfg)? 0 : ((gridObj==subGroups)? 1 : 2);
+        $($(".groupButton")[num]).show();
+        //$($(".groupButton")[num]).click();
+        setBgColor($(".groupButton")[num]);
+        
+        if(gridObj != gridParts){//非零件
+            showLeftGrid(gridMainGroup);
+        }
+
+        if(gridObj==gridCfg){
+            $($(".groupButton")[3]).show();
+        }
     }
+
 }
 
 /*
@@ -407,9 +462,9 @@ function selectConfig(data, json){
     selectForm.clear();
     
     var columns = [
-        { type: "indexcolumn", width:40, headerAlign: "center", header: "序号", summaryType: "count"},
+        /*{ type: "indexcolumn", width:40, headerAlign: "center", header: "序号", summaryType: "count"},*/
         { field: "auth", visible: false},
-        { field: "brand", visible: false}
+        { field: "brand", visible: false, summaryType: "count"}
     ];
     var titles = json.title;
     for(var i=0; i<titles.length; i++){

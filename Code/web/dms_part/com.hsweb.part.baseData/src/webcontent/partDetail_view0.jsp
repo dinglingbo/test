@@ -1,5 +1,4 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
@@ -9,7 +8,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.12"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.13"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -142,7 +141,7 @@
                         allowInput="true"
                         showNullItem="false"
                         nullItemText="请选择..."/>
-                    </td>
+                    </td><!-- 
                     <td class=" right fwidthb required">ABC分类:</td>
                     <td >
                         <input name="abcType"
@@ -157,7 +156,7 @@
                         allowInput="true"
                         showNullItem="false"
                         nullItemText="请选择..."/>
-                    </td>
+                    </td> -->
                     <td class=" right fwidthb">规格:</td>
                     <td ><input name="spec" class="nui-textbox" width="100%"/></td>
                     <td class=" right fwidthb">型号:</td>
@@ -190,10 +189,10 @@
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidthb">是否禁用:</td>
-                    <td ><input name="isDisabled" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/></td><td class=" right fwidthb">统一售价:</td>
-                    <td ><input name="isUniform" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/></td>
+                    <td ><input name="isDisabled" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/><!-- </td><td class=" right fwidthb">统一售价:</td>
+                    <td ><input name="isUniform" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/></td> -->
                     <td class=" right fwidthb">配件全称:</td>
-                    <td colspan="3"><input name="fullName" class="nui-textbox" width="100%" enabled="false"/></td>
+                    <td colspan="5"><input name="fullName" class="nui-textbox" width="100%" enabled="false"/></td>
                 </tr>
             </table>
 

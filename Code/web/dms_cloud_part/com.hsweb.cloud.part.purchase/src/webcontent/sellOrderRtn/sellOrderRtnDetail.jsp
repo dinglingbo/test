@@ -20,11 +20,12 @@
                     <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
                 </ul>
 
-                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">未审</a>
+                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(6)" id="type6">未审</li>
-                    <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li>
+                    <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
+                    <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
+                    <li iconCls="" onclick="quickSearch(14)" id="type14">全部入库</li>
                     <!-- <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">全部</li> -->
                 </ul>

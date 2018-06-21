@@ -225,3 +225,73 @@ function onDrawCell(e)
             break;
     }
 }
+function onExport(){
+    var detail = rightGrid.getData();
+    if(detail && detail.length > 0){
+        setInitExportData(detail);
+    }
+}
+function setInitExportData(detail){
+    var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
+        "<td  colspan='1' align='left'>[comPartName]</td>" +
+        "<td  colspan='1' align='left'>[comOemCode]</td>" +
+        "<td  colspan='1' align='left'>[partBrandId]</td>" +
+        "<td  colspan='1' align='left'>[applyCarModel]</td>" +
+        "<td  colspan='1' align='left'>[unit]</td>" +
+        "<td  colspan='1' align='left'>[storeId]</td>" +
+        "<td  colspan='1' align='left'>[shelf]</td>" +
+        "<td  colspan='1' align='left'>[stockQty]</td>" +
+        "<td  colspan='1' align='left'>[stockAmt]</td>" +
+        "<td  colspan='1' align='left'>[orderQty]</td>" +
+        "<td  colspan='1' align='left'>[outableQty]</td>" +
+        "<td  colspan='1' align='left'>[onRoadQty]</td>" +
+        "<td  colspan='1' align='left'>[lastEnterDate]</td>" +
+        "<td  colspan='1' align='left'>[lastOutDate]</td>" +
+        "<td  colspan='1' align='left'>[upLimit]</td>" +
+        "<td  colspan='1' align='left'>[downLimit]</td>" +
+        "<td  colspan='1' align='left'>[remark]</td>";
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.partId){
+            var tr = $("<tr></tr>");
+            var brandName = "";
+            var storeName = "";
+            if(detail[i].partBrandId && partBrandIdHash[detail[i].partBrandId]){
+                brandName = partBrandIdHash[detail[i].partBrandId].name;
+            }
+            if(detail[i].storeId && storehouseHash[detail[i].storeId]){
+                storeName = storehouseHash[detail[i].storeId].name;
+            }
+            var lastEnterDate = "";
+            var lastOutDate = "";
+            if(detail[i].lastEnterDate){
+                lastEnterDate = format(detail[i].lastEnterDate, 'yyyy-MM-dd HH:MM:ss');
+            }
+            if(detail[i].lastOutDate){
+                lastOutDate = format(detail[i].lastOutDate, 'yyyy-MM-dd HH:MM:ss');
+            }
+            tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+                         .replace("[comPartName]", detail[i].comPartName?detail[i].comPartName:"")
+                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[partBrandId]", brandName)
+                         .replace("[applyCarModel]", detail[i].applyCarModel?detail[i].applyCarModel:"")
+                         .replace("[unit]", detail[i].unit?detail[i].unit:"")
+                         .replace("[storeId]", storeName)
+                         .replace("[shelf]", detail[i].shelf?detail[i].shelf:"")
+                         .replace("[stockQty]", detail[i].stockQty?detail[i].stockQty:"")
+                         .replace("[stockAmt]", detail[i].stockAmt?detail[i].stockAmt:"")
+                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
+                         .replace("[outableQty]", detail[i].outableQty?detail[i].outableQty:"")
+                         .replace("[onRoadQty]", detail[i].onRoadQty?detail[i].onRoadQty:"")
+                         .replace("[lastEnterDate]", lastEnterDate)
+                         .replace("[lastOutDate]", lastOutDate)
+                         .replace("[upLimit]", detail[i].upLimit?detail[i].upLimit:"")
+                         .replace("[downLimit]", detail[i].downLimit?detail[i].downLimit:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:""));
+            tableExportContent.append(tr);
+        }
+    }
+    method5('tableExcel',"库存查询"+(format((new Date()), 'yyyy-MM-dd HH:MM:ss')),'tableExportA');
+}

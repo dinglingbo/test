@@ -142,6 +142,12 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeList">  
+                (guest_type in ($guestTypeList$))
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="guestType">  
+                (guest_type = #guestType#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="supplierType">  
                 (supplier_type = #supplierType#)
             </isNotEmpty>
@@ -395,5 +401,126 @@
             </isNotEmpty>  
         </dynamic>  
     </select>
+    
+    <!--查询云配件资料 查询本地配件资料-->
+    <select id="queryPartListByOrgid" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComAttribute">
+    	SELECT a.id ID,
+		       a.code CODE,
+		       a.name NAME,
+		       a.full_name fullName,
+		       a.brand_code brandCode,
+		       a.oem_code oemCode,
+		       a.common_code commonCode,
+		       a.query_code queryCode,
+		       a.quality_type_id qualityTypeId,
+		       a.part_name_id partNameId,
+		       a.name_py namePy,
+		       a.name_en nameEn,
+		       a.part_brand_id partBrandId,
+		       a.apply_carbrand_id applyCarBrandId,
+		       a.apply_car_model applyCarModel,
+		       a.part_type_id partTypeId,
+		       a.car_type_id_f carTypeIdF,
+		       a.car_type_id_s carTypeIdS,
+		       a.car_type_id_t carTypeIdT,
+		       a.produce_type_id produceTypeId,
+		       a.abc_type abcType,
+		       a.produce_factory produceFactory,
+		       a.unit unit,
+		       a.liquidity liquidity,
+		       a.newest_quote newestQuote,
+		       a.newest_quote_date newestQuoteDate,
+		       a.uniform_sell_price uniformSellPrice,
+		       a.is_uniform isUniform,
+		       a.uniform_date uniformDate,
+		       a.uniform_man uniformMan,
+		       a.retail_price retailPrice,
+		       a.whole_sale_price wholeSalePrice,
+		       a.spec spec,
+		       a.model model,
+		       a.is_disabled isDisabled,
+		       a.is_host isHost,
+		       a.orgid orgid,
+		       b.name partBrandName
+        FROM com_attribute a
+        LEFT JOIN com_part_brand b on(a.part_brand_id = b.id)
+        where 1 = 1
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarBrandId">  
+                (a.apply_carbrand_id = #applyCarBrandId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="carTypeIdF">  
+                (a.car_type_id_f = #carTypeIdF#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">  
+                (a.car_type_id_s = #carTypeIdS#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">  
+                (a.car_type_id_t = #carTypeIdT#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="code">  
+                (a.code like '%$code$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (a.name like '%$name$%' or a.full_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">  
+                (a.apply_car_model like '%$applyCarModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (a.name_py like '%$namePy$%')
+            </isNotEmpty>  
+            <isNotEmpty prepend="order by " property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>
+    </select>
+    
+    <select id="queryLogisticsList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <!-- 物流公司 -->
+    	SELECT 
+			a.id id,
+			a.orgid orgid,
+			a.code code,
+			a.py_name pyName,
+			a.full_name fullName,
+			a.short_name shortName,
+			a.manager manager,
+			a.mobile mobile,
+			a.order_index orderIndex,
+			a.is_disabled isDisabled
+		FROM
+			com_guest a 
+		WHERE
+			(a.orgid = 0 or a.orgid = #orgid#)
+			and a.guest_type = '01020204'
+		<dynamic>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="name">  
+                (a.full_name like '%$name$%' or a.short_name like '%$name$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (a.full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (a.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">  
+                (a.short_name like '%$shortName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="manager">  
+                (a.manager = #manager#)
+            </isNotEmpty>
+        </dynamic>
+		order by a.order_index asc
+	</select>
     
 </sqlMap>

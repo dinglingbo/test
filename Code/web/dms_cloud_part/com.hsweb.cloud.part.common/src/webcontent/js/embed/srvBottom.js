@@ -71,13 +71,13 @@ $(document).ready(function(v) {
             }else{
                 mainTabs.updateTab(stockselectTab, {visible:true});
                 mainTabs.updateTab(sellRecordTab, {visible:true});
-                mainTabs.updateTab(guestPriceTab, {visible:true});
+                //mainTabs.updateTab(guestPriceTab, {visible:true});
                 mainTabs.updateTab(partInfoTab, {visible:true});
             }
         }else {
             mainTabs.updateTab(stockselectTab, {visible:true});
             mainTabs.updateTab(sellRecordTab, {visible:true});
-            mainTabs.updateTab(guestPriceTab, {visible:true});
+            //mainTabs.updateTab(guestPriceTab, {visible:true});
             mainTabs.updateTab(partInfoTab, {visible:true});
         }
         

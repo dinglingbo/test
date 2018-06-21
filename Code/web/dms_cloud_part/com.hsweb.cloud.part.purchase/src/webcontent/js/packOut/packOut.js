@@ -1103,7 +1103,7 @@ function selectLogisticsSupplier(elId)
             var iframe = this.getIFrameEl();
             var params = {
                 isSupplier:1,
-                guestType:'01020105'
+                guestType:'01020204'
             };
             iframe.contentWindow.setGuestData(params);
         },

@@ -131,7 +131,7 @@
 			}
 		});
 	}	
-	var getAllPartBrandUrl = apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.common.svr.getAllPartBrand.biz.ext";
+	var getAllPartBrandUrl = apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryPartBrand.biz.ext";
 	function getAllPartBrand(callback)
 	{
 	    nui.ajax({
@@ -152,7 +152,7 @@
 	        }
 	    });
 	}
-	var getAllPartTypeUrl = apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
+	var getAllPartTypeUrl = apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
 	function getAllPartType(callback)
 	{
 	    nui.ajax({
@@ -205,6 +205,54 @@
 	   		result = result.replace(/\s/g,"");
 	   }
 	   return result;
+	}
+
+	function numToMoneyField(inputString) {
+	    regExpInfo = /(\d{1,3})(?=(\d{3})+(?:$|\.))/g;
+	    var ret = inputString.toString().replace(regExpInfo, "$1,");
+	    return ret;
+	}
+	
+	//获取两个日期之间的年月数组
+	function getYearMonthList(startDate, endDate){
+		var yearMonthList = [];
+		var diffMonths = getMonths(startDate, endDate);
+		var startYear = (new Date(startDate)).getFullYear();
+		var startMonth = (new Date(startDate)).getMonth() + 1;
+		var yearMonthObj = {year: startYear, month: startMonth};
+		var tempMonth = startMonth;
+		if (tempMonth < 10) {
+			tempMonth = "0" + tempMonth;
+		}
+		yearMonthObj.yearMonth = startYear.toString() + tempMonth.toString();
+		yearMonthList.push(yearMonthObj);
+		
+		var endMonth = (new Date(endDate)).getDate();
+		if(endMonth == 1) {
+			diffMonths-=1;
+		}
+		if(diffMonths > 1){
+			for(var i=0; i<diffMonths-1; i++){
+				var tempObj = {};
+				if(startMonth == 12){
+					startYear+=1;
+					startMonth = 1;
+				}else{
+					startMonth+=1;
+				}
+
+				tempMonth = startMonth;
+				tempObj.year = startYear;
+				if (tempMonth < 10) {
+					tempMonth = "0" + tempMonth;
+				}
+				tempObj.month = startMonth;
+				tempObj.yearMonth = startYear.toString() + tempMonth.toString();
+				yearMonthList.push(tempObj);
+			}
+		}
+
+		return yearMonthList;
 	}
 
 	//用于数据导出成EXCEL

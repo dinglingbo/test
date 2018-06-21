@@ -36,6 +36,13 @@ $(document).ready(function(v) {
         if(field == "action"){
             var html = '<a class="" href="javascript:openDetail(\'' + record.pid + '\')">查看</a>';
             e.cellHtml = html;
+        }else if(field == "brand"){
+            if (brandHash && brandHash[e.value]) {
+                e.cellHtml = brandHash[e.value].brandCn;
+            }
+        }else if(field == "opt"){
+            var html = '<a class="b" href="javascript:addDPart()"><i class="fa fa-shopping-cart"></i></a>';
+            e.cellHtml = html; 
         }
     });
 
@@ -46,14 +53,18 @@ $(document).ready(function(v) {
     });
     
 });
-function ondrawcell(e){
-    switch (e.field) {
-        case "brand":
-        if (brandHash && brandHash[e.value]) {
-            e.cellHtml = brandHash[e.value].brandCn;
+/*
+*添加购物车
+*/
+function addDPart(){   
+    try{
+        if(parent.showPanel){
+            parent.showPanel('PART');
         }
-        break;
-    }
+        if(parent.addToCartGrid){
+            parent.addToCartGrid('PART', dgbasic.getSelected());
+        }
+    }finally{}
 }
 function queryPartInfo(){
     var data = partForm.getData();

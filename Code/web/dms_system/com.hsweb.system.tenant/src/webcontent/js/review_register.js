@@ -228,21 +228,7 @@ function save(formdata){
 	    });
 	
 }
-function settime(time) {
-	  if (time == 0) {
-		  $("#msgButton").attr("disabled", true);
-		  $("#msgButton").attr("href","javascript:sendMsg();");
-		  $("#msgButton").text("点击发送验证码"); 
-	    return;
-	  } else {
-		  $("#msgButton").attr("href","javascript:void(0);");
-		  $("#msgButton").attr("disabled", false);
-		  $("#msgButton").text("重新发送(" + time + ")");
-		
-	    time--;
-	  }
-	  setTimeout(function () { settime(time); }, 1000);
-}
+
 var getProvinceAndCityUrl = window._rootUrl
 + "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
 function getProvinceAndCity(callback) {

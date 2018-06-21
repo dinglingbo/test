@@ -1707,10 +1707,15 @@ function OnModelCellBeginEdit(e) {
     var editor = e.editor;
     var row = settleAccountGrid.getSelected();
 
+    if (column.field == "settAccountId") {
+        var url = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext?token="+token;
+        editor.setUrl(url);
+    }
+
 
     if (column.field == "balaTypeCode") {
-        var str = "accountId="+row.settAccountId;
-        var url = "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        var str = "accountId="+row.settAccountId+"&token="+token;
+        var url = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
         editor.setUrl(url);
     }
 

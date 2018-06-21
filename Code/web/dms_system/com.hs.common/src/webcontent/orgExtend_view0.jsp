@@ -8,10 +8,11 @@
   - Description:
 -->
 <head>
-    <title>Title</title>
+    <title>门店管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <%@include file="/common/sysCommon.jsp"%>
+    <%-- <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script> --%>
+    <script src="<%=webPath + sysDomain%>/common/js/orgExtendQuery.js?v=1.9" type="text/javascript"></script>
     <style type="text/css">
     body {
        margin: 0;
@@ -22,52 +23,58 @@
        overflow: hidden;
    }
 
-   .gridborder .mini-panel-border,.gridborder .mini-grid-border{
-    border-top: 0px ;
+    .gridborder .mini-panel-border,.gridborder .mini-grid-border{
+     border-top: 0px ;
 
-}
+    }
 
-.mini-toolbar
-{
-  font-weight:bold;
-}
+    .mini-toolbar
+    {
+      font-weight:bold;
+    }
 
-.mini-grid-headerCell, .mini-grid-topRightCell
-{
-  font-weight:bold;
-}
-.mini-checkbox-check {
+    .mini-grid-headerCell, .mini-grid-topRightCell
+    {
+      font-weight:bold;
+    }
+    .mini-checkbox-check {
 
-    margin-right: 0px;
-    
-}
+        margin-right: 0px;
+        
+    }
 </style> 
 </head>
 <body>
     <div class="nui-fit"> 
         <div style="width:100%;height:100%;left:0;right:0;margin: 0 auto;">
             <div class="nui-toolbar">
-                <input id="Text4" class="mini-textbox" emptytext="输入公司名称查询"  width="200"/>
-                <a class="nui-button" onclick="" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
-                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick=""><i class="fa fa-ban"></i>&nbsp;禁用</a>
-                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick=""><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick=""><i class="fa fa-plus"></i>&nbsp;新增</a>
+           		  <input class="nui-combobox" id="provinceId" visible="false" textField="name" url="" valueField="code"/>
+				        <input class="nui-combobox" id="cityId" visible="false" textField="name" url="" valueField="code"/>
+                <input id="name" name="name" class="mini-textbox" emptytext="输入公司名称查询"  width="200"/>
+                <a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
+                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick="stoporstart('1')"id="jy" name="jy"><i class="fa fa-ban"></i>&nbsp;禁用</a>
+                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick="stoporstart('2')" visible="false" id="qy" name="qy"><i></i>&nbsp;启用</a>
+                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('edit')"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('new')"><i class="fa fa-plus"></i>&nbsp;新增</a>
             </div> 
 
             <div class="nui-fit">
                 <div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
-                url="" idField="id" allowResize="true"
+                url="" idField="id" allowResize="true" 	dataField="rs"  onselectionchanged="changebutton"
                 sizeList="[20,30,50,100]" pageSize="20" >
                 <div property="columns">
-                    <div field="name" width="120" headerAlign="center" align="center">企业号</div>
-                    <div field="sex" width="100" align="center" headerAlign="center" align="center">公司名称</div>
-                    <div field="tel"  headerAlign="center"  width="100" align="right">电话</div>
-                    <div field="entry_date" width="100" headerAlign="center" align="center">省份</div>
-                    <div field="is_open_account" width="100"  headerAlign="center" align="center" >城市</div>
-                    <div field="system_account" width="100"  headerAlign="center"  align="center" >地址</div>
-                    <div field="system_account" width="100"  headerAlign="center"  align="center" dateFormat="yyyy-MM-dd" allowSort="true">开店日期</div>
-                    <div field="system_account" width="100"  headerAlign="center"  align="center" >建档人</div>
-                    <div field="system_account" width="100"  headerAlign="center"  align="center" dateFormat="yyyy-MM-dd" allowSort="true">建档日期</div>
+                	<div type="checkcolumn" >选择</div>
+                    <div field="orgid" width="120" headerAlign="center" align="center" visible="false">企业ID</div>
+                    <div field="code" width="60" headerAlign="center" align="center">企业号</div>
+                    <div field="name" width="100" align="center" headerAlign="center" align="center">公司全称</div>
+                    <div field="shortName" width="60" align="center" headerAlign="center" align="center">公司简称</div>
+                    <div field="tel"  headerAlign="center"  width="60" align="center">电话</div>
+                    <div field="provinceId" width="50" headerAlign="center" align="center">省份</div>
+                    <div field="cityId" width="50"  headerAlign="center" align="center" >城市</div>
+                    <div field="address" width="100"  headerAlign="center"  align="center" >地址</div>
+                    <div field="softOpenDate" width="60"  headerAlign="center"  align="center" dateFormat="yyyy-MM-dd" allowSort="true">开店日期</div>
+                    <div field="recorder" width="60"  headerAlign="center"  align="center" >建档人</div>
+                    <div field="recordDate" width="60"  headerAlign="center"  align="center" dateFormat="yyyy-MM-dd" allowSort="true">建档日期</div>
                 </div>
             </div>
         </div>

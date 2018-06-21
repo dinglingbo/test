@@ -249,19 +249,22 @@ function quickSearch(type){
             gsparams.endDate = addDate(getLastMonthEndDate(), 1);
             break;
         case 6:
-            params.isOut = 0;
+            params.billStatusId = 0;
             querytypename = "草稿";
             querysign = 2;
             gsparams.auditSign = 0;
             break;
         case 7:
-            params.isOut = 1;
+            params.billStatusId = 1;
             querytypename = "已提交";
             querysign = 2;
             gsparams.auditSign = 1;
             break;
         case 8:
-            params.postStatus = 1;
+            params.billStatusId = 2;
+            querytypename = "已出库";
+            querysign = 2;
+            gsparams.auditSign = 1;
             break;
         default:
             params.today = 1;
@@ -777,8 +780,8 @@ function onPrint() {
 
         nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
-                    + row.id,// "view_Guest.jsp",
+            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
+                    + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
             title : "采购退货打印",
             width : 900,
             height : 600,
@@ -941,16 +944,12 @@ function onCellCommitEdit(e) {
         }else if(e.field == "comPartCode"){
             oldValue = e.oldValue;
             oldRow = row;
-            if(!e.value){
+            /*if(!e.value){
                 nui.alert("请输入编码!","提示",function(){
                     var row = rightGrid.getSelected();
                     rightGrid.removeRow(row);
                     addNewRow(false);
                 });
-/*
-                var newRow = {};
-                rightGrid.updateRow(row, newRow);
-                rightGrid.beginEditCell(row, "comPartCode");*/
                 return;
             }else{
                 var rs = addInsertRow(e.value,row);
@@ -962,7 +961,7 @@ function onCellCommitEdit(e) {
                 }else{
                     //rightGrid.beginEditCell(row, "comUnit");
                 }
-            }
+            }*/
             
         }
     }
@@ -981,106 +980,25 @@ function onCellEditEnter(e){
             addNewKeyRow();
         }else if(column.field == "remark"){
             addNewKeyRow();
-        }
-    }
-}
-//提交单元格编辑数据前激发
-function onCellCommitEdit(e) {
-    var editor = e.editor;
-    var record = e.record;
-    var row = e.row;
-    
-    editor.validate();
-    if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
-        e.cancel = true;
-    }else {
-        var newRow = {};
-        if (e.field == "orderQty") {
-            var orderQty = e.value;
-            var orderPrice = record.orderPrice;
-            
-            if(e.value==null || e.value=='') {
-                e.value = 0;
-                orderQty = 0;
-            }else if(e.value < 0) {
-                e.value = 0;
-                orderQty = 0;
-            }
-            
-            var orderAmt = orderQty * orderPrice;                  
-                                
-            newRow = { orderAmt: orderAmt};
-            rightGrid.updateRow(e.row, newRow);
-            
-            //record.enteramt.cellHtml = enterqty * enterprice;
-        }else if (e.field == "orderPrice") {
-            var orderQty = record.orderQty;
-            var orderPrice = e.value;
-            
-            if(e.value==null || e.value=='') {
-                e.value = 0;
-                orderPrice = 0;
-            }else if(e.value < 0) {
-                e.value = 0;
-                orderPrice = 0;
-            }
-            
-            var orderAmt = orderQty * orderPrice; 
-                           
-            newRow = { orderAmt: orderAmt};
-            rightGrid.updateRow(e.row, newRow);
-
-            if(orderPrice){
-                rightGrid.commitEditRow(row);
-            }
-            
-        }else if (e.field == "orderAmt") {
-            var orderQty = record.orderQty;
-            var orderAmt = e.value;
-            
-            if(e.value==null || e.value=='') {
-                e.value = 0;
-                orderAmt = 0;
-            }else if(e.value < 0) {
-                e.value = 0;
-                orderAmt = 0;
-            }
-            
-            //e.cellHtml = enterqty * enterprice;
-            var orderPrice = orderAmt*1.0/orderQty;
-
-            if(orderQty) {
-                newRow = { orderPrice: orderPrice};
-                rightGrid.updateRow(e.row, newRow);
-            }
-            
-        }else if(e.field == "comPartCode"){
-            oldValue = e.oldValue;
-            oldRow = row;
-            if(!e.value){
+        }else if(column.field == "comPartCode"){
+            if(!record.comPartCode){
                 nui.alert("请输入编码!","提示",function(){
                     var row = rightGrid.getSelected();
                     rightGrid.removeRow(row);
                     addNewRow(false);
                 });
-/*
-                var newRow = {};
-                rightGrid.updateRow(row, newRow);
-                rightGrid.beginEditCell(row, "comPartCode");*/
                 return;
             }else{
-                var rs = addInsertRow(e.value,row);
+                var rs = addInsertRow(record.comPartCode,record);
                 if(!rs){
                     var newRow = {comPartCode: ""};
-                    rightGrid.updateRow(row, newRow);
-                    rightGrid.beginEditCell(row, "comPartCode");
+                    rightGrid.updateRow(record, newRow);
+                    rightGrid.beginEditCell(record, "comPartCode");
                     return;
                 }else{
-                    //rightGrid.beginEditCell(row, "comUnit");
+                    rightGrid.beginEditCell(record, "comUnit");
                 }
             }
-            
         }
     }
 }
@@ -1418,7 +1336,7 @@ function onGuestValueChanged(e)
     //供应商中直接输入名称加载供应商信息
     var params = {};
     params.pny = e.value;
-    params.isClient = 1;
+    params.isSupplier = 1;
     setGuestInfo(params);
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1717,4 +1635,54 @@ function addDetail(rows)
         rightGrid.addRow(newRow);
     }
 
+}
+var supplier = null;
+function selectSupplier(elId) {
+    supplier = null;
+    nui.open({
+        targetWindow : window,
+        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "供应商资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+                isSupplier: 1,
+                guestType:'01020202'
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var billTypeIdV = supplier.billTypeId;
+                var settTypeIdV = supplier.settTypeId;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+
+                if (elId == 'guestId') {
+                    var row = leftGrid.getSelected();
+                    var newRow = {
+                        guestFullName : text,
+                        billTypeId: billTypeIdV,
+                        settleTypeId: settTypeIdV
+                    };
+                    leftGrid.updateRow(row, newRow);
+
+                    nui.get("billTypeId").setValue(billTypeIdV);
+                    nui.get("settleTypeId").setValue(settTypeIdV);
+
+                }
+            }
+        }
+    });
 }

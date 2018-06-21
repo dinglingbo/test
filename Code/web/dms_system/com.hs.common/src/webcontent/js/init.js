@@ -31,7 +31,8 @@ var SETT_TYPE = "DDT20130703000035";//结算方式
 var ENTER_TYPE = "DDT20130703000064";//入库类型
 var RETURN_TYPE = "DDT20130703000074";//退回原因
 var MANAGER_DUTY = "DDT20180105000001";//供应商负责人职务
-var GUEST_TYPE = "DDT20130703000084";//对象类型
+var GUEST_TYPE = "DDT20130703000084";//对象类型--新增客户
+var GUEST_TYPE_S = "DDT20130703000085";//对象类型--新增供应商
 var SUPPLIER_TYPE = "DDT20171226000001";//供应商类型
 var UNIT = "DDT20130703000016";// --单位
 var ABC_TYPE = "DDT20130703000067";// --ABC分类
@@ -46,6 +47,7 @@ var _initDmsHash = {
 	comp:{},//组织,
 	insureComp:{},//保险公司,
 	dict:{},//数据字典
+	member:{}
 };
 window._initDmsHash = _initDmsHash;
 //公司组织
@@ -77,19 +79,51 @@ function processCarBrand(data){
     _initDmsCallback["initCarBrand"] && _initDmsCallback["initCarBrand"]() && (_initDmsCallback["initCarBrand"] = null);
 }
 
+//车系
+function initCarSeries(id, carBrandId){	
+    if(checkObjExists(id, "initCarSeries")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarSeries.biz.ext";
+        var params = {};
+        params.carBrandId = carBrandId;
+        callAjax(url, params, processAjax, processCarSeries, null); 
+    }
+}
+function processCarSeries(data){
+    _initDmsObj["initCarSeries"].setData(data);
+    setDataToHash(data,"carSeries","id");
+    _initDmsCallback["initCarSeries"] && _initDmsCallback["initCarSeries"]() && (_initDmsCallback["initCarSeries"] = null);    
+}
+
 //获取车型(选择品牌触发)
-function getCarModel(id, e){
-    if(checkObjExists(id, "getCarModel")){
-        //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carModel.biz.ext";
+function initCarModel(id, carBrandId){
+    if(checkObjExists(id, "initCarModel")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarModel.biz.ext";
         var params = {};
-        params.carBrandId = e.value;
+        params.carBrandId = carBrandId;
         callAjax(url, params, processAjax, processCarModel, null);
     }
 }
 function processCarModel(data){
-    _initDmsObj["getCarModel"].setData(data);
+    _initDmsObj["initCarModel"].setData(data);
+    setDataToHash(data,"carModel","id");
+    _initDmsCallback["initCarModel"] && _initDmsCallback["initCarModel"]() && (_initDmsCallback["initCarModel"] = null);        
 }
+
+
+//业务分类
+function initServiceType(id, callback){
+    _initDmsCallback["initServiceType"] = callback;
+    if(checkObjExists(id, "initServiceType")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryServiceType.biz.ext";
+        callAjax(url, {}, processAjax, processServiceType, null); 
+    }
+}
+function processServiceType(data){
+    _initDmsObj["initServiceType"].setData(data);
+    setDataToHash(data,"serviceType","id");
+    _initDmsCallback["initServiceType"] && _initDmsCallback["initServiceType"]() && (_initDmsCallback["initServiceType"] = null);
+}
+
 
 //保险公司
 function initInsureComp(id,callback){ //险种：DDT20130703000028
@@ -158,6 +192,19 @@ function processCity(data){
     _initDmsObj["initCity"].setData(data);
     setDataToHash(data,"city","code");
     _initDmsCallback["initCity"] && _initDmsCallback["initCity"]() && (_initDmsCallback["initCity"] = null);
+}
+//公司员工
+function initMember(id,callback){//dictDefs{id1: dictid1, id2: dictid2}
+	_initDmsCallback["initCompMember"] = callback;
+	if(checkObjExists(id, "getMember")){
+	    var url = _sysApiRoot + "/com.hsapi.system.dict.org.queryMember.biz.ext";
+	    var params = {};
+	    callAjax(url, params, processAjax, processMember, null);
+    }
+}
+function processMember(data){
+	_initDmsObj["getMember"].setData(data);
+    _initDmsCallback["initCompMember"]  && _initDmsCallback["initCompMember"]() && (_initDmsCallback["initCompMember"] = null);
 }
 
 //filter Param

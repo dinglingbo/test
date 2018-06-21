@@ -218,26 +218,26 @@ text-align:center;
 								<a style="width:100%;bottom:0">注册</a>
 						</div>
 <div class="con" style="padding-top:0px;">
-				<form>
+				<form method="post"	name="registerForm" onsubmit="return register();" action="">
+					<p id="errorP"  ></p>
 					<div>
-						
-						<span> <input type="text" class="textbox" placeholder="手机号码" />
+						<span> <input id="phone" name="phone" type="text" class="textbox" placeholder="手机号码" />
 						</span>
 					</div>
 					<div>
-						<span> <input type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
+						<span> <input id="authcode" name="authcode" type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
 							href="##" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
 						</span>
 					</div>
 					<div>
-						<span> <input type="text" class="text" placeholder="请输入用户名" />
+						<span> <input id="registername" name="registername" type="text" class="text" placeholder="请输入用户名" />
 						</span>
 					</div>
 					<div>
-						<span> <input type="text" class="text" placeholder="请输入公司名" />
+						<span> <input id="registercompname" name="registercompname" type="text" class="text" placeholder="请输入公司名" />
 						</span>
 					</div>
-					<div>
+					<!-- <div>
 						<div class="select">
 							<select name='make'>
 								<option>请选省份</option>
@@ -252,16 +252,16 @@ text-align:center;
 						<div class="select">
 							<select name='make'>
 								<option>请选择区域</option>
-							</select>
+							</select> 
 						</div>
-					</div>
+					</div> -->
 					<div class="rememberField" style="font-size: 8px">
 						<span class="checkboxPic check_chk" tabindex="-1" isshow="false"> <i class="i_icon"></i>
 						</span> <label class="pointer"> 我已阅读并接受 </label> <a href="https://www.baidu.com/" target="_blank"
 							class="linkABlue"> 《思配TM云平台用户注册协议》 </a>
 					</div>
 					<div class="sign">
-						<input type="submit" value="登录" class="submit" />
+						<input type="submit" value="注册" class="submit" />
 					</div>
 					<div>
 						<span style="margin-top: 10px; font-size: 10px;" align="center"> 已经有账号? <a id="a_login"
@@ -422,6 +422,44 @@ text-align:center;
 	        
 	        document.loginForm.submit();
 	     }
+	     function register(){
+	     	alert("注册成功!");
+	     	return;
+
+	        if($(".pwdBtnShow").attr("isshow")=="false")
+			{
+				$("#password").val($("#password1").val());
+			}
+	        
+	        document.loginForm.submit();
+	     }
+	     $("#phone").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#authcode").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#registername").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#registercompname").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+
+		 function showRegisterError(msg){
+	      	 if(msg){
+		      	$("#errorP").addClass("errorC");
+		      	$("#errorP").html(msg);
+	      	 }else{
+	      	 	$("#errorP").addClass("error");
+		      	$("#errorP").html("");
+	      	 }
+	      }
+
 	     $(function(){
 	 		var validateResult = "<%=result %>";
 	 		$("#userId").val("<%=userName %>");

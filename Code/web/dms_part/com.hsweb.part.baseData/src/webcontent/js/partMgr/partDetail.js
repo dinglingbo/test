@@ -299,7 +299,6 @@ function onButtonEdit()
             {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
-                console.log(data);
                 partName = data.partName;
                 nui.get("partNameId").setValue(partName.id);
                 nui.get("partNameId").setText(partName.name);

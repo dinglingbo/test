@@ -164,7 +164,7 @@ function dimssion(){
         search();
         
 	} else {
-	    nui.alert("请选中一条数据！！");
+	    nui.alert("请选中一条数据！");
 	}
 }
 
@@ -179,7 +179,7 @@ function stoporstart(){
     var emp = {};
     var row = grid.getSelected();
     if (!row) {
-        alert("请选中一条记录");
+        nui.alert("请选中一条记录");
         return;
     }
 

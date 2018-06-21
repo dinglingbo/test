@@ -140,3 +140,73 @@ function deleteCartShop(){
     var rows = cartGrid.getSelecteds();
     cartGrid.removeRows(rows);
 }
+function openGeneratePop(partList, type, title){
+    nui.open({
+        targetWindow : window,
+        url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        title : title,
+        width : 600,
+        height : 400,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+                storeId: "",
+                partList: partList,
+                type: type
+            };
+            iframe.contentWindow.setInitData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                //var data = iframe.contentWindow.getData();
+            }
+        }
+    });
+}
+function addToPchsCart(){
+    var rows = cartGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+        openGeneratePop(rows, "pchsCartEpc", "添加采购车");
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
+}
+function addToSellCart(){
+    var rows = cartGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+        openGeneratePop(rows, "sellCartEpc", "添加销售车");
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
+}
+function generatePchsOrder(){
+    var rows = cartGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+        openGeneratePop(rows, "pchsOrderEpc", "生成采购订单");
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
+}
+function generateSellOrder(){
+    var rows = cartGrid.getSelecteds();
+    if(rows && rows.length > 0){
+
+        openGeneratePop(rows, "sellOrderEpc", "生成销售订单");
+
+    }else{
+        nui.alert("请选择配件信息!");
+        return;
+    }
+}

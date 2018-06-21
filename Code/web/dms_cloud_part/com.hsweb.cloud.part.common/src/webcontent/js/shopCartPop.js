@@ -13,6 +13,7 @@ var shortNameEl = null;
 var billTypeIdEl = null;
 var settleTypeIdEl = null;
 var guestIdEl = null;
+var TStoreId = null;
 $(document).ready(function(v)
 {
     mainGrid = nui.get("mainGrid");
@@ -34,15 +35,13 @@ $(document).ready(function(v)
         }
     });
 
-
-
 });
 
 function setInitData(data)
 {
     FStoreId = data.storeId;
     partList = data.partList;
-    type = data.type;//采购订单  销售订单  采购车  销售车    
+    type = data.type;//采购订单  销售订单  采购车  销售车    EPC采购订单，EPC销售订单，EPC采购车，EPC销售车
     
     if(type == "pchsOrder" || type == "pchsCart"){
         isSupplier = 1;
@@ -57,13 +56,50 @@ function setInitData(data)
     //如果是从采购车生成采购订单，或是从销售车生成销售订单
     if(type == "fromPchsCart"){
         type = "pchsOrder";
+        isSupplier = 1;
 
         initGridDataTwo(partList);
     }
 
     if(type == "fromSellCart"){
         type = "sellOrder";
+        isClient = 1;
         initGridDataTwo(partList);
+    }
+
+    if(type == "pchsOrderEpc" || type == "pchsCartEpc"){
+        getStorehouse(function(data) {
+            storehouse = data.storehouse || [];
+            if(storehouse && storehouse.length>0){
+                FStoreId = storehouse[0].id;
+            }
+            
+        });
+
+        isSupplier = 1;
+        initGridDataThree(partList);
+        if(type == "pchsOrderEpc"){
+            type = "pchsOrder";
+        }else if(type == "pchsCartEpc"){
+            type = "pchsCart";
+        }
+    }
+
+    if(type == "sellOrderEpc" || type == "sellCartEpc"){
+        getStorehouse(function(data) {
+            storehouse = data.storehouse || [];
+            if(storehouse && storehouse.length>0){
+                FStoreId = storehouse[0].id;
+            }
+            
+        });
+        isClient = 1;
+        initGridDataThree(partList);
+        if(type == "sellOrderEpc"){
+            type = "sellOrder";
+        }else if(type == "sellCartEpc"){
+            type = "sellCart";
+        }
     }
     
 }
@@ -111,6 +147,26 @@ function initGridDataTwo(data){
         shortNameEl.setValue(main.shortName);
         billTypeIdEl.setValue(main.billTypeId);
         settleTypeIdEl.setValue(main.settleTypeId);
+    }
+
+    mainGrid.setData(rows);
+}
+function initGridDataThree(data){
+    var rows = [];
+    if(data && data.length>0){
+        for(var i=0; i<data.length; i++){
+            var part = data[i];
+            var partId = -1;
+            var partCode = part.pid;
+            var partName = part.label;
+            var fullName = part.label + " 原厂";  //000070 原厂件  00000327 原厂
+            var unit = "PCS";
+            var orderQty = part.orderQty;
+            var orderPrice = part.orderPrice;
+            var row = {partId: partId, partCode: partCode, partName: partName, 
+                       fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
+            rows.push(row);
+        }
     }
 
     mainGrid.setData(rows);
@@ -284,7 +340,6 @@ function generateOrderByBatch(main,detail,type){
 }
 function onOk()
 {
-
     var data = batchInfoForm.getData();
     if(!data.guestId){
         nui.alert("请选择往来单位!");
@@ -313,7 +368,13 @@ function onOk()
     main.billTypeId = data.billTypeId;
     main.settleTypeId = data.settleTypeId;
 
-
+    var rows = mainGrid.findRows(function(row) {
+        if (row.partId == -1)
+            return true;
+    });
+    if(rows && rows.length>0){
+        main.type = "EPC";
+    }
 
     generateOrderByBatch(main, detail, type);
 

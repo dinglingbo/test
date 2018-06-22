@@ -8,11 +8,9 @@
   - Date: 2018-06-20
   - Description:
 -->
-
 <head>
 <title>预约列表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.0.72"></script>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.7"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -25,7 +23,7 @@ table {
 
 .required {
 	color: red;
-}
+} 
 </style>
 
 </head>
@@ -37,6 +35,8 @@ table {
 <input id="carBrandList" class="nui-combobox" visible="false"/>
 <input id="carSeriesList" class="nui-combobox" visible="false"/>
 <input id="bisinessList" class="nui-combobox" visible="false"/>
+<input id="scoutModeList" class="nui-combobox" visible="false"/>
+<input id="scoutReustList" class="nui-combobox" visible="false"/>
 
 <div class="nui-toolbar" style="border-bottom:0;">
     <div class="nui-form" id="queryForm" style="width: 100%;" >
@@ -44,7 +44,7 @@ table {
             <tr>
                 <td>
                     <label>快速查询：</label>
-                    <a class="nui-menubutton " menu="#popupMenu" id="menuBtnDateQuickSearch" name="menuBtnDateQuickSearch">所有</a>               		
+                    <a class="nui-menubutton " menu="#popupMenu_date" id="menuBtnDateQuickSearch" name="menuBtnDateQuickSearch" value="0">本日</a>               		
                		<ul id="popupMenu_date" class="nui-menu" style="display:none;">
                         <li  onclick="quickSearch(menuBtnDateQuickSearch, -1, '所有')" >所有</li>
                         <li  onclick="quickSearch(menuBtnDateQuickSearch, 0, '本日')" >本日</li>
@@ -55,7 +55,7 @@ table {
                         <li  onclick="quickSearch(menuBtnDateQuickSearch, 5, '上月')" >上月</li>
                 	</ul>		
 					
-					<a class="nui-menubutton " menu="#popupMenu1" id="status" name="status">所有</a>            
+					<a class="nui-menubutton " menu="#popupMenu_status" id="menuBtnStatusQuickSearch" name="menuBtnStatusQuickSearch" value="-1">所有</a>            
                    		<ul id="popupMenu_status" class="nui-menu" style="display:none;">
                         <li  onclick="quickSearch(menuBtnStatusQuickSearch, -1,'所有')" >所有</li>
                         <li  onclick="quickSearch(menuBtnStatusQuickSearch, 0, '待确认')" >待确认</li>
@@ -67,13 +67,13 @@ table {
 
                     <span class="separator"></span>
                     <label>车牌号：</label>
-                    <input class="nui-textbox" name="carNo"/>
+                    <input class="nui-textbox" id="carNo" name="carNo"/>
                     <label>手机号：</label>
-                    <input class="nui-textbox" name="contactorTel"/>
+                    <input class="nui-textbox" id="contactorTel" name="contactorTel"/>
                     <label style=" margin-left: 1%">服务顾问：</label>
-                   	<input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" value="" width="70px" textField="empName" valueField="empId"/>
+                   	<input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" showNullItem="true" value="" textField="empName" valueField="empId"/>
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     			</td>
             </tr>
         </table>
@@ -103,7 +103,7 @@ table {
             <div id="upGrid" class="nui-datagrid"
                 style="width: 100%; height: 100%;"
                 pageSize="20"
-                dataField="data" 
+                dataField="rs" 
                 showPageSize="false"
                 selectOnLoad="true" 
                 sortMode="client" 
@@ -112,7 +112,7 @@ table {
                 allowSortColumn="true">
                 <div property="columns">
                     <div field="id" headerAlign="center" allowSort="true" visible="false" width="">id </div>
-                    <div field="status" headerAlign="center" allowSort="true" visible="false" width="">status </div>
+                    <div field="status" headerAlign="center" allowSort="true" visible="true" width="">状态 </div>
                     <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center" visible="true" width="">服务顾问 </div>
                     <div field="mtAdvisorId" headerAlign="center" allowSort="true"  visible="false" width="">服务顾问Id </div>
                     <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="">车牌号 </div> 
@@ -132,26 +132,18 @@ table {
         <div class="nui-fit">
             <div id="downGrid"
             class="nui-datagrid"
-            dataField="data"
+            dataField="rs"
             style="width: 100%; height: 100%;"
             showPager="false"
             allowSortColumn="true">
             <div property="columns">
                 <div type="indexcolumn" headerAlign="center" allowSort="true" width="30">序号</div>
-                <div header="基本信息" headerAlign="center">
-                    <div property="columns">
-                        <div field="scoutMan" headerAlign="center" allowSort="true" visible="true" width="100">跟进人 </div>
-                        <div field="scoutDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" visible="true" width="100">跟进日期 </div>
-                        <div field="scoutMode" headerAlign="center" allowSort="true" visible="true" width="100">跟进方式 </div>
-                        <div field="isUsabled" headerAlign="center" allowSort="true" visible="true" width="100">跟进结果 </div>
-                        <div field="nextScoutDate" headerAlign="center"  dateFormat="yyyy-MM-dd" allowSort="true" visible="true" width="100">下次跟进日期 </div>
-                    </div>
-                </div>
-                <div header="详细信息" headerAlign="center">
-                    <div property="columns">
-                        <div field="scoutContent" headerAlign="center" allowSort="true" visible="true">跟进内容 </div>
-                    </div>
-                </div>
+                <div field="scoutMan" headerAlign="center" allowSort="true" visible="true" width="100">跟进人 </div>
+                <div field="scoutContent" headerAlign="center" allowSort="true" visible="true" width="300">跟进内容 </div>
+                <div field="scoutDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" visible="true" width="100">跟进日期 </div>
+                <div field="scoutMode" headerAlign="center" allowSort="true" visible="true" width="100">跟进方式 </div>
+                <div field="isUsabled" headerAlign="center" allowSort="true" visible="true" width="100">跟进结果 </div>
+                <div field="nextScoutDate" headerAlign="center"  dateFormat="yyyy-MM-dd" allowSort="true" visible="true" width="100">下次跟进日期 </div>                        
             </div>
         </div>   
     </div>  

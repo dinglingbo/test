@@ -1,17 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false"%>
-<%@ include file="/common/sysCommon.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/common/sysCommon.jsp"%>
+
 <html>
 <!-- 
-  - Author(s): Administrator
+  - Author(s): steven
   - Date: 2018-01-26 11:24:15
   - Description:
 -->
 <head>
 <title>预约管理</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.0.62"></script>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.0.62"></script>
 <style type="text/css">
 table {
 	font-size: 12px;

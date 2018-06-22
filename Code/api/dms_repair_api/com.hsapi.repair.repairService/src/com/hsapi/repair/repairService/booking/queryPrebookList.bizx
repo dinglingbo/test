@@ -62,7 +62,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/endDate</process:from>
-      <process:to type="query">cd/_expr3]/recordDate</process:to>
+      <process:to type="query">cd/_expr[3]/recordDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">&lt;=</process:from>
@@ -95,6 +95,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">cd/_expr[6]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/mtAdvisorId</process:from>
+      <process:to type="query">cd/_expr[7/mtAdvisorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[7]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">true</process:from>

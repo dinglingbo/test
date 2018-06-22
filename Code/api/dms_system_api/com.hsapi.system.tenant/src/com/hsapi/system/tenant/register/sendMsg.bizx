@@ -40,7 +40,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -194,6 +194,16 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">params/phone</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="75" y="45"/>
     <size height="28" width="28"/>
@@ -253,6 +263,7 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="195" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>

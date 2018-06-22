@@ -2,6 +2,7 @@
 <%@page import="com.eos.access.http.security.config.HttpSecurityConfig"%>
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.primeton.cap.AppUserManager"%>
+<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -15,6 +16,7 @@
    String url = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
    loginUrl = "com.hsapi.system.auth.login.login.flow";
+   String regUrl = "com.hsapi.system.auth.login.register.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
@@ -24,12 +26,18 @@
    			String ip = securityConfig.getHost();
    			String https_port = securityConfig.getHttps_port();
    			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
+   			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + regUrl;
    		}else{
    			url = loginUrl;
    		}
    }else{
    		url = loginUrl;
    }
+
+   	//api地址
+	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
+	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
+	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
  %>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/index.js?v=1.0.0"></script>
@@ -226,7 +234,7 @@ text-align:center;
 					</div>
 					<div>
 						<span> <input id="authcode" name="authcode" type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
-							href="##" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
+							href="javascript:sendMsg();" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
 						</span>
 					</div>
 					<div>
@@ -274,6 +282,7 @@ text-align:center;
 		</div>
 	</div>
 	<script type="text/javascript">
+		var msgCode = null;
 		function T_LoginType(e){
 			if (e == 1) {
 				
@@ -423,16 +432,48 @@ text-align:center;
 	        document.loginForm.submit();
 	     }
 	     function register(){
-	     	alert("注册成功!");
-	     	return;
+	     	var phone = $("#phone").val();
+	     	var registername = $("#registername").val();
+	     	var registercompname = $("#registercompname").val();
+	     	var code = $("#authcode").val();
+	     	if(!phone){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入手机号");
+		      	return false;
+	     	}
+	     	if(!registername){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入用户名");
+		      	return false;
+	     	}
+	     	if(!registercompname){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入公司名");
+		      	return false;
+	     	}
+	     	if(code != msgCode){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("验证码输入错误");
+		      	return false;
+	     	}
 
-	        if($(".pwdBtnShow").attr("isshow")=="false")
-			{
-				$("#password").val($("#password1").val());
-			}
+
+			document.registerForm.action="<%=regUrl%>"
+	        document.registerForm.submit();        
 	        
-	        document.loginForm.submit();
 	     }
+	     	 <% 
+	        	String errCode = (String)request.getAttribute("errCode");
+	        	String errMsg = (String)request.getAttribute("errMsg");
+	        	if(errCode=="E"){
+	        		out.println("showRegisterError('"+errMsg+"')");
+	        	}else if(errCode=="S"){
+	        		out.println("showRegisterError('注册成功,请待审批')");
+	        	}
+	        	
+
+	        %>
+
 	     $("#phone").focus(function(){
 			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
@@ -451,14 +492,50 @@ text-align:center;
 		 });
 
 		 function showRegisterError(msg){
-	      	 if(msg){
-		      	$("#errorP").addClass("errorC");
-		      	$("#errorP").html(msg);
-	      	 }else{
-	      	 	$("#errorP").addClass("error");
-		      	$("#errorP").html("");
-	      	 }
+	      	 alert(msg);
 	      }
+
+	      function sendMsg(){
+			var params={};
+			params.phone=$("#phone").val();
+		    $.ajax({
+		        url : "<%=sendUrl%>",
+		        contentType: "application/json;charset=utf-8",
+		        data : JSON.stringify({params:params}),
+		        type : "post",
+		        success : function(data) {
+		        	if(data.data.Code=="OK")
+		        		{
+		        		msgCode=data.data.msgCode;
+		        		settime(60);
+		        		}
+		        	else {
+		        		alert(data.data.Message);
+		        	}
+		        	
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		           console.log(jqXHR.responseText);
+		        }
+		    });
+	      }
+
+	      function settime(time) {
+			  if (time == 0) {
+				  $("#getKeyWorld").attr("disabled", true);
+				  $("#getKeyWorld").attr("href","javascript:sendMsg();");
+				  $("#getKeyWorld").text("获取验证码"); 
+				  msgCode = null;
+			    return;
+			  } else {
+				  $("#getKeyWorld").attr("href","javascript:void(0);");
+				  $("#getKeyWorld").attr("disabled", false);
+				  $("#getKeyWorld").text("重新发送(" + time + ")");
+				
+			    time--;
+			  }
+			  setTimeout(function () { settime(time); }, 1000);
+			}
 
 	     $(function(){
 	 		var validateResult = "<%=result %>";

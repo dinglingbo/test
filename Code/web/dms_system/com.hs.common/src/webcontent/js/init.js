@@ -154,6 +154,20 @@ function processDictids(data){
     setDataToHash(data,"dict","customid");
     _initDmsCallback["initDicts"]  && _initDmsCallback["initDicts"]() && (_initDmsCallback["initDicts"] = null);
 }
+//根据customid获取类型下的所有子项
+function initCustomDicts(el, customid,callback){//dictDefs{id1: dictid1, id2: dictid2}
+	_initDmsCallback["initCustomDicts"] = callback;
+	if(checkObjExists(el, "initCustomDicts")){
+	    var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryDictTypeItems.biz.ext";
+	    params = {};
+	    params.customid = customid; 
+	    callAjax(url, params, processAjax, processCustomDictids, null);
+    }
+}
+function processCustomDictids(data){
+	_initDmsObj["initCustomDicts"].setData(data);
+    _initDmsCallback["initCustomDicts"]  && _initDmsCallback["initCustomDicts"]() && (_initDmsCallback["initCustomDicts"] = null);
+}
 
 //角色字典
 function initRoleMembers(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}

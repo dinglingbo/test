@@ -126,6 +126,10 @@
       <process:to type="query">tmpOrgOrganization/subcount</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">tmpOrgOrganization/orglevel</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">comCompany/tenantId</process:from>
       <process:to type="query">tmpOrgOrganization/parentorgid</process:to>
     </process:copy>

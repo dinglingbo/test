@@ -63,8 +63,8 @@
       <process:to type="query">data</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">carBrandId</process:from>
-      <process:to type="query">p/carBrandId</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">p/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">

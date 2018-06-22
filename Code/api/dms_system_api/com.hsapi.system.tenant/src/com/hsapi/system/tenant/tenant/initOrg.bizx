@@ -378,9 +378,15 @@
     <node>invokePojo4</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="仓库ID" displayName="仓库ID" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="link8" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="link8" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>invokePojo6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="link95" lineType="note" type="exception">
       <sourceNode>invokePojo5</sourceNode>

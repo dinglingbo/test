@@ -96,6 +96,17 @@ public class ArrayUtils {
 	}
 	
 	@Bizlet("")
+	public static String[] propertyToStringArr(HashMap[] b,String propertyName) {
+		List t = new ArrayList();
+		for (HashMap h : b) {
+			String value = h.get(propertyName).toString();
+			t.add(value);		
+		}
+		
+		return (String[]) t.toArray(new String[t.size()]);
+	}
+	
+	@Bizlet("")
 	public static String longArray2String(long[] ids) {
 		StringBuilder sb = new StringBuilder();
 		long l = 0L;

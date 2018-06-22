@@ -2,6 +2,7 @@
 <%@page import="com.eos.access.http.security.config.HttpSecurityConfig"%>
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.primeton.cap.AppUserManager"%>
+<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -15,6 +16,7 @@
    String url = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
    loginUrl = "com.hsapi.system.auth.login.login.flow";
+   String regUrl = "com.hsapi.system.auth.login.register.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
@@ -24,12 +26,18 @@
    			String ip = securityConfig.getHost();
    			String https_port = securityConfig.getHttps_port();
    			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
+   			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + regUrl;
    		}else{
    			url = loginUrl;
    		}
    }else{
    		url = loginUrl;
    }
+
+   	//api地址
+	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
+	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
+	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
  %>
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/index.js?v=1.0.0"></script>
@@ -218,26 +226,26 @@ text-align:center;
 								<a style="width:100%;bottom:0">注册</a>
 						</div>
 <div class="con" style="padding-top:0px;">
-				<form>
+				<form method="post"	name="registerForm" onsubmit="return register();" action="">
+					<p id="errorP"  ></p>
 					<div>
-						
-						<span> <input type="text" class="textbox" placeholder="手机号码" />
+						<span> <input id="phone" name="phone" type="text" class="textbox" placeholder="手机号码" />
 						</span>
 					</div>
 					<div>
-						<span> <input type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
-							href="##" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
+						<span> <input id="authcode" name="authcode" type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
+							href="javascript:sendMsg();" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
 						</span>
 					</div>
 					<div>
-						<span> <input type="text" class="text" placeholder="请输入用户名" />
+						<span> <input id="registername" name="registername" type="text" class="text" placeholder="请输入用户名" />
 						</span>
 					</div>
 					<div>
-						<span> <input type="text" class="text" placeholder="请输入公司名" />
+						<span> <input id="registercompname" name="registercompname" type="text" class="text" placeholder="请输入公司名" />
 						</span>
 					</div>
-					<div>
+					<!-- <div>
 						<div class="select">
 							<select name='make'>
 								<option>请选省份</option>
@@ -252,16 +260,16 @@ text-align:center;
 						<div class="select">
 							<select name='make'>
 								<option>请选择区域</option>
-							</select>
+							</select> 
 						</div>
-					</div>
+					</div> -->
 					<div class="rememberField" style="font-size: 8px">
 						<span class="checkboxPic check_chk" tabindex="-1" isshow="false"> <i class="i_icon"></i>
 						</span> <label class="pointer"> 我已阅读并接受 </label> <a href="https://www.baidu.com/" target="_blank"
 							class="linkABlue"> 《思配TM云平台用户注册协议》 </a>
 					</div>
 					<div class="sign">
-						<input type="submit" value="登录" class="submit" />
+						<input type="submit" value="注册" class="submit" />
 					</div>
 					<div>
 						<span style="margin-top: 10px; font-size: 10px;" align="center"> 已经有账号? <a id="a_login"
@@ -274,6 +282,7 @@ text-align:center;
 		</div>
 	</div>
 	<script type="text/javascript">
+		var msgCode = null;
 		function T_LoginType(e){
 			if (e == 1) {
 				
@@ -422,6 +431,112 @@ text-align:center;
 	        
 	        document.loginForm.submit();
 	     }
+	     function register(){
+	     	var phone = $("#phone").val();
+	     	var registername = $("#registername").val();
+	     	var registercompname = $("#registercompname").val();
+	     	var code = $("#authcode").val();
+	     	if(!phone){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入手机号");
+		      	return false;
+	     	}
+	     	if(!registername){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入用户名");
+		      	return false;
+	     	}
+	     	if(!registercompname){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入公司名");
+		      	return false;
+	     	}
+	     	if(code != msgCode){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("验证码输入错误");
+		      	return false;
+	     	}
+
+
+			document.registerForm.action="<%=regUrl%>"
+	        document.registerForm.submit();        
+	        
+	     }
+	     	 <% 
+	        	String errCode = (String)request.getAttribute("errCode");
+	        	String errMsg = (String)request.getAttribute("errMsg");
+	        	if(errCode=="E"){
+	        		out.println("showRegisterError('"+errMsg+"')");
+	        	}else if(errCode=="S"){
+	        		out.println("showRegisterError('注册成功,请待审批')");
+	        	}
+	        	
+
+	        %>
+
+	     $("#phone").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#authcode").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#registername").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#registercompname").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+
+		 function showRegisterError(msg){
+	      	 alert(msg);
+	      }
+
+	      function sendMsg(){
+			var params={};
+			params.phone=$("#phone").val();
+		    $.ajax({
+		        url : "<%=sendUrl%>",
+		        contentType: "application/json;charset=utf-8",
+		        data : JSON.stringify({params:params}),
+		        type : "post",
+		        success : function(data) {
+		        	if(data.data.Code=="OK")
+		        		{
+		        		msgCode=data.data.msgCode;
+		        		settime(60);
+		        		}
+		        	else {
+		        		alert(data.data.Message);
+		        	}
+		        	
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		           console.log(jqXHR.responseText);
+		        }
+		    });
+	      }
+
+	      function settime(time) {
+			  if (time == 0) {
+				  $("#getKeyWorld").attr("disabled", true);
+				  $("#getKeyWorld").attr("href","javascript:sendMsg();");
+				  $("#getKeyWorld").text("获取验证码"); 
+				  msgCode = null;
+			    return;
+			  } else {
+				  $("#getKeyWorld").attr("href","javascript:void(0);");
+				  $("#getKeyWorld").attr("disabled", false);
+				  $("#getKeyWorld").text("重新发送(" + time + ")");
+				
+			    time--;
+			  }
+			  setTimeout(function () { settime(time); }, 1000);
+			}
+
 	     $(function(){
 	 		var validateResult = "<%=result %>";
 	 		$("#userId").val("<%=userName %>");

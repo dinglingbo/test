@@ -99,42 +99,47 @@ function save() {
 function deleteRole() {
     var row = leftGrid.getSelected();
     if (!row) {
-        alert("请选中一条记录");
+        nui.alert("请选中一条记录");
         return;
     }
 
-    nui.confirm("确认删除吗？","提示",function(action) {
-        if (action == "ok") {
-             nui.mask({
-                el : document.body,
-                cls : 'mini-mask-loading',
-                html : '保存中...'
-            });
+    if(row && row.roleId){
+        nui.confirm("确认删除吗？","提示",function(action) {
+            if (action == "ok") {
+                 nui.mask({
+                    el : document.body,
+                    cls : 'mini-mask-loading',
+                    html : '保存中...'
+                });
 
-            nui.ajax({
-                url:deleteRoleUrl,
-                type:"post",
-                data:JSON.stringify({
-                    capRole: row,
-                    token:token
-                }),
-                success:function(data)
-                {
-                    nui.unmask();
-                    if (data.errCode == "S"){
-                       leftGrid.reload();                   
-                    }else{
-                        nui.alert(data.errMsg||"保存失败");
+                nui.ajax({
+                    url:deleteRoleUrl,
+                    type:"post",
+                    data:JSON.stringify({
+                        capRole: row,
+                        token:token
+                    }),
+                    success:function(data)
+                    {
+                        nui.unmask();
+                        if (data.errCode == "S"){
+                           leftGrid.reload();                   
+                        }else{
+                            nui.alert(data.errMsg||"保存失败");
+                        }
+                    },
+                    error:function(jqXHR, textStatus, errorThrown){
+                        console.log(jqXHR.responseText);
+                        nui.unmask();
+                        nui.alert("网络出错");
                     }
-                },
-                error:function(jqXHR, textStatus, errorThrown){
-                    console.log(jqXHR.responseText);
-                    nui.unmask();
-                    nui.alert("网络出错");
-                }
-            });            
-        }
-    });
+                });            
+            }
+        });
+    }else{
+        leftGrid.removeRow(row);
+    }
+
     
 }
 

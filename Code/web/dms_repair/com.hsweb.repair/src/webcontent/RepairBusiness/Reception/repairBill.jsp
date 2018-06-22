@@ -12,7 +12,14 @@
 <title>综合开单详情</title>
 <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.0.0"></script>
 <style type="text/css">
-
+    body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
 .title {
   width: 60px;
   text-align: right;
@@ -41,108 +48,89 @@
     background-size: 50%;
 }
 
+.mini-tools .mini-tools-collapse {
+    float: left;
+}
+
+.mini-panel .mini-tools {
+    position: absolute;
+    top: 5px;
+    left: 100px;
+}
+
+.btnType{
+  font-family:Verdana;
+  font-size: 14px;
+  text-align: center;
+  height: 40px;
+  width: 80px;
+  line-height:40px;
+}
+
+.mini-grid-rows-view {
+    height: auto;
+}
+
 </style>
 
 </head>
 <body>
 
 <div class="nui-fit">
-    <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-        <table class="table" id="table1">
+    <div class="nui-toolbar" style="padding:2px;border-bottom:0;height:60px">
+        <table class="table" id="table1" border="0" style="width:100%">
             <tr>
                 <td>
-                    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                    <label style="font-family:Verdana;">工单号：</label>
+                    <label id="" style="font-family:Verdana;font-size:15px;font-weight:bold;">综合开单详情</label>
+                    <label style="font-family:Verdana;">车牌号：</label>
+                    <label id="" style="font-family:Verdana;font-size:15px;font-weight:bold;">粤AXXXXX</label>
+                    <span class="separator"></span>
+                    <label style="font-family:Verdana;">进厂日期：</label>
+                    <label id="" style="font-family:Verdana;">2018-06-22</label>
+                    <label style="font-family:Verdana;">交车日期：</label>
+                    <label id="" style="font-family:Verdana;">2018-06-23</label>
+                </td>
+                <td rowspan="2" style="text-align:left;">
+                    <a class="nui-button btnType" iconCls="" plain="false" onclick="add()" id="addBtn"><span class="btnType">次卡</span></a>
+                    <a class="nui-button btnType" iconCls="" plain="false" onclick="add()" id="addBtn"><span class="btnType">充值</span></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label style="font-family:Verdana;">客户名称：</label>
+                    <label id="" style="font-family:Verdana;">配生</label>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;结算</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+
+                    <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="onPrint(0)" id="type10"><span class="fa fa-print fa-lg"></span>&nbsp;打印订单</li>
+                        <li iconCls="" onclick="onPrint(1)" id="type11"><span class="fa fa-print fa-lg"></span>&nbsp;打印进货单</li>
+                    </ul>
                 </td>
             </tr>
         </table>
 
     </div>
 
-
-    <div class="nui-fit">
-          <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
-               selectOnLoad="true"
-               showPager="true"
-               pageSize="50"
-               totalField="page.count"
-               sizeList=[20,50,100,200]
-               dataField="list"
-               onrowdblclick=""
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               onshowrowdetail="onShowRowDetail"
-               url="">
-              <div property="columns">
-                  <div type="indexcolumn">序号</div>
-                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                  <div field="status" name="status" width="40" headerAlign="center" header="进程"></div>
-                  <div field="carNO" name="carNO" width="60" headerAlign="center" header="车牌"></div>
-                  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
-                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
-                  <div field="carVin" name="carVin" width="120" headerAlign="center" header="VIN码"></div>
-                  <div field="guestFullName" name="guestFullName" width="50" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestTel" name="guestTel" width="80" headerAlign="center" header="联系方式"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="维修顾问"></div>
-                  <div field="serviceTypeId" name="serviceTypeId" width="50" headerAlign="center" header="业务类型"></div>
-                  <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
-              </div>
-          </div>
+    <div class="" style="width:100%; height:auto;" >
+      <%@include file="/repair/RepairBusiness/Reception/repairCarInfo.jsp" %>
+    </div>
+    <div class="" style="width:100%;height:auto;" >
+      <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
+      <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
+      <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
     </div>
 
 
 
 </div>
 
-<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
-  <div id="innerItemGrid"
-       borderStyle="border-bottom:0;"
-       class="nui-datagrid"
-       dataField="list"
-       style="width: 100%; height:100px;"
-       showPager="false"
-       allowSortColumn="true">
-      <div property="columns">
-          <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-          <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
-          <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
-          <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
-          <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
-          <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
-          <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">小计</div>
-          <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">工时</div>
-          <div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
-          <div field="className" headerAlign="center" allowSort="true" visible="true" width="80">班组</div>
-          <div field="worker" headerAlign="center" allowSort="true" visible="true" width="80">承修人</div>
-          <div field="itemCode" headerAlign="center" allowSort="true" visible="true" width="">项目编码</div>
-      </div>
-  </div>
-  <div id="innerPartGrid"
-       dataField="list"
-       class="nui-datagrid"
-       style="width: 100%; height: 100px;"
-       showPager="false"
-       allowSortColumn="true">
-      <div property="columns">
-          <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-          <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
-          <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
-          <div field="qty" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">数量</div>
-          <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">单价</div>
-          <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
-          <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
-          <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
-          <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="">零件编码</div>
-      </div>
-  </div>
-</div>
 
 
 </body>

@@ -9,15 +9,23 @@
     </resultMap>
     <select id="queryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
-			a.id id,
-			a.STATUS status,
-			a.mt_advisor mtAuditor,
-			a.service_code serviceCode,
-			a.car_no carNo,
-			b.car_brand_id carBrandId
+			a.id as id,
+			a.service_code as serviceCode,
+			a.enter_date as enterDate,
+			c.full_name as guestFullName,
+			c.short_name as guestShortName,
+			b.car_model as carModel,
+			a.car_vin as carVin,
+			a.car_no as carNO,
+			c.tel as guestTel,
+			b.car_brand_id as carBrandId,
+			a.mt_advisor as mtAdvisor,
+			a.status as status,
+			a.service_type_id as serviceTypeId
 		FROM
 			rps_maintain a
-			LEFT JOIN rpb_car b ON ( a.car_id = b.id )
+			inner JOIN rpb_car b ON ( a.car_id = b.id )
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		WHERE
 			a.orgid = #orgid#
 			and a.quote_file_sign = 0
@@ -29,8 +37,33 @@
             <isNotEmpty prepend="and" property="status">  
                 (a.status = #status#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">  
+                (a.status in ($statusList$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="carNo">  
                 (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (a.enter_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (a.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">  
+                (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">  
+                (a.service_type_id in ($serviceTypeIdList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">  
+                (a.car_vin like '%$vin$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">  
+                (c.tel like '%$tel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (c.full_name like '%$name$%')
             </isNotEmpty>
         </dynamic>  
 	</select>

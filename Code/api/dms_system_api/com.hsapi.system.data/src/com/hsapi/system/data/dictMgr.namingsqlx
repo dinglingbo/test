@@ -49,6 +49,16 @@
 			Order By #sortField# #sortOrder#
 		</isNotNull>
     </select>
+    <!--根据 customid like '0415%' 加载所有字典类型-->
+    <select id="queryDictTypeChilds" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT A.id as id, A.parentid as parentid, A.customid as customid, 
+    	       A.name as name
+    	from COM_DATADICTIONARIES A
+		WHERE 1 = 1
+		<isNotNull property="customid">
+			AND a.customid like '$customid$%'
+		</isNotNull>	
+    </select>
     <!--角色成员010815/营销员，DDT20130703000015-->
     <select id="queryRoleMember" parameterClass="HashMap" resultClass="HashMap">
     	SELECT orgId, empId, empName empName, role_id roleId
@@ -73,8 +83,10 @@
     	SELECT DISTINCT a.id carSeriesId, a.name carSeriesName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
 		                a.car_factory_id as carFactoryId, a.car_factory_name as carFactoryName
 		FROM com_car_series a 
-		WHERE a.car_brand_id = #carBrandId#
-		And a.is_disabled=0
+		WHERE a.is_disabled=0
+        <isNotNull property="carBrandId">
+			AND A.car_brand_id = #carBrandId#
+		</isNotNull>		
     </select>
     <!--车型-->
     <select id="getCarModel" parameterClass="HashMap" resultClass="HashMap">
@@ -152,7 +164,7 @@
     <select id="getServiceType" parameterClass="HashMap" resultClass="HashMap">
         SELECT id as id, name as name 
         FROM rpb_business_type 
-        where is_disabled = 0 and orgid = #orgid# 
+        where is_disabled = 0 and (orgid = #orgid# or orgid = 0 )
         order by id
     </select>    
 </sqlMap>

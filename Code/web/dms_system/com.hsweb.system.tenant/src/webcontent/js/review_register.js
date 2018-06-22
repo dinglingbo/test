@@ -291,7 +291,7 @@ doPost({
  * 审核
  * 
  */
-var shUrl = baseUrl + "com.primeton.tenant.reView.review.biz.ext";
+var shUrl = baseUrl + "com.hsapi.system.tenant.register.auditRegister.biz.ext";// com.primeton.tenant.reView.review
 function sh(){
 	var s=dgGrid.getSelected ();
 	if(s!=undefined){
@@ -304,7 +304,7 @@ function sh(){
             url: shUrl,
             type: 'post',
             data: nui.encode({
-            	params: s
+            	reg: s
             }),
             cache: false,
             success: function (data) {

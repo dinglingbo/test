@@ -8,11 +8,14 @@ var timeStatus;
 var rOrp;
 var statusStatus;
 var advancedSearchWin = null;
-var bisinessList = [];
-var carBrandList = []; 
-var carSeriesList = []; 
-var prebookCategoryHash = [{text:'客户主动预约',value:'0'},{text:'客户被动预约',value:'1'}];
-var upGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.biz.ext";
+var serviceTypeHash = [];
+var carBrandHash = []; 
+var carSeriesHash = []; 
+var mtAdvisorHash = []; 
+var prebookCategoryHash = [{name:'客户主动预约',id:'0'},{name:'客户被动预约',id:'1'}];
+var prebookStatusHash = [{name:'待确认',id:'0'},{name:'已确认',id:'1'},{name:'已开单',id:'2'},{name:'已取消',id:'3'}];
+
+var upGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryPrebookList.biz.ext";
 var downGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingTrace.biz.ext";
 
 $(document).ready(function(v){
@@ -21,26 +24,175 @@ $(document).ready(function(v){
 
 	upGrid = nui.get("upGrid");
 	upGrid.setUrl("upGridUrl");
+	upGrid.on("drawcell",onDrawCell);
 
 	downGrid = nui.get("downGrid");
 	downGrid.setUrl("downGridUrl");
 
+	upGrid.on("selectionchanged",function(e) {
+        onupGridSelectionchanged(e);
+    });
+
 	init();
+
 	search();
 });
 
-var carBrandUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryCarBrand.biz.ext";
-var carModelUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryCarModel.biz.ext";
-
 function init(){	
-	initCarBrand("carBrandId", null); //品牌
-	initCarSeries("carSeriesId", null);//车系
-	initMember("mtAdvisorId",null); //人员
-	initServiceType("serviceTypeId", null);//业务类型
+	initCarBrand("carBrandList", function(){
+        var data = nui.get("carBrandList").getData();
+        data.forEach(function(v) {
+            carBrandHash[v.id] = v;
+        });
+    });	
+
+ 	initCarSeries("carSeriesList", "", function(){
+        var data = nui.get("carSeriesList").getData();
+        data.forEach(function(v) {
+            carSeriesHash[v.id] = v;
+        });
+    });	
+
+ 	initMember("mtAdvisorList", function(){
+        var data = nui.get("mtAdvisorList").getData();
+        data.forEach(function(v) {
+            mtAdvisorHash[v.id] = v;
+        });
+    });	   
+
+ 	initServiceType("bisinessList", function(){
+        var data = nui.get("bisinessList").getData();
+        data.forEach(function(v) {
+            serviceTypeHash[v.id] = v;
+        });
+    });
+}
+
+var currType = 0;
+
+function quickSearch(ctlid, value, text){
+    ctlid.setValue(value);
+    ctlid.setText(text);
+    currType = value;
+    onSearch();
+}
+
+function search() {
+    
+    doSearch(param);
+}
+
+function getSearchParam() {
+	var params = {};
+    params.mtAdvisorId = nui.get("mtAdvisorList").getValue();
+    params.carNo = nui.get("carNo").getValue();
+    params.contactorTel = nui.get("contactorTel").getValue();
+
+    var d = menuBtnDateQuickSearch.getValue();
+
+    if (d == 0) {
+        params.today = 1;
+        params.startDate = getNowStartDate();
+        params.endDate = addDate(getNowEndDate(), 1);
+    } else if (d == 1) {
+        params.yesterday = 1;
+        params.startDate = getPrevStartDate();
+        params.endDate = addDate(getPrevEndDate(), 1);        
+    }  else if (d == 2) {
+        params.thisWeek = 1;
+        params.startDate = getWeekStartDate();
+        params.endDate = addDate(getWeekEndDate(), 1);        
+    } else if (d == 3) {
+        params.lastWeek = 1;
+        params.startDate = getLastWeekStartDate();
+        params.endDate = addDate(getLastWeekEndDate(), 1);        
+    } else if (d == 4) {
+        params.thisMonth = 1;
+        params.startDate = getMonthStartDate();
+        params.endDate = addDate(getMonthEndDate(), 1);        
+    } else if (d == 5) {
+        params.lastMonth = 1;
+        params.startDate = getLastMonthStartDate();
+        params.endDate = addDate(getLastMonthEndDate(), 1);        
+    }
+
+    var status = menuBtnStatusQuickSearch.getValue();
+
+    if (status != -1) {
+        params.status = status;
+    } 
+
+    return params;
+}
+
+function doSearch(params) {
+	var param = getSearchParam();
+
+	upGrid.load({
+        params: params,
+        token: token
+    });
+}
+
+function onupGridSelectionchanged(e) {
+    var row = e.record;
+    if (!row) return;
+
+    var status = row.status;
+
+    if (status != 0) nui.get("btnEdit").disable();
+    if (status != 0) nui.get("btnconfirm").disable();
+    if (status != 1) nui.get("btnNewBill").disable();
+    if (status > 1) nui.get("btnCancel").disable();
+    if (status > 1) nui.get("btnCall").disable();
+    
+
+    getPrebookById(row.id,function(data)
+    {
+        nui.unmask();
+        data = data||{};
+        if(data.prebook)
+        {
+            var prebook = data.prebook;
+            basicInfoForm.setData(prebook);
+            carBrandIdEl.doValueChanged();
+            nui.get("carId").setText(prebook.carNo);
+            resetBtn();
+            if(prebook.bookStatus == "040901")
+            {
+                nui.get("cancelBtn").disable();
+            }
+            else{
+                nui.get("fllowUpBtn").disable();
+            }
+        }
+        else
+        {
+            nui.alert("数据加载失败");
+        }
+    });
+
+    rightGrid.load({
+    	token:token,
+        bookId:row.id
+    });
+}
+
+function onDrawCell(e) {
+    var field = e.field;
+
+    if(field == "serviceTypeId" && serviceTypeHash[e.value]) {
+        e.cellHtml = serviceTypeHash[e.value].name;
+    } else if (field == "carBrandId" && carBrandHash[e.value]) {
+        e.cellHtml = carBrandHash[e.value].name;
+    } else if (field == "carSeriesId" && carSeriesHash[e.value]) {
+        e.cellHtml = carSeriesHash[e.value].name;
+    } else if (field == "prebookCategory" && prebookCategoryHash[e.value]) {
+        e.cellHtml = prebookCategoryHash[e.value].name;
+    }
 }
 
 /*设置时间菜单*/
-
 function setMenu(obj, target, value){
     target.setValue(value);
     target.setText(obj.getText());   
@@ -53,26 +205,6 @@ function setMenu1(obj, target, value){
    
 }
 
-function search() {
-    var param = getSearchParam();
-    doSearch(param);
-}
-
-function getSearchParam() {
-	queryForm = new nui.Form("#queryForm");
-    var params = queryForm.getData();
-    return params;
-}
-
-function doSearch(params) {
-	params.status = statusStatus.getValue();
-	params.timeStatus = timeStatus.getValue();
-
-	upGrid.load({
-        params: params,
-        token: token
-    });
-}
 
 function selectedchange(){
 	var s = upGrid.getSelected();
@@ -98,6 +230,7 @@ function addRow(){
 		}
 	});
 }
+
 function editRow(){	
 	var row=upGrid.getSelected();
 	if(row==undefined)
@@ -164,57 +297,3 @@ function typeChange(type,status){
 }
 
 
-function gridOnDraw(e)
-{	
-
-    switch (e.field)
-    {
-        case "serviceTypeId":
-        	var is=false;
-            for(var i=0;i<bisinessList.length;i++){
-            	 if(bisinessList[i].code==e.cellHtml)
-                 {
-                     e.cellHtml = bisinessList[i].name;
-                     is=true;
-                     break;
-                 }
-            	 }
-            if(is==false)e.cellHtml="";
-            break;
-        case "prebookCategory":
-        	 if(prebookCategoryHash[e.value])
-             {
-                 e.cellHtml = prebookCategoryHash[e.value].text||"";
-             }
-             else{
-                 e.cellHtml = "";
-             }
-        	break;
-        case "carBrandId":
-        	var is=false;
-            for(var i=0;i<carBrandList.data.length;i++){
-            	 if(carBrandList.data[i].id==e.cellHtml)
-                 {
-                     e.cellHtml = carBrandList.data[i].carBrandZh;
-                     is=true;
-                     break;
-                 }
-            	 }
-            if(is==false)e.cellHtml="";
-            break;
-        case "carSeriesId":
-        	/*var is=false;
-            for(var i=0;i<carModeList.data.length;i++){
-            	 if(carModeList.data[i].id==e.cellHtml)
-                 {
-                     e.cellHtml = carModeList.data[i].name;
-                     is=true;
-                     break;
-                 }
-            	 }
-            if(is==false)e.cellHtml="";*/
-            break;
-       	 	default:
-            break;
-    }
-}

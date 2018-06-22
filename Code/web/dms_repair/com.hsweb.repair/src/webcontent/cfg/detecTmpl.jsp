@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>查车单</title>
+<title>查车单模板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/config/js/parameterSet.js?v=1.7.8"></script>
+    <script src="<%=webPath + repairDomain%>/repair/cfg/js/parameterSet.js?v=1.0"></script>
     
 </head>
 <body>

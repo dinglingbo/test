@@ -104,7 +104,7 @@
             if(token==null || token.trim().length()==0){
                 token= request.getParameter("token");
                 if(!"214e2f71-4237-4601-9a1a-538bf982b995".equals(token)){
-                    %>alert("token=<%=token%>");backToLogin();<%
+                    %>backToLogin();<%
                 }
             }
             

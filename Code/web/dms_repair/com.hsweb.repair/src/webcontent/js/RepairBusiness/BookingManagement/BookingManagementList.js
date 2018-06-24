@@ -2,25 +2,24 @@ var baseUrl = apiPath + repairApi + "/";
 var queryForm;
 var upGrid;
 var downGrid;
-var currGuest;
-var assignStatus;
-var timeStatus;
-var rOrp;
-var statusStatus;
-var advancedSearchWin = null;
+var menuBtnStatusQuickSearch;
+var menuBtnDateQuickSearch;
 var serviceTypeHash = [];
 var carBrandHash = []; 
 var carSeriesHash = []; 
 var mtAdvisorHash = []; 
+var scoutModeHash = []; 
+var scoutResutHash = []; 
+
 var prebookCategoryHash = [{name:'客户主动预约',id:'0'},{name:'客户被动预约',id:'1'}];
-var prebookStatusHash = [{name:'待确认',id:'0'},{name:'已确认',id:'1'},{name:'已开单',id:'2'},{name:'已取消',id:'3'}];
+var prebookStatusHash = [{name:'待确认',id:'0'},{name:'已确认',id:'1'},{name:'已开单',id:'2'},{name:'已取消',id:'3'},{name:'已评价',id:'4'}];
 
 var upGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryPrebookList.biz.ext";
 var downGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingTrace.biz.ext";
 
 $(document).ready(function(v){
-	statusStatus = nui.get("status");
-	timeStatus = nui.get("timeStatus");
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
+    menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");	
 
 	upGrid = nui.get("upGrid");
 	upGrid.setUrl("upGridUrl");
@@ -28,14 +27,15 @@ $(document).ready(function(v){
 
 	downGrid = nui.get("downGrid");
 	downGrid.setUrl("downGridUrl");
-
-	upGrid.on("selectionchanged",function(e) {
-        onupGridSelectionchanged(e);
-    });
+	downGrid.on("drawcell",onDrawCell);
 
 	init();
+	quickSearch(menuBtnDateQuickSearch, 0, '今日');
 
-	search();
+	upGrid.on("selectionchanged",function() {
+        onupGridSelectionchanged();
+    });	
+
 });
 
 function init(){	
@@ -66,6 +66,20 @@ function init(){
             serviceTypeHash[v.id] = v;
         });
     });
+
+    initDicts({
+        scoutModeList: SCOUT_MODE, //跟进方式
+        scoutReustList: IS_USABLED //跟踪状态
+    },function(){
+    	var data = nui.get("scoutModeList").getData();
+        data.forEach(function(v) {
+            scoutModeHash[v.customid] = v;
+        });
+    	var data = nui.get("scoutReustList").getData();
+        data.forEach(function(v) {
+            scoutResutHash[v.customid] = v;
+        });        
+    });    
 }
 
 var currType = 0;
@@ -74,12 +88,16 @@ function quickSearch(ctlid, value, text){
     ctlid.setValue(value);
     ctlid.setText(text);
     currType = value;
-    onSearch();
+    doSearch();
 }
 
-function search() {
-    
-    doSearch(param);
+function doSearch() {
+	var params = getSearchParam();
+
+	upGrid.load({
+        params: params,
+        token: token
+    });
 }
 
 function getSearchParam() {
@@ -125,56 +143,45 @@ function getSearchParam() {
     return params;
 }
 
-function doSearch(params) {
-	var param = getSearchParam();
-
-	upGrid.load({
-        params: params,
-        token: token
-    });
-}
 
 function onupGridSelectionchanged(e) {
-    var row = e.record;
+    var row = upGrid.getSelected();
     if (!row) return;
 
     var status = row.status;
 
-    if (status != 0) nui.get("btnEdit").disable();
-    if (status != 0) nui.get("btnconfirm").disable();
-    if (status != 1) nui.get("btnNewBill").disable();
-    if (status > 1) nui.get("btnCancel").disable();
-    if (status > 1) nui.get("btnCall").disable();
-    
+    var btnEdit = nui.get("btnEdit");
+    var btnconfirm = nui.get("btnconfirm");
+    var btnNewBill = nui.get("btnNewBill");
+    var btnCancel = nui.get("btnCancel");
+    var btnCall = nui.get("btnCall");
 
-    getPrebookById(row.id,function(data)
-    {
-        nui.unmask();
-        data = data||{};
-        if(data.prebook)
-        {
-            var prebook = data.prebook;
-            basicInfoForm.setData(prebook);
-            carBrandIdEl.doValueChanged();
-            nui.get("carId").setText(prebook.carNo);
-            resetBtn();
-            if(prebook.bookStatus == "040901")
-            {
-                nui.get("cancelBtn").disable();
-            }
-            else{
-                nui.get("fllowUpBtn").disable();
-            }
-        }
-        else
-        {
-            nui.alert("数据加载失败");
-        }
-    });
+    if (status == 0) { //待确认
+    	btnEdit.enable();
+    	btnconfirm.enable();
+    	btnNewBill.disable();
+    	btnCancel.enable();
+    	btnCall.enable();
+    } else if (status == 1) { //已确认
+    	btnEdit.disable();
+    	btnconfirm.disable();
+    	btnNewBill.enable();
+    	btnCancel.enable();
+    	btnCall.enable();
+    } else if (status >= 2) { //已开单，已取消，已评价
+    	btnEdit.disable();
+    	btnconfirm.disable();
+    	btnNewBill.disable();
+    	btnCancel.disable();
+    	btnCall.disable();
+    } 
 
-    rightGrid.load({
-    	token:token,
-        bookId:row.id
+    var params = {};
+    params.serviceId = row.id;
+
+	downGrid.load({
+        params: params,
+        token: token
     });
 }
 
@@ -189,39 +196,19 @@ function onDrawCell(e) {
         e.cellHtml = carSeriesHash[e.value].name;
     } else if (field == "prebookCategory" && prebookCategoryHash[e.value]) {
         e.cellHtml = prebookCategoryHash[e.value].name;
+    } else if (field == "status" && prebookStatusHash[e.value]) {
+        e.cellHtml = prebookStatusHash[e.value].name;
+    } else if (field == "scoutMode" && scoutModeHash[e.value]) {
+        e.cellHtml = scoutModeHash[e.value].name;
+    } else if (field == "isUsabled" && scoutResutHash[e.value]) {
+        e.cellHtml = scoutResutHash[e.value].name;
     }
 }
 
-/*设置时间菜单*/
-function setMenu(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-   
-}
-
-function setMenu1(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-   
-}
-
-
-function selectedchange(){
-	var s = upGrid.getSelected();
-	 var params = {
-		serviceId:s.id
-	};
-	
-	downGrid.load({
-        params:params,
-        token:token
-	});
-}
-
-function addRow(){
+function addRow() {
 	nui.open({
 		url: "BookingManagementEdit.jsp",
-		title: "新增", width: 800, height: 500,
+		title: "新增预约", width: 800, height: 500,
 		onload: function () {
 
 		},
@@ -232,13 +219,12 @@ function addRow(){
 }
 
 function editRow(){	
-	var row=upGrid.getSelected();
-	if(row==undefined)
-		{
+	var row = upGrid.getSelected();
+	if (row == undefined) {
 		nui.alert("请选中一条数据");
 		return;
-		}
-	 nui.open({
+	}
+	nui.open({
         url: "BookingManagementEdit.jsp",
         title: "修改", width: 800, height: 500,
         onload: function () {
@@ -248,7 +234,6 @@ function editRow(){
         },
         ondestroy: function (action) {
          	 upGrid.reload();
-
         }
     });
 }

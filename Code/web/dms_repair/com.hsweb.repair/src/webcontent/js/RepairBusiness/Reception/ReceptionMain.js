@@ -195,3 +195,13 @@ function getSearchParam() {
     }
     return params;
 }
+function add(){
+    var item={};
+    item.id = "2000";
+    item.text = "综合开单详情";
+    item.url = webPath + repairDomain + "/com.hsweb.RepairBusiness.repairBill.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    window.parent.activeTabAndInit(item,params)
+
+}

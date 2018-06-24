@@ -1,7 +1,7 @@
 /**
  * Created by lilium on 2018/5/27.
  */
-var baseUrl = apiPath + frmApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + sysApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var dgGrid;
 var queryForm;
 var msgCode=null;
@@ -291,39 +291,42 @@ doPost({
  * 审核
  * 
  */
-var shUrl = baseUrl + "com.hsapi.system.tenant.register.auditRegister.biz.ext";// com.primeton.tenant.reView.review
-function sh(){
+var auditUrl = baseUrl + "com.hsapi.system.tenant.register.auditRegister.biz.ext";// com.primeton.tenant.reView.review
+function audit(){
 	var s=dgGrid.getSelected ();
-	if(s!=undefined){
-	    nui.mask({
-	        el : document.body,
-	        cls : 'mini-mask-loading',
-	        html : '审核中...'
-	    });
+	if(s){
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '审核中...'
+        });
+
         nui.ajax({
-            url: shUrl,
-            type: 'post',
-            data: nui.encode({
-            	reg: s
+            url : auditUrl,
+            type : "post",
+            data : JSON.stringify({
+                reg: s,
+                token:token
             }),
-            cache: false,
-            success: function (data) {
-                if (data.errCode == "S"){
-                	nui.unmask(document.body);
-                	nui.alert("审核成功！");
-                	dgGrid.reload();
-                    }else {
-                    nui.unmask(document.body);
-                    nui.alert("审核失败！");
+            success : function(data) {
+                nui.unmask(document.body);
+                data = data || {};
+                if (data.errCode == "S") {
+                    nui.alert("审核成功!","",function(e){
+                        dgGrid.reload();
+                    });
+                } else {
+                    nui.alert(data.errMsg || "审核失败！");
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+            error : function(jqXHR, textStatus, errorThrown) {
+                // nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
             }
-		});
-	    dgGrid.reload();
-	}
-	else{
+        });
+
+	    
+	}else{
 		  nui.alert("请选中一条数据！！");
 	}
 	

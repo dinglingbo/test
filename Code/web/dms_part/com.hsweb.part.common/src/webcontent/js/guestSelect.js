@@ -160,7 +160,7 @@ function doSearch(params)
     params.isSupplier = isSupplier;
     params.isClient = isClient;
     params.supplierType = supplierType;
-    params.guestType = guestType;
+    params.guestType = nui.get("type").getValue();
     grid.load({
         params:params,
         token:token

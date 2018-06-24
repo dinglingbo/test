@@ -229,12 +229,7 @@ text-align:center;
 				<form method="post"	name="registerForm" onsubmit="return register();" action="">
 					<p id="errorP"  ></p>
 					<div>
-						<span> <input id="phone" name="phone" type="text" class="textbox" placeholder="手机号码" />
-						</span>
-					</div>
-					<div>
-						<span> <input id="authcode" name="authcode" type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
-							href="javascript:sendMsg();" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
+						<span> <input id="registercompname" name="registercompname" type="text" class="text" placeholder="请输入公司名" />
 						</span>
 					</div>
 					<div>
@@ -242,7 +237,12 @@ text-align:center;
 						</span>
 					</div>
 					<div>
-						<span> <input id="registercompname" name="registercompname" type="text" class="text" placeholder="请输入公司名" />
+						<span> <input id="phone" name="phone" type="text" class="textbox" placeholder="手机号码" />
+						</span>
+					</div>
+					<div>
+						<span> <input id="authcode" name="authcode" type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
+							href="javascript:sendMsg();" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
 						</span>
 					</div>
 					<!-- <div>

@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
 
+<style type="text/css">
+.part-img-container {
+  border: 1px solid #ddd;
+  position: relative;
+}
+.part-rect {
+  border: 2px solid #06c;
+  position: absolute;
+}
+.select-row{
+   background:#89c3d6;
+}
+.part-rect_dash {
+  border: 2px dashed #06c;
+  position: absolute;
+}
+
+
+</style>
+
 <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
     <div size="25%" showCollapseButton="false" style="border:0;">
         <br/>

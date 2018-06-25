@@ -18,7 +18,7 @@
             <div property="columns">
                 <div field="partOptBtn" name="partOptBtn" width="30" headerAlign="center" header="操作" align="center"></div>
                 <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100" header="配件名称">
-                    <input property="editor" class="nui-textbox" />
+                    <input property="editor" class="nui-textbox" emptyText="配件编码、名称、拼音" />
                 </div>
                 <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80" header="收费类型">
                     <input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="customid" textField="name" data="receTypeIdList"
@@ -43,7 +43,7 @@
     </div>
 </div>
 <div id="advancedMorePartWin" class="nui-window"
-     title="" style="width:430px;height:350px;"
+     title="" style="width:450px;height:200px;"
      showModal="false"
      showHeader="false"
      allowResize="false"

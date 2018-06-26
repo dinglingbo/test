@@ -74,13 +74,13 @@
     </select>
     <!--车辆品牌-->
     <select id="getCarBrand" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT id, car_brand_zh nameCn 
+    	SELECT DISTINCT id, car_brand_zh nameCn, car_brand_zh name  
     	FROM com_car_brand 
 		WHERE  is_disabled=0
     </select>
     <!--车系-->
     <select id="getCarSeries" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT DISTINCT a.id carSeriesId, a.name carSeriesName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
+    	SELECT DISTINCT a.id, a.name, a.id carSeriesId, a.name carSeriesName, a.car_brand_id carBrandId, a.car_brand_name carBrandName,
 		                a.car_factory_id as carFactoryId, a.car_factory_name as carFactoryName
 		FROM com_car_series a 
 		WHERE a.is_disabled=0

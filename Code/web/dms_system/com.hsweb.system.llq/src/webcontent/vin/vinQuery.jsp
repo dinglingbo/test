@@ -14,8 +14,8 @@
     <%@include file="/common/sysCommon2.jsp" %>
     <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.5" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.7.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.6" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.7.2" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -26,10 +26,14 @@
         .search-result-list-item-title-color{
             color: #f35a12;
         }
+
+        body .mini-grid-row-selected{
+            background:#89c3d6 !important; 
+        }
     </style>
 </head>
 <body>
-    <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
+    <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize="0">
         <div size="40%" showCollapseButton="false" style="border:0;">
             <br/>
             <center id="groupButton">
@@ -81,7 +85,7 @@
     </div> 
     
     <div class="nui-fit">
-        <div class="nui-splitter" style="width:100%; height:100%;" id="panel">
+        <div class="nui-splitter" style="width:100%; height:100%;" id="panel" allowResize="false">
             <div size="40%" showCollapseButton="false">
                 <div class="nui-fit">
                     <!--主组-->

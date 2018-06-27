@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.7"></script>
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
 <style type="text/css">
 
 .title {
@@ -96,7 +96,7 @@
                                    showClearButton="false"/>
                         </td>
                         <td class="title">
-                            <label>维修顾问：</label>
+                            <label>服务顾问：</label>
                         </td>
                         <td style="width:100">
                             <input name="mtAdvisorId"
@@ -177,7 +177,7 @@
                   <div field="carVin" name="carVin" width="120" headerAlign="center" header="VIN码"></div>
                   <div field="guestFullName" name="guestFullName" width="50" headerAlign="center" header="客户姓名"></div>
                   <div field="guestTel" name="guestTel" width="80" headerAlign="center" header="联系方式"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="维修顾问"></div>
+                  <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
                   <div field="serviceTypeId" name="serviceTypeId" width="50" headerAlign="center" header="业务类型"></div>
                   <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
               </div>

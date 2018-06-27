@@ -12,11 +12,10 @@
 <head>
 <title>注册审核</title>
 	<%@include file="/common/sysCommon.jsp"%>
-	<%@include file="/common/commonCloudPart.jsp"%>
 <link
 	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.8"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.2"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -45,7 +44,7 @@
 					<li class="separator"></li>
 					<a class="nui-button"  plain="true" href="javascript:query();" id="query" enabled="true"  onclick="superSearch">查询</a>
 						<a class="nui-button"  plain="true"
-					 id="sh" enabled="true"  onclick="sh">审核</a>
+					 id="sh" enabled="true"  onclick="audit">审核</a>
 					 	<a class="nui-button"  plain="true"
 					 id="jy" name="jy" enabled="true"  onclick="stopUse">禁用</a>
 					  	<a class="nui-button"  plain="true" visible="false"

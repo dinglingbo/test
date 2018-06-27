@@ -1,165 +1,123 @@
-baseUrl = apiPath + sysApi + "/";;
-var queryForm;
+var baseUrl = apiPath + sysApi + "/";;
 var basicInfoForm;
-var upGrid;
-var downGrid;
-var currGuest;
-var assignStatus;
-var timeStatus;
-var rOrp;
-var statusStatus;
-var carSeriesId;
-var prebookCategoryHash;
-var advancedSearchWin = null;
+var prebookCategoryHash = [{ name: '客户主动预约', id: '0' }, { name: '客户被动预约', id: '1' }];
+var serviceTypeHash = [];
+var carBrandHash = [];
+var carSeriesHash = [];
+var mtAdvisorHash = [];
+
 var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.biz.ext";
-var prebookCategoryHash=[{text:'用户主动预约',value:'0'},{text:'用户被动预约',value:'1'}];
+      
 $(document).ready(function(v){
-	nui.get("prebookCategory").setData(prebookCategoryHash);
-	carSeriesId=nui.get("carSeriesId");
-	initMember("mtAdvisorId",null);
-	
-	initCarBrand("carBrandId",null);
-	//getCarModel("carSeriesId",null);
-	
-	getBisinessList(function(data) {
-		var bisinessList=[];
-		bisinessList = data.data;
-		nui.get("serviceTypeId").setData(bisinessList);
-		
-		
-	});
-	
-	
+    init();
 });
 
+function init() {
+    initCarBrand("carBrandId", function () {
+        var data = nui.get("carBrandId").getData();
+        data.forEach(function (v) {
+            carBrandHash[v.id] = v;
+        });
+    });
 
+    initCarSeries("carSeriesId", "", function () {
+        var data = nui.get("carSeriesId").getData();
+        data.forEach(function (v) {
+            carSeriesHash[v.id] = v;
+        });
+    });
 
-/*
- *设置时间菜单
- **/
-function setMenu(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-   
+    initMember("mtAdvisorId", function () {
+        var data = nui.get("mtAdvisorId").getData();
+        data.forEach(function (v) {
+            mtAdvisorHash[v.id] = v;
+        });
+    });
+
+    initServiceType("serviceTypeId", function () {
+        var data = nui.get("serviceTypeId").getData();
+        data.forEach(function (v) {
+            serviceTypeHash[v.id] = v;
+        });
+    });   
+    
+    nui.get("prebookCategory").setData(prebookCategoryHash);
 }
 
-function setMenu1(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-   
+
+function SetData(params) {
+	basicInfoForm = new nui.Form("#basicInfoForm");	
+	basicInfoForm.setData(params.data);
 }
 
 function onOk() {
-
 	basicInfoForm = new nui.Form("#basicInfoForm");	
-	s=basicInfoForm.getData();
-	if (s != undefined) {
-		nui.ajax({
-			url : baseUrl
-					+ "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
-			type : 'post',
-			data : nui.encode({
-				param : s
-			}),
-			success : function(data) {
-				if (data.errCode == "S") {
-					
-					window.CloseOwnerWindow("ok");
-				} else {
-					window.CloseOwnerWindow("ok");
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				nui.alert(jqXHR.responseText);
-			}
-		});
-	}
+    var main = basicInfoForm.getData();
+    if (!main || main == undefined) return;
 
-}
-function onCancel(){
-	
-	window.CloseOwnerWindow("ok");
-	
-}
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
 
-
-
-function search() {
-    var param = getSearchParam();
-    doSearch(param);
-}
-
-function getSearchParam() {
-	queryForm = new nui.Form("#queryForm");
-    var params = queryForm.getData();
-    return params;
-}
-
-function doSearch(params) {
-	basicInfoForm = new nui.Form("#basicInfoForm");	
-	nui.ajax({
-           url: listUrl,
-           type: 'post',
-           data: nui.encode({
-        	 params: params
-           }),
-           success: function (data) {
-        	   basicInfoForm.setData(data.data[0]);
-           },
-           error: function (jqXHR, textStatus, errorThrown) {
-               nui.alert(jqXHR.responseText);
-           }
-       });}
-
-function SetData(params){
-	basicInfoForm = new nui.Form("#basicInfoForm");	
-	basicInfoForm.setData(params.data);
-	
-	if(params.data.carBrandId!="") 
-	{
-	getCarModel("carSeriesId",params.data.carBrandId);
-	}
-	}
-	
-function addCarBrand() {
-    selectCustomer(function (car) {
-        var maintain = {
-            guestId: car.guestId,
-            contactorId: car.contactorId,
-            carId: car.id,
-            carNo: car.carNo,
-            carVin: car.underpanNo,
-            serviceTypeId: "0",
-            mtType: "0",
-            mtAdvisor: currUserName,
-            insureCompCode: car.insureCompCode
-        };
-        nui.mask({
-            html: '保存中..'
-        });
-        getServiceCode(function (data) {
+    if (!main.id) {
+        getServiceCode(function(data) {
+            data = data || {};
             var code = data.code;
-            if (!code) {
+            if(!code) {
                 nui.unmask();
-                nui.alert("获取单号失败");
+                nui.alert("获取单号失败，无法保存");
                 return;
             }
-            maintain.serviceCode = code;
-            saveMaintain(maintain, function (data) {
-                nui.unmask();
-                data = data || {};
-                if (data.errCode == "S") {
-                    reload();
-                }
-                else {
-                    nui.alert(data.errMsg || "新增失败");
-                }
-            });
+            main.serviceCode = code;
         });
+    }
+
+    nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
+        type: 'post',
+        data:JSON.stringify({
+            param: main,
+            token:token
+        }),        
+        success: function(data) {
+            if (data.errCode == "S") {                
+                window.CloseOwnerWindow("ok");
+            } else {
+                nui.alert(data.errMsg || "保存失败");
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            nui.unmask();
+            nui.alert("网络出错");            
+        }
     });
 }
 
-function selectCustomer(callback) {
+function onClose() {
+	window.CloseOwnerWindow("ok");	
+}
+	
+function selectCustomer() {
+    openCustomerWindow(function (v) {
+        basicInfoForm = new nui.Form("#basicInfoForm");	
+        var main = basicInfoForm.getData();
+        main.guestId = v.guestId;
+        main.contactorName = v.guestFullName;
+        main.carId = v.carId;
+        main.carNo = v.carNo;
+        main.carBrandId = v.carBrandId;
+        main.carSeriesId = v.carSeriesId;
+        main.contactorId = v.contactorId;
+        main.contactorTel = v.mobile;
+        var params = {};
+        params.data = main;
+        SetData(params);
+    });
+}
+
+function openCustomerWindow(callback) {
     nui.open({
         url: "com.hsweb.RepairBusiness.Customer.flow",
         title: "客户选择", width: 800, height: 450,
@@ -176,39 +134,37 @@ function selectCustomer(callback) {
     });
 }
 
-
-/*
- * 
- * 获取业务分类列表*/
-var bisinessUrl = baseUrl + "com.hsapi.system.confi.paramSet.getbusinessSort.biz.ext";
-function getBisinessList(callback){
-    nui.ajax({
-        url: bisinessUrl,
-        type: 'post',
-        data: nui.encode({
-        }),
-        cache: false,
-        success: function (data) {
-            if (data) {
-             callback(data);
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            nui.alert(jqXHR.responseText);
-        }
-	});
-	
+function getServiceCode(callback) {
+    var billTypeCode = "YYD";
+    getCompBillNO (billTypeCode, function(data) {
+        data = data || {};
+        var code = data.serviceno;
+        callback({
+            code:code
+        });
+    });
 }
 
-function onChange(e){
+function onMTAdvisorIdChange(e){
     var value = e.selected.empName;
     nui.get("mtAdvisor").setValue(value);
 }
 
-
-function onBrandChange(e){
-    
-        
-        initCarMT('carSeriesId',e.value);
+function onCarBrandChange(e){     
+    initCarSeries("carSeriesId", e.value, function () {
+        var data = nui.get("carSeriesId").getData();
+        data.forEach(function (v) {
+            carSeriesHash[v.id] = v;
+        });
+    });
 }
 
+//只允许选择今日之后的日期
+function onDrawDate(e) {
+    var date = e.date;
+    var d = new Date();
+
+    if (date.getTime() < d.getTime()) {
+        e.allowSelect = false;
+    }
+}

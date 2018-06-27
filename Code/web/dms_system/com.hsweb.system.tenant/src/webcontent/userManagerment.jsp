@@ -11,7 +11,7 @@
     <title>用户管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9"
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.6"
 	type="text/javascript"></script>
     <style type="text/css">
     body {

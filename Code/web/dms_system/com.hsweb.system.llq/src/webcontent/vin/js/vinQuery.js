@@ -78,6 +78,16 @@ $(document).ready(function(v){
             e.cellHtml = html;
         }
     });
+
+    gridParts.on("selectionchanged", function (e) { //表格绘制
+        var row = e.selected;
+        if(row){ 
+            renderMapRect(row.num);
+
+            clearSelectedCls();
+            gridParts.addRowCls(row, "select-row");
+        }
+    });
     
     gridConfig.on("select", function (e) {//4005选择配置
         /* var column = e.column;
@@ -366,6 +376,10 @@ function checkVin(){
 function showLeftGrid(gridObj){
     gridMainGroup.hide();
     vinPartImg.hide();
+    //$('.part-img-container').hide();
+    /*$('.j_part-img').hide();*/
+    $('.j_part-img-map').html('');
+    $('.j_part-map-rect').html('');
     
     gridObj.show();  
 }
@@ -392,6 +406,12 @@ function showRightGrid(gridObj){
         
         gridObj.show();
         var num = (gridObj==gridCfg)? 0 : ((gridObj==subGroups)? 1 : 2);
+        for(var i=0; i<$(".groupButton").length;i++){
+            if(i > num && i != 3){
+                $($(".groupButton")[i]).hide();
+            }
+        }
+
         $($(".groupButton")[num]).show();
         //$($(".groupButton")[num]).click();
         setBgColor($(".groupButton")[num]);

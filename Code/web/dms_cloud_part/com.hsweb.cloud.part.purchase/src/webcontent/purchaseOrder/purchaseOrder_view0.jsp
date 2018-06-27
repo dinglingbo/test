@@ -186,9 +186,11 @@
 <div id="advancedMorePartWin" class="nui-window"
      title="配件选择" style="width:430px;height:350px;"
      showModal="true"
+     showHeader="false"
      allowResize="false"
+     style="padding:2px;border-bottom:0;"
      allowDrag="true">
-     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+     <div class="nui-toolbar" >
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">

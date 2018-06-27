@@ -9,7 +9,7 @@
 -->
 <head>
 <title>往来单位选择界面</title>
-<script src="<%=webPath + partDomain%>/commonPart/js/guestSelect.js?v=1.0.1"></script>
+<script src="<%=webPath + partDomain%>/commonPart/js/guestSelect.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

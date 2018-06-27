@@ -8,14 +8,29 @@
   - Date: 2018-02-18 23:25:58
   - Description:
 -->
+    <style>
+        .search-result-list-item-content-img{
+            width: 180px;
+            height: 108px;
+            border: 1px solid #d8d8d8;
+            margin-right: 10px;
+        }
+        .search-result-list-item-title-color{
+            color: #f35a12;
+        }
+
+        body .mini-grid-row-selected{
+            background:#89c3d6 !important; 
+        }
+    </style>
 <head>
 <title>车型查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
-    
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.3" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=1.3" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=1.2" type="text/javascript"></script>
+    <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
+    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.4" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=1.5" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=1.4" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 

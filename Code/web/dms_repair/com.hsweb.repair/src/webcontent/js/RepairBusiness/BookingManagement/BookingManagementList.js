@@ -2,88 +2,106 @@ var baseUrl = apiPath + repairApi + "/";
 var queryForm;
 var upGrid;
 var downGrid;
-var currGuest;
-var assignStatus;
-var timeStatus;
-var rOrp;
-var statusStatus;
-var advancedSearchWin = null;
+var menuBtnStatusQuickSearch;
+var menuBtnDateQuickSearch;
 var serviceTypeHash = [];
-var carBrandHash = []; 
-var carSeriesHash = []; 
-var mtAdvisorHash = []; 
-var prebookCategoryHash = [{name:'客户主动预约',id:'0'},{name:'客户被动预约',id:'1'}];
-var prebookStatusHash = [{name:'待确认',id:'0'},{name:'已确认',id:'1'},{name:'已开单',id:'2'},{name:'已取消',id:'3'}];
+var carBrandHash = [];
+var carSeriesHash = [];
+var mtAdvisorHash = [];
+var scoutModeHash = [];
+var scoutResutHash = [];
+
+var prebookCategoryHash = [{ name: '客户主动预约', id: '0' }, { name: '客户被动预约', id: '1' }];
+var prebookStatusHash = [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, { name: '已开单', id: '2' }, { name: '已取消', id: '3' }, { name: '已评价', id: '4' }];
 
 var upGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryPrebookList.biz.ext";
 var downGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingTrace.biz.ext";
 
-$(document).ready(function(v){
-	statusStatus = nui.get("status");
-	timeStatus = nui.get("timeStatus");
+$(document).ready(function (v) {
+    menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
+    menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");
 
-	upGrid = nui.get("upGrid");
-	upGrid.setUrl("upGridUrl");
-	upGrid.on("drawcell",onDrawCell);
+    upGrid = nui.get("upGrid");
+    upGrid.setUrl("upGridUrl");
+    upGrid.on("drawcell", onDrawCell);
 
-	downGrid = nui.get("downGrid");
-	downGrid.setUrl("downGridUrl");
+    downGrid = nui.get("downGrid");
+    downGrid.setUrl("downGridUrl");
+    downGrid.on("drawcell", onDrawCell);
 
-	upGrid.on("selectionchanged",function(e) {
-        onupGridSelectionchanged(e);
+    init();
+    quickSearch(menuBtnDateQuickSearch, 0, '今日');
+
+    upGrid.on("selectionchanged", function () {
+        onupGridSelectionchanged();
     });
 
-	init();
-
-	search();
 });
 
-function init(){	
-	initCarBrand("carBrandList", function(){
+function init() {
+    initCarBrand("carBrandList", function () {
         var data = nui.get("carBrandList").getData();
-        data.forEach(function(v) {
+        data.forEach(function (v) {
             carBrandHash[v.id] = v;
         });
-    });	
+    });
 
- 	initCarSeries("carSeriesList", "", function(){
+    initCarSeries("carSeriesList", "", function () {
         var data = nui.get("carSeriesList").getData();
-        data.forEach(function(v) {
+        data.forEach(function (v) {
             carSeriesHash[v.id] = v;
         });
-    });	
+    });
 
- 	initMember("mtAdvisorList", function(){
+    initMember("mtAdvisorList", function () {
         var data = nui.get("mtAdvisorList").getData();
-        data.forEach(function(v) {
+        data.forEach(function (v) {
             mtAdvisorHash[v.id] = v;
         });
-    });	   
+    });
 
- 	initServiceType("bisinessList", function(){
+    initServiceType("bisinessList", function () {
         var data = nui.get("bisinessList").getData();
-        data.forEach(function(v) {
+        data.forEach(function (v) {
             serviceTypeHash[v.id] = v;
+        });
+    });
+
+    initDicts({
+        scoutModeList: SCOUT_MODE, //跟进方式
+        scoutReustList: IS_USABLED //跟踪状态
+    }, function () {
+        var data = nui.get("scoutModeList").getData();
+        data.forEach(function (v) {
+            scoutModeHash[v.customid] = v;
+        });
+        var data = nui.get("scoutReustList").getData();
+        data.forEach(function (v) {
+            scoutResutHash[v.customid] = v;
         });
     });
 }
 
 var currType = 0;
 
-function quickSearch(ctlid, value, text){
+function quickSearch(ctlid, value, text) {
     ctlid.setValue(value);
     ctlid.setText(text);
     currType = value;
-    onSearch();
+    doSearch();
 }
 
-function search() {
-    
-    doSearch(param);
+function doSearch() {
+    var params = getSearchParam();
+
+    upGrid.load({
+        params: params,
+        token: token
+    });
 }
 
 function getSearchParam() {
-	var params = {};
+    var params = {};
     params.mtAdvisorId = nui.get("mtAdvisorList").getValue();
     params.carNo = nui.get("carNo").getValue();
     params.contactorTel = nui.get("contactorTel").getValue();
@@ -97,91 +115,80 @@ function getSearchParam() {
     } else if (d == 1) {
         params.yesterday = 1;
         params.startDate = getPrevStartDate();
-        params.endDate = addDate(getPrevEndDate(), 1);        
-    }  else if (d == 2) {
+        params.endDate = addDate(getPrevEndDate(), 1);
+    } else if (d == 2) {
         params.thisWeek = 1;
         params.startDate = getWeekStartDate();
-        params.endDate = addDate(getWeekEndDate(), 1);        
+        params.endDate = addDate(getWeekEndDate(), 1);
     } else if (d == 3) {
         params.lastWeek = 1;
         params.startDate = getLastWeekStartDate();
-        params.endDate = addDate(getLastWeekEndDate(), 1);        
+        params.endDate = addDate(getLastWeekEndDate(), 1);
     } else if (d == 4) {
         params.thisMonth = 1;
         params.startDate = getMonthStartDate();
-        params.endDate = addDate(getMonthEndDate(), 1);        
+        params.endDate = addDate(getMonthEndDate(), 1);
     } else if (d == 5) {
         params.lastMonth = 1;
         params.startDate = getLastMonthStartDate();
-        params.endDate = addDate(getLastMonthEndDate(), 1);        
+        params.endDate = addDate(getLastMonthEndDate(), 1);
     }
 
     var status = menuBtnStatusQuickSearch.getValue();
 
     if (status != -1) {
         params.status = status;
-    } 
+    }
 
     return params;
 }
 
-function doSearch(params) {
-	var param = getSearchParam();
-
-	upGrid.load({
-        params: params,
-        token: token
-    });
-}
 
 function onupGridSelectionchanged(e) {
-    var row = e.record;
+    var row = upGrid.getSelected();
     if (!row) return;
 
     var status = row.status;
 
-    if (status != 0) nui.get("btnEdit").disable();
-    if (status != 0) nui.get("btnconfirm").disable();
-    if (status != 1) nui.get("btnNewBill").disable();
-    if (status > 1) nui.get("btnCancel").disable();
-    if (status > 1) nui.get("btnCall").disable();
-    
+    var btnEdit = nui.get("btnEdit");
+    var btnconfirm = nui.get("btnconfirm");
+    var btnNewBill = nui.get("btnNewBill");
+    var btnCancel = nui.get("btnCancel");
+    var btnCall = nui.get("btnCall");
 
-    getPrebookById(row.id,function(data)
-    {
-        nui.unmask();
-        data = data||{};
-        if(data.prebook)
-        {
-            var prebook = data.prebook;
-            basicInfoForm.setData(prebook);
-            carBrandIdEl.doValueChanged();
-            nui.get("carId").setText(prebook.carNo);
-            resetBtn();
-            if(prebook.bookStatus == "040901")
-            {
-                nui.get("cancelBtn").disable();
-            }
-            else{
-                nui.get("fllowUpBtn").disable();
-            }
-        }
-        else
-        {
-            nui.alert("数据加载失败");
-        }
-    });
+    if (status == 0) { //待确认
+        btnEdit.enable();
+        btnconfirm.enable();
+        btnNewBill.disable();
+        btnCancel.enable();
+        btnCall.enable();
+    } else if (status == 1) { //已确认
+        btnEdit.disable();
+        btnconfirm.disable();
+        btnNewBill.enable();
+        btnCancel.enable();
+        btnCall.enable();
+    } else if (status >= 2) { //已开单，已取消，已评价
+        btnEdit.disable();
+        btnconfirm.disable();
+        btnNewBill.disable();
+        btnCancel.disable();
+        btnCall.disable();
+    }
 
-    rightGrid.load({
-    	token:token,
-        bookId:row.id
+    var params = {};
+    params.serviceId = row.id;
+
+    downGrid.load({
+        params: params,
+        token: token
     });
 }
 
 function onDrawCell(e) {
     var field = e.field;
 
-    if(field == "serviceTypeId" && serviceTypeHash[e.value]) {
+    if (field == "serviceTypeId" && serviceTypeHash[e.value]) {
         e.cellHtml = serviceTypeHash[e.value].name;
     } else if (field == "carBrandId" && carBrandHash[e.value]) {
         e.cellHtml = carBrandHash[e.value].name;
@@ -189,111 +196,89 @@ function onDrawCell(e) {
         e.cellHtml = carSeriesHash[e.value].name;
     } else if (field == "prebookCategory" && prebookCategoryHash[e.value]) {
         e.cellHtml = prebookCategoryHash[e.value].name;
+    } else if (field == "status" && prebookStatusHash[e.value]) {
+        e.cellHtml = prebookStatusHash[e.value].name;
+    } else if (field == "scoutMode" && scoutModeHash[e.value]) {
+        e.cellHtml = scoutModeHash[e.value].name;
+    } else if (field == "isUsabled" && scoutResutHash[e.value]) {
+        e.cellHtml = scoutResutHash[e.value].name;
     }
 }
 
-/*设置时间菜单*/
-function setMenu(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-   
-}
-
-function setMenu1(obj, target, value){
-    target.setValue(value);
-    target.setText(obj.getText());   
-   
-}
-
-
-function selectedchange(){
-	var s = upGrid.getSelected();
-	 var params = {
-		serviceId:s.id
-	};
-	
-	downGrid.load({
-        params:params,
-        token:token
-	});
-}
-
-function addRow(){
-	nui.open({
-		url: "BookingManagementEdit.jsp",
-		title: "新增", width: 800, height: 500,
-		onload: function () {
-
-		},
-		ondestroy: function (action) {
-			 upGrid.reload();
-		}
-	});
-}
-
-function editRow(){	
-	var row=upGrid.getSelected();
-	if(row==undefined)
-		{
-		nui.alert("请选中一条数据");
-		return;
-		}
-	 nui.open({
+function addRow() {
+    nui.open({
         url: "BookingManagementEdit.jsp",
-        title: "修改", width: 800, height: 500,
+        title: "新增预约", width: 700, height: 380,
+        onload: function () {
+
+        },
+        ondestroy: function (action) {
+            upGrid.reload();
+        }
+    });
+}
+
+function editRow() {
+    var row = upGrid.getSelected();
+    if (row == undefined) {
+        nui.alert("请选中一条数据");
+        return;
+    }
+    nui.open({
+        url: "BookingManagementEdit.jsp",
+        title: "修改", width: 700, height: 380,
         onload: function () {
             var iframe = this.getIFrameEl();
             var param = { action: "edit", data: row };
             iframe.contentWindow.SetData(param);
         },
         ondestroy: function (action) {
-         	 upGrid.reload();
-
+            upGrid.reload();
         }
     });
 }
 
-function typeChange(type,status){
-	var row=upGrid.getSelected();
-	if(row==undefined){
-		nui.alert("请选中一行");
-	}
-	if(type=="确认"&&row.status=='1'){
-		nui.alert("此行已确认");
-		return;
-	}
-	if(type=="开单"&&row.status=='2'){
-		nui.alert("此行已开单");
-		return;	
-	}
-	if(type=="取消"&&row.status=='3'){
-		nui.alert("此行已取消");
-		return;
-	}
-	var s={
-			id:row.id,
-			status:status
-	};
-		nui.ajax({
-			url : baseUrl
-					+ "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
-			type : 'post',
-			data : nui.encode({
-				param : s
-			}),
-			success : function(data) {
-				if (data.errCode == "S") {
-					nui.alert(type+"成功!");
-				}else{
-					nui.alert(type+"失败!");
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				nui.alert(jqXHR.responseText);
-			}
-		});
-	
-	
+function typeChange(type, status) {
+    var row = upGrid.getSelected();
+    if (row == undefined) {
+        nui.alert("请选中一行");
+    }
+    if (type == "确认" && row.status == '1') {
+        nui.alert("此行已确认");
+        return;
+    }
+    if (type == "开单" && row.status == '2') {
+        nui.alert("此行已开单");
+        return;
+    }
+    if (type == "取消" && row.status == '3') {
+        nui.alert("此行已取消");
+        return;
+    }
+    var s = {
+        id: row.id,
+        status: status
+    };
+    nui.ajax({
+        url: baseUrl
+            + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
+        type: 'post',
+        data: nui.encode({
+            param: s
+        }),
+        success: function (data) {
+            if (data.errCode == "S") {
+                nui.alert(type + "成功!");
+            } else {
+                nui.alert(type + "失败!");
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            nui.alert(jqXHR.responseText);
+        }
+    });
+
+
 }
 
 

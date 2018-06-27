@@ -228,7 +228,7 @@ function stoporstart(){
         emp = row;
         emp.passWord='000000';
         nui.open({
-            url: baseUrl + "/common/setAccount.jsp?token="+token,
+            url: webPath + sysDomain + "/common/setAccount.jsp?token="+token,
             width: 330,      //宽度
             height: 180,    //高度
             title: "设置密码",      //标题 组织编码选择

@@ -77,7 +77,7 @@ function onAddNode()
 }
 var saveStraUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveSellStrategy.biz.ext";
 function onSaveNode(){
-    var data = rightPartGrid.getChanges();
+    var data = straGrid.getChanges();
     if(data.length<=0) return;
     var addList = straGrid.getChanges("added");
     var updateList = straGrid.getChanges("modified");

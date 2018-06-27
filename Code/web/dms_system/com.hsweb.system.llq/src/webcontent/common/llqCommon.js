@@ -1,7 +1,8 @@
 //http://14.23.35.20:6288/dms/com.hsweb.system.llq.call.doCall.biz.ext
 
 var url = "com.hsweb.system.llq.call.doCall.biz.ext";
-var llq_pre_url = "https://llqapitm.007vin.com";
+var llq_pre_url = "https://llqapitm.007vin.com";//http://124.172.221.179:81";
+
 function loadData(url, params, callBack){
 	callAjax(url, params, processRs);
     nui.ajax({
@@ -91,6 +92,131 @@ function processKeyValue(list){
 /*
 *零件图片处理
 */
+var imgSize = {
+    ratio: 1,
+    w: 0,
+    h: 0
+}
+var offset = {
+    x: 0,
+    y: 0
+}
+var partData = {}
+
 function setPartImg(data, rs){
-    vinPartImg.attr("src", data.imgurl);
+    partData = data;
+    $('.j_part-img').attr({'src': "", 'width': '0px', height: '0px'}).show();
+    loading();
+    var img = new Image();
+    img.onload = function () {
+        imgSize.w = img.width;
+        imgSize.h = img.height;
+        if (($('.j_part-img-container').width() / img.width) * 10000 > ($('.j_part-img-container').height() / img.height) * 10000) {
+            imgSize.scale = $('.j_part-img-container').width() / img.width;
+        } else {
+            imgSize.scale = $('.j_part-img-container').height() / img.height;
+        }
+        
+        offset.x = 0;
+        offset.y = ($('.j_part-img-container').height() - imgSize.h * imgSize.scale) / 2;
+
+        $('.j_part-img').attr({'src': data.imgurl, 'width': imgSize.w * imgSize.scale + 'px', height: imgSize.h * imgSize.scale + 'px'}).show();
+
+
+        var html = '';
+	    data.mapdata.forEach(function(item, index) {
+	        var coords = [
+	          item.maxx * imgSize.scale,
+	          item.maxy * imgSize.scale,
+	          item.minx * imgSize.scale,
+	          item.miny * imgSize.scale
+	        ];
+	        html +='<area shape="rect" coords="' + coords.join(',') + '" data-index="'+ index +'" data-num="' + item.num + '" />';
+	    });
+	    $('.j_part-img-map').html(html);
+    }
+
+    img.src = data.imgurl;
+    //$('.part-img-container').show();
+    
+}
+
+function loading() {
+    nui.mask({
+        el: document.getElementById("vin_part_img"),
+        cls: 'mini-mask-loading',
+        html: '加载中...'
+    });
+    setTimeout(function () {
+        nui.unmask(document.getElementById("vin_part_img"));
+    }, 1000);
+}
+
+
+$('.j_part-img-container area').live('click', function() {
+    var num = $(this).data('num');
+    renderMapRect(num);
+
+    clearSelectedCls();
+    gridParts.clearSelect(false);
+    addRowCls(num);
+    //$('.part-group').removeClass('active')
+    //$('.part-group[key="itid_'+ num +'"]').addClass('active')
+});
+
+//清除选中行的样式
+function clearSelectedCls(){
+    var rows = gridParts.findRows(function(row) {
+        if (row){
+            gridParts.removeRowCls(row, "select-row");
+            return true;
+        }  
+    });
+}
+
+//添加行样式
+function addRowCls(num){
+    var rows = gridParts.findRows(function(row) {
+        if (row.num && row.num == num){
+            gridParts.addRowCls(row, "select-row");
+            return true;
+        }  
+    });
+
+    if(rows && rows.length > 0) {
+        //定位滚动条到行
+        gridParts.scrollIntoView(rows[0]);
+    }
+}
+
+function renderMapRect(num) {
+  var html = ''
+  partData.mapdata.forEach(function(item, index) {
+    if (item.num == num) {
+      var style = [
+        'top:' + (item.miny * imgSize.scale) + 'px',
+        'left:' + (item.minx * imgSize.scale - 2 + offset.x) + 'px',
+        'width:' + ((item.maxx- item.minx ) * imgSize.scale + 0) + 'px',
+        'height:' + ((item.maxy- item.miny ) * imgSize.scale + 0) + 'px',
+      ]
+      html += '<div style="' + style.join(';') + '" class="part-rect"></div>'
+    }
+  })
+  $('.j_part-map-rect').html(html);
+}
+
+function renderMapRectDash(num) {
+  var html = ''
+  partData.mapdata.forEach(function(item, index) {
+    if (item.num == num) {
+      var style = [
+        'top:' + (item.miny * imgSize.scale) + 'px',
+        'left:' + (item.minx * imgSize.scale - 2 + offset.x) + 'px',
+        'width:' + ((item.maxx- item.minx ) * imgSize.scale + 0) + 'px',
+        'height:' + ((item.maxy- item.miny ) * imgSize.scale + 0) + 'px',
+      ]
+      html += '<div style="' + style.join(';') + '" class="part-rect_dash"></div>'
+    }
+  })
+  $('.j_part-map-rect').html(html);
 }

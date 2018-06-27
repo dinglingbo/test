@@ -101,7 +101,7 @@
 
     <div class="main">
         <div id="mainTabs" class="mini-tabs main-tabs" activeIndex="0" style="height:100%;" plain="false"
-             buttons="#tabsButtons" arrowPosition="side" >
+             buttons="#tabsButtons" arrowPosition="side">
             <div name="index" iconCls="fa-home" title="首页"> 
                 <iframe id="formIframe" src="<%=request.getContextPath()%>/purchase/indexCloudPart_view0.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             </div>
@@ -129,6 +129,27 @@
             tab = tabs.addTab(tab);
         }
         tabs.activeTab(tab);
+    }
+    
+    function activeTabAndInit(item,params) {
+        var tabs = mini.get("mainTabs");
+        var tab = tabs.getTab(item.id);
+        if (!tab) {
+            tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
+            tab = tabs.addTab(tab);
+        }
+        tabs.activeTab(tab);
+        
+        doInitTab(params);
+    }
+    
+    function doInitTab(params){
+    	var tabs = mini.get("mainTabs");
+    	var tab = tabs.getActiveTab();
+    	var iframe = tabs.getTabIFrameEl(tab);
+    	if(iframe.contentWindow && iframe.contentWindow.setInitData){
+    		iframe.contentWindow.setInitData(params);
+    	}
     }
     
     function toClose(){
@@ -164,7 +185,7 @@
 			height: "200px"
 		});
     }
-      
+    
     function toMax(){
         launchFullscreen(document.documentElement);
     }

@@ -1,6 +1,7 @@
 var vinPartImg;//零件图片
 //var gridCfg; //车辆配置
 var gridMainGroup; //主组
+var subGroups;//分组
 var gridSubGroup;//分组
 var gridParts;//零件
 var currDg;
@@ -13,6 +14,7 @@ $(document).ready(function(v){
     gridSubGroup = nui.get("gridSubGroup");
     gridParts = nui.get("gridParts");
     ntab = nui.get("tabs");
+    subGroups = $("#subGroups");
     
     gridMainGroup.on("select", function (e) {//查分组信息rowclick
         /* var column = e.column;
@@ -34,28 +36,7 @@ $(document).ready(function(v){
     });
     
     gridSubGroup.on("rowclick", function (e) {//查零件信息
-        var row = gridSubGroup.getSelected();
-        if (row.auth) {
-            var params = {
-                "url": llq_pre_url + "/ppycars/parts",
-                "params":{
-                    "brand":brand,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setGridPartsData);
-            
-            params = {
-                "url": llq_pre_url + "/ppycars/subimgs",
-                "params":{
-                    "brand":brand,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setPartImg);
-        }
+        clickGdSubGroup();
     });
     
     gridParts.on("drawcell", function (e) { //表格绘制
@@ -66,9 +47,60 @@ $(document).ready(function(v){
         if(field == "detail"){
             var html = '<a class="icon-hedit" href="javascript:openDetail(\'' + record.pid + '\')">' + value + '</a>';
             e.cellHtml = html;
+        }else if(field == "opt"){
+            var html = '<a class="" href="javascript:addPart()"><i class="fa fa-shopping-cart"></i></a>';
+            e.cellHtml = html;
+        }
+    });
+
+    gridParts.on("selectionchanged", function (e) { //表格绘制
+        var row = e.selected;
+        if(row){ 
+            renderMapRect(row.num);
+
+            clearSelectedCls();
+            gridParts.addRowCls(row, "select-row");
         }
     });
 });
+
+/*
+*分组事件
+*/
+function clickGdSubGroup(){
+    var row = gridSubGroup.getSelected();
+    if (row.auth) {
+        var params = {
+            "url": llq_pre_url + "/ppycars/parts",
+            "params":{
+                "brand":brand,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setGridPartsData);
+        
+        params = {
+            "url": llq_pre_url + "/ppycars/subimgs",
+            "params":{
+                "brand":brand,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setPartImg);
+    }
+}
+
+/*
+*子组图/表
+*/
+function showSubGroups(gridObj){
+    $('#imgSubGroup').hide();
+    $('#gridSubGroup').hide();
+    
+    gridObj.show();  
+}
 
 /*
 *获取主组列表
@@ -110,7 +142,32 @@ function setgridMainGroup(data){
 */
 function setSubGroupData(data){
     gridSubGroup.setData(data);
-    showInfoRightGrid(gridSubGroup);
+
+    //img
+    var len = data.length;
+    var imgSubGroup = $("#imgSubGroup");
+    imgSubGroup.children().remove();
+    var img = "";
+    for(var i=0;i<len;i++){
+        img = '<a class="sub-group" data=' + i + '>'
+            + '<div class="LazyLoad is-visible" style="height:140px; width:140px;">'
+            + '    <img src="' + data[i].url + '" alt="sub-group-img" class="sub-group-img"/>'
+            + '</div>'
+            + '<div class="label">' + data[i].mid + '</div>'
+            + '<div class="float-panel">' + data[i].subgroupname + '</div>'
+        + '</a>';
+        imgSubGroup.append(img);
+        
+    }
+    $(".sub-group").bind("click", function(obj){//.sub-group-img
+        var rowid = $(this).attr("data");
+        var row = gridSubGroup.getRow(parseInt(rowid));
+        //gridSubGroup.select(row, true);
+        gridSubGroup.setSelected(row);
+        clickGdSubGroup();
+        //clickGdSubGroup(row);
+    });
+    showInfoRightGrid(subGroups);//123
 }
 
 /*
@@ -150,6 +207,8 @@ function openDetail(pid){
 function showInfoLeftGrid(gridObj){
     gridMainGroup.hide();
     vinPartImg.hide();
+    $('.j_part-img-map').html('');
+    $('.j_part-map-rect').html('');
     
     gridObj.show();  
 }
@@ -159,8 +218,10 @@ function showInfoLeftGrid(gridObj){
 */
 function showInfoRightGrid(gridObj){
     //gridCfg.hide();
-    gridSubGroup.hide();
+    //$('#imgSubGroup').hide();123
+    //gridSubGroup.hide();
     gridParts.hide();
+    subGroups.hide();
     
     gridObj.show();
     //var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
@@ -191,4 +252,18 @@ function setBgColor(obj){
     }else{
         obj.style.background = "#e0d7d7";
     }
+}
+
+/*
+*添加购物车
+*/
+function addPart(){   
+    try{
+        if(parent.showPanel){
+            parent.showPanel('PART');
+        }
+        if(parent.addToCartGrid){
+            parent.addToCartGrid('VIN', gridParts.getSelected());
+        }
+    }finally{}
 }

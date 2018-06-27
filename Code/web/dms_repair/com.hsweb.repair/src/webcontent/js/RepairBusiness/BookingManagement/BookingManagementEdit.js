@@ -46,7 +46,7 @@ function init() {
 
 
 function SetData(params) {
-	basicInfoForm = new nui.Form("#basicInfoForm");	
+    basicInfoForm = new nui.Form("#basicInfoForm");	
 	basicInfoForm.setData(params.data);
 }
 
@@ -78,19 +78,22 @@ function onOk() {
         url: baseUrl + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
         type: 'post',
         data:JSON.stringify({
-            param: main,
-            token:token
+            rpsPrebook: main,
+            action: "edit",
+            token: token
         }),        
         success: function(data) {
             if (data.errCode == "S") {                
                 window.CloseOwnerWindow("ok");
             } else {
+                nui.unmask();
                 nui.alert(data.errMsg || "保存失败");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             nui.unmask();
-            nui.alert("网络出错");            
+            console.log(jqXHR.responseText);
+            nui.alert("网络出错，保存失败");           
         }
     });
 }

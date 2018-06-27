@@ -238,47 +238,74 @@ function editRow() {
     });
 }
 
-function typeChange(type, status) {
-    var row = upGrid.getSelected();
-    if (row == undefined) {
-        nui.alert("请选中一行");
-    }
-    if (type == "确认" && row.status == '1') {
-        nui.alert("此行已确认");
-        return;
-    }
-    if (type == "开单" && row.status == '2') {
-        nui.alert("此行已开单");
-        return;
-    }
-    if (type == "取消" && row.status == '3') {
-        nui.alert("此行已取消");
-        return;
-    }
-    var s = {
-        id: row.id,
-        status: status
-    };
-    nui.ajax({
-        url: baseUrl
-            + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
-        type: 'post',
-        data: nui.encode({
-            param: s
-        }),
-        success: function (data) {
-            if (data.errCode == "S") {
-                nui.alert(type + "成功!");
-            } else {
-                nui.alert(type + "失败!");
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            nui.alert(jqXHR.responseText);
-        }
-    });
-
-
+function confirmRow() {
+    updateRpspreBookStatus('confirm');
 }
 
+function cancelBill() {
+    updateRpspreBookStatus('cancel');
+}
 
+function updateRpspreBookStatus(action) {
+    var row = upGrid.getSelected();
+    if (!row || row == undefined) {
+        nui.alert("请选中一条数据");
+        return;
+    }
+
+    row.status = action == "confirm" ? 1 : 
+                 action == "newBill" ? 2 :
+                 action == "cancel" ? 3 : 1;
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+
+    nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
+        type: 'post',
+        data:JSON.stringify({
+            rpsPrebook: row,
+            action: action,
+            token: token
+        }),        
+        success: function(data) {
+            if (data.errCode == "S") {
+                nui.unmask();
+                nui.alert("保存成功");     
+                upGrid.reload();
+            } else {
+                nui.unmask();
+                nui.alert(data.errMsg || "保存失败");
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            nui.unmask();
+            console.log(jqXHR.responseText);
+            nui.alert("网络出错，保存失败");           
+        }
+    });
+}
+
+function callBill() {
+    var row = upGrid.getSelected();
+    if (!row || row == undefined) {
+        nui.alert("请选中一条数据");
+        return;
+    }
+    
+    nui.open({
+        url: "BookingScout.jsp",
+        title: "预约跟进", width: 700, height: 350,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var param = { action: "edit", data: row };
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+            upGrid.reload();
+        }
+    });   
+}

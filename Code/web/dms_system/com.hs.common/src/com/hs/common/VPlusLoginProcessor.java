@@ -75,7 +75,7 @@ public class VPlusLoginProcessor extends HttpPageFlowProcessor {
 				int size = 2;
 				Object[] params = new Object[size];
 				params[0] = "ly01";
-				params[1] = "000000";
+				params[1] = "sin263";
 				try {
 					result = MUOCommonUtil.invokeBizWithMUO(componentName,
 							operationName, params, session);

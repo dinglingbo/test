@@ -13,8 +13,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>    
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/partDetail.js?v=1.6" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/vin/js/partDetail.js?v=1.6" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit">
@@ -23,21 +23,21 @@
         <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
 		     onactivechanged="changeTabs" >
             <!--基础信息-->
-            <%@include file="/llq/vin/partDetail_basic.jsp" %>
+            <%@include file="/llqv2/vin/partDetail_basic.jsp" %>
             <!--渠道价格-->
-            <%@include file="/llq/vin/partDetail_price.jsp" %>
+            <%@include file="/llqv2/vin/partDetail_price.jsp" %>
             <!--替换件-->
-            <%@include file="/llq/vin/partDetail_replace.jsp" %>
+            <%@include file="/llqv2/vin/partDetail_replace.jsp" %>
             <!--品牌件-->
-            <%@include file="/llq/vin/partDetail_article.jsp" %>
+            <%@include file="/llqv2/vin/partDetail_article.jsp" %>
             <!--组件-->
-            <%@include file="/llq/vin/partDetail_compt.jsp" %>
+            <%@include file="/llqv2/vin/partDetail_compt.jsp" %>
             <!--技术信息-->
-            <%@include file="/llq/vin/partDetail_baseinfo.jsp" %>
+            <%@include file="/llqv2/vin/partDetail_baseinfo.jsp" %>
             <!--适用车型-->
-            <%@include file="/llq/vin/partDetail_compatible.jsp" %>
+            <%@include file="/llqv2/vin/partDetail_compatible.jsp" %>
             <!--库存分布-->
-            <%@include file="/llq/vin/partChainStock.jsp" %>
+            <%@include file="/llqv2/vin/partChainStock.jsp" %>
         </div>
     </div>
 </body>

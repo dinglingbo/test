@@ -61,7 +61,7 @@ function query_vin(type){
             document.getElementById("mainFrame1").src=webPath + sysDomain + "/com.hsweb.system.llqv2.brandQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995&brand=" + brand;
             break;
         case 2:
-            document.getElementById("mainFrame2").src=webPath + sysDomain + "/com.hsweb.system.llqv2.vin.partQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
+            document.getElementById("mainFrame2").src=webPath + sysDomain + "/com.hsweb.system.llqv2.partQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
             break;
         /* default:
         	document.getElementById("mainFrame").src=webPath + sysDomain + "/com.hsweb.system.llqv2.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";

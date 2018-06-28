@@ -15,7 +15,7 @@
     <link href="<%=sysDomain%>/llqv2/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
     <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llqv2/vin/js/vinQuery.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/vin/js/vinQuery.js?v=1.20" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -45,7 +45,9 @@
         </div>
         <div showCollapseButton="false" style="border:0;">
             <div class="" id="partForm" style="width:100%;height:40px;">
+                  <br/>
                   <table class="" >
+                      <!-- 目前不支持短vin查询
                       <tr class="">
                             <td >
                                 <div id="rbl_brand" class="nui-radiobuttonlist"  repeatLayout="table" 
@@ -54,6 +56,7 @@
                                 </div>
                             </td>
                       </tr>
+                      -->
                       <tr class="">
                             <td >
                                 输入VIN(全部品牌)<input class="nui-textbox" width="350px" id="vin" name="vin" enabled="true" emptyText="请输入17VIN"/>

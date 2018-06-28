@@ -348,5 +348,109 @@
             </dynamic> 
 				
 	</select>
+	
+	<select id="querySellOrderPartChoose" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 	 a.id id,
+				 a.orgid orgid,
+				 a.code code,
+				 a.name name,
+				 a.full_name fullName,
+				 a.brand_code brandCode,
+				 a.oem_code oemCode,
+				 a.part_brand_id partBrandId,
+				 a.unit unit,
+				 a.spec spec,
+				 a.is_disabled isDisabled,
+				 a.apply_car_model as applyCarModel,
+			     b.stock_qty as stockQty,
+                 b.outable_qty as outableQty,
+                 b.on_road_qty as onRoadQty,
+			     b.order_qty as orderQty
+		FROM wb_common.com_attribute a
+		
+			<isNotNull prepend = "" property = "showStock">
+				<isNotEqual prepend = "" property = "showStock" compareValue="1">
+					left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+				</isNotEqual>
+				
+				<isEqual prepend = "" property = "showStock" compareValue="1">
+					inner join pj_part_stock b
+					on a.id = b.part_id 
+				</isEqual>
+				
+			</isNotNull>
+			
+			<isNull prepend = "" property = "showStock">
+					left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+			</isNull>
+			
+		where 1=1
+    	<dynamic>
+    		<isNotNull prepend = "" property = "showStock">
+    		
+				<isEqual prepend = "" property = "showStock" compareValue="1">
+					and b.orgid = #orgid#
+				
+					and b.outable_qty > 0
+				</isEqual>
+				
+				<isNotEqual prepend = "" property = "showStock" compareValue="1">
+					and (a.orgid = #orgid# or a.orgid = 0) 
+				</isNotEqual>
+				
+			</isNotNull>
+			
+			<isNull prepend = "" property = "showStock">
+    		
+				and (a.orgid = #orgid# or a.orgid = 0) 
+				
+			</isNull>
+			
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (a.PART_BRAND_ID = #partBrandId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="carTypeIdF">  
+                (a.car_type_id_f = #carTypeIdF#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">  
+                (a.car_type_id_s = #carTypeIdS#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">  
+                (a.car_type_id_t = #carTypeIdT#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partId">  
+                (a.id = #partId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partCode">  
+                (a.query_code like '%$partCode$%' or a.code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (a.full_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                    (a.code in ($partCodeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">  
+                (a.apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (a.name_py like '%$namePy$%')
+            </isNotEmpty>  
+            <!--如果是全字母，可能是拼音，也可能是编码-->
+            <isNotEmpty prepend="and" property="codePy">  
+                (a.name_py like '%$codePy$%' or a.query_code like '$codePy$%')
+            </isNotEmpty>  
+            <!--一般按库存的可售数量由多到少排序-->
+            <isNotEmpty prepend="order by " property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+        
+    </select>
     
 </sqlMap>

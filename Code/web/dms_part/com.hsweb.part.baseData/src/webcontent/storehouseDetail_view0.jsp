@@ -55,8 +55,8 @@
         <div class="row">
             <span class="title title-width2">是否禁用：</span>
             <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0"/>
-            <span class="title title-width2">是否可售仓：</span>
-            <input name="sellSign" class="nui-checkbox" trueValue="1" falseValue="0"/>
+            <!-- <span class="title title-width2">是否可售仓：</span>
+            <input name="sellSign" class="nui-checkbox" trueValue="1" falseValue="0"/> -->
         </div>
     </div>
 </div>

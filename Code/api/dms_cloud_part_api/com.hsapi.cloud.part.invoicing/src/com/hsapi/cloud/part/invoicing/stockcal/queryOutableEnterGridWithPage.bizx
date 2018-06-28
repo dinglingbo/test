@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryOutableEnterGridWithPage" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.stockcal.chooseEnterOutableDetail" title="Administrator&#x9;18-6-27 下午3:12">
+    <location x="65" y="28"/>
+    <size height="100" width="401"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="total  page/totalPage" title="Administrator&#x9;17-7-4 上午1:16">
     <location x="645" y="240"/>
     <size height="100" width="190"/>
@@ -30,24 +34,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">pageSize</process:from>
-      <process:to type="query">page/size</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pageIndex</process:from>
-      <process:to type="query">page/currentPage</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="value">true</process:from>
+      <process:from type="expression" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">pageSize*pageIndex</process:from>
-      <process:to type="query">page/begin</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pageSize</process:from>
-      <process:to type="query">page/length</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
@@ -68,14 +56,6 @@
     <location x="420" y="153"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">page/count</process:from>
-      <process:to type="query">totalPage</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">page/count</process:from>
-      <process:to type="query">total</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="422" y="189"/>
@@ -86,6 +66,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="300" y="153"/>
@@ -117,9 +98,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="java.util.HashMap[]" name="partlist" type="query" valueType="Java">partlist</process:return>
-      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
-      <process:return id="2" language="Int" name="totalPage" type="query" valueType="Primitive">totalPage</process:return>
-      <process:return id="3" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
+      <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -136,15 +115,10 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
-    <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
-    <process:input description="" isArray="false" name="totalPage" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="partlist"/>
-    <process:output description="" isArray="false" name="total" primitiveType="Int"/>
-    <process:output description="" isArray="false" name="totalPage" primitiveType="Int"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

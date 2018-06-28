@@ -345,6 +345,30 @@
 			document.getElementById(tagName).click();
 		}
 	})()
+
+	//判断输入的信息是编码(全数字，数字+字母，数字+字母+符号)，名称(包含中文)，拼音(全字母)，目前不考虑全字母可能为编码的情况
+	function judgeConditionType(value){
+		//1代表编码，2代表名称，3代表拼音，-1输入信息有误
+		if(!value) return -1;
+		value = value.replace(/\s+/g, "");
+		var reg = /^[0-9]*$/;//纯数字
+		if(reg.test(value)){
+			return 1;
+		}
+
+		var numReg = /[0-9]/;
+		var zmReg = /[a-z]/i;
+		if(numReg.test(value) && zmReg.test(value)){
+			return 1;
+		}
+
+		var reg = new RegExp("[\\u4E00-\\u9FFF]+","g"); 
+		if(reg.test(value)){
+			return 2
+		}
+
+		return 3;
+	}
     
 </script>
 <style type="text/css">

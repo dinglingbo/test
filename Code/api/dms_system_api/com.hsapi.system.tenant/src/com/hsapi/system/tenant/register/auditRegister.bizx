@@ -296,7 +296,7 @@
     <figSize height="17" width="41"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>transactionrollback1</targetNode>
@@ -654,7 +654,7 @@
       <targetNode>invokePojo8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

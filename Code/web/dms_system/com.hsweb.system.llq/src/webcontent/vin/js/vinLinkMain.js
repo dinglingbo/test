@@ -50,7 +50,7 @@ function query_vin(type){
     }
     
     if(catchs[type]){
-        return;
+        //return;
     }
     
     switch (type){

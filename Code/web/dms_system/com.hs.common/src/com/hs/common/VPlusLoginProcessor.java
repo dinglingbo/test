@@ -62,7 +62,7 @@ public class VPlusLoginProcessor extends HttpPageFlowProcessor {
 				if (RedisUtils.exists(userKey)) {// userKey有效
 					System.out.println("已获取userKey：" + userKey);
 					setSessionFromRedis(session, key, userKey);
-					isLogin = true;
+					// isLogin = true;
 				}
 			}
 			if (!isLogin) {// 未登录
@@ -75,7 +75,7 @@ public class VPlusLoginProcessor extends HttpPageFlowProcessor {
 				int size = 2;
 				Object[] params = new Object[size];
 				params[0] = "ly01";
-				params[1] = "000000";
+				params[1] = "sin263";
 				try {
 					result = MUOCommonUtil.invokeBizWithMUO(componentName,
 							operationName, params, session);
@@ -94,7 +94,9 @@ public class VPlusLoginProcessor extends HttpPageFlowProcessor {
 			}
 		}
 		super.doProcess(request, response, parameterSet);
-		System.out.println("URL：" + request.getRequestURL().toString());
+		setSessionFromRedis(session, "token_" + token, "user_ly01");
+		System.out
+				.println("flow.ext URL：" + request.getRequestURL().toString());
 	}
 
 	private void setSessionFromRedis(HttpSession session, String tokenKey,

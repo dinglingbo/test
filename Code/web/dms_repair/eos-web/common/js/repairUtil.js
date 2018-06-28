@@ -222,6 +222,7 @@ function getAllInsuranceCompany(callback) {
 }
 var getCompBillNOUrl = window._rootSysUrl
 		+ "com.hs.common.uniq.getCompBillNO.biz.ext";
+		
 function getCompBillNO(billTypeCode, callback) {
 	var params = {};
 	params.billTypeCode = billTypeCode;

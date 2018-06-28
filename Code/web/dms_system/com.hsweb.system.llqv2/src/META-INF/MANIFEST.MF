@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.foundation
+eos-webCtxPath: llqv2
+Bundle-Vendor: Guine
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.system.llqv2
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.system.llqv2
+

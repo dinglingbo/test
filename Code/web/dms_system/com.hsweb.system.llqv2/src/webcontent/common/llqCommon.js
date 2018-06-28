@@ -1,6 +1,6 @@
 //http://14.23.35.20:6288/dms/com.hsweb.system.llq.call.doCall.biz.ext
 
-var url = "com.hsweb.system.llq.call.doCallV2.biz.ext";
+var url = "com.hsapi.system.llq.call.doCallV2.biz.ext";
 //var llq_pre_url = "https://llqapitm.007vin.com";//http://124.172.221.179:81  https://llqapitm.007vin.com
 var llq_pre_url = "http://124.172.221.179:81";
 function loadData(url, params, callBack){
@@ -192,6 +192,7 @@ function addRowCls(num){
 function renderMapRect(num) {
   var html = ''
   partData.mapdata.forEach(function(item, index) {
+    item = checkMapItem(item);
     if (item.num == num) {
       var style = [
         'top:' + (item.miny * imgSize.scale) + 'px',
@@ -208,6 +209,7 @@ function renderMapRect(num) {
 function renderMapRectDash(num) {
   var html = ''
   partData.mapdata.forEach(function(item, index) {
+    item = checkMapItem(item);
     if (item.num == num) {
       var style = [
         'top:' + (item.miny * imgSize.scale) + 'px',
@@ -219,4 +221,15 @@ function renderMapRectDash(num) {
     }
   })
   $('.j_part-map-rect').html(html);
+}
+
+function checkMapItem(item){
+    if(item instanceof Array){
+        item.num = item[4];
+        item.minx = item[0];
+        item.miny = item[1];
+        item.maxx = item[2];
+        item.maxy = item[3];
+    }
+    return item;
 }

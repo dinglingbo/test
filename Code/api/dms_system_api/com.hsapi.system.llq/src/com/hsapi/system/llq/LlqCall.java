@@ -1,4 +1,4 @@
-package com.hsweb.system.llq;
+package com.hsapi.system.llq;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -70,6 +70,40 @@ public class LlqCall {
 
 		sortMap.putAll(map);
 		return sortMap;
+	}
+	
+	@Bizlet("setHashKeyV2")
+	public void setHashKeyV2(Map<String, Object> params) {
+		String securityKey = params.get("securityKey").toString();
+		params.remove("securityKey");
+		Long time = (new Date()).getTime();// 1516266450.711719
+
+		String tms = time.toString().substring(0, 10);
+		params.put("time", tms);
+		System.out.println("tms=" + tms);
+		Map<String, Object> sortMap = sortMapByKey(params); // 按Key进行排序
+
+		StringBuffer s = new StringBuffer();
+		for (Map.Entry<String, Object> entry : sortMap.entrySet()) {
+			s.append(entry.getValue());
+			System.out.println(entry.getKey() + "：" + entry.getValue());
+		}
+
+		//
+		/*Object authObj = params.get("auth");
+		if (authObj != null) {
+			try {
+				params.put("auth",
+						URLEncoder.encode(authObj.toString(), "utf-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}*/
+
+		String hash = MD5.crypt(s.toString() + securityKey);
+		System.out.println("hash=" + hash);
+		params.put("hash", hash);
 	}
 
 	public static void main(String[] args) {

@@ -43,7 +43,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsweb.system.llq.call.doCall</process:partner>
+      <process:partner type="literal">com.hsapi.system.llq.call.doCall</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="url" type="literal" value="String" valueType="Primitive" pattern="reference">https://llq.007vin.com/search/vins</process:inputVariable>
         <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>

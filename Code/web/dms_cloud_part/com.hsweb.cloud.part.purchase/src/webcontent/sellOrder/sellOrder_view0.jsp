@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrder/sellOrder.js?v=2.8.4"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrder/sellOrder.js?v=2.8.5"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -118,7 +118,7 @@ body .mini-grid-row-selected{
                            showOkButton="false"
                            width="100%"
                            showClearButton="false"/>
-                </td>
+                </td> 
             </tr>
             <tr>
                 <td class="title">审核日期:</td>
@@ -193,7 +193,7 @@ body .mini-grid-row-selected{
 
 
 <div id="advancedMorePartWin" class="nui-window"
-     title="配件选择" style="width:550px;height:350px;"
+     title="配件选择" style="width:650px;height:350px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -202,6 +202,14 @@ body .mini-grid-row-selected{
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
+                    <input class="nui-textbox" width="100px" id="morePartCode" name="morePartCode" enabled="true" emptyText="编码"/>
+                    <input class="nui-textbox" width="100px" id="morePartName" emptyText="名称" selectOnFocus="true" name="morePartName"/>
+                    <span class="separator"></span>
+                    <input id="sortType" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                           value="1"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/> 
+                    <input class="nui-checkbox" id="showStock" trueValue="1" falseValue="0" text="库存数量>0"/>
+                    <span class="separator"></span>
+                    <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
                 </td>
@@ -213,69 +221,44 @@ body .mini-grid-row-selected{
                activeIndex="0" 
                style="width:100%; height:100%;" 
                plain="false" 
-               onactivechanged="">
-            <div title="配件选择" id="partInfoTab" name="partInfoTab" url="" >
-                <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:95%;"
-                   selectOnLoad="true"
-                   borderStyle="border:1;"
-                   showPager="false"
-                   dataField=""
-                   frozenStartColumn="0"
-                   frozenEndColumn="1"
-                   onrowdblclick="addSelectPart"
-                   allowCellSelect="true"
-                   editNextOnEnterKey="true"
-                   url="">
-                  <div property="columns">
-                      <div type="indexcolumn">序号</div>
-                      <div field="code" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                      <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OEM码"></div>
-                      <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="配件名称"></div>
-                      <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="品牌"></div>
-                      <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="车型"></div>
-                      <div field="fullName" name="comPartCode" width="200" headerAlign="center" header="配件全称"></div>
-                  </div>
-                </div>
-            </div> 
+               onactivechanged="onMoreTabChanged">
             <div title="批次选择" id="enterTab" name="enterTab" >
-                <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                <div id="enterGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      borderStyle="border:1;"
+                     showPager="true"
+                     pageSize="20"
+                     sizeList=[20,50,100,200]
                      dataField="partlist"
                      url=""
-                     ondrawcell="onPartGridDraw"
-                     onrowdblclick="onRowDblClick"
+                     sortMode="client"
+                     ondrawcell=""
+                     onrowdblclick=""
                      idField="id"
                      totalField="page.count"
-                     pageSize="50"
-                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
+                     allowCellSelect="true" allowCellEdit="false">
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
                                 <div field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                <div field="partCode" width="80" headerAlign="center" allowSort="true">编码</div>
+                                <div field="partCode" width="80" headerAlign="center" allowSort="true">配件编码</div>
                                 <div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
                                 <div field="enterUnitId" width="30" headerAlign="center" allowSort="true">单位</div>
                             </div>
                         </div>
                         <div header="库存信息" headerAlign="center">
                             <div property="columns">   
-                                <div field="outableQty" width="55px" headerAlign="center" allowSort="true">
-                                可出库数量
+                                <div field="stockQty" width="55px" headerAlign="center" allowSort="true">
+                                库存数量
+                                </div>   
+                                <div field="preOutQty" width="55px" headerAlign="center" allowSort="true">
+                                待出库数量
                                 </div>
-                                <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-                    仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-                                  url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
-                                  onvaluechanged="" emptyText=""  vtype="required"
-                                  /> 
-                    </div>
+                                <div field="storeId" width="60" headerAlign="center" allowSort="true">仓库</div>
                     <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true">
                                 仓位
                                 </div>
-                                <div field="serviceId" align="left" width="55px" headerAlign="center" allowSort="true">
-                                入库单号
-                                </div>
-                                <div field="auditDate" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true">
+                                <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true">
                                 入库日期
                                 </div>
                                 <div field="guestName" width="150px" headerAlign="center" allowSort="true">
@@ -283,6 +266,9 @@ body .mini-grid-row-selected{
                                 </div>  
                                 <div field="enterPrice" width="55px" headerAlign="center" allowSort="true">
                                 成本单价
+                                </div>
+                                <div field="serviceId" align="left" width="55px" headerAlign="center" allowSort="true">
+                                入库单号
                                 </div>
                             </div>
                         </div>
@@ -299,6 +285,38 @@ body .mini-grid-row-selected{
                     </div>
                 </div>
             </div>
+            <div title="配件选择" id="partInfoTab" name="partInfoTab" url="" >
+                <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                   selectOnLoad="true"
+                   borderStyle="border:1;"
+                   showPager="true"
+                   pageSize="20"
+                   sizeList=[20,50,100,200]
+                   dataField="parts"
+                   sortMode="client"
+                   frozenStartColumn="0"
+                   frozenEndColumn="1"
+                   onrowdblclick="addSelectPart"
+                   totalField="page.count"
+                   allowCellSelect="true"
+                   editNextOnEnterKey="true"
+                   url="">
+                  <div property="columns">
+                      <div type="indexcolumn">序号</div>
+                      <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
+                      <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                      <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
+                      <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
+                      <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                      <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+                      <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
+                      <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+                      <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+                      <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
+                  </div>
+                </div>
+            </div> 
+            
           </div>
           
     </div>

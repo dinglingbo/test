@@ -222,6 +222,7 @@
     <chidren>subprocess4</chidren>
     <chidren>assign12</chidren>
     <chidren>invokePojo0</chidren>
+    <chidren>assign5</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
     <location x="453" y="318"/>
@@ -229,9 +230,15 @@
     <node>loopstart0</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
-    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="link21" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link36" name="link36" displayName="link21" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>subprocess7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
     <location x="453" y="286"/>
@@ -458,6 +465,16 @@
       <sourceNode>assign12</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" type="transition">
+      <sourceNode>assign12</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isMarkBatch</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link37</targetConnections>
     <location x="658" y="284"/>
     <size height="28" width="28"/>
@@ -474,6 +491,10 @@
       <process:from type="expression" pattern="reference">outableQty-billQty</process:from>
       <process:to type="query">enterDetail/outableQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">f/isMarkBatch</process:from>
+      <process:to type="query">isMarkBatch</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="653" y="320"/>
@@ -486,6 +507,7 @@
       <targetNode>subprocess5</targetNode>
     </sourceConnections>
     <targetConnections>link44</targetConnections>
+    <targetConnections>link0</targetConnections>
     <location x="727" y="284"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -634,6 +656,33 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="658" y="336"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/preOutQty</process:from>
+      <process:to type="query">preOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">preOutQty-billQty</process:from>
+      <process:to type="query">preOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">preOutQty&lt;0?0:preOutQty</process:from>
+      <process:to type="query">enterDetail/preOutQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="656" y="372"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-26 21:02:48" date="2018-02-26Z" description="" name="auditPjPchsOrder" version="7.0.0.0"/>
@@ -660,6 +709,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementMain" name="stateMain"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="stateDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="outTemp"/>
+    <process:variable description="待出库数量" historyStateLocation="client" isArray="false" name="preOutQty" primitiveType="Float"/>
+    <process:variable description="是否为指定批次出库" historyStateLocation="client" isArray="false" name="isMarkBatch" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>

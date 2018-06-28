@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.cloud.part.data,com.hsapi.cloud.part.common,
- com.hsapi.cloud.part.settle,com.eos.foundation
+Require-Bundle: com.hsapi.cloud.part.settle,com.hsapi.cloud.part.commo
+ n,com.hsapi.cloud.part.data,com.eos.foundation,com.hs.common
 Bundle-Vendor: Administrator
 eos-webCtxPath: invoicing
 Bundle-Version: 1.0.0

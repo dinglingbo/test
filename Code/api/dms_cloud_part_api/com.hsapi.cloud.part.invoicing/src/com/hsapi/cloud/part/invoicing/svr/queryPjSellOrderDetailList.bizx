@@ -291,7 +291,9 @@
     <figSize height="17" width="25"/>
     <node>invokePojo4</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="584" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-25 15:36:19" date="2018-02-25Z" description="" name="queryPjPchsOrderDetailList" version="7.0.0.0"/>
   <process:variables>

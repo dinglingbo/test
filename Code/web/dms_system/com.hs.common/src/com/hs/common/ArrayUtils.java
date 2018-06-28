@@ -78,6 +78,9 @@ public class ArrayUtils {
 		float i = 0;
 		for (DataObject obj : b) {
 			Float value = obj.getFloat(propertyName);
+			if(value==null){
+				value = (float) 0;
+			}
 			i = i + value;		
 		}
 		

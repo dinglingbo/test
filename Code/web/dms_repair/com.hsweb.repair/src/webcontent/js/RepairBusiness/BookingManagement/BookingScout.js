@@ -26,13 +26,16 @@ function init() {
 
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");	
-	basicInfoForm.setData(params.data);
+    basicInfoForm.setData(params.data);
+    nui.get("serviceId").setValue(params.data.id);
 }
 
 function onOk() {
 	basicInfoForm = new nui.Form("#basicInfoForm");	
-    var main = basicInfoForm.getData();
-    if (!main || main == undefined) return;
+    var data = basicInfoForm.getData();
+    if (!data || data == undefined) return;
+
+    data.serviceId = nui.get("serviceId").getValue();
 
     nui.mask({
         el: document.body,
@@ -40,25 +43,11 @@ function onOk() {
         html: '保存中...'
     });
 
-    if (!main.id) {
-        getServiceCode(function(data) {
-            data = data || {};
-            var code = data.code;
-            if(!code) {
-                nui.unmask();
-                nui.alert("获取单号失败，无法保存");
-                return;
-            }
-            main.serviceCode = code;
-        });
-    }
-
     nui.ajax({
-        url: baseUrl + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
+        url: baseUrl + "com.hsapi.repair.repairService.booking.saveBookScout.biz.ext",
         type: 'post',
         data:JSON.stringify({
-            rpsPrebook: main,
-            action: "edit",
+            rpsPrebookTelScout: data,
             token: token
         }),        
         success: function(data) {

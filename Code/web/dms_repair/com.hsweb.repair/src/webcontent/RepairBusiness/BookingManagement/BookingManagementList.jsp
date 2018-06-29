@@ -136,7 +136,7 @@
                         <div id="downGrid" class="nui-datagrid" dataField="rs" style="width: 100%; height: 100%;" showPager="false" allowSortColumn="true">
                             <div property="columns">
                                 <div type="indexcolumn" headerAlign="center" allowSort="true" width="30">序号</div>
-                                <div field="scoutMan" headerAlign="center" allowSort="true" visible="true" width="100">跟进人 </div>
+                                <div field="scoutManId" headerAlign="center" allowSort="true" visible="true" width="100">跟进人 </div>
                                 <div field="scoutContent" headerAlign="center" allowSort="true" visible="true" width="300">跟进内容 </div>
                                 <div field="scoutDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" visible="true" width="100">跟进日期 </div>
                                 <div field="scoutMode" headerAlign="center" allowSort="true" visible="true" width="100">跟进方式 </div>

@@ -29,15 +29,14 @@
 </head>
 
 <body>
-    <input id="id" class="nui-combobox" visible="false" />
-    <input id="scoutModeList" class="nui-combobox" visible="false" />
-    <input id="scoutReustList" class="nui-combobox" visible="false" />
-
+    
     <div style=" width: 100%;  ">
         <div showCollapseButton="false" style="border:0; ">
-
-            <div class="nui-form" id="basicInfoForm">
-
+            <div class="nui-form" id="basicInfoForm">     
+                <input id="id" class="nui-textbox" visible="true" />           
+                <input id="serviceId" class="nui-textbox" visible="true" />
+                <input id="scoutModeList" class="nui-combobox" visible="false" />
+                <input id="scoutReustList" class="nui-combobox" visible="false" />
                 <table style="border-collapse:separate; border-spacing:0px 10px;">
                     <tr>
                         <td class="form_label">
@@ -64,14 +63,14 @@
                             <label>跟进方式：</label>
                         </td>
                         <td>
-                            <input class="nui-combobox" id="scoutMode" name="scoutMode" textField="name" valueField="id" required="true"/>
+                            <input class="nui-combobox" id="scoutMode" name="scoutMode" textField="name" valueField="customid" required="true"/>
 
                         </td>
                         <td class="form_label">
                             <label>跟进结果：</label>
                         </td>
                         <td>
-                            <input class="nui-combobox" id="isUsabled" name="isUsabled" textField="name" valueField="id" required="true"/>
+                            <input class="nui-combobox" id="isUsabled" name="isUsabled" textField="name" valueField="customid" required="true"/>
 
                         </td>
                         <td  class="form_label">

@@ -182,22 +182,24 @@
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="setHashKeyV2" displayName="setHashKeyV2" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="get" displayName="连接线" isDefault="false" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="get" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">method</process:leftOperand>
+          <process:rightOperand type="literal">post</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==2</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">method</process:leftOperand>
+          <process:rightOperand type="literal">post</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
@@ -227,6 +229,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="url" primitiveType="String"/>
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+    <process:input description="默认get" isArray="false" name="method" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="result"/>

@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
     <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llqv2/part/js/partQuery.js?v=1.2.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/part/js/partQuery.js?v=1.13" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -81,10 +81,6 @@
 </style>
 </head>
 <body>
-    <!-- <div class="" style="padding:10px;border-top:0;border-left:0;border-right:0;text-align:left;vertical-align:center;">
-        <a class="nui-button groupButton2" onclick="query_vin(0)" id="query0">上一步</a>
-        <a class="nui-button groupButton2" onclick="query_vin(1)" id="query1">下一步</a>
-    </div> -->
     <div class="nui-fit">
                 <div class="" id="partForm" style="width:100%;height:40px;" style="text-align:center;vertical-align:center;">
                       <table class="tmargin" >
@@ -93,7 +89,7 @@
                                   <input name="applyCarbrandId"
                                    id="applyCarBrandId"
                                    class="nui-combobox"
-                                   textField="brandCn"
+                                   textField="name"
                                    valueField="brand"
                                    emptyText="全部品牌"
                                    url=""
@@ -119,11 +115,11 @@
                          showVGridLines="false"
                          showPager="fasle" >                
                         <div property="columns">                                             
-                            <div field="pid" headerAlign="center" width="20%" align="left">零件号</div>
-                            <div field="label" headerAlign="center" width="50%" align="left">名称</div>
-                            <div field="prices" headerAlign="center" visible="false" width="10%"  align="left">价格</div>
-                            <div field="brand" headerAlign="center" width="10%"  align="left">品牌</div>
-                            <div field="remark" headerAlign="center" width="10%"  align="left">备注</div>
+                            <div field="pid" headerAlign="center" width="20%" align="center">零件号</div>
+                            <div field="label" headerAlign="center" width="50%" align="center">名称</div>
+                            <div field="prices" headerAlign="center" visible="false" width="10%"  align="center">价格</div>
+                            <div field="brand" headerAlign="center" width="10%"  align="center">品牌</div>
+                            <div field="remark" headerAlign="center" width="10%"  align="center">备注</div>
                             <div field="action" headerAlign="center" width="10%" align="center">说明</div>
                             <div field="opt" width="10%" headerAlign="center" align="center" allowSort=false></div>
                         </div>

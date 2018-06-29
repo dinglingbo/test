@@ -1156,7 +1156,9 @@
                 a.rtn_reason_id as rtnReasonId,
                 a.is_rtn_sign as isRtnSign,
 				B.FULL_NAME AS guestFullName,
-				B.SHORT_NAME AS guestShortName
+				B.SHORT_NAME AS guestShortName,
+                a.is_diff_order as isDiffOrder,
+                a.rtn_sign_date as rtnSignDate
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1169,6 +1171,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)
@@ -1282,7 +1287,9 @@
 				a.is_need_pack as isNeedPack,
                 a.is_rtn_sign as isRtnSign,
 				B.FULL_NAME AS guestFullName,
-				B.SHORT_NAME AS guestShortName
+				B.SHORT_NAME AS guestShortName,
+                a.is_diff_order as isDiffOrder,
+                a.rtn_sign_date as rtnSignDate
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1295,6 +1302,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)

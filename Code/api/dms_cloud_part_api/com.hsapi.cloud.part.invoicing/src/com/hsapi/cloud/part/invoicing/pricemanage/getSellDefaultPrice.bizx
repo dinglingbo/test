@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getSellDefaultPrice" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="级别销价&#xD;&#xA;统一售价&#xD;&#xA;客户最近售价&#xD;&#xA;配件最近售价" title="Administrator&#x9;18-6-28 下午7:38">
+    <location x="-81" y="10"/>
+    <size height="100" width="197"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、取级别单价&#xD;&#xA;2、取统一销价&#xD;&#xA;3、取客户最近销价&#xD;&#xA;4、取公司最近销价" title="Administrator&#x9;18-5-11 下午3:03">
     <location x="45" y="-120"/>
     <size height="121" width="481"/>

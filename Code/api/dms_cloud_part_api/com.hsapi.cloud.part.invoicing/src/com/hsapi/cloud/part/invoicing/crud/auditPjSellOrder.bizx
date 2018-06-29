@@ -470,6 +470,16 @@
       <sourceNode>assign6</sourceNode>
       <targetNode>subprocess3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>subprocess5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">operateFlag</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="870" y="287"/>
     <size height="28" width="28"/>
@@ -494,6 +504,7 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="1042" y="287"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
@@ -609,7 +620,8 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link31</targetConnections>
-    <location x="1230" y="287"/>
+    <targetConnections>link18</targetConnections>
+    <location x="1163" y="391"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -619,9 +631,61 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1228" y="323"/>
+    <location x="1161" y="427"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="auditSellOrderToOut" displayName="auditSellOrderToOut" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>subprocess3</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>transactionrollback3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="871" y="391"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess5label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.auditSellOrderToOut</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="1" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
+        <process:inputVariable id="2" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">auditDetails</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
+    <location x="824" y="426"/>
+    <figSize height="17" width="121"/>
+    <node>subprocess5</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback3" name="事务回滚3" displayName="事务回滚" type="transactionrollback">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactionrollback3</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="1042" y="391"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactionrollback3label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback3label" name="label" nodeType="label">
+    <location x="1028" y="427"/>
+    <figSize height="17" width="56"/>
+    <node>transactionrollback3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -648,6 +712,7 @@
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellOrderDetailUpdate"/>
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellOrderDetailDelete"/>
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellOrderDetailList"/>
+    <process:input description="0提交；1直接出库" isArray="false" name="operateFlag" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="pjSellOrderMainList"/>

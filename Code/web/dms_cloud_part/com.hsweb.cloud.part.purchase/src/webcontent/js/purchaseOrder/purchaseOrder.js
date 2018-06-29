@@ -572,6 +572,7 @@ function setEditable(flag) {
 function doSearch(params) {
 	// 目前没有区域采购订单，销退受理 params.enterTypeId = '050101';
 	params.orderTypeId = 1;
+	params.isDiffOrder = 0;
 	leftGrid.load({
 		params : params,
 		token : token
@@ -781,6 +782,7 @@ function getMainData() {
 	data.billStatusId = 0;
 	data.printTimes = 0;
 	data.orderTypeId = 1;
+	data.isDiffOrder = 0;
 
 	if (data.operateDate) {
 		data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
@@ -1421,7 +1423,17 @@ function deletePart() {
 	if (part.detailId && editPartHash[part.detailId]) {
 		delete editPartHash[part.detailId];
 	}
-	rightGrid.removeRow(part, true);
+	var data = rightGrid.getData();
+    if(data && data.length==1){
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+        var newRow = {};
+        rightGrid.addRow(newRow);
+        rightGrid.beginEditCell(newRow, "comPartCode");
+    }else{
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+    }
 }
 function checkRightData() {
 	var msg = '';

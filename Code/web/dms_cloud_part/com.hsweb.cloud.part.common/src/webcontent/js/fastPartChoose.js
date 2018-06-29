@@ -20,6 +20,7 @@ var advancedAddWin = null;
 var FStoreId = null;
 var advancedAddForm = null;
 var mainId = 0;
+var guestId = null;
 
 $(document).ready(function(v)
 {
@@ -316,6 +317,7 @@ var checkcallback = null;
 function setInitData(params, ck, cck){
     var value = params.value;
     mainId = params.mainId;
+    guestId = params.guestId;
     callback = ck;
     checkcallback = cck;
 
@@ -411,6 +413,7 @@ function addSelectPart(){
     var record = null;
     var column = null;
     var rowc = null;
+    var params = {};
     if(tab.name == "enterTab"){
         record = enterGrid.getSelected();
         rowc = nui.clone(record);
@@ -420,6 +423,12 @@ function addSelectPart(){
             nui.get("storeId").setValue(record.storeId);
             nui.get("qty").setValue(1);
             nui.get("qty").focus();
+
+            params.partId = record.partId;
+            params.guestId = guestId;
+            var price = getPartPrice(params);
+            nui.get("price").setValue(price);
+            nui.get("amt").setValue(price);
 
             nui.get("storeId").enabled = false;
 
@@ -439,6 +448,15 @@ function addSelectPart(){
             nui.get("qty").setValue(1);
             nui.get("qty").focus();
             nui.get("storeId").enabled = true;
+
+            params.partId = record.id;
+            params.guestId = guestId;
+            var price = getPartPrice(params);
+            nui.get("price").setValue(price);
+            nui.get("amt").setValue(price);
+
+            nui.
+
             rowc.isMarkBatch = 0;
             resultData = rowc;
             //advancedAddWin.showAtEl(morePartGrid._getCellEl(record,column), {xAlign:"outright",yAlign:"bottom"});
@@ -522,18 +540,36 @@ function onAdvancedAddOk(){
         var row = enterGrid.getSelected();
         var stockQty = row.stockQty;
         var preOutQty = row.preOutQty||0;
+        var price = row.enterPrice;
         if(data.qty > stockQty - preOutQty){
             nui.alert("出库数量超出此批次可出库数量");
             return;
         }
+        if(data.price < price){
+            nui.confirm("单价低于成本，是否继续？", "友情提示",
+                function (action) { 
+                    if (action == "ok") {
+                        doAdd();
+                    }else {
+                        return;
+                    }
+                }
+            );
+        }else{
+            doAdd();
+        }
+    }else{
+        doAdd();
+
     }
-
+}
+function doAdd(){
     if(!resultData) return;
-
     if(!callback) {
         CloseWindow("ok");
         return;
     }else{
+        var tab = morePartTabs.getActiveTab();
         //需要判断是否已经添加了此配件
         var checkMsg = checkcallback(resultData);
         if(checkMsg) 
@@ -564,14 +600,13 @@ function onAdvancedAddOk(){
         {
             //弹出数量，单价和金额的编辑界面
             callback(resultData,function(p){
-                var tab = morePartTabs.getActiveTab();
                 if(tab.name == "enterTab"){
-                    var outableQty = p.outableQty;
+                    var outableqty = p.outableqty;
                     var preoutqty = p.preoutqty;
-                    if(preoutqty>=outableQty){
+                    if(preoutqty>=outableqty){
                         enterGrid.removeRow(enterGrid.getSelected());
                     }else{
-                        var newRow = {stockQty: outableQty,preOutQty: preoutqty};
+                        var newRow = {stockQty: outableqty,preOutQty: preoutqty};
                         enterGrid.updateRow(enterGrid.getSelected(), newRow);
                     }
                 }
@@ -624,4 +659,34 @@ function calc(type){
             nui.get("amt").setValue(0);
         }
     }
+}
+var partPriceUrl = baseUrl
+        + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
+function getPartPrice(params){
+    var price = 0;
+    nui.ajax({
+        url : partPriceUrl,
+        type : "post",
+        async: false,
+        data : {
+            params: params,
+            token: token
+        },
+        success : function(data) {
+            var errCode = data.errCode;
+            if(errCode == "S"){
+                var priceRecord = data.priceRecord;
+                if(priceRecord.sellPrice){
+                    price = priceRecord.sellPrice;
+                }
+            }
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+
+    return price;
 }

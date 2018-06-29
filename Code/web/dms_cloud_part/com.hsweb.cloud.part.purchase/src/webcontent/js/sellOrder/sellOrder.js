@@ -522,7 +522,8 @@ function showPartInfo(row, value, mainId){
             var params = {
                 type: "sellOrder",
                 value:value,
-                mainId:mainId
+                mainId:mainId,
+                guestId: nui.get("guestId").getValue()
             };
             iframe.contentWindow.setInitData(params,
                 function(data,ck) {
@@ -790,7 +791,9 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
-	//目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
+    //目前没有区域销售订单，采退受理  params.enterTypeId = '050101';
+    params.orderTypeId = 2;
+	params.isDiffOrder = 0;
 	leftGrid.load({
 		params : params,
         token : token
@@ -1033,6 +1036,7 @@ function getMainData()
     data.billStatusId = '';
     data.printTimes = 0;
     data.orderTypeId = 2;
+    data.isDiffOrder = 0;
 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
@@ -1202,10 +1206,10 @@ function selectSupplier(elId)
                 var billTypeIdV = supplier.billTypeId;
                 var settTypeIdV = supplier.settTypeId;
                 var isInternal = supplier.isInternal||0;
-                if(isInternal == 1){
-                    nui.alert("不能直接向平台内单位发启销售，只能受理对方采购订单!");
-                    return;
-                }
+                //if(isInternal == 1){
+                //    nui.alert("不能直接向平台内单位发启销售，只能受理对方采购订单!");
+                //    return;
+                //}
 
                 var el = nui.get(elId);
                 el.setValue(value);
@@ -1292,6 +1296,8 @@ function onCellEditEnter(e){
                         var newRow = {id: data.id, serviceId: data.serviceId};
                         var row = leftGrid.getSelected();
                         leftGrid.updateRow(row,newRow);
+
+                        basicInfoForm.setData(data);
 
                         nui.get("id").setValue(data.id);
                         nui.get("serviceId").setValue(data.serviceId);
@@ -1777,10 +1783,10 @@ function setGuestInfo(params)
                     var value = data.id;
                     var text = data.fullName;
                     var isInternal = data.isInternal||0;
-                    if(isInternal == 1){
-                        nui.alert("不能直接向平台内单位发启销售，只能受理对方采购订单!");
-                        return;
-                    }
+                    //if(isInternal == 1){
+                    //    nui.alert("不能直接向平台内单位发启销售，只能受理对方采购订单!");
+                    //    return;
+                    //}
 
                     var el = nui.get('guestId');
                     el.setValue(value);

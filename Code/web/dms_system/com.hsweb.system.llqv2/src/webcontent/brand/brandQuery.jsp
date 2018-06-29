@@ -28,9 +28,9 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
     <link href="<%=sysDomain%>/llqv2/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
-    <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.3" type="text/javascript"></script>
     <script src="<%=sysDomain%>/llqv2/brand/js/brandQuery.js?v=1.08" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llqv2/brand/js/brandInfos.js?v=1.06" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/brand/js/brandInfos.js?v=1.02" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 

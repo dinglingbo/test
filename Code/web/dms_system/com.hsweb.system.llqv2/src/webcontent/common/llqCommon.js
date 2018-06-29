@@ -125,7 +125,8 @@ function setPartImg(data, rs){
 
         var html = '';
 	    data.mapdata.forEach(function(item, index) {
-	        var coords = [
+	        item = checkMapItem(item);
+            var coords = [
 	          item.maxx * imgSize.scale,
 	          item.maxy * imgSize.scale,
 	          item.minx * imgSize.scale,

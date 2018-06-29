@@ -21,22 +21,11 @@ $(document).ready(function(v){
         var editor = e.editor;
         field = e.field,
         value = e.value; */
-        var row = gridMainGroup.getSelected();
-        if (row.auth) {
-            var params = {
-                "url": llq_pre_url + "/ppycars/subgroup",
-                "params":{
-                    "code":brand,
-                    "auth":unescape(row.auth)
-                },
-                "token": token
-            }
-            callAjax(url, params, processAjax, setSubGroupData);
-        }
+        clickGdMainGroup(e.record);
     });
     
     gridSubGroup.on("rowclick", function (e) {//查零件信息
-        clickGdSubGroup();
+        clickGdSubGroup(e.record);
     });
     
     gridParts.on("drawcell", function (e) { //表格绘制
@@ -65,10 +54,32 @@ $(document).ready(function(v){
 });
 
 /*
+*主组事件
+*/
+function clickGdMainGroup(row){
+    if (row.auth) {
+        var params = {
+            "url": llq_pre_url + "/ppycars/subgroup",
+            "params":{
+                "code":brand,
+                "auth":unescape(row.auth)
+            },
+            "token": token
+        }
+        callAjax(url, params, processAjax, setSubGroupData);
+    }
+}
+
+/*
 *分组事件
 */
-function clickGdSubGroup(){
-    var row = gridSubGroup.getSelected();
+function clickGdSubGroup(row){
+    //var row = gridSubGroup.getSelected();
+    if(row.has_subs){
+        clickGdMainGroup(row);
+        return;
+    }
+    
     if (row.auth) {
         var params = {
             "url": llq_pre_url + "/ppycars/parts",
@@ -164,8 +175,7 @@ function setSubGroupData(data){
         var row = gridSubGroup.getRow(parseInt(rowid));
         //gridSubGroup.select(row, true);
         gridSubGroup.setSelected(row);
-        clickGdSubGroup();
-        //clickGdSubGroup(row);
+        clickGdSubGroup(row);
     });
     showInfoRightGrid(subGroups);//123
 }

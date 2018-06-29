@@ -19,15 +19,6 @@ $(document).ready(function(v) {
 
     queryDg1();
 
-	//$("#query0").css("color","blue");
-	//document.getElementById("mainFrame").src=webPath + sysDomain + "/llq/vin/vinQuery.jsp";
-    /*if(parent && parent.setBottomInit){
-    	mainrow = parent.setBottomInit();
-    	if(mainrow && mainrow.showTool == -1){
-    		//document.getElementById("bottomFormIframeStock").contentWindow.setToolBar('hide');
-    	}
-    }*/
-
     dgbasic.on("drawcell", function (e) { //表格绘制
         var record = e.record;
         var column = e.column;
@@ -38,7 +29,7 @@ $(document).ready(function(v) {
             e.cellHtml = html;
         }else if(field == "brand"){
             if (brandHash && brandHash[e.value]) {
-                e.cellHtml = brandHash[e.value].brandCn;
+                e.cellHtml = brandHash[e.value].name;
             }
         }else if(field == "opt"){
             var html = '<a class="b" href="javascript:addDPart()"><i class="fa fa-shopping-cart"></i></a>';
@@ -94,26 +85,29 @@ function queryPartWithBrand(data){
     advancedSearchWin.show();
 }
 function queryBasic(brand,pid){
-    
     var params = {
-        "url": llq_pre_url + "/ppypart/parts_list",//ppypart/parts_baseinfo
+        "url": llq_pre_url + "/parts/engine_search",//ppypart/parts_baseinfo
         "params":{
             "brand":brand,
-            "pid":pid
+            "code":brand,
+            "parts":pid
         },
+        "method": "post",
         "token": token
     }
     callAjax(url, params, processAjax, setGridData);
       
 }
 function setGridData(data){
-    dgbasic.setData(data);
+    var tData = [];
+    for(var i=0; i<data.length; i++){
+        tData = tData.concat(data[i]);
+    }
+    dgbasic.setData(tData);
 }
 function queryDg1(){    
     var params = {
-        "url": llq_pre_url + "/ppycars/brand",
-        "params":{
-        },
+        "url": llq_pre_url + "/brandsdict",
         "token": token
     }
     
@@ -121,9 +115,15 @@ function queryDg1(){
     callAjax(url, params, processAjax, setDg1);
 }
 function setDg1(data){
-    applyCarBrandIdEl.setData(data);
+    var tData = [];
+    var n = 1;
+    for(var i in data){
+        data[i].name = n++ + "、" + data[i].name;
+        tData.push(data[i]);
+    }
+    applyCarBrandIdEl.setData(tData);
 
-    data.forEach(function(v) {
+    tData.forEach(function(v) {
         brandHash[v.brand] = v;
     });
 }
@@ -132,7 +132,7 @@ function openDetail(pid){
     var brand = row.brand;  
     try{
         nui.open({
-            url : sysDomain + "/com.hsweb.system.llq.vin.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : sysDomain + "/com.hsweb.system.llqv2.partDetail.flow?brand=" + brand + "&pid=" + pid,
             title : "零件详情",
             width : "900px",
             height : "600px",
@@ -149,20 +149,31 @@ function openDetail(pid){
 }
 function queryPartBrand(pid){    
     var params = {
-        "url": llq_pre_url + "/ppypart/parts_brand_determination",
+        "url": llq_pre_url + "/parts/search",
         "params":{
-            "pid":pid
+            "parts":pid,
+            "brand": ""
         },
+        "method": "post",
         "token": token
     }
     
     //$(".groupButton").hide();
-    callAjax(url, params, processAjax, setBrand);
+    callAjax(url, params, processAjax, setBrand);//setBrand
 }
 function setBrand(data){
-    var i = 0;
-    advancedSearchWin.show();
-    searchCarbrandIdEl.setData(data);
+    var tData = [];
+    for(var i=0; i<data.length; i++){
+        tData = tData.concat(data[i]);
+    }
+    
+    if(tData && tData.length==1){
+        var inData = partForm.getData();
+        queryBasic(tData[0].brand, inData.partCode);
+    }else if(tData && tData.length>1){
+        advancedSearchWin.show();
+        searchCarbrandIdEl.setData(tData);
+    }
 }
 function onAdvancedSearchOk(){
     var data = advancedSearchForm.getData()

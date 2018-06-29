@@ -274,7 +274,7 @@ function clickGdMainGroup(row){
                 "vin":vin,
                 "code":brand,
                 //"is_filter":1,
-                "auth":unescape(row.auth)
+                "auth":row.auth//unescape
             },
             "token": token
         }

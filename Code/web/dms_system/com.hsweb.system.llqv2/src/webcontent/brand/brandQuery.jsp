@@ -28,20 +28,20 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
     <link href="<%=sysDomain%>/llqv2/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
-    <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.4" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llqv2/brand/js/brandQuery.js?v=1.5" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llqv2/brand/js/brandInfos.js?v=1.4" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.3" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/brand/js/brandQuery.js?v=1.08" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/llqv2/brand/js/brandInfos.js?v=1.02" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
         <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false">
             <!--型号-->
             <div title="型号" name="brand" visible="true" headerStyle="display:none;">    
-                <%@include file="/llq/brand/brandLevel.jsp" %>
+                <%@include file="/llqv2/brand/brandLevel.jsp" %>
             </div>
             <!--主组-->
             <div title="主组" name="group" visible="true" headerStyle="display:none;">    
-                <%@include file="/llq/brand/brandInfos.jsp" %>
+                <%@include file="/llqv2/brand/brandInfos.jsp" %>
             </div>
         </div>
     </div>

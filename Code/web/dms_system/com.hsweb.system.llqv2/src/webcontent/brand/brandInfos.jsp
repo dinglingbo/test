@@ -45,15 +45,15 @@
         <div size="40%" showCollapseButton="false">
             <div class="nui-fit">
                 <!--主组-->
-                <%@include file="/llq/vin/vinQuery_MainGroup.jsp" %>
+                <%@include file="/llqv2/vin/vinQuery_MainGroup.jsp" %>
             </div>
         </div>
         <div size="60%" showCollapseButton="false">
             <div class="nui-fit">
                 <!--分组-->
-                <%@include file="/llq/vin/vinQuery_SubGroup.jsp" %>
+                <%@include file="/llqv2/vin/vinQuery_SubGroup.jsp" %>
                 <!--零件-->
-                <%@include file="/llq/vin/vinQuery_Parts.jsp" %>
+                <%@include file="/llqv2/vin/vinQuery_Parts.jsp" %>
             </div>
         </div>
     </div>

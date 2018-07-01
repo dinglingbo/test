@@ -196,6 +196,7 @@ function searchBill()
     doNotStatement(param);
 }
 function doNotStatement(params){
+    params.orderTypeId = 3;
     notSettleGrid.load({
         params:params,
         token: token

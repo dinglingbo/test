@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPchsOrderMain" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="用于采购订单导入采购入库&#xD;&#xA;startDate  endDate&#xD;&#xA;serviceId  serviceMan  guestId&#xD;&#xA;sBillDate  eBillDate&#xD;&#xA;sCreateDate  eCreateDate  serviceIdList  isFinished = 0&#xD;&#xA;只查询审核的采购订单" title="Administrator&#x9;18-3-21 下午9:06">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="用于采购订单导入采购入库&#xD;&#xA;startDate  endDate&#xD;&#xA;serviceId  serviceMan  guestId&#xD;&#xA;sBillDate  eBillDate&#xD;&#xA;sCreateDate  eCreateDate  serviceIdList  isFinished = 0&#xD;&#xA;只查询审核的采购订单&#xD;&#xA;com.hsapi.cloud.part.invoicing.query.queryPjPchsOrderMainList" title="Administrator&#x9;18-3-21 下午9:06">
     <location x="30" y="-30"/>
-    <size height="136" width="455"/>
+    <size height="166" width="455"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link2" isDefault="true" type="transition">
@@ -233,6 +233,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link1" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="330" y="150"/>

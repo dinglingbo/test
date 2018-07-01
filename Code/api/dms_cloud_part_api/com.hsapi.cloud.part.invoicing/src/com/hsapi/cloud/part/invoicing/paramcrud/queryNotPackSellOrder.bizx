@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryNotPackSellOrder" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、只查询月结的业务单&#xD;&#xA;采购入库，采购退货，销售出库，销售退货" title="Administrator&#x9;18-5-21 上午9:13">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、只查询月结的业务单&#xD;&#xA;采购入库，采购退货，销售出库，销售退货&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.querySellOrderByGuestId" title="Administrator&#x9;18-5-21 上午9:13">
     <location x="45" y="15"/>
-    <size height="100" width="331"/>
+    <size height="100" width="466"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link2" isDefault="true" type="transition">

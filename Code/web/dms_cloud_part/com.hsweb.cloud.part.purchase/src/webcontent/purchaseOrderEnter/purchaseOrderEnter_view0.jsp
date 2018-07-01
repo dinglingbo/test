@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -33,6 +33,9 @@
 
 .mini-panel-body {
   padding: 0;
+}
+body .mini-grid-row-selected{
+    background:#89c3d6 !important; 
 }
 </style>
 </head>

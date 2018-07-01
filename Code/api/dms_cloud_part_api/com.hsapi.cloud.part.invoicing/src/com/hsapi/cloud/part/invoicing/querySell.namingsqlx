@@ -1498,7 +1498,6 @@
                 A.ID as id,
                 A.SERVICE_ID as serviceId,
                 A.ORGID as orgid,
-                A.GUEST_ID as guestId,
                 A.STORE_ID as storeId,
                 A.CODE as code,
                 A.ORDER_DATE as orderDate,
@@ -1530,14 +1529,19 @@
                 A.BILL_STATUS_ID as billStatusId,
                 a.is_inner as isInner,
 				a.is_rtn_sign as isRtnSign,
+				a.is_out as isOut,
+				a.out_date as outDate,
+				a.tax_sign as taxSign,
+				a.tax_rate as taxRate,
                 c.FULL_NAME AS guestFullName,
-                c.SHORT_NAME AS guestShortName
+                c.SHORT_NAME AS guestShortName,
+                c.id as guestId
                 FROM
-                DMS_CLOUD_PART.pj_sell_order_main_chk A
+                pj_sell_order_main_chk A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
                 inner join wb_common.COM_GUEST c on a.orgid = c.is_internal_id
-                where 1=1 and a.is_inner = 1 and b.is_disabled = 0 and c.is_disabled = 0
-                		  and a.order_type_id = 3
+                where 1=1 and c.is_disabled = 0
+                <!--and a.is_inner = 1 and b.is_disabled = 0 and c.is_disabled = 0-->
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
                     (b.is_internal_id = #orgid#)
@@ -1545,10 +1549,18 @@
                 <isNotEmpty prepend="and" property="id">  
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId">  
+                    (a.order_type_id= #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isOut">  
+                    (a.is_out = #isOut#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isFinished">  
+                    (A.IS_FINISHED = #isFinished#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isRtnSign">  
                     (a.is_rtn_sign = #isRtnSign#)
                 </isNotEmpty>
-                
                 <isNotEmpty prepend="and" property="orderMan">  
                     (A.ORDER_MAN like '%$orderMan$%')
                 </isNotEmpty>

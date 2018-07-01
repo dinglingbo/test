@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.7.4"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.7.5"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -33,6 +33,9 @@
 
 .mini-panel-body {
   padding: 0;
+}
+body .mini-grid-row-selected{
+    background:#89c3d6 !important; 
 }
 </style>
 </head>
@@ -166,15 +169,6 @@
                            width="100%"/>
                 </td>
             </tr>
-            <tr>
-                <td class="title">配件ID:</td>
-                <td colspan="3">
-                    <input id="partId"
-                           name="partId"
-                           class="nui-textbox" 
-                           width="100%"/>
-                </td>
-            </tr>
         </table>
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
@@ -184,7 +178,7 @@
 </div>
 
 <div id="advancedMorePartWin" class="nui-window"
-     title="配件选择" style="width:430px;height:350px;"
+     title="配件选择" style="width:700px;height:350px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -212,10 +206,17 @@
                editNextOnEnterKey="true"
                url="">
               <div property="columns">
-                  <div type="indexcolumn">序号</div>
-                  <div field="code" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                  <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OEM码"></div>
-                  <div field="fullName" name="comPartCode" width="200" headerAlign="center" header="配件全称"></div>
+                <div type="indexcolumn">序号</div>
+                <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
+                <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
+                <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+                <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+                <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
+                <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+                <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
+                <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
               </div>
           </div>
     </div>

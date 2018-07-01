@@ -33,6 +33,7 @@ var FStoreId = null;
 var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
+var partShow = 0;
 
 
 // 单据状态
@@ -125,6 +126,23 @@ $(document).ready(function(v) {
 
         
     	
+	});
+	
+	morePartGrid.on("drawcell",function(e){
+        switch (e.field)
+        {
+            case "partBrandId":
+                if(brandHash[e.value])
+                {
+                    e.cellHtml = brandHash[e.value].name||"";
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            default:
+                break;
+        }
     });
 
     document.onkeyup=function(event){
@@ -144,7 +162,22 @@ $(document).ready(function(v) {
 	    } 
 	    if((keyCode==113))  {  
 			addMorePart();
-	    } 
+		} 
+		
+		if((keyCode==13))  {  //新建
+            if(partShow == 1) {
+				var row = morePartGrid.getSelected();
+				if(row){
+					addSelectPart();
+				}
+			}
+        } 
+
+        if((keyCode==27))  {  //ESC
+            if(partShow == 1){
+                onPartClose();
+            }
+        }
 	 
 	}
 
@@ -184,8 +217,8 @@ var StatusHash = {
 	"0" : "草稿",
 	"1" : "待发货",
 	"2" : "待收货",
-	"3" : "部分入库",
-	"4" : "全部入库",
+	//"3" : "部分入库",
+	"4" : "已入库",
 	"5" : "已退回",
 	"6" : "已关闭"
 };
@@ -1125,10 +1158,13 @@ function onCellCommitEdit(e) {
 		}
 	}
 }
-var partInfoUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
+var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
+		//+ "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
 	var part = null;
+	var page = {size:100,length:100};
+	params.sortField = "b.stock_qty";
+    params.sortOrder = "desc";
 	nui.ajax({
 		url : partInfoUrl,
 		type : "post",
@@ -1138,7 +1174,7 @@ function getPartInfo(params){
 			token: token
 		},
 		success : function(data) {
-			var partlist = data.partlist;
+			var partlist = data.parts;
 			if(partlist && partlist.length>0){
 				//如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
 				if(partlist.length==1){
@@ -1147,6 +1183,7 @@ function getPartInfo(params){
 				}else{
 					advancedMorePartWin.show();
 					morePartGrid.setData(partlist);
+					partShow = 1;
 					//mainTabs.activeTab(partInfoTab);
 					//var partCode = params.partCode;
 					//var partName = params.partName;
@@ -1483,15 +1520,10 @@ function auditToEnter(){
 	var data = basicInfoForm.getData();
 	var isInner = data.isInner||0;
 	var billStatusId = data.billStatusId||0;
-	if(isInner == 0 && billStatusId == 0){
-		var flagSign = 1; 
-		var flagStr = "入库中...";
-		var flagRtn = "入库成功!";
-		auditOrder(flagSign, flagStr, flagRtn);		
-	}else if(isInner == 1 && billStatusId != 2){
-		nui.alert("等对方发货后，才可以入库!");
+	if(billStatusId == 0){
+		nui.alert("请先提交再入库!");
 		return;
-	}else if(billStatusId == 2){
+	}else if(billStatusId == 2 || billStatusId == 1){  //待发货和待收货状态下都可以入库
 		var id = data.id||0;
 		orderEnter(id);	
 	}
@@ -1600,8 +1632,22 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	
 }
 var enterUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.ordersettle.generatePchsOrderToEnter.biz.ext";
+		+ "com.hsapi.cloud.part.invoicing.ordersettle.generateNewPchsOrderEnter.biz.ext";
 function orderEnter(mainId) {
+	var row = leftGrid.getSelected();
+	if(row.auditSign!=1){
+		nui.alert("请先提交再入库!");
+		return;
+	}
+	if (row) {
+		if (row.auditSign == 1 && row.billStatusId == 4) {
+			nui.alert("此单已入库!");
+			return;
+		}
+	} else {
+		return;
+	}
+
 	nui.confirm("是否确定入库?", "友情提示", function(action) {
 		if (action == "ok") {
 
@@ -1804,6 +1850,10 @@ function addSelectPart(){
 			enterUnitId : row.unit
 		};
 
+		advancedMorePartWin.hide();
+		morePartGrid.setData([]);
+		partShow = 0;
+
 		if(rightGrid.getSelected()){
 			rightGrid.updateRow(rightGrid.getSelected(),newRow);
 		}else{
@@ -1811,8 +1861,7 @@ function addSelectPart(){
 		}
 		rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
 
-		advancedMorePartWin.hide();
-		morePartGrid.setData([]);
+		
 	}else{
 		nui.alert("请选择配件!");
 		return;
@@ -1821,6 +1870,7 @@ function addSelectPart(){
 function onPartClose(){
 	advancedMorePartWin.hide();
 	morePartGrid.setData([]);
+	partShow = 0;
 
 	var newRow = {comPartCode: oldValue};
 	rightGrid.updateRow(oldRow, newRow);
@@ -1837,7 +1887,11 @@ function OnrpMainGridCellBeginEdit(e){
 
     if(data.auditSign == 1){
         e.cancel = true;
-    }
+	}
+	if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus();
+	}
 
 }
 function addMorePart(){

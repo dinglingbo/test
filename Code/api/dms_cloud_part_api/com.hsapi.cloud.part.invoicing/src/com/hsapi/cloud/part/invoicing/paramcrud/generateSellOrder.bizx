@@ -463,6 +463,10 @@
       <process:to type="query">orderMain/guestId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">orderMain/isDiffOrder</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orderMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>

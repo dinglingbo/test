@@ -56,7 +56,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入单据</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addPchsOrder()" id="auditBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入单据</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
@@ -118,6 +118,8 @@
                           <input class="nui-hidden" name="taxSign" id="taxSign"/>
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
+                          <input class="nui-hidden" name="codeId" id="codeId"/>
+                          <input class="nui-hidden" name="sourceType" id="sourceType"/>
                           <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
@@ -200,8 +202,14 @@
                                   <td class="title">
                                       <label>备注：</label>
                                   </td>
-                                  <td colspan="5">
+                                  <td colspan="3">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                                  </td>
+                                  <td class="title" width="120">
+                                      <label>往来单号：</label>
+                                  </td>
+                                  <td>
+                                      <input class="nui-textbox" width="100%" id="code" name="code" enabled="false" placeholder="往来单号"/>
                                   </td>
                               </tr>
                           </table>
@@ -209,9 +217,9 @@
                      
                   </div>
                 </fieldset>
-                <!-- <div class="nui-fit"> -->
+                <div class="nui-fit"> 
                     <div id="rightGrid" class="nui-datagrid" 
-                         style="width:100%;height:calc(100% - 86px);min-width:1124px;"
+                         style="width:100%;height:100%;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"
@@ -280,7 +288,7 @@
                             </div>
                         </div>
                     </div>
-                <!--  -->
+                </div>
           </div>
               
       </div>

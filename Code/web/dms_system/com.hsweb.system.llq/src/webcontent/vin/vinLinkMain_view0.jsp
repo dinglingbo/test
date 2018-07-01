@@ -99,9 +99,9 @@
                             <a class="nui-button" iconCls="" plain="true" onclick="deleteCartShop()">删除</a>
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" visible="true" id="pchsCartBtn" plain="true" onclick="addToPchsCart()">添加采购车</a>
-                            <a class="nui-button" iconCls="" visible="true" id="sellCartBtn" plain="true" onclick="addToSellCart()">添加销售车</a>
-                            <span class="separator"></span>
                             <a class="nui-button" iconCls="" visible="true" id="pchsOrderBtn" plain="true" onclick="generatePchsOrder()">生成采购订单</a>
+                            <span class="separator"></span>
+                            <a class="nui-button" iconCls="" visible="true" id="sellCartBtn" plain="true" onclick="addToSellCart()">添加销售车</a>
                             <a class="nui-button" iconCls="" visible="true" id="sellOrderBtn" plain="true" onclick="generateSellOrder()">生成销售订单</a>
                             
                         </td>

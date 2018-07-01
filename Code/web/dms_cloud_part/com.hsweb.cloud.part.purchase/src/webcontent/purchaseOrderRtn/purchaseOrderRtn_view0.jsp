@@ -31,6 +31,9 @@
 .mini-panel-body {
 	padding: 0;
 }
+body .mini-grid-row-selected{
+    background:#89c3d6 !important; 
+}
 </style>
 </head>
 <body>

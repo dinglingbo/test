@@ -28,8 +28,12 @@
 			a.audit_date as auditDate,
 			a.remark as mainRemark,
 			a.orgid as orgid,
+			a.bill_status_id as billStatusId,
 			d.full_name as fullName,
-			d.short_name as shortName
+			d.short_name as shortName,
+			a.is_diff_order as isDiffOrder,
+			a.source_type as sourceType,
+			a.rtn_reason_id as rtnReasonId
 		FROM
 			pj_pchs_order_main_chk a
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
@@ -39,7 +43,9 @@
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatusId">(a.bill_status_id = #billStatusId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="notFinished">(a.is_finished = #notFinished#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <!--订货日期 -->
             <isNotEmpty prepend="and" property="sOrderDate">A.order_date &gt;= #sOrderDate#</isNotEmpty>
             <isNotEmpty prepend="and" property="eOrderDate">(A.order_date &lt; #eOrderDate#)</isNotEmpty>

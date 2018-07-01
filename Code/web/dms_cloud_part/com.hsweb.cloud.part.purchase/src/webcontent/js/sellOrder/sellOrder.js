@@ -1055,11 +1055,12 @@ function getMainData()
 //新增单据时，取单据ID
 var saveAddUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.saveAddSellOrder.biz.ext";
 function getSellOrderBillNO(callback){
+    var data = basicInfoForm.getData();
     nui.ajax({
         url : saveAddUrl,
         type : "post",
         data : JSON.stringify({
-            main : {guestId: nui.get("guestId").getValue()},
+            main : data,
             token : token
         }),
         success : function(data) {

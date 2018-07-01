@@ -1369,7 +1369,8 @@
                 a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
-                a.version_no as versionNo
+                a.version_no as versionNo,
+                a.is_diff_order as isDiffOrder
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1382,6 +1383,12 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isFinished"> 
+                    (A.IS_FINISHED = #isFinished#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)
@@ -1497,7 +1504,8 @@
                 a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
-                a.version_no as versionNo
+                a.version_no as versionNo,
+                a.is_diff_order as isDiffOrder
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_chk A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1510,6 +1518,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)

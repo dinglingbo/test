@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/fastPartChoose.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/fastPartChoose.js?v=1.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -132,67 +132,113 @@ body .mini-grid-row-selected{
 </div>
 
 <div id="advancedAddWin" class="nui-window"
-     title="数量单价录入" style="width:400px;height:170px;"
+     title="数量单价录入" style="width:400px;height:200px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
-    <div id="advancedAddForm" class="form">
-        <table style="width:100%;">
-            <tr>
-                <td class="title required">
-                    <label>仓库：</label>
-                </td>
-                <td>
-                    <input id="storeId"
-                           name="storeId"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="id"
-                           emptyText="请选择..."
-                           url=""
-                           allowInput="false"
-                           showNullItem="false"
-                           width="100%"
-                           nullItemText="请选择..."/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title required">
-                    <label>数量：</label>
-                </td>
-                <td>
-                    <input id="qty" name="qty" class="nui-textbox" onvaluechanged="calc('qty')" vtype="float" selectOnFocus="true" width="100%" value="1"/>
-                </td>
-                <td class="title required">
-                    <label>单价：</label>
-                </td>
-                <td>
-                    <input id="price" name="price" class="nui-textbox width1" onvaluechanged="calc('price')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title required">
-                    <label>金额：</label>
-                </td>
-                <td>
-                    <input id="amt" name="amt" class="nui-textbox" onvaluechanged="calc('amt')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
-                </td>
-                <td class="title">
-                    <label>备注：</label>
-                </td>
-                <td>
-                    <input id="remark" name="remark" class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>
-                </td>
-            </tr>
-            
-        </table>
-        <div style="text-align:center;padding:10px;">
-            <a class="nui-button" id="chooseBtn" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedAddCancel" style="width:60px;">取消</a>
+     <div id="optTabs" class="nui-tabs" name="optTabs"
+        activeIndex="0" 
+        style="width:100%; height:100%;" 
+        plain="false" >
+        <div title="数量单价" id="qpTab" name="qpTab" >
+                <div id="advancedAddForm" class="form">
+                    <table style="width:100%;">
+                        <tr>
+                            <td class="title required">
+                                <label>仓库：</label>
+                            </td>
+                            <td>
+                                <input id="storeId"
+                                        name="storeId"
+                                        class="nui-combobox"
+                                        textField="name"
+                                        valueField="id"
+                                        emptyText="请选择..."
+                                        url=""
+                                        allowInput="false"
+                                        showNullItem="false"
+                                        width="100%"
+                                        nullItemText="请选择..."/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title required">
+                                <label>数量：</label>
+                            </td>
+                            <td>
+                                <input id="qty" name="qty" class="nui-textbox" onvaluechanged="calc('qty')" vtype="float" selectOnFocus="true" width="100%" value="1"/>
+                            </td>
+                            <td class="title required">
+                                <label>单价：</label>
+                            </td>
+                            <td>
+                                <input id="price" name="price" class="nui-textbox width1" onvaluechanged="calc('price')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title required">
+                                <label>金额：</label>
+                            </td>
+                            <td>
+                                <input id="amt" name="amt" class="nui-textbox" onvaluechanged="calc('amt')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
+                            </td>
+                            <td class="title">
+                                <label>备注：</label>
+                            </td>
+                            <td>
+                                <input id="remark" name="remark" class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    <div style="text-align:center;padding:10px;">
+                        <a class="nui-button" id="chooseBtn" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
+                        <a class="nui-button" onclick="onAdvancedAddCancel" style="width:60px;">取消</a>
+                    </div>
+                </div>
         </div>
-    </div>
-</div>
+        <div title="销价参数" id="priceTab" name="priceTab" >
+            <div class="nui-fit">
+                <div id="priceGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                    selectOnLoad="true"
+                    borderStyle="border:1;"
+                    showPager="false"
+                    dataField="parts"
+                    sortMode="client"
+                    allowCellSelect="true"
+                    allowCellEdit="true"
+                    editNextOnEnterKey="true"
+                    url="">
+                <div property="columns">
+                    <div type="indexcolumn">序号</div>
+                    <div field="name" name="name" width="100" headerAlign="center" header="类型"></div>
+                    <div field="sellPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
+                            <input property="editor" vtype="float" class="nui-textbox"/>
+                        </div>
+                        <div field="sellPrice" visible="false" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
+                                <input property="editor" vtype="float" class="nui-textbox"/>
+                        </div>
+                        <div field="operateDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="修改日期"></div>
+                </div>
+                </div>
+            </div>
+            <div class="nui-toolbar" style="padding:0px;border-bottom:1;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:100%;text-align:center;">
+                                <a class="nui-button" iconCls="" plain="true" onclick="savePrice" id="savePriceBtn">
+                                    <span class="fa fa-save fa-lg"></span>&nbsp;保存设置
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+            </div>
 
+        </div> 
+
+    </div>
+    
+</div>
 
 </body>
 </html>

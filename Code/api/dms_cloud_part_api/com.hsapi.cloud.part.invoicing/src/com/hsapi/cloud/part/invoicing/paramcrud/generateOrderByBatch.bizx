@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateOrderByBatch" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、批量选择配件后，生成采购订单，销售订单，采购车，销售车&#xD;&#xA;2、需要往来单位ID，结算类型，结算方式&#xD;&#xA;3、配件ID，数量，单价，仓库（默认取仓库）&#xD;&#xA;4、从EPC添加的配件需要判断是否存在，如果存在，需要对配件信息加工后再保存&#xD;&#xA;type = 'EPC'" title="Administrator&#x9;18-5-6 下午6:06">
-    <location x="-12" y="-60"/>
-    <size height="106" width="467"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、批量选择配件后，生成采购订单，销售订单，采购车，销售车&#xD;&#xA;2、需要往来单位ID，结算类型，结算方式&#xD;&#xA;3、配件ID，数量，单价，仓库（默认取仓库）&#xD;&#xA;4、从EPC添加的配件需要判断是否存在，如果存在，需要对配件信息加工后再保存&#xD;&#xA;type = 'EPC'  000070 原厂件  00000327 原厂" title="Administrator&#x9;18-5-6 下午6:06">
+    <location x="-12" y="-120"/>
+    <size height="151" width="467"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -127,6 +127,7 @@
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <targetConnections>link34</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="46" y="359"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -182,7 +183,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <targetConnections>link5</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="340" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
@@ -431,7 +432,7 @@
     <figSize height="17" width="56"/>
     <node>transactionrollback1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign9</targetNode>
@@ -484,17 +485,54 @@
   <nodes xsi:type="process:tAssign" id="assign10" name="赋值10" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
-      <targetNode>assign2</targetNode>
+      <targetNode>subprocess4</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="226" y="60"/>
+    <location x="225" y="272"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="221" y="96"/>
+    <location x="220" y="308"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="fitPartInfo" displayName="fitPartInfo" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>transactionrollback0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="339" y="272"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess4label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.baseDataCrud.crud.fitPartInfo</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="partInfo" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="1" name="partBrandId" type="literal" value="String" valueType="Primitive" pattern="reference">00000327</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="partInfo" type="query" value="commonj.sdo.DataObject[]" valueType="Java">detail</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
+    <location x="323" y="307"/>
+    <figSize height="17" width="58"/>
+    <node>subprocess4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

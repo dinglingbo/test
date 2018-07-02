@@ -11,8 +11,8 @@
 <head>
     <title>车架号/车型/零件号</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon2.jsp" %>
-    <script src="<%=sysDomain%>/llq/vin/js/vinLinkMain.js?v=1.6.2" type="text/javascript"></script>
+    <%@include file="/common/sysCommon.jsp" %>
+    <script src="<%=sysDomain%>/epc/vin/js/vinLinkMain.js?v=1.0.0" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;

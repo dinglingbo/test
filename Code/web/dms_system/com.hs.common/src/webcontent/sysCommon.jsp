@@ -167,12 +167,12 @@
 		
 		//$("#_sys_tip_msg_").fadeIn(time);
   
-		setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
+		setTimeout($("#_sys_tip_msg_").stop().delay(500).fadeOut(time), time);
 	};
 	
 	//提示错误信息
 	showMsg = function(message, msgType) {
-		showMsgBox(message, 2000);
+		showMsgBox(message, 1500);
         if(msgType){
             $("#_sys_tip_msg_ span").addClass(msgType);
         }
@@ -213,7 +213,7 @@
         position: fixed;
         left: -20;
         top: 90;
-        text-align: right;        
+        text-align: center;/* right*/        
         width: 100%;/**/
     }
      

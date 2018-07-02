@@ -212,7 +212,7 @@
         position: fixed;
         left: -20;
         top: 90;
-        text-align: right;        
+        text-align: center;/* right*/        
         width: 100%;/**/
     }
      

@@ -146,6 +146,48 @@
             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
 		}
 	}
+
+		
+	//提示成功信息	
+	showMsgBox = function(message, life) {
+		var time = 3000;
+		if (life) {
+			time = life;
+		}
+		
+		$("#_sys_tip_msg_").remove();
+        
+        if ($("#_sys_tip_msg_").text().length > 0) {
+	    	var msg = "<span>" + message + "</span>";
+	        $("#_sys_tip_msg_").empty().append(msg);
+	    } else {
+			var msg = "<div id='_sys_tip_msg_'><span>" + message + "</span></div>";
+			$("body").append(msg);
+	    }
+		
+		//$("#_sys_tip_msg_").fadeIn(time);
+  
+		setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
+	};
+	
+	//提示错误信息
+	showMsg = function(message, msgType) {
+		showMsgBox(message, 2000);
+        if(msgType){
+            $("#_sys_tip_msg_ span").addClass(msgType);
+        }
+	};
+    
+    showError = function(message) {
+		showMsg(message, "E");
+	};
+    
+    showWarn = function(message) {
+		showMsg(message, "W");
+	};
+	
+	//showMsg("Hello success!"); // 第二个参数life是指消息显示时间
+	//showError("Hello error!");
 </script>
 <script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.2" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
@@ -164,5 +206,35 @@
         height:100%;
         /* white-space: nowrap; */
         /**overflow:hidden;**/
+    }
+    
+    #_sys_tip_msg_ {
+        z-index: 9999;
+        position: fixed;
+        left: -20;
+        top: 90;
+        text-align: right;        
+        width: 100%;/**/
+    }
+     
+    #_sys_tip_msg_ span {
+        background-color: #03C440;
+        /*opacity: .8;*/
+        padding: 15px 20px;
+        border-radius: 5px;
+        text-align: center;
+        word-break:break-all; 
+        word-wrap:break-word;
+        width:100px;
+        color: #fff;
+        font-size: 14px;
+    }
+     
+    #_sys_tip_msg_ span.E {
+        background-color: #FC4236;
+    }
+    
+    #_sys_tip_msg_ span.W {
+        background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
     }
 </style>

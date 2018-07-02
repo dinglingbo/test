@@ -11,11 +11,11 @@
 <head>
 <title>车架号查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon2.jsp" %>
-    <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
+    <%@include file="/common/sysCommon.jsp" %>
+    <link href="<%=sysDomain%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.6" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/vinQuery.js?v=1.7.3" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/epc/vin/js/vinQuery.js?v=1.0.0" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -95,11 +95,11 @@
             <div size="60%" showCollapseButton="false">
                 <div class="nui-fit">            
                     <!--车辆配置-->
-                    <%@include file="/llq/vin/vinQuery_Cfg.jsp" %>
+                    <%@include file="/epc/vin/vinQuery_Cfg.jsp" %>
                     <!--分组-->
-                    <%@include file="/llq/vin/vinQuery_SubGroup.jsp" %>
+                    <%@include file="/epc/vin/vinQuery_SubGroup.jsp" %>
                     <!--零件-->
-                    <%@include file="/llq/vin/vinQuery_Parts.jsp" %>
+                    <%@include file="/epc/vin/vinQuery_Parts.jsp" %>
                 </div>
             </div>
         </div>

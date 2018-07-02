@@ -47,7 +47,7 @@ $(document).ready(function(v){
 
     winCarCfg = nui.get("winCarCfg");
     gridCfgT = nui.get("gridCfgT");
-    document.getElementById("chainStockIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
+    document.getElementById("chainStockIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp?token="+token;
     
     //panel.hidePane(0);
     panel.hidePane(2); 
@@ -348,7 +348,7 @@ function setGridPartsData(data, rs){
 function openDetail(pid){	
     try{
         nui.open({
-            url : sysDomain + "/com.hsweb.system.llq.vin.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : sysDomain + "/com.hsweb.system.epc.partDetail.flow?brand=" + brand + "&pid=" + pid+"&token="+token,
             title : "零件详情",
             width : "900px",
             height : "600px",

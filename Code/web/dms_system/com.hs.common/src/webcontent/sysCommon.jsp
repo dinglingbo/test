@@ -153,6 +153,7 @@
 <script src="<%=webPath + sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=webPath + sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
 <link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<script src="<%=webPath + sysDomain%>/common/js/clipboard.min.js?v=1.0" type="text/javascript"></script>
 <style type="text/css">
     html, body
     {

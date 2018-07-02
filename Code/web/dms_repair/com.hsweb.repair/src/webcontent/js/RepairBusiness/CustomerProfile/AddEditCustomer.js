@@ -36,8 +36,8 @@ function init(callback)
         checkComplete();
     });
     initDicts({
-        carSpec:CAR_SPEC,//车辆规格
-        kiloType:KILO_TYPE,//里程类别
+        //carSpec:CAR_SPEC,//车辆规格
+        //kiloType:KILO_TYPE,//里程类别
         source:GUEST_SOURCE,//客户来源
         identity:IDENTITY //客户身份
     },function(){

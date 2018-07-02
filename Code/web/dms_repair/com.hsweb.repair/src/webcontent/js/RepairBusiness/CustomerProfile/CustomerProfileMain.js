@@ -178,7 +178,7 @@ function addOrEditCustomer(guest)
     }
     nui.open({
         url: "com.hsweb.repair.DataBase.AddEditCustomer.flow",
-        title: title, width: 500, height: 630,
+        title: title, width: 560, height: 570,
         onload: function () {
             var iframe = this.getIFrameEl();
             var params = {};

@@ -45,19 +45,6 @@ $(document).ready(function(v) {
     		//document.getElementById("bottomFormIframeStock").contentWindow.setToolBar('hide');
     	}
     }
-    
-
-	//tabs.updateTab(tabdetailPage, { visible: false });
-	if(parent && parent.confirmType){
-		var type = parent.confirmType();
-		if(type) {
-			if(type == 'purchase'){
-				//库存明细 采购记录 销售记录  
-			}else if(type == 'sell'){
-
-			}
-		}
-    }
 
     if(parent && parent.confirmType){
         var type = parent.confirmType();

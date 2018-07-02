@@ -79,6 +79,7 @@ function queryBrand(currBrand){
 
 function addToCartGrid(type, row){
     var data = cartGrid.getData();
+    //添加购物车时，数量默认等于EPC数量，但是数量存在有字母的情况（默认等于1）
     if(data && data.length>0){
         var rows = cartGrid.findRows(function(r){
             if(row.pid == r.pid) return true;
@@ -87,11 +88,24 @@ function addToCartGrid(type, row){
             nui.alert("此零件号已经添加到购物车!");
             return;
         }else{
-            var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+            var orderQty = row.quantity||1;
+            var reg = /^[0-9]*$/;//纯数字
+            orderQty = orderQty.replace(/\b(0+)/gi,"");
+            if(!reg.test(orderQty)){
+                orderQty = 1;
+            }
+        
+            var newRow = {pid: row.pid, label: row.label, orderQty: orderQty, orderPrice: 0};
             cartGrid.addRow(newRow);       
         }
     }else{
-        var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+        var orderQty = row.quantity||1;
+        var reg = /^[0-9]*$/;//纯数字
+        orderQty = orderQty.replace(/\b(0+)/gi,"");
+        if(!reg.test(orderQty)){
+            orderQty = 1;
+        }
+        var newRow = {pid: row.pid, label: row.label, orderQty: orderQty, orderPrice: 0};
         cartGrid.addRow(newRow);       
     }
 

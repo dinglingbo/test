@@ -77,9 +77,8 @@ table {
                            width="100%"/>
                 </td>
             </tr>
-            <!--
             <tr>
-                <td class="form_label required">
+                <td class="form_label">
                     <label>品牌：</label>
                 </td>
                 <td>
@@ -88,7 +87,7 @@ table {
                            textField="nameCn"
                            width="100%"/>
                 </td>
-                <td class="form_label required">
+                <td class="form_label">
                     <label>车型：</label>
                 </td>
                 <td>
@@ -98,7 +97,6 @@ table {
                            width="100%"/>
                 </td>
             </tr>
-            -->
         </table>
 	</div>
 	<div class="nui-panel" showToolbar="false" title="工时价格信息" showFooter="false"

@@ -2,12 +2,12 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 
 var requiredField = {
-	code: "项目编码",
-	itemKind: "工种",
 	name: "项目名称",
 	type: "项目类型",
-	carBrandId: "品牌",
-	carModelId: "车型"
+	code: "项目编码",
+	itemKind: "工种",
+	carBrandId: "品牌"
+	//carModelId: "车型"
 };
 $(document).ready(function(){
 
@@ -87,7 +87,7 @@ function onOk(){
 	for(var key in requiredField){
 		if(!data[key] || data[key].trim().length==0)
         {
-            nui.alert(requiredField[key]+"不能为空");
+            showMsg(requiredField[key]+"不能为空", "W");
             return;
         }
 	}

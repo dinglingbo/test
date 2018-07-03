@@ -125,13 +125,13 @@
                                         <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
                                     </div>
                                 </div>
-                                <!-- <div header="价格信息" headerAlign="center">
+                                <div header="价格信息" headerAlign="center">
                                     <div property="columns">
                                         <div allowSort="true" datatype="float" field="retailPrice" width="60" headerAlign="center" align="right" allowSort="true">零售价</div>
                                         <div allowSort="true" datatype="float" field="wholeSalePrice" width="60" headerAlign="center" align="right" allowSort="true">批发价</div>
                                         <div allowSort="true" datatype="float" field="uniformSellPrice" width="70" headerAlign="center" align="right" allowSort="true">统一价格</div>
                                     </div>
-                                </div> -->
+                                </div>
                                 <div header="辅助信息" headerAlign="center">
                                     <div property="columns">
                                         <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true">助记码</div>

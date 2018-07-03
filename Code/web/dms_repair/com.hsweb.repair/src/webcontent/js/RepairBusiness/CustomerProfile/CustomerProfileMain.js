@@ -178,7 +178,7 @@ function addOrEditCustomer(guest)
     }
     nui.open({
         url: "com.hsweb.repair.DataBase.AddEditCustomer.flow",
-        title: title, width: 560, height: 570,
+        title: title, width: 500, height: 630,
         onload: function () {
             var iframe = this.getIFrameEl();
             var params = {};
@@ -193,25 +193,6 @@ function addOrEditCustomer(guest)
             if("ok" == action)
             {
                 grid.reload();
-            }
-        }
-    });
-}
-
-function addSimple(){
-    nui.open({
-        url: repairDomain + "/com.hsweb.repair.DataBase.AddEditCustSimple.flow",
-        title:"快速新增", width: 400, height: 320,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var params = {};
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action)
-        {
-            if("ok" == action)
-            {
-                //grid.reload();
             }
         }
     });

@@ -305,7 +305,7 @@ function callBill() {
             iframe.contentWindow.SetData(param);
         },
         ondestroy: function (action) {
-            upGrid.reload();
+            downGrid.reload();
         }
     });   
 }

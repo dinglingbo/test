@@ -105,18 +105,18 @@ function onOk(){
 			data = data||{};
 			if(data.errCode == "S")
 			{
-				nui.alert("保存成功");
+				showMsg("保存成功");
 				CloseWindow("ok");
 			}
 			else{
-				nui.alert(data.errMsg||"保存失败");
+				showMsg(data.errMsg||"保存失败", "E");
 			}
 		},
 		error:function(jqXHR, textStatus, errorThrown)
 		{
 			console.log(jqXHR.responseText);
 			nui.unmask();
-			nui.alert("网络出错");
+			showMsg("网络出错", "E");
 		}
 	});
 }

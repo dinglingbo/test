@@ -120,7 +120,7 @@ function onOk()
 		CloseWindow("ok");
 	}
 	else{
-		nui.alert("请选择一个项目");
+		showMsg("请选择一个项目", "W");
 	}
 }
 function CloseWindow(action)

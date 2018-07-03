@@ -5,8 +5,8 @@ var requiredField = {
 	name: "项目名称",
 	type: "项目类型",
 	code: "项目编码",
-	itemKind: "工种",
-	carBrandId: "品牌"
+	itemKind: "工种"
+	//carBrandId: "品牌"
 	//carModelId: "车型"
 };
 $(document).ready(function(){

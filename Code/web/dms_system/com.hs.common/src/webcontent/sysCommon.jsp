@@ -127,6 +127,7 @@
     var currUserRealName = "<%=userRealName %>";
     var currTenantId = "<%=tenantId %>";
     var token = "<%=token %>";
+    var _sysMsg_;
     //alert("token=" + token);
     
     function backToLogin(){
@@ -142,7 +143,7 @@
 			window.parent.backToLogin();
 		}else{
 		//	debugger;
-			alert("登录超时，正在跳转！");
+			showMsg("登录超时，正在跳转！", "E");
             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
 		}
 	}
@@ -155,7 +156,8 @@
 			time = life;
 		}
 		
-		$("#_sys_tip_msg_").remove();
+		_sysMsg_ = message;
+        $("#_sys_tip_msg_").remove();
         
         if ($("#_sys_tip_msg_").text().length > 0) {
 	    	var msg = "<span>" + message + "</span>";

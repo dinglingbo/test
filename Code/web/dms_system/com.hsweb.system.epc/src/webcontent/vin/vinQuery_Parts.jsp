@@ -10,7 +10,6 @@
     showSummaryRow="true">
     <div property="columns"> 
         <!-- <div type="indexcolumn" width="20" summaryType="count">序号</div> -->
-        <div type="expandcolumn" width="20">库存</div>
         <div field="num" width="20" headerAlign="center" allowSort=false summaryType="count">位置</div>
         <div field="pid" width="60" headerAlign="center" allowSort=false>零件OE号</div>
         <div field="label" width="80" headerAlign="center" allowSort=false>名称</div>
@@ -21,11 +20,5 @@
         <div field="" width="20" headerAlign="center" allowSort=false>说明</div>
         <div field="detail" width="20" headerAlign="center" allowSort=false></div>
         <div field="opt" width="20" headerAlign="center" align="center" allowSort=false></div>
-    </div>
-</div>
-
-<div id="chainStockForm" style="display:none;height:300px;">
-    <div class="nui-fit">
-        <iframe id="chainStockIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
     </div>
 </div>

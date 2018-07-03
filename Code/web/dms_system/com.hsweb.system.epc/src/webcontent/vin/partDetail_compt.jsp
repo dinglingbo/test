@@ -9,6 +9,7 @@
              style="width:100%;height:100%;"
              showPager="fasle" >                
             <div property="columns">                                         
+                <div type="indexcolumn" width="20" summaryType="count" align="center">序号</div>
                 <div field="pid" headerAlign="center" width="50px" align="center">零件号</div>
                 <div field="label" headerAlign="center" width="50px" align="center">名称</div>
                 <div field="num" headerAlign="center" width="50px" align="center">件数</div>

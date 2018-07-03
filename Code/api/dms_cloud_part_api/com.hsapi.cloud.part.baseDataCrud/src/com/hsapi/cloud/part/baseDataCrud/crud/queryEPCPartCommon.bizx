@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryEPCPartCommon.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="https://llqapitm.007vin.com/ppypart/parts_replacement&#xD;&#xA;rs.errCode != 'E' &amp;&amp; rs.result.code == '1'&#xD;&#xA;params&quot;:{&#xD;&#xA;                &quot;brand&quot;:brand,&#xD;&#xA;                &quot;pid&quot;:pid&#xD;&#xA;            }" title="Administrator&#x9;18-7-2 下午10:59">
-    <location x="75" y="-75"/>
-    <size height="121" width="481"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="http://124.172.221.179:81/ppys/searchreplace&#xD;&#xA;rs.errCode != 'E' &amp;&amp; rs.result.code == '1'&#xD;&#xA;params&quot;:{&#xD;&#xA;                &quot;brand&quot;:brand,&#xD;&#xA;                &quot;part&quot;:pid&#xD;&#xA;            }" title="Administrator&#x9;18-7-2 下午10:59">
+    <location x="75" y="-105"/>
+    <size height="166" width="481"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.com.QuickPartCommon[]" name="partCommon" type="query" valueType="DataObject">partCommon</process:return>
+      <process:return id="0" language="com.hsapi.cloud.part.data.com.QuickPartWithStock[]" name="partCommon" type="query" valueType="DataObject">partCommon</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -33,36 +33,10 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="doCall" displayName="doCall" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign3</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <location x="259" y="150"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.system.llq.call.doCall</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="url" type="literal" value="String" valueType="Primitive" pattern="reference">https://llqapitm.007vin.com/ppypart/parts_replacement</process:inputVariable>
-        <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="result" type="query" value="java.util.HashMap" valueType="Java">partRes</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="253" y="185"/>
-    <figSize height="17" width="38"/>
-    <node>subprocess0</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>subprocess2</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="164" y="150"/>
@@ -74,7 +48,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">partCode</process:from>
-      <process:to type="query">p/pid</process:to>
+      <process:to type="query">p/part</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -106,9 +80,10 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>errCode!='E'&amp;&amp;code==1</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">partResList</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
@@ -236,20 +211,12 @@
       <process:to type="query">part/sourceType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/brandcn</process:from>
-      <process:to type="query">brandname</process:to>
+      <process:from type="literal" pattern="reference">000070</process:from>
+      <process:to type="query">part/qualityTypeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">'('+brandname+')'</process:from>
-      <process:to type="query">brandname</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">part/partCode</process:from>
-      <process:to type="query">coded</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">coded+brandname</process:from>
-      <process:to type="query">part/partCode</process:to>
+      <process:from type="literal" pattern="reference">00000327</process:from>
+      <process:to type="query">part/partBrandId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -298,6 +265,33 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="doCallV2" displayName="doCallV2" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="246" y="151"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.llq.call.doCallV2</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="url" type="literal" value="String" valueType="Primitive" pattern="reference">http://124.172.221.179:81/ppys/searchreplace</process:inputVariable>
+        <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
+        <process:inputVariable id="2" name="method" type="literal" value="String" valueType="Primitive" pattern="reference">get</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="result" type="query" value="java.util.HashMap" valueType="Java">partRes</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="233" y="186"/>
+    <figSize height="17" width="53"/>
+    <node>subprocess2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-02 22:56:33" date="2018-07-02Z" description="" name="queryEPCPartCommon" version="7.0.0.0"/>
@@ -309,7 +303,7 @@
     <process:variable anyType="java.util.List" description="" historyStateLocation="client" isArray="false" name="partResList"/>
     <process:variable anyType="java.lang.Object" description="" historyStateLocation="client" isArray="true" name="partArr"/>
     <process:variable anyType="java.lang.Object" description="" historyStateLocation="client" isArray="false" name="temp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.QuickPartCommon" name="part"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.QuickPartWithStock" name="part"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="brandname" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="coded" primitiveType="String"/>
   </process:variables>
@@ -318,7 +312,7 @@
     <process:input description="" isArray="false" name="partCode" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.QuickPartCommon" name="partCommon"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.QuickPartWithStock" name="partCommon"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -20,9 +20,9 @@ $(document).ready(function()
 		var itemKind = nui.get("itemKind");
 		itemKind.setData(list);
 	});
-	initCarBrand("carBrandId",function()
+	/*initCarBrand("carBrandId",function()
 	{
-	});
+	});*/
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;

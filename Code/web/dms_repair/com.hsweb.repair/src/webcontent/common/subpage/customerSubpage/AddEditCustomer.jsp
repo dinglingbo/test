@@ -349,9 +349,9 @@ table {
                     </div>
                 </div>
             </div>
-            <div style="text-align:right;padding:10px;margin-top:0">
-                <a class="nui-button" onclick="onOk" style="margin-right:10px;">保存</a>
-                <a class="nui-button" onclick="onCancel">取消</a>
+            <div style="text-align:center;padding:10px;">
+                <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
+                <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
             </div>
         </div>
     </div>

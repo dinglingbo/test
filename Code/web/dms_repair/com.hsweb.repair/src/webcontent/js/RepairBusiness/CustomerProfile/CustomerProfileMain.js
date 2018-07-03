@@ -197,6 +197,25 @@ function addOrEditCustomer(guest)
         }
     });
 }
+
+function addSimple(){
+    nui.open({
+        url: repairDomain + "/com.hsweb.repair.DataBase.AddEditCustSimple.flow",
+        title:"快速新增", width: 400, height: 320,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var params = {};
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if("ok" == action)
+            {
+                //grid.reload();
+            }
+        }
+    });
+}
 function add()
 {
     addOrEditCustomer();

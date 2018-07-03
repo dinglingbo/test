@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.6" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.5" type="text/javascript"></script>
 
 </head>
 <body>
@@ -32,6 +32,7 @@
 						   allowInput="false"
 						   showNullItem="false"
 						   nullItemText="请选择..."/>
+                    <!--
 					<label style="font-family: Verdana;;font-size: 12px;">品牌：</label>
 					<input id="carBrandId"
 						   name="carBrandId"
@@ -43,6 +44,7 @@
 						   allowInput="false"
 						   showNullItem="false"
 						   nullItemText="请选择..."/>
+                    -->
 					<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label>
 					<input class="nui-textbox" id="search-code" name="code"/>
 					<label style="font-family: Verdana;;font-size: 12px;">项目名称：</label>
@@ -110,8 +112,10 @@
 								<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
 								<div field="itemKind" headerAlign="center" allowSort="true" width="40px">工种</div>
 								<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
+                                <!--
 								<div field="carBrandId" headerAlign="center" allowSort="true" width="60px">品牌</div>
 								<div field="carModel" headerAlign="center" allowSort="true" width="60px">车型</div>
+                                -->
 							</div>
 						</div>
 						<div header="项目价格信息" headerAlign="center">

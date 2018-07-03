@@ -50,7 +50,7 @@ function query_vin(type){
     }
     
     if(catchs[type]){
-        //return;
+        return;
     }
     
     switch (type){
@@ -64,7 +64,7 @@ function query_vin(type){
             document.getElementById("mainFrame2").src=webPath + sysDomain + "/com.hsweb.system.epc.partQuery.flow?token="+token;
             break;
         /* default:
-        	document.getElementById("mainFrame").src=webPath + sysDomain + "/com.hsweb.system.llq.vin.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
+        	document.getElementById("mainFrame").src=webPath + sysDomain + "/com.hsweb.system.llqv2.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
             break; */
     }
     catchs[type] = 1;
@@ -79,7 +79,6 @@ function queryBrand(currBrand){
 
 function addToCartGrid(type, row){
     var data = cartGrid.getData();
-    //添加购物车时，数量默认等于EPC数量，但是数量存在有字母的情况（默认等于1）
     if(data && data.length>0){
         var rows = cartGrid.findRows(function(r){
             if(row.pid == r.pid) return true;
@@ -88,24 +87,11 @@ function addToCartGrid(type, row){
             nui.alert("此零件号已经添加到购物车!");
             return;
         }else{
-            var orderQty = row.quantity||1;
-            var reg = /^[0-9]*$/;//纯数字
-            orderQty = orderQty.replace(/\b(0+)/gi,"");
-            if(!reg.test(orderQty)){
-                orderQty = 1;
-            }
-        
-            var newRow = {pid: row.pid, label: row.label, orderQty: orderQty, orderPrice: 0};
+            var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
             cartGrid.addRow(newRow);       
         }
     }else{
-        var orderQty = row.quantity||1;
-        var reg = /^[0-9]*$/;//纯数字
-        orderQty = orderQty.replace(/\b(0+)/gi,"");
-        if(!reg.test(orderQty)){
-            orderQty = 1;
-        }
-        var newRow = {pid: row.pid, label: row.label, orderQty: orderQty, orderPrice: 0};
+        var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
         cartGrid.addRow(newRow);       
     }
 

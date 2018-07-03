@@ -8,6 +8,7 @@
              showColumns="true"
              showPager="fasle" >                
             <div property="columns">                                             
+                <div type="indexcolumn" width="20" summaryType="count" align="center">序号</div>
                 <div field="pid" headerAlign="center" width="50px" align="center">品牌编号</div>
                 <div field="brandcn" headerAlign="center" width="50px" align="center">品牌名称</div>
                 <div field="prices" headerAlign="center" width="50px" align="center">参考价格</div>

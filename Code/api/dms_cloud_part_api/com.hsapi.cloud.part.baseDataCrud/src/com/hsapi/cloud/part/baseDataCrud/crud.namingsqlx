@@ -60,6 +60,9 @@
             <isNotEmpty prepend="and" property="commonId">  
                 (a.common_id = #commonId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="commonIds">  
+               (a.common_id in ($commonIds$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">  
                 (PART_BRAND_ID = #partBrandId#)
             </isNotEmpty>
@@ -86,6 +89,9 @@
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="rcode">  
                 (a.code like '%$code$')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="acode">  
+                (code  = #acode#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">
             	(a.code in ($partCodeList$))

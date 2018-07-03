@@ -85,6 +85,7 @@ table {
                     <input class="nui-combobox" name="carBrandId" id="carBrandId"
                            valueField="id"
                            textField="nameCn"
+                           onValuechanged="initCarModel('carModelId', e.value)"
                            width="100%"/>
                 </td>
                 <td class="form_label">

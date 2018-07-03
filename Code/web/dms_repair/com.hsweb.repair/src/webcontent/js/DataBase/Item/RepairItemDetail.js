@@ -30,13 +30,13 @@ function init(callback)
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	carBrandIdEl = nui.get("carBrandId");
 	carModelIdEl = nui.get("carModelId");
-	carBrandIdEl.on("valuechanged",function()
+	/*carBrandIdEl.on("valuechanged",function()
 	{
 		var carBrandId = carBrandIdEl.getValue();
 		getCarModel("carModelId",{
 			value:carBrandId
 		});
-	});
+	});*/
 	var elList = basicInfoForm.getFields();
 	var nameList = ["itemTime","unitPrice","deductAmt","amt"];
 	elList.forEach(function(v)

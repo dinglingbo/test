@@ -71,15 +71,15 @@
                             <textarea class="nui-textarea" emptyText="编码列表(多个编码请换行输入)" width="100%" style="height:80px;" id="partCodeList" name="partCodeList"></textarea>
 						</td>
 						<td >
-                            <textarea class="nui-textarea" emptyText="剪贴板" width="100%" style="height:80px;" id="resList" name="resList"></textarea>
+                            <textarea emptyText="剪贴板" width="100%" style="height:80px;" id="resList" name="resList"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center;">
-                            <a class="nui-button" width="" iconCls="" plain="false" onclick="onSearch()">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+                            <a class="nui-button" width="" iconCls="" plain="false" onclick="onSearch()">&nbsp;查&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="onClear()">清空条件</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="addPart()">新增配件</a>
-							<a class="nui-button btnCopy"  plain="false" onclick="viPart()" data-clipboard-action="cut" data-clipboard-target="#resList">复制剪贴板</a>
+							<button class="btnCopy" data-clipboard-action="cut" data-clipboard-target="#resList">复制剪贴板</button>
 						</td>
                     </tr>
                 </table>
@@ -103,8 +103,9 @@
 							 showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
 						<div property="columns">
 								<div type="expandcolumn" width="40">替换件</div>
-								<div field="code" width="80" headerAlign="center" allowSort="true" summaryType="count">编码</div>
-								<div field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
+								<div field="code" width="120" headerAlign="center" allowSort="true" summaryType="count">编码</div>
+								<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
+								<div field="partBrandId" width="70" headerAlign="center">库存</div>
 								<div field="partBrandId" width="70" headerAlign="center">品牌</div>
 								<div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
 								<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
@@ -124,7 +125,7 @@
 							activeIndex="0" 
 							style="width:100%; height:100%;" 
 							plain="false" 
-							onactivechanged="ontopTabChanged">
+							onactivechanged="">
 							<div title="本店库存" id="partInfoTab" name="partInfoTab" url="" >
 							</div> 
 							<div title="库存分布" id="billmain" name="billmain" url="">

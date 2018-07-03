@@ -9,11 +9,19 @@ var partGrid = null;
 var queryConditionsEl = null;
 var conditoinsValueEl = null;
 var partCodeListEl = null;
+var resListEl = null;
 
 var qualityList = [];
 var qualityHash = {};
 var brandHash = {};
 var brandList = [];
+
+var conList = [
+    {id:"0",name:"配件编码"},
+    {id:"1",name:"配件名称"},
+    {id:"2",name:"编码尾号"},
+    {id:"3",name:"首字拼音"}
+];
 $(document).ready(function() {
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
@@ -21,6 +29,9 @@ $(document).ready(function() {
     queryConditionsEl = nui.get("queryConditions");
     conditoinsValueEl = nui.get("conditoinsValue");
     partCodeListEl = nui.get("partCodeList");
+    resListEl = nui.get("resList");
+
+    queryConditionsEl.setData(conList);
 
     partGrid.on("drawcell",function(e){
         var row = e.record;
@@ -77,10 +88,12 @@ $(document).ready(function() {
 
     clipboard.on('success', function(e) {
         console.log(e);
+        showMsg("复制成功！","S");
     });
 
     clipboard.on('error', function(e) {
         console.log(e);
+        showMsg("复制出错！","E");
     });
 
 });
@@ -236,6 +249,7 @@ function initData(partCode){
 function onClear(){
     conditoinsValueEl.setValue("");
     partCodeListEl.setValue("");
+    resListEl.setValue("");
 }
 function onGridSelectionChanged(){    
     var row = partGrid.getSelected(); 

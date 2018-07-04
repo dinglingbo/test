@@ -125,7 +125,7 @@ table {
 			</tr>
             <tr>
 				<td class="form_label">
-					<label>成本定义：</label>
+					<label>成本分类：</label>
 				</td>
 				<td colspan="1">
 					<input class="nui-combobox" name="costDef" id="costDef"

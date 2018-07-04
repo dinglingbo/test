@@ -51,10 +51,10 @@ function changeTabs(e){
 function queryBasic(){
     if (!detailCatch['basic']){
         var params = {
-            "url": llq_pre_url + "/ppypart/partdetail",//ppypart/parts_baseinfo
+            "url": llq_pre_url + "/ppys/partssearchs",//ppypart/parts_baseinfo
             "params":{
                 "brand":brand,
-                "pid":pid
+                "part":pid
             },
             "token": token
         }
@@ -62,8 +62,8 @@ function queryBasic(){
     }	
 }
 
-function setBasic(data){
-    var headname = data.headname;
+function setBasic(data, json){
+    var headname = json.headname;
     var tabs = ntab.getTabs();
     for(var i=0; i<headname.length; i++){
         for(var j=0; j<tabs.length; j++){
@@ -74,11 +74,20 @@ function setBasic(data){
         }
     }
     
-    ntab.updateTab(tabs[7], {visible:true});
+    //ntab.updateTab(tabs[7], {visible:true});
 
-    var list = processKeyValue(data.headermessage);
-    dgbasic.setData(list);
+    var list = json.partdetail;
+    data = [];
+    for(var i=0; i<list.length; i++){
+        var obj = {};
+        obj.field1 = list[i].key;
+        obj.field2 = list[i].value;
+        data.push(obj);
+    }
+    dgbasic.setData(data);
     detailCatch['basic'] = data;
+    
+    setBaseinfo(data, json);
 }
 
 /*
@@ -87,10 +96,10 @@ function setBasic(data){
 function queryPrice(){
     if (!detailCatch['price']){
         var params = {
-            "url": llq_pre_url + "/ppypart/partprice",
+            "url": llq_pre_url + "/ppys/partprices",
             "params":{
                 "brand":brand,
-                "pid":pid
+                "part":pid
             },
             "token": token
         }
@@ -99,7 +108,11 @@ function queryPrice(){
 }
 
 function setPrice(data){
-    dgprice.setData(data);
+    var tData = [];
+    for(var i=0; i<data.length; i++){
+        tData = tData.concat(data[i].data);
+    }
+    dgprice.setData(tData);
     detailCatch['price'] = data;
 }
 
@@ -122,10 +135,10 @@ function onFactoryTypeRender(e) {
 function queryReplace(){
     if (!detailCatch['replace']){
         var params = {
-            "url": llq_pre_url + "/ppypart/parts_replacement",
+            "url": llq_pre_url + "/ppys/searchreplace",
             "params":{
                 "brand":brand,
-                "pid":pid
+                "part":pid
             },
             "token": token
         }
@@ -147,7 +160,7 @@ function queryArticle(){
             "url": llq_pre_url + "/ppypart/parts_article",
             "params":{
                 "brand":brand,
-                "pid":pid
+                "part":pid
             },
             "token": token
         }
@@ -169,7 +182,7 @@ function queryCompt(){
             "url": llq_pre_url + "/ppypart/partscompt",
             "params":{
                 "brand":brand,
-                "pid":pid
+                "part":pid
             },
             "token": token
         }
@@ -191,7 +204,7 @@ function queryBaseinfo(){
             "url": llq_pre_url + "/ppypart/parts_baseinfo",
             "params":{
                 "brand":brand,
-                "pid":pid
+                "part":pid
             },
             "token": token
         }
@@ -212,11 +225,11 @@ var compatible_page = 0;
 function queryCompatible(page){
     if (!detailCatch['compatible']){
         var params = {
-            "url": llq_pre_url + "/ppypart/parts_compatible_vehicle_v2",
+            "url": llq_pre_url + "/ppys/generacars",
             "params":{
                 "brand":brand,
                 "page":compatible_page,
-                "pid":pid
+                "part":pid
             },
             "token": token
         }

@@ -47,7 +47,6 @@ $(document).ready(function(v){
 
     winCarCfg = nui.get("winCarCfg");
     gridCfgT = nui.get("gridCfgT");
-    document.getElementById("chainStockIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp?token="+token;
     
     //panel.hidePane(0);
     panel.hidePane(2); 
@@ -79,6 +78,7 @@ $(document).ready(function(v){
             e.cellHtml = html;
         }
     });
+
     gridParts.on("selectionchanged", function (e) { //表格绘制
         var row = e.selected;
         if(row){ 
@@ -87,18 +87,6 @@ $(document).ready(function(v){
             clearSelectedCls();
             gridParts.addRowCls(row, "select-row");
         }
-    });
-    gridParts.on("showrowdetail", function (e) { //表格绘制
-        var row = e.record;
-        var mainId = row.id;
-        console.log(row);
-        var chainStockForm = document.getElementById("chainStockForm");
-        //将editForm元素，加入行详细单元格内
-        var td = gridParts.getRowDetailCellEl(row);
-
-        td.appendChild(chainStockForm);
-        chainStockForm.style.display = "";
-
     });
     
     gridConfig.on("select", function (e) {//4005选择配置
@@ -109,7 +97,7 @@ $(document).ready(function(v){
         var row = e.record;
         if (row.auth) {
             var params = {
-                "url": llq_pre_url + "/ppyvin/searchvins_v2",
+                "url": llq_pre_url + "/ppyvin/searchvins",  //searchvins_v2
                 "params":{
                     "vin":vin,
                     "brand": row.brand,
@@ -136,11 +124,7 @@ $(document).ready(function(v){
     });
 
 });
-//用于查询库存分布
-function setBottomData(row){
-	var type = row.type;
-	document.getElementById("formIframe").contentWindow.setInitEmbedParams(row);
-}
+
 function getMousePos(event) {
    var e = event || window.event;
    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
@@ -163,7 +147,7 @@ function queryVin(){
     brand = curr_check;
     if (checkVin()){
         var params = {
-            "url": llq_pre_url + "/ppyvin/searchvins_v2",
+            "url": llq_pre_url + "/ppyvin/searchvins", //searchvins_v2
             "params":{
                 "vin": vin,
                 "brand": brand
@@ -179,13 +163,12 @@ function queryVin(){
 /*
 *车辆信息数据处理
 */
-function setGridCfg(data){
-    var dataBody = data.mains;
-    brand = data.brand;
+function setGridCfg(data, json){
+    data = json.mains;
+    brand = json.brand;
     gridCfg.setData([]);
     showRightGrid(gridCfg);
-    if(dataBody){
-        data = dataBody.split("\n");
+    if(data){
         var dataList=[];
         var tmpList;
         var tmp={};
@@ -223,10 +206,10 @@ function setGridCfg(data){
 function queryGroupByVin(){	
     if (checkVin()){
         var params = {
-            "url": llq_pre_url + "/ppyvin/group_v2",
+            "url": llq_pre_url + "/ppyvin/vingroup",
             "params":{
                 "vin":vin,
-                "brand":brand
+                "code":brand
             },
             "token": token
         }
@@ -289,9 +272,9 @@ function clickGdMainGroup(row){
             "url": llq_pre_url + "/ppyvin/subgroup",
             "params":{
                 "vin":vin,
-                "brand":brand,
-                "is_filter":1,
-                "auth":unescape(row.auth)
+                "code":brand,
+                //"is_filter":1,
+                "auth":row.auth//unescape
             },
             "token": token
         }
@@ -313,8 +296,8 @@ function clickGdSubGroup(row){
             "url": llq_pre_url + "/ppyvin/parts",
             "params":{
                 "vin":vin,
-                "brand":brand,
-                "is_filter":1,
+                "code":brand,
+                "filter":1,
                 "auth":unescape(row.auth)
             },
             "token": token
@@ -324,7 +307,7 @@ function clickGdSubGroup(row){
         params = {
             "url": llq_pre_url + "/ppycars/subimgs",
             "params":{
-                "brand":brand,
+                "code":brand,
                 "auth":unescape(row.auth)
             },
             "token": token
@@ -337,7 +320,11 @@ function clickGdSubGroup(row){
 *零件数据处理
 */
 function setGridPartsData(data, rs){
-    gridParts.setData(data);
+    var tData = [];
+    for(var i=0; i<data.length; i++){
+        tData = tData.concat(data[i]);
+    }
+    gridParts.setData(tData);
     showRightGrid(gridParts);
     showLeftGrid(vinPartImg);
 }
@@ -348,7 +335,7 @@ function setGridPartsData(data, rs){
 function openDetail(pid){	
     try{
         nui.open({
-            url : sysDomain + "/com.hsweb.system.epc.partDetail.flow?brand=" + brand + "&pid=" + pid+"&token="+token,
+            url : sysDomain + "/com.hsweb.system.llqv2.partDetail.flow?brand=" + brand + "&pid=" + pid,
             title : "零件详情",
             width : "900px",
             height : "600px",

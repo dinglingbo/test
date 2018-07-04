@@ -2,12 +2,12 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 
 var requiredField = {
-	code: "项目编码",
-	itemKind: "工种",
 	name: "项目名称",
 	type: "项目类型",
-	carBrandId: "品牌",
-	carModelId: "车型"
+	code: "项目编码",
+	itemKind: "工种"
+	//carBrandId: "品牌"
+	//carModelId: "车型"
 };
 $(document).ready(function(){
 
@@ -30,13 +30,13 @@ function init(callback)
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	carBrandIdEl = nui.get("carBrandId");
 	carModelIdEl = nui.get("carModelId");
-	carBrandIdEl.on("valuechanged",function()
+	/*carBrandIdEl.on("valuechanged",function()
 	{
 		var carBrandId = carBrandIdEl.getValue();
 		getCarModel("carModelId",{
 			value:carBrandId
 		});
-	});
+	});*/
 	var elList = basicInfoForm.getFields();
 	var nameList = ["itemTime","unitPrice","deductAmt","amt"];
 	elList.forEach(function(v)
@@ -87,7 +87,7 @@ function onOk(){
 	for(var key in requiredField){
 		if(!data[key] || data[key].trim().length==0)
         {
-            nui.alert(requiredField[key]+"不能为空");
+            showMsg(requiredField[key]+"不能为空", "W");
             return;
         }
 	}
@@ -105,18 +105,18 @@ function onOk(){
 			data = data||{};
 			if(data.errCode == "S")
 			{
-				nui.alert("保存成功");
+				showMsg("保存成功");
 				CloseWindow("ok");
 			}
 			else{
-				nui.alert(data.errMsg||"保存失败");
+				showMsg(data.errMsg||"保存失败", "E");
 			}
 		},
 		error:function(jqXHR, textStatus, errorThrown)
 		{
 			console.log(jqXHR.responseText);
 			nui.unmask();
-			nui.alert("网络出错");
+			showMsg("网络出错", "E");
 		}
 	});
 }

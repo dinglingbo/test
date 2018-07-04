@@ -48,10 +48,9 @@
                     showSummaryRow="true">
                     <div property="columns">  
                         <div type="indexcolumn" width="20" headerAlign="center" summaryType="count">序号</div>
-                        <div field="brandCn" width="150" headerAlign="center" allowSort=false>品牌中文名</div>
-                        <div field="brandEn" width="120" headerAlign="center" allowSort=false>品牌英文名</div>
+                        <div field="name" width="150" headerAlign="center" allowSort=false>品牌名称</div>
                         <div field="brand" width="80" headerAlign="center" allowSort=false>品牌代号</div>
-                        <div field="brandImg" headerAlign="center" visible="false" allowSort=false>品牌log图片url</div>
+                        <div field="img" headerAlign="center" visible="false" allowSort=false>品牌log图片url</div>
                     </div>
                 </div>
                 <!--层2-->

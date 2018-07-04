@@ -8,6 +8,7 @@
              style="width:100%;height:100%;"
              showPager="fasle" >                
             <div property="columns">                                               
+                <div type="indexcolumn" width="20" summaryType="count" align="center">序号</div>
                 <div field="pid" headerAlign="center" width="50px" align="center">零件号</div>
                 <div field="lable" headerAlign="center" width="50px" align="center">零件名称</div>
                 <div field="prices" headerAlign="center" width="50px" align="center">参考价格</div>

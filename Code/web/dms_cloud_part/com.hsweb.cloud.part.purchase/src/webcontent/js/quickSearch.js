@@ -3,17 +3,27 @@
  * There must be a query condition
  */
 var baseUrl = apiPath + cloudPartApi + "/";
-var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
+var partGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryQuickPartWithStock.biz.ext";
+var innerPartCommonGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryQuickPartCommonWithStock.biz.ext";
 var partGrid = null;
-
 var queryConditionsEl = null;
 var conditoinsValueEl = null;
 var partCodeListEl = null;
+var resListEl = null;
+var partCommonForm = null;
+var innerPartCommonGrid = null;
 
 var qualityList = [];
 var qualityHash = {};
 var brandHash = {};
 var brandList = [];
+
+var conList = [
+    {id:"0",name:"配件编码"},
+    {id:"1",name:"配件名称"},
+    {id:"2",name:"编码尾号"},
+    {id:"3",name:"首字拼音"}
+];
 $(document).ready(function() {
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
@@ -21,6 +31,13 @@ $(document).ready(function() {
     queryConditionsEl = nui.get("queryConditions");
     conditoinsValueEl = nui.get("conditoinsValue");
     partCodeListEl = nui.get("partCodeList");
+    resListEl = nui.get("resList");
+
+    partCommonForm = document.getElementById("partCommonForm");
+    innerPartCommonGrid = nui.get("innerPartCommonGrid");
+    innerPartCommonGrid.setUrl(innerPartCommonGridUrl);
+
+    queryConditionsEl.setData(conList);
 
     partGrid.on("drawcell",function(e){
         var row = e.record;
@@ -44,15 +61,89 @@ $(document).ready(function() {
                     e.cellHtml = "";
                 }
                 break;
-            case "code":
+            case "partCode":
                 if(row.commonId && row.commonId > 0)
                 {
                     e.cellHtml = e.value+"(<a style='color:blue;'>有替换</a>)";
+                }
+                if(row.sourceType == 'EPC'){
+                    var value = e.value;
+                    var brandname = row.brandname||"";
+                    if(brandname){
+                        value = value+'('+brandname+')';
+                    }
+                    e.cellHtml = "<span class='fa fa-cloud' style='color:#1e395b'></span>"+(value||"");
                 }
                 break;
             default:
                 break;
         }
+    });
+    innerPartCommonGrid.on("drawcell",function(e){
+        var row = e.record;
+        switch (e.field)
+        {
+            case "qualityTypeId":
+                if(qualityHash[e.value])
+                {
+                    e.cellHtml = qualityHash[e.value].name||"";
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            case "partBrandId":
+                if(brandHash[e.value])
+                {
+                    e.cellHtml = brandHash[e.value].name||"";
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            case "partCode":
+                if(row.sourceType == 'EPC'){
+                    var value = e.value;
+                    var brandname = row.brandname||"";
+                    if(brandname){
+                        value = value+'('+brandname+')';
+                    }
+                    e.cellHtml = "<span class='fa fa-cloud' style='color:#1e395b'></span>"+(value||"");
+                }
+                break;
+            default:
+                break;
+        }
+    });
+
+    partGrid.on("showrowdetail",function(e){
+        var row = e.record;
+        var mainId = row.id;
+        
+        var td = partGrid.getRowDetailCellEl(row);   
+
+        td.appendChild(partCommonForm);
+        partCommonForm.style.display = "";
+        innerPartCommonGrid.setData([]);
+
+        //EPC是有品牌和编码的
+        if(row.sourceType && row.sourceType == 'EPC'){
+            innerPartCommonGrid.load({
+                type:'EPC',
+                partCode: row.partCode,
+                brand: row.brand,
+                token: token
+            });
+        }else{
+            //只有编码
+            innerPartCommonGrid.load({
+                type:'ALL',
+                partId: row.partId,
+                partCode: row.partCode,
+                token: token
+            });
+        }
+        
     });
 
     getAllPartBrand(function(data) {
@@ -73,26 +164,14 @@ $(document).ready(function() {
         }
     });
 
-    var clipboard = new ClipboardJS('.btnCopy');
-
-    clipboard.on('success', function(e) {
-        console.log(e);
-    });
-
-    clipboard.on('error', function(e) {
-        console.log(e);
-    });
 
 });
 function getSearchParams()
 {
     var params = {};
+    var partCodeArr = [];
     var qCon = queryConditionsEl.getValue();
     var qVal = conditoinsValueEl.getValue();
-    if(!qVal){
-        nui.alert("请输入查询条件!");
-        return;
-    }
     if(qCon == 0){
         params.code = qVal.replace(/\s+/g, "");;
     }else if(qCon == 1){
@@ -109,11 +188,14 @@ function getSearchParams()
     if (partCodeList) {
         var tmpList = partCodeList.split("\n");
         for (i = 0; i < tmpList.length; i++) {
-            tmpList[i] = "'" + (tmpList[i]).replace(/\s+/g, "") + "'";
+            //tmpList[i] = "'" + (tmpList[i]).replace(/\s+/g, "") + "'";
+            var partCode =  (tmpList[i]).replace(/\s+/g, "");
+            partCodeArr.push(partCode);
         }
-        params.partCodeList = tmpList.join(",");
-    }
+        //params.partCodeList = tmpList.join(",");
 
+        params.partCodeArr = partCodeArr;
+    }
 
     return params;
 }
@@ -124,12 +206,20 @@ function onSearch()
 }
 function doSearch(params)
 {
-    //在GRID属性中设置每页查询的记录条数
-    params.sortField = "b.stock_qty";
-    params.sortOrder = "desc";
+    if(!conditoinsValueEl.getValue() && !partCodeListEl.getValue()){
+        nui.alert("请输入查询条件!");
+        return;
+    }
     partGrid.load({
         params:params,
         token:token
+    },function(e){
+        var res = e.result;
+        var errCode = res.errCode;
+        var errMsg = res.errMsg;
+        if(errMsg){
+            resListEl.setValue(errMsg);
+        }
     });
 }
 
@@ -236,6 +326,7 @@ function initData(partCode){
 function onClear(){
     conditoinsValueEl.setValue("");
     partCodeListEl.setValue("");
+    resListEl.setValue("");
 }
 function onGridSelectionChanged(){    
     var row = partGrid.getSelected(); 

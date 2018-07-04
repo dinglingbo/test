@@ -15,7 +15,6 @@ $(document).ready(function(v){
     gridParts = nui.get("gridParts");
     ntab = nui.get("tabs");
     subGroups = $("#subGroups");
-    document.getElementById("chainStockIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
     
     gridMainGroup.on("select", function (e) {//查分组信息rowclick
         /* var column = e.column;
@@ -63,24 +62,8 @@ $(document).ready(function(v){
             gridParts.addRowCls(row, "select-row");
         }
     });
-    gridParts.on("showrowdetail", function (e) { //表格绘制
-        var row = e.record;
-        var mainId = row.id;
-        var chainStockForm = document.getElementById("chainStockForm");
-        //将editForm元素，加入行详细单元格内
-        var td = gridParts.getRowDetailCellEl(row);
-
-        td.appendChild(chainStockForm);
-        chainStockForm.style.display = "";
-
-        setBottomData(row);
-    });
 });
-//用于查询库存分布
-function setBottomData(row){
-	var type = row.type;
-	document.getElementById("chainStockIframe").contentWindow.setInitEmbedParams(row);
-}
+
 /*
 *分组事件
 */

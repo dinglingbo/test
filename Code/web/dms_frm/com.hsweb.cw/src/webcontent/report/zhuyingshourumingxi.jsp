@@ -42,33 +42,33 @@
         <div class="nui-fit">
             <div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;">
                 <div property="columns">                    
-                    <div field="" name="" headeralign="center" align="center">工单号</div>
-                    <div field="" id="" name="" headeralign="center" align="center">所属门店</div>
-                    <div field="" id="" name="" headeralign="center" align="center">工单类型</div>
-                    <div field="" id="" name="" headeralign="center" align="center">业务类型</div>
-                    <div field="" id="" name="" headeralign="center" align="center">车牌号</div>
-                    <div field="" id="" name="" headeralign="center" align="center">客户姓名</div>
-                    <div field="" id="" name="" headeralign="center" align="center">联系人</div>
-                    <div field="" id="" name="" headeralign="center" align="center">应收单号</div>
-                    <div field="" id="" name="" headeralign="center" align="center">工时应收</div>
-                    <div field="" id="" name="" headeralign="center" align="center">工时数</div>
-                    <div field="" id="" name="" headeralign="center" align="center">材料应收</div>
-                    <div field="" id="" name="" headeralign="center" align="center">代办费</div>
-                    <div field="" id="" name="" headeralign="center" align="center">诊断费</div>
-                    <div field="" id="" name="" headeralign="center" align="center">检测费</div>
-                    <div field="" id="" name="" headeralign="center" align="center">加工费</div>
-                    <div field="" id="" name="" headeralign="center" align="center">管理费</div>
-                    <div field="" id="" name="" headeralign="center" align="center">工单应收</div>
-                    <div field="" id="" name="" headeralign="center" align="center">工单实收</div>
-                    <div field="" id="" name="" headeralign="center" align="center">工单挂账</div>
-                    <div field="" id="" name="" headeralign="center" align="center">挂账回收</div>
-                    <div field="" id="" name="" headeralign="center" align="center">明细类别</div>
-                    <div field="" id="" name="" headeralign="center" align="center">工时费优惠</div>
-                    <div field="" id="" name="" headeralign="center" align="center">材料费优惠</div>
-                    <div field="" id="" name="" headeralign="center" align="center">套餐优惠</div>
-                    <div field="" id="" name="" headeralign="center" align="center">储值卡优惠</div>
-                    <div field="" id="" name="" headeralign="center" align="center">套餐卡优惠</div>
-                    <div field="" id="" name="" headeralign="center" align="center">计次卡优惠</div>
+                    <div field="" name="" headeralign="center" align="center" width="80px">工单号</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">所属门店</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">工单类型</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">业务类型</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">车牌号</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">客户姓名</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">联系人</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">应收单号</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">工时应收</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">工时数</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">材料应收</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">代办费</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">诊断费</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">检测费</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">加工费</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">管理费</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">工单应收</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">工单实收</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">工单挂账</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">挂账回收</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">明细类别</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">工时费优惠</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">材料费优惠</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">套餐优惠</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">储值卡优惠</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">套餐卡优惠</div>
+                    <div field="" id="" name="" headeralign="center" align="center"width="80px">计次卡优惠</div>
                 </div>
             </div>
         </div>

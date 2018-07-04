@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
     
-<div title="基础信息" name="basic" visible="fasle">    
+<div title="基础信息" name="basic" visible="true">    
    <div class="nui-fit">   
         <div id="dgbasic" class="nui-datagrid"
              style="width:100%;height:100%;"

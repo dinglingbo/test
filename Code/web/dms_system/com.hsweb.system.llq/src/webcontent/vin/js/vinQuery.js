@@ -47,7 +47,6 @@ $(document).ready(function(v){
 
     winCarCfg = nui.get("winCarCfg");
     gridCfgT = nui.get("gridCfgT");
-    document.getElementById("chainStockIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
     
     //panel.hidePane(0);
     panel.hidePane(2); 
@@ -79,6 +78,7 @@ $(document).ready(function(v){
             e.cellHtml = html;
         }
     });
+
     gridParts.on("selectionchanged", function (e) { //表格绘制
         var row = e.selected;
         if(row){ 
@@ -87,18 +87,6 @@ $(document).ready(function(v){
             clearSelectedCls();
             gridParts.addRowCls(row, "select-row");
         }
-    });
-    gridParts.on("showrowdetail", function (e) { //表格绘制
-        var row = e.record;
-        var mainId = row.id;
-        console.log(row);
-        var chainStockForm = document.getElementById("chainStockForm");
-        //将editForm元素，加入行详细单元格内
-        var td = gridParts.getRowDetailCellEl(row);
-
-        td.appendChild(chainStockForm);
-        chainStockForm.style.display = "";
-
     });
     
     gridConfig.on("select", function (e) {//4005选择配置
@@ -136,11 +124,7 @@ $(document).ready(function(v){
     });
 
 });
-//用于查询库存分布
-function setBottomData(row){
-	var type = row.type;
-	document.getElementById("formIframe").contentWindow.setInitEmbedParams(row);
-}
+
 function getMousePos(event) {
    var e = event || window.event;
    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;

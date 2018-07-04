@@ -11,7 +11,7 @@
 <head>
 <title>零件详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon2.jsp" %>    
+    <%@include file="/common/sysCommon.jsp" %>    
     
     <script src="<%=sysDomain%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
     <script src="<%=sysDomain%>/epc/vin/js/partDetail.js?v=1.0" type="text/javascript"></script>

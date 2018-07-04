@@ -76,10 +76,9 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center;">
-                            <a class="nui-button" width="" iconCls="" plain="false" onclick="onSearch()">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+                            <a class="nui-button" width="" iconCls="" plain="false" onclick="onSearch()">&nbsp;查&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="onClear()">清空条件</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="addPart()">新增配件</a>
-							<a class="nui-button btnCopy"  plain="false" onclick="viPart()" data-clipboard-action="cut" data-clipboard-target="#resList">复制剪贴板</a>
 						</td>
                     </tr>
                 </table>
@@ -88,27 +87,23 @@
 				<div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
 							 dataField="parts"
 							 url=""
-							 ondrawcell="onPartGridDraw"
-							 onrowdblclick="onRowDblClick"
 							 idField="id"
-							 totalField="page.count"
-							 pageSize="100"
 							 showPager="false"
 							 allowCellSelect="true"
 							 showLoading="true"
 							 selectOnLoad="true"
 							 multiSelect="true"
 							 showSummaryRow="true"
-							 onselectionchanged="onGridSelectionChanged"
 							 showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
 						<div property="columns">
 								<div type="expandcolumn" width="40">替换件</div>
-								<div field="code" width="80" headerAlign="center" allowSort="true" summaryType="count">编码</div>
-								<div field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
+								<div field="partCode" width="150" headerAlign="center" allowSort="true" summaryType="count">编码</div>
+								<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
+								<div field="stockQty" width="40" headerAlign="center">库存</div>
 								<div field="partBrandId" width="70" headerAlign="center">品牌</div>
-								<div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
+								<div field="partName" width="80" headerAlign="center" allowSort="true">名称</div>
 								<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
-								<div field="spec" width="120" headerAlign="center" allowSort="true">车型</div>
+								<div field="applyCarModel" width="120" headerAlign="center" allowSort="true">车型</div>
 								<div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 								<div field="qualityTypeId" width="60" headerAlign="center">品质</div>
   
@@ -124,7 +119,7 @@
 							activeIndex="0" 
 							style="width:100%; height:100%;" 
 							plain="false" 
-							onactivechanged="ontopTabChanged">
+							onactivechanged="">
 							<div title="本店库存" id="partInfoTab" name="partInfoTab" url="" >
 							</div> 
 							<div title="库存分布" id="billmain" name="billmain" url="">
@@ -149,6 +144,33 @@
         </div>
     </div>
         
+</div>
+
+<div id="partCommonForm" style="display:none;">
+	<div id="innerPartCommonGrid" class="nui-datagrid" style="width:100%;height:150px;"
+					dataField="parts"
+					url=""
+					idField="id"
+					showPager="false"
+					allowCellSelect="true"
+					showLoading="true"
+					selectOnLoad="true"
+					multiSelect="true"
+					showSummaryRow="true"
+					showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
+			<div property="columns">
+					<div field="partCode" width="150" headerAlign="center" allowSort="true" summaryType="count">编码</div>
+					<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
+					<div field="stockQty" width="40" headerAlign="center">库存</div>
+					<div field="partBrandId" width="70" headerAlign="center">品牌</div>
+					<div field="partName" width="80" headerAlign="center" allowSort="true">名称</div>
+					<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
+					<div field="applyCarModel" width="120" headerAlign="center" allowSort="true">车型</div>
+					<div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
+					<div field="qualityTypeId" width="60" headerAlign="center">品质</div>
+
+			</div>
+	</div>
 </div>
 
 

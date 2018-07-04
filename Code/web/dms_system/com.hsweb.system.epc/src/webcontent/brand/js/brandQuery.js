@@ -60,7 +60,7 @@ function rowClickDg1(){
     var row = dg1.getSelected();
     if (row.brand) {
         brand = row.brand;
-        setTopNav(2, row.brandCn);
+        setTopNav(2, row.name);
         var params = {
             "url": llq_pre_url + "/cars/show",
             "params":{
@@ -73,138 +73,138 @@ function rowClickDg1(){
 }
 function rowClickDg2(){
     var row = dg2.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(3, row.name);
         var params = {
             "url": llq_pre_url + "/cars/code",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg3);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 function rowClickDg3(){
     var row = dg3.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(4, row.name);
         var params = {
             "url": llq_pre_url + "/cars/model",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg4);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 function rowClickDg4(){
     var row = dg4.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(5, row.name);
         var params = {
             "url": llq_pre_url + "/cars/litm",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg5);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 function rowClickDg5(){
     var row = dg5.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(6, row.name);
         var params = {
             "url": llq_pre_url + "/cars/litn",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg6);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 function rowClickDg6(){
     var row = dg6.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(7, row.name);
         var params = {
             "url": llq_pre_url + "/cars/litf",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg7);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 function rowClickDg7(){
     var row = dg7.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(8, row.name);
         var params = {
             "url": llq_pre_url + "/cars/litfi",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg8);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 function rowClickDg8(){
     var row = dg8.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(9, row.name);
         var params = {
             "url": llq_pre_url + "/cars/litsx",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg9);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 function rowClickDg9(){
     var row = dg9.getSelected();
-    if (row.auth && !row.last) {
+    if (row.auth && row.has_next == "1") {
         setTopNav(10, row.name);
         var params = {
             "url": llq_pre_url + "/cars/litsx",
             "params":{
-                "brand": brand,
+                "code": brand,
                 "auth": unescape(row.auth)                                                                           
             },
             "token": token
         }
         callAjax(url, params, processAjax, setDg10);
     }else{
-        queryGroupByAuth(row.auth);
+        queryGroupByAuth(row.keys);
     }
 }
 /*
@@ -212,7 +212,7 @@ function rowClickDg9(){
 */
 function queryDg1(){	
     var params = {
-        "url": llq_pre_url + "/ppycars/brand",
+        "url": llq_pre_url + "/brandbase",
         "params":{
         },
         "token": token

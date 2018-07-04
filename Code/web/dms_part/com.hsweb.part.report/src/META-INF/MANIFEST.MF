@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Require-Bundle: 
+eos-webCtxPath: report
 Bundle-Vendor: localhost
-eos-webCtxPath: cw
 Bundle-Version: 1.0.0
-Bundle-Name: com.hsweb.cw
+Bundle-Name: com.hsweb.part.report
 Bundle-Description: 
-Bundle-SymbolicName: com.hsweb.cw
+Bundle-SymbolicName: com.hsweb.part.report
 

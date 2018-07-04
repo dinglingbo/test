@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>应收</title>
+<title>应付</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     
@@ -28,19 +28,13 @@
 <body>
     <div class="nui-fit">
         <div style="height: 60px;">
-            <table>
-                <tr>
-                    <td style="width:100%;">
                         <input class="nui-textbox" style="width:30%" emptytext="请输入发票号/开票单号/源单号/客户姓名/手机号码/车牌号查询">
                         <input class="nui-combobox" style="width:5%" data="data" value="1">
-                    </td>
-
-                    <td style="white-space:nowrap;">                   
+                        <span>应收合计</span>
+                        <span>66</span>
+                        <span>实收合计</span>
+                        <span>66</span>
                         <a class="nui-button" iconCls="icon-search" onclick="">付款</a>
-                    </td>
-                </tr>
-                </tr>
-            </table>
         </div>
         <div class="nui-fit">
             <div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;">

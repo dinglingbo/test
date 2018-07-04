@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.4"></script>
 <style type="text/css">
 
 table {
@@ -47,7 +47,7 @@ table {
                             <label>客户名称：</label>
                         </td>
                         <td colspan="3">
-                            <input class="nui-textbox" name="fullName" width="100%"/>
+                            <input class="nui-textbox" id="fullName" name="fullName" width="100%"/>
                         </td>
                     </tr>
                     <tr>
@@ -61,7 +61,7 @@ table {
                             <label>手机号码：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" name="mobile" width="100%"/>
+                            <input class="nui-textbox" id="mobile" name="mobile" width="100%"/>
                         </td>
                         <!--
                         <td class="form_label">

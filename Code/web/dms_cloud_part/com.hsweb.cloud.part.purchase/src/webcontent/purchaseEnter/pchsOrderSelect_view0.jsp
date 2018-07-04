@@ -97,11 +97,10 @@
 </div>
 <div class="nui-fit">
     <div id="mainTabs" class="nui-tabs" name="mainTabs"
-            activeIndex="0" 
             style="width:100%; height:100%;" 
-            plain="false" 
+            plain="true" 
             onactivechanged="ontopTabChanged">
-        <div title="采购订单" id="pchsOrderTab" name="pchsOrderTab" >
+        <div title="采购订单" id="pchsOrderTab" name="pchsOrderTab" visible="false" >
             <div class="nui-fit">
                 <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                         showPager="true"
@@ -135,7 +134,7 @@
                 </div>
             </div>
         </div>
-        <div title="供应商销售单" name="sellOrderTab" id="sellOrderTab" >
+        <div title="供应商销售单" name="sellOrderTab" id="sellOrderTab" visible="false">
                 <div class="nui-fit">
                     <div id="sellOrderGrid" class="nui-datagrid" style="width:100%;height:100%;"
                         showPager="true"

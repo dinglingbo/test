@@ -181,9 +181,9 @@
               <table style="width:100%;">
                   <tr>
                       <td style="white-space:nowrap;">
-                          <input id="queryCode" name="queryCode" width="120px" emptyText="编码" class="nui-textbox"/>
-                          <input id="namePy" name="namePy" width="120px" emptyText="拼音" class="nui-textbox"/>
-                          <input id="fullName" name="fullName" width="120px" emptyText="名称" class="nui-textbox"/>
+                          <input id="queryCodeSearch" name="queryCodeSearch" width="120px" emptyText="编码" class="nui-textbox"/>
+                          <input id="namePySearch" name="namePySearch" width="120px" emptyText="拼音" class="nui-textbox"/>
+                          <input id="fullNameSearch" name="fullNameSearch" width="120px" emptyText="名称" class="nui-textbox"/>
                           <a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                           <span class="separator"></span>
                           <a class="nui-button" plain="true" iconCls="" onclick="addUnifyPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>

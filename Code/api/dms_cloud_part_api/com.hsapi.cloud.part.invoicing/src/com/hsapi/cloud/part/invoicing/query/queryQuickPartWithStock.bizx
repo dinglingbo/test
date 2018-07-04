@@ -40,7 +40,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -86,6 +86,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgids</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">25</process:from>
+      <process:to type="query">params/limitCount</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -312,7 +316,17 @@
       <targetNode>subprocess3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign25</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">code</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -337,6 +351,7 @@
     <targetConnections>link25</targetConnections>
     <targetConnections>link31</targetConnections>
     <targetConnections>link36</targetConnections>
+    <targetConnections>link18</targetConnections>
     <location x="606" y="363"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
@@ -360,6 +375,8 @@
     <chidren>assign14</chidren>
     <chidren>group1</chidren>
     <chidren>invokePojo0</chidren>
+    <chidren>assign25</chidren>
+    <chidren>assign26</chidren>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="queryPartCode" displayName="queryPartCode" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
@@ -439,7 +456,7 @@
       <targetNode>loopend0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -468,7 +485,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">code+';'+partMsg</process:from>
+      <process:from type="expression" pattern="reference">code+&quot;;&quot;+partMsg</process:from>
       <process:to type="query">partMsg</process:to>
     </process:copy>
   </nodes>
@@ -529,12 +546,12 @@
       <targetNode>loopstart1</targetNode>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
-    <location x="210" y="426"/>
+    <location x="209" y="409"/>
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
-    <location x="205" y="462"/>
+    <location x="204" y="445"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
@@ -751,7 +768,7 @@
       <targetNode>assign21</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -820,7 +837,7 @@
       <targetNode>subprocess5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1026,7 +1043,7 @@
       <targetNode>subprocess6</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1177,7 +1194,7 @@
     <figSize height="17" width="69"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign21" name="赋值21" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign21" name="赋值21" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign21</sourceNode>
       <targetNode>assign22</targetNode>
@@ -1284,6 +1301,37 @@
     <location x="756" y="396"/>
     <figSize height="17" width="39"/>
     <node>assign24</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign25" name="赋值25" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+      <bendPoint heightToEnd="20" heightToStart="22" widthToEnd="-202" widthToStart="218"/>
+      <sourceNode>assign25</sourceNode>
+      <targetNode>assign26</targetNode>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="160" y="438"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign25label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign25label" name="label" nodeType="label">
+    <location x="155" y="474"/>
+    <figSize height="17" width="39"/>
+    <node>assign25</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign26" name="赋值26" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign26</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="580" y="440"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign26label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign26label" name="label" nodeType="label">
+    <location x="575" y="476"/>
+    <figSize height="17" width="39"/>
+    <node>assign26</node>
   </nodes>
   <topRuler>
     <guides position="665" horizontal="true"/>

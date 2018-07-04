@@ -113,8 +113,8 @@ function initGridData(data){
             var partName = part.name;
             var fullName = part.fullName;
             var unit = part.unit;
-            var orderQty = 1;
-            var orderPrice = 0;
+            var orderQty = part.orderQty||1;
+            var orderPrice = part.orderPrice||0;
             var row = {partId: partId, partCode: partCode, partName: partName, 
                        fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
             rows.push(row);
@@ -133,8 +133,8 @@ function initGridDataTwo(data){
             var partName = part.partName;
             var fullName = part.fullName;
             var unit = part.unit;
-            var orderQty = 1;
-            var orderPrice = 0;
+            var orderQty = part.orderQty||1;
+            var orderPrice = part.orderPrice||0;
             var row = {partId: partId, partCode: partCode, partName: partName, 
                        fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
             rows.push(row);
@@ -161,8 +161,8 @@ function initGridDataThree(data){
             var partName = part.label;
             var fullName = part.label + " 原厂";  //000070 原厂件  00000327 原厂
             var unit = "PCS";
-            var orderQty = part.orderQty;
-            var orderPrice = part.orderPrice;
+            var orderQty = part.orderQty||1;
+            var orderPrice = part.orderPrice||0;
             var row = {partId: partId, partCode: partCode, partName: partName, 
                        fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
             rows.push(row);

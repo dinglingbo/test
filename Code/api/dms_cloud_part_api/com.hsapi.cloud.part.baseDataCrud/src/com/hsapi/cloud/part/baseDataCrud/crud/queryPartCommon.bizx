@@ -164,7 +164,6 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link7</targetConnections>
     <targetConnections>link9</targetConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link21</targetConnections>
@@ -178,9 +177,15 @@
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="NALL" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -400,6 +405,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="435" y="90"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>

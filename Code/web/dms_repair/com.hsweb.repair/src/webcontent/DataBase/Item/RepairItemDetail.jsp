@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.9"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.0"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -41,70 +41,68 @@ table {
 	<input name="id" class="nui-hidden"/>
 	<div class="nui-panel" showToolbar="false" title="基本信息" showFooter="false"
 		style="width:calc(100% - 20px);">
-		<div style="padding-top:5px;" >
-			<table class="nui-form-table">
-				<tr>
-					<td class="form_label required">
-						<label>项目编码：</label>
-					</td>
-					<td>
-						<input class="nui-textbox" name="code" width="100%"/>
-					</td>
-					<td class="form_label required">
-						<label>工种：</label>
-					</td>
-					<td>
-						<input class="nui-combobox" name="itemKind" id="itemKind"
-							   valueField="customid"
-							   textField="name"
-							   width="100%"/>
-					</td>
-				</tr>
-				<tr>
-					<td class="form_label required">
-						<label>项目名称：</label>
-					</td>
-					<td colspan="3">
-						<input class="nui-textbox" name="name" width="100%"/>
-					</td>
-				</tr>
-				<tr>
-					<td class="form_label required">
-						<label>项目类型：</label>
-					</td>
-					<td colspan="3">
-						<input class="nui-combobox" name="type" id="type"
-							   valueField="customid"
-							   textField="name"
-							   width="100%"/>
-					</td>
-				</tr>
-				<tr>
-					<td class="form_label required">
-						<label>品牌：</label>
-					</td>
-					<td>
-						<input class="nui-combobox" name="carBrandId" id="carBrandId"
-							   valueField="id"
-							   textField="nameCn"
-							   width="100%"/>
-					</td>
-					<td class="form_label required">
-						<label>车型：</label>
-					</td>
-					<td>
-						<input class="nui-combobox" name="carModelId" id="carModelId"
-							   valueField="carModelId"
-							   textField="carModel"
-							   width="100%"/>
-					</td>
-				</tr>
-			</table>
-		</div>
+        <table class="nui-form-table" border=0>
+            <tr>
+				<td class="form_label required">
+					<label>项目名称：</label>
+				</td>
+				<td>
+					<input class="nui-textbox" name="name" width="100%"/>
+				</td>
+                <td class="form_label required">
+                    <label>项目类型：</label>
+                </td>
+                <td colspan="1">
+                    <input class="nui-combobox" name="type" id="type"
+                           valueField="customid"
+                           textField="name"
+                           width="100%"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form_label required">
+                    <label>项目编码：</label>
+                </td>
+                <td colspan="1">
+                    <input class="nui-textbox" name="code" width="100%"/>
+                </td>
+                
+                <td class="form_label required">
+                    <label>工种：</label>
+                </td>
+                <td colspan="1">
+                    <input class="nui-combobox" name="itemKind" id="itemKind"
+                           valueField="customid"
+                           textField="name"
+                           width="100%"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form_label">
+                    <label>品牌：</label>
+                </td>
+                <td>
+                    <input class="nui-combobox" name="carBrandId" id="carBrandId"
+                           valueField="id"
+                           textField="nameCn"
+                           onValuechanged="initCarModel('carModelId', e.value)"
+                           width="100%"/>
+                </td>
+                <td class="form_label">
+                    <label>车型：</label>
+                </td>
+                <td>
+                    <input class="nui-combobox" name="carModelId" id="carModelId"
+                           valueField="carModelId"
+                           textField="carModel"
+                           width="100%"/>
+                </td>
+            </tr>
+        </table>
 	</div>
 	<div class="nui-panel" showToolbar="false" title="工时价格信息" showFooter="false"
 		 style="width:calc(100% - 20px);">
-		<table class="nui-form-table">
+		<table class="nui-form-table" border=0>
 			<tr>
 				<td class="form_label">
 					<label>标准工时：</label>
@@ -117,10 +115,26 @@ table {
 						   changeOnMousewheel="true" showButton="false"
 						   width="100%" inputStyle="text-align:right;"/>
 				</td>
-			</tr>
-			<tr>
 				<td class="form_label">
 					<label>工时单价：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-spinner" name="unitPrice" format="0.00" value="0" maxValue="1000000000"
+						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
+				</td>
+			</tr>
+            <tr>
+				<td class="form_label">
+					<label>成本定义：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-combobox" name="costDef" id="costDef"
+							   valueField="id"
+							   textField="nameCn"
+							   width="100%"/>
+				</td>
+				<td class="form_label">
+					<label>成本参数：</label>
 				</td>
 				<td colspan="1">
 					<input class="nui-spinner" name="unitPrice" format="0.00" value="0" maxValue="1000000000"
@@ -136,6 +150,7 @@ table {
 						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
 				</td>
 			</tr>
+            <!--
 			<tr>
 				<td class="form_label">
 					<label>提成金额：</label>
@@ -145,6 +160,7 @@ table {
 						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
 				</td>
 			</tr>
+            -->
 		</table>
 	</div>
 </div>

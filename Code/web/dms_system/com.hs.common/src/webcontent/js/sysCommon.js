@@ -40,7 +40,7 @@ function callAjax(url, params, processAjax, callBack, obj){
             }
 		},
 		error: function () {
-			nui.alert("获取数据遇到错误！");
+			showMsg("获取数据遇到错误！", "E");
             if(obj){
                 nui.unmask(obj);
             }
@@ -63,14 +63,14 @@ function processAjax(json, callBack){
         if((json.errMsg || "操作失败！").indexOf("登录超时") > -1 ){
             backToLogin();
         }else{
-            nui.alert(json.errMsg || "操作失败！");
+            showMsg(json.errMsg || "操作失败！", "E");
         }
     }
 }
 
 function showSuccess(data, json){
     if(json.errCode == 'S'){
-        nui.alert(json.errMsg || "操作成功！");        
+        showMsg(json.errMsg || "操作成功！");        
     }
 }
 
@@ -109,7 +109,7 @@ function charCount(objId){
 function formValidate(tform){
     tform.validate();
     if (!tform.isValid()){
-        nui.alert(tform.getErrors().length + "个必填项未填写，请检查所有页填写信息！")
+        showMsg(tform.getErrors().length + "个必填项未填写，请检查所有页填写信息！", "W")
         return false;
     }
     return true;    

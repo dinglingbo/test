@@ -92,7 +92,10 @@
     <select id="getCarModel" parameterClass="HashMap" resultClass="HashMap">
     	SELECT DISTINCT a.id carModelId, a.car_model carModel, a.car_brand_id carBrandId, a.car_brand_name carBrandName
 		FROM com_car_model a 
-		WHERE a.car_brand_id = #carBrandId# and a.car_series_id = #carMTId#
+		WHERE a.car_brand_id = #carBrandId#
+        <isNotNull property="carMTId">
+			AND A.car_series_id = #carMTId#
+		</isNotNull>
 		And a.is_disabled=0
     </select>
     <!--省份-->

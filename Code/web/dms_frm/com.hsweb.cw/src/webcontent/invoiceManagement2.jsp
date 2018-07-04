@@ -33,7 +33,7 @@
 </style>
 <body>
 <div class="nui-fit">
-	<div style="width: 100%; height: 30%;">
+	<div style="width: 100%; height: 250px;">
 		<div>
 			<h2><span id="left">开票单</span></h2>
 			<span id="right">2018.07.02</span>
@@ -66,14 +66,13 @@
 					<td>
 						开票备注：
 						<input class="nui-textarea" style="width:100%">
-					</td>	
+					</td>
 				</tr>
 			</table>
 		</form>
-		 
 	</div>
 	<div class="nui-fit">
-		
+		<a class="nui-button" iconCls="icon-add" onclick="">添加开票单据</a>
 		<span><h2>单据信息</h2></span>
 		<div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url=""allowcellwrap="true" style="width:100%;height:50%;">
 			<div property="columns">

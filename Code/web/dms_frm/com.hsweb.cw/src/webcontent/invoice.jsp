@@ -43,38 +43,37 @@
 		<form id="form">
 			<table>
 				<tr>
-					<td>发票类型</td>
-					<td style="width:45%">
-					<input class="nui-combobox" style="width:100%">
-					</td>
-					<td>税率</td>
-					<td style="width:20%">
-						<input class="nui-textbox" style="width:100%">
-					</td>
-				</tr>
-				<tr>
-					<td>发票号</td>
-					<td style="width:20%">
-						<input class="nui-textbox" style="width:100%">
-					</td>
-					<td style="width:20%">发票抬头</td>
 					<td>
+						发票类型
+						<input class="nui-combobox" style="width:100%">
+					</td>
+					<td>
+						税率
 						<input class="nui-textbox" style="width:100%">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						发票备注：
+						发票号
+						<input class="nui-textbox" style="width:100%">
 					</td>
 					<td>
-						<div name="" style="height:120px;"></div>
+						发票抬头
+						<input class="nui-textbox" style="width:100%">
 					</td>
+				</tr>
+				<tr>
+					<td>
+						开票备注：
+						<input class="nui-textarea" style="width:100%">
+					</td>	
 				</tr>
 			</table>
 		</form>
+		 
 	</div>
 	<div class="nui-fit">
-		<a class="nui-button" iconCls="icon-add" onclick="">添加开票单据</a>
+		
 		<span><h2>单据信息</h2></span>
 		<div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url=""allowcellwrap="true" style="width:100%;height:50%;">
 			<div property="columns">

@@ -159,6 +159,12 @@ function CloseWindow(action) {
 function onCancel() {
     CloseWindow("cancel");
 }
+
+var basicRequiredField = {
+    "fullName":"客户名称",
+    "mobile":"手机号码"
+}
+
 var carRequiredField ={
     "carNo":"车牌号",
     "underpanNo":"车架号"
@@ -177,6 +183,16 @@ function onOk()
     carList[currCarIdx] = carInfoFrom.getData();
     carList[currCarIdx].carModel = nui.get("carModelId").getText();
     var i,key,tmp;
+    contactList[currContactIdx] = contactInfoForm.getData();
+    
+    for(key in basicRequiredField){
+        //tmp = nui.get(key).getText();
+        if(!nui.get(key).value){
+            showMsg(basicRequiredField[key]+"不能为空", "W");
+            return;
+        }
+    }
+    
     for(i=0;i<carList.length;i++)
     {
         tmp = carList[i];
@@ -184,13 +200,13 @@ function onOk()
         {
             if(typeof carRequiredField[key] == "string" && !tmp[key])
             {
-                nui.alert(carRequiredField[key]+"不能为空");
+                showMsg(carRequiredField[key]+"不能为空", "W");
                 setCarByIdx(i);
                 return;
             }
         }
     }
-    contactList[currContactIdx] = contactInfoForm.getData();
+    
     for(i=0;i<contactList.length;i++)
     {
         tmp = contactList[i];
@@ -198,12 +214,13 @@ function onOk()
         {
             if(typeof contactRequiredField[key] == "string" && !tmp[key])
             {
-                nui.alert(contactRequiredField[key]+"不能为空");
+                showMsg(contactRequiredField[key]+"不能为空", "W");
                 setContactByIdx(i);
                 return;
             }
         }
     }
+    
     var insCarList = carList.filter(function(v)
     {
         return !v.id;
@@ -245,17 +262,16 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
-                nui.alert("保存成功");
+                showMsg("保存成功");
                 CloseWindow("ok");
             }
             else{
-                nui.alert(data.errMsg||"保存失败");
+                showMsg(data.errMsg||"保存失败", "E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
-            nui.alert("网络出错");
+            showMsg("网络出错", "E");
         }
     });
 }
@@ -303,13 +319,12 @@ function setData(data)
                         setContactByIdx(0);
                     }
                     else{
-                        nui.alert("获取客户信息失败");
+                        showMsg("获取客户信息失败", "E");
                     }
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
-                    //  nui.alert(jqXHR.responseText);
                     console.log(jqXHR.responseText);
-                    nui.alert("网络出错");
+                    showMsg("网络出错", "E");
                 }
             });
         }

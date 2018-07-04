@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.0.10"></script>
+	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.0.5"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -56,16 +56,13 @@ table {
 	<div class="nui-toolbar" style="border-bottom: 0;">
 		<table>
 			<tr>
-				<td>
-                    <a class="nui-button" iconCls="icon-add" onclick="addSimple()" plain="true">快速新增</a> 
-                    <a class="nui-button" iconCls="icon-add" onclick="add()" plain="true">新增</a> 
-                    <a class="nui-button" iconCls="icon-edit"
+				<td><a class="nui-button" iconCls="icon-add" onclick="add()"
+					plain="true">新增</a> <a class="nui-button" iconCls="icon-edit"
 					onclick="edit()" plain="true">修改</a> <a class="nui-button"
 					iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
 					class="nui-button" iconCls="icon-date" onclick="split()"
 					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
-					onclick="history()" plain="true">维修历史</a>
-                </td>
+					onclick="history()" plain="true">维修历史</a></td>
 			</tr>
 		</table>
 	</div>

@@ -27,65 +27,44 @@
 <div class="nui-fit">
     <table align="center">
         <tr>
-            <td>应付金额：</td>
             <td>
-                <span></span>
+                应付金额：<span></span>
             </td>
-            <td>已付金额：</td>
             <td>
-                <span></span>
+                已付金额：<span></span>
             </td>
-            <td>未付金额：</td>
             <td>
-                <span></span>
-            </td>
-        </tr>
-        <tr>
-            <td>供应商：</td>
-            <td>
-                <span></span>
-            </td>
-        </tr>
-        <tr>
-            <td>付款方式：</td>
-            <td>
-                <input class="nui-combobox">
+                未付金额：<span></span>
             </td>
         </tr>
         <tr>
             <td>
-                开票方式：
-            </td>
-            <td>
-                <input class="nui-checkbox">
-            </td>
-            <td>不开票</td>
-            <td>
-                <input class="nui-checkbox">
-            </td>
-            <td>增值税普通发票</td>
-            <td>
-                <input class="nui-checkbox">
-            </td>
-            <td>增值税专用发票</td>
-        </tr>
-        <tr>
-            <td>票据单号：</td>
-            <td>
-                <input class="nui-textbox" style="height: 150px;">
+                供应商：<span></span>
             </td>
         </tr>
         <tr>
-            <td>本次付款：</td>
             <td>
-                <input class="nui-textbox" style="height: 150px;">
+                付款方式：<input class="nui-combobox">
             </td>
         </tr>
         <tr>
-            <td>结清优惠：</td>
             <td>
-                <input class="nui-checkbox">
+                开票方式
             </td>
+            <td>
+                <input class="nui-checkbox">不开票
+                <input class="nui-checkbox"> 增值税普通发票
+                <input class="nui-checkbox"> 增值税专用发票
+            </td>
+        </tr>
+        <tr>
+            <td>票据单号：<input class="nui-textarea" style="height: 150px;"></td>
+        </tr>
+        <tr>
+            <td>本次付款：<input class="nui-textarea" style="height: 150px;"></td>
+        </tr>
+        <tr>
+            <td>结清优惠：<input class="nui-checkbox"></td>
         </tr>
     </table>
     <div align="right">

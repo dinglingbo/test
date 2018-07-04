@@ -129,6 +129,51 @@
     var token = "<%=token %>";
     //alert("token=" + token);
     
+    var _sysMsg_;
+	//提示成功信息	
+	function showMsgBox(message, life) {
+		var time = 3000;
+		if (life) {
+			time = life;
+		}
+		
+		_sysMsg_ = message;
+        $("#_sys_tip_msg_").remove();
+        
+        if ($("#_sys_tip_msg_").text().length > 0) {
+	    	var msg = "<span>" + message + "</span>";
+	        $("#_sys_tip_msg_").empty().append(msg);
+	    } else {
+			var msg = "<div id='_sys_tip_msg_'><span>" + message + "</span></div>";
+			$("body").append(msg);
+	    }
+		
+		//$("#_sys_tip_msg_").fadeIn(1000);
+  
+		setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
+	};
+	
+	//提示错误信息
+	function showMsg(message, msgType) {
+		showMsgBox(message, 2000);
+        if(msgType){
+            $("#_sys_tip_msg_ span").addClass(msgType);
+        }
+        if((""+message).length < 36){
+            $("#_sys_tip_msg_ span").addClass("small");
+        }
+	};
+    
+    function showError(message) {
+		showMsg(message, "E");
+	};
+    
+    function showWarn(message) {
+		showMsg(message, "W");
+	};
+	
+	//showMsg("Hello success!"); // 第二个参数life是指消息显示时间
+	//showError("Hello error!");
     function backToLogin(){
 		var url = window.location.pathname;
 		/* for(var i=0;i<excludedFlows.length;i++){
@@ -142,60 +187,19 @@
 			window.parent.backToLogin();
 		}else{
 		//	debugger;
-			alert("登录超时，正在跳转！");
+			showMsg("登录超时，正在跳转！", "E");
             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
 		}
 	}
 
 		
-	//提示成功信息	
-	showMsgBox = function(message, life) {
-		var time = 3000;
-		if (life) {
-			time = life;
-		}
-		
-		$("#_sys_tip_msg_").remove();
-        
-        if ($("#_sys_tip_msg_").text().length > 0) {
-	    	var msg = "<span>" + message + "</span>";
-	        $("#_sys_tip_msg_").empty().append(msg);
-	    } else {
-			var msg = "<div id='_sys_tip_msg_'><span>" + message + "</span></div>";
-			$("body").append(msg);
-	    }
-		
-		//$("#_sys_tip_msg_").fadeIn(time);
-  
-		setTimeout($("#_sys_tip_msg_").stop().delay(500).fadeOut(time), time);
-	};
-	
-	//提示错误信息
-	showMsg = function(message, msgType) {
-		showMsgBox(message, 1500);
-        if(msgType){
-            $("#_sys_tip_msg_ span").addClass(msgType);
-        }
-	};
-    
-    showError = function(message) {
-		showMsg(message, "E");
-	};
-    
-    showWarn = function(message) {
-		showMsg(message, "W");
-	};
-	
-	//showMsg("Hello success!"); // 第二个参数life是指消息显示时间
-	//showError("Hello error!");
 </script>
-<script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.2" type="text/javascript"></script>
-<script src="<%=webPath + sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
-<script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.3" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.3" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.4" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=webPath + sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
-<link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<script src="<%=webPath + sysDomain%>/common/js/clipboard.min.js?v=1.0" type="text/javascript"></script>
+<link href="<%=webPath + sysDomain %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
     html, body
     {
@@ -214,6 +218,9 @@
         left: -20;
         top: 90;
         text-align: center;/* right*/        
+
+
+        
         width: 100%;/**/
     }
      
@@ -222,10 +229,15 @@
         /*opacity: .8;*/
         padding: 15px 20px;
         border-radius: 5px;
-        text-align: center;
-        word-break:break-all; 
+        text-align: left;
+        
         word-wrap:break-word;
-        width:100px;
+        word-break:break-all;
+        overflow: hidden;
+        width: 180px;
+        height: 56px;
+        display:inline-block;
+        
         color: #fff;
         font-size: 14px;
     }
@@ -236,5 +248,9 @@
     
     #_sys_tip_msg_ span.W {
         background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
+    }
+    
+    #_sys_tip_msg_ span.small {
+        height: auto;
     }
 </style>

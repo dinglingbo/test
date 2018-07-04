@@ -29,16 +29,18 @@
     <div style="height: 60px;">
         <table>
             <tr>
-                <td style="width:100%;">
-                    <input class="nui-textbox" style="width:30%" emptytext="请输入发票号/开票单号/源单号/客户姓名/手机号码/车牌号查询">
-                    <input class="nui-combobox" style="width:5%" data="data" value="1">
+                <td style="width:20%">
+                    <input class="nui-textbox" style="width:50%" emptytext="请输入发票号/开票单号/源单号/客户姓名/手机号码/车牌号查询">
+                    <input class="nui-combobox" style="width:20%" data="data" value="1">
                 </td>
-                
-                <td style="white-space:nowrap;">
-                    <a class="nui-button" iconCls="icon-search"  onclick="">新建</a>
-                    <a class="nui-button" iconCls="icon-search"  onclick="">导出到XLS</a>
+                <td style="width:20%">
+                    <span>开票金额</span><span>666</span>&nbsp;
+                    <span>税额</span><span>666</span>
                 </td>
-                </tr>
+                <td style="width:20%">
+                    <a class="nui-button" iconCls="icon-search" onclick="">新建</a>
+                    <a class="nui-button" iconCls="icon-search" onclick="">导出到XLS</a>
+                </td>
             </tr>
         </table>
     </div>

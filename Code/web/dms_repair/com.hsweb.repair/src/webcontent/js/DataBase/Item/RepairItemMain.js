@@ -20,9 +20,11 @@ $(document).ready(function()
 		var itemKind = nui.get("itemKind");
 		itemKind.setData(list);
 	});
-	/*initCarBrand("carBrandId",function()
+	initCarBrand("carBrandId",function()
 	{
-	});*/
+	});
+    initDicts({"costType": COST_TYPE});
+    
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;
@@ -53,6 +55,7 @@ function onSearch()
 function doSearch(params)
 {
 	params.orgid = currOrgid;
+    params.orgid = currOrgid;
 	rightGrid.load({
 		token:token,
 		params:params
@@ -64,7 +67,7 @@ function addOrEdit(item){
 		url:"com.hsweb.repair.DataBase.RepairItemDetail.flow",
 		title:"维修项目",
 		width:450,
-		height:380,
+		height:420,
 		allowResize:false,
 		onload: function()
 		{
@@ -73,6 +76,7 @@ function addOrEdit(item){
 			params.typeList = tree1.getList();
 			params.itemKindList = nui.get("itemKind").getData();
 			params.carBrandIdList = nui.get("carBrandId").getData();
+            params.costType = nui.get("costType").getData();
 			if(item)
 			{
 				params.item = item;
@@ -120,7 +124,7 @@ function onOk()
 		CloseWindow("ok");
 	}
 	else{
-		nui.alert("请选择一个项目");
+		showMsg("请选择一个项目", "W");
 	}
 }
 function CloseWindow(action)

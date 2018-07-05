@@ -1,8 +1,7 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryChainStockByPartId.biz.ext";
+var rightGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.query.queryChainStockByPartId.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;
@@ -36,6 +35,11 @@ $(document).ready(function(v)
             }
         });
     });
+
+    if(partCode){
+        var params = {partCode:partCode};
+        doSearch(params);
+    }
 });
 function getSearchParam(){
     var params = {};
@@ -48,12 +52,17 @@ function onSearch(){
 }
 function doSearch(params)
 {
+    if(!params.partId && params.partCode){
+        rightGrid.setData([]);
+        return;
+    }
     //params.sortField = "b.stock_qty";
     //params.sortOrder = "desc";
-    var partId = null;
-    partId = params.partId;
+    params.notShowAll = 1;
+    params.sortField = "a.outable_qty";
+    params.sortOrder = "desc";
     rightGrid.load({
-        partId:partId,
+        params:params,
         token:token
     });
 }

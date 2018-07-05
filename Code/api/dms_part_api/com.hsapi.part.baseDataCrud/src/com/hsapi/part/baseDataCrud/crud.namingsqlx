@@ -44,10 +44,8 @@
 		       a.model model,
 		       a.is_disabled isDisabled,
 		       a.is_host isHost,
-		       a.orgid orgid,
-		       b.name partBrandName
+		       a.orgid orgid
         FROM com_attribute a
-        LEFT JOIN com_part_brand b on(a.part_brand_id = b.id)
         where (a.orgid = 0 or a.orgid = #orgid#)
     	<dynamic>
     		<isNotEmpty prepend="and" property="isDisabled">  
@@ -441,16 +439,21 @@
 		       a.is_disabled isDisabled,
 		       a.is_host isHost,
 		       a.orgid orgid,
-		       b.name partBrandName
+		       a.common_id as commonId
         FROM com_attribute a
-        LEFT JOIN com_part_brand b on(a.part_brand_id = b.id)
         where 1 = 1
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">  
+                (a.orgid = #orgids# or a.orgid = 0)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="commonId">  
+                (a.common_id = #commonId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarBrandId">  
                 (a.apply_carbrand_id = #applyCarBrandId#)
@@ -466,6 +469,15 @@
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
                 (a.code like '%$code$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="lcode">  
+                (a.code like '$code$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="rcode">  
+                (a.code like '%$code$')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">
+            	(a.code in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (a.name like '%$name$%' or a.full_name like '%$name$%')
@@ -522,5 +534,26 @@
         </dynamic>
 		order by a.order_index asc
 	</select>
+	
+	<update id="updatePartCommon" parameterClass="java.util.HashMap" >
+		update com_attribute set common_id = #commonId#
+		where 1 = 1
+            <isNotEmpty prepend="and" property="partIds">
+            	(id in ($partIds$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="commonIds">
+            	(common_id in ($commonIds$) and common_id != 0)
+            </isNotEmpty>
+		 
+	</update>
+	
+	<update id="cancelPartCommon" parameterClass="java.util.HashMap" >
+		update com_attribute set common_id = 0
+		where 1 = 1
+            <isNotEmpty prepend="and" property="partIds">
+            	(id in ($partIds$))
+            </isNotEmpty>
+		 
+	</update>
     
 </sqlMap>

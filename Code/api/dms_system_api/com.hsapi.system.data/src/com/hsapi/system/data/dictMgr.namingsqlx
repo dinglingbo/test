@@ -86,15 +86,26 @@
 		WHERE a.is_disabled=0
         <isNotNull property="carBrandId">
 			AND A.car_brand_id = #carBrandId#
-		</isNotNull>		
+		</isNotNull>
+        <isNull property="carBrandId">
+			AND 1=2
+		</isNull>		
     </select>
     <!--车型-->
     <select id="getCarModel" parameterClass="HashMap" resultClass="HashMap">
     	SELECT DISTINCT a.id carModelId, a.car_model carModel, a.car_brand_id carBrandId, a.car_brand_name carBrandName
 		FROM com_car_model a 
-		WHERE a.car_brand_id = #carBrandId#
-        <isNotNull property="carMTId">
-			AND A.car_series_id = #carMTId#
+		WHERE 1=1
+        <isNull property="carBrandId">
+			<isNull property="carSeriesId">
+                AND 1=2
+            </isNull>
+		</isNull>
+        <isNotNull property="carBrandId">
+			AND A.car_brand_id = #carBrandId#
+		</isNotNull>
+        <isNotNull property="carSeriesId">
+			AND A.car_series_id = #carSeriesId#
 		</isNotNull>
 		And a.is_disabled=0
     </select>

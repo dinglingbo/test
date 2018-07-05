@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/fastPartChoose.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/fastPartChoose.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -133,7 +133,7 @@ body .mini-grid-row-selected{
 
 <div id="advancedAddWin" class="nui-window"
      title="数量单价录入" style="width:400px;height:200px;"
-     showModal="true"
+     showModal="true" showHeader="false"
      allowResize="false"
      allowDrag="true">
      <div id="optTabs" class="nui-tabs" name="optTabs"
@@ -142,7 +142,7 @@ body .mini-grid-row-selected{
         plain="false" >
         <div title="数量单价" id="qpTab" name="qpTab" >
                 <div id="advancedAddForm" class="form">
-                    <table style="width:100%;">
+                    <table style="width:100%;padding-top: 20px">
                         <tr>
                             <td class="title required">
                                 <label>仓库：</label>
@@ -200,27 +200,23 @@ body .mini-grid-row-selected{
         <div title="销价参数" id="priceTab" name="priceTab" >
             <div class="nui-fit">
                 <div id="priceGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                    selectOnLoad="true"
-                    borderStyle="border:1;"
                     showPager="false"
-                    dataField="parts"
-                    sortMode="client"
+                    dataField="price"
                     allowCellSelect="true"
                     allowCellEdit="true"
-                    editNextOnEnterKey="true"
-                    url="">
-                <div property="columns">
-                    <div type="indexcolumn">序号</div>
-                    <div field="name" name="name" width="100" headerAlign="center" header="类型"></div>
-                    <div field="sellPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
+                    sortMode="client"
+                    pageSize="10000"
+                    sizeList="[1000,5000,10000]"
+                    showSummaryRow="false">
+                   <div property="columns">
+                       <div allowSort="true" field="name" width="100" headerAlign="center" header="价格类型"></div>
+                       <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="售价">
                             <input property="editor" vtype="float" class="nui-textbox"/>
-                        </div>
-                        <div field="sellPrice" visible="false" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
-                                <input property="editor" vtype="float" class="nui-textbox"/>
-                        </div>
-                        <div field="operateDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="修改日期"></div>
-                </div>
-                </div>
+                       </div>
+                       <div allowSort="true" datatype="float" field="operator" width="60" headerAlign="center" header="创建人"></div>
+                       <div allowSort="true" field="operateDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                   </div>
+               </div>
             </div>
             <div class="nui-toolbar" style="padding:0px;border-bottom:1;">
                     <table style="width:100%;">

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存分布</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomChainStock.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomChainStock.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -18,11 +18,6 @@
 
 .title.required {
     color: red;
-}
-
-.mini-panel-border {
-    /*border-right: 0;*/
-    
 }
 
 .mini-panel-body {
@@ -46,7 +41,7 @@
          showSummaryRow="false">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="shortName" width="60" headerAlign="center" header="公司名称"></div>
+            <div allowSort="true" field="shortName" width="60" headerAlign="center" header="供应商名称"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
             <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" field="sellPrice" width="60" headerAlign="center" header="售价"></div>
@@ -62,3 +57,6 @@
 
 </body>
 </html>
+<script>
+    var partCode = '<b:write property="partCode"/>';
+</script>

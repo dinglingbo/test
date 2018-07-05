@@ -9,7 +9,7 @@
 -->
 <head>
     <title>用户导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/sysInitGuide.js?v=1.1.0"></script>
+    <script src="<%= request.getContextPath() %>/config/js/cloudPartsysInitGuide.js?v=1.1.0"></script>
     <style>
         .container {
             padding: 10px;

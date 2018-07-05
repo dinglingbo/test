@@ -1,6 +1,6 @@
-var baseUrl = apiPath + cloudPartApi + "/";
-var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
-var enterUrl = baseUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
+var partInfoUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
+var enterUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
+var priceGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
 
 var morePartTabs = null;
 var enterTab = null;
@@ -21,6 +21,8 @@ var FStoreId = null;
 var advancedAddForm = null;
 var mainId = 0;
 var guestId = null;
+var optTabs = null;
+var priceGrid = null;
 
 $(document).ready(function(v)
 {
@@ -35,10 +37,28 @@ $(document).ready(function(v)
     tempIdEl = nui.get("tempId");
     advancedAddWin = nui.get("advancedAddWin");
     advancedAddForm  = new nui.Form("#advancedAddForm");
+    optTabs = nui.get("optTabs");
 
     morePartTabs = nui.get("morePartTabs");
     enterTab = morePartTabs.getTab("enterTab");
     partInfoTab = morePartTabs.getTab("partInfoTab");
+    priceGrid = nui.get("priceGrid");
+    priceGrid.setUrl(priceGridUrl);
+
+    optTabs.on("activechanged",function(e){
+        showTabInfo();
+    });
+
+    priceGrid.on("CellCommitEdit",function(e) {
+        var editor = e.editor;
+        var record = e.record;
+        var row = e.row;
+        editor.validate();
+        if (editor.isValid() == false) {
+            nui.alert("请输入数字！");
+            e.cancel = true;
+        }
+    });
 
     morePartGrid.setUrl(partInfoUrl);
     morePartGrid.on("beforeload",function(e){
@@ -491,6 +511,7 @@ function getRtnData(){
 function onAdvancedAddCancel(){
     advancedAddWin.hide();
     advancedAddForm.setData([]);
+    priceGrid.setData([]);
     morePartCodeEl.focus();
 }
 var requiredField = {
@@ -660,8 +681,7 @@ function calc(type){
         }
     }
 }
-var partPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
+var partPriceUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
 function getPartPrice(params){
     var price = 0;
     nui.ajax({
@@ -689,4 +709,66 @@ function getPartPrice(params){
     });
 
     return price;
+}
+function showTabInfo(){
+	var tab = optTabs.getActiveTab();
+	var name = tab.name;
+    var url = tab.url;
+    if(name == 'priceTab'){
+        var data = priceGrid.getData();
+        if(data && data.length>0) return;
+        var partId = 0;
+        var mtab = morePartTabs.getActiveTab();
+        if(mtab.name == "enterTab"){
+            var row = enterGrid.getSelected();
+            partId = row.partId;
+        }else if(mtab.name == "partInfoTab"){
+            var row = morePartGrid.getSelected();
+            partId = row.id;
+        }
+        var params = {partId:partId,show:1};
+        if(!params.partId || params.partId<=0){
+            priceGrid.setData([]);
+            return;
+        }
+    
+        priceGrid.load({
+            params:params,
+            token:token
+        });
+    }
+}
+var saveUrl = cloudPartApiUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
+function savePrice(){
+    var data = priceGrid.getChanges("modified");
+    if(data && data.length>0){
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '保存中...'
+        });
+    
+        nui.ajax({
+            url : saveUrl,
+            type : "post",
+            data : JSON.stringify({
+                data : data
+            }),
+            success : function(data) {
+                nui.unmask(document.body);
+                data = data || {};
+                if (data.errCode == "S") {
+                    nui.alert("保存成功!","",function(e){
+                        //fastPartEntryEl.focus();
+                    });
+                    
+                } else {
+                    nui.alert(data.errMsg || "保存失败!");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
 }

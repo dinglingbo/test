@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>首页</title>
+  <title>财务报表</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -24,7 +24,7 @@ pageEncoding="UTF-8" session="false" %>
 <body> 
     <div class="nui-fit">
 
-        <div  id="" class="main" style="margin-top: 15px;height:300px !important;width:80%">
+        <div  id="" class="main" style="margin-top: 15px;height:400px !important;width:80%">
 
             <div  id=""  class="main_child"> 
                 <div class="nui-fit"> 
@@ -33,33 +33,33 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
-                            <p>快速报价</p> 
+                            <p>收款流水明细（收账单据）</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>新建采购订单</p> 
+                            <p>收款流水明细（收款内容）</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
-                            <p>新建销售订单</p> 
+                            <p>收款流水汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>EPC查询</p> 
+                            <p>预收处理明细</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>EPC查询</p> 
+                            <p>预收处理汇总表</p> 
                         </a>
                     </div>
                 </div>
@@ -68,31 +68,31 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-truck fa-4x  fa-inverse"></i>
-                            <p>打包发货</p> 
+                            <p>应收账款明细</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-copy fa-4x  fa-inverse"></i>
-                            <p>月结对账</p> 
+                            <p>应收账款汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-calculator fa-4x  fa-inverse"></i>
-                            <p>应收应付结算</p> 
+                            <p>经营收支统计汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
-                            <p>费用支出</p> 
+                            <p>其他收支费用明细</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>EPC查询</p> 
+                            <p>主营收款明细</p> 
                         </a>
                     </div>
                 </div>

@@ -25,6 +25,8 @@
 	%>
 	var currUserName = <%="'"+currUserName+"'"%>;
 	var currOrgid = <%="'"+currOrgid+"'"%>;
+	var cloudPartApiUrl = apiPath + cloudPartApi + "/";
+	var cloudPartWebUrl = apiPath + cloudPartDomain + "/";
 </script>
 <script type="text/javascript">
 	function getRoot() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryChainStockByPartId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据配件ID查询连锁库存&#xD;&#xA;params/notShowAll中显示库存大于0的&#xD;&#xA;params/orgid  不显示本店的数据" title="Administrator&#x9;18-3-17 上午9:48">
-    <location x="16" y="0"/>
-    <size height="76" width="330"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据配件ID查询连锁库存&#xD;&#xA;params/notShowAll中显示库存大于0的&#xD;&#xA;params/orgid  不显示本店的数据&#xD;&#xA;com.hsapi.cloud.part.invoicing.query.queryChainStockList" title="Administrator&#x9;18-3-17 上午9:48">
+    <location x="15" y="-30"/>
+    <size height="106" width="466"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link5" isDefault="true" type="transition">
@@ -34,27 +34,20 @@
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link4" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="link4" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo1</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="268" y="120"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">partId</process:from>
-      <process:to type="query">params/partId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">params/notShowAll</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="270" y="156"/>
@@ -109,11 +102,9 @@
   </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-03-17 09:47:52" date="2018-03-17Z" description="" name="queryPartStoreStock" version="7.0.0.0"/>
-  <process:variables>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-  </process:variables>
+  <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="partId" primitiveType="Int"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="detailList"/>

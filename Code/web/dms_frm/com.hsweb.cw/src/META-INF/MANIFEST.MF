@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Require-Bundle: 
-eos-webCtxPath: eos
 Bundle-Vendor: localhost
+eos-webCtxPath: cw
 Bundle-Version: 1.0.0
-Bundle-Name: com.primeton.eos
+Bundle-Name: com.hsweb.cw
 Bundle-Description: 
 Bundle-SymbolicName: com.hsweb.cw
 

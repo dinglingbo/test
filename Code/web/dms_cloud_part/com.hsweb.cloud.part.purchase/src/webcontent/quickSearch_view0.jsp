@@ -79,6 +79,7 @@
                             <a class="nui-button" width="" iconCls="" plain="false" onclick="onSearch()">&nbsp;查&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="onClear()">清空条件</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="addPart()">新增配件</a>
+							<a class="nui-button" width="" iconCls="" plain="false" onclick="showPanel()">购物车</a>
 						</td>
                     </tr>
                 </table>
@@ -92,11 +93,17 @@
 							 allowCellSelect="true"
 							 showLoading="true"
 							 selectOnLoad="true"
+							 sortMode="client"
+							 allowCellEdit="true"
 							 multiSelect="true"
+							 showModified="false"
 							 showSummaryRow="true"
 							 showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
 						<div property="columns">
 								<div type="expandcolumn" width="40">替换件</div>
+								<div type="checkboxcolumn" field="check" width="20" headerAlign="center" 
+									 align="center" trueValue="1" falseValue="0"><span class="fa fa-check"></span>
+								</div>
 								<div field="partCode" width="150" headerAlign="center" allowSort="true" summaryType="count">编码</div>
 								<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
 								<div field="stockQty" width="40" headerAlign="center">库存</div>
@@ -118,27 +125,30 @@
 						<div id="mainTabs" class="nui-tabs" name="mainTabs"
 							activeIndex="0" 
 							style="width:100%; height:100%;" 
-							plain="false" 
-							onactivechanged="">
-							<div title="本店库存" id="partInfoTab" name="partInfoTab" url="" >
+							plain="false" >
+							<div title="本店库存" id="storeStockTab" name="storeStockTab" url="" >
 							</div> 
-							<div title="库存分布" id="billmain" name="billmain" url="">
+							<div title="库存分布" id="chainStockTab" name="chainStockTab" url="">
 							</div>
-							<div title="价格信息" name="purchaseAdvanceTab" url="" >
+							<div title="价格信息" name="priceTab" url="" >
 							</div>   
-							<div title="入库记录" name="purchaseAdvanceTab" url="" >
+							<div title="采购记录" name="enterRecordTab" url="" >
 							</div>  
-							<div title="出库记录" name="purchaseAdvanceTab" url="" >
+							<div title="销售记录" name="outRecordTab" url="" >
+							</div> 
+							<!-- <div title="占用记录" name="preOutTab" url="" >
 							</div>  
-							<div title="出入库流水" name="purchaseAdvanceTab" url="" >
-							</div>  
-							<div title="替换件" name="purchaseAdvanceTab" url="" >
+							<div title="出入库流水" name="invocingTab" url="" >
+							</div>   -->
+							<div title="替换件" name="partCommonTab" url="" >
 							</div> 
 						</div>	
 					</div>
 				</div>
 				<div showCollapseButton="false">
-					<iframe id="formIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+					<div class="nui-fit">
+						<iframe id="epcFormIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+					</div>
 				</div>
 			</div>		    
         </div>
@@ -153,12 +163,19 @@
 					idField="id"
 					showPager="false"
 					allowCellSelect="true"
+					allowCellEdit="true"
+					multiSelect="true"
+					showModified="false"
 					showLoading="true"
 					selectOnLoad="true"
+					sortMode="client"
 					multiSelect="true"
 					showSummaryRow="true"
 					showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
 			<div property="columns">
+					<div type="checkboxcolumn" field="check" width="20" headerAlign="center" 
+						 align="center" trueValue="1" falseValue="0"><span class="fa fa-check"></span>
+					</div>
 					<div field="partCode" width="150" headerAlign="center" allowSort="true" summaryType="count">编码</div>
 					<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
 					<div field="stockQty" width="40" headerAlign="center">库存</div>
@@ -172,6 +189,64 @@
 			</div>
 	</div>
 </div>
+
+<div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:500px;height:300px;" 
+        showMaxButton="true" showCollapseButton="true" showShadow="true"
+        showToolbar="true" showFooter="true" showModal="false" allowResize="true" allowDrag="true"
+        >
+        <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+            <div class="form" id="queryForm">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="white-space:nowrap;">
+                            <a class="nui-button" iconCls="" plain="true" onclick="deleteCartShop()">删除</a>
+                            <span class="separator"></span>
+                            <a class="nui-button" iconCls="" visible="true" id="pchsCartBtn" plain="true" onclick="addToPchsCart()">添加采购车</a>
+                            <a class="nui-button" iconCls="" visible="true" id="sellCartBtn" plain="true" onclick="addToSellCart()">添加销售车</a>
+                            <span class="separator"></span>
+                            <a class="nui-button" iconCls="" visible="true" id="pchsOrderBtn" plain="true" onclick="generatePchsOrder()">生成采购订单</a>
+                            <a class="nui-button" iconCls="" visible="true" id="sellOrderBtn" plain="true" onclick="generateSellOrder()">生成销售订单</a>
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="nui-fit">
+                <div id="cartGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                             borderStyle="border:0;"
+                             showPager="false"
+                             dataField="list"
+                             url=""
+                             showSummaryRow="true"
+                             idField="id"
+                             totalField="page.count"
+                             pageSize="100"
+                             oncellcommitedit="onCellCommitEdit"
+							 showPager="true"
+							 sortMode="client"
+                             showLoading="false"
+                             multiSelect="true"
+                             showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
+                        <div property="columns">
+                                <div type="indexcolumn">序号</div>
+                                <div type="checkcolumn" width="25"></div>
+                                <div field="partId" width="50" visible="false" headerAlign="center">配件ID</div>
+                                <div field="partCode" width="80" headerAlign="center" allowSort="true" summaryType="count">配件编码</div>
+                                <div field="partName" width="120" headerAlign="center" allowSort="true">名称</div>
+                                <div field="unit" width="30" visible="true" headerAlign="center" allowSort="false">单位</div>
+                                <div field="orderQty" width="50" headerAlign="center" allowSort="true">
+                                    数量<input property="editor" vtype="float" class="nui-textbox"/>
+                                </div>
+                                <div field="orderPrice" width="50" headerAlign="center" allowSort="true">
+                                    单价<input property="editor" vtype="float" class="nui-textbox"/>
+                                </div>
+                                <div field="remark" width="80" headerAlign="center" allowSort="true">备注<input property="editor" class="nui-textbox"/></div>
+                        </div>
+                </div>
+        </div>
+    </div>
 
 
 </body>

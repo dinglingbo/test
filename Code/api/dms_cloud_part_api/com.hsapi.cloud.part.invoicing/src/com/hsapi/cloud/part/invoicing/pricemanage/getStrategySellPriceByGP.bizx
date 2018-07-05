@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getStrategySellPriceByGP" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、取级别单价&#xD;&#xA;2、取统一销价&#xD;&#xA;3、取客户最近销价&#xD;&#xA;4、取公司最近销价" title="Administrator&#x9;18-5-11 下午3:03">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、取级别单价&#xD;&#xA;2、取统一销价&#xD;&#xA;3、取客户最近销价&#xD;&#xA;4、取公司最近销价&#xD;&#xA;queryGuestPartSellPrice" title="Administrator&#x9;18-5-11 下午3:03">
     <location x="30" y="-60"/>
     <size height="121" width="481"/>
   </nodes>
@@ -108,9 +108,15 @@
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="90" y="166"/>
@@ -223,7 +229,7 @@
       <process:to type="query">priceRecord/priceType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">straPriceRecord/stragegyId</process:from>
+      <process:from type="query" pattern="reference">straPriceRecord/strategyId</process:from>
       <process:to type="query">priceRecord/strategyId</process:to>
     </process:copy>
   </nodes>

@@ -38,6 +38,7 @@ var UNIT = "DDT20130703000016";// --单位
 var ABC_TYPE = "DDT20130703000067";// --ABC分类
 var OUT_TYPE = "DDT20130703000065";//出库类型
 var BACK_REASON = "DDT20130703000072";//采购退货原因
+var COST_TYPE = "10101";//维修项目成本分类
  
 var _sysApiRoot = apiPath + sysApi;
 var _initDmsObj = {};
@@ -95,12 +96,13 @@ function processCarSeries(data){
     _initDmsCallback["initCarSeries"] && _initDmsCallback["initCarSeries"]() && (_initDmsCallback["initCarSeries"] = null);    
 }
 
-//获取车型(选择品牌触发)
-function initCarModel(id, carBrandId){
+//获取车型(选择品牌、车系触发)
+function initCarModel(id, carBrandId, carSeriesId){
     if(checkObjExists(id, "initCarModel")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarModel.biz.ext";
         var params = {};
         params.carBrandId = carBrandId;
+        params.carSeriesId= carSeriesId;
         callAjax(url, params, processAjax, processCarModel, null);
     }
 }
@@ -195,7 +197,7 @@ function processProvince(data){
     setDataToHash(data,"province","code");
     _initDmsCallback["initProvince"] && _initDmsCallback["initProvince"]() && (_initDmsCallback["initProvince"] = null);
 }
-//城市
+//城市(所有)
 function initCity(id,callback){
     _initDmsCallback["initCity"] = callback;
     if(checkObjExists(id, "initCity")){
@@ -203,6 +205,16 @@ function initCity(id,callback){
         callAjax(url, {}, processAjax, processCity, null); 
     }
 }
+
+//城市(上级)
+function initCityByParent(id, parentId, callback){
+    _initDmsCallback["initCity"] = callback;
+    if(checkObjExists(id, "initCity")){
+        var url = _sysApiRoot + "/com.hs.common.region.getRegin.biz.ext";
+        callAjax(url, {"parentId": parentId}, processAjax, processCity, null); 
+    }
+}
+
 function processCity(data){
     _initDmsObj["initCity"].setData(data);
     setDataToHash(data,"city","code");

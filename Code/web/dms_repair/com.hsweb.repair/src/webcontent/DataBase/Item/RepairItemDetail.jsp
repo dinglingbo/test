@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.5"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -85,13 +85,25 @@ table {
                     <input class="nui-combobox" name="carBrandId" id="carBrandId"
                            valueField="id"
                            textField="nameCn"
-                           onValuechanged="initCarModel('carModelId', e.value)"
+                           onValuechanged="initCarSeries('carSeriesId', e.value)"
                            width="100%"/>
                 </td>
                 <td class="form_label">
-                    <label>车型：</label>
+                    <label>车系：</label>
                 </td>
                 <td>
+                    <input class="nui-combobox" name="carSeriesId" id="carSeriesId"
+                           valueField="carSeriesId"
+                           textField="carSeriesName"
+                           onValuechanged="initCarModel('carModelId', '', e.value)"
+                           width="100%"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form_label">
+                    <label>车型：</label>
+                </td>
+                <td colspan="3">
                     <input class="nui-combobox" name="carModelId" id="carModelId"
                            valueField="carModelId"
                            textField="carModel"
@@ -122,25 +134,7 @@ table {
 					<input class="nui-spinner" name="unitPrice" format="0.00" value="0" maxValue="1000000000"
 						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
 				</td>
-			</tr>
-            <tr>
-				<td class="form_label">
-					<label>成本分类：</label>
-				</td>
-				<td colspan="1">
-					<input class="nui-combobox" name="costDef" id="costDef"
-							   valueField="id"
-							   textField="nameCn"
-							   width="100%"/>
-				</td>
-				<td class="form_label">
-					<label>成本参数：</label>
-				</td>
-				<td colspan="1">
-					<input class="nui-spinner" name="unitPrice" format="0.00" value="0" maxValue="1000000000"
-						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
-				</td>
-			</tr>
+			</tr>            
 			<tr>
 				<td class="form_label">
 					<label>工时金额：</label>
@@ -161,6 +155,29 @@ table {
 				</td>
 			</tr>
             -->
+		</table>
+	</div>
+    <div class="nui-panel" showToolbar="false" title="成本设置" showFooter="false"
+		 style="width:calc(100% - 20px);">
+		<table class="nui-form-table" border=0>			
+            <tr>
+				<td class="form_label">
+					<label>成本分类：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-combobox" name="costType" id="costType"
+							   valueField="customid"
+							   textField="name"
+							   width="100%"/>
+				</td>
+				<td class="form_label">
+					<label>成本参数：</label>
+				</td>
+				<td colspan="1">
+					<input class="nui-spinner" id="costParam" name="costParam" format="0.00" value="0" maxValue="1000000000"
+						   changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
+				</td>
+			</tr>
 		</table>
 	</div>
 </div>

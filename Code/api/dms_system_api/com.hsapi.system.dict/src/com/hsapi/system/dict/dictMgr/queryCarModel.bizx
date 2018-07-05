@@ -66,6 +66,10 @@
       <process:from type="query" pattern="reference">carBrandId</process:from>
       <process:to type="query">p/carBrandId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">carSeriesId</process:from>
+      <process:to type="query">p/carSeriesId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="206" y="170"/>
@@ -169,6 +173,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="carBrandId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="carSeriesId" primitiveType="String"/>
     <process:input description="强制从数据库查询" isArray="false" name="fromDb" primitiveType="Boolean"/>
   </process:inputs>
   <process:outputs>

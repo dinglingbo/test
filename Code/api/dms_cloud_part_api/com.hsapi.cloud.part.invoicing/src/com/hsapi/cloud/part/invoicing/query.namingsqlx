@@ -68,12 +68,12 @@
     <select id="queryPjPchsOrderMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.service_id as serviceId,
-			b.store_id as storeId,
 			a.`code` as manualCode,
 			a.order_date as orderDate,
 			a.order_man as orderMan,
 			a.plan_arrive_date as planArriveDate,
 			a.bill_type_id as billTypeId,
+			a.settle_type_id as settelTypeId,
 			a.print_times as printTimes,
 			a.auditor as auditor,
 			a.audit_date as auditDate,
@@ -83,6 +83,8 @@
 			a.orgid as orgid,
 			b.id as detailId,
 			b.main_id as mainId,
+			b.store_id as storeId,
+			b.store_shelf as storeShelf,
 			b.part_id as partId,
 			b.part_code as partCode,
 			b.part_name as partName,
@@ -131,6 +133,7 @@
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isFinished">(a.is_finished = #isFinished#)</isNotEmpty>
             <!--订货日期 -->
             <isNotEmpty prepend="and" property="sOrderDate">A.CREATE_DATE &gt;= #sOrderDate#</isNotEmpty>
             <isNotEmpty prepend="and" property="eOrderDate">(A.CREATE_DATE &lt; #eOrderDate#)</isNotEmpty>
@@ -153,6 +156,9 @@
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+            <isNotEmpty prepend="limit" property="limitCount">  
+                $limitCount$
+            </isNotEmpty> 
         </dynamic>
     </select>
     <select id="queryPjPchsEnterMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
@@ -316,6 +322,7 @@
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isOut">(a.is_out = #isOut#)</isNotEmpty>
             <!--订货日期 -->
             <isNotEmpty prepend="and" property="sOrderDate">A.CREATE_DATE &gt;= #sOrderDate#</isNotEmpty>
             <isNotEmpty prepend="and" property="eOrderDate">(A.CREATE_DATE &lt; #eOrderDate#)</isNotEmpty>
@@ -338,6 +345,9 @@
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+            <isNotEmpty prepend="limit" property="limitCount">  
+                $limitCount$
+            </isNotEmpty> 
         </dynamic>
     </select>
     <select id="queryPjSellOutMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
@@ -732,14 +742,12 @@
     <select id="queryOutableDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.service_id as serviceId,
-			b.store_id as storeId,
 			a.orgid as orgid,
 			a.enter_type_id as enterTypeId,
 			a.`code` as manualCode,
 			a.enter_date as enterDate,
 			a.order_man as orderMan,
 			a.bill_type_id as billTypeId,
-			a.print_times as printTimes,
 			a.auditor as auditor,
 			a.audit_date as auditDate,
 			a.remark as mainRemark,
@@ -750,6 +758,7 @@
 			b.part_code as partCode,
 			b.part_name as partName,
 			b.full_name as fullName,
+			b.store_id as storeId,
 			b.enter_unit_id as enterUnitId,
 			b.system_unit_id as systemUnitId,
 			b.enter_qty as enterQty,
@@ -776,6 +785,7 @@
 			b.store_shelf as storeShelf,
 			b.origin_id as originId,
 			b.origin_guest_id as originGuestId,
+			b.pre_out_qty as preOutQty,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,
@@ -1225,24 +1235,35 @@
 			b.mobile as mobile,
 			b.contactor as contactor,
 			b.contactor_tel as contactorTel,
-			b.addr as address
+			b.addr as address,
+			e.id as partId,
+      		e.`code` as partCode,
+			e.name as partName,
+	    	e.part_brand_id as partBrandId,
+			e.quality_type_id as qualityTypeId,
+			e.unit as unit,
+			e.apply_car_model as applyCarModel,
+			e.full_name as fullName
 		FROM
 		pj_part_store_stock a
 		inner join wb_common.com_guest b
 		on a.orgid = b.is_internal_id
 		left join pj_part_price c
 		on a.part_id = c.part_id and a.orgid = c.orgid
+		inner join wb_common.com_attribute e
+		on a.part_id = e.id
 		WHERE 1 = 1
 				
-			<dynamic>
+		<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid != #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="storeId">(a.store_id = #storeId#)</isNotEmpty>
             <!--库存查询默认查询库存大于0 -->
             <isNotEmpty prepend="and" property="notShowAll">(a.outable_qty &gt; 0)</isNotEmpty>
             <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(e.code = #partCode#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="commonId">(e.common_id = #commonId#)</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic> 
-            
-            order by a.outable_qty desc
 				
 	</select>
     <select id="queryPjStockShiftMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">

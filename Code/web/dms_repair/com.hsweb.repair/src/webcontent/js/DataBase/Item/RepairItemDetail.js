@@ -22,21 +22,18 @@ function onInputBlur(e)
 	var el = e.sender;
 	el.setInputStyle("text-align:right;");
 }
-var carBrandIdEl = null;
-var carModelIdEl = null;
+var carBrandIdEl;
+var carSeriesId;
+var carModelIdEl;
+var costTypeEl;
 var carModelIdHash = {};
 function init(callback)
 {
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	carBrandIdEl = nui.get("carBrandId");
+    carSeriesId = nui.get("carSeriesId");
 	carModelIdEl = nui.get("carModelId");
-	/*carBrandIdEl.on("valuechanged",function()
-	{
-		var carBrandId = carBrandIdEl.getValue();
-		getCarModel("carModelId",{
-			value:carBrandId
-		});
-	});*/
+    costTypeEl = nui.get("costType");
 	var elList = basicInfoForm.getFields();
 	var nameList = ["itemTime","unitPrice","deductAmt","amt"];
 	elList.forEach(function(v)
@@ -71,11 +68,17 @@ function setData(data)
 		var carBrandIdList = data.carBrandIdList;
 		carBrandIdEl.setData(carBrandIdList);
 	}
+    if(data.costType)
+	{//成本分类
+		var costTypeList = data.costType;
+		costTypeEl.setData(costTypeList);
+	}
 	if(data.item)
 	{
 		var item = data.item;
 		basicInfoForm.setData(item);
 		carBrandIdEl.doValueChanged();
+        carSeriesId.doValueChanged();
 	}
 
 	

@@ -31,37 +31,37 @@
                 <tr>
                     <td>
                         收支类型
+                        
                     </td>                   
                     <td>
+                        其他收入
                         <input class="nui-checkbox">
                     </td>
-                    <td>其他收入</td>
                     <td>
+                        其他支出
                         <input class="nui-checkbox">
                     </td>
-                    <td>其他支出</td>
                 </tr>
                 <tr>
-                    <td>业务类别：</td>
                     <td>
-                        <input class="nui-combobox">
+                        业务类别：<input class="nui-combobox">
                     </td>
                 </tr>
                 <tr>
-                    <td>业务对象：</td>
                     <td>
-                        <input class="nui-textbox" style="width:100%">
+                        业务对象：
+                        <input class="nui-textbox" >
                     </td>
                 </tr>
                 <tr>
-                    <td>金额：</td>
                     <td>
-                        <input class="nui-textbox" style="width:100%">
+                        金额：
+                        <input class="nui-textbox" >
                     </td>
                 </tr>
                 <tr>
-                    <td>支付方式：</td>
                     <td>
+                        支付方式：
                         <input class="nui-combobox">
                     </td>
                 </tr>
@@ -70,17 +70,10 @@
                        开票方式
                     </td>
                     <td>
-                        <input class="nui-checkbox">
+                        <input class="nui-checkbox">不开票
+                        <input class="nui-checkbox"> 增值税普通发票
+                        <input class="nui-checkbox"> 增值税专用发票
                     </td>
-                    <td>不开票</td>
-                    <td>
-                        <input class="nui-checkbox">
-                    </td>
-                    <td>增值税普通发票</td>
-                    <td>
-                        <input class="nui-checkbox">
-                    </td>
-                    <td>增值税专用发票</td>
                 </tr>
             </table>
         </form>

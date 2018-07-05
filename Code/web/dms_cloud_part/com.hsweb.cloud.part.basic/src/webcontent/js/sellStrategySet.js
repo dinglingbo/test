@@ -27,6 +27,48 @@ $(document).ready(function(v)
     rightUnifyGrid = nui.get("rightUnifyGrid");
     rightUnifyGrid.setUrl(rightUnifyGridUrl);
 
+    $("#queryCode").bind("keydown", function (e) {
+
+        if (e.keyCode == 13) {
+            onPartSearch();
+        }
+        
+    });
+    $("#namePy").bind("keydown", function (e) {
+
+        if (e.keyCode == 13) {
+            onPartSearch();
+        }
+        
+    });
+    $("#fullName").bind("keydown", function (e) {
+
+        if (e.keyCode == 13) {
+            onPartSearch();
+        }
+        
+    });
+    $("#queryCodeSearch").bind("keydown", function (e) {
+
+        if (e.keyCode == 13) {
+            onUnifySearch();
+        }
+        
+    });
+    $("#namePySearch").bind("keydown", function (e) {
+
+        if (e.keyCode == 13) {
+            onUnifySearch();
+        }
+        
+    });
+    $("#fullNameSearch").bind("keydown", function (e) {
+
+        if (e.keyCode == 13) {
+            onUnifySearch();
+        }
+        
+    });
 
 });
 function onStraGridClick(e){
@@ -64,9 +106,9 @@ function onPartSearch() {
 }
 function onUnifySearch() {
     var params = {};
-    params.queryCode = nui.get("queryCode").getValue();
-    params.namePy = nui.get("namePy").getValue();
-    params.fullName = nui.get("fullName").getValue();
+    params.queryCode = nui.get("queryCodeSearch").getValue();
+    params.namePy = nui.get("namePySearch").getValue();
+    params.fullName = nui.get("fullNameSearch").getValue();
     rightUnifyGrid.load({params:params,token:token});
  
 }

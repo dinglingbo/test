@@ -10,7 +10,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + cloudPartDomain%>/common/js/shopCartPop.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/shopCartPop.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -120,7 +120,7 @@
          showModified="false" showColumnsMenu="true" editNextOnEnterKey="true" url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div field="operateBtn" width="30" headerAlign="center" header="删除"></div>
+            <div field="operateBtn" width="30" headerAlign="center" align="center" header="删除"></div>
             <div field="partId" name="partId" visible="false" header="配件ID"></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="partName" name="partName" visible="false" header="配件名称"></div>

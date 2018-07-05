@@ -32,17 +32,13 @@
                 <tr>
                     <td style="width:100%;">
                         <input class="nui-textbox" style="width:30%" emptytext="请输入发票号/开票单号/源单号/客户姓名/手机号码/车牌号查询">
-                        <input class="nui-combobox" style="width:5%" data="data" value="1">
-                    </td>
-
-                    <td style="white-space:nowrap;">
+                        <input class="nui-combobox" style="width:12%" data="data" value="1">
                         <a class="nui-button" iconCls="icon-search" onclick="">打印</a>
                         <a class="nui-button" iconCls="icon-search" onclick="">新建</a>
                         <a class="nui-button" iconCls="icon-search" onclick="">修改</a>
                         <a class="nui-button" iconCls="icon-search" onclick="">删除</a>
                         <a class="nui-button" iconCls="icon-search" onclick="">导出XLS</a>
                     </td>
-                </tr>
                 </tr>
             </table>
         </div>

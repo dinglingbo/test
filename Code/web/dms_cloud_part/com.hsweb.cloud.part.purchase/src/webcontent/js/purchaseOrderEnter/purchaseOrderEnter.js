@@ -1942,7 +1942,7 @@ function setInitExportData(main, detail){
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"采购入库"+serviceId,'tableExportA');
 }
-function addPchsOrder(callback,checkcallback)
+function addPchsOrder(type)
 {
 
     setBtnable(true);
@@ -1950,11 +1950,17 @@ function addPchsOrder(callback,checkcallback)
 
 	basicInfoForm.reset();
 	rightGrid.clearRows();
+	var title="单据选择";
+	if(type == 'order'){
+		title="采购订单选择";
+	}else if(type == 'sell'){
+		title="销售单选择";
+	}
 
 	nui.open({
 		targetWindow: window,
 		url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
-		title: "单据选择", width: 930, height: 560,
+		title: title, width: 930, height: 560,
 		allowDrag:true,
 		allowResize:true,
 		onload: function ()
@@ -1962,7 +1968,8 @@ function addPchsOrder(callback,checkcallback)
 			var iframe = this.getIFrameEl();
 			var data = {
 				guestId: nui.get("guestId").getValue(),
-				guestName: nui.get("guestId").getText()
+				guestName: nui.get("guestId").getText(),
+				type:type
 			};
 			iframe.contentWindow.setInitData(data);
 		},

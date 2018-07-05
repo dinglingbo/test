@@ -197,7 +197,7 @@ function processProvince(data){
     setDataToHash(data,"province","code");
     _initDmsCallback["initProvince"] && _initDmsCallback["initProvince"]() && (_initDmsCallback["initProvince"] = null);
 }
-//城市
+//城市(所有)
 function initCity(id,callback){
     _initDmsCallback["initCity"] = callback;
     if(checkObjExists(id, "initCity")){
@@ -205,6 +205,16 @@ function initCity(id,callback){
         callAjax(url, {}, processAjax, processCity, null); 
     }
 }
+
+//城市(上级)
+function initCityByParent(id, parentId, callback){
+    _initDmsCallback["initCity"] = callback;
+    if(checkObjExists(id, "initCity")){
+        var url = _sysApiRoot + "/com.hs.common.region.getRegin.biz.ext";
+        callAjax(url, {"parentId": parentId}, processAjax, processCity, null); 
+    }
+}
+
 function processCity(data){
     _initDmsObj["initCity"].setData(data);
     setDataToHash(data,"city","code");

@@ -10,8 +10,8 @@
 -->
 
 <head>
-    <title>用户导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.1.0"></script>
+    <title>初始化导航</title>
+    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.1.3"></script>
     <style>
         .container {
             padding: 10px;
@@ -29,12 +29,12 @@
         <table>
             <tr>
                 <td>
-                    <div class="mini-panel mini-panel-danger" title="系统参数" width="250px" showCollapseButton="false" showCloseButton="false">
+                    <div class="mini-panel mini-panel-danger" title="业务参数" width="250px" showCollapseButton="false" showCloseButton="false">
                         <br />根据业务实际情况配置系统运行业务选项、业务处理控制参数
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toSysSet()">设置系统参数</a>
+                            <a class="mini-button mini-button-success" onclick="initSysParamsCfg()">设置系统参数</a>
                         </div>
                     </div>
                 </td>
@@ -44,7 +44,7 @@
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toComStoreSet()">设置仓库</a>
+                            <a class="mini-button mini-button-success" onclick="initComStoreCfg()">设置仓库</a>
                         </div>
                     </div>
                 </td>
@@ -54,7 +54,7 @@
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toComPartTypeSet()">设置配件分类</a>
+                            <a class="mini-button mini-button-success" onclick="initComPartTypeCfg()">设置配件分类</a>
                         </div>
                     </div>
                 </td>
@@ -62,11 +62,11 @@
             <tr>
                 <td>
                     <div class="mini-panel mini-panel-success" title="配件品牌" width="250px" showCollapseButton="false" showCloseButton="false">
-                        <br />存货在商贸企业一般叫商品，是库存商品、在产品、原材料等生产经营资料的统称
+                        <br />建立配件存货的品牌，便于以后按分类查找、统计
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toComAttributeSet()">设置配件资料</a>
+                            <a class="mini-button mini-button-success" onclick="initComPartBrandCfg()">设置配件品牌</a>
                         </div>
                     </div>
                 </td>
@@ -76,7 +76,7 @@
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toPartStockSet()">设置期初库存</a>
+                            <a class="mini-button mini-button-success" onclick="initBeginPeriodStockCfg()">设置期初库存</a>
                         </div>
                     </div>
                 </td>
@@ -86,7 +86,7 @@
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toComGuestSet()">设置往来单位</a>
+                            <a class="mini-button mini-button-success" onclick="initCarBarndCfg()">设置品牌车型</a>
                         </div>
                     </div>
                 </td>
@@ -96,21 +96,21 @@
             <tr>
                 <td>
                     <div class="mini-panel mini-panel-success" title="保险公司" width="250px" showCollapseButton="false" showCloseButton="false">
-                        <br />存货在商贸企业一般叫商品，是库存商品、在产品、原材料等生产经营资料的统称
+                        <br />管理和维护保险公司
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toComAttributeSet()">设置配件资料</a>
+                            <a class="mini-button mini-button-success" onclick="initInsuranceCompanyCfg()">设置保险公司</a>
                         </div>
                     </div>
                 </td>
                 <td>
                     <div class="mini-panel mini-panel-warning" title="出车报告" width="250px" showCollapseButton="false" showCloseButton="false">
-                        <br />设置系统启用之前各仓库配件商品的结存数量和成本
+                        <br />设置车辆维修出车报告模版，便于规范出车报告内容
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toPartStockSet()">设置期初库存</a>
+                            <a class="mini-button mini-button-success" onclick="initCheckReportCfg()">设置出车报告</a>
                         </div>
                     </div>
                 </td>
@@ -122,7 +122,7 @@
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toFiSettleAccountSet()">设置结算账户</a>
+                            <a class="mini-button mini-button-success" onclick="initFiSettleAccountCfg()">设置结算账户</a>
                         </div>
                     </div>
                 </td>
@@ -132,7 +132,7 @@
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toFiSettleAccountBalanceSet()">设置期初现金银行</a>
+                            <a class="mini-button mini-button-success" onclick="initFiSettleAccountBalanceCfg()">设置期初现金银行</a>
                         </div>
                     </div>
                 </td>
@@ -142,7 +142,7 @@
                         <br />
                         <br />
                         <div align="center">
-                            <a class="mini-button mini-button-success" onclick="toRPBillSet()">设置期初应收应付</a>
+                            <a class="mini-button mini-button-success" onclick="initRPBillCfg()">设置期初应收应付</a>
                         </div>
                     </div>
                 </td>

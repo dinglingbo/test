@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false"%>
   - Description: 
 -->
 <head> 
-  <title>工单-查车</title>
+  <title>工单-洗车</title>
   <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
   <style type="text/css">
 
@@ -53,9 +53,9 @@ pageEncoding="UTF-8" session="false"%>
           <td>
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
             <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+             <a  onclick="" id="">更多筛选条件</a>
             <span class="separator"></span>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建</a>
           </td>
         </tr>
       </table>
@@ -81,13 +81,19 @@ pageEncoding="UTF-8" session="false"%>
           <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >车牌号</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >车型</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >查车日期</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >服务顾问</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >应收金额</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >实收金额</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >洗车类型</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >单据状态</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >结算状态</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >操作</div>
         </div>
       </div>
     </div>
 
 
-</div>
+
 
  
 

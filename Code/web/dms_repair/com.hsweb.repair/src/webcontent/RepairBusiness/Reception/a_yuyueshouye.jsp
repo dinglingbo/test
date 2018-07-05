@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false"%>
   - Description: 
 -->
 <head> 
-  <title>工单-查车</title>
+  <title>工单-预约首页</title>
   <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
   <style type="text/css">
 
@@ -51,11 +51,12 @@ pageEncoding="UTF-8" session="false"%>
       <table class="table" id="table1">
         <tr>
           <td>
-            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
+            起始日期<input class="nui-textbox" id="" emptyText="起始日期" width="120"/>
+            结束日期<input class="nui-textbox" id="" emptyText="结束日期" width="120"/>
+            服务顾问<input class="nui-combobox" id="" emptyText="服务顾问" width="120"/>
             <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <span class="separator"></span>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建</a>
           </td>
         </tr>
       </table>
@@ -76,18 +77,20 @@ pageEncoding="UTF-8" session="false"%>
         onshowrowdetail="onShowRowDetail"
         url="">
         <div property="columns">
-          <div field="" name="" width="40" headerAlign="center" align="center" >单号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >车牌号</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >预约号</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >预约门店</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >到店时间</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >车型</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >查车日期</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >联系人</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >联系电话</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >服务顾问</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >操作</div>
         </div>
       </div>
     </div>
 
 
-</div>
+
 
  
 

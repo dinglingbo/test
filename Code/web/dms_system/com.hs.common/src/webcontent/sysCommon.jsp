@@ -148,7 +148,7 @@
 			$("body").append(msg);
 	    }
 		
-		//$("#_sys_tip_msg_").fadeIn(time);
+		//$("#_sys_tip_msg_").fadeIn(1000);
   
 		setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
 	};
@@ -158,6 +158,9 @@
 		showMsgBox(message, 2000);
         if(msgType){
             $("#_sys_tip_msg_ span").addClass(msgType);
+        }
+        if((""+message).length < 36){
+            $("#_sys_tip_msg_ span").addClass("small");
         }
 	};
     
@@ -193,7 +196,7 @@
 </script>
 <script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.3" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
-<script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.3" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.4" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=webPath + sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
 <link href="<%=webPath + sysDomain %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -215,6 +218,9 @@
         left: -20;
         top: 90;
         text-align: center;/* right*/        
+
+
+        
         width: 100%;/**/
     }
      
@@ -223,10 +229,15 @@
         /*opacity: .8;*/
         padding: 15px 20px;
         border-radius: 5px;
-        text-align: center;
-        word-break:break-all; 
+        text-align: left;
+        
         word-wrap:break-word;
-        width:100px;
+        word-break:break-all;
+        overflow: hidden;
+        width: 180px;
+        height: 56px;
+        display:inline-block;
+        
         color: #fff;
         font-size: 14px;
     }
@@ -237,5 +248,9 @@
     
     #_sys_tip_msg_ span.W {
         background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
+    }
+    
+    #_sys_tip_msg_ span.small {
+        height: auto;
     }
 </style>

@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonRepair.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -10,7 +9,6 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head> 
   <title>工单-理赔单</title>
-  <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
   <style type="text/css">
 
   .title {
@@ -54,7 +52,7 @@ pageEncoding="UTF-8" session="false"%>
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
             <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <span class="separator"></span>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newClaimBill()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建</a>
           </td>
         </tr>
       </table>
@@ -94,9 +92,21 @@ pageEncoding="UTF-8" session="false"%>
     </div>
 
 
+    <script type="text/javascript">
+      nui.parse();
+  
+      function newClaimBill() {
+        var item={};
+            item.id = "claimDetail";
+            item.text = "理赔单";
+            item.url = webPath + sysDomain + "/repair/RepairBusiness/Reception/claimDetail.jsp";
+            item.iconCls = "fa fa-cog";
+            window.parent.activeTab(item);
+      }
+     
+    </script>
 
-
- 
+    
 
 </body>
 </html>

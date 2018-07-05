@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.6" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.9" type="text/javascript"></script>
 
 </head>
 <body>
@@ -43,6 +43,12 @@
 						   allowInput="false"
 						   showNullItem="false"
 						   nullItemText="请选择..."/>
+                           
+                    <input id="costType" visible="false"
+						   name="costType"
+						   class="nui-combobox width1"
+						   textField="name"
+						   valueField="customid"/>
 					<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label>
 					<input class="nui-textbox" id="search-code" name="code"/>
 					<label style="font-family: Verdana;;font-size: 12px;">项目名称：</label>

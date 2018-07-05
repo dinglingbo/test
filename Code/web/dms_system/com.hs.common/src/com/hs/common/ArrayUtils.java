@@ -28,11 +28,13 @@ public class ArrayUtils {
 		Boolean exists=false;
 		for (DataObject dataObject : new ArrayList<DataObject>(Arrays.asList(b))) {
 			exists=false;
-			for (DataObject obj : list) {
-				if(obj.getString(compField).equals(dataObject.getString(compField))){
-					exists=true;
-					break;
-				}				
+			if(compField!=null && compField!=""){
+				for (DataObject obj : list) {
+					if(obj.getString(compField).equals(dataObject.getString(compField))){
+						exists=true;
+						break;
+					}				
+				}
 			}
 			if(!exists){
 				list.add(dataObject);
@@ -166,6 +168,25 @@ public class ArrayUtils {
 		List<Object> list = new ArrayList<Object>(Arrays.asList(dos));
 		list.add(sourceDO);
 		return list.toArray(new Object[list.size()]);
+	}
+	
+	@Bizlet("")
+	public static Object[] concatArray(List a) {
+		// 临时集合
+	    List listTemp = new ArrayList();
+	    
+		for (int i = 0;i < a.size(); i++) {
+	      if (a.get(i) != null) {
+	    	  List<Object> l = (List<Object>) a.get(i);
+	    	  for (int j = 0;j < l.size(); j++) {
+    	      if (l.get(j) != null) {
+    	    	  listTemp.add(l.get(j));
+    	      }
+    	    }
+	      }
+	    }
+		
+		return listTemp.toArray(new Object[listTemp.size()]);
 	}
 	
 	@Bizlet("")

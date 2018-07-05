@@ -173,7 +173,12 @@ function setGridTargetDataData(data){
 
 }
 function toAskPartPrice(){
-	nui.alert("研发中...");
+	var item={};
+	item.id = "010";
+	item.text = "快速报价";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.quickSearch.flow";
+	item.iconCls = "fa fa-file-text";
+	window.parent.activeTab(item);
 }
 function toPchsOrder(){
 	var item={};

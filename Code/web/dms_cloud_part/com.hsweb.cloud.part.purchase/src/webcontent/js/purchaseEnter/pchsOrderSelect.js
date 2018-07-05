@@ -124,6 +124,17 @@ function setInitData(params){
     billStatusIdEl.setValue(2);
     comSearchGuestId.setValue(params.guestId);
     comSearchGuestId.setText(params.guestName);
+    var tabs = mainTabs.getTabs();
+    var type = params.type;
+    if(type == 'order'){
+		mainTabs.updateTab(tabs[0], {visible:true,title:""});
+	}else if(type == 'sell'){
+        mainTabs.updateTab(tabs[1], {visible:true,title:""});
+        mainTabs.activeTab(tabs[1]);
+	}else{
+        mainTabs.updateTab(tabs[0], {visible:true});
+        mainTabs.updateTab(tabs[1], {visible:true});
+    }
 
     onSearch();
 }

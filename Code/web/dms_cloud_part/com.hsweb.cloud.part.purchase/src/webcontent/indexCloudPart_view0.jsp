@@ -10,10 +10,10 @@
 -->
 <head>
   <title>首页</title>
-  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.4.8"></script>
+  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.4.9"></script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-  <link href="<%=request.getContextPath()%>/common/nui/themes/cupertino/skin.css" rel="stylesheet" type="text/css" />
+  <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/purchase/css/cloudIndex.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">

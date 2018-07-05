@@ -70,7 +70,7 @@
                     borderStyle="border:1;"
                     selectOnLoad="true"
                     showPager="true"
-                    pageSize="10000"
+                    pageSize="50"
                     sizeList=[20,50,100,200]
                     dataField="detailList"
                     url=""

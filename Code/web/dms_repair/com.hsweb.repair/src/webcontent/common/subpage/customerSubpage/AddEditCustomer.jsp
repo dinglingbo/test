@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.5"></script>
 <style type="text/css">
 
 table {
@@ -87,21 +87,24 @@ table {
                         <td colspan="3">
                             <input name="provice"
                                id="provice"
-                               valueField="customid"
+                               valueField="code"
                                textField="name"
                                emptyText = "省"
+                               url="<%=repairDomain%>/com.hs.common.region.getRegin.biz.ext"
+                               onValuechanged="initCityByParent('city', e.value || -1)"
                                class="nui-combobox" width="32%"/>
                             
                             <input name="city"
                                id="city"
-                               valueField="customid"
+                               valueField="code"
                                textField="name"
                                emptyText = "市/县"
+                               onValuechanged="initCityByParent('county', e.value || -1)"
                                class="nui-combobox" width="32%"/>
                                
                             <input name="county"
                                id="county"
-                               valueField="customid"
+                               valueField="code"
                                textField="name"
                                emptyText = "乡/镇"
                                class="nui-combobox" width="33%"/>

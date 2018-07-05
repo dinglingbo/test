@@ -44,6 +44,8 @@ function init(callback)
         hash.initDicts = true;
         checkComplete();
     });
+    
+    initProvince("provice");
 }
 var carList = [{}];
 var carHash = {};

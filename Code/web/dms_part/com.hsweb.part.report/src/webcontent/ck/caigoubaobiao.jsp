@@ -33,33 +33,33 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收账单据）</p> 
+                            <p>材料采购统计排名</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收款内容）</p> 
+                            <p>供应商采购排行榜</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
-                            <p>收款流水汇总表</p> 
+                            <p>材料采购统计表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理明细</p> 
+                            <p>供应商材料采购统计表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理汇总表</p> 
+                            <p>采购统计表</p> 
                         </a>
                     </div>
                 </div>
@@ -68,32 +68,8 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-truck fa-4x  fa-inverse"></i>
-                            <p>应收账款明细</p> 
+                            <p>采购明细统计表</p> 
                         </a> 
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-copy fa-4x  fa-inverse"></i>
-                            <p>应收账款汇总表</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-calculator fa-4x  fa-inverse"></i>
-                            <p>经营收支统计汇总表</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
-                            <p>其他收支费用明细</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>主营收款明细</p> 
-                        </a>
                     </div>
                 </div>
             </div> 

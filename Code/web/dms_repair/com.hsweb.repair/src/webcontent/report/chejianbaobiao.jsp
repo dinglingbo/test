@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>财务报表</title>
+  <title>车间报表</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -33,33 +33,33 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收账单据）</p> 
+                            <p>施工项目明细</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收款内容）</p> 
+                            <p>施工项目明细（实收）</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
-                            <p>收款流水汇总表</p> 
+                            <p>施工项目汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理明细</p> 
+                            <p>施工项目汇总表（实收）</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理汇总表</p> 
+                            <p>施工项目状况表</p> 
                         </a>
                     </div>
                 </div>
@@ -67,32 +67,8 @@ pageEncoding="UTF-8" session="false" %>
                 <div  id="menu2" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
-                            <i class="fa fa-truck fa-4x  fa-inverse"></i>
-                            <p>应收账款明细</p> 
-                        </a> 
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-copy fa-4x  fa-inverse"></i>
-                            <p>应收账款汇总表</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
                             <i class="fa fa-calculator fa-4x  fa-inverse"></i>
-                            <p>经营收支统计汇总表</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
-                            <p>其他收支费用明细</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>主营收款明细</p> 
+                            <p>查车施工状况表</p> 
                         </a>
                     </div>
                 </div>

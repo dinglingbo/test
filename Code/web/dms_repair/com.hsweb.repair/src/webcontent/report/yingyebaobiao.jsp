@@ -9,11 +9,11 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>财务报表</title>
+  <title>营业报表</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-  <link href="<%=request.getContextPath()%>/cw/TextIndex.css" rel="stylesheet" type="text/css" />
+  <link href="<%=request.getContextPath()%>/repair/report/TextIndex.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <%@include file="/common/common.jsp"%>
@@ -33,33 +33,33 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收账单据）</p> 
+                            <p>工单业绩明细</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收款内容）</p> 
+                            <p>工单业绩明细（实收）</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
-                            <p>收款流水汇总表</p> 
+                            <p>材料销售明细（实收）</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理明细</p> 
+                            <p>材料销售汇总</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理汇总表</p> 
+                            <p>材料销售汇总（实收）</p> 
                         </a>
                     </div>
                 </div>
@@ -68,31 +68,63 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-truck fa-4x  fa-inverse"></i>
-                            <p>应收账款明细</p> 
+                            <p>材料销售明细</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-copy fa-4x  fa-inverse"></i>
-                            <p>应收账款汇总表</p> 
+                            <p>工单业绩汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-calculator fa-4x  fa-inverse"></i>
-                            <p>经营收支统计汇总表</p> 
+                            <p>工单业绩汇总表（实收）</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
-                            <p>其他收支费用明细</p> 
+                            <p>项目台次汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>主营收款明细</p> 
+                            <p>服务顾问业绩汇总表</p> 
+                        </a>
+                    </div>
+                </div>
+                <div  id="menu3" class="demo"  style="margin-top:20px;">
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a>
+                            <i class="fa fa-truck fa-4x  fa-inverse"></i>
+                            <p>服务顾问业绩汇总表（实收）</p> 
+                        </a> 
+                    </div>
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a>
+                            <i class="fa fa-copy fa-4x  fa-inverse"></i>
+                            <p>零售业务统计分析</p> 
+                        </a>
+                    </div>
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a>
+                            <i class="fa fa-calculator fa-4x  fa-inverse"></i>
+                            <p>会员卡汇总统计</p>
+                        </a>
+                    </div>
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a>
+                            <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
+                            <p>营业额流水汇总表</p> 
+                        </a>
+                    </div>
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a>
+                            <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
+                            <p>店面日运营报表</p> 
                         </a>
                     </div>
                 </div>

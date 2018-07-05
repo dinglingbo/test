@@ -48,6 +48,9 @@ body {
     background-color: #69c0ff;
 }
 
+#menu3 .menu_pannel_bg{
+    background-color: #6990ff;
+}
 
 .menu_pannel  a{
     position: absolute;

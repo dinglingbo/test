@@ -45,73 +45,58 @@
 		car();
 	function brand(){
 		option = {
-                title: {
-                    text: '客户车辆分布',
-                    subtext: '纯属虚构'
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
-                legend: {
-                    data: ['按品牌']
-                },
-                toolbox: {
-                    show: true,
-                    feature: {
-                        mark: { show: true },
-                        dataView: { show: true, readOnly: false },
-                        magicType: { show: true, type: ['line', 'bar'] },
-                        restore: { show: true },
-                        saveAsImage: { show: true }
-                    }
-                },
-                calculable: true,
-                xAxis: [
-                    {
-                        type: 'category',
-                        data: ['奔驰', '宝马']
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value'
-                    }
-                ],
-                series: [
-                    {
-                        name: '奔驰',
-                        type: 'bar',
-                        data: [666, 777],
-                        markPoint: {
-                            data: [
-                                { type: 'max', name: '最大值' },
-                                { type: 'min', name: '最小值' }
-                            ]
-                        },
-                        markLine: {
-                            data: [
-                                { type: 'average', name: '平均值' }
-                            ]
-                        }
-                    },
-                    {
-                        name: '宝马',
-                        type: 'bar',
-                        data: [777, 888],
-                        markPoint: {
-                            data: [
-                                { name: '年最高', value: 182.2, xAxis: 7, yAxis: 183, symbolSize: 18 },
-                                { name: '年最低', value: 2.3, xAxis: 11, yAxis: 3 }
-                            ]
-                        },
-                        markLine: {
-                            data: [
-                                { type: 'average', name: '平均值' }
-                            ]
-                        }
-                    }
-                ]
-            };
+		    title : {
+		        text: '客户来源',
+		        subtext: '客户来源',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient : 'vertical',
+		        x : 'left',
+		        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            magicType : {
+		                show: true, 
+		                type: ['pie', 'funnel'],
+		                option: {
+		                    funnel: {
+		                        x: '25%',
+		                        width: '50%',
+		                        funnelAlign: 'left',
+		                        max: 1548
+		                    }
+		                }
+		            },
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    series : [
+		        {
+		            name:'访问来源',
+		            type:'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[
+		                {value:335, name:'直接访问'},
+		                {value:310, name:'邮件营销'},
+		                {value:234, name:'联盟广告'},
+		                {value:135, name:'视频广告'},
+		                {value:1548, name:'搜索引擎'}
+		            ]
+		        }
+		    ]
+		};
             var myChart = echarts.init(document.getElementById('lindChatA'));
             myChart.setOption(option,true);
 		    window.onresize = function(){
@@ -122,14 +107,14 @@
 		function car(){
 		option = {
                 title: {
-                    text: '客户车辆分布',
+                    text: '新增客户',
                     subtext: '纯属虚构'
                 },
                 tooltip: {
                     trigger: 'axis'
                 },
                 legend: {
-                    data: ['按品牌车系']
+                    data: ['新增客户数量']
                 },
                 toolbox: {
                     show: true,
@@ -145,7 +130,7 @@
                 xAxis: [
                     {
                         type: 'category',
-                        data: ['奔驰', '宝马']
+                        data: ['1','2']
                     }
                 ],
                 yAxis: [
@@ -155,29 +140,13 @@
                 ],
                 series: [
                     {
-                        name: '奔驰',
+                        name: '新增客户数量',
                         type: 'bar',
                         data: [666, 777],
                         markPoint: {
                             data: [
                                 { type: 'max', name: '最大值' },
                                 { type: 'min', name: '最小值' }
-                            ]
-                        },
-                        markLine: {
-                            data: [
-                                { type: 'average', name: '平均值' }
-                            ]
-                        }
-                    },
-                    {
-                        name: '宝马',
-                        type: 'bar',
-                        data: [777, 888],
-                        markPoint: {
-                            data: [
-                                { name: '年最高', value: 182.2, xAxis: 7, yAxis: 183, symbolSize: 18 },
-                                { name: '年最低', value: 2.3, xAxis: 11, yAxis: 3 }
                             ]
                         },
                         markLine: {

@@ -56,7 +56,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/currOrgId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">data/orgid</process:to>
     </process:copy>
     <process:copy>

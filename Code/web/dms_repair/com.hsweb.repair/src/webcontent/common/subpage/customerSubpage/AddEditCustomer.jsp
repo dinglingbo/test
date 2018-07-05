@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.5"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.11"></script>
 <style type="text/css">
 
 table {
@@ -61,7 +61,7 @@ table {
                             <label>手机号码：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" id="mobile" name="mobile" width="100%"/>
+                            <input class="nui-textbox" id="mobile" name="mobile" onValuechanged="processMobile(this.value)" width="100%"/>
                         </td>
                         <!--
                         <td class="form_label">
@@ -85,25 +85,25 @@ table {
                             <label>地址：</label>
                         </td>
                         <td colspan="3">
-                            <input name="provice"
+                            <input name="provinceId"
                                id="provice"
                                valueField="code"
                                textField="name"
                                emptyText = "省"
                                url="<%=repairDomain%>/com.hs.common.region.getRegin.biz.ext"
-                               onValuechanged="initCityByParent('city', e.value || -1)"
+                               onValuechanged="initCityByParent('cityId', e.value || -1)"
                                class="nui-combobox" width="32%"/>
                             
-                            <input name="city"
-                               id="city"
+                            <input name="cityId"
+                               id="cityId"
                                valueField="code"
                                textField="name"
                                emptyText = "市/县"
-                               onValuechanged="initCityByParent('county', e.value || -1)"
+                               onValuechanged="initCityByParent('areaId', e.value || -1)"
                                class="nui-combobox" width="32%"/>
                                
-                            <input name="county"
-                               id="county"
+                            <input name="areaId"
+                               id="areaId"
                                valueField="code"
                                textField="name"
                                emptyText = "乡/镇"
@@ -277,7 +277,7 @@ table {
                                     <label>手机：</label>
                                 </td>
                                 <td>
-                                    <input class="nui-textbox" name="mobile" width="100%"/>
+                                    <input class="nui-textbox" id="mobile2" name="mobile" width="100%"/>
                                 </td>
                                 <td class="form_label required">
                                     <label>身份：</label>

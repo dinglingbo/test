@@ -97,7 +97,7 @@ $(document).ready(function() {
             document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
         }else if(row.brand && row.partCode){
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + sysDomain + "/com.hsweb.system.llqv2.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
+            document.getElementById("epcFormIframe").src=webPath + sysDomain + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
         }else{
             showTabInfo(0,"");
             document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
@@ -290,9 +290,81 @@ function doSearch(params)
         }else{
             resListEl.setValue("");
         }
+
+        //查找库存>0的信息，匹配价格
+        showQuote();
+
     });
 }
+function showQuote(){
+    var rows = partGrid.findRows(function(row){
+        if(row.stockQty && row.stockQty>0){
+            return true;
+        }
+    });
+    var partIdList = [];
+    var partInfoHash = {};
+    if(rows && rows.length>0){
+        for (i = 0; i < rows.length; i++) {
+            //tmpList[i] = "'" + (tmpList[i]).replace(/\s+/g, "") + "'";
+            var partId =  rows[i].partId;
+            if(partId && partId>0){
+                partIdList.push(partId);
+                partInfoHash[partId] = rows[i];
+            }
+        }
+        if(partIdList && partIdList.length>0){
+            var params = {};
+            params.partIds  = partIdList.join(",");
+            searchPrice(params,partInfoHash);
+        }
+    }
+}
+var spUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getSellUnifyPriceList.biz.ext";
+function searchPrice(params,ph){
+    nui.ajax({
+		url : spUrl,
+		type : "post",
+		data : JSON.stringify({
+			params : params,
+			token: token
+		}),
+		success : function(data) {
+			data = data || {};
+			if (data.price) {
+                var price = data.price;
+                var quoteList = [];
+                for(var i=0; i<price.length; i++){
+                    var partId = price[i].partId;
+                    var sellPrice = price[i].sellPrice;
+                    if(ph[partId]){
+                        quoteList.push(ph[partId].partCode +" "+sellPrice);
+                    }
+                }
 
+                var quoteStr = "";
+                if(quoteList && quoteList.length>0){
+                    quoteStr = quoteList.join("\r\n");
+                    quoteStr = "报价：\r\n"+quoteStr;
+                }
+
+                var resValue = resListEl.getValue();
+                if(resValue && quoteStr){
+                    resValue = resValue + "\r\n";
+                }
+                quoteStr = resValue + quoteStr;
+                resListEl.setValue(quoteStr);
+
+			} else {
+				nui.alert(data.errMsg || "报价失败!");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 function addPart(){
     addOrEditPart();
 }

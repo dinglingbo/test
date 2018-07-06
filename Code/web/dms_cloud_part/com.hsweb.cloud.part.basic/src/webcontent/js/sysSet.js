@@ -18,8 +18,9 @@ var addressEl = null;
 
 $(document).ready(function(v) {
 	comForm = new nui.Form("#comForm");
-	provinceEl = nui.get("provinceId");
 	cityEl = nui.get("cityId");
+	provinceEl = nui.get("provinceId");
+	
 	countyEl = nui.get("countyId");
 	streetAddressEl = nui.get("streetAddress");
 	addressEl = nui.get("address");
@@ -200,4 +201,10 @@ function getRegion(parentId,callback) {
 			console.log(jqXHR.responseText);
 		}
 	});
+	/*
+	 * data : JSON.stringify({
+			token: token, 
+			parentId: parentId
+		})
+	 * */
 }

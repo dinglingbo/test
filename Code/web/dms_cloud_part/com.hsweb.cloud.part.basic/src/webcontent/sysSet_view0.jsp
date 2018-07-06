@@ -77,7 +77,7 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
     </div>
     <div class="nui-fit" id= "comForm">
-        <input class="nui-hidden" name="orgid"/>
+        <input class="nui-hidden" id="orgid" name="orgid"/>
         <input id="recordDate" name="recordDate" class="nui-hidden" />
         <input id="recorder" name="recorder" class="nui-hidden" />
         <input id="address" name="address" class="nui-hidden" />

@@ -6,12 +6,17 @@ $(document).ready(function()
 var contactInfoForm = null;
 var carInfoFrom = null;
 var basicInfoForm = null;
+var provice;
+var cityId;
 function init(callback)
 {
 	var addEditCustomerPage = nui.get("addEditCustomerPage");
     basicInfoForm = new nui.Form("#basicInfoForm");
     contactInfoForm = new nui.Form("#contactInfoForm");
     carInfoFrom = new nui.Form("#carInfoFrom");
+    provice = nui.get("provice");
+    cityId = nui.get("cityId");
+    
     var hash = {};
     addEditCustomerPage.mask({
         html:'数据加载中..'
@@ -44,6 +49,8 @@ function init(callback)
         hash.initDicts = true;
         checkComplete();
     });
+    
+    initProvince("provice");
 }
 var carList = [{}];
 var carHash = {};
@@ -221,6 +228,10 @@ function onOk()
         }
     }
     
+    if(!checkMobile(nui.get("mobile").value)){
+        return;
+    }
+    
     var insCarList = carList.filter(function(v)
     {
         return !v.id;
@@ -317,6 +328,9 @@ function setData(data)
                         contactInfoForm.setData(contactList[0]);
                         setCarByIdx(0);
                         setContactByIdx(0);
+                        
+                        provice.doValueChanged();
+                        cityId.doValueChanged();
                     }
                     else{
                         showMsg("获取客户信息失败", "E");
@@ -360,4 +374,13 @@ function onParseUnderpanNo()
             //},carVinModel.carModelId);
         }
     });
+}
+
+//手机号处理
+function processMobile(mobile){
+    if(checkMobile(mobile)){
+        if(!nui.get("mobile2").value){
+            nui.get("mobile2").setValue(mobile);
+        }
+    }
 }

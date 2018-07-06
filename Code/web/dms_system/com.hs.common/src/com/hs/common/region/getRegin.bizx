@@ -36,8 +36,9 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="java.util.HashMap[]" name="rs" type="query" valueType="Java">rs</process:return>
-      <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="1" language="String" name="parentId" type="query" valueType="Primitive">parentId</process:return>
+      <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="3" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -161,6 +162,7 @@
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="rs"/>
+    <process:output description="" isArray="false" name="parentId" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

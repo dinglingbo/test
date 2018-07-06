@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>材料出入库汇总表</title>
+<title>材料库存周转汇总</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 </head>

@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>财务报表</title>
+  <title>采购报表</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -31,69 +31,45 @@ pageEncoding="UTF-8" session="false" %>
 
                   <div  id="menu1" class="demo"  style="">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a >
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收账单据）</p> 
+                            <p>材料采购统计排名</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="gongyingshangrank()">
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>收款流水明细（收款内容）</p> 
+                            <p>供应商采购排行榜</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="cailiaocaigou()">
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
-                            <p>收款流水汇总表</p> 
+                            <p>材料采购统计表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="gongyingshangsum()">
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理明细</p> 
+                            <p>供应商材料采购统计表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="caigousum()">
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>预收处理汇总表</p> 
+                            <p>采购统计表</p> 
                         </a>
                     </div>
                 </div>
 
                 <div  id="menu2" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick = "mingxisum()">
                             <i class="fa fa-truck fa-4x  fa-inverse"></i>
-                            <p>应收账款明细</p> 
+                            <p>采购明细统计表</p> 
                         </a> 
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-copy fa-4x  fa-inverse"></i>
-                            <p>应收账款汇总表</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-calculator fa-4x  fa-inverse"></i>
-                            <p>经营收支统计汇总表</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
-                            <p>其他收支费用明细</p> 
-                        </a>
-                    </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a>
-                            <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>主营收款明细</p> 
-                        </a>
                     </div>
                 </div>
             </div> 
@@ -114,7 +90,45 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <script type="text/javascript">
     nui.parse();
+	var titb = null;
+    var turlb = null;
 
+function cailiaocaigou(){
+	titb = "材料采购统计表";
+    turlb = "report/partPurchaseSummary.jsp";
+    openPaper(titb, turlb);
+}
+
+function gongyingshangrank(){
+	titb = "供应商采购排行榜";
+    turlb = "report/supplierPurcheseRanking.jsp";
+    openPaper(titb, turlb);
+}
+
+function caigousum(){
+	titb = "采购统计表";
+    turlb = "report/partSum.jsp";
+    openPaper(titb, turlb);
+}
+
+function gongyingshangsum(){
+	titb = "供应商材料采购统计表";
+    turlb = "report/gongyingshangcailiaocaigousun.jsp";
+    openPaper(titb, turlb);
+}
+
+function mingxisum(){
+	titb = "采购明细统计表";
+    turlb = "report/partmingxitongji.jsp";
+    openPaper(titb, turlb);
+}
+function openPaper(tit, url) {
+	var item={};
+	item.id = tit;
+	item.text = tit;
+	item.url = url;
+	window.parent.activeTab(item);
+}   
 </script>
 </body>
 s</html>

@@ -475,8 +475,6 @@ function addSelectPart(){
             nui.get("price").setValue(price);
             nui.get("amt").setValue(price);
 
-            nui.
-
             rowc.isMarkBatch = 0;
             resultData = rowc;
             //advancedAddWin.showAtEl(morePartGrid._getCellEl(record,column), {xAlign:"outright",yAlign:"bottom"});

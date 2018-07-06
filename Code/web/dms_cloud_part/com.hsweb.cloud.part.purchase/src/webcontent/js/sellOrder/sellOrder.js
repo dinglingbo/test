@@ -1056,6 +1056,7 @@ function getMainData()
 var saveAddUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.saveAddSellOrder.biz.ext";
 function getSellOrderBillNO(callback){
     var data = basicInfoForm.getData();
+    data.isDiffOrder = 0;
     nui.ajax({
         url : saveAddUrl,
         type : "post",

@@ -5,6 +5,7 @@ var baseUrl = apiPath + partApi + "/";
 var partGridUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 var partCommonGridUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 var partGrid = null;
+var partSGrid = null;
 var partCommonGrid = null;
 var conditoinsValueEl = null;
 var queryConditionsEl = null;
@@ -12,6 +13,8 @@ var conditoinsValueEl = null;
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var partCodeListEl = null;
+var queryConditionsMEl = null;
+var conditoinsValueMEl = null;
 
 var qualityList = [];
 var qualityHash = {};
@@ -27,16 +30,21 @@ var conList = [
 
 $(document).ready(function(v) {
     partGrid = nui.get("partGrid");
+    partSGrid = nui.get("partSGrid");
     partCommonGrid = nui.get("partCommonGrid");
     conditoinsValueEl = nui.get("conditoinsValue");
     queryConditionsEl = nui.get("queryConditions");
     conditoinsValueEl = nui.get("conditoinsValue");
     advancedSearchWin = nui.get("advancedSearchWin");
     partCodeListEl = nui.get("partCodeList");
+    queryConditionsMEl = nui.get("queryConditionsM");
+    conditoinsValueMEl = nui.get("conditoinsValueM");
 
     partGrid.setUrl(partGridUrl);
     partCommonGrid.setUrl(partCommonGridUrl);
+    partSGrid.setUrl(partGridUrl);
 
+    queryConditionsMEl.setData(conList);
     queryConditionsEl.setData(conList);
 
     advancedSearchForm  = new nui.Form("#advancedSearchForm");
@@ -44,6 +52,11 @@ $(document).ready(function(v) {
     $("#conditoinsValue").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             onSearch();
+        }
+    });
+    $("#conditoinsValueM").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onMSearch();
         }
     });
 
@@ -94,6 +107,32 @@ $(document).ready(function(v) {
                 break;
         }
     });
+    partSGrid.on("drawcell",function(e){
+        var row = e.record;
+        switch (e.field)
+        {
+            case "qualityTypeId":
+                if(qualityHash[e.value])
+                {
+                    e.cellHtml = qualityHash[e.value].name||"";
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            case "partBrandId":
+                if(brandHash[e.value])
+                {
+                    e.cellHtml = brandHash[e.value].name||"";
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            default:
+                break;
+        }
+    });
     partCommonGrid.on("drawcell",function(e){
         switch (e.field)
         {
@@ -138,23 +177,6 @@ $(document).ready(function(v) {
     //     }
     // });
 
-    var conValEl= document.getElementById("sd");
-    conValEl.addEventListener("paste", function (e){ 
-        if ( !(e.clipboardData && e.clipboardData.items) ) {  
-            return ; 
-        }  
-        for (var i = 0, len = e.clipboardData.items.length; i < len; i++) {  
-            var item = e.clipboardData.items[i];   
-            if (item.kind === "string") {   
-                item.getAsString(function (str) {    
-                    // str 是获取到的字符串   
-                    console.log(str);
-                })  
-            } else if (item.kind === "file") {   
-                var pasteFile = item.getAsFile();   // pasteFile就是获取到的文件  
-            } 
-        }
-    });
 });
 function addMorePart(){
 	advancedSearchForm.setData([]);
@@ -162,13 +184,13 @@ function addMorePart(){
 
 	partCodeListEl.focus();
 }
-function onSearch() {
-	search();
+function onMSearch() {
+	msearch();
 }
-function search() {
+function msearch() {
     var params = {};
-    var qCon = queryConditionsEl.getValue();
-    var qVal = conditoinsValueEl.getValue();
+    var qCon = queryConditionsMEl.getValue();
+    var qVal = conditoinsValueMEl.getValue();
     if(!qVal){
         nui.alert("请输入查询条件!");
         return;
@@ -184,9 +206,9 @@ function search() {
     }else{
         params.code = qVal.replace(/\s+/g, "");;
     }
-	doSearch(params);
+	doMSearch(params);
 }
-function doSearch(params) {
+function doMSearch(params) {
     params.orgids = currOrgId;
     var page={length:1000,size:1000};
 	partGrid.load({
@@ -217,7 +239,7 @@ function onAdvancedSearchOk() {
         params.partCodeList = tmpList.join(",");
         
         advancedSearchWin.hide();
-	    doSearch(params);
+	    doSSearch(params);
 	}
 	
 }
@@ -228,9 +250,18 @@ function onAdvancedSearchCancel(){
 var setUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.savePartCommon.biz.ext";
 function set()
 {
+    var row = partGrid.getSelected();
+    if(!row){
+        showMsg('请选择需要设置替换的配件!','W');
+        return;
+    }
     var ret = getSelectInfo();
     var partIds = ret.partIds;
     var commonIds = ret.commonIds;
+    if(!partIds && !commonIds){
+        showMsg('请选择替换配件!','W');
+        return;
+    }
 
     nui.mask({
         el: document.body,
@@ -251,18 +282,16 @@ function set()
             data = data || {};
             if (data.errCode == "S") {
                 var commonId = data.commonId;
-                nui.alert("设置成功!","",function(){
-                    var page={length:1000,size:1000};
-                    var p = {commonId:commonId};
-                    partCommonGrid.load({
-                        page:page,
-                        params:p,
-                        token:token
-                    });
+                showMsg('设置成功!','S');
+                var page={length:1000,size:1000};
+                var p = {commonId:commonId};
+                partCommonGrid.load({
+                    page:page,
+                    params:p,
+                    token:token
                 });
-                
             } else {
-                nui.alert(data.errMsg || "设置失败!");
+                showMsg(data.errMsg || "设置失败!",'E');
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -275,6 +304,12 @@ var unsetUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.cancelPartCommon.biz.ex
 function unset()
 {
     var partIds = getCancelPartInfo();
+    if(!partIds){
+        showMsg('请选择待取消信息!','W');
+        return;
+    }
+    var rows = partCommonGrid.getSelecteds();
+    var commonId = rows[0].commonId||-1;
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -292,13 +327,17 @@ function unset()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                var commonId = data.commonId;
-                nui.alert("取消成功!","",function(){
-                    partCommonGrid.setData([]);
+                showMsg('取消成功!','S');
+                var page={length:1000,size:1000};
+                var p = {commonId:commonId};
+                partCommonGrid.load({
+                    page:page,
+                    params:p,
+                    token:token
                 });
                 
             } else {
-                nui.alert(data.errMsg || "取消失败!");
+                showMsg(data.errMsg || "取消失败!",'E');
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -315,8 +354,21 @@ function getSelectInfo(){
     var commonIdsList = [];
     var commonIdsHash = {};
         
-    var rows = partGrid.getSelecteds();
+    var rows = partSGrid.getSelecteds();
     if(rows && rows.length>0){
+
+        var mrow = partGrid.getSelected();
+        var mpartId = mrow.id;
+        var mcommonId = mrow.commonId;
+        if(!mcommonId || mcommonId==0){
+            partIdsList.push(mpartId);
+        }else {
+            if(!commonIdsHash[mcommonId] && commonIdsHash[mcommonId] != 0 && mcommonId != 0){
+                commonIdsList.push(mcommonId);
+                commonIdsHash[mcommonId] = mcommonId;
+            }
+        }
+
         for(var i=0; i<rows.length; i++){
             var row = rows[i];
             var partId = row.id;
@@ -351,7 +403,7 @@ function getCancelPartInfo(){
     var partIds = "";
     var partIdsList = [];
         
-    var rows = partGrid.getSelecteds();
+    var rows = partCommonGrid.getSelecteds();
     if(rows && rows.length>0){
         for(var i=0; i<rows.length; i++){
             var row = rows[i];
@@ -367,4 +419,36 @@ function getCancelPartInfo(){
     }
 
     return partIds;
+}
+function onSSearch() {
+	ssearch();
+}
+function ssearch() {
+    var params = {};
+    var qCon = queryConditionsEl.getValue();
+    var qVal = conditoinsValueEl.getValue();
+    if(!qVal){
+        nui.alert("请输入查询条件!");
+        return;
+    }
+    if(qCon == 0){
+        params.code = qVal.replace(/\s+/g, "");;
+    }else if(qCon == 1){
+        params.name = qVal.replace(/\s+/g, "");;
+    }else if(qCon == 2){
+        params.rcode = qVal.replace(/\s+/g, "");;
+    }else if(qCon == 3){
+        params.namePy = qVal.replace(/\s+/g, "");;
+    }else{
+        params.code = qVal.replace(/\s+/g, "");;
+    }
+	doSSearch(params);
+}
+function doSSearch(params) {
+    params.orgids = currOrgId;
+    var page={length:1000,size:1000};
+	partSGrid.load({
+		params : params,
+		token : token
+	});
 }

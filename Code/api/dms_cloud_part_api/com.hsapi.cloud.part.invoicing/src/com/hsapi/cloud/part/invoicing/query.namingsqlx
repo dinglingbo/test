@@ -161,6 +161,54 @@
             </isNotEmpty> 
         </dynamic>
     </select>
+    <select id="queryPjPchsEnterMainList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.service_id as serviceId,
+			a.orgid as orgid,
+			a.enter_type_id as enterTypeId,
+			a.code_id as codeId,
+			a.`code` as code,
+			a.enter_date as enterDate,
+			a.order_man as orderMan,
+			a.auditor as auditor,
+			a.audit_date as auditDate,
+			a.remark as mainRemark,
+			a.settle_type_id as settleTypeId,
+			a.bill_type_id as billTypeId,
+			d.full_name as guestFullName,
+			d.short_name as guestShortName
+		FROM
+			pj_enter_main_chk a
+		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
+		WHERE
+			a.audit_sign = 1
+				
+			<dynamic>
+            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="enterTypeId">(a.enter_type_id = #enterTypeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="codeId">(a.code_id = #codeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="code">(a.code = #code#)</isNotEmpty>
+            <!--入库日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">A.enter_date &gt;= #sEnterDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(A.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sCreateDate">(A.CREATE_DATE &gt;= #sCreateDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">(A.CREATE_DATE &lt; #eCreateDate#)</isNotEmpty>
+            <!--审核日期 -->
+            <isNotEmpty prepend="and" property="sAuditDate">(A.AUDIT_DATE &gt;= #sAuditDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="eAuditDate">(A.AUDIT_DATE &lt; #eAuditDate#)</isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+        </dynamic>
+    </select>
     <select id="queryPjPchsEnterMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.service_id as serviceId,
@@ -171,7 +219,6 @@
 			a.enter_date as enterDate,
 			a.order_man as orderMan,
 			a.bill_type_id as billTypeId,
-			a.print_times as printTimes,
 			a.auditor as auditor,
 			a.audit_date as auditDate,
 			a.remark as mainRemark,
@@ -188,6 +235,7 @@
 			b.enter_price as enterPrice,
 			b.enter_amt as enterAmt,
 			b.outable_qty as outableQty,
+			b.pre_out_qty as preOutQty,
 			b.tax_sign as taxSign,
 			b.tax_rate as taxRate,
 			b.tax_price as taxPrice,
@@ -232,6 +280,7 @@
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="mainId">(b.main_id = #mainId#)</isNotEmpty>
             <!--入库日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">A.enter_date &gt;= #sEnterDate#</isNotEmpty>
             <isNotEmpty prepend="and" property="eEnterDate">(A.enter_date &lt; #eEnterDate#)</isNotEmpty>

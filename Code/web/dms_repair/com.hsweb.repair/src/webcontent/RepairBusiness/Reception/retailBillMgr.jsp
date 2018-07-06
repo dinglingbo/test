@@ -24,12 +24,7 @@ pageEncoding="UTF-8" session="false" %>
  }
 
 
-/*  table
-{
 
- left:0;right:0;margin: 0 auto;
-}
-*/
 
 #table_A tr
 {
@@ -161,79 +156,60 @@ table tr td span
 </head>
 <body>
     <div class="nui-fit">
-       <table > 
+       <table style="left:0;right:0;margin: 0 auto;"> 
           <tr>   
-            <td class="tbtext">退货日期日期</td> 
+            <td class="tbtext">销售期</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
         </tr>
         <tr>   
+            <td class="tbCtrl" colspan="4"><input  class="nui-textbox tabwidth" /></td>
             <td class="tbtext">销售人员</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">办理人</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">建档人</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">源单号</td> 
+            <td class="tbtext">业务分类</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
 
         </tr>
-                <tr>   
-            <td class="tbtext">车主</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">车主电话</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">送修人</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">联系方式</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-
-        </tr>
-        <tr>   
-            <td class="tbtext">车牌号</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">车型</td> 
-            <td class="tbCtrl" colspan="3"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">VIN码</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-
-        </tr>
-        <tr>
-            <td class="tbtext">来电途径</td>
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-
-        </tr>
-
+   
 
     </table>
-
-
+    <div style="width:100%;margin-top: 10px;">
+        <a class="nui-button" onclick=""   plain="false" >零售历史</a>
+    </div>
     <div>
         <div id="datagrid1" class="nui-datagrid" showPager="false">
             <div property="columns">
 
-                <div field="" width="100" headerAlign="center" align="center">材料名称</div>
-                <div field="" width="100" headerAlign="center" align="center">退货数量</div>
-                <div field="" width="100" headerAlign="center" align="center">销售单价</div>
-                <div field="" width="100" headerAlign="center" align="center">退货单价</div>
-                <div field="" width="100" headerAlign="center" align="center">退货金额</div>
-                <div field="" width="100" headerAlign="center" align="center">已入库</div>
+                <div field="partName" width="100" headerAlign="center" align="center">材料名称</div>
+                <div field="" width="100" headerAlign="center" align="center">业务分类</div>
+                <div field="" width="100" headerAlign="center" align="center">工时</div>
+                <div field="" width="100" headerAlign="center" align="center">单价</div>
+                <div field="" width="100" headerAlign="center" align="center">工时费</div>
+                <div field="" width="100" headerAlign="center" align="center">折扣</div>
+                <div field="" width="100" headerAlign="center" align="center">折后金额</div>
+                <div field="" width="100" headerAlign="center" align="center">库存</div>
+                <div field="" width="100" headerAlign="center" align="center">领取</div>
+                <div field="" width="100" headerAlign="center" align="center">领料人</div>
+                <div field="" width="100" headerAlign="center" align="center">增项</div>
+                <div field="" width="100" headerAlign="center" align="center">备注</div>
                 <div field="" width="100" headerAlign="center" align="center">删除</div>
             </div>
         </div>
     </div>
 
 
+
+
     <table > 
         <tr>   
             <td class="tbtext">备注</td> 
-            <td colspan="9" class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
+            <td style="width: 700px" class="tbCtrl"><input  class="nui-textarea tabwidth" style="height: 100px;"/></td>
 
 
         </tr>
 
         <tr>   
-            <td class="tbtext">应退金额</td> 
-            <td colspan="5" class="tbCtrl">￥0.00 </td>
+            <td class="tbtext">应收总计</td> 
+            <td  class="tbCtrl">￥0.00 =  材料费小计：￥0.00 </td>
      
         </tr>
 
@@ -241,11 +217,37 @@ table tr td span
     <div style="width:100%;margin-top: 10px;text-align: center;">
         <a class="nui-button" onclick=""   plain="false" >保存</a>
 
+        <a class="nui-button" onclick=""   plain="false" >价参</a>
+        <a class="nui-button" onclick=""   plain="false" >退出</a>
     </div>
 
 </div>
 <script type="text/javascript">
  nui.parse();
+
+        var grid = nui.get("datagrid1");
+        grid.on("cellclick",function(e){
+        var record = e.record;
+        var column = e.column;
+        if(column.field == "itemName"){
+          try{
+            nui.open({
+              url : "com.hsweb.part.baseData.partDetail.flow",
+              title : "添加工时",
+              width : "100%",
+              height : "100%",
+              onload : function() {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setInitData();
+              },
+              ondestroy : function(action) {
+              }
+            });
+          }finally{}
+        }
+
+      });   
+
 </script>
 </body>
 </html>

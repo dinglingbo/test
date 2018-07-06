@@ -194,7 +194,7 @@
 
 		
 </script>
-<script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.0.2" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.2" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>

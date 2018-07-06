@@ -294,7 +294,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -309,7 +309,7 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -383,7 +383,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -406,7 +406,7 @@
     <figSize height="17" width="38"/>
     <node>invokePojo5</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="updateSellQtyTempRecord" displayName="updateSellQtyTempRecord" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="updateSellQtyTempRecord" displayName="updateSellQtyTempRecordA" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign5</targetNode>
@@ -416,20 +416,20 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecord</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordA</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/id</process:inputVariable>
-        <process:inputVariable id="2" name="operateType" type="literal" value="Int" valueType="Primitive" pattern="reference">0</process:inputVariable>
-        <process:inputVariable id="3" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/orderQty</process:inputVariable>
-        <process:inputVariable id="4" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/orgid</process:inputVariable>
-        <process:inputVariable id="5" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/storeId</process:inputVariable>
-        <process:inputVariable id="6" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/partId</process:inputVariable>
-        <process:inputVariable id="7" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">tmp/partCode</process:inputVariable>
-        <process:inputVariable id="8" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">tmp/partName</process:inputVariable>
-        <process:inputVariable id="9" name="fullName" type="query" value="String" valueType="Primitive" pattern="reference">tmp/fullName</process:inputVariable>
-        <process:inputVariable id="10" name="lockStockQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/occupyQty</process:inputVariable>
-        <process:inputVariable id="11" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+        <process:inputVariable id="2" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/orderQty</process:inputVariable>
+        <process:inputVariable id="3" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/orgid</process:inputVariable>
+        <process:inputVariable id="4" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/storeId</process:inputVariable>
+        <process:inputVariable id="5" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/partId</process:inputVariable>
+        <process:inputVariable id="6" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">tmp/partCode</process:inputVariable>
+        <process:inputVariable id="7" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">tmp/partName</process:inputVariable>
+        <process:inputVariable id="8" name="fullName" type="query" value="String" valueType="Primitive" pattern="reference">tmp/fullName</process:inputVariable>
+        <process:inputVariable id="9" name="lockStockQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/occupyQty</process:inputVariable>
+        <process:inputVariable id="10" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+        <process:inputVariable id="11" name="operateDate" type="query" value="Date" valueType="Primitive" pattern="reference">operateDate</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -474,7 +474,7 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

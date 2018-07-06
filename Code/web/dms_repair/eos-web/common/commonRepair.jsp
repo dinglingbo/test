@@ -58,7 +58,7 @@
 	window._webRepairUrl = webPath + repairDomain + "/";
 	//console.log(window._rootUrl);
 </script>
-<script src="<%=webPath + repairDomain%>/common/js/repairUtil.js?v=1.0.5" type="text/javascript"></script>
+<script src="<%=webPath + repairDomain%>/common/js/repairUtil.js?v=1.0.7" type="text/javascript"></script>
 <style type="text/css">
 	html,
 	body {

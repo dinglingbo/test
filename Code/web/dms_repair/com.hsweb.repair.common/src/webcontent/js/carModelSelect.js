@@ -60,7 +60,7 @@ function onOk()
         CloseWindow("ok");
     }
     else{
-        nui.alert("请选择一个车型");
+        showMsg("请选择一个车型", "W");
     }
 }
 

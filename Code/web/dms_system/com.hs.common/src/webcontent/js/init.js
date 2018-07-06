@@ -197,7 +197,7 @@ function processProvince(data){
     setDataToHash(data,"province","code");
     _initDmsCallback["initProvince"] && _initDmsCallback["initProvince"]() && (_initDmsCallback["initProvince"] = null);
 }
-//城市
+//城市(所有)
 function initCity(id,callback){
     _initDmsCallback["initCity"] = callback;
     if(checkObjExists(id, "initCity")){
@@ -205,10 +205,21 @@ function initCity(id,callback){
         callAjax(url, {}, processAjax, processCity, null); 
     }
 }
-function processCity(data){
-    _initDmsObj["initCity"].setData(data);
+
+//城市(上级)
+function initCityByParent(id, parentId, callback){
+    _initDmsCallback["initCity" +  parentId] = callback;
+    if(checkObjExists(id, "initCity" +  parentId)){
+        var url = _sysApiRoot + "/com.hs.common.region.getRegin.biz.ext";
+        callAjax(url, {"parentId": parentId}, processAjax, processCity, null); 
+    }
+}
+
+function processCity(data, json){
+    var parentId = json.parentId;
+    _initDmsObj["initCity" + parentId].setData(data);
     setDataToHash(data,"city","code");
-    _initDmsCallback["initCity"] && _initDmsCallback["initCity"]() && (_initDmsCallback["initCity"] = null);
+    _initDmsCallback["initCity" + parentId] && _initDmsCallback["initCity" + parentId]() && (_initDmsCallback["initCity" + parentId] = null);
 }
 //公司员工
 function initMember(id,callback){//dictDefs{id1: dictid1, id2: dictid2}

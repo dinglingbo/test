@@ -194,9 +194,9 @@
 
 		
 </script>
-<script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.3" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
-<script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.4" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/common/js/init.js?v=1.2" type="text/javascript"></script>
 <script src="<%=webPath + sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=webPath + sysDomain%>/common/nui/themes/metro-blue/skin.css" rel="stylesheet"	type="text/css" />
 <link href="<%=webPath + sysDomain %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">

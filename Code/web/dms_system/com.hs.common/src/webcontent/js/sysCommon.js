@@ -150,3 +150,14 @@ function setColVal(dataFrom, value, name, eValue){//数据源（控件），值�
     }
     return eValue;
 }
+
+//手机号验证
+function checkMobile(str) {
+    var reg = /^1\d{10}$/
+    if (reg.test(str)) {
+        return true;
+    } else {
+        showMsg("请输入正确的手机号码！", "W");
+        return false;
+    }
+}

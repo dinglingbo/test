@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.11"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.14"></script>
 <style type="text/css">
 
 table {
@@ -152,7 +152,8 @@ table {
                                     <input class="nui-textbox" id="underpanNo" name="underpanNo" width="100%"/>
                                 </td>
                                 <td>
-                                    <a class="nui-button" onclick="onParseUnderpanNo()">解析</a>
+                                    <a class="nui-button" onclick="onParseUnderpanNo()">解析车型</a>
+                                    <a class="nui-button" onclick="selectCarModel(setCarModel)">选择车型</a>
                                 </td>
                             </tr>
                             <tr>
@@ -160,9 +161,10 @@ table {
                                     <label>车型信息：</label>
                                 </td>
                                 <td colspan="3">
-                                    <textarea class="nui-textarea" id="carModelInfo" name="carModelInfo" width="100%"></textarea>
+                                    <textarea class="nui-textarea" id="carModel" name="carModel" width="100%"></textarea>
                                 </td>
                             </tr>
+                            <!--
                             <tr>
                                 <td class="form_label">
                                     <label>车型：</label>
@@ -171,6 +173,7 @@ table {
                                     <input class="nui-buttonedit" name="carModelId" id="carModelId" onclick="selectCarModel('carModelId','carBrandId')" width="100%"/>
                                 </td>
                             </tr>
+                            -->
                             <tr>
                                 <td class="form_label">
                                     <label>发动机号：</label>
@@ -352,7 +355,7 @@ table {
                     </div>
                 </div>
             </div>
-            <div style="text-align:center;padding:10px;">
+            <div id="btnGroup" style="text-align:center;padding:10px;">
                 <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
                 <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
             </div>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>选择车型</title>
-<script src="<%= request.getContextPath() %>/commonRepair/js/carModelSelect.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/commonRepair/js/carModelSelect.js?v=1.0.1"></script>
 <style type="text/css">
 table {
 	font-size: 12px;

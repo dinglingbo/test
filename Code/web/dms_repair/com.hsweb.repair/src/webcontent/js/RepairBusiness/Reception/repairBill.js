@@ -306,12 +306,13 @@ function deletePartRow(){
     }
 }
 function entry(){
+	/*
     var maintain = billForm.getData();
     if(!maintain.id)
     {
         nui.alert("请先保存工单信息");
         return;
-    }
+    }*/
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
         title: "标准化产品查询", width: 900, height: 600,

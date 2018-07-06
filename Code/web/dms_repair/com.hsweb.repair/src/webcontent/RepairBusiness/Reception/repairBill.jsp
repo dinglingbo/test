@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单详情</title>
-<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.0.3"></script>
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.0.4"></script>
 <style type="text/css">
     body {
         margin: 0;
@@ -255,7 +255,57 @@ html body .searchbox .mini-buttonedit-icon:before
         </div>
     </div>
 </div>
+  <script type="text/javascript">
+      nui.parse();
+      var grid_rpsPackageGrid = nui.get("rpsPackageGrid");
+      var grid_rpsPartGrid = nui.get("rpsPartGrid");
+      grid_rpsPackageGrid.on("cellclick",function(e){
+        var record = e.record;
+        var column = e.column;
+        if(column.field == "itemName"){
+          try{
+            nui.open({
+              url : "repair/RepairBusiness/Reception/retailBillDetail.jsp",
+              title : "添加工时",
+              width : "100%",
+              height : "100%",
+              onload : function() {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setInitData();
+              },
+              ondestroy : function(action) {
+              }
+            });
+          }finally{}
+        }
 
+      });   
+
+
+      grid_rpsPartGrid.on("cellclick",function(e){
+        var record = e.record;
+        var column = e.column;
+        if(column.field == "partName"){
+          try{
+            nui.open({
+              url : "com.hsweb.part.baseData.partDetail.flow",
+              title : "添加配件",
+              width : "100%",
+              height : "100%",
+              onload : function() {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setInitData();
+              },
+              ondestroy : function(action) {
+              }
+            });
+          }finally{}
+        }
+
+      }); 
+
+
+    </script>
 
 
 </body>

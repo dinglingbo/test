@@ -171,6 +171,7 @@ function fuwuguwen(){
     turlb = "repair/report/fuwuguwenyejihuizongSS.jsp";
     openPaper(titb, turlb);
 }
+
 function openPaper(tit, url) {
 	var item={};
 	item.id = tit;

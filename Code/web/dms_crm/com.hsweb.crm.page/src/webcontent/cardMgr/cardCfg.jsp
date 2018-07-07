@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonRepair.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -57,8 +56,8 @@ pageEncoding="UTF-8" session="false"%>
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
             <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <span class="separator"></span>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;导出</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn7"><span class="fa fa-plus fa-lg"></span>&nbsp;导出</a>
           </td>
         </tr>
       </table>
@@ -112,10 +111,10 @@ pageEncoding="UTF-8" session="false"%>
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
             <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <span class="separator"></span>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡会员卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡计次卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡套餐卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡储值卡</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn1"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡会员卡</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn2"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡计次卡</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn3"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡套餐卡</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn4"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡储值卡</a>
           </td>
         </tr>
       </table>
@@ -154,6 +153,26 @@ pageEncoding="UTF-8" session="false"%>
 
 </div>
 
+<script type="text/javascript">
+   nui.parse();
+	function newBill(){
+	
+		try{
+            nui.open({
+              url : webPath + sysDomain + "/page/cardMgr/cardSell.jsp",
+              title : "开卡",
+              width : "830px",
+              height : "370px",
+              onload : function() {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setInitData();
+              },
+              ondestroy : function(action) {
+              }
+            });
+          }finally{}
+	}   
+</script>
 
 
 

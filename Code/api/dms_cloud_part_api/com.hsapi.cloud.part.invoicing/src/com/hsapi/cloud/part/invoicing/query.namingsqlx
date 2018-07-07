@@ -188,8 +188,8 @@
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="enterTypeId">(a.enter_type_id = #enterTypeId#)</isNotEmpty>
-            <isNotEmpty prepend="and" property="codeId">(a.code_id = #codeId#)</isNotEmpty>
-            <isNotEmpty prepend="and" property="code">(a.code = #code#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="codeId">(a.code_id  = #codeId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="code">(a.code like '%$code$%')</isNotEmpty>
             <!--入库日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">A.enter_date &gt;= #sEnterDate#</isNotEmpty>
             <isNotEmpty prepend="and" property="eEnterDate">(A.enter_date &lt; #eEnterDate#)</isNotEmpty>

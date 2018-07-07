@@ -192,7 +192,7 @@ function msearch() {
     var qCon = queryConditionsMEl.getValue();
     var qVal = conditoinsValueMEl.getValue();
     if(!qVal){
-        nui.alert("请输入查询条件!");
+        showMsg("请输入查询条件!","W");
         return;
     }
     if(qCon == 0){
@@ -240,7 +240,9 @@ function onAdvancedSearchOk() {
         
         advancedSearchWin.hide();
 	    doSSearch(params);
-	}
+	}else{
+        showMsg("请输入编码!","W");
+    }
 	
 }
 function onAdvancedSearchCancel(){
@@ -283,6 +285,8 @@ function set()
             if (data.errCode == "S") {
                 var commonId = data.commonId;
                 showMsg('设置成功!','S');
+                var newRow = {commonId: commonId};
+                partGrid.updateRow(row, newRow);
                 var page={length:1000,size:1000};
                 var p = {commonId:commonId};
                 partCommonGrid.load({
@@ -428,7 +432,7 @@ function ssearch() {
     var qCon = queryConditionsEl.getValue();
     var qVal = conditoinsValueEl.getValue();
     if(!qVal){
-        nui.alert("请输入查询条件!");
+        showMsg("请输入查询条件!","W");
         return;
     }
     if(qCon == 0){
@@ -451,4 +455,24 @@ function doSSearch(params) {
 		params : params,
 		token : token
 	});
+}
+function importPart(){
+    nui.open({
+        targetWindow: window,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.importPartCommon.flow?token="+token,
+        title: "配件替换关系导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var data = {};
+        },
+        ondestroy: function (action)
+        {
+            rightPartGrid.reload();
+        }
+    });
 }

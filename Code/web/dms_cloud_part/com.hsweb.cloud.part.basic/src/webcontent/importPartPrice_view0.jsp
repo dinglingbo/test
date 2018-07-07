@@ -100,16 +100,7 @@
 	<div class="nui-fit">
 		<div id="mainGrid" class="nui-datagrid" dataField="data" url="" showPager="false"
 			showSummaryRow="true" allowCellEdit="true" allowCellSelect="true"
-            oncellcommitedit="onCellCommitEdit"
 			style="width:100%;height:100%;">
-			<div property="columns">
-				<div type="indexcolumn">序号</div>
-				<div field="配件编码" width="150px" summaryType="count" headerAlign="center" allowSort="true">
-					配件编码</div>
-				<div field="单价" header="单价" width="80px" headerAlign="center" allowSort="true">
-					<input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-			</div>
 		</div>
 	</div>
 

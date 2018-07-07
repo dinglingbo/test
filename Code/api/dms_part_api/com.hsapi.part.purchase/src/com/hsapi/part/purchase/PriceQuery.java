@@ -24,8 +24,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.eos.foundation.data.DataObjectUtil;
 import com.eos.system.annotation.Bizlet;
-import com.hs.common.HttpUtils;
-import com.hs.common.JsonUtils;
 import com.primeton.bfs.engine.json.JSONArray;
 import com.primeton.bfs.engine.json.JSONException;
 import com.primeton.bfs.engine.json.JSONObject;

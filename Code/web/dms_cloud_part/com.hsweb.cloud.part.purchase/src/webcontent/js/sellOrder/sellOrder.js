@@ -1516,7 +1516,7 @@ function addDetail(row,data,ck)
     //rightGrid.beginEditCell(newRow, "comPartCode");
 
 }
-var saveStepUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.insertPjSellOrderStep.biz.ext";
+var saveStepUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.insertPjSellOrderStepTran.biz.ext";
 function saveDetail(detail, callback){
     nui.ajax({
 		url : saveStepUrl,
@@ -2188,7 +2188,7 @@ function onMoreTabChanged(e){
     }
     
 }
-var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOut.biz.ext";
+var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOutTran.biz.ext";
 function auditToOut()
 {
 

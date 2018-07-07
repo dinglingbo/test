@@ -608,7 +608,7 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="generatePchsOrderToEnter" displayName="generatePchsOrderToEnter" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="generatePchsOrderToEnterNT" displayName="generatePchsOrderToEnterNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign6</targetNode>
@@ -628,7 +628,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.ordersettle.generatePchsOrderToEnter</process:partner>
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.ordersettle.generatePchsOrderToEnterNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
         <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">auditDetails</process:inputVariable>
@@ -641,8 +641,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="606" y="426"/>
-    <figSize height="17" width="159"/>
+    <location x="597" y="426"/>
+    <figSize height="17" width="176"/>
     <node>subprocess4</node>
   </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback2" name="事务回滚2" displayName="事务回滚" type="transactionrollback">

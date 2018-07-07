@@ -265,10 +265,10 @@ html body .searchbox .mini-buttonedit-icon:before
         if(column.field == "itemName"){
           try{
             nui.open({
-              url : "repair/RepairBusiness/Reception/retailBillDetail.jsp",
+              url : "repair/RepairBusiness/Reception/repairBillItemAdd.jsp",
               title : "添加工时",
-              width : "100%",
-              height : "100%",
+              width : "600px",
+              height : "400px",
               onload : function() {
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.setInitData();
@@ -290,8 +290,8 @@ html body .searchbox .mini-buttonedit-icon:before
             nui.open({
               url : "com.hsweb.part.baseData.partDetail.flow",
               title : "添加配件",
-              width : "100%",
-              height : "100%",
+              width : "710px",
+              height : "250px",
               onload : function() {
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.setInitData();

@@ -47,7 +47,7 @@ pageEncoding="UTF-8" session="false"%>
 <body>
 
   <div class="nui-fit">
-<div id="tabs1" class="nui-tabs" activeIndex="0" style="width:700px;height:300px;"  borderStyle="border:0;padding:0">
+<div id="tabs1" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;"  borderStyle="border:0;padding:0">
     <div title="工单历史" >
         <div id="" class="nui-datagrid" style="width:100%;height:100%;"
         selectOnLoad="true"

@@ -1,17 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" session="false" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/common/sysCommon.jsp"%>
+
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 19:02:07
-  - Description: 
--->  
+  - Date: 2018-07-02 19:02:07 
+  - Description:  
+-->   
 <head>
-    <title>工单</title>
+    <title>工单-洗车单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     
     <style type="text/css">
     body { 
@@ -24,12 +23,8 @@ pageEncoding="UTF-8" session="false" %>
  }
 
 
-/*  table
-{
 
- left:0;right:0;margin: 0 auto;
-}
-*/
+
 
 #table_A tr
 {
@@ -161,62 +156,58 @@ table tr td span
 </head>
 <body>
     <div class="nui-fit">
-       <table > 
+       <table  style=" left:0;right:0;margin: 0 auto;"> 
           <tr>   
-            <td class="tbtext">退货日期日期</td> 
+            <td class="tbtext">进场日期</td> 
+            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
+            <td class="tbtext">预计交车日期</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
         </tr>
         <tr>   
-            <td class="tbtext">销售人员</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">办理人</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">建档人</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">源单号</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-
-        </tr>
-                <tr>   
             <td class="tbtext">车主</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
             <td class="tbtext">车主电话</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">送修人</td> 
+            <td class="tbtext">车牌号</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">联系方式</td> 
+            <td class="tbtext">来电途径</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
 
         </tr>
-        <tr>   
-            <td class="tbtext">车牌号</td> 
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
             <td class="tbtext">车型</td> 
             <td class="tbCtrl" colspan="3"><input  class="nui-textbox tabwidth" /></td>
-            <td class="tbtext">VIN码</td> 
+            <td class="tbtext">级别</td> 
             <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
 
         </tr>
         <tr>
-            <td class="tbtext">来电途径</td>
-            <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
+            <td class="tbtext">选择服务类型</td>
+            <td class="tbCtrl" colspan="7">
+                <input  class="nui-button tabwidth" text="精致洗车（￥135）" style="height: 60px;width: 200px" />
+                <input  class="nui-button tabwidth" text="普通洗车（￥50）" style="height: 60px;width: 200px" />
+            </td>
 
         </tr>
-
 
     </table>
 
 
+    <div style="width:100%;margin-top: 10px;">
+        <a class="nui-button" onclick=""   plain="false" >洗车历史</a>
+    </div>
     <div>
         <div id="datagrid1" class="nui-datagrid" showPager="false">
             <div property="columns">
 
-                <div field="" width="100" headerAlign="center" align="center">材料名称</div>
-                <div field="" width="100" headerAlign="center" align="center">退货数量</div>
-                <div field="" width="100" headerAlign="center" align="center">销售单价</div>
-                <div field="" width="100" headerAlign="center" align="center">退货单价</div>
-                <div field="" width="100" headerAlign="center" align="center">退货金额</div>
-                <div field="" width="100" headerAlign="center" align="center">已入库</div>
+                <div field="" width="100" headerAlign="center" align="center">项目名称</div>
+                <div field="" width="100" headerAlign="center" align="center">业务分类</div>
+                <div field="" width="100" headerAlign="center" align="center">工时</div>
+                <div field="" width="100" headerAlign="center" align="center">单价</div>
+                <div field="" width="100" headerAlign="center" align="center">工时费</div>
+                <div field="" width="100" headerAlign="center" align="center">折扣</div>
+                <div field="" width="100" headerAlign="center" align="center">折后金额</div>
+                <div field="" width="300" headerAlign="center" align="center">服务技师</div>
+                <div field="" width="100" headerAlign="center" align="center">备注</div>
                 <div field="" width="100" headerAlign="center" align="center">删除</div>
             </div>
         </div>
@@ -226,14 +217,14 @@ table tr td span
     <table > 
         <tr>   
             <td class="tbtext">备注</td> 
-            <td colspan="9" class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
+            <td class="tbCtrl" style="width: 600px;"><input  class="nui-textarea tabwidth" style="height: 60px;width: 100%"/></td>
 
 
         </tr>
 
         <tr>   
-            <td class="tbtext">应退金额</td> 
-            <td colspan="5" class="tbCtrl">￥0.00 </td>
+            <td class="tbtext">应收总计</td> 
+            <td class="tbCtrl">￥0.00 = 工时费小计：￥0.00 + 材料费小计：￥0.00 +附加费小计：￥0.00</td>
      
         </tr>
 
@@ -241,6 +232,7 @@ table tr td span
     <div style="width:100%;margin-top: 10px;text-align: center;">
         <a class="nui-button" onclick=""   plain="false" >保存</a>
 
+        <a class="nui-button" onclick=""   plain="false" >退出</a>
     </div>
 
 </div>

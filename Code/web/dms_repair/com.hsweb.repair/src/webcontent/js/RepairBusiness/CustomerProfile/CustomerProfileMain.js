@@ -207,7 +207,7 @@ function edit() {
     {
         addOrEditCustomer(row);
     } else {
-        nui.alert("请选中一条数据", "系统提示");
+        showMsg("请选中一条数据", "W");
     }
 }
 

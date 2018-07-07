@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>仓库报表</title>
+  <title>财务报表</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -31,62 +31,68 @@ pageEncoding="UTF-8" session="false" %>
 
                   <div  id="menu1" class="demo"  style="">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="danju()">
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
-                            <p>材料出入库明细</p> 
+                            <p>收款流水明细（收账单据）</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>材料出入库汇总</p> 
+                            <p>收款流水明细（收款内容）</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
-                            <p>材料历史库存汇总表</p> 
+                            <p>收款流水汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>材料周转明细表</p> 
+                            <p>预收处理明细</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="yushou()">
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
-                            <p>材料库存周转汇总表</p> 
+                            <p>预收处理汇总表</p> 
                         </a>
                     </div>
                 </div>
 
                 <div  id="menu2" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="yingshoumingxi()">
                             <i class="fa fa-truck fa-4x  fa-inverse"></i>
-                            <p>材料库存状况明细表</p> 
+                            <p>应收账款明细</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-copy fa-4x  fa-inverse"></i>
-                            <p>材料调拨明细</p> 
+                            <p>应收账款汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="jingying()">
                             <i class="fa fa-calculator fa-4x  fa-inverse"></i>
-                            <p>安全库存预警</p> 
+                            <p>经营收支统计汇总表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="other()">
                             <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
-                            <p>呆滞品统计分析</p> 
+                            <p>其他收支费用明细</p> 
+                        </a>
+                    </div>
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a onclick="zhuying()">
+                            <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
+                            <p>主营收款明细</p> 
                         </a>
                     </div>
                 </div>
@@ -108,6 +114,50 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <script type="text/javascript">
     nui.parse();
+    var titb = null;
+    var turlb = null;
+function danju(){
+    titb = "收款流水明细（收款单据）";
+    turlb = "cw/report/IncomeExpenditureDetail.jsp";
+    openPaper(titb, turlb);
+}
+
+function jingying(){
+    titb = "经营收支统计汇总表";
+    turlb = "cw/report/jingyingshouzhitongjibaobiao.jsp";
+    openPaper(titb, turlb);
+}
+
+function yingshoumingxi(){
+	titb = "应收账款明细";
+    turlb = "cw/yingshou.jsp";
+    openPaper(titb, turlb);
+}
+
+function yushou(){
+	titb = "预收处理汇总表";
+    turlb = "cw/yushouchuli.jsp";
+    openPaper(titb, turlb);
+}
+
+function other(){
+	titb = "其他收支费用明细";
+    turlb = "cw/report/jingyingshouzhitongjibaobiao.jsp";
+    openPaper(titb, turlb);
+}
+
+function zhuying(){
+	titb = "主营收款明细";
+    turlb = "cw/report/zhuyingshourumingxi.jsp";
+    openPaper(titb, turlb);
+}
+function openPaper(tit, url) {
+	var item={};
+	item.id = tit;
+	item.text = tit;
+	item.url = url;
+	window.parent.activeTab(item);
+}
 
 </script>
 </body>

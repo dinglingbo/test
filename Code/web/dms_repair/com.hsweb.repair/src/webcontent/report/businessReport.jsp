@@ -31,7 +31,7 @@ pageEncoding="UTF-8" session="false" %>
 
                   <div  id="menu1" class="demo"  style="">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="gongdanmingxi()">
                             <i class="fa fa-rocket fa-4x  fa-inverse"></i>
                             <p>工单业绩明细</p> 
                         </a> 
@@ -98,13 +98,13 @@ pageEncoding="UTF-8" session="false" %>
                 </div>
                 <div  id="menu3" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="fuwuguwen()">
                             <i class="fa fa-truck fa-4x  fa-inverse"></i>
                             <p>服务顾问业绩汇总表（实收）</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="lingshouyewu()">
                             <i class="fa fa-copy fa-4x  fa-inverse"></i>
                             <p>零售业务统计分析</p> 
                         </a>
@@ -116,7 +116,7 @@ pageEncoding="UTF-8" session="false" %>
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a>
+                        <a onclick="yingyeliushui()">
                             <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
                             <p>营业额流水汇总表</p> 
                         </a>
@@ -146,7 +146,38 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <script type="text/javascript">
     nui.parse();
+	var titb = null;
+    var turlb = null;
+function gongdanmingxi(){
+	titb = "工单业绩明细";
+    turlb = "repair/report/gongdanyejimingxi.jsp";
+    openPaper(titb, turlb);
+}
 
+function yingyeliushui(){
+	titb = "营业额流水汇总表";
+    turlb = "repair/report/yingyeeliushuihuizong.jsp";
+    openPaper(titb, turlb);
+}
+
+function lingshouyewu(){
+	titb = "零售业务统计分析";
+    turlb = "repair/report/lingshouyewutongjifenxi.jsp";
+    openPaper(titb, turlb);
+}
+
+function fuwuguwen(){
+	titb = "服务顾问业绩汇总表（实收）";
+    turlb = "repair/report/fuwuguwenyejihuizongSS.jsp";
+    openPaper(titb, turlb);
+}
+function openPaper(tit, url) {
+	var item={};
+	item.id = tit;
+	item.text = tit;
+	item.url = url;
+	window.parent.activeTab(item);
+}
 </script>
 </body>
 s</html>

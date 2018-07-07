@@ -207,7 +207,7 @@ function onDrawCell(e) {
 
 function addRow() {
     nui.open({
-        url: "BookingManagementEdit.jsp",
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp",
         title: "新增预约", width: 700, height: 380,
         onload: function () {
 
@@ -225,7 +225,7 @@ function editRow() {
         return;
     }
     nui.open({
-        url: "BookingManagementEdit.jsp",
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp",
         title: "修改", width: 700, height: 380,
         onload: function () {
             var iframe = this.getIFrameEl();

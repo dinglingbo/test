@@ -168,41 +168,7 @@ function getCarModelByBrandId(brandId, callback, carModelId) {
 		}
 	});
 }
-function selectCarModel(elId, carBrandId, carModelId) {
-	nui.open({
-		targetWindow : window,
-		url : "com.hsweb.repair.common.carModelSelect.flow",
-		title : "选择车型",
-		width : 900,
-		height : 600,
-		allowDrag : true,
-		allowResize : false,
-		onload : function() {
-		},
-		ondestroy : function(action) {
-			if (action == "ok") {
-				var iframe = this.getIFrameEl();
-				var data = iframe.contentWindow.getData();
-				if (data && data.carModel) {
-					var carModel = data.carModel || {};
-					if (elId && nui.get(elId)) {
-						nui.get(elId).setValue(carModel.id);
-						nui.get(elId).setText(carModel.carModel);
-					}
-					if (carBrandId && nui.get(carBrandId)) {
-						nui.get(carBrandId).setValue(carModel.carBrandId);
-						if (nui.get(carBrandId).doValueChanged) {
-							nui.get(carBrandId).doValueChanged();
-						}
-					}
-					if (carModelId && nui.get(carModelId)) {
-						nui.get(carModelId).setValue(carModel.id);
-					}
-				}
-			}
-		}
-	});
-}
+
 var getAllInsuranceCompanyUrl = window._rootUrl
 		+ "com.hsapi.repair.common.svr.getAllInsuranceCompany.biz.ext";
 function getAllInsuranceCompany(callback) {

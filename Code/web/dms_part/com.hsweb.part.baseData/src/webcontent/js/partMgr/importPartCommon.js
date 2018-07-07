@@ -124,38 +124,27 @@ function sure() {
 	var partList = [];
 	if (data) {
 		var columns = mainGrid.columns;
-		for (var i = 0; i < data.length; i++) {            
+		for (var i = 0; i < data.length; i++) {       
+			var partCodeList = [];    
             for(var j=1; j<columns.length; j++){
-                var newRow = {index:i};
-                var partCode = (data[i][columns[j].field]).replace(/\s+/g, "");
+				var fieldName = columns[j].field;
+                var partCode = (data[i][fieldName]||"").replace(/\s+/g, "");
                 if(partCode){
-                    newRow.partCode = partCode;
-                    partList.push(newRow);
+					partCode = "'"+partCode+"'";
+                    partCodeList.push(partCode);
                 }
-            }
+			}
+			if(partCodeList && partCodeList.length>0){
+				var newRow = {index:i}; 
+				var partCodeStr = partCodeList.join(",");
+				newRow.partCodeList = partCodeStr;
+				partList.push(newRow);
+			}
 		}
 		//btnEdit.setValue(data.id);
 		//btnEdit.setText(data.guestname);
     }
     //考虑导入数据中，不同行可能有相同配件编码，这时需要合并替换信息
-    var indexList = [];
-    var commonCount = data.length;
-    var l = 0;
-    for(var m=0; m<partList.length; m++){
-        var row = partList[m];
-        var index = row.index;
-        var partCode = row.partCode;
-        l = m+1;
-        for(var n=l; n<partList.length; n++){
-            var rowR = partList[n];
-            var indexR = rowR.index;
-            var partCodeR = rowR.partCode;
-            if(index != indexR && partCode == partCodeR){
-
-            }
-        }
-
-    }
 
 	savePartCommon(partList);
 }
@@ -169,7 +158,7 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveImportStrategyPart.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveImportPartCommon.biz.ext";
 function savePartCommon(partList){
 	if(partList && partList.length>0) {
 		nui.mask({
@@ -182,8 +171,7 @@ function savePartCommon(partList){
 	        url : saveUrl,
 	        type : "post",
 	        data : JSON.stringify({
-	            stragegyId : fstrategyId,
-	            addList : partList,
+	            params : partList,
 	            token : token
 	        }),
 	        success : function(data) {
@@ -192,9 +180,7 @@ function savePartCommon(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-                        showMsg("errMsg","W");
-	                }else{
-                        showMsg("errMsg","S");
+                        showMsg(errMsg,"S");
 	                }
 	            } else {
                     showMsg(data.errMsg || "导入失败!","W");

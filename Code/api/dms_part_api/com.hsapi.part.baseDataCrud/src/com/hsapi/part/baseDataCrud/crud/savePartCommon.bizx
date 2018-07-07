@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="savePartCommon.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="如果有common_id,则更新为新的common_id&#xD;&#xA;如果没有common_id,则更新为新的common_id&#xD;&#xA;&#xD;&#xA;接收参数：1、更新common_ids为新的common_id;2、更新part_ids的common_id&#xD;&#xA;" title="Administrator&#x9;18-7-1 下午5:29">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="如果有common_id,则更新为新的common_id&#xD;&#xA;如果没有common_id,则更新为新的common_id&#xD;&#xA;&#xD;&#xA;接收参数：1、更新common_ids为新的common_id;2、更新part_ids的common_id&#xD;&#xA;com.hsapi.part.baseDataCrud.crud.updatePartCommon" title="Administrator&#x9;18-7-1 下午5:29">
     <location x="47" y="-15"/>
     <size height="136" width="539"/>
   </nodes>
@@ -165,7 +165,7 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>transactioncommit0</targetNode>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonRepair.jsp"%>
+<%@ include file="/common/sysCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -51,9 +51,7 @@ pageEncoding="UTF-8" session="false"%>
       <table class="table" id="table1">
         <tr>
           <td>
-            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
-            <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;搜索</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡</a>
+             <a class="nui-button" onclick=""   plain="false" >添加</a>
           </td>
         </tr>
       </table>
@@ -63,7 +61,7 @@ pageEncoding="UTF-8" session="false"%>
       <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
         selectOnLoad="true"
-        showPager="true"
+        showPager="false"
         pageSize="50"
         totalField="page.count"
         sizeList=[20,50,100,200]
@@ -74,16 +72,16 @@ pageEncoding="UTF-8" session="false"%>
         onshowrowdetail="onShowRowDetail"
         url="">
         <div property="columns">
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡名称</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >工作组名</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >包含成员</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >操作</div>
         </div>
       </div>
     </div>
 
 
   <div style="width:100%;margin-top: 10px;text-align: center;">
+   
     <a class="nui-button" onclick=""   plain="false" >确认</a>
     <a class="nui-button" onclick=""   plain="false" >取消</a>
   </div>

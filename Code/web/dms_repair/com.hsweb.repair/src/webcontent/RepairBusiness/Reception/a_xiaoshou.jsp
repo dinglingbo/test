@@ -9,10 +9,10 @@ pageEncoding="UTF-8" session="false"%>
   - Description: 
 -->
 <head> 
-  <title></title>
+  <title>工单-销售首页</title>
   <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
   <style type="text/css">
- 
+
   .title {
     width: 60px;
     text-align: right;
@@ -52,8 +52,9 @@ pageEncoding="UTF-8" session="false"%>
         <tr>
           <td>
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
-            <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;搜索</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+            <span class="separator"></span>
+            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建</a>
           </td>
         </tr>
       </table>
@@ -74,21 +75,25 @@ pageEncoding="UTF-8" session="false"%>
         onshowrowdetail="onShowRowDetail"
         url="">
         <div property="columns">
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡名称</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡号</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >单号</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >车牌号</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >车型</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >VIN码</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >服务顾问</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >进场时间</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >应收金额</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >实收金额</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >单据状态</div>
         </div>
       </div>
     </div>
 
 
-  <div style="width:100%;margin-top: 10px;text-align: center;">
-    <a class="nui-button" onclick=""   plain="false" >确认</a>
-    <a class="nui-button" onclick=""   plain="false" >取消</a>
-  </div>
 
-  </div>
+
+ 
 
 </body>
 </html>

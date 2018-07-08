@@ -1156,7 +1156,7 @@
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="generatePchsOrderToEnter" displayName="generatePchsOrderToEnter" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="generatePchsOrderToEnterNT" displayName="generatePchsOrderToEnterNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link72" name="link72" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess3</sourceNode>
       <targetNode>assign5</targetNode>
@@ -1176,8 +1176,8 @@
     <location x="1380" y="171"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.generatePchsOrderToEnter</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.generatePchsOrderToEnterNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">orderMainAudit</process:inputVariable>
         <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">orderDetailAudit</process:inputVariable>
@@ -1190,8 +1190,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="1314" y="206"/>
-    <figSize height="17" width="159"/>
+    <location x="1305" y="206"/>
+    <figSize height="17" width="176"/>
     <node>subprocess3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">

@@ -129,7 +129,7 @@ $(document).ready(function() {
             document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
         }else if(row.brand && row.partCode){
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + sysDomain + "/com.hsweb.system.llqv2.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
+            document.getElementById("epcFormIframe").src=webPath + sysDomain + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
         }else{
             showTabInfo(0,"");
             document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
@@ -224,6 +224,26 @@ $(document).ready(function() {
         }
     });
 
+    var clipboard = new ClipboardJS('.tipBtn');
+
+    clipboard.on('success', function(e) {
+         console.log(e);
+    });
+
+    clipboard.on('success', function(e) {
+         console.log(e);
+    });
+
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+        
+        if((keyCode==81)&&(event.altKey))  {  
+			cutTipText();
+	    } 
+     
+    }
+
 
 });
 var partHash={};
@@ -296,35 +316,61 @@ function doSearch(params)
 
     });
 }
+var partInfoHash = {};
+var commonHash = {};
+var partIdList = [];
 function showQuote(){
     var rows = partGrid.findRows(function(row){
-        if(row.stockQty && row.stockQty>0){
+        if((row.stockQty && row.stockQty>0)||(row.commonId && row.commonId>0)){
             return true;
         }
     });
-    var partIdList = [];
-    var partInfoHash = {};
+    var commonIdList = [];
+    var ch = {};
     if(rows && rows.length>0){
         for (i = 0; i < rows.length; i++) {
-            //tmpList[i] = "'" + (tmpList[i]).replace(/\s+/g, "") + "'";
             var partId =  rows[i].partId;
-            if(partId && partId>0){
-                partIdList.push(partId);
-                partInfoHash[partId] = rows[i];
+            var commonId = rows[i].commonId;
+            if(!partInfoHash[partId]){
+                if(partId && partId>0){
+                    partIdList.push(partId);
+                    partInfoHash[partId] = rows[i];
+
+                    if(commonId && commonId>0){
+                        if(!ch[commonId]){
+                            commonIdList.push(commonId);
+                            ch[commonId] = commonId;
+                        }
+                        
+                        if(!commonHash[partId]){
+                            commonHash[partId] = commonId;
+                        }
+                    }
+                }
             }
         }
+        var params = {};
         if(partIdList && partIdList.length>0){
-            var params = {};
             params.partIds  = partIdList.join(",");
-            searchPrice(params,partInfoHash);
+            params.opartIds  = partIdList.join(",");
         }
+        if(commonIdList && commonIdList.length>0){
+            params.ocommonIds  = commonIdList.join(",");
+            params.partIds  = null;
+            params.partCommon = 1;
+        }
+        params.outableQty = 1;
+        searchPrice(params);
     }
 }
-var spUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getSellUnifyPriceList.biz.ext";
-function searchPrice(params,ph){
+var spUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getQuickPartPrice.biz.ext";
+function searchPrice(params){
+    var price = [];
+    var flag = false;
     nui.ajax({
 		url : spUrl,
-		type : "post",
+        type : "post",
+        async : false,
 		data : JSON.stringify({
 			params : params,
 			token: token
@@ -333,13 +379,44 @@ function searchPrice(params,ph){
 			data = data || {};
 			if (data.price) {
                 var price = data.price;
+                var priceHash = {};
                 var quoteList = [];
                 for(var i=0; i<price.length; i++){
                     var partId = price[i].partId;
-                    var sellPrice = price[i].sellPrice;
-                    if(ph[partId]){
-                        quoteList.push(ph[partId].partCode +" "+sellPrice);
+                    priceHash[partId] = price[i];
+                }
+                
+
+                for(var j=0; j<partIdList.length; j++){
+                    var mPartId = partIdList[j];
+                    var mCommonId = commonHash[mPartId];
+                    var haveMain = 0;
+                    if(priceHash[mPartId]){
+                        haveMain = 1;
+                        var sellPrice = priceHash[mPartId].sellPrice;
+                        var partCode = priceHash[mPartId].partCode;
+                        quoteList.push(partCode +" "+sellPrice);
                     }
+
+                    for(var i=0; i<price.length; i++){
+                        var partId = price[i].partId;
+                        var commonId = price[i].commonId;
+                        var partCode = price[i].partCode;
+                        var sellPrice = price[i].sellPrice;
+                        
+                        if(mPartId == partId){
+                        }else if(mCommonId == commonId){
+                            if(haveMain == 0) {
+                                if(i>0){
+                                    partCode = '='+partCode;
+                                }
+                            }else{
+                                partCode = '='+partCode;
+                            }
+                            quoteList.push(partCode +" "+sellPrice);
+                        }
+                    }
+
                 }
 
                 var quoteStr = "";
@@ -354,16 +431,40 @@ function searchPrice(params,ph){
                 }
                 quoteStr = resValue + quoteStr;
                 resListEl.setValue(quoteStr);
+                document.getElementById("tipText").value=quoteStr;
+                flag = true;
+                
+                partInfoHash = {};
+                commonHash = {};
+                partIdList = [];
 
 			} else {
-				nui.alert(data.errMsg || "报价失败!");
+                showMsg('报价失败!','W');
+                partInfoHash = {};
+                commonHash = {};
+                partIdList = [];
+                document.getElementById("tipText").value="";
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
+            partInfoHash = {};
+            commonHash = {};
+            partIdList = [];
+            document.getElementById("tipText").value="";
 			console.log(jqXHR.responseText);
 		}
-	});
+    });
+    
+    partInfoHash = {};
+    commonHash = {};
+    partIdList = [];
+
+    return flag;
+}
+function cutTipText(){
+    //自动点击
+    $("#tipBtn").trigger("click");
+    showMsg("复制报价内容成功!","S");
 }
 function addPart(){
     addOrEditPart();
@@ -469,6 +570,7 @@ function onClear(){
     conditoinsValueEl.setValue("");
     partCodeListEl.setValue("");
     resListEl.setValue("");
+    document.getElementById("tipText").value="";
 }
 function showPanel(type){
     if(type == 'PART'){

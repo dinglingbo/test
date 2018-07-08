@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速报价</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/quickSearch.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/quickSearch.js?v=1.0.3"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -51,7 +51,6 @@
 </style>
 </head>
 <body>
-
 <div class="nui-fit">
     <div  class="nui-splitter" style="width:100%;height:100%;" allowResize="true">
         <div size="450px" showCollapseButton="false">
@@ -71,7 +70,8 @@
                             <textarea class="nui-textarea" emptyText="编码列表(多个编码请换行输入)" width="100%" style="height:80px;" id="partCodeList" name="partCodeList"></textarea>
 						</td>
 						<td >
-                            <textarea class="nui-textarea" emptyText="剪贴板" width="100%" style="height:80px;" id="resList" name="resList"></textarea>
+							<textarea id="tipText" style="height:80px;width:100%;" placeholder="剪贴板"></textarea>
+                            <textarea class="nui-textarea" visible="false" emptyText="剪贴板" width="100%" style="height:80px;" id="resList" name="resList"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -79,7 +79,8 @@
                             <a class="nui-button" width="" iconCls="" plain="false" onclick="onSearch()">&nbsp;查&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="onClear()">清空条件</a>
 							<a class="nui-button" width="" iconCls="" plain="false" onclick="addPart()">新增配件</a>
-							<a class="nui-button" width="" iconCls="" plain="false" onclick="showPanel()">购物车</a>
+							<a class="nui-button" width="" iconCls="" plain="false" onclick="showPanel()">购物车</a>	
+							<button id="tipBtn" style="visibility: hidden;" class="tipBtn" data-clipboard-action="copy" data-clipboard-target="#tipText"></button>
 						</td>
                     </tr>
                 </table>
@@ -106,7 +107,7 @@
 								</div>
 								<div field="partCode" width="150" headerAlign="center" allowSort="true" summaryType="count">编码</div>
 								<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
-								<div field="stockQty" width="40" headerAlign="center">库存</div>
+								<div field="outableQty" width="40" headerAlign="center">库存</div>
 								<div field="partBrandId" width="70" headerAlign="center">品牌</div>
 								<div field="partName" width="80" headerAlign="center" allowSort="true">名称</div>
 								<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
@@ -129,6 +130,8 @@
 							<div title="本店库存" id="storeStockTab" name="storeStockTab" url="" >
 							</div> 
 							<div title="库存分布" id="chainStockTab" name="chainStockTab" url="">
+							</div>
+							<div title="宝马中国" id="BMWStockTab" name="BMWStockTab" url="">
 							</div>
 							<div title="价格信息" name="priceTab" url="" >
 							</div>   
@@ -178,7 +181,7 @@
 					</div>
 					<div field="partCode" width="150" headerAlign="center" allowSort="true" summaryType="count">编码</div>
 					<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
-					<div field="stockQty" width="40" headerAlign="center">库存</div>
+					<div field="outableQty" width="40" headerAlign="center">库存</div>
 					<div field="partBrandId" width="70" headerAlign="center">品牌</div>
 					<div field="partName" width="80" headerAlign="center" allowSort="true">名称</div>
 					<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>

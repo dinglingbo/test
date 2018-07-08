@@ -135,9 +135,9 @@
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">E</process:rightOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -180,9 +180,9 @@
       <sourceNode>subprocess2</sourceNode>
       <targetNode>transactionrollback1</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">E</process:rightOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

@@ -418,7 +418,7 @@ function onRightGridDraw(e)
             break;
     }
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOut.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOutTran.biz.ext";
 function audit()
 {
 

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库选择</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrderOut/pchsOrderEnterSelect.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrderOut/pchsOrderEnterSelect.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -94,6 +94,7 @@
             dataField="detailList"
             sortMode="client"
             multiSelect="false"
+            showReloadButton="false"
             pageSize="50"
             sizeList="[50,100,200]"
             showSummaryRow="true">

@@ -31,6 +31,7 @@
          showPager="true"
          dataField="detailList"
          sortMode="client"
+         showReloadButton="false"
          pageSize="50"
          sizeList="[50,100,200]">
         <div property="columns">

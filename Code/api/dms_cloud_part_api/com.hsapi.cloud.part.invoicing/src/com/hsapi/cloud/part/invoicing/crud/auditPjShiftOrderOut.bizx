@@ -757,7 +757,7 @@
     <figSize height="17" width="56"/>
     <node>transactionrollback4</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="savePjShiftOrder" displayName="savePjShiftOrder" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="savePjShiftOrderNT" displayName="savePjShiftOrderNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess9</sourceNode>
       <targetNode>subprocess10</targetNode>
@@ -782,8 +782,8 @@
     <location x="-266" y="287"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess9label</nodeLabel>
-    <process:flow index="5" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.savePjShiftOrder</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.savePjShiftOrderNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjStockShiftMain" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
         <process:inputVariable id="1" name="orderDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjStockShiftDetail[]" valueType="DataObject" pattern="reference">orderDetailAdd</process:inputVariable>
@@ -799,8 +799,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
-    <location x="-301" y="322"/>
-    <figSize height="17" width="97"/>
+    <location x="-310" y="322"/>
+    <figSize height="17" width="114"/>
     <node>subprocess9</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="分配批次" displayName="allotShiftBatchOfOutChk" type="subprocess">

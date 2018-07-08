@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销价策略定义</title>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/sellStrategySet.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/sellStrategySet.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -51,7 +51,7 @@
                            allowCellEdit="true"
                            allowCellSelect="true"
                            showModified="false"
-                           selectOnLoad="true"
+                           selectOnLoad="false"
                            onrowclick="onStraGridClick"
                            sortMode="client"
                            url="">
@@ -97,6 +97,7 @@
                                      pageSize="50"
                                      sizeList=[20,50,100,200]
                                      idField="id"
+                                     showReloadButton="false"
                                      allowCellEdit="true"
                                      allowCellSelect="true"
                                      ondrawcell=""
@@ -116,7 +117,7 @@
                                 </div>
                             </div>
                       </div>
-                      <div title="配件信息" name="partInfo" url="" >
+                      <div title="配件价格" name="partInfo" url="" >
                            <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                                 <table style="width:100%;">
                                     <tr>
@@ -144,6 +145,7 @@
                                      allowCellEdit="true"
                                      allowCellSelect="true"
                                      ondrawcell=""
+                                     showReloadButton="false"
                                      showModified="false"
                                      oncellcommitedit="onCellCommitEdit"
                                      multiSelect="true"
@@ -204,6 +206,7 @@
                    allowCellEdit="true"
                    allowCellSelect="true"
                    ondrawcell=""
+                   showReloadButton="false"
                    showModified="false"
                    oncellcommitedit="onCellCommitEdit"
                    multiSelect="true"

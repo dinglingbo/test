@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件替换</title>
-<script src="<%=webPath + cloudPartDomain%>/baseDataPart/js/partMgr/partCommonMgr.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/baseDataPart/js/partMgr/partCommonMgr.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -53,6 +53,7 @@ body .mini-grid-row-selected{
 
                 <a class="nui-button" plain="true" id="onMSearch" onclick="onMSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <!-- <a class="nui-button" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;多编码查询</a> -->
+                <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;批量导入替换关系</a>
             </td>
         </tr>
     </table>

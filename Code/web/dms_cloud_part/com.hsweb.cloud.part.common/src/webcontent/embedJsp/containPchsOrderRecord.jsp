@@ -35,6 +35,7 @@
             sizeList=[50,100,200]
             dataField="detailList"
             sortMode="client"
+            showReloadButton="false"
             idField="id"
             totalField="page.count"
             allowCellSelect="true" allowCellEdit="false">

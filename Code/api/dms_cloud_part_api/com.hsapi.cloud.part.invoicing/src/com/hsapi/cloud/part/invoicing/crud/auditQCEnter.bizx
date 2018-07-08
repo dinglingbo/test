@@ -349,7 +349,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="saveQCEnter" displayName="saveQCEnter" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="saveQCEnterNT" displayName="saveQCEnterNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign5</targetNode>
@@ -375,7 +375,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.saveQCEnter</process:partner>
+      <process:partner type="literal">this.saveQCEnterNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
         <process:inputVariable id="1" name="enterDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
@@ -390,8 +390,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="-144" y="322"/>
-    <figSize height="17" width="75"/>
+    <location x="-153" y="322"/>
+    <figSize height="17" width="92"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getJVMDate" displayName="getJVMDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">

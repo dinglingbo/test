@@ -365,7 +365,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="savePjEnter" displayName="savePjSellOut" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="savePjSellOutNT" displayName="savePjSellOutNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign5</targetNode>
@@ -391,7 +391,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.savePjSellOut</process:partner>
+      <process:partner type="literal">this.savePjSellOutNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="sellOutMain" type="query" value="com.hsapi.cloud.part.data.pts.PjOutMain" valueType="DataObject" pattern="reference">sellOutMain</process:inputVariable>
         <process:inputVariable id="1" name="sellOutDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjOutDetail[]" valueType="DataObject" pattern="reference">sellOutDetailAdd</process:inputVariable>
@@ -407,8 +407,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="-140" y="322"/>
-    <figSize height="17" width="67"/>
+    <location x="-154" y="322"/>
+    <figSize height="17" width="95"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getJVMDate" displayName="getJVMDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">

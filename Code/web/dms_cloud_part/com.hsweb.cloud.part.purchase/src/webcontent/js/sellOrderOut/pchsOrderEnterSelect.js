@@ -79,6 +79,7 @@ $(document).ready(function(v)
 
         td.appendChild(editFormPchsEnterDetail);
         editFormPchsEnterDetail.style.display = "";
+        innerPchsEnterGrid.setData([]);
 
         var params = {};
         params.mainId = mainId;
@@ -217,103 +218,31 @@ var resultData = {};
 function onOk()
 {
     if(!FGuestId){
-        nui.alert("请选择客户后再导入采购单!");
+        showMsg("请选择客户后再选择采购单!","W");
         return;
     }
-    var tab = mainTabs.getActiveTab();
-	var name = tab.name;
-
-    if(name == "pchsOrderTab"){
-        var node = rightGrid.getSelected();
-        if(node)
-        {
-        
-            resultData = {
-                orderMainId:node.id,
-                orderServiceId:node.serviceId,
-                billTypeId:node.billTypeId,
-                taxSign:node.taxSign,
-                taxRate:node.taxRate,
-                enterDate:node.orderDate,
-                orderMan:node.orderMan,
-                settleTypeId:node.settleTypeId,
-                guestId:node.guestId,
-                fullName:node.fullName,
-                type:"pchs"
-            };
-            //  return;
-            CloseWindow("ok");
-        }
-    }else if(name == "sellOrderTab"){
-        var node = sellOrderGrid.getSelected();
-        if(node)
-        {
-           
-            resultData = {
-                orderMainId:node.id,
-                orderServiceId:node.serviceId,
-                billTypeId:node.billTypeId,
-                taxSign:node.taxSign,
-                taxRate:node.taxRate,
-                enterDate:node.orderDate,
-                orderMan:node.orderMan,
-                settleTypeId:node.settleTypeId,
-                guestId:node.guestId,
-                fullName:node.guestFullName,
-                type:"sell"
-            };
-            //  return;
-            CloseWindow("ok");
-        }
+    var node = rightGrid.getSelected();
+    if(node)
+    {
+    
+        resultData = {
+            orderMainId:node.id,
+            orderServiceId:node.serviceId,
+            billTypeId:node.billTypeId,
+            orderMan:node.orderMan,
+            settleTypeId:node.settleTypeId,
+            guestId:node.guestId,
+            fullName:node.fullName,
+            type:"pchs"
+        };
+        //  return;
+        CloseWindow("ok");
     }
 }
 function getData(){
     return resultData;
 }
-var upUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.ordersettle.updatePchsOrderStatus.biz.ext";
-function updatePchsStatus(){
-    var row = rightGrid.getSelected();
-    if(row && row.id){
-        nui.confirm("是否标记此记录为已入库?", "友情提示", function(action) {
-            if (action == "ok") {
-                nui.mask({
-                    el : document.body,
-                    cls : 'mini-mask-loading',
-                    html : "处理中..."
-                });
-
-                nui.ajax({
-                    url : upUrl,
-                    type : "post",
-                    data : JSON.stringify({
-                        mainId : row.id,
-                        billStatusId : 4,
-                        token: token
-                    }),
-                    success : function(data) {
-                        nui.unmask(document.body);
-                        data = data || {};
-                        if (data.errCode == "S") {
-                            nui.alert("操作成功!");
-                            var newRow = {billStatusId:4};
-                            rightGrid.updateRow(row,newRow);
-                            
-                        } else {
-                            nui.alert(data.errMsg || (str+"失败!"));
-                        }
-                    },
-                    error : function(jqXHR, textStatus, errorThrown) {
-                        // nui.alert(jqXHR.responseText);
-                        console.log(jqXHR.responseText);
-                    }
-                });
-
-            } else {
-                return;
-            }
-        });
-    }
-}
-function setInitData(guestId){
-    FGuestId = guestId;
+function setInitData(params){
+    FGuestId = params.guestId;
+    onSearch();
 }

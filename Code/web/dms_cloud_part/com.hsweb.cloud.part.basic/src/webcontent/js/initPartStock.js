@@ -500,7 +500,7 @@ function selectPart(callback,checkcallback)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData("cloudPart",callback,checkcallback);
+            iframe.contentWindow.setCloudPartData("cloudPart",callback,checkcallback);
         },
         ondestroy: function (action)
         {

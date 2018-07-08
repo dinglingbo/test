@@ -304,7 +304,7 @@ function onOk()
         });
         if(tmp && tmp.length>0)
         {
-            nui.alert("此配件已在明细中，不能重复选择");
+            showMsg("此配件已在明细中，不能重复选择","W");
             return;
         }
         resultData = {

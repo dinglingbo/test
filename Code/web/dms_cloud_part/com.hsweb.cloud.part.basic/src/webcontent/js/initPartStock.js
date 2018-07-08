@@ -299,13 +299,13 @@ function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
             return;
         }
     }
 
     if(data && data.auditSign && data.auditSign == 1){
-        nui.alert("此单已审核!");
+        showMsg("此单已审核!","W");
         return;
     }
 
@@ -350,7 +350,7 @@ function save() {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!");
+                showMsg("保存成功!","S");
                 //onLeftGridRowDblClick({});
                 var pjEnterMainList = data.pjEnterMainList;
                 if(pjEnterMainList && pjEnterMainList.length>0) {
@@ -360,7 +360,7 @@ function save() {
                     loadMainAndDetailInfo(leftRow);
                 }
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -394,7 +394,7 @@ function onCellCommitEdit(e) {
     
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     }else {
         var newRow = {};
@@ -576,7 +576,7 @@ function addPart() {
 
     var data = basicInfoForm.getData();
     if(data && data.auditSign && data.auditSign == 1){
-        nui.alert("此单已审核!");
+        showMsg("此单已审核!","W");
         return;
     }
 
@@ -611,7 +611,7 @@ var editPartHash = {
 function deletePart(){
     var data = basicInfoForm.getData();
     if(data && data.auditSign && data.auditSign == 1){
-        nui.alert("此单已审核!");
+        showMsg("此单已审核!","W");
         return;
     }
 
@@ -659,13 +659,13 @@ function audit()
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
             return;
         }
     }
 
     if(data && data.auditSign && data.auditSign == 1){
-        nui.alert("此单已审核!");
+        showMsg("此单已审核!","W");
         return;
     }
 
@@ -674,7 +674,7 @@ function audit()
     //审核时，数量，单价，金额，仓库不能为空
     var msg = checkRightData();
     if(msg){
-        nui.alert(msg);
+        showMsg(msg,"W");
         return;
     }
 
@@ -702,7 +702,7 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("审核成功!");
+                showMsg("审核成功!","S");
                 //onLeftGridRowDblClick({});
                 var pjEnterMainList = data.pjEnterMainList;
                 if(pjEnterMainList && pjEnterMainList.length>0) {
@@ -711,7 +711,7 @@ function audit()
                     loadMainAndDetailInfo(leftRow);
                 }
             } else {
-                nui.alert(data.errMsg || "审核失败!");
+                showMsg(data.errMsg || "审核失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -754,7 +754,7 @@ function importPart(){
     var data = basicInfoForm.getData();
     var storeId = data.storeId;
     if(storeId == null || storeId == ""){
-        nui.alert("请选择默认仓库!");
+        showMsg("请选择默认仓库!","W");
         return;
     }
 
@@ -764,7 +764,7 @@ function importPart(){
 
     if(formJson != formJsonThis)
     {
-        nui.alert("请先保存数据!");
+        showMsg("请先保存数据!","W");
         return;
     }
 

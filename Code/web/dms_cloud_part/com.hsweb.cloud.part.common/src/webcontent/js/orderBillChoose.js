@@ -300,7 +300,7 @@ function getSellDetails()
                     CloseWindow("ok");
                     
                 } else {
-                    nui.alert(data.errMsg || "操作失败!");
+                    showMsg(data.errMsg || "操作失败!","W");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -347,7 +347,7 @@ function getPchsDetails()
                     CloseWindow("ok");
                     
                 } else {
-                    nui.alert(data.errMsg || "操作失败!");
+                    showMsg(data.errMsg || "操作失败!","W");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {

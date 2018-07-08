@@ -537,7 +537,7 @@ function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
             //如果检测到有必填字段未填写，切换到主表界面
             mainTabs.activeTab(billmainTab);
 
@@ -548,7 +548,7 @@ function save() {
     var row = leftGrid.getSelected();
     if (row) {
         if (row.auditSign == 1) {
-            nui.alert("此单已审核!");
+            showMsg("此单已审核!","W");
             return;
         }
     } else {
@@ -585,9 +585,7 @@ function save() {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!","",function(e){
-                    //fastPartEntryEl.focus();
-                });
+                showMsg("保存成功!","S");
                 // onLeftGridRowDblClick({});
                 var pjPchsOrderMainList = data.pjPchsOrderMainList;
                 if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
@@ -600,7 +598,7 @@ function save() {
 
                 }
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -739,7 +737,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
 
             mainTabs.activeTab(billmainTab);
             return;
@@ -749,7 +747,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     var row = leftGrid.getSelected();
     if (row) {
         if (row.auditSign == 1) {
-            nui.alert("此单已审核!");
+            showMsg("此单已审核!","W");
             return;
         }
     } else {
@@ -759,7 +757,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     // 审核时，数量，单价，金额，仓库不能为空
     var msg = checkRightData();
     if (msg) {
-        nui.alert(msg);
+        showMsg(msg,"W");
         return;
     }
 
@@ -803,7 +801,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
                     nui.unmask(document.body);
                     data = data || {};
                     if (data.errCode == "S") {
-                        nui.alert(str+"成功!");
+                        showMsg(str+"成功!","S");
                         // onLeftGridRowDblClick({});
                         var pjPchsOrderMainList = data.pjPchsOrderMainList;
                         if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
@@ -817,7 +815,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
                             mainTabs.activeTab(billmainTab);
                         }
                     } else {
-                        nui.alert(data.errMsg || (str+"失败!"));
+                        showMsg(data.errMsg || (str+"失败!"),"W");
                     }
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
@@ -856,7 +854,7 @@ function orderEnter(mainId) {
                     nui.unmask(document.body);
                     data = data || {};
                     if (data.errCode == "S") {
-                        nui.alert("入库成功!");
+                        showMsg("入库成功!","S");
                         // onLeftGridRowDblClick({});
                         var newRow = {billStatusId: 4};
                         var row = leftGrid.getSelected();
@@ -865,7 +863,7 @@ function orderEnter(mainId) {
                         basicInfoForm.setData(newRow);
 
                     } else {
-                        nui.alert(data.errMsg || "入库失败!");
+                        showMsg(data.errMsg || "入库失败!","W");
                     }
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
@@ -1017,12 +1015,12 @@ function unAudit()
     var mainId = data.id;
     if(isInner && isInner == 1){
         if(billStatusId != 1 && billStatusId != 5){
-            nui.alert("【待发货】和【已退回】状态下的单才可以返单!");
+            showMsg("【待发货】和【已退回】状态下的单才可以返单!","W");
             return;
         }
     }else{
         if(billStatusId != 2){
-            nui.alert("【待收货】状态下的单才可以返单!");
+            showMsg("【待收货】状态下的单才可以返单!","W");
             return;
         }
     }
@@ -1044,20 +1042,18 @@ function unAudit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("返单成功!","",function(){
-                    leftGrid.removeRow(row, true);
-                    var newRow = {auditSign:0, billStatusId: 0};
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row, newRow);
-                    var leftRow = leftGrid.getSelected();
+                showMsg("返单成功!","S");
+                leftGrid.removeRow(row, true);
+                var newRow = {auditSign:0, billStatusId: 0};
+                var row = leftGrid.getSelected();
+                leftGrid.updateRow(row, newRow);
+                var leftRow = leftGrid.getSelected();
 
-                    // 保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-
-                });
+                // 保存成功后重新加载数据
+                loadMainAndDetailInfo(leftRow);
                 
             } else {
-                nui.alert(data.errMsg || "审核失败!");
+                showMsg(data.errMsg || "审核失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

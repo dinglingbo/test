@@ -35,7 +35,7 @@ function onOk()
     var node = tree.getSelectedNode();
     if(!node)
     {
-        nui.alert("请选择一个公司/部门");
+        showMsg("请选择一个公司/部门","W");
         return;
     }
     resultData.org = node;

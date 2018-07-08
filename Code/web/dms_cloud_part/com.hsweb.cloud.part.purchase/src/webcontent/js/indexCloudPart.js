@@ -329,7 +329,7 @@ function showMain() {
 
         },
         error : function(jqXHR, textStatus, errorThrown) {
-        	nui.alert(jqXHR.responseText);
+			Console.log(jqXHR.responseText);
         }
     });
 

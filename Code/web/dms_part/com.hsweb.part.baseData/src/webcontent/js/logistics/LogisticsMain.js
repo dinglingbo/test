@@ -144,10 +144,10 @@ function disableComeguest()
                     data = data || {};
                     if (data.errCode == "S") {
                         dataGrid.reload();
-                        nui.alert("禁用成功");
+                        showMsg("禁用成功","S");
                     }
                     else {
-                        nui.alert(data.errMsg || "禁用失败");
+                        showMsg(data.errMsg || "禁用失败","W");
                     }
                 });
             }
@@ -170,10 +170,10 @@ function enableComeguest()
                     data = data || {};
                     if (data.errCode == "S") {
                         dataGrid.reload();
-                        nui.alert("启用成功");
+                        showMsg("启用成功","S");
                     }
                     else {
-                        nui.alert(data.errMsg || "启用失败");
+                        showMsg(data.errMsg || "启用失败","W");
                     }
                 });
             }
@@ -205,7 +205,6 @@ function updateIsDisabled(comguest, callback)
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
             nui.unmask();
-            nui.alert("网络出错");
         }
     });
 }

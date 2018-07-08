@@ -141,6 +141,10 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">operateDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">main/serviceId</process:to>
     </process:copy>
@@ -161,7 +165,7 @@
       <process:to type="query">main/creator</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">main/createDate</process:to>
     </process:copy>
     <process:copy>
@@ -173,7 +177,7 @@
       <process:to type="query">main/operator</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">main/operateDate</process:to>
     </process:copy>
     <process:copy>
@@ -295,6 +299,7 @@
   <process:info author="Administrator" createTime="2018-06-26 10:16:39" date="2018-06-26Z" description="" name="saveAddSellOrder" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMain" name="main"/>

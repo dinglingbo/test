@@ -418,7 +418,7 @@ function addPchsOrder(){
         openGeneratePop(rows, "pchsOrder", "新增采购订单");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -429,7 +429,7 @@ function addSellOrder(){
         openGeneratePop(rows, "sellOrder", "新增销售订单");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -440,7 +440,7 @@ function addPchsShop(){
         openGeneratePop(rows, "pchsCart", "添加采购车");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 
@@ -452,7 +452,7 @@ function addSellShop(){
         openGeneratePop(rows, "sellCart", "添加销售车");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 

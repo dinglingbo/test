@@ -1289,7 +1289,8 @@
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName,
                 a.is_diff_order as isDiffOrder,
-                a.rtn_sign_date as rtnSignDate
+                a.rtn_sign_date as rtnSignDate,
+                a.is_out as isOut
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

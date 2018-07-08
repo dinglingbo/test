@@ -93,7 +93,7 @@ function onOk()
 {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         return;
     }
 
@@ -114,7 +114,7 @@ function onOk()
     {
         if(!data[key] || data[key].toString().trim().length==0)
         {
-            nui.alert(requiredField[key]+"不能为空");
+            showMsg(requiredField[key]+"不能为空","W");
             if(key == "qty") {
                 var qty = nui.get("qty");
                 qty.focus();

@@ -233,7 +233,7 @@ function onOk()
     }
     else
     {
-        nui.alert("请选择一条明细");
+        showMsg("请选择一条明细","W");
     }
 }
 function CloseWindow(action)

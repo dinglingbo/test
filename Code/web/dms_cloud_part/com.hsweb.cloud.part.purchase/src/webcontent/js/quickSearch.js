@@ -292,7 +292,7 @@ function onSearch()
 function doSearch(params)
 {
     if(!conditoinsValueEl.getValue() && !partCodeListEl.getValue()){
-        nui.alert("请输入查询条件!");
+        showMsg("请输入查询条件!","W");
         return;
     }
     partGrid.load({
@@ -597,7 +597,7 @@ function addToCartGrid(type, row){
             row.partId = -1;
         }
         if(rows && rows.length>0){
-            nui.alert("此配件已经添加到购物车!");
+            showMsg("此配件已经添加到购物车!","W");
             return;
         }else{
             var newRow = {partId: row.partId, partCode: row.partCode, partName: row.partName, fullName:row.fullName, unit:row.unit, orderQty: 1, orderPrice: 0};
@@ -649,7 +649,7 @@ function addToPchsCart(){
         openGeneratePop(rows, "fromPchsCart", "添加采购车");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -660,7 +660,7 @@ function addToSellCart(){
         openGeneratePop(rows, "fromSellCart", "添加销售车");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -671,7 +671,7 @@ function generatePchsOrder(){
         openGeneratePop(rows, "fromPchsCart", "生成采购订单");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -682,7 +682,7 @@ function generateSellOrder(){
         openGeneratePop(rows, "fromSellCart", "生成销售订单");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -782,7 +782,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字！!","W");
         e.cancel = true;
     } else {
         var newRow = {};

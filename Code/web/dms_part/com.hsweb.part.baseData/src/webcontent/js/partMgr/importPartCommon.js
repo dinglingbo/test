@@ -34,7 +34,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+		showMsg("请输入数字!","W");
         e.cancel = true;
     } 
 }
@@ -181,7 +181,9 @@ function savePartCommon(partList){
 	                var errMsg = data.errMsg;
 	                if(errMsg){
                         showMsg(errMsg,"S");
-	                }
+	                }else{
+						showMsg("导入成功!","S");
+					}
 	            } else {
                     showMsg(data.errMsg || "导入失败!","W");
 	            }

@@ -343,7 +343,7 @@ function disablePart()
     var row = partLoalGrid.getSelected();
     if(!row)
     {
-        nui.alert("请选择要禁用的配件");
+        showMsg("请选择要禁用的配件","W");
         return;
     }
 
@@ -358,7 +358,7 @@ function enablePart()
     console.log(row);
     if(!row)
     {
-        nui.alert("请选择要启用的配件");
+        showMsg("请选择要启用的配件","W");
         return;
     }
     savePart({
@@ -382,11 +382,11 @@ function savePart(part,successTip,errorTip)
             data = data||{};
             if(data.errCode == "S")
             {
-                nui.alert(successTip||"保存成功");
+                showMsg(successTip||"保存成功","S");
                 reloadData();
             }
             else{
-                nui.alert(data.errMsg||errorTip||"保存失败");
+                showMsg(data.errMsg||errorTip||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

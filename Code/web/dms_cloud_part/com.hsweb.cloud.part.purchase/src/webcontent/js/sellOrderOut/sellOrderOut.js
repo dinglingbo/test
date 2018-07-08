@@ -365,7 +365,7 @@ function onLeftGridBeforeDeselect(e)
 function addInsertRow(value, row) {    
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
-        nui.alert("请先选择客户再添加配件!");
+        showMsg("请先选择客户再添加配件!","W");
         return;
     }
 
@@ -884,13 +884,13 @@ function checkNew()
 function add()
 {
     if(isNeedSet){
-        nui.alert("请先到仓库定义功能设置仓库!");
+        showMsg("请先到仓库定义功能设置仓库!","W");
         return;
     }
 
     if(checkNew() > 0) 
     {
-        nui.alert("请先保存数据！");
+        showMsg("请先保存数据!","W");
         return;
     }
 
@@ -1037,7 +1037,7 @@ function getSellOrderBillNO(callback){
                 var main = data.main;
                 callback && callback(main)
             } else {
-                nui.alert(data.errMsg || "请先保存单据添加配件");
+                showMsg(data.errMsg || "请先保存单据添加配件","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -1245,17 +1245,16 @@ function onCellEditEnter(e){
         }else if(column.field == "comPartCode"){
             var guestId = nui.get("guestId").getValue();
             if(!guestId) {
-                nui.alert("请先选择客户再添加配件!");
+                showMsg("请先选择客户再添加配件!","W");
                 nui.get("guestId").focus();
                 return;
             }
 
             if(!record.comPartCode){
-                nui.alert("请输入编码!","提示",function(){
-                    var row = rightGrid.getSelected();
-                    rightGrid.removeRow(row);
-                    addNewRow(false);
-                });
+                showMsg("请输入编码!","W");
+                var row = rightGrid.getSelected();
+                rightGrid.removeRow(row);
+                addNewRow(false);
                 return;
             }else{
                 var main = basicInfoForm.getData();
@@ -1309,7 +1308,7 @@ function onCellCommitEdit(e) {
     
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     }else {
         var newRow = {};

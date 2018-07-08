@@ -122,12 +122,12 @@ function saveEnterPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-	                	nui.alert(errMsg);
+						showMsg(errMsg,"S");
 	                }else{
-	                	nui.alert("导入成功!");
+						showMsg("导入成功!","S");
 	                }
 	            } else {
-	                nui.alert(data.errMsg || "导入失败!");
+					showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

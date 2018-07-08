@@ -437,7 +437,7 @@ function onAdvancedSearchCancel() {
 }
 function checkNew() {
     var rows = leftGrid.findRows(function(row) {
-        if (row.serviceId == "新采购订单")
+        if (row.serviceId == "新销售退货")
             return true;
     });
 
@@ -446,12 +446,12 @@ function checkNew() {
 function add() {
 
     if(isNeedSet){
-        nui.alert("请先到仓库定义功能设置仓库!");
+        showMsg("请先到仓库定义功能设置仓库!","W");
         return;
     }
 
     if (checkNew() > 0) {
-        nui.alert("请先保存数据！");
+        showMsg("请先保存数据!","W");
         return;
     }
 
@@ -531,7 +531,7 @@ function addNewRow(check){
     var data = basicInfoForm.getData();
 
     if(data.auditSign == 1){
-        e.cancel = true;
+        return;
     }
 
     if(data.codeId && data.codeId>0) return;
@@ -640,7 +640,7 @@ function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
             //如果检测到有必填字段未填写，切换到主表界面
 
             return;
@@ -650,7 +650,7 @@ function save() {
     var row = leftGrid.getSelected();
     if (row) {
         if (row.auditSign == 1) {
-            nui.alert("此单已审核!");
+            showMsg("此单已审核!","W");
             return;
         }
     } else {
@@ -687,9 +687,7 @@ function save() {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!","",function(e){
-                    //fastPartEntryEl.focus();
-                });
+                showMsg("保存成功!","S");
                 // onLeftGridRowDblClick({});
                 var pjPchsOrderMainList = data.pjPchsOrderMainList;
                 if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
@@ -702,7 +700,7 @@ function save() {
 
                 }
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -801,33 +799,35 @@ function deletePart() {
 function checkRightData() {
     var msg = '';
     var rows = rightGrid.findRows(function(row) {
-        if (row.orderQty) {
-            if (row.orderQty <= 0)
+        if(row.partId){  
+            if (row.orderQty) {
+                if (row.orderQty <= 0)
+                    return true;
+            } else {
                 return true;
-        } else {
-            return true;
-        }
-        if (row.orderPrice) {
-            if (row.orderPrice <= 0)
+            }
+            if (row.orderPrice) {
+                if (row.orderPrice <= 0)
+                    return true;
+            } else {
                 return true;
-        } else {
-            return true;
-        }
-        if (row.orderAmt) {
-            if (row.orderAmt <= 0)
+            }
+            if (row.orderAmt) {
+                if (row.orderAmt <= 0)
+                    return true;
+            } else {
                 return true;
-        } else {
-            return true;
-        }
+            }
 
-        if (row.storeId) {
-        } else {
-            return true;
+            if (row.storeId) {
+            } else {
+                return true;
+            }
         }
     });
 
     if (rows && rows.length > 0) {
-        msg = "请完善采购配件的数量，单价，金额，仓库等信息！";
+        msg = "请完善退货配件的数量，单价，金额，仓库等信息！";
     }
     return msg;
 }
@@ -849,7 +849,7 @@ function auditToEnter(){
         var flagRtn = "入库成功!";
         auditOrder(flagSign, flagStr, flagRtn);     
     }else if(isInner == 1 && billStatusId != 2){
-        nui.alert("请等待对方出库后再入库!");
+        showMsg("请等待对方出库后再入库!","W");
         return;
     }else if(billStatusId == 2){
         //如果是内部的销售退货，对方出库后，才会更新billStatusId == 2
@@ -864,7 +864,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
 
             return;
         }
@@ -873,7 +873,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     var row = leftGrid.getSelected();
     if (row) {
         if (row.auditSign == 1) {
-            nui.alert("此单已审核!");
+            showMsg("此单已审核!","W");
             return;
         }
     } else {
@@ -883,7 +883,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     // 审核时，数量，单价，金额，仓库不能为空
     var msg = checkRightData();
     if (msg) {
-        nui.alert(msg);
+        showMsg(msg,"W");
         return;
     }
 
@@ -927,7 +927,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
                     nui.unmask(document.body);
                     data = data || {};
                     if (data.errCode == "S") {
-                        nui.alert(str+"成功!");
+                        showMsg(str+"成功!","S");
                         // onLeftGridRowDblClick({});
                         var pjPchsOrderMainList = data.pjPchsOrderMainList;
                         if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
@@ -946,7 +946,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
                         }
                     } else {
-                        nui.alert(data.errMsg || (str+"失败!"));
+                        showMsg(data.errMsg || (str+"失败!"),"W");
                     }
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
@@ -985,7 +985,7 @@ function orderEnter(mainId) {
                     nui.unmask(document.body);
                     data = data || {};
                     if (data.errCode == "S") {
-                        nui.alert("入库成功!");
+                        showMsg("入库成功!","S");
                         // onLeftGridRowDblClick({});
                         var newRow = {billStatusId: 4};
                         var row = leftGrid.getSelected();
@@ -994,7 +994,7 @@ function orderEnter(mainId) {
                         basicInfoForm.setData(newRow);
 
                     } else {
-                        nui.alert(data.errMsg || "入库失败!");
+                        showMsg(data.errMsg || "入库失败!","W");
                     }
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
@@ -1189,7 +1189,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     } else {
         var newRow = {};
@@ -1308,11 +1308,10 @@ function onCellEditEnter(e){
             addNewKeyRow();
         }else if(column.field == "comPartCode"){
             if(!record.comPartCode){
-                nui.alert("请输入编码!","提示",function(){
-                    var row = rightGrid.getSelected();
-                    rightGrid.removeRow(row);
-                    addNewRow(false);
-                });
+                showMsg("请输入编码!","W");
+                var row = rightGrid.getSelected();
+                rightGrid.removeRow(row);
+                addNewRow(false);
                 return;
             }else{
                 var rs = addInsertRow(record.comPartCode,record);
@@ -1442,11 +1441,10 @@ function getPartInfo(params){
                 
             }else{
                 //清空行数据
-                nui.alert("没有搜索到配件信息!","提示",function(){
-                    var row = rightGrid.getSelected();
-                    rightGrid.removeRow(row);
-                    addNewRow(false);
-                });
+                showMsg("没有搜索到配件信息!","W");
+                var row = rightGrid.getSelected();
+                rightGrid.removeRow(row);
+                addNewRow(false);
             }
 
         },
@@ -1498,7 +1496,7 @@ function addSelectPart(){
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
     }else{
-        nui.alert("请选择配件!");
+        showMsg("请选择配件!","W");
         return;
     }
 }
@@ -1513,18 +1511,18 @@ function onPartClose(){
 function addMorePart(){
     var row = leftGrid.getSelected();
     if(row.auditSign == 1){
-        nui.alert("此单已审核!");
+        showMsg("此单已审核!","W");
         return;
     }
 
     var main = basicInfoForm.getData();
     if(!main.id){
-        nui.alert("请先保存数据！");
+        showMsg("请先保存数据!","W");
         return;
     }
     var data = rightGrid.getChanges()||[];
     if (data.length>0) {
-        nui.alert("请先保存数据！");
+        showMsg("请先保存数据!","W");
         return;
     }
     advancedAddForm.setData([]);
@@ -1543,7 +1541,7 @@ function onAdvancedAddOk(){
             var partObj = {};
             partTmpList = tmpList[i].split("*")||[];
             if(partTmpList.length != 3){
-                nui.alert("第"+(i+1)+"条录入信息格式有问题!");
+                showMsg("第"+(i+1)+"条录入信息格式有问题!","W");
                 return;
             }
 
@@ -1575,11 +1573,11 @@ function onAdvancedAddOk(){
                         addRtnList(rtnList);
                         var msg = data.errMsg;
                         if(msg){
-                            nui.alert(msg,"",function(e){});
+                            showMsg(msg,"S");
                         }
                         
                     } else {
-                        nui.alert(data.errMsg || "添加数据失败!");
+                        showMsg(data.errMsg || "添加数据失败!","W");
                     }
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
@@ -1591,7 +1589,7 @@ function onAdvancedAddOk(){
 
 
     }else{
-        nui.alert("请按格式输入信息!");
+        showMsg("请按格式输入信息!","W");
         return;
     }
 
@@ -1712,7 +1710,7 @@ function addPart() {
 
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
-        nui.alert("请选择客户！");
+        showMsg("请选择客户!","W");
         return;
     }
 

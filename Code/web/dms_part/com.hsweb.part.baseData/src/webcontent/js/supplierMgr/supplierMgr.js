@@ -177,7 +177,7 @@ function editSuplier()
 
     if(!row)
     {
-        nui.alert("请选择要编辑的数据");
+        showMsg("请选择要编辑的数据","W");
         return;
     }
 

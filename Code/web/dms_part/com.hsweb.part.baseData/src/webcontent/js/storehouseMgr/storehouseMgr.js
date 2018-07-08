@@ -106,7 +106,7 @@ function addPosition()
         id = node.id;
     }
     else{
-        nui.alert("请选择一个仓库");
+        showMsg("请选择一个仓库","W");
         return;
     }
     var storehouseList = tree.getList()||[];
@@ -184,11 +184,11 @@ function disableLocation(){
             data = data||{};
             if(data.errCode == "S")
             {
-                nui.alert("禁用成功");
+                showMsg("禁用成功","S");
                 reloadGrid();
             }
             else{
-                nui.alert("禁用失败");
+                showMsg("禁用失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -225,11 +225,11 @@ function enableLocation(){
             data = data||{};
             if(data.errCode == "S")
             {
-                nui.alert("启用成功");
+                showMsg("启用成功","S");
                 reloadGrid();
             }
             else{
-                nui.alert("启用失败");
+                showMsg("启用失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -270,16 +270,16 @@ function savePosition()
             data = data||{};
             if(data.errCode == "S")
             {
-                nui.alert("保存成功");
+                showMsg("保存成功","S");
                 reloadGrid();
             }
             else{
-                nui.alert("保存失败");
+                showMsg("保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
-            nui.alert("网络出错");
+            showMsg("网络出错","W");
             console.log(jqXHR.responseText);
         }
     });

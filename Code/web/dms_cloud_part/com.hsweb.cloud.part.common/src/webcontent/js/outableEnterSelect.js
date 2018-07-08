@@ -226,7 +226,7 @@ function onSearch()
 function doSearch(params)
 {
     if(!params.storeId && !params.code && !params.name && !params.applyCarModel && !params.namePy && !params.partBrandId){
-        nui.alert("请输入查询条件！");
+        showMsg("请输入查询条件!","W");
         return;
     }
     var isShowAll = nui.get("search_showAll").getValue();

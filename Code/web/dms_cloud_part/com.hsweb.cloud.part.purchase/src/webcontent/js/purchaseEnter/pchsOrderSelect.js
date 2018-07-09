@@ -457,12 +457,12 @@ function updatePchsStatus(){
                         nui.unmask(document.body);
                         data = data || {};
                         if (data.errCode == "S") {
-                            nui.alert("操作成功!");
+                            showMsg("操作成功!","S");
                             var newRow = {billStatusId:4};
                             rightGrid.updateRow(row,newRow);
                             
                         } else {
-                            nui.alert(data.errMsg || (str+"失败!"));
+                            showMsg(data.errMsg || (str+"失败!"),"W");
                         }
                     },
                     error : function(jqXHR, textStatus, errorThrown) {
@@ -501,12 +501,12 @@ function updateSellStatus(){
                         nui.unmask(document.body);
                         data = data || {};
                         if (data.errCode == "S") {
-                            nui.alert("操作成功!");
+                            showMsg("操作成功!","S");
                             var newRow = {isFinished:1};
                             sellOrderGrid.updateRow(row,newRow);
                             
                         } else {
-                            nui.alert(data.errMsg || (str+"失败!"));
+                            showMsg(data.errMsg || (str+"失败!"),"W");
                         }
                     },
                     error : function(jqXHR, textStatus, errorThrown) {

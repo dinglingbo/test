@@ -272,10 +272,10 @@ function disablePartQuality(){
                         leftGrid.updateRow(row,row);
                         nui.get("disabledLeft").hide();
                         nui.get("enabledLeft").show();
-                        nui.alert("禁用成功");
+                        showMsg("禁用成功","S");
                     }
                     else{
-                        nui.alert(data.errMsg||"禁用失败");
+                        showMsg(data.errMsg||"禁用失败","W");
                     }
                 });
             }
@@ -302,10 +302,10 @@ function enablePartQuality(){
                         leftGrid.updateRow(row,row);
                         nui.get("disabledLeft").show();
                         nui.get("enabledLeft").hide();
-                        nui.alert("启用成功");
+                        showMsg("启用成功","S");
                     }
                     else{
-                        nui.alert(data.errMsg||"启用失败");
+                        showMsg(data.errMsg||"启用失败","W");
                     }
                 });
             }
@@ -333,10 +333,10 @@ function disablePartBrand()
                         rightGrid.updateRow(row,row);
                         nui.get("disabledRight").hide();
                         nui.get("enabledRight").show();
-                        nui.alert("禁用成功");
+                        showMsg("禁用成功","S");
                     }
                     else{
-                        nui.alert(data.errMsg||"禁用失败");
+                        showMsg(data.errMsg||"禁用失败","W");
                     }
                 });
             }
@@ -364,10 +364,10 @@ function enablePartBrand()
                         rightGrid.updateRow(row,row);
                         nui.get("disabledRight").show();
                         nui.get("enabledRight").hide();
-                        nui.alert("启用成功");
+                        showMsg("启用成功","S");
                     }
                     else{
-                        nui.alert(data.errMsg||"启用失败");
+                        showMsg(data.errMsg||"启用失败","W");
                     }
                 });
             }

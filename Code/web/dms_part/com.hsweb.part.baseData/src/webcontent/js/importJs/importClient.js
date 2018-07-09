@@ -124,7 +124,7 @@ function sure() {
 
 			for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					nui.alert("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!");
+					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
@@ -132,28 +132,28 @@ function sure() {
 			if(billTypeIdHash && billTypeIdHash[newRow.billTypeId]){
 				newRow.billTypeId = billTypeIdHash[newRow.billTypeId].customid;
 			}else{
-				nui.alert("第"+(i+1)+"行记录的票据类型信息有误!");
+				showMsg("第"+(i+1)+"行记录的票据类型信息有误!","W");
 				return;
 			}
 
 			if(settTypeIdHash && settTypeIdHash[newRow.settTypeId]){
 				newRow.settTypeId = settTypeIdHash[newRow.settTypeId].customid;
 			}else{
-				nui.alert("第"+(i+1)+"行记录的结算方式信息有误!");
+				showMsg("第"+(i+1)+"行记录的结算方式信息有误!","W");
 				return;
 			}
 				
 			if(provinceHash && provinceHash[newRow.provinceId]){
 				newRow.provinceId = provinceHash[newRow.provinceId].code;
 			}else{
-				nui.alert("第"+(i+1)+"行记录的省份信息有误!");
+				showMsg("第"+(i+1)+"行记录的省份信息有误!","W");
 				return;
 			}
 
 			if(cityHash && cityHash[newRow.cityId]){
 				newRow.cityId = cityHash[newRow.cityId].code;
 			}else{
-				nui.alert("第"+(i+1)+"行记录的城市信息有误!");
+				showMsg("第"+(i+1)+"行记录的城市信息有误!","W");
 				return;
 			}
 
@@ -200,12 +200,12 @@ function saveEnterPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-	                	nui.alert(errMsg);
+						showMsg(errMsg,"S");
 	                }else{
-	                	nui.alert("导入成功!");
+						showMsg("导入成功!","S");
 	                }
 	            } else {
-	                nui.alert(data.errMsg || "导入失败!");
+					showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

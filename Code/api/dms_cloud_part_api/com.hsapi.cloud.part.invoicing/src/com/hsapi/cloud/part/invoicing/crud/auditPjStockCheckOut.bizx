@@ -653,7 +653,7 @@
     <figSize height="17" width="56"/>
     <node>transactionrollback4</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="savePjStockCheck" displayName="savePjStockCheck" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="savePjStockCheckNT" displayName="savePjStockCheckNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess9</sourceNode>
       <targetNode>subprocess10</targetNode>
@@ -679,7 +679,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess9label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.savePjStockCheck</process:partner>
+      <process:partner type="literal">this.savePjStockCheckNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckMain" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
         <process:inputVariable id="1" name="orderDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailAdd</process:inputVariable>
@@ -695,8 +695,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
-    <location x="-294" y="362"/>
-    <figSize height="17" width="104"/>
+    <location x="-302" y="362"/>
+    <figSize height="17" width="121"/>
     <node>subprocess9</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="分配批次" displayName="allotCheckBatchOfOutChk" type="subprocess">

@@ -71,6 +71,7 @@
                     selectOnLoad="true"
                     showPager="true"
                     pageSize="50"
+                    showReloadButton="false"
                     sizeList=[20,50,100,200]
                     dataField="detailList"
                     url=""

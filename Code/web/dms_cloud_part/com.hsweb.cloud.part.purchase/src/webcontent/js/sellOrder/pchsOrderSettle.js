@@ -232,7 +232,7 @@ function backPchsOrder(){
     if(row){
         var billStatusId = row.billStatusId;
         if(billStatusId != 1){
-            nui.alert("只能退回【待发货】状态下的订单!");
+            showMsg("只能退回【待发货】状态下的订单!","W");
             return;
         }
         backPchsOrder(row.id);
@@ -243,7 +243,7 @@ function addSellOrder(){
     if(row){
         var billStatusId = row.billStatusId;
         if(billStatusId != 1){
-            nui.alert("只能受理【待发货】状态下的订单!");
+            showMsg("只能受理【待发货】状态下的订单!","W");
             return;
         }
         generateSellOrder(row.id);
@@ -271,12 +271,12 @@ function generateSellOrder(mainId){
             if(errCode == "S"){
                 var serviceId = data.serviceId;
                 if(serviceId){
-                    nui.alert("生成销售订单成功!单号为："+serviceId);
+                    showMsg("生成销售订单成功!单号为："+serviceId,"S");
                 }
 
                 searchBill();
             }else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
 
         },
@@ -308,12 +308,12 @@ function backPchsOrder(mainId){
             if(errCode == "S"){
                 var serviceId = data.serviceId;
                 if(serviceId){
-                    nui.alert("生成销售订单成功!单号为："+serviceId);
+                    showMsg("生成销售订单成功!单号为："+serviceId,"S");
                 }
 
                 searchBill();
             }else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
 
         },
@@ -348,7 +348,7 @@ function addStatement()
             var row = rows[i];
             var checkMsg = checkcallback(row.serviceId);
             if(checkMsg){
-                nui.alert(checkMsg);
+                showMsg(checkMsg,"W");
                 return;
             }
         }

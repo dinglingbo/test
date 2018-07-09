@@ -5,9 +5,9 @@
     <size height="100" width="362"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="link0" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>transactionbegin0</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <location x="-10" y="152"/>
     <size height="28" width="28"/>
@@ -19,7 +19,8 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
-    <targetConnections>link3</targetConnections>
+    <targetConnections>link26</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="986" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -113,7 +114,7 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
-    <targetConnections>link0</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="136" y="152"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -186,37 +187,6 @@
     <figSize height="17" width="61"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>transactionbegin0</sourceNode>
-      <targetNode>invokePojo1</targetNode>
-    </sourceConnections>
-    <targetConnections>link15</targetConnections>
-    <location x="61" y="152"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactionbegin0label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="51" y="188"/>
-    <figSize height="17" width="49"/>
-    <node>transactionbegin0</node>
-  </nodes>
-  <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>transactioncommit0</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link22</targetConnections>
-    <targetConnections>link26</targetConnections>
-    <location x="901" y="152"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactioncommit0label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="891" y="188"/>
-    <figSize height="17" width="49"/>
-    <node>transactioncommit0</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="updateEntity" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="link11" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
@@ -281,7 +251,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值2" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="810" y="152"/>
@@ -357,7 +327,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="insertEntity" displayName="insertEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <location x="870" y="55"/>

@@ -38,6 +38,7 @@
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
+         showReloadButton="false"
          url=""
          pageSize="10000"
          sizeList="[1000,5000,10000]"

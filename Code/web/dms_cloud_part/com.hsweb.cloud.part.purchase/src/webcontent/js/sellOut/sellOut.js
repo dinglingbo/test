@@ -418,14 +418,14 @@ function onRightGridDraw(e)
             break;
     }
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOut.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOutTran.biz.ext";
 function audit()
 {
 
     var row = leftGrid.getSelected();
     if(row){
         if(row.isOut == 1) {
-            nui.alert("此单已出库!");
+            showMsg("此单已出库!","W");
             return;
         } 
     }else{
@@ -452,15 +452,14 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("审核成功!","",function(){
-                    var newRow = {isOut: 1};
-                    leftGrid.updateRow(row, newRow);
+                showMsg("审核成功!","S");
+                var newRow = {isOut: 1};
+                leftGrid.updateRow(row, newRow);
 
-                    setBtnable(false);
-                });
+                setBtnable(false);
                 
             } else {
-                nui.alert(data.errMsg || "审核失败!");
+                showMsg(data.errMsg || "审核失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -476,7 +475,7 @@ function unAudit()
     var row = leftGrid.getSelected();
     if(row){
         if(row.isOut == 1) {
-            nui.alert("此单已出库!");
+            showMsg("此单已出库!","W");
             return;
         } 
     }else{
@@ -503,14 +502,13 @@ function unAudit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("返单成功!","",function(){
-                    leftGrid.removeRow(row, true);
+                showMsg("返单成功!","S");
+                leftGrid.removeRow(row, true);
 
-                    setBtnable(false);
-                });
+                setBtnable(false);
                 
             } else {
-                nui.alert(data.errMsg || "审核失败!");
+                showMsg(data.errMsg || "审核失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

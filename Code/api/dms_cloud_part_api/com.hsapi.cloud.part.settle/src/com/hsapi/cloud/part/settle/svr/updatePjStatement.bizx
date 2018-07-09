@@ -5,9 +5,9 @@
     <size height="138" width="466"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link89" name="link89" displayName="link3" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>transactionbegin1</targetNode>
+      <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <location x="-448" y="101"/>
     <size height="28" width="28"/>
@@ -23,7 +23,7 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <targetConnections>link67</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="-250" y="99"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -285,40 +285,10 @@
     <figSize height="17" width="69"/>
     <node>invokePojo3</node>
   </nodes>
-  <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" collapsed="false" type="transactioncommit">
-    <sourceConnections xsi:type="process:tLink" id="link83" name="link83" displayName="link0" isDefault="true" type="transition">
-      <sourceNode>transactioncommit0</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link92</targetConnections>
-    <location x="2025" y="96"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactioncommit0label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="2015" y="132"/>
-    <figSize height="17" width="49"/>
-    <node>transactioncommit0</node>
-  </nodes>
-  <nodes xsi:type="process:tTransactionBegin" id="transactionbegin1" name="事务开始1" displayName="事务开始" collapsed="false" type="transactionbegin">
-    <sourceConnections xsi:type="process:tLink" id="link67" name="link67" displayName="link34" isDefault="true" type="transition">
-      <sourceNode>transactionbegin1</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-    </sourceConnections>
-    <targetConnections>link89</targetConnections>
-    <location x="-355" y="100"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactionbegin1label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactionbegin1label" name="label" nodeType="label">
-    <location x="-369" y="136"/>
-    <figSize height="17" width="56"/>
-    <node>transactionbegin1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link87" name="link87" displayName="link13" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>transactionrollback0</targetNode>
+      <targetNode>assign19</targetNode>
     </sourceConnections>
     <targetConnections>link71</targetConnections>
     <targetConnections>link73</targetConnections>
@@ -344,26 +314,10 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" collapsed="false" type="transactionrollback">
-    <sourceConnections xsi:type="process:tLink" id="link82" name="link82" displayName="link2" isDefault="true" type="transition">
-      <sourceNode>transactionrollback0</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link87</targetConnections>
-    <targetConnections>link88</targetConnections>
-    <location x="1351" y="289"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactionrollback0label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="1341" y="325"/>
-    <figSize height="17" width="49"/>
-    <node>transactionrollback0</node>
-  </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link82</targetConnections>
-    <targetConnections>link83</targetConnections>
-    <targetConnections>link85</targetConnections>
+    <targetConnections>link92</targetConnections>
+    <targetConnections>link86</targetConnections>
     <location x="2121" y="291"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -381,7 +335,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值2" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link92" name="link92" displayName="link24" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link77</targetConnections>
     <targetConnections>link79</targetConnections>
@@ -609,7 +563,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值7" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link88" name="link88" displayName="link52" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
-      <targetNode>transactionrollback0</targetNode>
+      <targetNode>assign19</targetNode>
     </sourceConnections>
     <targetConnections>link75</targetConnections>
     <location x="1263" y="177"/>
@@ -760,30 +714,23 @@
     <figSize height="17" width="73"/>
     <node>invokePojo11</node>
   </nodes>
-  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback1" name="事务回滚1" displayName="事务回滚" collapsed="false" type="transactionrollback">
-    <sourceConnections xsi:type="process:tLink" id="link85" name="link85" displayName="link62" isDefault="true" type="transition">
-      <sourceNode>transactionrollback1</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link86</targetConnections>
-    <location x="2120" y="28"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactionrollback1label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback1label" name="label" nodeType="label">
-    <location x="2106" y="64"/>
-    <figSize height="17" width="56"/>
-    <node>transactionrollback1</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" id="assign12" name="赋值10" displayName="赋值" collapsed="false" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值10" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link86" name="link86" displayName="link61" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
-      <targetNode>transactionrollback1</targetNode>
+      <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link80</targetConnections>
     <location x="2024" y="28"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">保存失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="2019" y="64"/>
@@ -1217,6 +1164,22 @@
     <location x="1607" y="265"/>
     <figSize height="17" width="112"/>
     <node>invokePojo13</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值15" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link82" name="link82" displayName="link2" isDefault="true" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link88</targetConnections>
+    <targetConnections>link87</targetConnections>
+    <location x="1264" y="289"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign19label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
+    <location x="1259" y="325"/>
+    <figSize height="17" width="39"/>
+    <node>assign19</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

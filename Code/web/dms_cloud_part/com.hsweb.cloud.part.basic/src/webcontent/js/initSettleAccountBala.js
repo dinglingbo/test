@@ -73,11 +73,11 @@ function save(){
 					nui.unmask(document.body);
 					data = data || {};
 					if (data.errCode == "S") {
-						nui.alert("保存成功!");
+						showMsg("导入成功!","S");
 						
 						doSearch();
 					} else {
-						nui.alert(data.errMsg || "保存失败!");
+						showMsg(data.errMsg || "保存失败!","W");
 					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -124,11 +124,11 @@ function audit(){
 					nui.unmask(document.body);
 					data = data || {};
 					if (data.errCode == "S") {
-						nui.alert("审核成功!");
+						showMsg("审核成功!","S");
 						
 						doSearch();
 					} else {
-						nui.alert(data.errMsg || "审核失败!");
+						showMsg(data.errMsg || "审核失败!","W");
 					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -146,7 +146,7 @@ function onCellCommitEdit(e) {
     
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+		showMsg("请输入数字!","W");
         e.cancel = true;
     }
 }

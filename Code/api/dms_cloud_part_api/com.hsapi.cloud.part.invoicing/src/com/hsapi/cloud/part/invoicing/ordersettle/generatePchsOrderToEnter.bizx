@@ -1554,7 +1554,7 @@
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="updatePchsOrderStatus" displayName="updatePchsOrderStatus" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="updatePchsOrderStatusNT" displayName="updatePchsOrderStatusNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link59" name="link59" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess6</sourceNode>
       <targetNode>invokePojo5</targetNode>
@@ -1563,24 +1563,24 @@
     <location x="1382" y="58"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.updatePchsOrderStatus</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.updatePchsOrderStatusNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">main/codeId</process:inputVariable>
         <process:inputVariable id="1" name="billStatusId" type="literal" value="Int" valueType="Primitive" pattern="reference">4</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
-    <location x="1326" y="93"/>
-    <figSize height="17" width="138"/>
+    <location x="1318" y="93"/>
+    <figSize height="17" width="155"/>
     <node>subprocess6</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="updateSellOrderFinish" displayName="updateSellOrderFinish" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="updateSellOrderFinishNT" displayName="updateSellOrderFinishNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link58" name="link58" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>invokePojo5</targetNode>
@@ -1589,21 +1589,21 @@
     <location x="1381" y="240"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.updateSellOrderFinish</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.updateSellOrderFinishNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">main/codeId</process:inputVariable>
         <process:inputVariable id="1" name="isFinished" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
-    <location x="1330" y="275"/>
-    <figSize height="17" width="129"/>
+    <location x="1321" y="275"/>
+    <figSize height="17" width="146"/>
     <node>subprocess7</node>
   </nodes>
   <topRuler/>

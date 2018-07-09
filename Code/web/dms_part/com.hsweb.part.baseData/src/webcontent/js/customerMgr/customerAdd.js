@@ -144,7 +144,7 @@ function onOk()
     {
     	if(!data.fullName1)
         {
-            nui.alert("请选择公司");
+            showMsg("请选择公司","W");
             return;
         }
         data.isInternalId = data.fullName1;
@@ -157,7 +157,7 @@ function onOk()
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            nui.alert(requiredField[key]+"不能为空");
+            showMsg(requiredField[key]+"不能为空","W");
             return;
         }
     }
@@ -189,11 +189,11 @@ function onOk()
             if(data.errCode == "S")
             {
             	saveLogistics(data.guestId);
-                nui.alert("保存成功");
+                showMsg("保存成功","S");
                 CloseWindow("ok");
             }
             else{
-                nui.alert(data.errMsg||"保存失败");
+                showMsg(data.errMsg||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -221,7 +221,7 @@ function saveLogistics(guestId){
         {
             if(data.errCode == "S"){
             }else{
-                nui.alert(data.errMsg||"收货信息保存失败");
+                showMsg(data.errMsg||"收货信息保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

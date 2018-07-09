@@ -214,7 +214,7 @@ function onOk()
 {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         return;
     }
 

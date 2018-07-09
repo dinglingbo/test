@@ -33,7 +33,7 @@ function refresh(){
 	doSearch()
 }
 function onDrawCell(e){
-	nui.alert(1);
+	//nui.alert(1);
 }
 //弹出界面新建后更新数据
 function addNewRow(row){
@@ -92,7 +92,7 @@ function edit(){
 
 	var orgid = row.orgid;
 	if(currOrgId != "0" && orgid == 0) {
-		nui.alert("此记录不能修改!");
+		showMsg("此记录不能修改!","W");
 		return;
 	}
 
@@ -106,7 +106,7 @@ function disablePlay(isDisabled){
 	if(row && row.id){
 		var orgid = row.orgid;
 		if(currOrgId != "0" && orgid == 0) {
-			nui.alert("不能进行此操作!");
+			showMsg("不能进行此操作!","W");
 			return;
 		}
 
@@ -128,7 +128,7 @@ function disablePlay(isDisabled){
 				nui.unmask(document.body);
 				data = data || {};
 				if (data.errCode == "S") {
-					nui.alert("操作成功!");
+					showMsg("操作成功!","S");
 					var newRow = {isdisabled: isDisabled};
 					mainGrid.updateRow(row, newRow);
 
@@ -140,7 +140,7 @@ function disablePlay(isDisabled){
 						undisableEl.setVisible(true);
 					}
 				} else {
-					nui.alert(data.errMsg || "操作失败!");
+					showMsg(data.errMsg || "操作失败!","W");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -148,7 +148,7 @@ function disablePlay(isDisabled){
 			}
 		});
 	}else{
-		nui.alert("请选择记录！");
+		showMsg("请选择记录!","W");
 	}
 }
 function disable(){

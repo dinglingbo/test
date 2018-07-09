@@ -55,7 +55,7 @@ $(document).ready(function(v)
         var row = e.row;
         editor.validate();
         if (editor.isValid() == false) {
-            nui.alert("请输入数字！");
+            showMsg("请输入数字!","W");
             e.cancel = true;
         }
     });
@@ -371,7 +371,7 @@ function morePartSearch(){
     var sortTypeValue = sortTypeEl.getValue();
 
     if(!params.partCode && !params.partName && !params.serviceId){
-        nui.alert("请输入查询条件");
+        showMsg("请输入查询条件!","W");
         return;
     }
 
@@ -521,7 +521,7 @@ var requiredField = {
 function onAdvancedAddOk(){
     advancedAddForm.validate();
     if (advancedAddForm.isValid() == false) {
-        nui.alert("请输入数字");
+        showMsg("请输入数字!","W");
         return;
     }
 
@@ -531,7 +531,7 @@ function onAdvancedAddOk(){
     {
         if(!data[key] || data[key].toString().trim().length==0)
         {
-            nui.alert(requiredField[key]+"不能为空");
+            showMsg(requiredField[key]+"不能为空!","W");
             if(key == "qty") {
                 var qty = nui.get("qty");
                 qty.focus();
@@ -561,7 +561,7 @@ function onAdvancedAddOk(){
         var preOutQty = row.preOutQty||0;
         var price = row.enterPrice;
         if(data.qty > stockQty - preOutQty){
-            nui.alert("出库数量超出此批次可出库数量");
+            showMsg("出库数量超出此批次可出库数量","W");
             return;
         }
         if(data.price < price){
@@ -756,12 +756,10 @@ function savePrice(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("保存成功!","",function(e){
-                        //fastPartEntryEl.focus();
-                    });
+                    showMsg("保存成功","S");
                     
                 } else {
-                    nui.alert(data.errMsg || "保存失败!");
+                    showMsg(data.errMsg || "保存失败!","W");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {

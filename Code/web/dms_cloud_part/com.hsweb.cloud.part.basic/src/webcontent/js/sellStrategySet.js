@@ -142,12 +142,11 @@ function onSaveNode(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!","",function(e){
-                    straGrid.reload();
-                });
+                showMsg("保存成功!","S");
+                straGrid.reload();
                 
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -160,7 +159,7 @@ var supplier = null;
 function selectSupplier(elId) {
     var row = straGrid.getSelected();
     if(!row.id) {
-        nui.alert("请选择对应级别再添加客户!");
+        showMsg("请选择对应级别再添加客户!","W");
         return;
     }
     supplier = null;
@@ -206,7 +205,7 @@ var saveStraGuestUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStr
 function saveStraGuest(){
     var row = straGrid.getSelected();
     if(!row.id) {
-        nui.alert("请先选择对应级别再操作!");
+        showMsg("请先选择对应级别再操作!","W");
         return;
     }
     var data = rightGuestGrid.getChanges();
@@ -233,12 +232,11 @@ function saveStraGuest(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!","",function(e){
-                    rightGuestGrid.reload();
-                });
+                showMsg("保存成功!","S");
+                rightGuestGrid.reload();
                 
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -250,7 +248,7 @@ function saveStraGuest(){
 function delStraGuest(){
     var row = straGrid.getSelected();
     if(!row.id) {
-        nui.alert("请先选择对应级别再操作!");
+        showMsg("请先选择对应级别再操作!","W");
         return;
     }
 
@@ -261,14 +259,15 @@ function delStraGuest(){
 }
 function importPart(){
     var row = straGrid.getSelected();
-    if(!row.id) {
-        nui.alert("请先选择对应级别再操作!");
+    row = row||{};
+    if(!row || !row.id) {
+        showMsg("请先选择对应级别再操作!","W");
         return;
     }
 
     var changes = rightPartGrid.getChanges();
     if(changes.length>0){
-        nui.alert("请先保存数据!");
+        showMsg("请先保存数据!","W");
         return;
     }
 
@@ -297,7 +296,7 @@ function importPart(){
 function selectPart(callback, checkcallback) {
     nui.open({
         targetWindow : window,
-        url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+        url : webPath+partDomain+"/com.hsweb.part.common.partSelectView.flow?token="+token,
         title : "配件选择",
         width : 930,
         height : 560, 
@@ -305,7 +304,7 @@ function selectPart(callback, checkcallback) {
         allowResize : true,
         onload : function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData({}, callback, checkcallback);
+            iframe.contentWindow.setCloudPartData("cloudPart",callback,checkcallback);
         },
         ondestroy : function(action) {
         }
@@ -315,7 +314,7 @@ function addPart() {
 
     var row = straGrid.getSelected();
     if(!row.id) {
-        nui.alert("请选择对应级别再添加客户!");
+        showMsg("请选择对应级别再添加客户!","W");
         return;
     }
 
@@ -330,7 +329,7 @@ function addPart() {
     });
 }
 function checkPartIDExists(partid){
-    var row = rightPartGrid.findRow(function(row){
+    var row = rightUnifyGrid.findRow(function(row){
         if(row.partId == partid) {
             return true;
         }
@@ -339,7 +338,7 @@ function checkPartIDExists(partid){
     
     if(row) 
     {
-        return "配件ID："+partid+"在盘盈订单列表中已经存在，是否继续？";
+        return "配件ID："+partid+"在列表中已经存在，是否继续？";
     }
     
     return null;
@@ -353,7 +352,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     } 
 }
@@ -369,7 +368,7 @@ function addPartDetail(row, strategyId){
 function delStraPart(){
     var row = straGrid.getSelected();
     if(!row.id) {
-        nui.alert("请先选择对应级别再操作!");
+        showMsg("请先选择对应级别再操作!","W");
         return;
     }
 
@@ -382,7 +381,7 @@ var saveStraPartUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStra
 function saveStraPart(){
     var row = straGrid.getSelected();
     if(!row.id) {
-        nui.alert("请先选择对应级别再操作!");
+        showMsg("请先选择对应级别再操作!","W");
         return;
     }
     var data = rightPartGrid.getChanges();
@@ -411,12 +410,11 @@ function saveStraPart(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!","",function(e){
-                    rightPartGrid.reload();
-                });
+                showMsg("保存成功!","S");
+                rightPartGrid.reload();
                 
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -447,9 +445,9 @@ function addUnifyDetail(row){
 }
 function delStraGuest(){
 
-    var rows = rightUnifyGrid.getSelecteds();
+    var rows = rightGuestGrid.getSelecteds();
     if(rows && rows.length>0){
-        rightUnifyGrid.removeRows(rows);
+        rightGuestGrid.removeRows(rows);
     }
 }
 var saveUnifyUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartPrice.biz.ext";
@@ -480,12 +478,11 @@ function saveUnifyPart(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!","",function(e){
-                    rightUnifyGrid.reload();
-                });
+                showMsg("保存成功!","S");
+                rightUnifyGrid.reload();
                 
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -494,10 +491,17 @@ function saveUnifyPart(){
         }
     });
 }
+function delUnifyPart(){
+    var rows = rightUnifyGrid.getSelecteds();
+    if(rows && rows.length>0){
+        rightUnifyGrid.removeRows(rows,true);
+    }
+}
 function importUnifyPart(){
+    
     var changes = rightUnifyGrid.getChanges();
     if(changes.length>0){
-        nui.alert("请先保存数据!");
+        showMsg("请先保存数据!","W");
         return;
     }
     nui.open({

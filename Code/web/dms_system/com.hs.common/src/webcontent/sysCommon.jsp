@@ -229,7 +229,7 @@
         /*opacity: .8;*/
         padding: 15px 20px;
         border-radius: 5px;
-        text-align: left;
+        text-align: center;
         
         word-wrap:break-word;
         word-break:break-all;

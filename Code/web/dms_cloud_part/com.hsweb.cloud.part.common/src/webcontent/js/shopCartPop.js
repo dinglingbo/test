@@ -295,7 +295,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     }
 }
@@ -321,14 +321,13 @@ function generateOrderByBatch(main,detail,type){
             nui.unmask(document.body);
             var errCode = data.errCode;
             if(errCode == "S"){
-                nui.alert("操作成功!","",function(){
-                    if(type == "pchsOrder" || type == "sellOrder"){
-                        //更新采购车或是销售车的状态
-                    }
-                    CloseWindow("ok");
-                });
+                showMsg("操作成功!","S");
+                if(type == "pchsOrder" || type == "sellOrder"){
+                    //更新采购车或是销售车的状态
+                }
+                CloseWindow("ok");
             } else {
-                nui.alert(data.errMsg || "操作失败!");
+                showMsg(data.errMsg || "操作失败!","W");
             }
 
         },
@@ -342,13 +341,13 @@ function onOk()
 {
     var data = batchInfoForm.getData();
     if(!data.guestId){
-        nui.alert("请选择往来单位!");
+        showMsg("请选择往来单位!","W");
         return;
     }
 
     var detail = mainGrid.getData();
     if(detail.length <= 0){
-        nui.alert("明细为空!");
+        showMsg("明细为空!","W");
         return;
     }
 

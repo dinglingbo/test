@@ -34,7 +34,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+		showMsg("请输入数字!","W");
         e.cancel = true;
     } 
 }
@@ -138,12 +138,12 @@ function saveStraPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-	                	nui.alert(errMsg);
+						showMsg(errMsg,"S");
 	                }else{
-	                	nui.alert("导入成功!");
+						showMsg("导入成功!","S");
 	                }
 	            } else {
-	                nui.alert(data.errMsg || "导入失败!");
+					showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {
@@ -177,12 +177,12 @@ function saveUnifyPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-	                	nui.alert(errMsg);
+						showMsg(errMsg,"S");
 	                }else{
-	                	nui.alert("导入成功!");
+						showMsg("导入成功!","S");
 	                }
 	            } else {
-	                nui.alert(data.errMsg || "导入失败!");
+					showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

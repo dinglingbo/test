@@ -31,7 +31,7 @@ function onOk()
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            nui.alert(requiredField[key]+"不能为空");
+            showMsg(requiredField[key]+"不能为空","W");
             return;
         }
     }
@@ -51,11 +51,11 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
-                nui.alert("保存成功");
+                showMsg("保存成功","S");
                 CloseWindow("ok");
             }
             else{
-                nui.alert(data.errMsg||"保存失败");
+                showMsg(data.errMsg||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

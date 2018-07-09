@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eos.data.datacontext.UserObject;
 import com.eos.system.annotation.Bizlet;
+
 import commonj.sdo.DataObject;
 
 /**
@@ -332,6 +335,46 @@ public class Utils {
 		return "0";
 	}
 
+	@Bizlet("宝马零件信息处理")
+	public static Map<String, String> bmpPartsInfoProcess(String param) {
+		// 正则表达式规则
+		String regEx1 = "formulHead_gb(.*?)</td>"; // formulHead_gb(.*?)</td>
+		String regEx2 = "ResultWhite(.*?)</td>";// ResultWhite(.*?)</td>
+		// 编译正则表达式
+		Pattern pattern1 = Pattern.compile(regEx1);
+		Pattern pattern2 = Pattern.compile(regEx2);
+
+		param = param.replaceAll("ResultWhite2", "ResultWhite")
+				.replaceAll("align=\"right\"", "").replaceAll("nowrap", "")
+				.replaceAll("<b><i>", "").replaceAll("</b></i>", "")
+				.replaceAll("<br>", "").replaceAll("&nbsp;", "")
+				.replaceAll(" ", "");
+		Map<String, String> map = new HashMap();
+		// 忽略大小写的写法
+		// Pattern pat = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
+		Matcher matcher1 = pattern1.matcher(param);
+		Matcher matcher2 = pattern2.matcher(param);
+		// 查找字符串中是否有匹配正则表达式的字符/字符串
+		// boolean rs = matcher1.find();]
+		int i = 0;
+		StringBuffer tmp = new StringBuffer();
+		while (matcher1.find()) {
+			tmp.setLength(0);
+			tmp.append(matcher1.group(1));
+			map.put("k" + i, tmp.substring(tmp.lastIndexOf(">") + 1));
+
+			matcher2.find();
+			tmp.setLength(0);
+			tmp.append(matcher2.group(1));
+			map.put("v" + i, tmp.substring(tmp.lastIndexOf(">") + 1));
+			System.out.println(i + "：" + map.get("k" + i) + " ="
+					+ map.get("v" + i));
+			i++;
+		}
+		return map;
+
+	}
+
 	/*
 	 * @Bizlet("") public static String obj2json(UserObject obj) { try { String
 	 * aa = JSONObject.toJSONString(obj); return aa; } catch (Exception e) {
@@ -354,11 +397,14 @@ public class Utils {
 		// System.out.println(createSessionId());
 		// System.out.println(createSessionId());
 
-		String a = "sfd";
+		/*String a = "sfd";
 		a.hashCode();
 		Map map = new HashMap();
 		map.put("disct", "DDT2017092200015");
-		System.out.println(Utils.obj2json(map));
+		System.out.println(Utils.obj2json(map));*/
+		
+		Float retailPrice=20603.0f;
+		System.out.println(Math.round(retailPrice * 1.16*100)/100.0);
 
 	}
 

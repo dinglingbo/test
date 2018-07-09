@@ -348,7 +348,7 @@ public class Utils {
 				.replaceAll("align=\"right\"", "").replaceAll("nowrap", "")
 				.replaceAll("<b><i>", "").replaceAll("</b></i>", "")
 				.replaceAll("<br>", "").replaceAll("&nbsp;", "")
-				.replaceAll(" ", "");
+				.replaceAll("\n", "").replaceAll("\r", "").replaceAll("  ", "");
 		Map<String, String> map = new HashMap();
 		// 忽略大小写的写法
 		// Pattern pat = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
@@ -357,15 +357,19 @@ public class Utils {
 		// 查找字符串中是否有匹配正则表达式的字符/字符串
 		// boolean rs = matcher1.find();]
 		int i = 0;
-		StringBuffer tmp = new StringBuffer();
+		String tmp;
 		while (matcher1.find()) {
-			tmp.setLength(0);
-			tmp.append(matcher1.group(1));
+			tmp = matcher1.group(1);
+			if (i > 1) {
+				tmp = tmp.replaceAll(" ", "");
+			}
 			map.put("k" + i, tmp.substring(tmp.lastIndexOf(">") + 1));
 
 			matcher2.find();
-			tmp.setLength(0);
-			tmp.append(matcher2.group(1));
+			tmp = matcher2.group(1);
+			if (i > 1) {
+				tmp = tmp.replaceAll(" ", "");
+			}
 			map.put("v" + i, tmp.substring(tmp.lastIndexOf(">") + 1));
 			System.out.println(i + "：" + map.get("k" + i) + " ="
 					+ map.get("v" + i));
@@ -397,14 +401,14 @@ public class Utils {
 		// System.out.println(createSessionId());
 		// System.out.println(createSessionId());
 
-		/*String a = "sfd";
-		a.hashCode();
-		Map map = new HashMap();
-		map.put("disct", "DDT2017092200015");
-		System.out.println(Utils.obj2json(map));*/
-		
-		Float retailPrice=20603.0f;
-		System.out.println(Math.round(retailPrice * 1.16*100)/100.0);
+		/*
+		 * String a = "sfd"; a.hashCode(); Map map = new HashMap();
+		 * map.put("disct", "DDT2017092200015");
+		 * System.out.println(Utils.obj2json(map));
+		 */
+
+		Float retailPrice = 20603.0f;
+		System.out.println(Math.round(retailPrice * 1.16 * 100) / 100.0);
 
 	}
 

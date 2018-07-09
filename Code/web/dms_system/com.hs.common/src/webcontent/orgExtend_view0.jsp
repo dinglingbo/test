@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -10,8 +10,6 @@
 <head>
     <title>门店管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp"%>
-    <%-- <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script> --%>
     <script src="<%=webPath + sysDomain%>/common/js/orgExtendQuery.js?v=1.9" type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -51,11 +49,11 @@
            		  <input class="nui-combobox" id="provinceId" visible="false" textField="name" url="" valueField="code"/>
 				        <input class="nui-combobox" id="cityId" visible="false" textField="name" url="" valueField="code"/>
                 <input id="name" name="name" class="mini-textbox" emptytext="输入公司名称查询"  width="200"/>
-                <a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
-                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick="stoporstart('1')"id="jy" name="jy"><i class="fa fa-ban"></i>&nbsp;禁用</a>
+                <a class="nui-button" onclick="search()" plain="false" enabled=""><span class="fa fa-search"></span>&nbsp;查询</a>
+                <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick="stoporstart('1')"id="jy" name="jy"><span class="fa fa-ban"></span>&nbsp;禁用</a>
                 <a class="nui-button " style="float:right;" iconcls="" plain="false" onclick="stoporstart('2')" visible="false" id="qy" name="qy"><i></i>&nbsp;启用</a>
-                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('edit')"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('new')"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('edit')"><span class="fa fa-pencil"></span>&nbsp;修改</a>
+                <a class="nui-button " style="float:right;margin-right:10px;" iconcls="" plain="false" onclick="edit('new')"><span class="fa fa-plus"></span>&nbsp;新增</a>
             </div> 
 
             <div class="nui-fit">
@@ -80,11 +78,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-  nui.parse();
-
-
-
-</script>
 </body>
 </html>

@@ -35,7 +35,7 @@ $(document).ready(function(v) {
        // nui.alert("数据成功！");
     },function(){
         //失败;
-        nui.alert("数据加载失败！");
+        showMsg("数据加载失败!","W");
     });
 
     grid.on("drawcell", function (e){
@@ -148,23 +148,23 @@ function dimssion(){
             success: function (data) {
                 if (data.errCode == "S"){
                 	nui.unmask(document.body);
-                	nui.alert("操作成功！");
+                	showMsg("操作成功!","S");
                 	//grid.reload();
                 }else {
                     nui.unmask(document.body);
-                    nui.alert("操作失败！");
+                    showMsg("操作失败!","W");
                 }
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
             }
 		});
                 
         search();
         
 	} else {
-	    nui.alert("请选中一条数据！");
+	    showMsg("请选中一条数据!","S");
 	}
 }
 
@@ -179,7 +179,7 @@ function stoporstart(){
     var emp = {};
     var row = grid.getSelected();
     if (!row) {
-        nui.alert("请选中一条记录");
+        showMsg("请选中一条记录!","W");
         return;
     }
 
@@ -206,19 +206,19 @@ function stoporstart(){
             success: function (data) {
                 if (data.errCode == "S"){
                     nui.unmask(document.body);
-                    nui.alert("操作成功！");
+                    showMsg("操作成功!","S");
 
                     var newRow = {isOpenAccount: 0};
                     grid.updateRow(row, newRow);
 
                 }else {
                     nui.unmask(document.body);
-                    nui.alert("操作失败！");
+                    showMsg("操作失败!","W");
                 }
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
             }
         });
 
@@ -239,7 +239,7 @@ function stoporstart(){
             },
             ondestroy: function (action) {  //弹出页面关闭前
                 if (action == "OK") {       //如果点击“确定”
-                    nui.alert('开通帐号成功！');
+                    showMsg('开通帐号成功!',"s");
                     search();
                 }
             }
@@ -269,19 +269,19 @@ function stoporstart(){
             success: function (data) {
                 if (data.errCode == "S"){
                     nui.unmask(document.body);
-                    nui.alert("操作成功！");
+                    showMsg("操作成功!","S");
 
                     var newRow = {isOpenAccount: 1};
                     grid.updateRow(row, newRow);
 
                 }else {
                     nui.unmask(document.body);
-                    nui.alert("操作失败！");
+                    showMsg("操作失败!","W");
                 }
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
             }
         });
 

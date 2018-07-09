@@ -25,13 +25,13 @@
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">全部入库</li>
+                    <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
                     <!-- <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">全部</li> -->
                 </ul>
 
                 <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..." visible="false"
+                       emptyText="请选择客户..." visible="false"
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <a class="nui-button" visible="false" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
@@ -41,7 +41,7 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                <!-- <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditToEnterBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <!-- <span class="separator"></span>

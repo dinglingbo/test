@@ -217,9 +217,9 @@ function initCityByParent(id, parentId, callback){
 
 function processCity(data, json){
     var parentId = json.parentId;
-    _initDmsObj["initCity" + parentId].setData(data);
+    _initDmsObj["initCity" + (parentId||"")].setData(data);
     setDataToHash(data,"city","code");
-    _initDmsCallback["initCity" + parentId] && _initDmsCallback["initCity" + parentId]() && (_initDmsCallback["initCity" + parentId] = null);
+    _initDmsCallback["initCity" + (parentId||"")] && _initDmsCallback["initCity" + (parentId||"")]() && (_initDmsCallback["initCity" + (parentId||"")] = null);
 }
 //公司员工
 function initMember(id,callback){//dictDefs{id1: dictid1, id2: dictid2}
@@ -270,7 +270,7 @@ function checkObjExists(id, key){
     if(_initDmsObj[key]){
         return true;
     }else{
-    nui.alert("对象【" + id + "】不存在！");
+        showMsg("对象【" + id + "】不存在！","W");
         return false;
     }
 }

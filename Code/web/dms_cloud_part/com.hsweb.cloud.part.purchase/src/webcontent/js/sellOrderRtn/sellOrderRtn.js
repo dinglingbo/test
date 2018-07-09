@@ -282,7 +282,7 @@ function quickSearch(type) {
     case 14:
         params.auditSign = 1;
         params.billStatusId = 4;
-        querytypename = "全部入库";
+        querytypename = "已入库";
         querysign = 2;
         gsparams.auditSign = 1;
         break;
@@ -330,11 +330,11 @@ function getSearchParam() {
 function setBtnable(flag) {
     if (flag) {
         nui.get("saveBtn").enable();
-        nui.get("auditToEnterBtn").disable();
+        //nui.get("auditToEnterBtn").disable();
         nui.get("auditBtn").enable();
     } else {
         nui.get("saveBtn").disable();
-        nui.get("auditToEnterBtn").enable();
+        //nui.get("auditToEnterBtn").enable();
         nui.get("auditBtn").disable();
     }
 }
@@ -843,23 +843,23 @@ function auditToEnter(){
     var data = basicInfoForm.getData();
     var isInner = data.isInner||0;
     var billStatusId = data.billStatusId||0;
-    if(isInner == 0 && billStatusId == 0){
+    //if(isInner == 0 && billStatusId == 0){
         var flagSign = 1; 
         var flagStr = "入库中...";
         var flagRtn = "入库成功!";
         auditOrder(flagSign, flagStr, flagRtn);     
-    }else if(isInner == 1 && billStatusId != 2){
-        showMsg("请等待对方出库后再入库!","W");
-        return;
-    }else if(billStatusId == 2){
+    //}else if(isInner == 1 && billStatusId != 2){
+        //showMsg("请等待对方出库后再入库!","W");
+        //return;
+    //}else if(billStatusId == 2){
         //如果是内部的销售退货，对方出库后，才会更新billStatusId == 2
-        var id = data.id||0;
-        orderEnter(id); 
-    }
+        //var id = data.id||0;
+        //orderEnter(id); 
+    //}
 
 }
-var auditUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrder.biz.ext";
+var auditUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.auditPjSellOrderRtn.biz.ext";
+        //+ "com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrder.biz.ext";
 function auditOrder(flagSign, flagStr, flagRtn) {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -873,7 +873,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     var row = leftGrid.getSelected();
     if (row) {
         if (row.auditSign == 1) {
-            showMsg("此单已审核!","W");
+            showMsg("此单已入库!","W");
             return;
         }
     } else {

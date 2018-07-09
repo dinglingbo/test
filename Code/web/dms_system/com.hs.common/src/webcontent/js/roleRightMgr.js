@@ -85,13 +85,13 @@ function save() {
                 roleForm.hide();
                 leftGrid.reload();  
             }else{
-                nui.alert(data.errMsg||"保存失败");
+                showMsg(data.errMsg||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
             console.log(jqXHR.responseText);
             nui.unmask();
-            nui.alert("网络出错");
+            showMsg("网络出错","W");
         }
     });  
 }
@@ -99,7 +99,7 @@ function save() {
 function deleteRole() {
     var row = leftGrid.getSelected();
     if (!row) {
-        nui.alert("请选中一条记录");
+        showMsg("请选中一条记录","W");
         return;
     }
 
@@ -125,13 +125,13 @@ function deleteRole() {
                         if (data.errCode == "S"){
                            leftGrid.reload();                   
                         }else{
-                            nui.alert(data.errMsg||"保存失败");
+                            showMsg(data.errMsg||"保存失败","W");
                         }
                     },
                     error:function(jqXHR, textStatus, errorThrown){
                         console.log(jqXHR.responseText);
                         nui.unmask();
-                        nui.alert("网络出错");
+                        showMsg("网络出错","W");
                     }
                 });            
             }

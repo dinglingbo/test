@@ -25,6 +25,24 @@ function setData(data)
 var saveUrl = baseUrl + "com.hsapi.repair.baseData.insurance.saveInsurance.biz.ext";
 function onOk() {
     var data = basicInfoForm.getData();
+    var deductType1 = document.getElementsByName('deductType1');
+    var deductType2 = document.getElementsByName('deductType2');
+    var deductType3 = document.getElementsByName('deductType3');
+    for (var i = 0,l = deductType1.length; i < l ;i++) {
+        if (deductType1[i].checked == true) {
+            data.deductType1 = deductType1[i].value;
+        }
+    }
+    for (var i = 0, l = deductType2.length; i < l; i++) {
+        if (deductType2[i].checked == true) {
+            data.deductType2 = deductType2[i].value;
+        }
+    }
+    for (var i = 0, l = deductType3.length; i < l; i++) {
+        if (deductType3[i].checked == true) {
+            data.deductType3 = deductType3[i].value;
+        }
+    }
     console.log(data);
     for (var key in requiredField) {
         if (!data[key] || data[key].trim().length == 0) {
@@ -38,7 +56,8 @@ function onOk() {
     doPost({
         url:saveUrl,
         data:{
-            comguest:data
+            comguest:data,
+            rpbGuestAgentExtend : data
         },
         success:function(data)
         {

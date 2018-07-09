@@ -19,10 +19,10 @@ table {
 	width: 100%;
 }
 
-/* .form_label {
+.form_label {
 	width: 90px;
 	text-align: right;
-} */
+} 
 
 .required {
 	color: red;
@@ -34,14 +34,18 @@ table {
 	<input name="id" class="nui-hidden"/>
 	<table class="nui-form-table">
 		<tr>
-			<td class="form_label required" style="width: 30px">
+			<td class="form_label required" style="width: 50px">
 				<label>保险公司代码：</label>
 			</td>
-			<td style="width: 100px">
+			<td style="width: 90px">
 				<input class="nui-textbox" name="code" width="100%"/>
 			</td>
-			<td style="width: 30px"></td>
-			<td style="width: 100px"></td>
+			 <td align="center" style="width: 160px"colspan="2">
+                     保险公司返点给门店
+                </td>
+                <td align="center"style="width: 160px" colspan="2">
+                     门店返点给车主
+                </td>
 		</tr>
 		<tr>
 			<td class="form_label required">
@@ -50,6 +54,18 @@ table {
 			<td>
 				<input class="nui-textbox" name="fullName" width="100%"/>
 			</td>
+			<td  class="form_label" style="width: 50px">
+                     商业险返点
+                </td>
+                <td style="width: 140px">
+                    <input class="nui-textbox" name="rebateAgentToCompany1">%
+                </td>
+                <td class="form_label" style="width: 60px">
+                    商业险返点
+                </td>
+                <td style="width: 150px">
+                    <input class="nui-textbox" name="rebateCompanyToGuest1">%
+                </td>
 		</tr>
 		<tr>
 			<td class="form_label">
@@ -58,6 +74,18 @@ table {
 			<td>
 				<input class="nui-textbox" name="shortName" width="100%"/>
 			</td>
+			 <td class="form_label" >
+                     交强险返点
+            </td>
+            <td>
+                <input class="nui-textbox" name="rebateAgentToCompany2">%
+            </td>
+            <td class="form_label" >
+                 交强险返点
+            </td>
+            <td>
+                <input class="nui-textbox" name="rebateCompanyToGuest2">%
+            </td>
 		</tr>
 		<tr>
 			<td class="form_label">
@@ -66,6 +94,18 @@ table {
 			<td>
 				<input class="nui-textbox" name="pyName" width="100%"/>
 			</td>
+			 <td class="form_label">
+                     车船税返点
+                </td>
+                <td>
+                    <input class="nui-textbox" name="rebateAgentToCompany3">%
+                </td>
+                <td class="form_label" >
+                     车船税返点
+                </td>
+                <td>
+                    <input class="nui-textbox"name="rebateCompanyToGuest3">%
+                </td>
 		</tr>
 		<tr>
 			<td class="form_label">
@@ -74,6 +114,19 @@ table {
 			<td>
 				<input class="nui-textbox" name="contactor" width="100%"/>
 			</td>
+			 <td class="form_label">
+                     商业险提成
+                </td>
+                <td>
+                    <input type="radio" name="deductType1" value="1">固定提成 &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="deductType1" value="2">比例提成
+                </td>
+                <td class="form_label">
+                         提成金额
+                </td>
+                <td>
+                    <input class="nui-textbox" name="deductRate1">
+                </td>
 		</tr>
 		<tr>
 			<td class="form_label">
@@ -82,6 +135,18 @@ table {
 			<td>
 				<input class="nui-textbox" name="contactorTel" width="100%"/>
 			</td>
+			<td  class="form_label">
+                     交强险提成
+                </td>
+                <td>
+                    <input type="radio" name="deductType2" value="1">固定提成 &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="deductType2" value="2">比例提成
+                <td  class="form_label">
+                    提成金额
+                </td>
+                <td>
+                    <input class="nui-textbox" name="deductRate2">
+                </td>
 		</tr>
 		<tr>
 			<td class="form_label">
@@ -90,103 +155,20 @@ table {
 			<td>
 				<input class="nui-spinner" name="orderIndex" minValue="0" maxVlaue="1000000000" width="100%" inputStyle="text-align:right;"/>
 			</td>
-		</tr>
-		<tr>
-                <td colspan="2">
-                     保险公司返点给门店
-                </td>
-                
-                <td colspan="2">
-                     门店返点给车主
-                </td>
-            </tr>
-            <tr>
-                <td>
-                     商业险返点
-                </td>
-                <td>
-                    <input class="nui-textbox">%
-                </td>
-                <td>
-                    商业险返点
-                </td>
-                <td>
-                    <input class="nui-textbox">%
-                </td>
-            </tr>
-            <tr>
-                <td>
-                     交强险返点
-                </td>
-                <td>
-                    <input class="nui-textbox">%
-                </td>
-                <td>
-                     交强险返点
-                </td>
-                <td>
-                    <input class="nui-textbox">%
-                </td>
-            </tr>
-            <tr>
-                <td>
-                     车船税返点
-                </td>
-                <td>
-                    <input class="nui-textbox">%
-                </td>
-                <td>
-                     车船税返点
-                </td>
-                <td>
-                    <input class="nui-textbox">%
-                </td>
-            </tr>
-            <tr>
-                <td>
-                     商业险提成
-                </td>
-                <td>
-                    <input type="radio" name="isnot">固定提成 &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="isnot">比例提成
-                </td>
-                <td>
-                         提成金额
-                </td>
-                <td>
-                    <input class="nui-textbox">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                     交强险提成
-                </td>
-                <td>
-                    <input type="radio" name="isnot">固定提成 &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="isnot">比例提成
-                </td>
-                <td>
-                    提成金额
-                </td>
-                <td>
-                    <input class="nui-textbox">
-                </td>
-            </tr>
-            <tr>
-                <td>
+			<td  class="form_label">
                      车船税提成
                 </td>
                 <td>
-                    <input type="radio" name="isnot">固定提成 &nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="isnot">比例提成
+                    <input type="radio" name="deductType3" value="1">固定提成 &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="deductType3" value="2">比例提成
                 </td>
-                <td>
+                <td  class="form_label">
                     提成金额
                 </td>
                 <td>
-                    <input class="nui-textbox">
+                    <input class="nui-textbox" name="deductRate3">
                 </td>
-            </tr>
+		</tr>
 	</table>
 </div>
 <div style="text-align:center;padding:10px;">

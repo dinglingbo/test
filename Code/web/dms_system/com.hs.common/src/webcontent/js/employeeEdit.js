@@ -59,7 +59,7 @@ function save(action) {
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            nui.alert(requiredField[key]+"不能为空");
+            showMsg(requiredField[key]+"不能为空","W");
             return;
         }
     }
@@ -82,7 +82,7 @@ function save(action) {
         {
             nui.unmask();
             data = data||{};
-            nui.alert(data.errMsg);
+            showMsg(data.errMsg,"S");
             
             if (data.errCode == 'S' && action != 'new') {
             	if (window.CloseOwnerWindow){

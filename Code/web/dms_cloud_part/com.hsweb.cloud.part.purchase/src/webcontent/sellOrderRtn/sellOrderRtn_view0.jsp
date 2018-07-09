@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售退货</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrderRtn/sellOrderRtn.js?v=1.0.5"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrderRtn/sellOrderRtn.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -136,15 +136,6 @@
                 <td colspan="3">
                     <input id="partName"
                            name="partName"
-                           class="nui-textbox" 
-                           width="100%"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">配件ID:</td>
-                <td colspan="3">
-                    <input id="partId"
-                           name="partId"
                            class="nui-textbox" 
                            width="100%"/>
                 </td>

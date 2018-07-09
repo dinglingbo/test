@@ -274,7 +274,7 @@ table tr td span
         </table>
         <div style="text-align: center;margin-top: 10px;margin-bottom: 20px;">
 
-            <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="save('no')"><i class="fa fa-save"></i>&nbsp;保存退出</a>
+            <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="save('no')"><i class="fa fa-save"></i>&nbsp;保存</a>
             <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="Oncancel()"><i class="fa fa-sign-out"></i>&nbsp;退出</a>
 
         </div> 

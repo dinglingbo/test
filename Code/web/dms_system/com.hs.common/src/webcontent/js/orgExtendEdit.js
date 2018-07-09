@@ -71,7 +71,7 @@ function save(action) {
 
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
 
             return;
         }
@@ -98,7 +98,11 @@ function save(action) {
         {
             nui.unmask();
             data = data||{};
-            nui.alert(data.errMsg);
+            if(data.errCode && data.errCode == 'S'){
+                showMsg("保存成功!","S");
+            }else{
+                showMsg(data.errMsg,"W");
+            }
             
             if (data.errCode == 'S' && action != 'new') {
             	if (window.CloseOwnerWindow){

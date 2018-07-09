@@ -36,7 +36,7 @@ $(document).ready(function(v) {
        // nui.alert("数据成功！");
     },function(){
         //失败;
-        nui.alert("数据失败！");
+        showMsg("数据失败!","W");
     });
     initProvince('provinceId',function(){
     	provinceList=nui.get('provinceId').getData();
@@ -106,7 +106,7 @@ function edit(action) {
     if (action == 'edit') {
     	var comCompay = grid.getSelected();
         if (!comCompay) {
-            nui.alert("请选中一条记录");
+            showMsg("请选中一条记录","W");
             return;
             
         }
@@ -154,21 +154,21 @@ function dimssion(){
             success: function (data) {
                 if (data.errCode == "S"){
                 	nui.unmask(document.body);
-                	nui.alert("离职成功！");
+                	showMsg("离职成功!","S");
                 	grid.reload();
                     }else {
                     nui.unmask(document.body);
-                    nui.alert("离职失败！");
+                    showMsg("离职失败!","S");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
             }
 		});
         search();
 	}
 	else{
-		  nui.alert("请选中一条数据！！");
+		showMsg("请选中一条数据!","W");
 	}
 	
 	
@@ -346,15 +346,15 @@ function stoporstart(i){
             success: function (data) {
                 if (data.errCode == "S"){
                 	nui.unmask(document.body);
-                	nui.alert("禁用成功！");
+                	showMsg("禁用成功!","S");
                 	grid.reload();
                     }else {
                     nui.unmask(document.body);
-                    nui.alert("禁用失败！");
+                    showMsg("禁用失败!","W");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
             }
 		});
     

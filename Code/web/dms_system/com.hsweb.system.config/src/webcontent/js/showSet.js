@@ -2,7 +2,7 @@
  * Created by steven on 2018/1/31.
  */
 baseUrl = apiPath + sysApi + "/";;
-var storeUrl = baseUrl + "com.hsapi.system.confi.paramSet.getStoreList.biz.ext";
+var storeUrl = baseUrl + "com.hsapi.system.config.paramSet.getStoreList.biz.ext";
 
 
 
@@ -39,7 +39,7 @@ $(document).ready(function(v) {
 /*
  * 
  * 获取仓库列表*/
-var storeUrl = baseUrl + "com.hsapi.system.confi.paramSet.getStoreList.biz.ext";
+var storeUrl = baseUrl + "com.hsapi.system.config.paramSet.getStoreList.biz.ext";
 function getStoreList(callback){
     nui.ajax({
         url: storeUrl,
@@ -95,7 +95,7 @@ showForm
 *
 *
 */
-var showFormUrl=baseUrl + "com.hsapi.system.confi.paramSet.saveShowSet.biz.ext";
+var showFormUrl=baseUrl + "com.hsapi.system.config.paramSet.saveShowSet.biz.ext";
 function showFormSet(){
 	
 	var form1=new nui.Form("#showForm");

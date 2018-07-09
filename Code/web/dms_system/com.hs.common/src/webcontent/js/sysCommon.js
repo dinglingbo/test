@@ -162,6 +162,7 @@ function checkMobile(str) {
     }
 }
 
+//车型选择
 function selectCarModel(callBack) {
 	nui.open({
 		targetWindow : window,
@@ -198,3 +199,5 @@ function selectCarModel(callBack) {
 		}
 	});
 }
+
+//车型解析

@@ -182,8 +182,8 @@ public class BmwPartsGrab {
 		Map<String, String> header = new HashMap<String, String>();
 		header.put("onInputProcessing", "atp_all");
 		header.put("contentClip", "");
-		header.put("req_date", "09.07.2018");
-		header.put("material", "11001263381");
+		header.put("req_date", "10.07.2018");
+		header.put("material", "11340029751");// 11617530703 64319395930
 		Integer x = (int) Math.random() * 10;
 		Integer y = (int) Math.random() * 10;
 		header.put("x", x.toString());

@@ -338,11 +338,18 @@ public class Utils {
 	@Bizlet("宝马零件信息处理")
 	public static Map<String, String> bmpPartsInfoProcess(String param) {
 		// 正则表达式规则
+		String reg = "doTooltip\\((.*?)</table>";
 		String regEx1 = "formulHead_gb(.*?)</td>"; // formulHead_gb(.*?)</td>
 		String regEx2 = "ResultWhite(.*?)</td>";// ResultWhite(.*?)</td>
 		// 编译正则表达式
+		Pattern pattern = Pattern.compile(reg);
 		Pattern pattern1 = Pattern.compile(regEx1);
 		Pattern pattern2 = Pattern.compile(regEx2);
+		
+		Matcher matcher = pattern.matcher(param);
+		while (matcher.find()) {
+			param = param.replaceAll(matcher.group(1), "");				
+		}
 
 		param = param.replaceAll("ResultWhite2", "ResultWhite")
 				.replaceAll("align=\"right\"", "").replaceAll("nowrap", "")

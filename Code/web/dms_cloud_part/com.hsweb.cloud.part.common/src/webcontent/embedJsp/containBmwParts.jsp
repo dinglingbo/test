@@ -56,7 +56,7 @@
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>
             <div field="agioCode" name="agioCode" width="100" headerAlign="center" header="折扣代码"></div>
-            <div field="agioRate" name="agioRate" width="100" headerAlign="center" header="折扣率"></div>
+            <div field="agioRate" name="agioRate" width="100" headerAlign="center" header="折扣率(%)"></div>
             <div field="retailPrice" name="retailPrice" width="100" headerAlign="center" header="除税零售价"></div>
             <div field="displayRetailPrice" name="displayRetailPrice" width="100" headerAlign="center" header="含税零售价"></div>
             <div field="displayPurchasePrice" name="displayPurchasePrice" width="100" headerAlign="center" header="含税采购价"></div>

@@ -711,6 +711,16 @@ function showTabInfo(partId, partCode){
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
             break;
+        case "BMWStockTab":
+            var params = {};
+            params.partId=partCode;
+            params.token=token;
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBmwParts.jsp?partCode="+partCode, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
+            }
+            break;
         case "priceTab": 
             var params = {};
             params.partId=partId;

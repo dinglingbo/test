@@ -1,147 +1,98 @@
 /**
  * Created by steven on 2018/1/31.
  */
-baseUrl = apiPath + sysApi + "/";;
+var baseUrl = apiPath + sysApi + "/";
 var storeUrl = baseUrl + "com.hsapi.system.confi.paramSet.getStoreList.biz.ext";
 
-
-
-var grid;
-var time;
-var person;
-var provinceList=[];
-var provinceHash={};
-var cityList=[];
-var cityHash={};
-var queryForm;
-var provinceCode;
-nui.parse();
-var productStatus;
-var types;
-
-
-
+var displayRemindTagEl = null;
+var displayBusinessTagEl = null;
+var displayBillTagEl = null;
+var empidEl = null;
 
 $(document).ready(function(v) {
-	
-	
-	getStoreList(function(data) {
-		var storeList=[];
-		storeList = data.data;
-		nui.get("defaultStore").setData(storeList);
-		
-		
-	});
+    displayRemindTagEl = nui.get("displayRemindTag");
+    displayBusinessTagEl = nui.get("displayBusinessTag");
+	displayBillTagEl = nui.get("displayBillTag");
+	empidEl = nui.get("empid");
+    
+
+    getMemParamsList();
 
 });
 
-
-/*
- * 
- * 获取仓库列表*/
-var storeUrl = baseUrl + "com.hsapi.system.confi.paramSet.getStoreList.biz.ext";
-function getStoreList(callback){
-    nui.ajax({
-        url: storeUrl,
-        type: 'post',
-        data: nui.encode({
-        }),
-        cache: false,
-        success: function (data) {
-            if (data) {
-             callback(data);
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            nui.alert(jqXHR.responseText);
-        }
-	});
-	
-}
-
-
-
-
-
-
-
-
-	
-var queryUrl = baseUrl + "com.hs.common.region.getRegin.biz.ext";
-function getProvince(callback) {
-
-    nui.ajax({
-        url : queryUrl,
-        data : {
-        	parentId:provinceCode,
-            token: token
-        },
-        type : "post",
-        success : function(data) {
-            if (data && data.rs) {
-                callback && callback(data);
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-           console.log(jqXHR.responseText);
-        }
-    });
-}
-
-
-/*
-showForm
-显示设置操作
-*
-*
-*/
-var showFormUrl=baseUrl + "com.hsapi.system.confi.paramSet.saveShowSet.biz.ext";
-function showFormSet(){
-	
-	var form1=new nui.Form("#showForm");
-	var formData=form1.getData();
-	var s=[{
-		keyidId:"repair_careAlarm_default_show",
-		keyidValue:formData.repair_careAlarm_default_show
-		},{
-		keyidId:"repair_service_default_show",
-		keyidValue:formData.repair__service_default_show	
-		},{
-		keyidId:"repair_worklist_default_show",
-		keyidValue:formData.repair__worklist_default_show	
-		},{
-		keyidId:"repair_settorder_print_show",
-		keyidValue:formData.repair__settorder_print_show				
-		},
-		{
-		keyidId:"repair_default_store",
-		keyidValue:formData.defaultStore				
-		}
-		];
+var paramsUrl = baseUrl + "com.hsapi.system.config.paramSet.queryMemberParms.biz.ext";
+function getMemParamsList(){
+	var params = {userId:currUserId};
 	nui.ajax({
-		url:showFormUrl,
-		type:"post",
-		data:{
-			params:s
+		url : paramsUrl,
+        type : "post",
+        async:false,
+		data : JSON.stringify({
+			params : params,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			var mem = data.mem;
+			if (mem && mem.length>0) {
+                var memObj = mem[0];
+				var displayRemindTag = memObj.displayRemindTag;
+				var displayBusinessTag = memObj.displayBusinessTag;
+				var displayBillTag = memObj.displayBillTag;
+
+				displayRemindTagEl.setValue(displayRemindTag);
+				displayBusinessTagEl.setValue(displayBusinessTag);
+				displayBillTagEl.setValue(displayBillTag);
+				empidEl.setValue(memObj.empid);
+
+                
+			} else{
+				showMsg("信息读取失败!","W");
+			}
 		},
-		success: function (data) {
-               if (data.errCode == "S"){
-               	nui.unmask(document.body);
-               
-               	nui.alert("保存成功！");
-               	}
-				else{
-				nui.unmask(document.body);
-				
-               	nui.alert("保存失败！");
-               	}
-       
-           },
-           error: function (jqXHR, textStatus, errorThrown) {
-               nui.alert(jqXHR.responseText);
-           }
-	
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
 	});
 }
+var saveUrl = apiPath + sysApi + "/com.hsapi.system.config.paramSet.saveMemberParams.biz.ext";
+function save(){
 
+	var empid = empidEl.getValue();
+	var emp = {};
+	emp.displayRemindTag = displayRemindTagEl.getValue();
+	emp.displayBusinessTag = displayBusinessTagEl.getValue();
+	emp.displayBillTag = displayBillTagEl.getValue();
 
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
+
+	nui.ajax({
+		url : saveUrl,
+		type : "post",
+		data : {
+			emp: emp,
+			empid: empid,
+			token: token
+		},
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("保存成功!","S");
+				
+			} else {
+				showMsg(data.errMsg || "保存失败!","W");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+            nui.unmask(document.body);
+			console.log(jqXHR.responseText);
+		}
+	});
+}

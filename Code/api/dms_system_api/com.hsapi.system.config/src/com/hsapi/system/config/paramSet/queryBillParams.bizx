@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryBillParams.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="工单设置默认设置：&quot;1005,1006,1007,1008,1009,1010,1011,1012,1013,1014&quot;;&#xD;&#xA;如果设置的内容有调整需要修改" title="Administrator&#x9;18-7-10 上午11:33">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="工单设置默认设置：&quot;1003，1005,1006,1007,1008,1009,1010,1011,1012,1013,1014&quot;;&#xD;&#xA;如果设置的内容有调整需要修改" title="Administrator&#x9;18-7-10 上午11:33">
     <location x="-225" y="-45"/>
     <size height="100" width="541"/>
   </nodes>
@@ -42,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1005,1006,1007,1008,1009,1010,1011,1012,1013,1014</process:from>
+      <process:from type="literal" pattern="reference">1003,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014</process:from>
       <process:to type="query">params/keyidIds</process:to>
     </process:copy>
   </nodes>
@@ -180,6 +180,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="link24" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign12</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">1003</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="405" y="153"/>
     <size height="24" width="24"/>
@@ -222,6 +232,7 @@
     <chidren>assign9</chidren>
     <chidren>assign10</chidren>
     <chidren>assign11</chidren>
+    <chidren>assign12</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
@@ -453,7 +464,7 @@
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -469,6 +480,7 @@
     <targetConnections>link22</targetConnections>
     <targetConnections>link21</targetConnections>
     <targetConnections>link23</targetConnections>
+    <targetConnections>link25</targetConnections>
     <location x="765" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
@@ -477,6 +489,29 @@
     <location x="760" y="186"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign12</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="662" y="304"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign12label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramObj/keyidValue</process:from>
+      <process:to type="query">keyValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">keyValue</process:from>
+      <process:to type="query">billParams/repairSettorderPrintShow</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
+    <location x="657" y="340"/>
+    <figSize height="17" width="39"/>
+    <node>assign12</node>
   </nodes>
   <topRuler>
     <guides position="311" horizontal="true"/>

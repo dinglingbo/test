@@ -8,7 +8,7 @@
 -->
 <head>
 <title>宝马配件查询</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBmwParts.js?v=1.0.6"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBmwParts.js?v=1.0.7"></script>
 <style type="text/css">
     .table-label {
         text-align: right;
@@ -27,7 +27,7 @@
 </style>
 </head>
 <body>
-
+<!-- 
 <div class="nui-toolbar" style="padding:2px;border-bottom:1;">
     <table style="width:100%;">
         <tr>
@@ -37,7 +37,7 @@
             </td>
         </tr>
     </table>
-</div>
+</div> -->
 <div class="nui-fit">
     <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;"
             borderStyle="border:1;"
@@ -72,3 +72,6 @@
 
 </body>
 </html>
+<script>
+    var partCode = '<b:write property="partCode"/>';
+</script>

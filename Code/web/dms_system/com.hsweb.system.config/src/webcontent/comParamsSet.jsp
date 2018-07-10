@@ -121,6 +121,12 @@
                 </td>
             </tr>
             <tr>
+                <td class="tbtext">结算单打印抬头显示：</td>
+                <td class="tbCtrl" >
+                    <input id="repairSettorderPrintShow" name="repairSettorderPrintShow" class="nui-textbox" >
+                </td>
+            </tr>
+            <tr>
                 <td class="tbtext">工单服务性质对健康档案不开放：</td>
                 <td class="tbCtrl" >
                     <div id="openToArchives" name="openToArchives" class="nui-checkboxlist" repeatItems="5" 

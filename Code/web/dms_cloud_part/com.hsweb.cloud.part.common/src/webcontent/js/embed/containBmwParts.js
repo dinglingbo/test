@@ -3,25 +3,32 @@ var partId;
 var dgGrid;
 
 $(document).ready(function(v){
-    partId = nui.get("partId");
+    //partId = nui.get("partId");
     dgGrid = nui.get("dgGrid");
+
+    if(partCode){
+        var params = {
+            "partId": partCode,
+            "token": token
+        }
+        doSearch(params);
+    }
 });
 
 /*
 * 配件编码查询
 */
-function doSearch(){
-    var partCode = partId.getValue();
-    if(!partCode){
-        showMsg("请输入宝马配件编码！", "W");
+function doSearch(params){
+    if(!params.partId){
+        //showMsg("请输入宝马配件编码！", "W");
         return;
     }
     
     var url = apiPath + cloudPartApi + "/com.hsapi.cloud.part.common.bmw.bmwParts.biz.ext";
-    var params = {
-        "partId": partCode,
-        "token": token
-    }
+    // var params = {
+    //     "partId": partCode,
+    //     "token": token
+    // }
     callAjax(url, params, processAjax, setGridData, document.body);
 }
 

@@ -63,7 +63,7 @@ function addOrEditInsurance(comguest)
         targetWindow: window,
         url: "com.hsweb.repair.DataBase.InsuranceDetail.flow",
         allowResize:false,
-        title: title, width: 450, height: 280,
+        title: title, width: 800, height: 400,
         onload: function ()
         {
             var iframe = this.getIFrameEl();

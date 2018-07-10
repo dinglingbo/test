@@ -12,6 +12,7 @@
 <title>通用提成</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/cfg/js/tongyongticheng.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
     body {
@@ -29,6 +30,7 @@
         <strong><span>工时提成：</span></strong>
         <span style="color: red">如果一个工时提成没有设置，则会使用通用提成。若需关闭通用提成，请清空设置即可。</span>
     </div>
+    <div id="form">
         <table style="width:100%">
             <tr>
                 <td style="width: 20%">
@@ -215,11 +217,11 @@
                 </td>
             </tr>
         </table>
+    </div>
         <div align="center">
             <a class="nui-button" iconcls="icon-save">保存</a>
         </div>
     </div>
-</div>
     <script type="text/javascript">
     var data = [{ id: "1", text: "原价" }, { id: "2", text: "折后价" }, { id: "3", text: "产值" }];
     	nui.parse();

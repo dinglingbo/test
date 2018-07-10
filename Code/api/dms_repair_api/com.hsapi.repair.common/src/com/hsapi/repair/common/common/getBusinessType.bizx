@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryComParams.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算单打印内容是根据keyidId&#xD;&#xA;params/keyidId&#xD;&#xA;params/type&#xD;&#xA;params/keyidIds&#xD;&#xA;params/isDisabled" title="Administrator&#x9;18-7-9 下午10:24">
-    <location x="90" y="-15"/>
-    <size height="121" width="421"/>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getBusinessType.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="获取维修业务类型&#xD;&#xA;rpb_business_type&#xD;&#xA;params/sortField&#xD;&#xA;params/sortOrder&#xD;&#xA;基础设置中工单设置时，按ID排序，对应的值为1，2，3..." title="Administrator&#x9;18-7-10 上午10:24">
+    <location x="92" y="-15"/>
+    <size height="121" width="389"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="63" y="149"/>
+    <location x="90" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link2</targetConnections>
-    <location x="570" y="149"/>
+    <location x="495" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.system.data.sys.ComParams[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbBusinessType[]" name="list" type="query" valueType="DataObject">list</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="65" y="185"/>
+    <location x="92" y="201"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="572" y="185"/>
+    <location x="497" y="201"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -38,56 +38,72 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="183" y="150"/>
+    <location x="180" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComParams</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbBusinessType</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/keyidId</process:from>
-      <process:to type="query">cond/_expr[1]/keyidId</process:to>
+      <process:from type="query" pattern="reference">params/isDisabled</process:from>
+      <process:to type="query">cond/_expr[1]/isDisabled</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/type</process:from>
-      <process:to type="query">cond/_expr[2]/type</process:to>
+      <process:from type="query" pattern="reference">params/id</process:from>
+      <process:to type="query">cond/_expr[2]/id</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/keyidIds</process:from>
-      <process:to type="query">cond/_expr[3]/keyidId</process:to>
+      <process:from type="query" pattern="reference">params/code</process:from>
+      <process:to type="query">cond/_expr[3]/code</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">in</process:from>
+      <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/isDisabled</process:from>
-      <process:to type="query">cond/_expr[4]/isDisabled</process:to>
+      <process:from type="query" pattern="reference">params/name</process:from>
+      <process:to type="query">cond/_expr[4]/code</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
+      <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">cond/_expr[4]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">params/sortField</process:from>
+      <process:to type="query">cond/_orderby[1]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/sortOrder</process:from>
+      <process:to type="query">cond/_orderby[1]/_sort</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[5]/orgid</process:to>
+      <process:to type="query">cond/_or[1]/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[5]/_op</process:to>
+      <process:to type="query">cond/_or[1]/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond/_or[1]/_expr[2]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_or[1]/_expr[2]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="185" y="186"/>
+    <location x="182" y="201"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -97,7 +113,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="360" y="149"/>
+    <location x="315" y="165"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -105,7 +121,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -113,13 +129,13 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="290" y="185"/>
+    <location x="245" y="201"/>
     <figSize height="17" width="162"/>
     <node>invokePojo0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
-  <process:info author="Administrator" createTime="2018-07-09 22:24:14" date="2018-07-09Z" description="" name="queryComParams" version="7.0.0.0"/>
+  <process:info author="Administrator" createTime="2018-07-10 10:22:04" date="2018-07-10Z" description="" name="getBusinessType" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
@@ -127,7 +143,7 @@
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComParams" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbBusinessType" name="list"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

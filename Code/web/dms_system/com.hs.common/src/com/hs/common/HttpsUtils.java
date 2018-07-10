@@ -11,12 +11,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -52,26 +49,31 @@ public class HttpsUtils {
 		 */
 
 		String result = HttpsUtils.sendHttpsPost(url, params, header);
-		/*
-		 * System.out.println(json); System.out.println(result);
-		 */
-		if (result != null && result.indexOf("resultCode") < 0) {
-			url = "https://www.dwp.bmw-brilliance.cn/sap(bD1lbiZjPTEwMA==)/bc/bsp/bmw/gis_tp_par_dev/SPP05_Stock_RESULT.htm?sap-params=bGZfbWF0ZXJpYWw9MDAwMDAwMDAxNDAyOTgyNjkzJnJlcV9kYXRlPTA2LjA3LjIwMTgmcmVxX3J1bGU9JmVycl9kYXRlPSZyZXN1bHRfZGlzcGxheT1YJmxmX3ZpZXdfYWx0cGFydHM9";
-			result = HttpsUtils.sendHttpsPost(url, null, header);
-			/*
-			 * System.out.println(); System.out.println(result);
-			 */
+		Map map = Utils.str2Map(result);
+		try {
+			map = (Map) map.get("headers");
+			result = map.get("location").toString();
 			if (result != null && result.indexOf("resultCode") < 0) {
-				int start = result.indexOf("<form ");
-				int end = result.lastIndexOf("</form>");
-				result = result.substring(start, end);
+				url = "https://www.dwp.bmw-brilliance.cn/sap(bD1lbiZjPTEwMA==)/bc/bsp/bmw/gis_tp_par_dev/SPP05_Stock_RESULT.htm?sap-params=bGZfbWF0ZXJpYWw9MDAwMDAwMDAxNDAyOTgyNjkzJnJlcV9kYXRlPTA2LjA3LjIwMTgmcmVxX3J1bGU9JmVycl9kYXRlPSZyZXN1bHRfZGlzcGxheT1YJmxmX3ZpZXdfYWx0cGFydHM9";
+				result = HttpsUtils.sendHttpsPost(url, null, header);
 				/*
 				 * System.out.println(); System.out.println(result);
 				 */
-				return result;
+				if (result != null && result.indexOf("resultCode") < 0) {
+					int start = result.indexOf("<form ");
+					int end = result.lastIndexOf("</form>");
+					result = result.substring(start, end);
+					/*
+					 * System.out.println(); System.out.println(result);
+					 */
+					return result;
+				}
 			}
+			return null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
 		}
-		return null;
 	}
 
 	/**
@@ -87,7 +89,7 @@ public class HttpsUtils {
 			Map<String, String> params, Map<String, String> header) {
 
 		StringBuffer resultBuffer = null;
-		HttpURLConnection con = null;
+		HttpsURLConnection con = null;
 		OutputStreamWriter osw = null;
 		BufferedReader br = null;
 		// 发送请求
@@ -99,9 +101,13 @@ public class HttpsUtils {
 			HttpsURLConnection
 					.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
+			
+
 			URL url = new URL(urlParam);
-			con = (HttpURLConnection) url.openConnection();
+			con = (HttpsURLConnection) url.openConnection();
 			con.setRequestMethod("POST");
+			con.setInstanceFollowRedirects(false);//Redirects
+			con.setRequestProperty("connection", "Keep-Alive"); 
 			con.setDoOutput(true);
 			con.setDoInput(true);
 			con.setUseCaches(true);
@@ -109,6 +115,7 @@ public class HttpsUtils {
 			con.setRequestProperty("Content-Type",
 					"application/json;charset=UTF-8");
 			con.setRequestProperty("accept", "application/json,text/plain,*/*");
+			
 
 			// BMW Params
 			if (header != null) {
@@ -129,19 +136,34 @@ public class HttpsUtils {
 				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
 				osw.write(json);
 				osw.flush();
+			} else {
+				params = new HashMap();
 			}
 
+			params.clear();
 			// 读取返回内容
+			if (con.getResponseCode() == 302) {
+				Map headers = con.getHeaderFields();
+		        Set<String> keys = headers.keySet();
+		        for( String key : keys ){
+		            String val = con.getHeaderField(key);
+		            System.out.println(key+"    "+val);
+		        }
+				params.put("headers",
+						JSONObject.toJSONString(con.getHeaderFields()));
+			}
 			if (con.getResponseCode() == 200) {
 				resultBuffer = new StringBuffer();
 				br = new BufferedReader(new InputStreamReader(
 						con.getInputStream(), "UTF-8"));
+				
 				String temp;
 				while ((temp = br.readLine()) != null) {
 					resultBuffer.append(temp);
-				}
+				}				
 			}
-			return resultBuffer.toString();
+			params.put("result", resultBuffer.toString());
+			return JSONObject.toJSONString(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "{\"resultCode\":\"999\", \"resultMsg\":\"" + e.getMessage()
@@ -223,6 +245,7 @@ public class HttpsUtils {
 				osw.write(json);
 				osw.flush();
 			}
+			con.connect();  
 
 			// 读取返回内容
 			if (con.getResponseCode() == 200) {
@@ -303,8 +326,6 @@ public class HttpsUtils {
 		}
 	}
 
-	
-
 	public static void main(String[] args) throws IOException,
 			KeyManagementException, NoSuchAlgorithmException {
 		/*
@@ -330,8 +351,8 @@ public class HttpsUtils {
 		Map<String, String> header = new HashMap<String, String>();
 		header.put("onInputProcessing", "atp_all");
 		header.put("contentClip", "");
-		header.put("req_date", "07.07.2018");
-		header.put("material", "01402982693");
+		header.put("req_date", "09.07.2018");
+		header.put("material", "11001263381");
 		Integer x = (int) Math.random() * 10;
 		Integer y = (int) Math.random() * 10;
 		header.put("x", x.toString());

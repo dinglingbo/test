@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>Title</title>
+<title>员工参数设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-      <script src="<%= request.getContextPath() %>/config/js/showSet.js?v=1.7.8"></script>
+    <script src="<%= request.getContextPath() %>/config/js/memberParamsSet.js?v=1.0.0"></script>
     
 </head>
 <body>
@@ -40,28 +40,10 @@
                 </div>
 
      </div>
-          <div class="nui-col-6" style="margin-top: 2%;">
-                
-                <div class="nui-panel" title="默认仓库" width="80%" style="margin-left: 10%;" 
-                    showCollapseButton="false" showCloseButton="false"  >
-              		
-              		     默认仓库：           <input class="nui-combobox" id="defaultStore" name="defaultStore" value=""   width="70px"  textField="name" valueField="id"/>
-              
-                </div>
-
-    	 </div>
-    	 <div class="nui-col-6" style="margin-top: 2%;">
-                
-                <div class="nui-panel" title="结算单打印显示" width="80%" style="margin-left: 10%;" 
-                    showCollapseButton="false" showCloseButton="false"  >
-              		   结算单打印抬头显示：    <input  class="nui-textbox" name="repair__settorder_print_show"/>
-                </div>
-
-     	</div>
-     	 <div style=" width: 100%;height: 10%;">
-	 		<a class="nui-button" style="margin-top: 1.5%;  margin-right:10%;float: right;" onclick="showFormSet">保存</a>
-	 
-		 </div>
+ 	 <div style=" width: 100%;height: 10%;">
+ 		<a class="nui-button" style="margin-top: 1.5%;  margin-right:10%;float: right;" onclick="showFormSet">保存</a>
+ 
+	 </div>
     </div>
     
 

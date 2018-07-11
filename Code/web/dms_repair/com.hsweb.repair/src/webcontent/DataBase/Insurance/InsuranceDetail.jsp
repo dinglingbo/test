@@ -126,6 +126,8 @@ table {
                 </td>
                 <td>
                     <input class="nui-textbox" name="deductRate1">
+                    <input class="nui-textbox" name="rid" visible="false">
+                    <span id="vala"></span>
                 </td>
 		</tr>
 		<tr>
@@ -146,6 +148,7 @@ table {
                 </td>
                 <td>
                     <input class="nui-textbox" name="deductRate2">
+                    <span id="valb"></span>
                 </td>
 		</tr>
 		<tr>
@@ -167,6 +170,7 @@ table {
                 </td>
                 <td>
                     <input class="nui-textbox" name="deductRate3">
+                    <span id="valc"></span>
                 </td>
 		</tr>
 	</table>

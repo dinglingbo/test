@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="bmwPartsProcess" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="宝马零件数据处理&#xD;&#xA;&#xD;&#xA;宝马中国库存：&#xA;1、看零件&#xA;2、看 SY01 北京, SY02 上海, SY03广州 SY06 成都 SY07沈阳各地库存&#xA;3、显示零售价=零售价*1.16&#xA;4、显示订货价=零售价/(1-折扣代码)" title="Guine&#x9;18-7-9 上午12:20">
-    <location x="60" y="225"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="宝马零件数据处理&#xD;&#xA;&#xD;&#xA;宝马中国库存：&#xA;1、看零件&#xA;2、看 SY01 北京, SY02 上海, SY03广州 SY06 成都 SY07沈阳各地库存&#xA;3、显示零售价=零售价*1.16、显示订货价=零售价*(1-折扣代码)*1.16" title="Guine&#x9;18-7-9 上午12:20">
+    <location x="45" y="70"/>
     <size height="166" width="271"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">

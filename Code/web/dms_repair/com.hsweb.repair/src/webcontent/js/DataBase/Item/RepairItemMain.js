@@ -65,7 +65,7 @@ function addOrEdit(item){
 	nui.open({
 		targetWindow: window,
 		url:"com.hsweb.repair.DataBase.RepairItemDetail.flow",
-		title:"维修项目",
+		title:"维修工时",
 		width:450,
 		height:420,
 		allowResize:false,
@@ -124,7 +124,7 @@ function onOk()
 		CloseWindow("ok");
 	}
 	else{
-		showMsg("请选择一个项目", "W");
+		showMsg("请选择一个工时", "W");
 	}
 }
 function CloseWindow(action)

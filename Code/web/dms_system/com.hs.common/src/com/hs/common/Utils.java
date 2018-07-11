@@ -334,7 +334,7 @@ public class Utils {
 		}
 		return "0";
 	}
-
+	
 	@Bizlet("宝马零件信息处理")
 	public static Map<String, String> bmpPartsInfoProcess(String param) {
 		// 正则表达式规则
@@ -345,10 +345,10 @@ public class Utils {
 		Pattern pattern = Pattern.compile(reg);
 		Pattern pattern1 = Pattern.compile(regEx1);
 		Pattern pattern2 = Pattern.compile(regEx2);
-		
+
 		Matcher matcher = pattern.matcher(param);
 		while (matcher.find()) {
-			param = param.replaceAll(matcher.group(1), "");				
+			param = param.replaceAll(matcher.group(1), "");
 		}
 
 		param = param.replaceAll("ResultWhite2", "ResultWhite")
@@ -368,13 +368,33 @@ public class Utils {
 		while (matcher1.find()) {
 			tmp = matcher1.group(1);
 			if (i > 1) {
-				tmp = tmp.replaceAll(" ", "");
+				if (tmp.endsWith("</a>")) {
+					tmp = tmp.replaceAll("</a>", "");
+				}
+				tmp = tmp.replaceAll(" ", "").replaceAll("\\.", "").replaceAll(",", "\\.");
 			}
 			map.put("k" + i, tmp.substring(tmp.lastIndexOf(">") + 1));
 
 			matcher2.find();
 			tmp = matcher2.group(1);
 			if (i > 1) {
+				if (tmp.endsWith("</a>")) {
+					tmp = tmp.replaceAll("</a>", "");
+				}
+				tmp = tmp.replaceAll(" ", "").replaceAll("\\.", "").replaceAll(",", "\\.");
+			}
+			map.put("v" + i, tmp.substring(tmp.lastIndexOf(">") + 1));
+			System.out.println(i + "：" + map.get("k" + i) + " ="
+					+ map.get("v" + i));
+			i++;
+		}
+		
+		while (matcher2.find()) {
+			tmp = matcher2.group(1);
+			if (i > 1) {
+				if (tmp.endsWith("</a>")) {
+					tmp = tmp.replaceAll("</a>", "");
+				}
 				tmp = tmp.replaceAll(" ", "");
 			}
 			map.put("v" + i, tmp.substring(tmp.lastIndexOf(">") + 1));

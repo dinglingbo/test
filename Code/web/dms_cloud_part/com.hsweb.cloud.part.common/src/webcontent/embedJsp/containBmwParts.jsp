@@ -65,6 +65,7 @@
             <div field="stockQtySy03Gz" name="stockQtySy03Gz" width="100" headerAlign="center" header="广州仓库存数量"></div>
             <div field="stockQtySy06Cd" name="stockQtySy06Cd" width="100" headerAlign="center" header="成都仓库存数量"></div>
             <div field="stockQtySy07Sy" name="stockQtySy07Sy" width="100" headerAlign="center" header="沈阳仓库存数量"></div>
+            <div field="remark" name="remark" width="100" headerAlign="center" header="备注"></div>
             <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="更新日期"></div>
         </div>
     </div>

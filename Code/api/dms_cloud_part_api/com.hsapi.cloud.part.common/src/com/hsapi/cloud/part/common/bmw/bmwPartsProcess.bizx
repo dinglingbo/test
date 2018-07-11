@@ -220,7 +220,7 @@
       <process:to type="query">tmp</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">tmp.replace(&quot;RMB&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;&quot;)</process:from>
+      <process:from type="expression" pattern="reference">tmp.replace(&quot;RMB&quot;, &quot;&quot;).replaceAll(&quot;.&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;.&quot;)</process:from>
       <process:to type="query">retailPrice</process:to>
     </process:copy>
     <process:copy>
@@ -253,22 +253,42 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">p/v7</process:from>
+      <process:to type="query">tmp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">tmp.replaceAll(&quot;.&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;.&quot;)</process:from>
       <process:to type="query">bmwStock/stockQtySy01Bj</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">p/v11</process:from>
+      <process:to type="query">tmp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">tmp.replaceAll(&quot;.&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;.&quot;)</process:from>
       <process:to type="query">bmwStock/stockQtySy02Sh</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">p/v15</process:from>
+      <process:to type="query">tmp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">tmp.replaceAll(&quot;.&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;.&quot;)</process:from>
       <process:to type="query">bmwStock/stockQtySy03Gz</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">p/v19</process:from>
+      <process:to type="query">tmp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">tmp.replaceAll(&quot;.&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;.&quot;)</process:from>
       <process:to type="query">bmwStock/stockQtySy06Cd</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">p/v23</process:from>
+      <process:to type="query">tmp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">tmp.replaceAll(&quot;.&quot;, &quot;&quot;).replaceAll(&quot;,&quot;, &quot;.&quot;)</process:from>
       <process:to type="query">bmwStock/stockQtySy07Sy</process:to>
     </process:copy>
     <process:copy>

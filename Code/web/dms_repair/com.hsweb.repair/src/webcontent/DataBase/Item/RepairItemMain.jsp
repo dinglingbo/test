@@ -10,7 +10,7 @@
   - Description:
 -->
 <head>
-<title>维修项目</title>
+<title>维修工时</title>
 <script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.9" type="text/javascript"></script>
 
 </head>
@@ -49,9 +49,9 @@
 						   class="nui-combobox width1"
 						   textField="name"
 						   valueField="customid"/>
-					<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label>
+					<label style="font-family: Verdana;;font-size: 12px;">工时编码：</label>
 					<input class="nui-textbox" id="search-code" name="code"/>
-					<label style="font-family: Verdana;;font-size: 12px;">项目名称：</label>
+					<label style="font-family: Verdana;;font-size: 12px;">工时名称：</label>
 					<input class="nui-textbox" id="search-name" name="name" />
 					<span class="separator"></span>
 					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
@@ -65,8 +65,8 @@
 	<table style="width: 100%">
 		<tr>
 			<td style="width: 100%">
-				<a class="nui-button" id="add" iconCls="icon-add" onclick="add()" plain="true">新增项目</a>
-				<a class="nui-button" id="update" iconCls="icon-edit" onclick="edit()" plain="true">修改项目</a>
+				<a class="nui-button" id="add" iconCls="icon-add" onclick="add()" plain="true">新增工时</a>
+				<a class="nui-button" id="update" iconCls="icon-edit" onclick="edit()" plain="true">修改工时</a>
 				<a class="nui-button" id="selectBtn" iconCls="icon-ok" onclick="onOk()" plain="true" visible="false">选择</a>
 			</td>
 		</tr>
@@ -79,7 +79,7 @@
 			<div class="nui-fit">
 				<div class="nui-toolbar"
 					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>项目类型</span>
+					<span>工时类型</span>
 				</div>
 				<div class="nui-fit">
 					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
@@ -110,17 +110,17 @@
 					 showFilterRow="false">
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
-						<div header="项目基本信息" headerAlign="center">
+						<div header="工时基本信息" headerAlign="center">
 							<div property="columns">
-								<div field="code" headerAlign="center" width="100px">项目编号</div>
-								<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
+								<div field="code" headerAlign="center" width="100px">工时编号</div>
+								<div field="name" headerAlign="center" allowSort="true" width="150px">工时名称</div>
 								<div field="itemKind" headerAlign="center" allowSort="true" width="40px">工种</div>
-								<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
+								<div field="type" headerAlign="center" allowSort="true" width="100px">工时类型</div>
 								<div field="carBrandId" headerAlign="center" allowSort="true" width="60px">品牌</div>
 								<div field="carModel" headerAlign="center" allowSort="true" width="60px">车型</div>
 							</div>
 						</div>
-						<div header="项目价格信息" headerAlign="center">
+						<div header="工时价格信息" headerAlign="center">
 							<div property="columns">
 								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="70px">工时</div>
 								<div field="unitPrice" headerAlign="center" allowSort="true" width="80px">工时单价</div>

@@ -10,9 +10,9 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link10</targetConnections>
-    <targetConnections>link11</targetConnections>
     <targetConnections>link12</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link15</targetConnections>
     <location x="780" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -22,13 +22,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="63" y="261"/>
-    <figSize height="17" width="25"/>
+    <location x="60" y="261"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="782" y="261"/>
-    <figSize height="17" width="25"/>
+    <location x="779" y="261"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -51,8 +51,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="223" y="261"/>
-    <figSize height="17" width="72"/>
+    <location x="214" y="261"/>
+    <figSize height="20" width="91"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -92,10 +92,18 @@
       <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">comguest/modifier</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userName</process:from>
+      <process:to type="query">rpbGuestAgentExtend/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">date</process:from>
+      <process:to type="query">rpbGuestAgentExtend/modifyDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="353" y="261"/>
-    <figSize height="17" width="25"/>
+    <location x="350" y="261"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -105,7 +113,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="496" y="343"/>
@@ -122,8 +130,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="471" y="379"/>
-    <figSize height="17" width="73"/>
+    <location x="460" y="379"/>
+    <figSize height="20" width="94"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值3" displayName="赋值" type="assign">
@@ -133,6 +141,8 @@
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <targetConnections>link8</targetConnections>
+    <targetConnections>link16</targetConnections>
+    <targetConnections>link17</targetConnections>
     <location x="493" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
@@ -146,22 +156,21 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="491" y="261"/>
-    <figSize height="17" width="32"/>
+    <location x="487" y="261"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="insertEntity" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" lineType="note" type="exception">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" lineType="note" isDefault="false" type="exception">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>end0</targetNode>
-      <process:transitionCondition/>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="737" y="120"/>
+    <location x="630" y="117"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -175,17 +184,18 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="716" y="156"/>
-    <figSize height="17" width="64"/>
+    <location x="600" y="153"/>
+    <figSize height="20" width="83"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值2" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="435" y="120"/>
+    <location x="435" y="117"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -208,25 +218,38 @@
       <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">comguest/recorder</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">rpbGuestAgentExtend/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userName</process:from>
+      <process:to type="query">rpbGuestAgentExtend/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">date</process:from>
+      <process:to type="query">rpbGuestAgentExtend/recordDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="433" y="156"/>
-    <figSize height="17" width="32"/>
+    <location x="429" y="153"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="600" y="120"/>
+    <location x="534" y="117"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="598" y="156"/>
-    <figSize height="17" width="32"/>
+    <location x="528" y="153"/>
+    <figSize height="20" width="40"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getPrimaryKey" displayName="getPrimaryKey" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
@@ -248,9 +271,108 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="323" y="153"/>
-    <figSize height="17" width="85"/>
+    <location x="311" y="153"/>
+    <figSize height="20" width="108"/>
     <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="insertEntity1" displayName="insertEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="790" y="117"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo4label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">rpbGuestAgentExtend</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
+    <location x="755" y="153"/>
+    <figSize height="20" width="92"/>
+    <node>invokePojo4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="712" y="117"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">comguest/id</process:from>
+      <process:to type="query">rpbGuestAgentExtend/guestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="706" y="153"/>
+    <figSize height="20" width="40"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="updateEntity1" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="784" y="343"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">rpbGuestAgentExtend</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="744" y="379"/>
+    <figSize height="20" width="103"/>
+    <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo5</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="615" y="343"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbGuestAgentExtend/rid</process:from>
+      <process:to type="query">rpbGuestAgentExtend/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comguest/id</process:from>
+      <process:to type="query">rpbGuestAgentExtend/guestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="609" y="379"/>
+    <figSize height="20" width="40"/>
+    <node>assign5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -263,6 +385,7 @@
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="comguest"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" name="rpbGuestAgentExtend"/>
   </process:inputs>
   <process:outputs>
     <process:output description="S/E" isArray="false" name="errCode" primitiveType="String"/>

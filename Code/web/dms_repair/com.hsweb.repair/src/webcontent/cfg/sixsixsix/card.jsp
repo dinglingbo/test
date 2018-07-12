@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+<%@include file="/common/common.jsp"%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -33,10 +33,10 @@
         <div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;">
             <div property="columns">
                 <div field="" name="" type="indexcolumn" headeralign="center" align="center">编号</div>
-                <div field="" name="" headeralign="center" align="center">套餐名称</div>
-                <div field="" id="" name="" headeralign="center" align="center">售价</div>
-                <div field="" id="" name="" headeralign="center" align="center">提成类型</div>
-                <div field="" id="" name="" headeralign="center" align="center">提成点</div>
+                <div field="name" name="name" headeralign="center" align="center">套餐名称</div>
+                <div field="sellAmt" id="sellAmt" name="" headeralign="center" align="center">售价</div>
+                <div field="salesDeductType" id="salesDeductType" name="salesDeductType" headeralign="center" align="center">提成类型</div>
+                <div field="salesDeductValue" id="salesDeductValue" name="" headeralign="center" align="center">提成点</div>
                 <div field="" id="" name="" headeralign="center" align="center">操作</div>
             </div>
         </div>

@@ -9,7 +9,8 @@
 -->
 <head> 
   <title>会员卡设置</title>
-  <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
+  <%-- <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script> --%>
+  <script src="<%= request.getContextPath() %>/page/js/cardCfg.js?v=1.02"></script>
   <style type="text/css">
  
   .title {
@@ -46,8 +47,8 @@
 <body>
 
   <div class="nui-fit">
-<div id="tabs1" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;"  borderStyle="border:0;padding:0">
-    <div title="卡管理" >
+<div id="tabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;"  borderStyle="border:0;padding:0">
+    <div title="计次卡" >
 
           <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
       <table class="table" id="table1">
@@ -56,8 +57,9 @@
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
             <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <span class="separator"></span>
-            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn7"><span class="fa fa-plus fa-lg"></span>&nbsp;导出</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;修改</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;禁用</a>
           </td>
         </tr>
       </table>
@@ -65,7 +67,7 @@
   </div>
 
       <div class="nui-fit">
-        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
+        <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
         selectOnLoad="true"
         showPager="true"
         pageSize="50"
@@ -76,31 +78,21 @@
         allowCellSelect="true"
         editNextOnEnterKey="true"
         onshowrowdetail="onShowRowDetail"
-        url="">
+        url="com.hsapi.crm.page.newcomponent.CardCfgJC.biz.ext">
         <div property="columns">
-          <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >车牌号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡类型</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡名称</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡内余额</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >发卡门店</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >销售人员</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >开卡日期</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >截止日期</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >操作</div>
+          <div field="name" name="name" width="40" headerAlign="center" align="center" >计次卡名称</div>
+          <div field="periodValidity" name="periodValidity" width="40" headerAlign="center" align="center" >有效期(月)</div>
+          <div field="sellAmt" name="sellAmt" width="40" headerAlign="center" align="center" >销售价格</div>
+          <div field="salesDeductType" name="salesDeductType" width="40" headerAlign="center" align="center" >销售提成方式</div>
+          <div field="salesDeductValue" name="salesDeductValue" width="40" headerAlign="center" align="center" >销售提成值</div>
+          <div field="useRemark" name="useRemark" width="40" headerAlign="center" align="center" >使用说明</div>
+          <div field="remark" name="remark" width="40" headerAlign="center" align="center" >卡说明</div>
+          <div field="status" name="status" width="40" headerAlign="center" align="center" >状态</div>
         </div>
       </div>
     </div>
     </div>
-    <div title="开卡单" iconCls="icon-cut" >
-        
-
-
-
-    </div>
-    <div title="卡模板管理" showCloseButton="true">
+    <div title="储值卡">
         
 
 
@@ -111,10 +103,9 @@
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
             <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <span class="separator"></span>
-            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn1"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡会员卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn2"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡计次卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn3"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡套餐卡</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn4"><span class="fa fa-plus fa-lg"></span>&nbsp;开卡储值卡</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;修改</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="newBill()" id="addBtn6"><span class="fa fa-plus fa-lg"></span>&nbsp;禁用</a>
           </td>
         </tr>
       </table>
@@ -122,7 +113,7 @@
   </div>
 
       <div class="nui-fit">
-        <div id="" class="nui-datagrid" style="width:100%;height:100%;"
+        <div id="grid2" class="nui-datagrid" style="width:100%;height:100%;"
         selectOnLoad="true"
         showPager="true"
         pageSize="50"
@@ -133,15 +124,17 @@
         allowCellSelect="true"
         editNextOnEnterKey="true"
         onshowrowdetail="onShowRowDetail"
-        url="">
+        url="com.hsapi.crm.page.newcomponent.cardCfgCZ.biz.ext">
         <div property="columns">
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡名称</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡类型</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >适用范围</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >卡说明</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >发卡金额</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >有效期</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >操作</div>
+          <div field="name" name="name" width="40" headerAlign="center" align="center" >卡名称</div>
+          <div field="useRange" name="useRange" width="40" headerAlign="center" align="center" >适用范围</div>
+          <div field="sellAmt" name="sellAmt" width="40" headerAlign="center" align="center" >销售价格</div>
+          <div field="salesDeductType" name="salesDeductType" width="40" headerAlign="center" align="center" >销售提成方式</div>
+          <div field="salesDeductValue" name="salesDeductValue" width="40" headerAlign="center" align="center" >销售提成值</div>
+          <div field="useRemark" name="useRemark" width="40" headerAlign="center" align="center" >使用说明</div>
+          <div field="remark" name="remark" width="40" headerAlign="center" align="center" >卡说明</div>
+          <div field="status" name="status" width="40" headerAlign="center" align="center" >状态</div>
+          <div field="periodValidity" name="periodValidity" width="40" headerAlign="center" align="center" >有效期</div>
         </div>
       </div>
     </div>
@@ -155,23 +148,7 @@
 
 <script type="text/javascript">
    nui.parse();
-	function newBill(){
 	
-		try{
-            nui.open({
-              url : webPath + sysDomain + "/page/cardMgr/cardSell.jsp",
-              title : "开卡",
-              width : "830px",
-              height : "370px",
-              onload : function() {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setInitData();
-              },
-              ondestroy : function(action) {
-              }
-            });
-          }finally{}
-	}   
 </script>
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="checkPartTypeExists" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、如果是新增，则直接判断是否存在当前品牌和编码的信息&#xD;&#xA;    orgid = 0 or orgid = ##&#xD;&#xA;2、如果是修改，则要判断是否能取到值，取到后ID是否相等&#xD;&#xA;    orgid = 0  or orgid = ##" title="Administrator&#x9;18-5-15 上午11:41">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="checkDetailExists" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、如果是新增，则直接判断是否存在当前品牌和编码的信息&#xD;&#xA;    tenantId = 0 or tenantId = ##&#xD;&#xA;2、如果是修改，则要判断是否能取到值，取到后ID是否相等&#xD;&#xA;    tenantId = 0  or tenantId = ##" title="Administrator&#x9;18-5-15 上午11:41">
     <location x="65" y="20"/>
     <size height="100" width="361"/>
   </nodes>
@@ -47,12 +47,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.com.ComPartType</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCheckDetail</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">cond/_or[1]/_expr[1]/orgid</process:to>
+      <process:to type="query">cond/_or[1]/_expr[1]/tenantId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -60,7 +60,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_or[1]/_expr[2]/orgid</process:to>
+      <process:to type="query">cond/_or[1]/_expr[2]/tenantId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -68,7 +68,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">code</process:from>
-      <process:to type="query">cond/_or[2]/_expr[1]/code</process:to>
+      <process:to type="query">cond/_or[2]/_expr[1]/checkCode</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -76,7 +76,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">name</process:from>
-      <process:to type="query">cond/_or[2]/_expr[2]/name</process:to>
+      <process:to type="query">cond/_or[2]/_expr[2]/checkName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -120,7 +120,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -301,15 +301,15 @@
   <process:info author="Administrator" createTime="2018-05-15 11:40:12" date="2018-05-15Z" description="" name="checkPartExists" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComPartType" name="typeList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComPartType" name="type"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCheckDetail" name="typeList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCheckDetail" name="type"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="eId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="分类名称" isArray="false" name="name" primitiveType="String"/>
-    <process:input description="分类编码" isArray="false" name="code" primitiveType="String"/>
+    <process:input description="检查项目名称" isArray="false" name="name" primitiveType="String"/>
+    <process:input description="检查项目编码" isArray="false" name="code" primitiveType="String"/>
     <process:input description="add,edit" isArray="false" name="editType" primitiveType="String"/>
-    <process:input description="分类ID" isArray="false" name="id" primitiveType="Int"/>
+    <process:input description="检查项目ID" isArray="false" name="id" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

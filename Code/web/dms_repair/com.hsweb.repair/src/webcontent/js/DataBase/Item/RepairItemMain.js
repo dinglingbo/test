@@ -1,30 +1,36 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
+var treeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
 var tree1 = null;
 var rightGrid = null;
+var typeHash = {};
 
 $(document).ready(function()
 {
 	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
 	var parentId = "DDT20130703000063";
-	getDatadictionaries(parentId,function(data)
-	{
-		var list = data.list||[];
-		tree1.loadList(list);
+    tree1.setUrl(treeUrl+"?p/rootId=DDT20130703000063&token="+token);
+    var data = tree1.getList();
+	data.forEach(function(v) {
+		typeHash[v.customid] = v;
 	});
-	var parentId1 = "DDT20130703000057";
-	getDatadictionaries(parentId1,function(data)
-	{
-		var list = data.list||[];
-		var itemKind = nui.get("itemKind");
-		itemKind.setData(list);
-	});
-	initCarBrand("carBrandId",function()
-	{
-	});
-    initDicts({"costType": COST_TYPE});
-    
+	// getDatadictionaries(parentId,function(data)
+	// {
+	// 	var list = data.list||[];
+	// 	tree1.loadList(list);
+	// });
+	// var parentId1 = "DDT20130703000057";
+	// getDatadictionaries(parentId1,function(data)
+	// {
+	// 	var list = data.list||[];
+	// 	var itemKind = nui.get("itemKind");
+	// 	itemKind.setData(list);
+	// });
+	// initCarBrand("carBrandId",function()
+	// {
+	// });
+    // initDicts({"costType": COST_TYPE});
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;
@@ -38,6 +44,16 @@ $(document).ready(function()
 	rightGrid.setUrl(rightGridUrl);
 	rightGrid.on("drawcell",onDrawCell);
 	onSearch();
+    rightGrid.on("drawcell",function(e){
+		switch (e.field){
+			case "type":
+				if(typeHash && typeHash[e.value])
+				{
+					e.cellHtml = typeHash[e.value].name||"";
+				}
+				break;
+		}
+	});
 });
 function onClear(){
 	queryForm.clear();
@@ -64,19 +80,17 @@ function doSearch(params)
 function addOrEdit(item){
 	nui.open({
 		targetWindow: window,
-		url:"com.hsweb.repair.DataBase.RepairItemDetail.flow",
+		url:webPath + repairDomain + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
 		title:"维修工时",
-		width:450,
-		height:420,
+		width:550,
+		height:360,
 		allowResize:false,
 		onload: function()
 		{
 			var iframe = this.getIFrameEl();
 			var params = {};
 			params.typeList = tree1.getList();
-			params.itemKindList = nui.get("itemKind").getData();
 			params.carBrandIdList = nui.get("carBrandId").getData();
-            params.costType = nui.get("costType").getData();
 			if(item)
 			{
 				params.item = item;

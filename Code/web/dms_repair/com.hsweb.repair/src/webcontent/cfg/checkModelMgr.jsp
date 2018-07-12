@@ -48,6 +48,11 @@
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" plain="true" onclick="addCheckModel()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="saveCheckModel()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <input name="checkType"
+                               id="checkType"
+                               class="nui-combobox"
+                               textField="name"
+                               valueField="customid" visible="false"/>
                         </td>
                     </tr>
                 </table>

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>宝马配件查询</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBmwParts.js?v=1.0.7"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBmwParts.js?v=1.0.8"></script>
 <style type="text/css">
     .table-label {
         text-align: right;
@@ -55,16 +55,16 @@
             <div type="indexcolumn">序号</div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>
-            <div field="agioCode" name="agioCode" width="100" headerAlign="center" header="折扣代码"></div>
+            <!--<div field="agioCode" name="agioCode" width="100" headerAlign="center" header="折扣代码"></div>
             <div field="agioRate" name="agioRate" width="100" headerAlign="center" header="折扣率(%)"></div>
-            <div field="retailPrice" name="retailPrice" width="100" headerAlign="center" header="除税零售价"></div>
-            <div field="displayRetailPrice" name="displayRetailPrice" width="100" headerAlign="center" header="含税零售价"></div>
-            <div field="displayPurchasePrice" name="displayPurchasePrice" width="100" headerAlign="center" header="含税采购价"></div>
-            <div field="stockQtySy01Bj" name="stockQtySy01Bj" width="100" headerAlign="center" header="北京仓库存数量"></div>
-            <div field="stockQtySy02Sh" name="stockQtySy02Sh" width="100" headerAlign="center" header="上海仓库存数量"></div>
-            <div field="stockQtySy03Gz" name="stockQtySy03Gz" width="100" headerAlign="center" header="广州仓库存数量"></div>
-            <div field="stockQtySy06Cd" name="stockQtySy06Cd" width="100" headerAlign="center" header="成都仓库存数量"></div>
-            <div field="stockQtySy07Sy" name="stockQtySy07Sy" width="100" headerAlign="center" header="沈阳仓库存数量"></div>
+            <div field="retailPrice" name="retailPrice" width="100" headerAlign="center" header="除税零售价"></div>-->
+            <div field="displayRetailPrice" name="displayRetailPrice" width="100" headerAlign="center" header="零售价"></div>
+            <div field="displayPurchasePrice" name="displayPurchasePrice" width="100" headerAlign="center" header="采购价"></div>
+            <div field="stockQtySy01Bj" name="stockQtySy01Bj" width="100" headerAlign="center" header="北京仓"></div>
+            <div field="stockQtySy02Sh" name="stockQtySy02Sh" width="100" headerAlign="center" header="上海仓"></div>
+            <div field="stockQtySy03Gz" name="stockQtySy03Gz" width="100" headerAlign="center" header="广州仓"></div>
+            <div field="stockQtySy06Cd" name="stockQtySy06Cd" width="100" headerAlign="center" header="成都仓"></div>
+            <div field="stockQtySy07Sy" name="stockQtySy07Sy" width="100" headerAlign="center" header="沈阳仓"></div>
             <div field="remark" name="remark" width="100" headerAlign="center" header="备注"></div>
             <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="更新日期"></div>
         </div>

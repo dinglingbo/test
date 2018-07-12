@@ -21,7 +21,7 @@
 			<tr>
 				<td>
 					<label style="font-family: Verdana;font-size: 12px;">快速查询：</label>
-					<label style="font-family: Verdana;;font-size: 12px;">工种：</label>
+					<!-- <label style="font-family: Verdana;;font-size: 12px;">工种：</label>
 					<input id="itemKind"
 						   name="itemKind"
 						   class="nui-combobox width1"
@@ -31,7 +31,7 @@
 						   url=""
 						   allowInput="false"
 						   showNullItem="false"
-						   nullItemText="请选择..."/>
+						   nullItemText="请选择..."/> -->
 					<label style="font-family: Verdana;;font-size: 12px;">品牌：</label>
 					<input id="carBrandId"
 						   name="carBrandId"
@@ -54,7 +54,7 @@
 					<label style="font-family: Verdana;;font-size: 12px;">工时名称：</label>
 					<input class="nui-textbox" id="search-name" name="name" />
 					<span class="separator"></span>
-					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="onClear()">清空</a>
 				</td>
 			</tr>
@@ -65,9 +65,9 @@
 	<table style="width: 100%">
 		<tr>
 			<td style="width: 100%">
-				<a class="nui-button" id="add" iconCls="icon-add" onclick="add()" plain="true">新增工时</a>
-				<a class="nui-button" id="update" iconCls="icon-edit" onclick="edit()" plain="true">修改工时</a>
-				<a class="nui-button" id="selectBtn" iconCls="icon-ok" onclick="onOk()" plain="true" visible="false">选择</a>
+				<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增工时</a>
+				<a class="nui-button" id="update" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改工时</a>
+				<a class="nui-button" id="selectBtn" iconCls="" onclick="onOk()" plain="true" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 			</td>
 		</tr>
 	</table>
@@ -83,10 +83,10 @@
 				</div>
 				<div class="nui-fit">
 					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
+						dataField="data"
 						resultAsTree="false"
 						showTreeIcon="true"
-						textField="name"
-						idField="id">
+						textField="name" idField="id" parentField="dictid">
 					</ul>
 				</div>
 			</div>
@@ -114,10 +114,7 @@
 							<div property="columns">
 								<div field="code" headerAlign="center" width="100px">工时编号</div>
 								<div field="name" headerAlign="center" allowSort="true" width="150px">工时名称</div>
-								<div field="itemKind" headerAlign="center" allowSort="true" width="40px">工种</div>
 								<div field="type" headerAlign="center" allowSort="true" width="100px">工时类型</div>
-								<div field="carBrandId" headerAlign="center" allowSort="true" width="60px">品牌</div>
-								<div field="carModel" headerAlign="center" allowSort="true" width="60px">车型</div>
 							</div>
 						</div>
 						<div header="工时价格信息" headerAlign="center">

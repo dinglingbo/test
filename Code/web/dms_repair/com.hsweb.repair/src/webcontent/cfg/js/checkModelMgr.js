@@ -11,6 +11,7 @@ var nameEl = null;
 var isDisabledEl = null;
 var checkDetailContentForm = null;
 var contentGrid = null;
+var typeHash = {};
 
 var statusList = [{id:"2",name:"全部"},{id:"0",name:"启用"},{id:"1",name:"禁用"}];
 var statusHash = {"0":"启用","1":"禁用"};
@@ -72,6 +73,12 @@ $(document).ready(function(v)
                     e.cellHtml = statusHash[e.value];
                 }
                 break;
+            case "checkType":
+                if(typeHash && typeHash[e.value])
+                {
+                    e.cellHtml = typeHash[e.value].name;
+                }
+                break;
             default:
                 break;
         }
@@ -90,6 +97,13 @@ $(document).ready(function(v)
         contentGrid.load({
             checkId:checkId,
             token: token
+        });
+    });
+    var dictDefs ={"checkType":"10081"};
+    initDicts(dictDefs, function(){
+        var typeList = nui.get("checkType").getData();
+        typeList.forEach(function(v) {
+            typeHash[v.customid] = v;
         });
     });
 
@@ -212,16 +226,19 @@ function addCheckType(){
 		}
 	});
 }
-function addCheckDetail(){
+function addOrEdit(row){
     nui.open({
 		targetWindow : window,
 		url : webPath+repairDomain+"/com.hsweb.repair.DataBase.checkDetailSet.flow?token="+token,
 		title : "检查项目设置",
 		width : 450,
 		height : 350,
-		allowDrag : false,
+		allowDrag : true,
 		allowResize : false,
 		onload : function() {
+            var iframe = this.getIFrameEl();
+            var r = nui.clone(row);
+			iframe.contentWindow.setInitData(r);
 		},
 		ondestroy : function(action) {
 			if (action == 'ok') {
@@ -229,4 +246,21 @@ function addCheckDetail(){
 			}
 		}
 	});
+}
+function addCheckDetail(){
+    var mainRow = leftGrid.getSelected();
+    if(!mainRow){
+        showMsg("请先选择模板再添加检查项目!","W");
+        return;
+    }
+    var row = {mainId:mainRow.id};
+    addOrEdit(row);
+}
+function editCheckDetail(){
+    var row = rightGrid.getSelected();
+    if(row){
+        addOrEdit(row);
+    }else{
+        showMsg("请选择一条记录!","W");
+    }
 }

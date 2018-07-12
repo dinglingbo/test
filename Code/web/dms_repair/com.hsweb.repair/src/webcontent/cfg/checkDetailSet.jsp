@@ -82,53 +82,64 @@
             <div id="editForm" class="form">
                     <input id="orgid" name="orgid" width="100%" class="nui-hidden" >
                     <input class="nui-hidden" name="id"/>
-                    <input class="nui-hidden" name="isEdit"/>
+                    <input class="nui-hidden" name="mainId"/>
                     <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
                     <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
+                    <input name="itemName" class="nui-textbox" visible="false" id="itemName"/>
+                    <input name="partName" class="nui-textbox" visible="false" id="partName"/>
                     <table class="tmargin">
                         <tr class="htr">
                             <td class=" right fwidtha required">检查类型:</td>
                             <td >
-                               <input name="qualityTypeId"
-                               id="qualityTypeId"
+                               <input name="checkType"
+                               id="checkType"
                                class="nui-combobox"
                                textField="name"
-                               valueField="id"
+                               valueField="customid"
                                valueFromSelect="true"
                                emptyText="请选择..."
                                url=""
                                width="100%"
                                allowInput="true"
                                showNullItem="false"
-                               onvaluechanged="onQualityTypeIdChanged"
+                               onvaluechanged=""
                                nullItemText="请选择..."/>
                             </td>
                         </tr>
                         <tr class="htr">
                                 <td class=" right fwidthb required">项目名称:</td>
-                                <td ><input name="code" class="nui-textbox" width="100%" id="code"/></td>
+                                <td ><input name="checkName" class="nui-textbox" width="100%" id="checkName"/></td>
                             </tr>
                         <tr class="htr">
-                            <td class=" right fwidthb required">工时:</td>
+                            <td class=" right fwidthb">工时:</td>
                             <td >
-                                <input name="partNameId" id="partNameId"
+                                <input name="itemNameId" id="itemNameId"
                                 class="nui-buttonedit" emptyText=""
                                 allowInput="false" width="100%"
-                                onbuttonclick="onButtonEdit" selectOnFocus="true" />
+                                onbuttonclick="onItemButtonEdit" selectOnFocus="true" />
                             </td>
                         </tr>
                         <tr class="htr">
-                            <td class=" right fwidthb required">配件:</td>
+                            <td class=" right fwidthb">配件:</td>
                             <td >
                                 <input name="partNameId" id="partNameId"
                                 class="nui-buttonedit" emptyText=""
                                 allowInput="false" width="100%"
-                                onbuttonclick="onButtonEdit" selectOnFocus="true" />
+                                onbuttonclick="onPartButtonEdit" selectOnFocus="true" />
                             </td>
                         </tr>
                         <tr class="htr">
                             <td class=" right fwidthb">排序值:</td>
-                            <td ><input name="code" class="nui-textbox" width="50px" id="code"/>(>0的整数,越小越靠前显示)</td>
+                            <td >
+                                <input class="nui-spinner"
+                                name="orderIndex"
+                                id="orderIndex"
+                                format="0"
+                                value="0" maxValue="1000000000"
+                                changeOnMousewheel="true" showButton="false"
+                                width="50px" />
+                                (>0的整数,越小越靠前显示)
+                            </td>
                         </tr>
                         <tr class="htr">
                             <td class=" right fwidthb">是否禁用:</td>
@@ -144,10 +155,14 @@
                     showPager="false"
                     dataField="list"
                     sortMode="client"
+                    allowCellSelect="true"
+                    allowCellEdit="true"
                     url="">
                 <div property="columns">
-                    <div allowSort="true" field="content" width="20" headerAlign="center" header="操作"></div>
-                    <div allowSort="true" field="content" headerAlign="center" header="常用语"></div>
+                    <div allowSort="true" field="opt" width="20" headerAlign="center" align="center" header="操作"></div>
+                    <div allowSort="true" field="content" headerAlign="center" header="常用语">
+                            <input property="editor" class="nui-textbox"/>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDictTypeChild" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="6.3">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="com.hsapi.system.data.dictMgr.queryDictTypeChilds" title="Administrator&#x9;18-7-12 上午10:40">
+    <location x="75" y="-45"/>
+    <size height="100" width="442"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据查询条件查询业务字典类型&#xD;&#xA;&#xD;&#xA;查询条件：&#xD;&#xA;1.类型代码&#xD;&#xA;2.类型名称&#xD;&#xA;&#xD;&#xA;说明：默认dicttypeid升序排列" title="陈鹏&#x9;13-11-29 下午3:33">
     <location x="30" y="375"/>
     <size height="151" width="196"/>
@@ -66,6 +70,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">sortOrder</process:from>
       <process:to type="query">p/sortOrder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rootId</process:from>
+      <process:to type="query">p/rootId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">isDisabled</process:from>
+      <process:to type="query">p/isDisabled</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -195,6 +207,8 @@
     <process:input description="" isArray="false" name="sortField" primitiveType="String"/>
     <process:input description="" isArray="false" name="sortOrder" primitiveType="String"/>
     <process:input description="父节点ID" isArray="false" name="customid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="rootId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="isDisabled" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="data"/>

@@ -75,6 +75,8 @@
         <process:inputVariable id="0" name="sortField" type="query" value="String" valueType="Primitive" pattern="reference">sortField</process:inputVariable>
         <process:inputVariable id="1" name="sortOrder" type="query" value="String" valueType="Primitive" pattern="reference">sortOrder</process:inputVariable>
         <process:inputVariable id="2" name="customid" type="query" value="String" valueType="Primitive" pattern="reference">customid</process:inputVariable>
+        <process:inputVariable id="3" name="rootId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="4" name="isDisabled" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="commonj.sdo.DataObject[]" valueType="Java">types</process:outputVariable>
@@ -97,7 +99,7 @@
     <location x="435" y="145"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="5" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.queryDict</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="sortField" type="query" value="String" valueType="Primitive" pattern="reference">sortField</process:inputVariable>
@@ -105,6 +107,10 @@
         <process:inputVariable id="2" name="dictid" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="3" name="dictids" type="query" value="String[]" valueType="Primitive" pattern="reference">dictIda</process:inputVariable>
         <process:inputVariable id="4" name="fromDb" type="query" value="Boolean" valueType="Primitive" pattern="reference">fromDb</process:inputVariable>
+        <process:inputVariable id="5" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="6" name="orgids" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="7" name="tenantId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="8" name="tenantIds" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap[]" valueType="Java">data</process:outputVariable>

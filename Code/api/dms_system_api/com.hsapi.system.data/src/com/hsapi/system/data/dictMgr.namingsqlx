@@ -45,6 +45,18 @@
         <isNull property="dictid">
 			AND A.DICTID in($dictids$)
 		</isNull>
+		<isNotNull property="tenantId">
+			AND a.tenant_id = #tenantId#
+		</isNotNull>
+		<isNotNull property="tenantIds">
+			AND (a.tenant_id = #tenantIds# or a.tenant_id = 0)
+		</isNotNull>
+		<isNotNull property="orgid">
+			AND a.orgid = #orgid#
+		</isNotNull>
+		<isNotNull property="orgids">
+			AND (a.orgid = #orgids# or a.orgid = 0)
+		</isNotNull>
 		<isNotNull property="sortField">
 			Order By #sortField# #sortOrder#
 		</isNotNull>
@@ -58,6 +70,33 @@
 		<isNotNull property="customid">
 			AND a.customid like '$customid$%'
 		</isNotNull>	
+		<!--例：维修项目类型DDT20130703000063-->
+		<isNotNull property="rootId">
+			AND a.root_id = #rootId#
+		</isNotNull>	
+		<isNotNull property="isDisabled">
+			AND a.is_disabled = #isDisabled#
+		</isNotNull>
+    </select>
+    <!-- 字典类型 + 子项  输出的树结构   dict + item-->
+    <select id="queryDictItemTree" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT id as id, parentid as dictid, tenant_id as tenantId, orgid as orgid, customid as customid, 
+			   name as name, root_id as rootId, is_disabled as isDisabled, 'dict' as type 
+		from com_datadictionaries
+		where  1 = 1 and (orgid = 0 or orgid = #orgid#)
+		<!--例：维修项目类型DDT20130703000063-->
+		<isNotNull property="rootId">
+			AND root_id = #rootId#
+		</isNotNull>
+		union 
+		select id as id, dictid as dictid, tenant_id as tenantId, orgid as orgid, customid as customid, 
+		       `name` as name, root_id as rootId, is_disabled as isDisabled, 'item' as type 
+		from com_dataitems
+		where 1 = 1 and (orgid = 0 or orgid = #orgid#)
+		<!--例：维修项目类型DDT20130703000063-->
+		<isNotNull property="rootId">
+			AND root_id = #rootId#
+		</isNotNull>
     </select>
     <!--角色成员010815/营销员，DDT20130703000015-->
     <select id="queryRoleMember" parameterClass="HashMap" resultClass="HashMap">

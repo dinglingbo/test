@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDict.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="6.3">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.system.data.dictMgr.queryDictItem" title="Administrator&#x9;18-7-12 上午10:45">
+    <location x="323" y="15"/>
+    <size height="100" width="428"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="数据字典查询&#xD;&#xA;查多父节点ID时，传dictids&#xD;&#xA;查单父节点ID时，传dictid" title="Guine&#x9;18-2-28 上午8:56">
     <location x="30" y="225"/>
     <size height="106" width="196"/>
@@ -206,6 +210,22 @@
       <process:from type="query" pattern="reference">param</process:from>
       <process:to type="query">p/dictid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">p/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgids</process:from>
+      <process:to type="query">p/orgids</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">p/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantIds</process:from>
+      <process:to type="query">p/tenantIds</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="468" y="278"/>
@@ -309,6 +329,10 @@
     <process:input description="父节点ID" isArray="false" name="dictid" primitiveType="String"/>
     <process:input description="多父节点ID列表" isArray="true" name="dictids" primitiveType="String"/>
     <process:input description="强制从数据库查询" isArray="false" name="fromDb" primitiveType="Boolean"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orgids" primitiveType="String"/>
+    <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="tenantIds" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>

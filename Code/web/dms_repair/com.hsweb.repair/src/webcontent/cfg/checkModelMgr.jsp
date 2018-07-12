@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
@@ -104,8 +105,10 @@
                        <div type="indexcolumn">序号</div>
                        <div type="expandcolumn" width="20" >#</div>
                        <div field="checkName" name="checkName" width="120" headerAlign="center" allowSort="true">项目名称</div>
-                       <div field="checkType" width="120" headerAlign="center" allowSort="true">项目类型</div>
-                       <div field="orderIndex" width="50" headerAlign="center" allowSort="true">排序</div>
+                       <div field="checkType" width="120" headerAlign="center" allowSort="true">检查类型</div>
+                       <div field="orderIndex" width="50" headerAlign="center" allowSort="true">排序值</div>
+                       <div field="itemName" width="80" headerAlign="center" allowSort="true">工时</div>
+                       <div field="partName" width="80" headerAlign="center" allowSort="true">项目</div>
                        <!-- <div field="isDisabled" width="80" headerAlign="center" allowSort="true">所需工时</div>
                        <div field="isDisabled" width="80" headerAlign="center" allowSort="true">所需配件</div> -->
                        <div allowSort="true" width="50" field="isDisabled" headerAlign="center" header="状态"></div>
@@ -126,7 +129,7 @@
              url=""
              showSummaryRow="true">
             <div property="columns">
-                <div allowSort="true" field="content" summaryType="count"  headerAlign="center" header="内容"></div>
+                <div allowSort="true" field="content" summaryType="count"  headerAlign="center" header="常用语"></div>
             </div>
         </div>
     </div>

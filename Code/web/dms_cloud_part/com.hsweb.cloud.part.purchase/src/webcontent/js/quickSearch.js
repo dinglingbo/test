@@ -16,10 +16,6 @@ var win = null;
 var cartGrid = null;
 var mainTabs = null;
 
-var qualityList = [];
-var qualityHash = {};
-var brandHash = {};
-var brandList = [];
 var gpartId = 0;
 var gpartCode = "";
 
@@ -29,6 +25,12 @@ var conList = [
     {id:"2",name:"编码尾号"},
     {id:"3",name:"首字拼音"}
 ];
+var qualityList = [];
+var qualityHash = {};
+var brandHash = {};
+var brandList = [];
+var unitList = [];
+var carBrandList = [];
 $(document).ready(function() {
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
@@ -214,6 +216,23 @@ $(document).ready(function() {
         brandList = data.brand;
         brandList.forEach(function(v) {
             brandHash[v.id] = v;
+        });
+
+        getAllCarBrand(function(data) {
+            data = data || {};
+            carBrandList = data.data || [];
+            
+            var dictIdList = [];
+            dictIdList.push('DDT20130703000016');// --单位
+            getDictItems(dictIdList, function(data) {
+                if (data && data.dataItems) {
+                    var dataItems = data.dataItems || [];
+                    unitList = dataItems.filter(function(v) {
+                        return v.dictid == 'DDT20130703000016';
+                    });
+                }
+                //onSearch();
+            });
         });
 
     });
@@ -489,12 +508,11 @@ function addOrEditPart(row)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            var carBrandList = nui.get("applyCarBrandId").getData();
             var params = {
                 qualityTypeIdList:qualityList,
                 partBrandIdList:brandList,
                 unitList:unitList,
-                abcTypeList:abcTypeList,
+                abcTypeList:[],
                 applyCarModelList:carBrandList
             };
             if(row)

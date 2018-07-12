@@ -12,7 +12,7 @@ var parentidEl = null;
 
 $(document).ready(function(v) {
 	mainForm = new nui.Form("#editForm");
-	parentidEl = nui.get("parentid");
+	parentidEl = nui.get("parentId");
 
 	getComPartType(function(data) {
 		partTypeHash = data.type || [];
@@ -100,8 +100,11 @@ function saveType(type){
 				newRowT.parentid = rowT.parentid;
 				SetData(newRowT, newRowT);
 			}else{
-				if (window.CloseOwnerWindow) return window.CloseOwnerWindow("ok");
-    			else window.close();
+				if(data.errCode == "S"){
+					if (window.CloseOwnerWindow) return window.CloseOwnerWindow("ok");
+    				else window.close();
+				}
+				
 			}
 		},
 		ondestroy: function() {

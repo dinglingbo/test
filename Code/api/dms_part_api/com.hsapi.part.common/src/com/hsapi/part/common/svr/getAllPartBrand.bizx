@@ -51,11 +51,11 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">parentId</process:from>
-      <process:to type="query">cond/_expr[1]/_property</process:to>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond/_expr[1]/parentId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">null</process:from>
+      <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
@@ -134,7 +134,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">notnull</process:from>
+      <process:from type="literal" pattern="reference">></process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
   </nodes>

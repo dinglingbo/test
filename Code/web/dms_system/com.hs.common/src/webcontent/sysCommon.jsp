@@ -79,6 +79,7 @@
     String userRealName="";
     String token="";
     String tenantId = "default";
+    String compType = "";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -98,6 +99,7 @@
 				token = attr.get("token").toString();
                 noOrgId = session.getAttribute("noOrgId").toString();
                 tenantId = attr.get("tenantId").toString();
+                compType = attr.get("compType").toString();
 			} catch (Exception e) {
 			}
             
@@ -126,6 +128,7 @@
 	var currUserName = "<%=userName %>";
     var currUserRealName = "<%=userRealName %>";
     var currTenantId = "<%=tenantId %>";
+    var currCompType = "<%=compType %>";
     var token = "<%=token %>";
     //alert("token=" + token);
     

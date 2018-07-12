@@ -64,7 +64,7 @@
                     dataField="partTypes"
                     ondrawnode="onDrawNode"
                     onnodedblclick="onNodeDblClick"
-                    showTreeIcon="true" textField="name" idField="id" parentField="parentid" resultAsTree="false">
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
                 </ul>
             </div>
         </div>

@@ -159,7 +159,7 @@ function initGridDataThree(data){
             var partId = -1;
             var partCode = part.pid;
             var partName = part.label;
-            var fullName = part.label + " 原厂";  //000070 原厂件  00000327 原厂
+            var fullName = part.label + " 原厂";  //000070 365原厂件  00000327 241原厂
             var unit = "PCS";
             var orderQty = part.orderQty||1;
             var orderPrice = part.orderPrice||0;

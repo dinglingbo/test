@@ -116,14 +116,14 @@
 			}
 		});
 	}
-	var getAllCarBrandUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.common.svr.getAllCarBrand.biz.ext";
+	var getAllCarBrandUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryCarBrand.biz.ext";
 	function getAllCarBrand(callback) {
 		nui.ajax({
 			url : getAllCarBrandUrl,
 			data : {token: token},
 			type : "post",
 			success : function(data) {
-				if (data && data.carBrands) {
+				if (data && data.data) {
 					callback && callback(data);
 				}
 			},

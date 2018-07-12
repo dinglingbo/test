@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
@@ -38,9 +39,9 @@
 .htr{
     height: 20px;
 }
-.mainwidth{
+/* .mainwidth{
     width: 700px;
-}
+} */
 .tmargin{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -84,11 +85,8 @@
             <input class="nui-hidden" name="dictid"/>
             <input class="nui-hidden" name="tenantId"/>
             <input class="nui-hidden" name="orgid"/>
+            <input class="nui-hidden" name="customid"/>
             <table class="tmargin">
-                <tr class="htr">
-                    <td class=" right fwidthb required">编码:</td>
-                    <td ><input name="customid" class="nui-textbox" width="100%" id="customid"/></td>
-                </tr>
                 <tr class="htr">
                         <td class=" right fwidthb required">名称:</td>
                         <td ><input name="name" class="nui-textbox" width="100%" id="name"/></td>
@@ -99,6 +97,7 @@
                         <input name="isDisabled"
                         id="isDisabled"
                         class="nui-combobox"
+                        value = "0"
                         textField="name"
                         valueField="id"
                         width="100%"
@@ -108,12 +107,13 @@
             </table>
 
         </div>
+        <div style="text-align:center;padding-top:5px;">
+            <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
+            <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+        </div>
     </div>
 </div>
-<div style="text-align:center;padding:10px;">
-        <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
-        <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-</div>
+
 
 
 </body>

@@ -103,10 +103,18 @@ function edit(action) {
     	emp = row;  	
     }
 
+    var url = webPath + sysDomain + "/common/employeeEdit.jsp?token="+token;
+    var width = 680;
+    var height = 430;
+    if(currCompType == 'PART'){
+        url = webPath + sysDomain + "/com.hs.common.partEmployeeEdit.flow?token="+token;
+        height = 250;
+    }
+
     nui.open({
-        url: webPath + sysDomain + "/common/employeeEdit.jsp?token="+token,
-        width: 680,         //宽度
-        height: 430,        //高度
+        url: url,
+        width: width,         //宽度
+        height: height,        //高度
         title: "员工信息",      //标题 组织编码选择
         allowResize:true,
         onload: function () {

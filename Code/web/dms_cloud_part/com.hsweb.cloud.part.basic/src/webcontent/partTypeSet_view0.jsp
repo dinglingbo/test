@@ -41,7 +41,7 @@ pageEncoding="UTF-8" session="false" %>
         <div id="mainGrid" class="nui-treegrid" style="width:100%;height:100%;" dataField="type"  url=""  
                         showTreeIcon="true"  treeColumn="name" expandOnLoad="true" showModified="false"
                         onselectionchanged="onGridSelectedChange" selectOnLoad="true"
-                        idField="id" parentField="parentid" resultAsTree="false">
+                        idField="id" parentField="parentId" resultAsTree="false">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
                 <div field="id" name="id" width="80"  visible="false" >id</div>

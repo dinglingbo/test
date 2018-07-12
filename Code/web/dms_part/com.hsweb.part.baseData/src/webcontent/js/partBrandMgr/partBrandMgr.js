@@ -5,9 +5,11 @@
 var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartBrandList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartBrandList.biz.ext";
+var bottomeGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryOrgPartBrandList.biz.ext";
 var leftGrid = null;
 var rightGrid = null;
 var splitter = null;
+var bottomGrid = null;
 $(document).ready(function(v)
 {
     //splitter = nui.get("splitter");
@@ -22,6 +24,8 @@ $(document).ready(function(v)
     rightGrid.on("beforeload",function(e){
         e.data.token = token;
     });
+    bottomGrid = nui.get("bottomGrid");
+    bottomGrid.setUrl(bottomeGridUrl);
     rightGrid.on("rowclick",function(e)
     {
         var row = e.record;
@@ -39,9 +43,9 @@ $(document).ready(function(v)
         }
     });
     onSearch(2);
+
+    loadBottom();
 });
-
-
 function addOrEditPartQuality(quality)
 {
 	var title = "新增品质";
@@ -55,7 +59,7 @@ function addOrEditPartQuality(quality)
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
         title: title, width: 350, height: 150,
         allowDrag:true,
         allowResize:false,
@@ -105,7 +109,7 @@ function addOrEditPartBrand(brand)
     }
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
         title: title, width: 350, height: 200,
         allowDrag:true,
         allowResize:false,
@@ -210,8 +214,15 @@ function onLeftGridRowClick(e)
         nui.get("disabledLeft").show();
         nui.get("enabledLeft").hide();
     }
-    if(row.orgid != currOrgid)
-    {
+    if(row.orgid == currOrgid || currTenantId=='default'){
+        nui.get("disabledLeft").enable();
+        nui.get("enabledLeft").enable();
+        nui.get("editLeft").enable();
+        nui.get("addRight").enable();
+        nui.get("editRight").enable();
+        nui.get("disabledRight").enable();
+        nui.get("enabledRight").enable();
+    }else{
         nui.get("disabledLeft").disable();
         nui.get("enabledLeft").disable();
         nui.get("editLeft").disable();
@@ -220,15 +231,7 @@ function onLeftGridRowClick(e)
         nui.get("disabledRight").disable();
         nui.get("enabledRight").disable();
     }
-    else{
-        nui.get("disabledLeft").enable();
-        nui.get("enabledLeft").enable();
-        nui.get("editLeft").enable();
-        nui.get("addRight").enable();
-        nui.get("editRight").enable();
-        nui.get("disabledRight").enable();
-        nui.get("enabledRight").enable();
-    }
+    
     loadRightGridData(row.id);
 }
 function loadRightGridData(parentId)
@@ -395,6 +398,102 @@ function updateIsDisabled(brand,callback)
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+function addLocalBrand()
+{
+    nui.open({
+        targetWindow: window,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.partBrandOrgDetail.flow?token=" + token,
+        title: "新增关注品牌", width: 500, height: 350,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setInitData(bottomGrid.getData());
+         
+        },
+        ondestroy: function (action)
+        {
+            loadBottom();
+        }
+    });
+}
+function loadBottom(){
+    bottomGrid.load({
+        token:token
+    });
+}
+var saveLocalBrandUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveOrgPartBrand.biz.ext";
+function delLocalBrand()
+{
+    var data = bottomGrid.getSelecteds();
+    if(!data || data.length<=0) return;
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+    nui.ajax({
+        url:saveLocalBrandUrl,
+        type:"post",
+        data:JSON.stringify({
+            deleteList:data,
+            token:token
+        }),
+        success:function(rs)
+        {
+            nui.unmask();
+            rs = rs||{};
+            if(rs.errCode == "S")
+            {
+                showMsg("处理成功","S");
+                loadBottom();
+            }
+            else{
+                showMsg(data.errMsg||"处理失败","W");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+function saveLocalBrand(){
+    var data = bottomGrid.getChanges("modified");
+
+    if(!data || data.length<=0) return;
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+    nui.ajax({
+        url:saveLocalBrandUrl,
+        type:"post",
+        data:JSON.stringify({
+            updateList:data,
+            token:token
+        }),
+        success:function(rs)
+        {
+            nui.unmask();
+            rs = rs||{};
+            if(rs.errCode == "S")
+            {
+                showMsg("保存成功","S");
+                loadBottom();
+            }
+            else{
+                showMsg(data.errMsg||"保存失败","W");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
             console.log(jqXHR.responseText);
         }
     });

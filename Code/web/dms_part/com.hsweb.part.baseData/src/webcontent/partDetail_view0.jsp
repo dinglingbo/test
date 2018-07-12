@@ -88,7 +88,7 @@
                 <tr class="htr">
                     <td class=" right fwidtha required">配件品质:</td>
                     <td >
-					             <input name="qualityTypeId"
+					<input name="qualityTypeId"
                        id="qualityTypeId"
                        class="nui-combobox"
                        textField="name"

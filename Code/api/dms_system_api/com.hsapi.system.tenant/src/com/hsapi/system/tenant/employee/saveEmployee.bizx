@@ -208,7 +208,7 @@
       <process:to type="query">emp/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">emp/tenantId</process:to>
     </process:copy>
     <process:copy>
@@ -328,7 +328,7 @@
       <process:to type="query">empOrg/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">emp/tenantId</process:from>
+      <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">empOrg/tenantId</process:to>
     </process:copy>
     <process:copy>
@@ -513,6 +513,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link38</targetConnections>
+    <targetConnections>link15</targetConnections>
     <location x="181" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin1label</nodeLabel>
@@ -704,6 +705,16 @@
       <sourceNode>assign9</sourceNode>
       <targetNode>transactionbegin1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">m:userObject/attributes/tenantId</process:leftOperand>
+          <process:rightOperand type="literal">default</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="115" y="174"/>
     <size height="28" width="28"/>
@@ -785,6 +796,25 @@
     <figSize height="17" width="74"/>
     <node>invokePojo3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>transactionbegin1</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="117" y="91"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">tenantId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="115" y="127"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-14 17:36:33" date="2018-06-14Z" description="" name="saveEmployee" version="7.0.0.0"/>
@@ -797,6 +827,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.OrgEmployee" name="tmpObj"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.CapUser" name="tmpUser"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgEmporg" name="empOrg"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComMember" name="emp"/>

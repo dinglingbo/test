@@ -40,7 +40,7 @@
                     dataField="partTypes"
                     ondrawnode="onDrawNode"
                     onnodedblclick="onNodeDblClick"
-                    showTreeIcon="true" textField="name" idField="id" parentField="parentid" resultAsTree="false">
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
                 </ul>
             </div>
         </div>
@@ -64,11 +64,12 @@
                         <div header="配件名称" headerAlign="center">
                             <div property="columns">
                                 <div allowSort="true" field="name" headerAlign="center" header="标准名称"></div>
-                                <div allowSort="true" field="namestd" width="100" headerAlign="center" header="标准名称组"></div>
+                                <!-- <div allowSort="true" field="namestd" width="100" headerAlign="center" header="标准名称组"></div> -->
                                 <div allowSort="true" field="direction" width="70" headerAlign="center" header="方向"></div>
                                 <div allowSort="true" field="namecn" width="80" headerAlign="center" allowSort="true" header="别名"></div>
                             </div>
                         </div>
+                        <!-- 
                         <div header="分类" headerAlign="center">
                             <div property="columns">
                                 <div allowSort="true" field="cartypef" width="80" headerAlign="center" header="一级"></div>
@@ -84,7 +85,7 @@
                                 <div allowSort="true" field="operator" width="70" headerAlign="center" header="修改人"></div>
                                 <div allowSort="true" field="operatedate" width="80" headerAlign="center" allowSort="true" header="修改日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

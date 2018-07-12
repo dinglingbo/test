@@ -197,19 +197,31 @@ function loadCheckDetail(mainId){
 function addCheckType(){
     nui.open({
 		targetWindow : window,
-		url : webPath+repairDomain+"/repair/cfg/checkTypeSet.jsp?token="+token,
+		url : webPath+repairDomain+"/com.hsweb.repair.DataBase.checkTypeSet.flow?token="+token,
 		title : "检查项目类型设置",
 		width : 280,
-		height : 260,
-		allowDrag : true,
-		allowResize : true,
+		height : 150,
+		allowDrag : false,
+		allowResize : false,
 		onload : function() {
-			var iframe = this.getIFrameEl();
-			var params = {
-                isSupplier: 1,
-                guestType:'01020202'
-            };
-            iframe.contentWindow.setGuestData(params);
+		},
+		ondestroy : function(action) {
+			if (action == 'ok') {
+				
+			}
+		}
+	});
+}
+function addCheckDetail(){
+    nui.open({
+		targetWindow : window,
+		url : webPath+repairDomain+"/com.hsweb.repair.DataBase.checkDetailSet.flow?token="+token,
+		title : "检查项目设置",
+		width : 450,
+		height : 350,
+		allowDrag : false,
+		allowResize : false,
+		onload : function() {
 		},
 		ondestroy : function(action) {
 			if (action == 'ok') {

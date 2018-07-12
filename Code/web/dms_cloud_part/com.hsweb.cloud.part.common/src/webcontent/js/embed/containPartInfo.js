@@ -51,22 +51,15 @@ $(document).ready(function() {
 
         getAllCarBrand(function(data) {
             data = data || {};
-            carBrandList = data.carBrands || [];
+            carBrandList = data.data || [];
             
             var dictIdList = [];
             dictIdList.push('DDT20130703000016');// --单位
-            dictIdList.push('DDT20130703000067');// --ABC分类
             getDictItems(dictIdList, function(data) {
                 if (data && data.dataItems) {
                     var dataItems = data.dataItems || [];
                     unitList = dataItems.filter(function(v) {
                         return v.dictid == 'DDT20130703000016';
-                    });
-                    abcTypeList = dataItems.filter(function(v) {
-                        return v.dictid == 'DDT20130703000067';
-                    });
-                    abcTypeList.forEach(function(v) {
-                        abcTypeHash[v.id] = v;
                     });
                 }
                 //onSearch();

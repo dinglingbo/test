@@ -126,7 +126,7 @@ public class BillStateUtils {
 		
 		if(conColumn3!=null && conColumn3!=""){
 			cond.set("_expr[3]/" + conColumn3, conContent3);
-			cond.set("_expr[3]/_op", "!=");
+			cond.set("_expr[3]/_op", "<>");
 		}
 
 		DataObject[] result = com.eos.foundation.database.DatabaseUtil
@@ -159,7 +159,7 @@ public class BillStateUtils {
 		
 		if(conColumn3!=null && conColumn3!=""){
 			cond.set("_expr[3]/" + conColumn3, conContent3);
-			cond.set("_expr[3]/_op", "!=");//修改时应用
+			cond.set("_expr[3]/_op", "<>");//修改时应用
 		}
 
 		DataObject[] result = com.eos.foundation.database.DatabaseUtil

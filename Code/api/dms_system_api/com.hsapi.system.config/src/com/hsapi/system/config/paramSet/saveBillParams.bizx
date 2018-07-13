@@ -103,6 +103,8 @@
     <chidren>assign13</chidren>
     <chidren>assign14</chidren>
     <chidren>assign15</chidren>
+    <chidren>assign16</chidren>
+    <chidren>assign17</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
     <location x="-6" y="189"/>
@@ -241,6 +243,26 @@
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
           <process:rightOperand type="literal">repairSettorderPrintShow</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="1002" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign16</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">repairEntrustPrintContent</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link39" name="1001" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">repairSettPrintContent</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -480,6 +502,8 @@
     <targetConnections>link37</targetConnections>
     <targetConnections>link38</targetConnections>
     <targetConnections>link3</targetConnections>
+    <targetConnections>link5</targetConnections>
+    <targetConnections>link40</targetConnections>
     <location x="354" y="156"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
@@ -646,6 +670,44 @@
     <location x="139" y="-42"/>
     <figSize height="17" width="39"/>
     <node>assign15</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign16</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="99" y="-105"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign16label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1002</process:from>
+      <process:to type="query">keyidId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
+    <location x="94" y="-69"/>
+    <figSize height="17" width="39"/>
+    <node>assign16</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign17" name="赋值17" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign17</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link39</targetConnections>
+    <location x="45" y="-60"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign17label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1001</process:from>
+      <process:to type="query">keyidId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
+    <location x="40" y="-24"/>
+    <figSize height="17" width="39"/>
+    <node>assign17</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -10,7 +10,7 @@
 -->
 <head>
   <title>首页</title>
-  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.4.9"></script>
+  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.5.0"></script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -232,11 +232,11 @@
             <div class="nui-fit">
                 <div class="nui-fit">
                     <div  style="padding:10px 10px 10px 10px;">
-                       <ul id="newul" > 
+                       <ul id="newul" class="newul" > 
 
-                        <li><a href="http://www.baidu.com">华胜企业体系</a></li>
+                        <!-- <li><a href="http://www.baidu.com">华胜企业体系</a></li>
                         <li><a href="http://www.baidu.com">关于华胜526</a></li>
-                        <li><a href="http://www.baidu.com">你所不知道的华胜</a></li>
+                        <li><a href="http://www.baidu.com">你所不知道的华胜</a></li> -->
                     </ul>
 
                 </div>

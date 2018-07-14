@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDict.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="6.3">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.system.data.dictMgr.queryDictItem" title="Administrator&#x9;18-7-12 上午10:45">
-    <location x="323" y="15"/>
+    <location x="330" y="5"/>
     <size height="100" width="428"/>
   </nodes>
   <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="数据字典查询&#xD;&#xA;查多父节点ID时，传dictids&#xD;&#xA;查单父节点ID时，传dictid" title="Guine&#x9;18-2-28 上午8:56">
@@ -36,6 +36,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">params/sortField</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="60" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -56,6 +66,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="208" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
@@ -315,6 +326,29 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="60" y="60"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/sortField</process:from>
+      <process:to type="query">sortField</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/sortOrder</process:from>
+      <process:to type="query">sortOrder</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="58" y="96"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="陈鹏" createTime="2013-12-02 10:16:52" date="2013-12-02Z" description="" name="查询业务字典项" version="6.3"/>
@@ -333,6 +367,7 @@
     <process:input description="" isArray="false" name="orgids" primitiveType="String"/>
     <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
     <process:input description="" isArray="false" name="tenantIds" primitiveType="String"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>

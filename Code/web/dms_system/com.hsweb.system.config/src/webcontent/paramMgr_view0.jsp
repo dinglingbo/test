@@ -6,6 +6,7 @@
 
 <head>
 <title>参数设置</title>
+<script src="<%=webPath + sysDomain%>/config/js/paramMgr.js?v=1.0.0"></script>
 </head>
 <body>
 	<div class="nui-fit">
@@ -17,21 +18,21 @@
 			</div> 
 			<div title="业务分类" id="businessTypeTab" name="businessTypeTab" url="">
 			</div>
-			<div title="客户级别" id="guestTypeTab" name="BMWStockTab" url="">
+			<div title="客户级别" id="guestTypeTab" name="guestTypeTab" url="">
 			</div>
-			<div title="客户来源" name="priceTab" url="" >
+			<div title="客户来源" name="guestSourceTab" url="" >
 			</div>   
-			<div title="回访设置" name="enterRecordTab" url="" >
+			<div title="回访设置" name="visitTab" url="" >
 			</div>  
-			<div title="汽车电子健康档案上传设置" name="outRecordTab" url="" >
+			<div title="汽车电子健康档案上传设置" name="carSetTab" url="" >
 			</div> 
-			<div title="检测模板设置" name="outRecordTab" url="" >
+			<div title="检测模板设置" name="carCheckModelTab" url="" >
 			</div> 
-			<div title="库存设置" name="preOutTab" url="" >
+			<div title="库存设置" name="stockTab" url="" >
 			</div>  
-			<div title="绩效设置" name="invocingTab" url="" >
+			<div title="绩效设置" name="basicDeductTab" url="" >
 			</div>
-			<div title="提醒设置" name="partCommonTab" url="" >
+			<div title="提醒设置" name="remindTab" url="" >
 			</div> 
 		</div>	
 	</div>

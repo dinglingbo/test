@@ -47,7 +47,7 @@
 .tbtext{
   text-align: right;
   line-height: 40px;
-  width: 10%;
+  width: 20%;
 }
 .tbitext{
   text-align: right;

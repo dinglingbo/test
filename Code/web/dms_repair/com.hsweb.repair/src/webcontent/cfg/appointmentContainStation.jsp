@@ -17,9 +17,9 @@
                         <a class="nui-button" plain="true" onclick="addStation" id="addStationBtn">
                             <span class="fa fa-plus fa-lg"></span>&nbsp;新增
                         </a>
-                        <a class="nui-button" plain="true" onclick="delStation" id="addStationBtn">
+                        <!-- <a class="nui-button" plain="true" onclick="delStation" id="addStationBtn">
                             <span class="fa fa-close fa-lg"></span>&nbsp;删除
-                        </a>
+                        </a> -->
                         <a class="nui-button" plain="true" onclick="saveStation" id="saveStationBtn">
                             <span class="fa fa-save fa-lg"></span>&nbsp;保存
                         </a>

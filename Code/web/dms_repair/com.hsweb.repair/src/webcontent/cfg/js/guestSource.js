@@ -1,5 +1,5 @@
 var baseUrl = apiPath + sysApi + "/";;
-var gridUrl = apiPath + repairApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext"
+var gridUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext"
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = {0:"启用",1:"禁用"};
 var dgGrid;

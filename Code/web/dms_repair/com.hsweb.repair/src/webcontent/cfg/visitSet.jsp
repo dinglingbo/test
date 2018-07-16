@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="nui-fit">
-	 <div style="background-color: #F0F0F0; width: 90%;height: 70%; margin-top: 3%; margin-left: 5%;">
+	 <div style="background-color: #F0F0F0; width: 90%;height: 100%;  margin-left: 5%;">
 	 	<div style="width: 90%; height: 50%;  margin-left: 5%;">
 	 
 	 	<span>
@@ -36,7 +36,7 @@
 			<input class="nui-hidden" name="washId"/>
 			<input class="nui-hidden" name="zeroId"/>
 			<input class="nui-hidden" name="claimId"/>
-	 		<table border="1" style="margin-left: 5%; width:90%; border-spacing:1px 0px;">
+	 		<table border="1" style="margin-left: 2%; width:96%; border-spacing:1px 0px;">
 	 		<tr>
 	 		<td width="100px;" align="center">类别</td>
 	 		<td width="200px;">第一次回访日</td>
@@ -48,17 +48,17 @@
 	 		<td> 出厂	 
 				 <input name="workScoutDay1" style="width: 12%" class="nui-spinner" format="0"  value="7" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="workScoutDisable1" id="workScoutDisable1" textField="name" valueField="id" value="1" data="showList" ></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block;text-align: right; " name="workScoutDisable1" id="workScoutDisable1" textField="name" valueField="id" value="1" data="showList" ></div>
 			</td>
 	 		<td> 出厂	 
 				<input name="workScoutDay2" style="width: 12%" class="nui-spinner" format="0"  value="30" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="workScoutDisable2" id="workScoutDisable2" textField="name" valueField="id" value="1" data="showList"  ></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="workScoutDisable2" id="workScoutDisable2" textField="name" valueField="id" value="1" data="showList"  ></div>
 			</td>
 	 		<td> 出厂	 
 				 <input name="workScoutDay3" style="width: 12%" class="nui-spinner" format="0"  value="90" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="workScoutDisable3" id="workScoutDisable3" textField="name" valueField="id" value="1"  data="showList"></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="workScoutDisable3" id="workScoutDisable3" textField="name" valueField="id" value="1"  data="showList"></div>
 			</td>
 	 		</tr>
 	 		<tr>
@@ -66,17 +66,17 @@
 			<td> 出厂	 
 				<input name="washScoutDay1" style="width: 12%" class="nui-spinner" format="0"  value="7" minValue="1" maxValue="371" showButton="false"/>
 				天后 
-				<div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="washScoutDisable1" id="washScoutDisable1" textField="name" valueField="id" value="1" data="showList" ></div>
+				<div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="washScoutDisable1" id="washScoutDisable1" textField="name" valueField="id" value="1" data="showList" ></div>
 			</td>
 	 		<td> 出厂	 
 				 <input name="washScoutDay2" style="width: 12%" class="nui-spinner" format="0"  value="30" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="washScoutDisable2" id="washScoutDisable2" textField="name" valueField="id" value="1" data="showList" ></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="washScoutDisable2" id="washScoutDisable2" textField="name" valueField="id" value="1" data="showList" ></div>
 			</td>
 	 		<td> 出厂	 
 				 <input name="washScoutDay3" style="width: 12%" class="nui-spinner" format="0"  value="90" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="washScoutDisable3" id="washScoutDisable3" textField="name" valueField="id" value="1" data="showList" ></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="washScoutDisable3" id="washScoutDisable3" textField="name" valueField="id" value="1" data="showList" ></div>
 			</td>
 	 		</tr>
 	 		<tr>
@@ -84,17 +84,17 @@
 			<td> 出厂	 
 				<input name="zeroScoutDay1" style="width: 12%" class="nui-spinner" format="0"  value="7" minValue="1" maxValue="371" showButton="false"/>
 				天后 
-				<div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="zeroScoutDisable1" id="zeroScoutDisable1" textField="name" valueField="id" value="1" data="showList" ></div>
+				<div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="zeroScoutDisable1" id="zeroScoutDisable1" textField="name" valueField="id" value="1" data="showList" ></div>
 			</td>
 	 		<td> 出厂	 
 				 <input name="zeroScoutDay2" style="width: 12%" class="nui-spinner" format="0"  value="30" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="zeroScoutDisable2" id="zeroScoutDisable2" textField="name" valueField="id" value="1" data="showList" ></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="zeroScoutDisable2" id="zeroScoutDisable2" textField="name" valueField="id" value="1" data="showList" ></div>
 			</td>
 	 		<td> 出厂	 
 				 <input name="zeroScoutDay3" style="width: 12%" class="nui-spinner" format="0"  value="90" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="zeroScoutDisable3" id="zeroScoutDisable3" textField="name" valueField="id" value="1"  data="showList"></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="zeroScoutDisable3" id="zeroScoutDisable3" textField="name" valueField="id" value="1"  data="showList"></div>
 			</td>
 	 		</tr>
 	 		<tr>
@@ -102,17 +102,17 @@
 			<td> 出厂	 
 				<input name="claimScoutDay1" style="width: 12%" class="nui-spinner" format="0"  value="7" minValue="1" maxValue="371" showButton="false"/>
 				天后 
-				<div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="claimScoutDisable1" id="claimScoutDisable1" textField="name" valueField="id" value="1"  data="showList"></div>
+				<div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="claimScoutDisable1" id="claimScoutDisable1" textField="name" valueField="id" value="1"  data="showList"></div>
 			</td>
 	 		<td> 出厂	 
 				 <input name="claimScoutDay2" style="width: 12%" class="nui-spinner" format="0"  value="30" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="claimScoutDisable2" id="claimScoutDisable2" textField="name" valueField="id" value="1"  data="showList"></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="claimScoutDisable2" id="claimScoutDisable2" textField="name" valueField="id" value="1"  data="showList"></div>
 			</td>
 	 		<td> 出厂	 
 				 <input name="claimScoutDay3" style="width: 12%" class="nui-spinner" format="0"  value="90" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
-				 <div  class="nui-radiobuttonlist" style="display:inline-block; margin-left: 10%;" name="claimScoutDisable3" id="claimScoutDisable3" textField="name" valueField="id" value="1"  data="showList"></div>
+				 <div  class="nui-radiobuttonlist" style="display:inline-block; text-align: right;" name="claimScoutDisable3" id="claimScoutDisable3" textField="name" valueField="id" value="1"  data="showList"></div>
 			</td>
 	 		</tr>
 	 		</table>

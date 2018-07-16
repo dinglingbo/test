@@ -362,10 +362,10 @@ function addStation(){
     stationGrid.addRow(newRow);
 }
 function delStation(){
-    var row = stationGrid.getSelected();
-    if(row){
-        stationGrid.removeRow(row,true);
-    }
+    //var row = stationGrid.getSelected();
+    //if(row){
+    //    stationGrid.removeRow(row,true);
+    //}
 }
 var saveStationUrl = baseUrl + "com.hsapi.repair.baseData.crud.saveStation.biz.ext";
 function saveStation(){

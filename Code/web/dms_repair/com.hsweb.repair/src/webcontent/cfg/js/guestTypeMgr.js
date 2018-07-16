@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + repairApi + "/";
-var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryGuestType.biz.ext";
+var rightGridUrl = apiPath + repairApi+"/com.hsapi.repair.baseData.query.queryGuestType.biz.ext";
 
 var rightGrid = null;
 var nameEl = null;

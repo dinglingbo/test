@@ -87,7 +87,7 @@ function showTabInfo(){
             break;
         case "remindTab":
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartCommon.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + repairDomain + "/repair/cfg/remindParams.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }

@@ -10,7 +10,7 @@
 <head> 
 <title>客户级别</title>
 
-<script src="<%=webPath + repairDomain%>/repair/cfg/js/guestTypeMgr.js?v=1.0.0"></script>
+<script src="<%=webPath + repairDomain%>/repair/cfg/js/guestTypeMgr.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>期初库存</title>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStock.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStock.js?v=2.0.1"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -161,9 +161,12 @@
                         </div>
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
+                                <div field="storeShelf" width="80" headerAlign="center" allowSort="true">
+                                    仓位<input property="editor" class="nui-textbox"/>
+                                </div>
                                 <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-                    仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-                                  url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
+                    仓库<input  property="editor" enabled="true" name="storehouse" data="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
+                                  url=""
                                   onvaluechanged="" emptyText=""  vtype="required"
                                   /> 
                     </div>  

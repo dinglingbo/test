@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <%@ page language="java" import="com.eos.data.datacontext.IUserObject"%>
-<%@page import="com.eos.data.datacontext.IMUODataContext,com.eos.data.datacontext.UserObject,com.eos.data.datacontext.DataContextManager"%>
+<%@page import="com.eos.data.datacontext.IMUODataContext,com.eos.data.datacontext.UserObject,com.eos.data.datacontext.DataContextManager,commonj.sdo.DataObject"%>
 <%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
 <%@ taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
 <%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
@@ -70,6 +70,9 @@
 		nui.context='<%=contextPath %>'
 	})
     
+    
+    var currOrgs = [];
+    
     <%
 	HttpSession session = request.getSession(false);
     String orgId="";
@@ -80,6 +83,7 @@
     String token="";
     String tenantId = "default";
     String compType = "";
+    Object orgs=null;
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -100,6 +104,7 @@
                 noOrgId = session.getAttribute("noOrgId").toString();
                 tenantId = attr.get("tenantId").toString();
                 compType = attr.get("compType").toString();
+                orgs = attr.get("orgs");
 			} catch (Exception e) {
 			}
             
@@ -122,6 +127,16 @@
 		}
 	}
     %>	
+    
+    <%
+    	//Map orglist= ObjectUtils.objectToMap(orgs);
+		//for (int i = 0; i < orglist.length; i++) {
+	%>
+		
+	<%
+		//}
+	%>
+
 	var currOrgId = "<%=orgId %>";
     var currOrgName = "<%=orgName %>";
     var currUserId = "<%=userId %>";

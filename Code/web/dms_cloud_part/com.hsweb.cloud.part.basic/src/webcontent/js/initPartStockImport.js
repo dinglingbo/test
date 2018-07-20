@@ -12,11 +12,16 @@ var rABS = false; //是否将文件读取为二进制字符串
 var mainGrid = null;
 var nstoreId = null;
 var enterMain = null;
+var advancedTipWin = null;
+var advancedTipForm = null;
 
 $(document).ready(function(v)
 {
 
-    mainGrid = nui.get("mainGrid");
+	mainGrid = nui.get("mainGrid");
+	
+	advancedTipWin = nui.get("advancedTipWin");
+	advancedTipForm  = new nui.Form("#advancedTipForm");
 
 });
 
@@ -82,9 +87,9 @@ function sure() {
 				storeId : nstoreId||"",
 				enterQty : data[i].数量||"",
 				enterPrice : data[i].单价||"",
-				enterAmt : data[i].金额||"",
 				taxSign : taxSign||"",
 				taxRate : data[i].税率||"0.07",
+				storeShelf : data[i].仓位||"",
 				remark : data[i].备注||""
 			};
 			partList.push(newRow);
@@ -108,6 +113,7 @@ function close(){
 
 var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getImportPartInfo.biz.ext";
 function saveEnterPart(partList){
+	advancedTipForm.setData([]);
 	if(partList && partList.length>0) {
 		nui.mask({
 	        el: document.body,
@@ -133,7 +139,17 @@ function saveEnterPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-						showMsg(errMsg,"S");
+						var rt = errMsg.split("：");
+						if(rt && rt.length>=2){
+							var rs = rt[1];
+							var partList = rs.split(";");
+
+							var parts = partList.join("\r\n");
+							
+							nui.get("fastCodeList").setValue(parts);
+							advancedTipWin.show();
+						}
+						//showMsg(errMsg,"S");
 	                }else{
 						showMsg("导入成功!","S");
 	                }

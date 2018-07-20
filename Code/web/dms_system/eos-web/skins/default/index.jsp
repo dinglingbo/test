@@ -66,7 +66,7 @@
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 续费</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li> -->
         <li class="dropdown">
-            <a class="dropdown-toggle userinfo">
+            <a class="dropdown-toggle userinfo" style="margin-top: 10%;">
                     <i class="fa fa-align-justify"></i><span >待处理</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
@@ -76,6 +76,19 @@
                 <li>
                     <a href="javascript:openSellOrder();"><i class="fa fa-pencil-square-o"></i> 待收货单</a>
                 </li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle userinfo" style="margin-top: 10%;">
+                    <i class="fa fa-align-justify"></i><span >公司</span><i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu pull-right" id="orgsname">
+                <!-- <li>
+                    <a href="javascript:openGuestOrder();"><i class="fa fa-pencil-square-o"></i> 待处理客户订单</a>
+                </li>
+                <li>
+                    <a href="javascript:openSellOrder();"><i class="fa fa-pencil-square-o"></i> 待收货单</a>
+                </li> -->
             </ul>
         </li>
         <li class="dropdown">

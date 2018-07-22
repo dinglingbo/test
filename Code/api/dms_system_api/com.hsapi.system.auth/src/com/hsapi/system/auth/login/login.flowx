@@ -78,21 +78,21 @@
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end1" name="主页" displayName="结束" type="end" contextPath="" method="forward" uri="" variableUri="false">
     <targetConnections>link2</targetConnections>
-    <location x="675" y="134"/>
+    <location x="750" y="133"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:inputVariables/>
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="677" y="170"/>
+    <location x="752" y="169"/>
     <figSize height="17" width="25"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="setUserOrgInfo" displayName="setUserOrgInfo" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>view0</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="345" y="135"/>
@@ -118,9 +118,11 @@
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="redirect.jsp" type="view" contextPath="" method="forward" uri="/coframe/auth/login/redirect.jsp">
-    <sourceConnections xsi:type="process:tActionLink" id="link2" name="link2" lineType="reference" isDefault="true" type="action" actionName="action1">
+    <sourceConnections xsi:type="process:tActionLink" description="" id="link2" name="link2" lineType="reference" isDefault="true" type="action" actionName="action1" dataConvertClass="">
       <sourceNode>view0</sourceNode>
       <targetNode>end1</targetNode>
+      <process:validateRules onError="default"/>
+      <process:inputParameters/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tActionLink" description="" id="link5" name="link5" lineType="reference" type="action" actionName="toggleOrg" dataConvertClass="">
       <sourceNode>view0</sourceNode>
@@ -131,16 +133,15 @@
         <process:parameter description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="Long"/>
       </process:inputParameters>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <targetConnections>link7</targetConnections>
-    <location x="496" y="135"/>
+    <targetConnections>link9</targetConnections>
+    <location x="571" y="134"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
     <process:inputParameters/>
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="495" y="171"/>
+    <location x="570" y="170"/>
     <figSize height="17" width="25"/>
     <node>view0</node>
   </nodes>
@@ -150,7 +151,7 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="493" y="30"/>
+    <location x="569" y="30"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -167,14 +168,14 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="440" y="65"/>
+    <location x="516" y="65"/>
     <figSize height="17" width="132"/>
     <node>subprocess2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>view0</targetNode>
+      <targetNode>assign1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" type="transition">
@@ -196,6 +197,30 @@
     <location x="332" y="66"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>view0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="465" y="135"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/orgs</process:from>
+      <process:to type="query">orgs</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/userOrgName</process:from>
+      <process:to type="query">orgName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="463" y="171"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

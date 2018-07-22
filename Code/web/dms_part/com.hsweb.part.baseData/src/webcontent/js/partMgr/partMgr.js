@@ -407,13 +407,15 @@ function importGuest(){
         onload: function ()
         {
             var iframe = this.getIFrameEl();
+            var carBrandList = nui.get("applyCarBrandId").getData();
             iframe.contentWindow.initData({
-                    partBrandIdList:brandList
+                    partBrandIdList:brandList,
+                    carBrandList: carBrandList
                 });
         },
         ondestroy: function (action)
         {
-            doSearch();
+            onSearch();
         }
     });
 }

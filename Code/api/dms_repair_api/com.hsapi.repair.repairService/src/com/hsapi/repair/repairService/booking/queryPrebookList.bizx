@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPrebookList.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="status  0待确认，1已确认，2已取消&#xD;&#xA;isOpenBill 是否开单&#xD;&#xA;isJudge 是否评价" title="Administrator&#x9;18-7-21 上午9:59">
+    <location x="90" y="-30"/>
+    <size height="100" width="241"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link4" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -98,11 +102,27 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/mtAdvisorId</process:from>
-      <process:to type="query">cd/_expr[7/mtAdvisorId</process:to>
+      <process:to type="query">cd/_expr[7]/mtAdvisorId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cd/_expr[7]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isOpenBill</process:from>
+      <process:to type="query">cd/_expr[8]/isOpenBill</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[8]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isJudge</process:from>
+      <process:to type="query">cd/_expr[9]/isJudge</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[9]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">true</process:from>

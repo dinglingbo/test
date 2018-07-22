@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <%@ page language="java" import="com.eos.data.datacontext.IUserObject"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext,com.eos.data.datacontext.UserObject,com.eos.data.datacontext.DataContextManager,commonj.sdo.DataObject"%>
-<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
+<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env,com.hs.common.ObjectUtils"%>
 <%@ taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
 <%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
 <%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
@@ -127,15 +127,6 @@
 		}
 	}
     %>	
-    
-    <%
-    	//Map orglist= ObjectUtils.objectToMap(orgs);
-		//for (int i = 0; i < orglist.length; i++) {
-	%>
-		
-	<%
-		//}
-	%>
 
 	var currOrgId = "<%=orgId %>";
     var currOrgName = "<%=orgName %>";

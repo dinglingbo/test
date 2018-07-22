@@ -12,14 +12,20 @@ var rABS = false; //是否将文件读取为二进制字符串
 var mainGrid = null;
 var nstoreId = null;
 var enterMain = null;
+var advancedTipWin = null;
+var advancedTipForm = null;
 
 var partBrandIdList = [];
 var partBrandIdHash = {};
+var carBrandList = [];
+var carBrandHash = {};
 
 $(document).ready(function(v)
 {
 
-    mainGrid = nui.get("mainGrid");
+	mainGrid = nui.get("mainGrid");
+	advancedTipWin = nui.get("advancedTipWin");
+	advancedTipForm  = new nui.Form("#advancedTipForm");
 
 });
 
@@ -28,7 +34,13 @@ function initData(data){
     partBrandIdList.forEach(function(v)
     {
         partBrandIdHash[v.name] = v;
-    });
+	});
+	
+	carBrandList = data.carBrandList||[];
+    carBrandList.forEach(function(v)
+    {
+        carBrandHash[v.nameCn] = v;
+	});
 
 }
 
@@ -92,10 +104,19 @@ function sure() {
 			newRow.name = data[i].名称||"";
 			newRow.unit = data[i].单位||"";
 			newRow.spec = data[i].规格||"";
+			newRow.applyCarbrandId = data[i].厂牌||"";
 			newRow.model = data[i].型号||"";
-			newRow.mobile = data[i].实物码||"";
+			newRow.goodsCode = data[i].实物码||"";
 			newRow.oemCode = data[i].OEM码||"";
 			newRow.applyCarModel = data[i].适用车型||"";
+			newRow.produceFactory = data[i].生产厂家||"";
+			newRow.commonCode = data[i].通用编码||"";
+			newRow.remark = data[i].备注||"";
+
+			newRow.code = newRow.code.replace(/\s+/g, "");
+			newRow.name = newRow.name.replace(/\s+/g, "");
+			newRow.oemCode = newRow.oemCode.replace(/\s+/g, "");
+			newRow.commonCode = newRow.commonCode.replace(/\s+/g, "");
 
 			for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
@@ -124,6 +145,16 @@ function sure() {
 			}else{
 				showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
 				return;
+			}
+
+			var carBrand = newRow.applyCarbrandId.replace(/\s+/g, "");
+			if(carBrand){
+				if(carBrandHash && carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")]){
+					newRow.applyCarbrandId = carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")].id;
+				}else{
+					showMsg("第"+(i+1)+"行记录的厂牌信息有误!","W");
+					return;
+				}
 			}
 
 			partList.push(newRow);
@@ -167,7 +198,9 @@ function saveEnterPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-						showMsg(errMsg,"S");
+						nui.get("fastCodeList").setValue(errMsg);
+						advancedTipWin.show();
+						//showMsg(errMsg,"S");
 	                }else{
 						showMsg("导入成功!","S");
 	                }

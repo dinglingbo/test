@@ -15,27 +15,31 @@
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">param/orgid</process:to>
+      <process:to type="query">rpsPrebook/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">rpsPrebook/recorderId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">param/recorder</process:to>
+      <process:to type="query">rpsPrebook/recorder</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">currDate</process:from>
-      <process:to type="query">param/recordDate</process:to>
+      <process:to type="query">rpsPrebook/recordDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">param/modifier</process:to>
+      <process:to type="query">rpsPrebook/modifier</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">currDate</process:from>
-      <process:to type="query">param/modifyDate</process:to>
+      <process:to type="query">rpsPrebook/modifyDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">param/status</process:to>
+      <process:to type="query">rpsPrebook/status</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -85,16 +89,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">param/orgid</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">param/modifier</process:to>
+      <process:to type="query">rpsPrebook/modifier</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">currDate</process:from>
-      <process:to type="query">param/modifyDate</process:to>
+      <process:to type="query">rpsPrebook/modifyDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -347,7 +347,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -378,7 +378,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -492,7 +492,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

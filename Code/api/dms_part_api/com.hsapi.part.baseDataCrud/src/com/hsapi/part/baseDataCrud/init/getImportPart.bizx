@@ -238,7 +238,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">partCode+&quot;&lt;/br>&quot;+partMsg</process:from>
+      <process:from type="expression" pattern="reference">partCode+&quot;\r\n&quot;+partMsg</process:from>
       <process:to type="query">partMsg</process:to>
     </process:copy>
   </nodes>
@@ -317,7 +317,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">errMsg+&quot;&lt;/br>&quot;+partMsg</process:from>
+      <process:from type="expression" pattern="reference">errMsg+&quot;\r\n&quot;+partMsg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -688,7 +688,7 @@
       <process:to type="query">partCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">partCode+&quot;&lt;/br>&quot;+partMsg</process:from>
+      <process:from type="expression" pattern="reference">partCode+&quot;\r\n&quot;+partMsg</process:from>
       <process:to type="query">partMsg</process:to>
     </process:copy>
   </nodes>

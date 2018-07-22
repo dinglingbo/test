@@ -80,7 +80,7 @@
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle userinfo" style="margin-top: 10%;">
-                    <i class="fa fa-align-justify"></i><span >公司</span><i class="fa fa-angle-down"></i>
+                    <i class="fa fa-align-justify"></i><span id="currOrgName">公司</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right" id="orgsname">
                 <!-- <li>
@@ -128,6 +128,11 @@
     </div>
    
 </div>
+<form id="toggleRole" role="form" method="post" action="com.hsapi.system.auth.login.login.flow">
+	<input type="hidden" name="_eosFlowAction" value="toggleOrg">
+	<input type="hidden" name="operatorId" value="" id="operatorId">
+	<input type="hidden" name="orgid" value="" id="orgid">
+</form>	
 
 
 </body>
@@ -251,6 +256,8 @@
     }
 
     $(function () {
+    
+    	
 
         //menu
         var menu = new Menu("#mainMenu", {
@@ -366,8 +373,47 @@
 	        return "离开此网站?";
 	        //return null;
 	    };
-
+        
        document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
+       document.getElementById('currOrgName').innerHTML = currOrgName;
+       
+       $.ajax({
+            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext",
+            type: "POST",
+            data : JSON.stringify({
+                token: token
+            }),
+            success: function(text){
+                var orgList = text.orgList;
+                if(orgList && orgList.length>0){
+                    for (var i = 0; i < orgList.length; i++) {
+                        var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
+                                + orgList[i].orgid
+                                + ')" title="'
+                                + orgList[i].orgname + '">';
+                        rtoken = rtoken + orgList[i].orgname;
+                        rtoken = rtoken + '</a></li>';
+
+                        $("#orgsname").append($(rtoken));
+                    }
+                }
+            }
+        });
     });
+
+    //切换角色
+    function changeOrgs(orgid) {
+        if (orgid != currOrgId) {
+            nui.confirm('切换公司后将重新加载页面，是否继续?','温馨提示',function(action){
+                if (action == "ok") {
+                    $("#operatorId").val(currUserId);
+                    $("#orgid").val(orgid);
+                    $("#toggleRole")[0].submit();
+                } else {
+                    //mini.get("changeRole").setValue(vGrid);
+                }
+            });
+        }
+    }
 
 </script>

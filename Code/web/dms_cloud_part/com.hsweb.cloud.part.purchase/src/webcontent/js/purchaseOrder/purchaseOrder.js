@@ -158,7 +158,7 @@ $(document).ready(function(v) {
 	    } 
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
-			onPrint(0);
+			onPrint();
 	    } 
 	    if((keyCode==113))  {  
 			addMorePart();
@@ -505,14 +505,14 @@ function quickSearch(type) {
 		gsparams.auditSign = 1;
 		querysign = 3;
 		break;
-	case 13:
-		querystatusname = "部分入库";
-		gsparams.billStatusId = 3;
-		gsparams.auditSign = 1;
-		querysign = 3;
-		break;
+	// case 13:
+	// 	querystatusname = "部分入库";
+	// 	gsparams.billStatusId = 3;
+	// 	gsparams.auditSign = 1;
+	// 	querysign = 3;
+	// 	break;
 	case 14:
-		querystatusname = "全部入库";
+		querystatusname = "已入库";
 		gsparams.billStatusId = 4;
 		gsparams.auditSign = 1;
 		querysign = 3;
@@ -1771,20 +1771,22 @@ function setGuestInfo(params) {
 		}
 	});
 }
-function onPrint(type) {
+function onPrint() {
 	var row = leftGrid.getSelected();
 
 	var data = rightGrid.getData();
 	if(data && data.length<=0) return;
 
-	if (row && type == 0) {
+	if (row) {
 
 		if(!row.id) return;
+
+		var auditSign = row.auditSign||0;
 
 		nui.open({
 
 			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,
 			height : 600,
@@ -1793,27 +1795,28 @@ function onPrint(type) {
 				// iframe.contentWindow.setInitData(storeId, 'XSD');
 			}
 		});
-	}else if(row && type == 1){
-		if(!row.id) return;
-
-		if(row.isFinished != 1) {
-			showMsg("全部入库后才能打印进货单!","W");
-			return;
-		}
-
-		nui.open({
-
-			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
-			title : "进货单打印",
-			width : 900,
-			height : 600,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				// iframe.contentWindow.setInitData(storeId, 'XSD');
-			}
-		});
 	}
+	// }else if(row && type == 1){
+	// 	if(!row.id) return;
+
+	// 	if(row.isFinished != 1) {
+	// 		showMsg("全部入库后才能打印进货单!","W");
+	// 		return;
+	// 	}
+
+	// 	nui.open({
+
+	// 		url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+	// 				+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+	// 		title : "进货单打印",
+	// 		width : 900,
+	// 		height : 600,
+	// 		onload : function() {
+	// 			var iframe = this.getIFrameEl();
+	// 			// iframe.contentWindow.setInitData(storeId, 'XSD');
+	// 		}
+	// 	});
+	// }
 
 }
 function addSelectPart(){

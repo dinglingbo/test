@@ -12,7 +12,7 @@
 <title>期初库存导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + sysDomain%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStockImport.js?v=2.0.3"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStockImport.js?v=2.0.5"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -103,6 +103,8 @@
 			style="width:100%;height:100%;">
 			<div property="columns">
 				<div type="indexcolumn">序号</div>
+				<div field="品牌" width="80px" headerAlign="center" allowSort="true">
+					品牌</div>
 				<div field="配件编码" width="150px" summaryType="count" headerAlign="center" allowSort="true">
 					配件编码</div>
 				<div field="数量" width="80px" headerAlign="center" allowSort="true">

@@ -263,7 +263,7 @@
       <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -903,6 +903,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">main/guestId</process:from>
       <process:to type="query">enterTemp/originGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterTemp/enterQty</process:from>
+      <process:to type="query">enterTemp/outableQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">

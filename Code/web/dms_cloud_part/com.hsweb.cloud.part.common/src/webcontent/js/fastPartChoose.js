@@ -355,12 +355,29 @@ function setInitData(params, ck, cck){
         params.namePy = value.replace(/\s+/g, "");
     }
 
-    params.sortField = "B.ENTER_DATE";//默认按日期升序
-    params.sortOrder = "asc";
+    var tab = morePartTabs.getActiveTab();
+    if(tab.name == "enterTab"){
+        params.sortField = "B.ENTER_DATE";
+        params.sortOrder = "asc";
+        enterGrid.load({params:params},function(e){
+            enterGrid.focus();
+        });
+    }else if(tab.name == "partInfoTab"){
+        params.showStock = showStockEl.getValue();
+        params.sortField = "b.last_enter_date";
+        params.sortOrder = "asc";
 
-    enterGrid.load({params:params},function(e){
-        enterGrid.focus();
-    });
+        morePartGrid.load({params:params},function(e){
+            morePartGrid.focus();
+        });
+    }
+
+    // params.sortField = "B.ENTER_DATE";//默认按日期升序
+    // params.sortOrder = "asc";
+
+    // enterGrid.load({params:params},function(e){
+    //     enterGrid.focus();
+    // });
 }
 function morePartSearch(){
     var params = {}; 
@@ -447,6 +464,9 @@ function addSelectPart(){
             params.partId = record.partId;
             params.guestId = guestId;
             var price = getPartPrice(params);
+            if(price == 0){
+                price = record.enterPrice||0;
+            }
             nui.get("price").setValue(price);
             nui.get("amt").setValue(price);
 
@@ -472,6 +492,9 @@ function addSelectPart(){
             params.partId = record.id;
             params.guestId = guestId;
             var price = getPartPrice(params);
+            if(price == 0){
+                price = record.costPrice||0;
+            }
             nui.get("price").setValue(price);
             nui.get("amt").setValue(price);
 

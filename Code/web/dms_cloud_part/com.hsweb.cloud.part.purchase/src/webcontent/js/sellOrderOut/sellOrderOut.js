@@ -1817,10 +1817,14 @@ function onPrint() {
     var row = leftGrid.getSelected();
     if (row) {
 
+        if(!row.id) return;
+
+		var auditSign = row.auditSign||0;
+
         nui.open({
 
-            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
-                    + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
+                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
             title : "销售出库打印",
             width : 900,
             height : 600,

@@ -3,7 +3,7 @@
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
@@ -28,30 +28,40 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getUserOrgByOperatorId" displayName="getUserOrgByOperatorId" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign0</sourceNode>
+      <sourceNode>subprocess1</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="250" y="150"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/orgs</process:from>
-      <process:to type="query">orgList</process:to>
-    </process:copy>
+    <location x="240" y="150"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.basic.organization.getUserOrgByOperatorId</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="operatorId" type="query" value="Long" valueType="Primitive" pattern="reference">userId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="orgs" type="query" value="com.hsapi.system.data.sys.VwUserOrg[]" valueType="DataObject">orgList</process:outputVariable>
+        <process:outputVariable id="1" name="orgIds" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="orgNames" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="3" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="252" y="186"/>
-    <figSize height="17" width="25"/>
-    <node>assign0</node>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="178" y="185"/>
+    <figSize height="17" width="150"/>
+    <node>subprocess1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-20 20:46:02" date="2018-07-20Z" description="" name="getOrgList" version="7.0.0.0"/>
   <process:variables/>
-  <process:inputs varArgs="false"/>
+  <process:inputs varArgs="false">
+    <process:input description="" isArray="false" name="userId" primitiveType="String"/>
+  </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="orgList"/>
   </process:outputs>

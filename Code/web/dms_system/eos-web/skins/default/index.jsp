@@ -128,7 +128,7 @@
     </div>
    
 </div>
-<form id="toggleRole" role="form" method="post" action="com.hsapi.system.auth.login.login.flow">
+<form id="toggleRole" role="form" method="post" action="">
 	<input type="hidden" name="_eosFlowAction" value="toggleOrg">
 	<input type="hidden" name="operatorId" value="" id="operatorId">
 	<input type="hidden" name="orgid" value="" id="orgid">
@@ -378,7 +378,7 @@
        document.getElementById('currOrgName').innerHTML = currOrgName;
        
        $.ajax({
-            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext",
+            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext?userId="+currUserId,
             type: "POST",
             data : JSON.stringify({
                 token: token
@@ -406,6 +406,7 @@
         if (orgid != currOrgId) {
             nui.confirm('切换公司后将重新加载页面，是否继续?','温馨提示',function(action){
                 if (action == "ok") {
+                    $("#toggleRole")[0].action = "com.hsapi.system.auth.login.login.flow";
                     $("#operatorId").val(currUserId);
                     $("#orgid").val(orgid);
                     $("#toggleRole")[0].submit();

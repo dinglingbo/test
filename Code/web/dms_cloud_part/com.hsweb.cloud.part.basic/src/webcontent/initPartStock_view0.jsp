@@ -9,7 +9,7 @@
 -->
 <head>
 <title>期初库存</title>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStock.js?v=2.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStock.js?v=2.0.2"></script>
 <style type="text/css">
 .title {
   width: 60px;

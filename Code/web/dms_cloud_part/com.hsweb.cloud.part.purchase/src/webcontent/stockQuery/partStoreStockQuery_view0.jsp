@@ -105,6 +105,7 @@
             <div header="数量金额" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+                    <div allowSort="true" datatype="float" field="costPrice" summaryType="sum" width="60" headerAlign="center" header="库存单价"></div>
                     <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>
                 </div>
             </div>

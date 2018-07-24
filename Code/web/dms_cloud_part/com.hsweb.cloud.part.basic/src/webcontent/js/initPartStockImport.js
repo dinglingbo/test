@@ -15,6 +15,9 @@ var enterMain = null;
 var advancedTipWin = null;
 var advancedTipForm = null;
 
+var brandHash = {};
+var brandList = [];
+
 $(document).ready(function(v)
 {
 
@@ -25,9 +28,15 @@ $(document).ready(function(v)
 
 });
 
-function initData(main, storeId){
+function initData(main, storeId, brandIdList){
 	nstoreId = storeId;
 	enterMain = main;
+	brandList = brandIdList;
+
+	brandList.forEach(function(v)
+    {
+        brandHash[v.name] = v;
+	});
 }
 
 function importf(obj) {//导入
@@ -82,15 +91,25 @@ function sure() {
 			//partid  partcode  partname  enterqty  enterunit  enterprice  enteramt
 			var taxSignStr = data[i].是否含税;
 			var taxSign = taxSignStr == "是" ? 1 : 0;
+			var partBrandId = (data[i].品牌||"").replace(/\s+/g, "");
+
+			if(brandHash && brandHash[partBrandId]){
+				partBrandId = brandHash[partBrandId].id;
+			}else{
+				showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
+				return;
+			}
+
 			var newRow = {
-				partCode : data[i].配件编码||"",
+				partBrandId: partBrandId,
+				partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
 				storeId : nstoreId||"",
-				enterQty : data[i].数量||"",
-				enterPrice : data[i].单价||"",
-				taxSign : taxSign||"",
-				taxRate : data[i].税率||"0.07",
-				storeShelf : data[i].仓位||"",
-				remark : data[i].备注||""
+				enterQty : (data[i].数量||"").replace(/\s+/g, ""),
+				enterPrice : (data[i].单价||"").replace(/\s+/g, ""),
+				taxSign : taxSign||0,
+				taxRate : (data[i].税率||"0.07").replace(/\s+/g, ""),
+				storeShelf : (data[i].仓位||"").replace(/\s+/g, ""),
+				remark : (data[i].备注||"").replace(/\s+/g, "")
 			};
 			partList.push(newRow);
 		}

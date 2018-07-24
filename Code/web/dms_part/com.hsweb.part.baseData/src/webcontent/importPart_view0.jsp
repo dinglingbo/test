@@ -11,7 +11,7 @@
 <title>配件资料导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + sysDomain%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/importJs/importPart.js?v=1.0.1"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/importJs/importPart.js?v=1.0.2"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;

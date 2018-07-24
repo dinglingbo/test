@@ -205,7 +205,9 @@ function saveEnterPart(partList){
 						showMsg("导入成功!","S");
 	                }
 	            } else {
-					showMsg(data.errMsg || "导入失败!","W");
+					nui.get("fastCodeList").setValue(data.errMsg);
+					advancedTipWin.show();
+					//showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

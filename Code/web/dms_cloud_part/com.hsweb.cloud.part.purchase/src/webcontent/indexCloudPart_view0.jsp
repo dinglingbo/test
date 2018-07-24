@@ -10,7 +10,7 @@
 -->
 <head>
   <title>首页</title>
-  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.5.0"></script>
+  <script src="<%=webPath + cloudPartDomain%>/purchase/js/indexCloudPart.js?v=1.5.1"></script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />

@@ -202,7 +202,7 @@ function toEPC(){
 	var item={};
 	item.id = "1521";
 	item.text = "EPC云服务";
-	item.url = webPath + sysDomain + "/com.hsweb.system.llq.vin.vinLinkMain.flow";
+	item.url = webPath + sysDomain + "/com.hsweb.system.epc.vinLinkMain.flow";
 	item.iconCls = "fa fa-car";
 	window.parent.activeTab(item);
 }

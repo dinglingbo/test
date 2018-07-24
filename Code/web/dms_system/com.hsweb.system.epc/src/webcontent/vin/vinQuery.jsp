@@ -15,7 +15,7 @@
     <link href="<%=sysDomain%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     
     <script src="<%=sysDomain%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/epc/vin/js/vinQuery.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/epc/vin/js/vinQuery.js?v=1.1" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -47,7 +47,7 @@
             <div class="" id="partForm" style="width:100%;height:40px;">
                   <br/>
                   <table class="" >
-                      <!-- 目前不支持短vin查询
+                      <!-- 目前不支持短vin查询  20180724修改为可按品牌查询
                       <tr class="">
                             <td >
                                 <div id="rbl_brand" class="nui-radiobuttonlist"  repeatLayout="table" 

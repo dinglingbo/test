@@ -130,7 +130,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="entities" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">orgs</process:inputVariable>
       <process:inputVariable id="1" name="propertyName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">orgid</process:inputVariable>
-      <process:inputVariable id="2" name="roundString" type="literal" value="java.lang.String" valueType="Java" pattern="reference"/>
+      <process:inputVariable id="2" name="roundString" type="literal" value="java.lang.String" valueType="Java" pattern="reference"></process:inputVariable>
       <process:inputVariable id="3" name="joinString" type="literal" value="java.lang.String" valueType="Java" pattern="reference">,</process:inputVariable>
       <process:inputVariable id="4" name="ignoreNullValue" type="expression" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
@@ -159,7 +159,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="entities" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">orgs</process:inputVariable>
       <process:inputVariable id="1" name="propertyName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">orgname</process:inputVariable>
-      <process:inputVariable id="2" name="roundString" type="literal" value="java.lang.String" valueType="Java" pattern="reference"/>
+      <process:inputVariable id="2" name="roundString" type="literal" value="java.lang.String" valueType="Java" pattern="reference"></process:inputVariable>
       <process:inputVariable id="3" name="joinString" type="literal" value="java.lang.String" valueType="Java" pattern="reference">,</process:inputVariable>
       <process:inputVariable id="4" name="ignoreNullValue" type="expression" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>

@@ -328,3 +328,35 @@ function importGuest(){
         }
     });
 }
+function resetPassword(){
+    var rows = grid.getSelecteds();
+    if(rows.length>0){
+        nui.confirm("确定将密码重置为000000？","系统提示",
+        function(action){
+          if(action=="ok"){
+             var json = nui.encode({members:rows,token:token});
+             var a= nui.loading("正在重置中,请稍等...","提示");
+             $.ajax({
+               url:apiPath + sysApi + "/com.hsapi.system.tenant.employee.resetPassword.biz.ext",
+               type:'POST',
+               data:json,
+               cache: false,
+               contentType:'text/json',
+               success:function(text){
+                   nui.hideMessageBox(a);
+                 var returnJson = nui.decode(text);
+                 if(returnJson.errCode == 'S'){
+                     showMsg("重置密码成功", "S");
+                     grid.reload();
+                 }else{
+                     showMsg("重置密码失败", "W");
+                     grid.unmask();
+                 }
+               }
+             });
+          }
+        });
+    }else{
+        nui.alert("请选中一条记录！");
+    }
+ }

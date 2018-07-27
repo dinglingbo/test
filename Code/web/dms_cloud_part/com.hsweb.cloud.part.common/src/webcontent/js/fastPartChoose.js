@@ -23,6 +23,8 @@ var mainId = 0;
 var guestId = null;
 var optTabs = null;
 var priceGrid = null;
+var mainTabs = null;
+var gpartId = 0;
 
 $(document).ready(function(v)
 {
@@ -38,6 +40,7 @@ $(document).ready(function(v)
     advancedAddWin = nui.get("advancedAddWin");
     advancedAddForm  = new nui.Form("#advancedAddForm");
     optTabs = nui.get("optTabs");
+    mainTabs = nui.get("mainTabs");
 
     morePartTabs = nui.get("morePartTabs");
     enterTab = morePartTabs.getTab("enterTab");
@@ -95,6 +98,16 @@ $(document).ready(function(v)
                 break;
         }
     });
+    morePartGrid.on("selectionchanged",function(e){
+        var row = morePartGrid.getSelected();
+        gpartId = row.id||0;
+        showBottomTabInfo(gpartId);
+    });
+    enterGrid.on("selectionchanged",function(e){
+        var row = enterGrid.getSelected();
+        gpartId = row.partId||0;
+        showBottomTabInfo(gpartId);
+    });
 
     enterGrid.setUrl(enterUrl);
     enterGrid.on("beforeload",function(e){
@@ -150,6 +163,10 @@ $(document).ready(function(v)
             default:
                 break;
         }
+    });
+
+    mainTabs.on("activechanged",function(e){
+        showBottomTabInfo(gpartId);
     });
 
     $("#morePartCode").bind("keydown", function (e) {
@@ -789,5 +806,46 @@ function savePrice(){
                 console.log(jqXHR.responseText);
             }
         });
+    }
+}
+function showBottomTabInfo(partId){
+	var tab = mainTabs.getActiveTab();
+	var name = tab.name;
+    var url = tab.url;
+    partId = partId||0;
+	switch (name)
+    {
+        case "priceTab": 
+            var params = {};
+            params.partId=partId;
+            if(!url){
+                mainTabs.loadTab(cloudPartWebUrl + "/common/embedJsp/containPartPrice.jsp?partId="+partId, tab);
+            }else {
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
+            }  
+            break;
+        case "outRecordTab":
+            var params = {};
+            params.partId=partId;
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
+            }
+            
+        	break;
+        case "partCommonTab":
+            var params = {};
+            params.partId=partId;
+            params.type="LOCAL";
+            if(!url){
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartCommon.jsp?partId="+partId, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
+            }
+            
+            break;
+        default:
+            break;
     }
 }

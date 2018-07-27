@@ -78,6 +78,16 @@ $(document).ready(function(v){
             e.cellHtml = html;
         }
     });
+    gridParts.on("cellclick",function(e){ 
+        var field=e.field;
+        if(field=="check" ){
+            if(e.row.check==1){
+                addPart(1);
+            }else{
+                addPart(-1);
+            }
+        }
+    });
 
     gridParts.on("selectionchanged", function (e) { //表格绘制
         var row = e.selected;
@@ -353,13 +363,15 @@ function openDetail(pid){
 /*
 *添加购物车
 */
-function addPart(){   
+function addPart(flag){   
     try{
         if(parent.showPanel){
             parent.showPanel('PART');
         }
         if(parent.addToCartGrid){
-            parent.addToCartGrid('VIN', gridParts.getSelected());
+            var r = gridParts.getSelected();
+            r.flag = flag;
+            parent.addToCartGrid('VIN', r);
         }
     }finally{}
 }

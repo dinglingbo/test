@@ -30,8 +30,8 @@
 	File reportFile = new File(fileAddr);//"c:/采购订单打印.jasper"
 try {
 	if (reportFile.isFile()) {
-		Class.forName("com.mysql.jdbc.Driver");
-		/*String url = "jdbc:mysql://14.23.35.20:6289/dms_cloud_part?useSSL=false";
+		/*Class.forName("com.mysql.jdbc.Driver");
+		String url = "jdbc:mysql://14.23.35.20:6289/dms_cloud_part?useSSL=false";
 		String user = "root";
 		String password = "000000";*/
 		String url = "jdbc:mysql://10.168.2.110:3306/dms_cloud_part?useSSL=false";

@@ -281,7 +281,7 @@
         });*/
         //defDomin + org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext
         $.ajax({
-            url:  defDomin + "/com.hsapi.system.auth.LoginManager.getMenuData.biz.ext",
+            url:  defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
             type: "POST",
             success: function(text){
                 var treeNodes = text.treeNodes;

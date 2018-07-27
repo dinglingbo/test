@@ -36,6 +36,16 @@ $(document).ready(function(v) {
             e.cellHtml = html; 
         }
     });
+    dgbasic.on("cellclick",function(e){ 
+        var field=e.field;
+        if(field=="check" ){
+            if(e.row.check==1){
+                addDPart(1);
+            }else{
+                addDPart(-1);
+            }
+        }
+    });
 
     $("#partCode").bind("keydown", function (e) {
         if (e.keyCode == 13) {
@@ -47,13 +57,15 @@ $(document).ready(function(v) {
 /*
 *添加购物车
 */
-function addDPart(){   
+function addDPart(flag){   
     try{
         if(parent.showPanel){
             parent.showPanel('PART');
         }
         if(parent.addToCartGrid){
-            parent.addToCartGrid('PART', dgbasic.getSelected());
+            var r = dgbasic.getSelected();
+            r.flag = flag;
+            parent.addToCartGrid('PART', r);
         }
     }finally{}
 }

@@ -98,7 +98,7 @@ $(document).ready(function(v) {
             orderMan.focus();
         }*/
         if (e.keyCode == 13) {
-            addNewRow(true);
+			//addNewRow(true);
         }
     });
     $("#orderMan").bind("keydown", function (e) {
@@ -1711,6 +1711,7 @@ var getGuestInfo = baseUrl
 function setGuestInfo(params) {
 	nui.ajax({
 		url : getGuestInfo,
+		async:false,
 		data : {
 			params : params,
 			token : token
@@ -1738,6 +1739,8 @@ function setGuestInfo(params) {
 
 					nui.get("billTypeId").setValue(billTypeIdV);
 					nui.get("settleTypeId").setValue(settTypeIdV);
+
+					addNewRow(true);
 					
 				} else {
 					var el = nui.get('guestId');

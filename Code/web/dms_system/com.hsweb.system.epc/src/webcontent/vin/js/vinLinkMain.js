@@ -79,21 +79,49 @@ function queryBrand(currBrand){
 
 function addToCartGrid(type, row){
     var data = cartGrid.getData();
-    if(data && data.length>0){
-        var rows = cartGrid.findRows(function(r){
-            if(row.pid == r.pid) return true;
-        });
-        if(rows && rows.length>0){
-            nui.alert("此零件号已经添加到购物车!");
-            return;
+    if(row && row.flag){//1添加；-1删除
+        if(row.flag == 1){
+            if(data && data.length>0){
+                var rows = cartGrid.findRows(function(r){
+                    if(row.pid == r.pid) return true;
+                });
+                if(rows && rows.length>0){
+                    showMsg("此零件号已经添加到购物车!","W");
+                    return;
+                }else{
+                    var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+                    cartGrid.addRow(newRow);       
+                }
+            }else{
+                var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+                cartGrid.addRow(newRow);       
+            }
+        }else{
+            var rows = cartGrid.findRows(function(r){
+                if(row.pid == r.pid) return true;
+            });
+            if(rows && rows.length>0){
+                cartGrid.removeRows(rows,true);
+            }
+        }
+    }else{
+        if(data && data.length>0){
+            var rows = cartGrid.findRows(function(r){
+                if(row.pid == r.pid) return true;
+            });
+            if(rows && rows.length>0){
+                showMsg("此零件号已经添加到购物车!","W");
+                return;
+            }else{
+                var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+                cartGrid.addRow(newRow);       
+            }
         }else{
             var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
             cartGrid.addRow(newRow);       
         }
-    }else{
-        var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
-        cartGrid.addRow(newRow);       
     }
+
 
 }
 // 提交单元格编辑数据前激发
@@ -104,7 +132,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     } else {
         var newRow = {};
@@ -173,7 +201,7 @@ function addToPchsCart(){
         openGeneratePop(rows, "pchsCartEpc", "添加采购车");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","w");
         return;
     }
 }
@@ -184,7 +212,7 @@ function addToSellCart(){
         openGeneratePop(rows, "sellCartEpc", "添加销售车");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","w");
         return;
     }
 }
@@ -195,7 +223,7 @@ function generatePchsOrder(){
         openGeneratePop(rows, "pchsOrderEpc", "生成采购订单");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","w");
         return;
     }
 }
@@ -206,7 +234,7 @@ function generateSellOrder(){
         openGeneratePop(rows, "sellOrderEpc", "生成销售订单");
 
     }else{
-        nui.alert("请选择配件信息!");
+        showMsg("请选择配件信息!","w");
         return;
     }
 }

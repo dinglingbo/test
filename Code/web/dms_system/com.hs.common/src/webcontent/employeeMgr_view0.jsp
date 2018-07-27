@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + sysDomain%>/common/js/employeeQuery.js?v=1.9.7" type="text/javascript"></script>    
+    <script src="<%=webPath + sysDomain%>/common/js/employeeQuery.js?v=1.9.9" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -38,7 +38,8 @@
 					<a class="nui-button" plain="true" iconCls="" onclick="edit('edit')"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 					<a class="nui-button" plain="true" iconCls="" id="btnisDimission" name="btnisDimission" onclick="dimssion()"><span class="fa fa-user-times"></span>&nbsp;离职</a>
 					<a class="nui-button" plain="true" id="btnisOpenAccount" name="btnisOpenAccount" iconCls="" onclick="stoporstart()" ><span class="fa fa-key"></span>&nbsp;开通账号</a>
-                	<a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+					<a class="nui-button" plain="true" id="resetPasswordBtn" name="resetPasswordBtn" iconCls="" onclick="resetPassword()" ><span class="fa fa-key"></span>&nbsp;重置密码</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 				</td>
 			</tr>
 		</table>

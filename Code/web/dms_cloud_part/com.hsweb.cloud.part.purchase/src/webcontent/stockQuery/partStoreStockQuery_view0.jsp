@@ -111,9 +111,9 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                    <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
-                    <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
+                    <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>

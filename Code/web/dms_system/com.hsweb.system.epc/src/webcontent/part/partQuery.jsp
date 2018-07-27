@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=sysDomain%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/epc/part/js/partQuery.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/epc/part/js/partQuery.js?v=1.1" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -112,16 +112,22 @@
                     <div id="dgbasic" class="nui-datagrid"
                          style="width:100%;height:90%;"
                          showColumns="true"
+                         allowCellSelect="true"
+                         allowCellEdit="true"
+                         showModified="false"
                          showVGridLines="false"
                          showPager="fasle" >                
-                        <div property="columns">                                             
+                        <div property="columns">         
+                            <div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
+                                width="25" headerAlign="center" header=""><span class="fa fa-check"></span>
+                            </div>                                    
                             <div field="pid" headerAlign="center" width="20%" align="center">零件号</div>
                             <div field="label" headerAlign="center" width="50%" align="center">名称</div>
                             <div field="prices" headerAlign="center" visible="false" width="10%"  align="center">价格</div>
                             <div field="brand" headerAlign="center" width="10%"  align="center">品牌</div>
                             <div field="remark" headerAlign="center" width="10%"  align="center">备注</div>
                             <div field="action" headerAlign="center" width="10%" align="center">说明</div>
-                            <div field="opt" width="10%" headerAlign="center" align="center" allowSort=false></div>
+                            <!-- <div field="opt" width="10%" headerAlign="center" align="center" allowSort=false></div> -->
                         </div>
                     </div>
                 

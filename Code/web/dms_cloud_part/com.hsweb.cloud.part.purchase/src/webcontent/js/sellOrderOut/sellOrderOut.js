@@ -1910,12 +1910,12 @@ function OnrpMainGridCellBeginEdit(e){
     }
 
     if(data.codeId && data.codeId>0){
-        e.cancel = true;
+        //e.cancel = true;
     }
 
     if(row.partId) {
         if(row.isMarkBatch && row.isMarkBatch == 1){
-            if(column.field != "remark"){
+            if(column.field != "remark" && column.field != "orderPrice" && column.field != "orderAmt"){
                 e.cancel = true;
             }
         }else{
@@ -2254,4 +2254,35 @@ function getPchsOrderEnterDetail(pchsMainId, sellMainId, serviceId, guestId){
             console.log(jqXHR.responseText);
         }
     });
+}
+function packOut(){
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.isOut == 1) {
+            nui.open({
+                targetWindow: window,
+                url: webBaseUrl+"com.hsweb.cloud.part.common.packPopOperate.flow?token="+token,
+                title: "发货信息编辑", 
+                width: 580, height: 260,
+                showHeader:true,
+                allowDrag:true,
+                allowResize:true,
+                onload: function ()
+                {
+                    var iframe = this.getIFrameEl();
+                    var list = nui.get("settleTypeId").getData();
+                    iframe.contentWindow.setInitData(row, row.guestId, row.guestFullName, list);
+                },
+                ondestroy: function (action)
+                {
+
+                }
+            });
+        }else{
+            showMsg("请先出库再编辑发货信息!","W");
+            return;
+        }
+    }else{
+        return;
+    }
 }

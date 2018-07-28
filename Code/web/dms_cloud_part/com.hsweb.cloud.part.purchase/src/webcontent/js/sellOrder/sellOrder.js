@@ -2297,3 +2297,34 @@ function unAudit()
         }
     });
 }
+function packOut(){
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.isOut == 1) {
+            nui.open({
+                targetWindow: window,
+                url: webBaseUrl+"com.hsweb.cloud.part.common.packPopOperate.flow?token="+token,
+                title: "发货信息编辑", 
+                width: 580, height: 260,
+                showHeader:true,
+                allowDrag:true,
+                allowResize:true,
+                onload: function ()
+                {
+                    var iframe = this.getIFrameEl();
+                    var list = nui.get("settleTypeId").getData();
+                    iframe.contentWindow.setInitData(row, row.guestId, row.guestFullName, list);
+                },
+                ondestroy: function (action)
+                {
+
+                }
+            });
+        }else{
+            showMsg("请先出库再编辑发货信息!","W");
+            return;
+        }
+    }else{
+        return;
+    }
+}

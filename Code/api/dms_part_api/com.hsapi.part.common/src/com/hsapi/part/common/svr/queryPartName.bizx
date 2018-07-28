@@ -205,7 +205,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.com.ComPartName" name="partName"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="partName"/>
     <process:input description="" isArray="false" name="sortOrder" primitiveType="String"/>
     <process:input description="" isArray="false" name="sortField" primitiveType="String"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

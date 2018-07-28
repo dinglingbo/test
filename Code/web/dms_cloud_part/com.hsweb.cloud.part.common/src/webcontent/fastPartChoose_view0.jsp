@@ -85,7 +85,7 @@ body .mini-grid-row-selected{
                                         <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
                                         <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
                                         <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
-                                        <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                                        <!-- <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div> -->
                                         <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
                                         <!-- <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div> -->
                                         <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>

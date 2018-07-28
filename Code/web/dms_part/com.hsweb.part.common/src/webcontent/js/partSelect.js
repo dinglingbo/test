@@ -189,6 +189,10 @@ function reloadData()
 function getSearchParams()
 {
     var params = queryForm.getData();
+    params.code = (params.code||"").replace(/\s+/g, "");
+    params.name = (params.name||"").replace(/\s+/g, "");
+    params.applyCarModel = (params.applyCarModel||"").replace(/\s+/g, "");
+    params.namePy = (params.namePy||"").replace(/\s+/g, "");
     return params;
 }
 function onSearch()

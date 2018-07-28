@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + partDomain%>/commonPart/js/partSelect.js?v=1.0.8"></script>
+<script src="<%=webPath + partDomain%>/commonPart/js/partSelect.js?v=1.0.9"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -64,7 +64,7 @@
                     dataField="partTypes"
                     ondrawnode="onDrawNode"
                     onnodedblclick="onNodeDblClick"
-                    showTreeIcon="true" textField="name" idField="id" parentField="parentid" resultAsTree="false">
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
                 </ul>
             </div>
         </div>

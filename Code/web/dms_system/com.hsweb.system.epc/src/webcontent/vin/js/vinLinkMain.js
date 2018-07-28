@@ -79,6 +79,12 @@ function queryBrand(currBrand){
 
 function addToCartGrid(type, row){
     var data = cartGrid.getData();
+    var quantity = row.quantity||0;
+    quantity = quantity.replace(/\s+/g, "");
+    var reg = /^[0-9]*$/;//纯数字
+    if(!reg.test(quantity)){
+        quantity = 1;
+    }
     if(row && row.flag){//1添加；-1删除
         if(row.flag == 1){
             if(data && data.length>0){
@@ -89,11 +95,11 @@ function addToCartGrid(type, row){
                     showMsg("此零件号已经添加到购物车!","W");
                     return;
                 }else{
-                    var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+                    var newRow = {pid: row.pid, label: row.label, orderQty: quantity, orderPrice: 0};
                     cartGrid.addRow(newRow);       
                 }
             }else{
-                var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+                var newRow = {pid: row.pid, label: row.label, orderQty: quantity, orderPrice: 0};
                 cartGrid.addRow(newRow);       
             }
         }else{
@@ -113,11 +119,11 @@ function addToCartGrid(type, row){
                 showMsg("此零件号已经添加到购物车!","W");
                 return;
             }else{
-                var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+                var newRow = {pid: row.pid, label: row.label, orderQty: quantity, orderPrice: 0};
                 cartGrid.addRow(newRow);       
             }
         }else{
-            var newRow = {pid: row.pid, label: row.label, orderQty: 1, orderPrice: 0};
+            var newRow = {pid: row.pid, label: row.label, orderQty: quantity, orderPrice: 0};
             cartGrid.addRow(newRow);       
         }
     }

@@ -34,6 +34,8 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var partShow = 0;
+var provinceList = [];
+var cityList = [];
 
 
 // 单据状态
@@ -1754,6 +1756,8 @@ function setGuestInfo(params) {
 					leftGrid.updateRow(row, newRow);
 
 					nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+
+					addGuest();
 				}
 			} else {
 				var el = nui.get('guestId');
@@ -1765,12 +1769,53 @@ function setGuestInfo(params) {
 					guestFullName : null
 				};
 				leftGrid.updateRow(row, newRow);
+
+				nui.get("billTypeId").setValue("010103");
+
+				addGuest();
 			}
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
+		}
+	});
+}
+function addGuest(){
+	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
+		if (action == "ok") {
+			nui.open({
+				targetWindow: window,
+				url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+				title: "供应商资料", width: 530, height: 480,
+				allowDrag:true,
+				allowResize:false,
+				onload: function ()
+				{
+					var iframe = this.getIFrameEl();
+					iframe.contentWindow.setData({
+						province:[],
+						city:[],
+						supplierType:[],
+						billTypeId:nui.get("billTypeId").getData(),
+						settTypeId:nui.get("settleTypeId").getData(),
+						tgrade:[],
+						managerDuty:[]
+					});
+				},
+				ondestroy: function (action)
+				{
+					if(action == "ok")
+					{
+						
+					}
+					nui.get("guestId").focus();
+				}
+			});
+
+		}else{
+			nui.get("guestId").focus();
 		}
 	});
 }

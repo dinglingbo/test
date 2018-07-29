@@ -136,7 +136,7 @@ $(document).ready(function(v)
             orderMan.focus();
         }*/
         if (e.keyCode == 13) {
-            addNewRow(true);
+            //addNewRow(true);
         }
     });
     $("#orderMan").bind("keydown", function (e) {
@@ -1773,6 +1773,8 @@ function setGuestInfo(params)
                     nui.get("codeId").setValue(0);
                     nui.get("code").setValue(null);
 
+                    addNewRow(true);
+
                 }
                 else
                 {
@@ -1788,6 +1790,7 @@ function setGuestInfo(params)
                     nui.get("code").setValue(null);
 
                     nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+                    addGuest();
                 }
             }
             else
@@ -1803,6 +1806,8 @@ function setGuestInfo(params)
 
                 nui.get("codeId").setValue(0);
                 nui.get("code").setValue(null);
+                nui.get("billTypeId").setValue("010103");
+                addGuest();
             }
 
 
@@ -1812,6 +1817,42 @@ function setGuestInfo(params)
             console.log(jqXHR.responseText);
         }
     });
+}
+function addGuest(){
+	nui.confirm("此客户不存在，是否新增?", "友情提示", function(action) {
+		if (action == "ok") {
+            nui.open({
+                targetWindow: window,
+                url: webPath+partDomain+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
+                title: "客户资料", width: 530, height: 460,
+                allowDrag:true,
+                allowResize:false,
+                onload: function ()
+                {
+                    var iframe = this.getIFrameEl();
+                    iframe.contentWindow.setData({
+                        province:[],
+                        city:[],
+                        billTypeId:nui.get("billTypeId").getData(),
+                        settTypeId:nui.get("settleTypeId").getData(),
+                        tgrade:[],
+                        managerDuty:[]
+                    });
+                },
+                ondestroy: function (action)
+                {
+                    if(action == "ok")
+                    {
+                        
+                    }
+                    nui.get("guestId").focus();
+                }
+            });
+
+		}else{
+			nui.get("guestId").focus();
+		}
+	});
 }
 function onPrint() {
     var row = leftGrid.getSelected();

@@ -181,7 +181,7 @@ function enableComeguest()
     }
 }
 //修改保存启用禁用
-var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveSupplier.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.updateGuestDisable.biz.ext";
 function updateIsDisabled(comguest, callback)
 {
     nui.mask({
@@ -193,7 +193,7 @@ function updateIsDisabled(comguest, callback)
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-            supplier:comguest,
+            guest:comguest,
             token:token
         }),
         success:function(data)

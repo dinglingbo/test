@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=sysDomain%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/epc/part/js/partQuery.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/epc/part/js/partQuery.js?v=1.2" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;

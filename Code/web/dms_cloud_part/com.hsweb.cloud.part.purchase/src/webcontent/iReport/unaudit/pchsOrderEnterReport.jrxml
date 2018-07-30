@@ -267,7 +267,7 @@ ORDER BY
 			<textField pattern="yyyy/MM/dd HH:mm:ss" isBlankWhenNull="true">
 				<reportElement x="68" y="20" width="304" height="14" uuid="995ca967-c167-4f4e-9e49-e926755992e0"/>
 				<textElement>
-					<font fontName="宋体" size="10"/>
+					<font fontName="宋体" size="10" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{compAddress}]]></textFieldExpression>
 			</textField>

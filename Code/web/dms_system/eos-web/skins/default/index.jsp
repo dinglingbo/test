@@ -353,7 +353,7 @@
                 //getChildren(children);
             }
         }
-
+        
         //toggle
         $("#toggle, .sidebar-toggle").click(function () {
             $('body').toggleClass('compact');
@@ -362,6 +362,11 @@
 
         //dropdown
         $(".dropdown-toggle").click(function (event) {
+       	    if($(this).next().attr("id") == "orgsname"){
+       	    	$("#orgsname").empty();
+       	    	setOrgList();
+       	    }
+        
             $(this).parent().addClass("open");
             return false;
         });
@@ -378,28 +383,7 @@
        document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
        document.getElementById('currOrgName').innerHTML = currOrgName;
        
-       $.ajax({
-            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext?userId="+currUserId,
-            type: "POST",
-            data : JSON.stringify({
-                token: token
-            }),
-            success: function(text){
-                var orgList = text.orgList;
-                if(orgList && orgList.length>0){
-                    for (var i = 0; i < orgList.length; i++) {
-                        var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
-                                + orgList[i].orgid
-                                + ')" title="'
-                                + orgList[i].orgname + '">';
-                        rtoken = rtoken + orgList[i].orgname;
-                        rtoken = rtoken + '</a></li>';
-
-                        $("#orgsname").append($(rtoken));
-                    }
-                }
-            }
-        });
+       
     });
 
     //切换角色
@@ -416,6 +400,31 @@
                 }
             });
         }
+    }
+    
+    function setOrgList(){
+    	$.ajax({
+            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext?userId="+currUserId,
+            type: "POST",
+            data : JSON.stringify({
+                token: token
+            }),
+            success: function(text){
+                var orgList = text.orgList;
+                if(orgList && orgList.length>0){
+                    for (var i = 0; i < orgList.length; i++) {
+                        var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
+                                + orgList[i].orgid
+                                + ')" title="'
+                                + orgList[i].orgname + '">';
+                        rtoken = rtoken + orgList[i].orgname;
+                        rtoken = rtoken + '</a></li>';
+                        $("#orgsname").append(rtoken);
+                    }
+                }
+            }
+        });
+    	
     }
 
 </script>

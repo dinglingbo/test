@@ -151,6 +151,10 @@
       <process:from type="query" pattern="reference">params/auditSign</process:from>
       <process:to type="query">auditSign</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainId</process:from>
+      <process:to type="query">params/mainId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="178" y="111"/>
@@ -211,7 +215,7 @@
     <figSize height="17" width="25"/>
     <node>invokePojo3</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>end0</targetNode>

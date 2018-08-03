@@ -20,10 +20,11 @@
    
     <div class="nui-panel" title="会员卡列表" iconCls="icon-add" style="width:100%;height:100%;" showToolbar="false" showFooter="false" >
       <div class="nui-toolbar" style="border-bottom:0;padding:0px;">
+      <div id="queryform" class="nui-form" align="center" style="height:100%">
               <!-- 数据实体的名称 -->
-        <input class="nui-hidden" name="criteria/_entity" value="com.primeton.nuisample.data.RpbCardStored">
+        <input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.data.rpbRead.RpbCardStored">
         <!-- 排序字段 -->
-        <input class="nui-hidden" name="criteria/_orderby[1]/_property" value="userName">
+        <input class="nui-hidden" name="criteria/_orderby[1]/_property" value="name">
         <input class="nui-hidden" name="criteria/_orderby[1]/_sort" value="asc">
         <table style="width:100%;" id="table1">
           <tr>
@@ -49,8 +50,9 @@
           </tr>
         </table>
       </div>
+      </div>
       <div class="nui-fit">
-        <div id="datagrid1" dataField="ooperators" class="nui-datagrid" style="width:100%;height:100%;" url="com.primeton.nuisample.card.queryCard.biz.ext" pageSize="10" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
+        <div id="datagrid1" dataField="card" class="nui-datagrid" style="width:100%;height:100%;" url="com.hsapi.repair.baseData.crud.queryCard.biz.ext" pageSize="10" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
           <div property="columns">
             <div type="indexcolumn">
             </div>
@@ -60,34 +62,34 @@
               会员卡名称
             </div>
             
-            <div field="use_range" headerAlign="center" allowSort="true" >
+            <div field="useRange" headerAlign="center" allowSort="true" >
               适用范围
             </div>
-            <div field="period_validity" headerAlign="center" allowSort="true" >
+            <div field="periodValidity" headerAlign="center" allowSort="true" >
               有效期(月)
             </div>
-            <div field="recharge_amt" headerAlign="center" allowSort="true" >
+            <div field="rechargeAmt" headerAlign="center" allowSort="true" >
              充值金额
             </div>
-            <div field="give_amt" headerAlign="center" allowSort="true" >
+            <div field="giveAmt" headerAlign="center" allowSort="true" >
               赠送金额
             </div>
-            <div field="total_amt" headerAlign="center" allowSort="true" >
+            <div field="totalAmt" headerAlign="center" allowSort="true" >
               总金额
             </div>
-            <div field="package_rate" headerAlign="center" allowSort="true" >
+            <div field="packageRate" headerAlign="center" allowSort="true" >
              套餐优惠率
             </div>
-            <div field="item_rate" headerAlign="center" allowSort="true" >
+            <div field="itemRate" headerAlign="center" allowSort="true" >
               工时优惠率
             </div>
-            <div field="part_rate" headerAlign="center" allowSort="true" >
+            <div field="partRate" headerAlign="center" allowSort="true" >
               配件优惠率
             </div>
-            <div field="sales_deduct_type" headerAlign="center" allowSort="true" >
+            <div field="salesDeductType" headerAlign="center" allowSort="true" >
             销售提成方式
             </div>
-         	 <div field="sales_deduct_value" headerAlign="center" allowSort="true" >
+         	 <div field="salesDeductValue" headerAlign="center" allowSort="true" >
              销售提成值
             </div>
             <div field="remark" headerAlign="center" allowSort="true" >
@@ -100,8 +102,7 @@
     <script type="text/javascript">
       nui.parse();
       var grid = nui.get("datagrid1");
-
-      var formData = new nui.Form("#table1").getData(false,false);
+      var formData = new nui.Form("#queryform").getData(false,false);
       grid.load(formData);
 
       //新增
@@ -180,7 +181,7 @@
 
                 //重新刷新页面
                 function refresh(){
-                  var form = new  nui.Form("#table1");
+                  var form = new  nui.Form("#queryform");
                   var json = form.getData(false,false);
                   grid.load(json);//grid查询
                   nui.get("update").enable();
@@ -188,10 +189,10 @@
 
                 //查询
                 function search() {
-                alert(json);
-                  var form = new nui.Form("#table1");
+
+                  var form = new nui.Form("#queryform");
                   var json = form.getData(false,false);
-                  alert(json);
+
                   grid.load(json);//grid查询
                 }
 

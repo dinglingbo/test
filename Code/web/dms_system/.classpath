@@ -28,5 +28,6 @@
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.system.auth/bin" path="com.hsweb.system.auth/src"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/httpclient-4.3.5.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/httpcore-4.3.2.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/jasperreports-fonts-4.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

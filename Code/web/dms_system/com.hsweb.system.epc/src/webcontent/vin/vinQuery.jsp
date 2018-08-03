@@ -15,7 +15,7 @@
     <link href="<%=sysDomain%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     
     <script src="<%=sysDomain%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/epc/vin/js/vinQuery.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=sysDomain%>/epc/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;

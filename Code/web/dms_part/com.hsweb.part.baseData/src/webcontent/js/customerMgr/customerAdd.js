@@ -241,22 +241,35 @@ var settTypeIdHash = {};
 //var managerDutyHash = {};
 function setData(data)
 {
-    provinceList = data.province||[];
-    provinceList.forEach(function(v){
-    	if(v){
-    		provinceHash[v.code] = v;
-    	}
-        
-    });
-    if(!provinceEl)
-    {
-        initComboBox();
+	provinceList = data.province||[];
+    if(provinceList.length == 0){
+        getProvinceAndCity(function(data){
+            provinceList.forEach(function(v){
+                provinceHash[v.code] = v;
+            });
+            if(!provinceEl)
+            {
+                provinceEl = nui.get("provinceId");
+            }
+            provinceEl.setData(provinceList);
+            cityList.forEach(function(v){
+                cityHash[v.code] = v;
+            });
+        });
+    }else {
+        provinceList.forEach(function(v){
+            provinceHash[v.code] = v;
+        });
+        if(!provinceEl)
+        {
+            provinceEl = nui.get("provinceId");
+        }
+        provinceEl.setData(provinceList);
+        cityList = data.city||[];
+        cityList.forEach(function(v){
+            cityHash[v.code] = v;
+        });
     }
-    provinceEl.setData(provinceList);
-    cityList = data.city||[];
-    cityList.forEach(function(v){
-        cityHash[v.code] = v;
-    });
     tgradeList = data.tgrade||[];
     tgradeList.forEach(function(v){
         tgradeHash[v.customid] = v;

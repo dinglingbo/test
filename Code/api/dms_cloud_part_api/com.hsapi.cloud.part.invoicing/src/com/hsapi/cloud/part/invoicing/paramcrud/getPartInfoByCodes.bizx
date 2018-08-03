@@ -113,6 +113,7 @@
     <chidren>assign12</chidren>
     <chidren>assign8</chidren>
     <chidren>subprocess0</chidren>
+    <chidren>assign9</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
@@ -322,12 +323,20 @@
       <process:to type="query">price</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">tmp/remark</process:from>
+      <process:to type="query">remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">qty</process:from>
       <process:to type="query">tmp/orderQty</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">price</process:from>
       <process:to type="query">tmp/orderPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">remark</process:from>
+      <process:to type="query">tmp/remark</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -415,7 +424,8 @@
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <targetConnections>link17</targetConnections>
+    <targetConnections>link18</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="508" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
@@ -462,10 +472,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">part/spec</process:from>
       <process:to type="query">tmp/spec</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">storeStockRecord/shelf</process:from>
-      <process:to type="query">tmp/shelf</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
@@ -585,6 +591,16 @@
       <sourceNode>assign8</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">tmp/shelf</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link33</targetConnections>
     <location x="390" y="236"/>
     <size height="28" width="28"/>
@@ -610,7 +626,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getPartStoreStockByPartId" displayName="getPartStoreStockByPartId" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign6</targetNode>
+      <targetNode>assign9</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <location x="508" y="236"/>
@@ -622,8 +638,8 @@
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">value</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">value</process:outputVariable>
         <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.cloud.part.data.pts.PjPartStoreStock" valueType="DataObject">storeStockRecord</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -632,6 +648,25 @@
     <location x="444" y="271"/>
     <figSize height="17" width="155"/>
     <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="598" y="236"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeStockRecord/shelf</process:from>
+      <process:to type="query">tmp/shelf</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="596" y="272"/>
+    <figSize height="17" width="32"/>
+    <node>assign9</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -647,6 +682,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="storeStockRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="remark" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="commonj.sdo.DataObject" description="partCode,orderQty,orderPrice" isArray="true" name="list"/>

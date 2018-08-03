@@ -66,7 +66,7 @@
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 续费</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li> -->
         <li class="dropdown">
-            <a class="dropdown-toggle userinfo" style="margin-top: 10%;">
+            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
                     <i class="fa fa-align-justify"></i><span >待处理</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
@@ -79,7 +79,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle userinfo" style="margin-top: 10%;">
+            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
                     <i class="fa fa-align-justify"></i><span id="currOrgName">公司</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right" id="orgsname">
@@ -93,7 +93,7 @@
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle userinfo">
-                <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
+                <img class="user-img" src="res/images/user.jpg" /><span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
                 <li id="orgName"><a href="#">所属：</a></li>
@@ -382,6 +382,7 @@
         
        document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
        document.getElementById('currOrgName').innerHTML = currOrgName;
+       document.getElementById('currUserName').innerHTML = "当前登录人:" + currUserName + " ";
        
        
     });

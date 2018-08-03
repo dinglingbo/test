@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pchsOrderReport" pageWidth="842" pageHeight="792" orientation="Landscape" columnWidth="822" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" scriptletClass="com.hs.print.TransChineseMoneyScriptlet" uuid="34ab681a-51e3-4310-89f9-74ef07cdf8d2">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="273"/>
+	<property name="ireport.x" value="297"/>
 	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Mon Jul 31 14:09:04 CST 2017"/>
 	<subDataset name="dataset1" uuid="a7e249e6-3376-4b52-a342-faae67db68ea"/>
@@ -61,7 +61,7 @@ FROM
      e.address as compAddress,
      e.tel as compTel
 FROM
-     `pj_sell_order_main` A INNER JOIN `pj_sell_order_detail` B ON A.`ID` = B.`MAIN_ID`
+     `pj_sell_order_main_chk` A INNER JOIN `pj_sell_order_detail_chk` B ON A.`ID` = B.`MAIN_ID`
      INNER JOIN `wb_common`.`com_attribute` D ON B.`PART_ID` = D.`ID`
      INNER JOIN `wb_common`.`com_guest` C ON A.`GUEST_ID` = C.`ID`
      INNER JOIN `wb_common`.`com_company` e ON A.`orgid` = e.`orgid`

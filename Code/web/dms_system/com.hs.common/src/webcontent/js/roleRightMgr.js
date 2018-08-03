@@ -169,6 +169,7 @@ function ontopTabChanged(e){
     var name = tab.name;
 
     var row = leftGrid.getSelected();
+    if(!row) return;
     var roleId = row.roleId||0;
     if(name == "resTab"){
         mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId, tab);  

@@ -21,7 +21,7 @@
     <div class="nui-panel" title="会员卡列表" iconCls="icon-add" style="width:100%;height:100%;" showToolbar="false" showFooter="false" >
       <div class="nui-toolbar" style="border-bottom:0;padding:0px;">
               <!-- 数据实体的名称 -->
-        <input class="nui-hidden" name="criteria/_entity" value="com.primeton.nuisample.data.OOperator">
+        <input class="nui-hidden" name="criteria/_entity" value="com.primeton.nuisample.data.RpbCardStored">
         <!-- 排序字段 -->
         <input class="nui-hidden" name="criteria/_orderby[1]/_property" value="userName">
         <input class="nui-hidden" name="criteria/_orderby[1]/_sort" value="asc">
@@ -50,7 +50,7 @@
         </table>
       </div>
       <div class="nui-fit">
-        <div id="datagrid1" dataField="ooperators" class="nui-datagrid" style="width:100%;height:100%;" url="com.primeton.nuisample.ooperatorbiz.queryOOperators.biz.ext" pageSize="10" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
+        <div id="datagrid1" dataField="ooperators" class="nui-datagrid" style="width:100%;height:100%;" url="com.primeton.nuisample.card.queryCard.biz.ext" pageSize="10" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
           <div property="columns">
             <div type="indexcolumn">
             </div>
@@ -109,7 +109,7 @@
       //新增
       function add() {
         nui.open({
-          url: "OOperatorAdd.jsp",
+          url: "cardAdd.jsp",
           title: "新增记录", width: 700, height: 400,
           onload: function () {},
           ondestroy: function (action) {//弹出页面关闭前
@@ -125,7 +125,7 @@
         var row = grid.getSelected();
         if (row) {
           nui.open({
-            url: "OOperatorUpdate.jsp",
+            url: "cardUpdate.jsp",
             title: "编辑数据",
             width: 700,
             height: 400,
@@ -182,7 +182,7 @@
 
                 //重新刷新页面
                 function refresh(){
-                  var form = new  nui.Form("#queryform");
+                  var form = new  nui.Form("#table1");
                   var json = form.getData(false,false);
                   grid.load(json);//grid查询
                   nui.get("update").enable();

@@ -43,6 +43,7 @@ try {
 		Map<String, Object> rptParameters = new HashMap<String, Object>();
 		rptParameters.put("ID", Integer.parseInt(request.getParameter("ID")));
 		rptParameters.put("printMan", request.getParameter("printMan"));
+		rptParameters.put("logisticsName", request.getParameter("logisticsName"));
 
 	    byte[] bytes=JasperRunManager.runReportToPdf(reportFile.getPath(), rptParameters, conn);
 		

@@ -56,9 +56,10 @@
             </div>
             <div type="checkcolumn">
             </div>
-            <div field="name" headerAlign="center" allowSort="true" visible="false">
+            <div field="name" headerAlign="center" allowSort="true" >
               会员卡名称
             </div>
+            
             <div field="use_range" headerAlign="center" allowSort="true" >
               适用范围
             </div>
@@ -89,9 +90,6 @@
          	 <div field="sales_deduct_value" headerAlign="center" allowSort="true" >
              销售提成值
             </div>
-            <div field="use_remark" headerAlign="center" allowSort="true" >
-             使用条款
-            </div>
             <div field="remark" headerAlign="center" allowSort="true" >
               卡说明
             </div>
@@ -110,7 +108,7 @@
       function add() {
         nui.open({
           url: "cardAdd.jsp",
-          title: "新增记录", width: 700, height: 400,
+          title: "新增记录", width: 700, height: 500,
           onload: function () {},
           ondestroy: function (action) {//弹出页面关闭前
           if(action=="saveSuccess"){
@@ -217,6 +215,8 @@
                     nui.get("update").enable();
                   }
                 }
+                
+                
               </script>
             </body>
           </html>

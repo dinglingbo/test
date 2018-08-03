@@ -17,7 +17,7 @@
 	})();
 	
 	var data={};
-	nui.DataTree.prototype.dataField='data';//兼容改造
+	nui.DataTree.prototype.dataField='data';//兼容改造 
 </script>
 </head>
 <body>

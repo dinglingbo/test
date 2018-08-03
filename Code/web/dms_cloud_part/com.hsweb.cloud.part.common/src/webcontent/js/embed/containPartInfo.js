@@ -208,6 +208,19 @@ function reloadData()
         partGrid.reload();
     }
 }
+function checkConditions(){
+    var data = queryForm.getData();
+    var partCode = (data.partCode||"").replace(/\s+/g, "");
+    var partName = (data.partName||"").replace(/\s+/g, "");
+    var applyCarModel = (data.applyCarModel||"").replace(/\s+/g, "");
+    var namePy = (data.namePy||"").replace(/\s+/g, "");
+    var partBrandId = (data.partBrandId||"").replace(/\s+/g, "");
+    var partCodeList = (data.partCodeList||"").replace(/\s+/g, "");
+    if(!partCode && !partName && !applyCarModel && !namePy && !partBrandId && !partCodeList){
+        return false;
+    }
+    return true;
+}
 function getSearchParams()
 {
     var params = queryForm.getData();
@@ -234,6 +247,10 @@ function getSearchParams()
 }
 function onSearch()
 {
+    if(!checkConditions()){
+        showMsg("请输入查询条件!","W");
+        return;
+    }
     var params = getSearchParams();
     doSearch(params);
 }

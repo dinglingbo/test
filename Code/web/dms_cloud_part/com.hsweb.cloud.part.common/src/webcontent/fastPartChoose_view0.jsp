@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/fastPartChoose.js?v=1.0.4"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/fastPartChoose.js?v=1.0.5"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -29,107 +29,132 @@ body .mini-grid-row-selected{
 </head>
 <body>
 
-<div class="nui-toolbar" style="padding:2px;border-bottom:1;">
-    <table style="width:100%;">
-        <tr>
-            <td style="width:100%;">
-                <input class="nui-textbox" width="100px" id="morePartCode" name="morePartCode" selectOnFocus="true" enabled="true" emptyText="编码"/>
-                <input class="nui-textbox" width="100px" id="morePartName" emptyText="名称"  selectOnFocus="true" name="morePartName"/>
-                <input class="nui-textbox" width="100px" id="moreServiceId" emptyText="入库单号" selectOnFocus="true" name="moreServiceId"/>
-                <span class="separator"></span>
-                <input id="sortType" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
-                        value="1"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/> 
-                <input class="nui-checkbox" id="showStock" trueValue="1" falseValue="0" text="库存数量>0"/>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
-            
-                <input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
-                <input id="tempId" visible="false" class="nui-textbox" name="tempId" />
-            </td>
-        </tr>
-    </table>
-</div>
 <div class="nui-fit">
-    <div id="morePartTabs" class="nui-tabs" name="morePartTabs"
-            activeIndex="0" 
-            style="width:100%; height:100%;" 
-            plain="false" 
-            onactivechanged="onMoreTabChanged">
-        <div title="配件选择" id="partInfoTab" name="partInfoTab" url="" >
+    <div  class="nui-splitter" vertical="true" style="width:100%;height:100%;" allowResize="true">
+        <!--上：库存信息-->
+        <div size="65%" showCollapseButton="false">
             <div class="nui-fit">
-                <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                    selectOnLoad="true"
-                    borderStyle="border:1;"
-                    showPager="true"
-                    pageSize="20"
-                    sizeList=[20,50,100,200]
-                    dataField="parts"
-                    sortMode="client"
-                    onrowdblclick=""
-                    totalField="page.count"
-                    allowCellSelect="true"
-                    editNextOnEnterKey="true"
-                    url="">
-                    <div property="columns">
-                        <div type="indexcolumn">序号</div>
-                        <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
-                        <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
-                        <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
-                        <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-                        <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
-                        <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
-                        <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
-                        <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-                        <!-- <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div> -->
-                        <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
-                    </div>
+                <div class="nui-toolbar" style="padding:2px;border-bottom:1;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:100%;">
+                                <input class="nui-textbox" width="100px" id="morePartCode" name="morePartCode" selectOnFocus="true" enabled="true" emptyText="编码"/>
+                                <input class="nui-textbox" width="100px" id="morePartName" emptyText="名称"  selectOnFocus="true" name="morePartName"/>
+                                <input class="nui-textbox" width="100px" id="moreServiceId" emptyText="入库单号" selectOnFocus="true" name="moreServiceId"/>
+                                <span class="separator"></span>
+                                <input id="sortType" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                                        value="1"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/> 
+                                <input class="nui-checkbox" id="showStock" trueValue="1" falseValue="0" text="库存数量>0"/>
+                                <span class="separator"></span>
+                                <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                            
+                                <input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
+                                <input id="tempId" visible="false" class="nui-textbox" name="tempId" />
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-            </div>
-            
-        </div> 
-        <div title="批次选择" id="enterTab" name="enterTab" >
-            <div id="enterGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                    borderStyle="border:1;"
-                    selectOnLoad="true"
-                    showPager="true"
-                    pageSize="20"
-                    sizeList=[20,50,100,200]
-                    dataField="partlist"
-                    url=""
-                    showModified="false"
-                    sortMode="client"
-                    ondrawcell=""
-                    onrowdblclick=""
-                    idField="id"
-                    totalField="page.count"
-                    allowCellSelect="true" allowCellEdit="false">
-                <div property="columns">
-                    <div type="indexcolumn">序号</div>
-                    <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                    <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
-                    <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
-                    <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
-                    <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
-                    <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-                    <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
-                    <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
-                    <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
-                    <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
-                    <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
-                    <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
-                    <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
-                    <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+                <div class="nui-fit">
+                    <div id="morePartTabs" class="nui-tabs" name="morePartTabs"
+                            activeIndex="0" 
+                            style="width:100%; height:100%;" 
+                            plain="false" 
+                            onactivechanged="onMoreTabChanged">
+                        <div title="配件选择" id="partInfoTab" name="partInfoTab" url="" >
+                            <div class="nui-fit">
+                                <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                                    selectOnLoad="true"
+                                    borderStyle="border:1;"
+                                    showPager="true"
+                                    pageSize="20"
+                                    sizeList=[20,50,100,200]
+                                    dataField="parts"
+                                    sortMode="client"
+                                    onrowdblclick=""
+                                    totalField="page.count"
+                                    allowCellSelect="true"
+                                    editNextOnEnterKey="true"
+                                    url="">
+                                    <div property="columns">
+                                        <div type="indexcolumn">序号</div>
+                                        <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
+                                        <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                                        <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
+                                        <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+                                        <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+                                        <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
+                                        <!-- <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div> -->
+                                        <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+                                        <!-- <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div> -->
+                                        <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div> 
+                        <div title="批次选择" id="enterTab" name="enterTab" >
+                            <div id="enterGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                                    borderStyle="border:1;"
+                                    selectOnLoad="true"
+                                    showPager="true"
+                                    pageSize="20"
+                                    sizeList=[20,50,100,200]
+                                    dataField="partlist"
+                                    url=""
+                                    showModified="false"
+                                    sortMode="client"
+                                    ondrawcell=""
+                                    onrowdblclick=""
+                                    idField="id"
+                                    totalField="page.count"
+                                    allowCellSelect="true" allowCellEdit="false">
+                                <div property="columns">
+                                    <div type="indexcolumn">序号</div>
+                                    <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                                    <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                                    <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
+                                    <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
+                                    <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
+                                    <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
+                                    <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
+                                    <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+                                    <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
+                                    <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                    <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+                                    <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
+                                    <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
+                                    <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
+                                    <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
+                                    <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                        
                 </div>
             </div>
         </div>
-        
+        <!--下：辅助信息-->
+        <div showCollapseButton="false">
+            <div class="nui-fit">
+                <div id="mainTabs" class="nui-tabs" name="mainTabs"
+                    activeIndex="0" 
+                    style="width:100%; height:100%;" 
+                    plain="false" >
+                    <div title="销售记录" name="outRecordTab" url="" ></div> 
+                    <div title="价格信息" name="priceTab" url="" ></div> 
+                    <div title="替换件" name="partCommonTab" url="" ></div> 
+                </div>	
+            </div>
+        </div>
     </div>
-        
 </div>
+
+
+
 
 <div id="advancedAddWin" class="nui-window"
      title="数量单价录入" style="width:400px;height:200px;"

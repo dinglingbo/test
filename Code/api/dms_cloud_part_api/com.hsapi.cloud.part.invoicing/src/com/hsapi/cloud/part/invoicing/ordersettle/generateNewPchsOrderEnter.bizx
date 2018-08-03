@@ -285,9 +285,9 @@
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NE">
+        <process:simpleCondition operator="LE">
           <process:leftOperand type="query">main/billStatusId</process:leftOperand>
-          <process:rightOperand type="literal">2</process:rightOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -359,7 +359,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">请先提交或是等待对方受理后再入库</process:from>
+      <process:from type="literal" pattern="reference">请先提交再入库</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

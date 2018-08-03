@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPjSellOrderDetailList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.querySell.queryPjSellOrderDetailCheckList" title="Administrator&#x9;18-8-2 下午6:33">
+    <location x="59" y="-53"/>
+    <size height="100" width="252"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" title="Administrator&#x9;18-6-30 下午2:44">
     <location x="102" y="210"/>
     <size height="100" width="197"/>
@@ -189,7 +193,7 @@
     <figSize height="17" width="25"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>end0</targetNode>

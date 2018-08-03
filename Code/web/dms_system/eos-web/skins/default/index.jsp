@@ -66,7 +66,7 @@
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 续费</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li> -->
         <li class="dropdown">
-            <a class="dropdown-toggle userinfo" style="margin-top: 10%;">
+            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
                     <i class="fa fa-align-justify"></i><span >待处理</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
@@ -79,7 +79,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle userinfo" style="margin-top: 10%;">
+            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
                     <i class="fa fa-align-justify"></i><span id="currOrgName">公司</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right" id="orgsname">
@@ -93,7 +93,7 @@
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle userinfo">
-                <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
+                <img class="user-img" src="res/images/user.jpg" /><span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
                 <li id="orgName"><a href="#">所属：</a></li>
@@ -281,7 +281,7 @@
         });*/
         //defDomin + org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext
         $.ajax({
-            url:  defDomin + "/com.hsapi.system.auth.LoginManager.getMenuData.biz.ext",
+            url:  defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
             type: "POST",
             success: function(text){
                 var treeNodes = text.treeNodes;
@@ -353,7 +353,7 @@
                 //getChildren(children);
             }
         }
-
+        
         //toggle
         $("#toggle, .sidebar-toggle").click(function () {
             $('body').toggleClass('compact');
@@ -362,6 +362,11 @@
 
         //dropdown
         $(".dropdown-toggle").click(function (event) {
+       	    if($(this).next().attr("id") == "orgsname"){
+       	    	$("#orgsname").empty();
+       	    	setOrgList();
+       	    }
+        
             $(this).parent().addClass("open");
             return false;
         });
@@ -377,29 +382,9 @@
         
        document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
        document.getElementById('currOrgName').innerHTML = currOrgName;
+       document.getElementById('currUserName').innerHTML = "当前登录人:" + currUserName + " ";
        
-       $.ajax({
-            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext?userId="+currUserId,
-            type: "POST",
-            data : JSON.stringify({
-                token: token
-            }),
-            success: function(text){
-                var orgList = text.orgList;
-                if(orgList && orgList.length>0){
-                    for (var i = 0; i < orgList.length; i++) {
-                        var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
-                                + orgList[i].orgid
-                                + ')" title="'
-                                + orgList[i].orgname + '">';
-                        rtoken = rtoken + orgList[i].orgname;
-                        rtoken = rtoken + '</a></li>';
-
-                        $("#orgsname").append($(rtoken));
-                    }
-                }
-            }
-        });
+       
     });
 
     //切换角色
@@ -416,6 +401,31 @@
                 }
             });
         }
+    }
+    
+    function setOrgList(){
+    	$.ajax({
+            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext?userId="+currUserId,
+            type: "POST",
+            data : JSON.stringify({
+                token: token
+            }),
+            success: function(text){
+                var orgList = text.orgList;
+                if(orgList && orgList.length>0){
+                    for (var i = 0; i < orgList.length; i++) {
+                        var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
+                                + orgList[i].orgid
+                                + ')" title="'
+                                + orgList[i].orgname + '">';
+                        rtoken = rtoken + orgList[i].orgname;
+                        rtoken = rtoken + '</a></li>';
+                        $("#orgsname").append(rtoken);
+                    }
+                }
+            }
+        });
+    	
     }
 
 </script>

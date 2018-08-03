@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.7.6"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.7.9"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -273,6 +273,24 @@ body .mini-grid-row-selected{
     </table>  
     <a href="" id="tableExportA"></a>
 </div>  
+
+<div id="advancedTipWin" class="nui-window"
+        title="未成功导入配件" style="width:400px;height:200px;"
+        showModal="true"
+        allowResize="false"
+        allowDrag="true">
+        <div id="advancedTipForm" class="form">
+            <table style="width:100%;height: 100%;">
+            
+                <tr>
+                    <td colspan="3">
+                        <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100%;" id="imprtPastCodeList" name="imprtPastCodeList"></textarea>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
 
 </body>
 </html>

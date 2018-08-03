@@ -158,7 +158,7 @@ function onSaveNode(){
 var supplier = null;
 function selectSupplier(elId) {
     var row = straGrid.getSelected();
-    if(!row.id) {
+    if(!row) {
         showMsg("请选择对应级别再添加客户!","W");
         return;
     }
@@ -187,24 +187,75 @@ function selectSupplier(elId) {
                 var value = supplier.id;
                 var text = supplier.fullName;
                 
-
-                var row = straGrid.getSelected();
-                var newRow = {
-                    strategyId : row.id,
-                    guestId: value,
-                    fullName: text,
-                    shortName: supplier.shortName
-                };
-                rightGuestGrid.addRow(newRow);
+                //判断是否已经添加
+                var strategyId = checkStraGuest(value);
+                if(strategyId<=0){
+                    var row = straGrid.getSelected();
+                    var newRow = {
+                        strategyId : row.id,
+                        guestId: value,
+                        fullName: text,
+                        shortName: supplier.shortName
+                    };
+                    rightGuestGrid.addRow(newRow);
+                }else{
+                    var row = straGrid.findRow(function(row){
+                        if(row.id == strategyId){
+                            return true;
+                        }
+                    });
+                    var name = "";
+                    if(row && row.name){
+                        name = '--'+row.name;
+                    }
+                    showMsg("此客户已经添加"+name+"!","W");
+                } 
 
             }
         }
     });
 }
+var checkStraGuestUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getSellPriceGuest.biz.ext";
+function checkStraGuest(guestId){
+    var row = rightGuestGrid.findRow(function(row){
+        if(row.guestId == guestId) {
+            return true;
+        }
+        return false;
+    });
+    if(row){
+        return row.strategyId||0;
+    }
+
+    var strategyId = 0;
+    nui.ajax({
+        url : checkStraGuestUrl,
+        async:false,
+        type : "post",
+        data : JSON.stringify({
+            guestId : guestId,
+            token: token
+        }),
+        success : function(data) {
+            data = data || {};
+            var guest = data.guest;
+            if (guest && guest.length>0) {
+                strategyId = guest[0].strategyId;
+            } else {
+                strategyId = 0;
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+            strategyId = 0;
+        }
+    });
+    return strategyId;
+}
 var saveStraGuestUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStrategyGuest.biz.ext";
 function saveStraGuest(){
     var row = straGrid.getSelected();
-    if(!row.id) {
+    if(!row) {
         showMsg("请先选择对应级别再操作!","W");
         return;
     }
@@ -245,6 +296,7 @@ function saveStraGuest(){
         }
     });
 }
+
 function delStraGuest(){
     var row = straGrid.getSelected();
     if(!row.id) {
@@ -313,8 +365,8 @@ function selectPart(callback, checkcallback) {
 function addPart() {
 
     var row = straGrid.getSelected();
-    if(!row.id) {
-        showMsg("请选择对应级别再添加客户!","W");
+    if(!row) {
+        showMsg("请选择对应级别再添加配件!","W");
         return;
     }
 
@@ -329,17 +381,17 @@ function addPart() {
     });
 }
 function checkPartIDExists(partid){
-    var row = rightUnifyGrid.findRow(function(row){
-        if(row.partId == partid) {
-            return true;
-        }
-        return false;
-    });
+    // var row = rightUnifyGrid.findRow(function(row){
+    //     if(row.partId == partid) {
+    //         return true;
+    //     }
+    //     return false;
+    // });
     
-    if(row) 
-    {
-        return "配件ID："+partid+"在列表中已经存在，是否继续？";
-    }
+    // if(row) 
+    // {
+    //     return "配件ID："+partid+"在列表中已经存在，是否继续？";
+    // }
     
     return null;
     
@@ -357,6 +409,20 @@ function onCellCommitEdit(e) {
     } 
 }
 function addPartDetail(row, strategyId){
+    var crow = rightUnifyGrid.findRow(function(row){
+        if(row.partId == row.id) {
+            return true;
+        }
+        return false;
+    });
+    if(crow) return;
+
+    var check = checkStraPart(strategyId, row.id);
+    if(check > 0) {
+        //showMsg("此配件已经添加，可直接查询出来修改!","W");
+        return;
+    }
+
     var newRow = {
         strategyId : strategyId,
         partId: row.id,
@@ -364,6 +430,34 @@ function addPartDetail(row, strategyId){
         fullName: row.fullName
     };
     rightPartGrid.addRow(newRow);
+}
+var checkStraPartUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getSellPricePart.biz.ext";
+function checkStraPart(strategyId, partId){
+    var check = 0;
+    nui.ajax({
+        url : checkStraPartUrl,
+        async:false,
+        type : "post",
+        data : JSON.stringify({
+            strategyId: strategyId,
+            partId : partId,
+            token: token
+        }),
+        success : function(data) {
+            data = data || {};
+            var part = data.part;
+            if (part && part.length>0) {
+                check = 1;
+            } else {
+                check = 0;
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+            check = 0;
+        }
+    });
+    return check;
 }
 function delStraPart(){
     var row = straGrid.getSelected();

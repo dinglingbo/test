@@ -607,7 +607,6 @@
 			a.enter_date as enterDate,
 			a.order_man as orderMan,
 			a.bill_type_id as billTypeId,
-			a.print_times as printTimes,
 			a.auditor as auditor,
 			a.audit_date as auditDate,
 			a.remark as mainRemark,

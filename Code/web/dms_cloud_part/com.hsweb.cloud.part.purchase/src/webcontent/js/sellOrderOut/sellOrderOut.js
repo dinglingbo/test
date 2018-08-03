@@ -136,7 +136,7 @@ $(document).ready(function(v)
             orderMan.focus();
         }*/
         if (e.keyCode == 13) {
-            addNewRow(true);
+            //addNewRow(true);
         }
     });
     $("#orderMan").bind("keydown", function (e) {
@@ -1773,6 +1773,8 @@ function setGuestInfo(params)
                     nui.get("codeId").setValue(0);
                     nui.get("code").setValue(null);
 
+                    addNewRow(true);
+
                 }
                 else
                 {
@@ -1788,6 +1790,7 @@ function setGuestInfo(params)
                     nui.get("code").setValue(null);
 
                     nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+                    addGuest();
                 }
             }
             else
@@ -1803,6 +1806,8 @@ function setGuestInfo(params)
 
                 nui.get("codeId").setValue(0);
                 nui.get("code").setValue(null);
+                nui.get("billTypeId").setValue("010103");
+                addGuest();
             }
 
 
@@ -1812,6 +1817,42 @@ function setGuestInfo(params)
             console.log(jqXHR.responseText);
         }
     });
+}
+function addGuest(){
+	nui.confirm("此客户不存在，是否新增?", "友情提示", function(action) {
+		if (action == "ok") {
+            nui.open({
+                targetWindow: window,
+                url: webPath+partDomain+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
+                title: "客户资料", width: 530, height: 460,
+                allowDrag:true,
+                allowResize:false,
+                onload: function ()
+                {
+                    var iframe = this.getIFrameEl();
+                    iframe.contentWindow.setData({
+                        province:[],
+                        city:[],
+                        billTypeId:nui.get("billTypeId").getData(),
+                        settTypeId:nui.get("settleTypeId").getData(),
+                        tgrade:[],
+                        managerDuty:[]
+                    });
+                },
+                ondestroy: function (action)
+                {
+                    if(action == "ok")
+                    {
+                        
+                    }
+                    nui.get("guestId").focus();
+                }
+            });
+
+		}else{
+			nui.get("guestId").focus();
+		}
+	});
 }
 function onPrint() {
     var row = leftGrid.getSelected();
@@ -1910,12 +1951,12 @@ function OnrpMainGridCellBeginEdit(e){
     }
 
     if(data.codeId && data.codeId>0){
-        e.cancel = true;
+        //e.cancel = true;
     }
 
     if(row.partId) {
         if(row.isMarkBatch && row.isMarkBatch == 1){
-            if(column.field != "remark"){
+            if(column.field != "remark" && column.field != "orderPrice" && column.field != "orderAmt"){
                 e.cancel = true;
             }
         }else{
@@ -2254,4 +2295,35 @@ function getPchsOrderEnterDetail(pchsMainId, sellMainId, serviceId, guestId){
             console.log(jqXHR.responseText);
         }
     });
+}
+function packOut(){
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.isOut == 1) {
+            nui.open({
+                targetWindow: window,
+                url: webBaseUrl+"com.hsweb.cloud.part.common.packPopOperate.flow?token="+token,
+                title: "发货信息编辑", 
+                width: 580, height: 260,
+                showHeader:true,
+                allowDrag:true,
+                allowResize:true,
+                onload: function ()
+                {
+                    var iframe = this.getIFrameEl();
+                    var list = nui.get("settleTypeId").getData();
+                    iframe.contentWindow.setInitData(row, row.guestId, row.guestFullName, list);
+                },
+                ondestroy: function (action)
+                {
+
+                }
+            });
+        }else{
+            showMsg("请先出库再编辑发货信息!","W");
+            return;
+        }
+    }else{
+        return;
+    }
 }

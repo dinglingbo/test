@@ -36,6 +36,16 @@ $(document).ready(function(v) {
             e.cellHtml = html; 
         }
     });
+    dgbasic.on("cellclick",function(e){ 
+        var field=e.field;
+        if(field=="check" ){
+            if(e.row.check==1){
+                addDPart(1);
+            }else{
+                addDPart(-1);
+            }
+        }
+    });
 
     $("#partCode").bind("keydown", function (e) {
         if (e.keyCode == 13) {
@@ -47,13 +57,15 @@ $(document).ready(function(v) {
 /*
 *添加购物车
 */
-function addDPart(){   
+function addDPart(flag){   
     try{
         if(parent.showPanel){
             parent.showPanel('PART');
         }
         if(parent.addToCartGrid){
-            parent.addToCartGrid('PART', dgbasic.getSelected());
+            var r = dgbasic.getSelected();
+            r.flag = flag;
+            parent.addToCartGrid('PART', r);
         }
     }finally{}
 }
@@ -132,7 +144,7 @@ function openDetail(pid){
     var brand = row.brand;  
     try{
         nui.open({
-            url : sysDomain + "/com.hsweb.system.llqv2.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : sysDomain + "/com.hsweb.system.epc.partDetail.flow?brand=" + brand + "&pid=" + pid,
             title : "零件详情",
             width : "900px",
             height : "600px",

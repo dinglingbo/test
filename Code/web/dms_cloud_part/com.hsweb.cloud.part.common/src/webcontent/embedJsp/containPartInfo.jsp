@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>配件选择</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containPartInfo.js?v=2.0.0"></script>
+<title>配件查询</title>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containPartInfo.js?v=2.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

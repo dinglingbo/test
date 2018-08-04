@@ -50,7 +50,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbRead.RpbPart</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbRead.RpbPackageItem</process:from>
       <process:to type="query">cr/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -77,7 +77,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpbRead.RpbPart[]" name="rpbPart" type="query" valueType="DataObject">rpbPart</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbRead.RpbPackageItem[]" name="rpbPart" type="query" valueType="DataObject">rpbPart</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -95,7 +95,7 @@
     <process:input description="工单中的维修工单号" isArray="false" name="packageId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbRead.RpbPart" name="rpbPart"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbRead.RpbPackageItem" name="rpbPart"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

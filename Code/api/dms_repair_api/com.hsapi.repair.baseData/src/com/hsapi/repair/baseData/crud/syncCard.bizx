@@ -94,8 +94,8 @@
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" name="errCode" type="query">errCode</process:return>
-      <process:return id="1" name="errMsg" type="query">errMsg</process:return>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -208,26 +208,6 @@
     <node>end3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULL">
-          <process:leftOperand type="query">card/id</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>assign6</targetNode>
@@ -238,10 +218,38 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULL">
+          <process:leftOperand type="query">card/id</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="227" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/giveAmt</process:from>
+      <process:to type="query">a</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/rechargeAmt</process:from>
+      <process:to type="query">b</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="229" y="186"/>
@@ -368,7 +376,7 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="270" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -380,16 +388,42 @@
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">card/orgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">a+b</process:from>
+      <process:to type="query">card/totalAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="268" y="96"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="268" y="299"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">a+b</process:from>
+      <process:to type="query">card/totalAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="266" y="335"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-30 09:31:08" date="2018-07-30Z" description="" name="addStore" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="a" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="b" primitiveType="Int"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbRead.RpbCardStored" name="card"/>
   </process:inputs>

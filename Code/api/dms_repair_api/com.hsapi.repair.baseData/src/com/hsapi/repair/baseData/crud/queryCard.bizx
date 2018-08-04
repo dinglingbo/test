@@ -16,7 +16,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="com.hsapi.repair.data.rpbRead.RpbCardStored[]" name="card" type="query" valueType="DataObject">card</process:return>
-      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
+      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">page/count</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -56,21 +56,6 @@
     <figSize height="17" width="217"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="420" y="161"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="418" y="197"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -106,15 +91,15 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">criteria/_expr/_op</process:to>
+      <process:to type="query">criteria/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">name</process:from>
-      <process:to type="query">criteria/_expr/_value</process:to>
+      <process:to type="query">criteria/_expr[1]/_value</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">name</process:from>
-      <process:to type="query">criteria/_expr/_property</process:to>
+      <process:to type="query">criteria/_expr[1]/_property</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -122,13 +107,29 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="420" y="161"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="418" y="197"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-03 10:30:39" date="2018-08-03Z" description="" name="queryCard" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="name" primitiveType="String"/>
-    <process:input description="" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
     <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
     <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>

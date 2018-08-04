@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%--
@@ -19,27 +20,26 @@
       <legend>
         会员卡
       </legend>
-      <div id="dataform1" style="padding-top:5px;">
+      <div id="dataform1" style="padding-top:5px;" >
         <!-- hidden域 -->
-        <input class="nui-hidden" id="card.id"/>
+        <input class="nui-hidden" id="id"/>
         <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table" >
+        
                      <tr>
-            <td class="form_label">
+            <td class="form_label" style="width:17%">
               会员卡名称:
             </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.name"/>
+            <td colspan="1" style="width:33%">
+              <input class="nui-textbox" name="name"/>
+              <input class="nui-hidden"name="id" readonly="readonly" />
             </td>
 
-            <td class="form_label">
+
+            <td class="form_label" style="width:12%">
               适用范围:
             </td>
-            <td colspan="1">
-              <select name="card.useRange" class="nui-selectbox">
-              	<option value="1">  本店      </option>
-              	<option value="2">  连锁    </option>
-  
-              </select>
+            <td colspan="1"  style="width:38%">
+              <input class="nui-combobox" data ="[{value:'0',text:'本店',},{value:'1',text:'连锁'}]" textField="text" valueField="value" name="useRange" value="0" />
             </td>
             </tr>
             
@@ -48,93 +48,89 @@
            充值金额:
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="card.rechargeAmt"/>
+              <input class="nui-textbox" name="rechargeAmt" />
             </td>
             <td class="form_label">
               赠送金额:
             </td>
             <td colspan="1">
-              <input class="nui-textbox"  name="card.giveAmt"/>
+              <input class="nui-textbox"  name="giveAmt"/>
             </td>
           </tr>
           <tr>
-            <td class="form_label">
-              是否允许修改金额:
-            </td>
-            <td colspan="1">
-              <input  type="radio" name="can_modify" value="是" />是
-		    <input  type="radio" name="can_modify" value="否" />否
-            </td>
-            <td class="form_label">
-             总金额:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.totaAmt"/>
-            </td>
-          </tr>
            <tr>
+                       <td class="form_label">
+             套餐优惠率:
+            </td>
+            <td colspan="1">
+              <input class="nui-textbox" name="packageRate"/>
+            </td>
             <td class="form_label">
              配件优惠率:
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="card.partRate"/>
+              <input class="nui-textbox" name="partRate"/>
+              
             </td>
+
           </tr>
           <tr>
-            <td class="form_label">
-             套餐优惠率:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.packageRate"/>
-            </td>
+
             <td class="form_label">
               工时优惠率:
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="card.itemRate"/>
+              <input class="nui-textbox" name="itemRate"/>
             </td>
+                        <td class="form_label">
+              有效期(月):
+            </td>
+            <td colspan="1">
+              <input class="nui-textbox" name="periodValidity"/>
+            </td>
+          
+            <td class="form_label">
           </tr>
           <tr>
             <td class="form_label">
               销售提成方式:
             </td>
             <td colspan="1">
-              <select name="card.salesDeductType" onchange="a()" id="tc">
-              	<option value="1">按原价比例</option>
-              	<option value="2">按折后价比例</option>
-              	<option value="3">按产值比例</option>
-              	<option value="4">固定金额</option>
-              </select>
+            <input class="nui-combobox" data ="[{value:'0',text:'按原价比例',},{value:'1',text:'按折后价比例'},{value:'2',text:'按产值比例',},{value:'3',text:'固定金额'}]" 
+            textField="text" valueField="value" name="salesDeductType"  value="0" />
+
             </td>
             <td class="form_label">
              销售提成值:
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="card.salesDeductValue" />
-            </td>
-            <td colspan="1">
-             <div id="div1">%</div>
-            </td>
-          </tr>
-
-
-           <tr>
-                      
-            <td class="form_label">
-              有效期(月):
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.periodValidity"/>
-            </td>
-          
-            <td class="form_label">
-             状态:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.status"/>
+              <input class="nui-textbox" name="salesDeductValue" />
             </td>
 
           </tr>
+		<tr>
+            </td>
+                        <td class="form_label">
+              是否允许修改金额:
+            </td>
+            <td colspan="1">
+		    
+		    <div class="mini-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" name="canModify"
+    textField="text" valueField="value"  data ="[{value:'0',text:'否',},{value:'1',text:'是'}]" value="0" >
+</div>
+		    
+            </td>
+			            <td class="form_label">
+              状态:
+            </td>
+            <td colspan="1">
+		    
+		    <div class="mini-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" name="canModify"
+    textField="text" valueField="value"  data ="[{value:'0',text:'否',},{value:'1',text:'是'}]" value="0">
+</div>
+		    
+		</tr>
+
   
 
            <tr>
@@ -142,7 +138,7 @@
              使用条款:
             </td>
             <td colspan="2">
-            <input  name="card.useRemark"  style="width:330px;height:50px;"></input>
+            <input class="nui-TextArea" name="useRemark"     style="width:330px;height:50px;"/>
 
             </td>
             </tr>
@@ -150,8 +146,8 @@
             <td class="form_label">
            卡说明:
             </td>
-            <td colspan="2">
-            <input  name="card.remark"  style="width:330px;height:50px;"></input>
+            <td colspan="1">
+            <input class="nui-TextArea" name="remark"  style="width:330px;height:50px;"/>
             </td>
           </tr>
           <tr>
@@ -172,7 +168,25 @@
       var form = new nui.Form("#dataform1");
       form.setChanged(false);
 
+	  	var requiredField = {
+			name : "会员卡名称",
+			rechargeAmt : "充值金额",
+			giveAmt : "赠送金额",
+			packageRate : "套餐优惠率",
+			partRate : "配件优惠率",
+			itemRate : "工时优惠率",
+			periodValidity : "有效期",
+			salesDeductValue : "提成值"
+		};
       function onOk(){
+      	var data = form.getData();
+		for ( var key in requiredField) {
+			if (!data[key] || $.trim(data[key]).length == 0) {
+				showMsg(requiredField[key] + "不能为空!","W");
+	
+				return;
+			}
+		}
         saveData();
       }
 
@@ -195,11 +209,19 @@
         nui.get(dataid).setValue(grid_data);
       }
 
+	
+	
+	
+
       function saveData(){
         form.validate();
         if(form.isValid()==false) return;
         var data = form.getData(false,true);
-        var json = nui.encode(data);//变成json格式
+        //var json = nui.encode(data);//变成json格式
+        var param = {
+        	card:data
+        }
+        var json = nui.encode(param);
         $.ajax({
           url:"com.hsapi.repair.baseData.crud.syncCard.biz.ext",
           type:'POST',
@@ -236,14 +258,23 @@
               else
               return window.close();
             }
-          function a(){
-          	var tc = document.getElementById("tc");
-            if(tc.value=="4"){
-				 $("#div1").text("元");
-            }else{
-            	 $("#div1").text("%");
+
+           function setData(data){
+            //跨页面传递的数据对象，克隆后才可以安全使用
+            var json = nui.clone(data);
+
+
+            //如果是点击编辑类型页面
+            if (json.id!=null) {
+              form.setData(json);
+              form.setChanged(false);
             }
           }
+          
+
+
+ 
+        
           </script>
         </body>
       </html>

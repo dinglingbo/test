@@ -19,7 +19,7 @@
       <legend>
         会员卡
       </legend>
-      <div id="dataform1" style="padding-top:5px;" url="com.hsapi.repair.baseData.crud.getCard.biz.ext"  >
+      <div id="dataform1" style="padding-top:5px;">
         <!-- hidden域 -->
         <input class="nui-hidden" id="card.id"/>
         <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table" >
@@ -156,7 +156,7 @@
           </tr>
           <tr>
           	<td style="text-align:center;" colspan="4">
-          		<a class="nui-button" iconCls="icon-save" onclick="onCancel()">
+          		<a class="nui-button" iconCls="icon-save" onclick="onOk()">
                 保存
                 </a>
               <span style="display:inline-block;width:25px;">
@@ -167,7 +167,7 @@
     </fieldset>
     <!-- 从表的修改 -->
 
-   <script type="text/javascript">
+    <script type="text/javascript">
       nui.parse();
       var form = new nui.Form("#dataform1");
       form.setChanged(false);
@@ -175,94 +175,71 @@
       function onOk(){
         saveData();
       }
+      
+      
+                //页面间传输json数据
+          function setFormData(data){
+            //跨页面传递的数据对象，克隆后才可以安全使用
+            var infos = nui.clone(data);
 
-      function gridAddRow(datagrid){
-        var grid = nui.get(datagrid);
-        grid.addRow({});
-      }
+              var json = infos.record;
 
-      function gridRemoveRow(datagrid) {
-        var grid = nui.get(datagrid);
-        var rows = grid.getSelecteds();
-        if (rows.length > 0) {
-          grid.removeRows(rows, true);
-        }
-      }
-      function gridReload(datagrid){
-        var grid = nui.get(datagrid);
-        grid.reload();
-      }
+              var form = new nui.Form("#dataform1");//将普通form转为nui的form
+              form.setData(json);
+              form.setChanged(false);
+            }
+          
 
-      function setGridData(datagrid,dataid){
-        var grid = nui.get(datagrid);
-        var grid_data = grid.getData();
-        nui.get(dataid).setValue(grid_data);
-      }
-      function setData(data){
-        data = nui.clone(data);
-        nui.get("grid_0").load({ooperator:data});
-        var json = nui.encode({ooperator:data});
+
+      function saveData(){
+        form.validate();
+        if(form.isValid()==false) return;
+        var data = form.getData(false,true);
+        var json = nui.encode(data);//变成json格式
         $.ajax({
-          url:"com.hsapi.repair.baseData.crud.getCard.biz.ext",
+          url:"com.hsapi.repair.baseData.crud.syncCard.biz.ext",
           type:'POST',
           data:json,
           cache:false,
           contentType:'text/json',
           success:function(text){
-            obj = nui.decode(text);
-            form.setData(obj);
+            var returnJson = nui.decode(text);
+            if(returnJson.exception == null){
+              CloseWindow("saveSuccess");
+            }else{
+              nui.alert("保存失败", "系统提示", function(action){
+                if(action == "ok" || action == "close"){
+                  //CloseWindow("saveFailed");
+                }
+                });
+              }
+            }
+            });
+          }
+
+          function onReset(){
+            form.reset();
             form.setChanged(false);
           }
-          });
-        }
 
 
-        function saveData(){
-          form.validate();
-          if(form.isValid()==false) return;
-          setGridData("grid_0","ooperator.oContacts");
-          var data = form.getData(false,true);
-          var json = nui.encode(data);
 
-          $.ajax({
-            url:"com.primeton.nuisample.ooperatorbiz.updateOOperator.biz.ext",
-            type:'POST',
-            data:json,
-            cache:false,
-            contentType:'text/json',
-            success:function(text){
-              var returnJson = nui.decode(text);
-              if(returnJson.exception == null){
-                CloseWindow("saveSuccess");
-              }else{
-                nui.alert("保存失败", "系统提示", function(action){
-                  if(action == "ok" || action == "close"){
-                    //CloseWindow("saveFailed");
-                  }
-                  });
-                }
-              }
-              });
+          function CloseWindow(action){
+            if(action=="close"){
+
+              }else if(window.CloseOwnerWindow)
+              return window.CloseOwnerWindow(action);
+              else
+              return window.close();
             }
-
-            function onReset(){
-              form.reset();
-              form.setChanged(false);
+          function a(){
+          	var tc = document.getElementById("tc");
+            if(tc.value=="4"){
+				 $("#div1").text("元");
+            }else{
+            	 $("#div1").text("%");
             }
-
-            function onCancel(){
-              CloseWindow("cancel");
-            }
-
-            function CloseWindow(action){
-
-              if(action=="close"){
-
-                }else if(window.CloseOwnerWindow)
-                return window.CloseOwnerWindow(action);
-                else
-                return window.close();
-              }
-            </script>
+          }
+          </script>
         </body>
       </html>

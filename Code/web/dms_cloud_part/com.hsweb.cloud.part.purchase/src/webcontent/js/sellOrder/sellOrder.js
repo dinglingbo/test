@@ -1894,12 +1894,13 @@ function onPrint() {
 
         if(!row.id) return;
 
-		var auditSign = row.auditSign||0;
+        var auditSign = row.auditSign||0;
+        var logisticsName = getLogistics(row.id, row.guestId);
 
         nui.open({
 
             url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
-                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
+                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign+"&logisticsName="+logisticsName,// "view_Guest.jsp",
             title : "销售订单打印",
             width : 900,
             height : 600,
@@ -1910,6 +1911,29 @@ function onPrint() {
         });
     }
 
+}
+function getLogistics(mainId, guestId){
+    var logName = "";
+    nui.ajax({
+        url : baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.getPrintLogistics.biz.ext",
+        async : false,
+        data : {
+            token: token, 
+            mainId:mainId,
+            guestId: guestId
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.logisticsName) {
+                logName = data.logisticsName;
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+
+    return logName;
 }
 
 function addSelectPart(){

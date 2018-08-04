@@ -236,7 +236,9 @@
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate,
-		       a.is_need_pack as isNeedPack
+		       a.is_need_pack as isNeedPack,
+		       a.default_logistics_id as defaultLogisticsId,
+		       a.default_logistics as defaultLogistics
 		       FROM com_guest a
 		       WHERE a.is_client = 1 and (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>
@@ -330,7 +332,9 @@
 			 a.record_date           recordDate,
 			 a.modifier              modifier,
 			 a.modify_date           modifyDate,
-			 a.is_need_pack as isNeedPack
+			 a.is_need_pack as isNeedPack,
+		     a.default_logistics_id as defaultLogisticsId,
+		     a.default_logistics as defaultLogistics
 		FROM com_guest a
 		WHERE (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>

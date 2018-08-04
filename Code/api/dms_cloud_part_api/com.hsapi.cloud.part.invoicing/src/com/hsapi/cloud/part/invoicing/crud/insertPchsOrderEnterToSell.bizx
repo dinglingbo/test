@@ -55,7 +55,7 @@
       <targetNode>end0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -108,7 +108,7 @@
       <targetNode>loopstart0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -199,7 +199,7 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -235,9 +235,15 @@
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="515" y="135"/>
@@ -453,12 +459,12 @@
       <process:partner type="literal">this.insertPjSellOrderStep</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="sellOrderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" valueType="DataObject" pattern="value">sellTemp</process:inputVariable>
-        <process:inputVariable id="1" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">sellMainId</process:inputVariable>
+        <process:inputVariable id="1" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="mainId" type="query" value="Long" valueType="Primitive">serviceId</process:outputVariable>
+        <process:outputVariable id="2" name="mainId" type="query" value="Long" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="3" name="sellOrderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" valueType="DataObject"></process:outputVariable>
         <process:outputVariable id="4" name="p" type="query" value="java.util.HashMap" valueType="Java"></process:outputVariable>
       </process:outputVariables>
@@ -590,7 +596,7 @@
       <targetNode>transactioncommit0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

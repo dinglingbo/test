@@ -50,7 +50,7 @@
       <process:to type="query">cr/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">service_cod</process:from>
+      <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">cr/_expr[1]/_value</process:to>
     </process:copy>
   </nodes>
@@ -92,7 +92,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cr"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="维修工单号" isArray="false" name="service_code" primitiveType="String"/>
+    <process:input description="维修工单号" isArray="false" name="serviceId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpsRead.RpsPackage" name="rpsPackage"/>

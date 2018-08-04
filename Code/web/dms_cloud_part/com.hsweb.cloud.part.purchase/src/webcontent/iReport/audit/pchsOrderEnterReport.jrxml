@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pchsOrderReport" pageWidth="850" pageHeight="792" orientation="Landscape" columnWidth="830" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" scriptletClass="com.hs.print.TransChineseMoneyScriptlet" uuid="34ab681a-51e3-4310-89f9-74ef07cdf8d2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="27"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Mon Jul 31 14:09:04 CST 2017"/>
 	<subDataset name="dataset1" uuid="a7e249e6-3376-4b52-a342-faae67db68ea"/>
 	<subDataset name="wb_common" uuid="1f106df9-cb16-4170-94b7-3984ad400e6f">
@@ -264,7 +264,7 @@ ORDER BY
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[退货日期:]]></text>
+				<text><![CDATA[入库日期:]]></text>
 			</staticText>
 			<textField pattern="yyyy/MM/dd HH:mm:ss">
 				<reportElement x="631" y="57" width="188" height="22" uuid="358ebdd6-4ce1-4031-8e78-580eec580d40"/>
@@ -299,7 +299,7 @@ ORDER BY
 				<textElement>
 					<font fontName="SansSerif" size="22" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[销 售 退 货]]></text>
+				<text><![CDATA[采 购 入 库]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="154" width="830" height="1" uuid="c3fe7dc7-bd52-446c-9122-47c78a027719"/>

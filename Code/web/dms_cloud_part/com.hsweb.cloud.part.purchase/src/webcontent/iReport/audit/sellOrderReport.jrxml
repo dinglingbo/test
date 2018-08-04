@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pchsOrderReport" pageWidth="850" pageHeight="792" orientation="Landscape" columnWidth="830" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" scriptletClass="com.hs.print.TransChineseMoneyScriptlet" uuid="34ab681a-51e3-4310-89f9-74ef07cdf8d2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="27"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Mon Jul 31 14:09:04 CST 2017"/>
 	<subDataset name="dataset1" uuid="a7e249e6-3376-4b52-a342-faae67db68ea"/>
 	<subDataset name="wb_common" uuid="1f106df9-cb16-4170-94b7-3984ad400e6f">
@@ -33,44 +33,46 @@ FROM
 	<parameter name="printMan" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logisticsName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      case a.bill_type_id when '010101'then '收据'when '010102'then '普票'else '增票'end AS billTypeId,
      case a.settle_type_id when '020501'then '现结'else '月结'end AS settleTypeId,
-     case a.bill_status_id when '0'then '草稿'when '1'then '待发货'when '2'then '待收货'when '3'then '部分入库'when '4'then '已入库'when '5'then '已退回'else '已关闭'end AS billStatusId,
-     b.part_code AS partCode,
-     b.`FULL_NAME` AS partFullName,
-     b.store_shelf AS storeName,
+     case when a.is_out = 1 then '已出库' else '未出库' end as isOut,
      A.`SERVICE_ID` AS serviceId,
      e.`name` AS compName,
      A.`orgid` AS orgid,
-     A.`finish_DATE` AS orderDate,
+     A.`create_DATE` AS orderDate,
      A.`creator` AS creator,
      B.`ID` AS id,
-     B.`STORE_ID` AS storeId,
-     B.`ENTER_UNIT_ID` AS enterUnitId,
+     B.`out_unit_id` AS outUnitId,
      B.`ORDER_QTY` AS orderQty,
      B.`ORDER_PRICE` AS orderPrice,
      B.`ORDER_AMT` AS orderAmt,
      A.`ORDER_MAN` AS orderMan,
-     B.`REMARK` AS detailRemark,
      A.`REMARK` AS mainRemark,
      C.`short_name` AS guestFullName,
      C.`contactor_tel` AS contactorTel,
      C.`addr` AS conAddress,
+     b.`part_code` AS partCode,
+     b.`part_name` AS partFullName,
      D.`OEM_CODE` AS oemCode,
-     C.`contactor` AS contactor,
+     C.contactor AS contactor,
+     g.shelf as shelf,
      e.address as compAddress,
      e.tel as compTel,
      d.apply_car_model as applyCarModel,
      d.spec as spec,
      f.`name` as partBrandName
 FROM
-     `pj_pchs_order_main_chk` A INNER JOIN `pj_pchs_order_detail_chk` B ON A.`ID` = B.`MAIN_ID`
+     `pj_sell_order_main_chk` A INNER JOIN `pj_sell_order_detail_chk` B ON A.`ID` = B.`MAIN_ID`
      INNER JOIN `wb_common`.`com_attribute` D ON B.`PART_ID` = D.`ID`
      INNER JOIN `wb_common`.`com_guest` C ON A.`GUEST_ID` = C.`ID`
      INNER JOIN `wb_common`.`com_company` e ON A.`orgid` = e.`orgid`
      left join `wb_common`.`com_part_brand` f on d.part_brand_id = f.id
+     LEFT JOIN pj_part_store_stock g on b.store_id = g.store_id and b.part_id = g.part_id
 WHERE
      A.ID = $P{ID}
 ORDER BY
@@ -78,10 +80,7 @@ ORDER BY
 	</queryString>
 	<field name="billTypeId" class="java.lang.String"/>
 	<field name="settleTypeId" class="java.lang.String"/>
-	<field name="billStatusId" class="java.lang.String"/>
-	<field name="partCode" class="java.lang.String"/>
-	<field name="partFullName" class="java.lang.String"/>
-	<field name="storeName" class="java.lang.String"/>
+	<field name="isOut" class="java.lang.String"/>
 	<field name="serviceId" class="java.lang.String"/>
 	<field name="compName" class="java.lang.String"/>
 	<field name="orgid" class="java.lang.Integer">
@@ -94,20 +93,23 @@ ORDER BY
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[ID]]></fieldDescription>
 	</field>
-	<field name="storeId" class="java.lang.Integer"/>
-	<field name="enterUnitId" class="java.lang.String"/>
+	<field name="outUnitId" class="java.lang.String"/>
 	<field name="orderQty" class="java.math.BigDecimal"/>
 	<field name="orderPrice" class="java.math.BigDecimal"/>
 	<field name="orderAmt" class="java.math.BigDecimal"/>
 	<field name="orderMan" class="java.lang.String"/>
-	<field name="detailRemark" class="java.lang.String"/>
 	<field name="mainRemark" class="java.lang.String"/>
 	<field name="guestFullName" class="java.lang.String"/>
 	<field name="contactorTel" class="java.lang.String"/>
 	<field name="conAddress" class="java.lang.String"/>
+	<field name="partCode" class="java.lang.String"/>
+	<field name="partFullName" class="java.lang.String"/>
 	<field name="oemCode" class="java.lang.String"/>
 	<field name="contactor" class="java.lang.String">
 		<fieldDescription><![CDATA[联系人1]]></fieldDescription>
+	</field>
+	<field name="shelf" class="java.lang.String">
+		<fieldDescription><![CDATA[??]]></fieldDescription>
 	</field>
 	<field name="compAddress" class="java.lang.String"/>
 	<field name="compTel" class="java.lang.String"/>
@@ -215,7 +217,7 @@ ORDER BY
 				<textFieldExpression><![CDATA[$F{compTel}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="69" y="107" width="413" height="22" uuid="4e22d6c3-3d8b-4350-a4a0-be9e688e580a"/>
+				<reportElement x="69" y="107" width="408" height="22" uuid="4e22d6c3-3d8b-4350-a4a0-be9e688e580a"/>
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
 				</textElement>
@@ -243,17 +245,17 @@ ORDER BY
 				<text><![CDATA[联系人:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="4" y="84" width="63" height="22" uuid="34ac4c06-b56c-4f58-b751-1d1c33123526"/>
+				<reportElement x="22" y="84" width="45" height="22" uuid="34ac4c06-b56c-4f58-b751-1d1c33123526"/>
 				<textElement textAlignment="Right">
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[供应商:]]></text>
+				<text><![CDATA[客户:]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="81" width="830" height="1" uuid="aae17a7e-ccad-4ade-b2f9-1f12129f52c7"/>
 			</line>
 			<textField pattern="yyyy/MM/dd HH:mm:ss" isBlankWhenNull="true">
-				<reportElement x="360" y="59" width="199" height="22" uuid="416b3079-e7c7-4494-ae78-182f8b26255f"/>
+				<reportElement x="360" y="59" width="194" height="22" uuid="416b3079-e7c7-4494-ae78-182f8b26255f"/>
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true"/>
 				</textElement>
@@ -264,7 +266,7 @@ ORDER BY
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[退货日期:]]></text>
+				<text><![CDATA[订单日期:]]></text>
 			</staticText>
 			<textField pattern="yyyy/MM/dd HH:mm:ss">
 				<reportElement x="631" y="57" width="188" height="22" uuid="358ebdd6-4ce1-4031-8e78-580eec580d40"/>
@@ -299,7 +301,7 @@ ORDER BY
 				<textElement>
 					<font fontName="SansSerif" size="22" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[销 售 退 货]]></text>
+				<text><![CDATA[销 售 订 单]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="154" width="830" height="1" uuid="c3fe7dc7-bd52-446c-9122-47c78a027719"/>
@@ -483,7 +485,7 @@ ORDER BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{enterUnitId}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{outUnitId}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement positionType="Float" x="619" y="0" width="64" height="22" uuid="59040231-6df7-4fc7-952c-2484d7ede4b7"/>
@@ -512,7 +514,7 @@ ORDER BY
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{storeName}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{shelf}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement positionType="Float" x="688" y="0" width="66" height="22" uuid="3b22aa76-d423-41c6-98ac-773c9d3544ea"/>
@@ -563,7 +565,7 @@ ORDER BY
 		<band splitType="Stretch"/>
 	</lastPageFooter>
 	<summary>
-		<band height="104" splitType="Stretch">
+		<band height="127" splitType="Stretch">
 			<line>
 				<reportElement x="2" y="25" width="830" height="1" uuid="32de0ca2-bd23-4fc5-be74-79ddc29ccdc3"/>
 			</line>
@@ -592,7 +594,7 @@ ORDER BY
 				<reportElement x="2" y="52" width="830" height="1" uuid="864c43e9-e975-46b3-81fb-719cd80a87e2"/>
 			</line>
 			<staticText>
-				<reportElement x="14" y="28" width="54" height="22" uuid="69ff16a5-c76b-40cd-8f73-5e5cc77df930"/>
+				<reportElement x="35" y="28" width="54" height="22" uuid="69ff16a5-c76b-40cd-8f73-5e5cc77df930"/>
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
@@ -616,17 +618,17 @@ ORDER BY
 				<reportElement x="2" y="78" width="830" height="1" uuid="9f436e82-d343-43c4-a779-6d6970afa443"/>
 			</line>
 			<line>
-				<reportElement x="0" y="103" width="830" height="1" uuid="6f830358-137a-4ed5-a3b7-15913dbb05ae"/>
+				<reportElement x="0" y="126" width="830" height="1" uuid="6f830358-137a-4ed5-a3b7-15913dbb05ae"/>
 			</line>
 			<staticText>
-				<reportElement x="30" y="55" width="38" height="22" uuid="b7b61141-ccef-4594-b334-e1b04df7dcd7"/>
+				<reportElement x="219" y="55" width="38" height="22" uuid="b7b61141-ccef-4594-b334-e1b04df7dcd7"/>
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[备注:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="70" y="55" width="671" height="22" uuid="4eb81732-4df9-4e13-9069-9767d8ba9347"/>
+				<reportElement x="257" y="55" width="563" height="22" uuid="4eb81732-4df9-4e13-9069-9767d8ba9347"/>
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
@@ -637,10 +639,10 @@ ORDER BY
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[注（白联仓库         红联财务            黄联供应商）]]></text>
+				<text><![CDATA[兹收到上列货物完整无缺,所有电器配件货物出门概不退货,灯,胶,玻璃等易碎货品必须当面检验清楚,事后概不负责!]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="71" y="28" width="83" height="22" uuid="2c73085d-af34-4790-ab18-672e6099bf2e"/>
+				<reportElement x="91" y="28" width="83" height="22" uuid="2c73085d-af34-4790-ab18-672e6099bf2e"/>
 				<textElement>
 					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
@@ -660,6 +662,27 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[合计:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="18" y="103" width="482" height="22" uuid="6aba42ed-e848-4696-8b7f-d2f4f94f05db"/>
+				<textElement>
+					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[此单据一经客户或其代理人签名,将作为客户欠款凭证,特此声明!]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="55" width="77" height="22" uuid="1a6cecf0-b8aa-424c-8311-39acbb65a65f"/>
+				<textElement>
+					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[发货物流:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="89" y="56" width="130" height="22" uuid="2cb621bf-5235-43fc-8599-5080893b8c5f"/>
+				<textElement>
+					<font fontName="Serif" size="15" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{logisticsName}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

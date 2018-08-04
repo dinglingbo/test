@@ -466,6 +466,7 @@
     <sourceConnections xsi:type="process:tLink" id="link83" name="link83" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo17</sourceNode>
       <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link96" name="link96" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo17</sourceNode>
@@ -573,7 +574,7 @@
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

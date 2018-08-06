@@ -3,7 +3,7 @@
   <nodes xsi:type="model:PEntityNode" id="node0" name="RpbBusinessType" nodeType="table" displayName="RpbBusinessType" author="localhost" instanceClass="" table="rpb_business_type" genStrategy="native">
     <location x="30" y="75"/>
     <size height="210" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property0" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -677,7 +677,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1" name="RpbBusinessDeduct" nodeType="table" displayName="RpbBusinessDeduct" author="localhost" instanceClass="" table="rpb_business_deduct" genStrategy="assigned">
     <location x="45" y="330"/>
     <size height="282" width="150"/>
-    <figSize height="20" width="200"/>
+    <figSize height="20" width="243"/>
     <columnProperty id="property9" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">

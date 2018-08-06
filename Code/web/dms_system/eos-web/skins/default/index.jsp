@@ -155,10 +155,14 @@
         if (!tab) {
             tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
             tab = tabs.addTab(tab);
-        }
-        tabs.activeTab(tab);
+            
+            tabs.activeTab(tab);
         
-        doInitTab(params);
+        	doInitTab(params);
+        }else{
+        	tabs.activeTab(tab);
+        }
+        
     }
     
     function doInitTab(params){

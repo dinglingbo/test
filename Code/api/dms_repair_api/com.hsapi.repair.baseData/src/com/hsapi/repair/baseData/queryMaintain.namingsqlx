@@ -26,10 +26,7 @@
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
-		WHERE
-			a.orgid = #orgid#
-			and a.quote_file_sign = 0
-			and a.status &lt; 5
+		WHERE 1=1
 		<dynamic>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)

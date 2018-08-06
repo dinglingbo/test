@@ -50,7 +50,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpsRead.RpsPackage</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbRead.RpbPackage</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -90,7 +90,6 @@
   <process:info author="Administrator" createTime="2018-08-03 14:45:55" date="2018-08-03Z" description="" name="queryPackageById" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbRead.RpbPackage" name="y"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="String"/>

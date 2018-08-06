@@ -192,7 +192,7 @@ function setInitData(params){
 function add(){
     $("#servieIdEl").html("综合开单详情");
     $("#carNoEl").html("");
-    $("#wechatTag").css("color","#62b900");
+    //$("#wechatTag").css("color","#62b900");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
     $("#cardPackageEl").html("次卡套餐(0)");

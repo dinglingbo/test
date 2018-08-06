@@ -317,12 +317,10 @@
     <location x="429" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.saveRpsMaintain</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
-        <process:inputVariable id="1" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
-        <process:inputVariable id="2" name="userName" type="query" value="String" valueType="Primitive" pattern="reference">userName</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

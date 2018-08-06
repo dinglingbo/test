@@ -28,14 +28,15 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		WHERE
 			a.orgid = #orgid#
-			and a.quote_file_sign = 0
-			and a.status &lt; 5
 		<dynamic>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">  
                 (a.status = #status#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">  
+                (a.is_settle = #isSettle#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="statusList">  
                 (a.status in ($statusList$))

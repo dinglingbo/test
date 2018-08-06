@@ -125,7 +125,7 @@ html body .searchbox .mini-buttonedit-icon:before
                 <tr>
                     <td style="text-align:left;">
                         <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>
-                        <a class="nui-button" iconCls="" plain="false" onclick="add()" id="addBtn">查看详情</a>
+                        <a class="nui-button" iconCls="" plain="false" onclick="" id="addBtn">查看详情</a>
                         <span class="separator"></span>
                         <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

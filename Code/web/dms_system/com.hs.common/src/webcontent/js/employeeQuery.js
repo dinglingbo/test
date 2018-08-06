@@ -231,9 +231,7 @@ function stoporstart(){
             }
         });
 
-    }
-
-    if(row.isOpenAccount == 0 && !row.systemAccount){
+    }else if(row.isOpenAccount == 0 && !row.systemAccount){
         emp = row;
         emp.passWord='000000';
         nui.open({
@@ -253,9 +251,13 @@ function stoporstart(){
                 }
             }
         });
+<<<<<<< HEAD
     }
 
       if(row.isOpenAccount == 0 && row.systemAccount){
+=======
+    }else if(row.isOpenAccount == 0 && row.systemAccount){
+>>>>>>> 9141b4c92c92dc448e9824dcffc7a66e19e76af7
         emp.isOpenAccount = 1;
         emp.empid = row.empid;
         emp.systemAccount = row.systemAccount;

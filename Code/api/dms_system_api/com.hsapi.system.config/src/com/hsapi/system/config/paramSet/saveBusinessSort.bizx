@@ -72,7 +72,7 @@
       <process:to type="query">param/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">tmpInt</process:from>
+      <process:from type="query" pattern="reference">tmpInt</process:from>
       <process:to type="query">param/code</process:to>
     </process:copy>
     <process:copy>

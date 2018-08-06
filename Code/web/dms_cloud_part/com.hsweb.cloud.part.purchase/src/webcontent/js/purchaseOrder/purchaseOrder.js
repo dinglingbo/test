@@ -34,6 +34,9 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var partShow = 0;
+var provinceList = [];
+var cityList = [];
+var advancedTipWin = null;
 
 
 // 单据状态
@@ -82,6 +85,8 @@ $(document).ready(function(v) {
 	billmainTab = mainTabs.getTab("billmain");
 	partInfoTab = mainTabs.getTab("partInfoTab");
 
+	advancedTipWin = nui.get("advancedTipWin");
+
 	//setTimeout(function(){ 
 	document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
 	document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
@@ -98,7 +103,7 @@ $(document).ready(function(v) {
             orderMan.focus();
         }*/
         if (e.keyCode == 13) {
-            addNewRow(true);
+			//addNewRow(true);
         }
     });
     $("#orderMan").bind("keydown", function (e) {
@@ -158,7 +163,7 @@ $(document).ready(function(v) {
 	    } 
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
-			onPrint(0);
+			onPrint();
 	    } 
 	    if((keyCode==113))  {  
 			addMorePart();
@@ -505,14 +510,14 @@ function quickSearch(type) {
 		gsparams.auditSign = 1;
 		querysign = 3;
 		break;
-	case 13:
-		querystatusname = "部分入库";
-		gsparams.billStatusId = 3;
-		gsparams.auditSign = 1;
-		querysign = 3;
-		break;
+	// case 13:
+	// 	querystatusname = "部分入库";
+	// 	gsparams.billStatusId = 3;
+	// 	gsparams.auditSign = 1;
+	// 	querysign = 3;
+	// 	break;
 	case 14:
-		querystatusname = "全部入库";
+		querystatusname = "已入库";
 		gsparams.billStatusId = 4;
 		gsparams.auditSign = 1;
 		querysign = 3;
@@ -1711,6 +1716,7 @@ var getGuestInfo = baseUrl
 function setGuestInfo(params) {
 	nui.ajax({
 		url : getGuestInfo,
+		async:false,
 		data : {
 			params : params,
 			token : token
@@ -1738,6 +1744,8 @@ function setGuestInfo(params) {
 
 					nui.get("billTypeId").setValue(billTypeIdV);
 					nui.get("settleTypeId").setValue(settTypeIdV);
+
+					addNewRow(true);
 					
 				} else {
 					var el = nui.get('guestId');
@@ -1751,6 +1759,8 @@ function setGuestInfo(params) {
 					leftGrid.updateRow(row, newRow);
 
 					nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+
+					addGuest();
 				}
 			} else {
 				var el = nui.get('guestId');
@@ -1762,6 +1772,10 @@ function setGuestInfo(params) {
 					guestFullName : null
 				};
 				leftGrid.updateRow(row, newRow);
+
+				nui.get("billTypeId").setValue("010103");
+
+				addGuest();
 			}
 
 		},
@@ -1771,20 +1785,59 @@ function setGuestInfo(params) {
 		}
 	});
 }
-function onPrint(type) {
+function addGuest(){
+	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
+		if (action == "ok") {
+			nui.open({
+				targetWindow: window,
+				url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+				title: "供应商资料", width: 530, height: 480,
+				allowDrag:true,
+				allowResize:false,
+				onload: function ()
+				{
+					var iframe = this.getIFrameEl();
+					iframe.contentWindow.setData({
+						province:[],
+						city:[],
+						supplierType:[],
+						billTypeId:nui.get("billTypeId").getData(),
+						settTypeId:nui.get("settleTypeId").getData(),
+						tgrade:[],
+						managerDuty:[]
+					});
+				},
+				ondestroy: function (action)
+				{
+					if(action == "ok")
+					{
+						
+					}
+					nui.get("guestId").focus();
+				}
+			});
+
+		}else{
+			nui.get("guestId").focus();
+		}
+	});
+}
+function onPrint() {
 	var row = leftGrid.getSelected();
 
 	var data = rightGrid.getData();
 	if(data && data.length<=0) return;
 
-	if (row && type == 0) {
+	if (row) {
 
 		if(!row.id) return;
+
+		var auditSign = row.auditSign||0;
 
 		nui.open({
 
 			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,
 			height : 600,
@@ -1793,27 +1846,28 @@ function onPrint(type) {
 				// iframe.contentWindow.setInitData(storeId, 'XSD');
 			}
 		});
-	}else if(row && type == 1){
-		if(!row.id) return;
-
-		if(row.isFinished != 1) {
-			showMsg("全部入库后才能打印进货单!","W");
-			return;
-		}
-
-		nui.open({
-
-			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
-			title : "进货单打印",
-			width : 900,
-			height : 600,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				// iframe.contentWindow.setInitData(storeId, 'XSD');
-			}
-		});
 	}
+	// }else if(row && type == 1){
+	// 	if(!row.id) return;
+
+	// 	if(row.isFinished != 1) {
+	// 		showMsg("全部入库后才能打印进货单!","W");
+	// 		return;
+	// 	}
+
+	// 	nui.open({
+
+	// 		url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+	// 				+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+	// 		title : "进货单打印",
+	// 		width : 900,
+	// 		height : 600,
+	// 		onload : function() {
+	// 			var iframe = this.getIFrameEl();
+	// 			// iframe.contentWindow.setInitData(storeId, 'XSD');
+	// 		}
+	// 	});
+	// }
 
 }
 function addSelectPart(){
@@ -1899,12 +1953,7 @@ function addMorePart(){
 
 	var main = basicInfoForm.getData();
 	if(!main.id){
-		showMsg("此单已审核!","W");
-		return;
-	}
-	var data = rightGrid.getChanges()||[];
-	if (data.length>0) {
-		showMsg("此单已审核!","W");
+		showMsg("请先保存单据!","W");
 		return;
 	}
 	advancedAddForm.setData([]);
@@ -2110,6 +2159,84 @@ function unAudit()
             console.log(jqXHR.responseText);
         }
     });
+}
+function importPart(){
+    var row = leftGrid.getSelected();
+	if(row.auditSign == 1){
+		showMsg("此单已审核!","W");
+		return;
+	}
+
+	var main = basicInfoForm.getData();
+	if(!main.id){
+		showMsg("请先保存单据!","W");
+		return;
+	}
+
+    nui.open({
+        targetWindow: window,
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.getPartInfoImoprt.flow?token="+token,
+        title: "配件导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.initData(function(data,msg){
+				if(data && data.length > 0){
+					addImportRtnList(data,msg);
+				}
+			});
+        },
+        ondestroy: function (action)
+        {
+            var mainId = data.id;
+            loadRightGridData(mainId);
+        }
+    });
+}
+function addImportRtnList(partList,msg){
+	if(partList && partList.length>0){		
+		var rows = [];
+		for (var i = 0; i < partList.length; i++) {
+			var part = partList[i];
+			var orderQty = parseFloat(part.orderQty);
+			var orderPrice = parseFloat(part.orderPrice);
+			var newRow = {
+				partId : part.partId,
+				comPartCode : part.partCode,
+				comPartName : part.partName,
+				comPartBrandId : part.partBrandId,
+				comApplyCarModel : part.applyCarModel,
+				comUnit : part.unit,
+				orderQty : orderQty,
+				orderPrice : orderPrice,
+				orderAmt : orderQty * orderPrice,
+				storeId : FStoreId,
+				comOemCode : part.oemCode,
+				comSpec : part.spec,
+				partCode : part.partCode,
+				partName : part.partName,
+				fullName : part.fullName,
+				systemUnitId : part.unit,
+				enterUnitId : part.unit,
+				storeShelf: part.shelf,
+				remark: part.remark
+			};
+
+			rows.push(newRow);
+		}	
+
+		rightGrid.addRows(rows);		
+		
+	}
+	if(msg){
+		nui.get("imprtPastCodeList").setValue("");
+		nui.get("imprtPastCodeList").setValue(msg);
+		advancedTipWin.show();
+	}
 }
 function onExport(){
 	if (checkNew() > 0) {

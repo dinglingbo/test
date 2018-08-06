@@ -77,7 +77,7 @@
             <div header="" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="enterCode" width="100" headerAlign="center" header="退货单号"></div>
-                    <div allowSort="true" field="enterDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd"></div>
+                    <div allowSort="true" field="auditDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd"></div>
                     <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>

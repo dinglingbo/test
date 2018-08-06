@@ -363,6 +363,7 @@
 				 a.is_disabled isDisabled,
 				 a.apply_car_model as applyCarModel,
 			     b.stock_qty as stockQty,
+			     b.cost_price as costPrice,
                  b.outable_qty as outableQty,
                  b.on_road_qty as onRoadQty,
 			     b.order_qty as orderQty

@@ -127,6 +127,20 @@
                 </td>
             </tr>
             <tr>
+                <td class="tbtext">结算单打印内容：</td>
+                <td class="tbCtrl" >
+                    <input id="repairSettPrintContent" name="repairSettPrintContent" class="nui-textarea" 
+                           style="height:100px;width:300px">
+                </td>
+            </tr>
+            <tr>
+                <td class="tbtext">委托单打印内容：</td>
+                <td class="tbCtrl" >
+                    <input id="repairEntrustPrintContent" name="repairEntrustPrintContent" class="nui-textarea" 
+                           style="height:100px;width:300px">
+                </td>
+            </tr>
+            <tr>
                 <td class="tbtext">工单服务性质对健康档案不开放：</td>
                 <td class="tbCtrl" >
                     <div id="openToArchives" name="openToArchives" class="nui-checkboxlist" repeatItems="5" 

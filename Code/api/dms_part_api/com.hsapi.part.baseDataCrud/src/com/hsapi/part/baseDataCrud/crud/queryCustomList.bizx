@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCustomList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="01020101&#x9;汽车销售客户&#xD;&#xA;01020102&#x9;配件销售客户&#xD;&#xA;01020103&#x9;汽车维修客户&#xD;&#xA;01020104&#x9;保险公司" title="Administrator&#x9;18-6-7 下午9:01">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="01020101&#x9;汽车销售客户&#xD;&#xA;01020102&#x9;配件销售客户&#xD;&#xA;01020103&#x9;汽车维修客户&#xD;&#xA;01020104&#x9;保险公司&#xD;&#xA;com.hsapi.part.baseDataCrud.crud.queryCustomerList" title="Administrator&#x9;18-6-7 下午9:01">
     <location x="98" y="15"/>
-    <size height="100" width="248"/>
+    <size height="121" width="383"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -137,7 +137,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">params/guestType</process:leftOperand>
-          <process:rightOperand type="literal"></process:rightOperand>
+          <process:rightOperand type="literal"/>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -146,7 +146,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

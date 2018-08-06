@@ -30,7 +30,7 @@ $(document).ready(function (v) {
     downGrid.on("drawcell", onDrawCell);
 
     init();
-    quickSearch(menuBtnDateQuickSearch, 0, '今日');
+    quickSearch(menuBtnDateQuickSearch, 0, '本日');
 
     upGrid.on("selectionchanged", function () {
         onupGridSelectionchanged();
@@ -135,9 +135,12 @@ function getSearchParam() {
     }
 
     var status = menuBtnStatusQuickSearch.getValue();
-
-    if (status != -1) {
+    if(status == 0 || status == 1 || status == 2){
         params.status = status;
+    }else if(status == 3){
+        params.isOpenBill = 1;
+    }else if(status == 4){
+        params.isJudge = 1;
     }
 
     return params;
@@ -176,6 +179,10 @@ function onupGridSelectionchanged(e) {
         btnCall.disable();
     }
 
+    if(row.isOpenBill && row.isOpenBill == 1){
+        btnNewBill.disable();
+    }
+
     var params = {};
     params.serviceId = row.id;
 
@@ -202,15 +209,23 @@ function onDrawCell(e) {
         e.cellHtml = scoutModeHash[e.value].name;
     } else if (field == "isUsabled" && scoutResutHash[e.value]) {
         e.cellHtml = scoutResutHash[e.value].name;
+    } else if (field == "isOpenBill") {
+        e.cellHtml = e.value == 0? '否':'是';
+    } else if (field == "isJudge") {
+        e.cellHtml = e.value == 0? '否':'是';
+    } else if(field == "serviceTypeId" && e.value == 0){
+        e.cellHtml = "";
     }
 }
 
 function addRow() {
     nui.open({
-        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp",
-        title: "新增预约", width: 700, height: 380,
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        title: "新增预约", width: 800, height: "100%",
         onload: function () {
-
+            var iframe = this.getIFrameEl();
+            var param = { action: "add", data: {} };
+            iframe.contentWindow.SetData(param);
         },
         ondestroy: function (action) {
             upGrid.reload();
@@ -221,12 +236,12 @@ function addRow() {
 function editRow() {
     var row = upGrid.getSelected();
     if (row == undefined) {
-        nui.alert("请选中一条数据");
+        showMsg("请选中一条数据","W");
         return;
     }
     nui.open({
-        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp",
-        title: "修改", width: 700, height: 380,
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        title: "修改", width: 800, height: "100%",
         onload: function () {
             var iframe = this.getIFrameEl();
             var param = { action: "edit", data: row };
@@ -249,13 +264,17 @@ function cancelBill() {
 function updateRpspreBookStatus(action) {
     var row = upGrid.getSelected();
     if (!row || row == undefined) {
-        nui.alert("请选中一条数据");
+        showMsg("请选中一条数据","W");
         return;
     }
 
-    row.status = action == "confirm" ? 1 : 
+    var newRow = {};
+    newRow.id = row.id;
+
+    newRow.status = action == "confirm" ? 1 : 
                  action == "newBill" ? 2 :
                  action == "cancel" ? 3 : 1;
+
 
     nui.mask({
         el: document.body,
@@ -267,24 +286,24 @@ function updateRpspreBookStatus(action) {
         url: baseUrl + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
         type: 'post',
         data:JSON.stringify({
-            rpsPrebook: row,
+            rpsPrebook: newRow,
             action: action,
             token: token
         }),        
         success: function(data) {
             if (data.errCode == "S") {
                 nui.unmask();
-                nui.alert("保存成功");     
+                showMsg("保存成功","S");     
                 upGrid.reload();
             } else {
                 nui.unmask();
-                nui.alert(data.errMsg || "保存失败");
+                showMsg(data.errMsg || "保存失败","W");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             nui.unmask();
             console.log(jqXHR.responseText);
-            nui.alert("网络出错，保存失败");           
+            showMsg("网络出错，保存失败","W");           
         }
     });
 }
@@ -292,12 +311,12 @@ function updateRpspreBookStatus(action) {
 function callBill() {
     var row = upGrid.getSelected();
     if (!row || row == undefined) {
-        nui.alert("请选中一条数据");
+        showMsg("请选中一条数据","W");
         return;
     }
     
     nui.open({
-        url: "BookingScout.jsp",
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingScout.jsp?token="+token,
         title: "预约跟进", width: 700, height: 350,
         onload: function () {
             var iframe = this.getIFrameEl();

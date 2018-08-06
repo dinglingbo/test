@@ -12,7 +12,7 @@
 <title>期初库存导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + sysDomain%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStockImport.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/initPartStockImport.js?v=2.0.5"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -103,24 +103,43 @@
 			style="width:100%;height:100%;">
 			<div property="columns">
 				<div type="indexcolumn">序号</div>
+				<div field="品牌" width="80px" headerAlign="center" allowSort="true">
+					品牌</div>
 				<div field="配件编码" width="150px" summaryType="count" headerAlign="center" allowSort="true">
 					配件编码</div>
 				<div field="数量" width="80px" headerAlign="center" allowSort="true">
 					数量</div>
 				<div field="单价" width="80px" headerAlign="center" allowSort="true">
 					单价</div>
-				<div field="金额" width="80px" headerAlign="center" allowSort="true">
-					金额</div>
 				<div field="是否含税" width="60px" headerAlign="center" allowSort="true">
 					是否含税</div>
 				<div field="税率" width="60px" headerAlign="center" allowSort="true">
 					税率</div>
+                <div field="仓位" width="150px" headerAlign="center" allowSort="true">
+                    仓位</div>
 				<div field="备注" width="150px" headerAlign="center" allowSort="true">
 					备注</div>
 			</div>
 		</div>
 	</div>
 
+    <div id="advancedTipWin" class="nui-window"
+        title="未成功导入配件" style="width:400px;height:200px;"
+        showModal="true"
+        allowResize="false"
+        allowDrag="true">
+        <div id="advancedTipForm" class="form">
+            <table style="width:100%;height: 100%;">
+            
+                <tr>
+                    <td colspan="3">
+                        <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100%;" id="fastCodeList" name="fastCodeList"></textarea>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
 
 </body>
 </html>

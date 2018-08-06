@@ -764,7 +764,7 @@ function doBalance(){
     }
     var msg = checkAuditRow(1);
     if(msg){
-        nui.alert(msg);
+        showMsg(msg,"W");
         return;
     }
         
@@ -781,7 +781,7 @@ function doBalance(){
         document.getElementById('rAmt').innerHTML=rtn.rAmount;
 
     }else{
-        nui.alert("请选择单据！");
+        showMsg("请选择单据!","W");
         return;
     }
 }
@@ -913,13 +913,13 @@ function balanceOK(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("对账成功!");
+                    showMsg("对账成功!","S");
 
                     balanceCancel();
                     rightGrid.reload();
                     
                 } else {
-                    nui.alert(data.errMsg || "对账失败!");
+                    showMsg(data.errMsg || "对账失败!","W");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -929,7 +929,7 @@ function balanceOK(){
         }); 
 
     }else{
-        nui.alert("请选择单据！");
+        showMsg("请选择单据!","W");
         return;
     }
 }
@@ -938,7 +938,7 @@ function doUnBalance(){
 
     var msg = checkAuditRow(0);
     if(msg){
-        nui.alert(msg);
+        showMsg(msg,"W");
         return;
     }
 
@@ -985,12 +985,12 @@ function doUnBalance(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("取消对账成功!");
+                    showMsg("取消对账成功!","W");
 
                     rightGrid.reload();
                     
                 } else {
-                    nui.alert(data.errMsg || "取消对账失败!");
+                    showMsg(data.errMsg || "取消对账失败!");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -1000,7 +1000,7 @@ function doUnBalance(){
         }); 
 
     }else{
-        nui.alert("请选择单据！");
+        showMsg("请选择单据!","W");
         return;
     }
 }
@@ -1093,7 +1093,7 @@ function checkSettleRow(){
 function doSettle(){
     var msg = checkSettleRow();
     if(msg){
-        nui.alert(msg);
+        showMsg(msg,"W");
         return;
     }
     
@@ -1142,7 +1142,7 @@ function doSettle(){
         var rtn = getSettleAmount(rows);
         var errCode = rtn.errCode;
         if(errCode != 'S') {
-            nui.alert(rtn.errMsg || "结算数据填写有问题!");
+            showMsg(rtn.errMsg || "结算数据填写有问题!","W");
             return;
         }
 
@@ -1164,7 +1164,7 @@ function doSettle(){
         settleAccountGrid.setData([]);
         addSettleAccountRow();
     }else{
-        nui.alert("请选择单据！");
+        showMsg("请选择单据!","W");
         return;
     }
 }
@@ -1312,7 +1312,7 @@ var settleAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.rpAccountSett
 function settleOK(){
     var msg = checkSettleRow();
     if(msg){
-        nui.alert(msg);
+        showMsg(msg,"W");
         return;
     }
 
@@ -1509,13 +1509,16 @@ function settleOK(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("结算成功!");
+                    showMsg("结算成功!","S");
+                    
+                    settleCancel();
 
                     balanceCancel();
                     rightGrid.reload();
+
                     
                 } else {
-                    nui.alert(data.errMsg || "结算失败!");
+                    showMsg(data.errMsg || "结算失败!","w");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -1525,7 +1528,7 @@ function settleOK(){
         }); 
 
     }else{
-        nui.alert("请选择单据！");
+        showMsg("请选择单据!","W");
         return;
     }
 
@@ -1669,7 +1672,7 @@ function onCellCommitEdit(e) {
     
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     }
 }
@@ -1689,12 +1692,12 @@ function checkSettleAccountAmt(charOffAmt){
     });
 
     if(rows && rows.length > 0) {
-        nui.alert("请选择结算账户!");
+        showMsg("请选择结算账户!","W");
         return false;
     }
 
     if(tAmt!=charOffAmt){
-        nui.alert("请确定结算金额与合计金额一致!");
+        showMsg("请确定结算金额与合计金额一致!","W");
         return false;
     }
 

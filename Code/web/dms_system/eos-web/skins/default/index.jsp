@@ -1,7 +1,7 @@
 
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@page import="com.primeton.cap.AppUserManager"%>
+<%-- <%@page import="com.primeton.cap.AppUserManager"%> --%>
 <meta http-equiv="x-ua-compatible" content="IE=8;" />
 <html>
 <head>
@@ -66,7 +66,7 @@
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 续费</a></li>
         <li ><a href="#"><i class="fa fa-paper-plane"></i> 帮助</a></li> -->
         <li class="dropdown">
-            <a class="dropdown-toggle userinfo">
+            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
                     <i class="fa fa-align-justify"></i><span >待处理</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
@@ -79,8 +79,21 @@
             </ul>
         </li>
         <li class="dropdown">
+            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
+                    <i class="fa fa-align-justify"></i><span id="currOrgName">公司</span><i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu pull-right" id="orgsname">
+                <!-- <li>
+                    <a href="javascript:openGuestOrder();"><i class="fa fa-pencil-square-o"></i> 待处理客户订单</a>
+                </li>
+                <li>
+                    <a href="javascript:openSellOrder();"><i class="fa fa-pencil-square-o"></i> 待收货单</a>
+                </li> -->
+            </ul>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle userinfo">
-                <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
+                <img class="user-img" src="res/images/user.jpg" /><span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
                 <li id="orgName"><a href="#">所属：</a></li>
@@ -115,6 +128,11 @@
     </div>
    
 </div>
+<form id="toggleRole" role="form" method="post" action="">
+	<input type="hidden" name="_eosFlowAction" value="toggleOrg">
+	<input type="hidden" name="operatorId" value="" id="operatorId">
+	<input type="hidden" name="orgid" value="" id="orgid">
+</form>	
 
 
 </body>
@@ -137,10 +155,14 @@
         if (!tab) {
             tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
             tab = tabs.addTab(tab);
-        }
-        tabs.activeTab(tab);
+            
+            tabs.activeTab(tab);
         
-        doInitTab(params);
+        	doInitTab(params);
+        }else{
+        	tabs.activeTab(tab);
+        }
+        
     }
     
     function doInitTab(params){
@@ -238,6 +260,8 @@
     }
 
     $(function () {
+    
+    	
 
         //menu
         var menu = new Menu("#mainMenu", {
@@ -259,6 +283,7 @@
                 menu.loadData(data);
             }
         });*/
+        //defDomin + org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext
         $.ajax({
             url:  defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
             type: "POST",
@@ -332,7 +357,7 @@
                 //getChildren(children);
             }
         }
-
+        
         //toggle
         $("#toggle, .sidebar-toggle").click(function () {
             $('body').toggleClass('compact');
@@ -341,6 +366,11 @@
 
         //dropdown
         $(".dropdown-toggle").click(function (event) {
+       	    if($(this).next().attr("id") == "orgsname"){
+       	    	$("#orgsname").empty();
+       	    	setOrgList();
+       	    }
+        
             $(this).parent().addClass("open");
             return false;
         });
@@ -353,8 +383,53 @@
 	        return "离开此网站?";
 	        //return null;
 	    };
-
+        
        document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
+       document.getElementById('currOrgName').innerHTML = currOrgName;
+       document.getElementById('currUserName').innerHTML = "当前登录人:" + currUserName + " ";
+       
+       
     });
+
+    //切换角色
+    function changeOrgs(orgid) {
+        if (orgid != currOrgId) {
+            nui.confirm('切换公司后将重新加载页面，是否继续?','温馨提示',function(action){
+                if (action == "ok") {
+                    $("#toggleRole")[0].action = "com.hsapi.system.auth.login.login.flow";
+                    $("#operatorId").val(currUserId);
+                    $("#orgid").val(orgid);
+                    $("#toggleRole")[0].submit();
+                } else {
+                    //mini.get("changeRole").setValue(vGrid);
+                }
+            });
+        }
+    }
+    
+    function setOrgList(){
+    	$.ajax({
+            url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext?userId="+currUserId,
+            type: "POST",
+            data : JSON.stringify({
+                token: token
+            }),
+            success: function(text){
+                var orgList = text.orgList;
+                if(orgList && orgList.length>0){
+                    for (var i = 0; i < orgList.length; i++) {
+                        var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
+                                + orgList[i].orgid
+                                + ')" title="'
+                                + orgList[i].orgname + '">';
+                        rtoken = rtoken + orgList[i].orgname;
+                        rtoken = rtoken + '</a></li>';
+                        $("#orgsname").append(rtoken);
+                    }
+                }
+            }
+        });
+    	
+    }
 
 </script>

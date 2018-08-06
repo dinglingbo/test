@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrder/sellOrdreQuery.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/sellOrder/sellOrdreQuery.js?v=2.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -94,11 +94,13 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div header="" headerAlign="center">
+            <div header="订单信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
-                    <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
+                    <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
+                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
+                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
@@ -107,14 +109,14 @@
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
-            <div header="订单信息" headerAlign="center">
+            <div header="配件信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                     <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                    <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+                    <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
             <div header="数量单价" headerAlign="center">
@@ -127,12 +129,11 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                	<div allowSort="true" datatype="float" summaryType="sum" field="trueOutQty" width="60" headerAlign="center" header="已出库数量"></div>
+                	<!-- <div allowSort="true" datatype="float" summaryType="sum" field="trueOutQty" width="60" headerAlign="center" header="已出库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="notOutQty" width="60" headerAlign="center" header="未出库数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>
                 </div>
             </div>
         </div>
@@ -220,16 +221,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">配件ID:</td>
-                <td colspan="3">
-                    <input id="partId"
-                           name="partId"
-                           class="nui-textbox" 
-                           width="100%"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">采购员:</td>
+                <td class="title">销售员:</td>
                 <td colspan="3">
                     <input id="orderMan"
                            name="orderMan"

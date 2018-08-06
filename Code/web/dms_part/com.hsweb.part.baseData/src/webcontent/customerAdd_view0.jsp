@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.6"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
   text-align: right;
@@ -212,8 +212,12 @@
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidtha">备注:</td>
-                              <td colspan="3">
+                              <td >
                                   <input id="remark" name="remark" width="100%" class="nui-textbox" >
+                              </td>
+                              <td class=" right fwidtha">默认物流:</td>
+                              <td >
+                                  <input id="defaultLogistics" name="defaultLogistics" width="100%" class="nui-textbox" >
                               </td>
                           </tr>
                       </table>

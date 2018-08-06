@@ -4,7 +4,7 @@ function initSysParamsCfg(){
 	var item={};
 	item.id = "initSysParamsCfg";
 	item.text = "系统参数";
-	item.url = webPath + sysDomain + "/config/parameterSet.jsp";
+	item.url = webPath + sysDomain + "/com.hsweb.system.config.paramMgr.flow?token="+token;//webPath + sysDomain + "/config/parameterSet.jsp";
 	item.iconCls = "fa fa-cog";
 	window.parent.activeTab(item);
 }

@@ -74,7 +74,7 @@ $(document).ready(function(v) {
             orderMan.focus();
         }*/
         if (e.keyCode == 13) {
-            addNewRow(true);
+            //addNewRow(true);
         }
     });
     $("#orderMan").bind("keydown", function (e) {
@@ -134,7 +134,7 @@ $(document).ready(function(v) {
 	    } 
 	  
 	    if((keyCode==80)&&(event.altKey))  {   //打印
-			onPrint(0);
+			onPrint();
 	    } 
 	    if((keyCode==113))  {  
 			addMorePart();
@@ -1558,6 +1558,8 @@ function setGuestInfo(params) {
 
 					nui.get("billTypeId").setValue(billTypeIdV);
 					nui.get("settleTypeId").setValue(settTypeIdV);
+
+					addNewRow(true);
 					
 				} else {
 					var el = nui.get('guestId');
@@ -1571,6 +1573,8 @@ function setGuestInfo(params) {
 					leftGrid.updateRow(row, newRow);
 
 					nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
+
+					addGuest();
 				}
 			} else {
 				var el = nui.get('guestId');
@@ -1582,6 +1586,9 @@ function setGuestInfo(params) {
 					guestFullName : null
 				};
 				leftGrid.updateRow(row, newRow);
+
+				nui.get("billTypeId").setValue("010103");
+				addGuest();
 			}
 
 		},
@@ -1591,20 +1598,59 @@ function setGuestInfo(params) {
 		}
 	});
 }
-function onPrint(type) {
+function addGuest(){
+	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
+		if (action == "ok") {
+			nui.open({
+				targetWindow: window,
+				url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+				title: "供应商资料", width: 530, height: 480,
+				allowDrag:true,
+				allowResize:false,
+				onload: function ()
+				{
+					var iframe = this.getIFrameEl();
+					iframe.contentWindow.setData({
+						province:[],
+						city:[],
+						supplierType:[],
+						billTypeId:nui.get("billTypeId").getData(),
+						settTypeId:nui.get("settleTypeId").getData(),
+						tgrade:[],
+						managerDuty:[]
+					});
+				},
+				ondestroy: function (action)
+				{
+					if(action == "ok")
+					{
+						
+					}
+					nui.get("guestId").focus();
+				}
+			});
+
+		}else{
+			nui.get("guestId").focus();
+		}
+	});
+}
+function onPrint() {
 	var row = leftGrid.getSelected();
 
 	var data = rightGrid.getData();
 	if(data && data.length<=0) return;
 
-	if (row && type == 0) {
+	if (row) {
 
 		if(!row.id) return;
 
+		var auditSign = row.auditSign||0;
+
 		nui.open({
 
-			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购入库打印",
 			width : 900,
 			height : 600,
@@ -1613,26 +1659,19 @@ function onPrint(type) {
 				// iframe.contentWindow.setInitData(storeId, 'XSD');
 			}
 		});
-	}else if(row && type == 1){
-		if(!row.id) return;
 
-		if(row.isFinished != 1) {
-			showMsg("全部入库后才能打印进货单!","W");
-			return;
-		}
+		// nui.open({
 
-		nui.open({
-
-			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
-			title : "进货单打印",
-			width : 900,
-			height : 600,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				// iframe.contentWindow.setInitData(storeId, 'XSD');
-			}
-		});
+		// 	url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+		// 			+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+		// 	title : "采购入库打印",
+		// 	width : 900,
+		// 	height : 600,
+		// 	onload : function() {
+		// 		var iframe = this.getIFrameEl();
+		// 		// iframe.contentWindow.setInitData(storeId, 'XSD');
+		// 	}
+		// });
 	}
 
 }

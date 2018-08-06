@@ -631,16 +631,16 @@ function checkRightData()
         }else{
             return true;
         }
-        if(row.enterPrice){
-            if(row.enterPrice <= 0) return true;
-        }else{
-            return true;
-        }
-        if(row.enterAmt){
-            if(row.enterAmt <= 0) return true;
-        }else{
-            return true;
-        }
+        // if(row.enterPrice){
+        //     if(row.enterPrice <= 0) return true;
+        // }else{
+        //     return true;
+        // }
+        // if(row.enterAmt){
+        //     if(row.enterAmt <= 0) return true;
+        // }else{
+        //     return true;
+        // }
         
         if(row.storeId){
         }else{
@@ -649,7 +649,7 @@ function checkRightData()
     });
     
     if(rows && rows.length > 0){
-        msg = "请完善盘盈配件的数量，单价，金额，仓库等信息！";
+        msg = "请完善配件的数量，单价，金额，仓库等信息！";
     }
     return msg;
 }
@@ -779,7 +779,7 @@ function importPart(){
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.initData(data, storeId);
+            iframe.contentWindow.initData(data, storeId, brandList);
         },
         ondestroy: function (action)
         {

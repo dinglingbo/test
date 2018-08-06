@@ -56,12 +56,12 @@ $(document).ready(function ()
             brandHash[v.id] = v;
         });
     });
-    initCustomDicts("receTypeId", "0415",function(data) {
-        receTypeIdList = nui.get("receTypeId").getData();
-        receTypeIdList.forEach(function(v) {
-            receTypeIdHash[v.customid] = v;
-        });
-    });
+    // initCustomDicts("receTypeId", "0415",function(data) {
+    //     receTypeIdList = nui.get("receTypeId").getData();
+    //     receTypeIdList.forEach(function(v) {
+    //         receTypeIdHash[v.customid] = v;
+    //     });
+    // });
 
     mainGrid.on("drawcell", function (e) {
         if (e.field == "status") {
@@ -79,12 +79,12 @@ $(document).ready(function ()
 
     innerItemGrid.on("drawcell", function (e) {
         if (e.field == "receTypeId") {
-            e.cellHtml = receTypeIdHash[e.value].name;
+            //e.cellHtml = receTypeIdHash[e.value].name;
         }
     });
     innerPartGrid.on("drawcell", function (e) {
         if (e.field == "receTypeId") {
-            e.cellHtml = receTypeIdHash[e.value].name;
+            //e.cellHtml = receTypeIdHash[e.value].name;
         }
     });
 
@@ -139,19 +139,22 @@ function quickSearch(type) {
     var params = {};
     switch (type) {
         case 0:
-            params.status = 0;
+            params.status = 0;  //制单
             break;
         case 1:
-            params.status = 1;
+            params.status = 1;  //施工
             break;
         case 2:
-            params.status = 2;
+            params.status = 2;  //完工
+            document.getElementById("advancedMore").style.display='block';
             break;
         case 3:
-            params.status = 3;
+            params.status = 2;  //待结算  is_settle
+            params.isSettle = 0;
             break;
         case 4:
-            params.status = 4;
+            params.isSettle = 1;
+            document.getElementById("advancedMore").style.display='block';
             break;
         default:
             break;
@@ -162,12 +165,21 @@ function quickSearch(type) {
 function onSearch()
 {
     var params = {};
+    if(document.getElementById("advancedMore").style.display!='block'){
+        var value = nui.get("carNo-search").getValue()||"";
+        value = value.replace(/\s+/g, "");
+        if(!value){
+            showMsg("请输入查询条件!","W");
+            return;
+        }
+    }
     doSearch(params);
 }
 function doSearch(params) {
     var gsparams = getSearchParam();
     gsparams.status = params.status;
     gsparams.statusList = params.statusList;
+    gsparams.isSettle = params.isSettle;
 
     mainGrid.load({
         token:token,
@@ -202,6 +214,7 @@ function add(){
     item.url = webPath + repairDomain + "/com.hsweb.RepairBusiness.repairBill.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
+    var params = {};
     window.parent.activeTabAndInit(item,params)
 
 }

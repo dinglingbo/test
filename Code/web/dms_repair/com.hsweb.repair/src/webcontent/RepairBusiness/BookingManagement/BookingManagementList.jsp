@@ -48,10 +48,13 @@
                             <a class="nui-menubutton " menu="#popupMenu_date" id="menuBtnDateQuickSearch" name="menuBtnDateQuickSearch" value="0">本日</a>
                             <ul id="popupMenu_date" class="nui-menu" style="display:none;">
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, -1, '所有')">所有</li>
+                                <li class="separator"></li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 0, '本日')">本日</li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 1, '昨日')">昨日</li>
+                                <li class="separator"></li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 2, '本周')">本周</li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 3, '上周')">上周</li>
+                                <li class="separator"></li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 4, '本月')">本月</li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 5, '上月')">上月</li>
                             </ul>
@@ -61,8 +64,10 @@
                                 <li onclick="quickSearch(menuBtnStatusQuickSearch, -1,'所有')">所有</li>
                                 <li onclick="quickSearch(menuBtnStatusQuickSearch, 0, '待确认')">待确认</li>
                                 <li onclick="quickSearch(menuBtnStatusQuickSearch, 1, '已确认')">已确认</li>
-                                <li onclick="quickSearch(menuBtnStatusQuickSearch, 2, '已开单')">已开单</li>
-                                <li onclick="quickSearch(menuBtnStatusQuickSearch, 3, '已取消')">已取消</li>
+                                <li onclick="quickSearch(menuBtnStatusQuickSearch, 2, '已取消')">已取消</li>
+                                <li class="separator"></li>
+                                <li onclick="quickSearch(menuBtnStatusQuickSearch, 3, '已开单')">已开单</li>
+                                <li class="separator"></li>
                                 <li onclick="quickSearch(menuBtnStatusQuickSearch, 4, '已评价')">已评价</li>
                             </ul>
 
@@ -115,18 +120,20 @@
                             allowSortColumn="true">
                             <div property="columns">
                                 <div field="id" headerAlign="center" allowSort="true" visible="false" width="">id </div>
-                                <div field="status" headerAlign="center" allowSort="true" visible="true" width="">状态 </div>
-                                <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center" visible="true" width="">服务顾问 </div>
+                                <div field="status" headerAlign="center" allowSort="true" visible="true" width="40">状态 </div>
+                                <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center" visible="true" width="40">服务顾问 </div>
                                 <div field="mtAdvisorId" headerAlign="center" allowSort="true" visible="false" width="">服务顾问Id </div>
-                                <div field="contactorName" headerAlign="center" allowSort="true" visible="true" width="">客户名称 </div>
-                                <div field="contactorTel" headerAlign="center" allowSort="true" visible="true" width="">联系电话 </div>                                
-                                <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="">车牌号 </div>
-                                <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="">品牌 </div>
-                                <div field="carSeriesId" headerAlign="center" allowSort="true" visible="true" width="">车系 </div>
-                                <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" width="">业务类型 </div>
-                                <div field="predictComeDate" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd" visible="true" width="">预计来厂 </div>
-                                <div field="prebookCategory" headerAlign="center" allowSort="true" visible="true" width="">预约类型 </div>
-                                <div field="faultDesc" headerAlign="center" allowSort="true" visible="true" width="">客户描述 </div>
+                                <div field="contactorName" headerAlign="center" allowSort="true" visible="true" width="60">客户名称 </div>
+                                <div field="contactorTel" headerAlign="center" allowSort="true" visible="true" width="60">联系电话 </div>                                
+                                <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="40">车牌号 </div>
+                                <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="40">品牌 </div>
+                                <div field="carSeriesId" headerAlign="center" allowSort="true" visible="true" width="40">车系 </div>
+                                <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" width="40">业务类型 </div>
+                                <div field="predictComeDate" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd HH:mm" visible="true" width="60">预计来厂 </div>
+                                <div field="prebookCategory" headerAlign="center" allowSort="true" visible="true" width="40">预约类型 </div>
+                                <div field="isOpenBill" headerAlign="center" allowSort="true" visible="true" width="40">是否开单 </div>
+                                <div field="isJudge" headerAlign="center" allowSort="true" visible="true" width="40">是否评价 </div>
+                                <div field="faultDesc" headerAlign="center" allowSort="true" visible="true" width="100">客户描述 </div>
                             </div>
                         </div>
                     </div>

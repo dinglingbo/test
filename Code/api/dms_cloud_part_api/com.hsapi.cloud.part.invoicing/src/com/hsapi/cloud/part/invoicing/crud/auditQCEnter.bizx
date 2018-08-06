@@ -74,14 +74,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">main</process:from>
-      <process:to type="query">auditMainObj</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">details</process:from>
-      <process:to type="query">auditDetailsObj</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="expression" pattern="reference">details.length</process:from>
       <process:to type="query">size</process:to>
     </process:copy>
@@ -119,7 +111,7 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
-    <targetConnections>link43</targetConnections>
+    <targetConnections>link30</targetConnections>
     <location x="1089" y="197"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -266,9 +258,15 @@
     <node>invokePojo7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link10" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="link10" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="926" y="288"/>
@@ -866,7 +864,7 @@
   <nodes xsi:type="process:tLoopEnd" id="loopend1" name="循环结束1" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart1">
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend1</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>assign7</targetNode>
     </sourceConnections>
     <targetConnections>link52</targetConnections>
     <location x="1088" y="100"/>
@@ -905,6 +903,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">main/guestId</process:from>
       <process:to type="query">enterTemp/originGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterTemp/enterQty</process:from>
+      <process:to type="query">enterTemp/outableQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
@@ -987,6 +989,29 @@
     <location x="795" y="508"/>
     <figSize height="17" width="32"/>
     <node>end3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link43</targetConnections>
+    <location x="1169" y="98"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">main</process:from>
+      <process:to type="query">auditMainObj</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">details</process:from>
+      <process:to type="query">auditDetailsObj</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="1167" y="134"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

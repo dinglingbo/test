@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -105,14 +105,15 @@
             <div header="数量金额" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+                    <div allowSort="true" datatype="float" field="costPrice" summaryType="sum" width="60" headerAlign="center" header="库存单价"></div>
                     <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                    <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
-                    <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
+                    <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>

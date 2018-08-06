@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售记录</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containSellOrderRecord.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containSellOrderRecord.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -45,10 +45,10 @@
             <div field="orderPrice" width="55px" headerAlign="center" allowSort="true" header="销售单价"></div>
             <div field="orderAmt" width="55px" headerAlign="center" allowSort="true" header="销售金额"></div>
             <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-            <div field="settelTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="结算方式"></div>
+            <div field="settleTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="结算方式"></div>
             <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="comOemCode" name="comOemCode" width="100" headerAlign="center" header="OEM码"></div>
-            <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+            <!-- <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div> -->
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
             <div field="outUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 

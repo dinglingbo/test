@@ -9,8 +9,8 @@
 <title>汽车后市场云服务</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
-<link href="css/style_n.css" rel='stylesheet' type='text/css' />
-<link href="css/index.css" rel='stylesheet' type='text/css' />
+<link href="<%= request.getContextPath() %>/coframe/auth/login/css/style_n.css" rel='stylesheet' type='text/css' />
+<link href="<%= request.getContextPath() %>/coframe/auth/login/css/index.css" rel='stylesheet' type='text/css' />
 <%
    String contextPath=request.getContextPath();
    String url = null;
@@ -39,8 +39,8 @@
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
  %>
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="js/index.js?v=1.0.0"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/coframe/auth/login/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/coframe/auth/login/js/index.js?v=1.0.0"></script>
 <style type="text/css">
 html,body {
 	height: 100%;
@@ -281,7 +281,22 @@ text-align:center;
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
+	
+</body>
+  <%
+ 	request.getSession().invalidate();
+ 	Cookie[] cookies = request.getCookies();
+ 	if(cookies != null){
+ 		for(int i=0;i<cookies.length;i++){
+ 			if(StringUtil.equals("jsessioinid", cookies[i].getName())){
+ 				cookies[i].setMaxAge(0);
+ 			}
+ 		}
+ 	
+ 	}
+  %>
+</html>
+<script>
 		var msgCode = null;
 		function T_LoginType(e){
 			if (e == 1) {
@@ -547,17 +562,3 @@ text-align:center;
 
 	</script>
 
-</body>
-  <%
- 	request.getSession().invalidate();
- 	Cookie[] cookies = request.getCookies();
- 	if(cookies != null){
- 		for(int i=0;i<cookies.length;i++){
- 			if(StringUtil.equals("jsessioinid", cookies[i].getName())){
- 				cookies[i].setMaxAge(0);
- 			}
- 		}
- 	
- 	}
-  %>
-</html>

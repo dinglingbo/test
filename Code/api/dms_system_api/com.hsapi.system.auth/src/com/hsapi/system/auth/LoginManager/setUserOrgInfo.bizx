@@ -37,16 +37,6 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="连接线" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>assign3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">orgs</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="475" y="180"/>
     <size height="28" width="28"/>
@@ -64,7 +54,7 @@
       <process:to type="query">m:userObject/userRealName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">u/tenantId</process:from>
+      <process:from type="literal" pattern="reference">default</process:from>
       <process:to type="query">m:userObject/attributes/TENANT_ID</process:to>
     </process:copy>
     <process:copy>
@@ -108,6 +98,18 @@
       <process:to type="query">m:userObject/attributes/compType</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">u/orgid</process:from>
+      <process:to type="query">m:userObject/userOrgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/orgid</process:from>
+      <process:to type="query">m:userObject/attributes/userOrgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/orgname</process:from>
+      <process:to type="query">m:userObject/attributes/userOrgName</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -147,7 +149,6 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <targetConnections>link27</targetConnections>
     <location x="553" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -395,33 +396,6 @@
     <figSize height="17" width="150"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign3</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-    </sourceConnections>
-    <targetConnections>link26</targetConnections>
-    <location x="550" y="90"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign3label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">orgs[1]/orgid</process:from>
-      <process:to type="query">m:userObject/userOrgId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orgs[1]/orgid</process:from>
-      <process:to type="query">m:userObject/attributes/userOrgId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orgs[1]/orgname</process:from>
-      <process:to type="query">m:userObject/attributes/userOrgName</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="548" y="126"/>
-    <figSize height="17" width="32"/>
-    <node>assign3</node>
-  </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="setUserDuty" displayName="setUserDuty" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess3</sourceNode>
@@ -451,7 +425,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="714" y="278"/>
+    <location x="724" y="291"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
@@ -460,7 +434,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="716" y="314"/>
+    <location x="726" y="327"/>
     <figSize height="17" width="25"/>
     <node>assign4</node>
   </nodes>

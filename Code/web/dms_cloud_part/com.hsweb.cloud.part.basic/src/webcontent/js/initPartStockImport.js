@@ -12,17 +12,31 @@ var rABS = false; //是否将文件读取为二进制字符串
 var mainGrid = null;
 var nstoreId = null;
 var enterMain = null;
+var advancedTipWin = null;
+var advancedTipForm = null;
+
+var brandHash = {};
+var brandList = [];
 
 $(document).ready(function(v)
 {
 
-    mainGrid = nui.get("mainGrid");
+	mainGrid = nui.get("mainGrid");
+	
+	advancedTipWin = nui.get("advancedTipWin");
+	advancedTipForm  = new nui.Form("#advancedTipForm");
 
 });
 
-function initData(main, storeId){
+function initData(main, storeId, brandIdList){
 	nstoreId = storeId;
 	enterMain = main;
+	brandList = brandIdList;
+
+	brandList.forEach(function(v)
+    {
+        brandHash[v.name] = v;
+	});
 }
 
 function importf(obj) {//导入
@@ -77,15 +91,25 @@ function sure() {
 			//partid  partcode  partname  enterqty  enterunit  enterprice  enteramt
 			var taxSignStr = data[i].是否含税;
 			var taxSign = taxSignStr == "是" ? 1 : 0;
+			var partBrandId = (data[i].品牌||"").replace(/\s+/g, "");
+
+			if(brandHash && brandHash[partBrandId]){
+				partBrandId = brandHash[partBrandId].id;
+			}else{
+				showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
+				return;
+			}
+
 			var newRow = {
-				partCode : data[i].配件编码||"",
+				partBrandId: partBrandId,
+				partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
 				storeId : nstoreId||"",
-				enterQty : data[i].数量||"",
-				enterPrice : data[i].单价||"",
-				enterAmt : data[i].金额||"",
-				taxSign : taxSign||"",
-				taxRate : data[i].税率||"0.07",
-				remark : data[i].备注||""
+				enterQty : (data[i].数量||"").replace(/\s+/g, ""),
+				enterPrice : (data[i].单价||"").replace(/\s+/g, ""),
+				taxSign : taxSign||0,
+				taxRate : (data[i].税率||"0.07").replace(/\s+/g, ""),
+				storeShelf : (data[i].仓位||"").replace(/\s+/g, ""),
+				remark : (data[i].备注||"").replace(/\s+/g, "")
 			};
 			partList.push(newRow);
 		}
@@ -108,6 +132,7 @@ function close(){
 
 var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getImportPartInfo.biz.ext";
 function saveEnterPart(partList){
+	advancedTipForm.setData([]);
 	if(partList && partList.length>0) {
 		nui.mask({
 	        el: document.body,
@@ -133,7 +158,17 @@ function saveEnterPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-						showMsg(errMsg,"S");
+						var rt = errMsg.split("：");
+						if(rt && rt.length>=2){
+							var rs = rt[1];
+							var partList = rs.split(";");
+
+							var parts = partList.join("\r\n");
+							
+							nui.get("fastCodeList").setValue(parts);
+							advancedTipWin.show();
+						}
+						//showMsg(errMsg,"S");
 	                }else{
 						showMsg("导入成功!","S");
 	                }

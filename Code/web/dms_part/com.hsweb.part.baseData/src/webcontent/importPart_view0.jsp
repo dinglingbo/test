@@ -11,7 +11,7 @@
 <title>配件资料导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + sysDomain%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/importJs/importPart.js?v=1.0.0"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/importJs/importPart.js?v=1.0.2"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -111,7 +111,9 @@
 				<div field="单位" width="50px" headerAlign="center" allowSort="true">
 					单位<input property="editor" class="nui-textbox"/></div>
 				<div field="规格" width="80px" headerAlign="center" allowSort="true">
-					规格<input property="editor" class="nui-textbox"/></div>
+                    规格<input property="editor" class="nui-textbox"/></div>
+                <div field="厂牌" width="80px" headerAlign="center" allowSort="true">
+                    厂牌<input property="editor" class="nui-textbox"/></div>
 				<div field="型号" width="80px" headerAlign="center" allowSort="true">
 					型号<input property="editor" class="nui-textbox"/></div>
 				<div field="实物码" width="100px" headerAlign="center" allowSort="true">
@@ -120,10 +122,33 @@
 					OEM码<input property="editor" class="nui-textbox"/></div>
 				<div field="适用车型" width="120px" headerAlign="center" allowSort="true">
 					适用车型<input property="editor" class="nui-textbox"/></div>
+                <div field="通用编码" width="120px" headerAlign="center" allowSort="true">
+                    通用编码<input property="editor" class="nui-textbox"/></div>
+                <div field="生产厂家" width="120px" headerAlign="center" allowSort="true">
+                    生产厂家<input property="editor" class="nui-textbox"/></div>
+                <div field="备注" width="120px" headerAlign="center" allowSort="true">
+                    备注<input property="editor" class="nui-textbox"/></div>
 			</div>
 		</div>
 	</div>
 
+    <div id="advancedTipWin" class="nui-window"
+        title="未成功导入配件" style="width:400px;height:200px;"
+        showModal="true"
+        allowResize="false"
+        allowDrag="true">
+        <div id="advancedTipForm" class="form">
+            <table style="width:100%;height: 100%;">
+            
+                <tr>
+                    <td colspan="3">
+                        <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100%;" id="fastCodeList" name="fastCodeList"></textarea>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
 
 </body>
 </html>

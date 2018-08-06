@@ -206,7 +206,7 @@
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -312,7 +312,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -537,8 +537,8 @@
       <process:inputVariable id="1" name="conContent" type="query" value="java.lang.String" valueType="Java" pattern="reference">comd/shortName</process:inputVariable>
       <process:inputVariable id="2" name="conColumn2" type="literal" value="java.lang.String" valueType="Java" pattern="reference">tenantId</process:inputVariable>
       <process:inputVariable id="3" name="conContent2" type="query" value="int" valueType="Java" pattern="reference">tenantId</process:inputVariable>
-      <process:inputVariable id="4" name="conColumn3" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
-      <process:inputVariable id="5" name="conContent3" type="query" value="int" valueType="Java" pattern="reference">value</process:inputVariable>
+      <process:inputVariable id="4" name="conColumn3" type="literal" value="java.lang.String" valueType="Java" pattern="reference">orgid</process:inputVariable>
+      <process:inputVariable id="5" name="conContent3" type="query" value="int" valueType="Java" pattern="reference">comd/orgid</process:inputVariable>
       <process:inputVariable id="6" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.system.data.sys.ComCompany</process:inputVariable>
       <process:inputVariable id="7" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
     </process:inputVariables>

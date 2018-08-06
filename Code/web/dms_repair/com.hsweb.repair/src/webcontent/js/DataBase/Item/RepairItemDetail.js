@@ -154,15 +154,71 @@ function onCancel() {
   CloseWindow("cancel");
 }
 function onRateValidation(e){
-    if (e.isValid) {
-		//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-		var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$/
-        if (!reg.test(e.value)) {
-            e.errorText = "输入0~100的数,最多可保留两位小数";
-            e.isValid = false;
-			showMsg("只能输入0~100的数,最多可保留两位小数","W");
-        }
-    }
+	var el = e.sender.id;
+	var value = 0;
+	if(el == "salesDeductValue"){
+		value = salesDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$/
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}else if(el == "techDeductValue"){
+		value = techDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$/
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}else if(el == "advisorDeductValue"){
+		value = advisorDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$/
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}
+
+
 }
 function calc(type){
     var itemTime = nui.get("itemTime").getValue();
@@ -208,4 +264,27 @@ function calc(type){
             nui.get("amt").setValue(0);
         }
     }
+}
+function hidePercent(e){
+	var value = e.value;
+	var el = e.sender.id;
+	if(el == "salesDeductType"){
+		if(value == 4){
+			$("#salesDeductValue").next().hide();
+		}else {
+			$("#salesDeductValue").next().show();
+		}
+	}else if(el == "techDeductType"){
+		if(value == 4){
+			$("#techDeductValue").next().hide();
+		}else {
+			$("#techDeductValue").next().show();
+		}
+	}else if(el == "advisorDeductType"){
+		if(value == 4){
+			$("#advisorDeductValue").next().hide();
+		}else {
+			$("#advisorDeductValue").next().show();
+		}
+	}
 }

@@ -17,7 +17,7 @@
 	})();
 	
 	var data={};
-	nui.DataTree.prototype.dataField='data';//兼容改造
+	nui.DataTree.prototype.dataField='data';//兼容改造 
 </script>
 </head>
 <body>
@@ -71,38 +71,47 @@
 		for(var cursor = 0; cursor < funcDatas.length; cursor++){
 			var node = funcDatas[cursor];
 			if(funcTree.isLeaf(node)){
-				leafNodes.push(node);
+				var nodeRow = {};
+				nodeRow.realId = node.id;
+				nodeRow.checked = node.checked;
+				nodeRow.isCheck = node.isCheck;
+				nodeRow.type = node.type;
+				leafNodes.push(nodeRow);
 			}
 		}
 		//var json = nui.encode({functions:leafNodes,roleId:"<%=request.getParameter("roleId") %>"});
 		nui.mask({
-	        el : document.body,
-	        cls : 'mini-mask-loading',
-	        html : '保存中...'
-	    });
-        nui.ajax({
-            url: baseUrl + "com.hsapi.system.tenant.permissions.saveFunctionAuths.biz.ext",
-            type: 'POST',
-	        data:JSON.stringify({
-	            roleId:"<%=request.getParameter("roleId") %>",
-	            functions:leafNodes,
-	            token:token
-	        }),
-            cache: false,
-            contentType:'text/json',
-            success: function (text) {
-            	nui.unmask();
-            	if(text.errCode == 'S'){
-                    nui.alert("权限设置成功");
-            	}else{
-                    nui.alert("权限设置失败");
-                }
-            },
-            error: function () {
-            	nui.unmask();
-            	nui.alert("权限设置失败");
-            }
-        });
+			el : document.body,
+			cls : 'mini-mask-loading',
+			html : '保存中...'
+		});
+
+		
+
+		nui.ajax({
+			url: webPath + sysDomain + "/org.gocom.components.coframe.framework.FunctionAuth.saveFunctionAuths.biz.ext",
+			type: 'POST',
+			data:nui.encode({
+				roleId:"<%=request.getParameter("roleId") %>",
+				functions:leafNodes,
+				token:token
+			}),
+			cache: false,
+			contentType:'text/json',
+			success: function (text) {
+				nui.unmask();
+				if(text.data){
+					nui.alert("权限设置成功");
+				}else{
+					nui.alert("权限设置失败");
+				}
+			},
+			error: function () {
+				nui.unmask();
+				nui.alert("权限设置失败");
+			}
+		});
+		
 	}
 
 	function search(){

@@ -1,0 +1,51 @@
+<html>
+<!-- 
+  - Author(s): Administrator
+  - Date: 2018-07-16 09:16:23
+  - Description:
+-->
+<head>
+<meta http-equiv="Content-Type" contentType="text/html; charset=UTF-8">
+<title>Title</title>
+<style type="text/css">
+    .progress
+    {
+        border:solid 1px #aaa;height:30px;
+        position:relative;
+    }
+    .progress div
+    {
+            background-color:blue;
+            height:100%;
+    }
+    .progress span
+    {
+        position:absolute;display:block;left:0;top:0;width:100%;line-height:30px;
+        text-align:center;
+    }
+    </style>
+    
+    <script>
+	    function loading(){
+	        var progress = document.getElementById("p");
+	        var i=0;
+	        setInterval(function(){
+	        i+=1;
+	        if(i >3)return;
+	        progress.style.width = i/360*400
+	        },200)
+	    }
+    </script>
+</head>
+<body>
+
+    
+    <div class="progress" style="width:400px;">
+        <div id="p" style="width:30%;"></div>
+        <span>30%</span>
+    </div>
+
+
+</body>
+
+</html>

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.8"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.0.9"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -220,7 +220,7 @@
 							<div id="salesDeductType" name="salesDeductType" 
 								class="nui-radiobuttonlist" value="2" repeatItems="4" 
 								repeatDirection="" repeatLayout="table"
-								textField="text" valueField="id" ></div>
+								textField="text" valueField="id" onvaluechanged="hidePercent"></div>
 						</td>
 					</tr>
 					<tr>
@@ -228,7 +228,7 @@
 							<label>提成金额:</label>
 						</td>
 						<td>
-							<input class="nui-textbox" name="salesDeductValue" value="0" onvalidation="onRateValidation" width="50px"/>%
+							<input class="nui-textbox" name="salesDeductValue" id="salesDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
 					</tr>
 					<tr style="height:5px;">
@@ -247,7 +247,7 @@
 							<div id="techDeductType" name="techDeductType" 
 								class="nui-radiobuttonlist" value="2" repeatItems="4" 
 								repeatDirection="" repeatLayout="table" 
-								textField="text" valueField="id" ></div>
+								textField="text" valueField="id" onvaluechanged="hidePercent"></div>
 						</td>
 					</tr>
 					<tr>
@@ -255,7 +255,7 @@
 							<label>提成金额:</label>
 						</td>
 						<td>
-							<input class="nui-textbox" name="techDeductValue" value="0" onvalidation="onRateValidation" width="50px"/>%
+							<input class="nui-textbox" name="techDeductValue" id="techDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
 					</tr>
 					<tr style="height:5px;">
@@ -274,7 +274,7 @@
 							<div id="advisorDeductType" name="advisorDeductType" 
 								class="nui-radiobuttonlist" value="2" repeatItems="4" 
 								repeatDirection="" repeatLayout="table" 
-								textField="text" valueField="id" ></div>
+								textField="text" valueField="id" onvaluechanged="hidePercent"></div>
 						</td>
 					</tr>
 					<tr>
@@ -282,7 +282,7 @@
 							<label>提成金额:</label>
 						</td>
 						<td>
-							<input class="nui-textbox" name="advisorDeductValue" value="0" onvalidation="onRateValidation" width="50px"/>%
+							<input class="nui-textbox" name="advisorDeductValue" id="advisorDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
 					</tr>
 				</table>

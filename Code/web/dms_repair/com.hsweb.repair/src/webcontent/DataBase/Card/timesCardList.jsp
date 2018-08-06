@@ -49,7 +49,7 @@
       </div>
       </div>
       <div class="nui-fit">
-        <div id="datagrid1" dataField="card" class="nui-datagrid" style="width:100%;height:100%;" url="com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext" pageSize="20" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
+        <div id="datagrid1" dataField="timesCard" class="nui-datagrid" style="width:100%;height:100%;" url="com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext" pageSize="20" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
           <div property="columns">
             <div type="indexcolumn">
             </div>
@@ -64,7 +64,7 @@
             <div field="periodValidity"   headerAlign="center" allowSort="true" >
               有效期(月)
             </div>
-            <div field="giveAmt" headerAlign="center" allowSort="true" >
+            <div field="sellAmt" headerAlign="center" allowSort="true" >
               销售价格
             </div>
             <div field="totalAmt" headerAlign="center" allowSort="true" >
@@ -80,7 +80,7 @@
             <div field="status" renderer="onstatus" headerAlign="center" allowSort="true" >
               状态
             </div>
-            <div field="remark" headerAlign="center" allowSort="true" >
+            <div field="useRemark" headerAlign="center" allowSort="true" >
              使用说明
             </div>
             <div field="remark" headerAlign="center" allowSort="true" >
@@ -99,8 +99,8 @@
       //新增
       function add() {
         nui.open({
-          url: "cardAdd.jsp",
-          title: "新增记录", width: 700, height: 500,
+          url: "sysnTimesCard.jsp",
+          title: "新增记录", width: 900, height: 580,
           onload: function () {
            var iframe = this.getIFrameEl();
           var data = {pageType:"add"};//传入页面的json数据
@@ -123,7 +123,7 @@
             url: "cardAdd.jsp",
             title: "编辑数据",
             width: 700,
-            height: 500,
+            height: 580,
             onload: function () {
               var iframe = this.getIFrameEl();
               var data = row;
@@ -248,6 +248,7 @@
             }
             return "";
         } 
+        
               </script>
             </body>
           </html>

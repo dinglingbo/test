@@ -124,7 +124,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">temp/type</process:leftOperand>
-          <process:rightOperand type="literal">fun</process:rightOperand>
+          <process:rightOperand type="literal">function</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

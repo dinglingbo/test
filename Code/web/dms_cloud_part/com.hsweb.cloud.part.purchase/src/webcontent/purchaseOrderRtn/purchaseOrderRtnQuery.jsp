@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货明细</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderRtn/purchaseOrderRtnQuery.js?v=1.0.1"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderRtn/purchaseOrderRtnQuery.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -94,20 +94,17 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div header="" headerAlign="center">
+            <div header="退货信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="createDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="退货单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
-                    <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
-                    <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
-                    <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div> -->
+                    <div field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
-            <div header="退货信息" headerAlign="center">
+            <div header="配件信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
@@ -126,7 +123,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div><!-- 
+                    <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div><!-- 
                 	<div allowSort="true" datatype="float" summaryType="sum" field="trueOutQty" width="60" headerAlign="center" header="已出库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="notOutQty" width="60" headerAlign="center" header="未出库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->

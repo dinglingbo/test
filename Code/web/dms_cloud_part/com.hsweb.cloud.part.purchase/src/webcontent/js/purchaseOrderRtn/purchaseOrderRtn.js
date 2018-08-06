@@ -165,25 +165,25 @@ function onLeftGridDrawCell(e)
                 e.cellHtml = AuditSignHash[e.value];
             }
             break;
-        case "guestFullName":
-            if(e.value){
-                if(record.auditSign == 0)
-                {
-                    e.cellHtml = "<span class='fa fa-save'></span>"+(e.value||"");
-                }else{
-                    if(record.isRtnSign == 1)
-                    {
-                        e.cellHtml = "<span class='fa fa-hand-o-right'></span>"+(e.value||"");
-                    }else if(record.isRtnSign == 0)
-                    {
-                        e.cellHtml = "<span class='fa fa-spinner fa-spin'></span>"+(e.value||"");
-                    }
-                }
-                if(record.billStatusId==2){
-                    e.cellHtml = "<span class='fa fa-check'></span>"+(e.value||"");
-                }
-            }
-            break;
+        // case "guestFullName":
+        //     if(e.value){
+        //         if(record.auditSign == 0)
+        //         {
+        //             e.cellHtml = "<span class='fa fa-save'></span>"+(e.value||"");
+        //         }else{
+        //             if(record.isRtnSign == 1)
+        //             {
+        //                 e.cellHtml = "<span class='fa fa-hand-o-right'></span>"+(e.value||"");
+        //             }else if(record.isRtnSign == 0)
+        //             {
+        //                 e.cellHtml = "<span class='fa fa-spinner fa-spin'></span>"+(e.value||"");
+        //             }
+        //         }
+        //         if(record.billStatusId==2){
+        //             e.cellHtml = "<span class='fa fa-check'></span>"+(e.value||"");
+        //         }
+        //     }
+        //     break;
     }
 }
 var currType = 2;
@@ -262,7 +262,7 @@ function quickSearch(type){
             break;
         case 8:
             params.billStatusId = 2;
-            querytypename = "已出库";
+            querytypename = "已退货";
             querysign = 2;
             gsparams.auditSign = 1;
             break;
@@ -304,17 +304,17 @@ function setBtnable(flag)
 {
     if(flag)
     {
-        nui.get("unAuditBtn").disable();
+        //nui.get("unAuditBtn").disable();
         nui.get("auditBtn").enable();
         nui.get("saveBtn").enable();
-        nui.get("auditToOutBtn").disable();
+        //nui.get("auditToOutBtn").disable();
         //nui.get("printBtn").enable();
     }
     else
     {
-        nui.get("unAuditBtn").enable();
+        //nui.get("unAuditBtn").enable();
         nui.get("auditBtn").disable();
-        nui.get("auditToOutBtn").enable();
+        //nui.get("auditToOutBtn").enable();
         nui.get("saveBtn").disable();
     }
 }
@@ -636,7 +636,7 @@ function audit()
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            showMsg("此单已提交!","W");
+            showMsg("此单已出库!","W");
             return;
         } 
     }else{
@@ -672,7 +672,7 @@ function audit()
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
-        html: '提交中...'
+        html: '处理中...'
     });
 
     nui.ajax({
@@ -684,13 +684,14 @@ function audit()
             sellOrderDetailUpdate : sellOrderDetailUpdate,
             sellOrderDetailDelete : sellOrderDetailDelete,
             sellOrderDetailList : sellOrderDetailList,
+            operateFlag:1,
             token : token
         }),
         success : function(data) {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("提交成功!","S");
+                showMsg("退货成功!","S");
                 //onLeftGridRowDblClick({});
                 var pjSellOrderMainList = data.pjSellOrderMainList;
                 if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
@@ -702,7 +703,7 @@ function audit()
                     loadMainAndDetailInfo(leftRow);
                 }
             } else {
-                showMsg(data.errMsg || "提交失败!","W");
+                showMsg(data.errMsg || "退货失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -717,8 +718,8 @@ function auditToOut()
 
     var row = leftGrid.getSelected();
     if(row){
-        if(row.isOut == 1) {
-            showMsg("此单已出库!","W");
+        if(row.auditSign == 1) {
+            showMsg("此单已退货!","W");
             return;
         } 
     }else{
@@ -730,11 +731,11 @@ function auditToOut()
         return;
     } 
 
-    var isRtnSign = row.isRtnSign;
-    if(isRtnSign == 0){
-        showMsg("待供应商受理后才可出库!","W");
-        return;
-    }
+    // var isRtnSign = row.isRtnSign;
+    // if(isRtnSign == 0){
+    //     showMsg("待供应商受理后才可出库!","W");
+    //     return;
+    // }
 
     var data = basicInfoForm.getData();
     var mainId = data.id;

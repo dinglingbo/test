@@ -61,7 +61,7 @@ $(document).ready(function(v)
         });
     });
 
-    comPartNameAndPY.focus();
+    comPartCode.focus();
 
     $("#comPartCode").bind("keydown", function (e) {
         if (e.keyCode == 13) {

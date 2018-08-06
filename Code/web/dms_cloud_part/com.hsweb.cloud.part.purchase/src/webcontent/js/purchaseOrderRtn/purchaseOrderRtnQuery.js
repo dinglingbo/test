@@ -64,7 +64,6 @@ $(document).ready(function(v)
         var dictIdList = [];
         dictIdList.push('DDT20130703000008');//票据类型
         dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000064');//入库类型
         getDictItems(dictIdList,function(data)
         {
             if(data && data.dataItems)
@@ -84,15 +83,6 @@ $(document).ready(function(v)
                     if(v.dictid == "DDT20130703000035")
                     {
                         settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-          //      nui.get("settType").setData(settTypeIdList);
-                var enterTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000064")
-                    {
-                        enterTypeIdHash[v.customid] = v;
                         return true;
                     }
                 });
@@ -188,6 +178,7 @@ function onSearch(){
 function doSearch(params)
 {
     params.orderTypeId = 3;
+    params.isOut = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({
@@ -325,13 +316,7 @@ function onDrawCell(e)
 	            e.cellHtml = billStatusHash[e.value];
 	        }
 	        break;
-        case "enterTypeId":
-            if(enterTypeIdHash && enterTypeIdHash[e.value])
-            {
-                e.cellHtml = enterTypeIdHash[e.value].name;
-            }
-            break;
-        case "settType":
+        case "settleTypeId":
             if(settTypeIdHash && settTypeIdHash[e.value])
             {
                 e.cellHtml = settTypeIdHash[e.value].name;
@@ -342,13 +327,6 @@ function onDrawCell(e)
             {
                 e.cellHtml = storehouseHash[e.value].name;
             }
-            break;
-        case "enterDayCount":
-            var row = e.record;
-            var enterTime = (new Date(row.enterDate)).getTime();
-            var nowTime = (new Date()).getTime();
-            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-            e.cellHtml = dayCount+1;
             break;
         default:
             break;

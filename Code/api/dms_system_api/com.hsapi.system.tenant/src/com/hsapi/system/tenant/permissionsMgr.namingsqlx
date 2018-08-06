@@ -10,7 +10,7 @@
     
     <!--获取应用功能目录-->
     <select id="queryMenuApplication" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT a.FUNCCODE as id, a.FUNCNAME as text, a.FUNCGROUPID as parentId, 0 as isCheck, 'fun' as type
+    	SELECT a.FUNCCODE as id, a.FUNCNAME as text, a.FUNCGROUPID as parentId, 0 as isCheck, 'function' as type
 		from app_function a
 		union 
 		SELECT b.FUNCGROUPID as id, b.FUNCGROUPNAME as text, b.PARENTGROUP as parentId, 0 as isCheck, '' as type
@@ -20,7 +20,7 @@
     
     <!--1.获取租户自身可设置权限的应用功能-->
     <select id="queryTenantApplication" parameterClass="HashMap" resultClass="HashMap">
-    	select res_id as id, res_name as text, res_parent_id as parentId, 0 as isCheck, 'fun' as type
+    	select res_id as id, res_name as text, res_parent_id as parentId, 0 as isCheck, 'function' as type
     	from com_tenant_menu
     	where is_disabled = 0 and tenant_id = #tenantId#
     </select>

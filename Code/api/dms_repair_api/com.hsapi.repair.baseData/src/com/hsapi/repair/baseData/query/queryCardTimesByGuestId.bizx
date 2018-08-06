@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCardTimesDetailByGuestId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCardTimesByGuestId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -15,7 +15,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpbRead.RpbCardTimes[]" name="cardTimes" type="query" valueType="DataObject">cardTimes</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpsRead.RpsCardTimes[]" name="cardTimes" type="query" valueType="DataObject">cardTimes</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -38,7 +38,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbRead.RpbCardTimes</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpsRead.RpsCardTimes</process:from>
       <process:to type="query">cr/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -95,7 +95,7 @@
     <process:input description="" isArray="false" name="guestId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbRead.RpbCardTimes" name="cardTimes"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpsRead.RpsCardTimes" name="cardTimes"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -77,7 +77,6 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-          //      nui.get("billTypeId").setData(billTypeIdList);
                 var settTypeIdList = dataItems.filter(function(v)
                 {
                     if(v.dictid == "DDT20130703000035")
@@ -86,7 +85,6 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-          //      nui.get("settType").setData(settTypeIdList);
                 var enterTypeIdList = dataItems.filter(function(v)
                 {
                     if(v.dictid == "DDT20130703000064")
@@ -187,7 +185,9 @@ function onSearch(){
 function doSearch(params)
 {
 	params.sortField = "audit_date";
-	params.sortOrder = "desc";
+    params.sortOrder = "desc";
+    params.orderTypeId = 1;
+    params.isFinished = 0;
     rightGrid.load({
         params:params,
         token:token
@@ -331,7 +331,13 @@ function onDrawCell(e)
                 e.cellHtml = enterTypeIdHash[e.value].name;
             }
             break;
-        case "settType":
+        case "billTypeId":
+            if(billTypeIdHash && billTypeIdHash[e.value])
+            {
+                e.cellHtml = billTypeIdHash[e.value].name;
+            }
+            break;
+        case "settelTypeId":
             if(settTypeIdHash && settTypeIdHash[e.value])
             {
                 e.cellHtml = settTypeIdHash[e.value].name;

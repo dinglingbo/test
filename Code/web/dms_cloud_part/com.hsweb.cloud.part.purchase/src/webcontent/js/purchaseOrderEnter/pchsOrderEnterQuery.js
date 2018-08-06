@@ -1,8 +1,7 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjSellOrderMainDetailList.biz.ext";
+var rightGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsOrderMainDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -77,7 +76,6 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-          //      nui.get("billTypeId").setData(billTypeIdList);
                 var settTypeIdList = dataItems.filter(function(v)
                 {
                     if(v.dictid == "DDT20130703000035")
@@ -177,10 +175,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
-    params.orderTypeId = 2;
-    params.isDiffOrder = 0;
 	params.sortField = "audit_date";
-	params.sortOrder = "desc";
+    params.sortOrder = "desc";
+    params.orderTypeId = 1;
+    params.isFinished = 1;
     rightGrid.load({
         params:params,
         token:token
@@ -195,6 +193,9 @@ function advancedSearch()
     if(advancedSearchFormData)
     {
         advancedSearchForm.setData(advancedSearchFormData);
+    }else{
+        nui.get("sAuditDate").setValue(getWeekStartDate());
+        nui.get("eAuditDate").setValue(addDate(getWeekEndDate(), 1));
     }
 }
 function onAdvancedSearchOk()
@@ -206,15 +207,15 @@ function onAdvancedSearchOk()
         advancedSearchFormData[key] = searchData[key];
     }
     var i;
-    if(searchData.sOrderDate)
+    if(searchData.sCreateDate)
     {
-        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
+        searchData.sCreateDate = searchData.sCreateDate.substr(0,10);
     }
-    if(searchData.eOrderDate)
+    if(searchData.eCreateDate)
     {
-        var date = searchData.eOrderDate;
-        searchData.eOrderDate = addDate(date, 1);
-        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
+        var date = searchData.eCreateDate;
+        searchData.eCreateDate = addDate(date, 1);
+        searchData.eCreateDate = searchData.eCreateDate.substr(0,10);
     }
     //审核日期
     if(searchData.sAuditDate)
@@ -269,46 +270,16 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.customerSelect.flow",
-        title: "客户资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
-
-        },
-        ondestroy: function (action)
-        {
-            if(action == 'ok')
-            {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                supplier = data.customer;
-                var value = supplier.id;
-                var text = supplier.fullName;
-                var el = nui.get(elId);
-                el.setValue(value);
-                el.setText(text);
-            }
-        }
-    });
-}
-var supplier = null;    
-function selectSupplier(elId)
-{
-    supplier = null;
-    nui.open({
-        targetWindow: window,
         url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
-        title: "客户资料", width: 980, height: 560,
+        title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isClient: 1,
-                guestType:'01020102'
+                isSupplier: 1,
+                guestType:'01020202'
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -324,7 +295,6 @@ function selectSupplier(elId)
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
-
             }
         }
     });
@@ -352,16 +322,16 @@ function onDrawCell(e)
                 e.cellHtml = enterTypeIdHash[e.value].name;
             }
             break;
-        case "settleTypeId":
-            if(settTypeIdHash && settTypeIdHash[e.value])
-            {
-                e.cellHtml = settTypeIdHash[e.value].name;
-            }
-            break;
         case "billTypeId":
             if(billTypeIdHash && billTypeIdHash[e.value])
             {
                 e.cellHtml = billTypeIdHash[e.value].name;
+            }
+            break;
+        case "settelTypeId":
+            if(settTypeIdHash && settTypeIdHash[e.value])
+            {
+                e.cellHtml = settTypeIdHash[e.value].name;
             }
             break;
         case "storeId":
@@ -369,13 +339,6 @@ function onDrawCell(e)
             {
                 e.cellHtml = storehouseHash[e.value].name;
             }
-            break;
-        case "enterDayCount":
-            var row = e.record;
-            var enterTime = (new Date(row.enterDate)).getTime();
-            var nowTime = (new Date()).getTime();
-            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-            e.cellHtml = dayCount+1;
             break;
         default:
             break;

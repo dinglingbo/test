@@ -41,9 +41,15 @@
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link0" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <location x="80" y="80"/>
     <size height="28" width="28"/>
@@ -68,7 +74,7 @@
       <process:to type="query">cr/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:from type="literal" pattern="reference">serviceId</process:from>
       <process:to type="query">cr/_expr[1]/_property</process:to>
     </process:copy>
     <process:copy>

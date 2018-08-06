@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.9"></script>
 <style type="text/css">
 
 .title {
@@ -52,8 +52,8 @@
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">制单</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">维修</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">报价</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">施工</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">完工</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">待结算</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">已结算</a>
@@ -81,6 +81,7 @@
                             <input id="sEnterDate"
                                    name="sEnterDate"
                                    width="100%"
+                                   allowInput="false"
                                    class="nui-datepicker"/>
                         </td>
                         <td style="width:15">至</td>
@@ -93,6 +94,7 @@
                                    showTime="false"
                                    showOkButton="false"
                                    width="100%"
+                                   allowInput="false"
                                    showClearButton="false"/>
                         </td>
                         <td class="title">

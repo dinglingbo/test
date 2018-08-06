@@ -1,51 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
-	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+
 <html>
 <!-- 
-  - Author(s): localhost
-  - Date: 2018-07-08 14:36:48
+  - Author(s): Guine
+  - Date: 2018-04-23 11:00:21
   - Description:
 -->
+<%
+	//String contextPath = request.getContextPath();
+%>
 <head>
 <title>技师等级</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
+<%@include file="/common/sysCommon.jsp"%>
+<script
+	src="<%=webPath + repairDomain%>/repair/cfg/js/x_makeAnAppointmentLocation.js?v=1.0.0"></script>
+
 </head>
-<style type="text/css">
-    body {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-</style>
 <body>
-<div class="nui-fit">
-    <div style="height: 50px;">
-        <input class="nui-textbox" style="width:20%">
-        <a class="nui-button" iconCls="icon-add" onclick="">添加等级</a>
-        <a class="nui-button" iconCls="icon-search" onclick="">刷新列表</a>
-    </div>
-    <div class="nui-fit">
-        <div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;">
-            <div property="columns">
-                <div field="" name="" type="indexcolumn" headeralign="center" align="center" >编号</div>
-                <div field="" name="" headeralign="center" align="center">名称</div>
-                <div field="" id="" name="" headeralign="center" align="center">等级权重</div>
-                <div field="" id="" name="" headeralign="center" align="center">是否默认</div>
-                <div field="" id="" name="" headeralign="center" align="center">添加时间</div>
-                <div field="" id="" name="" headeralign="center" align="center">操作</div>
-            </div>
-        </div>
-    </div>
-</div>
-	<script type="text/javascript">
-    	nui.parse();
-    </script>
+
+
+	<div class="nui-fit">
+		<div
+			style="width: 80%; height: 10%; margin-left: 10%; margin-top: 1%;">
+			<input class="nui-button" onclick="javascript:addR()" text="新增"
+				style="float: left; margin-top: 10px;"></input>&nbsp;&nbsp; <input
+				class="nui-button" onclick="save" text="保存"
+				style="margin-top: 10px;"></input>&nbsp;&nbsp; <input
+				class="nui-button" onclick="javascript:doSearch()" text="刷新"
+				style="margin-top: 10px;"></input>
+		</div>
+		<div class="nui-fit">
+			<div id="dgGrid" class="nui-datagrid" showPager="false"
+				dataField="list" sortMode="client" allowCellEdit="true"
+				allowCellSelect="true" multiSelect="true" oncellcommitedit="onCellCommitEdit"
+				 allowCellValid="true"
+				style="width: 80%; height: 100%; margin-left: 10%;">
+				<div property="columns">
+					<div type="indexcolumn">序号</div>
+					<div allowSort="true" field="name" summaryType="count"
+						headerAlign="center" header="等级名称">
+						<input property="editor" class="nui-textbox" />
+					</div>
+					<div vtype="required;int" allowSort="true" field="weight"
+						summaryType="count" headerAlign="center" header="等级权重">
+						<input property="editor" vtype="int;range:1,100;" class="nui-textbox" />
+					</div>
+					<div allowSort="true" field="recordDate" summaryType="count"
+						dateFormat="yyyy-MM-dd" format="yyyy-MM-dd H:mm:ss"
+						headerAlign="center" header="添加时间">
+						<input property="editor" class="nui-datepicker" />
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
+<script type="text/javascript">
+	
+</script>
 </html>

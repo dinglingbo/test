@@ -8,7 +8,7 @@
   --%>
   <head>
     <title>
-      会员卡操作
+      计次卡操作
     </title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript">
@@ -18,17 +18,17 @@
    
     <!--footer-->
    
-    <div class="nui-panel" title="会员卡列表" iconCls="icon-add" style="width:100%;height:100%;" showToolbar="false" showFooter="false" >
+    <div class="nui-panel" title="计次卡列表" iconCls="icon-add" style="width:100%;height:100%;" showToolbar="false" showFooter="false" >
       <div class="nui-toolbar" style="border-bottom:0;padding:0px;">
       <div id="queryform" class="nui-form" align="center" style="height:100%">
               <!-- 数据实体的名称 -->
-        <input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.data.rpb.RpbCardStored">
+        <input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.data.rpb.RpbCardTimes">
         <!-- 排序字段 -->
    
         <table style="width:100%;" id="table1">
           <tr>
           	<td style="width:100%;">
-          		 会员卡名称:             
+          		 计次卡名称:             
           		 <input class="nui-textbox" name="criteria/_expr[1]/name"/>
              	 <input class="nui-hidden" name="criteria/_expr[1]/_op" value="like">
              	 <input class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
@@ -49,46 +49,28 @@
       </div>
       </div>
       <div class="nui-fit">
-        <div id="datagrid1" dataField="card" class="nui-datagrid" style="width:100%;height:100%;" url="com.hsapi.repair.baseData.crud.queryCard.biz.ext" pageSize="20" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
+        <div id="datagrid1" dataField="card" class="nui-datagrid" style="width:100%;height:100%;" url="com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext" pageSize="20" showPageInfo="true" multiSelect="true" onselectionchanged="selectionChanged" allowSortColumn="false">
           <div property="columns">
             <div type="indexcolumn">
             </div>
             <div type="checkcolumn">
             </div>
             <div field="id" headerAlign="center" allowSort="true" visible="false">
-             会员卡ID
+             计次卡ID
             </div>
-            <div field="cardName" headerAlign="center" allowSort="true" >
-              会员卡名称
-            </div>
-            
-            <div field="useRange" renderer="onuseRange" headerAlign="center" allowSort="true" >
-              适用范围
-            </div>
-            <div field="canModify" renderer="oncanModify" headerAlign="center" allowSort="true" >
-              是否允许修改金额
+            <div field="name" headerAlign="center" allowSort="true" >
+              计次卡名称
             </div>
             <div field="periodValidity"   headerAlign="center" allowSort="true" >
               有效期(月)
             </div>
-            <div field="rechargeAmt" headerAlign="center" allowSort="true" >
-             充值金额
-            </div>
             <div field="giveAmt" headerAlign="center" allowSort="true" >
-              赠送金额
+              销售价格
             </div>
             <div field="totalAmt" headerAlign="center" allowSort="true" >
-              总金额
+              总价值
             </div>
-            <div field="packageRate" headerAlign="center" allowSort="true" >
-             套餐优惠率
-            </div>
-            <div field="itemRate" headerAlign="center" allowSort="true" >
-              工时优惠率
-            </div>
-            <div field="partRate" headerAlign="center" allowSort="true" >
-              配件优惠率
-            </div>
+
             <div field="salesDeductType" renderer="onsalesDeductType" headerAlign="center" allowSort="true" >
             销售提成方式
             </div>
@@ -99,7 +81,10 @@
               状态
             </div>
             <div field="remark" headerAlign="center" allowSort="true" >
-              卡说明
+             使用说明
+            </div>
+            <div field="remark" headerAlign="center" allowSort="true" >
+             卡说明
             </div>
           </div>
         </div>

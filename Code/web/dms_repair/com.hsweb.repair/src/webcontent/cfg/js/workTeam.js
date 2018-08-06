@@ -1,6 +1,6 @@
 var baseUrl = apiPath + sysApi + "/";;
 //var gridUrl = baseUrl + "com.hsapi.system.confi.paramSet.getbusinessSort.biz.ext";
-var gridUrl = apiPath + repairApi + "/com.hsapi.repair.common.common.getBusinessType.biz.ext"
+var gridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext"
 //var s=["维修","保养","美容","钣喷漆","轮胎","洗车","精品","零售","其他"];
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = {0:"启用",1:"禁用"};
@@ -29,19 +29,18 @@ $(document).ready(function(v) {
         }
 	});
 	
-	dgGrid.on("cellbeginedit",function(e){
-		var field=e.field; 
-		var row = e.row;
-        if(row.orgid == 0){
-			e.cancel = true;
-		}
-	});
+//	dgGrid.on("cellbeginedit",function(e){
+//		var field=e.field; 
+//		var row = e.row;
+//        if(row.orgid == 0){
+//			e.cancel = true;
+//		}
+//	});
 });
 function addR(){
-    var newRow = {isDisabled:0};
+  var newRow = {isDisabled:0};
     dgGrid.addRow(newRow);
 }
-
 function deleteR(){
 	var row = dgGrid.getSelected();
 	if(row){
@@ -55,7 +54,7 @@ function deleteR(){
 		}
 	}
 }
-var saveUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.crud.saveBusinessType.biz.ext";
+var saveUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.team.saveWorkTeam.biz.ext";
 function save(){
 	var value = checkName();
 	if(!value){

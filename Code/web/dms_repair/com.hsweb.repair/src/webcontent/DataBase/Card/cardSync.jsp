@@ -15,7 +15,7 @@
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript">
     </script>
   </head>
-  <body>
+  <body >
     <fieldset style="border:solid 1px #aaa;position:relative;margin:5px 2px 0px 2px;">
       <legend>
         会员卡
@@ -35,10 +35,10 @@
             </td>
 
 
-            <td class="form_label" style="width:12%">
+            <td class="form_label" style="width:14%">
               适用范围:
             </td>
-            <td colspan="1"  style="width:38%">
+            <td colspan="2"  style="width:36%">
               <input class="nui-combobox" data ="[{value:'0',text:'本店',},{value:'1',text:'连锁'}]" textField="text" valueField="value" name="useRange" value="0" />
             </td>
             </tr>
@@ -48,28 +48,28 @@
            充值金额:
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="rechargeAmt" />
+              <input class="nui-textbox" name="rechargeAmt" vtype="float" />
             </td>
             <td class="form_label">
               赠送金额:
             </td>
-            <td colspan="1">
-              <input class="nui-textbox"  name="giveAmt"/>
+            <td colspan="2">
+              <input class="nui-textbox"  name="giveAmt" vtype="float"/>
             </td>
           </tr>
           <tr>
            <tr>
                        <td class="form_label">
-             套餐优惠率:
+             套餐优惠率(%):
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="packageRate"/>
+              <input class="nui-textbox" name="packageRate" vtype="range:0,100"/>
             </td>
             <td class="form_label">
-             配件优惠率:
+             配件优惠率(%):
             </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="partRate"/>
+            <td colspan="2">
+              <input class="nui-textbox" name="partRate" vtype="range:0,100"/>
               
             </td>
 
@@ -77,16 +77,16 @@
           <tr>
 
             <td class="form_label">
-              工时优惠率:
+              工时优惠率(%):
             </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="itemRate"/>
+            <td colspan="">
+              <input class="nui-textbox" name="itemRate" vtype="range:0,100"/>
             </td>
                         <td class="form_label">
               有效期(月):
             </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="periodValidity"/>
+            <td colspan="2">
+              <input class="nui-textbox" name="periodValidity" vtype="float"/>
             </td>
           
             <td class="form_label">
@@ -97,23 +97,24 @@
             </td>
             <td colspan="1">
             <input class="nui-combobox" data ="[{value:'0',text:'按原价比例',},{value:'1',text:'按折后价比例'},{value:'2',text:'按产值比例',},{value:'3',text:'固定金额'}]" 
-            textField="text" valueField="value" name="salesDeductType"  value="0" />
+            textField="text" valueField="value" name="salesDeductType"  value="0" onvalidation="updateError()" id="x"/>
 
             </td>
             <td class="form_label">
              销售提成值:
             </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="salesDeductValue" />
+            <td colspan="1" >
+              <input class="nui-textbox" name="salesDeductValue" requiredErrorText="元" vtype="float"/>
+              
             </td>
-
+			 <td colspan="1" ><div style="display:none;" id="y" >&nbsp元</div><div style="display:block;" id="b" >&nbsp%</div></td> 
           </tr>
 		<tr>
             </td>
                         <td class="form_label">
               是否允许修改金额:
             </td>
-            <td colspan="1">
+            <td colspan="1" >
 		    
 		    <div class="mini-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" name="canModify"
     textField="text" valueField="value"  data ="[{value:'0',text:'否',},{value:'1',text:'是'}]" value="0" >
@@ -123,10 +124,10 @@
 			            <td class="form_label">
               状态:
             </td>
-            <td colspan="1">
+            <td colspan="2">
 		    
-		    <div class="mini-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" name="canModify"
-    textField="text" valueField="value"  data ="[{value:'0',text:'否',},{value:'1',text:'是'}]" value="0">
+		    <div class="mini-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" name="status"
+    textField="text" valueField="value"  data ="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 </div>
 		    
 		</tr>
@@ -272,7 +273,17 @@
           }
           
 
-
+		  function updateError(e) {
+            
+		  
+            if (nui.get('x').getValue()=="3") {
+                document.getElementById('y').style.display='block';
+                document.getElementById('b').style.display='none';
+            }else{
+            	document.getElementById('b').style.display='block';
+            	document.getElementById('y').style.display='none';
+            }
+        }
  
         
           </script>

@@ -16,7 +16,7 @@ $(document).ready(function(v) {
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
 	sex.setData(sexlist);
-	isservice.setData(isservicelist);
+//	isservice.setData(isservicelist);
 
     basicInfoForm = new nui.Form('#basicInfoForm');
 });
@@ -24,7 +24,7 @@ $(document).ready(function(v) {
 function SetInitData(data) {
 	if (!data.empid) return;
 	basicInfoForm.setData(data);   
-    /*nui.ajax({
+    nui.ajax({
         url:fromUrl + "?params/empid=" + data.empid,
         type:"post",        
         success:function(data)
@@ -42,7 +42,7 @@ function SetInitData(data) {
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
-    });	*/
+    });	
 }
 
 var requiredField = {

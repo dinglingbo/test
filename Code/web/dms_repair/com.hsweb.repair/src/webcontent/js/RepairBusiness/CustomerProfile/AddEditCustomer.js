@@ -177,10 +177,10 @@ var carRequiredField ={
     "underpanNo":"车架号"
 };
 var contactRequiredField ={
-    "name":"姓名",
-    "mobile":"手机",
-    "identity":"身份",
-    "source":"来源"
+    "name":"联系人姓名",
+    "mobile":"联系人手机",
+    "identity":"联系人身份",
+    "source":"联系人来源"
 };
 var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
 function onOk()

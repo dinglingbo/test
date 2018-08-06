@@ -125,14 +125,13 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-03 10:30:39" date="2018-08-03Z" description="" name="queryCard" version="7.0.0.0"/>
-  <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
-  </process:variables>
+  <process:variables/>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="name" primitiveType="String"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
     <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
     <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
+    <process:input description="" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimes" name="timesCard"/>

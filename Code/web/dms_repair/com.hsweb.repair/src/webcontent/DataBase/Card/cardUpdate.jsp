@@ -19,27 +19,23 @@
       <legend>
         会员卡
       </legend>
-      <div id="dataform1" style="padding-top:5px;">
+      <div id="dataform1" style="padding-top:5px;" class="form">
         <!-- hidden域 -->
         <input class="nui-hidden" id="card.id"/>
         <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table" >
                      <tr>
-            <td class="form_label">
+            <td class="form_label" style="width:15%">
               会员卡名称:
             </td>
-            <td colspan="1">
+            <td colspan="1" style="width:35%">
               <input class="nui-textbox" name="card.name"/>
             </td>
 
-            <td class="form_label">
+            <td class="form_label" style="width:10%">
               适用范围:
             </td>
-            <td colspan="1">
-              <select name="card.useRange" class="nui-selectbox">
-              	<option value="1">  本店      </option>
-              	<option value="2">  连锁    </option>
-  
-              </select>
+            <td colspan="1"  style="width:25%">
+              <input class="nui-combobox" data ="[{value:'1',text:'本店',},{value:'2',text:'连锁'}]" textField="text" valueField="value" name="card.useRange" />
             </td>
             </tr>
             
@@ -62,14 +58,14 @@
               是否允许修改金额:
             </td>
             <td colspan="1">
-              <input  type="radio" name="can_modify" value="是" />是
-		    <input  type="radio" name="can_modify" value="否" />否
+              <input  type="radio" name="can_modify" value="1" />是
+		    <input  type="radio" name="can_modify" value="0" />否
             </td>
             <td class="form_label">
              总金额:
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="card.totaAmt"/>
+              <input class="nui-textbox" name="card.totalAmt"/>
             </td>
           </tr>
            <tr>
@@ -99,12 +95,9 @@
               销售提成方式:
             </td>
             <td colspan="1">
-              <select name="card.salesDeductType" onchange="a()" id="tc">
-              	<option value="1">按原价比例</option>
-              	<option value="2">按折后价比例</option>
-              	<option value="3">按产值比例</option>
-              	<option value="4">固定金额</option>
-              </select>
+            <input class="nui-combobox" data ="[{value:'1',text:'按原价比例',},{value:'2',text:'按折后价比例'},{value:'3',text:'按产值比例',},{value:'4',text:'固定金额'}]" 
+            textField="text" valueField="value" name="card.salesDeductType"   />
+
             </td>
             <td class="form_label">
              销售提成值:
@@ -112,9 +105,7 @@
             <td colspan="1">
               <input class="nui-textbox" name="card.salesDeductValue" />
             </td>
-            <td colspan="1">
-             <div id="div1">%</div>
-            </td>
+
           </tr>
 
 
@@ -142,7 +133,7 @@
              使用条款:
             </td>
             <td colspan="2">
-            <input  name="card.useRemark"  style="width:330px;height:50px;"></input>
+            <input class="nui-TextArea" name="card.useRemark"     style="width:330px;height:50px;"/>
 
             </td>
             </tr>
@@ -150,8 +141,8 @@
             <td class="form_label">
            卡说明:
             </td>
-            <td colspan="2">
-            <input  name="card.remark"  style="width:330px;height:50px;"></input>
+            <td colspan="1">
+            <input class="nui-TextArea" name="card.remark"  style="width:330px;height:50px;"/>
             </td>
           </tr>
           <tr>
@@ -175,21 +166,25 @@
       function onOk(){
         saveData();
       }
-      
-      
-                //页面间传输json数据
-          function setFormData(data){
-            //跨页面传递的数据对象，克隆后才可以安全使用
-            var infos = nui.clone(data);
 
-              var json = infos.record;
+      function gridAddRow(datagrid){
+        var grid = nui.get(datagrid);
+        grid.addRow({});
+      }
 
-              var form = new nui.Form("#dataform1");//将普通form转为nui的form
-              form.setData(json);
-              form.setChanged(false);
-            }
-          
+      function gridRemoveRow(datagrid) {
+        var grid = nui.get(datagrid);
+        var rows = grid.getSelecteds();
+        if (rows.length > 0) {
+          grid.removeRows(rows, true);
+        }
+      }
 
+      function setGridData(datagrid,dataid){
+        var grid = nui.get(datagrid);
+        var grid_data = grid.getChanges();
+        nui.get(dataid).setValue(grid_data);
+      }
 
       function saveData(){
         form.validate();
@@ -232,13 +227,26 @@
               else
               return window.close();
             }
-          function a(){
-          	var tc = document.getElementById("tc");
-            if(tc.value=="4"){
-				 $("#div1").text("元");
-            }else{
-            	 $("#div1").text("%");
+            
+          function setData(data){
+            //跨页面传递的数据对象，克隆后才可以安全使用
+ 				var data  = nui.clone(data);
+    
+   					 
+              form.setData(data);
+              form.setChanged(false);
+            
+          }
+          
+           function CloseWindow(action) {
+            if (action == "close" && form.isChanged()) {
+              if (confirm("数据被修改了，是否先保存？")) {
+                saveData();
+              }
             }
+            if (window.CloseOwnerWindow)
+            return window.CloseOwnerWindow(action);
+            else window.close();
           }
           </script>
         </body>

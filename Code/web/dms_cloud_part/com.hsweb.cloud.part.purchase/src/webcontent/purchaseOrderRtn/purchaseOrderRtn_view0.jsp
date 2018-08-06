@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.5"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -61,8 +61,7 @@ body .mini-grid-row-selected{
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
-                    <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
-                    <li iconCls="" onclick="quickSearch(8)" id="type7">已出库</li>
+                    <li iconCls="" onclick="quickSearch(8)" id="type7">已退货</li>
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..." visible="false"
@@ -78,11 +77,11 @@ body .mini-grid-row-selected{
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;退货</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-                <span class="separator"></span>
+                <!-- <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="auditToOut()" id="auditToOutBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="unAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="unAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a> -->
            
             </td>
         </tr>

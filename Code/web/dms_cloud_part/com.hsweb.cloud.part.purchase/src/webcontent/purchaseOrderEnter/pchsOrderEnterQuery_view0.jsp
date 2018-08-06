@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>采购订单查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrder/purchaseOrderQuery.js?v=2.0.1"></script>
+<title>采购入库查询</title>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -56,19 +56,6 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
 
-
-                <!-- <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
-                <span class="separator"></span> -->
 				<label style="font-family:Verdana;">审核日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
@@ -79,7 +66,7 @@
                 <!-- <label style="font-family:Verdana;">配件编码：</label> -->
                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="100px" emptyText="订单单号" class="nui-textbox"/>
+                <input id="serviceId" width="100px" emptyText="采购单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
@@ -109,18 +96,14 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div header="订单信息" headerAlign="center">
+            <div header="采购信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settelTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
-                    <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
-                    <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div> -->
+                    <div allowSort="true" field="createDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
@@ -136,32 +119,15 @@
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="订单数量"></div>
-                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="订单单价"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="订单金额"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="采购数量"></div>
+                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="采购单价"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="采购金额"></div>
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
             </div>
-            <!-- <div header="含税信息" headerAlign="center">
-                <div property="columns">
-                    <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
-                    <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
-                    <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
-                    <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
-                </div>
-            </div>
-            <div header="不含税信息" headerAlign="center">
-                <div property="columns">
-                    <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
-                    <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
-                </div>
-            </div> -->
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                	<!-- <div allowSort="true" datatype="float" summaryType="sum" field="trueEnterQty" width="60" headerAlign="center" header="已入库数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
-                    <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
+                	<div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                 </div>
             </div>
@@ -177,15 +143,15 @@
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
         	<tr>
-                <td class="title">订货日期:</td>
+                <td class="title">入库日期:</td>
                 <td>
-                    <input name="sOrderDate"
+                    <input name="sCreateDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input name="eOrderDate"
+                    <input name="eCreateDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
@@ -231,7 +197,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">订单单号:</td>
+                <td class="title">采购单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

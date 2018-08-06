@@ -223,7 +223,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -425,7 +425,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="b" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbRead.RpbCardStored" name="card"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="card"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

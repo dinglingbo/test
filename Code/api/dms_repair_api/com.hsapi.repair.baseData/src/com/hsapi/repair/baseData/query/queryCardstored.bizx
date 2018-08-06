@@ -22,11 +22,11 @@
       <process:to type="query">criteria/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">userObject/attributes/tenantId</process:from>
+      <process:from type="literal" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">criteria/_expr[1]/_value</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">status</process:from>
+      <process:from type="literal" pattern="reference">status</process:from>
       <process:to type="query">criteria/_expr[2]/_property</process:to>
     </process:copy>
     <process:copy>

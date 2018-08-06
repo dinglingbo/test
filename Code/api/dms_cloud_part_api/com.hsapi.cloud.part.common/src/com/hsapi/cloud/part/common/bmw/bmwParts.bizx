@@ -53,7 +53,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">Basic MzgyNTZwYXI6MXFhejJ3c3g=</process:from>
+      <process:from type="literal" pattern="reference">Basic MzgyNTZwYXI6MVFBWjJXU1g=</process:from>
       <process:to type="query">header/Authorization</process:to>
     </process:copy>
     <process:copy>

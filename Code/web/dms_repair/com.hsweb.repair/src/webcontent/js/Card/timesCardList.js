@@ -1,8 +1,5 @@
-/**
- * Created by Administrator on 2018/4/27.
- */
-var gridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.crud.queryCard.biz.ext";
-var sysnUrl = webPath + partDomain  + "/repair/DataBase/Card/cardSync.jsp";
+var gridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext";
+var sysnUrl = webPath + partDomain  + "/repair/DataBase/Card/timesCardSysn.jsp";
 var grid = null;
 $(document).ready(function (v)
 {
@@ -12,15 +9,16 @@ $(document).ready(function (v)
     grid.load(formData);
 });
 
+
 //新增
 function add() {
   nui.open({
-    url:sysnUrl,
-    title: "新增记录", width: 680, height: 520,
+    url: sysnUrl,
+    title: "新增记录", width: 900, height: 580,
     onload: function () {
      var iframe = this.getIFrameEl();
     var data = {pageType:"add"};//传入页面的json数据
-    iframe.contentWindow.setData(data);
+    //iframe.contentWindow.setData(data);
     
     },
     ondestroy: function (action) {//弹出页面关闭前
@@ -36,10 +34,10 @@ function edit() {
   var row = grid.getSelected();
   if (row) {
     nui.open({
-      url:sysntUrl ,
+      url: "sysnUrl",
       title: "编辑数据",
-      width: 680,
-      height: 520,
+      width: 700,
+      height: 580,
       onload: function () {
         var iframe = this.getIFrameEl();
         var data = row;
@@ -58,7 +56,6 @@ function edit() {
     }
 
 
-        
           //重新刷新页面
           function refresh(){
             var form = new  nui.Form("#queryform");
@@ -72,6 +69,7 @@ function edit() {
 
             var form = new nui.Form("#queryform");
             var json = form.getData(false,false);
+
             grid.load(json);//grid查询
           }
 
@@ -95,7 +93,6 @@ function edit() {
               nui.get("update").enable();
             }
           }
-
           function onDrawCell(e)
           {
             var hash = new Array("按原价比例","按折后价比例","按产值比例","固定金额");
@@ -120,13 +117,10 @@ function edit() {
                     e.cellHtml = hash[e.value];
                     break;
                 case "status":
-                e.cellHtml = e.value==1?"禁用":"启用";
-                    break; 
+                    e.cellHtml = e.value==1?"禁用":"启用";
+                        break; 
                 default:
                     break;
             }
         }
-
-
-
-
+  

@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		SELECT
+		SELECT  
 			a.id id,
 			a.orgid orgid,
 			a.car_no carNo,
@@ -38,29 +38,11 @@
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastEnterStart">  
-                (date_format(a.last_come_date,'%Y-%m-%d') &gt;= #lastEnterStart#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastEnterEnd">  
-                (date_format(a.last_come_date,'%Y-%m-%d') &lt;= #lastEnterEnd#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastEnterStart">  
-                (date_format(a.first_come_date,'%Y-%m-%d') &gt;= #firstEnterStart#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastEnterEnd">  
-                (date_format(a.first_come_date,'%Y-%m-%d') &lt;= #firstEnterEnd#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastEnterStart">  
-                (date_format(a.last_leave_date,'%Y-%m-%d') &gt;= #lastOutStart#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastEnterEnd">  
-                (date_format(a.last_leave_date,'%Y-%m-%d') &lt;= #lastOutStart#)
-            </isNotEmpty>
-             <isNotEmpty prepend="and" property="lastEnterStart">  
+            </isNotEmpty>         
+             <isNotEmpty prepend="and" property="recordStart">  
                 (date_format(a.record_date,'%Y-%m-%d') &gt;= #recordStart#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastEnterEnd">  
+            <isNotEmpty prepend="and" property="recordEnd">  
                 (date_format(a.record_date,'%Y-%m-%d') &lt;= #recordEnd#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carModelId">  
@@ -72,9 +54,7 @@
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="underpanNo">  
-                (a.underpan_no like '%$underpanNo$%')
-            </isNotEmpty>
+            
             <isNotEmpty prepend="and" property="mobile">  
                 (b.mobile like '%$mobile$%')
             </isNotEmpty>
@@ -124,14 +104,12 @@
             <isNotEmpty prepend="and" property="carModel">  
                 (a.car_model like '%$carModel$%')
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="underpanNo">  
-                (a.underpan_no like '%$underpanNo$%')
-            </isNotEmpty>
+           
             <isNotEmpty prepend="and" property="mobile">  
                 (b.mobile like '%$mobile$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestFullName">  
-                (a.full_name like '%$guestFullName$%')
+                (b.full_name like '%$guestFullName$%')
             </isNotEmpty>
         </dynamic>
 	</select>

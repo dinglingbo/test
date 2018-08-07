@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%--
@@ -11,7 +12,6 @@
       计次卡添加
     </title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript">
     </script>
   </head>
   <body>
@@ -23,7 +23,7 @@
         <!-- hidden域 -->
         <input class="nui-hidden" name="ooperator.oContacts" id="ooperator.oContacts"/>
         <input class="nui-hidden" name="ooperator.operatorId" id="ooperator.operatorId"/>
-        <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table">
+        <table style="width:100%;table-layout:fixed;" class="nui-form-table">
           <tr>
             <td class="form_label" style="width:15%;">
               卡名称:
@@ -133,11 +133,13 @@
               </tr>
             </table>
           </div>
-          <div id="grid_0" class="nui-datagrid" style="width:100%;height:150px;" showPager="false" sortMode="client" allowCellEdit="true" allowCellSelect="true" multiSelect="true" editNextOnEnterKey="true" >
+          <div class="nui-fit">
+
+          <div id="grid_0" class="nui-datagrid" style="width:100%;height:100%;" showPager="false" sortMode="client" allowCellEdit="true" allowCellSelect="true" multiSelect="true" editNextOnEnterKey="true" >
             <div property="columns">
               <div type="checkcolumn">
               </div>
-              <div field="contactName" allowSort="true" align="left" headerAlign="center" width="">
+              <div field="prdtName" allowSort="true" align="left" headerAlign="center" width="">
                项目名称
                 <input class="nui-textbox" name="contactName" property="editor"/>
               </div>
@@ -145,7 +147,7 @@
                次数
                 <input class="nui-textbox" name="relation" property="editor"/>
               </div>
-              <div field="relation" allowSort="true" align="left" headerAlign="center" width="">
+              <div field="prdtType" allowSort="true" align="left" headerAlign="center" width="">
                项目类型
                 <input class="nui-textbox" name="relation" property="editor"/>
               </div>
@@ -172,6 +174,8 @@
 
             </div>
           </div>
+          
+        </div>
         </div>
       </div>
       <div class="nui-toolbar" style="padding:0px;" borderStyle="border:0;">
@@ -281,17 +285,16 @@
         
         
         function addDetail(){
-        	alert("11");
-             var list = rightGrid.getData();
    			 nui.open({
 			 	targetWindow: window,
-				url: "com.hsweb.part.common.partSelectView.flow?token=" + token,
+				url: webPath + partDomain + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 				title: "配件选择",
 				width: 900, height: 500,
 				allowDrag:true,
 				allowResize:false,
 				onload: function (){
 					var iframe = this.getIFrameEl();
+          var list = [];
 					var params = {
 						list:list
 					};
@@ -303,29 +306,17 @@
 						var data = iframe.contentWindow.getData();
 						data = data||{};
 						var part = data.part;
-						console.log(part);
-						getCycStoreByPartId(part.id,function(data){
-						data = data||{};
-							if(data.cyc){
-								var cycStore = data.cyc;
-								var detail = {};
-								detail.applyCarModel = part.applyCarModel;
-								detail.partBrandName = part.partBrandName;
-								detail.partId = part.id;
-								detail.partName = part.name;
-								detail.partFullName = part.fullName;
-								detail.partNameId = part.partNameId;
-								detail.partCode = part.code;
-								detail.unit = part.unit;
-								detail.balaUnitPrice = 0;
-								detail.paperQty = cycStore.stockQty||0;
-								detail.trueQty = detail.paperQty;
-								detail.invtLossQty = 0;
-								detail.storeLocation = cycStore.stockLocation;
-								detail.stockLocationId = cycStore.stockLocationId;
-								rightGrid.addRow(detail);
-							}
-						});
+						
+            if(part){
+              var prdtId = part.id;
+              var prdtName = part.name;
+              var prdtType = 3;
+              var grid = nui.get("grid_0");
+              var newRow = {prdtId: prdtId, prdtName: prdtName, prdtType: prdtType};
+              grid.addRow(newRow);
+            }
+
+
 					}
 				}
 		});

@@ -8124,9 +8124,19 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
+<<<<<<< HEAD
+  </nodes>
+  <nodes xsi:type="model:PEntityNode" id="node7" name="ComMemberGroup" nodeType="table" displayName="ComMemberGroup" author="Administrator" instanceClass="" table="com_member_group" genStrategy="native">
+    <location x="60" y="2922"/>
+    <size height="174" width="150"/>
+    <figSize height="20" width="150"/>
+    <columnProperty id="property124" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+      <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
+=======
     <columnProperty id="property93" name="remark" displayName="remark" columnName="remark" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>备注</comment>
       <viewField dict="false" dictTypeId="" displayName="remark" entityField="remark" id="remark" label="remark" name="remark" userDefined="true">
+>>>>>>> 9141b4c92c92dc448e9824dcffc7a66e19e76af7
         <fieldView showAllAttr="false">
           <type name="write"/>
           <attr defaultValue="" name="iterateId"/>

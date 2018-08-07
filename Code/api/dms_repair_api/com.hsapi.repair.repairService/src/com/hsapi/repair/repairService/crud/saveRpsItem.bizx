@@ -5,7 +5,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
-    <location x="45" y="150"/>
+    <location x="45" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -21,7 +21,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="47" y="186"/>
+    <location x="47" y="180"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -35,27 +35,31 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
-    <targetConnections>link19</targetConnections>
-    <location x="180" y="150"/>
+    <targetConnections>link1</targetConnections>
+    <location x="180" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">保存成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="182" y="186"/>
+    <location x="182" y="180"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>subprocess1</targetNode>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="112" y="150"/>
+    <location x="112" y="144"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -68,7 +72,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="87" y="186"/>
+    <location x="87" y="180"/>
     <figSize height="17" width="72"/>
     <node>invokePojo0</node>
   </nodes>
@@ -125,11 +129,11 @@
       <process:to type="query">tmp/recordDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">userName</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">tmp/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">userName</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">tmp/modifier</process:to>
     </process:copy>
     <process:copy>
@@ -194,7 +198,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">userName</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">tmp/modifier</process:to>
     </process:copy>
     <process:copy>
@@ -332,59 +336,17 @@
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getMaintainById" displayName="getMaintainById" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign4</targetNode>
-    </sourceConnections>
-    <targetConnections>link17</targetConnections>
-    <location x="61" y="241"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.repairService.svr.getMaintainById</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="maintain" type="query" value="commonj.sdo.DataObject" valueType="Java">maintain</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="26" y="276"/>
-    <figSize height="17" width="96"/>
-    <node>subprocess1</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign4</sourceNode>
-      <targetNode>assign0</targetNode>
-    </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="181" y="241"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign4label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="179" y="277"/>
-    <figSize height="17" width="32"/>
-    <node>assign4</node>
-  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-21 16:54:40" date="2018-03-21Z" description="" name="saveRpsItem" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="tmp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItem" name="insList"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItem" name="updList"/>
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
-    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
-    <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

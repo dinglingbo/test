@@ -174,7 +174,7 @@ var basicRequiredField = {
 
 var carRequiredField ={
     "carNo":"车牌号",
-    "underpanNo":"车架号"
+    "vin":"车架号"
 };
 var contactRequiredField ={
     "name":"联系人姓名",
@@ -350,7 +350,7 @@ function setData(data)
 }
 function onParseUnderpanNo()
 {
-    var vin = nui.get("underpanNo").getValue();
+    var vin = nui.get("vin").getValue();
     if(!vin)
     {
         return;

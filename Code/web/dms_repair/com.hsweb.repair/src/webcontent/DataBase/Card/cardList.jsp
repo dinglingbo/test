@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%--
@@ -58,7 +60,7 @@
             <div field="id" headerAlign="center" allowSort="true" visible="false">
              会员卡ID
             </div>
-            <div field="cardName" headerAlign="center" allowSort="true" >
+            <div field="name" headerAlign="center" allowSort="true" >
               会员卡名称
             </div>
             
@@ -168,7 +170,7 @@
                   
                   $.ajax({
                   	
-                    url:"com.hsapi.repair.baseData.crud.updateCardStatus.biz.ext",
+                    url: apiPath + repairApi + "/com.hsapi.repair.baseData.crud.updateCardStatus.biz.ext",
                     type:'POST',
                     data:json,
                     cache: false,
@@ -205,7 +207,6 @@
 
                   var form = new nui.Form("#queryform");
                   var json = form.getData(false,false);
-
                   grid.load(json);//grid查询
                 }
 

@@ -12,10 +12,8 @@
               <input class="nui-hidden" name="contactorId"/>
               <input class="nui-hidden" name="carId"/>
               <input class="nui-hidden" name="status"/>
-              <input class="nui-hidden" name="drawOutReport"/>
-              <input class="nui-hidden" name="outBillSign"/>
               <input class="nui-hidden" name="carVin"/>
-              <input class="nui-hidden" name="engineNo"/>
+              <input class="nui-hidden" name="drawOutReport"/>
               <input class="nui-hidden" name="contactorName"/>
               <input class="nui-hidden" name="guestFullName"/>
               <input class="nui-hidden" name="carModel"/>

@@ -42,7 +42,8 @@
                     <td>手机号码：</td>
                     <td><input class="mini-textbox" id="tel" name="tel" required="true" onvalidation="onMobileValidation" /></td>
                     <td>是否服务技师：</td>
-                    <td><div  class="nui-checkbox" id="isArtificer" name="isArtificer" onvaluechanged="onChanged"></div><input class="nui-combobox" id="artificerLevel" name="artificerLevel" required="false" style="width: 107px;display: none;" emptytext="选择技师等级"/>
+                    <td><div  class="nui-checkbox" id="isArtificer" name="isArtificer" value="0" trueValue="1" falseValue="0" onvaluechanged="onChanged"></div>
+                    <input class="nui-combobox" id="artificerLevel" name="artificerLevel" required="false" style="width: 107px;display: none;" emptytext="选择技师等级"/>
                           <!--<div id="isArtificer" name="isArtificer" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical"
                           textField="name" valueField="id" value="1"  width="100%"
                           url="" > -->
@@ -67,9 +68,9 @@
                 <td >紧急联系人：<span></span></td>
                 <td ><input class="nui-textbox" name="urgencyPerson" id="urgencyPerson"/></td>
                 <td >紧急联系人电话：<span></span></td>
-                <td colspan="2"><input class="nui-textbox" name="urgencyPersonPhone" id="urgencyPersonPhone"/></td>
+                <td colspan="2"><input class="nui-textbox" name="urgencyPersonPhone" id="urgencyPersonPhone" onvalidation="onMobileValidation" /></td>
 
-            </tr>
+            </tr> 
         </table>
     </fieldset>
     <fieldset id="fd1" style="width:600px;">

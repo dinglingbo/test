@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,17 +16,13 @@
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript">
     </script>
   </head>
-  <body style="width:98%;height:95%;">
+  <body >
    
     <!--footer-->
-   
-    <div class="nui-panel" title="会员卡列表" iconCls="icon-add" style="width:100%;height:100%;" showToolbar="false" showFooter="false" >
       <div class="nui-toolbar" style="border-bottom:0;padding:0px;">
-      <div id="queryform" class="nui-form" align="center" style="height:100%">
+      <div id="queryform" class="nui-form" align="center" >
               <!-- 数据实体的名称 -->
-        <input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.data.rpb.RpbCardStored">
-        <!-- 排序字段 -->
-   
+        <input class="nui-hidden" name="criteria/_entity" value="com.hsapi.repair.data.rpb.RpbCardStored"> 
         <table style="width:100%;" id="table1">
           <tr>
           	<td style="width:100%;">

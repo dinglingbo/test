@@ -456,7 +456,7 @@ function selectItem(callback)
 }
 function addItem()
 {
-nui.get("selectBtn").show();
+
 	selectItem(function(data)
 	{
 		var item = data.item;

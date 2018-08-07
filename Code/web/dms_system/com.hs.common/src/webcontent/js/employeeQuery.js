@@ -94,10 +94,10 @@ function edit(action) {
     
     if (action == 'new') {
     	data = {action: action};
-    } else {
+    } else if(action =='edit'){
     	var row = grid.getSelected();
     	if (!row) {
-    		nuialert("请选中一条记录");
+    		nui.alert("请选中一条记录");
     		return;
     	}
     	emp = row;  	
@@ -192,6 +192,7 @@ function stoporstart(){
     }
 
     if(row.isOpenAccount == 1){
+    
         emp.isOpenAccount = 0;
         emp.empid = row.empid;
         emp.systemAccount = row.systemAccount;
@@ -215,7 +216,7 @@ function stoporstart(){
                 if (data.errCode == "S"){
                     nui.unmask(document.body);
                     showMsg("操作成功!","S");
-
+            
                     var newRow = {isOpenAccount: 0};
                     grid.updateRow(row, newRow);
 
@@ -250,7 +251,13 @@ function stoporstart(){
                 }
             }
         });
+<<<<<<< HEAD
+    }
+
+      if(row.isOpenAccount == 0 && row.systemAccount){
+=======
     }else if(row.isOpenAccount == 0 && row.systemAccount){
+>>>>>>> 9141b4c92c92dc448e9824dcffc7a66e19e76af7
         emp.isOpenAccount = 1;
         emp.empid = row.empid;
         emp.systemAccount = row.systemAccount;

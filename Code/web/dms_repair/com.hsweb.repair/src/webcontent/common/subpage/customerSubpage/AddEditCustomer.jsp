@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.15"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.16"></script>
 <style type="text/css">
 
 table {
@@ -201,10 +201,10 @@ table {
                             </tr>
                             <tr>
                                 <td class="form_label">
-                                    <label>交强险到期：</label>
+                                    <label>商业险单号：</label>
                                 </td>
                                 <td>
-                                    <input name="insureDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input name="annualInspectionNo" class="nui-textbox" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>商业险到期：</label>
@@ -214,18 +214,17 @@ table {
                                 </td>
                             </tr>
                             <tr>
-                               
                                 <td class="form_label">
-                                    <label>下次保养日期：</label>
+                                    <label>交强险单号：</label>
                                 </td>
                                 <td>
-                                    <input id="careDueDdate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input name="insureNo" class="nui-textbox" width="100%"/>
                                 </td>
                                 <td class="form_label">
-                                    <label>下次保养里程：</label>
+                                    <label>交强险到期：</label>
                                 </td>
                                 <td>
-                                    <input id="careDueDdate" allowInput="false" class="nui-textbox" width="100%"/>
+                                    <input name="insureDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -250,6 +249,12 @@ table {
                                     <input name="isCompanyInside"
                                            data="[{id:1,text:'是'},{id:0,text:'否'}]"
                                            class="nui-combobox" width="100%"/>
+                                </td>
+                                <td class="form_label">
+                                    <label>发证日期：</label>
+                                </td>
+                                <td>
+                                    <input id="issuingDate" name="issuingDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                         </table>

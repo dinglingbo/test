@@ -182,6 +182,7 @@ var contactRequiredField ={
     "identity":"联系人身份",
     "source":"联系人来源"
 };
+var resultData = {};
 var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
 function onOk()
 {
@@ -259,6 +260,12 @@ function onOk()
         }
     });
 
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
+    
     $("#btnGroup").hide();
     doPost({
         url : saveUrl,
@@ -271,10 +278,12 @@ function onOk()
         },
         success : function(data)
         {
+        	nui.unmask(document.body);
             data = data||{};
             if(data.errCode == "S")
             {
                 showMsg("保存成功");
+                resultData = data.retData;
                 CloseWindow("ok");
             }
             else{
@@ -283,11 +292,14 @@ function onOk()
             $("#btnGroup").show();
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR.responseText);
+        	nui.unmask(document.body);
             showMsg("网络出错", "E");
             $("#btnGroup").show();
         }
     });    
+}
+function getSaveData(){
+	return resultData;
 }
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
 function setData(data)

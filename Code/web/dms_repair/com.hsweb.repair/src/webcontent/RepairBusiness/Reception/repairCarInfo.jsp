@@ -88,19 +88,19 @@
                   </td>
               </tr>
               <tr>
-                  <td class="title">
+                  <td class="title required">
                       <label>进厂里程：</label>
                   </td>
                   <td >
                       <input class="nui-Spinner" minValue="0" maxValue="100000000" name="enterKilometers" allowNull="false" showButton="false" width="100%"/>
                   </td>
-                  <td class="title">
+                  <td class="title required">
                       <label>进厂日期：</label>
                   </td>
                   <td>
                       <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd  HH:mm:ss" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                   </td>
-                  <td class="title">
+                  <td class="title required">
                       <label>预计交车：</label>
                   </td>
                   <td>
@@ -117,18 +117,19 @@
       </div>
 
     </div>
-    <div title="送修人信息" name="contacterTab">
+    <div title="送修人信息" name="contactorTab">
           <div id="sendGuestForm" class="form">
               <table style="width: 100%;">
                   <input class="nui-hidden" name="id"/>
+                  <input class="nui-hidden" name="guestId"/>
                   <tr>
                       <td class="title required">
                           <label>姓名：</label>
                       </td>
                       <td >
-                          <input class="nui-combobox" id="contactName" name="name" width="100%" textField="name"
+                          <input class="nui-combobox" id="contactName" name="name" width="100%" textField="id"
                             valueField="name" 
-                            onvaluechanged="onReceiveManChanged"
+                            onvaluechanged="onContactorChanged"
                             allowInput="false" selectOnFocus="true">
                       </td>
                       <td class="title">
@@ -178,17 +179,17 @@
               <table style="width: 100%;height: 60px;">
                   <input class="nui-hidden" name="id"/>
                   <tr>
-                      <td class="title required">
+                      <td class="title ">
                           <label>保险公司：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="insuranceName" name="insuranceName"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="insuranceName" name="insuranceName"/>
                       </td>
                       <td class="title">
                           <label>交强险单号：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" width="100%" id="insureNo" name="insureNo"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="insureNo" name="insureNo"/>
                       </td>
                       <td class="title">
                           <label>交强险到期：</label>
@@ -197,8 +198,9 @@
                           <input name="insureDueDate"
                                  id="insureDueDate"
                                  width="100%"
-                                 showTime="true"
-                                 class="nui-datepicker" format="yyyy-MM-dd H:mm:ss"/>
+                                 showTime="false"
+                                 enabled="false"
+                                 class="nui-datepicker" format="yyyy-MM-dd"/>
                       </td>
                   </tr>
               </table>

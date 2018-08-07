@@ -10,24 +10,29 @@
     <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
 
 
+	<!--ifnull(package_id, '') = ''-->
 	<update id="calculateItemDiscount" parameterClass="java.util.HashMap">
-		update rps_item set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
+		update rps_item set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND bill_package_id = 0
 	</update>
 	<update id="calculatePartDiscount" parameterClass="java.util.HashMap">
-		update rps_part set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
+		update rps_part set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND bill_package_id = 0
 	</update>
+	
+	
+	
 	<update id="calculateItemBillDiscount" parameterClass="java.util.HashMap">
 		update rps_item_bill set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
 	</update>
 	<update id="calculatePartBillDiscount" parameterClass="java.util.HashMap">
 		update rps_part_bill set discount_amt = rate * amt / 100.0, subtotal = (100.0 - rate) * amt / 100.0 where service_id = #serviceId# AND ifnull(package_id, '') = ''
 	</update>
+	
 	<update id="updateRpsItemSubtotal" parameterClass="java.util.HashMap">
-		update rps_item set subtotal = amt, rate = 0 where service_id = #serviceId# and ifnull(package_id, '') &lt;&gt; '' 
+		update rps_item set subtotal = amt, rate = 0 where service_id = #serviceId# and bill_package_id>0 
 	</update>
 	<update id="updateRpsPartSubtotal" parameterClass="java.util.HashMap">
 		update rps_part set subtotal = amt, rate = 0, unit_price = case when qty = 0 then 0 else amt / qty end  
-		where service_id = #serviceId# and ifnull(package_id, '') &lt;&gt; ''
+		where service_id = #serviceId# and bill_package_id>0 
 	</update>
 	<update id="updateRpsPkgDifferAmt" parameterClass="java.util.HashMap">
 		update rps_package SET differ_amt = detail_amt - amt, subtotal = amt - discount_amt 

@@ -898,4 +898,96 @@
 			AND a.enter_date BETWEEN DATE_SUB(#queryDate#,INTERVAL 30 day)
 			AND #queryDate#
     </select>
+    
+    <!--查询会员卡消费记录 -->
+    <select id="queryStoreConsume" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			a.id AS id,
+			a.orgid AS orgid,
+			a.type AS type,
+			a.is_clear_give_amt AS isClearGiveAmt,
+			a.guest_id AS guestId,
+			a.service_id AS serviceId,
+			a.consume_amt AS consumeAmt,
+			a.remark AS remark, 
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			b.full_name AS fullName,
+			b.tel AS tel,
+			b.card_no AS cardNo,
+			c.car_no AS carNo
+		FROM
+			wb_repair.rps_stored_consume_record a
+		LEFT JOIN wb_common.com_guest b ON a.guest_id = b.id
+		LEFT JOIN wb_repair.rpb_car c ON a.guest_id = c.guest_id
+		WHERE 1=1
+		<isNotEmpty prepend="and" property="fullName"> 
+               b.full_name LIKE '%$fullName$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="tel"> 
+               b.tel LIKE '$%tel%$'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="cardNo"> 
+               b.cardNo LIKE '%$cardNo$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="carNo"> 
+               c.car_no LIKE '%$carNo$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="startDate"> 
+              ( DATE_FORMAT(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+               (DATE_FORMAT(a.record_date,'%Y-%m-%d') &lt;= #endDate#)
+        </isNotEmpty>
+    </select>
+    
+    <!--查询客户充值会员卡记录-->
+    <select id="queryStoreRecord" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.tenant_id AS tenant_id,
+			a.orgid AS orgid,
+			a.guest_id AS guestId,
+			a.card_id AS cardId,
+			a.card_name AS cardName,
+			a.period_validity AS validity,
+			a.recharge_amt AS rechargeAmt,
+			a.give_amt AS giveAmt,
+			a.total_amt AS toalAmt,
+			a.use_amt AS useAmt,
+			a.bala_amt as balaAmt,
+			a.integral AS integral,
+			a.package_rate AS packageRate,
+			a.item_rate AS itemRate,
+			a.part_rate AS partRate,
+			a.use_remark AS useRemark,
+			a.remark AS remark,
+			a.`status` As `status`,
+			a.is_settle AS isSettle,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			b.full_name AS fullName,
+			b.tel AS tel,
+			b.card_no AS cardNo
+		FROM
+			wb_repair.rps_stored_record a
+		LEFT JOIN wb_common.com_guest b ON a.guest_id = b.id
+		WHERE 1=1
+		<isNotEmpty prepend="and" property="fullName"> 
+               b.full_name LIKE '%$fullName$%'
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="cardNo"> 
+               b.cardNo LIKE '%$cardNo$%'
+        </isNotEmpty>
+		<isNotEmpty prepend="and" property="startDate"> 
+               DATE_FORMAT(a.record_date,'%Y-%m-%d') &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+               DATE_FORMAT(a.record_date,'%Y-%m-%d') &lt;= #endDate#
+        </isNotEmpty>
+    </select>
 </sqlMap>

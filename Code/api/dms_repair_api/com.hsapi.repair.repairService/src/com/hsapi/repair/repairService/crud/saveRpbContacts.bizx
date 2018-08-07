@@ -14,7 +14,9 @@
     <location x="855" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
-    <process:returns/>
+    <process:returns>
+      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbContactor[]" name="insList" type="query" valueType="DataObject">insList</process:return>
+    </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
     <location x="37" y="187"/>
@@ -159,6 +161,10 @@
       <process:from type="query" pattern="reference">guest/id</process:from>
       <process:to type="query">tmp/guestId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/tenantId</process:from>
+      <process:to type="query">tmp/tenantId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="358" y="187"/>
@@ -289,7 +295,9 @@
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
-  <process:outputs/>
+  <process:outputs>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="insList"/>
+  </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

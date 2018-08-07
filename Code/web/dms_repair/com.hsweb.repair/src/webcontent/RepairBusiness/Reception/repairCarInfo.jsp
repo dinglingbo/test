@@ -3,7 +3,7 @@
     
 
 <div id="mainTabs" class="nui-tabs" activeIndex="0" style="width: 100%; height:auto;" plain="false">
-    <div title="工单信息">
+    <div title="工单信息" name="mainTab">
 
         <div id="billForm" class="form">
           <table style="width: 100%;">
@@ -117,58 +117,32 @@
       </div>
 
     </div>
-    <div title="送修人信息">
+    <div title="送修人信息" name="contacterTab">
           <div id="sendGuestForm" class="form">
               <table style="width: 100%;">
+                  <input class="nui-hidden" name="id"/>
                   <tr>
                       <td class="title required">
                           <label>姓名：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="remark" name="remark"/>
+                          <input class="nui-combobox" id="contactName" name="name" width="100%" textField="name"
+                            valueField="name" 
+                            onvaluechanged="onReceiveManChanged"
+                            allowInput="false" selectOnFocus="true">
                       </td>
-                      <td class="title required">
-                          <label>联系方式：</label>
-                      </td>
-                      <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="remark" name="remark"/>
-                      </td>
-                      <td class="title required">
-                          <label>证件类型：</label>
-                      </td>
-                      <td>
-                          <input name="billTypeId"
-                                 id="billTypeId"
-                                 class="nui-combobox width1"
-                                 textField="name"
-                                 valueField="customid"
-                                 emptyText="请选择..."
-                                 url=""
-                                 allowInput="true"
-                                 showNullItem="false"
-                                 width="100%"
-                                 valueFromSelect="true"
-                                 nullItemText="请选择..."/>
-                      </td>
-                      <td class="title required">
-                          <label>证件号：</label>
-                      </td>
-                      <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="remark" name="remark"/>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="title required">
+                      <td class="title">
                           <label>性别：</label>
                       </td>
                       <td>
-                          <input name="billTypeId"
-                                 id="billTypeId"
+                          <input name="sex"
+                                 id="sex"
+                                 enabled="false"
                                  class="nui-combobox width1"
-                                 textField="name"
-                                 valueField="customid"
+                                 textField="text"
+                                 valueField="id"
                                  emptyText="请选择..."
-                                 url=""
+                                 data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]"
                                  allowInput="true"
                                  showNullItem="false"
                                  width="100%"
@@ -176,57 +150,52 @@
                                  nullItemText="请选择..."/>
                       </td>
                       <td class="title">
-                          <label>详细地址：</label>
+                          <label>联系方式：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="contactMobile" name="mobile"/>
+                      </td>
+                      <td class="title">
+                          <label>证件号：</label>
+                      </td>
+                      <td >
+                          <input class="nui-textbox" enabled="false" width="100%" id="idNo" name="idNo"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="title">
+                          <label>备注：</label>
+                      </td>
+                      <td colspan="3">
+                          <input class="nui-textbox" enabled="false" width="100%" id="contactRemark" name="remark"/>
                       </td>
                   </tr>
               </table>
           </div>
     </div>
-    <div title="保险信息">
+    <div title="保险信息" name="insuranceTab">
           <div id="insuranceForm" class="form">
-              <table style="width: 100%;">
+              <table style="width: 100%;height: 60px;">
+                  <input class="nui-hidden" name="id"/>
                   <tr>
                       <td class="title required">
                           <label>保险公司：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="remark" name="remark"/>
+                          <input class="nui-textbox" enable="false" width="100%" id="insuranceName" name="insuranceName"/>
                       </td>
-                      <td class="title required">
-                          <label>联系人：</label>
-                      </td>
-                      <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="remark" name="remark"/>
-                      </td>
-                      <td class="title required">
-                          <label>联系方式：</label>
-                      </td>
-                      <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="remark" name="remark"/>
-                      </td>
-                      <td class="title required">
-                          <label>公司地址：</label>
-                      </td>
-                      <td >
-                          <input class="nui-textbox" enable="false" width="100%" id="remark" name="remark"/>
-                      </td>
-                  </tr>
-                  <tr>
                       <td class="title">
                           <label>交强险单号：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                          <input class="nui-textbox" width="100%" id="insureNo" name="insureNo"/>
                       </td>
                       <td class="title">
                           <label>交强险到期：</label>
                       </td>
-                      <td width="120">
-                          <input name="createDate"
-                                 id="createDate"
+                      <td width="">
+                          <input name="insureDueDate"
+                                 id="insureDueDate"
                                  width="100%"
                                  showTime="true"
                                  class="nui-datepicker" format="yyyy-MM-dd H:mm:ss"/>
@@ -235,7 +204,7 @@
               </table>
           </div>
     </div>
-    <div title="描述信息">
+    <div title="描述信息" name="describeTab">
         <div id="describeForm" class="form">
           <table class="nui-form-table" style="margin:0;width: 100%">
               <tr>

@@ -16,6 +16,7 @@ var sendGuestForm = null;
 var insuranceForm = null;
 var describeForm = null;
 var advancedMorePartWin = null;
+var mainTabs = null;
 
 var enterDateEl = null;
 var planFinishDateEl = null;
@@ -25,6 +26,9 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var receTypeIdList = [];
 var receTypeIdHash = {};
+
+var fcontactorId = 0;
+var fcarId = 0;
 
 $(document).ready(function ()
 {
@@ -38,6 +42,7 @@ $(document).ready(function ()
     insuranceForm = new nui.Form("#insuranceForm");
     describeForm = new nui.Form("#describeForm");
     advancedMorePartWin = nui.get("advancedMorePartWin");
+    mainTabs = nui.get("mainTabs");
 
     enterDateEl = nui.get("enterDate");
     planFinishDateEl = nui.get("planFinishDate");
@@ -185,7 +190,51 @@ $(document).ready(function ()
             }
         }
     });
-});
+    mainTabs.on("activechanged", function (e) {
+        var tab = e.tab;
+        var name = tab.name;
+        //如果为空则重新查询，如果不为空判断ID是否相同，不相同重新查询，相同不用处理
+        if(name == "contacterTab"){
+            var contactorId = billForm.contactorId||0;
+            if(contactorId == 0){
+                sendGuestForm.setData([]);
+            }else{
+                var data = sendGuestForm.getData();
+                var name = data.name || "";
+                if(name == ""){
+                    dos
+                }else{
+                    var id = data.id||0;
+                    if(contactorId != id){
+                        dos
+                    }
+                }
+            }
+        }else if(name == "insuranceTab"){
+            var carId = billForm.carId||0;
+            var data = insuranceForm.getData();
+        }
+    });
+});var getContactUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
+function getContactor(guestId,callback) {
+    nui.ajax({
+        url : getLogisticsUrl,
+        data : {
+            token: token, 
+            guestId: guestId
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 function setInitData(params){
     add();
 }
@@ -217,14 +266,55 @@ function add(){
     rpsPartGrid.addRow(row);
 }
 function onApplyClick(){
-    nui.alert("apply");
+    nui.open({
+        url: webPath + repairDomain + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        title:"新增客户资料",
+        width:500,
+        height:630,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            var params = {};
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {
+                var iframe = this.getIFrameEl();
+                var guest = iframe.contentWindow.getSaveData();
+                if(guest){
+                    var maintain = billForm.getData();
+                    maintain.carId = guest.carId||0;
+                    maintain.carNo = guest.carNo;
+                    maintain.carVin = guest.vin;
+                    maintain.engineNo = guest.engineNo;
+                    maintain.contactorId = guest.contactorId||0;
+                    maintain.contactorName = guest.contactName;
+                    maintain.identity = guest.identity;
+                    maintain.mobile = guest.mobile;
+                    maintain.guestFullName = guest.guestFullName;
+                    maintain.guestId = guest.guestId;
+                    maintain.carModel = guest.carModel;
+                    carNoEl.setText(guest.carNo);
+                    billForm.setData(maintain);
+
+                    fcontactorId = guest.contactorId||0;
+                    fcarId = guest.carId||0;
+
+                    $("#carNoEl").html(car.carNo);
+                    $("#guestNameEl").html(car.guestFullName);
+                    $("#guestTelEl").html(car.mobile);
+                }
+            }
+        }
+    });
 }
 function onSearchClick(){
     var maintain = billForm.getData();
     selectCustomer(function (car) {
         maintain.carId = car.id;
         maintain.carNo = car.carNo;
-        maintain.carVin = car.underpanNo;
+        maintain.carVin = car.vin;
         maintain.engineNo = car.engineNo;
         maintain.contactorId = car.contactorId;
         maintain.contactorName = car.contactName;
@@ -235,6 +325,9 @@ function onSearchClick(){
         maintain.carModel = car.carModel;
         carNoEl.setText(car.carNo);
         billForm.setData(maintain);
+
+        fcontactorId = car.contactorId||0;
+        fcarId = car.id||0;
 
         $("#carNoEl").html(car.carNo);
         $("#guestNameEl").html(car.guestFullName);

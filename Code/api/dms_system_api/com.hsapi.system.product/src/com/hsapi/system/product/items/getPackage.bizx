@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getPackage" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="com.hsapi.system.product.items.getPackage" title="Administrator&#x9;18-8-7 上午9:49">
+    <location x="89" y="296"/>
+    <size height="100" width="497"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="套餐包查询：&#xD;&#xA;参数：&#xD;&#xA;carBrandId string&#xD;&#xA;carLevelId string&#xD;&#xA;carLineId string" title="Guine&#x9;18-3-23 上午9:11">
     <location x="30" y="0"/>
     <size height="136" width="247"/>

@@ -177,7 +177,7 @@ function addOrEditCustomer(guest)
         title = "修改客户资料";
     }
     nui.open({
-        url: "com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        url: webPath + repairDomain + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title: title, width: 560, height: 570,
         onload: function () {
             var iframe = this.getIFrameEl();

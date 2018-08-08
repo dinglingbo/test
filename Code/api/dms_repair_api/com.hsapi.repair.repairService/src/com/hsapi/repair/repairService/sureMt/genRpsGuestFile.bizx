@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="genRpsGuestFile.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="rps_guest_file 本店维修客户档案  comp_come_times 本店来店次数&#xD;&#xA;&#xD;&#xA;同一天确认维修多次，算一次" title="Administrator&#x9;18-8-7 下午7:07">
+    <location x="30" y="-75"/>
+    <size height="100" width="406"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -10,16 +14,15 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link7</targetConnections>
-    <targetConnections>link8</targetConnections>
-    <targetConnections>link9</targetConnections>
     <targetConnections>link12</targetConnections>
-    <location x="480" y="150"/>
+    <targetConnections>link14</targetConnections>
+    <location x="495" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="compComeTimes" type="query" valueType="Primitive">compComeTimes</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -28,7 +31,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="482" y="186"/>
+    <location x="497" y="186"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -103,7 +106,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="GT">
           <process:leftOperand type="query">countIn</process:leftOperand>
@@ -125,6 +128,18 @@
     <location x="225" y="240"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/id</process:from>
+      <process:to type="query">guestFile/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/sureMtMan</process:from>
+      <process:to type="query">guestFile/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/sureMtDate</process:from>
+      <process:to type="query">guestFile/modifyDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="223" y="276"/>
@@ -212,7 +227,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign5</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -240,13 +255,14 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign5</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="342" y="240"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
@@ -316,6 +332,26 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="495" y="61"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">guestFile/compComeTimes</process:from>
+      <process:to type="query">compComeTimes</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="493" y="97"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-26 10:01:09" date="2018-03-26Z" description="" name="genRpsGuestFile" version="7.0.0.0"/>
@@ -332,6 +368,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" name="compComeTimes" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

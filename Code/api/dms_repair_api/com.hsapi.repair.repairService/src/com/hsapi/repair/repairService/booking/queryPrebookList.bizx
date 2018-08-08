@@ -128,6 +128,22 @@
       <process:from type="expression" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/carNo</process:from>
+      <process:to type="query">cd/_expr[10]/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">cd/_expr[10]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/prebookSource</process:from>
+      <process:to type="query">cd/_expr[11]/prebookSource</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">cd/_expr[11]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="250" y="136"/>

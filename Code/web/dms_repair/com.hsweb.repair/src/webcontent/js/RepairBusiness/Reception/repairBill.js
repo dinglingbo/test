@@ -21,14 +21,21 @@ var mainTabs = null;
 var enterDateEl = null;
 var planFinishDateEl = null;
 var carNoEl = null;
+var contactNameEl = null;
 
 var servieTypeList = [];
 var servieTypeHash = {};
 var receTypeIdList = [];
 var receTypeIdHash = {};
 
-var fcontactorId = 0;
+var contactList = [];
+var contactHash = {};
+
+var fguestId = 0;
 var fcarId = 0;
+var mpackageRate = 0;
+var mitemRate = 0;
+var mpartRate = 0;
 
 $(document).ready(function ()
 {
@@ -47,6 +54,7 @@ $(document).ready(function ()
     enterDateEl = nui.get("enterDate");
     planFinishDateEl = nui.get("planFinishDate");
     carNoEl = nui.get("carNo");
+    contactNameEl = nui.get("contactName");
 
     initMember("mtAdvisorId",null);
     initServiceType("serviceTypeId",function(data) {
@@ -194,39 +202,103 @@ $(document).ready(function ()
         var tab = e.tab;
         var name = tab.name;
         //如果为空则重新查询，如果不为空判断ID是否相同，不相同重新查询，相同不用处理
-        if(name == "contacterTab"){
-            var contactorId = billForm.contactorId||0;
+        var maindata = billForm.getData();
+        if(name == "contactorTab"){
+            var contactorId = maindata.contactorId||0;
             if(contactorId == 0){
                 sendGuestForm.setData([]);
             }else{
                 var data = sendGuestForm.getData();
                 var name = data.name || "";
                 if(name == ""){
-                    dos
+                    getContactor(maindata.guestId,function(rdata){
+                        var contact = contactHash[contactorId];
+                        if(contact){
+                            data.id = contact.id;
+                            data.guestId = contact.guestId;
+                            data.name = contact.name;
+                            data.sex = contact.sex;
+                            data.mobile = contact.mobile;
+                            data.idNo = contact.idNo;
+                            data.remark = contact.remark;
+                            sendGuestForm.setData(data);
+                        }
+                    });
                 }else{
-                    var id = data.id||0;
-                    if(contactorId != id){
-                        dos
+                    var id = data.guestId||0;
+                    if(fguestId != id){
+                        getContactor(maindata.guestId,function(rdata){
+                            var contact = contactHash[contactorId];
+                            if(contact){
+                                data.id = contact.id;
+                                data.guestId = contact.guestId;
+                                data.name = contact.name;
+                                data.sex = contact.sex;
+                                data.mobile = contact.mobile;
+                                data.idNo = contact.idNo;
+                                data.remark = contact.remark;
+                                sendGuestForm.setData(data);
+                            }
+                        });
                     }
                 }
             }
         }else if(name == "insuranceTab"){
-            var carId = billForm.carId||0;
-            var data = insuranceForm.getData();
+            var carId = maindata.carId||0;
+            if(carId == 0){
+                insuranceForm.setData([]);
+            }else{
+                var data = insuranceForm.getData();
+                var id = data.id || 0;
+                if(id == 0){
+                    getCarInsure(carId,function(rdata){
+                        if(data){
+                            data.id = rdata.id;
+                            data.insuranceName = rdata.insureCompName;
+                            data.insureNo = rdata.insureNo;
+                            data.insureDueDate = rdata.insureDueDate;
+                            insuranceForm.setData(data);
+                        }
+                    });
+                }else{
+                    var id = data.id||0;
+                    if(fcarId != id){
+                        getCarInsure(carId,function(rdata){
+                            if(data){
+                                data.id = rdata.id;
+                                data.insuranceName = rdata.insureCompName;
+                                data.insureNo = rdata.insureNo;
+                                data.insureDueDate = rdata.insureDueDate;
+                                insuranceForm.setData(data);
+                            }
+                        });
+                    }
+                }
+            }
         }
     });
-});var getContactUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
+});
+var getContactUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.query.getContacterByGuestId.biz.ext";
 function getContactor(guestId,callback) {
+    contactList = [];
+    contactHash = {};
+
     nui.ajax({
-        url : getLogisticsUrl,
+        url : getContactUrl,
+        async:false,
         data : {
             token: token, 
             guestId: guestId
         },
         type : "post",
         success : function(data) {
-            if (data && data.list) {
-                callback && callback(data);
+            if (data && data.data && data.data.contacter) {
+                var contact = data.data.contacter;
+                contactList = contact;
+                contact.forEach(function(v) {
+                    contactHash[v.id] = v;
+                });
+                callback && callback(contact);
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -234,6 +306,46 @@ function getContactor(guestId,callback) {
             console.log(jqXHR.responseText);
         }
     });
+
+    contactNameEl.setData(contactList);
+}
+var getCarInsureUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.query.getInsureByCarId.biz.ext";
+function getCarInsure(carId,callback) {
+    nui.ajax({
+        url : getCarInsureUrl,
+        async:false,
+        data : {
+            token: token, 
+            carId: carId
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.data && data.data.car) {
+                var car = data.data.car;
+                callback && callback(car);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+
+    contactNameEl.setData(contactList);
+}
+function onContactorChanged(e){
+    var v = e.selected;
+    var data = sendGuestForm.getData();
+    data.id = v.id;
+    data.name = v.name;
+    data.sex = v.sex;
+    data.mobile = v.mobile;
+    data.idNo = v.idNo;
+    data.remark = v.remark;
+    sendGuestForm.setData(data);
+
+    var mdata = billForm.getData();
+    mdata.contactorId = v.id;
 }
 function setInitData(params){
     add();
@@ -298,8 +410,12 @@ function onApplyClick(){
                     carNoEl.setText(guest.carNo);
                     billForm.setData(maintain);
 
-                    fcontactorId = guest.contactorId||0;
+                    fguestId = guest.guestId||0;
                     fcarId = guest.carId||0;
+
+                    mpackageRate = 0;
+                    mitemRate = 0;
+                    mpartRate = 0;
 
                     $("#carNoEl").html(car.carNo);
                     $("#guestNameEl").html(car.guestFullName);
@@ -323,10 +439,15 @@ function onSearchClick(){
         maintain.guestFullName = car.guestFullName;
         maintain.guestId = car.guestId;
         maintain.carModel = car.carModel;
+
+        mpackageRate = 0;
+        mitemRate = 0;
+        mpartRate = 0;
+
         carNoEl.setText(car.carNo);
         billForm.setData(maintain);
 
-        fcontactorId = car.contactorId||0;
+        fguestId = car.guestId||0;
         fcarId = car.id||0;
 
         $("#carNoEl").html(car.carNo);
@@ -398,14 +519,75 @@ function deletePartRow(){
         rpsPartGrid.removeRow(row);
     }
 }
+function save(){
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+    saveMaintain(function(data){
+        billForm.setData(data);
+        showMsg("保存成功!");
+    },function(){ 
+        nui.unmask(document.body);
+    });
+}
+var requiredField = {
+    carNo : "车牌号",
+    serviceTypeId : "业务类型",
+    mtAdvisorId : "服务顾问",
+	enterOilMass : "进厂油量",
+    enterKilometers : "进厂里程",
+    enterDate : "进厂日期",
+    planFinishDate : "预计交车"
+};
+var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
+function saveMaintain(callback,unmaskcall){
+    var data = billForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+            showMsg(requiredField[key] + "不能为空!","W");
+			return;
+		}
+    }
+    
+    nui.ajax({
+        url : saveMaintainUrl,
+        type : "post",
+        data : JSON.stringify({
+            maintain : data,
+            token : token
+        }),
+        success : function(data) {
+            data = data || {};
+            if (data.errCode == "S") {
+                unmaskcall && unmaskcall();
+                var main = data.data;
+                callback && callback(main);
+            } else {
+                unmaskcall && unmaskcall();
+                showMsg(data.errMsg || "请先保存单据添加配件","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 function entry(){
-	/*
     var maintain = billForm.getData();
     if(!maintain.id)
     {
-        nui.alert("请先保存工单信息");
-        return;
-    }*/
+        saveMaintain(function(){
+            chooseStdPrd();
+        },null);
+    }else{
+        chooseStdPrd();
+    }
+}
+function chooseStdPrd(){
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
         title: "标准化产品查询", width: 900, height: 600,
@@ -420,7 +602,7 @@ function entry(){
                 if(data.item)
                 {
                     var tmpItem = data.item;
-                    addItemQuote(tmpItem);
+                    addItem(tmpItem);
                 }
                 else{
                     addPackage(data,callback);
@@ -433,23 +615,21 @@ function entry(){
         }
     });
 }
-function addItemQuote(tmpItem)
+function addItem(tmpItem)
 {
     var insList = [];
     var item = {
         itemCode:tmpItem.itemCode,
         itemId:tmpItem.itemId,
-        itemKind:tmpItem.itemKind,
         itemName:tmpItem.itemName,
         itemNameId:tmpItem.itemNameId,
         itemCarId:tmpItem.carModelId,
         itemIsNeed:1,
-        receTypeId:"04150101",
         itemTime:tmpItem.astandTime,
         unitPrice:tmpItem.price,
         amt:tmpItem.astandSum,
         pkgitemamt:0,
-        rate:0,
+        rate:mitemRate||0,
         discountAmt:0,
         status:0
     };
@@ -551,12 +731,12 @@ function addPackage(data,callback)
 function saveItem(insList, updList, callback) {
     var maintain = billForm.getData();
     if (!maintain.id) {
-        nui.alert("数据错误");
+        showMsg("请先保存数据再添加!","W");
         return;
     }
     insList = insList || [];
     updList = updList || [];
-    var saveItemUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsItemQuote.biz.ext";
+    var saveItemUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsItem.biz.ext";
     doPost({
         url: saveItemUrl,
         data: {

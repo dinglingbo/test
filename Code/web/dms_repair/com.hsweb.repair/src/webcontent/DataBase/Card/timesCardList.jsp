@@ -12,9 +12,9 @@
 <head>
 <title>计次卡操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.1"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.3"></script>
 </head>
-<body style="width: 98%; height: 95%;">
+<body >
 
 	<!--footer-->
 
@@ -44,7 +44,7 @@
 		</div>
 		<div class="nui-fit">
 			<div id="datagrid1" dataField="timesCard" class="nui-datagrid"
-				style="width: 100%;" pageSize="20" showPageInfo="true" onDrawCell="onDrawCell"
+				style="width: 100%;height: 100%;" pageSize="20" showPageInfo="true" onDrawCell="onDrawCell"
 				multiSelect="true" onselectionchanged="selectionChanged"
 				allowSortColumn="false">
 				<div property="columns">

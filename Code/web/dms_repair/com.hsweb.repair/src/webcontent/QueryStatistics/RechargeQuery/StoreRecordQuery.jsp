@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户办卡、充值记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/RechargeQueryMain.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.0.0"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -30,23 +30,27 @@ html,body {
 </head>
 <body>
 
-<input id="startDate"
-       visible="false"
-       allowInput="false"
-       showClearButton="false"
-       class="nui-datepicker"/>
-<input id="endDate"
-       visible="false"
-       allowInput="false"
-       showClearButton="false"
-       class="nui-datepicker"/>
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table">
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-                    
+                     <td class="form_label">消费日期 从:</td>
+                <td>
+                     <input class="nui-datepicker" id="startDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                </td>
+                <td class="">至:</td>
+                <td>
+                    <input class="nui-datepicker" id="endDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                </td>
+                <td>
+                 	<input class="nui-combobox" data="dataList" width="100px"textFeild="text" id="data"/>
+                </td>
+                 <td>
+                	<input id="search" class="nui-textbox" emptyText="输入查询条件" />
+                </td>
+                <td><a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a></td>
                 </td>
             </tr>
         </table>
@@ -62,23 +66,38 @@ html,body {
             <div header="客户信息" headerAlign="center">
                 <div property="columns">
                     <div field="fullName" headerAlign="center" allowSort="true" visible="true" width="">客户名称</div>
-                    <div field="cardNo" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
-                    <div field="mobile" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
-                    <div field="rechargeDate" headerAlign="center" allowSort="true" visible="true" width="" dateFormat="yyyy-MM-dd">充值日期</div>
+                    <div field="tel" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
                 </div>
             </div>
+            <div header="会员卡信息" headerAlign="center">
+                <div property="columns">
+                    <div field="cardNo" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
+                    <div field="cardName" headerAlign="center" allowSort="true" visible="true" width="">会员卡名称</div>
+                    <div field="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">有效期</div>
+                </div>
+            </div>
+            
             <div header="充值信息" headerAlign="center">
                 <div property="columns">
+                	 <div field="recordDate" headerAlign="center" allowSort="true" visible="true" width="" dateFormat="yyyy-MM-dd">充值日期</div>
                     <div field="rechargeAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="float" align="right">充值金额</div>
-                    <div field="largessAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="float" align="right">赠送金额</div>
-                    <div field="integral" headerAlign="center" allowSort="true" visible="true" width="" datatype="int" align="right">赠送积分</div>
+                    <div field="giveAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="float" align="right">赠送金额</div>
+                    <div field="totalAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="float" align="right">总金额</div>
+            
                 </div>
             </div>
             <div header="余额信息" headerAlign="center">
                 <div property="columns">
-                    <div field="cardBalaAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="float" align="right">储蓄余额</div>
-                    <div field="largessBalaAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="float" align="right">赠送余额</div>
-                    <div field="integral" headerAlign="center" allowSort="true" visible="true" width="" datatype="int" align="right">赠送积分</div>
+                    <div field="useAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="int" align="right">已使用金额</div>
+                    <div field="balaAmt" headerAlign="center" allowSort="true" visible="true" width="" datatype="float" align="right">剩余金额</div>
+                    <div field="integral" headerAlign="center" allowSort="true" visible="true" width="" datatype="int" align="right">积分</div>
+                </div>
+            </div>
+            <div header="优惠率" headerAlign="center">
+                <div property="columns">
+                    <div field="packageRate" headerAlign="center" allowSort="true" visible="true" width=""numberFormat="p"  >套餐优惠率</div>
+                    <div field="itemRate" headerAlign="center" allowSort="true" visible="true" width=""  numberFormat="p" >工时优惠率</div>
+                    <div field="partRate" headerAlign="center" allowSort="true" visible="true" width="" datatype="float"  numberFormat="p" >配件优惠率</div>
                 </div>
             </div>
             <div header="备注" headerAlign="center">

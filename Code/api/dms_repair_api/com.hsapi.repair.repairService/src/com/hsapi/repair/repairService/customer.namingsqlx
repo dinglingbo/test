@@ -87,11 +87,15 @@
 			d.id contactorId,
             e.card_type as cardType,
 			a.vin as vin,
-			a.insure_due_date as insureDueDate
+			a.insure_due_date as insureDueDate,
+		    d.birthday_type as birthdayType,
+            d.birthday,
+            f.chain_consume_amt as chainConsumeAmt
 		FROM
 			rpb_car a
 			inner join wb_common.com_guest b on (a.guest_id = b.id)
 			inner join rpb_contactor d on (b.id = d.guest_id)
+			left join rpb_guest f on b.id = f.id
 			left join wb_common.com_join_member e on b.id = e.guest_id
 		WHERE 1=1
 		<dynamic>

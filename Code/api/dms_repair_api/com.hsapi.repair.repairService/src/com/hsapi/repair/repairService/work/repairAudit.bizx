@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="repairAudit.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工" title="Administrator&#x9;18-8-7 下午7:47">
+    <location x="62" y="-15"/>
+    <size height="100" width="329"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -95,7 +99,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
           <process:leftOperand type="query">maintain/status</process:leftOperand>
-          <process:rightOperand type="literal">3</process:rightOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -116,6 +120,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">userName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -224,22 +232,22 @@
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">maintain/mtAuditDate</process:to>
+      <process:to type="query">maintain/checkDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">maintain/mtAuditSign</process:to>
+      <process:to type="query">maintain/checkSign</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">userName</process:from>
-      <process:to type="query">maintain/mtAuditor</process:to>
+      <process:to type="query">maintain/checker</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">drawOutReport</process:from>
       <process:to type="query">maintain/drawOutReport</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">4</process:from>
+      <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">maintain/status</process:to>
     </process:copy>
     <process:copy>
@@ -259,16 +267,8 @@
       <process:to type="query">maintain/partAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">partQuoteAmt</process:from>
-      <process:to type="query">maintain/partQuoteAmt</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">itemAmt</process:from>
       <process:to type="query">maintain/itemAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">itemQuoteAmt</process:from>
-      <process:to type="query">maintain/itemQuoteAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -305,16 +305,14 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="String"/>
     <process:input description="" isArray="false" name="partAmt" primitiveType="String"/>
-    <process:input description="" isArray="false" name="partQuoteAmt" primitiveType="String"/>
     <process:input description="" isArray="false" name="itemAmt" primitiveType="String"/>
-    <process:input description="" isArray="false" name="itemQuoteAmt" primitiveType="String"/>
     <process:input description="" isArray="false" name="packageAmt" primitiveType="String"/>
     <process:input description="" isArray="false" name="drawOutReport" primitiveType="String"/>
-    <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

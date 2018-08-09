@@ -36,7 +36,7 @@ function edit() {
   var row = grid.getSelected();
   if (row) {
     nui.open({
-      url:sysntUrl ,
+      url:sysnUrl ,
       title: "编辑数据",
       width: 680,
       height: 520,
@@ -98,7 +98,7 @@ function edit() {
 
           function onDrawCell(e)
           {
-            var hash = new Array("按原价比例","按折后价比例","按产值比例","固定金额");
+            var hash = new Array("原价比例(%)","折后价比例(%)","产值比例(%)","固定金额(元)");
             switch (e.field)
             {
                 case "useRange":

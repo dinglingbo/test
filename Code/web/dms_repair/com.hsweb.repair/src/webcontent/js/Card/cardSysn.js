@@ -9,7 +9,7 @@ $(document).ready(function (v)
 });
 
 
-form.setChanged(false);
+
 
     var requiredField = {
       name : "会员卡名称",

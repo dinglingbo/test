@@ -12,7 +12,7 @@
 <head>
 <title>会员卡操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.1.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.1.9"></script>
 
 </head>
 
@@ -44,10 +44,10 @@
 			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true" style="width: 100%;height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>
-				<div type="checkcolumn"></div>
+				<div type="checkcolumn" class="mini-radiobutton"></div>
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">会员卡ID</div>
-				<div field="name" headerAlign="center" allowSort="true">
+				<div field="name" headerAlign="center" allowSort="true" >
 					会员卡名称</div>
 
 				<div field="useRange" headerAlign="center" allowSort="true">

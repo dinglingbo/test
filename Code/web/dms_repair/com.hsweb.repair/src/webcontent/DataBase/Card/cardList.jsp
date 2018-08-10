@@ -13,9 +13,7 @@
 <title>会员卡操作</title>
 <script
 	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.1.9"></script>
-
 </head>
-
 <body>
 	<div id="queryform" class="nui-form">
 		<div class="nui-toolbar">
@@ -41,14 +39,14 @@
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="card" class="nui-datagrid"
 			pageSize="20" onDrawCell="onDrawCell"
-			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true" style="width: 100%;height: 100%;">
+			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
+			style="width: 100%; height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>
 				<div type="checkcolumn" class="mini-radiobutton"></div>
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">会员卡ID</div>
-				<div field="name" headerAlign="center" allowSort="true" >
-					会员卡名称</div>
+				<div field="name" headerAlign="center" allowSort="true">会员卡名称</div>
 
 				<div field="useRange" headerAlign="center" allowSort="true">
 					适用范围</div>
@@ -74,8 +72,7 @@
 					销售提成值</div>
 				<div field="status" renderer="onstatus" headerAlign="center"
 					allowSort="true">状态</div>
-				<div field="remark" headerAlign="center" allowSort="true">
-					卡说明</div>
+				<div field="remark" headerAlign="center" allowSort="true">卡说明</div>
 			</div>
 		</div>
 	</div>

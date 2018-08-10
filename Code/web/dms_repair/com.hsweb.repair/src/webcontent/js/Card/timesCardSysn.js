@@ -1,4 +1,7 @@
-var gridUrl = apiPath + repairApi+ "/com.hsapi.repair.baseData.crud.queryTimesCardDetail.biz.ext";
+var gridUrl = apiPath + repairApi
+		+ "/com.hsapi.repair.baseData.crud.queryTimesCardDetail.biz.ext";
+var gridUrl1 = apiPath + repairApi
++ "/com.hsapi.repair.baseData.crud.syncTimesCard.biz.ext";
 var tab = null;
 var form = null;
 var timesCardDetail = null;
@@ -9,90 +12,88 @@ $(document).ready(function(v) {
 	form.setChanged(false);
 });
 
+var requiredField = {
+	name : "计次卡名称:",
+	sellAmt : "销售价格",
+	totalAmt : "总价值",
+	periodValidity : "有效期",
+	salesDeductValue : "提成值"
+};
 
+var tcd = {
+	times : "次数 :",
+	qty : "工时/数量 ",
+	oldPrice : "原价",
+	sellPrice : "销价 ",
+	oldAmt : "原销售金额 ",
+	sellAmt : "现销售金额 "
+};
 
-    var requiredField = {
-      name : "计次卡名称:",
-      sellAmt : "销售价格",
-      totalAmt : "总价值",
-      periodValidity : "有效期",
-	  salesDeductValue : "提成值"
-  };
-
-  	var tcd = {
-		times : "次数 :",
-		qty : "工时/数量 ",
-		oldPrice : "原价",
-		sellPrice : "销价 ",
-		oldAmt : "原销售金额 ",
-		sellAmt : "现销售金额 "
-	  };
-
-  function onOk(){
-	  var yz = "^[0-9]*[1-9][0-9]*$";
-	  var zz = new RegExp(yz);
+function onOk() {
+	var yz = "^[0-9]*[1-9][0-9]*$";
+	var zz = new RegExp(yz);
 	g = nui.get("#timesCardDetail");
 	var data1 = g.getData();
-    var data = form.getData();
-  for ( var key in requiredField) {
-      if (!data[key] || $.trim(data[key]).length == 0) {
-          showMsg(requiredField[key] + "不能为空!","W");
+	var data = form.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!", "W");
 
-          return;
-      }
-
-  }
-  for ( var key in tcd) {
-	for(var i = 0;i<data1.length;i++){
-		if (!data1[i][key] || $.trim(data1[i][key]).length == 0) {
-			showMsg(tcd[key] + "不能为空!","W");
 			return;
 		}
-		
-	      if(!zz.exec(data1[i][key])){
-	          showMsg(tcd[key] + "必须为数字!","W");
 
-	          return; 
-	      }
 	}
-}
-  saveData();
-}
-
-
-function setData(data){
-	//跨页面传递的数据对象，克隆后才可以安全使用
-	var json = nui.clone(data);
-		//如果是点击编辑类型页面
-		if (json.id!=null) {
-			form.setData(json);
-			form.setChanged(false);
-		  }
-	//计次卡明细查询
-	 var json1 = nui.encode({"timesCard":json});
-	$.ajax({
-		url:gridUrl,
-		type:'POST',
-		data:json1,
-		cache:false,
-		contentType:'text/json',
-		success:function(text){
-		  var returnJson = nui.decode(text);
-		  if(returnJson.exception == null){
-			g = nui.get("#timesCardDetail");
-			g.setData(returnJson.timesCardDetail);
-		  }else{
-			nui.alert("获取明细失败", "系统提示", function(action){
-			  if(action == "ok" || action == "close"){
-				//CloseWindow("saveFailed");
-			  }
-			  });
+	for ( var key in tcd) {
+		for (var i = 0; i < data1.length; i++) {
+			if (!data1[i][key] || $.trim(data1[i][key]).length == 0) {
+				showMsg(tcd[key] + "不能为空!", "W");
+				return;
 			}
-		  }
-		  });
 
+			if (!zz.exec(data1[i][key])) {
+				showMsg(tcd[key] + "必须为数字!", "W");
 
-  }
+				return;
+			}
+		}
+	}
+	saveData();
+}
+
+function setData(data) {
+	// 跨页面传递的数据对象，克隆后才可以安全使用
+	var json = nui.clone(data);
+	// 如果是点击编辑类型页面
+	if (json.id != null) {
+		form.setData(json);
+		form.setChanged(false);
+	}
+	// 计次卡明细查询
+	var json1 = nui.encode({
+		"timesCard" : json
+	});
+	nui.ajax({
+		url : gridUrl,
+		type : 'POST',
+		data : json1,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.exception == null) {
+				g = nui.get("#timesCardDetail");
+				g.setData(returnJson.timesCardDetail);
+			} else {
+				nui.alert("获取明细失败", "系统提示", function(action) {
+					if (action == "ok" || action == "close") {
+						// CloseWindow("saveFailed");
+					}
+				});
+			}
+		}
+	});
+
+}
 
 function gridAddRow(datagrid) {
 	var grid = nui.get(datagrid);
@@ -126,10 +127,17 @@ function saveData() {
 	var pchsOrderDetailDelete = g.getChanges("removed");
 	var data = form.getData(false, true);
 	var time = nui.get("timesCardDetail").getData();
-	var json = nui.encode({"timesCard":data,"timesCardDetail":time,"pchsOrderDetailAdd":pchsOrderDetailAdd,"pchsOrderDetailUpdate":pchsOrderDetailUpdate,"pchsOrderDetailDelete":pchsOrderDetailDelete});
+	var json = nui.encode({
+		"timesCard" : data,
+		"timesCardDetail" : time,
+		"pchsOrderDetailAdd" : pchsOrderDetailAdd,
+		"pchsOrderDetailUpdate" : pchsOrderDetailUpdate,
+		"pchsOrderDetailDelete" : pchsOrderDetailDelete,
+		token : token
+	});
 
-	$.ajax({
-		url : "com.hsapi.repair.baseData.crud.syncTimesCard.biz.ext",
+	nui.ajax({
+		url : gridUrl1,
 		type : 'POST',
 		data : json,
 		cache : false,
@@ -170,10 +178,10 @@ function CloseWindow(action) {
 function updateError(e) {
 
 	if (nui.get('x').getValue() == "3") {
-		document.getElementById('y').innerHTML="元";
+		document.getElementById('y').innerHTML = "元";
 	} else {
-		
-		document.getElementById('y').innerHTML="%";
+
+		document.getElementById('y').innerHTML = "%";
 	}
 }
 
@@ -226,7 +234,7 @@ function selectPackage() {
 	nui.open({
 		targetWindow : window,
 		url : webPath + partDomain
-		+ "/repair/DataBase/Card/packageList.jsp?token=" + token,
+				+ "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "本店套餐",
 		width : 1000,
 		height : 600,
@@ -238,7 +246,7 @@ function selectPackage() {
 			var params = {
 				list : list
 			};
-			//params.list = rightItemGrid.getData();
+			// params.list = rightItemGrid.getData();
 			iframe.contentWindow.setData(params);
 		},
 		ondestroy : function(action) {
@@ -271,7 +279,7 @@ function selectItem(callback) {
 		url : webPath + partDomain
 				+ "/com.hsweb.repair.DataBase.RepairItemMain.flow?token="
 				+ token,
-		title : "维修项目",
+		title : "维修工时",
 		width : 1000,
 		height : 560,
 		allowDrag : true,
@@ -282,7 +290,7 @@ function selectItem(callback) {
 			var params = {
 				list : list
 			};
-			//params.list = rightItemGrid.getData();
+			// params.list = rightItemGrid.getData();
 			iframe.contentWindow.setData(params);
 		},
 		ondestroy : function(action) {
@@ -296,12 +304,14 @@ function selectItem(callback) {
 					var prdtId = part.id;
 					var prdtName = part.name;
 					var prdtType = 2;
+					var itemTime = part.itemTime;
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
 						prdtType : prdtType,
-						prdtTypeName : prdtType
+						prdtTypeName : prdtType,
+						qty :itemTime
 					};
 					grid.addRow(newRow);
 				}
@@ -310,30 +320,20 @@ function selectItem(callback) {
 	});
 }
 
-function onDrawCell(e)
-{
-  var hash = new Array("套餐","工时","配件");
-  switch (e.field)
-  {
-      case "prdtType":
-          e.cellHtml = hash[e.value-1];
-          break;
-  }
+function onDrawCell(e) {
+	var hash = new Array("套餐", "工时", "配件");
+	switch (e.field) {
+	case "prdtType":
+		e.cellHtml = hash[e.value - 1];
+		break;
+	}
 }
-/*function addItem() {
-
-	selectItem(function(data) {
-		var item = data.item;
-		var packageItem = {
-			itemId : item.id,
-			itemCode : item.code,
-			itemName : item.name,
-			itemTime : item.itemTime,
-			itemKind : item.itemKind,
-			itemKindName : item.itemKindName,
-			unitPrice : item.unitPrice,
-			amt : item.amt
-		};
-		rightItemGrid.addRow(packageItem);
-	});
-}*/
+/*
+ * function addItem() {
+ * 
+ * selectItem(function(data) { var item = data.item; var packageItem = { itemId :
+ * item.id, itemCode : item.code, itemName : item.name, itemTime :
+ * item.itemTime, itemKind : item.itemKind, itemKindName : item.itemKindName,
+ * unitPrice : item.unitPrice, amt : item.amt };
+ * rightItemGrid.addRow(packageItem); }); }
+ */

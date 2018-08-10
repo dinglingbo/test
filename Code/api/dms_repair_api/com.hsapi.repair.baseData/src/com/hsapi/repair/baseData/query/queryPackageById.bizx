@@ -73,7 +73,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link5</targetConnections>
-    <location x="806" y="187"/>
+    <location x="646" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -81,7 +81,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="808" y="223"/>
+    <location x="648" y="206"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>

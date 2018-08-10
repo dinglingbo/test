@@ -13,8 +13,6 @@
       会员卡录入录入
     </title>
     <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.1"></script>
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript">
-    </script>
   </head>
   <body >
     <fieldset style="border:solid 1px #aaa;position:relative;margin:5px 2px 0px 2px;">

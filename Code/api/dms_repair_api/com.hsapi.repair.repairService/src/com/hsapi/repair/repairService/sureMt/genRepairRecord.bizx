@@ -514,6 +514,7 @@
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="762" y="150"/>
@@ -544,7 +545,6 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="prev_comp_code" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="prev_advisor_id" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="prev_service_id" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="prev_out_date" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sure_mt_date" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsRepairRecord" name="record"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="prevOutTime" primitiveType="Long"/>
@@ -558,7 +558,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="chain_status" primitiveType="Short"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCarExtend" name="car"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
   </process:inputs>
   <process:outputs/>

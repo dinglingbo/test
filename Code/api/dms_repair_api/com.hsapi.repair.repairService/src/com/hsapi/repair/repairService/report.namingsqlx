@@ -927,10 +927,10 @@
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="tel"> 
-               b.tel LIKE '$%tel%$'
+               b.tel LIKE '%$tel$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="cardNo"> 
-               b.cardNo LIKE '%$cardNo$%'
+               b.card_no LIKE '%$cardNo$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="carNo"> 
                c.car_no LIKE '%$carNo$%'
@@ -952,10 +952,10 @@
 			a.guest_id AS guestId,
 			a.card_id AS cardId,
 			a.card_name AS cardName,
-			a.period_validity AS validity,
+			a.period_validity AS periodValidity,
 			a.recharge_amt AS rechargeAmt,
 			a.give_amt AS giveAmt,
-			a.total_amt AS toalAmt,
+			a.total_amt AS totalAmt,
 			a.use_amt AS useAmt,
 			a.bala_amt as balaAmt,
 			a.integral AS integral,
@@ -981,7 +981,7 @@
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="cardNo"> 
-               b.cardNo LIKE '%$cardNo$%'
+               b.card_no LIKE '%$cardNo$%'
         </isNotEmpty>
 		<isNotEmpty prepend="and" property="startDate"> 
                DATE_FORMAT(a.record_date,'%Y-%m-%d') &gt;= #startDate#

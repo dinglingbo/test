@@ -23,19 +23,37 @@
         <!-- hidden域 -->
         <input class="nui-hidden" id="card.id"/>
         <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table" >
-                     <tr>
-            <td class="form_label" style="width:15%">
+             
+              <tr>
+            <td class="form_label" >
               会员卡名称:
             </td>
-            <td colspan="1" style="width:35%">
+            <td colspan="1" >
+              <input class="nui-textbox" name="card.name"/>
+            </td>
+            </tr>
+             
+             
+            <tr>
+            <td class="form_label" >
+              会员卡名称:
+            </td>
+            <td colspan="1" >
               <input class="nui-textbox" name="card.name"/>
             </td>
 
-            <td class="form_label" style="width:10%">
+            <td class="form_label" >
               适用范围:
             </td>
-            <td colspan="1"  style="width:25%">
+            <td colspan="1"  >
               <input class="nui-combobox" data ="[{value:'1',text:'本店',},{value:'2',text:'连锁'}]" textField="text" valueField="value" name="card.useRange" />
+            </td>
+            
+         <td class="form_label" >
+              会员卡名称:
+            </td>
+            <td colspan="1" >
+              <input class="nui-textbox" name="card.name"/>
             </td>
             </tr>
             
@@ -52,85 +70,19 @@
             <td colspan="1">
               <input class="nui-textbox"  name="card.giveAmt"/>
             </td>
+            <td class="form_label">
+              赠送金额:
+            </td>
+            <td colspan="1">
+              <input class="nui-textbox"  name="card.giveAmt"/>
+            </td>   
           </tr>
-          <tr>
-            <td class="form_label">
-              是否允许修改金额:
-            </td>
-            <td colspan="1">
-              <input  type="radio" name="can_modify" value="1" />是
-		    <input  type="radio" name="can_modify" value="0" />否
-            </td>
-            <td class="form_label">
-             总金额:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.totalAmt"/>
-            </td>
-          </tr>
-           <tr>
-            <td class="form_label">
-             配件优惠率:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.partRate"/>
-            </td>
-          </tr>
-          <tr>
-            <td class="form_label">
-             套餐优惠率:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.packageRate"/>
-            </td>
-            <td class="form_label">
-              工时优惠率:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.itemRate"/>
-            </td>
-          </tr>
-          <tr>
-            <td class="form_label">
-              销售提成方式:
-            </td>
-            <td colspan="1">
-            <input class="nui-combobox" data ="[{value:'1',text:'按原价比例',},{value:'2',text:'按折后价比例'},{value:'3',text:'按产值比例',},{value:'4',text:'固定金额'}]" 
-            textField="text" valueField="value" name="card.salesDeductType"   />
-
-            </td>
-            <td class="form_label">
-             销售提成值:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.salesDeductValue" />
-            </td>
-
-          </tr>
-
-
-           <tr>
-                      
-            <td class="form_label">
-              有效期(月):
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.periodValidity"/>
-            </td>
-          
-            <td class="form_label">
-             状态:
-            </td>
-            <td colspan="1">
-              <input class="nui-textbox" name="card.status"/>
-            </td>
-
-          </tr>
+         
   
 
            <tr>
             <td class="form_label">
-             使用条款:
+             使用说明:
             </td>
             <td colspan="2">
             <input class="nui-TextArea" name="card.useRemark"     style="width:330px;height:50px;"/>

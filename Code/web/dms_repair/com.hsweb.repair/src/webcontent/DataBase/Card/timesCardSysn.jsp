@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.2.3"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.2.5"></script>
 </head>
 <body>
 	<fieldset
@@ -103,7 +103,7 @@
 					<div id="timesCardDetail" class="nui-datagrid"
 						style="width: 100%; " showPager="false"
 						sortMode="client" allowCellEdit="true" allowCellSelect="true"
-						multiSelect="true" editNextOnEnterKey="true">
+						multiSelect="true" editNextOnEnterKey="true" onDrawCell="onDrawCell">
 						<div property="columns">
               <div type="checkcolumn"></div>
               <div field="prdtId" class="nui-hidden" allowSort="true" align="left"
@@ -117,17 +117,11 @@
 							</div>
 							<div field="times" allowSort="true" align="left"
 								headerAlign="center" width="">
-								次数 <input class="nui-textbox" name="times" property="editor" />
+								次数 <input class="nui-textbox" name="times" property="editor"  />
 							</div>
-							<div field="prdtTypeName" allowSort="true" align="left"
+							<div field="prdtType" allowSort="true" align="left"
 								headerAlign="center" width="">
-								项目类型 
-									
-							</div>
-							<div field="prdtType" allowSort="true" align="left" 
-								headerAlign="center" width="0">
-								 <input class="nui-textbox" name="prdtType" property="editor"
-									 />
+								项目类型 		
 							</div>
 							<div field="qty" allowSort="true" align="left"
 								headerAlign="center" width="">

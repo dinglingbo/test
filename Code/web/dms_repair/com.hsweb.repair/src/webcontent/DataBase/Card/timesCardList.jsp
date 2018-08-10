@@ -45,11 +45,11 @@
 		<div class="nui-fit">
 			<div id="datagrid1" dataField="timesCard" class="nui-datagrid"
 				style="width: 100%;height: 100%;" pageSize="20" showPageInfo="true" onDrawCell="onDrawCell"
-				multiSelect="true" onselectionchanged="selectionChanged"
+				 onselectionchanged="selectionChanged"
 				allowSortColumn="false">
 				<div property="columns">
 					<div type="indexcolumn"></div>
-					<div type="checkcolumn"></div>
+					<div type="checkcolumn" class="mini-radiobutton"></div>
 					<div field="id" headerAlign="center" allowSort="true"
 						visible="false">计次卡ID</div>
 					<div field="name" headerAlign="center" allowSort="true">

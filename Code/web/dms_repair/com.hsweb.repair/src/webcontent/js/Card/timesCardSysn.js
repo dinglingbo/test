@@ -1,5 +1,4 @@
-var gridUrl = apiPath + repairApi
-		+ "/com.hsapi.repair.baseData.crud.queryTimesCardDetail.biz.ext";
+var gridUrl = apiPath + repairApi+ "/com.hsapi.repair.baseData.crud.queryTimesCardDetail.biz.ext";
 var tab = null;
 var form = null;
 var timesCardDetail = null;
@@ -7,9 +6,7 @@ var g = null;
 $(document).ready(function(v) {
 	tab = nui.get("tab");
 	form = new nui.Form("#dataform1");
-	timesCardDetail = new nui.Form("#timesCardDetail");
 	form.setChanged(false);
-	timesCardDetail.setChanged(false);
 });
 
 
@@ -19,9 +16,23 @@ $(document).ready(function(v) {
       sellAmt : "销售价格",
       totalAmt : "总价值",
       periodValidity : "有效期",
-      salesDeductValue : "提成值"
+	  salesDeductValue : "提成值"
   };
-function onOk(){
+
+  	var tcd = {
+		times : "次数 :",
+		qty : "工时/数量 ",
+		oldPrice : "原价",
+		sellPrice : "销价 ",
+		oldAmt : "原销售金额 ",
+		sellAmt : "现销售金额 "
+	  };
+
+  function onOk(){
+	  var yz = "^[0-9]*[1-9][0-9]*$";
+	  var zz = new RegExp(yz);
+	g = nui.get("#timesCardDetail");
+	var data1 = g.getData();
     var data = form.getData();
   for ( var key in requiredField) {
       if (!data[key] || $.trim(data[key]).length == 0) {
@@ -29,7 +40,22 @@ function onOk(){
 
           return;
       }
+
   }
+  for ( var key in tcd) {
+	for(var i = 0;i<data1.length;i++){
+		if (!data1[i][key] || $.trim(data1[i][key]).length == 0) {
+			showMsg(tcd[key] + "不能为空!","W");
+			return;
+		}
+		
+	      if(!zz.exec(data1[i][key])){
+	          showMsg(tcd[key] + "必须为数字!","W");
+
+	          return; 
+	      }
+	}
+}
   saveData();
 }
 
@@ -88,11 +114,13 @@ function setGridData(datagrid, dataid) {
 }
 
 function saveData() {
-	//form.validate();
-	//if (form.isValid() == false)
-	//return;
-	//setGridData("timesCardDetail", "timesCard");
 	g = nui.get("#timesCardDetail");
+	form.validate();
+	if (form.isValid() == false)
+		return;
+	g.validate();
+	if (g.isValid() == false)
+		return;
 	var pchsOrderDetailAdd = g.getChanges("added");
 	var pchsOrderDetailUpdate = g.getChanges("modified");
 	var pchsOrderDetailDelete = g.getChanges("removed");
@@ -178,13 +206,11 @@ function addDetail() {
 					var prdtId = part.id;
 					var prdtName = part.name;
 					var prdtType = 3;
-					var prdtTypeName = "配件";
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
-						prdtType : prdtType,
-						prdtTypeName : prdtTypeName
+						prdtType : prdtType
 					};
 					grid.addRow(newRow);
 				}
@@ -226,13 +252,11 @@ function selectPackage() {
 					var prdtId = part.id;
 					var prdtName = part.name;
 					var prdtType = 1;
-					var prdtTypeName = "套餐";
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
-						prdtType : prdtType,
-						prdtTypeName : prdtTypeName
+						prdtType : prdtType
 					};
 					grid.addRow(newRow);
 				}
@@ -272,20 +296,29 @@ function selectItem(callback) {
 					var prdtId = part.id;
 					var prdtName = part.name;
 					var prdtType = 2;
-					var prdtTypeName = "工时";
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
 						prdtType : prdtType,
-						prdtTypeName : prdtType,
-						prdtTypeName : prdtTypeName
+						prdtTypeName : prdtType
 					};
 					grid.addRow(newRow);
 				}
 			}
 		}
 	});
+}
+
+function onDrawCell(e)
+{
+  var hash = new Array("套餐","工时","配件");
+  switch (e.field)
+  {
+      case "prdtType":
+          e.cellHtml = hash[e.value-1];
+          break;
+  }
 }
 /*function addItem() {
 

@@ -112,6 +112,7 @@ function onOk()
     data.isSupplier = nui.get("isSupplier").getValue();
     data.isDisabled = nui.get("isDisabled").getValue();
     data.isInternal = nui.get("isInternal").getValue();
+    data.mobile=nui.get('mobile').getValue();
     if(data.isInternal == 1)
     {
         if(!data.fullName1)
@@ -133,6 +134,11 @@ function onOk()
             showMsg(requiredField[key]+"不能为空","W");
             return;
         }
+    }
+    var reg=/^[1][3,4,5,7,8]\d{9}$/;
+    if(data.mobile.length!=11 || data.mobile!=reg ){
+    	showMsg("请输入正确的手机号码");
+    	return;
     }
 
     if (data.modifyDate) {

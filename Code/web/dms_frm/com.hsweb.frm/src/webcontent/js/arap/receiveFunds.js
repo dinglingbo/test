@@ -131,7 +131,7 @@ function db(){
 	if(s!=undefined){
 		
 		 nui.open({
-             url: "receriveFunds_gz.jsp",
+             url: "http://127.0.0.1:8080/default/frm/receriveFunds_gz.jsp",
              title: "编辑员工", width: 800, height: 600,
              onload: function () {
                  var iframe = this.getIFrameEl();
@@ -156,7 +156,7 @@ function sk(){
 	if(s!=undefined){
 		
 		 nui.open({
-             url: "receiveFunds_sk.jsp",
+             url: "http://127.0.0.1:8080/default/frm/receiveFunds_sk.jsp",
              title: "收款", width: 1150, height: 600,
              onload: function () {
                  var iframe = this.getIFrameEl();

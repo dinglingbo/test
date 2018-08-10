@@ -12,7 +12,8 @@
 <head>
 <title>应收账款管理</title>
 	<%@include file="/common/sysCommon.jsp"%>
-<script src="<%=webPath + sysDomain%>/frm/js/arap/receiveFunds.js?v=1.1"
+	<%@include file="/common/commonCloudPart.jsp"%>
+<script src="<%=webPath + sysDomain%>/frm/js/arap/receiveFunds.js?v=1.1.2"
 	type="text/javascript"></script>
 
 </head>
@@ -26,13 +27,13 @@
 					
 					<!-- style="white-space:nowrap;"--> <label
 					style="font-family: Verdana;" title="点击清空条件"><span
-						onclick="clearQueryForm()">快速查询：</span></label> 
+						onclick="clearQrleryForm()">快速查询：</span></label> 
 				<a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu2"id="timeStatus" name="timeStatus">所有</a>
                		
                	 <ul id="popupMenu2" class="nui-menu" style="display:none;">
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus,'')" >所有</li>
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'today')" >本日</li>
-                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'tomorrow')" >昨日</li>
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'yesterday')" >昨日</li>
                		<li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'week')" >本周</li>
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'month')" >本月</li>
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'smounth')" >上月</li>

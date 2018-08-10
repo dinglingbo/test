@@ -12,7 +12,7 @@
 <head>
 <title>应付账款管理</title>
 	<%@include file="/common/sysCommon.jsp"%>
-<script src="<%=webPath + sysDomain%>/frm/js/arap/payFunds.js?v=1.0"
+<script src="<%=webPath + sysDomain%>/frm/js/arap/payFunds.js?v=1.0.1"
 	type="text/javascript"></script>
 
 </head>
@@ -32,7 +32,7 @@
                	 <ul id="popupMenu2" class="nui-menu" style="display:none;">
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus,'')" >所有</li>
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'today')" >本日</li>
-                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'tomorrow')" >昨日</li>
+                    <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'yesterday')" >昨日</li>
                		<li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'week')" >本周</li>
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'month')" >本月</li>
                     <li iconCls="icon-tip" onclick="setMenu2(this, timeStatus, 'smounth')" >上月</li>

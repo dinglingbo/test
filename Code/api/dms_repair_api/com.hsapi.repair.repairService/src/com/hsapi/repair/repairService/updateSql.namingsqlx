@@ -21,6 +21,30 @@
 		Update rps_part_quote set status = 1, modifier = #userName#, modify_date = now() Where package_id = #packageId#
 	</update>
 	
+	<update id="updatePackageAmt" parameterClass="java.util.HashMap">
+		update rps_package a
+		inner join (
+			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
+		         package_id as packageId, service_id as serviceId
+		  from rps_item
+			where service_id = #serviceId# and package_id > 0
+			group by package_id, service_id
+		) b
+		on a.id = b.packageId and a.service_id = b.serviceId
+		inner join (
+			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
+		         package_id as packageId, service_id as serviceId
+		  from rps_part
+			where service_id = #serviceId# and package_id > 0
+			group by package_id, service_id
+		) c
+		on a.id = c.packageId and a.service_id = c.serviceId
+		set a.amt = ifnull(b.sumAmt,0) + ifnull(c.sumAmt,0),
+		    a.discount_amt = ifnull(b.sumtDiscountAmt,0) + ifnull(c.sumtDiscountAmt,0),
+		    a.subtotal = ifnull(b.sumAmt,0) + ifnull(c.sumAmt,0) - ifnull(b.sumtDiscountAmt,0) - ifnull(c.sumtDiscountAmt,0)
+		where a.service_id = #serviceId#
+	</update>
+	
 	<delete id="deleteRepairRecord" parameterClass="java.util.HashMap">
 		Delete from rps_repair_record where service_id = #serviceId#
 	</delete>
@@ -33,6 +57,15 @@
 	</delete>
 	<delete id="deleteRpsPartBillByServiceId" parameterClass="java.util.HashMap">
 		Delete from rps_part_bill where service_id = #serviceId#
+	</delete>
+	
+	<delete id="deleteRpsItemWorkersByPackageId" parameterClass="java.util.HashMap">
+		DELETE from rps_item_workers a
+		inner join rps_item b
+		on a.main_id = b.id
+		inner join rps_package c
+		on b.package_id = c.id 
+		where service_id = #packageId#
 	</delete>
 	
 	<update id="resetRpsItem" parameterClass="java.util.HashMap">

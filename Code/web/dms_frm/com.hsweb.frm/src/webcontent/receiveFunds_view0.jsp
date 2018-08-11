@@ -1,5 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
+	<%@include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): Guine
@@ -11,7 +12,6 @@
 %>
 <head>
 <title>应收账款管理</title>
-	<%@include file="/common/sysCommon.jsp"%>
 <script src="<%=webPath + sysDomain%>/frm/js/arap/receiveFunds.js?v=1.1"
 	type="text/javascript"></script>
 

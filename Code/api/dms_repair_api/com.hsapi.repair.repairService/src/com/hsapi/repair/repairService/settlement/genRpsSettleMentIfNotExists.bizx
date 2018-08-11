@@ -103,20 +103,32 @@
       <process:to type="query">settleMent/serviceId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">settleMent/tenantId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">settleMent/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
+      <process:to type="query">settleMent/packageAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">zero</process:from>
+      <process:to type="query">settleMent/packagePrefRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">zero</process:from>
+      <process:to type="query">settleMent/packagePrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">zero</process:from>
+      <process:to type="query">settleMent/packageSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">zero</process:from>
       <process:to type="query">settleMent/itemTotalAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/itemFreeAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/itemAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
@@ -136,14 +148,6 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/partFreeAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/partAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
       <process:to type="query">settleMent/partPrefRate</process:to>
     </process:copy>
     <process:copy>
@@ -156,7 +160,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/partManageExp</process:to>
+      <process:to type="query">settleMent/partManageExpAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
@@ -179,24 +183,20 @@
       <process:to type="query">settleMent/allowanceAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
+      <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">settleMent/allowanceRemark</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/freePrefAllowanceAmt</process:to>
+      <process:to type="query">settleMent/materialExpAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/materialExp</process:to>
+      <process:to type="query">settleMent/otherAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/otherExp</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/totalReceivableAmt</process:to>
+      <process:to type="query">settleMent/otherCostAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
@@ -211,68 +211,24 @@
       <process:to type="query">settleMent/balaAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outBillItemAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outBillPartAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outPartManageExp</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outBillAllowance</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outBillBalaAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/billAmt</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">settleMent/businessRemark</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/elecAmt</process:to>
+      <process:to type="query">settleMent/salesDeductValue</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/elecSubtotal</process:to>
+      <process:to type="query">settleMent/techDeductValue</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/elecDeduct</process:to>
+      <process:to type="query">settleMent/advisorDeductValue</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/metalAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/metalSubtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/metalDeduct</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/paintAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/paintSubtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/paintDeduct</process:to>
+      <process:to type="query">settleMent/totalDeductAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">zero</process:from>
@@ -285,126 +241,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">settleMent/grossProfitRemark</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outItemTotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outPartTotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outItemPrefRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outPartPrefRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outItemPrefAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outPartPrefAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outTotalPrefAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outItemFreeAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outPartFreeAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outItemSubtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outPartSubtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outBillBalaSubtoal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outTurnUpAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outTurnUpTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/outRebateAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/planTaxAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/incomeAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/receivableAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/incomeRealAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/accruedExpensesAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">settleMent/accruedExpensesRemark</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/cardAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/packageAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/packageDiscountAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/packgePrefRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/packgePrefAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">zero</process:from>
-      <process:to type="query">settleMent/packageSubtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">settleMent/status</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">settleMent/auditor</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">settleMent/auditDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">userName</process:from>
@@ -458,7 +294,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -516,6 +352,7 @@
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
+    <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsSettlement" name="settleMent"/>

@@ -42,7 +42,8 @@ function fk(){
 	if(s!=undefined){
 		
 		 nui.open({
-             url: "receiveFunds_sk.jsp",
+//             url: "receiveFunds_sk.jsp",
+             url:"http://127.0.0.1:8080/default/frm/receiveFunds_sk.jsp",
              title: "付款", width: 1150, height: 600,
              onload: function () {
                  var iframe = this.getIFrameEl();
@@ -85,7 +86,7 @@ function query(){
     var assigntemp=assignStatus.getValue();
     var timetemp=timeStatus.getValue();
     var rOrptemp=rOrp.getValue();
-    data.assigntemp=assigntemp;
+    data.assignStatus=assigntemp;
     data.timetemp=timetemp;
     data.rOrptemp=rOrptemp;
     var params = {

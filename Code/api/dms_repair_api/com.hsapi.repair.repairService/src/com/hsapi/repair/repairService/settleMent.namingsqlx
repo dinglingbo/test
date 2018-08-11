@@ -35,7 +35,7 @@
 		where service_id = #serviceId# and bill_package_id>0 
 	</update>
 	<update id="updateRpsPkgDifferAmt" parameterClass="java.util.HashMap">
-		update rps_package SET differ_amt = detail_amt - amt, subtotal = amt - discount_amt 
+		update rps_package SET differ_amt = detail_amt - amt, subtotal = amt - discount_amt, rate = case when ifnull(amt,0) > 0 then ifnull(discount_amt,0) * 1.0 / amt else 0 end
 		where service_id = #serviceId#
 	</update>
 	
@@ -60,6 +60,20 @@
 			(select ifnull(sum(amt),0) outPartAmt from rps_part_bill where service_id = #serviceId# and rece_type_id = '04150101') outPartAmt,
 			(select ifnull(sum(discount_amt),0) outPartPrefAmt from rps_part_bill where service_id = #serviceId# and rece_type_id = '04150101') outPartPrefAmt,
 			(select ifnull(sum(subtotal),0) outPartSubtotal from rps_part_bill where service_id = #serviceId# and rece_type_id = '04150101') outPartSubtotal
+		)
+	</select>
+	
+	<select id="setAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT pkgAmt, pkgPrefAmt, pkgSubAmt, itemAmt, itemPrefAmt, itemSubAmt, partAmt, partPrefAmt, partSubAmt from (
+			(select ifnull(sum(amt),0) pkgAmt from rps_package where service_id = #serviceId#) pkgAmt,
+			(select ifnull(sum(discount_amt),0) pkgPrefAmt from rps_package where service_id = #serviceId#) pkgPrefAmt,
+			(select ifnull(sum(subtotal),0) pkgSubAmt from rps_package where service_id = #serviceId#) pkgSubAmt,
+			(SELECT ifnull(sum(amt),0) itemAmt from rps_item where service_id = #serviceId# and ifnull(package_id,0) = 0) itemAmt,
+			(select ifnull(sum(discount_amt),0) itemPrefAmt from rps_item where service_id = #serviceId# and ifnull(package_id,0) = 0) itemPrefAmt,
+			(select ifnull(sum(subtotal),0) itemSubAmt from rps_item where service_id = #serviceId# and ifnull(package_id,0) = 0) itemSubAmt,
+			(SELECT ifnull(sum(amt),0) partAmt from rps_part where service_id = #serviceId# and ifnull(package_id,0) = 0) partAmt,
+			(select ifnull(sum(discount_amt),0) partPrefAmt from rps_part where service_id = #serviceId# and ifnull(package_id,0) = 0) partPrefAmt,
+			(select ifnull(sum(subtotal),0) partSubAmt from rps_part where service_id = #serviceId# and ifnull(package_id,0) = 0) partSubAmt
 		)
 	</select>
 	
@@ -98,7 +112,7 @@
 			rps_part 
 		WHERE
 			service_id = #serviceId# 
-			AND ifnull( package_id, '' ) &lt;&gt; '' 
+			AND bill_package_id > 0 
 		GROUP BY
 			package_id UNION
 		SELECT
@@ -108,7 +122,7 @@
 			rps_item 
 		WHERE
 			service_id = #serviceId# 
-			AND ifnull( package_id, '' ) &lt;&gt; '' 
+			AND bill_package_id > 0
 		GROUP BY
 			package_id 
 			) d 

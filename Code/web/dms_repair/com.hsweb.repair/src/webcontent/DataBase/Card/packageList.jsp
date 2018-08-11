@@ -10,9 +10,9 @@
     - Description:
   --%>
 <head>
-<title>会员卡操作</title>
+<title>套餐操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.0.1"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.0.2"></script>
 
 </head>
 
@@ -29,10 +29,12 @@
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 						<a class="nui-button" onclick="search()" plain="true"> <span
 							class="fa fa-search fa-lg"></span>&nbsp; 查询
-						</a>
-						<a id="selectBtn" class="nui-button" 
-						onclick="edit()" plain="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择 </a>
-							
+					</a> <a id="selectBtn" class="nui-button" onclick="edit()" plain="true"><span
+							class="fa fa-check fa-lg"></span>&nbsp;选择 </a>
+													<a class="nui-button" onclick="look" plain="true"> <span
+							class="fa fa-search fa-lg"></span>&nbsp; 查看详细信息
+					</a>
+
 					</td>
 				</tr>
 			</table>
@@ -41,14 +43,14 @@
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="package1" class="nui-datagrid"
 			pageSize="20" onDrawCell="onDrawCell"
-			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true" style="width: 100%;height: 100%;">
+			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
+			style="width: 100%; height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>
 				<div type="checkcolumn"></div>
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">套餐ID</div>
-				<div field="name" headerAlign="center" allowSort="true">
-					套餐名称</div>
+				<div field="name" headerAlign="center" allowSort="true">套餐名称</div>
 				<div field="serviceTypeId" headerAlign="center" allowSort="true">
 					套餐类型</div>
 				<div field="carBrandId" headerAlign="center" allowSort="true">
@@ -57,17 +59,13 @@
 					适用车系</div>
 				<div field="carModelId" headerAlign="center" allowSort="true">
 					适用车型</div>
-				<div field="total" headerAlign="center" allowSort="true">
-					市场金额</div>
+				<div field="total" headerAlign="center" allowSort="true">市场金额</div>
 				<div field="amount" headerAlign="center" allowSort="true">
 					套餐金额</div>
-				<div field="isDisabled" renderer="onstatus" headerAlign="center"
+				<div field="isShare" renderer="onstatus" headerAlign="center"
 					allowSort="true">是否共享</div>
-				<div field="status" renderer="onstatus" headerAlign="center"
+				<div field="isDisabled" renderer="onstatus" headerAlign="center"
 					allowSort="true">状态</div>
-				<div field="description" headerAlign="center" allowSort="true">
-					套餐说明</div>
-			</div>
 		</div>
 	</div>
 </body>

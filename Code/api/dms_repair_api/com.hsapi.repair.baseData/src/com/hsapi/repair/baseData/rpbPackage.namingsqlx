@@ -10,31 +10,26 @@
     <select id="queryRpbPackageList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id id,
-			a.orgid orgid,
 			a.name name,
-			a.car_brand_id carBrandId,
-			b.car_brand_zh carBrandName,
-			a.car_model_id carModelId,
-			c.car_model carModel,
 			a.is_share isShare,
-			a.type type,
-			d.name typeName,
 			a.total total,
 			a.amount amount,
 			a.description description,
-			a.is_disabled isDisabled
+			a.sales_deduct_type as salesDeductType,
+			a.sales_deduct_value as salesDeductValue,
+			a.tech_deduct_type as techDeductType,
+			a.tech_deduct_value as techDeductValue,
+			a.advisor_deduct_type as advisorDeductType,
+			a.advisor_deduct_value as advisorDeductValue
 		FROM
 			rpb_package a
-			left join wb_common.com_car_brand b on (a.car_brand_id = b.id)
-			left join wb_common.com_car_model c on (a.car_model_id = c.id)
-			left join wb_common.com_dataitems d on (a.type = d.customid)
-		WHERE a.orgid = #orgid#
+		WHERE a.orgid = #orgid# and a.is_disabled = 0
 		<dynamic>
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="type">  
-                (a.type = #type#)
+            <isNotEmpty prepend="and" property="name">  
+                (a.name like '%$name$%')
             </isNotEmpty>
         </dynamic>
 	</select>

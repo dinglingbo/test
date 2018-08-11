@@ -68,4 +68,70 @@
            
         </dynamic>  
 	</select>
+	
+	<select id="queryCardTimesList" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsCardTimesDetail">
+    	SELECT
+			a.id as id,
+			a.main_id as mainId,
+			a.detail_id as detailId,
+			a.card_id cardId,
+			a.prdt_id as prdtId,
+			a.prdt_name as prdtName,
+			a.prdt_type as prdtType,
+			a.total_times as totalTimes,
+			a.use_times as useTimes,
+			a.bala_times as balaTimes,
+			a.can_use_times as canUseTimes,
+			a.qty as qty,
+			a.old_price as oldPrice,
+			a.sell_price as sellPrice,
+			a.old_amt as oldAmt,
+			a.sell_amt as sellAmt,
+			a.is_finish as isFinish,
+			a.recorder as recorder,
+			a.record_date as recordDate
+		FROM
+		rps_card_times_detail AS a
+		inner join rps_card_times as b
+		on a.card_id = b.id
+		where 1 = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">
+                (b.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainFinish">
+                (b.is_finish = #mainFinish#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="detailFinish">  
+                (a.is_finish = #detailFinish#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="notPast">  
+                (b.period_validity = -1 or b.past_date &lt; now())
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">  
+                (b.status = #status#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.record_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.record_date &lt; #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaTimes">  
+                (a.bala_times &gt; #balaTimes#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="canUseTimes">  
+                (a.can_use_times &gt; #canUseTimes#)
+            </isNotEmpty>
+           
+        </dynamic>  
+	</select>
+	
+	
 </sqlMap>

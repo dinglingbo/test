@@ -1,7 +1,10 @@
+/**
+ * Created by Administrator on 2018/4/27.
+ */
 var gridUrl = apiPath + repairApi
-		+ "/com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext";
-var sysnUrl = webPath + partDomain + "/repair/DataBase/Card/timesCardSysn.jsp?token"+token;
+		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
 var grid = null;
+var resultData = {};
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -9,53 +12,22 @@ $(document).ready(function(v) {
 	grid.load(formData);
 });
 
-// 新增
-function add() {
-	nui.open({
-		url : sysnUrl,
-		title : "新增记录",
-		width : 890,
-		height : 580,
-		onload : function() {
-			var iframe = this.getIFrameEl();
-			var data = {
-				pageType : "add"
-			};// 传入页面的json数据
-			// iframe.contentWindow.setData(data);
-
-		},
-		ondestroy : function(action) {// 弹出页面关闭前
-			if (action == "saveSuccess") {
-				grid.reload();
-			}
-		}
-	});
-}
-
-// 编辑
+// 选择
 function edit() {
 	var row = grid.getSelected();
 	if (row) {
-		nui.open({
-			url : sysnUrl,
-			title : "编辑数据",
-			width : 900,
-			height : 580,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				var data = row;
-				// 直接从页面获取，不用去后台获取
-				iframe.contentWindow.setData(data);
-			},
-			ondestroy : function(action) {
-				if (action == "saveSuccess") {
-					grid.reload();
-				}
-			}
-		});
+		resultData.package1 = row;
+		CloseWindow("ok");
 	} else {
-		nui.alert("请选中一条记录", "提示");
+		nui.alert("请选择一个工时", "提示");
 	}
+}
+
+function CloseWindow(action) {
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		window.close();
 }
 
 // 重新刷新页面
@@ -71,7 +43,6 @@ function search() {
 
 	var form = new nui.Form("#queryform");
 	var json = form.getData(false, false);
-
 	grid.load(json);// grid查询
 }
 
@@ -95,31 +66,56 @@ function selectionChanged() {
 		nui.get("update").enable();
 	}
 }
+
 function onDrawCell(e) {
 	var hash = new Array("按原价比例", "按折后价比例", "按产值比例", "固定金额");
 	switch (e.field) {
 	case "useRange":
 		e.cellHtml = e.value == 1 ? "连锁" : "本店";
 		break;
-	case "canModify":
+	case "isShare":
 		e.cellHtml = e.value == 1 ? "是" : "否";
 		break;
-	case "packageRate":
-		e.cellHtml = e.value + "%";
-		break;
-	case "itemRate":
-		e.cellHtml = e.value + "%";
-		break;
-	case "partRate":
-		e.cellHtml = e.value + "%";
-		break;
-	case "salesDeductType":
-		e.cellHtml = hash[e.value];
-		break;
-	case "status":
+	case "isDisabled":
 		e.cellHtml = e.value == 1 ? "禁用" : "启用";
 		break;
 	default:
 		break;
+	}
+}
+
+function getData() {
+	return resultData;
+}
+function setData(data) {
+	list = data.list || [];
+	nui.get("selectBtn").show();
+}
+
+
+//查看详情
+function look() {
+	var row = grid.getSelected();
+	if (row) {
+		nui.open({
+			url : webPath + partDomain
+			+ "/repair/DataBase/Card/packageDetail.jsp?token=" + token,
+			title : "套餐详情",
+			width : 900,
+			height : 580,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var data = row;
+				// 直接从页面获取，不用去后台获取
+				iframe.contentWindow.setData(data);
+			},
+			ondestroy : function(action) {
+				if (action == "saveSuccess") {
+					grid.reload();
+				}
+			}
+		});
+	} else {
+		nui.alert("请选中一条记录", "提示");
 	}
 }

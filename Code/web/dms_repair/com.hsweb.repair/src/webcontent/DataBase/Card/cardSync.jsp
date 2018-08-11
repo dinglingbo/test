@@ -12,10 +12,7 @@
     <title>
       会员卡录入录入
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.0"></script>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript">
-    </script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.1"></script>
   </head>
   <body >
     <fieldset style="border:solid 1px #aaa;position:relative;margin:5px 2px 0px 2px;">
@@ -25,7 +22,7 @@
       <div id="dataform1" style="padding-top:5px;" >
         <!-- hidden域 -->
         <input class="nui-hidden" id="id"/>
-        <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table" >
+        <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table"  >
         
                      <tr>
             <td class="form_label" style="width:17%">
@@ -109,7 +106,7 @@
               <input class="nui-textbox" name="salesDeductValue" requiredErrorText="元" vtype="float"/>
               
             </td>
-			 <td colspan="1" ><div style="display:none;" id="y" >&nbsp元</div><div style="display:block;" id="b" >&nbsp%</div></td> 
+			 <td colspan="1" ><div style="display:none;" id="y" >&nbsp;&nbsp;元</div><div style="display:block;" id="b" >&nbsp;&nbsp;%</div></td> 
           </tr>
 		<tr>
             </td>

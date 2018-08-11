@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+   <select id="queryCardTimesList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT
+         a.id id,
+         c.full_name fullName,
+         c.mobile mobile,
+         d.car_no carOn,
+         a.card_name cardName,
+         a.record_date recordData,
+         a.sell_amt sellAmt,
+         a.status status,
+         a.past_date pastDate
+         FROM rps_card_times a 
+         INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+         INNER JOIN rpb_car d  on (a.guest_id = d.guest_id)
+	</select>
+</sqlMap>

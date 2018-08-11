@@ -4,6 +4,7 @@
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="-465" y="57"/>
     <size height="28" width="28"/>
@@ -59,6 +60,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -268,6 +270,7 @@
     <location x="30" y="60"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="enterDetailAdd" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -544,6 +547,7 @@
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="link2" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="link4" type="transition">
       <sourceNode>assign6</sourceNode>

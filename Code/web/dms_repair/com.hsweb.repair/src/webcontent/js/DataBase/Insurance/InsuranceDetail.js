@@ -145,5 +145,12 @@ function CloseWindow(action) {
 function onCancel() {
     CloseWindow("cancel");
 }
-		
+function valid(e){
+	var contactorTel=document.getElementsByName('contactorTel')[0].value;
+	var reg=/1[3,4,5,6,8,9]\d{9}$/;
+	if(!reg.test(contactorTel)){
+		e.errorText="请输入正确的手机号";
+		e.isValid=false;
+	}
+}
 		

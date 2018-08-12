@@ -50,7 +50,7 @@
             <span class="title title-width2 required">仓库管理员：</span>
             <input name="chargeMan" class="nui-textbox width1"/>
             <span class="title title-width2 required">管理员电话：</span>
-            <input name="chargeTel" class="nui-textbox width1"/>
+            <input name="chargeTel" class="nui-textbox width1"id="mobile"/>
         </div>
         <div class="row">
             <span class="title title-width2">是否禁用：</span>

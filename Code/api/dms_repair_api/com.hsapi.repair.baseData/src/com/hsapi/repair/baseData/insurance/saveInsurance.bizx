@@ -256,6 +256,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="354" y="117"/>
@@ -361,12 +362,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">rpbGuestAgentExtend/rid</process:from>
-      <process:to type="query">rpbGuestAgentExtend/id</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">comguest/id</process:from>
       <process:to type="query">rpbGuestAgentExtend/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comguest/rid</process:from>
+      <process:to type="query">rpbGuestAgentExtend/id</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">

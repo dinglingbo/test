@@ -26,6 +26,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="com.hsapi.repair.data.rpb.RpbCheckMain[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -84,6 +85,10 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[4]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="182" y="186"/>
@@ -136,7 +141,9 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="727" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-10 19:37:12" date="2018-07-10Z" description="" name="queryCheckModel" version="7.0.0.0"/>
   <process:variables>
@@ -148,6 +155,7 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCheckMain" name="list"/>
+    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

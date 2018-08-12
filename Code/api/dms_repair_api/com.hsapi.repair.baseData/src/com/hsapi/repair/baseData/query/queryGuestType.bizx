@@ -19,13 +19,15 @@
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+  <nodes xsi:type="process:tEnd" description="" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link2</targetConnections>
     <location x="480" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="com.hsapi.repair.data.rpb.RpbGuestType[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">page/count</process:return>
+      <process:return id="2" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -75,6 +77,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -140,6 +146,8 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbGuestType" name="list"/>
+    <process:output description="" isArray="false" name="total" primitiveType="Int"/>
+    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

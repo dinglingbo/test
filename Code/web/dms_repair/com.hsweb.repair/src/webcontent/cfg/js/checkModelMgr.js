@@ -176,7 +176,7 @@ function saveCheckModel(){
                 data = data || {};
                 if (data.errCode == "S") {
                     showMsg("保存成功!","S");
-                    onSearch()
+                    onSearch();
                 } else {
                     showMsg(data.errMsg || "保存失败!","W");
                 }
@@ -221,7 +221,6 @@ function addCheckType(){
 		},
 		ondestroy : function(action) {
 			if (action == 'ok') {
-				
 			}
 		}
 	});
@@ -242,7 +241,7 @@ function addOrEdit(row){
 		},
 		ondestroy : function(action) {
 			if (action == 'ok') {
-				
+				rightGrid.reload();
 			}
 		}
 	});

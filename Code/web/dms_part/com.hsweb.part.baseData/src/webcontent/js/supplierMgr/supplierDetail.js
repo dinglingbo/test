@@ -95,6 +95,9 @@ var requiredField = {
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveSupplier.biz.ext";
 function onOk()
 {
+	mainForm.validate();
+	if (mainForm.isValid() == false)
+		return;
     var dataList = [];
     dataList[0] = mainForm.getData();
     dataList[1] = otherForm.getData();

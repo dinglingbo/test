@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.0"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.3"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -65,7 +65,7 @@
 </div>
 <div class="nui-fit">
     <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
-         url=""  idField="id" multiSelect="true"
+         url=""  idField="id" multiSelect="false"
          dataField="suppliers"
          pageSize="20"
          totalField="page.count"
@@ -80,6 +80,7 @@
             <div header="基本信息" headerAlign="center">
                 <div property="columns">
                     <!-- <div allowSort="true" field="orgid" width="100" headerAlign="center" header="店名"></div> -->
+                    <div type="checkcolumn" >选择</div>
                     <div allowSort="true" field="shortName" width="80" headerAlign="center" header="供应商简称"></div>
                     <div allowSort="true" field="fullName" width="100" headerAlign="center" header="供应商全称"></div>
                     <div allowSort="true" field="tel" width="100" headerAlign="center" header="电话"></div>

@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		SELECT  
+		SELECT
 			a.id id,
 			a.orgid orgid,
 			a.car_no carNo,
@@ -18,23 +18,25 @@
 			a.car_model carModel,
 			a.car_brand_id carBrandId,
 			a.engine_no engineNo,
-			a.underpan_no underpanNo,
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
 			b.addr addr,
-			a.last_come_date lastComeDate,
-			a.last_leave_date lastLeaveDate,
+			c.last_come_date lastComeDate,
+			c.last_leave_date lastLeaveDate,
 			a.recorder recorder,
 			a.record_date recordDate,
 			a.produce_date produceDate,
 			a.color color,
-			a.chain_come_times chainComeTimes,
-			ifnull( DATEDIFF( now( ), a.last_leave_date ), 0 ) leaveDay
+			c.chain_come_times chainComeTimes,
+			ifnull( DATEDIFF( now( ), c.last_leave_date ), 0 ) leaveDay
 		FROM
 			wb_common.com_guest b
-			inner join rpb_car a on (a.guest_id = b.id)
-		where b.guest_type = '01020103'
+		INNER JOIN rpb_car a ON (a.guest_id = b.id)
+		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
+		LEFT  JOIN rpb_contactor d ON b.id=d.group_id
+		WHERE
+			b.guest_type = '01020103'
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)

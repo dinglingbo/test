@@ -15,7 +15,7 @@ var requiredField = {
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveStorehouse.biz.ext";
 function onOk()
 {
-    var data = basicInfoForm.getData();
+    var data = basicInfoForm.getData();       
     console.log(data);
     for(var key in requiredField)
     {
@@ -25,13 +25,22 @@ function onOk()
             return;
         }
     }
+    var reg=/^[1](3|4|5|7|8)\d{9}$/;
+    if(data.chargeTel.length!=11 ||!reg.test(data.chargeTel) ){
+    	showMsg("请输入正确的手机号码");
+    	return;
+    }
+
     basicInfoForm.validate();
+
     if (basicInfoForm.isValid() == false)
     {
         var errorTexts = basicInfoForm.getErrorTexts();
         showMsg(errorTexts,"W");
         return;
     }
+ 
+
     nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',

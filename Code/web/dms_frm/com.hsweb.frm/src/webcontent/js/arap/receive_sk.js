@@ -97,7 +97,7 @@ function pay(){
     	}
     	var rpcode=row.rpCode;
     	var guestid=row.guestId;
-    	var fullname=row.fullName;
+    	var fullname=row.guestFullName;
     	var s ={
     		"fullname":fullname,
     		"guestid":guestid,

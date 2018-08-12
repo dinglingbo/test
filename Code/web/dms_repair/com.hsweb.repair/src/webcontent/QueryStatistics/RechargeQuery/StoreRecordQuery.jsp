@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户办卡、充值记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.0.3"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

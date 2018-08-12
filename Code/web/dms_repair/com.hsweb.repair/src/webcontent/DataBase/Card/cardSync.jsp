@@ -12,7 +12,7 @@
     <title>
       会员卡录入录入
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.2"></script>
   </head>
   <body >
     <fieldset style="border:solid 1px #aaa;position:relative;margin:5px 2px 0px 2px;">
@@ -47,13 +47,13 @@
            充值金额:
             </td>
             <td colspan="1">
-              <input class="nui-textbox" name="rechargeAmt" vtype="float" />
+              <input class="nui-textbox" name="rechargeAmt"  onvalidation="vaild"/>
             </td>
             <td class="form_label">
               赠送金额:
             </td>
             <td colspan="2">
-              <input class="nui-textbox"  name="giveAmt" vtype="float"/>
+              <input class="nui-textbox"  name="giveAmt" onvalidation="vaild2"/>
             </td>
           </tr>
           <tr>
@@ -85,7 +85,7 @@
               有效期(月):
             </td>
             <td colspan="2">
-              <input class="nui-textbox" name="periodValidity" vtype="float"/>
+              <input class="nui-textbox" name="periodValidity" vtype="int"/>
             </td>
           
             <td class="form_label">

@@ -73,6 +73,9 @@ switch (e.field)
         e.cellHtml = cityHash[e.value].name;
     }  
     break;
+	case "isOpenSystem":
+		e.cellHtml = e.value == 1 ? "禁用" : "启用";
+		break;
 	default:
     break;
 }
@@ -359,6 +362,8 @@ function stoporstart(i){
 		});
     
 	}
+
+
 	
 	
 	

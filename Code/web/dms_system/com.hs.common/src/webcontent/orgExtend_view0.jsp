@@ -68,7 +68,7 @@ body {
 				<div id="datagrid1" class="nui-datagrid gridborder"
 					style="width: 100%; height: 100%;" url="" idField="id"
 					allowResize="true" dataField="rs" onselectionchanged="changebutton"
-					sizeList="[20,30,50,100]" pageSize="20">
+					sizeList="[20,30,50,100]" pageSize="20" >
 					<div property="columns">
 						<div type="checkcolumn">选择</div>
 						<div field="orgid" width="120" headerAlign="center" align="center"
@@ -84,6 +84,8 @@ body {
 						<div field="cityId" width="50" headerAlign="center" align="center">城市</div>
 						<div field="address" width="100" headerAlign="center"
 							align="center">地址</div>
+						<div field="isOpenSystem" width="100" headerAlign="center"
+							align="center">状态</div>
 						<div field="softOpenDate" width="60" headerAlign="center"
 							align="center" dateFormat="yyyy-MM-dd" allowSort="true">开店日期</div>
 						<div field="recorder" width="60" headerAlign="center"

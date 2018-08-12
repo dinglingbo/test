@@ -121,7 +121,7 @@
     	
     	function onCustomer(){
     		nui.open({
-    			url:"../../common/Customer.jsp",
+    			url:"http://127.0.0.1:8080/default/repair/common/Customer.jsp",
     			title:"客户选择",width:900,height:550,
     			onload:function(){
     			    var iframe = this.getIFrameEl();

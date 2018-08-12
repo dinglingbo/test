@@ -7,7 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    <select id="queryMtHistoryList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <select id="queryMtHistoryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
 			a.id id,
 			a.orgid orgid,
@@ -17,72 +17,65 @@
 			a.service_code serviceCode,
 			a.mt_advisor mtAdvisor,
 			a.car_no carNo,
-			a.service_card serviceCard,
+
 			d.car_brand_id carBrandId,
 			d.car_model carModel,
 			a.checker checker,
 			a.guest_id guestId,
 			f.id contactorId,
-			f.NAME contactorName,
+			f.`name` contactorName,
 			a.service_type_id serviceTypeId,
-			a.mt_type mtType,
+
 			d.insure_comp_code insureCompCode,
 			a.sure_mt_date sureMtDate,
 			a.out_date outDate,
-			a.is_car_wash isCarWash,
+
 			a.remark remark,
-			b.item_amt itemAmt,
+
 			b.item_pref_rate/100.0 itemPrefRate,
 			b.item_pref_amt itemPrefAmt,
 			b.item_subtotal itemSutotal,
-			b.part_amt partAmt,
+
 			b.part_pref_rate/100.0 partPrefRate,
 			b.part_pref_amt partPrefAmt,
 			b.part_subtotal partSubtotal,
 			b.mt_amt mtAmt,
-			b.part_manage_exp partManageExp,
-			b.material_exp materialExp,
+
 			b.allowance_amt allowanceAmt,
-			b.other_exp otherExp,
+
 			b.total_pref_rate totalPrefRate,
 			b.total_pref_amt totalPrefAmt,
-			b.bala_amt balaAmt,
-			b.bill_amt billAmt 
+			b.bala_amt balaAmt
+
 		FROM
 			rps_maintain a
-			INNER JOIN rps_settlement b ON ( a.id = b.service_id )
-			INNER JOIN rpb_car d ON ( a.car_id = d.id )
-			INNER JOIN rpb_contactor f ON ( a.contactor_id = f.id )
-		where
-			a.orgid = #orgid#
-			and a.status = 6
+			LEFT JOIN rps_settlement b ON ( a.id = b.service_id )
+			LEFT JOIN rpb_car d ON ( a.car_id = d.id )
+			LEFT JOIN rpb_contactor f ON ( a.contactor_id = f.id )
+		WHERE a.orgid = #orgid#
+			AND a.`status` = '6'
 		<dynamic>
 			<isNotEmpty prepend="and" property="guestId"> 
-                (a.guest_id = #guestId#)
+                a.guest_id = #guestId#
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outDateIsNotNull"> 
-                (a.out_date is not null)
+                a.out_date is not null
             </isNotEmpty>
             <isNotEmpty prepend="and" property="outDateIsNull"> 
-                (a.out_date is null)
+                a.out_date is null
             </isNotEmpty>
 			<isNotEmpty prepend="and" property="contactorId"> 
-                (a.contactor_id = #contactorId#)
+                a.contactor_id = #contactorId#
             </isNotEmpty>
 			<isNotEmpty prepend="and" property="serviceTypeId"> 
-                (a.service_type_id = #serviceTypeId#)
+                a.service_type_id = #serviceTypeId#
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="guestId"> 
-                (a.guest_id = #guestId#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="underpanNo"> 
-                (d.underpan_no = #underpanNo#)
-            </isNotEmpty>
+
             <isNotEmpty prepend="and" property="carNoList"> 
-                (d.car_no in ($carNoList$))
+                d.car_no in ($carNoList$)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceCodeList"> 
-                (a.service_code in ($serviceCodeList$))
+                a.service_code in ($serviceCodeList$)
             </isNotEmpty>
 			<isNotEmpty prepend="and" property="startDate"> 
                 (date_format(a.out_date,'%Y-%m-%d') &gt;= #startDate#)

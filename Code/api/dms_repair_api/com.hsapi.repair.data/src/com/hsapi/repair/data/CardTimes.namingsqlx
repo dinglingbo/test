@@ -22,4 +22,16 @@
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
          INNER JOIN rpb_car d  on (a.guest_id = d.guest_id)
 	</select>
+<select id="queryCardTimesDe" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	
+	select 
+       b.card_id cardId,
+       b.prdt_id prdtId,
+       b.prdt_name prdtName,
+       b.bala_times balaTimes
+   FROM  rps_card_times_detail b WHERE  b.card_id = #Id#
+
+ 
+</select>
+	
 </sqlMap>

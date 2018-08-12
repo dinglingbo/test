@@ -356,15 +356,9 @@ public class ArrayUtils {
 		public static String[] str2Array(String str, String splitFlag) {
 		   if(str != null && str != ""){
 			   if(splitFlag != null && splitFlag != ""){
-				   String[] aa = str.split(splitFlag);
+				   String[] arr = str.split(splitFlag);
 
-			       //String[] aa = "aaa|bbb|ccc".split("\\|"); 这样才能得到正确的结果
-
-			       for (int i = 0 ; i <aa.length ; i++ ) {
-
-			           System.out.println("--"+aa[i]); 
-
-			       } 
+			       return arr; 
 			   }else{
 				   return null;
 			   }

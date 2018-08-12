@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="createArapService.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="创建应收应付业务单" title="Guine&#x9;18-4-20 上午12:13">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="创建应收应付业务单&#xD;&#xA;&quot;guestId, guestFullName, rpType, isPrimaryBusiness, serviceId, serviceCode, serviceTypeId, rpAmt, rpAmtYes, rpAmtNo, billAmt&quot;" title="Guine&#x9;18-4-20 上午12:13">
     <location x="15" y="15"/>
-    <size height="100" width="156"/>
+    <size height="100" width="451"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -10,7 +10,7 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <location x="101" y="159"/>
+    <location x="-7" y="159"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -27,7 +27,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="103" y="195"/>
+    <location x="-5" y="195"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -109,7 +109,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
-    <targetConnections>link8</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="315" y="159"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -124,6 +124,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">rpCode</process:from>
       <process:to type="query">data/rpCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">FYear</process:from>
+      <process:to type="query">data/fYear</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">FMonth</process:from>
+      <process:to type="query">data/fMonth</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -184,10 +192,10 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getCompBillNO" displayName="getCompBillNO" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="210" y="159"/>
+    <location x="102" y="159"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -198,14 +206,61 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">rpCode</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="177" y="194"/>
+    <location x="69" y="194"/>
     <figSize height="17" width="92"/>
     <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getNowYear" displayName="getNowYear" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link0" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="170" y="159"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getNowYear</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables/>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Integer" valueType="Java">FYear</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="145" y="195"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getNowMonth" displayName="getNowMonth" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="240" y="159"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getNowMonth</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables/>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java">FMonth</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="209" y="195"/>
+    <figSize height="17" width="85"/>
+    <node>invokePojo2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -213,6 +268,8 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="property" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rpCode" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="FYear" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="FMonth" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.frm.arap.FisRpAccount" name="data"/>

@@ -71,9 +71,9 @@
 			AND date(a.record_date) = date(NOW())
 			
 		</isEqual>
-		<isEqual  property="timeStatus" compareValue="tomorrow">
-			AND SELECT PERIOD_DIFF( date_format( now( ) , '%Y%m%d' ) , date_format(a.record_date, '%Y%m%d' ) )=1
-			
+		<isEqual  property="timeStatus" compareValue="yesterday">
+			<!--AND SELECT PERIOD_DIFF( date_format( now( ) , '%Y%m%d' ) , date_format(a.record_date, '%Y%m%d' ) )=1-->
+			AND TO_DAYS(NOW()) - TO_DAYS(a.record_date) = 1
 		</isEqual>
 		<isEqual  property="timeStatus" compareValue="week">
 	
@@ -153,8 +153,8 @@
 			AND date(a.record_date) = date(NOW())
 			
 		</isEqual>
-		<isEqual  property="timeStatus" compareValue="tomorrow">
-			AND SELECT PERIOD_DIFF( date_format( now( ) , '%Y%m%d' ) , date_format(a.record_date, '%Y%m%d' ) )=1
+		<isEqual  property="timeStatus" compareValue="yesterday">
+			AND TO_DAYS(NOW()) - TO_DAYS(a.record_date) = 1
 			
 		</isEqual>
 		<isEqual  property="timeStatus" compareValue="week">

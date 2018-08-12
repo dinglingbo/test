@@ -12,7 +12,7 @@
 <head>
 <title>会员卡操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/CardTimes/cardTimesList.js?v=1.0.7"></script>
+	src="<%=request.getContextPath()%>/repair/js/CardTimes/cardTimesList.js?v=1.1.0"></script>
 </head>
 
 <body>
@@ -23,13 +23,13 @@
 			<table id="table1">
 				<tr>
 					<td style="width: 91%">
-						<a class="nui-button" onclick="search()" plain="true">计次卡列表</a>
+						<a class="nui-button"  plain="true">计次卡列表</a>
 						<a class="nui-button" onclick="searchOne()" plain="true">查看</a>			    
 					</td>
 					<td>
 					<a class="nui-button" onclick="search()" style="margin:right"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>导出EXCEL</a>	
 										 
-					<a class="nui-button"><i class="fa fa-refresh" ></i>刷新列表</a>
+					<a class="nui-button" onclick="refresh()" ><i class="fa fa-refresh" ></i>刷新列表</a>
 						
 					</td>
 				</tr>
@@ -38,8 +38,12 @@
 	</div>
 <div class="nui-fit">
 		<div id="datagrid1" dataField="params" class="nui-datagrid"
-			pageSize="20" onDrawCell="onDrawCell"
-			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true">
+			pageSize="10" onDrawCell="onDrawCell" allowResize="true" 
+			totalCount="true" 
+			showPageInfo="true"
+			totalField="page.count"
+			showPagerButtonIcon="true"
+			 allowSortColumn="true">
 			<div property="columns">
 				<div type="indexcolumn"></div>
 				<div type="checkcolumn"></div>
@@ -54,8 +58,11 @@
 					车牌号</div>
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
-				<div field="balaTimes" headerAlign="center" allowSort="true">
-					剩余次数</div>
+				
+				<div field="id" headerAlign="center" allowSort="true">
+					剩余次数
+				</div>
+				
 				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd">
 					创建时间</div>
 				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd">

@@ -5,9 +5,15 @@
     <size height="100" width="366"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" type="transition">
       <sourceNode>start0</sourceNode>
@@ -394,12 +400,13 @@
       <targetNode>end1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
+    <targetConnections>link21</targetConnections>
     <location x="-38" y="239"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
@@ -408,7 +415,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">此单已完工，不能保存</process:from>
+      <process:from type="literal" pattern="reference">草稿状态下的单才可以保存</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -433,39 +440,57 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getMaindataState" displayName="getMaindataState" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getRpsMaintainById" displayName="getRpsMaintainById" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>status==-1||status==2</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">main/status</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>transactionbegin0</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" type="transition">
+      <bendPoint heightToEnd="22" heightToStart="23" widthToEnd="-69" widthToStart="59"/>
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="-165" y="239"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.repairService.query.getMaindataState</process:partner>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.sureMt.getRpsMaintainById</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/id</process:inputVariable>
-        <process:inputVariable id="1" name="type" type="literal" value="String" valueType="Primitive" pattern="reference">status</process:inputVariable>
+        <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">maintain/id</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="retCode" type="query" value="String" valueType="Primitive">status</process:outputVariable>
+        <process:outputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject">main</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="-204" y="274"/>
-    <figSize height="17" width="104"/>
+    <location x="-211" y="274"/>
+    <figSize height="17" width="118"/>
     <node>subprocess1</node>
   </nodes>
   <topRuler/>
@@ -477,6 +502,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceNo" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="status" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>

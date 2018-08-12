@@ -25,8 +25,24 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">true</process:from>
+      <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageSize</process:from>
+      <process:to type="query">page/size</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageIndex</process:from>
+      <process:to type="query">page/currentPage</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">pageSize*pageIndex</process:from>
+      <process:to type="query">page/begin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageSize</process:from>
+      <process:to type="query">page/length</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -87,6 +103,8 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
+    <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="params"/>

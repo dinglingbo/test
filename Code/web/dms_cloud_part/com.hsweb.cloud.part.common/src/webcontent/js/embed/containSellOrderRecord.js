@@ -12,6 +12,7 @@ var brandList = null;
 $(document).ready(function(v){
     sellOrderRecordGrid = nui.get("sellOrderRecordGrid");
     sellOrderRecordGrid.setUrl(sellOrderRecordUrl);
+    sellOrderRecordGrid.load();
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
 	initDicts(dictDefs, function(){

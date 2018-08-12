@@ -52,14 +52,14 @@
 			style="width: 100%; height: 100%;"
 			url=""
 			showModified="false"
-			pageSize="50" showPageInfo="true" multiSelect="true"
+			pageSize="50" showPageInfo="true" multiSelect="false"
 			showReloadButton="true" showPagerButtonIcon="true"
-			totalField="page.count" onselectionchanged="changebutton"
+			totalField="page.count" onselectionchanged="changebutton" 
 			allowSortColumn="true">
 
 			<div property="columns">
 				
-						<div type="checkcolumn" >选择</div>
+						<div type="checkcolumn">选择</div>
 						<div id="empid" field="empid" headerAlign="center" allowSort="true"  width="40px" visible="false">id</div>
 						<div id="name" field="name" headerAlign="center" allowSort="true" visible="true" width="40px">姓名</div>
 						<div id="sex" field="sex" headerAlign="center" allowSort="true" visible="true" width="20px">性别</div>

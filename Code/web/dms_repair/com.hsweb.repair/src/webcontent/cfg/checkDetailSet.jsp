@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonPart.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
   - Author(s): Administrator
@@ -9,7 +9,7 @@
 -->
 <head>
 <title>检查项目设置</title>
-<script src="<%=webPath + partDomain%>/repair/cfg/js/checkDetailSet.js?v=1.0.0"></script>
+<script src="<%=webPath + partDomain%>/repair/cfg/js/checkDetailSet.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	text-align: right;

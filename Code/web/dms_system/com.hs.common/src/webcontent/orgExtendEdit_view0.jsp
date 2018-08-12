@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
  <%@include file="/common/sysCommon.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,7 +11,7 @@
 <head>
     <title>门店信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + sysDomain%>/common/js/orgExtendEdit.js?v=1.9.1" type="text/javascript"></script>
+  	<script src="<%=webPath + sysDomain%>/common/js/orgExtendEdit.js?v=1.9.4" type="text/javascript"></script>
 
   <style type="text/css">
     body {
@@ -192,7 +193,7 @@ table tr td span
             </tr>           
             <tr>
                 <td class="tbtext">公司电话<span></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth" name="tel" id="tel"/></td>
+                <td colspan="4"><input class="nui-textbox tabwidth" name="tel" id="tel" onvalidation="onMobileValidation"/></td>
             </tr>           
             <tr>
                 <td class="tbtext">网站<span></span></td>

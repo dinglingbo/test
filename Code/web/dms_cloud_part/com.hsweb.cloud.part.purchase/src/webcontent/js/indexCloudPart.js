@@ -322,7 +322,7 @@ function showMain() {
 		url : dataurl,
 		type: 'post',
         async: false, //同步执行，返回成功后才能进行下面的操作
-        data : nui.encode({params:params}),
+        data : nui.encode({params:params,token:token}),
         success:function(text){
         	if(text.errCode == 'S') {
         		staffArr = text.staffArr;

@@ -27,7 +27,7 @@
 			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
 		         package_id as packageId, service_id as serviceId
 		  from rps_item
-			where service_id = #serviceId# and package_id > 0
+			where service_id = #serviceId# and package_id &gt; 0
 			group by package_id, service_id
 		) b
 		on a.id = b.packageId and a.service_id = b.serviceId
@@ -35,7 +35,7 @@
 			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
 		         package_id as packageId, service_id as serviceId
 		  from rps_part
-			where service_id = #serviceId# and package_id > 0
+			where service_id = #serviceId# and package_id &gt; 0
 			group by package_id, service_id
 		) c
 		on a.id = c.packageId and a.service_id = c.serviceId
@@ -43,6 +43,20 @@
 		    a.discount_amt = ifnull(b.sumtDiscountAmt,0) + ifnull(c.sumtDiscountAmt,0),
 		    a.subtotal = ifnull(b.sumAmt,0) + ifnull(c.sumAmt,0) - ifnull(b.sumtDiscountAmt,0) - ifnull(c.sumtDiscountAmt,0)
 		where a.service_id = #serviceId#
+	</update>
+	
+	<update id="updateCardTimesFinish" parameterClass="java.util.HashMap">
+		update rps_card_times m
+		inner join (
+		select a.id, count(1) t from rps_card_times a
+		inner join rps_card_times_detail b
+		on a.id = b.card_id
+		where b.is_finish = 0 and a.guest_id = #guestId# 
+		group by a.id
+		HAVING count(1) &lt;= 0) n
+		on m.id = n.id
+		set m.is_finish = 1 , modifier = #modifier#, modify_date = SYSDATE()
+		where m.guest_id = #guestId#  and n.id is null and m.is_finish = 0
 	</update>
 	
 	<delete id="deleteRepairRecord" parameterClass="java.util.HashMap">

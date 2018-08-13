@@ -86,6 +86,7 @@
 			d.tel tel,
 			d.id contactorId,
             e.card_type as cardType,
+            e.recharge_bala_amt as rechargeBalaAmt,
 			a.vin as vin,
 			a.insure_due_date as insureDueDate,
 		    d.birthday_type as birthdayType,
@@ -101,6 +102,15 @@
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (b.id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">  
+                (d.id = #contactorId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">  
+                (a.ID = #carId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carNo">  
                 (a.car_no like '%$carNo$%')

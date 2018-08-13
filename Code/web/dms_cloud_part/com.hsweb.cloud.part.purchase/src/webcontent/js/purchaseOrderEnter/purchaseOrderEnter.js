@@ -47,6 +47,12 @@ var AuditSignHash = {
 	"1" : "已入库"
 };
 $(document).ready(function(v) {
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '加载中...'
+	});
+
 	leftGrid = nui.get("leftGrid");
 	leftGrid.setUrl(leftGridUrl);
 
@@ -166,27 +172,31 @@ $(document).ready(function(v) {
 	// var db = new nui.DataBinding();
 	// db.bindForm("basicInfoForm", leftGrid);
 	var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
-	initDicts(dictDefs, null);
-	getStorehouse(function(data) {
-		storehouse = data.storehouse || [];
-		if(storehouse && storehouse.length>0){
-			FStoreId = storehouse[0].id;
-		}else{
-			isNeedSet = true;
-		}
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			storehouse = data.storehouse || [];
+			if(storehouse && storehouse.length>0){
+				FStoreId = storehouse[0].id;
+			}else{
+				isNeedSet = true;
+			}
+	
+			getAllPartBrand(function(data) {
+				brandList = data.brand;
+				brandList.forEach(function(v) {
+					brandHash[v.id] = v;
+				});
 		
-	});
+				gsparams.isFinished = 0;
+				gsparams.auditSign = 0;
+				quickSearch(0);
 
-	getAllPartBrand(function(data) {
-		brandList = data.brand;
-		brandList.forEach(function(v) {
-			brandHash[v.id] = v;
+				nui.unmask();
+			});
+			
 		});
 	});
 
-	gsparams.isFinished = 0;
-	gsparams.auditSign = 0;
-	quickSearch(0);
 
 	
 });

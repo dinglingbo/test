@@ -12,7 +12,7 @@
 <head>
 <title>会员卡操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/CardTimes/cardTimesList.js?v=1.1.1"></script>
+	src="<%=request.getContextPath()%>/repair/js/CardTimes/cardTimesList.js?v=1.1.2"></script>
 </head>
 
 <body>
@@ -22,8 +22,8 @@
 				value="com.hsapi.repair.data.rpb.RpbCardStored">
 			<table id="table1">
 				<tr>
-					<td style="width: 91%">
-						<a class="nui-button"  plain="true">计次卡列表</a>
+					<td style="width: 91%;height:100% ">
+						<spand>&nbsp;&nbsp;&nbsp;计次卡列表</spand>
 						<a class="nui-button" onclick="searchOne()" plain="true">查看</a>			    
 					</td>
 					<td>
@@ -38,12 +38,17 @@
 	</div>
 <div class="nui-fit">
 		<div id="datagrid1" dataField="params" class="nui-datagrid"
-			pageSize="10" onDrawCell="onDrawCell" allowResize="true" 
-			totalCount="true" 
-			showPageInfo="true"
-			totalField="page.count"
-			showPagerButtonIcon="true"
-			 allowSortColumn="true">
+			pageSize="10" onDrawCell="onDrawCell"  
+			
+			     showPager="true"
+        
+                    totalField="page.count"
+                    sortMode="client"
+                    allowCellSelect="true"
+                    allowCellEdit="true"
+                    showModified="false"
+                   
+			 allowSortColumn="true" style="width: 100%;height:100% ">
 			<div property="columns">
 				<div type="indexcolumn"></div>
 				<div type="checkcolumn"></div>

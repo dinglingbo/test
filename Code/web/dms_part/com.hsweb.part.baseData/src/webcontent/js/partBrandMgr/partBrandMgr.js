@@ -378,6 +378,7 @@ function enablePartBrand()
     }
 }
 var updateIsDisabledUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.savePartBrand.biz.ext";
+
 function updateIsDisabled(brand,callback)
 {
     console.log(brand);

@@ -48,7 +48,7 @@
         selectOnLoad="true"
         sortMode="client"
         totalField="page.count"
-        pageSize="50"
+        pageSize="20"
         sizeList="[50,100,200]"
         url="">
         <div property="columns">

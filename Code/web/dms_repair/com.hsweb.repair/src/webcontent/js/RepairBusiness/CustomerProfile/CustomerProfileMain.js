@@ -61,6 +61,8 @@ function getSearchParams()
 function onSearch()
 {
     var params = getSearchParams();
+    params.carNo=document.getElementsByName('carNo')[0].value;
+    params.mobile=document.getElementsByName('mobile')[0].value;
     doSearch(params);
 }
 var currType = 0;
@@ -213,7 +215,7 @@ function edit() {
 
 function amalgamate() {
     nui.open({
-        url: "Amalgamate.jsp",
+        url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/Amalgamate.jsp?token="+token,
         title: "资料合并", width: 600, height: 400,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -229,7 +231,7 @@ function amalgamate() {
 
 function split() {
     nui.open({
-        url: "Split.jsp",
+        url: webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
         title: "资料拆分", width: 800, height: 430,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -248,10 +250,11 @@ function history()
 	var row = grid.getSelected();
 	if(!row || !row.guestId)
     {
+		showMsg("请选择一条记录");
         return;
     }
     nui.open({
-        url: "com.hsweb.repair.common.repairHistory.flow",
+        url: webPath + repairDomain +"/com.hsweb.repair.common.repairHistory.flow?token="+token,
         title: "维修历史", width: 850, height: 640,
         onload: function () {
             var iframe = this.getIFrameEl();

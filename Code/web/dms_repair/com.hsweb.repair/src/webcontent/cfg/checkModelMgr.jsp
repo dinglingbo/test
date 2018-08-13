@@ -1,6 +1,6 @@
+<%@include file="/common/sysCommon.jsp"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -10,7 +10,7 @@
 <head> 
 <title>查车单模版管理</title>
 
-<script src="<%=webPath + repairDomain%>/repair/cfg/js/checkModelMgr.js?v=1.0.0"></script>
+<script src="<%=webPath + repairDomain%>/repair/cfg/js/checkModelMgr.js?v=1.0.5"></script>
 <link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {
@@ -66,7 +66,7 @@
                         allowCellSelect="true"
                         allowCellEdit="true"
                         totalField="page.count"
-                        pageSize="50"
+                        pageSize="20"
                         sizeList="[50,100,200]"
                         showSummaryRow="false">
                     <div property="columns">

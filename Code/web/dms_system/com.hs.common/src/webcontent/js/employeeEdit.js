@@ -59,8 +59,7 @@ function save(action) {
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            showMsg(requiredField[key]+"不能为空","W");
-            return;
+            showMsg(requiredField[key] + "不能为空!","W");
         }
     }
 
@@ -91,7 +90,7 @@ function save(action) {
                 	 closeWindow("cal");
                 }
             }else{
-                basicInfoForm.setData([]); 
+               // basicInfoForm.setData([]); 
                 nui.get("name").focus();
             }
         },

@@ -63,7 +63,8 @@ var requiredField = {
     provinceId : "省份",
     cityId : "城市",
     streetAddress : "详细地址",
-    tel : "公司电话"
+    tel : "公司电话",
+    softOpenDate:"开店日期"
 };
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
@@ -194,4 +195,14 @@ function setAddress() {
     var address = provinceT + cityT + countyT + streetAddressT;
     addressEl.setValue(address);
     addressEl.getValue();
+}
+function onMobileValidation(e) {
+	if(e.value=="" || e.value==null){ return;}
+	if (e.isValid) {
+        var pattern = /0\d{2}-\d{7,8}/;
+        if (e.value.length != 11  || pattern.test(e.value) == false) {
+            e.errorText = "必须是电话，如：028-2580344";
+            e.isValid = false;
+        }
+    }
 }

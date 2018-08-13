@@ -43,7 +43,7 @@
 			style="width: 100%; height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>
-				<div type="checkcolumn" class="mini-radiobutton"></div>
+				<div type="checkcolumn" >选择</div>
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">会员卡ID</div>
 				<div field="name" headerAlign="center" allowSort="true">会员卡名称</div>

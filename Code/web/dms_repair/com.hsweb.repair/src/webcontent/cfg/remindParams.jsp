@@ -91,14 +91,14 @@
                     <input class="nui-hidden" name="id"/>
                     <table class="tmargin" width="100%">
                         <tr class="htr">
-                            <td class="tbtext ">距离车辆下次保养日期前</td>
+                            <td class="tbtext ">距离车辆下次保养日期前后</td>
                             <td >
                                 <input name="param1" class="nui-spinner" width="50px" format="0" 
                                     id="param1" maxValue="999999" showButton="false"/>天提醒
                             </td>
                         </tr>
                         <tr class="htr">
-                            <td class="tbtext ">车辆保养周期前</td>
+                            <td class="tbtext ">车辆保养周期</td>
                             <td >
                                 <input name="param2" class="nui-spinner" width="50px" format="0" 
                                     id="param2" maxValue="999999" showButton="false"/>月提醒

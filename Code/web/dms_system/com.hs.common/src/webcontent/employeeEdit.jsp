@@ -11,7 +11,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + sysDomain%>/common/js/employeeEdit.js?v=1.8.1" type="text/javascript"></script>
+    <script src="<%=webPath + sysDomain%>/common/js/employeeEdit.js?v=1.8.2" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
@@ -22,9 +22,9 @@
                 <table >
                     <tr>
                         <td>员工工号</td>
-                        <td><input class="nui-textbox" required="false" /></td>
+                        <td><input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid"/></td>
                         <td>所属工作组</td>
-                        <td><input class="nui-combobox" required="false" /></td>
+                        <td><input class="nui-combobox" required="false" id="tenantId" name="tenantId"/></td>
                     </tr>
 
                     <tr>
@@ -61,12 +61,12 @@
                 <td >身份证号码：<span></span></td>
                 <td ><input class="nui-textbox" width="200px" id="idcardno" name="idcardno" required="true" onvalidation="onIDCardsValidation" /></td>
                 <td >微信/QQ号：<span></span></td>
-                <td colspan="2"><input class="nui-textbox" name="wechat" id="wechat"/></td>
+                <td colspan="2"><input class="nui-textbox" name="wechat" id="wechat" vtype="maxLength:50"/></td>
             </tr>
 
             <tr>
                 <td >紧急联系人：<span></span></td>
-                <td ><input class="nui-textbox" name="urgencyPerson" id="urgencyPerson"/></td>
+                <td ><input class="nui-textbox" name="urgencyPerson" id="urgencyPerson" vtype="maxLength:20"/></td>
                 <td >紧急联系人电话：<span></span></td>
                 <td colspan="2"><input class="nui-textbox" name="urgencyPersonPhone" id="urgencyPersonPhone" onvalidation="onMobileValidation" /></td>
 
@@ -78,7 +78,7 @@
         <table>
             <tr>
                 <td>积分抵扣上限金额：<span></span></td>
-                <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" value="0" required="true" /></td>
+                <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" value="0" required="true" vtype="range:0,1000000"/></td>
             </tr>
             <tr>
                 <td>工时优惠率最高上限：</td>
@@ -90,11 +90,11 @@
             </tr>
             <tr>
                 <td>整单全免上限金额：<span></span></td>
-                <td><input class="mini-textbox" id="freeDiscountMax" name="freeDiscountMax" value="0" required="true" /></td>
+                <td><input class="mini-textbox" id="freeDiscountMax" name="freeDiscountMax" value="0" required="true" vtype="range:0,1000000"/></td>
             </tr>
             <tr>
                 <td>收银优惠上限金额：</td>
-                <td><input class="mini-textbox" name="cashDiscountMax" id="cashDiscountMax" value="0" required="true" /></td>
+                <td><input class="mini-textbox" name="cashDiscountMax" id="cashDiscountMax" value="0" required="true" vtype="range:0,1000000"/></td>
             </tr>
         </table>
     </fieldset>

@@ -13,7 +13,7 @@ $(document).ready(function(v) {
     repairPchsRtnFlag.setData(radioList);
     repairPartOutCancelFlag.setData(radioList);
    
-    getStore()
+    getStore();
     getStockParamsList();
 
 });
@@ -91,6 +91,10 @@ function save(){
 			console.log(jqXHR.responseText);
 		}
 	});
+}
+
+function aa(){
+	alert("11");
 }
 
 var storeUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";

@@ -31,9 +31,8 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" name="rs" type="query">rs</process:return>
-      <process:return id="1" name="page" type="query">page</process:return>
-      <process:return id="2" name="total" type="query">page/count</process:return>
+      <process:return id="0" language="com.hsapi.system.data.sys.ComCompany[]" name="rs" type="query" valueType="DataObject">rs</process:return>
+      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">page/count</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -72,7 +71,7 @@
       <process:to type="query">cd/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">true</process:from>
+      <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
   </nodes>
@@ -132,7 +131,7 @@
       <process:to type="query">cd/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">true</process:from>
+      <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
   </nodes>
@@ -153,7 +152,6 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComCompany" name="rs"/>
-    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

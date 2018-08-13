@@ -136,6 +136,22 @@ function returnFormSet(){
 		scoutDay3:data.claimScoutDay3,
 		scoutDisabled3:data.claimScoutDisable3
 	}
+	if(workR.scoutDay1>=workR.scoutDay2||workR.scoutDay2>=workR.scoutDay3){
+		showMsg("工单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		return;
+	}
+	if(washR.scoutDay1>=washR.scoutDay2||washR.scoutDay2>=washR.scoutDay3){
+		showMsg("洗车单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		return;
+	}
+	if(zeroR.scoutDay1>=zeroR.scoutDay2||zeroR.scoutDay2>=zeroR.scoutDay3){
+		showMsg("零售第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		return;
+	}
+	if(claimR.scoutDay1>=claimR.scoutDay2||claimR.scoutDay2>=claimR.scoutDay3){
+		showMsg("理赔单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		return;
+	}
 	if(data.workId){
 		workR.id = data.workId;
 		updateList.push(workR);

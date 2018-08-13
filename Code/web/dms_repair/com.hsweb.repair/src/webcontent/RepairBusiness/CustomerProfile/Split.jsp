@@ -37,7 +37,7 @@
 	</div>
 	<div  class="nui-splitter" style="width:100%;height:78%;" allowResize="false">
 	    <div size="70%" showCollapseButton="false">
-	        <div  id="datagrid1" class="nui-datagrid" dataField="data" style="width:100%;height:110%" url=""
+	        <div  id="datagrid1" class="nui-datagrid" dataField="data" style="width:100%;height:110%" url="com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext"
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -52,13 +52,13 @@
 			    	</div>
 			    	<div header="&nbsp" headerAlign="center">
 			    		<div property="columns">
-					    	<div field="" width="50px" headerAlign="center" allowSort="true">
+					    	<div field="carNo" width="50px" headerAlign="center" allowSort="true">
 					        	车牌号
 					        </div>
-					        <div field="" width="40px" headerAlign="center" allowSort="true">
+					        <div field="carBrandId" width="40px" headerAlign="center" allowSort="true">
 					        	品牌
 					        </div>
-					        <div field="" width="50px" headerAlign="center" allowSort="true">
+					        <div field="carModel" width="50px" headerAlign="center" allowSort="true">
 					        	车型
 					        </div>
 					        <div field="" width="120px" headerAlign="center" allowSort="true">
@@ -68,10 +68,10 @@
 			    	</div>
 			    	<div header="&nbsp" headerAlign="center">
 			    		<div property="columns">
-					    	<div field="" width="80px" headerAlign="center" allowSort="true">
+					    	<div field="chainComeTimes" width="80px" headerAlign="center" allowSort="true">
 					        	来厂次数
 					        </div>
-					        <div field="" width="120px" headerAlign="center" allowSort="true">
+					        <div field="lastComeDate" width="120px" headerAlign="center" allowSort="true">
 					        	最后来厂时间
 					        </div>
 					    </div>
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 	    <div showCollapseButton="false" >
-	        <div  class="nui-datagrid" dataField="data" url=""
+	        <div  class="nui-datagrid" dataField="data" url="com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext"
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -90,13 +90,13 @@
 			    <div property="columns">
 			    	<div header="&nbsp">
 			    		<div property="columns">
-					    	<div field="" width="30%" headerAlign="center" allowSort="true">
+					    	<div field="name" width="30%" headerAlign="center" allowSort="true">
 					        	姓名
 					        </div>
 					        <div field="" width="20%" headerAlign="center" allowSort="true">
 					        	性别
 					        </div>
-					        <div field="" width="50%" headerAlign="center" allowSort="true">
+					        <div field="mobile" width="50%" headerAlign="center" allowSort="true">
 					        	联系电话
 					        </div>
 					    </div>

@@ -11,6 +11,8 @@ var advancedSearchFormData = null;
 var carBrandIdEl = null;
 var carModelIdEl = null;
 var carModelIdHash = {};
+
+
 $(document).ready(function(v){
 
     grid = nui.get("datagrid1");
@@ -19,7 +21,6 @@ $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
-
     carBrandIdEl = nui.get("carBrandId");
     carModelIdEl = nui.get("carModelId");
     var hash = {};
@@ -61,6 +62,8 @@ function getSearchParams()
 function onSearch()
 {
     var params = getSearchParams();
+    params.carNo=document.getElementsByName('carNo')[0].value;
+    params.mobile=document.getElementsByName('mobile')[0].value;
     doSearch(params);
 }
 var currType = 0;
@@ -102,6 +105,7 @@ function quickSearch(type)
         default:
             break;
     }
+    doSearch(params);
 }
 function doSearch(params)
 {
@@ -122,6 +126,7 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    advancedSearchFormData = {};
     for(var key in searchData)
     {
         advancedSearchFormData[key] = searchData[key];
@@ -162,6 +167,19 @@ function onAdvancedSearchOk()
     {
         searchData.recordEnd = searchData.recordEnd.substr(0,10);
     }
+    if(searchData.guestId){
+    	params.guestId=nui.get('guestId').getValue();
+    }
+    if(searchData.carBrandId){
+    	params.carBrandId=document.getElementsByName('carBrandId')[0].value;
+    }
+    if(searchData.carModelId){
+    	params.carModelId=document.getElementsByName('carModelId')[0].value;
+    }
+    if(searchData.mobile){
+    	searchData.mobile=document.getElementById('tel').value;
+    }
+ 
     advancedSearchWin.hide();
     doSearch(searchData);
 }

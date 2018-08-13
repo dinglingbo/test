@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.13"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.18"></script>
 
 </head>
 
@@ -22,6 +22,7 @@
 			<tr>
 				<td>
 					<label style="font-family:Verdana;">快速查询：</label>
+					<label style="font-family:Verdana;">品牌：</label>
 					<label class="form_label">品牌：</label>
 					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="nameCn"/>
 					<label class="form_label">类型：</label>
@@ -176,7 +177,7 @@
 								</div>
 								<div class="nui-fit">
 									<div id="itemGrid"
-										 dataField="itemList"
+										 dataField="rpbItime"
 										 class="nui-datagrid"
 										 style="width: 100%; height:100%;"
 										 showPager="false"
@@ -188,7 +189,8 @@
 												<div property="columns">
 													<div field="itemCode" headerAlign="center" allowSort="true" visible="true">工时编码</div>
 													<div field="itemName" headerAlign="center" allowSort="true" visible="true">工时名称</div>
-													<div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种</div>
+													<!-- <div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种</div> -->
+													<div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true">工种</div>
 													<div field="itemTime" headerAlign="center" allowSort="true" visible="true">标准工时</div>
 													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true">工时单价</div>
 													<div field="amt" headerAlign="center" allowSort="true" visible="true">工时费</div>
@@ -211,7 +213,7 @@
 									</table>
 								</div>
 								<div class="nui-fit">
-									<div id="rightPartGrid" dataField="parts" class="nui-datagrid"
+									<div id="rightPartGrid" dataField="rpbPart" class="nui-datagrid"
 										 style="width: 100%; height: 100%;"
 										 showPager="false"
 										 idField="partId"

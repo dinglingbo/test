@@ -12,7 +12,7 @@
 <head>
 <title>会员卡操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/CardTimes/cardTimesList.js?v=1.1.0"></script>
+	src="<%=request.getContextPath()%>/repair/js/CardTimes/cardTimesList.js?v=1.1.1"></script>
 </head>
 
 <body>

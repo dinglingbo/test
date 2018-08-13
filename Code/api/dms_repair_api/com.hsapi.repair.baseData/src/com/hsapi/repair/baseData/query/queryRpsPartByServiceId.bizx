@@ -96,6 +96,18 @@
       <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">cr/_expr[1]/_value</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">packageId</process:from>
+      <process:to type="query">cr/_expr[2]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cr/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cr/_expr[2]/_value</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="230" y="116"/>
@@ -108,7 +120,7 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="240" y="194"/>
+    <location x="229" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -125,11 +137,13 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="238" y="230"/>
+    <location x="227" y="231"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="172" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-04 15:12:28" date="2018-08-04Z" description="" name="queryRpsPartByServiceId" version="7.0.0.0"/>
   <process:variables>

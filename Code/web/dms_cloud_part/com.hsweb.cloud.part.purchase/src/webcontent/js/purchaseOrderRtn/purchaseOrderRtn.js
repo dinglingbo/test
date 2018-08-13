@@ -35,6 +35,12 @@ var AuditSignHash = {
 };
 $(document).ready(function(v)
 {
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '加载中...'
+    });
+    
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
 
@@ -55,26 +61,30 @@ $(document).ready(function(v)
     eOrderDate = nui.get("eOrderDate");
 
     var dictDefs ={"rtnReasonId":"DDT20130703000072", "settleTypeId":"DDT20130703000035"};
-    initDicts(dictDefs, null);
-    getStorehouse(function(data)
-    {
-        storehouse = data.storehouse||[];
-        if(storehouse && storehouse.length>0){
-            FStoreId = storehouse[0].id;
-        }else{
-            isNeedSet = true;
-        }
-    });
+    initDicts(dictDefs, function(){
+        getStorehouse(function(data)
+        {
+            storehouse = data.storehouse||[];
+            if(storehouse && storehouse.length>0){
+                FStoreId = storehouse[0].id;
+            }else{
+                isNeedSet = true;
+            }
 
-    getAllPartBrand(function(data) {
-        brandList = data.brand;
-        brandList.forEach(function(v) {
-            brandHash[v.id] = v;
+            getAllPartBrand(function(data) {
+                brandList = data.brand;
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
+    
+                gsparams.auditSign = 0;
+                quickSearch(0);
+
+                nui.unmask();
+            });
         });
     });
-
-    gsparams.auditSign = 0;
-    quickSearch(0);
+    
 
     $("#guestId").bind("keydown", function (e) {
         if (e.keyCode == 13) {

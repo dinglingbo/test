@@ -60,6 +60,12 @@ var AuditSignHash = {
 	"3" : "已取消"
 };
 $(document).ready(function(v) {
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '加载中...'
+	});
+	
 	leftGrid = nui.get("leftGrid");
 	leftGrid.setUrl(leftGridUrl);
 
@@ -196,27 +202,31 @@ $(document).ready(function(v) {
 	// var db = new nui.DataBinding();
 	// db.bindForm("basicInfoForm", leftGrid);
 	var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
-	initDicts(dictDefs, null);
-	getStorehouse(function(data) {
-		storehouse = data.storehouse || [];
-		if(storehouse && storehouse.length>0){
-			FStoreId = storehouse[0].id;
-		}else{
-			isNeedSet = true;
-		}
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			storehouse = data.storehouse || [];
+			if(storehouse && storehouse.length>0){
+				FStoreId = storehouse[0].id;
+			}else{
+				isNeedSet = true;
+			}
+	
+			getAllPartBrand(function(data) {
+				brandList = data.brand;
+				brandList.forEach(function(v) {
+					brandHash[v.id] = v;
+				});
 		
-	});
+				gsparams.billStatusId = 2;
+				gsparams.auditSign = 1;
+				quickSearch(0);
 
-	getAllPartBrand(function(data) {
-		brandList = data.brand;
-		brandList.forEach(function(v) {
-			brandHash[v.id] = v;
+				nui.unmask();
+			});
+			
 		});
 	});
 
-	gsparams.billStatusId = 2;
-	gsparams.auditSign = 1;
-	quickSearch(0);
 });
 var StatusHash = {
 	"0" : "草稿",

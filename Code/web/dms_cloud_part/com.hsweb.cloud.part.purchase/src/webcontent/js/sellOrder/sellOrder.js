@@ -50,6 +50,12 @@ var AuditSignHash = {
 };
 $(document).ready(function(v)
 {
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '加载中...'
+    });
+
 	leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
 
@@ -79,8 +85,8 @@ $(document).ready(function(v)
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");
     partInfoTab = mainTabs.getTab("partInfoTab");
-    document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
-    document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
+    document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp?token="+token;
+    document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp?token="+token;
     //document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
     //document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
 
@@ -211,8 +217,6 @@ $(document).ready(function(v)
     //绑定表单
     //var db = new nui.DataBinding();
     //db.bindForm("basicInfoForm", leftGrid);
-    var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
-    initDicts(dictDefs, null);
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
@@ -224,17 +228,23 @@ $(document).ready(function(v)
         }else{
             isNeedSet = true;
         }
-    });
+        
+        var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
+        initDicts(dictDefs, null);
 
-    getAllPartBrand(function(data) {
-        brandList = data.brand;
-        brandList.forEach(function(v) {
-            brandHash[v.id] = v;
+        getAllPartBrand(function(data) {
+            brandList = data.brand;
+            brandList.forEach(function(v) {
+                brandHash[v.id] = v;
+            });
+
+            gsparams.auditSign = 0;
+            quickSearch(0);
+
+            nui.unmask();
         });
     });
-
-    gsparams.auditSign = 0;
-    quickSearch(0);
+    
 });
 //库存数量↑，库存数量↓；入库日期↑，入库日期↓；成本↑，成本↓
 var sortTypeList = [
@@ -341,11 +351,11 @@ function ontopTabChanged(e){
     var url = tab.url;
     if(!url){
         if(name == "guestOrdrTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/purchase/sellOrder/pchsOrderSettle_view0.jsp", tab);
+            mainTabs.loadTab(webPath + cloudPartDomain + "/purchase/sellOrder/pchsOrderSettle_view0.jsp?token="+token, tab);
         }else if(name == "partStockInfoTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp", tab);
+            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp?token="+token, tab);
         }else if(name == "purchaseAdvanceTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containOrderCart.jsp", tab);
+            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containOrderCart.jsp?token="+token, tab);
         }else if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0){

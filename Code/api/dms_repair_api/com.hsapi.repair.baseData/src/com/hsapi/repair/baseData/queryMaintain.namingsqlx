@@ -19,6 +19,7 @@
 			a.car_no as carNO,
 			c.tel as guestTel,
 			b.car_brand_id as carBrandId,
+			a.guest_id as guestId,
 			a.mt_advisor as mtAdvisor,
 			a.status as status,
 			a.service_type_id as serviceTypeId
@@ -55,6 +56,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="vin">  
                 (a.car_vin like '%$vin$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="balaAuditSign">  
+                (a.bala_audit_sign = #balaAuditSign# )
             </isNotEmpty>
              <isNotEmpty prepend="and" property="isSettle">  
                 (a.is_settle = #isSettle# )

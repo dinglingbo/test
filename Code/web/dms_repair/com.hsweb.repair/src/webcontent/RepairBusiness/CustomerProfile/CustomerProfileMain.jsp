@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.1.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.1.5"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -30,22 +30,20 @@ table {
 		<div class="nui-form" id="queryForm">
 			<table class="table">
 				<tr>
-					<td><label style="font-family: Verdana;">快速查询：</label> <a
-						class="nui-button" plain="true" onclick="quickSearch(0)"
-						id="type0">本日来厂</a> <a class="nui-button" plain="true"
-						onclick="quickSearch(1)" id="type1">昨日来厂</a> <a class="nui-button"
-						plain="true" onclick="quickSearch(2)" id="type2">本日新客户</a> <a
-						class="nui-button" plain="true" onclick="quickSearch(3)"
-						id="type3">本月新客户</a> <a class="nui-button" plain="true"
-						onclick="quickSearch(4)" id="type4">本月所有来厂客户</a> <a
-						class="nui-button" plain="true" onclick="quickSearch(5)"
-						id="type5">本月流失回厂</a> <a class="nui-button" plain="true"
-						onclick="quickSearch(6)" id="type6">上月流失回厂</a></td>
+					<td><label style="font-family: Verdana;">快速查询：</label> 
+					<a class="nui-button" plain="true" onclick="quickSearch(0)" id="type0">本日来厂</a> 
+					<a class="nui-button" plain="true"onclick="quickSearch(1)" id="type1">昨日来厂</a> 
+					<a class="nui-button" plain="true" onclick="quickSearch(2)" id="type2">本日新客户</a> 
+					<a class="nui-button" plain="true" onclick="quickSearch(3)"id="type3">本月新客户</a> 
+					<a class="nui-button" plain="true"onclick="quickSearch(4)" id="type4">本月所有来厂客户</a> 
+					<aclass="nui-button" plain="true" onclick="quickSearch(5)"id="type5">本月流失回厂</a> 
+					<a class="nui-button" plain="true"onclick="quickSearch(6)" id="type6">上月流失回厂</a></td>
 				</tr>
 				<tr>
-					<td><label>车牌号</label> <input class="nui-textbox" name="" /> <label>手机号码：</label>
-						<input class="nui-textbox" name="" /> <a class="nui-button"
-						iconCls="icon-search" plain="true" onclick="onSearch()">查询</a> <a
+					<td><label>车牌号</label> <input class="nui-textbox" name="carNo" /> 
+					<label>手机号码：</label>
+						<input class="nui-textbox" name="mobile" /> 
+						<a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a> <a
 						class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
 					</td>
 				</tr>
@@ -69,7 +67,7 @@ table {
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid"
 			style="width: 100%; height: 100%;" pageSize="20"
-			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="7">
+			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="7" totalCount="page.count" virtualScroll="true" virtualColumns="true">
 			<div property="columns">
 				<div width="30" type="indexcolumn">序号</div>
 				<div header="车辆信息" headerAlign="center">
@@ -197,7 +195,7 @@ table {
 				</tr>
 				<tr>
 					<td class="title"><label>手机号码:</label></td>
-					<td colspan="3"><input class="nui-textbox" name="mobile"
+					<td colspan="3"><input class="nui-textbox" name="mobile" id="tel"
 						width="100%" /></td>
 				</tr>
 				<tr>

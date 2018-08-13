@@ -388,6 +388,16 @@
        document.getElementById('currOrgName').innerHTML = currOrgName;
        document.getElementById('currUserName').innerHTML = "当前登录人:" + currUserName + " ";
        
+       $.ajax({
+            url:  apiPath + sysApi + "/com.hs.common.login.authRequried.biz.ext",
+            type: "POST",
+            data : JSON.stringify({
+                token: token
+            }),
+            success: function(text){
+            }
+        });
+       
        
     });
 

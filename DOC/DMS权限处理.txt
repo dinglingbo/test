@@ -1,0 +1,45 @@
+
+SELECT * from app_function where FUNCGROUPID in (
+	SELECT FUNCGROUPID from app_funcgroup where FUNCGROUPID in (
+		1102,1161,1162,1163,1164,1165,1241,1143,1081
+	)
+) and FUNCCODE not in ('UserGuide','UserHelp','paramsConfig')
+
+
+SELECT FUNCGROUPID from app_funcgroup where FUNCGROUPID in (
+	1102,1161,1162,1163,1164,1165,1241,1143,1081
+)
+
+
+SELECT * from app_funcgroup where PARENTGROUP = 1081
+
+
+SELECT * from app_funcgroup where PARENTGROUP = 1143
+
+
+select * from org_employee /*1464  75 34  17749684251   1481  84 44 17373125120  1463 74 33  13042058787*/
+
+SELECT * from cap_partyauth where party_id = '13042058787'   /*1373  1396  1368*/
+
+
+DELETE from cap_resauth where party_id = 1368
+
+INSERT INTO `dms_system`.`cap_resauth` (`PARTY_ID`, `PARTY_TYPE`, `RES_ID`, `RES_TYPE`, `TENANT_ID`, `RES_STATE`, `PARTY_SCOPE`, `CREATEUSER`, `CREATETIME`) 
+SELECT 1368, 'role', FUNCCODE, 'function', 'default', 1, 0, '系统管理员', SYSDATE() from app_function where FUNCGROUPID in (
+	SELECT FUNCGROUPID from app_funcgroup where FUNCGROUPID in (
+		1102,1161,1162,1163,1164,1165,1241,1143,1081
+	)
+) and FUNCCODE not in ('UserGuide','UserHelp','paramsConfig')
+
+
+
+DELETE from wb_common.com_tenant_menu where orgid = 84
+
+INSERT INTO `wb_common`.`com_tenant_menu` (`tenant_id`, `orgid`, `res_id`, `res_type`, `res_name`, `res_parent_id`, `is_disabled`, `scope`) 
+SELECT 44, 84, FUNCCODE, 'function', FUNCNAME, FUNCGROUPID,  0, 'PART' 
+from app_function where FUNCGROUPID in (
+	SELECT FUNCGROUPID from app_funcgroup where FUNCGROUPID in (
+		1102,1161,1162,1163,1164,1165,1241,1143,1081
+	)
+) and FUNCCODE not in ('UserGuide','UserHelp','paramsConfig')
+

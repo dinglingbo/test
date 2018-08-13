@@ -53,7 +53,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	 -->
+	
 	<filter>
 		<filter-name>InterceptorFilter</filter-name>
 		<filter-class>com.eos.access.http.InterceptorFilter</filter-class>
@@ -65,6 +65,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
+	 -->
 
 	<servlet>
  		<servlet-name>ControllerServlet</servlet-name>

@@ -115,3 +115,22 @@ function updateError(e) {
 		document.getElementById('y').style.display = 'none';
 	}
 }
+//验证充值金额和赠送金额
+function vaild(e){
+	var reg=/^\d+(\.\d{1,2})?$/;
+	var rechargeAmt=document.getElementsByName('rechargeAmt')[0].value;
+	if(!reg.test(rechargeAmt)){
+		e.errorText="请输入大于0且小数点后最多两位的数";
+		e.isValid=false;
+	}
+	
+}
+
+function vaild2(e){
+	var reg=/^\d+(\.\d{1,2})?$/;
+	var giveAmt=document.getElementsByName('giveAmt')[0].value;
+	if(!reg.test(giveAmt)){
+		e.errorText="请输入大于0且小数点后最多两位的数";
+		e.isValid=false;
+	}
+}

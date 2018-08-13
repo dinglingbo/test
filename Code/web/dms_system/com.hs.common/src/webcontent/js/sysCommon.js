@@ -26,7 +26,7 @@ function callAjax(url, params, processAjax, callBack, obj){
     nui.ajax({
 		url: url,
 		type: "post",
-        data: params,
+        data:  nui.encode(params),
 		contentType: 'text/json',
 		success: function (json) {
             if(obj){

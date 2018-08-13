@@ -116,6 +116,7 @@ function disableComeguest()
             if (action == "ok")
             {
                 updateIsDisabled({
+                	rid:row.rid,
                     id: row.id,
                     isDisabled: 1
                 }, function (data) {
@@ -142,6 +143,7 @@ function enableComeguest()
             if (action == "ok")
             {
                 updateIsDisabled({
+                	rid:row.rid,
                     id: row.id,
                     isDisabled: 0
                 }, function (data) {

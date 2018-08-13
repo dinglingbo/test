@@ -99,7 +99,6 @@ function onOk(){
 			data = data||{};
 			if(data.errCode == "S")
 			{
-				showMsg("保存成功","S");
 				CloseWindow("ok");
 			}
 			else{

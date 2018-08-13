@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		SELECT  
+		SELECT
 			a.id id,
 			a.orgid orgid,
 			a.car_no carNo,
@@ -18,23 +18,25 @@
 			a.car_model carModel,
 			a.car_brand_id carBrandId,
 			a.engine_no engineNo,
-			a.underpan_no underpanNo,
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
 			b.addr addr,
-			a.last_come_date lastComeDate,
-			a.last_leave_date lastLeaveDate,
+			c.last_come_date lastComeDate,
+			c.last_leave_date lastLeaveDate,
 			a.recorder recorder,
 			a.record_date recordDate,
 			a.produce_date produceDate,
 			a.color color,
-			a.chain_come_times chainComeTimes,
-			ifnull( DATEDIFF( now( ), a.last_leave_date ), 0 ) leaveDay
+			c.chain_come_times chainComeTimes,
+			ifnull( DATEDIFF( now( ), c.last_leave_date ), 0 ) leaveDay
 		FROM
 			wb_common.com_guest b
-			inner join rpb_car a on (a.guest_id = b.id)
-		where b.guest_type = '01020103'
+		INNER JOIN rpb_car a ON (a.guest_id = b.id)
+		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
+		LEFT  JOIN rpb_contactor d ON b.id=d.group_id
+		WHERE
+			b.guest_type = '01020103'
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
@@ -54,10 +56,44 @@
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)
             </isNotEmpty>
-            
+                <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
                 (b.mobile like '%$mobile$%')
+            </isNotEmpty><isNotEmpty prepend="and" property="thisYear"> 
+            <!--本年  --> 
+                (date_format(a.enter_date,'%Y')=date_format(now(),'%Y'))
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastYear"> 
+            <!--上年--> 
+               (date_format(a.out_date,'%Y')=date_format(DATE_SUB(now(),INTERVAL 1 YEAR),'%Y'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (date_format(a.out_date,'%Y-%m')=date_format(DATE_SUB(now(),INTERVAL 1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (date_format(a.out_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (date_format(a.out_date,'%X-%V')=date_format(now(),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--上周-->
+                (date_format(a.out_date,'%X-%V')=date_format(DATE_SUB(now(),INTERVAL 7 DAY),'%X-%V'))
+            </isNotEmpty>
+            
         </dynamic>
 	</select>
 	<select id="queryCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -86,6 +122,7 @@
 			d.tel tel,
 			d.id contactorId,
             e.card_type as cardType,
+            e.recharge_bala_amt as rechargeBalaAmt,
 			a.vin as vin,
 			a.insure_due_date as insureDueDate,
 		    d.birthday_type as birthdayType,
@@ -101,6 +138,15 @@
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (b.id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">  
+                (d.id = #contactorId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">  
+                (a.ID = #carId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carNo">  
                 (a.car_no like '%$carNo$%')

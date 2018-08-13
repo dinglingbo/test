@@ -38,7 +38,7 @@ function onRenderer(e) {
     return "";
 }
 function refresh(){
-	doSearch()
+	doSearch();
 }
 var deleteUrl = baseUrl
 		+ "com.hsapi.cloud.part.settle.svr.deleteFiSettleAccountById.biz.ext";
@@ -210,9 +210,11 @@ function disablePlay(isDisabled){
 }
 function disable(){
 	disablePlay(1);
+	doSearch();
 }
 function undisable(){
 	disablePlay(0);
+	doSearch();
 }
 function onGridSelectedChange(e){
 	var row = e.selected;

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ include file="/common/sysCommon.jsp"%>
+ <%@ include file="/common/sysCommon.jsp"%>
+
 
 <html>
 <!-- 
@@ -11,7 +11,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + sysDomain%>/common/js/employeeEdit.js?v=1.8" type="text/javascript"></script>
+    <script src="<%=webPath + sysDomain%>/common/js/employeeEdit.js?v=1.8.1" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 

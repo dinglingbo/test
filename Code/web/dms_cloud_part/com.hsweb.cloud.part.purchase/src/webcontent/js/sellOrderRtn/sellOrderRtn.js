@@ -34,6 +34,12 @@ var billmainTab = null;
 var partInfoTab = null;
 
 $(document).ready(function(v) {
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '加载中...'
+    });
+    
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
 
@@ -71,26 +77,30 @@ $(document).ready(function(v) {
     }
 
     var dictDefs ={"rtnReasonId":"DDT20130703000073", "settleTypeId":"DDT20130703000035"};
-    initDicts(dictDefs, null);
-    getStorehouse(function(data) {
-        storehouse = data.storehouse || [];
-        if(storehouse && storehouse.length>0){
-            FStoreId = storehouse[0].id;
-        }else{
-            isNeedSet = true;
-        }
+    initDicts(dictDefs, function(){
+        getStorehouse(function(data) {
+            storehouse = data.storehouse || [];
+            if(storehouse && storehouse.length>0){
+                FStoreId = storehouse[0].id;
+            }else{
+                isNeedSet = true;
+            }
+    
+            getAllPartBrand(function(data) {
+                brandList = data.brand;
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
         
-    });
+                gsparams.auditSign = 0;
+                quickSearch(0);
 
-    getAllPartBrand(function(data) {
-        brandList = data.brand;
-        brandList.forEach(function(v) {
-            brandHash[v.id] = v;
+                nui.unmask();
+            });
+            
         });
     });
-
-    gsparams.auditSign = 0;
-    quickSearch(0);
+    
 
     $("#guestId").bind("keydown", function (e) {
         if (e.keyCode == 13) {

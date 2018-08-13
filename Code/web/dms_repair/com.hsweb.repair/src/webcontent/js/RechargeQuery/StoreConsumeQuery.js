@@ -14,8 +14,10 @@ var queryInfoForm = null;
 $(document).ready(function (v)
 {
 
-  queryInfoForm = new nui.Form("#queryInfoForm");
+	 queryInfoForm = new nui.Form("#queryInfoForm").getData(false, false);
+
     grid = nui.get("grid");
+    grid.load(queryInfoForm);
     grid.setUrl(gridUrl);
     grid.on("drawcell",onDrawCell);
     onSearch();
@@ -71,5 +73,4 @@ function onRenderer2(e){
 	}
 	return "";
 }
-
 

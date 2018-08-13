@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.0.7"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.0.9"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -197,7 +197,7 @@
                               </td>
                               <td class=" right fwidthb">邮政编码:</td>
                               <td>
-                                  <input id="postalCode" name="postalCode" width="100%" class="nui-textbox" >
+                                  <input id="postalCode" name="postalCode" width="100%" class="nui-textbox" vtype="rangeChar:6,6" >
                               </td>
                           </tr>
                           <tr class="htr">
@@ -238,7 +238,7 @@
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb">邮箱:</td>
-                              <td ><input id="email" name="email" width="100%" class="nui-textbox" ></td>
+                              <td ><input id="email" name="email" width="100%" class="nui-textbox" vtype="email"></td>
                               <td class=" right fwidtha">QQ/微信:</td>
                               <td ><input id="instantMsg" name="instantMsg" width="100%" class="nui-textbox" ></td>
                           </tr>

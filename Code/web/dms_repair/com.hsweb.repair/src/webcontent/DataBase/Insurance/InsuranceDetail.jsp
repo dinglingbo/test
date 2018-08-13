@@ -11,7 +11,7 @@
 -->
 <head>
 <title>编辑保险公司</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceDetail.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceDetail.js?v=1.0.5"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -58,13 +58,13 @@ table {
                      商业险返点
                 </td>
                 <td style="width: 140px">
-                    <input class="nui-textbox" name="rebateAgentToCompany1">%
+                    <input class="nui-textbox" name="rebateAgentToCompany1" vtype="float;range:0,100;">%
                 </td>
                 <td class="form_label" style="width: 60px">
                     商业险返点
                 </td>
                 <td style="width: 150px">
-                    <input class="nui-textbox" name="rebateCompanyToGuest1">%
+                    <input class="nui-textbox" name="rebateCompanyToGuest1" vtype="float;range:0,100;">%
                 </td>
 		</tr>
 		<tr>
@@ -78,13 +78,13 @@ table {
                      交强险返点
             </td>
             <td>
-                <input class="nui-textbox" name="rebateAgentToCompany2">%
+                <input class="nui-textbox" name="rebateAgentToCompany2" vtype="float;range:0,100;">%
             </td>
             <td class="form_label" >
                  交强险返点
             </td>
             <td>
-                <input class="nui-textbox" name="rebateCompanyToGuest2">%
+                <input class="nui-textbox" name="rebateCompanyToGuest2" vtype="float;range:0,100;">%
             </td>
 		</tr>
 		<tr>
@@ -98,13 +98,13 @@ table {
                      车船税返点
                 </td>
                 <td>
-                    <input class="nui-textbox" name="rebateAgentToCompany3">%
+                    <input class="nui-textbox" name="rebateAgentToCompany3" vtype="float;range:0,100;">%
                 </td>
                 <td class="form_label" >
                      车船税返点
                 </td>
                 <td>
-                    <input class="nui-textbox"name="rebateCompanyToGuest3">%
+                    <input class="nui-textbox"name="rebateCompanyToGuest3" vtype="float;range:0,100;">%
                 </td>
 		</tr>
 		<tr>
@@ -135,7 +135,7 @@ table {
 				<label>联系人电话：</label>
 			</td>
 			<td>
-				<input class="nui-textbox" name="contactorTel" width="100%"/>
+				<input class="nui-textbox" name="contactorTel" width="100%" onvalidation="valid"/>
 			</td>
 			<td  class="form_label">
                      交强险提成

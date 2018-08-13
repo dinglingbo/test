@@ -9,5 +9,6 @@
 	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
+	<classpathentry kind="src" path="/dms_system"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

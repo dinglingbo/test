@@ -91,6 +91,7 @@ $(document).ready(function(v)
         {
             brandHash[v.id] = v;
         });
+        
         initCarBrand("applyCarBrandId",function(){
             initDicts({
                 unit:UNIT,// --单位

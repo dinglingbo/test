@@ -39,12 +39,15 @@ function searchOne() {
       }
     }
     
-          //重新刷新页面
+          //重新刷新页面,怎么刷新？？？？
         function refresh(){
-            var form = new  nui.Form("#queryform");
+           /* var form = new  nui.Form("#queryform");
             var json = form.getData(false,false);
             grid.load(json);//grid查询
-            nui.get("update").enable();
+            nui.get("update").enable();*/
+        	grid  = nui.get("datagrid1");
+            grid.setUrl(gridUrl);
+            grid.load();
           }
 
               
@@ -66,7 +69,7 @@ function searchOne() {
                 /*e.cellHtml = e.value==1?"禁用":"启用";*/
                 	e.cellHtml = hash[e.value];
                     break; 
-                //测试的
+                //测试
                 case "id":
                     /*e.cellHtml = e.value==1?"禁用":"启用";*/
                     	e.cellHtml = getData(id);

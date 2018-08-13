@@ -2,7 +2,6 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
 var rightItemGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryRpbItemByPackageId.biz.ext";
 var rightPartGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryRpbPartByPackageId.biz.ext";
-var totalUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.getPackageInfo.biz.ext";
 var leftGrid = null;
 var rightItemGrid = null;
 var rightPartGrid = null;
@@ -11,10 +10,8 @@ var carBrandIdEl = null;
 var carModelIdEl = null;
 var carModelIdHash = {};
 var editPartHash = {};
-//页面加载完才执行，在这里面定义了方法
 $(document).ready(function (v)
 {
-	//左边表格
 	leftGrid = nui.get("leftGrid"); 
 	leftGrid.setUrl(leftGridUrl);
 	leftGrid.on("drawcell",onDrawCell);
@@ -27,23 +24,17 @@ $(document).ready(function (v)
 		onLeftGridRowClick({});
 	});
 
-	//右边表格
+	
 	rightItemGrid = nui.get("itemGrid");
 	rightItemGrid.setUrl(rightItemGridUrl);
-	//rightItemGrid.setUrl(totalUrl);
-	rightItemGrid.on("drawcell",onDrawCell);
-	
+	rightItemGrid.on("drawcell",onDrawCell);	
 	rightPartGrid = nui.get("rightPartGrid");
 	rightPartGrid.setUrl(rightPartGridUrl);
 	
-	//cellendedit事件，编辑结束时发生
+	
 	rightPartGrid.on("cellendedit",function(e)
 	{
-		/*
-		sender: Object, //表格对象
-	    record: Object, //行对象
-	    column: Object //列对象
-       */		
+				
 		var row = e.record;
 		if(row)
 		{
@@ -59,13 +50,9 @@ $(document).ready(function (v)
 		}
 	});
 
-	//基本信息
 	basicInfoForm = new nui.Form("#basicInfoForm");
-	//快速查找
 	queryForm = new nui.Form("#queryForm");
-	//品牌的对象
 	carBrandIdEl = nui.get("carBrandId");
-	//车型的对象
 	carModelIdEl = nui.get("carModelId");
 	
 	init();
@@ -85,7 +72,6 @@ function init()
 	//
 	var elList = basicInfoForm.getFields();
 	var nameList = ["amount"];
-	//forEach？循环每一个元素？？
 	elList.forEach(function(v)
 	{
 		if(nameList.indexOf(v.name)>-1)
@@ -100,7 +86,6 @@ function init()
 	});
 
 	var hash = {};
-	//添加遮罩
 	nui.mask({
 		html: '数据加载中..'
 	});
@@ -154,7 +139,6 @@ function onInputBlur(e)
 }
 function onInputFocus(e)
 {
-	//表格对象
 	var el = e.sender;
 	if(el)
 	{    
@@ -162,7 +146,7 @@ function onInputFocus(e)
 		el.setFormat("");
 	}
 }
-//点击左边表格信息，右边表格显示数据
+
 function onLeftGridRowClick(e)
 {
 	var row = leftGrid.getSelected();
@@ -170,7 +154,6 @@ function onLeftGridRowClick(e)
 	{
 		basicInfoForm.clear();
 		basicInfoForm.setData(row);
-		//doValueChanged??
 		carBrandIdEl.doValueChanged();
 		loadRightPartGridData(row.id);
 		loadRightItemGridData(row.id);
@@ -240,16 +223,12 @@ function save()
 		tmp = partList[i];
 		total += tmp.amt;
 	}
-	//增加
 	var insParts = partList.filter(function(v){
 		return !v.packageId;
 	});
-	//删除和修改的
 	var delParts = rightPartGrid.getChanges("removed");
 	var updParts = rightPartGrid.getChanges("modified");
-
-	var itemList = rightItemGrid.getData();
-	
+	var itemList = rightItemGrid.getData();	
 	var insItems = itemList.filter(function(v){
 		return !v.packageId;
 	});
@@ -265,7 +244,6 @@ function save()
 	nui.mask({
 		html:'保存中..'
 	});
-	//doPost和其他的有什么区别
 	doPost({
 		url:saveUrl,
 		data:{

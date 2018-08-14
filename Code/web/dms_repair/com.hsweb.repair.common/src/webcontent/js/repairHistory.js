@@ -10,6 +10,7 @@ $(document).ready(function (v)
     //setData({
     //    contactorId:1
     //});
+	init();
 });
 var basicInfoForm = null;
 var guestInfoForm = null;

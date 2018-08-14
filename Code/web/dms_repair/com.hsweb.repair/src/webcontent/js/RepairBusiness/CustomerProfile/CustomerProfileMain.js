@@ -27,7 +27,9 @@ $(document).ready(function(v){
     carBrandIdEl = nui.get("carBrandId");
     carModelIdEl = nui.get("carModelId");
     init();
+    advancedSearchForm.clear();
     advancedSearchForm.gusetId=null;
+
 
 });
 function init(){
@@ -176,7 +178,7 @@ function onAdvancedSearchOk()
     	searchData.carModelId=document.getElementsByName('carModelId')[0].value;
     }
     if(searchData.mobile){
-    	searchData.mobile=document.getElementById('tel').value;
+    	searchData.mobile=searchData.mobile;
     }
     if(searchData.guestId){
     	searchData.guestId=advancedSearchForm.gusetId;
@@ -239,7 +241,7 @@ function amalgamate() {
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {pageType: "amalgamate"};
-            iframe.contentWindow.setData(data);
+//            iframe.contentWindow.setData(data);
         },
 
         ondestroy: function (action) {
@@ -255,7 +257,7 @@ function split() {
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {pageType: "split"};
-            iframe.contentWindow.setData(data);
+//            iframe.contentWindow.setData(data);
         },
 
         ondestroy: function (action) {
@@ -315,9 +317,6 @@ function selectCustomer(guestId)
             {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
-                console.log(data);
-                console.log(guestId);
-                console.log(data.guest.guestId);
                 guest = data.guest;
                 var value = guest.guestId;
                 var text = guest.guestFullName;

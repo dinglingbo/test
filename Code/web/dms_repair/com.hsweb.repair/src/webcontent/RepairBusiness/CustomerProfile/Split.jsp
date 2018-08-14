@@ -38,7 +38,7 @@
 	</div>
 	<div  class="nui-splitter" style="width:100%;height:78%;" allowResize="false">
 	    <div size="70%" showCollapseButton="false">
-	        <div  id="datagrid1" class="nui-datagrid" dataField="guest" style="width:100%;height:110%" 
+	        <div  id="datagrid1" class="nui-datagrid" dataField="main" style="width:100%;height:110%" url=""
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -53,16 +53,16 @@
 			    	</div>
 			    	<div header="&nbsp" headerAlign="center">
 			    		<div property="columns">
-					    	<div field="main.carNo" width="50px" headerAlign="center" allowSort="true">
+					    	<div field="carNo" width="50px" headerAlign="center" allowSort="true">
 					        	车牌号
 					        </div>
-					        <div field="guest.carBrandId" width="40px" headerAlign="center" allowSort="true">
+					        <div field="carBrandId" width="40px" headerAlign="center" allowSort="true">
 					        	品牌
 					        </div>
 					        <div field="carModel" width="50px" headerAlign="center" allowSort="true">
 					        	车型
 					        </div>
-					        <div field="" width="120px" headerAlign="center" allowSort="true">
+					        <div field="vin" width="120px" headerAlign="center" allowSort="true">
 					        	底盘号
 					        </div>
 					    </div>
@@ -82,7 +82,7 @@
 			</div>
 		</div>
 	    <div showCollapseButton="false" >
-	        <div  class="nui-datagrid" dataField="main"
+	        <div id="datagrid2"  class="nui-datagrid" dataField="main" url=""
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -91,10 +91,10 @@
 			    <div property="columns">
 			    	<div header="&nbsp">
 			    		<div property="columns">
-					    	<div field="main.contactorName" width="30%" headerAlign="center" allowSort="true">
+					    	<div field="contactName" width="30%" headerAlign="center" allowSort="true">
 					        	姓名
 					        </div>
-					        <div field="vin" width="20%" headerAlign="center" allowSort="true">
+					        <div field="sex" width="20%" headerAlign="center" allowSort="true">
 					        	性别
 					        </div>
 					        <div field="mobile" width="50%" headerAlign="center" allowSort="true">
@@ -121,67 +121,6 @@
  		formData.carNo=null;
     	grid.load(formData);
     	
-//     	function onCustomer(){
-//     		nui.open({
-//     			url:"http://127.0.0.1:8080/default/repair/common/Customer.jsp",
-//     			title:"客户选择",width:900,height:550,
-//     			onload:function(){
-    			   
-//     			},
-    			
-//     		    ondestroy:function(action){
-//     		    if(action=='ok'){
-//     		    var iframe = this.getIFrameEl();
-//                 var data = iframe.contentWindow.getData();
-//                 console.log(data);
-//                 formData.setData(data);
-//                 console.log(formData);    		    
-//     		    }
-    		  
-//     		}	
-//     		});
-//     	}
-//     	function addDetail() {
-// 	nui.open({
-// 		targetWindow : window,
-// 		url : webPath + partDomain+ "/repair/common/Customer.jsp?token=" + token,
-// 		title : "客户选择",
-// 		width : 1000,
-// 		height : 500,
-// 		allowDrag : true,
-// 		allowResize : false,
-// 		onload : function() {
-// 			var iframe = this.getIFrameEl();
-// 			var list = [];
-// 			var params = {
-// 				list : list
-// 			};
-// 			iframe.contentWindow.getData(params);
-// 		},
-// 		ondestroy : function(action) {
-// 			if (action == "ok") {
-// 				var iframe = this.getIFrameEl();
-// 				var data = iframe.contentWindow.getData();
-// 				data = data || {};
-// 				var guest = data.guest;
-
-// 				if (guset) {
-// 					var prdtId = part.id;
-// 					var prdtName = part.name;
-// 					var prdtType = 3;
-// 					var grid = nui.get("timesCardDetail");
-// 					var newRow = {
-// 						carNo : carNo,
-// 						carBrandName : carBrandName,
-// 						carModel : carModel
-// 					};
-// 					grid.addRow(newRow);
-// 				}
-
-// 			}
-// 		}
-// 	});
-// }
     	//关闭窗口
         function CloseWindow(action) {
         	if (action == "close" && form.isChanged()) {
@@ -209,24 +148,25 @@
         function onCancel() {
         	CloseWindow("cancel");
         }
-        
-        
-        
+            
         function selectCustomer() {
     openCustomerWindow(function (v) {
-        basicInfoForm =new nui.get("datagrid1");	
-        var main = basicInfoForm.getData();
-        main.guestId = v.guestId;
-        main.contactorName = v.guestFullName;
-        main.carId = v.carId;
-        main.carNo = v.carNo;
-        main.carBrandId = v.carBrandId;
-        main.carSeriesId = v.carSeriesId;
-        main.contactorId = v.contactorId;
-        main.contactorTel = v.mobile;
-        var params = {};
-        basicInfoForm.setData( main);
-//         SetData(params);
+        basicInfoForm =new nui.get("datagrid1");
+        basicInfoForm2=new nui.get('datagrid2');
+        var params = {
+        	guestId :v.guestId,
+	        contactName : v.guestFullName,
+	        carId : v.carId,
+	        carNo : v.carNo,
+	        carBrandId : v.carBrandName,
+	        carModel 	: v.carModel,
+	        carSeriesId : v.carSeriesId,
+	        contactorId : v.contactorId,
+	        mobile : v.mobile,
+	        vin  : v.vin
+        };
+        basicInfoForm.addRow(params);
+		basicInfoForm2.addRow(params);
     });
 }
 

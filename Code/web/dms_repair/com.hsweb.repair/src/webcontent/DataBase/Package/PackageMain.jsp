@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.18"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.20"></script>
 
 </head>
 
@@ -130,7 +130,9 @@
 								<td>
 									<input name="carBrandId" id="carBrandId" class="nui-combobox" allowInput="false"
 										   textField="nameCn"
-										   valueField="id" showNullItem="false"/>
+										   valueField="id" showNullItem="false"
+										   onvaluechanged="onCarBrandChange"									   
+										   />
 								</td>
 								<td class="form_label">
 									<label>适用车型：</label>

@@ -10,6 +10,7 @@ var carBrandIdEl = null;
 var carModelIdEl = null;
 var carModelIdHash = {};
 var editPartHash = {};
+var carModelHash = [];
 $(document).ready(function (v)
 {
 	leftGrid = nui.get("leftGrid"); 
@@ -61,13 +62,14 @@ $(document).ready(function (v)
 
 function init()
 {
-	carBrandIdEl.on("valuechanged",function()
+	/*carBrandIdEl.on("valuechanged",function()
 	{
-		var carBrandId = carBrandIdEl.getValue();		
+		var carBrandId = carBrandIdEl.getValue();
+		
 		getCarModel("carModelId",{
 			value:carBrandId
 		});
-	});
+	});*/
 
 	//
 	var elList = basicInfoForm.getFields();
@@ -77,9 +79,11 @@ function init()
 		if(nameList.indexOf(v.name)>-1)
 		{
 			v.on("focus",function(e){
+				//右对齐
 				onInputFocus(e);
 			});
 			v.on("blur",function(e){
+				//左对齐
 				onInputBlur(e);
 			});
 		}
@@ -124,9 +128,16 @@ function init()
 		hash.initCarBrand = true;
 		checkComplete();
 	});
-	
 }
-
+//显示车型的
+function onCarBrandChange(e){     
+	initCarModel("carModelId", e.value,"", function () {
+        var data = nui.get("carModelId").getData();
+        data.forEach(function (v) {
+        	carModelHash[v.id] = v;
+        });
+    });
+}
 
 function onInputBlur(e)
 {

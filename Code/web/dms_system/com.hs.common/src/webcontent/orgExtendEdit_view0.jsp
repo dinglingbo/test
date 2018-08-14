@@ -131,21 +131,27 @@ table tr td span
            <table >
 
             <tr >
-                <td class="tbtext">LOGO图片<span></span></td>
-                <td  colspan="5" class="tabwidth"><div class="pic"  style="width:64px;height:64px;border:1px solid #ccc; "></div></td>
+                <td class="tbtext">LOGO图片<span></span>   <div>
+        图片：<input class="mini-htmlfile" name="Fdata"  id="file1" style="width:300px;"/>
 
+        <br /><br />
+        <input type="button" value="上传" onclick="ajaxFileUpload()"/>
+    </div>
+</td>
+                <td  colspan="5" class="tabwidth"><div class="pic"  style="width:64px;height:64px;border:1px solid #ccc; "></div></td>
+				
             </tr> 
 
             <tr>
-                <td class="tbtext">企业号<span></span></td>
+                <td class="tbtext">企业号<span style="color:red">*</span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" name="code" id="code" vtype="maxLength:5"/></td>
 				<td><input class="nui-textbox tabwidth" name="orgid" id="orgid" visible="false"/></td>
             </tr>    
             
             <tr>
-                <td class="tbtext">公司全称<span></span></td>
+                <td class="tbtext">公司全称<span style="color:red">*</span></td>
                 <td colspan="3"><input class="nui-textbox tabwidth" name="name" id="name"/></td>
-                <td class="tbtext">公司简称<span></span></td>
+                <td class="tbtext">公司简称<span style="color:red">*</span></td>
                 <td><input class="nui-textbox tabwidth" name="shortName" id="shortName"/></td>
 
             </tr>               
@@ -162,7 +168,7 @@ table tr td span
             </tr> 
 
             <tr>
-                <td class="tbtext">详细地址<span></span></td>
+                <td class="tbtext">详细地址<span style="color:red">*</span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" name="streetAddress" id="streetAddress" onvaluechanged="onStreetChange"/></td>
 
             </tr>
@@ -192,7 +198,7 @@ table tr td span
 
             </tr>           
             <tr>
-                <td class="tbtext">公司电话<span></span></td>
+                <td class="tbtext">公司电话<span style="color:red">*</span></td>
                 <td colspan="4"><input class="nui-textbox tabwidth" name="tel" id="tel" onvalidation="onMobileValidation"/></td>
             </tr>           
             <tr>
@@ -283,6 +289,31 @@ table tr td span
 </div> 
 <script type="text/javascript">
   nui.parse();
+      function ajaxFileUpload() {
+        
+        var inputFile = $("#file1 > input:file")[0];
+
+        $.ajaxFileUpload({
+            url: 'upload.aspx',                 //用于文件上传的服务器端请求地址
+            fileElementId: inputFile,               //文件上传域的ID
+            //data: { a: 1, b: true },            //附加的额外参数
+            dataType: 'text',                   //返回值类型 一般设置为json
+            success: function (data, status)    //服务器成功响应处理函数
+            {
+                alert("上传成功: " + data);
+
+            },
+            error: function (data, status, e)   //服务器响应失败处理函数
+            {
+                alert(e);
+            },
+            complete: function () {
+                var jq = $("#file1 > input:file");
+                jq.before(inputFile);
+                jq.remove();
+            }
+        });
+    }
 
 </script>
 </body>

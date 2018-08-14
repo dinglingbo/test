@@ -10,6 +10,9 @@ var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var carBrandIdEl = null;
 var carModelIdEl = null;
+var carBrandHash = [];
+var carSeriesHash = [];
+var mtAdvisorHash = [];
 var carModelIdHash = {};
 
 
@@ -23,12 +26,18 @@ $(document).ready(function(v){
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     carBrandIdEl = nui.get("carBrandId");
     carModelIdEl = nui.get("carModelId");
+    init();
+    advancedSearchForm.gusetId=null;
+
+});
+function init(){
+
     var hash = {};
     nui.mask({
         html: '数据加载中..'
     });
     var checkComplete = function () {
-        var keyList = ['initCarBrand',"initInsureComp"];
+        var keyList = ['initCarBrand'];
         for (var i = 0; i < keyList.length; i++) {
             if (!hash[keyList[i]]) {
                 return;
@@ -39,21 +48,13 @@ $(document).ready(function(v){
     };
     initCarBrand("carBrandId",function()
     {
-        hash.initCarBrand = true;
-        checkComplete();
+    	var list = carBrandIdEl.getData();
+		nui.get("carBrandId").setData(list);
+		hash.initCarBrand = true;
+		checkComplete();
     });
-    carBrandIdEl.on("valuechanged",function()
-    {
-        var carBrandId = carBrandIdEl.getValue();
-        getCarModel("carModelId",{
-            value:carBrandId
-        });
-    });
-    initInsureComp("insureComp",function(){
-        hash.initInsureComp = true;
-        checkComplete();
-    });
-});
+
+}
 function getSearchParams()
 {
     var params = queryForm.getData();
@@ -116,6 +117,7 @@ function doSearch(params)
 }
 function advancedSearch()
 {
+	
     advancedSearchWin.show();
     advancedSearchForm.clear();
     if(advancedSearchFormData)
@@ -167,21 +169,22 @@ function onAdvancedSearchOk()
     {
         searchData.recordEnd = searchData.recordEnd.substr(0,10);
     }
-    if(searchData.guestId){
-    	params.guestId=nui.get('guestId').getValue();
-    }
     if(searchData.carBrandId){
-    	params.carBrandId=document.getElementsByName('carBrandId')[0].value;
+    	searchData.carBrandId=document.getElementsByName('carBrandId')[0].value;
     }
     if(searchData.carModelId){
-    	params.carModelId=document.getElementsByName('carModelId')[0].value;
+    	searchData.carModelId=document.getElementsByName('carModelId')[0].value;
     }
     if(searchData.mobile){
     	searchData.mobile=document.getElementById('tel').value;
     }
+    if(searchData.guestId){
+    	searchData.guestId=advancedSearchForm.gusetId;
+    }
  
     advancedSearchWin.hide();
     doSearch(searchData);
+    advancedSearchForm.gusetId=null;
 }
 function onAdvancedSearchCancel(){
     advancedSearchForm.clear();
@@ -260,6 +263,15 @@ function split() {
         }
     });
 }
+//显示车型的
+function onCarBrandChange(e){     
+	initCarModel("carModelId", e.value,"", function () {
+        var data = nui.get("carModelId").getData();
+        data.forEach(function (v) {
+        	carModelHash[v.id] = v;
+        });
+    });
+}
 
 function history()
 {
@@ -280,6 +292,40 @@ function history()
             iframe.contentWindow.setData(params);
         },
         ondestroy: function (action) {
+        }
+    });
+}
+var customer = null;
+function selectCustomer(guestId)
+{
+    customer = null;
+    nui.open({
+        targetWindow: window,
+        url: webPath+partDomain+"/repair/common/Customer.jsp?token="+token,
+        title: "客户资料", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+
+        },
+        ondestroy: function (action)
+        {
+            if(action == 'ok')
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                console.log(data);
+                console.log(guestId);
+                console.log(data.guest.guestId);
+                guest = data.guest;
+                var value = guest.guestId;
+                var text = guest.guestFullName;
+                var el = nui.get(guestId);
+                el.setValue(value);
+                el.setText(text);
+                advancedSearchForm.gusetId=value;
+            }
         }
     });
 }

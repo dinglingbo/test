@@ -13,6 +13,7 @@
 			a.orgid orgid,
 			a.car_no carNo,
 			a.guest_id guestId,
+			a.vin vin,
 			b.full_name guestFullName,
 			a.car_model_id carModelId,
 			a.car_model carModel,
@@ -51,7 +52,7 @@
                 (a.car_model_id = #carModelId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">  
-                (a.guestId = #guestId#)
+                (a.guest_id = #guestId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)
@@ -61,6 +62,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
                 (b.mobile like '%$mobile$%')
+            </isNotEmpty>
+              <isNotEmpty prepend="and" property="vin">  
+                (a.vin like '%$vin$%')
             </isNotEmpty>
                         
             <!--本日来厂-->

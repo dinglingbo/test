@@ -186,4 +186,41 @@
 		order by record_date desc
 	</select>
 	
+	
+	<select id="countPrebook" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT count(1) as ct from rps_prebook
+		where 1 =1 
+			<dynamic>
+		      <isNotEmpty prepend="and" property="orgid"> 
+                (orgid = #orgid#)
+              </isNotEmpty>
+              
+		      <isNotEmpty prepend="and" property="predictStartDate"> 
+                (predict_come_date &gt;= #predictStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="predictEndDate"> 
+                (predict_come_date &lt; #predictEndDate#)
+              </isNotEmpty>
+              
+              <isNotEmpty prepend="and" property="recordStartDate"> 
+                (record_date &gt;= #recordStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="recordEndDate"> 
+                (record_date &lt; #recordEndDate#)
+              </isNotEmpty>
+              
+              <isNotEmpty prepend="and" property="status"> 
+                (status = #status#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="statusList"> 
+                (status in ($statusList$))
+              </isNotEmpty>
+              
+              <isNotEmpty prepend="and" property="isPast"> 
+                 predict_come_date &lt; SYSDATE()
+              </isNotEmpty>
+            </dynamic>
+		      
+	</select>
+	
 </sqlMap>

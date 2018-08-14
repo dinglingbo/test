@@ -182,6 +182,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="210" y="152"/>
@@ -998,7 +999,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">删除成功</process:from>
+      <process:from type="literal" pattern="reference">添加成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

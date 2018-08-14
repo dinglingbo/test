@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.0.9"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.1.1"></script>
 <style type="text/css">
 
 table {
@@ -153,7 +153,7 @@ table {
                                 </td>
                                 <td>
                                     <a class="nui-button" onclick="onParseUnderpanNo()">解析车型</a>
-                                    <a class="nui-button" onclick="selectCarModel(setCarModel)">选择车型</a>
+                                    <a class="nui-button" onclick="getCarModel(setCarModel)">选择车型</a>
                                 </td>
                             </tr>
                             <tr>
@@ -242,20 +242,23 @@ table {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="form_label">
-                                    <label>公司内部车：</label>
-                                </td>
-                                <td>
-                                    <input name="isCompanyInside"
-                                           data="[{id:1,text:'是'},{id:0,text:'否'}]"
-                                           class="nui-combobox" width="100%"/>
-                                </td>
+                                
                                 <td class="form_label">
                                     <label>发证日期：</label>
                                 </td>
                                 <td>
                                     <input id="issuingDate" name="issuingDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
+                                
+                              <!--   <td class="form_label" >
+                                    <label>公司内部车：</label>
+                                </td>
+                                <td>
+                                    <input name="isCompanyInside"
+                                           data="[{id:1,text:'是'},{id:0,text:'否'}]"
+                                           class="nui-combobox" width="100%"/>
+                                </td> -->
+                                
                             </tr>
                         </table>
                     </div>

@@ -37,11 +37,12 @@
 	</div>
 	<div  class="nui-splitter" style="width:100%;height:78%;" allowResize="false">
 	    <div size="70%" showCollapseButton="false">
-	        <div  id="datagrid1" class="nui-datagrid" dataField="data" style="width:100%;height:110%" url="com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext"
+	        <div  id="datagrid1" class="nui-datagrid" dataField="data" style="width:100%;height:110%" 
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
 			   	  allowSortColumn="true" 
+	        
 	        >	
 	        	
 			    <div property="columns">

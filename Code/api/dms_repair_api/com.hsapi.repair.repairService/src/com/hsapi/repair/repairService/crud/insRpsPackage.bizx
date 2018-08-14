@@ -851,7 +851,7 @@
     <figSize height="17" width="93"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign11</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -1091,7 +1091,7 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:from type="query" pattern="reference">pkg/serviceId</process:from>
       <process:to type="query">cond/_expr[1]/serviceId</process:to>
     </process:copy>
     <process:copy>

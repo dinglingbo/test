@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.1.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.2.1"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -78,7 +78,7 @@ table {
 							visible="true" width="80">品牌</div>
 						<div field="carModel" headerAlign="center" allowSort="true"
 							visible="true" width="80px">车型</div>
-						<div field="underpanNo" headerAlign="center" allowSort="true"
+						<div field="vin" headerAlign="center" allowSort="true"
 							visible="true" width="120px">VIN</div>
 						<div field="annualInspectionDate" headerAlign="center"
 							dateFormat="yyyy-MM-dd" allowSort="true" visible="true"
@@ -178,15 +178,15 @@ table {
 				</tr>
 				<tr>
 					<td class="title"><label>客户名称:</label></td>
-					<td colspan="3"><input name="guestId" id="guestId1"
-						class="nui-buttonedit" emptyText="请选择客户..."
+					<td colspan="3">
+					<input name="guestId" id="guestId1"class="nui-buttonedit" emptyText="请选择客户..."
 						onbuttonclick="selectCustomer('guestId1')" width="100%"
 						allowInput="false" selectOnFocus="true" /></td>
 				</tr>
 				<tr>
 					<td class="title"><label>品牌:</label></td>
 					<td colspan="1"><input class="nui-combobox" name="carBrandId"
-						width="100%" id="carBrandId" valueField="id"
+						width="100%" id="carBrandId" valueField="id" onvaluechanged="onCarBrandChange" 
 						textField="nameCn" /></td>
 					<td class="" width="30"><label>车型:</label></td>
 					<td colspan="1"><input class="nui-combobox" name="carModelId"
@@ -199,8 +199,8 @@ table {
 						width="100%" /></td>
 				</tr>
 				<tr>
-					<td class="title"><label>底盘号:</label></td>
-					<td colspan="3"><input class="nui-textbox" name="mobile"
+					<td class="title"><label>VIN号:</label></td>
+					<td colspan="3"><input class="nui-textbox" name="vin"
 						width="100%" /></td>
 				</tr>
 			</table>

@@ -144,6 +144,7 @@
     <location x="356" y="224"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="guestTypes" iterableElement="param"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -189,7 +190,7 @@
       <process:to type="query">p/guestType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/orgid</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">p/orgid</process:to>
     </process:copy>
   </nodes>

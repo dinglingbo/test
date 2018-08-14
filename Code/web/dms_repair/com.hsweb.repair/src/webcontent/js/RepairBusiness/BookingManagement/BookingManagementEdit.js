@@ -224,6 +224,7 @@ function openCustomerWindow(callback) {
         ondestroy: function (action) {
             if ("ok" == action) {
                 var iframe = this.getIFrameEl();
+                //調用字界面的方法，返回子頁面的數據
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
                 callback && callback(guest);

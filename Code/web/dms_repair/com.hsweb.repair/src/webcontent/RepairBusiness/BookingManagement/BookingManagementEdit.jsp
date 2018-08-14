@@ -129,8 +129,8 @@
                             <!-- <input id="predictComeDate"  name="predictComeDate" width="150px" class="nui-datepicker" format="yyyy-MM-dd H:mm" timeFormat="H:mm" showTime="true" 
                                 allowInput="false" showTodayButton="false" ondrawdate="onDrawDate" viewDate="new Date()" nullValue="null" showOkButton="true"
                                 showClearButton="false" required="true"/> -->
-                            <input class="nui-combobox" id="timeStart" name="timeStart" textField="name" 
-                                valueField="id" allowInput="false"  onValuechanged="setTimeChange">
+                            <input class="nui-combobox" id="timeStart" name="timeStart" textField="name"  ondrawdate="onDrawDate"
+                                valueField="id" allowInput="false"  onValuechanged="setTimeChange" >
                         </td>
                     </tr>
                     <tr>

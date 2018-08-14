@@ -139,6 +139,7 @@ function initInsureComp(id,callback){ //险种：DDT20130703000028
         var url = _sysApiRoot + "/com.hsapi.system.dict.guestMgr.queryGuest.biz.ext";
         params = {};
         params.guestTypes = "01020104";
+        params.fromDb = "true";
         callAjax(url, params, processAjax, processInsureComp, null);  
     }
 }

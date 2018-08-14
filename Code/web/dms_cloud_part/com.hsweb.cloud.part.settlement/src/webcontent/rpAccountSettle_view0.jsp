@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=2.3.2"></script>
+<script src="<%=webPath + cloudPartDomain%>/settlement/js/rpAccountSettle.js?v=2.3.3"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -109,7 +109,7 @@
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <input id="proId" width="120px" emptyText="业务单号" class="nui-combobox"/>
+                <input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox"/>
                 
                 <span class="separator"></span>
 
@@ -513,7 +513,7 @@
 </div>
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:270px;"
+     title="高级查询" style="width:416px;height:230px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
@@ -558,7 +558,7 @@
                            showClearButton="false"/>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td class="title">对账人:</td>
                 <td>
                     <input class="nui-textbox" name="balancer" width="100%" />
@@ -571,8 +571,15 @@
                     <input class="nui-combobox" name="balanceSign" value="0"
                      nullitemtext="请选择..." emptyText="对账状态" data="balanceList" width="100%" />
                 </td>
-            </tr>
+            </tr> -->
             <tr>
+                <td class="title">结算状态:</td>
+                <td>
+                    <input class="nui-combobox" name="settleStatus" value="0"
+                     nullitemtext="请选择..." emptyText="结算状态" data="settleStatusList" width="100%" />
+                </td>
+            </tr>
+            <!-- <tr>
                 <td class="title">对账日期:</td>
                 <td>
                     <input name="sBalanceDate"
@@ -590,7 +597,7 @@
                            width="100%"
                            showClearButton="false"/>
                 </td>
-            </tr>
+            </tr> -->
         </table>
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>

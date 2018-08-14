@@ -969,9 +969,12 @@ function selectSupplier(elId) {
 		allowResize : true,
 		onload : function() {
 			var iframe = this.getIFrameEl();
+			// var params = {
+            //     isSupplier: 1,
+            //     guestType:'01020202'
+			// };
 			var params = {
-                isSupplier: 1,
-                guestType:'01020202'
+                isSupplier: 1
             };
             iframe.contentWindow.setGuestData(params);
 		},
@@ -1039,14 +1042,16 @@ function onCellEditEnter(e){
 		}else if(column.field == "remark"){
 			addNewKeyRow();
 		}else if(column.field == "comPartCode"){
-			if(!record.comPartCode){
+			var partCode = record.comPartCode||"";
+            partCode = partCode.replace(/\s+/g, "");
+			if(!partCode){
 				showMsg("请输入编码!","W");
 				var row = rightGrid.getSelected();
 				rightGrid.removeRow(row);
 				addNewRow(false);
 				return;
 			}else{
-				var rs = addInsertRow(record.comPartCode,record);
+				var rs = addInsertRow(partCode,record);
 				if(!rs){
 					var newRow = {comPartCode: ""};
 					rightGrid.updateRow(record, newRow);

@@ -38,7 +38,7 @@
 	</div>
 	<div  class="nui-splitter" style="width:100%;height:78%;" allowResize="false">
 	    <div size="70%" showCollapseButton="false">
-	        <div  id="datagrid1" class="nui-datagrid" dataField="" style="width:100%;height:110%" 
+	        <div  id="datagrid1" class="nui-datagrid" dataField="guest" style="width:100%;height:110%" 
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -53,10 +53,10 @@
 			    	</div>
 			    	<div header="&nbsp" headerAlign="center">
 			    		<div property="columns">
-					    	<div field="data.carNo" width="50px" headerAlign="center" allowSort="true">
+					    	<div field="main.carNo" width="50px" headerAlign="center" allowSort="true">
 					        	车牌号
 					        </div>
-					        <div field="carBrandId" width="40px" headerAlign="center" allowSort="true">
+					        <div field="guest.carBrandId" width="40px" headerAlign="center" allowSort="true">
 					        	品牌
 					        </div>
 					        <div field="carModel" width="50px" headerAlign="center" allowSort="true">
@@ -82,7 +82,7 @@
 			</div>
 		</div>
 	    <div showCollapseButton="false" >
-	        <div  class="nui-datagrid" dataField="data"
+	        <div  class="nui-datagrid" dataField="main"
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -91,7 +91,7 @@
 			    <div property="columns">
 			    	<div header="&nbsp">
 			    		<div property="columns">
-					    	<div field="name" width="30%" headerAlign="center" allowSort="true">
+					    	<div field="main.contactorName" width="30%" headerAlign="center" allowSort="true">
 					        	姓名
 					        </div>
 					        <div field="vin" width="20%" headerAlign="center" allowSort="true">
@@ -225,8 +225,7 @@
         main.contactorId = v.contactorId;
         main.contactorTel = v.mobile;
         var params = {};
-        params.data = main;
-        basicInfoForm.setData( params.data);
+        basicInfoForm.setData( main);
 //         SetData(params);
     });
 }

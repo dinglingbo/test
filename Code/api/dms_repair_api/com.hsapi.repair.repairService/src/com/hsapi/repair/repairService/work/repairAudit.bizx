@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="repairAudit.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="APP端完工后生成结算数据，暂不更新预结算状态bala_audit_sign&#xD;&#xA;如果更新 bala_audit_sign = 1， 则要考虑生成应收记录" title="Administrator&#x9;18-8-11 下午2:56">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="更新预结算状态bala_audit_sign = 1，" title="Administrator&#x9;18-8-11 下午2:56">
     <location x="255" y="291"/>
     <size height="100" width="451"/>
   </nodes>
@@ -246,6 +246,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">maintain/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">maintain/balaAuditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userName</process:from>
+      <process:to type="query">maintain/balaAuditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">maintain/balaAuditDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

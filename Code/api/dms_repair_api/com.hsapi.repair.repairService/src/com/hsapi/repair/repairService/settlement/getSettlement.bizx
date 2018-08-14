@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getSettlement" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算是否要等配件审核&#xD;&#xA;计算工时，配件的小计金额，优惠金额&#xD;&#xA;生成结算数据&#xD;&#xA;转预结构后生成提成数据&#xD;&#xA;" title="Administrator&#x9;18-8-8 下午10:02">
-    <location x="56" y="-57"/>
-    <size height="100" width="351"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算是否要等配件审核&#xD;&#xA;计算工时，配件的小计金额，优惠金额&#xD;&#xA;生成结算数据&#xD;&#xA;转预结构后生成提成数据&#xD;&#xA;此时结算金额 = 所有小计之和 - 预存金额&#xD;&#xA;" title="Administrator&#x9;18-8-8 下午10:02">
+    <location x="54" y="-105"/>
+    <size height="121" width="351"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -305,10 +305,22 @@
       <sourceNode>assign5</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
-    <targetConnections>link24</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="612" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-cardTimesAmt</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">balaAmt</process:from>
+      <process:to type="query">settlement/balaAmt</process:to>
+    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">settlement/modifier</process:to>
@@ -320,6 +332,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">datekey</process:from>
       <process:to type="query">settlement/datekey</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimesAmt</process:from>
+      <process:to type="query">settlement/cardTimesAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -353,7 +369,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="format" displayName="format" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>subprocess2</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="529" y="300"/>
@@ -423,6 +439,32 @@
     <figSize height="17" width="32"/>
     <node>end2</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="getRpsCardTimesAmt" displayName="getRpsCardTimesAmt" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="613" y="300"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getRpsCardTimesAmt</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="amt" type="query" value="Double" valueType="Primitive">cardTimesAmt</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="563" y="335"/>
+    <figSize height="17" width="127"/>
+    <node>subprocess2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-04-02 10:00:06" date="2018-04-02Z" description="" name="getSettleMent" version="7.0.0.0"/>
@@ -435,6 +477,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="datekey" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="cardTimesAmt" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>

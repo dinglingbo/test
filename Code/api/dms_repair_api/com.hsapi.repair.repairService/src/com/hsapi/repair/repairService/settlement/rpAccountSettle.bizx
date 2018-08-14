@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="rpAccountSettle.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="结算单  直接收款&#xD;&#xA;1、在repair中验证数据&#xD;&#xA;2、更新结算数据状态&#xD;&#xA;3、在repair中通过http请求调用结算收款&#xD;&#xA;4、收款成功后，整体提交&#xD;&#xA;5、收款失败后，整体回滚&#xD;&#xA;&#xD;&#xA;获取次卡金额，且判断使用次卡是否超数&#xD;&#xA;提成信息放在事务之外执行，失败后插入日志还是通过单据里面是否计算提成的状态字段来判断是否计算？&#xD;&#xA;&#xD;&#xA;储值卡（会员卡）消费金额判断" title="Administrator&#x9;18-8-11 下午3:01">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="结算单  直接收款&#xD;&#xA;1、在repair中验证数据&#xD;&#xA;2、更新结算数据状态&#xD;&#xA;3、在repair中通过http请求调用结算收款&#xD;&#xA;4、收款成功后，整体提交&#xD;&#xA;5、收款失败后，整体回滚&#xD;&#xA;&#xD;&#xA;获取次卡金额，且判断使用次卡是否超数&#xD;&#xA;提成信息放在事务之外执行，失败后插入日志还是通过单据里面是否计算提成的状态字段来判断是否计算？&#xD;&#xA;&#xD;&#xA;储值卡（会员卡）消费金额判断&#xD;&#xA;取默认结算账户" title="Administrator&#x9;18-8-11 下午3:01">
     <location x="80" y="-130"/>
-    <size height="241" width="361"/>
+    <size height="281" width="361"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="43" y="226"/>
+    <location x="-206" y="228"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="45" y="262"/>
+    <location x="-204" y="264"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -37,10 +37,11 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="95" y="226"/>
+    <location x="-154" y="228"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -51,9 +52,141 @@
       <process:from type="literal" pattern="reference">收款成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/rpType</process:from>
+      <process:to type="query">rpAccountHash/rpType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/guestId</process:from>
+      <process:to type="query">rpAccountHash/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/guestFullName</process:from>
+      <process:to type="query">rpAccountHash/guestFullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/serviceId</process:from>
+      <process:to type="query">rpAccountHash/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/serviceCode</process:from>
+      <process:to type="query">rpAccountHash/serviceCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/serviceId</process:from>
+      <process:to type="query">rpAccountHash/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/rpAmt</process:from>
+      <process:to type="query">rpAccountHash/rpAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/remark</process:from>
+      <process:to type="query">rpAccountHash/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/billAmt</process:from>
+      <process:to type="query">rpAccountHash/billAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/isPrimaryBusiness</process:from>
+      <process:to type="query">rpAccountHash/isPrimaryBusiness</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/rpAmtYes</process:from>
+      <process:to type="query">rpAccountHash/rpAmtYes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/rpAmtNo</process:from>
+      <process:to type="query">rpAccountHash/rpAmtNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/guestId</process:from>
+      <process:to type="query">payHash/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/guestFullName</process:from>
+      <process:to type="query">payHash/guestFullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/offsetAmt</process:from>
+      <process:to type="query">payHash/offsetAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/offsetAmtNo</process:from>
+      <process:to type="query">payHash/offsetAmtNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/billStatus</process:from>
+      <process:to type="query">payHash/billStatus</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/orgid</process:from>
+      <process:to type="query">payHash/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/postMan</process:from>
+      <process:to type="query">payHash/postMan</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/postStatus</process:from>
+      <process:to type="query">payHash/postStatus</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/recordDate</process:from>
+      <process:to type="query">payHash/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/recorder</process:from>
+      <process:to type="query">payHash/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/remark</process:from>
+      <process:to type="query">payHash/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/rpAmt</process:from>
+      <process:to type="query">payHash/rpAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/rpDate</process:from>
+      <process:to type="query">payHash/rpDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/rpMan</process:from>
+      <process:to type="query">payHash/rpMan</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/rpModeId</process:from>
+      <process:to type="query">payHash/rpModeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/rpPurposeId</process:from>
+      <process:to type="query">payHash/rpPurposeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/rpTypeId</process:from>
+      <process:to type="query">payHash/rpTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/serviceIds</process:from>
+      <process:to type="query">payHash/serviceIds</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/settAccountCode</process:from>
+      <process:to type="query">payHash/settAccountCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/settAccountId</process:from>
+      <process:to type="query">payHash/settAccountId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/settAccountName</process:from>
+      <process:to type="query">payHash/settAccountName</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="97" y="262"/>
+    <location x="-152" y="264"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -72,7 +205,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link26</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="180" y="226"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -146,7 +279,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="link19" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>invokePojo6</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
@@ -207,12 +340,12 @@
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="420" y="226"/>
+    <targetConnections>link8</targetConnections>
+    <location x="465" y="226"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.frm.arap.test.biz.ext</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.arap.rpAccountSettle.biz.ext</process:from>
       <process:to type="query">apiName</process:to>
     </process:copy>
     <process:copy>
@@ -245,7 +378,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="418" y="262"/>
+    <location x="463" y="262"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -372,6 +505,145 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link26</targetConnections>
+    <location x="-90" y="229"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart0label</nodeLabel>
+    <process:iterate iterable="payDetail" iterableElement="temp"/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
+    <location x="-90" y="261"/>
+    <figSize height="17" width="25"/>
+    <node>loopstart0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopend0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="111" y="229"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
+    <location x="99" y="261"/>
+    <figSize height="17" width="49"/>
+    <node>loopend0</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
+    <location x="-90" y="183"/>
+    <size height="133" width="226"/>
+    <chidren>loopend0</chidren>
+    <chidren>loopstart0</chidren>
+    <chidren>assign2</chidren>
+    <chidren>invokePojo5</chidren>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="-30" y="226"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/balaTypeCode</process:from>
+      <process:to type="query">htemp/balaTypeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/balaTypeId</process:from>
+      <process:to type="query">htemp/balaTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/charOffAmt</process:from>
+      <process:to type="query">htemp/charOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/parentId</process:from>
+      <process:to type="query">htemp/parentId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/remark</process:from>
+      <process:to type="query">htemp/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/rpDc</process:from>
+      <process:to type="query">htemp/rpDc</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/settAccountCode</process:from>
+      <process:to type="query">htemp/settAccountCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/settAccountId</process:from>
+      <process:to type="query">htemp/settAccountId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="-32" y="262"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="add2Array" displayName="add2Array" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="35" y="226"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">htemp</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">payDetailHash</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap[]" valueType="Java">payDetailHash</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="15" y="262"/>
+    <figSize height="17" width="62"/>
+    <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="remove" displayName="remove" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>assign8</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="409" y="226"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.remove</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="pros" type="query" value="java.lang.Object[]" valueType="Java" pattern="reference">payDetailHash</process:inputVariable>
+      <process:inputVariable id="1" name="index" type="literal" value="java.lang.Integer" valueType="Java" pattern="reference">0</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">payDetailHash</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="398" y="262"/>
+    <figSize height="17" width="45"/>
+    <node>invokePojo6</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-12 23:45:21" date="2018-08-12Z" description="" name="rpAccountSettle" version="7.0.0.0"/>
@@ -384,11 +656,16 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="rpAccountHash"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="payHash"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="payDetailHash"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpBillListDetail" name="temp"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="htemp"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="生成应收应付" isArray="false" name="rpAccountHash"/>
-    <process:input anyType="java.util.HashMap" description="收款主表" isArray="false" name="payHash"/>
-    <process:input anyType="java.util.HashMap" description="收款明细表" isArray="true" name="payDetailHash"/>
+    <process:input description="生成应收应付" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccount" name="rpAccount"/>
+    <process:input description="收款主表" isArray="false" modelType="com.hsapi.repair.data.common.FisRpBillList" name="pay"/>
+    <process:input description="收款明细表" isArray="true" modelType="com.hsapi.repair.data.common.FisRpBillListDetail" name="payDetail"/>
     <process:input description="是否生成收付款" isArray="false" name="isPay" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/common.jsp"%>
+	<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -23,7 +24,7 @@
 						<span style="margin-left: 2px;">客户名称：</span>
 					</td>
 					<td colspan="1">
-						<input class="nui-buttonedit" onclick="onCustomer()" width="490px" />
+						<input class="nui-buttonedit" onclick="selectCustomer()" width="490px" />
 					</td>
 					<td class="form_label" width="70px">
 						<span style="margin-left: 10px;">手机号码：</span>
@@ -37,7 +38,7 @@
 	</div>
 	<div  class="nui-splitter" style="width:100%;height:78%;" allowResize="false">
 	    <div size="70%" showCollapseButton="false">
-	        <div  id="datagrid1" class="nui-datagrid" dataField="data" style="width:100%;height:110%" url="com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext"
+	        <div  id="datagrid1" class="nui-datagrid" dataField="" style="width:100%;height:110%" 
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -52,7 +53,7 @@
 			    	</div>
 			    	<div header="&nbsp" headerAlign="center">
 			    		<div property="columns">
-					    	<div field="carNo" width="50px" headerAlign="center" allowSort="true">
+					    	<div field="data.carNo" width="50px" headerAlign="center" allowSort="true">
 					        	车牌号
 					        </div>
 					        <div field="carBrandId" width="40px" headerAlign="center" allowSort="true">
@@ -81,7 +82,7 @@
 			</div>
 		</div>
 	    <div showCollapseButton="false" >
-	        <div  class="nui-datagrid" dataField="data" url="com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext"
+	        <div  class="nui-datagrid" dataField="data"
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -93,7 +94,7 @@
 					    	<div field="name" width="30%" headerAlign="center" allowSort="true">
 					        	姓名
 					        </div>
-					        <div field="" width="20%" headerAlign="center" allowSort="true">
+					        <div field="vin" width="20%" headerAlign="center" allowSort="true">
 					        	性别
 					        </div>
 					        <div field="mobile" width="50%" headerAlign="center" allowSort="true">
@@ -117,23 +118,70 @@
     	nui.parse();
     	var grid = nui.get("datagrid1");
     	var formData = new nui.Form("#form1").getData(false, false);
+ 		formData.carNo=null;
     	grid.load(formData);
     	
-    	function onCustomer(){
-    		nui.open({
-    			url:"http://127.0.0.1:8080/default/repair/common/Customer.jsp",
-    			title:"客户选择",width:900,height:550,
-    			onload:function(){
-    			    var iframe = this.getIFrameEl();
-    			    var data = {pageType:"customer"};
-    			    iframe.contentWindow.setData(data);
-    			},
+//     	function onCustomer(){
+//     		nui.open({
+//     			url:"http://127.0.0.1:8080/default/repair/common/Customer.jsp",
+//     			title:"客户选择",width:900,height:550,
+//     			onload:function(){
+    			   
+//     			},
     			
-    		    ondestroy:function(action){
-    		    grid.reload();
-    		}	
-    		});
-    	}
+//     		    ondestroy:function(action){
+//     		    if(action=='ok'){
+//     		    var iframe = this.getIFrameEl();
+//                 var data = iframe.contentWindow.getData();
+//                 console.log(data);
+//                 formData.setData(data);
+//                 console.log(formData);    		    
+//     		    }
+    		  
+//     		}	
+//     		});
+//     	}
+//     	function addDetail() {
+// 	nui.open({
+// 		targetWindow : window,
+// 		url : webPath + partDomain+ "/repair/common/Customer.jsp?token=" + token,
+// 		title : "客户选择",
+// 		width : 1000,
+// 		height : 500,
+// 		allowDrag : true,
+// 		allowResize : false,
+// 		onload : function() {
+// 			var iframe = this.getIFrameEl();
+// 			var list = [];
+// 			var params = {
+// 				list : list
+// 			};
+// 			iframe.contentWindow.getData(params);
+// 		},
+// 		ondestroy : function(action) {
+// 			if (action == "ok") {
+// 				var iframe = this.getIFrameEl();
+// 				var data = iframe.contentWindow.getData();
+// 				data = data || {};
+// 				var guest = data.guest;
+
+// 				if (guset) {
+// 					var prdtId = part.id;
+// 					var prdtName = part.name;
+// 					var prdtType = 3;
+// 					var grid = nui.get("timesCardDetail");
+// 					var newRow = {
+// 						carNo : carNo,
+// 						carBrandName : carBrandName,
+// 						carModel : carModel
+// 					};
+// 					grid.addRow(newRow);
+// 				}
+
+// 			}
+// 		}
+// 	});
+// }
     	//关闭窗口
         function CloseWindow(action) {
         	if (action == "close" && form.isChanged()) {
@@ -161,6 +209,45 @@
         function onCancel() {
         	CloseWindow("cancel");
         }
+        
+        
+        
+        function selectCustomer() {
+    openCustomerWindow(function (v) {
+        basicInfoForm =new nui.get("datagrid1");	
+        var main = basicInfoForm.getData();
+        main.guestId = v.guestId;
+        main.contactorName = v.guestFullName;
+        main.carId = v.carId;
+        main.carNo = v.carNo;
+        main.carBrandId = v.carBrandId;
+        main.carSeriesId = v.carSeriesId;
+        main.contactorId = v.contactorId;
+        main.contactorTel = v.mobile;
+        var params = {};
+        params.data = main;
+        basicInfoForm.setData( params.data);
+//         SetData(params);
+    });
+}
+
+function openCustomerWindow(callback) {
+    nui.open({
+        url: "com.hsweb.RepairBusiness.Customer.flow",
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                //調用字界面的方法，返回子頁面的數據
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                callback && callback(guest);
+            }
+        }
+    });
+}
     </script>
 </body>
 </html>

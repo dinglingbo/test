@@ -104,7 +104,7 @@
                             <span class="fa fa-times-circle"></span>&nbsp;取消</a>
                         <a class="nui-button" plain="true" id="btnCall" iconCls="" onclick="callBill()">
                             <span class="fa fa-comment-o fa-lg"></span>&nbsp;跟进</a>
-                        <a class="nui-button" plain="true" id="btnshowhistory" iconCls="" onclick="showhistory()">
+                        <a class="nui-button" plain="true" id="btnshowhistory" iconCls="" onclick="showhistory()" visible="false">
                             <span class="fa fa-shopping-bag fa-lg"></span>&nbsp;服务履历</a>
                     </td>
                 </tr>

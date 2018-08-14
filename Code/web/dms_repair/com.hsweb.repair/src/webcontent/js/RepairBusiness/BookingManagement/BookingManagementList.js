@@ -12,19 +12,23 @@ var scoutModeHash = [];
 var scoutResutHash = [];
 
 var prebookCategoryHash = [{ name: '客户主动预约', id: '0' }, { name: '客户被动预约', id: '1' }];
-var prebookStatusHash = [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, { name: '已开单', id: '2' }, { name: '已取消', id: '3' }, { name: '已评价', id: '4' }];
+var prebookStatusHash = [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
 
 var upGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryPrebookList.biz.ext";
 var downGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingTrace.biz.ext";
 
 $(document).ready(function (v) {
+	//日期
     menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
+    //状态对象
     menuBtnStatusQuickSearch = nui.get("menuBtnStatusQuickSearch");
 
+    //数据列表
     upGrid = nui.get("upGrid");
     upGrid.setUrl("upGridUrl");
     upGrid.on("drawcell", onDrawCell);
 
+    //跟进人信息
     downGrid = nui.get("downGrid");
     downGrid.setUrl("downGridUrl");
     downGrid.on("drawcell", onDrawCell);
@@ -32,6 +36,7 @@ $(document).ready(function (v) {
     init();
     quickSearch(menuBtnDateQuickSearch, 0, '本日');
 
+    //行选择改变时发生
     upGrid.on("selectionchanged", function () {
         onupGridSelectionchanged();
     });
@@ -46,6 +51,7 @@ function init() {
         });
     });
 
+    //这种写法不懂？？？
     initCarSeries("carSeriesList", "", function () {
         var data = nui.get("carSeriesList").getData();
         data.forEach(function (v) {
@@ -84,6 +90,7 @@ function init() {
 
 var currType = 0;
 
+//点击快速查找中的某一个选项进来这个函数
 function quickSearch(ctlid, value, text) {
     ctlid.setValue(value);
     ctlid.setText(text);
@@ -100,16 +107,21 @@ function doSearch() {
     });
 }
 
+/*
+ * 快速查找要关联后面的查询条件
+ * */
 function getSearchParam() {
     var params = {};
     params.mtAdvisorId = nui.get("mtAdvisorList").getValue();
     params.carNo = nui.get("carNo").getValue();
     params.contactorTel = nui.get("contactorTel").getValue();
 
+    //状态
     var d = menuBtnDateQuickSearch.getValue();
 
     if (d == 0) {
         params.today = 1;
+   //这种写法不懂，特便是方法不知道
         params.startDate = getNowStartDate();
         params.endDate = addDate(getNowEndDate(), 1);
     } else if (d == 1) {
@@ -155,6 +167,7 @@ function onupGridSelectionchanged(e) {
 
     var btnEdit = nui.get("btnEdit");
     var btnconfirm = nui.get("btnconfirm");
+    //开单按钮
     var btnNewBill = nui.get("btnNewBill");
     var btnCancel = nui.get("btnCancel");
     var btnCall = nui.get("btnCall");
@@ -171,6 +184,7 @@ function onupGridSelectionchanged(e) {
         btnNewBill.enable();
         btnCancel.enable();
         btnCall.enable();
+        
     } else if (status >= 2) { //已开单，已取消，已评价
         btnEdit.disable();
         btnconfirm.disable();
@@ -179,19 +193,26 @@ function onupGridSelectionchanged(e) {
         btnCall.disable();
     }
 
+    //isOpenBill：是否开单
     if(row.isOpenBill && row.isOpenBill == 1){
         btnNewBill.disable();
     }
 
+    //还有这种写法
     var params = {};
     params.serviceId = row.id;
 
+    /*点击某一行数据，查出相应的跟踪数据
+     * 
+     * 
+     * */
     downGrid.load({
         params: params,
         token: token
     });
 }
 
+//只执行一次
 function onDrawCell(e) {
     var field = e.field;
 
@@ -248,19 +269,30 @@ function editRow() {
             iframe.contentWindow.SetData(param);
         },
         ondestroy: function (action) {
+        	//重新加载
             upGrid.reload();
         }
     });
 }
 
+//点击确认按钮进来这个函数
 function confirmRow() {
+	//不是很懂这种传参
     updateRpspreBookStatus('confirm');
 }
 
+//取消
 function cancelBill() {
     updateRpspreBookStatus('cancel');
 }
 
+//已开单
+function newBill() {
+	//把表单中的内容修改
+    updateRpspreBookStatus('newBill');
+}
+
+//修改状态时执行的函数
 function updateRpspreBookStatus(action) {
     var row = upGrid.getSelected();
     if (!row || row == undefined) {
@@ -271,10 +303,11 @@ function updateRpspreBookStatus(action) {
     var newRow = {};
     newRow.id = row.id;
 
-    newRow.status = action == "confirm" ? 1 : 
-                 action == "newBill" ? 2 :
-                 action == "cancel" ? 3 : 1;
-
+      //不懂
+       newRow.status = action == "confirm" ? 1 : 
+                 action ==  "cancel" ? 2 :
+                 action == "newBill" ? 3 : 1;
+  
 
     nui.mask({
         el: document.body,
@@ -297,7 +330,7 @@ function updateRpspreBookStatus(action) {
                 upGrid.reload();
             } else {
                 nui.unmask();
-                showMsg(data.errMsg || "保存失败","W");
+                showMsg(data.errMsg || "保存失败","W"); 
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {

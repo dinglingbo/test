@@ -32,7 +32,8 @@
 						   allowInput="false"
 						   showNullItem="false"
 						   nullItemText="请选择..."/> -->
-					<label style="font-family: Verdana;;font-size: 12px;">品牌：</label>
+						   
+					<!-- <label style="font-family: Verdana;;font-size: 12px;">品牌：</label>
 					<input id="carBrandId"
 						   name="carBrandId"
 						   class="nui-combobox width1"
@@ -48,8 +49,8 @@
 						   name="costType"
 						   class="nui-combobox width1"
 						   textField="name"
-						   valueField="customid"/>
-					<label style="font-family: Verdana;;font-size: 12px;">工时编码：</label>
+						   valueField="customid"/> -->
+				<label style="font-family: Verdana;;font-size: 12px;">工时编码：</label>
 					<input class="nui-textbox" id="search-code" name="code"/>
 					<label style="font-family: Verdana;;font-size: 12px;">工时名称：</label>
 					<input class="nui-textbox" id="search-name" name="name" />

@@ -1,8 +1,7 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
-var rightItemGridUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.queryPackageItem.biz.ext";
-var rightPartGridUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.queryPackagePart.biz.ext";
-
+var rightItemGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryRpbItemByPackageId.biz.ext";
+var rightPartGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryRpbPartByPackageId.biz.ext";
 var leftGrid = null;
 var rightItemGrid = null;
 var rightPartGrid = null;
@@ -16,6 +15,7 @@ $(document).ready(function (v)
 	leftGrid = nui.get("leftGrid"); 
 	leftGrid.setUrl(leftGridUrl);
 	leftGrid.on("drawcell",onDrawCell);
+	
 	leftGrid.on("rowclick",function(e)
 	{
 		onLeftGridRowClick(e);
@@ -24,13 +24,17 @@ $(document).ready(function (v)
 		onLeftGridRowClick({});
 	});
 
+	
 	rightItemGrid = nui.get("itemGrid");
 	rightItemGrid.setUrl(rightItemGridUrl);
-	rightItemGrid.on("drawcell",onDrawCell);
+	rightItemGrid.on("drawcell",onDrawCell);	
 	rightPartGrid = nui.get("rightPartGrid");
 	rightPartGrid.setUrl(rightPartGridUrl);
+	
+	
 	rightPartGrid.on("cellendedit",function(e)
 	{
+				
 		var row = e.record;
 		if(row)
 		{
@@ -40,6 +44,7 @@ $(document).ready(function (v)
 			{
 				var amt = unitPrice*qty;
 				row.amt = amt;
+				//修改行
 				rightPartGrid.updateRow(row,row);
 			}
 		}
@@ -49,17 +54,22 @@ $(document).ready(function (v)
 	queryForm = new nui.Form("#queryForm");
 	carBrandIdEl = nui.get("carBrandId");
 	carModelIdEl = nui.get("carModelId");
+	
 	init();
 });
+
+
 function init()
 {
 	carBrandIdEl.on("valuechanged",function()
 	{
-		var carBrandId = carBrandIdEl.getValue();
+		var carBrandId = carBrandIdEl.getValue();		
 		getCarModel("carModelId",{
 			value:carBrandId
 		});
 	});
+
+	//
 	var elList = basicInfoForm.getFields();
 	var nameList = ["amount"];
 	elList.forEach(function(v)
@@ -86,7 +96,9 @@ function init()
 				return;
 			}
 		}
+		//取消遮罩
 		nui.unmask();
+		
 		onSearch();
 	};
 	var pId2 = ITEM_KIND;//工种
@@ -95,6 +107,7 @@ function init()
 		hash.getDatadictionaries = true;
 		checkComplete();
 	});
+	
 	initDicts({
 		type:PKG_TYPE
 	},function(){
@@ -103,6 +116,7 @@ function init()
 		hash.initDicts = true;
 		checkComplete();
 	});
+	
 	initCarBrand("carBrandId",function()
 	{
 		var list = carBrandIdEl.getData();
@@ -110,7 +124,10 @@ function init()
 		hash.initCarBrand = true;
 		checkComplete();
 	});
+	
 }
+
+
 function onInputBlur(e)
 {
 	var el = e.sender;
@@ -124,11 +141,12 @@ function onInputFocus(e)
 {
 	var el = e.sender;
 	if(el)
-	{
+	{    
 		el.setInputStyle("text-align:left;");
 		el.setFormat("");
 	}
 }
+
 function onLeftGridRowClick(e)
 {
 	var row = leftGrid.getSelected();
@@ -139,6 +157,7 @@ function onLeftGridRowClick(e)
 		carBrandIdEl.doValueChanged();
 		loadRightPartGridData(row.id);
 		loadRightItemGridData(row.id);
+		
 	}
 }
 function onSearch()
@@ -162,12 +181,14 @@ function doSearch(params)
 }
 function loadRightItemGridData(packageId)
 {
-	var params = {
+	/*var params = {
 		packageId:packageId
-	};
+	};*/
+	
 	rightItemGrid.load({
 		token:token,
-		params:params
+		/*params:params*/
+		packageId:packageId
 	});
 }
 function loadRightPartGridData(packageId)
@@ -179,11 +200,15 @@ function loadRightPartGridData(packageId)
 }
 function addPackage()
 {
+	//添加时清除右边基本数据
 	basicInfoForm.clear();
+	rightItemGrid.clearRows();
+	rightPartGrid.clearRows();
 	var data = {
 		amount:0,
 		total:0
 	};
+	//设置原始数据
 	basicInfoForm.setData(data);
 }
 var saveUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.savePackage.biz.ext";
@@ -203,11 +228,11 @@ function save()
 	});
 	var delParts = rightPartGrid.getChanges("removed");
 	var updParts = rightPartGrid.getChanges("modified");
-
-	var itemList = rightItemGrid.getData();
+	var itemList = rightItemGrid.getData();	
 	var insItems = itemList.filter(function(v){
 		return !v.packageId;
 	});
+	
 	var delItems = rightItemGrid.getChanges("removed");
 	var updItems = rightItemGrid.getChanges("modified");
 	for(i=0;i<itemList.length;i++)

@@ -82,42 +82,7 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">
                 (date_format(a.out_date,'%Y-%m-%d') &lt;= #endDate#)
-            </isNotEmpty>
-			<isNotEmpty prepend="and" property="thisYear"> 
-            <!--本年  --> 
-                (date_format(a.enter_date,'%Y')=date_format(now(),'%Y'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastYear"> 
-            <!--上年--> 
-               (date_format(a.out_date,'%Y')=date_format(DATE_SUB(now(),INTERVAL 1 YEAR),'%Y'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisMonth"> 
-            <!--本月 --> 
-                (date_format(a.out_date,'%Y-%m')=date_format(now(),'%Y-%m'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastMonth"> 
-            <!--上月 --> 
-                (date_format(a.out_date,'%Y-%m')=date_format(DATE_SUB(now(),INTERVAL 1 MONTH),'%Y-%m'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="today">  
-            <!--本日-->
-                (date_format(a.out_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="yesterday">  
-            <!--昨日-->
-                (date_format(a.out_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisWeek">  
-            <!--本周-->
-                (date_format(a.out_date,'%X-%V')=date_format(now(),'%X-%V'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastWeek">  
-            <!--本周-->
-                (date_format(a.out_date,'%X-%V')=date_format(DATE_SUB(now(),INTERVAL 7 DAY),'%X-%V'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="guestId">  
-                (a.guest_id = #guestId#)
-            </isNotEmpty>
+            </isNotEmpty>     
             <isNotEmpty prepend="and" property="mtAdvisorId">  
                 (a.mt_advisor_id = #mtAdvisorId#)
             </isNotEmpty>

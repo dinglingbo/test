@@ -10,7 +10,7 @@
 
 <head>
     <title>预约列表</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.4"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=1.9"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -120,7 +120,7 @@
                             allowSortColumn="true">
                             <div property="columns">
                                 <div field="id" headerAlign="center" allowSort="true" visible="false" width="">id </div>
-                                <div field="status" headerAlign="center" allowSort="true" visible="true" width="40">状态 </div>
+                                <div field="status" headerAlign="center" allowSort="true" visible="true" width="40" id="updStatus">状态 </div>
                                 <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center" visible="true" width="40">服务顾问 </div>
                                 <div field="mtAdvisorId" headerAlign="center" allowSort="true" visible="false" width="">服务顾问Id </div>
                                 <div field="contactorName" headerAlign="center" allowSort="true" visible="true" width="60">客户名称 </div>

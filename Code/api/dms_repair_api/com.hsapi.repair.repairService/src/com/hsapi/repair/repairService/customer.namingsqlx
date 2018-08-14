@@ -61,38 +61,53 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
                 (b.mobile like '%$mobile$%')
-            </isNotEmpty><isNotEmpty prepend="and" property="thisYear"> 
-            <!--本年  --> 
-                (date_format(a.enter_date,'%Y')=date_format(now(),'%Y'))
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastYear"> 
-            <!--上年--> 
-               (date_format(a.out_date,'%Y')=date_format(DATE_SUB(now(),INTERVAL 1 YEAR),'%Y'))
+                        
+            <!--本日来厂-->
+            <isEqual  property="todayEnter" compareValue="1">
+					AND date(c.last_come_date) = date(NOW())	
+			</isEqual>
+			   <!--昨日来厂-->
+            <isEqual prepend="and" property="yesterdayEnter" compareValue="1">  
+                (date_format(c.last_come_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
+            </isEqual>
+             <!--本日新客户-->
+            <isEqual  property="todayNew" compareValue="1">
+					AND date(c.last_come_date) = date(NOW())
+					AND	date_format(c.last_come_date,'%Y-%m-%d')=date_format(c.first_come_date,'%Y-%m-%d')
+			</isEqual>
+			  <!--本月新客户 --> 
+            <isEqual property="thisMonthNew" compareValue="1"> 
+                AND (date_format(c.last_come_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+                AND (date_format(c.last_come_date,'%Y-%m')=date_format(c.first_come_date,'%Y-%m'))
+            </isEqual>
+            <!--本月所有来厂客户 --> 
+            <isEqual prepend="and" property="thisMonthEnter" compareValue="1"> 
+                (date_format(c.last_come_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isEqual>
+            <!--最后来厂日期 -->
+            <isNotEmpty prepend="and" property="lastEnterStart">  
+                (date_format(c.last_come_date,'%Y-%m-%d') &gt;= #lastEnterStart#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisMonth"> 
-            <!--本月 --> 
-                (date_format(a.out_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            <isNotEmpty prepend="and" property="lastEnterEnd">  
+                (date_format(c.last_come_date,'%Y-%m-%d') &lt;= #lastEnterEnd#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastMonth"> 
-            <!--上月 --> 
-                (date_format(a.out_date,'%Y-%m')=date_format(DATE_SUB(now(),INTERVAL 1 MONTH),'%Y-%m'))
+             <!--第一次来厂日期 -->
+            <isNotEmpty prepend="and" property="firstEnterStart">  
+                (date_format(c.first_come_date,'%Y-%m-%d') &gt;= #lastEnterStart#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="today">  
-            <!--本日-->
-                (date_format(a.out_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            <isNotEmpty prepend="and" property="firstEnterEnd">  
+                (date_format(c.first_come_date,'%Y-%m-%d') &lt;= #lastEnterEnd#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="yesterday">  
-            <!--昨日-->
-                (date_format(a.out_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
+             <!--最后离厂日期 -->
+            <isNotEmpty prepend="and" property="lastOutStart">  
+                (date_format(c.last_leave_date,'%Y-%m-%d') &gt;= #lastOutStart#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisWeek">  
-            <!--本周-->
-                (date_format(a.out_date,'%X-%V')=date_format(now(),'%X-%V'))
+            <isNotEmpty prepend="and" property="lastOutEnd">  
+                (date_format(c.last_leave_date,'%Y-%m-%d') &lt;= #lastOutEnd#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastWeek">  
-            <!--上周-->
-                (date_format(a.out_date,'%X-%V')=date_format(DATE_SUB(now(),INTERVAL 7 DAY),'%X-%V'))
-            </isNotEmpty>
+             <!--最后来厂日期 -->
+            
             
         </dynamic>
 	</select>

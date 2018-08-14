@@ -8,6 +8,7 @@ var carInfoFrom = null;
 var basicInfoForm = null;
 var provice;
 var cityId;
+var data;
 function init(callback)
 {
 	var addEditCustomerPage = nui.get("addEditCustomerPage");

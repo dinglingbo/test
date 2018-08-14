@@ -17,6 +17,7 @@ $(document).ready(function(v) {
 	doSearch();
 });
 function doSearch() {
+	
 	mainGrid.load({
 		token : token
 	});
@@ -30,7 +31,7 @@ function onRenderer(e) {
     return "";
 }
 function refresh(){
-	doSearch()
+	doSearch();
 }
 function onDrawCell(e){
 	//nui.alert(1);

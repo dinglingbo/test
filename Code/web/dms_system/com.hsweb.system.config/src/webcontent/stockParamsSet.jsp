@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/common/sysCommon.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
   - Author(s): localhost
@@ -12,7 +11,7 @@
 <head>
 <title>库存设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + sysDomain%>/config/js/stockParamsSet.js?v=1.0.0"></script>
+    <script src="<%=webPath + sysDomain%>/config/js/stockParamsSet.js?v=1.0.2"></script>
 </head>
 <style type="text/css">
     body {
@@ -56,7 +55,7 @@
 				</td>
 				<td>
 					<div id="repairDefaultStore" name="repairDefaultStore" 
-						class="nui-combobox" textField="name" valueField="id" ></div>
+						class="nui-combobox" textField="name" valueField="id" valuechanged="aa" ></div>
 				</td>
 			</tr>
 			<tr>

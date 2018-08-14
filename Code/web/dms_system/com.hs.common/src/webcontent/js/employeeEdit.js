@@ -16,11 +16,19 @@ $(document).ready(function(v) {
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
 	sex.setData(sexlist);
-//	isservice.setData(isservicelist);
+	//isservice.setData(isservicelist);
 
     basicInfoForm = new nui.Form('#basicInfoForm');
 });
 
+function onempid(e) {
+    if (e.isValid) {
+        if ( e.value.length >=11 ) {
+            e.errorText = "必须输入不大于11位数字";
+            e.isValid = false;
+        }
+    }
+}
 function SetInitData(data) {
 	if (!data.empid) return;
 	basicInfoForm.setData(data);   

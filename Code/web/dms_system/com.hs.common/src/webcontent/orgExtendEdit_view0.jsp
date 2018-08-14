@@ -138,7 +138,7 @@ table tr td span
 
             <tr>
                 <td class="tbtext">企业号<span></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth" name="code" id="code"/></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="code" id="code" vtype="maxLength:5"/></td>
 				<td><input class="nui-textbox tabwidth" name="orgid" id="orgid" visible="false"/></td>
             </tr>    
             

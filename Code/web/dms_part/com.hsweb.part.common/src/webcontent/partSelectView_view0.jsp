@@ -44,6 +44,7 @@
                            showNullItem="false"
                            nullItemText="请选择..."/>
                     <span class="separator"></span>
+                    
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
                 </td>

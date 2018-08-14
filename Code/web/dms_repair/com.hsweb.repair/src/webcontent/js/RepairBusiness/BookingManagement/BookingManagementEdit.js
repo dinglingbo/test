@@ -16,6 +16,8 @@ $(document).ready(function(v){
 });
 
 function init() {
+	
+	//品牌
     initCarBrand("carBrandId", function () {
         var data = nui.get("carBrandId").getData();
         data.forEach(function (v) {
@@ -26,10 +28,12 @@ function init() {
     initCarSeries("carSeriesId", "", function () {
         var data = nui.get("carSeriesId").getData();
         data.forEach(function (v) {
+        	//车系信息
             carSeriesHash[v.id] = v;
         });
     });
 
+    //服务顾问
     initMember("mtAdvisorId", function () {
         var data = nui.get("mtAdvisorId").getData();
         data.forEach(function (v) {
@@ -37,6 +41,7 @@ function init() {
         });
     });
 
+    //业务类型
     initServiceType("serviceTypeId", function () {
         var data = nui.get("serviceTypeId").getData();
         data.forEach(function (v) {
@@ -44,6 +49,7 @@ function init() {
         });
     });   
     
+    //预约类型
     nui.get("prebookCategory").setData(prebookCategoryHash);
 
 }

@@ -97,7 +97,8 @@ function processCarSeries(data){
 }
 
 //获取车型(选择品牌、车系触发)
-function initCarModel(id, carBrandId, carSeriesId){
+function initCarModel(id,carBrandId, carSeriesId,callback){
+	_initDmsCallback["initCarModel"] = callback;
     if(checkObjExists(id, "initCarModel")){
         var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryCarModel.biz.ext";
         var params = {};
@@ -106,6 +107,9 @@ function initCarModel(id, carBrandId, carSeriesId){
         callAjax(url, params, processAjax, processCarModel, null);
     }
 }
+
+
+
 function processCarModel(data){
     _initDmsObj["initCarModel"].setData(data);
     setDataToHash(data,"carModel","id");

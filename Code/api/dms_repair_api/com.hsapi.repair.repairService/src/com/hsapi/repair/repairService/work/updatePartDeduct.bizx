@@ -418,16 +418,16 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPart" name="packages"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPart" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sales_deduct_type" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="sales_deduct_origin_value" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="sales_deduct_value" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="sales_deduct_origin_value" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="sales_deduct_value" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPart" name="packageTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPart" name="updateList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
-    <process:input description="整单优惠率" isArray="false" name="totalPrefRate" primitiveType="Float"/>
+    <process:input description="整单优惠率" isArray="false" name="totalPrefRate" primitiveType="Double"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

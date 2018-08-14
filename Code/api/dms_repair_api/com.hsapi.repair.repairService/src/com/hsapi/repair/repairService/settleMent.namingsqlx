@@ -99,6 +99,20 @@
 			AND ifnull( return_sign, 0 ) = 0	
 	</select>
 	
+	
+	<select id="getRpsPkgCardTimesAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT sum(amt) as amt, sum(subtotal) as subtotal from rps_package
+		where service_id = #serviceId#  and card_detail_id > 0	
+	</select>
+	<select id="getRpsItemCardTimesAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT sum(amt) as amt, sum(subtotal) as subtotal from rps_item
+		where service_id = #serviceId#  and card_detail_id > 0
+	</select>
+	<select id="getRpsPartCardTimesAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT sum(amt) as amt, sum(subtotal) as subtotal from rps_part
+		where service_id = #serviceId#  and card_detail_id > 0	
+	</select>
+	
 	<select id="getRpsPkgDetailAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPackage">
 		SELECT
 			d.package_id id,

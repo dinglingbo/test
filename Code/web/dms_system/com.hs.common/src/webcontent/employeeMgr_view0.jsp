@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 
+<%@ include file="/common/sysCommon.jsp"%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@ include file="/common/sysCommon.jsp"%>	
 <html>
 <!-- 
   - Author(s): Administrator
@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + sysDomain%>/common/js/employeeQuery.js?v=2.0.0" type="text/javascript"></script>    
+    <script src="<%=webPath + sysDomain%>/common/js/employeeQuery.js?v=2.0.9" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">

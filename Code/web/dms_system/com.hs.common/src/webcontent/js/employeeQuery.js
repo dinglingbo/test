@@ -214,11 +214,11 @@ function stoporstart(){
             cache: false,
             success: function (data) {
                 if (data.errCode == "S"){
+                	var newRow = {isOpenAccount: 0};
+                	grid.updateRow(row, newRow);
                     nui.unmask(document.body);
                     showMsg("操作成功!","S");
             
-                    var newRow = {isOpenAccount: 0};
-                    grid.updateRow(row, newRow);
 
                 }else {
                     nui.unmask(document.body);
@@ -293,7 +293,7 @@ function stoporstart(){
         });
 
     }
-    	
+    search();	
     
 }
 	
@@ -304,8 +304,13 @@ function changebutton(){
         if (s.isOpenAccount==0) btnisOpenAccount.setText("<span class='fa fa-key'></span>&nbsp;开通账号");
 	    else btnisOpenAccount.setText("<span class='fa fa-key'></span>&nbsp;关闭账号");
 
-        if (s.isDimission==0) btnisDimission.setText("<span class='fa fa-user-times'></span>&nbsp;离职");
-        else btnisDimission.setText("<span class='fa fa-user'></span>&nbsp;复职");
+        if (s.isDimission==0){
+        	btnisDimission.setText("<span class='fa fa-user-times'></span>&nbsp;离职");
+        	btnisOpenAccount.setVisible(true);
+        }else{
+        	btnisDimission.setText("<span class='fa fa-user'></span>&nbsp;复职");
+        	btnisOpenAccount.setVisible(false);
+        }
 	}
 }
 function importGuest(){

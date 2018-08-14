@@ -77,7 +77,7 @@
 <body>
 
 <div style="text-align: right;">
-    <div id="isInternal" name="isInternal" visible="false" class="nui-checkbox" text="" onvaluechanged="" trueValue="1" falseValue="0"></div>
+    <div id="isInternal" class="nui-checkbox" name="isInternal" visible="false"  text="" onvaluechanged="" trueValue="1" falseValue="0"></div>
     <span>客户</span>
     <div id="isClient" name="isClient" class="nui-checkbox" text="" enabled="true" trueValue="1" falseValue="0"></div>
     <span>供应商</span>

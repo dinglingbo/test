@@ -11,6 +11,15 @@ $(document).ready(function(v)
 {
     tree = nui.get("tree");
     tree.setUrl(treeUrl);
+/*
+ * {
+  sender: Object,         //树对象
+  node: Object,           //节点对象
+  isLeaf: Boolean
+}
+ * 
+ * */
+    //"nodedblclick":节点双击时发生
     tree.on("nodedblclick",function(e)
     {
         var node = e.node;

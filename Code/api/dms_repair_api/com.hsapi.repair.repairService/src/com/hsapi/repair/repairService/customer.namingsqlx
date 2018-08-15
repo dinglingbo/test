@@ -146,6 +146,7 @@
 			a.insure_due_date as insureDueDate,
 		    d.birthday_type as birthdayType,
             d.birthday,
+            d.sex,
             f.chain_consume_amt as chainConsumeAmt
 		FROM
 			rpb_car a

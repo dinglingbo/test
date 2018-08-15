@@ -17,7 +17,7 @@
 			b.car_model as carModel,
 			a.car_vin as carVin,
 			a.car_no as carNO,
-			c.tel as guestTel,
+			c.mobile as guestTel,
 			b.car_brand_id as carBrandId,
 			a.guest_id as guestId,
 			a.mt_advisor as mtAdvisor,

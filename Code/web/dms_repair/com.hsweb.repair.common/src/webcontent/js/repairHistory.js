@@ -4,12 +4,13 @@
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGrid = null;
 var leftGridUrl = baseUrl + "com.hsapi.repair.repairService.query.queryMtHistoryList.biz.ext";
-
+var guestId={};
 $(document).ready(function (v)
 {
     //setData({
     //    contactorId:1
     //});
+	
 	init();
 });
 var basicInfoForm = null;
@@ -17,13 +18,18 @@ var guestInfoForm = null;
 var serviceTypeIdEl = null;
 function init(callback)
 {
+	//车辆维修信息
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setEnabled(false);
+    //客户基本信息
     guestInfoForm = new nui.Form("#guestInfoForm");
     guestInfoForm.setEnabled(false);
+    //左邊表格
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    //不知道在那個地方
     leftGrid.on("drawcell",onDrawCell);
+    //行双击时发生
     leftGrid.on("rowdblclick", function (e) {
         var row = e.record;
         onRowDblClick(e);
@@ -127,11 +133,14 @@ function getGuestInfoByContactorId(contactorId,callback)
 function setData(data)
 {
 	init(function(){
+//		var params={};
+//		params.guestId="";
         data = data||{};
-        var guestId = data.guestId;
-        doSearch({
-            guestId:guestId
-        });
+//        params.guestId = data.guestId;
+        var params = {
+        		guestId: data.guestId
+            };
+        doSearch(params);
     });
 }
 
@@ -139,7 +148,7 @@ function setData(data)
 function onRowDblClick(e)
 {
     var row = e.record;
-
+   
     loadRpsItemQuoteData(row);
     loadRpsPartQuoteData(row);
     loadRpsPartData(row);
@@ -166,6 +175,7 @@ var statusHash2 = ["在报价", "在维修"];
 var rpsItemQuoteGrid = null;
 function loadRpsItemQuoteData(row) {
     if (!rpsItemQuoteGrid) {
+     //估算项目/材料
         rpsItemQuoteGrid = nui.get("rpsItemQuoteGrid");
         rpsItemQuoteGrid.on("drawcell", function (e) {
             if (e.field == "status") {

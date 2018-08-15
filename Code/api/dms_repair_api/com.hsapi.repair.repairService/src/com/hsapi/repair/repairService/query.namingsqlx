@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="queryMtHistoryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-		SELECT
+		SELECT 
 			a.id id,
 			a.orgid orgid,
 			a.status status,
@@ -131,7 +131,7 @@
 			a.service_type_id serviceTypeId,
 			<!--a.mt_type mtType,-->
 			a.no_mt_file_man noMtFileMan,
-			a.quote_date quoteDate,
+			<!--a.quote_date quoteDate,-->
 			a.no_mt_file_date noMtFileDate,
 			a.no_mt_type noMtType,
 			a.no_mt_reason noMtReason

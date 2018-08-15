@@ -17,13 +17,18 @@ var guestInfoForm = null;
 var serviceTypeIdEl = null;
 function init(callback)
 {
+	//车辆维修信息
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setEnabled(false);
+    //客户基本信息
     guestInfoForm = new nui.Form("#guestInfoForm");
     guestInfoForm.setEnabled(false);
+    //左邊表格
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    //不知道在那個地方
     leftGrid.on("drawcell",onDrawCell);
+    //行双击时发生
     leftGrid.on("rowdblclick", function (e) {
         var row = e.record;
         onRowDblClick(e);
@@ -139,7 +144,7 @@ function setData(data)
 function onRowDblClick(e)
 {
     var row = e.record;
-
+   
     loadRpsItemQuoteData(row);
     loadRpsPartQuoteData(row);
     loadRpsPartData(row);
@@ -166,6 +171,7 @@ var statusHash2 = ["在报价", "在维修"];
 var rpsItemQuoteGrid = null;
 function loadRpsItemQuoteData(row) {
     if (!rpsItemQuoteGrid) {
+     //估算项目/材料
         rpsItemQuoteGrid = nui.get("rpsItemQuoteGrid");
         rpsItemQuoteGrid.on("drawcell", function (e) {
             if (e.field == "status") {

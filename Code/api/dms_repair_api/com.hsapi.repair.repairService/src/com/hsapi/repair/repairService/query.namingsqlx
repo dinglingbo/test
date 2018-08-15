@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="queryMtHistoryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-		SELECT
+		SELECT 
 			a.id id,
 			a.orgid orgid,
 			a.status status,

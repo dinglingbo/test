@@ -22,7 +22,7 @@
                 <table >
                     <tr>
                         <td>员工工号</td>
-                        <td><input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid"/></td>
+                        <td><input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" readonly="readonly" emptyText="系统自动分配"/></td>
                         <td>所属工作组</td>
                         <td><input class="nui-combobox" required="false" id="tenantId" name="tenantId"/></td>
                     </tr>

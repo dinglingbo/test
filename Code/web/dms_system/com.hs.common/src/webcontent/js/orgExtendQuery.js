@@ -180,54 +180,7 @@ function dimssion(){
 	
 }
 
-/*
-*
-*
-*开通或关闭
-*
-*/
-// var stoporstartUrl=baseUrl +"com.hsapi.system.employee.employeeMgr.stopOrStartEmployee.biz.ext";
-// function stoporstart(){
-	
-//     var emp = {};
-    
- 
-//     	var row = grid.getSelected();
-//     	if (!row) {
-//     		alert("请选中一条记录");
-//     		return;
-    		
-//     	}
-    	
-//     	emp = row;  	
-//     	emp.passWord='000000';
-// 		  nui.open({
-// 		        url: baseUrl + "/common/setAccount.jsp",
-// 		        width: 530,      //宽度
-// 		        height: 180,    //高度
-// 		        title: "设置密码",      //标题 组织编码选择
-// 		        allowResize:true,
-// 		        onload: function () {
-// 		            var iframe = this.getIFrameEl();
-// 		            iframe.contentWindow.SetData(emp);
-// 		        },
-// 		        ondestroy: function (action) {  //弹出页面关闭前
-// 		            if (action == "OK") {       //如果点击“确定”
-// 		                alert('开通帐户成功！');
-// 		                /*var iframe = this.getIFrameEl();
-// 		                var data = iframe.contentWindow.GetData();
-// 		                data = nui.clone(data);    //必须。克隆数据。		               
-// 		                if(data){
-// 		                    alert('1111');
-// 		                }*/
-		                
-// 		            }
-// 		        }
-// 		    });	    
-    
-// 	}
-	
-	
+
 	
 	
 

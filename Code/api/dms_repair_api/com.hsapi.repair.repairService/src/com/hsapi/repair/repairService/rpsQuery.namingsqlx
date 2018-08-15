@@ -132,7 +132,7 @@
 			a.rate/100.0 rate,
 			a.discount_amt discountAmt,
 			a.subtotal subtotal,
-			a.class_name className,
+			<!--a.class_name className,-->
 			a.worker worker,
 			a.begin_date beginDate,
 			a.finish_auditor finishAuditor,

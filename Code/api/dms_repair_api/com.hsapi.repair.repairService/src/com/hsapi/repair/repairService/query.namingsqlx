@@ -53,7 +53,8 @@
 			LEFT JOIN rpb_car d ON ( a.car_id = d.id )
 			LEFT JOIN rpb_contactor f ON ( a.contactor_id = f.id )
 		WHERE a.orgid = #orgid#
-			AND a.`status` = '6'
+			AND a.`status` = '2' 
+			and  a.is_settle = '1'
 		<dynamic>
 			<isNotEmpty prepend="and" property="guestId"> 
                 a.guest_id = #guestId#

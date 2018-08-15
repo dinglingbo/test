@@ -290,7 +290,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgOrganization" name="org"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hs.common.com.ComCompany" name="params"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComCompany" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

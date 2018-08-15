@@ -131,12 +131,7 @@ table tr td span
            <table >
 
             <tr >
-                <td class="tbtext">LOGO图片<span></span>   <div>
-        图片：<input class="mini-htmlfile" name="Fdata"  id="file1" style="width:300px;"/>
-
-        <br /><br />
-        <input type="button" value="上传" onclick="ajaxFileUpload()"/>
-    </div>
+                <td class="tbtext">LOGO图片<span></span>   
 </td>
                 <td  colspan="5" class="tabwidth"><div class="pic"  style="width:64px;height:64px;border:1px solid #ccc; "></div></td>
 				

@@ -448,10 +448,10 @@
     <location x="613" y="300"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getRpsCardTimesAmt</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+        <process:inputVariable id="0" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -477,7 +477,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="datekey" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="cardTimesAmt" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="cardTimesAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">

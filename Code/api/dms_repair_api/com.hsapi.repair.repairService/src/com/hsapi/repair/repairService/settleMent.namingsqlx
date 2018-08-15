@@ -170,7 +170,7 @@
 			AND a.STATUS = 1
 	</select>
 	
-	<select id="queryPrebookList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="settleList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT a.id as id, a.service_code as serviceCode, a.service_type_id as serviceTypeId, 
 		       b.bala_amt as balaAmt, c.`name` as guestName, c.mobile as guestTel, a.recorder as recorder, 
 		       a.record_date as recordDate, a.mt_advisor as mtAdvisor, a.modify_date as modifyDate,

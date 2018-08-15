@@ -88,7 +88,7 @@ table {
                     <div field="" width="30" headerAlign="center" allowSort="true">
                         状态
                     </div>
-                    <div field="" width="80" headerAlign="center" allowSort="true">
+                    <div field="chainComeTimes" width="80" headerAlign="center" allowSort="true">
                         来厂次数
                     </div>
                 </div>

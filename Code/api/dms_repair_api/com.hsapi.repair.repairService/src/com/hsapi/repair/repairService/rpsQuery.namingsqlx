@@ -102,12 +102,12 @@
 			a.guest_id guestId,
 			a.contactor_id contactorId,
 			a.car_id carId,
-			a.part_audit_sign partAuditSign,
+			<!--a.part_audit_sign partAuditSign,-->
 			a.draw_out_report drawOutReport,
-			a.out_bill_sign outBillSign,
+			<!--a.out_bill_sign outBillSign,
 			a.out_enter_date outEnterDate,
 			a.out_leave_date outLeaveDate,
-			a.out_print_date outPrintDate,
+			a.out_print_date outPrintDate,-->
 			a.out_date outDate,
 			a.comp_come_times compComeTimes
 		FROM
@@ -133,7 +133,7 @@
 			a.discount_amt discountAmt,
 			a.subtotal subtotal,
 			<!--a.class_name className,-->
-			a.worker worker,
+			<!--a.worker worker,-->
 			a.begin_date beginDate,
 			a.finish_auditor finishAuditor,
 			a.finish_date finishDate,

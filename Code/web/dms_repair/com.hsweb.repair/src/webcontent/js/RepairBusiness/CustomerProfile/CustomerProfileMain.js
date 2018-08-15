@@ -187,6 +187,7 @@ function onAdvancedSearchOk()
     advancedSearchWin.hide();
     doSearch(searchData);
     advancedSearchForm.gusetId=null;
+  
 }
 function onAdvancedSearchCancel(){
     advancedSearchForm.clear();

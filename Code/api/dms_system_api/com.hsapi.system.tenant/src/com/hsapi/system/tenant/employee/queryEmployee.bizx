@@ -112,7 +112,7 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cd/_expr[6]/_op</process:to>
+      <process:to type="query">cd/_expr[7]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

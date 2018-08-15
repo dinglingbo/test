@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/common.jsp"%>
+	<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -23,7 +24,7 @@
 						<span style="margin-left: 2px;">客户名称：</span>
 					</td>
 					<td colspan="1">
-						<input class="nui-buttonedit" onclick="onCustomer()" width="490px" />
+						<input class="nui-buttonedit" onclick="selectCustomer()" width="490px" />
 					</td>
 					<td class="form_label" width="70px">
 						<span style="margin-left: 10px;">手机号码：</span>
@@ -37,7 +38,7 @@
 	</div>
 	<div  class="nui-splitter" style="width:100%;height:78%;" allowResize="false">
 	    <div size="70%" showCollapseButton="false">
-	        <div  id="datagrid1" class="nui-datagrid" dataField="data" style="width:100%;height:110%" url="com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext"
+	        <div  id="datagrid1" class="nui-datagrid" dataField="main" style="width:100%;height:110%" url=""
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -61,7 +62,7 @@
 					        <div field="carModel" width="50px" headerAlign="center" allowSort="true">
 					        	车型
 					        </div>
-					        <div field="" width="120px" headerAlign="center" allowSort="true">
+					        <div field="vin" width="120px" headerAlign="center" allowSort="true">
 					        	底盘号
 					        </div>
 					    </div>
@@ -81,7 +82,7 @@
 			</div>
 		</div>
 	    <div showCollapseButton="false" >
-	        <div  class="nui-datagrid" dataField="data" url="com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext"
+	        <div id="datagrid2"  class="nui-datagrid" dataField="main" url=""
 	        	  pageSize="20" showPageInfo="false" multiSelect="true"
 				  showPageIndex="false" showPage="false" showPageSize="false"
 				  showReloadButton="false" showPagerButtonIcon="false"
@@ -90,10 +91,10 @@
 			    <div property="columns">
 			    	<div header="&nbsp">
 			    		<div property="columns">
-					    	<div field="name" width="30%" headerAlign="center" allowSort="true">
+					    	<div field="contactName" width="30%" headerAlign="center" allowSort="true">
 					        	姓名
 					        </div>
-					        <div field="" width="20%" headerAlign="center" allowSort="true">
+					        <div field="sex" width="20%" headerAlign="center" allowSort="true">
 					        	性别
 					        </div>
 					        <div field="mobile" width="50%" headerAlign="center" allowSort="true">
@@ -117,23 +118,9 @@
     	nui.parse();
     	var grid = nui.get("datagrid1");
     	var formData = new nui.Form("#form1").getData(false, false);
+ 		formData.carNo=null;
     	grid.load(formData);
     	
-    	function onCustomer(){
-    		nui.open({
-    			url:"http://127.0.0.1:8080/default/repair/common/Customer.jsp",
-    			title:"客户选择",width:900,height:550,
-    			onload:function(){
-    			    var iframe = this.getIFrameEl();
-    			    var data = {pageType:"customer"};
-    			    iframe.contentWindow.setData(data);
-    			},
-    			
-    		    ondestroy:function(action){
-    		    grid.reload();
-    		}	
-    		});
-    	}
     	//关闭窗口
         function CloseWindow(action) {
         	if (action == "close" && form.isChanged()) {
@@ -161,6 +148,45 @@
         function onCancel() {
         	CloseWindow("cancel");
         }
+            
+        function selectCustomer() {
+    openCustomerWindow(function (v) {
+        basicInfoForm =new nui.get("datagrid1");
+        basicInfoForm2=new nui.get('datagrid2');
+        var params = {
+        	guestId :v.guestId,
+	        contactName : v.guestFullName,
+	        carId : v.carId,
+	        carNo : v.carNo,
+	        carBrandId : v.carBrandName,
+	        carModel 	: v.carModel,
+	        carSeriesId : v.carSeriesId,
+	        contactorId : v.contactorId,
+	        mobile : v.mobile,
+	        vin  : v.vin
+        };
+        basicInfoForm.addRow(params);
+		basicInfoForm2.addRow(params);
+    });
+}
+
+function openCustomerWindow(callback) {
+    nui.open({
+        url: "com.hsweb.RepairBusiness.Customer.flow",
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                //調用字界面的方法，返回子頁面的數據
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                callback && callback(guest);
+            }
+        }
+    });
+}
     </script>
 </body>
 </html>

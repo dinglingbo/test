@@ -66,6 +66,11 @@ var balanceList = [
     {id:1,text:"已对"},
     {id:2,text:"全部"}
 ];
+var settleStatusList = [
+    {id:0,text:"未结算"},
+    {id:1,text:"部分结算"},
+    {id:2,text:"已结算"}
+];
 var typeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
 
 $(document).ready(function(v)

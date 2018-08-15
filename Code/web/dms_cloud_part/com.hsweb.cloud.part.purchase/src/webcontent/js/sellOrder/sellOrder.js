@@ -1198,9 +1198,12 @@ function selectSupplier(elId)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
+            // var params = {
+            //     isClient: 1,
+            //     guestType:'01020102'
+            // };
             var params = {
-                isClient: 1,
-                guestType:'01020102'
+                isClient: 1
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -1293,7 +1296,9 @@ function onCellEditEnter(e){
                 return;
             }
 
-            if(!record.comPartCode){
+            var partCode = record.comPartCode||"";
+            partCode = partCode.replace(/\s+/g, "");
+            if(!partCode){
                 showMsg("请输入编码!","W");
                 var row = rightGrid.getSelected();
                 rightGrid.removeRow(row);
@@ -1313,7 +1318,7 @@ function onCellEditEnter(e){
                         nui.get("serviceId").setValue(data.serviceId);
                         record.serviceId = data.serviceId;
                         record.mainId = data.id;
-                        showPartInfo(record,record.comPartCode,data.id);
+                        showPartInfo(record,partCode,data.id);
 
                         /*var rs = addInsertRow(record.comPartCode,record);
                         if(!rs){
@@ -1328,7 +1333,7 @@ function onCellEditEnter(e){
                 }else{
                     record.mainId = main.id;
                     record.serviceId = nui.get("serviceId").getValue();
-                    showPartInfo(record,record.comPartCode,main.id);
+                    showPartInfo(record,partCode,main.id);
                     /*var rs = addInsertRow(record.comPartCode,record);
                     if(!rs){
                         var newRow = {comPartCode: ""};

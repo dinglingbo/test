@@ -66,8 +66,11 @@ table {
                     <div field="contactName" width="100" headerAlign="center" allowSort="true">
                         姓名
                     </div>
-                    <div field="identityName" width="50" headerAlign="center" allowSort="true">
+                    <div field="identity" width="50" headerAlign="center" allowSort="true">
                         身份
+                    </div>
+                     <div field="sex" width="0" style="display:none;" headerAlign="center" allowSort="true">
+                       性别
                     </div>
                 </div>
             </div>
@@ -76,7 +79,7 @@ table {
                     <div field="carNo" width="60" headerAlign="center" allowSort="true">
                         车牌号
                     </div>
-                    <div field="carBrandName" width="50" headerAlign="center" allowSort="true">
+                    <div field="carBrandId" width="50" headerAlign="center" allowSort="true">
                         品牌
                     </div>
                     <div field="carModel" width="60" headerAlign="center" allowSort="true">
@@ -105,8 +108,8 @@ table {
             </div>
             <div header="辅助信息" headerAlign="center">
                 <div property="columns">
-                    <div field="underpanNo" width="100" headerAlign="center" allowSort="true">
-                        底盘号
+                    <div field="vin" width="100" headerAlign="center" allowSort="true">
+                        VIN号
                     </div>
                     <div field="engineNo" width="80" headerAlign="center" allowSort="true">
                         发动机号

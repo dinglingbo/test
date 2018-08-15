@@ -55,7 +55,7 @@ $(document).ready(function(v)
 
     gsparams.startDate = getNowStartDate();
     gsparams.endDate = addDate(getNowEndDate(), 1);
-    gsparams.isOut = 0;
+    //gsparams.isOut = 0;
 
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
@@ -1014,96 +1014,96 @@ function onCellEditEnter(e){
         }
     }
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
-function audit()
-{
-    var data = basicInfoForm.getData();
-    for ( var key in requiredField) {
-        if (!data[key] || $.trim(data[key]).length == 0) {
-            showMsg(requiredField[key] + "不能为空!","W");
-            return;
-        }
-    }
+// var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
+// function audit()
+// {
+//     var data = basicInfoForm.getData();
+//     for ( var key in requiredField) {
+//         if (!data[key] || $.trim(data[key]).length == 0) {
+//             showMsg(requiredField[key] + "不能为空!","W");
+//             return;
+//         }
+//     }
 
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign == 1) {
-            showMsg("此单已提交!","W");
-            return;
-        } 
-    }else{
-        return;
-    }
+//     var row = leftGrid.getSelected();
+//     if(row){
+//         if(row.auditSign == 1) {
+//             showMsg("此单已提交!","W");
+//             return;
+//         } 
+//     }else{
+//         return;
+//     }
 
-    //审核时，数量，单价，金额，仓库不能为空
-    var msg = checkStockOutQty();
-    if(msg){
-        showMsg(msg,"W");
-        return;
-    }
-    //审核时，判断是否存在缺货信息
-    var msg = checkRightData();
-    if(msg){
-        showMsg(msg,"W");
-        return;
-    }
+//     //审核时，数量，单价，金额，仓库不能为空
+//     var msg = checkStockOutQty();
+//     if(msg){
+//         showMsg(msg,"W");
+//         return;
+//     }
+//     //审核时，判断是否存在缺货信息
+//     var msg = checkRightData();
+//     if(msg){
+//         showMsg(msg,"W");
+//         return;
+//     }
 
-    data = getMainData();
+//     data = getMainData();
 
-    var sellOrderDetailAdd = rightGrid.getChanges("added");
-    var sellOrderDetailUpdate = rightGrid.getChanges("modified");
-    var sellOrderDetailDelete = rightGrid.getChanges("removed");
-    var sellOrderDetailList = rightGrid.getData();
-    if(sellOrderDetailList.length <= 0) {
-        showMsg("退货明细为空，不能提交!","W");
-        return;
-    }
-    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
+//     var sellOrderDetailAdd = rightGrid.getChanges("added");
+//     var sellOrderDetailUpdate = rightGrid.getChanges("modified");
+//     var sellOrderDetailDelete = rightGrid.getChanges("removed");
+//     var sellOrderDetailList = rightGrid.getData();
+//     if(sellOrderDetailList.length <= 0) {
+//         showMsg("退货明细为空，不能提交!","W");
+//         return;
+//     }
+//     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
 
 
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '提交中...'
-    });
+//     nui.mask({
+//         el: document.body,
+//         cls: 'mini-mask-loading',
+//         html: '提交中...'
+//     });
 
-    nui.ajax({
-        url : auditUrl,
-        type : "post",
-        data : JSON.stringify({
-            sellOrderMain : data,
-            sellOrderDetailAdd : sellOrderDetailAdd,
-            sellOrderDetailUpdate : sellOrderDetailUpdate,
-            sellOrderDetailDelete : sellOrderDetailDelete,
-            sellOrderDetailList : sellOrderDetailList,
-            token : token
-        }),
-        success : function(data) {
-            nui.unmask(document.body);
-            data = data || {};
-            if (data.errCode == "S") {
-                showMsg("提交成功!","S");
-                var pjSellOrderMainList = data.pjSellOrderMainList;
-                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
-                    var leftRow = pjSellOrderMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
+//     nui.ajax({
+//         url : auditUrl,
+//         type : "post",
+//         data : JSON.stringify({
+//             sellOrderMain : data,
+//             sellOrderDetailAdd : sellOrderDetailAdd,
+//             sellOrderDetailUpdate : sellOrderDetailUpdate,
+//             sellOrderDetailDelete : sellOrderDetailDelete,
+//             sellOrderDetailList : sellOrderDetailList,
+//             token : token
+//         }),
+//         success : function(data) {
+//             nui.unmask(document.body);
+//             data = data || {};
+//             if (data.errCode == "S") {
+//                 showMsg("提交成功!","S");
+//                 var pjSellOrderMainList = data.pjSellOrderMainList;
+//                 if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
+//                     var leftRow = pjSellOrderMainList[0];
+//                     var row = leftGrid.getSelected();
+//                     leftGrid.updateRow(row,leftRow);
 
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-                }
-                //onLeftGridRowDblClick({});
+//                     //保存成功后重新加载数据
+//                     loadMainAndDetailInfo(leftRow);
+//                 }
+//                 //onLeftGridRowDblClick({});
                 
-            } else {
-                showMsg(data.errMsg || "提交失败!","W");
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
+//             } else {
+//                 showMsg(data.errMsg || "提交失败!","W");
+//             }
+//         },
+//         error : function(jqXHR, textStatus, errorThrown) {
+//             // nui.alert(jqXHR.responseText);
+//             console.log(jqXHR.responseText);
+//         }
+//     });
+// }
 function addNewRow(check){
     var data = basicInfoForm.getData();
 

@@ -105,14 +105,15 @@
 			a.identity identity,
 			c.car_brand_id carBrandId,
 			c.car_model carModel,
-			c.underpan_no underpanNo,
+			<!--c.underpan_no underpanNo,-->
 			c.engine_no engineNo,
 			a.remark,
-			c.chain_come_times chainComeTimes
+			d.chain_come_times chainComeTimes
 		FROM
 			rpb_contactor a
 			LEFT JOIN wb_common.com_guest b ON ( a.guest_id = b.id )
 			LEFT JOIN rpb_car c ON ( a.guest_id = c.guest_id ) 
+			LEFT JOIN rpb_car_extend d ON (d.car_id=c.id)
 		WHERE
 			a.id = #contactorId#
 	</select>
@@ -127,7 +128,7 @@
 			b.car_model carModel,
 			c.name contactorName,
 			a.service_type_id serviceTypeId,
-			a.mt_type mtType,
+			<!--a.mt_type mtType,-->
 			a.no_mt_file_man noMtFileMan,
 			a.quote_date quoteDate,
 			a.no_mt_file_date noMtFileDate,

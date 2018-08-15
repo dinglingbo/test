@@ -156,9 +156,11 @@
         var params = {
         	guestId :v.guestId,
 	        contactName : v.guestFullName,
+	        identity :v.identity,
+	        sex : v.sex,
 	        carId : v.carId,
 	        carNo : v.carNo,
-	        carBrandId : v.carBrandName,
+	        carBrandId : v.carBrandId,
 	        carModel 	: v.carModel,
 	        carSeriesId : v.carSeriesId,
 	        contactorId : v.contactorId,

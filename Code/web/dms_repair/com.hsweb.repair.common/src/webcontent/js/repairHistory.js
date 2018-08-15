@@ -4,12 +4,13 @@
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGrid = null;
 var leftGridUrl = baseUrl + "com.hsapi.repair.repairService.query.queryMtHistoryList.biz.ext";
-
+var guestId={};
 $(document).ready(function (v)
 {
     //setData({
     //    contactorId:1
     //});
+	
 	init();
 });
 var basicInfoForm = null;
@@ -127,11 +128,14 @@ function getGuestInfoByContactorId(contactorId,callback)
 function setData(data)
 {
 	init(function(){
+//		var params={};
+//		params.guestId="";
         data = data||{};
-        var guestId = data.guestId;
-        doSearch({
-            guestId:guestId
-        });
+//        params.guestId = data.guestId;
+        var params = {
+        		guestId: data.guestId
+            };
+        doSearch(params);
     });
 }
 

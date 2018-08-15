@@ -77,7 +77,7 @@
 			a.car_no carNo,
 			b.car_brand_id carBrandId,
 			a.service_type_id serviceTypeId,
-			a.mt_type mtType,
+			<!--a.mt_type mtType,-->
 			a.mt_advisor_id mtAdvisorId,
 			a.mt_advisor mtAdvisor,
 			a.enter_oil_mass enterOilMass,
@@ -124,9 +124,9 @@
 			a.item_name itemName,
 			a.item_code itemCode,
 			a.amt amt,
-			a.rece_type_id receTypeId,
+			<!--a.rece_type_id receTypeId,-->
 			a.item_time itemTime,
-			a.item_kind itemKind,
+			<!--a.item_kind itemKind,-->
 			a.status status,
 			a.unit_price unitPrice,
 			a.rate/100.0 rate,
@@ -179,7 +179,7 @@
 			a.unit unit,
 			a.part_code partCode,
 			a.amt amt,
-			a.rece_type_id receTypeId,
+			<!--a.rece_type_id receTypeId,-->
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,

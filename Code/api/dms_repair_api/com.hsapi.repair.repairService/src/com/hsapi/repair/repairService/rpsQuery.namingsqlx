@@ -83,12 +83,12 @@
 			a.enter_oil_mass enterOilMass,
 			a.enter_kilometers enterKilometers,
 			a.enter_date enterDate,
-			a.quote_date quoteDate,
+			<!--a.quote_date quoteDate,-->
 			a.sure_mt_date sureMtDate,
 			a.check_date checkDate,
 			a.plan_finish_date planFinishDate,
-			a.service_card serviceCard,
-			a.is_car_wash isCarWash,
+			<!--a.service_card serviceCard,-->
+			<!--a.is_car_wash isCarWash,-->			
 			a.remark remark,
 			a.guest_desc guestDesc,
 			a.fault_phen faultPhen,
@@ -132,7 +132,7 @@
 			a.rate/100.0 rate,
 			a.discount_amt discountAmt,
 			a.subtotal subtotal,
-			a.class_name className,
+			<!--a.class_name className,-->
 			a.worker worker,
 			a.begin_date beginDate,
 			a.finish_auditor finishAuditor,

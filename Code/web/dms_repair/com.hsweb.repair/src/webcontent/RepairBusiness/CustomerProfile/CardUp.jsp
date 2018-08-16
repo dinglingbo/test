@@ -11,94 +11,67 @@
 -->
 <head>
 <title>会员卡充值</title>
-<%--     <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.3"></script> --%>
-    
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.7"></script>
+
 </head>
 <body>
 
-
     <div style=" width: 100%;  ">
         <div showCollapseButton="false" style="border:0; ">
-            <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
-                
+            <div class="nui-toolbar" style="padding:0px;border-bottom:0;">   
             </div>
             <div class="nui-form" id="basicInfoForm">
-
                 <table style="border-collapse:separate; border-spacing:0px 10px;">
-                    <tr>
-
-                        <td class="form_label">
-                            <label>客户姓名：</label>
+                    <tr >
+                        <td  style="text-align: center; width:10%;">客户姓名：
+						 <input class="nui-textbox" id="guestFullName" name="guestFullName" visible="true"  allowInput="true"/> 
+                           
                         </td>
-                        <td>
-                            <input class="nui-textbox" id="" name="" visible="true"  allowInput="true"/>
-                        </td>
-                        <td class="form_label">
+                    </tr >
+                          <tr style="text-align: center;width:10%">
+                        <td  class="form_label">
                             <label>客户电话：</label>
-                        </td>
-                        <td>
-                            <input class="nui-textbox" id="" name="" allowInput="true" valueField=""  />
-                        </td>
-                        <td class="form_label">
-                            <label>客户生日：</label>
-                        </td>
-                        <td>
-                            <input class="nui-textbox" id="" name="" allowInput="true" textField="" valueField="" />
+                             <input class="nui-textbox" id="mobile" name="mobile" allowInput="true" valueField=""  />
+                        </td> 
+                        </tr>
+                    <tr>
+                        <td align="center" class="form_label">
+                        	<label >储值卡类型选择</label>         
                         </td>
                     </tr>
                     <tr>
-                        <td class="form_label">
-                            <label>客户性别：</label>
-                        </td>
-                        <td>
-                            <input class="nui-textbox" id="" name="" required="true"/>
-                        </td>
-                        <td class="form_label">
-                            <label>会员等级：</label>
-                        </td>
-                        <td>
-                            <input class="nui-textbox" name="" id="" required="true"/>
-                        </td>
-                        <td class="form_label">
-                            <label>会员卡余额：</label>
-                        </td>
-                        <td>
-                            <input class="nui-textbox" id="" name="" textField="" valueField="" required="true"/>
-
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td  class="form_label">
-                            <label>预计来厂：</label>
-                        </td>
-                        <td>
-                            <!-- <input id="predictComeDate"  name="predictComeDate" width="150px" class="nui-datepicker" format="yyyy-MM-dd H:mm" timeFormat="H:mm" showTime="true" 
-                                allowInput="false" showTodayButton="false" ondrawdate="onDrawDate" viewDate="new Date()" nullValue="null" showOkButton="true"
-                                showClearButton="false" required="true"/> -->
-                            <input class="nui-combobox" id="timeStart" name="timeStart" textField="name"  ondrawdate="onDrawDate"
-                                valueField="id" allowInput="false"  onValuechanged="setTimeChange" >
-                        </td>
-                    </tr>
-                    <tr>
-                        <td  class="form_label">
-                        </td>
-                        <td colspan="5">
-                            <div class="addyytime">
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="form_label">
-                            <label>客户描述：</label>
-                        </td>
-                        <td colspan="5">
-                            <textarea class="nui-textarea" width="100%" height="180px" id="faultDesc" name="faultDesc"></textarea>
-                        </td>
+                    	
                     </tr>
                 </table>
-            </div>
+                <table id="table" style="border-collapse:separate; border-spacing:0px 10px;">
+                	<tr style="text-align: center;width:10%">
+                		<td  >充值金额(元)：
+                		<input id="up" class="nui-textbox" width="40%" />
+                		</td>
+					</tr>
+					<tr>
+						<td style="text-align: center;width:10%">会员折扣：
+						<input class="nui-textbox" width="40%" />
+						</td>
+					</tr>
+					<tr style="text-align: center;width:10%">
+						<td  id="message">到账金额：
+						</td>
+					</tr>
+					<tr>
+						<td align="center" width:10>支付方式：</td>
+					</tr>
+					<tr align="center"  width:10>
+						<td  id="radio"  class="nui-radiobuttonlist" textField="name" valueField="id" ></td>
+					</tr>
+					<tr align="center" >
+						<td>
+							<a class="nui-button"onclick="">确认支付</a>
+						</td>
+					</tr>
+                
+                </table>
+         </div> 
 
         </div>
     </div>
@@ -106,4 +79,7 @@
 
     </div>
 </body>
+	<script type="text/javascript">
+
+	</script>
 </html>

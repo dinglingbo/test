@@ -223,19 +223,20 @@ function addOrEditCustomer(guest)
 }
 
 //打开会员卡充值页面
-function toUp(){
+function toUp(callback){
 	var row=grid.getSelected();
 	if(row){
 		nui.open({
-			url:"",
-			title: "充值会员卡", width: 560, height: 570,
+			url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 400, height: 400,
 			onload: function(){
 				var iframe=this.getIFrameEl();
 				var params={
 						data :row
 				};
 				
-				iframe.contentWindow.setData(params);
+				iframe.contentWindow.SetData(params);
+		
 			},
 			onedestroy: function(action){
 				if("ok" == action){

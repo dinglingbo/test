@@ -221,6 +221,32 @@ function addOrEditCustomer(guest)
         }
     });
 }
+
+//打开会员卡充值页面
+function toUp(){
+	var row=grid.getSelected();
+	if(row){
+		nui.open({
+			url:"",
+			title: "充值会员卡", width: 560, height: 570,
+			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :row
+				};
+				
+				iframe.contentWindow.setData(params);
+			},
+			onedestroy: function(action){
+				if("ok" == action){
+					grid.reload();
+				}
+			}
+		});
+	}else{
+		showMsg("请选择一条记录","W");
+	}
+}
 function add()
 {
     addOrEditCustomer();

@@ -9,8 +9,7 @@
 <head>
 <title>用户修改</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%= request.getContextPath() %>/common/nui/nui.js"
-	type="text/javascript">
+	<%@include file="/common/sysCommon.jsp"%>
         </script>
 </head>
 <body>
@@ -61,7 +60,7 @@
 			var data = form.getData(false, true);
 			var json = nui.encode(data);
 			nui.ajax({
-				url : "com.hsapi.system.dict.textbase.updataBase.biz.ext",
+				url : "<%=sysApi %>/com.hsapi.system.config.textbase.updataBase.biz.ext",
 				data : json,
 				type : 'post',
 				cache : false,

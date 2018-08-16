@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchBase.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchBase" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="link4" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.dict.com_bmwUserCfg.ComBmwusercfg</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -35,7 +35,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.system.dict.com_bmwUserCfg.ComBmwusercfg[]" name="bmw" type="query" valueType="DataObject">bmw</process:return>
+      <process:return id="0" language="com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg[]" name="bmw" type="query" valueType="DataObject">bmw</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
     </process:returns>
   </nodes>
@@ -104,7 +104,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.system.dict.com_bmwUserCfg.ComBmwusercfg" name="bmw"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg" name="bmw"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

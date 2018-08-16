@@ -11,7 +11,7 @@
 <head>
 <title>TextBase64</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+   	<%@include file="/common/sysCommon.jsp"%>
     
 </head>
 <body>
@@ -19,12 +19,12 @@
 		<div align="center" id="">
 			<table>
 				<tr>
-					<td class="td1">登录账号：</td>
-					<td><input class="nui-textbox" id="loginName" name="loginName"  /></td>
+					<td class="td1">宝马用户账号：</td>
+					<td><input class="nui-textbox" id="loginname" name="loginname"  /></td>
 				</tr>
 				<tr>
-					<td class="td1">密码：</td>
-					<td><input class="nui-password" id="passWord" name="passWord" /></td>
+					<td class="td1">宝马用户密码：</td>
+					<td><input class="nui-password" id="password" name="password" /></td>
 				</tr>
 
 			</table>
@@ -40,14 +40,14 @@
 		function start() {
 			//获取账号密码字符串，传入后台加密
 			var params = {};
-			params.loginName = nui.get('loginName').getValue();
-			params.passWord = nui.get('passWord').getValue();
-			var i = nui.get('loginName').getValue();
-			var o = nui.get('passWord').getValue();
+			params.loginName = nui.get('loginname').getValue();
+			params.passWord = nui.get('password').getValue();
+			var i = nui.get('loginname').getValue();
+			var o = nui.get('password').getValue();
 			var b = i + ":" + o.toLowerCase();
 			params.c = b;
 			nui.ajax({
-				url : "com.hsapi.system.dict.textbase.textbase.biz.ext",
+				url : "<%=sysApi %>/com.hsapi.system.config.textbase.textbase.biz.ext",
 				type : 'post',
 				data : {
 					params : params

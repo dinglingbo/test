@@ -1,4 +1,4 @@
-package com_hsapi_system_dict_base64;
+package com.hsapi.system.config;
 
 import sun.misc.BASE64Encoder;
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/sysCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,7 +11,7 @@
 <head>
 <title>设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
- <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+<script src="<%=webPath + sysDomain%>/config/js/tenantIdShareUrl.js?v=1.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -118,7 +118,7 @@
     </div>
     <div title="其他设置"   >
       <!-- 数据实体名称 -->
-        <input class="nui-hidden" name="criteria/_entity" value="com.hsapi.system.dict.com_bmwUserCfg.ComBmwusercfg">
+        <input class="nui-hidden" name="criteria/_entity" value="com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg">
      <div class="nui-toolbar" style="padding:0px;border-bottom:1;" >
 			<table style="width:100%;">
 				<tr>
@@ -141,7 +141,7 @@
 					allowCellSelect="true"
 					allowCellEdit="true"
 					showSummaryRow="true"
-					url="com.hsapi.system.dict.textbase.searchBase.biz.ext" 
+					url="<%=sysApi %>/com.hsapi.system.config.textbase.searchBase.biz.ext" 
 					dataField="bmw"
 					idField="ID"
 					>
@@ -172,12 +172,12 @@
 			var grid = nui.get("grid1");
 			grid.load();
 	function baseAt() {
-		mini.open({
+		nui.open({
 			targetWindow : window,
 			url : "<%=sysDomain %>/config/base64LoginIn.jsp",
 			title : "新增用户",
-			width : 250,
-			height : 120,
+			width : 350,
+			height : 180,
 			onload : function() {
 			},
 		});
@@ -190,7 +190,7 @@
 				url : "<%=sysDomain %>/config/updataBase.jsp",
 				title : "修改",
 				width : 350,
-				height : 170,
+				height : 200,
 				onload : function() {
 					var iframe = this.getIFrameEl();
 					var data = {

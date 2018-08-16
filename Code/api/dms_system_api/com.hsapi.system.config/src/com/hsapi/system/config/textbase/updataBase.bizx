@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updataBase.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updataBase" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="updateEntity" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link1" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -58,7 +58,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo4</targetNode>
+      <targetNode>invokePojo5</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
@@ -83,42 +83,13 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="jdkBase64" displayName="jdkBase64" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo1</sourceNode>
-      <targetNode>assign2</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo1</sourceNode>
-      <targetNode>assign1</targetNode>
-    </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="402" y="82"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com_hsapi_system_dict_base64.Base64.jdkBase64</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="str" type="query" value="java.lang.String" valueType="Java" pattern="reference">base</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out1" type="query" value="java.lang.String" valueType="Java">encryptedStr</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="383" y="118"/>
-    <figSize height="17" width="61"/>
-    <node>invokePojo1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="异常信息" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>end1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link4</targetConnections>
+    <targetConnections>link12</targetConnections>
     <location x="399" y="255"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -132,39 +103,13 @@
     <figSize height="17" width="49"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="拼接被加密串" displayName="addStr" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo2</sourceNode>
-      <targetNode>invokePojo1</targetNode>
-    </sourceConnections>
-    <targetConnections>link8</targetConnections>
-    <location x="324" y="80"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com_hsapi_system_dict_base64.Base64.addStr</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="a" type="query" value="java.lang.String" valueType="Java" pattern="reference">name1</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="java.lang.String" valueType="Java" pattern="reference">psw1</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">base</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="299" y="116"/>
-    <figSize height="17" width="73"/>
-    <node>invokePojo2</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="494" y="82"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
@@ -178,18 +123,42 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="格式化被加密串" displayName="addStr" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo3</sourceNode>
-      <targetNode>invokePojo2</targetNode>
-      <process:transitionCondition/>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="lower" displayName="lower" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>invokePojo6</targetNode>
     </sourceConnections>
-    <targetConnections>link11</targetConnections>
-    <location x="255" y="15"/>
+    <targetConnections>link2</targetConnections>
+    <location x="180" y="82"/>
     <size height="28" width="22"/>
-    <nodeLabel>invokePojo3label</nodeLabel>
+    <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com_hsapi_system_dict_base64.Base64.addStr</process:partner>
+      <process:partner type="literal">com.hsapi.system.config.Base64.lower</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="c" type="query" value="java.lang.String" valueType="Java" pattern="reference">psw</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">psw1</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="175" y="118"/>
+    <figSize height="17" width="33"/>
+    <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="addStr" displayName="addStr" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>invokePojo8</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="255" y="30"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.system.config.Base64.addStr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -200,35 +169,65 @@
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">name1</process:outputVariable>
     </process:outputVariables>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="224" y="51"/>
-    <figSize height="17" width="85"/>
-    <node>invokePojo3</node>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="246" y="66"/>
+    <figSize height="17" width="40"/>
+    <node>invokePojo6</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="lower1" displayName="lower" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo4</sourceNode>
-      <targetNode>invokePojo3</targetNode>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="jdkBase64" displayName="jdkBase64" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo7</sourceNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="175" y="80"/>
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo7</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="402" y="91"/>
     <size height="28" width="22"/>
-    <nodeLabel>invokePojo4label</nodeLabel>
+    <nodeLabel>invokePojo7label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com_hsapi_system_dict_base64.Base64.lower</process:partner>
+      <process:partner type="literal">com.hsapi.system.config.Base64.jdkBase64</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="c" type="query" value="java.lang.String" valueType="Java" pattern="reference">psw</process:inputVariable>
+      <process:inputVariable id="0" name="str" type="query" value="java.lang.String" valueType="Java" pattern="reference">base</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">psw1</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">encryptedStr</process:outputVariable>
     </process:outputVariables>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="166" y="116"/>
-    <figSize height="17" width="40"/>
-    <node>invokePojo4</node>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
+    <location x="383" y="127"/>
+    <figSize height="17" width="61"/>
+    <node>invokePojo7</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="拼接被加密串" displayName="addStr" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>invokePojo7</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="315" y="91"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo8label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.system.config.Base64.addStr</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="a" type="query" value="java.lang.String" valueType="Java" pattern="reference">name1</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="java.lang.String" valueType="Java" pattern="reference">psw1</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">base</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
+    <location x="290" y="127"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo8</node>
   </nodes>
   <topRuler>
     <guides position="2" horizontal="true"/>
@@ -246,7 +245,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="psw1" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="base64加密数据实体" isArray="false" modelType="com.hsapi.system.dict.com_bmwUserCfg.ComBmwusercfg" name="bmw"/>
+    <process:input description="base64加密数据实体" isArray="false" modelType="com.hsapi.system.config.com_bmwUserCfg.ComBmwusercfg" name="bmw"/>
   </process:inputs>
   <process:outputs>
     <process:output description="错误提示" isArray="false" name="errMsg" primitiveType="String"/>

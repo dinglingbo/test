@@ -205,18 +205,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">guestId</process:from>
-      <process:to type="query">p/guestId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">rechargeBalaAmt-cardPayAmt</process:from>
-      <process:to type="query">guestJoin/rechargeBalaAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">rechargeUseAmt+cardPayAmt</process:from>
-      <process:to type="query">guestJoin/rechargeUseAmt</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">consumeRecord/orgid</process:to>
     </process:copy>
@@ -241,6 +229,10 @@
       <process:to type="query">consumeRecord/serviceId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">rechargeBalaAmt</process:from>
+      <process:to type="query">consumeRecord/cardAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">cardPayAmt</process:from>
       <process:to type="query">consumeRecord/consumeAmt</process:to>
     </process:copy>
@@ -259,6 +251,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">consumeRecord/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guestId</process:from>
+      <process:to type="query">p/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rechargeBalaAmt-cardPayAmt</process:from>
+      <process:to type="query">guestJoin/rechargeBalaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rechargeUseAmt+cardPayAmt</process:from>
+      <process:to type="query">guestJoin/rechargeUseAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -460,7 +464,7 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo5</targetNode>

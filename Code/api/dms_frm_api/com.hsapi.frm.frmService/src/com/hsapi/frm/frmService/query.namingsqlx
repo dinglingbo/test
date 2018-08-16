@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+ 
+
+    <select id="queryRPAcountDTypeList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT bala_type_id as balaTypeId, bala_type_code as balaTypeCode, 
+		       bala_type_name as balaTypeName, rp_dc as rpDc, char_off_amt as charOffAmt, remark as remark
+		from fis_rp_account_d_type where main_id = #mainId#
+	</select>
+	
+	
+</sqlMap>

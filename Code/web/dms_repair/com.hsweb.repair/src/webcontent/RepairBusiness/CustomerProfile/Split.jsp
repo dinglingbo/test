@@ -118,8 +118,7 @@
     	nui.parse();
     	var grid = nui.get("datagrid1");
     	var formData = new nui.Form("#form1").getData(false, false);
- 		formData.carNo=null;
-    	grid.load(formData);
+
     	
     	//关闭窗口
         function CloseWindow(action) {
@@ -156,14 +155,17 @@
         var params = {
         	guestId :v.guestId,
 	        contactName : v.guestFullName,
+	        identity :v.identity,
+	        sex : v.sex,
 	        carId : v.carId,
 	        carNo : v.carNo,
-	        carBrandId : v.carBrandName,
+	        carBrandId : v.carBrandId,
 	        carModel 	: v.carModel,
 	        carSeriesId : v.carSeriesId,
 	        contactorId : v.contactorId,
 	        mobile : v.mobile,
-	        vin  : v.vin
+	        vin  : v.vin,
+	        chainComeTimes : v.chainComeTimes
         };
         basicInfoForm.addRow(params);
 		basicInfoForm2.addRow(params);

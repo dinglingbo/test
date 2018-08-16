@@ -2314,6 +2314,8 @@ function auditToOut()
                 leftGrid.updateRow(row, newRow);
 
                 setBtnable(false);
+
+                add();
                 
             } else {
                 showMsg(data.errMsg || "出库失败!","W");
@@ -2366,7 +2368,9 @@ function unAudit()
                 showMsg("返单成功!","S");
                 leftGrid.updateRow(row, {auditSign:0});
                 row = leftGrid.getSelected();
-                loadMainAndDetailInfo(row);
+                //loadMainAndDetailInfo(row);
+                rightGrid.setData([]);
+                add();
                 
             } else {
                 showMsg(data.errMsg || "审核失败!","W");

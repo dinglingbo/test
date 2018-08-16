@@ -101,6 +101,7 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="455" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -262,6 +263,10 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link13</targetConnections>
     <location x="675" y="47"/>
@@ -272,7 +277,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB01_ORA_WB_SYSTEM</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">default</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">org</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -282,7 +287,9 @@
     <figSize height="17" width="80"/>
     <node>invokePojo0</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="83" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="steven" createTime="2018-05-30 16:49:02" date="2018-05-30Z" description="" name="employeeDimssion" version="7.0.0.0"/>
   <process:variables>

@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="-171" y="205"/>
+    <location x="-262" y="205"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -26,7 +26,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-169" y="241"/>
+    <location x="-260" y="241"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -75,10 +75,10 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>invokePojo6</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="-119" y="205"/>
+    <location x="-210" y="205"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -99,7 +99,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="-117" y="241"/>
+    <location x="-208" y="241"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -124,115 +124,163 @@
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">fisRpAccountHash/rpType</process:to>
+      <process:to type="query">fisRpBill/billDc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">maintain/guestId</process:from>
-      <process:to type="query">fisRpAccountHash/guestId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">guestFullName</process:from>
-      <process:to type="query">fisRpAccountHash/guestFullName</process:to>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">fisRpBill/rpTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">maintain/id</process:from>
-      <process:to type="query">fisRpAccountHash/serviceId</process:to>
+      <process:to type="query">fisRpBill/billMainId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">maintain/serviceCode</process:from>
-      <process:to type="query">fisRpAccountHash/serviceCode</process:to>
+      <process:to type="query">fisRpBill/billServiceId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">02020103</process:from>
-      <process:to type="query">fisRpAccountHash/serviceTypeId</process:to>
+      <process:from type="literal" pattern="reference">103</process:from>
+      <process:to type="query">fisRpBill/billTypeCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
-      <process:to type="query">fisRpAccountHash/rpAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/carNo</process:from>
-      <process:to type="query">fisRpAccountHash/remark</process:to>
+      <process:from type="literal" pattern="reference">103</process:from>
+      <process:to type="query">fisRpBill/billTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
-      <process:to type="query">fisRpAccountHash/billAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">fisRpAccountHash/isPrimaryBusiness</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
-      <process:to type="query">fisRpAccountHash/rpAmtYes</process:to>
+      <process:to type="query">fisRpBill/rpAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">fisRpAccountHash/rpAmtNo</process:to>
+      <process:to type="query">fisRpBill/charOffAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">fisRpBillListHash/billStatus</process:to>
+      <process:from type="query" pattern="reference">fmonth</process:from>
+      <process:to type="query">fisRpBill/fMonth</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">guest/fullName</process:from>
-      <process:to type="query">fisRpBillListHash/guestFullName</process:to>
+      <process:from type="query" pattern="reference">fyear</process:from>
+      <process:to type="query">fisRpBill/fYear</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">maintain/guestId</process:from>
-      <process:to type="query">fisRpBillListHash/guestId</process:to>
+      <process:to type="query">fisRpBill/guestId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
-      <process:to type="query">fisRpBillListHash/offsetAmt</process:to>
+      <process:from type="query" pattern="reference">guest/fullName</process:from>
+      <process:to type="query">fisRpBill/guestName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">fisRpBillListHash/offsetAmtNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">fisRpBillListHash/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">fisRpBillListHash/recordDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">fisRpBillListHash/recorder</process:to>
+      <process:to type="query">fisRpBill/isDisabled</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
-      <process:to type="query">fisRpBillListHash/rpAmt</process:to>
+      <process:to type="query">fisRpBill/noCharOffAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">fisRpBillListHash/rpDate</process:to>
+      <process:from type="query" pattern="reference">maintain/orgid</process:from>
+      <process:to type="query">fisRpBill/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">fisRpBillListHash/rpMan</process:to>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">fisRpBill/preCharOffAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">payType</process:from>
-      <process:to type="query">fisRpBillListHash/rpModeId</process:to>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">fisRpBill/voidAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">fisRpBill/trueCharOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">fisRpBill/settleStatus</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/id</process:from>
+      <process:to type="query">ppTemp/billMainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/serviceCode</process:from>
+      <process:to type="query">ppTemp/billServiceId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">fisRpBillListHash/rpTypeId</process:to>
+      <process:to type="query">ppTemp/rpDc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">fisRpBillListHash/settAccountId</process:to>
+      <process:from type="literal" pattern="reference">103</process:from>
+      <process:to type="query">ppTemp/billTypeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">fisRpBillListHash/settAccountCode</process:to>
+      <process:from type="literal" pattern="reference">103</process:from>
+      <process:to type="query">ppTemp/billTypeCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">fisRpBillListHash/settAccountName</process:to>
+      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:to type="query">ppTemp/charOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">ppTemp/voidAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">fisRpAccount/accountTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">103</process:from>
+      <process:to type="query">fisRpAccount/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">103</process:from>
+      <process:to type="query">fisRpAccount/billTypeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:to type="query">fisRpAccount/charOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fmonth</process:from>
+      <process:to type="query">fisRpAccount/fMonth</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fyear</process:from>
+      <process:to type="query">fisRpAccount/fYear</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/guestId</process:from>
+      <process:to type="query">fisRpAccount/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/fullName</process:from>
+      <process:to type="query">fisRpAccount/guestName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">fisRpAccount/itemQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">fisRpAccount/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">fisRpAccount/rpDc</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">应收</process:from>
+      <process:to type="query">fisRpAccount/settleType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:to type="query">fisRpAccount/trueCharOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">fisRpAccount/voidAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -575,18 +623,18 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link40</targetConnections>
-    <targetConnections>link44</targetConnections>
+    <targetConnections>link47</targetConnections>
     <location x="1227" y="206"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.rpAccountSettle</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="rpAccountHash" type="query" value="com.hsapi.repair.data.common.FisRpAccount" valueType="DataObject" pattern="reference">fisRpAccountHash</process:inputVariable>
-        <process:inputVariable id="1" name="payHash" type="query" value="com.hsapi.repair.data.common.FisRpBillList" valueType="DataObject" pattern="reference">fisRpBillListHash</process:inputVariable>
-        <process:inputVariable id="2" name="payDetailHash" type="query" value="com.hsapi.repair.data.common.FisRpBillListDetail[]" valueType="DataObject" pattern="reference">fisRpBillListDetailHash</process:inputVariable>
-        <process:inputVariable id="3" name="isPay" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="0" name="rpAccount" type="query" value="com.hsapi.repair.data.common.FisRpBill" valueType="DataObject" pattern="reference">fisRpBill</process:inputVariable>
+        <process:inputVariable id="1" name="pay" type="query" value="com.hsapi.repair.data.common.FisRpAccount" valueType="DataObject" pattern="reference">fisRpAccount</process:inputVariable>
+        <process:inputVariable id="2" name="payDetail" type="query" value="com.hsapi.repair.data.common.FisRpAccountDetail[]" valueType="DataObject" pattern="reference">fisRpDetail</process:inputVariable>
+        <process:inputVariable id="3" name="payTypeDetail" type="query" value="com.hsapi.repair.data.common.FisRpAccountDType[]" valueType="DataObject" pattern="reference">fisRpDetailType</process:inputVariable>
+        <process:inputVariable id="4" name="isPay" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -635,6 +683,10 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
+    <targetConnections>link49</targetConnections>
+    <targetConnections>link53</targetConnections>
+    <targetConnections>link54</targetConnections>
+    <targetConnections>link55</targetConnections>
     <location x="810" y="205"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -792,7 +844,7 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
+    <targetConnections>link46</targetConnections>
     <location x="-31" y="205"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -817,6 +869,17 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link48" name="link48" displayName="连接线" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>assign18</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">payType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
     <targetConnections>link33</targetConnections>
@@ -867,6 +930,14 @@
       <process:from type="query" pattern="reference">dateKey</process:from>
       <process:to type="query">maintain/datekey</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userName</process:from>
+      <process:to type="query">maintain/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">maintain/modifyDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
     <location x="715" y="241"/>
@@ -901,22 +972,31 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
     <location x="974" y="135"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">rpTemp/balaTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">payType</process:from>
       <process:to type="query">rpTemp/balaTypeCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">payType</process:from>
-      <process:to type="query">rpTemp/balaTypeId</process:to>
+      <process:from type="query" pattern="reference">payTypeName</process:from>
+      <process:to type="query">rpTemp/balaTypeName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">payAmt</process:from>
       <process:to type="query">rpTemp/charOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">rpTemp/remark</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
@@ -929,6 +1009,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">rpTemp/settAccountId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">rpTemp/settAccountName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
@@ -951,10 +1035,10 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">rpTemp</process:inputVariable>
-      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">fisRpBillListDetailHash</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">fisRpDetailType</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">fisRpBillListDetailHash</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">fisRpDetailType</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
@@ -962,10 +1046,10 @@
     <figSize height="17" width="62"/>
     <node>invokePojo4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign16" name="赋值15" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值15" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>invokePojo8</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link42" name="link42" displayName="连接线" type="transition">
       <sourceNode>assign16</sourceNode>
@@ -998,16 +1082,24 @@
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">rpTemp/balaTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">020107</process:from>
       <process:to type="query">rpTemp/balaTypeCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">020107</process:from>
-      <process:to type="query">rpTemp/balaTypeId</process:to>
+      <process:from type="literal" pattern="reference">储值卡支付</process:from>
+      <process:to type="query">rpTemp/balaTypeName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">cardPayAmt</process:from>
       <process:to type="query">rpTemp/charOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">rpTemp/remark</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
@@ -1021,6 +1113,10 @@
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">rpTemp/settAccountId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">rpTemp/settAccountName</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
     <location x="1039" y="309"/>
@@ -1030,7 +1126,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="add2Array1" displayName="add2Array" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>invokePojo8</targetNode>
     </sourceConnections>
     <targetConnections>link43</targetConnections>
     <location x="1125" y="273"/>
@@ -1042,16 +1138,201 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">rpTemp</process:inputVariable>
-      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">fisRpBillListDetailHash</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">fisRpDetailType</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">fisRpBillListDetailHash</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">fisRpDetailType</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
     <location x="1102" y="309"/>
     <figSize height="17" width="69"/>
     <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="format1" displayName="format" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>invokePojo7</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="-150" y="206"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.common.utils.DateUtil.format</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="date" type="query" value="java.util.Date" valueType="Java" pattern="reference">d</process:inputVariable>
+      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">yyyy</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">fyear</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="-162" y="242"/>
+    <figSize height="17" width="47"/>
+    <node>invokePojo6</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="format2" displayName="format" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo7</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link45</targetConnections>
+    <location x="-90" y="206"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo7label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.common.utils.DateUtil.format</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="date" type="query" value="java.util.Date" valueType="Java" pattern="reference">d</process:inputVariable>
+      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">MM</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">fmonth</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
+    <location x="-102" y="242"/>
+    <figSize height="17" width="47"/>
+    <node>invokePojo7</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="add2Array2" displayName="add2Array1" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <targetConnections>link44</targetConnections>
+    <location x="1125" y="205"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo8label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">ppTemp</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">fisRpDetail</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">fisRpDetail</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
+    <location x="1102" y="241"/>
+    <figSize height="17" width="69"/>
+    <node>invokePojo8</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值17" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link50" name="link50" displayName="连接线" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign19</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">payType</process:leftOperand>
+          <process:rightOperand type="literal">020102</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link51" name="link51" displayName="连接线" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign20</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">payType</process:leftOperand>
+          <process:rightOperand type="literal">020103</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link52" name="link52" displayName="连接线" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign21</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">payType</process:leftOperand>
+          <process:rightOperand type="literal">020104</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link48</targetConnections>
+    <location x="721" y="273"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign18label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">现金</process:from>
+      <process:to type="query">payTypeName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
+    <location x="716" y="309"/>
+    <figSize height="17" width="39"/>
+    <node>assign18</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值18" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link50</targetConnections>
+    <location x="807" y="273"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign19label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">刷卡</process:from>
+      <process:to type="query">payTypeName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
+    <location x="802" y="309"/>
+    <figSize height="17" width="39"/>
+    <node>assign19</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值19" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign20</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link51</targetConnections>
+    <location x="851" y="309"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign20label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">转账</process:from>
+      <process:to type="query">payTypeName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
+    <location x="846" y="345"/>
+    <figSize height="17" width="39"/>
+    <node>assign20</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign21" name="赋值20" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign21</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link52</targetConnections>
+    <location x="915" y="361"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign21label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">微信/支付宝</process:from>
+      <process:to type="query">payTypeName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
+    <location x="910" y="397"/>
+    <figSize height="17" width="39"/>
+    <node>assign21</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -1068,10 +1349,12 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccount" name="fisRpAccountHash"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpBillList" name="fisRpBillListHash"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.common.FisRpBillListDetail" name="fisRpBillListDetailHash"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpBillListDetail" name="rpTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpBill" name="fisRpBill"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccount" name="fisRpAccount"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="fisRpDetailType"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="rpTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDetail" name="fisRpDetail"/>
+    <process:variable description="ppTemp" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccountDetail" name="ppTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
     <process:variable description="本工单包含的预存套餐金额" historyStateLocation="client" isArray="false" name="cardPkgAmt" primitiveType="Double"/>
@@ -1087,6 +1370,9 @@
     <process:variable description="毛利率" historyStateLocation="client" isArray="false" name="grossProfitRate" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="totalPrefRate" primitiveType="Double"/>
     <process:variable description="整单优惠金额（套餐优惠+工时优惠+配件优惠+折让）" historyStateLocation="client" isArray="false" name="totalPrefAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="fyear" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="fmonth" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="payTypeName" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

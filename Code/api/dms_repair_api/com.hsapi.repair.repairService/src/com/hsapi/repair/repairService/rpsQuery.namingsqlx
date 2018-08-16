@@ -77,18 +77,18 @@
 			a.car_no carNo,
 			b.car_brand_id carBrandId,
 			a.service_type_id serviceTypeId,
-			a.mt_type mtType,
+			<!--a.mt_type mtType,-->
 			a.mt_advisor_id mtAdvisorId,
 			a.mt_advisor mtAdvisor,
 			a.enter_oil_mass enterOilMass,
 			a.enter_kilometers enterKilometers,
 			a.enter_date enterDate,
-			a.quote_date quoteDate,
+			<!--a.quote_date quoteDate,-->
 			a.sure_mt_date sureMtDate,
 			a.check_date checkDate,
 			a.plan_finish_date planFinishDate,
-			a.service_card serviceCard,
-			a.is_car_wash isCarWash,
+			<!--a.service_card serviceCard,-->
+			<!--a.is_car_wash isCarWash,-->			
 			a.remark remark,
 			a.guest_desc guestDesc,
 			a.fault_phen faultPhen,
@@ -102,12 +102,12 @@
 			a.guest_id guestId,
 			a.contactor_id contactorId,
 			a.car_id carId,
-			a.part_audit_sign partAuditSign,
+			<!--a.part_audit_sign partAuditSign,-->
 			a.draw_out_report drawOutReport,
-			a.out_bill_sign outBillSign,
+			<!--a.out_bill_sign outBillSign,
 			a.out_enter_date outEnterDate,
 			a.out_leave_date outLeaveDate,
-			a.out_print_date outPrintDate,
+			a.out_print_date outPrintDate,-->
 			a.out_date outDate,
 			a.comp_come_times compComeTimes
 		FROM
@@ -124,16 +124,16 @@
 			a.item_name itemName,
 			a.item_code itemCode,
 			a.amt amt,
-			a.rece_type_id receTypeId,
+			<!--a.rece_type_id receTypeId,-->
 			a.item_time itemTime,
-			a.item_kind itemKind,
+			<!--a.item_kind itemKind,-->
 			a.status status,
 			a.unit_price unitPrice,
 			a.rate/100.0 rate,
 			a.discount_amt discountAmt,
 			a.subtotal subtotal,
-			a.class_name className,
-			a.worker worker,
+			<!--a.class_name className,-->
+			<!--a.worker worker,-->
 			a.begin_date beginDate,
 			a.finish_auditor finishAuditor,
 			a.finish_date finishDate,
@@ -179,7 +179,7 @@
 			a.unit unit,
 			a.part_code partCode,
 			a.amt amt,
-			a.rece_type_id receTypeId,
+			<!--a.rece_type_id receTypeId,-->
 			a.qty qty,
 			a.status status,
 			a.unit_price unitPrice,

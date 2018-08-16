@@ -78,7 +78,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -311,7 +311,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="partAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

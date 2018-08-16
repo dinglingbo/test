@@ -71,6 +71,7 @@
             </isNotEmpty>
            
         </dynamic>  
+        order by a.id desc
 	</select>
 	
 	<select id="queryCardTimesList" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsCardTimesDetail">

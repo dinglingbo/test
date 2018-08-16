@@ -50,10 +50,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">maintain/id</process:to>
     </process:copy>
@@ -121,7 +117,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -175,12 +171,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">data/rechargeBalaAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">获取会员信息失败</process:from>
-      <process:to type="query">errMsg</process:to>
+      <process:from type="query" pattern="reference">guestId</process:from>
+      <process:to type="query">data/guestId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -204,7 +200,7 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

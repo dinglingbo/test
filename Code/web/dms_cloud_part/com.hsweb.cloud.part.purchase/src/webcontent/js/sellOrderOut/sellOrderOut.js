@@ -1712,7 +1712,9 @@ function audit()
                     leftGrid.updateRow(row,leftRow);
 
                     //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
+                    //loadMainAndDetailInfo(leftRow);
+                    rightGrid.setData([]);
+                    add();
                 }
             } else {
                 showMsg(data.errMsg || "出库失败!","W");

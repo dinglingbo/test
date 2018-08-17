@@ -11,7 +11,7 @@ $(document).ready(function (v)
     //    contactorId:1
     //});
 	
-	init();
+	//init();
 });
 var basicInfoForm = null;
 var guestInfoForm = null;
@@ -54,6 +54,7 @@ function init(callback)
                 return;
             }
         }
+        //不懂
         nui.unmask();
         callback && callback();
     };
@@ -111,6 +112,7 @@ function init(callback)
         }
     });
 }
+
 function getGuestInfoByContactorId(contactorId,callback)
 {
     var url = baseUrl + "com.hsapi.repair.repairService.query.getGuestInfoByContactorId.biz.ext";

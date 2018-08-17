@@ -221,6 +221,33 @@ function addOrEditCustomer(guest)
         }
     });
 }
+
+//打开会员卡充值页面
+function toUp(callback){
+	var row=grid.getSelected();
+	if(row){
+		nui.open({
+			url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 400, height: 500,
+			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :row
+				};
+				
+				iframe.contentWindow.SetData(params);
+		
+			},
+			onedestroy: function(action){
+				if("ok" == action){
+					grid.reload();
+				}
+			}
+		});
+	}else{
+		showMsg("请选择一条记录","W");
+	}
+}
 function add()
 {
     addOrEditCustomer();

@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.2.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.2"></script>
 </head>
 <body>
 	<fieldset
@@ -69,39 +69,43 @@
 				</tr>
 				<tr>
 					<td class="form_label" align="right">使用条款:</td>
-					<td colspan="2"><input class="nui-TextArea" name="useRemark"
+					<td colspan="1"><input class="nui-TextArea" name="useRemark"
 						style="width: 330px; height: 50px;" /></td>
-				</tr>
-				<tr>
-					<td class="form_label" align="right">卡说明:</td>
+						
+						<td class="form_label" align="right">卡说明:</td>
 					<td colspan="1"><input class="nui-TextArea" name="remark"
 						style="width: 330px; height: 50px;" /></td>
 				</tr>
+				<!-- <tr>
+					<td class="form_label" align="right">卡说明:</td>
+					<td colspan="1"><input class="nui-TextArea" name="remark"
+						style="width: 330px; height: 50px;" /></td>
+				</tr> -->
 				<tr>
 			</table>
 		</div>
 	</fieldset>
 	<!-- 从表的修改 -->
 	<div style="margin: 0px 2px 0px 2px;">
-		<div class="nui-tabs" id="tab" activeIndex="0" style="width: 100%;">
+		<div class="nui-tabs" id="tab" activeIndex="0" style="width: 100%;height:59%">
 			<div title="卡项目">
-				<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
+				<div class="nui-toolbar" style="border-bottom: 0; padding: 0px; height:33px" id = "toolbar1">
 					<table style="width: 100%;">
-						<tr>
+						<tr >
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectPackage()" iconCls="icon-add"> 添加套餐 </a></td>
+								onclick="selectPackage()" iconCls="icon-add" id = "addp"> 添加套餐 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectItem()" iconCls="icon-add"> 添加工时 </a></td>
+								onclick="selectItem()" iconCls="icon-add" id = "addi"> 添加工时 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="addDetail()" iconCls="icon-add"> 添加配件 </a></td>
+								onclick="addDetail()" iconCls="icon-add" id = "addr"> 添加配件 </a></td>
 							<td style="width: 55%;"><a class="nui-button "
-								iconCls="icon-remove" onclick="gridRemoveRow"> &nbsp;删除 </a>
+								iconCls="icon-remove" onclick="gridRemoveRow" id = "delect"> &nbsp;删除 </a>
 							</td>
 						</tr>
 					</table>
 				</div>
-				<div class="nui-fit">
-					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;"
+				<div class="nui-fit" >
+					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;height:100%"
 						showPager="false" sortMode="client" allowCellEdit="true"
 						allowCellSelect="true" multiSelect="true"
 						editNextOnEnterKey="true" onDrawCell="onDrawCell">
@@ -147,9 +151,9 @@
 		</div>
 		<div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
 			<table width="100%">
-				<tr>
-					<td style="text-align: center;" colspan="4"><a
-						class="nui-button" iconCls="icon-save" onclick="onOk()"> 保存 </a> <span
+				<tr >
+					<td style="text-align: center;" colspan="4" ><a
+						class="nui-button" iconCls="icon-save" onclick="onOk()" id = "save"> 保存 </a> <span
 						style="display: inline-block; width: 25px;">
 				</tr>
 			</table>

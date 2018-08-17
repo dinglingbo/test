@@ -246,7 +246,7 @@ function addOrEditPart(row)
                 abcTypeList:abcTypeList,
                 applyCarModelList:carBrandList
             };
-            if(row)
+            if(row)F
             {
                 params.partData = row;
             }
@@ -264,6 +264,7 @@ function addOrEditPart(row)
 
 var resultData = {};
 var callback = null;
+
 function onOk()
 {
     var node = partGrid.getSelected();

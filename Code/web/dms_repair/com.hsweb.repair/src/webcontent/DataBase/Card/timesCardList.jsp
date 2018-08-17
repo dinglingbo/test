@@ -12,7 +12,7 @@
 <head>
 <title>计次卡操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.3"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.4"></script>
 </head>
 <body>
 
@@ -33,10 +33,12 @@
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 						<a class="nui-button" onclick="search()" plain="true"> 查询 </a> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-						<a class="nui-button" iconCls="icon-add" onclick="add()"
-						plain="true"> 增加 </a> <a id="update" class="nui-button"
-						iconCls="icon-edit" onclick="edit()" plain="true"> 编辑 </a>
-
+						<a  id = "add" class="nui-button" iconCls="icon-add" onclick="add()"
+						plain="true"> 增加 </a> 
+						<a id="update" class="nui-button"
+						iconCls="icon-edit" onclick="edit()" plain="true"> 编辑 </a>				
+						<a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"  >查看详情</a>
 					</td>
 				</tr>
 			</table>
@@ -60,9 +62,9 @@
 				<div field="totalAmt" headerAlign="center" allowSort="true">
 					总价值</div>
 
-				<div field="salesDeductType" headerAlign="center" allowSort="true">销售提成方式</div>
+				<!-- <div field="salesDeductType" headerAlign="center" allowSort="true">销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true">
-					销售提成值</div>
+					销售提成值</div> -->
 				<div field="status" headerAlign="center" allowSort="true">状态</div>
 				<div field="useRemark" headerAlign="center" allowSort="true">
 					使用说明</div>

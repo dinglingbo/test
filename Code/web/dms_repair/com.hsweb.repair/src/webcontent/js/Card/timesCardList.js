@@ -119,7 +119,21 @@ function onDrawCell(e) {
 	case "status":
 		e.cellHtml = e.value == 1 ? "禁用" : "启用";
 		break;
+	case "periodValidity":
+		e.cellHtml = e.value == -1 ? "永久有效" : e.value;
+		break;
 	default:
 		break;
 	}
 }
+
+function setStely(){
+	
+	/*nui.get("update").disable();
+	nui.get("add").disable();*/
+	/*$("#update").remove();
+	$("#add").remove();*/
+	mini.get("update").setVisible(false);
+	mini.get("add").setVisible(false);
+}
+

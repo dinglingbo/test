@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.2.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.2.9"></script>
 </head>
 <body>
 	<fieldset
@@ -29,8 +29,13 @@
 					<td colspan="1" style="width: 35%;"><input class="nui-textbox"
 						name="name" /></td>
 					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
-					<td colspan="2" style="width: 37%;"><input class="nui-textbox"
-						name="periodValidity" vtype="float" /></td>
+					<td colspan="1" style="width: 20%;" >
+					<input class="nui-textbox" name="periodValidity" vtype="float" id = "inputMonth" />	
+					</td>
+					<td style="width: 22%;">
+					<input type="checkbox" id="setMonth" class="mini-checkbox"  onclick="changed()" >
+						<span >永久有效</span>
+					</td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售价格:</td>
@@ -60,6 +65,7 @@
 							textField="text" valueField="value"
 							data="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 						</div>
+					</td>	
 				</tr>
 				<tr>
 					<td class="form_label" align="right">使用条款:</td>

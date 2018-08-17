@@ -328,6 +328,32 @@ function onDrawCell(e) {
 		break;
 	}
 }
+
+
+function setValue(){
+}
+
+/*
+ * 看保存的逻辑流时怎么样的，如果没有值，是否赋值了-1
+ * */
+function changed(e){
+	var input = mini.get("setMonth");
+	if(input.checked){
+		 var input = mini.get("inputMonth");
+		//把输入框的值清除掉
+		 input.setValue("");
+		 input.disable();
+	}else{
+		var input = mini.get("inputMonth");
+		 input.enable();
+	}
+	
+}
+
+function kk(){
+	
+}
+
 /*
  * function addItem() {
  * 

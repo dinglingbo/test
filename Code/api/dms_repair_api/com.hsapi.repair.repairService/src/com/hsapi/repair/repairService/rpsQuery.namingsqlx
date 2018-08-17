@@ -104,10 +104,10 @@
 			a.car_id carId,
 			<!--a.part_audit_sign partAuditSign,-->
 			a.draw_out_report drawOutReport,
-			<!--a.out_bill_sign outBillSign,-->
-			<!--a.out_enter_date outEnterDate,-->
-			<!--a.out_leave_date outLeaveDate,-->
-			<!--a.out_print_date outPrintDate,-->
+			<!--a.out_bill_sign outBillSign,
+			a.out_enter_date outEnterDate,
+			a.out_leave_date outLeaveDate,
+			a.out_print_date outPrintDate,-->
 			a.out_date outDate,
 			a.comp_come_times compComeTimes
 		FROM

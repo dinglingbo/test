@@ -229,4 +229,5 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="result" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="errCode" primitiveType="String"/>
   </process:variables>
+  <process:inputParameters/>
 </process:tPageFlow>

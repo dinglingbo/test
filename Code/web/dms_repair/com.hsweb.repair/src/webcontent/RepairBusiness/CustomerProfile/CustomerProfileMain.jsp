@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.2.6"></script>
+	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.2.7"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -60,7 +60,9 @@ table {
 					iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
 					class="nui-button" iconCls="icon-date" onclick="split()"
 					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
-					onclick="history()" plain="true">维修历史</a></td>
+					onclick="history()" plain="true">维修历史</a>
+					<a class="nui-button" iconCls="icon-node" onclick="toUp()" plain="true">会员卡充值</a>
+					</td>
 			</tr>
 		</table>
 	</div>

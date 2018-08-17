@@ -40,7 +40,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -50,15 +50,15 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">tmpInt</process:from>
-      <process:to type="query">query/code</process:to>
+      <process:from type="literal" pattern="reference">小丁|12|500</process:from>
+      <process:to type="query">query/param</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/phone</process:from>
+      <process:from type="literal" pattern="reference">13710326756</process:from>
       <process:to type="query">query/phone</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">1002</process:from>
       <process:to type="query">query/skin</process:to>
     </process:copy>
     <process:copy>
@@ -98,7 +98,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="host" type="literal" value="java.lang.String" valueType="Java" pattern="reference">http://smsmsgs.market.alicloudapi.com</process:inputVariable>
-      <process:inputVariable id="1" name="path" type="literal" value="java.lang.String" valueType="Java" pattern="reference">/sms/</process:inputVariable>
+      <process:inputVariable id="1" name="path" type="literal" value="java.lang.String" valueType="Java" pattern="reference">/smsmsgs</process:inputVariable>
       <process:inputVariable id="2" name="method" type="query" value="java.lang.String" valueType="Java" pattern="reference">GET</process:inputVariable>
       <process:inputVariable id="3" name="headers" type="query" value="java.util.Map&lt;java.lang.String,java.lang.String>" valueType="Java" pattern="reference">head</process:inputVariable>
       <process:inputVariable id="4" name="querys" type="query" value="java.util.Map&lt;java.lang.String,java.lang.String>" valueType="Java" pattern="reference">query</process:inputVariable>
@@ -194,16 +194,6 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>assign3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">params/phone</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="75" y="45"/>
     <size height="28" width="28"/>
@@ -221,45 +211,6 @@
     <location x="73" y="81"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign3</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link4</targetConnections>
-    <location x="195" y="150"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign3label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">手机号码已经存在</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="193" y="186"/>
-    <figSize height="17" width="32"/>
-    <node>assign3</node>
-  </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link11</targetConnections>
-    <location x="334" y="150"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="java.util.HashMap" name="data" type="query" valueType="Java">data</process:return>
-      <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="332" y="186"/>
-    <figSize height="17" width="32"/>
-    <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="link11" isDefault="true" type="transition">

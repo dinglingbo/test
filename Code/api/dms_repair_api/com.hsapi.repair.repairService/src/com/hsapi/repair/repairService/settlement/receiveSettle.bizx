@@ -147,6 +147,10 @@
       <process:to type="query">fisRpBill/billTypeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:to type="query">fisRpBill/rpAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpBill/charOffAmt</process:to>
     </process:copy>
@@ -189,6 +193,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpBill/trueCharOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">fisRpBill/settleStatus</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">maintain/id</process:from>
@@ -861,6 +869,7 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link48" name="link48" displayName="连接线" type="transition">
       <sourceNode>assign11</sourceNode>
@@ -920,6 +929,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">dateKey</process:from>
       <process:to type="query">maintain/datekey</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userName</process:from>
+      <process:to type="query">maintain/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">maintain/modifyDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">

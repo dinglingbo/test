@@ -131,16 +131,6 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>assign3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">status</process:leftOperand>
-          <process:rightOperand type="literal">2</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="216" y="60"/>
     <size height="28" width="28"/>
@@ -170,29 +160,6 @@
     <location x="214" y="96"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign3</sourceNode>
-      <targetNode>end2</targetNode>
-    </sourceConnections>
-    <targetConnections>link13</targetConnections>
-    <location x="216" y="123"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign3label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">单据未完工不能结算</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="214" y="159"/>
-    <figSize height="17" width="32"/>
-    <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="packageAudit" displayName="packageAudit" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" lineType="note" type="exception">
@@ -337,6 +304,30 @@
       <process:from type="query" pattern="reference">cardTimesAmt</process:from>
       <process:to type="query">settlement/cardTimesAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/packageSubtotal</process:from>
+      <process:to type="query">pkgSubSum</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/itemTotalAmt</process:from>
+      <process:to type="query">itemSubSum</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/partSubtotal</process:from>
+      <process:to type="query">partSubSum</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgSubSum</process:from>
+      <process:to type="query">maintain/packageAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemSubSum</process:from>
+      <process:to type="query">maintain/itemAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partSubSum</process:from>
+      <process:to type="query">maintain/partAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="610" y="261"/>
@@ -422,7 +413,6 @@
     <node>subprocess6</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
-    <targetConnections>link14</targetConnections>
     <targetConnections>link11</targetConnections>
     <location x="124" y="163"/>
     <size height="28" width="28"/>
@@ -479,6 +469,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="datekey" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardTimesAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="pkgSubSum" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="itemSubSum" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="partSubSum" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>

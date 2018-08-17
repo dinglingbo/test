@@ -22,7 +22,7 @@ function add() {
 				pageType : "add"
 			};// 传入页面的json数据
 			// iframe.contentWindow.setData(data);
-
+			data.type = 'add';
 		},
 		ondestroy : function(action) {// 弹出页面关闭前
 			if (action == "saveSuccess") {
@@ -44,6 +44,7 @@ function edit() {
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var data = row;
+				data.type = 'EDIT';
 				// 直接从页面获取，不用去后台获取
 				iframe.contentWindow.setData(data);
 			},
@@ -119,7 +120,46 @@ function onDrawCell(e) {
 	case "status":
 		e.cellHtml = e.value == 1 ? "禁用" : "启用";
 		break;
+	case "periodValidity":
+		e.cellHtml = e.value == -1 ? "永久有效" : e.value;
+		break;
 	default:
 		break;
 	}
 }
+
+function setStely(){
+	
+	/*nui.get("update").disable();
+	nui.get("add").disable();*/
+	/*$("#update").remove();
+	$("#add").remove();*/
+	mini.get("update").setVisible(false);
+	mini.get("add").setVisible(false);
+}
+
+function lookCardTimes(){
+	var row = grid.getSelected();
+	if (row) {
+		nui.open({
+			url : sysnUrl,
+			title : "查看详情",
+			width : 900,
+			height : 580,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var data = row;
+				data.type = 'VIEW';
+				// 直接从页面获取，不用去后台获取
+				iframe.contentWindow.disableHtml();
+				iframe.contentWindow.setData(data);
+			},
+			ondestroy : function() {
+				var iframe = this.getIFrameEl();
+			}
+		});
+	} else {
+		nui.alert("请选中一条记录", "提示");
+	}
+}
+

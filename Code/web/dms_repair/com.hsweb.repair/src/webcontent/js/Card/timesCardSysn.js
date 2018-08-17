@@ -6,10 +6,26 @@ var tab = null;
 var form = null;
 var timesCardDetail = null;
 var g = null;
+var set = null;
+var input = null;
+//页面标签加载完之后执行，但是修改的数据还没有设置
 $(document).ready(function(v) {
 	tab = nui.get("tab");
 	form = new nui.Form("#dataform1");
 	form.setChanged(false);
+	
+    set = mini.get("setMonth");
+    input = mini.get("inputMonth");
+    timesCardDetail = nui.get("timesCardDetail");
+    //编辑开始前发生
+    timesCardDetail.on("cellbeginedit",function(e){
+    	if(type =="VIEW"){
+    		e.cancel = true;
+    	}
+    });
+    
+   
+	
 });
 
 var requiredField = {
@@ -32,14 +48,21 @@ var tcd = {
 function onOk() {
 	var yz = "^[0-9]*[1-9][0-9]*$";
 	var zz = new RegExp(yz);
-	g = nui.get("#timesCardDetail");
+	g = nui.get("timesCardDetail");
 	var data1 = g.getData();
 	var data = form.getData();
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
-			showMsg(requiredField[key] + "不能为空!", "W");
-
-			return;
+			//当有效期没有输入月份时，判断单选框是否选择了
+			if( key == "periodValidity" && set.checked ){
+				//跳过本次循环，执行下一次循环,把有效期赋值为-1
+				input.setValue("-1");
+				continue;
+			}else{
+				showMsg(requiredField[key] + "不能为空!", "W");
+				return;
+			}
+			
 		}
 
 	}
@@ -59,14 +82,23 @@ function onOk() {
 	}
 	saveData();
 }
-
+var type = null;
 function setData(data) {
 	// 跨页面传递的数据对象，克隆后才可以安全使用
 	var json = nui.clone(data);
 	// 如果是点击编辑类型页面
 	if (json.id != null) {
+		
+		if(json.periodValidity==-1){
+			json.periodValidity = "";
+			input.disable();
+			set.setValue(true);
+		}
 		form.setData(json);
 		form.setChanged(false);
+	}
+	if(json && json.type){
+		type = json.type;
 	}
 	// 计次卡明细查询
 	var json1 = nui.encode({
@@ -327,6 +359,44 @@ function onDrawCell(e) {
 		e.cellHtml = hash[e.value - 1];
 		break;
 	}
+}
+
+
+
+/*
+ * 看保存的逻辑流时怎么样的，如果没有值，是否赋值了-1
+ * */
+function changed(e){
+	
+	if(set.checked){	
+		//把输入框的值清除掉
+		 input.setValue("");
+		 input.disable();
+	}else{
+		 
+		 input.enable();
+	}
+	
+}
+
+
+function disableHtml(){
+	mini.get("addp").setVisible(false);
+	mini.get("addi").setVisible(false);
+	mini.get("addr").setVisible(false);
+	mini.get("delect").setVisible(false);
+	mini.get("save").setVisible(false);
+	//mini.get("toolbar1").
+	//添加样式 addClass("miniui");
+	//mini.get("tab").addClass("style='width: 100%;height:100%'");
+	//表单不可读
+	var controls=mini.getChildControls(form);
+	for(var i=0,length=controls.length;i<length;i++){
+	       controls[i].setReadOnly(true);
+	}
+	
+	
+	
 }
 /*
  * function addItem() {

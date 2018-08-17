@@ -3,7 +3,6 @@
  */
 var webBaseUrl = webPath + repairDomain + "/";
 var baseUrl = apiPath + repairApi + "/";
-
 var webBaseUrl = webPath + repairDomain + "/";
 var baseUrl = apiPath + repairApi + "/";
 var rpsPackageGrid = null;
@@ -111,13 +110,19 @@ $(document).ready(function ()
             default:
                 break;
         }
-    });    
+    });   
+    //cellcommitedit:编辑值提交前发生
     rpsPartGrid.on("cellcommitedit", function (e) {
-        var editor = e.editor;
+       
+    	//编辑器对象？？
+    	var editor = e.editor;
+    	//record:行对象
         var record = e.record;
+        //行数据？？
         var row = e.row;
-
+        //validate():验证表格所有单元格
         editor.validate();
+        //isValid():是否验证通过
         if (editor.isValid() == false) {
             nui.alert("请输入数字！");
             e.cancel = true;
@@ -140,6 +145,7 @@ $(document).ready(function ()
                 newRow = {
                     amt : amt
                 };
+                //更新行
                 rpsPartGrid.updateRow(e.row, newRow);
             } else if (e.field == "unitPrice") {
                 var qty = record.qty;
@@ -188,8 +194,10 @@ $(document).ready(function ()
             }
         }
     });
+    //celleditenter:编辑器按回车时发生
     rpsPartGrid.on("celleditenter", function (e) {
         var record = e.record;
+        //getCurrentCell():获取当前选中单元格。
         var cell = rpsPartGrid.getCurrentCell();//行，列
         if(cell && cell.length >= 2){
             var column = cell[1];
@@ -277,6 +285,50 @@ $(document).ready(function ()
             }
         }
     });
+    
+    
+   //点击配件行时发生
+    rpsPartGrid.on("cellclick",function(e){
+     var record = e.record;
+     var column = e.column;
+     var row = rpsPartGrid.getSelected();
+     if(column.field == "partName"){
+       try{
+         nui.open({
+          targetWindow : window,
+    		url : webPath + partDomain
+    				+ "/com.hsweb.part.common.partSelectView.flow?token=" + token,
+    		title : "配件选择",
+    		width : 1000,
+    		height : 500,
+    		allowDrag : true,
+    		allowResize : false,
+    		onload : function() {
+    			var iframe = this.getIFrameEl();
+    			var list = [];
+    			var params = {
+    				list : list
+    			};
+    			iframe.contentWindow.setData(params);
+    		},
+    		ondestroy : function(action) {
+    			if (action == "ok") {
+    				var iframe = this.getIFrameEl();
+    				var data  = iframe.contentWindow.getData();
+    			    var list = data.part;
+    			    row = list ;
+    				if(list){  					
+    					record.setData(list);
+    				}
+    			}
+    		}
+         });
+       }finally{}
+     }
+    });
+    
+    
+    
 });
 var getContactUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.query.getContacterByGuestId.biz.ext";
 function getContactor(guestId,callback) {
@@ -774,3 +826,28 @@ function savePackage(params, callback) {
         }
     });
 }
+
+
+//增加次卡套餐
+var addcardTimeUrl = webPath + partDomain  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
+function addcardTime(){	
+	nui.open({
+		url : addcardTimeUrl,
+		title : "新增记录",
+		width : 965,
+		height : 573,
+		onload : function() {
+		    var iframe = this.getIFrameEl();
+			iframe.contentWindow.setStely();
+		},
+		/*ondestroy : function(action) {// 弹出页面关闭前
+			if (action == "saveSuccess") {
+				grid.reload();
+			}
+		}*/
+	});
+	
+}
+
+
+

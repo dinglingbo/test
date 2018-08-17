@@ -1,19 +1,32 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-var basicInfoForm=null;
-var accountTypeList=null;
-var accountTypeIdEl = null;
-var gusetId=null;
-var member=null;
-var birthday=null;
-var sex=null;
-var rechargeBalaAmt=null;
+
+
 $(document).ready(function(){
 	var accountTypeIdEl = null;
 	accountTypeIdEl=nui.get('radio');
 	accountTypeList=[{id:1,name:"现金"},{id:2,name:"刷卡"},{id:3,name:"微信/支付宝"}];
 	accountTypeIdEl.setData(accountTypeList);
-	
-	
+	var basicInfoForm=null;
+	var accountTypeList=null;
+	var accountTypeIdEl = null;
+	var guestId=null;
+	var guestName=null;
+	var cardId=null;
+	var cardObj=null;
+	var name=null;
+	var itemRate=null;
+	var packageRate=null;
+	var partRate=null;
+	var giveAmt=null;
+	var giveAmt=null;
+	var totalAmt=null;
+	var canModify=null;
+	var rechargeAmt=null;
+	var payType=null;
+	var radio=null;
+	var text=null;
+
+	getCard();
 	
 });
 //function onCard(){
@@ -22,28 +35,34 @@ $(document).ready(function(){
 
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");
-    gusetId=params.data.guestId;
+    guestId=params.data.guestId;
+    guestName=params.data.guestFullName;
     basicInfoForm.setData(params.data);
-    getCard(gusetId);
+    console.log(basicInfoForm);
+
 }
-var url=baseUrl+"com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext";
-function initData(gusetId){
-	var guestId=gusetId;
+var url=baseUrl+"com.hsapi.repair.baseData.query.queryCardstored.biz.ext";
+function getCard(){
 	nui.ajax({
 		url:url,
 		async:false,
 		data:{		
 			token:token,
-			guestId:guestId
 		},
 		type:'post',
 		success: function(data){
-			 member=data.member;
-			birthday=member[0].birthday;
-			 sex=member[0].sex;
-			 cardNo=member[0].carNo;
-			rechargeBalaAmt=member[0].rechargeBalaAmt;
-			
+			var cardList=data.cardStoreds;
+			if(cardList && cardList.length>0){
+				var htmlStr="";
+				for(var i=0;i<cardList.length;i++){
+					var cardObj=cardList[i];
+					var name=cardObj.name;
+					s="<a href='javascript:;' name='card'id='card'>"+name+"</a>";
+					htmlStr +=s;
+				}
+				$(".addyytime").html(htmlStr);
+				 selectclick();
+			}
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
             nui.unmask();
@@ -51,41 +70,141 @@ function initData(gusetId){
             nui.alert("网络出错，保存失败");           
         }
 	});
-	basicInfoForm.setData(birthday);
-	basicInfoForm.setData(sex);
+
 }
- var url2=baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
- function getCard(gusetId){
-	 var guestId=gusetId;
-	 nui.ajax({
-			url:url,
-			async:false,
-			data:{		
-				token:token,
-				guestId:guestId
-			},
-			type:'post',
-			success: function(data){
-				if(data.errCode =="S"){
-					var cardId=data.cardId;
+function selectclick() {
+    $("a[name=card]").click(function () {
+        $(this).siblings().removeClass("xz");
+        $(this).toggleClass("xz");
+        text=$(this).text();
+        onCard(text);
+    });
+}
+
+//赋卡的数据到表单
+function onCard(text){
+	var text=text;
+	nui.ajax({
+		url:url,
+		async:false,
+		data:{		
+			token:token,
+			gusetId:guestId
+		},
+		type:'post',
+		success: function(data){
+			var cardList=data.cardStoreds;
+			if(cardList && cardList.length>0){
+			
+				for(var i=0;i<cardList.length;i++){
+					cardObj=cardList[i];		
+					name=cardObj.name;			
+					if(name==text){
+						name=text;
+						cardId=cardObj.id;
+						itemRate=cardObj.itemRate;
+						packageRate=cardObj.packageRate;
+						partRate=cardObj.partRate;
+						giveAmt=cardObj.giveAmt;
+						totalAmt=cardObj.totalAmt;
+						canModify=cardObj.canModify;
+						rechargeAmt=cardObj.rechargeAmt;
+						nui.get('itemRate').setValue(itemRate);
+						nui.get('packageRate').setValue(packageRate);
+						nui.get('partRate').setValue(partRate);
+						nui.get('giveAmt').setValue(giveAmt);
+						nui.get('rechargeAmt').setValue(rechargeAmt);
+						nui.get('totalAmt').setValue(totalAmt);
+					}
 					
 				}
-				alert(1);
-				
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert(2);
-	            nui.unmask();
-	            console.log(jqXHR.responseText);
-	            nui.alert("网络出错，保存失败");           
-	        }
-		});
- }
+
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+            nui.unmask();
+            console.log(jqXHR.responseText);
+            nui.alert("网络出错，保存失败");           
+        }
+	});
+
+}
+//确认支付
+var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";
+function pay(){
+	var stored=[];
+	name=text;
+	var payAmt=rechargeAmt;
+	var form={
+			cardId		: cardId,
+			cardName	: name,
+			giveAmt		: giveAmt,
+			guestId		: guestId,
+			guestName	: guestName,	
+			itemRate	: itemRate,		
+			packageRate	: packageRate,	
+			partRate	: partRate,
+			rechargeAmt	: rechargeAmt,
+			totalAmt 	: totalAmt
+	};
+	stored.push(form);
+	nui.mask({
+		el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+	});
+	nui.ajax({
+		url:payurl,
+		type:"post",
+		data :JSON.stringify({
+			payAmt :payAmt,
+			payType:payType,
+			stored: stored[0],
+			token:token
+		}),
+		success: function(data){
+			nui.unmask(document.body);
+			if(data.errCode =='S'){
+				showMsg("保存成功!","S");			
+			}else{
+				showMsg(data.errMsg || "保存失败!","W");
+			}
+		},
+		error : function(jqXHR,textStatus,errorThrown){
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+//充值金额改变时总金额改变
 $(function(){
-	 $("#up").change(function(){
-		 var text = nui.get('up').getValue();
-	$("#message").html("到账金额"+text+"元");
+	 $("#rechargeAmt").change(function(){
+		 var text = nui.get('rechargeAmt').getValue();
+		 var text2=nui.get('#giveAmt').getValue();
+		 var num1=  Number(text);
+		 var num2=Number(text2);
+		 var num=num1+num2;
+		 nui.get('totalAmt').setValue(num);
+
+});
+});
+$ (function(){
+	$('#radio').click(function(){
+		radio=$('input:radio:checked').val();
+		switch(radio){
+		//现金
+		case "1":
+			payType="020101";
+			break;
+		//刷卡
+		case "2":
+			payType="020102";
+			break;
+		//微信/支付宝
+		case "3":
+			payType="020104";	
+			break;
+		}
+	});
 });
 
-
-});

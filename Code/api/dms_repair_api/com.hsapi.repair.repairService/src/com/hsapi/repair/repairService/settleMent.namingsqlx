@@ -170,47 +170,6 @@
 			AND a.STATUS = 1
 	</select>
 	
-	<select id="settleList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		SELECT a.id as id, a.service_code as serviceCode, a.service_type_id as serviceTypeId, 
-		       b.bala_amt as balaAmt, c.`name` as guestName, c.mobile as guestTel, a.recorder as recorder, 
-		       a.record_date as recordDate, a.mt_advisor as mtAdvisor, a.modify_date as modifyDate,
-		       a.car_id as carId, a.car_no as carNo, a.car_vin as carVin, c.birthday as birthday, a.guest_id as guestId
-		from rps_maintain a
-		inner join rps_settlement b
-		on a.id = b.service_id
-		inner join rpb_contactor c
-		on a.contactor_id = c.id
-		where a.is_settle = 1 and a.orgid = #orgid#
-		<dynamic>              
-		      <isNotEmpty prepend="and" property="recordStartDate"> 
-                (a.record_date &gt;= #recordStartDate#)
-              </isNotEmpty>
-              <isNotEmpty prepend="and" property="recordEndDate"> 
-                (a.record_date &lt; #recordEndDate#)
-              </isNotEmpty>
-              
-              <isNotEmpty prepend="and" property="modifyStartDate"> 
-                (a.modify_date &gt;= #modifyStartDate#)
-              </isNotEmpty>
-              <isNotEmpty prepend="and" property="modifyEndDate"> 
-                (a.modify_date &lt; #modifyEndDate#)
-              </isNotEmpty>
-              
-	            <isNotEmpty prepend="and" property="guestName">  
-	                (c.`name` like '%$guestName$%')
-	            </isNotEmpty>
-	            
-	            <isNotEmpty prepend="and" property="carNo">  
-	                (a.car_no like '%$guestName$%')
-	            </isNotEmpty>
-	            
-	            <isNotEmpty prepend="and" property="guestTel">  
-	                (c.mobile like '%$guestName$%')
-	            </isNotEmpty>
-	            
-	            
-        </dynamic>  
-        order by a.id desc
-	</select>
+	
 	
 </sqlMap>

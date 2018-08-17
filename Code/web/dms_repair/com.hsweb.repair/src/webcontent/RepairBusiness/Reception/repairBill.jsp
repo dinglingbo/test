@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单详情</title>
-<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.0.5"></script>
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.1.2"></script>
 <style type="text/css">
     body {
         margin: 0;
@@ -118,7 +118,7 @@ html body .searchbox .mini-buttonedit-icon:before
                         <label id="creditEl" style="font-family:Verdana;color:blue;">挂账:265</label>
                     </td>
                     <td rowspan="2" style="text-align:left;">
-                        <a class="nui-button btnType" iconCls="" plain="false" onclick="add()" id="addBtn"><span class="btnType"><span class="fa fa-gift fa-lg"></span>&nbsp;次卡套餐</span></a>
+                        <a class="nui-button btnType" iconCls="" plain="false" onclick="addcardTime()" id="addBtn"><span class="btnType"><span class="fa fa-gift fa-lg"></span>&nbsp;次卡套餐</span></a>
                         <a class="nui-button btnType" iconCls="" plain="false" onclick="add()" id="addBtn"><span class="btnType"><span class="fa fa-dollar fa-lg"></span>&nbsp;充值办卡</span></a>
                     </td>
                 </tr>
@@ -258,7 +258,7 @@ html body .searchbox .mini-buttonedit-icon:before
   <script type="text/javascript">
       nui.parse();
       var grid_rpsPackageGrid = nui.get("rpsPackageGrid");
-      var grid_rpsPartGrid = nui.get("rpsPartGrid");
+     
       grid_rpsPackageGrid.on("cellclick",function(e){
         var record = e.record;
         var column = e.column;
@@ -279,32 +279,10 @@ html body .searchbox .mini-buttonedit-icon:before
           }finally{}
         }
 
-      });   
-
-
-      grid_rpsPartGrid.on("cellclick",function(e){
-        var record = e.record;
-        var column = e.column;
-        if(column.field == "partName"){
-          try{
-            nui.open({
-              url : "com.hsweb.part.baseData.partDetail.flow",
-              title : "添加配件",
-              width : "710px",
-              height : "250px",
-              onload : function() {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setInitData();
-              },
-              ondestroy : function(action) {
-              }
-            });
-          }finally{}
-        }
-
-      }); 
-
-
+      });  
+      
+ 
+      
     </script>
 
 

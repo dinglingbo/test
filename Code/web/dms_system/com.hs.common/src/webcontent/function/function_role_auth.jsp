@@ -79,7 +79,7 @@
 				leafNodes.push(nodeRow);
 			}
 		}
-		//var json = nui.encode({functions:leafNodes,roleId:"<%=request.getParameter("roleId") %>"});
+		<%-- var json = nui.encode({functions:leafNodes,roleId:"<%=request.getParameter("roleId") %>"}); --%>
 		nui.mask({
 			el : document.body,
 			cls : 'mini-mask-loading',
@@ -90,6 +90,7 @@
 
 		nui.ajax({
 			url: webPath + sysDomain + "/org.gocom.components.coframe.framework.FunctionAuth.saveFunctionAuths.biz.ext",
+			
 			type: 'POST',
 			data:nui.encode({
 				roleId:"<%=request.getParameter("roleId") %>",

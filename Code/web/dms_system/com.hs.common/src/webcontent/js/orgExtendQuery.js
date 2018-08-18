@@ -302,11 +302,11 @@ function stoporstart(i){
             success: function (data) {
                 if (data.errCode == "S"){
                 	nui.unmask(document.body);
-                	showMsg("禁用/启用成功!","S");
+                	showMsg("操作成功!","S");
                 	grid.reload();
                     }else {
                     nui.unmask(document.body);
-                    showMsg("禁用/启用失败!","W");
+                    showMsg("操作失败!","W");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

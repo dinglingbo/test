@@ -12,7 +12,7 @@
 <head>
 <title>计次卡操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.9"></script>
 </head>
 <body>
 
@@ -38,7 +38,9 @@
 						<a id="update" class="nui-button"
 						iconCls="icon-edit" onclick="edit()" plain="true"> 编辑 </a>				
 						<a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"  >查看详情</a>
+							<a class="nui-button" onclick="lookCardTimes()" plain="true"> <span
+							class="fa fa-search fa-lg"></span>&nbsp; 查看详情
+					</a>
 					</td>
 				</tr>
 			</table>

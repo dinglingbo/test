@@ -46,7 +46,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/shortName</process:from>
-      <process:to type="query">cond/_expr[1]/shortName</process:to>
+      <process:to type="query">cond/_expr[1]/shortname</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>

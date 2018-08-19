@@ -626,14 +626,14 @@
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+  <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link17</targetConnections>
     <location x="403" y="336"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="0" name="errCode" type="query">errCode</process:return>
+      <process:return id="1" name="errMsg" type="query">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -1570,8 +1570,8 @@
         <process:inputVariable id="1" name="billStatusId" type="literal" value="Int" valueType="Primitive" pattern="reference">4</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1596,8 +1596,8 @@
         <process:inputVariable id="1" name="isFinished" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

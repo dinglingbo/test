@@ -2,7 +2,7 @@
 var vin; //vin
 var vin_len; //vin长度要求
 var vin_input;//vin输入
-var curr_check;//当前选择品牌
+var curr_check = "all";//当前选择品牌
 var brand; //品牌
 var vinPartImg;//零件图片
 var gridCfg; //车辆配置

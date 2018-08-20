@@ -10,9 +10,9 @@
     - Description:
   --%>
 <head>
-<title>会员卡操作</title>
+<title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.1.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.2.4"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">

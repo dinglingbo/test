@@ -12,10 +12,10 @@
 <title>车架号查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <link href="<%=sysDomain%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
+    <link href="<%=contextPath%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     
-    <script src="<%=sysDomain%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/epc/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -71,7 +71,7 @@
                 popupWidth="400" 
                 textField="vin" 
                 valueField="vin" 
-                url="<%=sysDomain%>/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext" 
+                url="<%=contextPath%>/com.hsweb.system.llq.vin.vin.searchHistory.biz.ext" 
                 onvaluechanged="" 
                 emptyText="输入17位VIN车架号"
                 placeholder="data"

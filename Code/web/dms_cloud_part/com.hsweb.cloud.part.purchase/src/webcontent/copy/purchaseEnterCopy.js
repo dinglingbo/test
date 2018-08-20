@@ -106,9 +106,9 @@ $(document).ready(function(v)
     billmainTab = mainTabs.getTab("billmain");
     notEnterOrderTab = mainTabs.getTab("notEnterOrderTab");
     purchaseAdvanceTab = mainTabs.getTab("purchaseAdvanceTab");
-    //document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
-    //document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
-    //document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
+    //document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
+    //document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
+    //document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
     
     $("#guestId").bind("keydown", function (e) {
         /*if (e.keyCode == 13) {
@@ -354,7 +354,7 @@ function ontopTabChanged(e){
     var url = tab.url;
     if(!url){
         if(name == "purchaseAdvanceTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp", tab);
+            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp", tab);
         }else if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0) {
@@ -363,7 +363,7 @@ function ontopTabChanged(e){
                 add();
             }
         }else if(name == "sellOrderTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/purchase/purchaseEnter/sellOrderReceive_view0.jsp", tab);
+            mainTabs.loadTab(webPath + contextPath + "/purchase/purchaseEnter/sellOrderReceive_view0.jsp", tab);
         }
     }else{
         if(name == "billmain"){
@@ -916,7 +916,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1133,7 +1133,7 @@ function addDetail(part)
     
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
         title: "入库数量金额", width: 430, height:230,
         allowDrag:true,
         allowResize:false,
@@ -1438,7 +1438,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.purchase.purchaseEnterPrint.flow?ID="
+            url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.purchaseEnterPrint.flow?ID="
                     + row.id+"&token="+token,// "view_Guest.jsp",
             title : "采购入库打印",
             width : 900,

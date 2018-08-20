@@ -83,7 +83,7 @@ function addOrEditLogistics(comguest)
     }
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.baseData.LogisticsDetail.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.baseData.LogisticsDetail.flow?token="+token,
         allowResize:false,
         title: title, width: 450, height: 200,
         onload: function ()

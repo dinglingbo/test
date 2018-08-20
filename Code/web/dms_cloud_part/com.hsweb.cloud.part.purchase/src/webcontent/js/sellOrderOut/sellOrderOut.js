@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var webBaseUrl = webPath + cloudPartDomain + "/";
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
@@ -1158,7 +1158,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1835,7 +1835,7 @@ function addGuest(){
 		if (action == "ok") {
             nui.open({
                 targetWindow: window,
-                url: webPath+partDomain+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
+                url: webPath+contextPath+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
                 title: "客户资料", width: 530, height: 460,
                 allowDrag:true,
                 allowResize:false,
@@ -1877,7 +1877,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
+            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
                     + row.id+"&printMan="+currUserName+"&auditSign="+auditSign+"&logisticsName="+logisticsName,// "view_Guest.jsp",
             title : "销售出库打印",
             width : 900,
@@ -2266,7 +2266,7 @@ function addPchsEnter()
 function showPchsEnter(mainId,serviceId,guestId){
     nui.open({
         targetWindow: window,
-        url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.purchase.pchsOrderEnterSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchsOrderEnterSelect.flow?token="+token,
         title: "采购单据选择", width: 980, height: 560,
         showHeader:false,
         allowDrag:true,

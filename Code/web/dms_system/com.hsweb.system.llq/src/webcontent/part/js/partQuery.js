@@ -20,7 +20,7 @@ $(document).ready(function(v) {
     queryDg1();
 
 	//$("#query0").css("color","blue");
-	//document.getElementById("mainFrame").src=webPath + sysDomain + "/llq/vin/vinQuery.jsp";
+	//document.getElementById("mainFrame").src=webPath + contextPath + "/llq/vin/vinQuery.jsp";
     /*if(parent && parent.setBottomInit){
     	mainrow = parent.setBottomInit();
     	if(mainrow && mainrow.showTool == -1){
@@ -132,7 +132,7 @@ function openDetail(pid){
     var brand = row.brand;  
     try{
         nui.open({
-            url : sysDomain + "/com.hsweb.system.llq.vin.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : contextPath + "/com.hsweb.system.llq.vin.partDetail.flow?brand=" + brand + "&pid=" + pid,
             title : "零件详情",
             width : "900px",
             height : "600px",

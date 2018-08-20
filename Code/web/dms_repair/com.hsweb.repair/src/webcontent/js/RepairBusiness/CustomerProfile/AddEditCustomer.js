@@ -397,7 +397,12 @@ function processMobile(mobile){
         }
     }
 }
-
+function onInsureChange(e){
+	//var value = e.value;
+	var row = e.selected;
+	var shortName = row.shortName;
+	nui.get('insureCompName').setValue(shortName);
+}
 
 function getCarModel(callBack) {
 	nui.open({

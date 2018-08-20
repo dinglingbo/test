@@ -9,7 +9,7 @@
 -->
 <head>
 <title>客户索赔</title>
-<script src="<%=webPath + partDomain%>/purchasePart/js/repairMgr/customerClaimant.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/repairMgr/customerClaimant.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 70px;

@@ -3,7 +3,7 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryCard.biz.ext";
-var sysnUrl = webPath + partDomain + "/repair/DataBase/Card/cardSync.jsp?token="+token;
+var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/cardSync.jsp?token="+token;
 var grid = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
@@ -17,7 +17,7 @@ function add() {
 	nui.open({
 		url : sysnUrl,
 		title : "新增记录",
-		width : 680,
+		width : 650,
 		height : 520,
 		onload : function() {
 			var iframe = this.getIFrameEl();
@@ -42,7 +42,7 @@ function edit() {
 		nui.open({
 			url : sysnUrl,
 			title : "编辑数据",
-			width : 680,
+			width : 650,
 			height : 520,
 			onload : function() {
 				var iframe = this.getIFrameEl();

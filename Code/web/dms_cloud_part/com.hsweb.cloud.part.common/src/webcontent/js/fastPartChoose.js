@@ -828,7 +828,7 @@ function showBottomTabInfo(partId){
             var params = {};
             params.partId=partId;
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
@@ -839,7 +839,7 @@ function showBottomTabInfo(partId){
             params.partId=partId;
             params.type="LOCAL";
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartCommon.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartCommon.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }

@@ -9,8 +9,8 @@
 -->
 <head>
 <title>检查项目类型设置</title>
-<script src="<%=webPath + repairDomain%>/repair/cfg/js/checkTypeSet.js?v=1.0.0"></script>
-<link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkTypeSet.js?v=1.0.0"></script>
+<link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {
 	text-align: right;

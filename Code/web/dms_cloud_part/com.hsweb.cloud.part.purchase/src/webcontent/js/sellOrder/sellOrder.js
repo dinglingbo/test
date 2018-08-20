@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var webBaseUrl = webPath + cloudPartDomain + "/";
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
@@ -85,10 +85,10 @@ $(document).ready(function(v)
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");
     partInfoTab = mainTabs.getTab("partInfoTab");
-    document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp?token="+token;
-    document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp?token="+token;
-    //document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
-    //document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
+    document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp?token="+token;
+    document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp?token="+token;
+    //document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
+    //document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
 
     morePartTabs = nui.get("morePartTabs");
     enterTab = morePartTabs.getTab("enterTab");
@@ -351,11 +351,11 @@ function ontopTabChanged(e){
     var url = tab.url;
     if(!url){
         if(name == "guestOrdrTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/purchase/sellOrder/pchsOrderSettle_view0.jsp?token="+token, tab);
+            mainTabs.loadTab(webPath + contextPath + "/purchase/sellOrder/pchsOrderSettle_view0.jsp?token="+token, tab);
         }else if(name == "partStockInfoTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp?token="+token, tab);
+            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp?token="+token, tab);
         }else if(name == "purchaseAdvanceTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containOrderCart.jsp?token="+token, tab);
+            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containOrderCart.jsp?token="+token, tab);
         }else if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0){
@@ -1191,7 +1191,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1872,7 +1872,7 @@ function addGuest(){
 		if (action == "ok") {
             nui.open({
                 targetWindow: window,
-                url: webPath+partDomain+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
+                url: webPath+contextPath+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
                 title: "客户资料", width: 530, height: 460,
                 allowDrag:true,
                 allowResize:false,
@@ -1914,7 +1914,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
+            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderPrint.flow?ID="
                     + row.id+"&printMan="+currUserName+"&auditSign="+auditSign+"&logisticsName="+logisticsName,// "view_Guest.jsp",
             title : "销售订单打印",
             width : 900,

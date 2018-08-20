@@ -86,7 +86,7 @@
         var item={};
             item.id = "checkDetail";
             item.text = "查车单";
-            item.url = webPath + sysDomain + "/repair/RepairBusiness/Reception/checkDetail.jsp";
+            item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
       }
@@ -95,7 +95,7 @@
         var item={};
             item.id = "checkPrecheckDetail";
             item.text = "接车预检单";
-            item.url = webPath + sysDomain + "/repair/RepairBusiness/Reception/checkPrecheckDetail.jsp";
+            item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkPrecheckDetail.jsp";
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
       }

@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/6/23.
  */
-var webBaseUrl = webPath + repairDomain + "/";
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
-var webBaseUrl = webPath + repairDomain + "/";
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
@@ -296,7 +296,7 @@ $(document).ready(function ()
        try{
          nui.open({
           targetWindow : window,
-    		url : webPath + partDomain
+    		url : webPath + contextPath
     				+ "/com.hsweb.part.common.partSelectView.flow?token=" + token,
     		title : "配件选择",
     		width : 1000,
@@ -431,7 +431,7 @@ function add(){
 }
 function onApplyClick(){
     nui.open({
-        url: webPath + repairDomain + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title:"新增客户资料",
         width:500,
         height:630,
@@ -829,7 +829,7 @@ function savePackage(params, callback) {
 
 
 //增加次卡套餐
-var addcardTimeUrl = webPath + partDomain  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
+var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
 function addcardTime(){	
 	nui.open({
 		url : addcardTimeUrl,

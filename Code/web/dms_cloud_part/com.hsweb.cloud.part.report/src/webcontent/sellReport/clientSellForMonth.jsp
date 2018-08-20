@@ -5,7 +5,7 @@
 
 <head>
 <title>客户销售毛利汇总按月排行</title>
-<script src="<%=webPath + cloudPartDomain%>/report/js/clientSellForMonth.js?v=1.3.1"></script>
+<script src="<%=webPath + contextPath%>/report/js/clientSellForMonth.js?v=1.3.1"></script>
 </head>
 
 <body>

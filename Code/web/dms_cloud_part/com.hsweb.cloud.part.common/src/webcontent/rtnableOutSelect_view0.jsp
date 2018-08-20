@@ -9,7 +9,7 @@
 -->
 <head>
 <title>出库记录选择</title>
-<script src="<%=webPath + cloudPartDomain%>/common/js/rtnableOutSelect.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/common/js/rtnableOutSelect.js?v=2.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

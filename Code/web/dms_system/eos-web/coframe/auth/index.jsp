@@ -13,5 +13,5 @@
 		}
 	}
 	
-	response.sendRedirect(sysDomain + "/skins/"+skin+"/index.jsp");
+	response.sendRedirect(contextPath + "/skins/"+skin+"/index.jsp");
  %>

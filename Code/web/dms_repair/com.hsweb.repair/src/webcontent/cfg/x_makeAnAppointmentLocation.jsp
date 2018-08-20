@@ -13,7 +13,7 @@
 <title>技师等级</title>
 <%@include file="/common/sysCommon.jsp"%>
 <script
-	src="<%=webPath + repairDomain%>/repair/cfg/js/x_makeAnAppointmentLocation.js?v=1.0.0"></script>
+	src="<%=webPath + contextPath%>/repair/cfg/js/x_makeAnAppointmentLocation.js?v=1.0.0"></script>
 
 </head>
 <body>

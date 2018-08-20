@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + sysDomain%>/config/js/comParamsSet.js?v=1.0.0"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.0"></script>
   <style type="text/css">
 
     .title {

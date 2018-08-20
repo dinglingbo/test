@@ -161,12 +161,12 @@ function onOk()
             return;
         }
     }
-    data.moblie=nui.get('mobile').getValue();
+/*    data.moblie=nui.get('mobile').getValue();
     var pattern = /^[1][3,4,5,7,8]\d{9}$/;
     if(data.mobile !=pattern || data.mobile.length!=11){
     	showMsg("请输入正确的手机号");
     	return;
-    }
+    }*/
 
   
     if (data.modifyDate) {

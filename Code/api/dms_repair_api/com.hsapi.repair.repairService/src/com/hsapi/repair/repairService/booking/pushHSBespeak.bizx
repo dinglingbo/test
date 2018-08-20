@@ -34,6 +34,7 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -72,6 +73,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">params/mtAdvisor</process:from>
       <process:to type="query">mtAdvisor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/comeDate</process:from>
+      <process:to type="query">comeDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
@@ -129,10 +134,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">maintain/carNo</process:from>
       <process:to type="query">carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/enterDate</process:from>
-      <process:to type="query">comeDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">maintain/contactorId</process:from>
@@ -390,6 +391,10 @@
       <process:from type="query" pattern="reference">guest/mobile</process:from>
       <process:to type="query">bespeak/cellphone</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">compCode</process:from>
+      <process:to type="query">bespeak/compcode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="538" y="186"/>
@@ -481,8 +486,8 @@
     <location x="22" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.expandMaintainById</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.work.expandMaintainById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
       </process:inputVariables>

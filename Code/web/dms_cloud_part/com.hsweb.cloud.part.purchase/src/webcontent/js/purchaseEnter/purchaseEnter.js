@@ -612,7 +612,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         targetWindow : window,
-        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "供应商资料",
         width : 980,
         height : 560,
@@ -962,7 +962,7 @@ function addGuest(){
 		if (action == "ok") {
 			nui.open({
 				targetWindow: window,
-				url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
 				title: "供应商资料", width: 530, height: 480,
 				allowDrag:true,
 				allowResize:false,
@@ -1008,7 +1008,7 @@ function onPrint() {
         if(orderTypeId == 1){
             nui.open({
 
-                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+                url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
                         + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
                 title : "进货单打印",
                 width : 900,
@@ -1021,7 +1021,7 @@ function onPrint() {
         }else if(orderTypeId == 4){
             nui.open({
 
-                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
+                url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
                         + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
                 title : "销售退货打印",
                 width : 900,

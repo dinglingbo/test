@@ -10,7 +10,7 @@
 
 <head>
     <title>预约跟进</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/BookingManagement/BookingScout.js?v=1.3"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingScout.js?v=1.3"></script>
     <style type="text/css">
         table {
             font-size: 12px;

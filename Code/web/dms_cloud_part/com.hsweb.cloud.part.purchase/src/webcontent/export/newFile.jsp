@@ -11,7 +11,7 @@
 -->
 <head>
     <title>Title</title>
-    <script src="<%=webPath + cloudPartDomain%>/purchase/export/ex.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/purchase/export/ex.js?v=1.0.0"></script>
 </head>
 <style type="text/css">
     body {

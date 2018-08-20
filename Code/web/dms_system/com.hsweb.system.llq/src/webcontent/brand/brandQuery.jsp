@@ -27,10 +27,10 @@
 <title>车型查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
-    <link href="<%=sysDomain%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.4" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandQuery.js?v=1.5" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/brand/js/brandInfos.js?v=1.4" type="text/javascript"></script>
+    <link href="<%=contextPath%>/llq/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
+    <script src="<%=contextPath%>/llq/common/llqCommon.js?v=1.4" type="text/javascript"></script>
+    <script src="<%=contextPath%>/llq/brand/js/brandQuery.js?v=1.5" type="text/javascript"></script>
+    <script src="<%=contextPath%>/llq/brand/js/brandInfos.js?v=1.4" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 

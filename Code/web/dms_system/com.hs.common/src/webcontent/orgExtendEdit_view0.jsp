@@ -11,7 +11,7 @@
 <head>
     <title>门店信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + sysDomain%>/common/js/orgExtendEdit.js?v=1.9.4" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=1.9.4" type="text/javascript"></script>
 
   <style type="text/css">
     body {

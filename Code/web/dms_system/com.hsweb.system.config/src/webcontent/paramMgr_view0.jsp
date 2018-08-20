@@ -6,7 +6,7 @@
 
 <head>
 <title>参数设置</title>
-<script src="<%=webPath + sysDomain%>/config/js/paramMgr.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/config/js/paramMgr.js?v=1.0.0"></script>
 </head>
 <body>
 	<div class="nui-fit">

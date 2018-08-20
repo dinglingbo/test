@@ -724,7 +724,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         targetWindow : window,
-        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "客户资料",
         width : 980,
         height : 560,
@@ -1134,7 +1134,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
+            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
                     + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
             title : "销售退货打印",
             width : 900,
@@ -1153,7 +1153,7 @@ function ontopTabChanged(e){
     var url = tab.url;
     if(!url){
         if(name == "guestOrdrTab"){
-            mainTabs.loadTab(webPath + cloudPartDomain + "/purchase/sellOrderRtn/pchsRtnOrderSettle_view0.jsp", tab);
+            mainTabs.loadTab(webPath + contextPath + "/purchase/sellOrderRtn/pchsRtnOrderSettle_view0.jsp", tab);
         }else if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0){
@@ -1686,7 +1686,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
         title: "销售订单选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,

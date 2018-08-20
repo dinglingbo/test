@@ -220,7 +220,7 @@ function updateError(e) {
 function addDetail() {
 	nui.open({
 		targetWindow : window,
-		url : webPath + partDomain
+		url : webPath + contextPath
 				+ "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 		title : "配件选择",
 		width : 1000,
@@ -265,7 +265,7 @@ function selectPackage() {
 
 	nui.open({
 		targetWindow : window,
-		url : webPath + partDomain
+		url : webPath + contextPath
 				+ "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "本店套餐",
 		width : 1000,
@@ -308,7 +308,7 @@ function selectPackage() {
 function selectItem(callback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath + partDomain
+		url : webPath + contextPath
 				+ "/com.hsweb.repair.DataBase.RepairItemMain.flow?token="
 				+ token,
 		title : "维修工时",

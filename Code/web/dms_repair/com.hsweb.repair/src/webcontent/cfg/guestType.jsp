@@ -9,7 +9,7 @@
 -->
 <head>
 <title>客户级别</title>
-<script src="<%=webPath + partDomain%>/repair/cfg/js/guestType.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/guestType.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	text-align: right;

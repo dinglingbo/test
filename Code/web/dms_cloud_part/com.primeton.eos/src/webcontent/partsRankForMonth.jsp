@@ -14,7 +14,7 @@
 	<%@include file="/common/sysCommon.jsp"%>
 	<%@include file="/common/commonCloudPart.jsp"%>
 <link
-	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
 
 </head>

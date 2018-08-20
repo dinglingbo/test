@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%=webPath + partDomain%>/purchasePart/js/stockMgr/storeCycDetail.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/stockMgr/storeCycDetail.js?v=1.0.2"></script>
 <style type="text/css">
 table {
 	width: 100%;

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存设置</title>
-<script src="<%=webPath + partDomain%>/purchasePart/js/stockMgr/stockSetting.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/stockMgr/stockSetting.js?v=1.0.4"></script>
 <style type="text/css">
 </style>
 </head>

@@ -8,7 +8,7 @@ var cartGrid = null;
 $(document).ready(function(v) {
     query_vin(0);
 	//$("#query0").css("color","blue");
-	//document.getElementById("mainFrame").src=webPath + sysDomain + "/com.hsweb.system.llq.vin.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
+	//document.getElementById("mainFrame").src=webPath + contextPath + "/com.hsweb.system.llq.vin.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
     /*if(parent && parent.setBottomInit){
     	mainrow = parent.setBottomInit();
     	if(mainrow && mainrow.showTool == -1){
@@ -55,16 +55,16 @@ function query_vin(type){
     
     switch (type){
         case 0:
-            document.getElementById("mainFrame0").src=webPath + sysDomain + "/com.hsweb.system.llq.vin.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
+            document.getElementById("mainFrame0").src=webPath + contextPath + "/com.hsweb.system.llq.vin.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
             break;
         case 1:
-            document.getElementById("mainFrame1").src=webPath + sysDomain + "/com.hsweb.system.llq.vin.brandQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995&brand=" + brand;
+            document.getElementById("mainFrame1").src=webPath + contextPath + "/com.hsweb.system.llq.vin.brandQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995&brand=" + brand;
             break;
         case 2:
-            document.getElementById("mainFrame2").src=webPath + sysDomain + "/com.hsweb.system.llq.vin.partQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
+            document.getElementById("mainFrame2").src=webPath + contextPath + "/com.hsweb.system.llq.vin.partQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
             break;
         /* default:
-        	document.getElementById("mainFrame").src=webPath + sysDomain + "/com.hsweb.system.llq.vin.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
+        	document.getElementById("mainFrame").src=webPath + contextPath + "/com.hsweb.system.llq.vin.vinQuery.flow.ext?token=214e2f71-4237-4601-9a1a-538bf982b995";
             break; */
     }
     catchs[type] = 1;
@@ -143,7 +143,7 @@ function deleteCartShop(){
 function openGeneratePop(partList, type, title){
     nui.open({
         targetWindow : window,
-        url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
         title : title,
         width : 600,
         height : 400,

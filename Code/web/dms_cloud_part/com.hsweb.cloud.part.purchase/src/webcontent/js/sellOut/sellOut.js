@@ -525,7 +525,7 @@ function onPrint() {
         if(orderTypeId == 2){
             nui.open({
 
-                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
+                url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
                         + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
                 title : "销售单打印",
                 width : 900,
@@ -538,7 +538,7 @@ function onPrint() {
         }else if(orderTypeId == 3){
             nui.open({
 
-                url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
+                url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
                         + row.id+"&printMan="+currUserName,// "view_Guest.jsp",
                 title : "采购退货打印",
                 width : 900,

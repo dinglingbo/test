@@ -12,7 +12,7 @@
 <head>
 <title>应付账款管理</title>
 	<%@include file="/common/sysCommon.jsp"%>
-<script src="<%=webPath + sysDomain%>/frm/js/arap/payFunds.js?v=1.0.1"
+<script src="<%=webPath + contextPath%>/frm/js/arap/payFunds.js?v=1.0.1"
 	type="text/javascript"></script>
 
 </head>

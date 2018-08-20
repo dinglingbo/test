@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.12"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;

@@ -16,10 +16,10 @@
 	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
 	
     //Web域 访问其他Web域使用：xxDomain + 页面路径
-	String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
-    String partDomain = Env.getContributionConfig("system", "url", "webDomain", "PART");
-    String repairDomain = Env.getContributionConfig("system", "url", "webDomain", "REPAIR");
-    String cloudPartDomain = Env.getContributionConfig("system", "url", "webDomain", "CLOUDPART");
+	String contextPath = Env.getContributionConfig("system", "url", "webDomain", "SYS");
+    String contextPath = Env.getContributionConfig("system", "url", "webDomain", "PART");
+    String contextPath = Env.getContributionConfig("system", "url", "webDomain", "REPAIR");
+    String contextPath = Env.getContributionConfig("system", "url", "webDomain", "CLOUDPART");
     String crmDomain = Env.getContributionConfig("system", "url", "webDomain", "CRM");
     String frmDomain = Env.getContributionConfig("system", "url", "webDomain", "FRM");
     
@@ -52,10 +52,10 @@
 	var apiPath		= "<%=apiPath%>";
 	var webPath		= "<%=webPath%>";
 	
-    var sysDomain   = "<%=sysDomain%>";
-    var partDomain   = "<%=partDomain%>";
-    var repairDomain   = "<%=repairDomain%>";
-    var cloudPartDomain   = "<%=cloudPartDomain%>";
+    var contextPath   = "<%=contextPath%>";
+    var contextPath   = "<%=contextPath%>";
+    var contextPath   = "<%=contextPath%>";
+    var contextPath   = "<%=contextPath%>";
     var crmDomain   = "<%=crmDomain%>";
     var frmDomain   = "<%=frmDomain%>";
     
@@ -131,16 +131,16 @@
 			window.parent.backToLogin();
 		}else{
 			alert("登录超时，正在跳转！");
-            window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
+            window.top.location.href = contextPath + "/coframe/auth/login/login.jsp";			
 		}*/
 	}
 </script>
-<script src="<%=sysDomain%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
-<script src="<%=sysDomain%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
-<script src="<%=sysDomain%>/common/js/init.js?v=1.0" type="text/javascript"></script>
-<script src="<%=sysDomain%>/common/js/date.js?v=1.1" type="text/javascript"></script>
-<link href="<%=sysDomain%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
-<link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<script src="<%=contextPath%>/common/js/sysCommon.js?v=1.0" type="text/javascript"></script>
+<script src="<%=contextPath%>/common/js/constantDef.js?v=1.0" type="text/javascript"></script>
+<script src="<%=contextPath%>/common/js/init.js?v=1.0" type="text/javascript"></script>
+<script src="<%=contextPath%>/common/js/date.js?v=1.1" type="text/javascript"></script>
+<link href="<%=contextPath%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
+<link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
     html, body
     {

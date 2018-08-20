@@ -9,7 +9,7 @@
 -->
 <head>
 <title>新增分类</title>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/partTypeEdit.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partTypeEdit.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
     width: 90px;

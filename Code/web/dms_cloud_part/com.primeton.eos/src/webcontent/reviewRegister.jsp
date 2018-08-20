@@ -14,9 +14,9 @@
 	<%@include file="/common/sysCommon.jsp"%>
 	<%@include file="/common/commonCloudPart.jsp"%>
 <link
-	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%=webPath + sysDomain%>/eos/js/review_register.js?v=1.1"
+<script src="<%=webPath + contextPath%>/eos/js/review_register.js?v=1.1"
 	type="text/javascript"></script>
 </head>
 <body>

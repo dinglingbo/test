@@ -9,7 +9,7 @@
 -->
 <head>
 <title>检查项目设置</title>
-<script src="<%=webPath + partDomain%>/repair/cfg/js/checkDetailSet.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkDetailSet.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	text-align: right;

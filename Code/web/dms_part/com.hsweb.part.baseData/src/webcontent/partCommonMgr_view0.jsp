@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件替换</title>
-<script src="<%=webPath + cloudPartDomain%>/baseDataPart/js/partMgr/partCommonMgr.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partCommonMgr.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
   width: 60px;

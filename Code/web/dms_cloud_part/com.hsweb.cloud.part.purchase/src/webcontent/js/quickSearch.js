@@ -96,13 +96,13 @@ $(document).ready(function() {
         gpartCode = row.partCode||"";
         if(row.partId){
             showTabInfo(gpartId,gpartCode);
-            document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
         }else if(row.brand && row.partCode){
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + sysDomain + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
+            document.getElementById("epcFormIframe").src=webPath + contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
         }else{
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
         }
     });
     partGrid.on("cellclick",function(e){ 
@@ -128,13 +128,13 @@ $(document).ready(function() {
         gpartCode = row.partCode||"";
         if(row.partId){
             showTabInfo(gpartId,gpartCode);
-            document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
         }else if(row.brand && row.partCode){
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + sysDomain + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
+            document.getElementById("epcFormIframe").src=webPath + contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
         }else{
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + cloudPartDomain+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
         }
     });
     innerPartCommonGrid.on("drawcell",function(e){
@@ -500,7 +500,7 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        url: webPath+contextPath+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 740, height: 250,
         allowDrag:true,
@@ -637,7 +637,7 @@ function deleteCartShop(){
 function openGeneratePop(partList, type, title){
     nui.open({
         targetWindow : window,
-        url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
         title : title,
         width : 600,
         height : 400,
@@ -724,7 +724,7 @@ function showTabInfo(partId, partCode){
             var params = {};
             params.partCode=partCode;
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomChainStock.jsp?partCode="+partCode, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomChainStock.jsp?partCode="+partCode, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
@@ -734,7 +734,7 @@ function showTabInfo(partId, partCode){
             params.partId=partCode;
             params.token=token;
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBmwParts.jsp?partCode="+partCode, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBmwParts.jsp?partCode="+partCode, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
@@ -752,7 +752,7 @@ function showTabInfo(partId, partCode){
             var params = {};
             params.partId=partId;
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPchsOrderRecord.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPchsOrderRecord.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);  
             }
@@ -762,7 +762,7 @@ function showTabInfo(partId, partCode){
             var params = {};
             params.partId=partId;
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
@@ -772,7 +772,7 @@ function showTabInfo(partId, partCode){
             var params = {};
             params.partId=partId;
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomSellRecord.jsp", tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomSellRecord.jsp", tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
@@ -781,7 +781,7 @@ function showTabInfo(partId, partCode){
         case "invocingTab":
             gparams.guestId=null;
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomSellRecord.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomSellRecord.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
@@ -792,7 +792,7 @@ function showTabInfo(partId, partCode){
             params.partId=partId;
             params.type="LOCAL";
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartCommon.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartCommon.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }

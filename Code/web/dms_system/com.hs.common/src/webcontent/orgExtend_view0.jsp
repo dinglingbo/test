@@ -11,7 +11,7 @@
 <head>
 <title>门店管理</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + sysDomain%>/common/js/orgExtendQuery.js?v=1.9.1"
+<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.1"
 	type="text/javascript"></script>
 <style type="text/css">
 body {

@@ -776,7 +776,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.partSelectView.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,

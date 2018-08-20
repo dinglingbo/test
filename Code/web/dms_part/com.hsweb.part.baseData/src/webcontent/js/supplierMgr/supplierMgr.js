@@ -128,7 +128,7 @@ function addSuplier() {
 	nui
 			.open({
 				targetWindow : window,
-				url : webPath + partDomain
+				url : webPath + contextPath
 						+ "/com.hsweb.part.baseData.supplierDetail.flow?token="
 						+ token,
 				title : "供应商资料",
@@ -170,7 +170,7 @@ function editSuplier() {
 		managerDutyList = nui.get("managerDuty").getData();
 		nui.open({
 			targetWindow : window,
-			url : webPath + partDomain
+			url : webPath + contextPath
 					+ "/com.hsweb.part.baseData.supplierDetail.flow?token="
 					+ token,
 			title : "供应商资料",
@@ -220,7 +220,7 @@ function importGuest() {
 	nui
 			.open({
 				targetWindow : window,
-				url : webPath + partDomain
+				url : webPath + contextPath
 						+ "/com.hsweb.part.baseData.importSupplier.flow?token="
 						+ token,
 				title : "供应商导入",

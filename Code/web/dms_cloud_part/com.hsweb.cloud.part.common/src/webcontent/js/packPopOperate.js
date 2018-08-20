@@ -130,7 +130,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "客户选择", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -414,7 +414,7 @@ function selectLogisticsSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "物流公司选择", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

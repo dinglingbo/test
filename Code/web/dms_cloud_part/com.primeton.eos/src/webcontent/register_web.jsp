@@ -15,9 +15,9 @@
 
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + sysDomain%>/eos/css/register.css"
+	href="<%=webPath + contextPath%>/eos/css/register.css"
 	rel="stylesheet" type="text/css" />
-<script src="<%=webPath + sysDomain%>/eos/js/register.js?v=1.0"
+<script src="<%=webPath + contextPath%>/eos/js/register.js?v=1.0"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -77,7 +77,7 @@
 	</div>	
 	<div>
 	<center>
-	<img alt="" src="<%=webPath + sysDomain%>/eos/img/img_logo2.png" style="height:300px;width: 250px; margin-top: 20%;">
+	<img alt="" src="<%=webPath + contextPath%>/eos/img/img_logo2.png" style="height:300px;width: 250px; margin-top: 20%;">
 	</center>
 	</div>
 	<div style="background-color:#3F424D; height: 7%; width: 100%;">

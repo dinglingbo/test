@@ -131,6 +131,7 @@
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
+			a.insure_comp_name insureCompName,
 			b.addr addr,
 			a.recorder recorder,
 			a.record_date recordDate,

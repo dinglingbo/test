@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.1.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.1.2"></script>
 <style type="text/css">
 
 table {
@@ -132,6 +132,7 @@ table {
                     <div class="form" id="carInfoFrom">
                         <input class="nui-hidden" name="id"/>
                         <input class="nui-hidden" name="carBrandId" id="carBrandId"/>
+                        <input class="nui-hidden" name="insureCompName" id="insureCompName"/>
                         <table class="nui-form-table" style="width:100%;">
                             <tr>
                                 <td class="form_label required">
@@ -196,7 +197,8 @@ table {
                                     <input class="nui-combobox" name="insureCompCode" id="insureCompCode"
                                            valueField="id"
                                            textField="fullName"
-                                           width="100%"/>
+                                           width="100%"
+                                           onvaluechanged="onInsureChange"/>
                                 </td>
                             </tr>
                             <tr>

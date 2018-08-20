@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户办卡、充值记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.0.5"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -38,7 +38,7 @@ html,body {
                     <label style="font-family:Verdana;">快速查询：</label>
                      <td class="form_label">消费日期 从:</td>
                 <td>
-                     <input class="nui-datepicker" id="startDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" value="2018-08-20"/>
+                     <input class="nui-datepicker" id="startDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" value=""/>
                 </td>
                 <td class="">至:</td>
                 <td>

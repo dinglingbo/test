@@ -20,6 +20,7 @@ $(document).ready(function (v)
     grid.load(queryInfoForm);
     grid.setUrl(gridUrl);
     grid.on("drawcell",onDrawCell);
+    getNowFormatDate();
     onSearch();
 });
 
@@ -73,4 +74,17 @@ function onRenderer2(e){
 	}
 	return "";
 }
+function getNowFormatDate(){
+	   var date = new Date();
+	    var seperator1 = "-";
+	    var seperator2 = ":";
+	    var month = date.getMonth() + 1;
+	    var strDate = date.getDate();
+	    if (month >= 1 && month <= 9) {
+	        month = "0" + month;
+	    }
 
+	    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + "01";
+	    nui.get('startDate').setValue(currentdate);
+//	    return currentdate;
+}

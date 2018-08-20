@@ -108,10 +108,11 @@ function setData(data) {
 function updateError(e) {
 
 	if (nui.get('x').getValue() == "3") {
-		document.getElementById('y').innerHTML = "元";
+		document.getElementById('y').style.display = 'block';
+		document.getElementById('b').style.display = 'none';
 	} else {
-
-		document.getElementById('y').innerHTML = "%";
+		document.getElementById('b').style.display = 'block';
+		document.getElementById('y').style.display = 'none';
 	}
 }
 //验证充值金额和赠送金额

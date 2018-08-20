@@ -11,7 +11,7 @@
 <head>
 <title>基础设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/config/js/basicDeductParamsSet.js?v=1.0.0"></script>
+    <script src="<%=webPath + sysDomain%>/config/js/basicDeductParamsSet.js?v=1.0.0"></script>
 </head>
 <style type="text/css">
     body {

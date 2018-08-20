@@ -72,8 +72,8 @@ $(document).ready(function(v)
 
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");
-    document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
-    document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containOutableEnterSelect.jsp";
+    document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
+    document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containOutableEnterSelect.jsp";
 
     //绑定表单
     //var db = new nui.DataBinding();
@@ -839,7 +839,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.customerSelect.flow",
+        url: webPath+partDomain+"/com.hsweb.part.common.customerSelect.flow",
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

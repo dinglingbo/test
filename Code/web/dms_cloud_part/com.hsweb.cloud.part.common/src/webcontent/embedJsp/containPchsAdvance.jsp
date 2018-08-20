@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购车</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containPchsAdvance.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containPchsAdvance.js?v=2.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

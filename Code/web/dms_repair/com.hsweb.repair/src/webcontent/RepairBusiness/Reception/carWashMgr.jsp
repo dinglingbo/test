@@ -98,7 +98,7 @@
         var item={};
             item.id = "checkDetail";
             item.text = "洗车单";
-            item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/carWashBill.jsp";
+            item.url = webPath + sysDomain + "/repair/RepairBusiness/Reception/carWashBill.jsp";
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
       }

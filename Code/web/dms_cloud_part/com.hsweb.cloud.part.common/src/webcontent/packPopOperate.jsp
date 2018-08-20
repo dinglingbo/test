@@ -10,7 +10,7 @@
 <head>
 <title>打包发货</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/js/packPopOperate.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/packPopOperate.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

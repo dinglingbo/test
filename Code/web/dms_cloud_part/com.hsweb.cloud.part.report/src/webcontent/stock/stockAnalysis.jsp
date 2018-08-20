@@ -1,12 +1,12 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@include file="/common/sysCommon.jsp"%>
 <%@include file="/common/commonCloudPart.jsp"%>
-<script type="text/javascript" src="<%=webPath + contextPath%>/common/nui/echarts.min.js"></script>
+<script type="text/javascript" src="<%=webPath + sysDomain%>/common/nui/echarts.min.js"></script>
 <html>
 
 <head>
 <title>库存分析</title>
-<script src="<%=webPath + contextPath%>/report/js/stock/stockAnalysis.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/report/js/stock/stockAnalysis.js?v=1.0.0"></script>
 </head>
 
 <body>

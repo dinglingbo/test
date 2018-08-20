@@ -59,7 +59,7 @@ function addOrEditPartQuality(quality)
     }
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
         title: title, width: 350, height: 150,
         allowDrag:true,
         allowResize:false,
@@ -109,7 +109,7 @@ function addOrEditPartBrand(brand)
     }
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
         title: title, width: 350, height: 200,
         allowDrag:true,
         allowResize:false,
@@ -407,7 +407,7 @@ function addLocalBrand()
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.baseData.partBrandOrgDetail.flow?token=" + token,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.partBrandOrgDetail.flow?token=" + token,
         title: "新增关注品牌", width: 500, height: 350,
         allowDrag:true,
         allowResize:true,

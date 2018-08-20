@@ -9,7 +9,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/consumableItem/consumableItemOut.js?v=1.0.20"></script>
+<script src="<%=webPath + partDomain%>/purchasePart/js/consumableItem/consumableItemOut.js?v=1.0.20"></script>
 <style type="text/css">
 .title {
 	width: 60px;

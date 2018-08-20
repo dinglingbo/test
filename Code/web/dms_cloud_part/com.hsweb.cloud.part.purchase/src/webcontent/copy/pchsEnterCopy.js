@@ -71,10 +71,10 @@ $(document).ready(function(v)
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");
     partInfoTab = mainTabs.getTab("partInfoTab");
-    document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
-    //document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
-    //document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
-    //document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
+    document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
+    //document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
+    //document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
+    //document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
     
     $("#guestId").bind("keydown", function (e) {
         if (e.keyCode == 13) {
@@ -347,11 +347,11 @@ function ontopTabChanged(e){
     var url = tab.url;
     if(!url){
         if(name == "partInfoTab"){
-            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartInfo.jsp", tab);
+            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp", tab);
         }else if(name == "partStockInfoTab"){
-            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp", tab);
+            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp", tab);
         }else if(name == "purchaseAdvanceTab"){
-            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp", tab);
+            mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp", tab);
         }else if(name == "billmain"){
             var guestId = nui.get("guestId");
             if(!guestId){
@@ -974,7 +974,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1195,7 +1195,7 @@ function addDetail(part)
     
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
+        url: webPath+partDomain+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
         title: "入库数量金额", width: 430, height:230,
         allowDrag:true,
         allowResize:false,
@@ -1519,7 +1519,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.purchaseEnterPrint.flow?ID="
+            url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.purchase.purchaseEnterPrint.flow?ID="
                     + row.id+"&token="+token,// "view_Guest.jsp",
             title : "采购入库打印",
             width : 900,
@@ -1559,7 +1559,7 @@ function addPchsOrder(callback,checkcallback)
 
                     nui.open({
                         targetWindow: window,
-                        url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
+                        url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
                         title: "采购订单选择", width: 930, height: 560,
                         allowDrag:true,
                         allowResize:true,
@@ -1601,7 +1601,7 @@ function addPchsOrder(callback,checkcallback)
 
         nui.open({
             targetWindow: window,
-            url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
+            url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
             title: "采购订单选择", width: 930, height: 560,
             allowDrag:true,
             allowResize:true,

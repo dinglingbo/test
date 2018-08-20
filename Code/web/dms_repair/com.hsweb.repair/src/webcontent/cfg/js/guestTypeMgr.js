@@ -54,7 +54,7 @@ function doSearch(params)
 function addOrEdit(row){
     nui.open({
 		targetWindow : window,
-		url : webPath+contextPath+"/repair/cfg/guestType.jsp?token="+token,
+		url : webPath+repairDomain+"/repair/cfg/guestType.jsp?token="+token,
 		title : "客户级别设置",
 		width : 600,
 		height : 500,

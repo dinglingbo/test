@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/6/23.
  */
-var webBaseUrl = webPath + contextPath + "/";
+var webBaseUrl = webPath + repairDomain + "/";
 var baseUrl = apiPath + repairApi + "/";
-var webBaseUrl = webPath + contextPath + "/";
+var webBaseUrl = webPath + repairDomain + "/";
 var baseUrl = apiPath + repairApi + "/";
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
@@ -290,13 +290,14 @@ $(document).ready(function ()
    //点击配件行时发生
     rpsPartGrid.on("cellclick",function(e){
      var record = e.record;
+     //点击的某一列
      var column = e.column;
      var row = rpsPartGrid.getSelected();
      if(column.field == "partName"){
        try{
          nui.open({
           targetWindow : window,
-    		url : webPath + contextPath
+    		url : webPath + partDomain
     				+ "/com.hsweb.part.common.partSelectView.flow?token=" + token,
     		title : "配件选择",
     		width : 1000,
@@ -315,10 +316,21 @@ $(document).ready(function ()
     			if (action == "ok") {
     				var iframe = this.getIFrameEl();
     				var data  = iframe.contentWindow.getData();
-    			    var list = data.part;
-    			    row = list ;
+    				var part = data.part;
+    				//将查找出来的值对应赋值给list
+    				/*var list = [];
+    				list.partCode = part.code || "";
+    				list.partName = part.name || "";
+    				list.partNameId = part.partNameId || "";
+    				list.partId = part.id || ""; */				
+    			    //var list = data.part;
+    			    //row = list ;
+    				var list ={
+    					partCode :	part.code			
+    				};
     				if(list){  					
-    					record.setData(list);
+    					row.setData(list);
+    					//record.partCode = list;
     				}
     			}
     		}
@@ -431,7 +443,7 @@ function add(){
 }
 function onApplyClick(){
     nui.open({
-        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        url: webPath + repairDomain + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title:"新增客户资料",
         width:500,
         height:630,
@@ -829,7 +841,7 @@ function savePackage(params, callback) {
 
 
 //增加次卡套餐
-var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
+var addcardTimeUrl = webPath + partDomain  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
 function addcardTime(){	
 	nui.open({
 		url : addcardTimeUrl,

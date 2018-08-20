@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘点单选择</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectStockCheck.js?v=1.0.3"></script>
+<script src="<%=webPath + partDomain%>/purchasePart/js/inventoryMgr/selectStockCheck.js?v=1.0.3"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

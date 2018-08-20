@@ -9,7 +9,7 @@
 -->
 <head>
 <title>提醒设置</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/remindParams.js?v=1.0.0"></script>
+<script src="<%=webPath + partDomain%>/repair/cfg/js/remindParams.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	text-align: right;

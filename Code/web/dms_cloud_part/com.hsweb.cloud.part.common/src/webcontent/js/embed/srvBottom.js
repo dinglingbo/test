@@ -29,15 +29,15 @@ $(document).ready(function(v) {
 	partInfoTab =  mainTabs.getTab("partInfo");
     chainStockTab =  mainTabs.getTab("chainStock");
 
-    //mainTabs.updateTab(stockselectTab, {url: webPath + contextPath + "/common/embedJsp/containBottomStock.jsp"});
+    //mainTabs.updateTab(stockselectTab, {url: webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp"});
 
 
-    /*document.getElementById("bottomFormIframeStock").src=webPath + contextPath + "/common/embedJsp/containBottomStock.jsp";
-    document.getElementById("bottomFormIframeOutableRecord").src=webPath + contextPath + "/common/embedJsp/containBottomOutableRecord.jsp";
-    document.getElementById("bottomFormIframePchsRecord").src=webPath + contextPath + "/common/embedJsp/containBottomPchsRecord.jsp";
-    document.getElementById("bottomFormIframeSellRecord").src=webPath + contextPath + "/common/embedJsp/containBottomSellRecord.jsp";
-    document.getElementById("bottomFormIframeRtnRecord").src=webPath + contextPath + "/common/embedJsp/containBottomPchsRtnRecord.jsp";
-    document.getElementById("bottomFormIframePartInfo").src=webPath + contextPath + "/common/embedJsp/containBottomPartInfo.jsp";
+    /*document.getElementById("bottomFormIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp";
+    document.getElementById("bottomFormIframeOutableRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomOutableRecord.jsp";
+    document.getElementById("bottomFormIframePchsRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRecord.jsp";
+    document.getElementById("bottomFormIframeSellRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomSellRecord.jsp";
+    document.getElementById("bottomFormIframeRtnRecord").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRtnRecord.jsp";
+    document.getElementById("bottomFormIframePartInfo").src=webPath + cloudPartDomain + "/common/embedJsp/containBottomPartInfo.jsp";
 */
     if(parent && parent.setBottomInit){
     	mainrow = parent.setBottomInit();
@@ -175,9 +175,9 @@ function showTabInfo(){
             gparams.guestId=null;
             stockselectTab =  mainTabs.getTab("stockselect");
             if(!url){
-                //mainTabs.updateTab(stockselectTab, {url: webPath + contextPath + "/common/embedJsp/containBottomStock.jsp"});
+                //mainTabs.updateTab(stockselectTab, {url: webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp"});
                 //mainTabs.reloadTab(stockselectTab);
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomStock.jsp?token="+token, stockselectTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomStock.jsp?token="+token, stockselectTab);
             }else {
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
             }            
@@ -190,7 +190,7 @@ function showTabInfo(){
             }*/
             gparams.guestId=null;
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomOutableRecord.jsp?token="+token, outableRecordTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomOutableRecord.jsp?token="+token, outableRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(outableRecordTab).contentWindow.doSearch(gparams);
             }
@@ -203,7 +203,7 @@ function showTabInfo(){
             }*/
             gparams.guestId=null;
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomPchsRecord.jsp?token="+token, pchsRecordTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRecord.jsp?token="+token, pchsRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(pchsRecordTab).contentWindow.doSearch(gparams);  
             }
@@ -216,7 +216,7 @@ function showTabInfo(){
             }*/
             gparams.guestId=null;
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomSellRecord.jsp?token="+token, sellRecordTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomSellRecord.jsp?token="+token, sellRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(sellRecordTab).contentWindow.doSearch(gparams);
             }
@@ -240,7 +240,7 @@ function showTabInfo(){
                 document.getElementById("bottomFormIframeRtnRecord").contentWindow.doSearch(params);
             }*/
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomPchsRtnRecord.jsp?token="+token, rtnRecordTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomPchsRtnRecord.jsp?token="+token, rtnRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(rtnRecordTab).contentWindow.doSearch(gparams); 
             }
@@ -252,7 +252,7 @@ function showTabInfo(){
                 document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
             }*/
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomPartInfo.jsp?token="+token, partInfoTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomPartInfo.jsp?token="+token, partInfoTab);
             }else{
                 mainTabs.getTabIFrameEl(partInfoTab).contentWindow.doSearch(gparams);
             }
@@ -263,7 +263,7 @@ function showTabInfo(){
                 document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
             }*/
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomChainStock.jsp?token="+token, chainStockTab);
+                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containBottomChainStock.jsp?token="+token, chainStockTab);
             }else{
                 mainTabs.getTabIFrameEl(chainStockTab).contentWindow.doSearch(gparams);
             }

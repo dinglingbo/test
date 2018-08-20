@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>结算账户</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/basic/js/settleAccountSet.js?v=2.0.1"></script>
+    <script src="<%=webPath + cloudPartDomain%>/basic/js/settleAccountSet.js?v=2.0.1"></script>
     <style type="text/css">
     body {
         margin: 0;

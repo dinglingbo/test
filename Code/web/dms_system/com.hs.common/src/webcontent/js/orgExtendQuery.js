@@ -116,7 +116,7 @@ function edit(action) {
     }
 
     nui.open({
-        url: webPath + contextPath + "/com.hs.common.orgExtendEdit.flow?token="+token,
+        url: webPath + sysDomain + "/com.hs.common.orgExtendEdit.flow?token="+token,
         width: 1200,      //宽度
         height: 600,    //高度
         title: "公司信息",      //标题 组织编码选择

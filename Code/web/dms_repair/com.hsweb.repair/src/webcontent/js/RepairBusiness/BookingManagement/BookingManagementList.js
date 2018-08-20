@@ -241,7 +241,7 @@ function onDrawCell(e) {
 
 function addRow() {
     nui.open({
-        url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
         title: "新增预约", width: 800, height: "100%",
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -261,7 +261,7 @@ function editRow() {
         return;
     }
     nui.open({
-        url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
         title: "修改", width: 800, height: "100%",
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -349,7 +349,7 @@ function callBill() {
     }
     
     nui.open({
-        url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingScout.jsp?token="+token,
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingScout.jsp?token="+token,
         title: "预约跟进", width: 700, height: 350,
         onload: function () {
             var iframe = this.getIFrameEl();

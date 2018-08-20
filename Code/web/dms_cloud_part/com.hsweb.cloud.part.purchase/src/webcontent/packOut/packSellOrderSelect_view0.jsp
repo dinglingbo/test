@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packSellOrderSelect.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/packOut/packSellOrderSelect.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

@@ -13,7 +13,7 @@
 <title>注册审核</title>
 	<%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
 <script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.2"
 	type="text/javascript"></script>

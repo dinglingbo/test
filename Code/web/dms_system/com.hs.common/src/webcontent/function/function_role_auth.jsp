@@ -56,14 +56,13 @@
 </html>
 <script type="text/javascript">
 	nui.parse();
-	var defDomin = "<%=request.getContextPath()%>";
 	var funcTree = nui.get("funcTree");
 	funcTree.expandLevel(0);
 
 	var baseUrl = apiPath + sysApi + "/";
 
 	function setRoleId(){
-		return {"roleId":"<%= request.getParameter("roleId")%>","token":token};
+		return {"roleId":"<%= request.getParameter("roleId")%>"};
 	}
 
 	function saveTree(){
@@ -90,7 +89,7 @@
 		
 
 		nui.ajax({
-			url: webPath + defDomin + "/org.gocom.components.coframe.framework.FunctionAuth.saveFunctionAuths.biz.ext",
+			url: webPath + sysDomain + "/org.gocom.components.coframe.framework.FunctionAuth.saveFunctionAuths.biz.ext",
 			
 			type: 'POST',
 			data:nui.encode({

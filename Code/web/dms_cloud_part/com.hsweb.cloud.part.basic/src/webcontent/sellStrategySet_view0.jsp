@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销价策略定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/sellStrategySet.js?v=1.0.3"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/sellStrategySet.js?v=1.0.3"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

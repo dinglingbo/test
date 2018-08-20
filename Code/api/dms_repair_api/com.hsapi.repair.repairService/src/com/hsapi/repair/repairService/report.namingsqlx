@@ -693,7 +693,7 @@
 			INNER JOIN com_guest B ON A.guest_id = B.id
 			LEFT JOIN com_card_sell C ON C.id = A.card_sell_id 
 		WHERE
-			c.orgid = #orgid#
+			c.orgid = 2
 		<dynamic>
 			<isNotEmpty prepend="and" property="startDate"> 
                 DATE_FORMAT(A.recharge_date,'%Y-%m-%d') &gt;= #startDate#
@@ -907,7 +907,7 @@
 			a.type AS type,
 			a.is_clear_give_amt AS isClearGiveAmt,
 			a.guest_id AS guestId,
-			a.service_code AS serviceId,
+			a.service_id AS serviceId,
 			a.consume_amt AS consumeAmt,
 			a.remark AS remark, 
 			a.recorder AS recorder,
@@ -920,13 +920,9 @@
 			c.car_no AS carNo
 		FROM
 			wb_repair.rps_stored_consume_record a
-		inner JOIN wb_common.com_guest b ON a.guest_id = b.id
-		inner JOIN wb_repair.rpb_car c ON a.guest_id = c.guest_id
-		inner join wb_repair.rps_maintain d on a.service_id = d.id
+		LEFT JOIN wb_common.com_guest b ON a.guest_id = b.id
+		LEFT JOIN wb_repair.rpb_car c ON a.guest_id = c.guest_id
 		WHERE 1=1
-		<isNotEmpty prepend="and" property="orgid"> 
-               a.orgid= #orgid#
-        </isNotEmpty>
 		<isNotEmpty prepend="and" property="fullName"> 
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>
@@ -979,11 +975,8 @@
 			b.card_no AS cardNo
 		FROM
 			wb_repair.rps_stored_record a
-		inner JOIN wb_common.com_guest b ON a.guest_id = b.id
+		LEFT JOIN wb_common.com_guest b ON a.guest_id = b.id
 		WHERE 1=1
-		<isNotEmpty prepend="and" property="orgid"> 
-               a.orgid= #orgid#
-        </isNotEmpty>
 		<isNotEmpty prepend="and" property="fullName"> 
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>

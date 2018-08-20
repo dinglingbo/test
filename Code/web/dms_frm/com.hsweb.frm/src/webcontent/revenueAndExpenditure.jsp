@@ -13,10 +13,10 @@
 <title>收支记录查询</title>
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
 <script
-	src="<%=webPath + contextPath%>/frm/js/arap/revenueAndExpenditure.js?v=1.0"
+	src="<%=webPath + sysDomain%>/frm/js/arap/revenueAndExpenditure.js?v=1.0"
 	type="text/javascript"></script>
 
 </head>

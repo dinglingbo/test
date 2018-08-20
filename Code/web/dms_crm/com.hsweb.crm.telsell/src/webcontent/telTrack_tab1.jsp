@@ -124,7 +124,7 @@
         <div id="dgScoutDetail" class="nui-datagrid"
              allowCellEdit="false" allowCellSelect="true"
              style="width:100%;height:100%;"
-             url="<%=webPath + contextPath%>/com.hs.common.unify.intfc.biz.ext"
+             url="<%=webPath + sysDomain%>/com.hs.common.unify.intfc.biz.ext"
              dataField="result"
              showColumns="true"
              allowcellwrap="true"

@@ -9,7 +9,7 @@
 -->
 <head> 
   <title>会员卡设置</title>
-  <%-- <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script> --%>
+  <%-- <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script> --%>
   <script src="<%= request.getContextPath() %>/page/js/cardCfg.js?v=1.02"></script>
   <style type="text/css">
  

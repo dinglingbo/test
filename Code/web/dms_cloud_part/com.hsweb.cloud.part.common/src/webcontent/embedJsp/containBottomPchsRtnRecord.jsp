@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containBottomPchsRtnRecord.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containBottomPchsRtnRecord.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;

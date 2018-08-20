@@ -98,7 +98,7 @@ function look() {
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({
-			url : webPath + contextPath
+			url : webPath + partDomain
 			+ "/repair/DataBase/Card/packageDetail.jsp?token=" + token,
 			title : "套餐详情",
 			width : 900,

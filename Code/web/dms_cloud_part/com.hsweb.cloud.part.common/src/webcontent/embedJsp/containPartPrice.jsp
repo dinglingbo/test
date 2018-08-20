@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件价格</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containPartPrice.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containPartPrice.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
     width: 90px;

@@ -4,8 +4,8 @@
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<script src="<%=webPath + contextPath %>/common/date.js" type="text/javascript"></script>
+<link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<script src="<%=webPath + cloudPartDomain %>/common/date.js" type="text/javascript"></script>
 <script type="text/javascript">
 	<%
 		IMUODataContext muo = DataContextManager.current().getMUODataContext();
@@ -26,7 +26,7 @@
 	var currUserName = <%="'"+currUserName+"'"%>;
 	var currOrgid = <%="'"+currOrgid+"'"%>;
 	var cloudPartApiUrl = apiPath + cloudPartApi + "/";
-	var cloudPartWebUrl = apiPath + contextPath + "/";
+	var cloudPartWebUrl = apiPath + cloudPartDomain + "/";
 </script>
 <script type="text/javascript">
 	function getRoot() {

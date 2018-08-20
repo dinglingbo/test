@@ -9,7 +9,7 @@
 -->
 <head>
 <title>共享设置</title>
-<script src="<%=webPath + contextPath%>/config/js/tenantIdShareUrl.js?v=1.0.0"></script>
+<script src="<%=webPath + sysDomain%>/config/js/tenantIdShareUrl.js?v=1.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

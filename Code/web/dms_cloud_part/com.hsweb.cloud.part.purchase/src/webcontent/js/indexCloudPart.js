@@ -178,7 +178,7 @@ function toAskPartPrice(){
 	var item={};
 	item.id = "010";
 	item.text = "快速报价";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.quickSearch.flow";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.quickSearch.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -186,7 +186,7 @@ function toPchsOrder(){
 	var item={};
 	item.id = "1184";
 	item.text = "采购订单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrder.flow";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrder.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -194,7 +194,7 @@ function toSellOrder(){
 	var item={};
 	item.id = "1269";
 	item.text = "销售订单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrder.flow";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.sellOrder.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -202,7 +202,7 @@ function toEPC(){
 	var item={};
 	item.id = "1521";
 	item.text = "EPC云服务";
-	item.url = webPath + contextPath + "/com.hsweb.system.epc.vinLinkMain.flow";
+	item.url = webPath + sysDomain + "/com.hsweb.system.epc.vinLinkMain.flow";
 	item.iconCls = "fa fa-car";
 	window.parent.activeTab(item);
 }
@@ -210,7 +210,7 @@ function toPackOut(){
 	var item={};
 	item.id = "1561";
 	item.text = "打包发货";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.packOut.flow";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.packOut.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -218,7 +218,7 @@ function toState(){
 	var item={};
 	item.id = "1541";
 	item.text = "月结对账";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.settlement.billStatement.flow";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.settlement.billStatement.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -226,7 +226,7 @@ function toSettleAccount(){
 	var item={};
 	item.id = "1282";
 	item.text = "应收应付结算";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.settlement.rpAccountSettle.flow";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.settlement.rpAccountSettle.flow";
 	item.iconCls = "fa fa-exchange";
 	window.parent.activeTab(item);
 }
@@ -234,7 +234,7 @@ function toCostOut(){
 	var item={};
 	item.id = "1425";
 	item.text = "费用支出单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.settlement.expensePay.flow";
+	item.url = webPath + cloudPartDomain + "/com.hsweb.cloud.part.settlement.expensePay.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }

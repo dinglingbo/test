@@ -9,7 +9,7 @@
 -->
 <head>
 <title>新增项目</title>
-<script src="<%=webPath + contextPath%>/frm/js/arap/fiInComeExpensesEdit.js?v=1.0.0"></script>
+<script src="<%=webPath + sysDomain%>/frm/js/arap/fiInComeExpensesEdit.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
     width: 90px;

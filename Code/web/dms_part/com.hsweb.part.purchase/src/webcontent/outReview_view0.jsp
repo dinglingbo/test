@@ -9,7 +9,7 @@
         -->
         <head>
         <title>jsp auto create</title>
-        <script src="<%=webPath + contextPath%>/purchasePart/js/reviewMgr/outReview.js?v=1.0.2"></script>
+        <script src="<%=webPath + partDomain%>/purchasePart/js/reviewMgr/outReview.js?v=1.0.2"></script>
         <style type="text/css">
         .title {
         width: 60px;

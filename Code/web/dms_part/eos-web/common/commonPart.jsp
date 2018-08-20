@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%> 
 <%@include file="/common/sysCommon.jsp"%> 
-<link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%=webPath + sysDomain %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <script type="text/javascript">
 <% IMUODataContext muo = DataContextManager.current()
 					.getMUODataContext();
@@ -59,7 +59,7 @@
 	window._rootUrl = window._rootPartUrl;
 
 	window._webCrmUrl = webPath + crmDomain + "/";
-	window._webRepairUrl = webPath + contextPath + "/";
+	window._webRepairUrl = webPath + repairDomain + "/";
 	//console.log(window._rootUrl);
 	</script>
 <script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.0" type="text/javascript"></script>

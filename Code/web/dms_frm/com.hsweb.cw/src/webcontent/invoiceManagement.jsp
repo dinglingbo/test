@@ -79,7 +79,7 @@
             var item={};
             item.id = "TicketOpeningMgr";
             item.text = "开票单";
-            item.url = webPath + contextPath + "/cw/invoice.jsp";
+            item.url = webPath + sysDomain + "/cw/invoice.jsp";
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
         }

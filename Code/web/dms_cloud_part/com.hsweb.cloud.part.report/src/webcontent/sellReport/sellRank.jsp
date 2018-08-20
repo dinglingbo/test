@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售排行</title>
-<script src="<%=webPath + contextPath%>/report/js/sellRank.js?v=1.2.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/report/js/sellRank.js?v=1.2.0"></script>
 <style type="text/css">
 .title {
   width: 60px;

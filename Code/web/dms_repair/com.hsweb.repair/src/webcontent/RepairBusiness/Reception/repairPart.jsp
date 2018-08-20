@@ -37,7 +37,9 @@
                 <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right" header="优惠金额">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="" header="配件编码"></div>
+                <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="" header="配件编码">
+                   <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
             </div>
         </div>
     </div>

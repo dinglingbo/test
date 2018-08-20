@@ -793,7 +793,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
+            url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
                     + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
             title : "采购退货打印",
             width : 900,
@@ -1550,7 +1550,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
         title: "采购订单选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1651,7 +1651,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         targetWindow : window,
-        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "供应商资料",
         width : 980,
         height : 560,

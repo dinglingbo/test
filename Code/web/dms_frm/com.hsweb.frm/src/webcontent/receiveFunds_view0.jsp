@@ -13,7 +13,7 @@
 <title>应收账款管理</title>
 	<%@include file="/common/sysCommon.jsp"%>
 	<%@include file="/common/commonCloudPart.jsp"%>
-<script src="<%=webPath + contextPath%>/frm/js/arap/receiveFunds.js?v=1.1.2"
+<script src="<%=webPath + sysDomain%>/frm/js/arap/receiveFunds.js?v=1.1.2"
 	type="text/javascript"></script>
 
 </head>

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/3/21.
  */
-var webBaseUrl = webPath + contextPath + "/";
+var webBaseUrl = webPath + repairDomain + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
@@ -211,7 +211,7 @@ function add(){
     var item={};
     item.id = "2000";
     item.text = "综合开单详情";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
+    item.url = webPath + repairDomain + "/com.hsweb.RepairBusiness.repairBill.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};

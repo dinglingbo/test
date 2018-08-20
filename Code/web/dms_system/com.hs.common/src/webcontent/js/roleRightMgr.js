@@ -159,9 +159,9 @@ function loadResAndUser(row) {
         var tenantId = row.tenantId||0;
         var tab = mainTabs.getActiveTab();
         if(tab.name == "resTab"){
-            mainTabs.loadTab(webPath + defDomin + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);  
+            mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId, tab);  
         }else if(tab.name == "userTab"){
-            mainTabs.loadTab(webPath + defDomin + "/common/function/employee_auth.jsp?roleId="+roleId+"&token="+token, tab);   
+            mainTabs.loadTab(webPath + sysDomain + "/common/function/employee_auth.jsp?roleId="+roleId, tab);   
         }
     } else {
     }
@@ -178,9 +178,9 @@ function ontopTabChanged(e){
     var roleName = row.roleName||"";
     var tenantId = row.tenantId||0;
     if(name == "resTab"){
-        mainTabs.loadTab(webPath + defDomin + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);  
+        mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId, tab);  
     }else if(name == "userTab"){
-        mainTabs.loadTab(webPath + defDomin + "/common/function/employee_auth.jsp?roleId="+roleId+"&token="+token, tab);   
+        mainTabs.loadTab(webPath + sysDomain + "/common/function/employee_auth.jsp?roleId="+roleId, tab);   
     }
     
 }

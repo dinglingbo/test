@@ -13,10 +13,10 @@
 <title>每日资金报表</title>
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
 <script
-	src="<%=webPath + contextPath%>/frm/js/arap/dayMoneyReport.js?v=1.0"
+	src="<%=webPath + sysDomain%>/frm/js/arap/dayMoneyReport.js?v=1.0"
 	type="text/javascript"></script>
 
 </head>

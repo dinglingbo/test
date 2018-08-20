@@ -54,11 +54,11 @@
 
 	window._rootUrl = window._rootRepairUrl;
 
-	window._webCrmUrl = webPath + contextPath + "/";
-	window._webRepairUrl = webPath + contextPath + "/";
+	window._webCrmUrl = webPath + crmDomain + "/";
+	window._webRepairUrl = webPath + repairDomain + "/";
 	//console.log(window._rootUrl);
 </script>
-<script src="<%=webPath + contextPath%>/common/js/repairUtil.js?v=1.0.7" type="text/javascript"></script>
+<script src="<%=webPath + repairDomain%>/common/js/repairUtil.js?v=1.0.7" type="text/javascript"></script>
 <style type="text/css">
 	html,
 	body {

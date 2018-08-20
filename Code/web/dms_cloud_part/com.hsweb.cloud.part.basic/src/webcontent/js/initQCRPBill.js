@@ -65,7 +65,7 @@ function addGuest(){
     var supplier = null;
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "往来单位", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -328,7 +328,7 @@ function importGuest(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.initQCRPBillImport.flow?token="+token,
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.basic.initQCRPBillImport.flow?token="+token,
         title: "期初应收应付导入", 
         width: 930, 
         height: 560,

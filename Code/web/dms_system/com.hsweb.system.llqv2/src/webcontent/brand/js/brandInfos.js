@@ -199,7 +199,7 @@ function setGridPartsData(data){
 function openDetail(pid){	
     try{
         nui.open({
-            url : contextPath + "/com.hsweb.system.llqv2.partDetail.flow?brand=" + brand + "&pid=" + pid,
+            url : sysDomain + "/com.hsweb.system.llqv2.partDetail.flow?brand=" + brand + "&pid=" + pid,
             title : "零件详情",
             width : "900px",
             height : "600px",

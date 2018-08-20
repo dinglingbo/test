@@ -10,7 +10,7 @@
 <head>
 <title>客户管理</title>
 
-<script src="<%=webPath + contextPath%>/baseDataPart/js/customerMgr/customerMgr.js?v=1.0.8"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/customerMgr/customerMgr.js?v=1.0.8"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

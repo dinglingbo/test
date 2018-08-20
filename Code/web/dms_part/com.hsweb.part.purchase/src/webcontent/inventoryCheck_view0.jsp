@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存盘点</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inventoryCheck.js?v=1.1.15"></script>
+<script src="<%=webPath + partDomain%>/purchasePart/js/inventoryMgr/inventoryCheck.js?v=1.1.15"></script>
 <style type="text/css">
 .title {
 	width: 60px;

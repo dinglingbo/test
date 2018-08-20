@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘盈入库</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockCheckIn/stockCheckIn.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockCheckIn/stockCheckIn.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

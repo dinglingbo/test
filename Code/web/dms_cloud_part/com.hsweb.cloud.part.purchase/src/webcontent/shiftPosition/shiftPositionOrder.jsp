@@ -9,7 +9,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/shiftPosition/shiftPositionOrder.js?v=1.1.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/shiftPosition/shiftPositionOrder.js?v=1.1.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>待收货单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/sellOrderReceive.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseEnter/sellOrderReceive.js?v=1.0.0"></script>
 <style type="text/css">
 .body{
   white-space: nowrap;

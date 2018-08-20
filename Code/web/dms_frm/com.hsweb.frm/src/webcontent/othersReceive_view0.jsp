@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他收入单</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/othersReceive.js?v=1.0.3"></script>
+<script src="<%=webPath + sysDomain%>/frm/js/settle/othersReceive.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;

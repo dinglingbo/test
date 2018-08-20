@@ -12,23 +12,23 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@ include file="/common/sysCommon.jsp"%>
     <!--
-    <script src="<%=webPath + contextPath%>/repair/cfg/js/parameterSet.js?v=1.0"></script>
+    <script src="<%=webPath + repairDomain%>/repair/cfg/js/parameterSet.js?v=1.0"></script>
     -->
     <style>
         span.mini-tools-add
         {
             width:16px;height:16px;
-            background:url(<%=webPath + contextPath %>/common/nui/themes/icons/add.gif) no-repeat;
+            background:url(<%=webPath + sysDomain %>/common/nui/themes/icons/add.gif) no-repeat;
         }
         span.mini-tools-edit
         {
             width:16px;height:16px;
-            background:url(<%=webPath + contextPath %>/common/nui/themes/icons/edit.gif) no-repeat;
+            background:url(<%=webPath + sysDomain %>/common/nui/themes/icons/edit.gif) no-repeat;
         }    
         span.mini-tools-remove
         {
             width:16px;height:16px;
-            background:url(<%=webPath + contextPath %>/common/nui/themes/icons/remove.gif) no-repeat;
+            background:url(<%=webPath + sysDomain %>/common/nui/themes/icons/remove.gif) no-repeat;
         }        
     </style> 
 </head>
@@ -51,7 +51,7 @@
         
         <div class="nui-fit" style="padding:5px;">
             <div id="datagrid1" class="nui-datagrid" style="width:100%;height:100%;parding:5px;"
-                url="<%=apiPath + contextPath %>/org.gocom.components.coframe.org.organization.queryOrg.biz.ext" dataField="treeNodes" sizeList="[10,20,50,100]">
+                url="<%=apiPath + repairDomain %>/org.gocom.components.coframe.org.organization.queryOrg.biz.ext" dataField="treeNodes" sizeList="[10,20,50,100]">
                 <div property="columns">
                     <div type="indexcolumn"></div>                
                     <div field="orgcode" width="120" headerAlign="center" >编码</div>    

@@ -280,7 +280,7 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        url: webPath+partDomain+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 740, height: 250,
         allowDrag:true,
@@ -398,7 +398,7 @@ function onGridSelectionChanged(){
 function openGeneratePop(partList, type, title){
     nui.open({
         targetWindow : window,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
         title : title,
         width : 600,
         height : 400,

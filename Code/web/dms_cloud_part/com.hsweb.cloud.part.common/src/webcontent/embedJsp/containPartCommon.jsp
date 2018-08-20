@@ -9,7 +9,7 @@
 -->
 <head>
 <title>替换件</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containPartCommon.js?v=1.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/common/js/embed/containPartCommon.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
   width: 90px;

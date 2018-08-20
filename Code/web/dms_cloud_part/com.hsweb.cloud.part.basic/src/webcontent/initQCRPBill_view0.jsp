@@ -9,7 +9,7 @@
 -->
 <head>
 <title>期初应收应付</title>
-<script src="<%=webPath + contextPath%>/basic/js/initQCRPBill.js?v=2.0.0"></script>
+<script src="<%=webPath + cloudPartDomain%>/basic/js/initQCRPBill.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
   width: 60px;

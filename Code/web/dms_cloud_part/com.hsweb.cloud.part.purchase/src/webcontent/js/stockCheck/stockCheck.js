@@ -1229,7 +1229,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
         title: "采购订单选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,

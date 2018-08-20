@@ -279,7 +279,7 @@ function addOrEditPart(row)
 {
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        url: webPath+partDomain+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 740, height: 250,
         allowDrag:true,
@@ -398,7 +398,7 @@ function savePart(part,successTip,errorTip)
 function importGuest(){
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.baseData.importPart.flow?token="+token,
+        url: webPath + partDomain + "/com.hsweb.part.baseData.importPart.flow?token="+token,
         title: "配件导入", 
         width: 930, 
         height: 560,

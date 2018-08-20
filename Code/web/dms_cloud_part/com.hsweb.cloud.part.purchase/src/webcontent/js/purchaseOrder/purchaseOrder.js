@@ -94,10 +94,10 @@ $(document).ready(function(v) {
 	advancedTipWin = nui.get("advancedTipWin");
 
 	//setTimeout(function(){ 
-	document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
-	document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
-		//document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
-		//document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
+	document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/embedJsp/containBottom.jsp";
+	document.getElementById("formIframePart").src=webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp";
+		//document.getElementById("formIframeStock").src=webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp";
+		//document.getElementById("formIframePchs").src=webPath + cloudPartDomain + "/common/embedJsp/containPchsAdvance.jsp";
 	//}, 3000);
 
 
@@ -288,11 +288,11 @@ function ontopTabChanged(e){
 	var url = tab.url;
 	if(!url){
 		if(name == "partInfoTab"){
-			//mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartInfo.jsp", tab);
+			//mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containPartInfo.jsp", tab);
 		}else if(name == "partStockInfoTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp", tab);
+			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containStock.jsp", tab);
 		}else if(name == "purchaseAdvanceTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containOrderCart.jsp", tab);
+			mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containOrderCart.jsp", tab);
 			
 		}else if(name == "billmain"){
 			var data = rightGrid.getChanges();
@@ -961,7 +961,7 @@ function selectSupplier(elId) {
 	supplier = null;
 	nui.open({
 		targetWindow : window,
-		url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+		url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
 		title : "供应商资料",
 		width : 980,
 		height : 560,
@@ -1248,7 +1248,7 @@ function getPartInfo(params){
 function selectPart(callback, checkcallback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+		url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
 		title : "配件选择",
 		width : 930,
 		height : 560,
@@ -1286,7 +1286,7 @@ function addDetail(part) {
 	
 	nui.open({
 				targetWindow : window,
-				url : webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
+				url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
 				height : 210,
@@ -1921,7 +1921,7 @@ function addGuest(){
 		if (action == "ok") {
 			nui.open({
 				targetWindow: window,
-				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+				url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
 				title: "供应商资料", width: 530, height: 480,
 				allowDrag:true,
 				allowResize:false,
@@ -1967,7 +1967,7 @@ function onPrint() {
 
 		nui.open({
 
-			url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
 					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,
@@ -1988,7 +1988,7 @@ function onPrint() {
 
 	// 	nui.open({
 
-	// 		url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+	// 		url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
 	// 				+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
 	// 		title : "进货单打印",
 	// 		width : 900,
@@ -2306,7 +2306,7 @@ function importPart(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.getPartInfoImoprt.flow?token="+token,
+        url: webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.getPartInfoImoprt.flow?token="+token,
         title: "配件导入", 
         width: 930, 
         height: 560,

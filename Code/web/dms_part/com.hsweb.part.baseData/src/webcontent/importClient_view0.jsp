@@ -10,8 +10,8 @@
 <head>
 <title>客户导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/importJs/importClient.js?v=1.0.0"></script>
+<script src="<%=webPath + sysDomain%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
+<script src="<%=webPath + partDomain%>/baseDataPart/js/importJs/importClient.js?v=1.0.0"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;

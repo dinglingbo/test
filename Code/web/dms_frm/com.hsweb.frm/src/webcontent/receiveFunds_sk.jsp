@@ -14,9 +14,9 @@
 <title>应收账款管理</title>
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-	<script src="<%=webPath + contextPath%>/frm/js/arap/receive_sk.js?v=1.6.1"
+	<script src="<%=webPath + sysDomain%>/frm/js/arap/receive_sk.js?v=1.6.1"
 	type="text/javascript"></script>
 </head>
 <body>

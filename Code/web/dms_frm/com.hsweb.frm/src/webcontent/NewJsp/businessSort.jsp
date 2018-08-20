@@ -12,7 +12,7 @@
 <head>
 <title>业务分类列表</title>
 <%@include file="/common/sysCommon.jsp"%>
-<%-- <script src="<%=webPath + contextPath%>/frm/Newjs/p.js?v=1.0"
+<%-- <script src="<%=webPath + sysDomain%>/frm/Newjs/p.js?v=1.0"
 	type="text/javascript"></script> --%>
 
 </head>

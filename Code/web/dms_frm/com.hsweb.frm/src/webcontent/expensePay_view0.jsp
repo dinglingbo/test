@@ -9,7 +9,7 @@
 -->
 <head>
 <title>费用支出单</title>
-<script src="<%=webPath + contextPath%>/frm/js/arap/expensePay.js?v=1.0.9"></script>
+<script src="<%=webPath + sysDomain%>/frm/js/arap/expensePay.js?v=1.0.9"></script>
 <style type="text/css">
 .title {
 	width: 60px;

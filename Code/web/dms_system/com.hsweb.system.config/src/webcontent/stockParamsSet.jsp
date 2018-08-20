@@ -11,7 +11,7 @@
 <head>
 <title>库存设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/config/js/stockParamsSet.js?v=1.0.2"></script>
+    <script src="<%=webPath + sysDomain%>/config/js/stockParamsSet.js?v=1.0.2"></script>
 </head>
 <style type="text/css">
     body {

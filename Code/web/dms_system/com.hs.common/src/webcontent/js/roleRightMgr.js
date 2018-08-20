@@ -154,9 +154,12 @@ function onLeftGridSelectionChanged() {
 function loadResAndUser(row) {
     if (row) {
         var roleId = row.roleId||0;
+        var roleCode = row.roleCode||"";
+        var roleName = row.roleName||"";
+        var tenantId = row.tenantId||0;
         var tab = mainTabs.getActiveTab();
         if(tab.name == "resTab"){
-            mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId, tab);  
+            mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId, tab);  
         }else if(tab.name == "userTab"){
             mainTabs.loadTab(webPath + sysDomain + "/common/function/employee_auth.jsp?roleId="+roleId, tab);   
         }
@@ -171,8 +174,11 @@ function ontopTabChanged(e){
     var row = leftGrid.getSelected();
     if(!row) return;
     var roleId = row.roleId||0;
+    var roleCode = row.roleCode||"";
+    var roleName = row.roleName||"";
+    var tenantId = row.tenantId||0;
     if(name == "resTab"){
-        mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId, tab);  
+        mainTabs.loadTab(webPath + sysDomain + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId, tab);  
     }else if(name == "userTab"){
         mainTabs.loadTab(webPath + sysDomain + "/common/function/employee_auth.jsp?roleId="+roleId, tab);   
     }

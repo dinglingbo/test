@@ -176,7 +176,7 @@ function pay(){
 	});
 }
 
-//充值金额改变时总金额改变
+//充值金额或赠送金额改变时总金额改变
 $(function(){
 	 $("#rechargeAmt").change(function(){
 		 var text = nui.get('rechargeAmt').getValue();
@@ -185,9 +185,18 @@ $(function(){
 		 var num2=Number(text2);
 		 var num=num1+num2;
 		 nui.get('totalAmt').setValue(num);
+}); 
+	 $("#rechargeAmt").change(function(){
+		 var text = nui.get('rechargeAmt').getValue();
+		 var text2=nui.get('#giveAmt').getValue();
+		 var num1=  Number(text);
+		 var num2=Number(text2);
+		 var num=num1+num2;
+		 nui.get('totalAmt').setValue(num);
+}); 
+});
 
-});
-});
+
 $ (function(){
 	$('#radio').click(function(){
 		radio=$('input:radio:checked').val();

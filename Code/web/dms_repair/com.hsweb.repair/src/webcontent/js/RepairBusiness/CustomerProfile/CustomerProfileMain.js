@@ -228,7 +228,7 @@ function toUp(callback){
 	if(row){
 		nui.open({
 			url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 400, height: 500,
+			title: "充值会员卡", width: 600, height: 500,
 			onload: function(){
 				var iframe=this.getIFrameEl();
 				var params={
@@ -265,7 +265,7 @@ function edit() {
 function amalgamate() {
     nui.open({
         url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/Amalgamate.jsp?token="+token,
-        title: "资料合并", width: 600, height: 400,
+        title: "资料合并", width: 630, height: 420,
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {pageType: "amalgamate"};

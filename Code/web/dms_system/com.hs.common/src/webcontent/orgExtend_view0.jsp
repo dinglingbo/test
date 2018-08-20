@@ -84,7 +84,7 @@ body {
 						<div field="cityId" width="50" headerAlign="center" align="center">城市</div>
 						<div field="address" width="100" headerAlign="center"
 							align="center">地址</div>
-						<div field="isOpenSystem" width="100" headerAlign="center"
+						<div field="isOpenSystem" width="40" headerAlign="center"
 							align="center">状态</div>
 						<div field="softOpenDate" width="60" headerAlign="center"
 							align="center" dateFormat="yyyy-MM-dd" allowSort="true">开店日期</div>

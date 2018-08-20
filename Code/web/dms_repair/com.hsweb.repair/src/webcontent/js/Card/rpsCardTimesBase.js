@@ -29,13 +29,13 @@ function setData(data){
 	    var obj = nui.decode(text);
 	    
 	    form.setData(obj.cardTimes);
+	    
 	    if(obj.cardTimes.periodValidity == -1){
 	    	nui.get("periodValidity").setValue("永久有效") ;
 	    }
 	    form.setChanged(false);
-	    form1.setData(obj.cardTimesDe);
-	    
-	    //form1.setChanged(false);
+	    form1.setData(obj.cardTimesDe);    
+	    form1.setChanged(false);
 	  }
   });
 }

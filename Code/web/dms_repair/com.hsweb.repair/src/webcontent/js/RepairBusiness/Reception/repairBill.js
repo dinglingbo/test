@@ -290,6 +290,7 @@ $(document).ready(function ()
    //点击配件行时发生
     rpsPartGrid.on("cellclick",function(e){
      var record = e.record;
+     //点击的某一列
      var column = e.column;
      var row = rpsPartGrid.getSelected();
      if(column.field == "partName"){
@@ -315,10 +316,23 @@ $(document).ready(function ()
     			if (action == "ok") {
     				var iframe = this.getIFrameEl();
     				var data  = iframe.contentWindow.getData();
-    			    var list = data.part;
-    			    row = list ;
+    				var part = data.part;
+    				//将查找出来的值对应赋值给list
+    				/*var list = [];
+    				list.partCode = part.code || "";
+    				list.partName = part.name || "";
+    				list.partNameId = part.partNameId || "";
+    				list.partId = part.id || ""; */				
+    			    //var list = data.part;
+    			    //row = list ;
+    				var list ={
+    					partCode : part.code			
+    				};
     				if(list){  					
-    					record.setData(list);
+    					row.setData(list);
+    					//record.partCode = list;
+    					//更新行
+    					rpsPartGrid.updateRow(row,list);
     				}
     			}
     		}

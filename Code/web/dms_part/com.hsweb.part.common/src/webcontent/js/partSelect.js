@@ -284,7 +284,7 @@ function onOk()
             CloseWindow("ok");
         }
         else{
-            //需要判断是否已经添加了此配件
+            //需要判断是否已经添加了此配件??
             var checkMsg = checkcallback(resultData);
             if(checkMsg) 
             {

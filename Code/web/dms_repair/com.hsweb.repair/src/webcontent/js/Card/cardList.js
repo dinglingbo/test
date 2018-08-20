@@ -17,7 +17,7 @@ function add() {
 	nui.open({
 		url : sysnUrl,
 		title : "新增记录",
-		width : 680,
+		width : 650,
 		height : 520,
 		onload : function() {
 			var iframe = this.getIFrameEl();
@@ -42,7 +42,7 @@ function edit() {
 		nui.open({
 			url : sysnUrl,
 			title : "编辑数据",
-			width : 680,
+			width : 650,
 			height : 520,
 			onload : function() {
 				var iframe = this.getIFrameEl();

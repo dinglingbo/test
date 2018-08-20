@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/4/27.
  */
 var gridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
-var CardUrl = webPath + contextPath + "/repair/CardTimes/CardTimesBase.jsp";
-var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
+var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp";
+//var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
 var grid = null;
 /*进来该页面，加载套餐列表数据*/
 $(document).ready(function (v)
@@ -14,7 +14,7 @@ $(document).ready(function (v)
 });
 
 
-//编辑
+//查看
 function searchOne() {
 
   var row = grid.getSelected();
@@ -69,11 +69,11 @@ function searchOne() {
                 /*e.cellHtml = e.value==1?"禁用":"启用";*/
                 	e.cellHtml = hash[e.value];
                     break; 
-                //测试
+                /*//测试
                 case "id":
-                    /*e.cellHtml = e.value==1?"禁用":"启用";*/
+                    e.cellHtml = e.value==1?"禁用":"启用";
                     	e.cellHtml = getData(id);
-                        break; 
+                        break; */
                     
                 default:
                     break;
@@ -82,7 +82,7 @@ function searchOne() {
 
 //      这只是测试的，如何传递参数到逻辑流？？
      
-          function getData(id){      
+ /* function getData(id){      
           var id = nui.clone(id);
           var json = nui.encode({"Id":id});
           var data = null;
@@ -98,5 +98,5 @@ function searchOne() {
             }
             });
           return data;
-          }
+          }*/
 

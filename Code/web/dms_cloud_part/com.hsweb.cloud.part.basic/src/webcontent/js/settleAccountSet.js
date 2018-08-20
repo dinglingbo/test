@@ -116,7 +116,7 @@ function showEditModal(row, newRow, type){
 	}
 
 	nui.open({
-		url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.basic.settleAccountEdit.flow?token="+token,
+		url: webPath+contextPath+"/com.hsweb.cloud.part.basic.settleAccountEdit.flow?token="+token,
 		title: title,
 		width: "500px",
 		height: "300px",

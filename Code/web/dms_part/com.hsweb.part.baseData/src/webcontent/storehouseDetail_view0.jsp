@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%=webPath + partDomain%>/baseDataPart/js/storehouseMgr/storehouseDetail.js?v=1.1.5"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/storehouseMgr/storehouseDetail.js?v=1.1.5"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;

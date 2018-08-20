@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘亏出库</title>
-<script src="<%=webPath + partDomain%>/purchasePart/js/inventoryMgr/inventoryLoss.js?v=1.0.11"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inventoryLoss.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
 	width: 60px;

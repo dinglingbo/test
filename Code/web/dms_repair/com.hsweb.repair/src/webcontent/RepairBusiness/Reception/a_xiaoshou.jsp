@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head> 
   <title>工单-销售首页</title>
-  <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
+  <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.1.8"></script>
   <style type="text/css">
 
   .title {

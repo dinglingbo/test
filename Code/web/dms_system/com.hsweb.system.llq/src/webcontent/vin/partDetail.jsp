@@ -13,8 +13,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>    
     
-    <script src="<%=sysDomain%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llq/vin/js/partDetail.js?v=1.6" type="text/javascript"></script>
+    <script src="<%=contextPath%>/llq/common/llqCommon.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=contextPath%>/llq/vin/js/partDetail.js?v=1.6" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit">

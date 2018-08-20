@@ -3,7 +3,7 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryCard.biz.ext";
-var sysnUrl = webPath + partDomain + "/repair/DataBase/Card/cardSync.jsp?token="+token;
+var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/cardSync.jsp?token="+token;
 var grid = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");

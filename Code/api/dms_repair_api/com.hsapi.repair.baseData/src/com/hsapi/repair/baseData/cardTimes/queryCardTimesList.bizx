@@ -49,9 +49,9 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" name="params" type="query">params</process:return>
-      <process:return id="1" name="total" type="query">page/count</process:return>
-      <process:return id="2" name="page" type="query">page</process:return>
+      <process:return id="0" language="java.util.HashMap[]" name="params" type="query" valueType="Java">params</process:return>
+      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">page/count</process:return>
+      <process:return id="2" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">

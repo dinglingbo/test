@@ -11,8 +11,8 @@
 <head>
 <title>期初应收应付导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + sysDomain%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + cloudPartDomain%>/basic/js/initQCRPBillImport.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/basic/js/initQCRPBillImport.js?v=2.0.0"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;

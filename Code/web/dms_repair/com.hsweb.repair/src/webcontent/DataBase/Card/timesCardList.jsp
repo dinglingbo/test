@@ -10,7 +10,7 @@
 - Description:
   --%>
 <head>
-<title>计次卡操作</title>
+<title>计次卡定义</title>
 <script
 	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.9"></script>
 </head>

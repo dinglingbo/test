@@ -29,6 +29,9 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		WHERE 1=1
 		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>

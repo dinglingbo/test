@@ -22,13 +22,13 @@
 				value="com.hsapi.repair.data.rpb.RpbCardStored">
 			<table id="table1">
 				<tr>
-					<td style="width: 91%;height:100% ">
-						<spand>&nbsp;&nbsp;&nbsp;计次卡列表</spand>
-						<a class="nui-button" onclick="searchOne()" plain="true">查看</a>			    
+					<td style="width: 90%;height:100% ">
+						<spand>&nbsp;&nbsp;&nbsp;计次卡列表&nbsp;&nbsp;</spand>
+						<a class="nui-button" onclick="searchOne()">查看</a>			    
 					</td>
 					<td>
 					<a class="nui-button" onclick="search()" style="margin:right"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>导出EXCEL</a>	
-										 
+					<spand>&nbsp;&nbsp;&nbsp;</spand>					 
 					<a class="nui-button" onclick="refresh()" ><i class="fa fa-refresh" ></i>刷新列表</a>
 						
 					</td>

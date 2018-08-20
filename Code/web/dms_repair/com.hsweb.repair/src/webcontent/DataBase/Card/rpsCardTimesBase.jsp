@@ -8,6 +8,7 @@
 - Date: 2014-08-13 12:27:01
 - Description:
   --%>
+ 
   <head>
   
     <title>
@@ -26,7 +27,7 @@
         <input class="nui-hidden" id="id"/>
         <table style="table-layout:fixed;" class="nui-form-table" > 
         	
-        	<tr>
+        	<tr >
 	            <td class="form_label"  align="right">
 	              计次卡名称:
 	            </td>
@@ -36,14 +37,14 @@
             </tr>
            
              <tr> 
-	            <td class="form_label" colspan="1" style="width:10%" align="right">
+	            <td class="form_label" colspan="1" style="width:24%" align="right">
 	              有效期(月):
 	            </td>
-	            <td style="width:10%;">
+	            <td style="width:26%;">
 	              <input class="nui-textbox" name="periodValidity" readonly="readonly" id = "periodValidity"/>
 				</td>
 								
-	            <td class="form_label"  colspan="1" style="width:10%" align="right">
+	            <td class="form_label"  colspan="1"  align="right">
 	             过期日期:
 	            </td>
 	            <td colspan="1"  >

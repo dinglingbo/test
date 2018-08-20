@@ -28,13 +28,16 @@ $(document).ready(function(){
 	getCard();
 	
 });
-
+//function onCard(){
+//	document.getElementById('table').style.display='block';
+//}
 
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");
     guestId=params.data.guestId;
     guestName=params.data.guestFullName;
     basicInfoForm.setData(params.data);
+    console.log(basicInfoForm);
 
 }
 var url=baseUrl+"com.hsapi.repair.baseData.query.queryCardstored.biz.ext";
@@ -111,15 +114,13 @@ function onCard(text){
 						nui.get('giveAmt').setValue(giveAmt);
 						nui.get('rechargeAmt').setValue(rechargeAmt);
 						nui.get('totalAmt').setValue(totalAmt);
-						nui.get('canModify').setValue(canModify);
-						if(canModify=='0'){
+						if(canModify==0){
 							$('table#table input').attr("disabled",true);
-							 showMsg("该卡不允许修改充值信息");
+							showMsg("此卡不可修改");
 						}
 						else{
-//							$('#packageRate,#itemRate,#partRate,#giveAmt,#totalAmt,#rechargeAmt').attr("disabled",false);
 							$('table#table input').attr("disabled",false);
-							showMsg("该卡允许修改充值信息");
+							showMsg("此卡可修改");
 						}
 					}
 					

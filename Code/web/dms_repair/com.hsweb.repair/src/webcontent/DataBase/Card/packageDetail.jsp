@@ -12,13 +12,13 @@
 <head>
 <title>套餐明细</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.0.0"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.1.4"></script>
 </head>
 <body>
 		<fieldset
 		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend> 套餐 </legend>
-		<div id="dataform1" style="padding-top: 5px;">
+		<div id="dataform1" style="padding-top: 5px;" >
 			<!-- hidden域 -->
 			<input class="nui-hidden" name="" id="" /> <input class="nui-hidden"
 				name="id" id="id" />
@@ -30,7 +30,7 @@
 						name="name" readonly="readonly"/></td>
 					<td class="form_label" style="width: 13%;" align="right">套餐类型:</td>
 					<td colspan="2" style="width: 37%;"><input class="nui-textbox"
-						name="serviceTypeId"  readonly="readonly"/></td>
+						name="serviceTypeId"   readonly="readonly"/></td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right">适用车辆品牌:</td>
@@ -151,7 +151,9 @@
 	
 
 
-
+	<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
+										   valueField="id" allowInput="true" valueFromSelect="true"
+										   textField="name"/>
 				
 </body>
 </html>

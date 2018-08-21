@@ -349,6 +349,8 @@ function disablePart()
 
     savePart({
         id:row.id,
+        code:row.code,
+        partBrandId:row.partBrandId,
         isDisabled:1
     },"禁用成功","禁用失败");
 }
@@ -363,12 +365,19 @@ function enablePart()
     }
     savePart({
         id:row.id,
+        code:row.code,
+        partBrandId:row.partBrandId,
         isDisabled:0
     },"启用成功","启用失败");
 }
 var saveUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.savePart.biz.ext";
 function savePart(part,successTip,errorTip)
 {
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : "处理中..."
+	});
     nui.ajax({
         url:saveUrl,
         type:"post",
@@ -382,14 +391,17 @@ function savePart(part,successTip,errorTip)
             data = data||{};
             if(data.errCode == "S")
             {
+            	nui.unmask();
                 showMsg(successTip||"保存成功","S");
                 reloadData();
             }
             else{
+            	nui.unmask();
                 showMsg(data.errMsg||errorTip||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
+        	nui.unmask();
             //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }

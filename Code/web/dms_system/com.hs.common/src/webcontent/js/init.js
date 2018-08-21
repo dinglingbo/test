@@ -39,6 +39,7 @@ var ABC_TYPE = "DDT20130703000067";// --ABC分类
 var OUT_TYPE = "DDT20130703000065";//出库类型
 var BACK_REASON = "DDT20130703000072";//采购退货原因
 var COST_TYPE = "10101";//维修项目成本分类
+var ITEM_TYPE = 'DDT20130703000063';
  
 var _sysApiRoot = apiPath + sysApi;
 var _initDmsObj = {};
@@ -162,6 +163,20 @@ function processDictids(data){
     setDataToHash(data,"dict","customid");
     _initDmsCallback["initDicts"]  && _initDmsCallback["initDicts"]() && (_initDmsCallback["initDicts"] = null);
 }
+//数据字典--树结构输出
+function initTreeDicts(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}
+	_initDmsCallback["initTreeDicts"] = callback;
+    var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
+    params = {};
+    var p = {};
+    p.rootId = filterParam("_dictTreeDefs", dictDefs)[0]; 
+    params.p = p;
+    callAjax(url, params, processAjax, processTreeDictids, null);
+}
+function processTreeDictids(data){
+	adapterAllData(_initDmsObj["_dictTreeDefs"], data, "dictid");
+    _initDmsCallback["initTreeDicts"]  && _initDmsCallback["initTreeDicts"]() && (_initDmsCallback["initTreeDicts"] = null);
+}
 //根据customid获取类型下的所有子项
 function initCustomDicts(el, customid,callback){//dictDefs{id1: dictid1, id2: dictid2}
 	_initDmsCallback["initCustomDicts"] = callback;
@@ -269,7 +284,18 @@ function adapterData(_defs, data, key){
         }
     } 
 }
-
+//adapter Data
+function adapterAllData(_defs, data){
+    var tmpList;
+    for(var i in _defs){
+        if(checkObjExists(i, _defs[i])){
+            tmpList = data.filter(function(v){
+                return true;
+            });
+            _initDmsObj[_defs[i]].setData(tmpList);
+        }
+    } 
+}
 function checkObjExists(id, key){
     _initDmsObj[key] = nui.get(id);
     if(_initDmsObj[key]){

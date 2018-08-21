@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>库存查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.2"></script>
+<title>批次库存</title>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/enterStockQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -68,11 +68,8 @@
                 <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
                 <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
-                <label style="font-family:Verdana;">显示零库存：</label>
-                <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
-                <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" visible="false" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
             </td>
         </tr>
     </table>
@@ -80,47 +77,34 @@
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="detailList"
+         dataField="partlist"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
+         totalField="page.count"
          url=""
          pageSize="1000"
          sizeList="[1000,2000,5000]"
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div header="库存信息" headerAlign="center">
-                <div property="columns">
-                    <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
-                    <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-                    <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
-                </div>
-            </div>
-            <div header="数量金额" headerAlign="center">
-                <div property="columns">
-                    <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-                    <div allowSort="true" datatype="float" field="costPrice" width="60" headerAlign="center" header="库存单价"></div>
-                    <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>
-                </div>
-            </div>
-            <div header="其他" headerAlign="center">
-                <div property="columns">
-                    <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
-                    <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
-                    <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
-                    <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>
-                    <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限"></div>
-                    <div allowSort="true" field="remark" width="200" headerAlign="center" header="备注"></div>
-                </div>
-            </div>
+            <div field="partCode" name="partCode" width="100" headerAlign="center" summaryType="count" header="配件编码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
+            <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" summaryType="sum" headerAlign="center" header="库存数量"></div>
+            <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" summaryType="sum" header="待出库数量"></div>
+            <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
+            <div field="stockAmt" width="55px" headerAlign="center" allowSort="true" header="库存金额"  summaryType="sum"></div>
+            <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
+            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+            <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
+            <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+            <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
+            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
+            <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
+            <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
+            <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
         </div>
     </div>
 </div>

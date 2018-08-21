@@ -11,6 +11,10 @@ var carModelIdEl = null;
 var carModelIdHash = {};
 var editPartHash = {};
 var carModelHash = [];
+var servieTypeList = [];
+var servieTypeHash = {};
+var typeHash = {};
+var typeList = [];
 $(document).ready(function (v)
 {
 	leftGrid = nui.get("leftGrid"); 
@@ -91,7 +95,9 @@ function init()
 
 	var hash = {};
 	nui.mask({
-		html: '数据加载中..'
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '数据加载中...'
 	});
 	var checkComplete = function () {
 		var keyList = ['initDicts','initCarBrand',"getDatadictionaries"];
@@ -105,21 +111,41 @@ function init()
 		
 		onSearch();
 	};
-	var pId2 = ITEM_KIND;//工种
-	getDatadictionaries(pId2, function (data) 
-	{
-		hash.getDatadictionaries = true;
-		checkComplete();
-	});
+//	var pId2 = ITEM_KIND;//工种
+//	getDatadictionaries(pId2, function (data) 
+//	{
+//		hash.getDatadictionaries = true;
+//		checkComplete();
+//	});
 	
-	initDicts({
-		type:PKG_TYPE
-	},function(){
-		var list = nui.get("type").getData();
-		nui.get("type-search").setData(list);
+	var dictDefs ={"type":"DDT20130703000063"};
+	initTreeDicts(dictDefs,function(){
+		typeList = nui.get('type').getData();
+		typeList.forEach(function(v) {
+			typeHash[v.customid] = v;
+		});
 		hash.initDicts = true;
 		checkComplete();
 	});
+	
+//	initDicts({
+//		type:PKG_TYPE
+//	},function(){
+//		var list = nui.get("type").getData();
+//		nui.get("type-search").setData(list);
+//		hash.initDicts = true;
+//		checkComplete();
+//	});
+	initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+            servieTypeHash[v.id] = v;
+        });
+        hash.getDatadictionaries = true;
+		checkComplete();
+		
+		nui.get('type-serviceTypeId').setData(servieTypeList);
+    });
 	
 	initCarBrand("carBrandId",function()
 	{
@@ -253,7 +279,9 @@ function save()
 	}
 	data.total = total;
 	nui.mask({
-		html:'保存中..'
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
 	});
 	doPost({
 		url:saveUrl,
@@ -320,6 +348,16 @@ function addPart()
 	selectPart(function(data)
 	{
 		var part = data.part;
+		var row = rightItemGrid.findRow(function(row) {
+			if (row.partId == part.id) {
+				return true;
+			}
+			return false;
+		});
+		if(row && row.partId){
+			showMsg("套餐已经包含此配件!","W");
+			return;
+		}
 		var packagePart = {
 			partId:part.id,
 			partCode:part.code,
@@ -372,12 +410,24 @@ function addItem()
 	selectItem(function(data)
 	{
 		var item = data.item;
+		var row = rightItemGrid.findRow(function(row) {
+			if (row.itemId == item.id) {
+				return true;
+			}
+			return false;
+		});
+		if(row && row.itemId){
+			showMsg("套餐已经包含此工时!","W");
+			return;
+		}
 		var packageItem = {
 			itemId:item.id,
 			itemCode:item.code,
 			itemName:item.name,
 			itemTime:item.itemTime,
 			itemKind:item.itemKind,
+			type:item.type,
+			serviceTypeId:item.serviceTypeId,
 			itemKindName:item.itemKindName,
 			unitPrice:item.unitPrice,
 			amt:item.amt
@@ -392,4 +442,15 @@ function removeItem()
 	{
 		rightItemGrid.removeRow(row,true);
 	}
+}
+function onDrawCell(e){
+	if (e.field == "serviceTypeId") {
+        if (servieTypeHash && servieTypeHash[e.value]) {
+            e.cellHtml = servieTypeHash[e.value].name;
+        }
+    }else if (e.field == "type") {
+        if (typeHash && typeHash[e.value]) {
+            e.cellHtml = typeHash[e.value].name;
+        }
+    }
 }

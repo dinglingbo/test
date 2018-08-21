@@ -51,8 +51,9 @@
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">套餐ID</div>
 				<div field="name" headerAlign="center" allowSort="true">套餐名称</div>
-				<div field="serviceTypeId" headerAlign="center" allowSort="true">
-					套餐类型</div>
+				<div field="serviceTypeId" headerAlign="center" allowSort="true" id="serviceTypeId" id = "kk">
+					套餐类型
+					</div>
 				<div field="total" headerAlign="center" allowSort="true">市场金额</div>
 				<div field="amount" headerAlign="center" allowSort="true">
 					套餐金额</div>

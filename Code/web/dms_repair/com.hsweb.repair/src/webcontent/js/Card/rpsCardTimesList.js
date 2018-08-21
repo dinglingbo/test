@@ -74,7 +74,7 @@ function searchOne() {
           }
 
               
-          var hash = new Array("草稿","已提交","未提交");
+          var hash = new Array("草稿","已提交","已结算");
 
           function onDrawCell(e)
           {

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.0.9" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.0" type="text/javascript"></script>
 
 </head>
 <body>
@@ -33,10 +33,11 @@
 						   showNullItem="false"
 						   nullItemText="请选择..."/> -->
 						   
-					<!-- <label style="font-family: Verdana;;font-size: 12px;">品牌：</label>
+					<!-- <label style="font-family: Verdana;;font-size: 12px;">品牌：</label> -->
 					<input id="carBrandId"
 						   name="carBrandId"
 						   class="nui-combobox width1"
+						   visible="false"
 						   textField="nameCn"
 						   valueField="id"
 						   emptyText="请选择..."
@@ -45,7 +46,7 @@
 						   showNullItem="false"
 						   nullItemText="请选择..."/>
                            
-                    <input id="costType" visible="false"
+                    <!-- <input id="costType" visible="false"
 						   name="costType"
 						   class="nui-combobox width1"
 						   textField="name"

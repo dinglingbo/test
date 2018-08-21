@@ -218,7 +218,7 @@ function onLeftGridRowClick(e)
         nui.get("disabledLeft").enable();
         nui.get("enabledLeft").enable();
         nui.get("editLeft").enable();
-        nui.get("addRight").enable();
+        //nui.get("addRight").enable();
         nui.get("editRight").enable();
         nui.get("disabledRight").enable();
         nui.get("enabledRight").enable();
@@ -226,7 +226,7 @@ function onLeftGridRowClick(e)
         nui.get("disabledLeft").disable();
         nui.get("enabledLeft").disable();
         nui.get("editLeft").disable();
-        nui.get("addRight").disable();
+        //nui.get("addRight").disable();
         nui.get("editRight").disable();
         nui.get("disabledRight").disable();
         nui.get("enabledRight").disable();

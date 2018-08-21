@@ -94,7 +94,10 @@
 		WHERE 1 =1 
 			  AND A.AUDIT_SIGN = 1
 		      AND B.OUTABLE_QTY > 0
-		      AND B.OUTABLE_QTY - IFNULL(b.pre_out_qty, 0) > 0
+		      
+		      <isNull prepend = "" property = "showAll">
+				AND B.OUTABLE_QTY - IFNULL(b.pre_out_qty, 0) > 0
+			 </isNull>
 		
 			<isNotNull prepend = "" property = "orgid">
 				AND A.ORGID = #orgid#
@@ -102,6 +105,10 @@
 						
 			<isNotNull prepend = "" property = "storeId">
 				AND B.STORE_ID = #storeId#
+			</isNotNull>
+			
+			<isNotNull prepend = "" property = "storeShelf">
+				and b.store_shelf like '%$storeShelf$%'
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partId">

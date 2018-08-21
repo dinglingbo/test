@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryRpsGuestInfo.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.customer.queryCustomerWithContactList" title="Administrator&#x9;18-8-20 下午3:41">
+    <location x="120" y="-45"/>
+    <size height="100" width="481"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -289,6 +293,10 @@
       <process:to type="query">data/insureCompCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">guest/insureCompName</process:from>
+      <process:to type="query">data/insureCompName</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">guest/annualInspectionDate</process:from>
       <process:to type="query">data/annualInspectionDate</process:to>
     </process:copy>
@@ -314,7 +322,7 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>end0</targetNode>

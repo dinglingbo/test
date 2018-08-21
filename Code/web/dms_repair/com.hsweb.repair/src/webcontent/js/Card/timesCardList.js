@@ -163,3 +163,29 @@ function lookCardTimes(){
 	}
 }
 
+//购买次卡
+var buyUrl =webPath + contextPath + "/repair/DataBase/Card/buyCardTimes.jsp?token"+token;
+function onBuy(){
+	var row = grid.getSelected();
+	if (row) {
+		nui.open({
+			url : buyUrl,
+			title : "购买次卡",
+			width : 930,
+			height : 645,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var data = row;
+				data.type = 'VIEW';
+				iframe.contentWindow.disableEle();
+				iframe.contentWindow.setData(data);
+			},
+			ondestroy : function() {
+				var iframe = this.getIFrameEl();
+			}
+		});
+	} else {
+		nui.alert("请选中一条记录", "提示");
+	}
+	
+}

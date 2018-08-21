@@ -612,6 +612,7 @@ function onAdvancedSearchOk() {
 	}
 	advancedSearchFormData = advancedSearchForm.getData();
 	advancedSearchWin.hide();
+	searchData.auditSign = gsparams.auditSign || 0;
 	doSearch(searchData);
 }
 function onAdvancedSearchCancel() {

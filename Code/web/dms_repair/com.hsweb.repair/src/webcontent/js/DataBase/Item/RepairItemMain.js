@@ -27,9 +27,9 @@ $(document).ready(function()
 	// 	var itemKind = nui.get("itemKind");
 	// 	itemKind.setData(list);
 	// });
-	// initCarBrand("carBrandId",function()
-	// {
-	// });
+	 initCarBrand("carBrandId",function()
+	 {
+	 });
     // initDicts({"costType": COST_TYPE});
 	tree1.on("nodedblclick",function(e)
 	{

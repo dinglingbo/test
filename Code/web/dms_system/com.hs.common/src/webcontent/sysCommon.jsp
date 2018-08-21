@@ -205,7 +205,7 @@
 </script>
 <script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.3" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.4" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.7" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=webPath + contextPath%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
 <link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">

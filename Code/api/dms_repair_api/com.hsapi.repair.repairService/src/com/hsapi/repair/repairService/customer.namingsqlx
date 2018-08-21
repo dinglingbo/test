@@ -22,6 +22,7 @@
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
+			a.insure_comp_name insureCompName,
 			b.addr addr,
 			c.last_come_date lastComeDate,
 			c.last_leave_date lastLeaveDate,

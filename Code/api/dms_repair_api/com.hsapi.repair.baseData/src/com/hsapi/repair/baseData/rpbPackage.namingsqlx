@@ -34,10 +34,13 @@
 			a.modify_date as modifyDate
 		FROM
 			rpb_package a
-		WHERE a.orgid = #orgid# and a.is_disabled = 0
+		WHERE a.orgid = #orgid#
 		<dynamic>
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="serviceTypeId">  

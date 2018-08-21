@@ -78,7 +78,7 @@
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      frozenStartColumn="0"
-                     frozenEndColumn="7"
+                     frozenEndColumn="5"
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""

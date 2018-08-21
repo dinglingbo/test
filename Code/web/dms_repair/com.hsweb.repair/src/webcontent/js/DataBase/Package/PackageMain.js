@@ -348,6 +348,16 @@ function addPart()
 	selectPart(function(data)
 	{
 		var part = data.part;
+		var row = rightItemGrid.findRow(function(row) {
+			if (row.partId == part.id) {
+				return true;
+			}
+			return false;
+		});
+		if(row && row.partId){
+			showMsg("套餐已经包含此配件!","W");
+			return;
+		}
 		var packagePart = {
 			partId:part.id,
 			partCode:part.code,
@@ -400,6 +410,16 @@ function addItem()
 	selectItem(function(data)
 	{
 		var item = data.item;
+		var row = rightItemGrid.findRow(function(row) {
+			if (row.itemId == item.id) {
+				return true;
+			}
+			return false;
+		});
+		if(row && row.itemId){
+			showMsg("套餐已经包含此工时!","W");
+			return;
+		}
 		var packageItem = {
 			itemId:item.id,
 			itemCode:item.code,

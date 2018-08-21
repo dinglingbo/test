@@ -22,6 +22,8 @@
 			<tr>
 				<td>
 					<label style="font-family:Verdana;">快速查询：</label>
+					<label class="form_label">名称：</label>
+					<input class="nui-textbox" name="name" id="name-search"/>
 					<label class="form_label">品牌：</label>
 					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="nameCn"/>
 					<label class="form_label">类别：</label>

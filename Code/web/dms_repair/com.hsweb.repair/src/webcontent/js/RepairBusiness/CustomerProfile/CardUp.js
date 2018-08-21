@@ -18,7 +18,6 @@ $(document).ready(function(){
 	var packageRate=null;
 	var partRate=null;
 	var giveAmt=null;
-	var giveAmt=null;
 	var totalAmt=null;
 	var canModify=null;
 	var rechargeAmt=null;
@@ -37,7 +36,6 @@ function SetData(params) {
     guestId=params.data.guestId;
     guestName=params.data.guestFullName;
     basicInfoForm.setData(params.data);
-    console.log(basicInfoForm);
 
 }
 var url=baseUrl+"com.hsapi.repair.baseData.query.queryCardstored.biz.ext";

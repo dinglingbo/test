@@ -149,11 +149,11 @@
 										   width="100%"
 										   valueField="carModelId" showNullItem="false"/>
 								</td>
-								<td class="form_label">
+								<td colspan="2" style="width:50px;">
 									<label>是否共享：</label>
-								</td>
-								<td>
-									<input name="isShare" class="nui-checkbox" trueValue="1" falseValue="0"/>
+									<input name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+									<label>是否禁用：</label>
+									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 								</td>
 							</tr>
 							<tr>

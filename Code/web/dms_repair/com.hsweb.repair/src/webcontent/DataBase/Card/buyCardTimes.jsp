@@ -12,7 +12,7 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.8"></script>
 </head>
 <body>
 	<fieldset
@@ -20,8 +20,8 @@
 		<legend> 计次卡 </legend>
 		<div id="dataform1" style="padding-top: 5px;" >
 			<!-- hidden域 -->
-			<input class="nui-hidden" name="" id="" /> <input class="nui-hidden"
-				name="id" id="id" />
+			<input class="nui-hidden" name="guestId" id="guestId" /> 
+			
 			<table style="width: 100%; table-layout: fixed;"
 				class="nui-form-table">
 				
@@ -149,13 +149,23 @@
 		<div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
 			<table width="100%">
 				<tr >
-					<td style="text-align: center;" colspan="2" ><a
-						class="nui-button" iconCls="icon-save" onclick="onOk()" id = "save"> 保存 </a> <span
-						style="display: inline-block; ">
-						
-						<td style="text-align: center;" colspan="2" ><a
-						class="nui-button" iconCls="icon-save" onclick="onOk()" id = "save"> 保存 </a> <span
-						style="display: inline-block; width: 25px;">
+				<td style="text-align:center;" colspan="1"  >
+					<a	class="nui-button" iconCls="icon-save" onclick="saveOn()" id = "save">保存 </a> 
+					<spand>&nbsp;&nbsp;&nbsp;</spand>
+					<a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
+					<spand>&nbsp;&nbsp;&nbsp;</spand>
+					<a class="nui-button" iconCls="icon-save" onclick="payOk()" id = "payOk">结算收款</a> 
+				</td>
+					<!-- <td style="text-align:center;" colspan="1"  >
+					<spand>&nbsp;&nbsp;&nbsp;</spand>
+					<a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
+					
+					</td>
+					
+					<td style="text-align:left;" colspan="1" >
+					<spand>&nbsp;&nbsp;&nbsp;</spand>
+						<a class="nui-button" iconCls="icon-save" onclick="payOk()" id = "payOk">结算收款</a> 
+					</td> -->
 				</tr>
 			</table>
 		</div>
@@ -163,39 +173,6 @@
 
 </body>
 </html>
-
-
-
-
-              
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<script type="text/javascript">
     	nui.parse();

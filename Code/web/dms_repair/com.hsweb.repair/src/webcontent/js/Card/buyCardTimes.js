@@ -152,11 +152,12 @@ function disableEle(){
 }
 
 
+
 function selectCustomer() {
     openCustomerWindow(function (v) {
        
     	contactorName = mini.get("contactorName");	
-        var main = form.getData();
+       var  main = form.getData();
         main.guestId = v.guestId;
         main.contactorName = v.guestFullName;
         contactorName.setText(v.guestFullName);
@@ -182,3 +183,38 @@ function openCustomerWindow(callback) {
         }
     });
 }
+
+
+function onDrawCell(e) {
+	var hash = new Array("套餐", "工时", "配件");
+	switch (e.field) {
+	case "prdtType":
+		e.cellHtml = hash[e.value - 1];
+		break;
+	}
+}
+
+function payOk(){
+	//判断客户有没有选择
+	var data = form.getData();
+	if(data.contactorName){
+		alert(main.guestId);
+	}else{
+		nui.alert("请选择客户", "提示");
+	}	
+}
+
+function saveOn(){
+	//判断客户有没有选择
+	var data = form.getData();
+	if(data.contactorName){
+		//要把数据对应好，才能保存
+		//基本数据
+		
+		
+	}else{
+		nui.alert("请选择客户", "提示");
+	}	
+	
+}
+

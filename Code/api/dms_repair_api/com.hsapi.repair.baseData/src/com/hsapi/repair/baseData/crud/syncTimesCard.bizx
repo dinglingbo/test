@@ -186,11 +186,11 @@
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
-      <process:to type="query">card/tenantId</process:to>
+      <process:to type="query">timesCard/tenantId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">card/orgid</process:to>
+      <process:to type="query">timesCard/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">

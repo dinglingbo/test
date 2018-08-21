@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/brand/saveSeries.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/cardTimes/getCardTimes.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/cardTimes/queryCardTimesList.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/crud/queryTimesCard.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/item/saveItem1.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/queryWorkTeam.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/saveTeam.bizx.eosdebug=UTF-8

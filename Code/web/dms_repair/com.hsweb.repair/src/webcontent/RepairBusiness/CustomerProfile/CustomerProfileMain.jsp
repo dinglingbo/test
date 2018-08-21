@@ -61,7 +61,7 @@ table {
 					class="nui-button" iconCls="icon-date" onclick="split()"
 					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
 					onclick="history()" plain="true">维修历史</a>
-					<a class="nui-button" iconCls="icon-node" onclick="toUp()" plain="true">会员卡充值</a>
+					<a class="nui-button" iconCls="" onclick="toUp()" plain="true"><span class="fa fa-credit-card-alt"></span>会员卡充值</a>
 					</td>
 			</tr>
 		</table>

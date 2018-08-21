@@ -22,12 +22,16 @@
 			<tr>
 				<td>
 					<label style="font-family:Verdana;">快速查询：</label>
-					<label style="font-family:Verdana;">品牌：</label>
 					<label class="form_label">品牌：</label>
 					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="nameCn"/>
-					<label class="form_label">类型：</label>
-					<input class="nui-combobox" name="type" id="type-search" valueField="customid" textField="name"/>
+					<label class="form_label">类别：</label>
+					<input class="nui-combobox" name="serviceTypeId" id="type-serviceTypeId" valueField="id" textField="name"
+					       allowInput="true" valueFromSelect="true"/>
 					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
+					<input name="type"  id="type" visible="false"
+                                             class="nui-combobox width1"
+                                             textField="name"
+                                             valueField="customid"/>
 				</td>
 			</tr>
 		</table>
@@ -54,15 +58,17 @@
 			<div class="nui-fit">
 				<div id="leftGrid" dataField="list" class="nui-datagrid"
 					 style="width: 100%; height:100%;"
-					 showPager="false"
+					 showPager="true"
 					 selectOnLoad="true"
+					 pageSize="50"
+         			 sizeList="[20,50,100]"
+         			 totalField="page.count"
 					 allowSortColumn="true">
 					<div property="columns">
 						<div header="套餐信息" headerAlign="center">
 							<div property="columns">
 								<div field="name" headerAlign="center" allowSort="true" visible="true">套餐名称</div>
-								<div field="carBrandId" headerAlign="center" allowSort="true" visible="true">品牌</div>
-								<div field="carModel" headerAlign="center" allowSort="true" visible="true">车型</div>
+								<div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true">套餐类别</div>
 								<div field="amount" headerAlign="center" allowSort="true" visible="true">套餐金额</div>
 							</div>
 						</div>
@@ -90,8 +96,8 @@
 									<label>套餐类别：</label>
 								</td>
 								<td>
-									<input class="nui-combobox" name="type" id="type"
-										   valueField="customid"
+									<input class="nui-combobox" name="serviceTypeId" id="serviceTypeId"
+										   valueField="id" allowInput="true" valueFromSelect="true"
 										   textField="name"/>
 								</td>
 								<td class="form_label">
@@ -192,7 +198,7 @@
 													<div field="itemCode" headerAlign="center" allowSort="true" visible="true">工时编码</div>
 													<div field="itemName" headerAlign="center" allowSort="true" visible="true">工时名称</div>
 													<!-- <div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种</div> -->
-													<div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true">工种</div>
+													<div field="type" headerAlign="center" allowSort="true" visible="true">工时类型</div>
 													<div field="itemTime" headerAlign="center" allowSort="true" visible="true">标准工时</div>
 													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true">工时单价</div>
 													<div field="amt" headerAlign="center" allowSort="true" visible="true">工时费</div>

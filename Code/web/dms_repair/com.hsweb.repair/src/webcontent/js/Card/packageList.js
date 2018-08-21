@@ -5,11 +5,23 @@ var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
 var grid = null;
 var resultData = {};
+var servieTypeHash = {};
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 	var formData = new nui.Form("#queryform").getData(false, false);
 	grid.load(formData);
+});
+
+initServiceType("serviceTypeId",function(data) {
+    servieTypeList = nui.get("serviceTypeId").getData();
+    servieTypeList.forEach(function(v) {
+        servieTypeHash[v.id] = v;
+    });
+    hash.getDatadictionaries = true;
+	checkComplete();
+	
+	nui.get('type-serviceTypeId').setData(servieTypeList);
 });
 
 // 选择
@@ -81,6 +93,11 @@ function onDrawCell(e) {
 		break;
 	default:
 		break;
+	}
+	if (e.field == "serviceTypeId") {
+        if (servieTypeHash && servieTypeHash[e.value]) {
+            e.cellHtml = servieTypeHash[e.value].name;
+        }
 	}
 }
 

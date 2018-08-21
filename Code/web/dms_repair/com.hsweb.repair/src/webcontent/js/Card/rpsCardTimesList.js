@@ -39,6 +39,29 @@ function searchOne() {
       }
     }
     
+ 
+//增加次卡套餐
+ var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
+ function dealtWithCard(){	
+ 	nui.open({
+ 		url : addcardTimeUrl,
+ 		title : "次卡办理",
+ 		width : 965,
+ 		height : 573,
+ 		onload : function() {
+ 		    var iframe = this.getIFrameEl();
+ 			iframe.contentWindow.setStely();
+ 		},
+ 		/*ondestroy : function(action) {// 弹出页面关闭前
+ 			if (action == "saveSuccess") {
+ 				grid.reload();
+ 			}
+ 		}*/
+ 	});
+ 	
+ }
+ 
+ 
           //重新刷新页面
         function refresh(){
             var form = new  nui.Form("#queryform");

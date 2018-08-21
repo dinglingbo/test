@@ -23,8 +23,9 @@
 			<table id="table1">
 				<tr>
 					<td style="width: 90%;height:100% ">
-						<spand>&nbsp;&nbsp;&nbsp;计次卡列表&nbsp;&nbsp;</spand>
-						<a class="nui-button" onclick="searchOne()">查看</a>			    
+						<spand>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计次卡列表&nbsp;&nbsp;</spand>
+						<a class="nui-button" onclick="searchOne()">查看</a>	
+						<a class="nui-button" onclick="dealtWithCard()">次卡办理</a>		    
 					</td>
 					<td>
 					<a class="nui-button" onclick="search()" style="margin:right"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>导出EXCEL</a>	

@@ -326,13 +326,17 @@ $(document).ready(function ()
     			    //var list = data.part;
     			    //row = list ;
     				var list ={
-    					partCode : part.code			
+    					partName : part.name,
+    					partCode : part.code
+    					
     				};
-    				if(list){  					
-    					row.setData(list);
+    				if(list){ 
+    					//mini.get("partName").setText(part.name);
+    					//row.setData(list);
     					//record.partCode = list;
     					//更新行
     					rpsPartGrid.updateRow(row,list);
+    					//column.cellHtml = part.name;
     				}
     			}
     		}

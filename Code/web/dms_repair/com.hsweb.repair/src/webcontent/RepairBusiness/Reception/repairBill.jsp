@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单详情</title>
-<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.1.9"></script>
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.0.4"></script>
 <style type="text/css">
     body {
         margin: 0;

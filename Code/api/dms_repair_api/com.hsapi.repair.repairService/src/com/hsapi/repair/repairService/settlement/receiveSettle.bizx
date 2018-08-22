@@ -574,6 +574,58 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">应结:</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">msg+balaAmt</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">errMsg+msg</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">优惠:</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">msg+allowanceAmt</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">errMsg+msg</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">结算金额与应结金额不一致</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">抵扣:</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">msg+cardPayAmt</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">errMsg+msg</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">支付:</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">msg+payAmt</process:from>
+      <process:to type="query">msg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">errMsg+msg</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">结算金额与应结金额不一致</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
@@ -1638,6 +1690,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgParamsStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="contentStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="strTemp" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

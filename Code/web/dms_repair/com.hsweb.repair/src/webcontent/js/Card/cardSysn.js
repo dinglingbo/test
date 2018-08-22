@@ -4,10 +4,13 @@
 var saveDataUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.syncCard.biz.ext";
 var form = null;
+var set = null;
+var input = null;
 $(document).ready(function(v) {
+    input = mini.get("inputMonth");
+	 set = mini.get("setMonth");
 	form = new nui.Form("#dataform1");
 });
-
 var requiredField = {
 	name : "会员卡名称",
 	rechargeAmt : "充值金额",
@@ -18,10 +21,27 @@ var requiredField = {
 	periodValidity : "有效期",
 	salesDeductValue : "提成值"
 };
+function changed(e){
+	
+	if(set.checked){	
+		//把输入框的值清除掉
+		 input.setValue("");
+		 input.disable();
+	}else{
+		 
+		 input.enable();
+	}
+	
+}
 function onOk() {
 	var data = form.getData();
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
+			if( key == "periodValidity" && set.checked ){
+				//跳过本次循环，执行下一次循环,把有效期赋值为-1
+				input.setValue("-1");
+				continue;
+			}
 			showMsg(requiredField[key] + "不能为空!", "W");
 
 			return;
@@ -56,7 +76,8 @@ function saveData() {
 	var data = form.getData(false, true);
 	// var json = nui.encode(data);//变成json格式
 	var param = {
-		card : data
+		card : data,
+		token:token
 	}
 	var json = nui.encode(param);
 	nui.ajax({
@@ -108,11 +129,10 @@ function setData(data) {
 function updateError(e) {
 
 	if (nui.get('x').getValue() == "3") {
-		document.getElementById('y').style.display = 'block';
-		document.getElementById('b').style.display = 'none';
+		document.getElementById('y').innerHTML = "元";
 	} else {
-		document.getElementById('b').style.display = 'block';
-		document.getElementById('y').style.display = 'none';
+
+		document.getElementById('y').innerHTML = "%";
 	}
 }
 //验证充值金额和赠送金额

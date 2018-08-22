@@ -159,16 +159,16 @@ function onRateValidation(e){
 	if(el == "salesDeductValue"){
 		value = salesDeductTypeEl.getValue();
 		if(value == 4){
-			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/;
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$|0$)/;
 			if (!reg.test(e.value)) {
-				e.errorText = "请输入大于0的整数或者保留两位小数";
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
 				e.isValid = false;
 				showMsg("请输入大于0的整数或者保留两位小数","W");
 			}
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$/
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;
@@ -179,16 +179,16 @@ function onRateValidation(e){
 	}else if(el == "techDeductValue"){
 		value = techDeductTypeEl.getValue();
 		if(value == 4){
-			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/;
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
 			if (!reg.test(e.value)) {
-				e.errorText = "请输入大于0的整数或者保留两位小数";
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
 				e.isValid = false;
 				showMsg("请输入大于0的整数或者保留两位小数","W");
 			}
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$/
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;
@@ -199,16 +199,16 @@ function onRateValidation(e){
 	}else if(el == "advisorDeductValue"){
 		value = advisorDeductTypeEl.getValue();
 		if(value == 4){
-			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/;
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
 			if (!reg.test(e.value)) {
-				e.errorText = "请输入大于0的整数或者保留两位小数";
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
 				e.isValid = false;
 				showMsg("请输入大于0的整数或者保留两位小数","W");
 			}
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$/
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;

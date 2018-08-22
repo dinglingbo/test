@@ -693,7 +693,7 @@
 			INNER JOIN com_guest B ON A.guest_id = B.id
 			LEFT JOIN com_card_sell C ON C.id = A.card_sell_id 
 		WHERE
-			c.orgid = 2
+			c.orgid = #orgid#
 		<dynamic>
 			<isNotEmpty prepend="and" property="startDate"> 
                 DATE_FORMAT(A.recharge_date,'%Y-%m-%d') &gt;= #startDate#
@@ -907,7 +907,6 @@
 			a.type AS type,
 			a.is_clear_give_amt AS isClearGiveAmt,
 			a.guest_id AS guestId,
-			a.service_id AS serviceId,
 			a.consume_amt AS consumeAmt,
 			a.remark AS remark, 
 			a.recorder AS recorder,
@@ -915,19 +914,23 @@
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			b.full_name AS fullName,
-			b.tel AS tel,
+			b.mobile as mobile,
 			b.card_no AS cardNo,
 			c.car_no AS carNo
 		FROM
 			wb_repair.rps_stored_consume_record a
-		LEFT JOIN wb_common.com_guest b ON a.guest_id = b.id
-		LEFT JOIN wb_repair.rpb_car c ON a.guest_id = c.guest_id
+		inner JOIN wb_common.com_guest b ON a.guest_id = b.id
+		inner JOIN wb_repair.rpb_car c ON a.guest_id = c.guest_id
+		inner join wb_repair.rps_maintain d on a.service_id = d.id
 		WHERE 1=1
+		<isNotEmpty prepend="and" property="orgid"> 
+               a.orgid= #orgid#
+        </isNotEmpty>
 		<isNotEmpty prepend="and" property="fullName"> 
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>
-        <isNotEmpty prepend="and" property="tel"> 
-               b.tel LIKE '%$tel$%'
+        <isNotEmpty prepend="and" property="mobile"> 
+               b.mobile LIKE '%$mobile$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="cardNo"> 
                b.card_no LIKE '%$cardNo$%'
@@ -971,12 +974,15 @@
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			b.full_name AS fullName,
-			b.tel AS tel,
+			b.mobile AS mobile,
 			b.card_no AS cardNo
 		FROM
 			wb_repair.rps_stored_record a
-		LEFT JOIN wb_common.com_guest b ON a.guest_id = b.id
+		inner JOIN wb_common.com_guest b ON a.guest_id = b.id
 		WHERE 1=1
+		<isNotEmpty prepend="and" property="orgid"> 
+               a.orgid= #orgid#
+        </isNotEmpty>
 		<isNotEmpty prepend="and" property="fullName"> 
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>

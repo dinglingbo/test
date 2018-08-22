@@ -295,7 +295,7 @@
   		</div>
   		<div>
   		<center>
-  		<img alt="" src="<%=webPath + sysDomain%>/frm/Newimg/dounload.png" border="1px;" >
+  		<img alt="" src="<%=webPath + contextPath%>/frm/Newimg/dounload.png" border="1px;" >
   		</center>
   		</div>
   	<div style="background-color:#E8E8E8; width: 100%;height: 2%; ">	

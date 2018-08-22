@@ -10,9 +10,9 @@
 - Description:
   --%>
 <head>
-<title>计次卡操作</title>
+<title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.1"></script>
 </head>
 <body>
 
@@ -25,19 +25,19 @@
 			<input class="nui-hidden" name="criteria/_entity"
 				value="com.hsapi.repair.data.rpb.RpbCardTimes">
 			<!-- 排序字段 -->
-
+             
 			<table style="width: 100%;" id="table1">
 				<tr>
 					<td style="width: 100%;">计次卡名称: <input class="nui-textbox"
 						name="criteria/_expr[1]/name" /> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
-						<a class="nui-button" onclick="search()" plain="true"> 查询 </a> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+						<a class="nui-button" onclick="search()" plain="true"> 查询 </a> 
 						<a  id = "add" class="nui-button" iconCls="icon-add" onclick="add()"
 						plain="true"> 增加 </a> 
 						<a id="update" class="nui-button"
 						iconCls="icon-edit" onclick="edit()" plain="true"> 编辑 </a>				
-						<a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="onBuy()" id = "onBuy" visible = "false"><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
 							<a class="nui-button" onclick="lookCardTimes()" plain="true"> <span
 							class="fa fa-search fa-lg"></span>&nbsp; 查看详情
 					</a>

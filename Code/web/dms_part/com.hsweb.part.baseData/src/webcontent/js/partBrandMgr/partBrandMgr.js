@@ -59,7 +59,7 @@ function addOrEditPartQuality(quality)
     }
     nui.open({
         targetWindow: window,
-        url: webPath + partDomain + "/com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
+        url: webPath + contextPath + "/com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
         title: title, width: 350, height: 150,
         allowDrag:true,
         allowResize:false,
@@ -109,7 +109,7 @@ function addOrEditPartBrand(brand)
     }
     nui.open({
         targetWindow: window,
-        url: webPath + partDomain + "/com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
+        url: webPath + contextPath + "/com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
         title: title, width: 350, height: 200,
         allowDrag:true,
         allowResize:false,
@@ -218,7 +218,7 @@ function onLeftGridRowClick(e)
         nui.get("disabledLeft").enable();
         nui.get("enabledLeft").enable();
         nui.get("editLeft").enable();
-        nui.get("addRight").enable();
+        //nui.get("addRight").enable();
         nui.get("editRight").enable();
         nui.get("disabledRight").enable();
         nui.get("enabledRight").enable();
@@ -226,7 +226,7 @@ function onLeftGridRowClick(e)
         nui.get("disabledLeft").disable();
         nui.get("enabledLeft").disable();
         nui.get("editLeft").disable();
-        nui.get("addRight").disable();
+        //nui.get("addRight").disable();
         nui.get("editRight").disable();
         nui.get("disabledRight").disable();
         nui.get("enabledRight").disable();
@@ -407,7 +407,7 @@ function addLocalBrand()
 {
     nui.open({
         targetWindow: window,
-        url: webPath + partDomain + "/com.hsweb.part.baseData.partBrandOrgDetail.flow?token=" + token,
+        url: webPath + contextPath + "/com.hsweb.part.baseData.partBrandOrgDetail.flow?token=" + token,
         title: "新增关注品牌", width: 500, height: 350,
         allowDrag:true,
         allowResize:true,

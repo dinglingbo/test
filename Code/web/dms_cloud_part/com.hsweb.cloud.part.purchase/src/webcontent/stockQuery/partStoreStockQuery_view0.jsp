@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.2"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockQuery.js?v=2.2.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -105,7 +105,7 @@
             <div header="数量金额" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-                    <div allowSort="true" datatype="float" field="costPrice" summaryType="sum" width="60" headerAlign="center" header="库存单价"></div>
+                    <div allowSort="true" datatype="float" field="costPrice" width="60" headerAlign="center" header="库存单价"></div>
                     <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>
                 </div>
             </div>

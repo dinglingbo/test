@@ -612,6 +612,7 @@ function onAdvancedSearchOk() {
 	}
 	advancedSearchFormData = advancedSearchForm.getData();
 	advancedSearchWin.hide();
+	searchData.auditSign = gsparams.auditSign || 0;
 	doSearch(searchData);
 }
 function onAdvancedSearchCancel() {
@@ -863,7 +864,7 @@ function selectSupplier(elId) {
 	supplier = null;
 	nui.open({
 		targetWindow : window,
-		url : webPath+partDomain+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
 		title : "供应商资料",
 		width : 980,
 		height : 560,
@@ -1128,7 +1129,7 @@ function getPartInfo(params){
 function selectPart(callback, checkcallback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
 		title : "配件选择",
 		width : 930,
 		height : 560,
@@ -1164,7 +1165,7 @@ function addDetail(part) {
 	
 	nui.open({
 				targetWindow : window,
-				url : webPath+cloudPartDomain+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
+				url : webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
 				height : 210,
@@ -1716,7 +1717,7 @@ function addGuest(){
 		if (action == "ok") {
 			nui.open({
 				targetWindow: window,
-				url: webPath+partDomain+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
 				title: "供应商资料", width: 530, height: 480,
 				allowDrag:true,
 				allowResize:false,
@@ -1762,7 +1763,7 @@ function onPrint() {
 
 		nui.open({
 
-			url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+			url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
 					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购入库打印",
 			width : 900,
@@ -1775,7 +1776,7 @@ function onPrint() {
 
 		// nui.open({
 
-		// 	url : webPath + cloudPartDomain + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+		// 	url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
 		// 			+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
 		// 	title : "采购入库打印",
 		// 	width : 900,
@@ -2107,7 +2108,7 @@ function addPchsOrder(type)
 
 	nui.open({
 		targetWindow: window,
-		url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
+		url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
 		title: title, width: 930, height: 560,
 		allowDrag:true,
 		allowResize:true,

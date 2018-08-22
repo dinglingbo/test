@@ -219,7 +219,7 @@
 		var arr = [];
 		for(var i=0; i<leafNodes.length; i++){
 			var row = leafNodes[i];
-			if(row.type == 'fun'){
+			if(row.type == 'function'){
 				var rows = rightGrid.findRows(function(row) {
 					if (row.resId == leafNodes[i].id)
 						return true;

@@ -13,10 +13,10 @@
 <title>预收账款管理</title>
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
 <script
-	src="<%=webPath + sysDomain%>/frm/js/arap/advanceInReceive.js?v=1.0"
+	src="<%=webPath + contextPath%>/frm/js/arap/advanceInReceive.js?v=1.0"
 	type="text/javascript"></script>
 
 </head>

@@ -12,7 +12,7 @@
 <head>
 <title>客户来源列表</title>
 <%@include file="/common/sysCommon.jsp"%>
-<script src="<%=webPath + repairDomain%>/repair/cfg/js/guestSource.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/guestSource.js?v=1.0.2"></script>
 
 </head>
 <body>

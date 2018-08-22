@@ -99,7 +99,7 @@
         var item={};
             item.id = "claimDetail";
             item.text = "理赔单";
-            item.url = webPath + sysDomain + "/repair/RepairBusiness/Reception/claimDetail.jsp";
+            item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/claimDetail.jsp";
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
       }

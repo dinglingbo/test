@@ -10,9 +10,9 @@
     - Description:
   --%>
 <head>
-<title>会员卡操作</title>
+<title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.1.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.0"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -27,7 +27,7 @@
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 						<a class="nui-button" onclick="search()" plain="true"> <span
 							class="fa fa-search fa-lg"></span>&nbsp; 查询
-					</a> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> <a
+					</a> <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span> <a
 						class="nui-button" iconCls="icon-add" onclick="add()" plain="true">
 							增加 </a> <a id="update" class="nui-button" iconCls="icon-edit"
 						onclick="edit()" plain="true"> 编辑 </a>

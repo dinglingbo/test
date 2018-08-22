@@ -53,7 +53,7 @@ $(document).ready(function(v)
     basicInfoForm = new nui.Form("#basicInfoForm");
     bottomInfoForm = new nui.Form("#bottomForm");
     
-    document.getElementById("formIframe").src=webPath + cloudPartDomain + "/common/srvBottom.jsp";
+    document.getElementById("formIframe").src=webPath + contextPath + "/common/srvBottom.jsp";
 
     //绑定表单
     //var db = new nui.DataBinding();

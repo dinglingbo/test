@@ -27,9 +27,9 @@ $(document).ready(function()
 	// 	var itemKind = nui.get("itemKind");
 	// 	itemKind.setData(list);
 	// });
-	// initCarBrand("carBrandId",function()
-	// {
-	// });
+	 initCarBrand("carBrandId",function()
+	 {
+	 });
     // initDicts({"costType": COST_TYPE});
 	tree1.on("nodedblclick",function(e)
 	{
@@ -80,7 +80,7 @@ function doSearch(params)
 function addOrEdit(item){
 	nui.open({
 		targetWindow: window,
-		url:webPath + repairDomain + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
+		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
 		title:"维修工时",
 		width:550,
 		height:360,

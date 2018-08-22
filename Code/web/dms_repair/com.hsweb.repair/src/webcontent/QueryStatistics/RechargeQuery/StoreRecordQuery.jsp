@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户办卡、充值记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.1.2"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -29,7 +29,7 @@ html,body {
 </style>
 </head>
 <body>
-
+   
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table">
@@ -38,7 +38,7 @@ html,body {
                     <label style="font-family:Verdana;">快速查询：</label>
                      <td class="form_label">消费日期 从:</td>
                 <td>
-                     <input class="nui-datepicker" id="startDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                     <input class="nui-datepicker" id="startDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
                 </td>
                 <td class="">至:</td>
                 <td>
@@ -57,7 +57,7 @@ html,body {
     </div>
 </div>
 <div class="nui-fit">
-    <div id="grid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
+    <div onDrawCell="onDrawCell" id="grid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
          pageSize="50"
          totalField="page.count" allowSortColumn="true"
          frozenStartColumn="0" frozenEndColumn="0">
@@ -66,14 +66,14 @@ html,body {
             <div header="客户信息" headerAlign="center">
                 <div property="columns">
                     <div field="fullName" headerAlign="center" allowSort="true" visible="true" width="">客户名称</div>
-                    <div field="tel" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
+                    <div field="mobile" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
                 </div>
             </div>
             <div header="会员卡信息" headerAlign="center">
                 <div property="columns">
                     <div field="cardNo" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
                     <div field="cardName" headerAlign="center" allowSort="true" visible="true" width="">会员卡名称</div>
-                    <div field="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">有效期</div>
+                    <div field="periodValidity" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">有效期</div>
                 </div>
             </div>
             
@@ -95,9 +95,9 @@ html,body {
             </div>
             <div header="优惠率" headerAlign="center">
                 <div property="columns">
-                    <div field="packageRate" headerAlign="center" allowSort="true" visible="true" width=""numberFormat="p"  >套餐优惠率</div>
-                    <div field="itemRate" headerAlign="center" allowSort="true" visible="true" width=""  numberFormat="p" >工时优惠率</div>
-                    <div field="partRate" headerAlign="center" allowSort="true" visible="true" width="" datatype="float"  numberFormat="p" >配件优惠率</div>
+                    <div field="packageRate" headerAlign="center" allowSort="true" visible="true" width="" >套餐优惠率</div>
+                    <div field="itemRate" headerAlign="center" allowSort="true" visible="true" width=""  >工时优惠率</div>
+                    <div field="partRate" headerAlign="center" allowSort="true" visible="true" width=""   >配件优惠率</div>
                 </div>
             </div>
             <div header="备注" headerAlign="center">

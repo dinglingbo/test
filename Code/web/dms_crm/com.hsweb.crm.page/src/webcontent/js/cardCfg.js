@@ -34,7 +34,7 @@ function addOrEditInsurance(comguest)
         title = "修改";
     }
     nui.open({
-      url : webPath + sysDomain + "/page/cardMgr/cardStoredCgf.jsp",
+      url : webPath + contextPath + "/page/cardMgr/cardStoredCgf.jsp",
       title : title,
       width : "830px",
       height : "370px",

@@ -22,6 +22,7 @@
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
+			a.insure_comp_name insureCompName,
 			b.addr addr,
 			c.last_come_date lastComeDate,
 			c.last_leave_date lastLeaveDate,
@@ -38,7 +39,7 @@
 		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
 		LEFT  JOIN rpb_contactor d ON b.id=d.group_id
 		WHERE
-			b.guest_type = '01020103'
+			b.guest_type = '01020104'
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
@@ -131,6 +132,7 @@
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
+			a.insure_comp_name insureCompName,
 			b.addr addr,
 			a.recorder recorder,
 			a.record_date recordDate,

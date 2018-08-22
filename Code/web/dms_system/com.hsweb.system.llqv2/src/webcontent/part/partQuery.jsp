@@ -12,8 +12,8 @@
     <title>零件号查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon2.jsp" %>
-    <script src="<%=sysDomain%>/llqv2/common/llqCommon.js?v=1.2" type="text/javascript"></script>
-    <script src="<%=sysDomain%>/llqv2/part/js/partQuery.js?v=1.13" type="text/javascript"></script>
+    <script src="<%=contextPath%>/llqv2/common/llqCommon.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=contextPath%>/llqv2/part/js/partQuery.js?v=1.13" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;

@@ -86,7 +86,7 @@
              allowcellwrap="true"
              idField="id"
              multiSelect="false"
-             url="<%=webPath + sysDomain%>/com.hs.common.unify.intfc.biz.ext"
+             url="<%=webPath + contextPath%>/com.hs.common.unify.intfc.biz.ext"
              showSummaryRow="true">
             <div property="columns">
                 <div type="checkcolumn" width="25"></div>

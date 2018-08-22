@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户储值卡消费记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreConsumeQuery.js?v=1.1.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreConsumeQuery.js?v=1.1.8"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -67,7 +67,7 @@ html,body {
                 <div property="columns">
                     <div field="fullName" headerAlign="center" allowSort="true" visible="true" width="">客户名称</div>
                     <div field="cardNo" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
-                    <div field="tel" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
+                    <div field="mobile" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
                     <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="">车牌号</div>
                 </div>
             </div>

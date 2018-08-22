@@ -1,12 +1,17 @@
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext";
-var sysnUrl = webPath + partDomain + "/repair/DataBase/Card/timesCardSysn.jsp?token"+token;
+var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/timesCardSysn.jsp?token"+token;
 var grid = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 	var formData = new nui.Form("#queryform").getData(false, false);
-	grid.load(formData);
+	grid.load({
+		formData:formData,
+		token:token
+	});
+	
+	
 });
 
 // 新增
@@ -136,6 +141,7 @@ function setStely(){
 	$("#add").remove();*/
 	mini.get("update").setVisible(false);
 	mini.get("add").setVisible(false);
+	mini.get("onBuy").setVisible(true);
 }
 
 function lookCardTimes(){
@@ -163,3 +169,29 @@ function lookCardTimes(){
 	}
 }
 
+//购买次卡
+var buyUrl =webPath + contextPath + "/repair/DataBase/Card/buyCardTimes.jsp?token"+token;
+function onBuy(){
+	var row = grid.getSelected();
+	if (row) {
+		nui.open({
+			url : buyUrl,
+			title : "购买次卡",
+			width : 930,
+			height : 663,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var data = row;
+				data.type = 'VIEW';
+				iframe.contentWindow.disableEle();
+				iframe.contentWindow.setData(data);
+			},
+			ondestroy : function() {
+				var iframe = this.getIFrameEl();
+			}
+		});
+	} else {
+		nui.alert("请选中一条记录", "提示");
+	}
+	
+}

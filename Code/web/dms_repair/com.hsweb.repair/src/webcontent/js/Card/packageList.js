@@ -4,13 +4,25 @@
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
 var grid = null;
+var sti = "";
 var resultData = {};
+var servieTypeHash = {};
+var servieTypeList = [];
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 	var formData = new nui.Form("#queryform").getData(false, false);
 	grid.load(formData);
+	
+	initServiceType("serviceTypeId",function(data) {
+	    servieTypeList = nui.get("serviceTypeId").getData();
+	    servieTypeList.forEach(function(v) {
+	        servieTypeHash[v.id] = v;
+	    });
+	 });
 });
+
+
 
 // 选择
 function edit() {
@@ -82,6 +94,11 @@ function onDrawCell(e) {
 	default:
 		break;
 	}
+	if (e.field == "serviceTypeId") {
+        if (servieTypeHash && servieTypeHash[e.value]) {
+            e.cellHtml = servieTypeHash[e.value].name;
+        }
+	}
 }
 
 function getData() {
@@ -98,14 +115,17 @@ function look() {
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({
-			url : webPath + partDomain
+			url : webPath + contextPath
 			+ "/repair/DataBase/Card/packageDetail.jsp?token=" + token,
 			title : "套餐详情",
 			width : 900,
 			height : 580,
 			onload : function() {
 				var iframe = this.getIFrameEl();
-				var data = row;
+				var data = {
+						"row":row,
+						"servieTypeHash":servieTypeHash
+						};
 				// 直接从页面获取，不用去后台获取
 				iframe.contentWindow.setData(data);
 			},
@@ -119,3 +139,4 @@ function look() {
 		nui.alert("请选中一条记录", "提示");
 	}
 }
+

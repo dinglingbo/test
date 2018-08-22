@@ -17,7 +17,9 @@ $(document).ready(function (v)
 
 function setData(data){
 	 data = nui.clone(data);
-	 var json = nui.encode({cardTimes:data});
+	 var json = nui.encode({cardTimes:data,
+		 token : token	 
+	 });
 	$.ajax({
 	   url:getUrl,
 	  type:'POST',
@@ -27,10 +29,14 @@ function setData(data){
 	  success:function(text){
 	  
 	    var obj = nui.decode(text);
-	
+	    
 	    form.setData(obj.cardTimes);
+	    
+	    if(obj.cardTimes.periodValidity == -1){
+	    	nui.get("periodValidity").setValue("永久有效") ;
+	    }
 	    form.setChanged(false);
-	    form1.setData(obj.cardTimesDe);
+	    form1.setData(obj.cardTimesDe);    
 	    form1.setChanged(false);
 	  }
   });
@@ -55,7 +61,7 @@ function onDrawCell(e)
           break; 
       case "sellAmt":
           e.cellHtml = "￥"+e.value;
-          break;
+          break;     
       default:
           break;
   }

@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.2"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.5"></script>
 </head>
 <body>
 	<fieldset
@@ -20,8 +20,7 @@
 		<legend> 计次卡 </legend>
 		<div id="dataform1" style="padding-top: 5px;">
 			<!-- hidden域 -->
-			<input class="nui-hidden" name="" id="" /> <input class="nui-hidden"
-				name="id" id="id" />
+			<input class="nui-hidden" name="id"  /> 
 			<table style="width: 100%; table-layout: fixed;"
 				class="nui-form-table">
 				<tr>
@@ -30,7 +29,7 @@
 						name="name" /></td>
 					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
 					<td colspan="1" style="width: 20%;" >
-					<input class="nui-textbox" name="periodValidity" vtype="float" id = "inputMonth" />	
+					<input class="nui-textbox" name="periodValidity" vtype="range:-1,1000" id = "inputMonth" />	
 					</td>
 					<td style="width: 22%;">
 					<input type="checkbox" id="setMonth" class="mini-checkbox"  onclick="changed()" >
@@ -108,7 +107,7 @@
 					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;height:100%"
 						showPager="false" sortMode="client" allowCellEdit="true"
 						allowCellSelect="true" multiSelect="true"
-						editNextOnEnterKey="true" onDrawCell="onDrawCell">
+						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell">
 						<div property="columns">
 							<div type="checkcolumn"></div>
 							<div field="prdtId" class="nui-hidden" allowSort="true"
@@ -137,12 +136,11 @@
 							</div>
 							<div field="oldAmt" allowSort="true" align="left"
 								headerAlign="center" width="">
-								原销售金额 <input class="nui-textbox" name="oldAmt" property="editor" />
+								原销售金额 
 							</div>
 							<div field="sellAmt" allowSort="true" align="left"
 								headerAlign="center" width="">
-								现销售金额 <input class="nui-textbox" name="sellAmt"
-									property="editor" />
+								现销售金额 
 							</div>
 						</div>
 					</div>

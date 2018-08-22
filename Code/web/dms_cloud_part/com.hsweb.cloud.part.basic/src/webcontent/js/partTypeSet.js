@@ -60,7 +60,7 @@ function showEditModal(row, newRow, type){
 	}
 
 	nui.open({
-		url: webPath+cloudPartDomain+"/com.hsweb.cloud.part.basic.partTypeEdit.flow?token="+token,
+		url: webPath+contextPath+"/com.hsweb.cloud.part.basic.partTypeEdit.flow?token="+token,
 		title: title,
 		width: "500px",
 		height: "200px",

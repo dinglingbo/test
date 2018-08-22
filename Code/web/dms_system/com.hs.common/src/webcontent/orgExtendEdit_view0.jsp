@@ -11,7 +11,7 @@
 <head>
     <title>门店信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + sysDomain%>/common/js/orgExtendEdit.js?v=1.9.4" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=1.9.4" type="text/javascript"></script>
 
   <style type="text/css">
     body {
@@ -188,7 +188,7 @@ table tr td span
 
             </tr>
             <tr>
-                <td class="tbtext">开店日期<span></span></td>
+                <td class="tbtext">开店日期<span style="color:red">*</span></td>
                 <td colspan="5"><input class="nui-datepicker tabwidth" enabled="true" format="yyyy-MM-dd H:mm:ss" name="softOpenDate" id="softOpenDate"/></td>
 
             </tr>           

@@ -9,8 +9,8 @@
 -->
 <head>
 <title>预约设置</title>
-<script src="<%=webPath + repairDomain%>/repair/cfg/js/appointmentParamsSet.js?v=1.0.0"></script>
-<link href="<%=webPath + repairDomain%>/repair/cfg/css/appoint.css" rel="stylesheet"	type="text/css" />
+<script src="<%=webPath + contextPath%>/repair/cfg/js/appointmentParamsSet.js?v=1.0.0"></script>
+<link href="<%=webPath + contextPath%>/repair/cfg/css/appoint.css" rel="stylesheet"	type="text/css" />
 <style type="text/css">
 .table-label {
 	text-align: right;

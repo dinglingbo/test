@@ -15,7 +15,7 @@
 
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + sysDomain%>/eos/css/register.css"
+	href="<%=webPath + contextPath%>/eos/css/register.css"
 	rel="stylesheet" type="text/css" />
 
 </head>

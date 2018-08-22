@@ -6,8 +6,8 @@ var dataList=[{id:"0",text:"客户名称"},{id:"1",text:"卡号"}];
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var grid = null;
 var gridUrl = baseUrl + "com.hsapi.repair.repairService.report.queryStoreRecord.biz.ext";
-
 var queryInfoForm = null;
+var periodValidity=null;
 $(document).ready(function (v)
 {
 	
@@ -17,6 +17,7 @@ $(document).ready(function (v)
     grid.load(queryInfoForm);
     grid.setUrl(gridUrl);
     grid.on("drawcell",onDrawCell);
+    getNowFormatDate();
     onSearch();
 });
 
@@ -47,4 +48,29 @@ function doSearch(params) {
         params: params
     });
 }
+function getNowFormatDate(){
+	   var date = new Date();
+	    var seperator1 = "-";
+	    var seperator2 = ":";
+	    var month = date.getMonth() + 1;
+	    var strDate = date.getDate();
+	    if (month >= 1 && month <= 9) {
+	        month = "0" + month;
+	    }
 
+	    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + "01";
+	    nui.get('startDate').setValue(currentdate);
+}
+
+function onDrawCell(e) {
+
+	if(e.field=="periodValidity"){
+		if( e.value == -1){
+			e.cellHtml="永久有效";
+		}
+	}
+	else if(e.field=="packageRate" || e.field=="itemRate" ||e.field=="partRate"){
+		e.cellHtml=e.value+"%";
+	}
+
+}

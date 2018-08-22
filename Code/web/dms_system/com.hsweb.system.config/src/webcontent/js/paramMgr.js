@@ -19,35 +19,35 @@ function showTabInfo(){
     {
         case "comParamsTab":  
             if(!url){
-                mainTabs.loadTab(webPath + sysDomain + "/config/comParamsSet.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/config/comParamsSet.jsp?token="+token, tab);
             }else {
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }     
             break;
         case "businessTypeTab":
             if(!url){
-                mainTabs.loadTab(webPath + repairDomain + "/repair/cfg/businessType.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/businessType.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }
             break;
         case "guestTypeTab":
             if(!url){
-                mainTabs.loadTab(webPath + repairDomain + "/repair/cfg/guestTypeMgr_view0.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/guestTypeMgr_view0.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }
             break;
         case "guestSourceTab": 
             if(!url){
-                mainTabs.loadTab(webPath + repairDomain + "/repair/cfg/guestSource.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/guestSource.jsp?token="+token, tab);
             }else {
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }  
             break;
         case "visitTab":
             if(!url){
-                mainTabs.loadTab(webPath + repairDomain + "/repair/cfg/visitSet.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/visitSet.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();  
             }
@@ -55,7 +55,7 @@ function showTabInfo(){
             break;
         case "carSetTab":
             if(!url){
-                mainTabs.loadTab(webPath + cloudPartDomain + "/common/embedJsp/containSellOrderRecord.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }
@@ -63,7 +63,7 @@ function showTabInfo(){
         	break;
         case "carCheckModelTab":
             if(!url){
-                mainTabs.loadTab(webPath + repairDomain + "/repair/cfg/checkModelMgr.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/checkModelMgr.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }
@@ -71,7 +71,7 @@ function showTabInfo(){
             break;
         case "stockTab":
             if(!url){
-                mainTabs.loadTab(webPath + sysDomain + "/config/stockParamsSet.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/config/stockParamsSet.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }
@@ -79,7 +79,7 @@ function showTabInfo(){
             break;
         case "basicDeductTab":
             if(!url){
-                mainTabs.loadTab(webPath + sysDomain + "/config/basicDeductParamsSet.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/config/basicDeductParamsSet.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }
@@ -87,7 +87,7 @@ function showTabInfo(){
             break;
         case "remindTab":
             if(!url){
-                mainTabs.loadTab(webPath + repairDomain + "/repair/cfg/remindParams.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/remindParams.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }

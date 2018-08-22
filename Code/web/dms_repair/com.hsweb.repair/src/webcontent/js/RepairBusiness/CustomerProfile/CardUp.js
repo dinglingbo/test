@@ -1,5 +1,5 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-
+var payType=0;
 
 $(document).ready(function(){
 	var accountTypeIdEl = null;
@@ -18,11 +18,9 @@ $(document).ready(function(){
 	var packageRate=null;
 	var partRate=null;
 	var giveAmt=null;
-	var giveAmt=null;
 	var totalAmt=null;
 	var canModify=null;
 	var rechargeAmt=null;
-	var payType=null;
 	var radio=null;
 	var text=null;
 
@@ -38,7 +36,6 @@ function SetData(params) {
     guestId=params.data.guestId;
     guestName=params.data.guestFullName;
     basicInfoForm.setData(params.data);
-    console.log(basicInfoForm);
 
 }
 var url=baseUrl+"com.hsapi.repair.baseData.query.queryCardstored.biz.ext";
@@ -115,6 +112,14 @@ function onCard(text){
 						nui.get('giveAmt').setValue(giveAmt);
 						nui.get('rechargeAmt').setValue(rechargeAmt);
 						nui.get('totalAmt').setValue(totalAmt);
+						if(canModify==0){
+							$('table#table input').attr("disabled",true);
+							showMsg("此卡不可修改");
+						}
+						else{
+							$('table#table input').attr("disabled",false);
+							showMsg("此卡可修改");
+						}
 					}
 					
 				}
@@ -132,6 +137,10 @@ function onCard(text){
 //确认支付
 var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";
 function pay(){
+	if(payType==0){
+		showMsg("请选择支付方式");
+		return;
+	}
 	var stored=[];
 	name=text;
 	var payAmt=rechargeAmt;
@@ -186,7 +195,7 @@ $(function(){
 		 var num=num1+num2;
 		 nui.get('totalAmt').setValue(num);
 }); 
-	 $("#rechargeAmt").change(function(){
+	 $("#giveAmt").change(function(){
 		 var text = nui.get('rechargeAmt').getValue();
 		 var text2=nui.get('#giveAmt').getValue();
 		 var num1=  Number(text);

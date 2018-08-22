@@ -13,7 +13,7 @@
 <title>应收账款管理</title>
 <%@include file="/common/sysCommon.jsp"%>
 <link
-	href="<%=webPath + sysDomain%>/css/style1/style_form_edit.css?v=1.1"
+	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
 
 </head>

@@ -12,7 +12,7 @@
 <head>
 <title>业务分类列表</title>
 <%@include file="/common/sysCommon.jsp"%>
-<script src="<%=webPath + repairDomain%>/repair/cfg/js/businessType.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/businessType.js?v=1.0.0"></script>
 
 </head>
 <body>

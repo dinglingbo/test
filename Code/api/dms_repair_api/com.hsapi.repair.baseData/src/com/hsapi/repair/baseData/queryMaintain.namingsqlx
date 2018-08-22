@@ -29,6 +29,9 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		WHERE 1=1
 		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>
@@ -98,7 +101,7 @@
 		FROM
 		rps_card_times_detail AS a
 		inner join rps_card_times as b
-		on a.card_id = b.id
+		on a.main_id = b.id
 		where 1 = 1
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">

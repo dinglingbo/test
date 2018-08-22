@@ -10,9 +10,9 @@
   --%>
   <head>
     <title>
-      会员卡录入录入
+      会员卡录入
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.6"></script>
   </head>
   <body >
     <fieldset style="border:solid 1px #aaa;position:relative;margin:5px 2px 0px 2px;">
@@ -25,31 +25,31 @@
         <table style="width:100%;height:95%;table-layout:fixed;" class="nui-form-table"  >
         
                      <tr>
-            <td class="form_label" style="width:17%">
+            <td class="form_label" style="width:25%" align="right">
               会员卡名称:
             </td>
-            <td colspan="1" style="width:33%">
+            <td colspan="1" style="width:25%">
               <input class="nui-textbox" name="name"/>
               <input class="nui-hidden"name="id" readonly="readonly" />
             </td>
 
 
-            <td class="form_label" style="width:14%">
+            <td class="form_label" style="width:20%" align="right">
               适用范围:
             </td>
-            <td colspan="2"  style="width:36%">
+            <td colspan="2"  style="width:30%">
               <input class="nui-combobox" data ="[{value:'0',text:'本店',},{value:'1',text:'连锁'}]" textField="text" valueField="value" name="useRange" value="0" />
             </td>
             </tr>
             
           <tr>
-            <td class="form_label">
+            <td class="form_label" align="right">
            充值金额:
             </td>
             <td colspan="1">
               <input class="nui-textbox" name="rechargeAmt"  onvalidation="vaild"/>
             </td>
-            <td class="form_label">
+            <td class="form_label" align="right">
               赠送金额:
             </td>
             <td colspan="2">
@@ -58,13 +58,13 @@
           </tr>
           <tr>
            <tr>
-                       <td class="form_label">
+                       <td class="form_label" align="right">
              套餐优惠率(%):
             </td>
             <td colspan="1">
               <input class="nui-textbox" name="packageRate" vtype="range:0,100"/>
             </td>
-            <td class="form_label">
+            <td class="form_label" align="right">
              配件优惠率(%):
             </td>
             <td colspan="2">
@@ -75,42 +75,36 @@
           </tr>
           <tr>
 
-            <td class="form_label">
+            <td class="form_label" align="right">
               工时优惠率(%):
             </td>
             <td colspan="">
               <input class="nui-textbox" name="itemRate" vtype="range:0,100"/>
-            </td>
-                        <td class="form_label">
-              有效期(月):
-            </td>
-            <td colspan="2">
-              <input class="nui-textbox" name="periodValidity" vtype="int"/>
-            </td>
+					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
+					<td colspan="1"  >
+					<input class="nui-textbox" name="periodValidity" vtype="range:-1,1000" id = "inputMonth" width="60%"/>	
+					</td>
+					<td >
+					<input type="checkbox" id="setMonth" class="mini-checkbox"  onclick="changed()" >
+						<span >永久有效</span>
+					</td>
           
             <td class="form_label">
           </tr>
-          <tr>
-            <td class="form_label">
-              销售提成方式:
-            </td>
-            <td colspan="1">
-            <input class="nui-combobox" data ="[{value:'0',text:'按原价比例',},{value:'1',text:'按折后价比例'},{value:'2',text:'按产值比例',},{value:'3',text:'固定金额'}]" 
-            textField="text" valueField="value" name="salesDeductType"  value="0" onvalidation="updateError()" id="x"/>
-
-            </td>
-            <td class="form_label">
-             销售提成值:
-            </td>
-            <td colspan="1" >
-              <input class="nui-textbox" name="salesDeductValue" requiredErrorText="元" vtype="float"/>
-              
-            </td>
-			 <td colspan="1" ><div style="display:none;" id="y" >&nbsp;&nbsp;元</div><div style="display:block;" id="b" >&nbsp;&nbsp;%</div></td> 
-          </tr>
+				<tr>
+					<td class="form_label" align="right">销售提成方式:</td>
+					<td colspan="1"><input class="nui-combobox"
+						data="[{value:'0',text:'按原价比例',},{value:'1',text:'按折后价比例'},{value:'2',text:'按产值比例',},{value:'3',text:'固定金额'}]"
+						textField="text" valueField="value" name="salesDeductType"
+						value="0" onvalidation="updateError()" id="x" /></td>
+					<td class="form_label" align="right">销售提成值:</td>
+					<td colspan="1" width="120px"><input class="nui-textbox"
+						name="salesDeductValue" requiredErrorText="元" vtype="float"
+						width="60%" /> <span id="y">&nbsp;%</span></td>
+				</tr>
 		<tr>
             </td>
-                        <td class="form_label">
+                        <td class="form_label" align="right">
               是否允许修改金额:
             </td>
             <td colspan="1" >
@@ -120,7 +114,7 @@
 </div>
 		    
             </td>
-			            <td class="form_label">
+			            <td class="form_label" align="right">
               状态:
             </td>
             <td colspan="2">
@@ -134,7 +128,7 @@
   
 
            <tr>
-            <td class="form_label">
+            <td class="form_label" align="right">
              使用条款:
             </td>
             <td colspan="2">
@@ -143,7 +137,7 @@
             </td>
             </tr>
             <tr>
-            <td class="form_label">
+            <td class="form_label" align="right">
            卡说明:
             </td>
             <td colspan="1">

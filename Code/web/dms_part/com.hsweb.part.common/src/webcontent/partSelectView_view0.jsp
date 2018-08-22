@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + partDomain%>/commonPart/js/partSelect.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.9"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -78,7 +78,7 @@
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      frozenStartColumn="0"
-                     frozenEndColumn="7"
+                     frozenEndColumn="5"
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""

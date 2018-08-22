@@ -281,7 +281,7 @@ function amalgamate() {
 function split() {
     nui.open({
         url: webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
-        title: "资料拆分", width: 800, height: 430,
+        title: "资料拆分", width: 810, height: 430,
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {pageType: "split"};

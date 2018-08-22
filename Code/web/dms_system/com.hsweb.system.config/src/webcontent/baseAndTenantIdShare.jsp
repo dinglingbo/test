@@ -11,7 +11,7 @@
 <head>
 <title>设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + sysDomain%>/config/js/tenantIdShareUrl.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/config/js/tenantIdShareUrl.js?v=1.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -174,7 +174,7 @@
 	function baseAt() {
 		nui.open({
 			targetWindow : window,
-			url : "<%=sysDomain %>/config/base64LoginIn.jsp",
+			url : "<%=contextPath %>/config/base64LoginIn.jsp",
 			title : "新增用户",
 			width : 350,
 			height : 180,
@@ -187,7 +187,7 @@
 		var row = grid.getSelected();
 		if (row) {
 			nui.open({
-				url : "<%=sysDomain %>/config/updataBase.jsp",
+				url : "<%=contextPath %>/config/updataBase.jsp",
 				title : "修改",
 				width : 350,
 				height : 200,

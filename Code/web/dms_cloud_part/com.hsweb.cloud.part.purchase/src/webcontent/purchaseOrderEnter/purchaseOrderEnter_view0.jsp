@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.8"></script>
 <style type="text/css">
 .title {
   width: 60px;

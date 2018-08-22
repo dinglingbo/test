@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + cloudPartDomain%>/purchase/js/stockCheck/stockCheck.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockCheck/stockCheck.js?v=1.1.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

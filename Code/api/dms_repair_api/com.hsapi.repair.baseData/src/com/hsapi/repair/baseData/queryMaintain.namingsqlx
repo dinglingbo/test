@@ -101,7 +101,7 @@
 		FROM
 		rps_card_times_detail AS a
 		inner join rps_card_times as b
-		on a.card_id = b.id
+		on a.main_id = b.id
 		where 1 = 1
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">

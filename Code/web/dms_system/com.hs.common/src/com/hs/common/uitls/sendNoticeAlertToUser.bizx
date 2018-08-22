@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sendNoticeAlertToUser" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="消息记录&#xD;&#xA;com_message&#xD;&#xA;&#xD;&#xA;msg_type &#xD;&#xA;0 系统&#xD;&#xA;1、维修结算提醒&#xD;&#xA;2、充值结算提醒&#xD;&#xA;3、办卡结算提醒&#xD;&#xA;4、充值到期提醒&#xD;&#xA;5、次卡到期提醒&#xD;&#xA;6、新预约提醒&#xD;&#xA;7、预约过期提醒&#xD;&#xA;8、客户生日提醒&#xD;&#xA;9、客户流失提醒&#xD;&#xA;&#xD;&#xA;只做保存，不给msg赋值" title="Administrator&#x9;18-8-16 下午5:14">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="消息记录&#xD;&#xA;com_message&#xD;&#xA;&#xD;&#xA;msg_type &#xD;&#xA;0 系统&#xD;&#xA;1、维修结算提醒&#xD;&#xA;2、充值结算提醒&#xD;&#xA;3、办卡结算提醒&#xD;&#xA;4、充值到期提醒&#xD;&#xA;5、次卡到期提醒&#xD;&#xA;6、新预约提醒&#xD;&#xA;7、预约过期提醒&#xD;&#xA;8、客户生日提醒&#xD;&#xA;9、客户流失提醒&#xD;&#xA;10、计次卡购买提醒&#xD;&#xA;&#xD;&#xA;只做保存，不给msg赋值" title="Administrator&#x9;18-8-16 下午5:14">
     <location x="-165" y="-45"/>
     <size height="346" width="211"/>
   </nodes>

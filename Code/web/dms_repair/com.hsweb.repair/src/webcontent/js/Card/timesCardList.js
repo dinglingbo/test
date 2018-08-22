@@ -7,6 +7,8 @@ $(document).ready(function(v) {
 	grid.setUrl(gridUrl);
 	var formData = new nui.Form("#queryform").getData(false, false);
 	grid.load(formData);
+	
+	
 });
 
 // 新增

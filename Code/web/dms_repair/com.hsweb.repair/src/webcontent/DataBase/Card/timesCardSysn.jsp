@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.2"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
 </head>
 <body>
 	<fieldset
@@ -108,7 +108,7 @@
 					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;height:100%"
 						showPager="false" sortMode="client" allowCellEdit="true"
 						allowCellSelect="true" multiSelect="true"
-						editNextOnEnterKey="true" onDrawCell="onDrawCell">
+						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell">
 						<div property="columns">
 							<div type="checkcolumn"></div>
 							<div field="prdtId" class="nui-hidden" allowSort="true"
@@ -137,12 +137,11 @@
 							</div>
 							<div field="oldAmt" allowSort="true" align="left"
 								headerAlign="center" width="">
-								原销售金额 <input class="nui-textbox" name="oldAmt" property="editor" />
+								原销售金额 
 							</div>
 							<div field="sellAmt" allowSort="true" align="left"
 								headerAlign="center" width="">
-								现销售金额 <input class="nui-textbox" name="sellAmt"
-									property="editor" />
+								现销售金额 
 							</div>
 						</div>
 					</div>

@@ -8,6 +8,8 @@ var timesCardDetail = null;
 var g = null;
 var set = null;
 var input = null;
+var oldAmt = null;
+var sellAmt = null;
 //页面标签加载完之后执行，但是修改的数据还没有设置
 $(document).ready(function(v) {
 	tab = nui.get("tab");
@@ -24,9 +26,74 @@ $(document).ready(function(v) {
     	}
     });
     
+  
+    timesCardDetail.on("cellendedit",function(e){
+    	
+    	var row = timesCardDetail.getSelected();
+       //数量
+       if(e.field == "qty"){ 	   
+    	   if(row.oldPrice && row.times ){
+    		   oldAmt =  row.oldPrice*row.times*row.qty;
+    	   }
+    	   
+    	   if(row.sellPrice && row.times ){
+    		   sellAmt =  row.sellPrice*row.times*row.qty;
+    	   }
+    	   
+    	}
+       //原价
+       if(e.field == "oldPrice"){
+    	   if(row.qty && row.times ){
+    		   oldAmt =  row.oldPrice*row.times*row.qty;
+      	   } 
+    	   
+   	   }
+       //次数
+       if(e.field == "times"){
+    	   
+    	   if(row.qty && row.oldPrice ){
+    		   oldAmt =  row.oldPrice*row.times*row.qty;
+        	  } 
+    	   
+    	   if(row.sellPrice && row.qty ){
+    		   sellAmt =  row.sellPrice*row.times*row.qty;
+    	   }
+       }
+       //现价
+       if(e.field == "sellPrice"){
+    	   
+    	   if(row.qty && row.times ){
+    		   sellAmt =  row.sellPrice*row.times*row.qty;
+      	   } 
+   	   }
+       //销
+       data = {
+    		   oldAmt:oldAmt, 
+    		   sellAmt:sellAmt
+       };
+       timesCardDetail.updateRow(row,data);
+       
+    });
+    
    
-	
 });
+
+
+function onDrawSummaryCell(e) {
+	var rows = e.data;
+    if (e.field == "sellAmt") {
+        var total = 0;
+        for (var i = 0, l = rows.length; i < l; i++) {
+            var row = rows[i];
+            var t = row.price * row.quantity;
+            if (isNaN(t)) continue;
+            total += t;
+        }
+
+        e.cellHtml = "总计: " + total;
+    }
+}
+
 
 var requiredField = {
 	name : "计次卡名称:",
@@ -218,6 +285,8 @@ function updateError(e) {
 }
 
 function addDetail() {
+	oldAmt = null;
+	sellAmt = null;
 	nui.open({
 		targetWindow : window,
 		url : webPath + contextPath
@@ -262,7 +331,8 @@ function addDetail() {
 
 // 本店套餐录入
 function selectPackage() {
-
+	oldAmt = null;
+	sellAmt = null;
 	nui.open({
 		targetWindow : window,
 		url : webPath + contextPath
@@ -306,6 +376,8 @@ function selectPackage() {
 }
 
 function selectItem(callback) {
+	oldAmt = null;
+	sellAmt = null;
 	nui.open({
 		targetWindow : window,
 		url : webPath + contextPath
@@ -386,6 +458,8 @@ function disableHtml(){
 	mini.get("addr").setVisible(false);
 	mini.get("delect").setVisible(false);
 	mini.get("save").setVisible(false);
+	
+	
 	//mini.get("toolbar1").
 	//添加样式 addClass("miniui");
 	//mini.get("tab").addClass("style='width: 100%;height:100%'");
@@ -398,6 +472,17 @@ function disableHtml(){
 	
 	
 }
+
+
+//点击发生
+/*rpsPartGrid.on("cellclick",function(e){
+ var record = e.record;
+ //点击的某一列
+ var column = e.column;
+ var row = rpsPartGrid.getSelected();
+ if(column.field == "partName"){
+*/
+
 /*
  * function addItem() {
  * 

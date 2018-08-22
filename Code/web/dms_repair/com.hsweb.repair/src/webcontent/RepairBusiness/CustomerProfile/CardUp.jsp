@@ -11,7 +11,7 @@
 -->
 <head>
 <title>会员卡充值</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.0.7"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.0.1"></script>
 	<style type="text/css">
 	
 	table {

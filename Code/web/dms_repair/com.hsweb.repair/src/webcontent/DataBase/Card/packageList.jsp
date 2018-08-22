@@ -12,7 +12,7 @@
 <head>
 <title>套餐操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.2.8"></script>
 
 </head>
 
@@ -51,7 +51,8 @@
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">套餐ID</div>
 				<div field="name" headerAlign="center" allowSort="true">套餐名称</div>
-				<div field="serviceTypeId" headerAlign="center" allowSort="true">
+				<div field="serviceTypeId"  headerAlign="center" allowSort="true">
+													
 					套餐类型</div>
 				<div field="total" headerAlign="center" allowSort="true">市场金额</div>
 				<div field="amount" headerAlign="center" allowSort="true">
@@ -62,5 +63,8 @@
 					allowSort="true">状态</div>
 		</div>
 	</div>
+	<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
+										   valueField="id" allowInput="true" valueFromSelect="true"
+										   textField="name"/>
 </body>
 </html>

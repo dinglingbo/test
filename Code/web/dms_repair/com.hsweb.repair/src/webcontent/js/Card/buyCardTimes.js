@@ -184,6 +184,16 @@ function openCustomerWindow(callback) {
     });
 }
 
+
+function onDrawCell(e) {
+	var hash = new Array("套餐", "工时", "配件");
+	switch (e.field) {
+	case "prdtType":
+		e.cellHtml = hash[e.value - 1];
+		break;
+	}
+}
+
 function payOk(){
 	//判断客户有没有选择
 	var data = form.getData();

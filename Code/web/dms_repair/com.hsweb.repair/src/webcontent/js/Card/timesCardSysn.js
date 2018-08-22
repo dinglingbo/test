@@ -181,7 +181,7 @@ function setData(data) {
 	}
 	// 计次卡明细查询
 	var json1 = nui.encode({
-		"timesCard" : json
+		"timesCard" : json,
 	});
 	nui.ajax({
 		url : gridUrl,

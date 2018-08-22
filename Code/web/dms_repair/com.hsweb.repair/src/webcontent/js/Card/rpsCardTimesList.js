@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/4/27.
  */
 var gridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
-var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp";
+var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp?";
 //var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
 var grid = null;
 /*进来该页面，加载套餐列表数据*/
@@ -10,7 +10,9 @@ $(document).ready(function (v)
 {
     grid  = nui.get("datagrid1");
     grid.setUrl(gridUrl);
-    grid.load();
+    grid.load({
+    	token : token
+    });
 });
 
 

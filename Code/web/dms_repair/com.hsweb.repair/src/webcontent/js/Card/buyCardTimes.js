@@ -1,7 +1,5 @@
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryTimesCardDetail.biz.ext";
-var gridUrl1 = apiPath + repairApi
-+ "/com.hsapi.repair.baseData.crud.syncTimesCard.biz.ext";
 var tab = null;
 var form = null;
 var form2 = null;
@@ -49,7 +47,8 @@ function setData(data) {
 	}
 	// 计次卡明细查询
 	var json1 = nui.encode({
-		"timesCard" : json
+		"timesCard" : json,
+		token:token
 	});
 	nui.ajax({
 		url : gridUrl,
@@ -226,7 +225,8 @@ function payOk(){
 		 var json = nui.encode({
 			"payAmt":payAmt,
 			"payType":data.payType,
-		     "cardTimes":cardTimes
+		     "cardTimes":cardTimes,
+		     token:token
 		 });
 		//提示框 
 		//判断客户有没有选择

@@ -67,7 +67,7 @@ html,body {
                 <div property="columns">
                     <div field="fullName" headerAlign="center" allowSort="true" visible="true" width="">客户名称</div>
                     <div field="cardNo" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
-                    <div field="tel" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
+                    <div field="mobile" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
                     <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="">车牌号</div>
                 </div>
             </div>

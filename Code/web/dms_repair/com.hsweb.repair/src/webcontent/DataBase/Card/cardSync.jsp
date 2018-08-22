@@ -12,7 +12,7 @@
     <title>
       会员卡录入
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.6"></script>
   </head>
   <body >
     <fieldset style="border:solid 1px #aaa;position:relative;margin:5px 2px 0px 2px;">
@@ -80,13 +80,14 @@
             </td>
             <td colspan="">
               <input class="nui-textbox" name="itemRate" vtype="range:0,100"/>
-            </td>
-                        <td class="form_label" align="right">
-              有效期(月):
-            </td>
-            <td colspan="2">
-              <input class="nui-textbox" name="periodValidity" vtype="int"/>
-            </td>
+					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
+					<td colspan="1" style="width: 20%;" >
+					<input class="nui-textbox" name="periodValidity" vtype="range:-1,1000" id = "inputMonth" />	
+					</td>
+					<td style="width: 22%;">
+					<input type="checkbox" id="setMonth" class="mini-checkbox"  onclick="changed()" >
+						<span >永久有效</span>
+					</td>
           
             <td class="form_label">
           </tr>

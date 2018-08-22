@@ -907,7 +907,6 @@
 			a.type AS type,
 			a.is_clear_give_amt AS isClearGiveAmt,
 			a.guest_id AS guestId,
-			a.service_code AS serviceId,
 			a.consume_amt AS consumeAmt,
 			a.remark AS remark, 
 			a.recorder AS recorder,
@@ -915,7 +914,7 @@
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			b.full_name AS fullName,
-			b.tel AS tel,
+			b.mobile as mobile,
 			b.card_no AS cardNo,
 			c.car_no AS carNo
 		FROM
@@ -930,8 +929,8 @@
 		<isNotEmpty prepend="and" property="fullName"> 
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>
-        <isNotEmpty prepend="and" property="tel"> 
-               b.tel LIKE '%$tel$%'
+        <isNotEmpty prepend="and" property="mobile"> 
+               b.mobile LIKE '%$mobile$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="cardNo"> 
                b.card_no LIKE '%$cardNo$%'
@@ -975,7 +974,7 @@
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			b.full_name AS fullName,
-			b.tel AS tel,
+			b.mobile AS mobile,
 			b.card_no AS cardNo
 		FROM
 			wb_repair.rps_stored_record a

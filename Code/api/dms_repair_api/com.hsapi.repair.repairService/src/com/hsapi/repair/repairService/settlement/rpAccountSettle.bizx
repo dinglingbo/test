@@ -436,7 +436,7 @@
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="sendPost" displayName="sendPost" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="sendPost" displayName="" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="link23" isDefault="false" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign9</targetNode>
@@ -626,7 +626,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">htemp</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">htemp</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">payDetailHash</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -774,7 +774,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">ttemp</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">ttemp</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">payTypeDetailHash</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

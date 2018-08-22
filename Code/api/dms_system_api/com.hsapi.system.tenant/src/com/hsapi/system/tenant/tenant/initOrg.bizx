@@ -56,7 +56,7 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -406,7 +406,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign13</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
     <location x="937" y="238"/>
@@ -468,6 +468,7 @@
     <targetConnections>link40</targetConnections>
     <targetConnections>link27</targetConnections>
     <targetConnections>link16</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="444" y="404"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -501,8 +502,8 @@
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
-    <targetConnections>link3</targetConnections>
-    <location x="1118" y="238"/>
+    <targetConnections>link6</targetConnections>
+    <location x="1170" y="238"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -511,7 +512,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="1120" y="274"/>
+    <location x="1172" y="274"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -540,6 +541,65 @@
     <figSize height="17" width="25"/>
     <node>invokePojo2</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>invokePojo8</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="1005" y="237"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/empId</process:from>
+      <process:to type="query">empOrg/empid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comCompany/orgid</process:from>
+      <process:to type="query">empOrg/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comCompany/tenantId</process:from>
+      <process:to type="query">empOrg/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">empOrg/ismain</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="1000" y="273"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="保存empOrg" displayName="保存empOrg" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="1080" y="237"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo8label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">default</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">empOrg</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
+    <location x="1054" y="273"/>
+    <figSize height="17" width="74"/>
+    <node>invokePojo8</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-15 14:38:04" date="2018-06-15Z" description="" name="initOrg" version="7.0.0.0"/>
@@ -549,6 +609,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComStore" name="store"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgOrganization" name="tmpOrgOrganization"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgEmporg" name="empOrg"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComCompany" name="comCompany"/>

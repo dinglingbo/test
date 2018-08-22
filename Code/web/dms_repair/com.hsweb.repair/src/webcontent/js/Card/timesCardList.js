@@ -141,6 +141,7 @@ function setStely(){
 	$("#add").remove();*/
 	mini.get("update").setVisible(false);
 	mini.get("add").setVisible(false);
+	mini.get("onBuy").setVisible(true);
 }
 
 function lookCardTimes(){
@@ -177,7 +178,7 @@ function onBuy(){
 			url : buyUrl,
 			title : "购买次卡",
 			width : 930,
-			height : 645,
+			height : 663,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var data = row;

@@ -453,7 +453,7 @@
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
         <process:outputVariable id="2" name="cardPkgAmt" type="query" value="Double" valueType="Primitive">cardPkgAmt</process:outputVariable>
         <process:outputVariable id="3" name="cardItemAmt" type="query" value="Double" valueType="Primitive">cardItemAmt</process:outputVariable>
-        <process:outputVariable id="4" name="cardPartAmt" type="query" value="Double" valueType="Primitive">cardPayAmt</process:outputVariable>
+        <process:outputVariable id="4" name="cardPartAmt" type="query" value="Double" valueType="Primitive">cardPartAmt</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -836,9 +836,15 @@
     <node>assign14</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="判断会员余额，生成消费记录" displayName="updateMemberBalance" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess3</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" type="transition">
       <sourceNode>subprocess3</sourceNode>
@@ -979,6 +985,10 @@
       <process:to type="query">settlement/allowanceAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">maintain/outDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">maintain/isSettle</process:to>
     </process:copy>
@@ -1080,6 +1090,7 @@
     <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign16</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
     <location x="1047" y="135"/>
@@ -1132,6 +1143,7 @@
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign17</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
     <location x="1044" y="273"/>
@@ -1261,6 +1273,7 @@
     <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo8</sourceNode>
       <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
     <targetConnections>link44</targetConnections>

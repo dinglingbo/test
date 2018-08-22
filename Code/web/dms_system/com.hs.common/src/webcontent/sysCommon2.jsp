@@ -16,10 +16,10 @@
 	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
 	
     //Web域 访问其他Web域使用：xxDomain + 页面路径
-	String contextPath = Env.getContributionConfig("system", "url", "webDomain", "SYS");
-    String contextPath = Env.getContributionConfig("system", "url", "webDomain", "PART");
-    String contextPath = Env.getContributionConfig("system", "url", "webDomain", "REPAIR");
-    String contextPath = Env.getContributionConfig("system", "url", "webDomain", "CLOUDPART");
+	String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
+    String partDomain = Env.getContributionConfig("system", "url", "webDomain", "PART");
+    String repairDomain = Env.getContributionConfig("system", "url", "webDomain", "REPAIR");
+    String cloudPartDomain = Env.getContributionConfig("system", "url", "webDomain", "CLOUDPART");
     String crmDomain = Env.getContributionConfig("system", "url", "webDomain", "CRM");
     String frmDomain = Env.getContributionConfig("system", "url", "webDomain", "FRM");
     
@@ -52,10 +52,10 @@
 	var apiPath		= "<%=apiPath%>";
 	var webPath		= "<%=webPath%>";
 	
-    var contextPath   = "<%=contextPath%>";
-    var contextPath   = "<%=contextPath%>";
-    var contextPath   = "<%=contextPath%>";
-    var contextPath   = "<%=contextPath%>";
+    var sysDomain   = "<%=sysDomain%>";
+    var partDomain   = "<%=partDomain%>";
+    var repairDomain   = "<%=repairDomain%>";
+    var cloudPartDomain   = "<%=cloudPartDomain%>";
     var crmDomain   = "<%=crmDomain%>";
     var frmDomain   = "<%=frmDomain%>";
     

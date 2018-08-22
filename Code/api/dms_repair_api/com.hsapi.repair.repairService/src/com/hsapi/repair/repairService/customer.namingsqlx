@@ -39,7 +39,7 @@
 		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
 		LEFT  JOIN rpb_contactor d ON b.id=d.group_id
 		WHERE
-			b.guest_type = '01020103'
+			b.guest_type = '01020104'
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)

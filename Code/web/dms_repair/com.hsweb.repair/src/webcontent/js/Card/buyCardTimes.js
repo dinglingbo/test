@@ -232,14 +232,21 @@ function payOk(){
 		//判断客户有没有选择
 		nui.confirm("你确定以"+payType[data.payType]+"结算方式结算吗？", "友情提示", function(action) {
 			if (action == "ok") {
+				nui.mask({
+					el : document.body,
+					cls : 'mini-mask-loading',
+					html : '处理中...'
+				});
+				
 				  nui.ajax({
 				        url : payMeth,
 				        type : 'POST',
 				        data : json,
 				        cache : false,
 				        contentType : 'text/json',
-				        success : function(text) {				        	
-				        	var returnJson = nui.decode(text);
+				        success : function(text) {		
+				        	nui.unmask(document.body);
+				        	 var returnJson = nui.decode(text);
 				              if (returnJson.errCode == "S") {
 				            	  nui.alert("结算成功", "系统提示", function(action) {
 				                      if (action == "ok" || action == "close") {

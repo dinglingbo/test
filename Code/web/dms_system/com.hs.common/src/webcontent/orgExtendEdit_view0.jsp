@@ -188,7 +188,7 @@ table tr td span
 
             </tr>
             <tr>
-                <td class="tbtext">开店日期<span></span></td>
+                <td class="tbtext">开店日期<span style="color:red">*</span></td>
                 <td colspan="5"><input class="nui-datepicker tabwidth" enabled="true" format="yyyy-MM-dd H:mm:ss" name="softOpenDate" id="softOpenDate"/></td>
 
             </tr>           

@@ -30,7 +30,7 @@
 						name="name" /></td>
 					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
 					<td colspan="1" style="width: 20%;" >
-					<input class="nui-textbox" name="periodValidity" vtype="float" id = "inputMonth" />	
+					<input class="nui-textbox" name="periodValidity" vtype="range:-1,1000" id = "inputMonth" />	
 					</td>
 					<td style="width: 22%;">
 					<input type="checkbox" id="setMonth" class="mini-checkbox"  onclick="changed()" >

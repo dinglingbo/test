@@ -273,7 +273,7 @@ function clickGdMainGroup(row){
             "params":{
                 "vin":vin,
                 "code":brand,
-                //"is_filter":1,
+                "filter":1,
                 "auth":row.auth//unescape
             },
             "token": token

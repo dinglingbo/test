@@ -29,7 +29,7 @@ html,body {
 </style>
 </head>
 <body>
-
+   
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table">

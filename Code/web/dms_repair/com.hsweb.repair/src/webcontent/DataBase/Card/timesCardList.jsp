@@ -12,7 +12,7 @@
 <head>
 <title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.0"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.0.1"></script>
 </head>
 <body>
 
@@ -25,7 +25,7 @@
 			<input class="nui-hidden" name="criteria/_entity"
 				value="com.hsapi.repair.data.rpb.RpbCardTimes">
 			<!-- 排序字段 -->
-
+             
 			<table style="width: 100%;" id="table1">
 				<tr>
 					<td style="width: 100%;">计次卡名称: <input class="nui-textbox"
@@ -37,7 +37,7 @@
 						plain="true"> 增加 </a> 
 						<a id="update" class="nui-button"
 						iconCls="icon-edit" onclick="edit()" plain="true"> 编辑 </a>				
-						<a class="nui-button" iconCls="" plain="true" onclick="onBuy()" id = "onBuy" ><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="onBuy()" id = "onBuy" visible = "false"><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
 							<a class="nui-button" onclick="lookCardTimes()" plain="true"> <span
 							class="fa fa-search fa-lg"></span>&nbsp; 查看详情
 					</a>

@@ -32,11 +32,12 @@
 						name="criteria/_expr[1]/name" /> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
-						<a class="nui-button" onclick="search()" plain="true"> 查询 </a> 
-						<a  id = "add" class="nui-button" iconCls="icon-add" onclick="add()"
-						plain="true"> 增加 </a> 
+						<a class="nui-button" onclick="search()" plain="true"><span
+							class="fa fa-search fa-lg"></span> 查询 </a> 
+						<a  id = "add" class="nui-button"  onclick="add()"
+						plain="true"> <span class="fa fa-plus fa-lg"></span>增加 </a> 
 						<a id="update" class="nui-button"
-						iconCls="icon-edit" onclick="edit()" plain="true"> 编辑 </a>				
+						 onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span> 修改 </a>				
 						<a class="nui-button" iconCls="" plain="true" onclick="onBuy()" id = "onBuy" visible = "false"><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
 							<a class="nui-button" onclick="lookCardTimes()" plain="true"> <span
 							class="fa fa-search fa-lg"></span>&nbsp; 查看详情

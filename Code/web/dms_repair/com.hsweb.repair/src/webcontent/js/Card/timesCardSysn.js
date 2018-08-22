@@ -79,7 +79,7 @@ $(document).ready(function(v) {
 });
 
 
-/*function onDrawSummaryCell(e) {
+function onDrawSummaryCell(e) {
 	var rows = e.data;
     if (e.field == "sellAmt") {
         var total = 0;
@@ -93,19 +93,7 @@ $(document).ready(function(v) {
         e.cellHtml = "总计: " + total;
     }
 }
-*/
- function onDrawSummaryCell(e){
-	 
-	   var rows = e.data;
-	   var sum = 0;
-	   if(e.field == "totalAmt") {
-		   
-		   for (var i = 0; i < rows.length; i++) {
-			sum += parseFloat(rows[i].orderAmt);
-		   }
-			nui.get("totalAmt").setValue(sum);
-	 }
- }
+
 
 var requiredField = {
 	name : "计次卡名称:",
@@ -181,7 +169,8 @@ function setData(data) {
 	}
 	// 计次卡明细查询
 	var json1 = nui.encode({
-		"timesCard" : json
+		"timesCard" : json,
+		token:token
 	});
 	nui.ajax({
 		url : gridUrl,
@@ -480,6 +469,9 @@ function disableHtml(){
 	for(var i=0,length=controls.length;i<length;i++){
 	       controls[i].setReadOnly(true);
 	}
+	
+	
+	
 }
 
 

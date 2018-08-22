@@ -1,7 +1,5 @@
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryTimesCardDetail.biz.ext";
-var gridUrl1 = apiPath + repairApi
-+ "/com.hsapi.repair.baseData.crud.syncTimesCard.biz.ext";
 var tab = null;
 var form = null;
 var form2 = null;
@@ -49,7 +47,8 @@ function setData(data) {
 	}
 	// 计次卡明细查询
 	var json1 = nui.encode({
-		"timesCard" : json
+		"timesCard" : json,
+		token:token
 	});
 	nui.ajax({
 		url : gridUrl,
@@ -226,20 +225,28 @@ function payOk(){
 		 var json = nui.encode({
 			"payAmt":payAmt,
 			"payType":data.payType,
-		     "cardTimes":cardTimes
+		     "cardTimes":cardTimes,
+		     token:token
 		 });
 		//提示框 
 		//判断客户有没有选择
 		nui.confirm("你确定以"+payType[data.payType]+"结算方式结算吗？", "友情提示", function(action) {
 			if (action == "ok") {
+				nui.mask({
+					el : document.body,
+					cls : 'mini-mask-loading',
+					html : '处理中...'
+				});
+				
 				  nui.ajax({
 				        url : payMeth,
 				        type : 'POST',
 				        data : json,
 				        cache : false,
 				        contentType : 'text/json',
-				        success : function(text) {				        	
-				        	var returnJson = nui.decode(text);
+				        success : function(text) {		
+				        	nui.unmask(document.body);
+				        	 var returnJson = nui.decode(text);
 				              if (returnJson.errCode == "S") {
 				            	  nui.alert("结算成功", "系统提示", function(action) {
 				                      if (action == "ok" || action == "close") {

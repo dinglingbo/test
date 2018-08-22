@@ -72,11 +72,5 @@ function onDrawCell(e) {
 	else if(e.field=="packageRate" || e.field=="itemRate" ||e.field=="partRate"){
 		e.cellHtml=e.value+"%";
 	}
-//	else if(e.filed=="itemRate"){
-//		e.cellHtml=e.value+"%";
-//	}
-//	else if(e.filed=="partRate"){
-//		e.cellHtml=e.value+"%";
-//	}
 
 }

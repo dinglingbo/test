@@ -37,7 +37,7 @@
 						plain="true"> 增加 </a> 
 						<a id="update" class="nui-button"
 						iconCls="icon-edit" onclick="edit()" plain="true"> 编辑 </a>				
-						<a class="nui-button" iconCls="" plain="true" onclick="onBuy()"><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="onBuy()" id = "onBuy" Visible = "false"><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
 							<a class="nui-button" onclick="lookCardTimes()" plain="true"> <span
 							class="fa fa-search fa-lg"></span>&nbsp; 查看详情
 					</a>

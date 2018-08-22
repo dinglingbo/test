@@ -6,8 +6,10 @@ $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 	var formData = new nui.Form("#queryform").getData(false, false);
-	formData.token = token;
-	grid.load(formData);
+	grid.load({
+		formData:formData,
+		token:token
+	});
 	
 	
 });

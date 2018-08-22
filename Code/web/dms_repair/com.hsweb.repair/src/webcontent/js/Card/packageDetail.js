@@ -4,6 +4,8 @@ var gridUrl = apiPath + repairApi
 var item = null;
 var part = null;
 var form = null;
+var servieTypeHash = {};
+var servieTypeList = [];
 $(document).ready(function(v) {
 	item = nui.get("#item");
 	part = nui.get("#part");
@@ -11,13 +13,17 @@ $(document).ready(function(v) {
 });
 
 function setData(data) {
+	
 	// 跨页面传递的数据对象，克隆后才可以安全使用
 	var json = nui.clone(data);
-	form.setData(json);
+	var a = json.row;
+	a.serviceTypeId=json.servieTypeHash[a.serviceTypeId].name;
+	form.setData(a);
 	form.setChanged(false);
 	// 计次卡明细查询
 	var json1 = nui.encode({
-		"package1" : json
+		"package1" : a,
+		"token":token
 	});
 	nui.ajax({
 		url : gridUrl,
@@ -39,6 +45,4 @@ function setData(data) {
 			}
 		}
 	});
-	
-
 }

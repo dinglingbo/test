@@ -7,7 +7,7 @@ var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var grid = null;
 var gridUrl = baseUrl + "com.hsapi.repair.repairService.report.queryStoreRecord.biz.ext";
 var queryInfoForm = null;
-
+var periodValidity=null;
 $(document).ready(function (v)
 {
 	
@@ -60,5 +60,23 @@ function getNowFormatDate(){
 
 	    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + "01";
 	    nui.get('startDate').setValue(currentdate);
-//	    return currentdate;
+}
+
+function onDrawCell(e) {
+
+	if(e.field=="periodValidity"){
+		if( e.value == -1){
+			e.cellHtml="永久有效";
+		}
+	}
+	else if(e.field=="packageRate" || e.field=="itemRate" ||e.field=="partRate"){
+		e.cellHtml=e.value+"%";
+	}
+//	else if(e.filed=="itemRate"){
+//		e.cellHtml=e.value+"%";
+//	}
+//	else if(e.filed=="partRate"){
+//		e.cellHtml=e.value+"%";
+//	}
+
 }

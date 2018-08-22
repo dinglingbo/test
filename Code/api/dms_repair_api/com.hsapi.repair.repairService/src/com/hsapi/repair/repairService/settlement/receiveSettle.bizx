@@ -985,6 +985,10 @@
       <process:to type="query">settlement/allowanceAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">maintain/outDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">maintain/isSettle</process:to>
     </process:copy>

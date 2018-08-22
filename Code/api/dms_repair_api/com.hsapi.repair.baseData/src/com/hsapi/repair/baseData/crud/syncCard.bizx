@@ -223,8 +223,8 @@
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
-          <process:rightOperand type="literal"></process:rightOperand>
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal"/>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -355,6 +355,10 @@
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">card/orgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">a+b</process:from>
+      <process:to type="query">card/totalAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="343" y="217"/>
@@ -423,7 +427,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

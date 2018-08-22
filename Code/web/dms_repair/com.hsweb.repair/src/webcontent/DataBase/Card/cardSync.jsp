@@ -81,10 +81,10 @@
             <td colspan="">
               <input class="nui-textbox" name="itemRate" vtype="range:0,100"/>
 					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
-					<td colspan="1" style="width: 20%;" >
-					<input class="nui-textbox" name="periodValidity" vtype="range:-1,1000" id = "inputMonth" />	
+					<td colspan="1"  >
+					<input class="nui-textbox" name="periodValidity" vtype="range:-1,1000" id = "inputMonth" width="60%"/>	
 					</td>
-					<td style="width: 22%;">
+					<td >
 					<input type="checkbox" id="setMonth" class="mini-checkbox"  onclick="changed()" >
 						<span >永久有效</span>
 					</td>

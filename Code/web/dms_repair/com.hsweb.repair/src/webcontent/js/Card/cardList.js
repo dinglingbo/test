@@ -9,7 +9,10 @@ $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 	var formData = new nui.Form("#queryform").getData(false, false);
-	grid.load(formData);
+	grid.load({
+		formData:formData,
+		token:token
+	});
 });
 
 // 新增
@@ -122,7 +125,15 @@ function onDrawCell(e) {
 	case "status":
 		e.cellHtml = e.value == 1 ? "禁用" : "启用";
 		break;
+/*	case "periodValidity":
+		e.cellHtml = e.value == -1 ? "永久有效" :e.periodValidity ;
+		break;*/
 	default:
 		break;
+	}
+	if(e.field=="periodValidity"){
+		if( e.value == -1){
+			e.cellHtml="永久有效";
+		}
 	}
 }

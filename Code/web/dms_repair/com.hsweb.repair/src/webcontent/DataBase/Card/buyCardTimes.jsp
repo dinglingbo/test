@@ -12,30 +12,48 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.7"></script>
 </head>
 <body>
 	<fieldset
 		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend> 计次卡 </legend>
-		<div id="dataform1" style="padding-top: 5px;" >
-			<!-- hidden域 -->
-			<input class="nui-hidden" name="guestId" id="guestId" /> 
-			
-			<table style="width: 100%; table-layout: fixed;"
-				class="nui-form-table">
-				
+		<div id="dataform2" style="padding-top: 5px;" >	
+		<table style="width: 100%; table-layout: fixed;"
+				class="nui-form-table">	
+				<input class="nui-hidden" name="guestId" id="guestId" />	
 				 <tr>
+				 <!-- hidden域 -->
+			        
+			
                         <td class="form_label" style="width:15%;" align="right">
-                            <label>客户名称：</label>
+                            <label>客户名称:</label>
                         </td>
-                        <td>
+                        <td style="width:25%;">
                             <input class="nui-buttonedit" id="contactorName" name="contactorName" textname="contactorName" 
                             emptyText="请选择..." onbuttonclick="selectCustomer"  allowInput="false"
                             selectOnFocus="true" required="true" />
                         </td>
+                    
+                    <td class="form_label" align="right">结算方式:</td>
+					<td colspan="2">
+
+						<div class="mini-radiobuttonlist" repeatItems="1"
+							repeatLayout="table" repeatDirection="vertical" name="payType"
+							textField="text" valueField="value"
+							data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]" value="020101" >
+						</div> 
+					</td>	
                  </tr>
-                 
+          </table>
+		
+		</div>
+			
+		<div id="dataform1" style="padding-top: 5px;" >
+			
+			<table style="width: 100%; table-layout: fixed;"
+				class="nui-form-table">
+				<input class="nui-hidden" name="id" id="Id" />
 				<tr>
 					<td class="form_label" style="width: 15%;" align="right">计次卡名称:</td>
 					<td colspan="1" style="width: 35%;"><input class="nui-textbox"
@@ -150,8 +168,6 @@
 			<table width="100%">
 				<tr >
 				<td style="text-align:center;" colspan="1"  >
-					<a	class="nui-button" iconCls="icon-save" onclick="saveOn()" id = "save">保存 </a> 
-					<spand>&nbsp;&nbsp;&nbsp;</spand>
 					<a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
 					<spand>&nbsp;&nbsp;&nbsp;</spand>
 					<a class="nui-button" iconCls="icon-save" onclick="payOk()" id = "payOk">结算收款</a> 

@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.5"></script>
 </head>
 <body>
 	<fieldset
@@ -20,8 +20,7 @@
 		<legend> 计次卡 </legend>
 		<div id="dataform1" style="padding-top: 5px;">
 			<!-- hidden域 -->
-			<input class="nui-hidden" name="" id="" /> <input class="nui-hidden"
-				name="id" id="id" />
+			<input class="nui-hidden" name="id"  /> 
 			<table style="width: 100%; table-layout: fixed;"
 				class="nui-form-table">
 				<tr>

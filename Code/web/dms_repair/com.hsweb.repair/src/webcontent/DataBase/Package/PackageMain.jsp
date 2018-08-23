@@ -266,7 +266,7 @@
 				<input name="id" class="nui-hidden"/>
 				<table class="dtable" border="0" cellspacing="0" cellpadding="0" align="center" width="100%" height="80%">
 					<tr>
-						<td rowspan="2" width="11%" align="right">
+						<td rowspan="2" width="11%" align="center">
 							<font size="4">销售</font>
 						</td>
 						<td width="7%">
@@ -320,7 +320,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td rowspan="2" class="d_label">
+						<td rowspan="2" class="d_label" align="center">
 						<font size="4">服务顾问</font>
 						</td>
 						<td class="d_label">

@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.2.6"></script>
 </head>
 <body>
 	<fieldset
@@ -92,13 +92,13 @@
 					<table style="width: 100%;">
 						<tr >
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectPackage()" iconCls="icon-add" id = "addp"> 添加套餐 </a></td>
+								onclick="selectPackage()"  id = "addp"> <span class="fa fa-plus fa-lg"></span>添加套餐 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectItem()" iconCls="icon-add" id = "addi"> 添加工时 </a></td>
+								onclick="selectItem()"  id = "addi"> <span class="fa fa-plus fa-lg"></span>添加工时 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="addDetail()" iconCls="icon-add" id = "addr"> 添加配件 </a></td>
+								onclick="addDetail()"  id = "addr"> <span class="fa fa-plus fa-lg"></span>添加配件 </a></td>
 							<td style="width: 55%;"><a class="nui-button "
-								iconCls="icon-remove" onclick="gridRemoveRow" id = "delect"> &nbsp;删除 </a>
+								onclick="gridRemoveRow" id = "delect"> <span class="mini-button-text " style=""><i class="fa fa-trash-o"></i>&nbsp;删除</span> </a>
 							</td>
 						</tr>
 					</table>
@@ -107,7 +107,7 @@
 					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;height:100%"
 						showPager="false" sortMode="client" allowCellEdit="true"
 						allowCellSelect="true" multiSelect="true"
-						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell">
+						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell" >
 						<div property="columns">
 							<div type="checkcolumn"></div>
 							<div field="prdtId" class="nui-hidden" allowSort="true"

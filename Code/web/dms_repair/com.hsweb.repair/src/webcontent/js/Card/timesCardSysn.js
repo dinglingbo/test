@@ -10,6 +10,12 @@ var set = null;
 var input = null;
 var oldAmt = null;
 var sellAmt = null;
+var count = 0;
+var xj = {
+		times : "次数 :",
+		qty : "工时/数量 ",
+		oldPrice : "原价"
+	};
 //页面标签加载完之后执行，但是修改的数据还没有设置
 $(document).ready(function(v) {
 	tab = nui.get("tab");
@@ -28,8 +34,27 @@ $(document).ready(function(v) {
     
   
     timesCardDetail.on("cellendedit",function(e){
-    	
     	var row = timesCardDetail.getSelected();
+    	var b = timesCardDetail.getData();
+    	for ( var key in xj) {
+    		for (var i = 0; i < b.length; i++) {
+    			if (!b[i][key] || $.trim(b[i][key]).length == 0) {
+    				return;
+    			}else{
+    				count=count+1;
+    			}
+        		if(count=3){
+        			oldAmt =  row.oldPrice*row.times*row.qty;
+        		       data = {
+        		    		   oldAmt:oldAmt, 
+        		       };
+        		       timesCardDetail.updateRow(row,data);
+        		}
+    		}
+
+    	}
+    	
+    	/*var row = timesCardDetail.getSelected();
        //数量
        if(e.field == "qty"){ 	   
     	   if(row.oldPrice && row.times ){
@@ -71,7 +96,8 @@ $(document).ready(function(v) {
     		   oldAmt:oldAmt, 
     		   sellAmt:sellAmt
        };
-       timesCardDetail.updateRow(row,data);
+       timesCardDetail.updateRow(row,data);*/
+       
        
     });
     
@@ -233,7 +259,7 @@ function saveData() {
 		"pchsOrderDetailAdd" : pchsOrderDetailAdd,
 		"pchsOrderDetailUpdate" : pchsOrderDetailUpdate,
 		"pchsOrderDetailDelete" : pchsOrderDetailDelete,
-		token : token
+		"token" : token
 	});
 
 	nui.ajax({

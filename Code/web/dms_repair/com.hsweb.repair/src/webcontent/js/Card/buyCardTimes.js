@@ -225,7 +225,7 @@ function payOk(){
 	  });
 		//提示框 
 		//判断客户有没有选择
-	    nui.confirm("结算金额"+payAmt+"元,确定以"+payType[data.payType]+"结算吗？", "友情提示",function(action){
+	    nui.confirm("结算金额【"+payAmt+"】元,确定以【"+payType[data.payType]+"】结算吗？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,

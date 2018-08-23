@@ -12,7 +12,7 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.9"></script>
 </head>
 <body>
 	<fieldset
@@ -23,9 +23,7 @@
 				class="nui-form-table">	
 				<input class="nui-hidden" name="guestId" id="guestId" />	
 				 <tr>
-				 <!-- hidden域 -->
-			        
-			
+				 <!-- hidden域 -->			
                         <td class="form_label" style="width:15%;" align="right">
                             <label>客户名称:</label>
                         </td>

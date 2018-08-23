@@ -22,7 +22,7 @@
       <legend>
         计次卡基本信息
       </legend>
-      <div id="dataform1" style="padding-top:5px;" >
+      <div id="dataform1" style="padding-top:5px;height:180px" >
         <!-- hidden域 -->
         <input class="nui-hidden" id="id"/>
         <table style="table-layout:fixed;" class="nui-form-table" > 
@@ -104,7 +104,7 @@
     
     <!-- 从表的修改 -->
 	
-		 <div class="nui-tabs"  activeIndex="0" style="width: 100%;height:358px" >
+		 <div class="nui-tabs"  activeIndex="0" style="width: 100%;height:360px" >
 			<div title="计次卡明细" >	
 		  <div class="nui-fit">
 					<div  class="nui-datagrid"  id="datagrid1"  onDrawCell="onDrawCell"

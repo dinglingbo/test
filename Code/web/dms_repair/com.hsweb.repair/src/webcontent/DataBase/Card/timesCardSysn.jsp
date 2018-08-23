@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.6"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
 </head>
 <body>
 	<fieldset
@@ -41,8 +41,8 @@
 					<td colspan="1"><input class="nui-textbox" name="sellAmt"
 						vtype="float" /></td>
 					<td class="form_label" align="right">总价值:</td>
-					<td colspan="2"><input class="nui-textbox" name="totalAmt"
-						vtype="float" /></td>
+					<td colspan="2"><input class="nui-textbox" name="totalAmt" id = "totalAmt"
+						vtype="float" readonly="readonly"/></td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售提成方式:</td>
@@ -120,7 +120,7 @@
 								headerAlign="center" width="">项目名称</div>
 							<div field="times" allowSort="true" align="left"
 								headerAlign="center" width="">
-								次数 <input class="nui-textbox" name="times" property="editor" onvaluechanged ="onValueChangedTimes"/>
+								次数 <input class="nui-textbox" name="times" property="editor"  onvaluechanged ="onValueChangedTimes"/>
 							</div>
 							<div field="prdtType" allowSort="true" align="left"
 								headerAlign="center" width="">项目类型</div>

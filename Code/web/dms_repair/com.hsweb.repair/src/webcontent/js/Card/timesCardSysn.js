@@ -31,7 +31,7 @@ function onValueChangedTimes(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if(row.qty){
+	if(row.qty && e.value != 0){
 		 if(row.oldPrice ){
 			 oldAmt = row.oldPrice*e.value*row.qty; 
 		 }
@@ -53,8 +53,8 @@ function onValueChangedQty(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if(row.times){
-		 if(row.oldPrice ){
+	if(row.times && e.value != 0){
+		 if(row.oldPrice){
 			oldAmt = row.oldPrice*e.value*row.times; 
 		 }
 		if(row.sellPrice){
@@ -73,9 +73,11 @@ function onValueChangedOldPrice(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if(row.times && row.qty){		 
-		 if(row.sellPrice){
-			oldAmt = row.qty*e.value*row.times;
+	if(row.times && (row.times != 0) && row.qty && (row.qty != 0)){		 
+		 if(row.sellPrice ){
+			 if(e.value != 0){
+				 oldAmt = row.qty*e.value*row.times;
+			 }
 			sellAmt =  row.sellPrice*row.qty*row.times; 
 		 }else{
 			 oldAmt = row.qty*e.value*row.times; 
@@ -96,7 +98,9 @@ function onValueChangedSellPrice(e){
 	if(row.times && row.qty){		 
 		if(row.oldPrice){	
 			oldAmt = row.qty*row.oldPrice*row.times;
-			sellAmt = e.value*row.qty*row.times; 
+			if(e.value != 0){
+				sellAmt = e.value*row.qty*row.times; 
+			}	
 		}else{
 			sellAmt = e.value*row.qty*row.times; 
 		}
@@ -125,12 +129,17 @@ function onValueChangedSellPrice(e){
 */
 function onDrawSummaryCell(e){ 
 	  var rows = e.data;
-	  var sum = 0;
+	  var sum = null;
 	  if(e.field == "sellAmt") {   
 		  for (var i = 0; i < rows.length; i++) {
-		    sum += parseFloat(rows[i].orderAmt);
+		    sum += parseFloat(rows[i].sellAmt);
 		   }
-			nui.get("totalAmt").setValue(sum);
+		  if(sum){
+			  nui.get("totalAmt").setValue(sum); 
+		  }
+			
+	   }else{
+		   nui.get("totalAmt").setValue("") 
 	   }
 	 //alert(sum);
  }
@@ -236,7 +245,7 @@ function setData(data) {
 
 function gridAddRow(datagrid) {
 	var grid = nui.get(datagrid);
-	grid.addRow({});
+	grid.addRow();
 }
 
 function gridRemoveRow(datagrid) {
@@ -350,7 +359,7 @@ function addDetail() {
 				var data = iframe.contentWindow.getData();
 				data = data || {};
 				var part = data.part;
-
+                var times = 1;
 				if (part) {
 					var prdtId = part.id;
 					var prdtName = part.name;
@@ -359,7 +368,8 @@ function addDetail() {
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
-						prdtType : prdtType
+						prdtType : prdtType,
+						times:times
 					};
 					grid.addRow(newRow);
 				}
@@ -397,7 +407,7 @@ function selectPackage() {
 				var data = iframe.contentWindow.getData();
 				data = data || {};
 				var part = data.package1;
-
+                var times = 1;
 				if (part) {
 					var prdtId = part.id;
 					var prdtName = part.name;
@@ -406,7 +416,8 @@ function selectPackage() {
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
-						prdtType : prdtType
+						prdtType : prdtType,
+						times:times
 					};
 					grid.addRow(newRow);
 				}
@@ -449,13 +460,15 @@ function selectItem(callback) {
 					var prdtName = part.name;
 					var prdtType = 2;
 					var itemTime = part.itemTime;
+					var times = 1;
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
 						prdtType : prdtType,
 						prdtTypeName : prdtType,
-						qty :itemTime
+						qty :itemTime,
+						times:times
 					};
 					grid.addRow(newRow);
 				}

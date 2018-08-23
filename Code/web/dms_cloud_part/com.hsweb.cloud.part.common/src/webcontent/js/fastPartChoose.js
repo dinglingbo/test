@@ -336,6 +336,7 @@ $(document).ready(function(v)
 
     getAllPartBrand(function(data) {
         brandList = data.brand;
+        nui.get('partBrandId').setData(brandList);
         brandList.forEach(function(v) {
             brandHash[v.id] = v;
         });
@@ -402,9 +403,10 @@ function morePartSearch(){
     params.partName = morePartNameEl.getValue();
     params.showStock = showStockEl.getValue();
     params.serviceId = moreServiceIdEl.getValue();
+    params.partBrandId = nui.get('partBrandId').getValue();
     var sortTypeValue = sortTypeEl.getValue();
 
-    if(!params.partCode && !params.partName && !params.serviceId){
+    if(!params.partCode && !params.partName && !params.serviceId && !params.partBrandId){
         showMsg("请输入查询条件!","W");
         return;
     }

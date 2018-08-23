@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updatePackageDeduct.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="服务顾问，销售，技师提成&#xD;&#xA;(1-按原价比例;2-按折后价比例;3-按产值比例;4-固定金额)" title="Administrator&#x9;18-8-8 下午8:44">
-    <location x="30" y="-45"/>
-    <size height="100" width="361"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="服务顾问，销售，技师提成&#xD;&#xA;(1-按原价比例;2-按折后价比例;3-按产值比例;4-固定金额)&#xD;&#xA;如果销售人ID不为空就往deductDetail加" title="Administrator&#x9;18-8-8 下午8:44">
+    <location x="30" y="-90"/>
+    <size height="136" width="361"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -731,6 +731,8 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPackage" name="updateList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Double"/>
+    <process:variable description="提成明细" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductDetail" name="deductTemp"/>
+    <process:variable description="先不用考虑是否存在相同的人，只管往deductDetail添加" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductDetail" name="deductDetail"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

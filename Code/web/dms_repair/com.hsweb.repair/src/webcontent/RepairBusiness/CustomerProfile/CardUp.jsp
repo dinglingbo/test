@@ -50,9 +50,9 @@
                              <input class="nui-textbox" id="mobile" name="mobile" allowInput="false" valueField=""  />
                         </td> 
                         </tr>
-                    <tr>
-                        <td  style="padding-left:233px;">
-                        	储值卡类型选择        
+                    <tr >
+                        <td  colspan="2" style=" text-align:center;">
+                        	储值卡类型选择:       
                         </td>
                     </tr>
                     <tr>

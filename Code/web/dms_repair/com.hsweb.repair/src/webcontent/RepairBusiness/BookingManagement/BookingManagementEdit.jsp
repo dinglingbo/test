@@ -44,7 +44,7 @@
     <input id="isUsabled" class="nui-combobox" visible="false" />
     <input id="bookStatus" class="nui-combobox" visible="false" />
 
-    <div style=" width: 100%;  ">
+    <div class="nui-fit" style=" width: 100%;  ">
         <div showCollapseButton="false" style="border:0; ">
             <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                 <table style="width:100%;">

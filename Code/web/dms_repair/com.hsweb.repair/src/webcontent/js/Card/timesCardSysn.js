@@ -190,7 +190,7 @@ function onOk() {
 			}
 
 			if (!zz.exec(data1[i][key])) {
-				showMsg(tcd[key] + "必须为数字!", "W");
+				showMsg(tcd[key] + "必须为正整字!", "W");
 
 				return;
 			}

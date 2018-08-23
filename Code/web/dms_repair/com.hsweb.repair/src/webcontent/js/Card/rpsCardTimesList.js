@@ -11,10 +11,29 @@ $(document).ready(function (v)
 {
     grid  = nui.get("datagrid1");
     queryForm = new nui.Form("#queryForm");
+    var date = new Date();
+    var sdate = new Date();
+    sdate.setMonth(date.getMonth()-3);
+   
+    var startDate = mini.get("startDate");
+    startDate.setValue(sdate);
+    
+    var endDate = mini.get("endDate");
+    endDate.setValue(date);
+    
+    sdate = startDate.getValue();
+    date =  endDate.getValue();
+    var params = {
+    		startDate:sdate,
+    		endDate:date
+    }; 
     grid.setUrl(gridUrl);
     grid.load({
     	token : token
     });
+       
+   //alert(date.format('dd/MM/yyyy hh:mm:ss'));
+    //date.dateFormat("yyyy-MM-dd hh:mm:ss");
 });
 
 

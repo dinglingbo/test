@@ -14,7 +14,7 @@
     <title>
                 计次卡详细信息
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.1"></script>
 
   </head>
   <body>
@@ -48,7 +48,7 @@
 	             过期日期:
 	            </td>
 	            <td colspan="1"  >
-	              <input format="yyyy-MM-dd" class="mini-datepicker"   name="pastDate" dateFormat="yyyy-MM-dd" readonly="readonly" />
+	              <input format="yyyy-MM-dd HH:mm:ss"  style="width:160px"  class="mini-datepicker"   name="pastDate"  readonly="readonly" />
 	            </td>
             </tr>
             <tr>

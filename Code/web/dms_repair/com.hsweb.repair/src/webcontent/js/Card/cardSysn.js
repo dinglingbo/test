@@ -40,6 +40,7 @@ function onOk() {
 			if( key == "periodValidity" && set.checked ){
 				//跳过本次循环，执行下一次循环,把有效期赋值为-1
 				input.setValue("-1");
+				continue;
 			}
 			showMsg(requiredField[key] + "不能为空!", "W");
 
@@ -68,6 +69,8 @@ function setGridData(datagrid, dataid) {
 	nui.get(dataid).setValue(grid_data);
 }
 
+
+
 function saveData() {
 	form.validate();
 	if (form.isValid() == false)
@@ -75,7 +78,8 @@ function saveData() {
 	var data = form.getData(false, true);
 	// var json = nui.encode(data);//变成json格式
 	var param = {
-		card : data
+		card : data,
+		token:token
 	}
 	var json = nui.encode(param);
 	nui.ajax({

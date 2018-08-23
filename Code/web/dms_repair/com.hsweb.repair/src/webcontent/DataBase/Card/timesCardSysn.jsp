@@ -92,13 +92,13 @@
 					<table style="width: 100%;">
 						<tr >
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectPackage()" iconCls="icon-add" id = "addp"> 添加套餐 </a></td>
+								onclick="selectPackage()"  id = "addp"> <span class="fa fa-plus fa-lg"></span>添加套餐 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectItem()" iconCls="icon-add" id = "addi"> 添加工时 </a></td>
+								onclick="selectItem()"  id = "addi"> <span class="fa fa-plus fa-lg"></span>添加工时 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="addDetail()" iconCls="icon-add" id = "addr"> 添加配件 </a></td>
+								onclick="addDetail()"  id = "addr"> <span class="fa fa-plus fa-lg"></span>添加配件 </a></td>
 							<td style="width: 55%;"><a class="nui-button "
-								iconCls="icon-remove" onclick="gridRemoveRow" id = "delect"> &nbsp;删除 </a>
+								onclick="gridRemoveRow" id = "delect"> <span class="mini-button-text " style=""><i class="fa fa-trash-o"></i>&nbsp;删除</span> </a>
 							</td>
 						</tr>
 					</table>

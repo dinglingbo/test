@@ -12,7 +12,7 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.3"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.4"></script>
 </head>
 
 <body>

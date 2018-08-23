@@ -180,7 +180,7 @@
 					
 					<td style="text-align:left;" colspan="1" >
 					<spand>&nbsp;&nbsp;&nbsp;</spand>
-						<a class="nui-button" iconCls="icon-save" onclick="payOk()" id = "payOk">结算收款</a> 
+					<a class="nui-button" iconCls="icon-save" onclick="payOk()" id = "payOk">结算收款</a> 
 					</td> -->
 				</tr>
 			</table>

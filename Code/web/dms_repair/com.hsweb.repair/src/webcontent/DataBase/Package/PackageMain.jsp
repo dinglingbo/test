@@ -179,8 +179,8 @@
 									<table>
 										<tr>
 											<td>
-												<a class="nui-button" plain="true" iconCls="icon-add" onclick="addItem()">添加工时</a>
-												<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeItem()">删除工时</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="addItem()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加工时</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="removeItem()">删除工时</a>
 											</td>
 										</tr>
 									</table>
@@ -217,8 +217,8 @@
 									<table>
 										<tr>
 											<td>
-												<a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()">添加配件</a>
-												<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removePart()">删除配件</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="removePart()"><span class="fa fa-trash-o"></span>&nbsp;删除配件</a>
 											</td>
 										</tr>
 									</table>

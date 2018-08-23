@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.7"></script>
 </head>
 <body>
 	<fieldset
@@ -42,7 +42,8 @@
 						vtype="float" /></td>
 					<td class="form_label" align="right">总价值:</td>
 					<td colspan="2"><input class="nui-textbox" name="totalAmt" id = "totalAmt"
-						vtype="float" readonly="readonly"/></td>
+						vtype="float" readonly="readonly"/><span>&nbsp;&nbsp;(自动计算)</span>
+						</td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售提成方式:</td>

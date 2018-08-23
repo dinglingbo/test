@@ -25,59 +25,88 @@ $(document).ready(function(v) {
     		e.cancel = true;
     	}
     });
-    
-  
-    timesCardDetail.on("cellendedit",function(e){
-    	
-    	var row = timesCardDetail.getSelected();
-       //数量
-       if(e.field == "qty"){ 	   
-    	   if(row.oldPrice && row.times ){
-    		   oldAmt =  row.oldPrice*row.times*row.qty;
-    	   }
-    	   
-    	   if(row.sellPrice && row.times ){
-    		   sellAmt =  row.sellPrice*row.times*row.qty;
-    	   }
-    	   
-    	}
-       //原价
-       if(e.field == "oldPrice"){
-    	   if(row.qty && row.times ){
-    		   oldAmt =  row.oldPrice*row.times*row.qty;
-      	   } 
-    	   
-   	   }
-       //次数
-       if(e.field == "times"){
-    	   
-    	   if(row.qty && row.oldPrice ){
-    		   oldAmt =  row.oldPrice*row.times*row.qty;
-        	  } 
-    	   
-    	   if(row.sellPrice && row.qty ){
-    		   sellAmt =  row.sellPrice*row.times*row.qty;
-    	   }
-       }
-       //现价
-       if(e.field == "sellPrice"){
-    	   
-    	   if(row.qty && row.times ){
-    		   sellAmt =  row.sellPrice*row.times*row.qty;
-      	   } 
-   	   }
-       //销
-       data = {
-    		   oldAmt:oldAmt, 
-    		   sellAmt:sellAmt
-       };
-       timesCardDetail.updateRow(row,data);
-       
-    });
-    
-   
 });
 
+function onValueChangedTimes(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.qty){
+		 if(row.oldPrice ){
+			 oldAmt = row.oldPrice*e.value*row.qty; 
+		 }
+		if(row.sellPrice){
+			   sellAmt = row.sellPrice*e.value*row.qty;
+			}
+		}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	   };
+	timesCardDetail.updateRow(row,data);
+ 
+}
+
+
+
+function onValueChangedQty(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.times){
+		 if(row.oldPrice ){
+			oldAmt = row.oldPrice*e.value*row.times; 
+		 }
+		if(row.sellPrice){
+			sellAmt = row.sellPrice*e.value*row.times;
+		    }
+		}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	   };
+    timesCardDetail.updateRow(row,data);
+}
+
+
+function onValueChangedOldPrice(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.times && row.qty){		 
+		 if(row.sellPrice){
+			oldAmt = row.qty*e.value*row.times;
+			sellAmt =  row.sellPrice*row.qty*row.times; 
+		 }else{
+			 oldAmt = row.qty*e.value*row.times; 
+		 }
+	}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	   };
+    timesCardDetail.updateRow(row,data);
+}
+
+
+function onValueChangedSellPrice(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.times && row.qty){		 
+		if(row.oldPrice){	
+			oldAmt = row.qty*row.oldPrice*row.times;
+			sellAmt = e.value*row.qty*row.times; 
+		}else{
+			sellAmt = e.value*row.qty*row.times; 
+		}
+	}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	   };
+    timesCardDetail.updateRow(row,data);
+}
 
 /*function onDrawSummaryCell(e) {
 	var rows = e.data;
@@ -94,17 +123,16 @@ $(document).ready(function(v) {
     }
 }
 */
- function onDrawSummaryCell(e){
-	 
-	   var rows = e.data;
-	   var sum = 0;
-	   if(e.field == "totalAmt") {
-		   
-		   for (var i = 0; i < rows.length; i++) {
-			sum += parseFloat(rows[i].orderAmt);
+function onDrawSummaryCell(e){ 
+	  var rows = e.data;
+	  var sum = 0;
+	  if(e.field == "sellAmt") {   
+		  for (var i = 0; i < rows.length; i++) {
+		    sum += parseFloat(rows[i].orderAmt);
 		   }
 			nui.get("totalAmt").setValue(sum);
-	 }
+	   }
+	 //alert(sum);
  }
 
 var requiredField = {

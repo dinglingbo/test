@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.6"></script>
 </head>
 <body>
 	<fieldset
@@ -107,7 +107,9 @@
 					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;height:100%"
 						showPager="false" sortMode="client" allowCellEdit="true"
 						allowCellSelect="true" multiSelect="true"
-						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell">
+						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell"
+						onvaluechanged = "onValueChanged"				
+						>
 						<div property="columns">
 							<div type="checkcolumn"></div>
 							<div field="prdtId" class="nui-hidden" allowSort="true"
@@ -118,21 +120,21 @@
 								headerAlign="center" width="">项目名称</div>
 							<div field="times" allowSort="true" align="left"
 								headerAlign="center" width="">
-								次数 <input class="nui-textbox" name="times" property="editor" />
+								次数 <input class="nui-textbox" name="times" property="editor" onvaluechanged ="onValueChangedTimes"/>
 							</div>
 							<div field="prdtType" allowSort="true" align="left"
 								headerAlign="center" width="">项目类型</div>
 							<div field="qty" allowSort="true" align="left"
 								headerAlign="center" width="">
-								工时/数量 <input class="nui-textbox" name="qty" property="editor" />
+								工时/数量 <input class="nui-textbox" name="qty" property="editor" onvaluechanged ="onValueChangedQty" />
 							</div>
 							<div field="oldPrice" allowSort="true" align="left"
 								headerAlign="center" width="">
-								原价 <input class="nui-textbox" name="oldPrice" property="editor" />
+								原价 <input class="nui-textbox" name="oldPrice" property="editor" onvaluechanged ="onValueChangedOldPrice"/>
 							</div>
 							<div field="sellPrice" allowSort="true" align="left"
 								headerAlign="center" width="">
-								销价 <input class="nui-textbox" name="sellPrice" property="editor" />
+								销价 <input class="nui-textbox" name="sellPrice" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
 							</div>
 							<div field="oldAmt" allowSort="true" align="left"
 								headerAlign="center" width="">

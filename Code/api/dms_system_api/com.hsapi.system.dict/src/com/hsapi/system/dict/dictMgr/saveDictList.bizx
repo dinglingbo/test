@@ -56,6 +56,16 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">rootid</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="117" y="117"/>
     <size height="28" width="28"/>
@@ -147,6 +157,7 @@
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link18</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="215" y="119"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -388,7 +399,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -411,6 +422,46 @@
     <figSize height="17" width="103"/>
     <node>invokePojo2</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess0" name="removeCacheByName" displayName="removeCacheByName" type="subprocess">
+    <location x="412" y="283"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.data.sys.removeCacheByName</process:partner>
+      <process:inputVariables>
+        <process:inputVariable name="nameSqlId" type="query" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference"/>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable name="errMsg" type="query" value="String" valueType="Primitive"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="339" y="318"/>
+    <figSize height="17" width="173"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="118" y="225"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">dictid</process:from>
+      <process:to type="query">rootid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="116" y="261"/>
+    <figSize height="17" width="32"/>
+    <node>assign6</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-14 16:55:14" date="2018-07-14Z" description="" name="saveDictList" version="7.0.0.0"/>
@@ -424,6 +475,7 @@
     <process:input description="" isArray="true" modelType="com.hsapi.system.data.dict.ComDataitems" name="addList"/>
     <process:input description="" isArray="true" modelType="com.hsapi.system.data.dict.ComDataitems" name="updateList"/>
     <process:input description="" isArray="false" name="dictid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="rootid" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -96,7 +96,8 @@
 			d.push_comp_name as pushCompName ,
 			d.mt_advisor AS mtAdvisor,
 	        d.recorder AS recorder,
-		    d.record_date AS recorddate
+		    d.record_date AS recordDate,
+		    d.come_date as comeDate
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -189,7 +190,7 @@
                 (a.is_finish = #detailFinish#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="notPast">  
-                (b.period_validity = -1 or b.past_date &lt; now())
+                (b.period_validity = -1 or b.past_date &gt; sysdate())
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">  
                 (b.status = #status#)

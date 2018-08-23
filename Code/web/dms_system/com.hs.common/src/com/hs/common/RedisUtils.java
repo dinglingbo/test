@@ -246,7 +246,24 @@ public class RedisUtils {
 		try {
 			jedis = RedisPoolUtils.getJedis();
 			jedis.hdel(hsetName, key);
-
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (jedis != null) {
+				RedisPoolUtils.returnResource(jedis);
+			}
+		}
+	}
+	
+	@Bizlet("")
+	public static void hDelKeys(String hsetName, String[] keyList) {
+		Jedis jedis = null;
+		try {
+			jedis = RedisPoolUtils.getJedis();
+			for(int i = 0; i<keyList.length; i ++){
+				String key = keyList[i];
+				jedis.hdel(hsetName, key);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

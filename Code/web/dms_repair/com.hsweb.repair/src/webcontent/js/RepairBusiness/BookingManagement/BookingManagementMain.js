@@ -394,7 +394,7 @@ var requiredField = {
     tel:"联系电话",
     predictComeDate:"预约来厂日期"
 };
-var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveRpsPreBook.biz.ext";
+var saveUrl = baseUrl+".biz.ext";
 function save()
 {
     var prebook = basicInfoForm.getData();

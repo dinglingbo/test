@@ -5,8 +5,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.eos.system.annotation.Bizlet;
 
@@ -108,6 +110,38 @@ public class ArrayUtils {
 			t.add(value);		
 		}
 		
+		return (String[]) t.toArray(new String[t.size()]);
+	}
+	
+	@Bizlet("")
+	public static String propertyHashToString(HashMap map) {
+		String keys = "";
+		if(map == null) return "";
+		List t = new ArrayList();
+		Set set = map.keySet();
+		
+		for(Iterator iter = set.iterator(); iter.hasNext();){
+		   String key = (String)iter.next();
+		   if(keys == ""){
+			   keys = key;
+		   }else{
+			   keys += "," + key;
+		   }
+		}
+		
+		return keys;
+	}
+	@Bizlet("")
+	public static String[] propertyHashToStringArr(HashMap map) {
+		String keys = "";
+		if(map == null) return null;
+		List t = new ArrayList();
+		Set set = map.keySet();
+		
+		for(Iterator iter = set.iterator(); iter.hasNext();){
+		   String key = (String)iter.next();
+		   t.add(key);
+		}
 		return (String[]) t.toArray(new String[t.size()]);
 	}
 	

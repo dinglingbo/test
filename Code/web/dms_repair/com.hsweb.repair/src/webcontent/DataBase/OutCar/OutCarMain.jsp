@@ -29,11 +29,11 @@ table {
     <table style="width: 100%">
         <tr>
             <td>
-                <a class="nui-button" plain="true" iconCls="icon-add" id="addBtn" enabled="false" onclick="addReport()">新增</a>
-                <a class="nui-button" plain="true" iconCls="icon-edit" id="editBtn" enabled="false" onclick="editReport()">修改</a>
-                <a class="nui-button" plain="true" iconCls="icon-remove" id="deleteBtn" enabled="false" onclick="deleteReport()">删除</a>
+                <a class="nui-button" plain="true" iconCls="" id="addBtn" enabled="false" onclick="addReport()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" plain="true" iconCls="" id="editBtn" enabled="false" onclick="editReport()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" plain="true" iconCls="" id="deleteBtn" enabled="false" onclick="deleteReport()"><span class="fa fa-trash-o"></span>&nbsp;删除</a>
                 <a class="nui-button" plain="true" iconCls="icon-save" id="saveBtn" enabled="false" onclick="save()">保存</a>
-                <a class="nui-button" plain="true" iconCls="icon-cancel" id="cancelBtn" enabled="false" onclick="cancelEdit()">取消</a>
+                <a class="nui-button" plain="true" iconCls="" id="cancelBtn" enabled="false" onclick="cancelEdit()"> <span class="fa fa-times-circle"></span>&nbsp;取消</a>
                 <a class="nui-button" plain="true" iconCls="icon-ok" id="selectBtn" visible="false" onclick="onOk()">选择</a>
             </td>
         </tr>

@@ -11,7 +11,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.8.2" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.6" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
@@ -24,7 +24,7 @@
                         <td>员工工号</td>
                         <td><input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" readonly="readonly" emptyText="系统自动分配"/></td>
                         <td>所属工作组</td>
-                        <td><input class="nui-combobox" required="false" id="tenantId" name="tenantId"/></td>
+                        <td><input class="nui-combobox"  required="false" id="tenantId" name="tenantId" textField="name" valueField="id"/></td>
                     </tr>
 
                     <tr>

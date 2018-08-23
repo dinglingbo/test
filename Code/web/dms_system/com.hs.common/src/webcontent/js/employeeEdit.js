@@ -11,7 +11,7 @@ var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
 var sexlist = [{id: 1, name: '男'}, {id: 0, name: '女'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 var basicInfoForm = null;
-
+var workList=[];
 $(document).ready(function(v) {
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
@@ -19,6 +19,7 @@ $(document).ready(function(v) {
 	//isservice.setData(isservicelist);
 
     basicInfoForm = new nui.Form('#basicInfoForm');
+    initTearm();
 });
 
 function onempid(e) {
@@ -143,4 +144,34 @@ function onMobileValidation(e)
             e.isValid = false;
         }
     }
+}
+//获取工作组
+function initTearm(){
+	   nui.ajax({
+	        url:baseUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
+	        type:"post",
+	        async:false,
+	        data:JSON.stringify({
+	        	token: token
+	        }),
+	        success:function(data)
+	        {
+	        	
+	        	var TearmObj=data.list;
+	        	var work=nui.get('tenantId');
+	        	for(var i=0;i<TearmObj.length;i++){
+	        		var data ={
+	        				id:TearmObj[i].id,
+	        				name:TearmObj[i].name
+	        		}
+	        		workList.push(data);
+	        		work.setData(workList);
+	        		console.log(workList);
+	        	}
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
+	            //  nui.alert(jqXHR.responseText);
+	            console.log(jqXHR.responseText);
+	        }
+	    });	
 }

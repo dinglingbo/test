@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.20"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.8"></script>
 
 </head>
 
@@ -29,7 +29,7 @@
 					<label class="form_label">类别：</label>
 					<input class="nui-combobox" name="serviceTypeId" id="type-serviceTypeId" valueField="id" textField="name"
 					       allowInput="true" valueFromSelect="true"/>
-					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
 					<input name="type"  id="type" visible="false"
                                              class="nui-combobox width1"
                                              textField="name"
@@ -43,7 +43,7 @@
 	<table>
 		<tr>
 			<td>
-				<a class="nui-button" id="add" iconCls="icon-add" onclick="addPackage()" plain="true">新增</a>
+				<a class="nui-button" id="add" iconCls="" onclick="addPackage()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
 				<a class="nui-button" id="save" iconCls="icon-save" onclick="save()" plain="true">保存</a>
 			</td>
 		</tr>
@@ -167,7 +167,7 @@
 								</td>
 							</tr>
 						</table>
-					</div>
+					</div>				
 					<div class="nui-fit">
 						<div class="nui-splitter" style="width: 100%; height: 100%;" allowResize="false"
 							 borderStyle="border:0"
@@ -179,8 +179,8 @@
 									<table>
 										<tr>
 											<td>
-												<a class="nui-button" plain="true" iconCls="icon-add" onclick="addItem()">添加工时</a>
-												<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeItem()">删除工时</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="addItem()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加工时</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="removeItem()"><span class="fa fa-trash-o"></span>&nbsp;删除工时</a>
 											</td>
 										</tr>
 									</table>
@@ -208,16 +208,17 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div>	
 							</div>
 							<div showCollapseButton="false" style="border: 0;">
 								<!-- 零件信息 -->
+								
 								<div class="nui-toolbar" style="border-bottom: 0;">
 									<table>
 										<tr>
 											<td>
-												<a class="nui-button" plain="true" iconCls="icon-add" onclick="addPart()">添加配件</a>
-												<a class="nui-button" plain="true" iconCls="icon-remove" onclick="removePart()">删除配件</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="removePart()"><span class="fa fa-trash-o"></span>&nbsp;删除配件</a>
 											</td>
 										</tr>
 									</table>
@@ -259,6 +260,91 @@
 						</div>
 					</div>
 				</div>
+						<div title="提成设置" id="deductTab" name="deductTab" >
+			<div id="deductForm" class="form">
+					<div class="form" id="basicInfoForm1">
+				<input name="id" class="nui-hidden"/>
+				<table class="dtable" border="0" cellspacing="0" cellpadding="0" align="center" width="100%" height="80%">
+					<tr>
+						<td rowspan="2" width="11%" align="center">
+							<font size="4">销售</font>
+						</td>
+						<td width="7%">
+							提成类型:
+						</td>
+						<td width="65%">
+							<div id="salesDeductType" name="salesDeductType" 
+								class="nui-radiobuttonlist" value="2" repeatItems="4" 
+								repeatDirection="" repeatLayout="table"
+								textField="text" valueField="id" onvaluechanged="hidePercent"></div>
+						</td>
+					</tr>
+					<tr>
+						<td >
+							<label>提成金额:</label>
+						</td>
+						<td>
+							<input class="nui-textbox" name="salesDeductValue" id="salesDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
+						</td>
+					</tr>
+					<tr style="height:5px;">
+						<td colspan="3">
+							
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2" class="d_label" align="center">
+						<font size="4">施工</font>
+						</td>
+						<td class="d_label">
+							<label>提成类型:</label>
+						</td>
+						<td>
+							<div id="techDeductType" name="techDeductType" 
+								class="nui-radiobuttonlist" value="2" repeatItems="4" 
+								repeatDirection="" repeatLayout="table" 
+								textField="text" valueField="id" onvaluechanged="hidePercent"></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="d_label">
+							<label>提成金额:</label>
+						</td>
+						<td>
+							<input class="nui-textbox" name="techDeductValue" id="techDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
+						</td>
+					</tr>
+					<tr style="height:5px;">
+						<td colspan="3">
+							
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2" class="d_label" align="center">
+						<font size="4">服务顾问</font>
+						</td>
+						<td class="d_label">
+							<label>提成类型:</label>
+						</td>
+						<td>
+							<div id="advisorDeductType" name="advisorDeductType" 
+								class="nui-radiobuttonlist" value="2" repeatItems="4" 
+								repeatDirection="" repeatLayout="table" 
+								textField="text" valueField="id" onvaluechanged="hidePercent"></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="d_label">
+							<label>提成金额:</label>
+						</td>
+						<td>
+							<input class="nui-textbox" name="advisorDeductValue" id="advisorDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			</div>
+		</div> 
 			</div>
 		</div>
 	</div>

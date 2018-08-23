@@ -12,6 +12,7 @@ var scoutModeHash = [];
 var scoutResutHash = [];
 
 var prebookCategoryHash = [{ name: '客户主动预约', id: '0' }, { name: '客户被动预约', id: '1' }];
+var prebookSourceHash = [{ name: '线下预约', id: '0' }, { name: '网络预约', id: '1' }];
 var prebookStatusHash = [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
 
 var upGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryPrebookList.biz.ext";
@@ -236,6 +237,13 @@ function onDrawCell(e) {
         e.cellHtml = e.value == 0? '否':'是';
     } else if(field == "serviceTypeId" && e.value == 0){
         e.cellHtml = "";
+    } else if(field == "prebookSource" ){
+    	if(e.value=="042101"){
+    		e.cellHtml = prebookSourceHash[0].name;
+    	}else if(e.value=="042102"){
+    		e.cellHtml = prebookSourceHash[1].name;
+    	}
+    	
     }
 }
 

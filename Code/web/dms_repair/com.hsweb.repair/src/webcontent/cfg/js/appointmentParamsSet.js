@@ -210,6 +210,7 @@ function advancedDeductCancel(){
 }
 function advancedDeductOk(){
     var discount = prdtRateEditEl.getValue();
+    discount=discount/10;
     if (discount == "") {
         showMsg('请输入项目折扣','W');
         return;

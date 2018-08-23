@@ -43,8 +43,8 @@ table {
 					<td><label>车牌号</label> <input class="nui-textbox" name="carNo" /> 
 					<label>手机号码：</label>
 						<input class="nui-textbox" name="mobile" /> 
-						<a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a> <a
-						class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
+						<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
 					</td>
 				</tr>
 			</table>
@@ -54,10 +54,9 @@ table {
 	<div class="nui-toolbar" style="border-bottom: 0;">
 		<table>
 			<tr>
-				<td><a class="nui-button" iconCls="icon-add" onclick="add()"
-					plain="true">新增</a> <a class="nui-button" iconCls="icon-edit"
-					onclick="edit()" plain="true">修改</a> <a class="nui-button"
-					iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
+				<td><a class="nui-button" iconCls="" onclick="add()"plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
+					<a class="nui-button" iconCls=""	onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+					<a class="nui-button" iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
 					class="nui-button" iconCls="icon-date" onclick="split()"
 					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
 					onclick="history()" plain="true">维修历史</a>

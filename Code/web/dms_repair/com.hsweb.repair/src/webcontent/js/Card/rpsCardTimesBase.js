@@ -17,7 +17,8 @@ $(document).ready(function (v)
 
 function setData(data){
 	 data = nui.clone(data);
-	 var json = nui.encode({cardTimes:data,
+	 var json = nui.encode({
+		 cardTimes:data,
 		 token : token	 
 	 });
 	$.ajax({

@@ -22,7 +22,7 @@
 				value="com.hsapi.repair.data.rpb.RpbCardStored">
 			<table id="table1">
 				<tr>
-					<td style="width: 90%;height:100% ">
+					<td style="width: 88%;height:100% ">
 						<spand>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计次卡列表&nbsp;&nbsp;</spand>
 						<a class="nui-button" onclick="searchOne()">查看</a>	
 						<a class="nui-button" onclick="dealtWithCard()">次卡办理</a>		    

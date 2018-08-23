@@ -514,9 +514,7 @@ function disableHtml(){
 	mini.get("addi").setVisible(false);
 	mini.get("addr").setVisible(false);
 	mini.get("delect").setVisible(false);
-	mini.get("save").setVisible(false);
-	
-	
+	mini.get("save").setVisible(false);	
 	//mini.get("toolbar1").
 	//添加样式 addClass("miniui");
 	//mini.get("tab").addClass("style='width: 100%;height:100%'");

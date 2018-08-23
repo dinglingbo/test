@@ -29,7 +29,7 @@
 					<label class="form_label">类别：</label>
 					<input class="nui-combobox" name="serviceTypeId" id="type-serviceTypeId" valueField="id" textField="name"
 					       allowInput="true" valueFromSelect="true"/>
-					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
 					<input name="type"  id="type" visible="false"
                                              class="nui-combobox width1"
                                              textField="name"
@@ -43,7 +43,7 @@
 	<table>
 		<tr>
 			<td>
-				<a class="nui-button" id="add" iconCls="icon-add" onclick="addPackage()" plain="true">新增</a>
+				<a class="nui-button" id="add" iconCls="" onclick="addPackage()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
 				<a class="nui-button" id="save" iconCls="icon-save" onclick="save()" plain="true">保存</a>
 			</td>
 		</tr>

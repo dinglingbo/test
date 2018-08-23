@@ -31,14 +31,14 @@ function onValueChangedTimes(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if(row.qty && e.value != 0){
-		 if(row.oldPrice ){
+	if(row.qty && (row.qty != 0) && e.value != 0){
+		 if(row.oldPrice && row.oldPrice != 0){
 			 oldAmt = row.oldPrice*e.value*row.qty; 
 		 }
-		if(row.sellPrice){
-			   sellAmt = row.sellPrice*e.value*row.qty;
-			}
+		if(row.sellPrice && row.sellPrice != 0){
+			 sellAmt = row.sellPrice*e.value*row.qty;
 		}
+	}
 	data = {
 		oldAmt:oldAmt, 
 		sellAmt:sellAmt
@@ -53,18 +53,18 @@ function onValueChangedQty(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if(row.times && e.value != 0){
-		 if(row.oldPrice){
+	if(row.times && (row.times != 0) && e.value != 0){
+		 if(row.oldPrice && row.oldPrice != 0){
 			oldAmt = row.oldPrice*e.value*row.times; 
 		 }
-		if(row.sellPrice){
+		if(row.sellPrice && row.sellPrice != 0){
 			sellAmt = row.sellPrice*e.value*row.times;
-		    }
-		}
+		 }
+	}
 	data = {
 		oldAmt:oldAmt, 
 		sellAmt:sellAmt
-	   };
+	};
     timesCardDetail.updateRow(row,data);
 }
 
@@ -74,13 +74,15 @@ function onValueChangedOldPrice(e){
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
 	if(row.times && (row.times != 0) && row.qty && (row.qty != 0)){		 
-		 if(row.sellPrice ){
+		 if(row.sellPrice && row.sellPrice != 0){
 			 if(e.value != 0){
 				 oldAmt = row.qty*e.value*row.times;
-			 }
+			 } 
 			sellAmt =  row.sellPrice*row.qty*row.times; 
 		 }else{
-			 oldAmt = row.qty*e.value*row.times; 
+			 if(e.value != 0){
+				 oldAmt = row.qty*e.value*row.times; 
+			 }  
 		 }
 	}
 	data = {
@@ -95,14 +97,16 @@ function onValueChangedSellPrice(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if(row.times && row.qty){		 
-		if(row.oldPrice){	
+	if(row.times && (row.times != 0) && row.qty && (row.qty != 0)){		 
+		if(row.oldPrice && row.oldPrice != 0){	
 			oldAmt = row.qty*row.oldPrice*row.times;
-			if(e.value != 0){
-				sellAmt = e.value*row.qty*row.times; 
-			}	
+			if( e.value != 0){
+				sellAmt = e.value*row.qty*row.times;
+			} 
 		}else{
-			sellAmt = e.value*row.qty*row.times; 
+			if( e.value != 0){
+				sellAmt = e.value*row.qty*row.times;
+			}
 		}
 	}
 	data = {

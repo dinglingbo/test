@@ -197,82 +197,71 @@ var payType = {
 }
 
 var payMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.receiveCardTimes.biz.ext";
-function payOk(){
-	
+function payOk(){	
 	var data = form2.getData();
-	
 	var rpbCard = form.getData();
-	
+    var payAmt = null;
 	if(data.contactorName){
-		
-		
-		
 		var cardTimes ={
-				guestId:data.guestId,
-				guestName:data.contactorName,
-				cardId:rpbCard.id,
-				cardName:rpbCard.name,
-				periodValidity:rpbCard.periodValidity,
-				salesDeductType:rpbCard.salesDeductType,
-				remark:rpbCard.remark,
-				salesDeductValue:rpbCard.salesDeductValue,
-				sellAmt:rpbCard.sellAmt,
-				totalAmt:rpbCard.totalAmt,
-				useRemark:rpbCard.useRemark
-		};
-		//整理数据
-		 var payAmt = rpbCard.sellAmt;
-		 var json = nui.encode({
-			"payAmt":payAmt,
-			"payType":data.payType,
-		     "cardTimes":cardTimes,
-		     token:token
-		 });
+			guestId:data.guestId,
+			guestName:data.contactorName,
+			cardId:rpbCard.id,
+			cardName:rpbCard.name,
+			periodValidity:rpbCard.periodValidity,
+			salesDeductType:rpbCard.salesDeductType,
+			remark:rpbCard.remark,
+			salesDeductValue:rpbCard.salesDeductValue,
+			sellAmt:rpbCard.sellAmt,
+			totalAmt:rpbCard.totalAmt,
+			useRemark:rpbCard.useRemark
+	    };
+	//整理数据
+	    payAmt = rpbCard.sellAmt;
+	    var json = nui.encode({
+		    "payAmt":payAmt,
+		    "payType":data.payType,
+		    "cardTimes":cardTimes,
+		    token:token
+	  });
 		//提示框 
 		//判断客户有没有选择
-		nui.confirm("你确定以"+payType[data.payType]+"结算方式结算吗？", "友情提示", function(action) {
-			if (action == "ok") {
-				nui.mask({
-					el : document.body,
-					cls : 'mini-mask-loading',
-					html : '处理中...'
-				});
-				
-				  nui.ajax({
-				        url : payMeth,
-				        type : 'POST',
-				        data : json,
-				        cache : false,
-				        contentType : 'text/json',
-				        success : function(text) {		
-				        	nui.unmask(document.body);
-				        	 var returnJson = nui.decode(text);
-				              if (returnJson.errCode == "S") {
-				            	  nui.alert("结算成功", "系统提示", function(action) {
-				                      if (action == "ok" || action == "close") {
-				                          // CloseWindow("saveFailed");
-				                      }
-				                  });
-				              }
-				                  //CloseWindow("saveSuccess");
-				               else {
-				                  nui.alert("结算失败:"+returnJson.errMsg, "系统提示", function(action) {
-				                      if (action == "ok" || action == "close") {
-				                          // CloseWindow("saveFailed");
-				                      }
-				                  });
+	    nui.confirm("结算金额【"+payAmt+"】元,确定以【"+payType[data.payType]+"】结算吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+		        nui.ajax({
+				    url : payMeth,
+				    type : 'POST',
+			        data : json,
+			        cache : false,
+			        contentType : 'text/json',
+			        success : function(text) {		
+			            nui.unmask(document.body);
+				        var returnJson = nui.decode(text);
+				        if (returnJson.errCode == "S") {
+				            nui.alert("结算成功", "系统提示", function(action) {
+				               if (action == "ok" || action == "close") {
+				                   // CloseWindow("saveFailed");
+				               }
+				            });
 				        }
-				        					        	
-				        }				        	  
-				 });
-				
-			} else {
+				        else {
+				            nui.alert("结算失败:"+returnJson.errMsg, "系统提示", function(action) {
+				               if (action == "ok" || action == "close") {
+				                   // CloseWindow("saveFailed");
+				               }
+				           });
+				        }
+				   }				        	  
+			  });		
+	     }else {
 				return;
-			}
-		});
-		
+		 }
+		 });
 
-		
 	}else{
 		nui.alert("请选择客户", "提示");
 		
@@ -280,21 +269,4 @@ function payOk(){
 	
 }
 
-function saveOn(){
-	
-	
-	
-	//判断客户有没有选择
-	var data = form.getData();
-	if(data.contactorName){
-		//要把数据对应好，才能保存
-		//基本数据
-		
-		
-	}else{
-		
-	}	
-	
-	
-}
 

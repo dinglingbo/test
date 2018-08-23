@@ -10,12 +10,6 @@ var set = null;
 var input = null;
 var oldAmt = null;
 var sellAmt = null;
-var count = 0;
-var xj = {
-		times : "次数 :",
-		qty : "工时/数量 ",
-		oldPrice : "原价"
-	};
 //页面标签加载完之后执行，但是修改的数据还没有设置
 $(document).ready(function(v) {
 	tab = nui.get("tab");
@@ -31,81 +25,98 @@ $(document).ready(function(v) {
     		e.cancel = true;
     	}
     });
-    
-  
-    timesCardDetail.on("cellendedit",function(e){
-    	var row = timesCardDetail.getSelected();
-    	var b = timesCardDetail.getData();
-    	for ( var key in xj) {
-    		for (var i = 0; i < b.length; i++) {
-    			if (!b[i][key] || $.trim(b[i][key]).length == 0) {
-    				return;
-    			}else{
-    				count=count+1;
-    			}
-        		if(count=3){
-        			oldAmt =  row.oldPrice*row.times*row.qty;
-        		       data = {
-        		    		   oldAmt:oldAmt, 
-        		       };
-        		       timesCardDetail.updateRow(row,data);
-        		}
-    		}
-
-    	}
-    	
-    	/*var row = timesCardDetail.getSelected();
-       //数量
-       if(e.field == "qty"){ 	   
-    	   if(row.oldPrice && row.times ){
-    		   oldAmt =  row.oldPrice*row.times*row.qty;
-    	   }
-    	   
-    	   if(row.sellPrice && row.times ){
-    		   sellAmt =  row.sellPrice*row.times*row.qty;
-    	   }
-    	   
-    	}
-       //原价
-       if(e.field == "oldPrice"){
-    	   if(row.qty && row.times ){
-    		   oldAmt =  row.oldPrice*row.times*row.qty;
-      	   } 
-    	   
-   	   }
-       //次数
-       if(e.field == "times"){
-    	   
-    	   if(row.qty && row.oldPrice ){
-    		   oldAmt =  row.oldPrice*row.times*row.qty;
-        	  } 
-    	   
-    	   if(row.sellPrice && row.qty ){
-    		   sellAmt =  row.sellPrice*row.times*row.qty;
-    	   }
-       }
-       //现价
-       if(e.field == "sellPrice"){
-    	   
-    	   if(row.qty && row.times ){
-    		   sellAmt =  row.sellPrice*row.times*row.qty;
-      	   } 
-   	   }
-       //销
-       data = {
-    		   oldAmt:oldAmt, 
-    		   sellAmt:sellAmt
-       };
-       timesCardDetail.updateRow(row,data);*/
-       
-       
-    });
-    
-   
 });
 
+function onValueChangedTimes(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.qty && (row.qty != 0) && e.value != 0){
+		 if(row.oldPrice && row.oldPrice != 0){
+			 oldAmt = row.oldPrice*e.value*row.qty; 
+		 }
+		if(row.sellPrice && row.sellPrice != 0){
+			 sellAmt = row.sellPrice*e.value*row.qty;
+		}
+	}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	   };
+	timesCardDetail.updateRow(row,data);
+ 
+}
 
-function onDrawSummaryCell(e) {
+
+
+function onValueChangedQty(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.times && (row.times != 0) && e.value != 0){
+		 if(row.oldPrice && row.oldPrice != 0){
+			oldAmt = row.oldPrice*e.value*row.times; 
+		 }
+		if(row.sellPrice && row.sellPrice != 0){
+			sellAmt = row.sellPrice*e.value*row.times;
+		 }
+	}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	};
+    timesCardDetail.updateRow(row,data);
+}
+
+
+function onValueChangedOldPrice(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.times && (row.times != 0) && row.qty && (row.qty != 0)){		 
+		 if(row.sellPrice && row.sellPrice != 0){
+			 if(e.value != 0){
+				 oldAmt = row.qty*e.value*row.times;
+			 } 
+			sellAmt =  row.sellPrice*row.qty*row.times; 
+		 }else{
+			 if(e.value != 0){
+				 oldAmt = row.qty*e.value*row.times; 
+			 }  
+		 }
+	}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	   };
+    timesCardDetail.updateRow(row,data);
+}
+
+
+function onValueChangedSellPrice(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	if(row.times && (row.times != 0) && row.qty && (row.qty != 0)){		 
+		if(row.oldPrice && row.oldPrice != 0){	
+			oldAmt = row.qty*row.oldPrice*row.times;
+			if( e.value != 0){
+				sellAmt = e.value*row.qty*row.times;
+			} 
+		}else{
+			if( e.value != 0){
+				sellAmt = e.value*row.qty*row.times;
+			}
+		}
+	}
+	data = {
+		oldAmt:oldAmt, 
+		sellAmt:sellAmt
+	   };
+    timesCardDetail.updateRow(row,data);
+}
+
+/*function onDrawSummaryCell(e) {
 	var rows = e.data;
     if (e.field == "sellAmt") {
         var total = 0;
@@ -119,7 +130,23 @@ function onDrawSummaryCell(e) {
         e.cellHtml = "总计: " + total;
     }
 }
-
+*/
+function onDrawSummaryCell(e){ 
+	  var rows = e.data;
+	  var sum = null;
+	  if(e.field == "sellAmt") {   
+		  for (var i = 0; i < rows.length; i++) {
+		    sum += parseFloat(rows[i].sellAmt);
+		   }
+		  if(sum){
+			  nui.get("totalAmt").setValue(sum); 
+		  }
+			
+	   }else{
+		   nui.get("totalAmt").setValue("") 
+	   }
+	 //alert(sum);
+ }
 
 var requiredField = {
 	name : "计次卡名称:",
@@ -167,7 +194,7 @@ function onOk() {
 			}
 
 			if (!zz.exec(data1[i][key])) {
-				showMsg(tcd[key] + "必须为数字!", "W");
+				showMsg(tcd[key] + "必须为正整数!", "W");
 
 				return;
 			}
@@ -196,7 +223,6 @@ function setData(data) {
 	// 计次卡明细查询
 	var json1 = nui.encode({
 		"timesCard" : json,
-		token:token
 	});
 	nui.ajax({
 		url : gridUrl,
@@ -223,7 +249,7 @@ function setData(data) {
 
 function gridAddRow(datagrid) {
 	var grid = nui.get(datagrid);
-	grid.addRow({});
+	grid.addRow();
 }
 
 function gridRemoveRow(datagrid) {
@@ -259,7 +285,7 @@ function saveData() {
 		"pchsOrderDetailAdd" : pchsOrderDetailAdd,
 		"pchsOrderDetailUpdate" : pchsOrderDetailUpdate,
 		"pchsOrderDetailDelete" : pchsOrderDetailDelete,
-		"token" : token
+		token : token
 	});
 
 	nui.ajax({
@@ -337,7 +363,7 @@ function addDetail() {
 				var data = iframe.contentWindow.getData();
 				data = data || {};
 				var part = data.part;
-
+                var times = 1;
 				if (part) {
 					var prdtId = part.id;
 					var prdtName = part.name;
@@ -346,7 +372,8 @@ function addDetail() {
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
-						prdtType : prdtType
+						prdtType : prdtType,
+						times:times
 					};
 					grid.addRow(newRow);
 				}
@@ -384,7 +411,7 @@ function selectPackage() {
 				var data = iframe.contentWindow.getData();
 				data = data || {};
 				var part = data.package1;
-
+                var times = 1;
 				if (part) {
 					var prdtId = part.id;
 					var prdtName = part.name;
@@ -393,7 +420,8 @@ function selectPackage() {
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
-						prdtType : prdtType
+						prdtType : prdtType,
+						times:times
 					};
 					grid.addRow(newRow);
 				}
@@ -436,13 +464,15 @@ function selectItem(callback) {
 					var prdtName = part.name;
 					var prdtType = 2;
 					var itemTime = part.itemTime;
+					var times = 1;
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
 						prdtId : prdtId,
 						prdtName : prdtName,
 						prdtType : prdtType,
 						prdtTypeName : prdtType,
-						qty :itemTime
+						qty :itemTime,
+						times:times
 					};
 					grid.addRow(newRow);
 				}
@@ -484,9 +514,7 @@ function disableHtml(){
 	mini.get("addi").setVisible(false);
 	mini.get("addr").setVisible(false);
 	mini.get("delect").setVisible(false);
-	mini.get("save").setVisible(false);
-	
-	
+	mini.get("save").setVisible(false);	
 	//mini.get("toolbar1").
 	//添加样式 addClass("miniui");
 	//mini.get("tab").addClass("style='width: 100%;height:100%'");
@@ -495,9 +523,6 @@ function disableHtml(){
 	for(var i=0,length=controls.length;i<length;i++){
 	       controls[i].setReadOnly(true);
 	}
-	
-	
-	
 }
 
 

@@ -17,26 +17,27 @@
 
 <body>
 	<div id="queryform" class="nui-form">
-		<div class="nui-toolbar">
-			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsapi.repair.data.rpb.RpbCardStored">
-			<table id="table1">
-				<tr>
-					<td style="width: 90%;height:100% ">
-						<spand>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计次卡列表&nbsp;&nbsp;</spand>
-						<a class="nui-button" onclick="searchOne()">查看</a>	
-						<a class="nui-button" onclick="dealtWithCard()">次卡办理</a>		    
-					</td>
-					<td>
-					<a class="nui-button" onclick="search()" style="margin:right"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>导出EXCEL</a>	
-					<spand>&nbsp;&nbsp;&nbsp;</spand>					 
-					<a class="nui-button" onclick="refresh()" ><i class="fa fa-refresh" ></i>刷新列表</a>
-						
-					</td>
-				</tr>
-			</table>
-		</div>
+	
+<div class="nui-toolbar" style="border-bottom: 0;">
+	<div id="queryForm">
+		<table>
+			<tr>
+				<td>
+					<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;快速查询：</label>
+					<label class="form_label">客户名称：</label>
+					<input class="nui-textbox" name="name" id="name-search"/>
+					<label class="form_label">计次卡名称：</label>
+					<input class="nui-textbox" name="name" id="name-search"/>
+					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
+				</td>
+				<td >		
+			       <a class="nui-button" onclick="searchOne()">查看详情</a>	
+				   <a class="nui-button" onclick="dealtWithCard()">次卡办理</a>		    
+				</td>
+			</tr>
+		</table>
 	</div>
+</div>
 <div class="nui-fit">
 		<div id="datagrid1" dataField="params" class="nui-datagrid"
 			pageSize="10" onDrawCell="onDrawCell"  

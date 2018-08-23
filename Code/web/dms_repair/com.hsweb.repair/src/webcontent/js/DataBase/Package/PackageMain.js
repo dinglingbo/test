@@ -6,6 +6,7 @@ var leftGrid = null;
 var rightItemGrid = null;
 var rightPartGrid = null;
 var basicInfoForm = null;
+var basicInfoForm1 = null;
 var carBrandIdEl = null;
 var carModelIdEl = null;
 var carModelIdHash = {};
@@ -15,8 +16,19 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var typeHash = {};
 var typeList = [];
+var hidePercent = null;
+var salesDeductTypeEl = null;
+var techDeductTypeEl = null;
+var advisorDeductTypeEl = null;
+var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
 $(document).ready(function (v)
 {
+	salesDeductTypeEl = nui.get("salesDeductType");
+	techDeductTypeEl = nui.get("techDeductType");
+	advisorDeductTypeEl = nui.get("advisorDeductType");
+	salesDeductTypeEl.setData(typeList);
+	techDeductTypeEl.setData(typeList);
+	advisorDeductTypeEl.setData(typeList);
 	leftGrid = nui.get("leftGrid"); 
 	leftGrid.setUrl(leftGridUrl);
 	leftGrid.on("drawcell",onDrawCell);
@@ -56,6 +68,7 @@ $(document).ready(function (v)
 	});
 
 	basicInfoForm = new nui.Form("#basicInfoForm");
+	basicInfoForm1 = new nui.Form("#basicInfoForm1");
 	queryForm = new nui.Form("#queryForm");
 	carBrandIdEl = nui.get("carBrandId");
 	carModelIdEl = nui.get("carModelId");
@@ -63,7 +76,96 @@ $(document).ready(function (v)
 	init();
 });
 
+function onRateValidation(e){
+	var el = e.sender.id;
+	var value = 0;
+	if(el == "salesDeductValue"){
+		value = salesDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$|0$)/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}else if(el == "techDeductValue"){
+		value = techDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}else if(el == "advisorDeductValue"){
+		value = advisorDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}
 
+
+}
+function hidePercent(e){
+	var value = e.value;
+	var el = e.sender.id;
+	if(el == "salesDeductType"){
+		if(value == 4){
+			$("#salesDeductValue").next().hide();
+		}else {
+			$("#salesDeductValue").next().show();
+		}
+	}else if(el == "techDeductType"){
+		if(value == 4){
+			$("#techDeductValue").next().hide();
+		}else {
+			$("#techDeductValue").next().show();
+		}
+	}else if(el == "advisorDeductType"){
+		if(value == 4){
+			$("#advisorDeductValue").next().hide();
+		}else {
+			$("#advisorDeductValue").next().show();
+		}
+	}
+}
 function init()
 {
 	/*carBrandIdEl.on("valuechanged",function()
@@ -190,7 +292,9 @@ function onLeftGridRowClick(e)
 	if(row)
 	{
 		basicInfoForm.clear();
+		basicInfoForm1.clear();
 		basicInfoForm.setData(row);
+		basicInfoForm1.setData(row);
 		carBrandIdEl.doValueChanged();
 		loadRightPartGridData(row.id);
 		loadRightItemGridData(row.id);
@@ -239,6 +343,7 @@ function addPackage()
 {
 	//添加时清除右边基本数据
 	basicInfoForm.clear();
+	basicInfoForm1.clear();
 	rightItemGrid.clearRows();
 	rightPartGrid.clearRows();
 	var data = {
@@ -247,11 +352,20 @@ function addPackage()
 	};
 	//设置原始数据
 	basicInfoForm.setData(data);
+	//basicInfoForm1.setData(data1);
 }
 var saveUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.savePackage.biz.ext";
 function save()
 {
 	var data = basicInfoForm.getData();
+	var data1 = basicInfoForm1.getData();
+	data.advisorDeductType=data1.advisorDeductType;
+	data.advisorDeductValue=data1.advisorDeductValue;
+	data.salesDeductType=data1.salesDeductType;
+	data.salesDeductValue=data1.salesDeductValue;
+	data.techDeductType=data1.techDeductType;
+	data.techDeductValue=data1.techDeductValue;
+
 	var partList = rightPartGrid.getData();
 	var i,tmp;
 	var total = 0;
@@ -302,6 +416,7 @@ function save()
 			{
 				nui.alert("保存成功");
 				basicInfoForm.clear();
+				basicInfoForm1.clear();
 				leftGrid.reload();
 			}
 			else{

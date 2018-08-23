@@ -10,7 +10,7 @@
 
 <head>
     <title>预约列表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.0"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.0.2"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -133,6 +133,7 @@
                                 <div field="prebookCategory" headerAlign="center" allowSort="true" visible="true" width="40">预约类型 </div>
                                 <div field="isOpenBill" headerAlign="center" allowSort="true" visible="true" width="40">是否开单 </div>
                                 <div field="isJudge" headerAlign="center" allowSort="true" visible="true" width="40">是否评价 </div>
+                                <div field="prebookSource" headerAlign="center" allowSort="true" visible="true" width="40">预约来源</div>
                                 <div field="faultDesc" headerAlign="center" allowSort="true" visible="true" width="100">客户描述 </div>
                             </div>
                         </div>

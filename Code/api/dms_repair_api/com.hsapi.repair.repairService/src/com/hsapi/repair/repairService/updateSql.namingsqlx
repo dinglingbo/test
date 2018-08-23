@@ -73,13 +73,13 @@
 		Delete from rps_part_bill where service_id = #serviceId#
 	</delete>
 	
-	<delete id="deleteRpsItemWorkersByPackageId" parameterClass="java.util.HashMap">
-		DELETE from rps_item_workers a
+	<delete id="deleteRpsItemWorkersByPackageId" parameterClass="java.util.HashMap">		
+		DELETE a from rps_item_workers a
 		inner join rps_item b
 		on a.main_id = b.id
 		inner join rps_package c
-		on b.package_id = c.id 
-		where service_id = #packageId#
+		on b.bill_package_id = c.id 
+		where c.service_id = #packageId#
 	</delete>
 	
 	<update id="resetRpsItem" parameterClass="java.util.HashMap">

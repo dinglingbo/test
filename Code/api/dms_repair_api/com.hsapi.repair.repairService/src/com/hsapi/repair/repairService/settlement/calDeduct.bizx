@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="calDeduct.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算后计算员工提成信息,更新套餐，工时，配件的提成金额&#xD;&#xA;（套餐，工时一定设置了提成信息；配件可能没设置需要用到通用提成）&#xD;&#xA;如果是产值提成，需要等到工单结算后再计算提成信息" title="Administrator&#x9;18-8-22 下午8:05">
+    <location x="27" y="-15"/>
+    <size height="121" width="483"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="0" y="150"/>
+    <location x="-90" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -21,7 +25,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="2" y="186"/>
+    <location x="-88" y="186"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>

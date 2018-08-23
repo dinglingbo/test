@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.6"></script>
 </head>
 <body>
 	<fieldset

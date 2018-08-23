@@ -12,12 +12,11 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.4"></script>
 </head>
 
 <body>
-	<div id="queryform" class="nui-form">
-	
+<div id="queryform" class="nui-form">	
 <div class="nui-toolbar" style="border-bottom: 0;">
 	<div id="queryForm">
 		<table>
@@ -28,6 +27,10 @@
 					<input class="nui-textbox" name="name" id="name-search"/>
 					<label class="form_label">计次卡名称：</label>
 					<input class="nui-textbox" name="name" id="name-search"/>
+			        <label class="form_label">开始日期：</label>
+	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
+	                <label class="form_label">结束日期：</label>
+	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "endDate" value=""/>
 					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
 				</td>
 				<td >		
@@ -38,12 +41,11 @@
 		</table>
 	</div>
 </div>
+</div>
 <div class="nui-fit">
 		<div id="datagrid1" dataField="params" class="nui-datagrid"
-			pageSize="10" onDrawCell="onDrawCell"  
-			
-			     showPager="true"
-        
+			pageSize="10" onDrawCell="onDrawCell"  		
+			     showPager="true"    
                     totalField="page.count"
                     sortMode="client"
                     allowCellSelect="true"
@@ -61,8 +63,8 @@
 				<div field="mobile" headerAlign="center" allowSort="true"  >
 					电话</div>
 
-				<div field="carOn" headerAlign="center" allowSort="true">
-					车牌号</div>
+				<!-- <div field="carOn" headerAlign="center" allowSort="true">
+					车牌号</div> -->
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
 				
@@ -70,9 +72,9 @@
 					剩余次数
 				</div>
 				
-				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd">
+				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">
 					创建时间</div>
-				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd">
+				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">
 					到期时间</div>
 				<div field="sellAmt" headerAlign="center" allowSort="true">
 					销售金额</div>

@@ -258,11 +258,12 @@
 	            <isNotEmpty prepend="and" property="carNo">  
 	                (a.car_no like '%$carNo$%')
 	            </isNotEmpty>
-	            
 	            <isNotEmpty prepend="and" property="guestTel">  
 	                (c.mobile like '%$guestTel$%')
-	            </isNotEmpty>
-	            
+	            </isNotEmpty> 
+	            <isNotEmpty prepend="and" property="guestId"> 
+                   (a.guest_id = #guestId#)
+                </isNotEmpty>
 	            
         </dynamic>  
         order by a.id desc
@@ -299,11 +300,11 @@
 	            </isNotEmpty>
 	            
 	            <isNotEmpty prepend="and" property="carNo">  
-	                (a.car_no like '%$guestName$%')
+	                (a.car_no like '%$carNo$%')
 	            </isNotEmpty>
 	            
 	            <isNotEmpty prepend="and" property="guestTel">  
-	                (c.mobile like '%$guestName$%')
+	                (c.mobile like '%$guestTel$%')
 	            </isNotEmpty>
 	            
 	            

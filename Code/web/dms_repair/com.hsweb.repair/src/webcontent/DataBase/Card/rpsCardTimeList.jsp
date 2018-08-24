@@ -12,7 +12,7 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.7"></script>
 </head>
 
 <body>
@@ -24,9 +24,9 @@
 				<td>
 					<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;快速查询：</label>
 					<label class="form_label">客户名称：</label>
-					<input class="nui-textbox" name="name" id="name-search"/>
+					<input class="nui-textbox" name="guestName" id="guestName-search"/>
 					<label class="form_label">计次卡名称：</label>
-					<input class="nui-textbox" name="name" id="name-search"/>
+					<input class="nui-textbox" name="cardName" id="cardName-search"/>
 			        <label class="form_label">开始日期：</label>
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
 	                <label class="form_label">结束日期：</label>
@@ -54,8 +54,8 @@
                    
 			 allowSortColumn="true" style="width: 100%;height:100% ">
 			<div property="columns">
-				<div type="indexcolumn"></div>
-				<div type="checkcolumn"></div>
+				<!-- <div type="indexcolumn"></div>
+				<div type="checkcolumn" ></div> -->
 				
 				<div field="fullName" headerAlign="center" allowSort="true"
 					>姓名</div>
@@ -68,10 +68,9 @@
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
 				
-				<div field="id" headerAlign="center" allowSort="true">
+				<div field="balaTimes" headerAlign="center" allowSort="true">
 					剩余次数
 				</div>
-				
 				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">
 					创建时间</div>
 				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">

@@ -7,11 +7,11 @@ var form = null;
 
 //页面加载时获取 form
 $(document).ready(function (v)
-		{
-		    form = new nui.Form("#dataform1");//获取表单的
-		    form1 = new nui.get("datagrid1");//获取表格的
+{
+	form = new nui.Form("#dataform1");//获取表单的
+	form1 = new nui.get("datagrid1");//获取表格的
 		    
-		});
+});
 
 
 

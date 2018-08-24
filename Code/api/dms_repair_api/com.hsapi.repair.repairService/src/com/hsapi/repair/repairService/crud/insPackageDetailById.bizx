@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insPackageDetailById.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="rpb_package_item&#xD;&#xA;中的 amt 是工时定义表中的金额&#xD;&#xA;true_amt实际金额(套餐100定80；则amt*0.8)，用于提成的计算" title="Administrator&#x9;18-8-24 上午11:10">
-    <location x="30" y="-24"/>
-    <size height="100" width="382"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="rpb_package_item&#xD;&#xA;中的 amt 是工时定义表中的金额&#xD;&#xA;true_amt实际金额(套餐100定80；则amt*0.8)，用于提成的计算&#xD;&#xA;rpb_package_part&#xD;&#xA;中的 amt 是工时定义表中的金额&#xD;&#xA;true_amt实际金额(套餐100定80；则amt*0.8)，用于提成的计算&#xD;&#xA;&#xD;&#xA;工单单价，金额；配件单价，金额用truePrice,trueAmt" title="Administrator&#x9;18-8-24 上午11:10">
+    <location x="30" y="-120"/>
+    <size height="196" width="382"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -322,7 +322,7 @@
       <process:to type="query">tempItem/totalDeductAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tempPkgItem/unitPrice</process:from>
+      <process:from type="query" pattern="reference">tempPkgItem/truePrice</process:from>
       <process:to type="query">tempItem/unitPrice</process:to>
     </process:copy>
   </nodes>
@@ -393,8 +393,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">tempPkgPart/amt</process:from>
+      <process:from type="query" pattern="reference">tempPkgPart/trueAmt</process:from>
       <process:to type="query">tempPart/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tempPkgPart/amt</process:from>
+      <process:to type="query">tempPart/pkgpartamt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -469,7 +473,7 @@
       <process:to type="query">tempPart/unit</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tempPkgPart/unitPrice</process:from>
+      <process:from type="query" pattern="reference">tempPkgPart/truePrice</process:from>
       <process:to type="query">tempPart/unitPrice</process:to>
     </process:copy>
     <process:copy>

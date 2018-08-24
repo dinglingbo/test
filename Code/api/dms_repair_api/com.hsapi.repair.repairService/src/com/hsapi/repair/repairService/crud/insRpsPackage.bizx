@@ -160,11 +160,11 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getPrimaryKey" displayName="getPrimaryKey" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>transactionbegin0</targetNode>
+      <targetNode>assign20</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link32</targetConnections>
-    <targetConnections>link54</targetConnections>
+    <targetConnections>link38</targetConnections>
     <location x="-92" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -503,7 +503,7 @@
       <sourceNode>transactionbegin0</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
+    <targetConnections>link54</targetConnections>
     <location x="23" y="151"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
@@ -661,7 +661,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
     <location x="-94" y="233"/>
@@ -702,10 +702,6 @@
     <location x="-172" y="151"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">pkg/id</process:from>
-      <process:to type="query">pkgId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="-174" y="187"/>
@@ -1171,7 +1167,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insPackageDetailById" displayName="insPackageDetailById" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link55" name="link55" displayName="连接线" type="transition">
       <sourceNode>subprocess2</sourceNode>
@@ -1183,14 +1179,14 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link38</targetConnections>
-    <location x="-3" y="233"/>
+    <targetConnections>link2</targetConnections>
+    <location x="23" y="233"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insPackageDetailById</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="packageId" type="query" value="Int" valueType="Primitive" pattern="reference">pkgId</process:inputVariable>
+        <process:inputVariable id="0" name="packageId" type="query" value="Int" valueType="Primitive" pattern="reference">pkg/packageId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1201,9 +1197,28 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="-52" y="268"/>
+    <location x="-26" y="268"/>
     <figSize height="17" width="125"/>
     <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值20" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign20</sourceNode>
+      <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="-35" y="151"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign20label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/id</process:from>
+      <process:to type="query">pkgId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
+    <location x="-40" y="187"/>
+    <figSize height="17" width="39"/>
+    <node>assign20</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

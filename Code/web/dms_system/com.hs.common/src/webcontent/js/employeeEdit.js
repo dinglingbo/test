@@ -3,8 +3,9 @@
  */
 
 var baseUrl = apiPath + sysApi + "/";
+var repairUrl = apiPath + repairApi + "/";
 var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
-/var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 var sex;
 var isservice;
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
@@ -41,26 +42,26 @@ function SetInitData(data) {
 	   if(isArtificer == true){
 	        $("#memberLevelId").show();
 	   }
-
-    nui.ajax({
-        url:fromUrl + "?params/empid=" + data.empid,
-        type:"post",        
-        success:function(data)
-        {
-            nui.unmask();
-            data = data || {};
-            
-            if (data.length <= 0) return;
-            
-        	var form = new nui.Form("#basicInfoForm");
-            form.setData(data.rs[0]);    
-            nui.get("newand").setVisible(false);
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });	
+	nui.get("newand").setVisible(false);
+//    nui.ajax({
+//        url:fromUrl + "?params/empid=" + data.empid,
+//        type:"post",        
+//        success:function(data)
+//        {
+//            nui.unmask();
+//            data = data || {};
+//            
+//            if (data.length <= 0) return;
+//            
+//        	var form = new nui.Form("#basicInfoForm");
+//            form.setData(data.rs[0]);    
+//            nui.get("newand").setVisible(false);
+//        },
+//        error:function(jqXHR, textStatus, errorThrown){
+//            //  nui.alert(jqXHR.responseText);
+//            console.log(jqXHR.responseText);
+//        }
+//    });	
 }
 
 var requiredField = {
@@ -108,8 +109,8 @@ function save(action) {
                 	 closeWindow("cal");
                 }
             }else{
-               // basicInfoForm.setData([]); 
-                nui.get("name").focus();
+                basicInfoForm.setData([]); 
+//                nui.get("name").focus();
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -147,7 +148,7 @@ function onIDCardsValidation(e)
 function onMobileValidation(e)
 {
     if (e.isValid) {
-        var pattern = /^\d{11}$/;;
+        var pattern = /^1(3|5|6|7|8|9)\d{9}$/;;
         if (e.value.length != 11 || pattern.test(e.value) == false) {
             e.errorText = "必须输入正确的手机号码";
             e.isValid = false;
@@ -157,7 +158,7 @@ function onMobileValidation(e)
 //获取工作组
 function initTearm(){
 	   nui.ajax({
-	        url:baseUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
+	        url:repairUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
 	        type:"post",
 	        async:false,
 	        data:JSON.stringify({
@@ -167,7 +168,7 @@ function initTearm(){
 	        {
 	        	
 	        	var TearmObj=data.list;
-	        	var work=nui.get('memberLevelId');
+	        	var work=nui.get('memberGroupId');
 	        	for(var i=0;i<TearmObj.length;i++){
 	        		var data ={
 	        				id:TearmObj[i].id,
@@ -185,7 +186,7 @@ function initTearm(){
 //获取技师等级
 function initMemberLever(){
 	 nui.ajax({
-	        url:baseUrl +"com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext",
+	        url:repairUrl +"com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext",
 	        type:"post",
 	        async:false,
 	        data:JSON.stringify({
@@ -194,14 +195,14 @@ function initMemberLever(){
 	        success:function(data)
 	        {
 	        	var obj=data.list;
-	        	var lever=nui.get('memberGroupId');
+	        	var lever=nui.get('memberLevelId');
 	        	for(var i=0;i<obj.length;i++){
 	        		var data ={
 	        				id:obj[i].id,
 	        				name:obj[i].name
 	        		}
 	        		memberLever.push(data);
-	        		lever.setData(workList);
+	        		lever.setData(memberLever);
 	        	}
 	        },
 	        error:function(jqXHR, textStatus, errorThrown){

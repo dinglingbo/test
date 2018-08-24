@@ -47,6 +47,18 @@
       <process:from type="query" pattern="reference">main/id</process:from>
       <process:to type="query">packageId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/total</process:from>
+      <process:to type="query">total</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/amount</process:from>
+      <process:to type="query">amount</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">total>0?amount/total*1.0:1</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="77" y="153"/>
@@ -120,6 +132,22 @@
     <process:copy>
       <process:from type="query" pattern="reference">packageId</process:from>
       <process:to type="query">tmp/packageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/amt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/unitPrice</process:from>
+      <process:to type="query">unitPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt*rate</process:from>
+      <process:to type="query">tmp/truePrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">unitPrice*rate</process:from>
+      <process:to type="query">tmp/trueAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -204,6 +232,22 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">tmp/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/amt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/unitPrice</process:from>
+      <process:to type="query">unitPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt*rate</process:from>
+      <process:to type="query">tmp/truePrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">unitPrice*rate</process:from>
+      <process:to type="query">tmp/trueAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -291,6 +335,11 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="packageId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="total" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="amount" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="unitPrice" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackage" name="main"/>

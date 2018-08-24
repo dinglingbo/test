@@ -12,6 +12,7 @@ var sexlist = [{id: 1, name: '男'}, {id: 0, name: '女'}]; //[{id:0, name:"女"
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 var basicInfoForm = null;
 var workList=[];
+var memberLever=[];
 $(document).ready(function(v) {
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
@@ -20,6 +21,7 @@ $(document).ready(function(v) {
 
     basicInfoForm = new nui.Form('#basicInfoForm');
     initTearm();
+    initMemberLever();
 });
 
 function onempid(e) {
@@ -170,8 +172,36 @@ function initTearm(){
 	        	}
 	        },
 	        error:function(jqXHR, textStatus, errorThrown){
+	            console.log(jqXHR.responseText);
+	        }
+	    });	
+}
+//获取技师等级
+function initMemberLever(){
+	 nui.ajax({
+	        url:baseUrl +"com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext",
+	        type:"post",
+	        async:false,
+	        data:JSON.stringify({
+	        	token: token
+	        }),
+	        success:function(data)
+	        {
+	        	var obj=data.list;
+	        	var lever=nui.get('artificerLevel');
+	        	for(var i=0;i<obj.length;i++){
+	        		var data ={
+	        				id:obj[i].id,
+	        				name:obj[i].name
+	        		}
+	        		memberLever.push(data);
+	        		lever.setData(workList);
+	        	}
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
 	            //  nui.alert(jqXHR.responseText);
 	            console.log(jqXHR.responseText);
 	        }
 	    });	
+	
 }

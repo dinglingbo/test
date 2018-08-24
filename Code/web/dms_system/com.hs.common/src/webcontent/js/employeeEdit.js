@@ -3,6 +3,7 @@
  */
 
 var baseUrl = apiPath + sysApi + "/";
+var repairUrl = apiPath + repairApi + "/";
 var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
 var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 var sex;
@@ -157,7 +158,7 @@ function onMobileValidation(e)
 //获取工作组
 function initTearm(){
 	   nui.ajax({
-	        url:baseUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
+	        url:repairUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
 	        type:"post",
 	        async:false,
 	        data:JSON.stringify({
@@ -185,7 +186,7 @@ function initTearm(){
 //获取技师等级
 function initMemberLever(){
 	 nui.ajax({
-	        url:baseUrl +"com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext",
+	        url:repairUrl +"com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext",
 	        type:"post",
 	        async:false,
 	        data:JSON.stringify({

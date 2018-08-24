@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.0" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.1" type="text/javascript"></script>
 
 </head>
 <body>
@@ -69,6 +69,9 @@
 			<td style="width: 100%">
 				<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增工时</a>
 				<a class="nui-button" id="update" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改工时</a>
+				<span class="separator" id="sep"></span>
+				<a class="nui-button" id="addItemType" iconCls="" onclick="addItemType()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增类型</a>
+				<a class="nui-button" id="editItemType" iconCls="" onclick="editItemType()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改类型</a>
 				<a class="nui-button" id="selectBtn" iconCls="" onclick="onOk()" plain="true" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 			</td>
 		</tr>
@@ -133,6 +136,30 @@
 	</div>
 </div>
 
+<div id="advancedAddWin" class="nui-window"
+     title="工时类型" style="width:300px;height:160px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="true">
+    <div id="advancedAddForm" class="form">
+        <input id="id" name="id" width="100%" class="nui-hidden" >
+    	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
+        <table class="tmargin" style="width:100%;margin-top:10px;">
+            <tr class="htr">
+                <td class=" right fwidtha required">类型名称:</td>
+                <td ><input id="name" name="name" width="100%" class="nui-textbox" ></td>
+            </tr>
+            <tr class="htr">
+                <td class=" right fwidtha required">上级类型:</td>
+                <td ><input id="dictid" name="dictid" width="100%" class="nui-combobox" textField="name" valueField="id"     dataField="" url="" valueFromSelect="true" allowinput="true"></td>
+            </tr>
+        </table>
+        <div style="text-align:center;padding:10px;">
+            <a class="nui-button" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
+            <a class="nui-button" onclick="onAdvancedAddCancel" style="width:60px;">取消</a>
+        </div>
+    </div>
+</div>
 </body>
 
 	

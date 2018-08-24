@@ -1,5 +1,7 @@
 var param = null;
 var grid = null;
+var baseUrl="http://127.0.0.1:8080/default/";
+var gridUrl= apiPath + repairApi + "/com.hsapi.repair.baseData.brand.getBusinessType.biz.ext";
 $(document).ready(function (v)
 {
 	doSearch();
@@ -22,7 +24,7 @@ function saveAll(){
 		u[j].salesDeductValue = parseInt(u[j].salesDeductValue);
 	}
 	nui.ajax({
-        url: "com.hsapi.repair.baseData.brand.saveBusinessDeduct.biz.ext",
+        url:  apiPath + repairApi+"/com.hsapi.repair.baseData.brand.saveBusinessDeduct.biz.ext",
         type: "post",
         cache: false,
         async: false,
@@ -32,13 +34,13 @@ function saveAll(){
         	d : d
         },
         success: function(text) {
-        	grid.setUrl("com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
-        	grid.load();
+        	grid.setUrl(gridUrl);
+        	grid.load({token:token});
         }
     });
 }
 function doSearch(){
 	grid = nui.get("grid");
-	grid.setUrl("http://127.0.0.1:8080/default/com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
+	grid.setUrl(gridUrl);
 	grid.load({token:token});
 }

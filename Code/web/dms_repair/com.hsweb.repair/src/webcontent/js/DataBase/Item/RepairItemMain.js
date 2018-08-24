@@ -248,3 +248,13 @@ function onAdvancedAddOk(){
 	});
 
 }
+function onDrawCell(e) {
+	switch (e.field) {
+	case "isShare":
+		e.cellHtml = e.value == 1 ? "是" : "否";
+		break;
+	default:
+		break;
+	}
+
+}

@@ -520,6 +520,7 @@ function selectItem(callback)
 		}
 	});
 }
+var techDeductTypeName=null;
 function addItem()
 {
 	selectItem(function(data)
@@ -535,6 +536,7 @@ function addItem()
 			showMsg("套餐已经包含此工时!","W");
 			return;
 		}
+
 		var packageItem = {
 			itemId:item.id,
 			itemCode:item.code,
@@ -545,7 +547,10 @@ function addItem()
 			serviceTypeId:item.serviceTypeId,
 			itemKindName:item.itemKindName,
 			unitPrice:item.unitPrice,
-			amt:item.amt
+			amt:item.amt,
+			techDeductType:item.techDeductType,
+			techDeductTypeName:techDeductTypeName,
+			techDeductValue:item.techDeductValue
 		};
 		rightItemGrid.addRow(packageItem);
 	});
@@ -559,6 +564,12 @@ function removeItem()
 	}
 }
 function onDrawCell(e){
+	var hash = new Array("按原价比例(%)", "按折后价比例(%)", "按产值比例(%)","固定金额(元)");
+	switch (e.field) {
+	case "techDeductType":
+		e.cellHtml = hash[e.value - 1];
+		break;
+	}
 	if (e.field == "serviceTypeId") {
         if (servieTypeHash && servieTypeHash[e.value]) {
             e.cellHtml = servieTypeHash[e.value].name;
@@ -567,5 +578,5 @@ function onDrawCell(e){
         if (typeHash && typeHash[e.value]) {
             e.cellHtml = typeHash[e.value].name;
         }
-    }
+    }	
 }

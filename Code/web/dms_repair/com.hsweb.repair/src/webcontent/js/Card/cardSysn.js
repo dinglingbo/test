@@ -123,6 +123,12 @@ function setData(data) {
 
 	// 如果是点击编辑类型页面
 	if (json.id != null) {
+		
+		if(json.periodValidity==-1){
+			json.periodValidity = "";
+			input.disable();
+			set.setValue(true);
+		}
 		form.setData(json);
 		form.setChanged(false);
 	}

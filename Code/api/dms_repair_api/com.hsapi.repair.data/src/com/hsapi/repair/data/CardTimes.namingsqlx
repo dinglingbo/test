@@ -7,8 +7,8 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-   <select id="queryCardTimesList" parameterClass="java.lang.String" resultClass="java.util.HashMap">
-        SELECT
+   <select id="queryCardTimesList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
          a.id id,
          c.full_name fullName,
          c.mobile mobile,
@@ -16,10 +16,30 @@
          a.record_date recordData,
          a.sell_amt sellAmt,
          a.status status,
-         a.past_date pastDate
+         a.past_date pastDate,
+         b.bala_times balaTimes,
+         b.total_times totalTimes,
+         b.can_use_times canUseTimes
          FROM rps_card_times a 
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+         INNER JOIN rps_card_times_detail b ON(a.id = b.main_id) 
          WHERE  a.orgid = #orgid#
+         <dynamic>
+         <isNotEmpty prepend="and" property="guestName">  
+	            (a.guest_name like '%$guestName$%')
+	     </isNotEmpty>
+	            
+	     <isNotEmpty prepend="and" property="cardName">  
+	            (a.card_name like '%$cardName$%')
+	    </isNotEmpty>
+    	<isNotEmpty prepend="and" property="startDate"> 
+                (date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
+         </isNotEmpty>
+         <isNotEmpty prepend="and" property="endDate">
+                (date_format(a.record_date,'%Y-%m-%d') &lt;= #endDate#)
+         </isNotEmpty>
+        </dynamic>
+ 
 	</select>
 <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">
 	
@@ -29,37 +49,8 @@
        b.prdt_name prdtName,
        b.bala_times balaTimes
    FROM  rps_card_times_detail b WHERE  b.card_id = #Id#
-
+  
  
 </select>
 
-<select id="queryCardTimes" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-	
-	SELECT
-         a.id id,
-         c.full_name fullName,
-         c.mobile mobile,
-         a.card_name cardName,
-         a.record_date recordData,
-         a.sell_amt sellAmt,
-         a.status status,
-         a.past_date pastDate
-         FROM rps_card_times a 
-         INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
-         WHERE a.orgid = #orgid#
-         
-         <dynamic>
-    		<isNotEmpty prepend="and" property="isDisabled">  
-                (a.is_disabled = #isDisabled#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="applyCarBrandId">  
-                (a.apply_carbrand_id = #applyCarBrandId#)
-            </isNotEmpty>
-    		
-        </dynamic>
- 
-</select>
-
-
-	
 </sqlMap>

@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/4/27.
  */
-var gridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
-var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp?";
+var queryFormUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
+var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp?token="+token;
 //var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
 var grid = null;
 var queryForm = null;
@@ -16,19 +16,19 @@ $(document).ready(function (v)
     sdate.setMonth(date.getMonth()-3);
    
     var startDate = mini.get("startDate");
-    startDate.setValue(sdate);
+    //startDate.setValue(sdate);
     
     var endDate = mini.get("endDate");
     endDate.setValue(date);
     
-    sdate = startDate.getValue();
-    date =  endDate.getValue();
-    var params = {
+    
+    var query = {
     		startDate:sdate,
     		endDate:date
     }; 
-    grid.setUrl(gridUrl);
+    grid.setUrl(queryFormUrl);
     grid.load({
+    	query:query,
     	token : token
     });
        
@@ -64,8 +64,8 @@ function searchOne() {
     
  
 //增加次卡套餐
- var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
- function dealtWithCard(){	
+var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
+function dealtWithCard(){	
  	nui.open({
  		url : addcardTimeUrl,
  		title : "次卡办理",
@@ -101,11 +101,12 @@ function refresh(){
 
   function onDrawCell(e)
   {
+	  var row = grid.getSelected();
 	
     switch (e.field)
     {
         
-        case "sellAmt":
+    case "sellAmt":
         e.cellHtml = "￥"+e.value;
         break;
     case "ser":
@@ -115,41 +116,20 @@ function refresh(){
     /*e.cellHtml = e.value==1?"禁用":"启用";*/
     	e.cellHtml = hash[e.value];
         break; 
+        
     default:
         break;
     }
 }
 
  //快速查询
- var queryFormUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
+ 
  function onSearch()
-  {
-	var params = queryForm.getData();
-	params = nui.clone(params);
-	var json = nui.encode({
-		 params:params,
-		 token : token	 
-	 });
-	$.ajax({
-	   url:getUrl,
-	  type:'POST',
-	  data:json,
-	  cache:false,
-	  contentType:'text/json',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-	  success:function(text){
-	  
-	    var obj = nui.decode(text);
-	    
-	    form.setData(obj.cardTimes);
-	    
-	    if(obj.cardTimes.periodValidity == -1){
-	    	nui.get("periodValidity").setValue("永久有效") ;
-	    }
-	    form.setChanged(false);
-	    form1.setData(obj.cardTimesDe);    
-	    form1.setChanged(false);
-	  }
-  });
-  	
-  }
+ {
+	var query = queryForm.getData();
+	grid.load({
+    	query:query,
+    	token : token
+    });
+ }
   

@@ -39,6 +39,6 @@ function saveAll(){
 }
 function doSearch(){
 	grid = nui.get("grid");
-	grid.setUrl("com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
-	grid.load();
+	grid.setUrl("http://127.0.0.1:8080/default/com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
+	grid.load({token:token});
 }

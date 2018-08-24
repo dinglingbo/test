@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.8"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.9"></script>
 
 </head>
 
@@ -156,6 +156,9 @@
 									<input name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 									<label>是否禁用：</label>
 									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+									<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									<label>是否允许优惠：</label>
+									<input name="isCanRate" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 								</td>
 							</tr>
 							<tr>
@@ -287,7 +290,7 @@
 							<input class="nui-textbox" name="salesDeductValue" id="salesDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
 					</tr>
-					<tr style="height:5px;">
+				<!-- 	<tr style="height:5px;">
 						<td colspan="3">
 							
 						</td>
@@ -313,7 +316,7 @@
 						<td>
 							<input class="nui-textbox" name="techDeductValue" id="techDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
-					</tr>
+					</tr> -->
 					<tr style="height:5px;">
 						<td colspan="3">
 							

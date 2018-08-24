@@ -4,13 +4,14 @@
 
 var baseUrl = apiPath + sysApi + "/";
 var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
-//var fromUrl = baseUrl + "com.hsapi.system.employee.employeeMgr.employeeQuerys.biz.ext";
+/var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 var sex;
 var isservice;
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
 var sexlist = [{id: 1, name: '男'}, {id: 0, name: '女'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 var basicInfoForm = null;
+var form1=null;
 var workList=[];
 var memberLever=[];
 $(document).ready(function(v) {
@@ -22,6 +23,7 @@ $(document).ready(function(v) {
     basicInfoForm = new nui.Form('#basicInfoForm');
     initTearm();
     initMemberLever();
+    from1=basicInfoForm.getData();
 });
 
 function onempid(e) {
@@ -33,8 +35,13 @@ function onempid(e) {
     }
 }
 function SetInitData(data) {
-	if (!data.empid) return;
-	basicInfoForm.setData(data);   
+	if (!data.empid) return; 
+	basicInfoForm.setData(data);
+	var isArtificer = nui.get("isArtificer").value;
+	   if(isArtificer == true){
+	        $("#memberLevelId").show();
+	   }
+
     nui.ajax({
         url:fromUrl + "?params/empid=" + data.empid,
         type:"post",        
@@ -160,7 +167,7 @@ function initTearm(){
 	        {
 	        	
 	        	var TearmObj=data.list;
-	        	var work=nui.get('tenantId');
+	        	var work=nui.get('memberLevelId');
 	        	for(var i=0;i<TearmObj.length;i++){
 	        		var data ={
 	        				id:TearmObj[i].id,
@@ -168,7 +175,6 @@ function initTearm(){
 	        		}
 	        		workList.push(data);
 	        		work.setData(workList);
-	        		console.log(workList);
 	        	}
 	        },
 	        error:function(jqXHR, textStatus, errorThrown){
@@ -188,7 +194,7 @@ function initMemberLever(){
 	        success:function(data)
 	        {
 	        	var obj=data.list;
-	        	var lever=nui.get('artificerLevel');
+	        	var lever=nui.get('memberGroupId');
 	        	for(var i=0;i<obj.length;i++){
 	        		var data ={
 	        				id:obj[i].id,

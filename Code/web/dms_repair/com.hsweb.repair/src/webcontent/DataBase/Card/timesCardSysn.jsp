@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.6"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
 </head>
 <body>
 	<fieldset
@@ -108,7 +108,7 @@
 						showPager="false" sortMode="client" allowCellEdit="true"
 						allowCellSelect="true" multiSelect="true"
 						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell"
-						onvaluechanged = "onValueChanged"				
+						onvaluechanged = "onValueChanged"			
 						>
 						<div property="columns">
 							<div type="checkcolumn"></div>

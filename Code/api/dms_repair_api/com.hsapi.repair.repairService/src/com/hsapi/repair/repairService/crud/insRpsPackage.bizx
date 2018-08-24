@@ -160,7 +160,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getPrimaryKey" displayName="getPrimaryKey" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>assign20</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link32</targetConnections>
@@ -702,10 +702,6 @@
     <location x="-172" y="151"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">pkg/id</process:from>
-      <process:to type="query">pkgId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="-174" y="187"/>
@@ -1183,7 +1179,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="23" y="233"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
@@ -1204,6 +1200,25 @@
     <location x="-26" y="268"/>
     <figSize height="17" width="125"/>
     <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值20" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign20</sourceNode>
+      <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="-35" y="151"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign20label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/id</process:from>
+      <process:to type="query">pkgId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
+    <location x="-40" y="187"/>
+    <figSize height="17" width="39"/>
+    <node>assign20</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -21,7 +21,7 @@ function add() {
 		url : sysnUrl,
 		title : "新增记录",
 		width : 650,
-		height : 520,
+		height : 480,
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var data = {
@@ -46,7 +46,7 @@ function edit() {
 			url : sysnUrl,
 			title : "编辑数据",
 			width : 650,
-			height : 520,
+			height : 480,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var data = row;

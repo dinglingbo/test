@@ -12,13 +12,11 @@
     <title>
       会员卡录入
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.0.9"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.0"></script>
   </head>
   <body >
-    <fieldset style="border:solid 1px #aaa;position:relative;margin:5px 2px 0px 2px;">
-      <legend>
-        会员卡
-      </legend>
+
+      <div class="nui-fit">
       <div id="dataform1" style="padding-top:5px;" >
         <!-- hidden域 -->
         <input class="nui-hidden" id="id"/>
@@ -145,7 +143,7 @@
             </td>
           </tr>
           <tr>
-          	<td style="text-align:center;" colspan="4">
+          	<td  colspan="5" align="center">
           		<a class="nui-button" iconCls="icon-save" onclick="onOk()">
                 保存
                 </a>
@@ -154,6 +152,7 @@
           </tr>
         </table>
       </div>
-    </fieldset>
+      </div>
+
   </body>
 </html>

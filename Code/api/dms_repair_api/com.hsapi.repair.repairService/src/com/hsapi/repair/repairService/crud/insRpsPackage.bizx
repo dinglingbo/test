@@ -1059,18 +1059,6 @@
     <location x="675" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">sumSubtotal</process:from>
-      <process:to type="query">pkg/subtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">sumAmt</process:from>
-      <process:to type="query">pkg/amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">sumDiscountAmt</process:from>
-      <process:to type="query">pkg/discountAmt</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
     <location x="670" y="188"/>

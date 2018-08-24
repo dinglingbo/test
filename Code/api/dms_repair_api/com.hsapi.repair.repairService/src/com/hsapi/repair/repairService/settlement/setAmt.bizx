@@ -277,7 +277,7 @@
       <process:to type="query">settleMent/allowanceRemark</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">pkgAmt+itemAmt+partAmt</process:from>
+      <process:from type="expression" pattern="reference">pkgSubAmt+itemSubAmt+partSubAmt</process:from>
       <process:to type="query">settleMent/mtAmt</process:to>
     </process:copy>
     <process:copy>

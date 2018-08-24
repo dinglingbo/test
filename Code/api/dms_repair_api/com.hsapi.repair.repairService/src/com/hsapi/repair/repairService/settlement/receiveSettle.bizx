@@ -961,6 +961,10 @@
       <process:to type="query">totalPrefRate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">settlement/mtAmt</process:from>
+      <process:to type="query">mtAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">totalPrefAmt</process:from>
       <process:to type="query">settlement/totalPrefAmt</process:to>
     </process:copy>
@@ -983,6 +987,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">allowanceAmt</process:from>
       <process:to type="query">settlement/allowanceAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">mtAmt-allowanceAmt</process:from>
+      <process:to type="query">settlement/netinAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
@@ -1730,6 +1738,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="contentStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="strTemp" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
+    <process:variable description="工单金额 " historyStateLocation="client" isArray="false" name="mtAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

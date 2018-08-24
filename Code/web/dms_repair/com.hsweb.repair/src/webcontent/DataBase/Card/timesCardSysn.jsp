@@ -52,7 +52,7 @@
 						value="0" onvalidation="updateError()" id="x" /></td>
 					<td class="form_label" align="right">销售提成值:</td>
 					<td colspan="1" width="120px"><input class="nui-textbox"
-						name="salesDeductValue" requiredErrorText="元" vtype="float"
+						name="salesDeductValue" requiredErrorText="元" vtype="range:0,1000
 						width="60%" /> <span id="y">&nbsp;%</span></td>
 				</tr>
 				<tr>

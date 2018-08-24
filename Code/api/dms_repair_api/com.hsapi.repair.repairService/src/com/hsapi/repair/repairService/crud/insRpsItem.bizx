@@ -174,6 +174,10 @@
       <process:from type="query" pattern="reference">subtotal</process:from>
       <process:to type="query">insItem/subtotal</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
+      <process:to type="query">insItem/serviceTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="299" y="181"/>
@@ -565,7 +569,7 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign14" name="赋值14" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>assign15</targetNode>

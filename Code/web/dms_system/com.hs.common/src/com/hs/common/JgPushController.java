@@ -139,6 +139,7 @@ public class JgPushController {
 	               .addPlatformNotification(IosNotification.newBuilder()
 	                        .addExtra("type",tile)
 	                        .setAlert(message)
+                            .setSound("happy")
 	                        .build())
 	                .build())
                 .setOptions(Options.newBuilder()

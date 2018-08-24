@@ -200,6 +200,10 @@
       <process:from type="query" pattern="reference">subtotal</process:from>
       <process:to type="query">insPart/subtotal</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
+      <process:to type="query">insPart/serviceTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="179" y="179"/>

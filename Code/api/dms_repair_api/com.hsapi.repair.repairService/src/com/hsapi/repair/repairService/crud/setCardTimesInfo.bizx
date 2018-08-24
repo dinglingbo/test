@@ -197,14 +197,6 @@
     <location x="526" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">data[1]</process:from>
-      <process:to type="query">card</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">card/canUseTimes</process:from>
-      <process:to type="query">canUseTimes</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="524" y="186"/>
@@ -275,7 +267,7 @@
     <figSize height="17" width="32"/>
     <node>end2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign4</targetNode>
@@ -294,6 +286,14 @@
     <location x="456" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">data[1]</process:from>
+      <process:to type="query">card</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/canUseTimes</process:from>
+      <process:to type="query">canUseTimes</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="454" y="186"/>

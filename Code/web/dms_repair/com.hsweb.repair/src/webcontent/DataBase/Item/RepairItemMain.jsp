@@ -57,7 +57,7 @@
 					<input class="nui-textbox" id="search-name" name="name" />
 					<span class="separator"></span>
 					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="onClear()">清空</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
 				</td>
 			</tr>
 		</table>

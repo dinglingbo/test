@@ -12,7 +12,7 @@
 <title>通用提成</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/repair/cfg/js/tongyongticheng.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/cfg/js/tongyongticheng.js?v=1.0.1" type="text/javascript"></script>
 </head>
 <style type="text/css">
     body {

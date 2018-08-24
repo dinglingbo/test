@@ -11,7 +11,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.6" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.5" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
@@ -43,7 +43,7 @@
                     <td><input class="mini-textbox" id="tel" name="tel" required="true" onvalidation="onMobileValidation" /></td>
                     <td>是否服务技师：</td>
                     <td><div  class="nui-checkbox" id="isArtificer" name="isArtificer" value="0" trueValue="1" falseValue="0" onvaluechanged="onChanged"></div>
-                    <input class="nui-combobox" id="artificerLevel" name="artificerLevel" required="false" style="width: 107px;display: none;" emptytext="选择技师等级"/>
+                    <input class="nui-combobox" id="artificerLevel" name="artificerLevel" required="false" style="width: 107px;display: none;" emptytext="选择技师等级" textField="name" valueField="id"/>
                           <!--<div id="isArtificer" name="isArtificer" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical"
                           textField="name" valueField="id" value="1"  width="100%"
                           url="" > -->

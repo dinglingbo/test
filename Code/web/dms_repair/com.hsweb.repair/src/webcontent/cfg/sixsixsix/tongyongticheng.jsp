@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-
+<%@ include file="/common/sysCommon.jsp"%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -9,8 +9,8 @@
 -->
 <head>
 <title>通用提成</title>
-	<%@ include file="/common/sysCommon.jsp"%>	
-    <script src="<%=webPath + contextPath%>/repair/cfg/js/tongyongticheng.js?v=1.0.4" ></script>
+	
+    <script src="<%=webPath + contextPath%>/repair/cfg/js/tongyongticheng.js?v=1.0.8" ></script>
 </head>
 <style type="text/css">
     body {
@@ -48,26 +48,26 @@
         </table>
     </div>
     <div class="nui-fit">
-	    <div id="grid" class="nui-datagrid" datafield="list" showModified="false" allowcelledit="true" showVGridLines="false" allowcellselect="true" showColumns = "false"multiselect="false" showpager="false" url="" allowcellwrap="true" style="width:100%;height:100%;">
+	    <div id="grid" class="nui-datagrid"oncellcommitedit="onCellCommitEdit" datafield="list" showModified="false" allowcelledit="true" showVGridLines="false" allowcellselect="true" showColumns = "false"multiselect="false" showpager="false" url="" allowcellwrap="true" style="width:100%;height:100%;">
 	            <div property="columns">
 	                <div field="name" name="name" headeralign="center" align="center"></div>
 	                <div field="salesDeductType" id="salesDeductType" name="salesDeductType" headeralign="center" align="right" renderer="ontypeRenderer">
 	                	<input class="nui-combobox" property="editor" data="type">
 	                </div>
 	                <div field="salesDeductValue" id="salesDeductValue" name="salesDeductValue" headeralign="center" align="center" >
-	                	<input class="nui-textbox" property="editor">
+	                	<input class="nui-textbox" property="editor" vtype="float;range:0,100;">
 	                </div>
 	                <div field="techDeductType" id="techDeductType" name="techDeductType" headeralign="center" align="right" renderer="ontypeRenderer">
 	                	<input class="nui-combobox" property="editor" data="type">
 	                </div>
 	                <div field="techDeductValue" id="techDeductValue" name="techDeductValue" headeralign="center" align="center" >
-	                	<input class="nui-textbox" property="editor">
+	                	<input class="nui-textbox" property="editor"vtype="float;range:0,100;">
 	                </div>
 	                <div field="advisorDeductType" id="advisorDeductType" name="advisorDeductType" headeralign="center" align="right" renderer="ontypeRenderer">
 	                	<input class="nui-combobox" property="editor" data="type">
 	                </div>
 	                <div field="advisorDeductValue" id="advisorDeductValue" name="advisorDeductValue" headeralign="center" align="center">
-	                	<input class="nui-textbox" property="editor">
+	                	<input class="nui-textbox" property="editor" vtype="float;range:0,100;">
 	                </div>
 	            </div>
 	    </div>

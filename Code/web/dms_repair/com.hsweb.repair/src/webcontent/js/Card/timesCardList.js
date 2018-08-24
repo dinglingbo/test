@@ -18,7 +18,7 @@ $(document).ready(function(v) {
 function add() {
 	nui.open({
 		url : sysnUrl,
-		title : "新增记录",
+		title : "新增计次卡",
 		width : 890,
 		height : 580,
 		onload : function() {
@@ -43,7 +43,7 @@ function edit() {
 	if (row) {
 		nui.open({
 			url : sysnUrl,
-			title : "编辑数据",
+			title : "修改计次卡",
 			width : 900,
 			height : 580,
 			onload : function() {

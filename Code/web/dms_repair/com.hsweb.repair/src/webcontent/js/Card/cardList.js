@@ -19,7 +19,7 @@ $(document).ready(function(v) {
 function add() {
 	nui.open({
 		url : sysnUrl,
-		title : "新增记录",
+		title : "新增储值卡",
 		width : 650,
 		height : 480,
 		onload : function() {
@@ -44,7 +44,7 @@ function edit() {
 	if (row) {
 		nui.open({
 			url : sysnUrl,
-			title : "编辑数据",
+			title : "修改储值卡",
 			width : 650,
 			height : 480,
 			onload : function() {

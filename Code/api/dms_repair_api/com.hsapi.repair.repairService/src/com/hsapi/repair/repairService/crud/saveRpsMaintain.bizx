@@ -7,9 +7,9 @@
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign6</targetNode>
+      <targetNode>assign14</targetNode>
     </sourceConnections>
-    <location x="-514" y="149"/>
+    <location x="-555" y="149"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -26,7 +26,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-512" y="185"/>
+    <location x="-553" y="185"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -414,6 +414,7 @@
     <targetConnections>link29</targetConnections>
     <targetConnections>link30</targetConnections>
     <targetConnections>link33</targetConnections>
+    <targetConnections>link36</targetConnections>
     <location x="-64" y="330"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -527,30 +528,10 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link20</targetConnections>
+    <targetConnections>link34</targetConnections>
     <location x="-422" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/guestId</process:from>
-      <process:to type="query">guestId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/carId</process:from>
-      <process:to type="query">carId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/carNo</process:from>
-      <process:to type="query">carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/carVin</process:from>
-      <process:to type="query">carVin</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/mtAdvisorId</process:from>
-      <process:to type="query">mtAdvisorId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="-424" y="186"/>
@@ -724,6 +705,78 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="连接线" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>assign15</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">serviceTypeId</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="-489" y="149"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/guestId</process:from>
+      <process:to type="query">guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carId</process:from>
+      <process:to type="query">carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carNo</process:from>
+      <process:to type="query">carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carVin</process:from>
+      <process:to type="query">carVin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/mtAdvisorId</process:from>
+      <process:to type="query">mtAdvisorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/serviceTypeId</process:from>
+      <process:to type="query">serviceTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="-494" y="185"/>
+    <figSize height="17" width="39"/>
+    <node>assign14</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link35</targetConnections>
+    <location x="-489" y="239"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">业务类型不能为空</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="-494" y="275"/>
+    <figSize height="17" width="39"/>
+    <node>assign15</node>
+  </nodes>
   <topRuler/>
   <leftRuler>
     <guides position="49" horizontal="true"/>
@@ -739,6 +792,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="carNo" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="carVin" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mtAdvisorId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="serviceTypeId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>

@@ -18,16 +18,16 @@ var typeHash = {};
 var typeList = [];
 var hidePercent = null;
 var salesDeductTypeEl = null;
-var techDeductTypeEl = null;
+//var techDeductTypeEl = null;
 var advisorDeductTypeEl = null;
 var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
 $(document).ready(function (v)
 {
 	salesDeductTypeEl = nui.get("salesDeductType");
-	techDeductTypeEl = nui.get("techDeductType");
+	//techDeductTypeEl = nui.get("techDeductType");
 	advisorDeductTypeEl = nui.get("advisorDeductType");
 	salesDeductTypeEl.setData(typeList);
-	techDeductTypeEl.setData(typeList);
+	//techDeductTypeEl.setData(typeList);
 	advisorDeductTypeEl.setData(typeList);
 	leftGrid = nui.get("leftGrid"); 
 	leftGrid.setUrl(leftGridUrl);
@@ -100,7 +100,7 @@ function onRateValidation(e){
 			}
 		}
 	}else if(el == "techDeductValue"){
-		value = techDeductTypeEl.getValue();
+		//value = techDeductTypeEl.getValue();
 		if(value == 4){
 			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
 			if (!reg.test(e.value)) {

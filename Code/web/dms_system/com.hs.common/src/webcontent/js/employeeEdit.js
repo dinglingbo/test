@@ -3,8 +3,9 @@
  */
 
 var baseUrl = apiPath + sysApi + "/";
+var repairUrl = apiPath + repairApi + "/";
 var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
-/var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 var sex;
 var isservice;
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
@@ -41,26 +42,26 @@ function SetInitData(data) {
 	   if(isArtificer == true){
 	        $("#memberLevelId").show();
 	   }
-
-    nui.ajax({
-        url:fromUrl + "?params/empid=" + data.empid,
-        type:"post",        
-        success:function(data)
-        {
-            nui.unmask();
-            data = data || {};
-            
-            if (data.length <= 0) return;
-            
-        	var form = new nui.Form("#basicInfoForm");
-            form.setData(data.rs[0]);    
-            nui.get("newand").setVisible(false);
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });	
+	nui.get("newand").setVisible(false);
+//    nui.ajax({
+//        url:fromUrl + "?params/empid=" + data.empid,
+//        type:"post",        
+//        success:function(data)
+//        {
+//            nui.unmask();
+//            data = data || {};
+//            
+//            if (data.length <= 0) return;
+//            
+//        	var form = new nui.Form("#basicInfoForm");
+//            form.setData(data.rs[0]);    
+//            nui.get("newand").setVisible(false);
+//        },
+//        error:function(jqXHR, textStatus, errorThrown){
+//            //  nui.alert(jqXHR.responseText);
+//            console.log(jqXHR.responseText);
+//        }
+//    });	
 }
 
 var requiredField = {
@@ -108,8 +109,8 @@ function save(action) {
                 	 closeWindow("cal");
                 }
             }else{
-               // basicInfoForm.setData([]); 
-                nui.get("name").focus();
+                basicInfoForm.setData([]); 
+//                nui.get("name").focus();
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -157,7 +158,7 @@ function onMobileValidation(e)
 //获取工作组
 function initTearm(){
 	   nui.ajax({
-	        url:baseUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
+	        url:repairUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
 	        type:"post",
 	        async:false,
 	        data:JSON.stringify({
@@ -185,7 +186,7 @@ function initTearm(){
 //获取技师等级
 function initMemberLever(){
 	 nui.ajax({
-	        url:baseUrl +"com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext",
+	        url:repairUrl +"com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext",
 	        type:"post",
 	        async:false,
 	        data:JSON.stringify({

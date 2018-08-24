@@ -2,9 +2,8 @@ var param = null;
 var grid = null;
 $(document).ready(function (v)
 {
-	grid = nui.get("grid");
-	grid.setUrl("com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
-	grid.load();
+	doSearch();
+
 });
 
 function ontypeRenderer(e) {
@@ -37,4 +36,9 @@ function saveAll(){
         	grid.load();
         }
     });
+}
+function doSearch(){
+	grid = nui.get("grid");
+	grid.setUrl("com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
+	grid.load();
 }

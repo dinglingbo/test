@@ -99,9 +99,16 @@ function refresh(){
       
   var hash = new Array("草稿","已提交","已结算");
 
+  //剩余次数
+  var balaTimes = null;
+  //总次数
+  var totalTimes = null;
+  //剩余可使用次数
+  var canUseTimes = null;
+  var id = null;
   function onDrawCell(e)
   {
-	  var row = grid.getSelected();
+	  var  d = totalTimes;
 	
     switch (e.field)
     {
@@ -109,14 +116,16 @@ function refresh(){
     case "sellAmt":
         e.cellHtml = "￥"+e.value;
         break;
-    case "ser":
-        e.cellHtml = "￥";
-        break;
     case "status":
     /*e.cellHtml = e.value==1?"禁用":"启用";*/
     	e.cellHtml = hash[e.value];
         break; 
-        
+  /*  case "balaTimes":
+    	e.cellHtml = searchDetial(id);
+    	break;
+    case "id":
+    	id = e.value;
+    	break;*/
     default:
         break;
     }
@@ -131,5 +140,38 @@ function refresh(){
     	query:query,
     	token : token
     });
+ }
+ 
+ //查明细
+ var searchDetialUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
+ function searchDetial(id){
+	 
+	 var infor = null;
+	 var json = nui.encode({
+		 Id:id,
+		 token:token
+	 });
+	 nui.ajax({
+	        url : searchDetialUrl,
+	        type : 'POST',
+	        data : json,
+	        cache : false,
+	        contentType : 'text/json',
+	        success : function(text) 
+	        {
+	            var object = nui.decode(text);
+	            var cardTimeDe = object.cardTimDe;
+	            if(cardTimeDe != null)
+	            {
+	            	for(var i = 0;i<cardTimeDe.length;i++)
+	            	{
+	            		infor = infor + cardTimeDe[i].prdtName + "总次数【"+ cardTimeDe[i].balaTimes+"】,剩余次数【"+cardTimeDe[i].balaTimes+"】"
+	            	}
+	            }
+	        }
+	 });
+	 
+	 return infor;
+	
  }
   

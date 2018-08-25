@@ -38,11 +38,11 @@
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售价格:</td>
-					<td colspan="1"><input class="nui-textbox" name="sellAmt"
-						vtype="float" /></td>
+					<td colspan="1"><input class="nui-textbox" name="sellAmt" id="sellAmt"
+						vtype="float"  readonly="readonly" value="0"/></td>
 					<td class="form_label" align="right">总价值:</td>
 					<td colspan="2"><input class="nui-textbox" name="totalAmt" id = "totalAmt"
-						vtype="float" readonly="readonly"/></td>
+						vtype="float" readonly="readonly" value="0"/></td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售提成方式:</td>
@@ -111,7 +111,7 @@
 						onvaluechanged = "onValueChanged"			
 						>
 						<div property="columns">
-							<div type="checkcolumn"></div>
+							<!-- <div type="checkcolumn"></div> -->
 							<div field="prdtId" class="nui-hidden" allowSort="true"
 								align="left" headerAlign="center" width="" visible="false">
 								项目ID <input class="nui-textbox" name="times" property="editor" />

@@ -40,14 +40,13 @@
 					<td colspan="1" style="width: 25%"><input class="nui-textbox"
 						name="name" /> <input class="nui-hidden" name="id"
 						readonly="readonly" /></td>
-
-
-					<td class="form_label" style="width: 20%" align="right">适用范围:
-					</td>
-					<td colspan="2" style="width: 30%"><input class="nui-combobox"
-						data="[{value:'0',text:'本店',},{value:'1',text:'连锁'}]"
-						textField="text" valueField="value" name="useRange" value="0" />
-					</td>
+									
+					<td class="form_label" style="" align="right">有效期（月）:</td>
+					<td colspan="1"><input class="nui-textbox"
+						name="periodValidity" vtype="range:-1,1000" id="inputMonth"
+						width="120%" /></td>
+					<td style="padding-left: 23px;"><input  type="checkbox" id="setMonth" class="mini-checkbox"
+						onclick="changed()"> <span>永久有效</span></td>
 				</tr>
 
 				<tr>
@@ -57,17 +56,6 @@
 					<td class="form_label" align="right">赠送金额:</td>
 					<td colspan="2"><input class="nui-textbox" name="giveAmt"
 						onvalidation="vaild2" /></td>
-				</tr>
-				<tr>
-				
-					<td class="form_label" style="" align="right">有效期（月）:</td>
-					<td colspan="1"><input class="nui-textbox"
-						name="periodValidity" vtype="range:-1,1000" id="inputMonth"
-						width="80%" /></td>
-					<td style="padding-left: 57px;"><input  type="checkbox" id="setMonth" class="mini-checkbox"
-						onclick="changed()"> <span>永久有效</span></td>
-
-					<td class="form_label">
 				</tr>
 				<tr>
 					<td class="form_label" align="right" colspan="1">销售提成方式:</td>

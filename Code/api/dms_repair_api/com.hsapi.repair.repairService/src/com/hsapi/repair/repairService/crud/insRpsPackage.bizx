@@ -221,6 +221,10 @@
       <process:to type="query">item/serviceTypeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">pkg/rate</process:from>
+      <process:to type="query">item/rate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">item/itemTime</process:from>
       <process:to type="query">itemTime</process:to>
     </process:copy>
@@ -348,6 +352,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">pkg/serviceTypeId</process:from>
       <process:to type="query">part/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/rate</process:from>
+      <process:to type="query">part/rate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">part/qty</process:from>

@@ -165,6 +165,7 @@
 			a.sell_price as sellPrice,
 			a.old_amt as oldAmt,
 			a.sell_amt as sellAmt,
+			a.rate as rate,
 			a.is_finish as isFinish,
 			a.recorder as recorder,
 			a.record_date as recordDate

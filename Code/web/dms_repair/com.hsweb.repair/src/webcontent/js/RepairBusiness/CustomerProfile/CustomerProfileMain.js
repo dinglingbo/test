@@ -228,7 +228,7 @@ function toUp(callback){
 	if(row){
 		nui.open({
 			url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 600, height: 500,
+			title: "充值会员卡", width: 600, height: 460,
 			onload: function(){
 				var iframe=this.getIFrameEl();
 				var params={

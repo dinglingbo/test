@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/4/27.
  */
+//var queryFormUrl = apiPath + repairApi + "/ com.hsapi.repair.baseData.cardTimes.test.biz.ext";
 var queryFormUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
 var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp?token="+token;
 //var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
@@ -120,10 +121,10 @@ function refresh(){
     /*e.cellHtml = e.value==1?"禁用":"启用";*/
     	e.cellHtml = hash[e.value];
         break; 
-  /*  case "balaTimes":
-    	e.cellHtml = searchDetial(id);
-    	break;
-    case "id":
+    /*case "pastDate":
+    	e.cellHtml = (e.value == -1 ? "永久有效":e.value);
+    	break;*/
+  /*  case "id":
     	id = e.value;
     	break;*/
     default:

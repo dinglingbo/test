@@ -14,7 +14,7 @@
     <title>
                 计次卡详细信息
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.2"></script>
 
   </head>
   <body>

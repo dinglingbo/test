@@ -24,14 +24,11 @@ $(document).ready(function(v) {
     		e.cancel = true;
     	}
     	var row = timesCardDetail.getSelected();
-    	if( (row.pack && row.pack == "PACK") || (row.items && row.items == "ITEMS"))
+    	if( row.prdtType && (row.prdtType == "2"  || row.prdtType == "1"))
     	{
     		switch (e.field)
     		{
     		   case "oldPrice":
-    			   e.cancel = true;
-    			   break;
-    		   case "sellPrice":
     			   e.cancel = true;
     			   break;
     		   case "qty":
@@ -50,16 +47,17 @@ function onValueChangedTimes(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if((row.pack && row.pack == "PACK") || (row.items && row.items == "ITEMS")){
+	if(row.prdtType && (row.prdtType == "2"  || row.prdtType == "1"))
+	{
 		sellAmt = row.sellPrice*e.value;
+		oldAmt = row.oldPrice*e.value;
 		data = {
-			sellAmt:sellAmt
+			sellAmt:sellAmt,
+			oldAmt:oldAmt
 		   };
 		timesCardDetail.updateRow(row,data);	
 	}
 }
-
-
 
 function onValueChangedQty(e){
 	oldAmt = null;
@@ -92,14 +90,27 @@ function onValueChangedOldPrice(e){
 function onValueChangedSellPrice(e){
 	oldAmt = null;
 	sellAmt = null;
-	var row = timesCardDetail.getSelected();	
-	oldAmt = row.qty*row.oldPrice;			
-	sellAmt = e.value*row.qty;			
-	data = {
-		oldAmt:oldAmt, 
-		sellAmt:sellAmt
-	   };
-    timesCardDetail.updateRow(row,data);
+	var row = timesCardDetail.getSelected();
+	
+	if(row.prdtType && (row.prdtType == "2"  || row.prdtType == "1"))
+	{
+		sellAmt = row.times*e.value;
+		oldAmt = row.oldPrice*row.times;
+		data = {
+			sellAmt:sellAmt,
+			oldAmt:oldAmt
+		   };
+		timesCardDetail.updateRow(row,data);	
+	}else
+	{
+		oldAmt = row.qty*row.oldPrice;			
+		sellAmt = e.value*row.qty;			
+		data = {
+			oldAmt:oldAmt, 
+			sellAmt:sellAmt
+		   };
+	    timesCardDetail.updateRow(row,data);
+	 }
 }
 
 /*function onDrawSummaryCell(e) {
@@ -119,15 +130,29 @@ function onValueChangedSellPrice(e){
 */
 function onDrawSummaryCell(e){ 
 	  var rows = e.data;
-	  var sum = null;
-	  if(e.field == "sellAmt") 
+	  var sumSell = null;
+	  var sumOld = null;
+	  if(e.field == "sellAmt" || e.field == "oldAmt") 
 	  {   
 		  for (var i = 0; i < rows.length; i++)
 		  {
-		    sum += parseFloat(rows[i].sellAmt);
-		   }
-	  }  
-	nui.get("totalAmt").setValue(sum);  
+			  sumSell += parseFloat(rows[i].sellAmt);
+			  sumOld  += parseFloat(rows[i].oldAmt);
+		  }
+	  } 
+	  if(sumSell && sumSell>=0)
+	  {
+		  nui.get("sellAmt").setValue(sumSell); 
+	  }else{
+		  nui.get("sellAmt").setValue("0");
+	  }
+	  if(sumOld && sumOld>=0)
+	  {
+		  nui.get("totalAmt").setValue(sumOld); 
+	  }else{
+		  nui.get("totalAmt").setValue("0");
+	  }
+	  
  }
 
 var requiredField = {
@@ -189,7 +214,8 @@ function setData(data) {
 	// 跨页面传递的数据对象，克隆后才可以安全使用
 	var json = nui.clone(data);
 	// 如果是点击编辑类型页面
-	if (json.id != null) {
+	if (json.id != null)
+	{
 		
 		if(json.periodValidity==-1){
 			json.periodValidity = "";
@@ -345,7 +371,6 @@ function addDetail() {
 				var data = iframe.contentWindow.getData();
 				data = data || {};
 				var part = data.part;
-				var partf = "PACK";
                 var times = 1;
 				if (part) {
 					var prdtId = part.id;
@@ -407,7 +432,6 @@ function selectPackage() {
 					var oldPrice = part.total;
 					var sellPrice = part.amount;
 					var prdtName = part.name;
-					var pack = "PACK";
 					var prdtType = 1;
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
@@ -420,7 +444,6 @@ function selectPackage() {
 						oldAmt:oldPrice,
 						sellAmt:sellPrice,
 						qty:qty,
-						pack :pack
 					};
 					grid.addRow(newRow);
 				}
@@ -465,7 +488,6 @@ function selectItem(callback) {
 					var itemTime = part.itemTime;
 					var amt = part.amt;
 					var times = 1;
-					var items = "ITEMS";
 					var grid = nui.get("timesCardDetail");
 					var newRow = {
 						prdtId : prdtId,
@@ -478,8 +500,6 @@ function selectItem(callback) {
 						sellPrice:amt,
 						oldAmt:amt,
 						sellAmt:amt,
-						items:items
-						
 					};
 					grid.addRow(newRow);
 				}

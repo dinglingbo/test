@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveEmployee.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、只新增员工时org_employee中user_id可以为空，empcode可以为空,org_emporg&#xD;&#xA;2、给员工开通账号后，user_id = empcode = 登录账号, operatorid = 用户表operatorid&#xD;&#xA;3、修改com_member名称后，需要修改org_employee名称，cap_user的用户名称&#xD;&#xA;4、empcode未赋值" title="Administrator&#x9;18-6-14 下午7:30">
-    <location x="34" y="-63"/>
-    <size height="100" width="551"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、只新增员工时org_employee中user_id可以为空，empcode可以为空,org_emporg&#xD;&#xA;2、给员工开通账号后，user_id = empcode = 登录账号, operatorid = 用户表operatorid&#xD;&#xA;3、修改com_member名称后，需要修改org_employee名称，cap_user的用户名称&#xD;&#xA;4、empcode未赋值&#xD;&#xA;com.hsapi.system.data.dictMgr.queryComMember" title="Administrator&#x9;18-6-14 下午7:30">
+    <location x="34" y="-90"/>
+    <size height="127" width="551"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="link24" isDefault="true" type="transition">
@@ -20,8 +20,8 @@
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link4</targetConnections>
-    <targetConnections>link8</targetConnections>
-    <location x="1304" y="174"/>
+    <targetConnections>link30</targetConnections>
+    <location x="1380" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -30,7 +30,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1302" y="210"/>
+    <location x="1378" y="210"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -526,7 +526,7 @@
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" collapsed="false" type="transactioncommit">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="link15" isDefault="true" type="transition">
       <sourceNode>transactioncommit0</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
     <targetConnections>link2</targetConnections>
@@ -814,6 +814,31 @@
     <location x="115" y="127"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="removeCacheByName" displayName="removeCacheByName" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="1236" y="174"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.data.sys.removeCacheByName</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.system.data.dictMgr.queryComMember</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="1185" y="209"/>
+    <figSize height="17" width="129"/>
+    <node>subprocess1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

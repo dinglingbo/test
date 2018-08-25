@@ -40,8 +40,8 @@
 	</div>
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="card" class="nui-datagrid"
-			pageSize="20" onDrawCell="onDrawCell"
-			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
+			pageSize="50" onDrawCell="onDrawCell"
+			onrowclick="" allowSortColumn="true"
 			style="width: 100%; height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>
@@ -62,12 +62,7 @@
 					赠送金额</div>
 				<div field="totalAmt" headerAlign="center" allowSort="true">
 					总金额</div>
-				<div field="packageRate" headerAlign="center" allowSort="true">
-					套餐优惠率</div>
-				<div field="itemRate" headerAlign="center" allowSort="true">
-					工时优惠率</div>
-				<div field="partRate" headerAlign="center" allowSort="true">
-					配件优惠率</div>
+
 				<div field="salesDeductType" headerAlign="center" allowSort="true">
 					销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true">

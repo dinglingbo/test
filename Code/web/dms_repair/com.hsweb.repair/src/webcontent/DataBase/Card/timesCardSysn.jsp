@@ -15,9 +15,20 @@
 	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
 </head>
 <body>
+   <div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
+			<table width="100%">
+				<tr >
+					<td style="text-align: left; width:20px" colspan="4" ><a
+						class="nui-button"  onclick="onOk()" id = "save"><span class="fa fa-save fa-lg"></span>&nbsp; 保存 </a> 
+				     
+				</tr>
+			</table>
+	</div>
+	
 	<fieldset
 		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend> 计次卡 </legend>
+		
 		<div id="dataform1" style="padding-top: 5px;">
 			<!-- hidden域 -->
 			<input class="nui-hidden" name="id"  /> 
@@ -106,7 +117,7 @@
 				<div class="nui-fit" >
 					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;height:100%"
 						showPager="false" sortMode="client" allowCellEdit="true"
-						allowCellSelect="true" multiSelect="true"
+						allowCellSelect="true" multiSelect="true" showsummaryrow = "true"
 						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell"
 						onvaluechanged = "onValueChanged"			
 						>
@@ -116,7 +127,7 @@
 								align="left" headerAlign="center" width="" visible="false">
 								项目ID <input class="nui-textbox" name="times" property="editor" />
 							</div>
-							<div field="prdtName" allowSort="true" align="left"
+							<div field="prdtName" allowSort="true" align="left" summaryType="count" 
 								headerAlign="center" width="">项目名称</div>
 							<div field="times" allowSort="true" align="left"
 								headerAlign="center" width="">
@@ -136,11 +147,11 @@
 								headerAlign="center" width="">
 								销价 <input class="nui-textbox" name="sellPrice" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
 							</div>
-							<div field="oldAmt" allowSort="true" align="left"
+							<div field="oldAmt" allowSort="true" align="left" summaryType="sum" 
 								headerAlign="center" width="">
 								原销售金额 
 							</div>
-							<div field="sellAmt" allowSort="true" align="left"
+							<div field="sellAmt" allowSort="true" align="left" summaryType="sum" 
 								headerAlign="center" width="">
 								现销售金额 
 							</div>
@@ -149,16 +160,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
-			<table width="100%">
-				<tr >
-					<td style="text-align: center;" colspan="4" ><a
-						class="nui-button" iconCls="icon-save" onclick="onOk()" id = "save"> 保存 </a> <span
-						style="display: inline-block; width: 25px;">
-				</tr>
-			</table>
-		</div>
 	</div>
-
 </body>
 </html>

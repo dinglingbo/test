@@ -6,10 +6,47 @@ var saveDataUrl = apiPath + repairApi
 var form = null;
 var set = null;
 var input = null;
+var baseUrl = apiPath + repairApi + "/";
+var contentUrl = baseUrl + "com.hsapi.repair.baseData.query.queryGuestTypeDiscountSrv.biz.ext";
+var contentGrid = null;
+var guestTypeId = 0;
+
+var discountHash={};
 $(document).ready(function(v) {
     input = mini.get("inputMonth");
 	 set = mini.get("setMonth");
 	form = new nui.Form("#dataform1");
+	 contentGrid = nui.get("contentGrid");
+	 contentGrid.setUrl(contentUrl);
+	 contentGrid.on("preload",function(e){
+	        //var typeList = e.result.typeList;
+	        var listSrv = e.result.list;
+	        var resList = e.result.resList;
+	        contentGrid.setData([]);
+	        if(resList && resList.length>0){
+
+	            listSrv.forEach(function(v) {
+	                discountHash[v.serviceTypeId] = v;
+	            });
+
+	            for(var i=0; i<resList.length; i++){
+	                var newRow = {};
+	                var rs = resList[i];
+	                var id = rs.serviceTypeId;
+	                resList[i].guestTypeId = guestTypeId;
+	                if(discountHash && discountHash[id]){
+	                    var disVal = discountHash[id];
+	                    resList[i].id = disVal.id;
+	                    resList[i].packageDiscountRate = disVal.packageDiscountRate;
+	                    resList[i].itemDiscountRate = disVal.itemDiscountRate;
+	                    resList[i].partDiscountRate = disVal.partDiscountRate;
+	                } 
+	            }
+
+	            contentGrid.setData(resList);
+	        }
+	    });
+
 });
 var requiredField = {
 	name : "会员卡名称",
@@ -119,7 +156,13 @@ function CloseWindow(action) {
 
 function setData(data) {
 	// 跨页面传递的数据对象，克隆后才可以安全使用
+	data = data||{};
 	var json = nui.clone(data);
+	 guestTypeId = data.id||0;
+	 contentGrid.load({
+	        guestTypeId:guestTypeId,
+	        token:token
+	    });
 
 	// 如果是点击编辑类型页面
 	if (json.id != null) {

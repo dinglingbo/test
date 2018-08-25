@@ -12,7 +12,7 @@
 <head>
 <title>会员卡录入</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.9"></script>
 </head>
 <body>
 
@@ -48,20 +48,7 @@
 						onvalidation="vaild2" /></td>
 				</tr>
 				<tr>
-				<tr>
-					<td class="form_label" align="right">套餐优惠率(%):</td>
-					<td colspan="1"><input class="nui-textbox" name="packageRate"
-						vtype="range:0,100" /></td>
-					<td class="form_label" align="right">配件优惠率(%):</td>
-					<td colspan="2"><input class="nui-textbox" name="partRate"
-						vtype="range:0,100" /></td>
-
-				</tr>
-				<tr>
-
-					<td class="form_label" align="right">工时优惠率(%):</td>
-					<td colspan=""><input class="nui-textbox" name="itemRate"
-						vtype="range:0,100" />
+				
 					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
 					<td colspan="1"><input class="nui-textbox"
 						name="periodValidity" vtype="range:-1,1000" id="inputMonth"
@@ -102,9 +89,6 @@
 							data="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 						</div>
 				</tr>
-
-
-
 				<tr>
 					<td class="form_label" align="right">使用条款:</td>
 					<td colspan="2"><input class="nui-TextArea" name="useRemark"
@@ -122,6 +106,30 @@
 				</tr>
 			</table>
 		</div>
+		<div style="height: 180px;">              
+                <div id="contentGrid" class="nui-datagrid" style="width: 80%; height: 100%; margin-left: 10%; "
+                        showPager="false"
+                        dataField="resList"
+                        sortMode="client"
+                        allowCellSelect="true"
+                        allowCellEdit="true"
+                        showModified="false"
+                        url="">
+                    <div property="columns">
+                        <div type="indexcolumn">序号</div>
+                        <div allowSort="true" field="serviceTypeName" width="80" headerAlign="center" align="center" header="业务类型"></div>
+                        <div allowSort="true" field="packageDiscountRate" headerAlign="center" header="套餐优惠(0.1-1.00)">
+                                <input property="editor" class="nui-spinner" format="0.00"  value="0" maxValue="1.00" showButton="false"/>
+                        </div>
+                        <div allowSort="true" field="itemDiscountRate" headerAlign="center" header="工时优惠(0.1-1.00)">
+                                <input property="editor" class="nui-spinner" format="0.00"  value="0" maxValue="1.00" showButton="false"/>
+                        </div>
+                        <div allowSort="true" field="partDiscountRate" headerAlign="center" header="配件优惠(0.1-1.00)">
+                                <input property="editor" class="nui-spinner" format="0.00"  value="0" maxValue="1.00" showButton="false"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
 	</div>
 
 </body>

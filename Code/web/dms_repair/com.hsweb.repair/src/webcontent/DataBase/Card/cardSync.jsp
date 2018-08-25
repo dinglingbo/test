@@ -12,15 +12,26 @@
 <head>
 <title>会员卡录入</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.4"></script>
 </head>
 <body>
 
 	<div class="nui-fit">
-		<div id="dataform1" style="padding-top: 5px;">
+		<div id="dataform1" >
 			<!-- hidden域 -->
+			<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
+			<table style="width:100%;">
+				<tr>
+					<td colspan="" align="left"><a  class="nui-button"
+						iconCls="" onclick="onOk()" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
+						<a class="nui-button" plain="true" onclick="CloseWindow()">
+						<span style="display: inline-block; "><span class="fa fa-close fa-lg"></span>&nbsp;关闭 </a></td>
+						
+				</tr>
+			</table>
+			</div>
 			<input class="nui-hidden" id="id" />
-			<table style="width: 100%; height: 95%; table-layout: fixed;"
+			<table style="width: 100%;  table-layout: fixed;margin-bottom: 15px;"
 				class="nui-form-table">
 
 				<tr>
@@ -29,14 +40,13 @@
 					<td colspan="1" style="width: 25%"><input class="nui-textbox"
 						name="name" /> <input class="nui-hidden" name="id"
 						readonly="readonly" /></td>
-
-
-					<td class="form_label" style="width: 20%" align="right">适用范围:
-					</td>
-					<td colspan="2" style="width: 30%"><input class="nui-combobox"
-						data="[{value:'0',text:'本店',},{value:'1',text:'连锁'}]"
-						textField="text" valueField="value" name="useRange" value="0" />
-					</td>
+									
+					<td class="form_label" style="" align="right">有效期（月）:</td>
+					<td colspan="1"><input class="nui-textbox"
+						name="periodValidity" vtype="range:-1,1000" id="inputMonth"
+						width="120%" /></td>
+					<td style="padding-left: 23px;"><input  type="checkbox" id="setMonth" class="mini-checkbox"
+						onclick="changed()"> <span>永久有效</span></td>
 				</tr>
 
 				<tr>
@@ -46,17 +56,6 @@
 					<td class="form_label" align="right">赠送金额:</td>
 					<td colspan="2"><input class="nui-textbox" name="giveAmt"
 						onvalidation="vaild2" /></td>
-				</tr>
-				<tr>
-				
-					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
-					<td colspan="1"><input class="nui-textbox"
-						name="periodValidity" vtype="range:-1,1000" id="inputMonth"
-						width="60%" /></td>
-					<td><input type="checkbox" id="setMonth" class="mini-checkbox"
-						onclick="changed()"> <span>永久有效</span></td>
-
-					<td class="form_label">
 				</tr>
 				<tr>
 					<td class="form_label" align="right" colspan="1">销售提成方式:</td>
@@ -89,24 +88,8 @@
 							data="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 						</div>
 				</tr>
-				<tr>
-					<td class="form_label" align="right">使用条款:</td>
-					<td colspan="2"><input class="nui-TextArea" name="useRemark"
-						style="width: 330px; height: 50px;" /></td>
-				</tr>
-				<tr>
-					<td class="form_label" align="right">卡说明:</td>
-					<td colspan="1"><input class="nui-TextArea" name="remark"
-						style="width: 330px; height: 50px;" /></td>
-				</tr>
-				<tr>
-					<td colspan="5" align="center"><a class="nui-button"
-						iconCls="icon-save" onclick="onOk()"> 保存 </a> <span
-						style="display: inline-block; width: 25px;"></td>
-				</tr>
-			</table>
-		</div>
-		<div style="height: 180px;">              
+				</table>
+				<div style="height: 180px;margin-bottom: 15px">              
                 <div id="contentGrid" class="nui-datagrid" style="width: 80%; height: 100%; margin-left: 10%; "
                         showPager="false"
                         dataField="resList"
@@ -130,6 +113,19 @@
                     </div>
                 </div>
             </div>
+				<table style="width: 100%;">
+				<tr>
+					<td class="form_label" align="right">使用条款:</td>
+					<td colspan="2"><input class="nui-TextArea" name="useRemark"
+						style="width:200px;" /></td>
+				
+					<td class="form_label" align="right">卡说明:</td>
+					<td colspan="2"><input class="nui-TextArea" name="remark"
+						style="width:200px;" /></td>
+				</tr>
+			</table>
+		</div>
+		
 	</div>
 
 </body>

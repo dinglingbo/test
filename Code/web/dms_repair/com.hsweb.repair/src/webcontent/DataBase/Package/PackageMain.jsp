@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.0.9"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.1.6"></script>
 
 </head>
 
@@ -192,21 +192,23 @@
 									<div id="itemGrid"
 										 dataField="rpbItime"
 										 class="nui-datagrid"
-										 style="width: 100%; height:100%;"
-										 showPager="false"
-										 idField="itemId"
+										 style="width: 100%; height:100%;" 
+										 showPager="false" onDrawCell="onDrawCell"
+										 idField="itemId" showSummaryRow="true" showGroupSummary="true"
 										 allowSortColumn="true">
-										<div property="columns">
-											<div type="indexcolumn" width="30">序号</div>
-											<div header="车系信息" headerAlign="center">
+										<div property="columns" >
+											<div type="indexcolumn" width="30" summaryType="count">序号</div>
+											<div header="工时信息" headerAlign="center">
 												<div property="columns">
 													<div field="itemCode" headerAlign="center" allowSort="true" visible="true">工时编码</div>
 													<div field="itemName" headerAlign="center" allowSort="true" visible="true">工时名称</div>
 													<!-- <div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种</div> -->
 													<div field="type" headerAlign="center" allowSort="true" visible="true">工时类型</div>
-													<div field="itemTime" headerAlign="center" allowSort="true" visible="true">标准工时</div>
-													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true">工时单价</div>
-													<div field="amt" headerAlign="center" allowSort="true" visible="true">工时费</div>
+													<div field="itemTime" headerAlign="center" allowSort="true" visible="true">工时数量</div>
+													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true">单价</div>
+													<div field="amt" headerAlign="center" allowSort="true" visible="true" summaryType="sum">金额</div>
+													<div  field="techDeductType" headerAlign="center" allowSort="true" visible="true" >提成类型</div>
+													<div field="techDeductValue" headerAlign="center" allowSort="true" visible="true">提成值</div>
 												</div>
 											</div>
 										</div>
@@ -231,11 +233,11 @@
 										 style="width: 100%; height: 100%;"
 										 showPager="false"
 										 idField="partId"
-										 allowCellEdit="true"
+										 allowCellEdit="true" showSummaryRow="true" showGroupSummary="true"
 										 allowCellSelect="true"
 										 allowSortColumn="true">
 										<div property="columns">
-											<div type="indexcolumn" width="30">序号</div>
+											<div type="indexcolumn" width="30" summaryType="count">序号</div>
 											<div header="零件信息" headerAlign="center">
 												<div property="columns">
 													<div field="partCode" headerAlign="center" allowSort="true" visible="true">零件编码</div>
@@ -253,7 +255,7 @@
 														<input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false"
 															   allowNull="false" style="width:100%;" decimalPlaces="2"/>
 													</div>
-													<div field="amt" headerAlign="center" allowSort="true" visible="true" decimalPlaces="2" dataType="float">金额</div>
+													<div field="amt" headerAlign="center" allowSort="true" visible="true" decimalPlaces="2" dataType="float" summaryType="sum">金额</div>
 												</div>
 											</div>
 										</div>

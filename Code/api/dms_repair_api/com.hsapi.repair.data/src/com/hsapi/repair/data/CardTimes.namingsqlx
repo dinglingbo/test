@@ -16,13 +16,9 @@
          a.record_date recordData,
          a.sell_amt sellAmt,
          a.status status,
-         a.past_date pastDate,
-         b.bala_times balaTimes,
-         b.total_times totalTimes,
-         b.can_use_times canUseTimes
+         a.past_date pastDate
          FROM rps_card_times a 
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
-         INNER JOIN rps_card_times_detail b ON(a.id = b.main_id) 
          WHERE  a.orgid = #orgid#
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
@@ -44,11 +40,14 @@
 <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">
 	
 	select 
-       b.card_id cardId,
+       b.main_id mainId,
        b.prdt_id prdtId,
        b.prdt_name prdtName,
-       b.bala_times balaTimes
-   FROM  rps_card_times_detail b WHERE  b.card_id = #Id#
+       b.bala_times balaTimes,
+       b.total_times totalTimes,
+       b.can_use_times canUseTimes,
+       b.is_finish Isfinish
+    FROM  rps_card_times_detail b WHERE b.main_id = #Id#
   
  
 </select>

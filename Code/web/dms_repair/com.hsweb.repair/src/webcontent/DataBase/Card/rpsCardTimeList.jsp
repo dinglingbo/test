@@ -12,7 +12,7 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.7"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.1"></script>
 </head>
 
 <body>
@@ -54,8 +54,9 @@
                    
 			 allowSortColumn="true" style="width: 100%;height:100% ">
 			<div property="columns">
-				<!-- <div type="indexcolumn"></div>
-				<div type="checkcolumn" ></div> -->
+				<!-- <div type="indexcolumn"></div>-->
+				<div type="checkcolumn" ></div> 
+				
 				
 				<div field="fullName" headerAlign="center" allowSort="true"
 					>姓名</div>
@@ -68,7 +69,7 @@
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
 				
-				<div field="balaTimes" headerAlign="center" allowSort="true">
+				<div field="id" headerAlign="center" allowSort="true">
 					剩余次数
 				</div>
 				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">

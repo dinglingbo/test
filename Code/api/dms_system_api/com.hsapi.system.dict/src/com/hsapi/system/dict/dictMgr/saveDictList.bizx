@@ -113,12 +113,12 @@
       <sourceNode>start0</sourceNode>
       <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
-    <location x="-98" y="117"/>
+    <location x="-45" y="125"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="-96" y="153"/>
+    <location x="-43" y="161"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -382,14 +382,15 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link1" isDefault="true" type="transition">
       <sourceNode>transactionbegin0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="-32" y="117"/>
+    <location x="6" y="71"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="-42" y="153"/>
+    <location x="-4" y="107"/>
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>

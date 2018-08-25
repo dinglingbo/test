@@ -148,7 +148,7 @@ function onIDCardsValidation(e)
 function onMobileValidation(e)
 {
     if (e.isValid) {
-        var pattern = /^\d{11}$/;;
+        var pattern = /^1(3|5|6|7|8|9)\d{9}$/;;
         if (e.value.length != 11 || pattern.test(e.value) == false) {
             e.errorText = "必须输入正确的手机号码";
             e.isValid = false;
@@ -168,7 +168,7 @@ function initTearm(){
 	        {
 	        	
 	        	var TearmObj=data.list;
-	        	var work=nui.get('memberLevelId');
+	        	var work=nui.get('memberGroupId');
 	        	for(var i=0;i<TearmObj.length;i++){
 	        		var data ={
 	        				id:TearmObj[i].id,
@@ -195,14 +195,14 @@ function initMemberLever(){
 	        success:function(data)
 	        {
 	        	var obj=data.list;
-	        	var lever=nui.get('memberGroupId');
+	        	var lever=nui.get('memberLevelId');
 	        	for(var i=0;i<obj.length;i++){
 	        		var data ={
 	        				id:obj[i].id,
 	        				name:obj[i].name
 	        		}
 	        		memberLever.push(data);
-	        		lever.setData(workList);
+	        		lever.setData(memberLever);
 	        	}
 	        },
 	        error:function(jqXHR, textStatus, errorThrown){

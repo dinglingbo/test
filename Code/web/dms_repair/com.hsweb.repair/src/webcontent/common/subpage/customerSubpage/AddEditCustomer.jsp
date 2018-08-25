@@ -90,7 +90,7 @@ table {
                                valueField="code"
                                textField="name"
                                emptyText = "省"
-                               url="<%=contextPath%>/com.hs.common.region.getRegin.biz.ext"
+                               url=""
                                onValuechanged="initCityByParent('cityId', e.value || -1)"
                                class="nui-combobox" width="32%"/>
                             

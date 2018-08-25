@@ -42,7 +42,7 @@
 						vtype="float" /></td>
 					<td class="form_label" align="right">总价值:</td>
 					<td colspan="2"><input class="nui-textbox" name="totalAmt" id = "totalAmt"
-						vtype="float" readonly="readonly"/></td>
+						vtype="float" readonly="readonly" value="0"/></td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售提成方式:</td>

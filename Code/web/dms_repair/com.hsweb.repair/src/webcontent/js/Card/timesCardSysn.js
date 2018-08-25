@@ -50,7 +50,8 @@ function onValueChangedTimes(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	if((row.pack && row.pack == "PACK") || (row.items && row.items == "ITEMS")){
+	if((row.pack && row.pack == "PACK") || (row.items && row.items == "ITEMS"))
+	{
 		sellAmt = row.sellPrice*e.value;
 		data = {
 			sellAmt:sellAmt
@@ -126,8 +127,14 @@ function onDrawSummaryCell(e){
 		  {
 		    sum += parseFloat(rows[i].sellAmt);
 		   }
-	  }  
-	nui.get("totalAmt").setValue(sum);  
+	  } 
+	  if(sum && sum>=0)
+	  {
+		  nui.get("totalAmt").setValue(sum); 
+	  }else{
+		  nui.get("totalAmt").setValue("0");
+	  }
+	  
  }
 
 var requiredField = {

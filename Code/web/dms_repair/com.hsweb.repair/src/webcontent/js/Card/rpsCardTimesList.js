@@ -121,10 +121,10 @@ function refresh(){
     /*e.cellHtml = e.value==1?"禁用":"启用";*/
     	e.cellHtml = hash[e.value];
         break; 
-  /*  case "balaTimes":
-    	e.cellHtml = searchDetial(id);
-    	break;
-    case "id":
+    /*case "pastDate":
+    	e.cellHtml = (e.value == -1 ? "永久有效":e.value);
+    	break;*/
+  /*  case "id":
     	id = e.value;
     	break;*/
     default:

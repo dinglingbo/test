@@ -265,7 +265,8 @@ function disablePartQuality(){
             {
                 updateIsDisabled({
                     id:row.id,
-                    isDisabled:1
+                    isDisabled:1,
+                    name:row.name
                 },function(data)
                 {
                     data = data||{};
@@ -295,7 +296,8 @@ function enablePartQuality(){
             {
                 updateIsDisabled({
                     id:row.id,
-                    isDisabled:0
+                    isDisabled:0,
+                    name:row.name
                 },function(data)
                 {
                     data = data||{};
@@ -326,7 +328,8 @@ function disablePartBrand()
             {
                 updateIsDisabled({
                     id:row.id,
-                    isDisabled:1
+                    isDisabled:1,
+                    name:row.name
                 },function(data)
                 {
                     data = data||{};
@@ -357,7 +360,8 @@ function enablePartBrand()
             {
                 updateIsDisabled({
                     id:row.id,
-                    isDisabled:0
+                    isDisabled:0,
+                    name:row.name
                 },function(data)
                 {
                     data = data||{};

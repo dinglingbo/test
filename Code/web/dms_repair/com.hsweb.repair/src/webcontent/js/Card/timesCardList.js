@@ -177,14 +177,13 @@ function onBuy(){
 		nui.open({
 			url : buyUrl,
 			title : "购买次卡",
-			width : 930,
-			height : 663,
+			width : 400,
+			height : 240,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var data = row;
-				data.type = 'VIEW';
-				iframe.contentWindow.disableEle();
-				iframe.contentWindow.setData(data);
+				//把数据传到子页面
+				iframe.contentWindow.giveData(data);
 			},
 			ondestroy : function() {
 				var iframe = this.getIFrameEl();

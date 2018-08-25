@@ -4,7 +4,7 @@
 var getUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimes.biz.ext";
 
 var form = null;
-
+var form1 = null
 //页面加载时获取 form
 $(document).ready(function (v)
 {
@@ -12,7 +12,6 @@ $(document).ready(function (v)
 	form1 = new nui.get("datagrid1");//获取表格的
 		    
 });
-
 
 
 function setData(data){
@@ -38,7 +37,7 @@ function setData(data){
 	    }
 	    form.setChanged(false);
 	    form1.setData(obj.cardTimesDe);    
-	    form1.setChanged(false);
+	    //form1.setChanged(false);表格没有这个属性
 	  }
   });
 }

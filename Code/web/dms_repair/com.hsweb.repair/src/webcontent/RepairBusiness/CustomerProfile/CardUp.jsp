@@ -11,7 +11,7 @@
 -->
 <head>
 <title>会员卡充值</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.0.1"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.0.3"></script>
 	<style type="text/css">
 	
 	table {
@@ -74,21 +74,21 @@
                 		<input id="giveAmt" name="giveAmt" class="nui-textbox" width="40%" vtype="float;range:0,100000" />
                 		</td>
 					</tr>
-					<tr>
-						<td style="text-align: center;width:10%">工时优惠率(%)：
-						<input  id="itemRate" name="itemRate" class="nui-textbox" width="40%" vtype="range:0,100" />
-						</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;width:10%">套餐优惠率(%)：
-						<input id="packageRate" name="packageRate" class="nui-textbox" width="40%"vtype="range:0,100"  />
-						</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;width:10%">配件优惠率(%)：
-						<input id="partRate" name="partRate"class="nui-textbox" width="40%" vtype="range:0,100" />
-						</td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td style="text-align: center;width:10%">工时优惠率(%)： -->
+<!-- 						<input  id="itemRate" name="itemRate" class="nui-textbox" width="40%" vtype="range:0,100" /> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align: center;width:10%">套餐优惠率(%)： -->
+<!-- 						<input id="packageRate" name="packageRate" class="nui-textbox" width="40%"vtype="range:0,100"  /> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td style="text-align: center;width:10%">配件优惠率(%)： -->
+<!-- 						<input id="partRate" name="partRate"class="nui-textbox" width="40%" vtype="range:0,100" /> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 					<tr >
 						<td style="text-align: center;width:10%">到账金额(元)：&nbsp;&nbsp;&nbsp;
 						<input id="totalAmt" name="totalAmt"class="nui-textbox" width="40%"  allowInput="false" />

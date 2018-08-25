@@ -41,7 +41,7 @@
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="card" class="nui-datagrid"
 			pageSize="50" onDrawCell="onDrawCell"
-			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
+			onrowclick="" allowSortColumn="true"
 			style="width: 100%; height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>

@@ -201,7 +201,7 @@ function addOrEditCustomer(guest)
         title = "修改客户资料";
     }
     nui.open({
-        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        url: webPath + repairDomain + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title: title, width: 560, height: 570,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -227,8 +227,8 @@ function toUp(callback){
 	var row=grid.getSelected();
 	if(row){
 		nui.open({
-			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 600, height: 500,
+			url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 600, height: 460,
 			onload: function(){
 				var iframe=this.getIFrameEl();
 				var params={
@@ -264,7 +264,7 @@ function edit() {
 
 function amalgamate() {
     nui.open({
-        url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Amalgamate.jsp?token="+token,
+        url:webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/Amalgamate.jsp?token="+token,
         title: "资料合并", width: 630, height: 420,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -280,7 +280,7 @@ function amalgamate() {
 
 function split() {
     nui.open({
-        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
+        url: webPath + repairDomain +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
         title: "资料拆分", width: 810, height: 430,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -312,7 +312,7 @@ function history()
         return;
     }
     nui.open({
-        url: webPath + contextPath +"/com.hsweb.repair.common.repairHistory.flow?token="+token,
+        url: webPath + repairDomain +"/com.hsweb.repair.common.repairHistory.flow?token="+token,
         title: "维修历史", width: 850, height: 640,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -331,7 +331,7 @@ function selectCustomer(guestId)
     customer = null;
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/repair/common/Customer.jsp?token="+token,
+        url: webPath+partDomain+"/repair/common/Customer.jsp?token="+token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

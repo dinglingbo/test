@@ -3,7 +3,7 @@
   <nodes xsi:type="model:PEntityNode" id="node0" name="RpbAppointmentParams" nodeType="table" displayName="RpbAppointmentParams" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_appointment_params" genStrategy="native">
     <location x="60" y="60"/>
     <size height="354" width="196"/>
-    <figSize height="20" width="196"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property0" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -1957,7 +1957,7 @@
   <nodes xsi:type="model:PEntityNode" id="node19" name="RpbAppointmentTimes" nodeType="table" displayName="RpbAppointmentTimes" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_appointment_times" genStrategy="native">
     <location x="60" y="762"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property318" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -2571,7 +2571,7 @@
   <nodes xsi:type="model:PEntityNode" id="node10" name="RpbBusinessDeduct" nodeType="table" displayName="RpbBusinessDeduct" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_business_deduct" genStrategy="native">
     <location x="60" y="1014"/>
     <size height="282" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="243"/>
     <columnProperty id="property174" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -3504,7 +3504,7 @@
   <nodes xsi:type="model:PEntityNode" id="node11" name="RpbBusinessType" nodeType="table" displayName="RpbBusinessType" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_business_type" genStrategy="native">
     <location x="60" y="1356"/>
     <size height="210" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property188" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -4178,7 +4178,7 @@
   <nodes xsi:type="model:PEntityNode" id="node20" name="RpbCarExtend" nodeType="table" displayName="RpbCarExtend" author="Administrator" instanceClass="" table="rpb_car_extend" genStrategy="assigned">
     <location x="60" y="1626"/>
     <size height="480" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="234"/>
     <columnProperty id="property116" name="carId" displayName="carId" columnName="car_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="carId" entityField="carId" id="carId" label="carId" name="carId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -5863,7 +5863,7 @@
   <nodes xsi:type="model:PEntityNode" id="node15" name="RpbCardStored" nodeType="table" displayName="RpbCardStored" author="localhost" allUseViewModel="true" instanceClass="" table="rpb_card_stored" genStrategy="native">
     <location x="60" y="2166"/>
     <size height="426" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="225"/>
     <columnProperty id="property250" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -7330,7 +7330,7 @@
   <nodes xsi:type="model:PEntityNode" id="node13" name="RpbCardTimes" nodeType="table" displayName="RpbCardTimes" author="localhost" allUseViewModel="true" instanceClass="" table="rpb_card_times" genStrategy="assigned">
     <location x="60" y="2652"/>
     <size height="318" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="225"/>
     <columnProperty id="property218" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -8401,7 +8401,7 @@
   <nodes xsi:type="model:PEntityNode" id="node14" name="RpbCardTimesDetail" nodeType="table" displayName="RpbCardTimesDetail" author="localhost" allUseViewModel="true" instanceClass="" table="rpb_card_times_detail" genStrategy="native">
     <location x="60" y="3030"/>
     <size height="318" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property234" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -9472,7 +9472,7 @@
   <nodes xsi:type="model:PEntityNode" id="node16" name="RpbCheckDetail" nodeType="table" displayName="RpbCheckDetail" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_check_detail" genStrategy="native">
     <location x="60" y="3408"/>
     <size height="336" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property272" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -10606,7 +10606,7 @@
   <nodes xsi:type="model:PEntityNode" id="node17" name="RpbCheckItemContent" nodeType="table" displayName="RpbCheckItemContent" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_check_item_content" genStrategy="native">
     <location x="60" y="3804"/>
     <size height="174" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property289" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -11149,7 +11149,7 @@
   <nodes xsi:type="model:PEntityNode" id="node18" name="RpbCheckMain" nodeType="table" displayName="RpbCheckMain" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_check_main" genStrategy="native">
     <location x="60" y="4038"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property297" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -11758,7 +11758,7 @@
   <nodes xsi:type="model:PEntityNode" id="node21" name="RpbClass" nodeType="table" displayName="RpbClass" author="Administrator" instanceClass="" table="rpb_class" genStrategy="native">
     <location x="60" y="4290"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property336" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -12565,7 +12565,7 @@
   <nodes xsi:type="model:PEntityNode" id="node26" name="RpbClassMember" nodeType="table" displayName="RpbClassMember" author="Administrator" instanceClass="" table="rpb_class_member" genStrategy="native">
     <location x="60" y="4596"/>
     <size height="210" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property412" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -13240,7 +13240,7 @@
   <nodes xsi:type="model:PEntityNode" id="node8" name="RpbContactor" nodeType="table" displayName="RpbContactor" author="chenziming" allUseViewModel="true" instanceClass="" table="rpb_contactor" genStrategy="assigned">
     <location x="60" y="4866"/>
     <size height="570" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property132" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>联系人ID</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -15240,7 +15240,7 @@
   <nodes xsi:type="model:PEntityNode" id="node9" name="RpbDeductRate" nodeType="table" displayName="RpbDeductRate" author="chenziming" allUseViewModel="true" instanceClass="" table="rpb_deduct_rate" genStrategy="native">
     <location x="60" y="5496"/>
     <size height="174" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property161" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -15783,7 +15783,7 @@
   <nodes xsi:type="model:PEntityNode" id="node27" name="RpbDisclaimer" nodeType="table" displayName="RpbDisclaimer" author="Administrator" instanceClass="" table="rpb_disclaimer" genStrategy="native">
     <location x="60" y="5730"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property423" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -16392,7 +16392,7 @@
   <nodes xsi:type="model:PEntityNode" id="node28" name="RpbGuest" nodeType="table" displayName="RpbGuest" author="Administrator" instanceClass="" table="rpb_guest" genStrategy="assigned">
     <location x="60" y="5982"/>
     <size height="282" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="234"/>
     <columnProperty id="property432" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>客户内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -17346,7 +17346,7 @@
   <nodes xsi:type="model:PEntityNode" id="node12" name="RpbGuestAgentExtend" nodeType="table" displayName="RpbGuestAgentExtend" author="localhost" allUseViewModel="true" instanceClass="" table="rpb_guest_agent_extend" genStrategy="native">
     <location x="60" y="6324"/>
     <size height="390" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="269"/>
     <columnProperty id="property198" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>ID</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -18681,7 +18681,7 @@
   <nodes xsi:type="model:PEntityNode" id="node22" name="RpbGuestType" nodeType="table" displayName="RpbGuestType" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_guest_type" genStrategy="native">
     <location x="60" y="6774"/>
     <size height="444" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="237"/>
     <columnProperty id="property347" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -20213,7 +20213,7 @@
   <nodes xsi:type="model:PEntityNode" id="node23" name="RpbGuestTypeDiscount" nodeType="table" displayName="RpbGuestTypeDiscount" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_guest_type_discount" genStrategy="native">
     <location x="60" y="7278"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="255"/>
     <columnProperty id="property370" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -21020,7 +21020,7 @@
   <nodes xsi:type="model:PEntityNode" id="node29" name="RpbLog" nodeType="table" displayName="RpbLog" author="Administrator" instanceClass="" table="rpb_log" genStrategy="native">
     <location x="60" y="7584"/>
     <size height="138" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="205"/>
     <columnProperty id="property30" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21420,7 +21420,7 @@
   <nodes xsi:type="model:PEntityNode" id="node6" name="RpbOutReport" nodeType="table" displayName="RpbOutReport" author="chenziming" allUseViewModel="true" instanceClass="" table="rpb_out_report" genStrategy="native">
     <location x="60" y="7782"/>
     <size height="192" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property85" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -22029,7 +22029,7 @@
   <nodes xsi:type="model:PEntityNode" id="node30" name="RpbPart" nodeType="table" displayName="RpbPart" author="Administrator" instanceClass="" table="rpb_part" genStrategy="native">
     <location x="60" y="8034"/>
     <size height="300" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="225"/>
     <columnProperty id="property465" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -23034,7 +23034,7 @@
   <nodes xsi:type="model:PEntityNode" id="node25" name="RpbRemindParam" nodeType="table" displayName="RpbRemindParam" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_remind_param" genStrategy="native">
     <location x="60" y="8394"/>
     <size height="318" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property395" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -24105,7 +24105,7 @@
   <nodes xsi:type="model:PEntityNode" id="node31" name="RpbRoleMember" nodeType="table" displayName="RpbRoleMember" author="Administrator" instanceClass="" table="rpb_role_member" genStrategy="assigned">
     <location x="60" y="8772"/>
     <size height="210" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property480" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -24780,7 +24780,7 @@
   <nodes xsi:type="model:PEntityNode" id="node24" name="RpbScoutParam" nodeType="table" displayName="RpbScoutParam" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_scout_param" genStrategy="native">
     <location x="60" y="9042"/>
     <size height="264" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property382" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -25653,7 +25653,7 @@
   <nodes xsi:type="model:PEntityNode" id="node7" name="RpbCar" nodeType="table" displayName="RpbCar" author="chenziming" allUseViewModel="true" table="rpb_car" genStrategy="assigned">
     <location x="60" y="9366"/>
     <size height="534" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="315"/>
     <columnProperty id="property89" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>车辆内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -27515,7 +27515,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2" name="RpbItem" nodeType="table" displayName="RpbItem" author="Guine" allUseViewModel="true" instanceClass="" table="rpb_item" genStrategy="native">
     <location x="60" y="9960"/>
     <size height="606" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="243"/>
     <columnProperty id="property22" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -29642,7 +29642,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3" name="RpbPackage" nodeType="table" displayName="RpbPackage" author="chenziming" allUseViewModel="true" table="rpb_package" genStrategy="native">
     <location x="60" y="10626"/>
     <size height="462" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="243"/>
     <columnProperty id="property44" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -31206,7 +31206,7 @@
   <nodes xsi:type="model:PEntityNode" id="node4" name="RpbPackageItem" nodeType="table" displayName="RpbPackageItem" author="chenziming" allUseViewModel="true" table="rpb_package_item">
     <location x="60" y="11148"/>
     <size height="354" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="222"/>
     <columnProperty id="property67" name="packageId" displayName="packageId" columnName="package_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>套餐ID</comment>
       <viewField dict="false" dictTypeId="" displayName="packageId" entityField="packageId" id="packageId" label="packageId" name="packageId" userDefined="true">
@@ -32339,7 +32339,7 @@
   <nodes xsi:type="model:PEntityNode" id="node5" name="RpbPackagePart" nodeType="table" displayName="RpbPackagePart" author="chenziming" allUseViewModel="true" table="rpb_package_part">
     <location x="60" y="11562"/>
     <size height="318" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="207"/>
     <columnProperty id="property457" name="packageId" displayName="packageId" columnName="package_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>套餐ID</comment>
       <viewField dict="false" dictTypeId="" displayName="packageId" entityField="packageId" id="packageId" label="packageId" name="packageId" userDefined="true">
@@ -33337,7 +33337,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node32" name="RpbCardRate" nodeType="table" displayName="RpbCardRate" author="Administrator" instanceClass="" table="rpb_card_rate" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node32" name="RpbCardRate" nodeType="table" displayName="RpbCardRate" author="Administrator" instanceClass="" table="rpb_card_rate" genStrategy="native">
     <location x="60" y="11940"/>
     <size height="246" width="150"/>
     <figSize height="20" width="150"/>

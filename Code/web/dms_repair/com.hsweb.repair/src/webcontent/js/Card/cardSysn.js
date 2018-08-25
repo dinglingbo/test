@@ -7,9 +7,9 @@ var form = null;
 var set = null;
 var input = null;
 var baseUrl = apiPath + repairApi + "/";
-var contentUrl = baseUrl + "com.hsapi.repair.baseData.query.queryGuestTypeDiscountSrv.biz.ext";
+var contentUrl = baseUrl + "com.hsapi.repair.baseData.query.quryCardIdRateSrv.biz.ext";
 var contentGrid = null;
-var guestTypeId = 0;
+var cardId=null;
 
 var discountHash={};
 $(document).ready(function(v) {
@@ -33,7 +33,7 @@ $(document).ready(function(v) {
 	                var newRow = {};
 	                var rs = resList[i];
 	                var id = rs.serviceTypeId;
-	                resList[i].guestTypeId = guestTypeId;
+	                resList[i].cardId = cardId;
 	                if(discountHash && discountHash[id]){
 	                    var disVal = discountHash[id];
 	                    resList[i].id = disVal.id;
@@ -52,9 +52,6 @@ var requiredField = {
 	name : "会员卡名称",
 	rechargeAmt : "充值金额",
 	giveAmt : "赠送金额",
-	packageRate : "套餐优惠率",
-	partRate : "配件优惠率",
-	itemRate : "工时优惠率",
 	periodValidity : "有效期",
 	salesDeductValue : "提成值"
 };
@@ -114,7 +111,20 @@ function saveData() {
 		return;
 	var data = form.getData(false, true);
 	// var json = nui.encode(data);//变成json格式
+	var list = contentGrid.getChanges("modified");
+    var addList = [];
+    var updateList = [];
+    for(var i=0; i<list.length; i++){
+        var r = list[i];
+        if(r.id){
+            updateList.push(r);
+        }else{
+            addList.push(r);
+        }
+    }
 	var param = {
+		addList:addList,
+		updateList:updateList,
 		card : data,
 		token:token
 	}
@@ -128,6 +138,7 @@ function saveData() {
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.exception == null) {
+				showMsg("保存成功");
 				CloseWindow("saveSuccess");
 			} else {
 				nui.alert("保存失败", "系统提示", function(action) {
@@ -158,11 +169,11 @@ function setData(data) {
 	// 跨页面传递的数据对象，克隆后才可以安全使用
 	data = data||{};
 	var json = nui.clone(data);
-	 guestTypeId = data.id||0;
+	cardId = data.id||0;
 	 contentGrid.load({
-	        guestTypeId:guestTypeId,
+		 	cardId:cardId,
 	        token:token
-	    });
+    });
 
 	// 如果是点击编辑类型页面
 	if (json.id != null) {

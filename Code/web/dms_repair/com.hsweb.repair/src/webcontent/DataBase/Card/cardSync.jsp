@@ -12,15 +12,24 @@
 <head>
 <title>会员卡录入</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.4"></script>
 </head>
 <body>
 
 	<div class="nui-fit">
-		<div id="dataform1" style="padding-top: 5px;">
+		<div id="dataform1" >
 			<!-- hidden域 -->
+			<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
+			<table style="width:100%;">
+				<tr>
+					<td colspan="5" align="left"><a  class="nui-button"
+						iconCls="" onclick="onOk()" plain="true"> 保存 </a> <span
+						style="display: inline-block; width: 25px;"></td>
+				</tr>
+			</table>
+			</div>
 			<input class="nui-hidden" id="id" />
-			<table style="width: 100%; height: 95%; table-layout: fixed;"
+			<table style="width: 100%;  table-layout: fixed;margin-bottom: 15px;"
 				class="nui-form-table">
 
 				<tr>
@@ -49,11 +58,11 @@
 				</tr>
 				<tr>
 				
-					<td class="form_label" style="width: 13%;" align="right">有效期（月）:</td>
+					<td class="form_label" style="" align="right">有效期（月）:</td>
 					<td colspan="1"><input class="nui-textbox"
 						name="periodValidity" vtype="range:-1,1000" id="inputMonth"
-						width="60%" /></td>
-					<td><input type="checkbox" id="setMonth" class="mini-checkbox"
+						width="80%" /></td>
+					<td style="padding-left: 57px;"><input  type="checkbox" id="setMonth" class="mini-checkbox"
 						onclick="changed()"> <span>永久有效</span></td>
 
 					<td class="form_label">
@@ -89,24 +98,8 @@
 							data="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 						</div>
 				</tr>
-				<tr>
-					<td class="form_label" align="right">使用条款:</td>
-					<td colspan="2"><input class="nui-TextArea" name="useRemark"
-						style="width: 330px; height: 50px;" /></td>
-				</tr>
-				<tr>
-					<td class="form_label" align="right">卡说明:</td>
-					<td colspan="1"><input class="nui-TextArea" name="remark"
-						style="width: 330px; height: 50px;" /></td>
-				</tr>
-				<tr>
-					<td colspan="5" align="center"><a class="nui-button"
-						iconCls="icon-save" onclick="onOk()"> 保存 </a> <span
-						style="display: inline-block; width: 25px;"></td>
-				</tr>
-			</table>
-		</div>
-		<div style="height: 180px;">              
+				</table>
+				<div style="height: 180px;margin-bottom: 15px">              
                 <div id="contentGrid" class="nui-datagrid" style="width: 80%; height: 100%; margin-left: 10%; "
                         showPager="false"
                         dataField="resList"
@@ -130,6 +123,19 @@
                     </div>
                 </div>
             </div>
+				<table style="width: 100%;">
+				<tr>
+					<td class="form_label" align="right">使用条款:</td>
+					<td colspan="2"><input class="nui-TextArea" name="useRemark"
+						style="width:200px;" /></td>
+				
+					<td class="form_label" align="right">卡说明:</td>
+					<td colspan="2"><input class="nui-TextArea" name="remark"
+						style="width:200px;" /></td>
+				</tr>
+			</table>
+		</div>
+		
 	</div>
 
 </body>

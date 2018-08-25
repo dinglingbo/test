@@ -310,6 +310,10 @@
       <process:to type="query">guestJoin/orgid</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">stored/cardId</process:from>
+      <process:to type="query">guestJoin/cardId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">stored/cardName</process:from>
       <process:to type="query">guestJoin/cardType</process:to>
     </process:copy>
@@ -419,6 +423,18 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">stored/isSettle</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/cardId</process:from>
+      <process:to type="query">guestJoin/cardId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/cardName</process:from>
+      <process:to type="query">guestJoin/cardType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/id</process:from>
+      <process:to type="query">guestJoin/cardNo</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">

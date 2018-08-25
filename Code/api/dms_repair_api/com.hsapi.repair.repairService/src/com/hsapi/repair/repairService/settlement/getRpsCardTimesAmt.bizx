@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getRpsCardTimesAmt.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.settleMent.getRpsPkgCardTimesAmt&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsItemCardTimesAmt&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsPartCardTimesAmt" title="Administrator&#x9;18-8-25 上午10:45">
+    <location x="94" y="-60"/>
+    <size height="100" width="462"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -124,6 +128,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" type="transition">
       <sourceNode>invokePojo2</sourceNode>

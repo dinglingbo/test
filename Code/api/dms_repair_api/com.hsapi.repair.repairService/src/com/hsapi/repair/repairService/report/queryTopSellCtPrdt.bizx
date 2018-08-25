@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryTopSellPrdt.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryTopSellCtPrdt" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询套餐的TOPX，查询工时的TOPX，查询配件的TOPX&#xD;&#xA;然后再取TOPX&#xD;&#xA;limitCount == 0? 6 : limitCount" title="Administrator&#x9;18-8-25 上午10:07">
     <location x="67" y="-60"/>
     <size height="100" width="508"/>
@@ -247,7 +247,7 @@
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryPkgRank" displayName="queryPkgRank" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryPkgCtRank" displayName="queryPkgCtRank" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -266,8 +266,8 @@
     <location x="359" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.queryPkgRank</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.queryPkgCtRank</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="p" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
@@ -279,8 +279,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="330" y="185"/>
-    <figSize height="17" width="85"/>
+    <location x="324" y="185"/>
+    <figSize height="17" width="97"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
@@ -298,7 +298,7 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryItemRank" displayName="queryItemRank" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryItemCtRank" displayName="queryItemCtRank" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -308,7 +308,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.queryItemRank</process:partner>
+      <process:partner type="literal">this.queryItemCtRank</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="p" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
@@ -320,11 +320,11 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="517" y="185"/>
-    <figSize height="17" width="89"/>
+    <location x="511" y="185"/>
+    <figSize height="17" width="101"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="queryPartRank" displayName="queryPartRank" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="queryPartCtRank" displayName="queryPartCtRank" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>invokePojo3</targetNode>
@@ -334,7 +334,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.queryPartRank</process:partner>
+      <process:partner type="literal">this.queryPartCtRank</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="p" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
@@ -346,8 +346,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="720" y="185"/>
-    <figSize height="17" width="86"/>
+    <location x="714" y="185"/>
+    <figSize height="17" width="98"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="sort" displayName="sort" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -366,7 +366,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="xpath" type="literal" value="java.lang.String" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="property" type="literal" value="java.lang.String" valueType="Java" pattern="reference">amt</process:inputVariable>
+      <process:inputVariable id="1" name="property" type="literal" value="java.lang.String" valueType="Java" pattern="reference">ct</process:inputVariable>
       <process:inputVariable id="2" name="isAsc" type="literal" value="boolean" valueType="Java" pattern="reference">false</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -435,6 +435,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <location x="870" y="150"/>

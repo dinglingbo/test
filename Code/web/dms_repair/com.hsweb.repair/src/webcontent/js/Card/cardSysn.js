@@ -26,7 +26,7 @@ $(document).ready(function(v) {
 	        if(resList && resList.length>0){
 
 	            listSrv.forEach(function(v) {
-	                discountHash[v.serviceTypeId] = v;
+	            	discountHash[v.serviceTypeId] = v;
 	            });
 
 	            for(var i=0; i<resList.length; i++){

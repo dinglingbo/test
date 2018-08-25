@@ -19,7 +19,7 @@
     <targetConnections>link3</targetConnections>
     <targetConnections>link6</targetConnections>
     <targetConnections>link9</targetConnections>
-    <location x="595" y="208"/>
+    <location x="645" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -33,7 +33,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="597" y="244"/>
+    <location x="647" y="253"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>

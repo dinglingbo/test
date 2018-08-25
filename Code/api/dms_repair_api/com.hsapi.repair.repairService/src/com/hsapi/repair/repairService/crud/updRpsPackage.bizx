@@ -167,6 +167,46 @@
       <process:from type="query" pattern="reference">pkg/id</process:from>
       <process:to type="query">item/billPackageId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/rate</process:from>
+      <process:to type="query">item/rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/itemTime</process:from>
+      <process:to type="query">itemTime</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/unitPrice</process:from>
+      <process:to type="query">price</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/rate</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">itemTime*price</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt*rate*1.0/100.0</process:from>
+      <process:to type="query">discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt-discountAmt</process:from>
+      <process:to type="query">subtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">amt</process:from>
+      <process:to type="query">item/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">discountAmt</process:from>
+      <process:to type="query">item/discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">subtotal</process:from>
+      <process:to type="query">item/subtotal</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="273" y="191"/>
@@ -231,6 +271,46 @@
     <process:copy>
       <process:from type="query" pattern="reference">pkg/id</process:from>
       <process:to type="query">part/billPackageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/rate</process:from>
+      <process:to type="query">part/rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">part/qty</process:from>
+      <process:to type="query">qty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">part/unitPrice</process:from>
+      <process:to type="query">price</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">part/rate</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qty*price</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt*rate*1.0/100.0</process:from>
+      <process:to type="query">discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt-discountAmt</process:from>
+      <process:to type="query">subtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">amt</process:from>
+      <process:to type="query">part/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">discountAmt</process:from>
+      <process:to type="query">part/discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">subtotal</process:from>
+      <process:to type="query">part/subtotal</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

@@ -333,4 +333,20 @@
         order by id desc
 	</select>
 	
+	<select id="getCardRate" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.card_id as cardId,
+			a.service_type_id as serviceTypeId,
+			a.service_type_name as serviceTypeName ,
+			a.package_discount_rate as packageDiscountRate,
+			a.item_discount_rate AS itemDiscountRate,
+			a.part_discount_rate AS partDiscountRate
+		FROM
+		rpb_card_rate AS a
+		WHERE A.is_disabled = 0
+		  AND A.card_id = #cardId#
+		  and a.service_type_id = #serviceTypeId#
+	</select>
+	
 </sqlMap>

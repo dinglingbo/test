@@ -996,4 +996,24 @@
                DATE_FORMAT(a.record_date,'%Y-%m-%d') &lt;= #endDate#
         </isNotEmpty>
     </select>
+    
+    <!--工单营收-->
+    <select id="queryNetinAmtByDay" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT b.datekey, sum(a.netin_amt) as netinAmt
+		from rps_settlement a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+		
+		group by b.datekey
+
+    </select>
 </sqlMap>

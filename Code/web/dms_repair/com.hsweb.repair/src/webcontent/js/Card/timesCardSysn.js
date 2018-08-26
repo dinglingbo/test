@@ -439,9 +439,9 @@ function selectPackage() {
 						prdtName : prdtName,
 						prdtType : prdtType,
 						times:times,
-						oldPrice:oldPrice,
+						oldPrice:sellPrice,
 						sellPrice:sellPrice,
-						oldAmt:oldPrice,
+						oldAmt:sellPrice,
 						sellAmt:sellPrice,
 						qty:qty,
 					};

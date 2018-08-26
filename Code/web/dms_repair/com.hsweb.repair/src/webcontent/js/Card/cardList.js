@@ -102,7 +102,8 @@ function selectionChanged() {
 }
 
 function onDrawCell(e) {
-	var hash = new Array("原价比例(%)", "折后价比例(%)", "产值比例(%)", "固定金额(元)");
+	//var hash = new Array("原价比例(%)", "折后价比例(%)", "产值比例(%)", "固定金额(元)");
+	var hash = {"1":"原价比例(%)","2":"折后价比例(%)","3":"产值比例(%)","4":"固定金额(元)"};
 	switch (e.field) {
 	case "useRange":
 		e.cellHtml = e.value == 1 ? "连锁" : "本店";

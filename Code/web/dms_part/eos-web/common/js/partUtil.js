@@ -90,7 +90,7 @@ function getProvinceAndCity(callback) {
 		provinceList = window.top._provinceList;
 		cityList = window.top._cityList;
 		provinceList.forEach(function(v) {
-			provinceHash[v.code] = v;
+			provinceHash[v.id] = v;
 		});
 		cityList.forEach(function(v) {
 			cityHash[v.code] = v;

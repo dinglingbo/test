@@ -103,7 +103,7 @@ function refresh(){
   //剩余次数
   var balaTimes = null;
   //总次数
-  var totalTimes = null;
+  var totalTimes = null;r
   //剩余可使用次数
   var canUseTimes = null;
   var id = null;

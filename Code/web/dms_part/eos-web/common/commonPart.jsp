@@ -62,7 +62,7 @@
 	window._webRepairUrl = webPath + contextPath + "/";
 	//console.log(window._rootUrl);
 	</script>
-<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.0" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.3" type="text/javascript"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

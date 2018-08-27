@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=1.1.6"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.0.7"></script>
 
 </head>
 
@@ -44,7 +44,7 @@
 		<tr>
 			<td>
 				<a class="nui-button" id="add" iconCls="" onclick="addPackage()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-				<a class="nui-button" id="save" iconCls="icon-save" onclick="save()" plain="true">保存</a>
+				<a class="nui-button" id="save" iconCls="" onclick="save()" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
 			</td>
 		</tr>
 	</table>

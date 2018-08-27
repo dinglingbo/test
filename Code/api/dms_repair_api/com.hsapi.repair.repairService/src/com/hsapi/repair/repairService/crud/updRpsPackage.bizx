@@ -140,6 +140,30 @@
       <process:from type="query" pattern="reference">pkg/cardDetailId</process:from>
       <process:to type="query">cardDetailId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/rate</process:from>
+      <process:to type="query">pkgDiscountRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/amt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt*pkgDiscountRate</process:from>
+      <process:to type="query">discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt-discountAmt</process:from>
+      <process:to type="query">subtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">discountAmt</process:from>
+      <process:to type="query">pkg/discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">subtotal</process:from>
+      <process:to type="query">pkg/subtotal</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="97" y="190"/>
@@ -188,7 +212,7 @@
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate*1.0/100.0</process:from>
+      <process:from type="expression" pattern="reference">amt*rate*1.0</process:from>
       <process:to type="query">discountAmt</process:to>
     </process:copy>
     <process:copy>
@@ -293,7 +317,7 @@
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate*1.0/100.0</process:from>
+      <process:from type="expression" pattern="reference">amt*rate*1.0</process:from>
       <process:to type="query">discountAmt</process:to>
     </process:copy>
     <process:copy>
@@ -801,6 +825,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Float"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="pkgDiscountRate" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPackage" name="pkg"/>

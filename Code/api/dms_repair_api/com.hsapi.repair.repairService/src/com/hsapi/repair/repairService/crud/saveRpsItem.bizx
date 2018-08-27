@@ -196,7 +196,7 @@
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate*1.0/100.0</process:from>
+      <process:from type="expression" pattern="reference">amt*rate*1.0</process:from>
       <process:to type="query">discountAmt</process:to>
     </process:copy>
     <process:copy>
@@ -764,7 +764,7 @@
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign15" name="赋值15" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link61" name="link61" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>transactionrollback0</targetNode>

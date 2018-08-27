@@ -337,7 +337,7 @@ function CloseWindow(action) {
 
 function updateError(e) {
 
-	if (nui.get('x').getValue() == "3") {
+	if (nui.get('x').getValue() == "4") {
 		document.getElementById('y').innerHTML = "元";
 	} else {
 

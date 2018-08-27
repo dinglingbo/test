@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
 </head>
 <body>
    <div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">

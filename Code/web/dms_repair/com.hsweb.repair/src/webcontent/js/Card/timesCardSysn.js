@@ -201,7 +201,7 @@ function onOk() {
 			}
 
 			if (!zz.exec(data1[i][key])) {
-				showMsg(tcd[key] + "必须为正整数!", "W");
+				showMsg(tcd[key] + "必须为大于0的正整数!", "W");
 
 				return;
 			}
@@ -224,6 +224,7 @@ function setData(data) {
 		}
 		form.setData(json);
 		form.setChanged(false);
+		updateError();
 	}
 	if(json && json.type){
 		type = json.type;

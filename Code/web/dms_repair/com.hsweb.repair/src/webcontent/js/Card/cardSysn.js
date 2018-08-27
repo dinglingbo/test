@@ -185,6 +185,7 @@ function setData(data) {
 		}
 		form.setData(json);
 		form.setChanged(false);
+		updateError();
 	}
 }
 

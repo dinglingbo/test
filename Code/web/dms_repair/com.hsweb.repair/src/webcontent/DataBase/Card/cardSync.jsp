@@ -12,7 +12,7 @@
 <head>
 <title>会员卡录入</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.2.6"></script>
 </head>
 <body>
 

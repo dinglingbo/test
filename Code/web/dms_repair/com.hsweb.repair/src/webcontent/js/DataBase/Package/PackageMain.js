@@ -90,7 +90,6 @@ function onRateValidation(e){
 			}
 		}else {
 			if (e.isValid) {
-				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
 				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";

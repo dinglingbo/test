@@ -25,18 +25,18 @@
 		update rps_package a
 		inner join (
 			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
-		         package_id as packageId, service_id as serviceId
+		         bill_package_id as packageId, service_id as serviceId
 		  from rps_item
 			where service_id = #serviceId# and package_id &gt; 0
-			group by package_id, service_id
+			group by bill_package_id, service_id
 		) b
 		on a.id = b.packageId and a.service_id = b.serviceId
 		inner join (
 			select sum(ifnull(amt,0)) sumAmt, sum(ifnull(discount_amt,0)) sumtDiscountAmt,
-		         package_id as packageId, service_id as serviceId
+		         bill_package_id as packageId, service_id as serviceId
 		  from rps_part
 			where service_id = #serviceId# and package_id &gt; 0
-			group by package_id, service_id
+			group by bill_package_id, service_id
 		) c
 		on a.id = c.packageId and a.service_id = c.serviceId
 		set a.amt = ifnull(b.sumAmt,0) + ifnull(c.sumAmt,0),

@@ -38,6 +38,7 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>transactionbegin0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -164,7 +165,7 @@
       <targetNode>transactionbegin0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -288,6 +289,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="link1" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>subprocess4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="link2" type="transition">
       <sourceNode>assign3</sourceNode>

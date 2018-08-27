@@ -70,11 +70,11 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>subprocess3</targetNode>
+      <targetNode>transactionbegin0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link48</targetConnections>
-    <location x="-193" y="143"/>
+    <location x="-193" y="144"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -87,7 +87,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="-218" y="179"/>
+    <location x="-218" y="180"/>
     <figSize height="17" width="72"/>
     <node>invokePojo0</node>
   </nodes>
@@ -106,14 +106,12 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="301" y="145"/>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link9</targetConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="416" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">cardRate/itemDiscountRate</process:from>
-      <process:to type="query">itemDiscountRate</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">insItem/recordDate</process:to>
@@ -143,10 +141,6 @@
       <process:to type="query">insItem/rate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">insItem/cardDetailId</process:from>
-      <process:to type="query">cardDetailId</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">insItem/itemTime</process:from>
       <process:to type="query">itemTime</process:to>
     </process:copy>
@@ -163,7 +157,7 @@
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate*1.0/100.0</process:from>
+      <process:from type="expression" pattern="reference">amt*rate*1.0</process:from>
       <process:to type="query">discountAmt</process:to>
     </process:copy>
     <process:copy>
@@ -188,7 +182,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="299" y="181"/>
+    <location x="414" y="181"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -227,14 +221,13 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
-    <targetConnections>link5</targetConnections>
-    <location x="32" y="142"/>
+    <targetConnections>link42</targetConnections>
+    <location x="-73" y="143"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="22" y="178"/>
+    <location x="-83" y="179"/>
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
@@ -281,7 +274,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="105" y="143"/>
+    <location x="0" y="144"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -294,14 +287,14 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="74" y="179"/>
+    <location x="-31" y="180"/>
     <figSize height="17" width="85"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="insItemWorkers" displayName="insItemWorkers" grouped="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>assign5</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" type="transition">
@@ -315,7 +308,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="198" y="145"/>
+    <location x="93" y="145"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -331,7 +324,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="165" y="180"/>
+    <location x="60" y="180"/>
     <figSize height="17" width="93"/>
     <node>subprocess0</node>
   </nodes>
@@ -342,12 +335,12 @@
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <targetConnections>link53</targetConnections>
-    <location x="425" y="145"/>
+    <location x="540" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="423" y="181"/>
+    <location x="538" y="181"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -408,7 +401,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
-    <location x="301" y="293"/>
+    <location x="416" y="293"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -425,7 +418,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="263" y="328"/>
+    <location x="378" y="328"/>
     <figSize height="17" width="103"/>
     <node>subprocess2</node>
   </nodes>
@@ -435,7 +428,7 @@
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
     <targetConnections>link32</targetConnections>
-    <location x="426" y="293"/>
+    <location x="541" y="293"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
@@ -448,7 +441,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="421" y="329"/>
+    <location x="536" y="329"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
@@ -707,12 +700,12 @@
       <targetNode>assign9</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="198" y="382"/>
+    <location x="93" y="382"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="196" y="418"/>
+    <location x="91" y="418"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -726,7 +719,7 @@
       <targetNode>assign7</targetNode>
     </sourceConnections>
     <targetConnections>link51</targetConnections>
-    <location x="429" y="228"/>
+    <location x="544" y="228"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -740,7 +733,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="404" y="264"/>
+    <location x="519" y="264"/>
     <figSize height="17" width="73"/>
     <node>invokePojo4</node>
   </nodes>
@@ -751,7 +744,7 @@
     </sourceConnections>
     <targetConnections>link54</targetConnections>
     <targetConnections>link56</targetConnections>
-    <location x="482" y="359"/>
+    <location x="597" y="359"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -764,7 +757,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="480" y="395"/>
+    <location x="595" y="395"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -845,12 +838,7 @@
     <node>assign17</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="getCardDiscount" displayName="getCardDiscount" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess3</sourceNode>
-      <targetNode>transactionbegin0</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess3</sourceNode>
       <targetNode>assign21</targetNode>
       <process:transitionCondition>
@@ -860,8 +848,18 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link42</targetConnections>
-    <location x="-90" y="142"/>
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>assign18</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="195" y="55"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
@@ -879,17 +877,17 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="-126" y="177"/>
+    <location x="159" y="90"/>
     <figSize height="17" width="98"/>
     <node>subprocess3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign21" name="赋值21" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="link58" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign21</sourceNode>
-      <targetNode>transactionbegin0</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="-90" y="45"/>
+    <location x="300" y="-3"/>
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
@@ -898,9 +896,61 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
-    <location x="-95" y="81"/>
+    <location x="295" y="33"/>
     <figSize height="17" width="39"/>
     <node>assign21</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="不是预存才取优惠率" displayName="连接线" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>subprocess3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">cardDetailId</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="195" y="145"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">insItem/cardDetailId</process:from>
+      <process:to type="query">cardDetailId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">insItem/rate</process:from>
+      <process:to type="query">itemDiscountRate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="193" y="181"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="300" y="55"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign18label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardRate/itemDiscountRate</process:from>
+      <process:to type="query">itemDiscountRate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
+    <location x="295" y="91"/>
+    <figSize height="17" width="39"/>
+    <node>assign18</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

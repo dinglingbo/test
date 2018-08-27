@@ -12,7 +12,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.2"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.3"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -41,7 +41,7 @@
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="card" class="nui-datagrid"
 			pageSize="50" onDrawCell="onDrawCell"
-			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
+			onrowclick="" allowSortColumn="true"
 			style="width: 100%; height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>

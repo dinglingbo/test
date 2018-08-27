@@ -560,6 +560,10 @@
       <process:to type="query">temp/sellPrice</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">btemp/rate</process:from>
+      <process:to type="query">temp/rate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">cardTimes/cardId</process:from>
       <process:to type="query">temp/cardId</process:to>
     </process:copy>

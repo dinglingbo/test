@@ -60,7 +60,7 @@
 				<tr>
 					<td class="form_label" align="right" colspan="1">销售提成方式:</td>
 					<td colspan="1"><input class="nui-combobox"
-						data="[{value:'0',text:'按原价比例',},{value:'1',text:'按折后价比例'},{value:'2',text:'按产值比例',},{value:'3',text:'固定金额'}]"
+						data="[{value:'1',text:'按原价比例',},{value:'2',text:'按折后价比例'},{value:'3',text:'按产值比例',},{value:'4',text:'固定金额'}]"
 						textField="text" valueField="value" name="salesDeductType"
 						value="0" onvalidation="updateError()" id="x" /></td>
 					<td class="form_label" align="right" colspan="1">销售提成值:</td>

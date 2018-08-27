@@ -183,7 +183,7 @@
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate*1.0/100.0</process:from>
+      <process:from type="expression" pattern="reference">amt*rate*1.0</process:from>
       <process:to type="query">discountAmt</process:to>
     </process:copy>
     <process:copy>
@@ -552,7 +552,7 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign9</targetNode>
@@ -568,7 +568,7 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

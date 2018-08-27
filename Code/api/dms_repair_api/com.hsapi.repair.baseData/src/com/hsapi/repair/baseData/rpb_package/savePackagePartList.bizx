@@ -142,11 +142,11 @@
       <process:to type="query">unitPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate</process:from>
+      <process:from type="expression" pattern="reference">unitPrice*rate</process:from>
       <process:to type="query">tmp/truePrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">unitPrice*rate</process:from>
+      <process:from type="expression" pattern="reference">amt*rate</process:from>
       <process:to type="query">tmp/trueAmt</process:to>
     </process:copy>
   </nodes>
@@ -242,11 +242,11 @@
       <process:to type="query">unitPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate</process:from>
+      <process:from type="expression" pattern="reference">unitPrice*rate</process:from>
       <process:to type="query">tmp/truePrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">unitPrice*rate</process:from>
+      <process:from type="expression" pattern="reference">amt*rate</process:from>
       <process:to type="query">tmp/trueAmt</process:to>
     </process:copy>
   </nodes>

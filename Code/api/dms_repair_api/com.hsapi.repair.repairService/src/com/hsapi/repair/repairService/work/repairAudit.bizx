@@ -63,9 +63,15 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="expandMaintainById" displayName="expandMaintainById" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link2" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="link2" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="link3" type="transition">
       <sourceNode>subprocess0</sourceNode>

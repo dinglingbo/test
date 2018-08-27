@@ -44,7 +44,7 @@
 </div>
 <div class="nui-fit">
 		<div id="datagrid1" dataField="params" class="nui-datagrid"
-			pageSize="10" onDrawCell="onDrawCell"  		
+			pageSize="50" onDrawCell="onDrawCell"  		
 			     showPager="true"    
                     totalField="page.count"
                     sortMode="client"

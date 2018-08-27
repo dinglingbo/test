@@ -27,9 +27,9 @@
 					<input class="nui-textbox" name="guestName" id="guestName-search"/>
 					<label class="form_label">计次卡名称：</label>
 					<input class="nui-textbox" name="cardName" id="cardName-search"/>
-			        <label class="form_label">开始日期：</label>
+			        <label class="form_label">创建时间&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
-	                <label class="form_label">结束日期：</label>
+	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "endDate" value=""/>
 					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
 				</td>

@@ -185,12 +185,13 @@ function setData(data) {
 		}
 		form.setData(json);
 		form.setChanged(false);
+		updateError();
 	}
 }
 
 function updateError(e) {
 
-	if (nui.get('x').getValue() == "3") {
+	if (nui.get('x').getValue() == "4") {
 		document.getElementById('y').innerHTML = "元";
 	} else {
 

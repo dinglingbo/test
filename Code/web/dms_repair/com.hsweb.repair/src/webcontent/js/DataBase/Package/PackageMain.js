@@ -16,13 +16,14 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var typeHash = {};
 var typeList = [];
-var hidePercent = null;
 var salesDeductTypeEl = null;
 //var techDeductTypeEl = null;
 var advisorDeductTypeEl = null;
 var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
+var deductForm = null;
 $(document).ready(function (v)
 {
+	deductForm = new nui.Form("#deductForm");
 	salesDeductTypeEl = nui.get("salesDeductType");
 	//techDeductTypeEl = nui.get("techDeductType");
 	advisorDeductTypeEl = nui.get("advisorDeductType");
@@ -90,7 +91,8 @@ function onRateValidation(e){
 			}
 		}else {
 			if (e.isValid) {
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;
@@ -110,7 +112,7 @@ function onRateValidation(e){
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;
@@ -130,7 +132,7 @@ function onRateValidation(e){
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;
@@ -356,6 +358,10 @@ function addPackage()
 var saveUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.savePackage.biz.ext";
 function save()
 {
+	deductForm.validate();
+    if (deductForm.isValid() == false) {
+        return;
+	}
 	var data = basicInfoForm.getData();
 	var data1 = basicInfoForm1.getData();
 	data.advisorDeductType=data1.advisorDeductType;

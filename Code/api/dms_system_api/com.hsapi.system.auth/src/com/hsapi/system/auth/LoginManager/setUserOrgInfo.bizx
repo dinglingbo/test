@@ -126,6 +126,10 @@
       <process:to type="query">m:userObject/attributes/compAddress</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">comp/isMaster</process:from>
+      <process:to type="query">m:userObject/attributes/isMaster</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -425,7 +429,7 @@
       <process:partner type="literal">this.setUserDuty</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="operatorId" type="query" value="String" valueType="Primitive" pattern="reference">u/operatorid</process:inputVariable>
-        <process:inputVariable id="1" name="currDutyId" type="literal" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="1" name="currDutyId" type="literal" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>

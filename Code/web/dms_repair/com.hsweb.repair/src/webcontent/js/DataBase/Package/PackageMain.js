@@ -49,7 +49,21 @@ $(document).ready(function (v)
 	rightPartGrid = nui.get("rightPartGrid");
 	rightPartGrid.setUrl(rightPartGridUrl);
 	
-	
+
+	rightItemGrid.on("cellbeginedit",function(e){
+		var row = rightItemGrid.getSelected();
+		if(row)
+		{
+			switch (e.field)
+			{
+			case "truePrice":
+				e.cancel = false;
+				break;
+			default:
+				break;
+			}
+		}
+	});
 	rightPartGrid.on("cellendedit",function(e)
 	{
 				
@@ -58,6 +72,7 @@ $(document).ready(function (v)
 		{
 			var qty = row.qty;
 			var unitPrice = row.unitPrice;
+			var truePrice = row.truePrice;
 			if(qty && unitPrice)
 			{
 				var amt = unitPrice*qty;
@@ -65,9 +80,17 @@ $(document).ready(function (v)
 				//修改行
 				rightPartGrid.updateRow(row,row);
 			}
+			if(qty && truePrice)
+			{
+				var trueAmt = truePrice*qty;
+				row.trueAmt = trueAmt;
+				//修改行
+				rightPartGrid.updateRow(row,row);
+			}
 		}
 	});
 
+	
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	basicInfoForm1 = new nui.Form("#basicInfoForm1");
 	queryForm = new nui.Form("#queryForm");
@@ -374,10 +397,12 @@ function save()
 	var partList = rightPartGrid.getData();
 	var i,tmp;
 	var total = 0;
+	var amount = 0;
 	for(i=0;i<partList.length;i++)
 	{
 		tmp = partList[i];
 		total += tmp.amt;
+		amount += tmp.trueAmt;
 	}
 	var insParts = partList.filter(function(v){
 		return !v.packageId;
@@ -395,8 +420,10 @@ function save()
 	{
 		tmp = itemList[i];
 		total += tmp.amt;
+		amount += tmp.trueAmt;
 	}
 	data.total = total;
+	data.amount = amount;
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
@@ -584,4 +611,13 @@ function onDrawCell(e){
             e.cellHtml = typeHash[e.value].name;
         }
     }	
+}
+function onValueChangedSellPrice(e){
+	trueAmt = null;
+	var row = rightItemGrid.getSelected();
+	trueAmt = row.itemTime*e.value;
+		data = {
+				trueAmt:trueAmt
+		   };
+		rightItemGrid.updateRow(row,data);	
 }

@@ -21,9 +21,9 @@
 	//System.out.println("auditSign=" + auditSign);
 	String fileAddr = "";
 	if(auditSign == 0){
-		fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/unaudit/sellOrderReport.jasper";
+		fileAddr = request.getSession().getServletContext().getRealPath("") +"/manage/inOutManage/iReport/unaudit/sellOrderReport.jasper";
 	}else{
-		fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/audit/sellOrderReport.jasper";
+		fileAddr = request.getSession().getServletContext().getRealPath("") +"/manage/inOutManage/iReport/audit/sellOrderReport.jasper";
 	}
 	//String fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/sellOrderReport.jasper";
 	//System.out.println("fileAddr=" + fileAddr);

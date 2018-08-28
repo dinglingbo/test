@@ -5,7 +5,7 @@
 
 <head>
 <title>配件销售毛利汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/report/js/partSellForMonth.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partSellForMonth.js?v=1.1.0"></script>
 </head>
 
 <body>

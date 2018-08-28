@@ -5,7 +5,7 @@
 
 <head>
 <title>品牌销售毛利汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/report/js/partBrandSellForMonth.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partBrandSellForMonth.js?v=1.1.0"></script>
 </head>
 
 <body>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购排行</title>
-<script src="<%=webPath + contextPath%>/report/js/purchaseRank.js?v=1.2.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/purchaseRank.js?v=1.2.0"></script>
 <style type="text/css">
 .title {
   width: 60px;

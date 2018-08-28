@@ -10,7 +10,7 @@
 <head>
 <title>jsp auto create</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/js/shiftPopOperate.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shiftPopOperate.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;

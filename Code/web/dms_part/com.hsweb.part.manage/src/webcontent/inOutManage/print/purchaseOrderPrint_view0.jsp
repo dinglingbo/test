@@ -21,9 +21,9 @@
 	//System.out.println("auditSign=" + auditSign);
 	String fileAddr = "";
 	if(auditSign == 0){
-		fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/unaudit/purchaseOrderReport.jasper";
+		fileAddr = request.getSession().getServletContext().getRealPath("") +"/manage/inOutManage/iReport/unaudit/purchaseOrderReport.jasper";
 	}else{
-		fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/audit/purchaseOrderReport.jasper";
+		fileAddr = request.getSession().getServletContext().getRealPath("") +"/manage/inOutManage/iReport/audit/purchaseOrderReport.jasper";
 	}
 	//System.out.println("fileAddr=" + fileAddr);
 	File reportFile = new File(fileAddr);//"c:/采购订单打印.jasper"

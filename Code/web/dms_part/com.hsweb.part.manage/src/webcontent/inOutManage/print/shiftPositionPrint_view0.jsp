@@ -17,7 +17,7 @@
 	//String fileAddr = request.getSession().getServletContext().getRealPath("") +"/iReport/采购订单打印.jasper";
 	//Object i = request.getParameter("ID");
 	//System.out.println(i);
-	String fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/stockShiftOutReport.jasper";
+	String fileAddr = request.getSession().getServletContext().getRealPath("") +"/manage/inOutManage/iReport/copy/stockShiftOutReport.jasper";
 	//System.out.println("fileAddr=" + fileAddr);
 	File reportFile = new File(fileAddr);//"c:/采购订单打印.jasper"
 try {

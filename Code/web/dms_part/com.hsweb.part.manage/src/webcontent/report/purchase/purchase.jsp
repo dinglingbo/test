@@ -13,8 +13,10 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@ include file="/common/sysCommon.jsp" %>
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/report/purchase/js/purchase.js?v=1.1" type="text/javascript"></script>
-     <!--下：采购订单-->
+<script
+	src="<%= request.getContextPath() %>/manage/js/report/purchase/purchase.js?v=1.1"
+	type="text/javascript"></script>
+<!--下：采购订单-->
   </head>
 <body>   
      <div class="nui-toolbar" style="padding:2px;border-bottom:0;">

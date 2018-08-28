@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="setAmt.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.settleMent.getAmt&#xD;&#xA;mt_amt 工单金额  allowance_amt 折让金额&#xD;&#xA;com.hsapi.repair.repairService.settleMent.setAmt&#xD;&#xA;&#xD;&#xA;此时结算金额 balaAmt  = 所有小计之和" title="Administrator&#x9;18-8-9 下午11:20">
-    <location x="64" y="-60"/>
-    <size height="100" width="372"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.settleMent.getAmt&#xD;&#xA;mt_amt 工单金额  allowance_amt 折让金额&#xD;&#xA;com.hsapi.repair.repairService.settleMent.setAmt&#xD;&#xA;&#xD;&#xA;此时结算金额 balaAmt  = 所有小计之和&#xD;&#xA;取套餐金额，套餐小计，套餐优惠金额，套餐优惠率" title="Administrator&#x9;18-8-9 下午11:20">
+    <location x="71" y="-135"/>
+    <size height="151" width="372"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="link0" isDefault="true" type="transition">

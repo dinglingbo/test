@@ -205,7 +205,7 @@
 			a.`name` as empName
 		FROM
 		com_member AS a
-		WHERE 1=1 and is_dimission = 0
+		WHERE 1=1 and a.is_dimission = 0
 		<isNotNull property="orgid">
 			AND a.orgid = #orgid#
 		</isNotNull>

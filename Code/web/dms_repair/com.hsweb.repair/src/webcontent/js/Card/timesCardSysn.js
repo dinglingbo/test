@@ -51,6 +51,8 @@ function onValueChangedTimes(e){
 	{
 		sellAmt = row.sellPrice*e.value;
 		oldAmt = row.oldPrice*e.value;
+		sellAmt = parseFloat(sellAmt).toFixed(2);
+		oldAmt = parseFloat(oldAmt).toFixed(2);
 		data = {
 			sellAmt:sellAmt,
 			oldAmt:oldAmt
@@ -65,6 +67,8 @@ function onValueChangedQty(e){
 	var row = timesCardDetail.getSelected();
 	oldAmt = row.oldPrice*e.value; 	
 	sellAmt = row.sellPrice*e.value;
+	sellAmt = parseFloat(sellAmt).toFixed(2);
+	oldAmt = parseFloat(oldAmt).toFixed(2);
 	data = {
 		oldAmt:oldAmt, 
 		sellAmt:sellAmt
@@ -79,6 +83,8 @@ function onValueChangedOldPrice(e){
 	var row = timesCardDetail.getSelected();
 	oldAmt = row.qty*e.value;		
 	sellAmt =  row.sellPrice*row.qty; 
+	sellAmt = parseFloat(sellAmt).toFixed(2);
+	oldAmt = parseFloat(oldAmt).toFixed(2);
 	data = {
 		oldAmt:oldAmt, 
 		sellAmt:sellAmt
@@ -96,6 +102,8 @@ function onValueChangedSellPrice(e){
 	{
 		sellAmt = row.times*e.value;
 		oldAmt = row.oldPrice*row.times;
+		sellAmt = parseFloat(sellAmt).toFixed(2);
+		oldAmt = parseFloat(oldAmt).toFixed(2);
 		data = {
 			sellAmt:sellAmt,
 			oldAmt:oldAmt
@@ -104,7 +112,9 @@ function onValueChangedSellPrice(e){
 	}else
 	{
 		oldAmt = row.qty*row.oldPrice;			
-		sellAmt = e.value*row.qty;			
+		sellAmt = e.value*row.qty;
+		sellAmt = parseFloat(sellAmt).toFixed(2);
+		oldAmt = parseFloat(oldAmt).toFixed(2);
 		data = {
 			oldAmt:oldAmt, 
 			sellAmt:sellAmt
@@ -172,18 +182,24 @@ var tcd = {
 	sellAmt : "现销售金额 "
 };
 
+var falg = null;
 function onOk() {
-	var yz = "^[0-9]*[1-9][0-9]*$";
+	falg =  null;
+	var qtyTest = "^[0-9]*[1-9][0-9]*$";
+	var yz = /^(\d*)(\.\d{1,2})?$/;
 	var zz = new RegExp(yz);
 	g = nui.get("timesCardDetail");
 	var data1 = g.getData();
 	var data = form.getData();
 	for ( var key in requiredField) {
-		if (!data[key] || $.trim(data[key]).length == 0) {
+		if (!data[key] || $.trim(data[key]).length == 0)
+		{
 			//当有效期没有输入月份时，判断单选框是否选择了
-			if( key == "periodValidity" && set.checked ){
+			if( key == "periodValidity" && set.checked )
+			{
 				//跳过本次循环，执行下一次循环,把有效期赋值为-1
-				input.setValue("-1");
+				//input.setValue("-1");
+				falg = 1;
 				continue;
 			}else{
 				showMsg(requiredField[key] + "不能为空!", "W");
@@ -193,16 +209,19 @@ function onOk() {
 		}
 
 	}
-	for ( var key in tcd) {
-		for (var i = 0; i < data1.length; i++) {
-			if (!data1[i][key] || $.trim(data1[i][key]).length == 0) {
+	for ( var key in tcd)
+	{
+		for (var i = 0; i < data1.length; i++)
+		{
+			if (!data1[i][key] || $.trim(data1[i][key]).length == 0)
+			{
 				showMsg(tcd[key] + "不能为空!", "W");
 				return;
 			}
 
-			if (!zz.exec(data1[i][key])) {
-				showMsg(tcd[key] + "必须为大于0的正整数!", "W");
-
+		    if (!yz.test(data1[i][key]))
+		    {
+				showMsg(tcd[key] + "必须为正数,小数点后最多两位!", "W");
 				return;
 			}
 		}
@@ -224,7 +243,6 @@ function setData(data) {
 		}
 		form.setData(json);
 		form.setChanged(false);
-		updateError();
 	}
 	if(json && json.type){
 		type = json.type;
@@ -248,6 +266,7 @@ function setData(data) {
 				nui.alert("获取明细失败", "系统提示", function(action) {
 					if (action == "ok" || action == "close") {
 						// CloseWindow("saveFailed");
+						
 					}
 				});
 			}
@@ -283,10 +302,15 @@ function saveData() {
 	g.validate();
 	if (g.isValid() == false)
 		return;
+	
 	var pchsOrderDetailAdd = g.getChanges("added");
 	var pchsOrderDetailUpdate = g.getChanges("modified");
 	var pchsOrderDetailDelete = g.getChanges("removed");
 	var data = form.getData(false, true);
+	//设置有效期的值
+	if(falg == 1){
+		data.periodValidity = -1;
+	}
 	var time = nui.get("timesCardDetail").getData();
 	var json = nui.encode({
 		"timesCard" : data,
@@ -311,6 +335,7 @@ function saveData() {
 				nui.alert("保存失败", "系统提示", function(action) {
 					if (action == "ok" || action == "close") {
 						// CloseWindow("saveFailed");
+						
 					}
 				});
 			}

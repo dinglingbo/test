@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insItemWorkers.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="  用  ,  分隔&#xD;&#xA;deduct_type 提成方式&#xD;&#xA;deduct_value  提成金额  在完工时修改计算&#xD;&#xA;&#xD;&#xA;销售提成类型(1-按原价比例;2-按折后价比例;3-按产值比例;4-固定金额)" title="Administrator&#x9;18-8-8 下午4:28">
-    <location x="90" y="-15"/>
-    <size height="121" width="498"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="  用  ,  分隔&#xD;&#xA;deduct_type 提成方式&#xD;&#xA;deduct_value  提成金额  在完工时修改计算&#xD;&#xA;&#xD;&#xA;销售提成类型(1-按原价比例;2-按折后价比例;3-按产值比例;4-固定金额)&#xD;&#xA;" title="Administrator&#x9;18-8-8 下午4:28">
+    <location x="90" y="-45"/>
+    <size height="151" width="498"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -241,7 +241,7 @@
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
-      <targetNode>assign6</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="702" y="153"/>
@@ -260,35 +260,40 @@
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="891" y="153"/>
+    <location x="929" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="879" y="185"/>
+    <location x="917" y="185"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
     <location x="702" y="63"/>
-    <size height="220" width="214"/>
+    <size height="220" width="252"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign6</chidren>
     <chidren>invokePojo3</chidren>
+    <chidren>subprocess1</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
-    <targetConnections>link14</targetConnections>
-    <location x="750" y="151"/>
+    <targetConnections>link8</targetConnections>
+    <location x="810" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">item/id</process:from>
       <process:to type="query">itemWorker/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/serviceId</process:from>
+      <process:to type="query">itemWorker/serviceId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">t</process:from>
@@ -301,6 +306,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">item/techDeductType</process:from>
       <process:to type="query">itemWorker/deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">itemWorker/deductValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">weight</process:from>
+      <process:to type="query">itemWorker/weight</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
@@ -324,7 +337,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="748" y="187"/>
+    <location x="808" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -334,7 +347,7 @@
       <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <location x="825" y="151"/>
+    <location x="866" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -350,7 +363,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="805" y="187"/>
+    <location x="846" y="187"/>
     <figSize height="17" width="62"/>
     <node>invokePojo3</node>
   </nodes>
@@ -429,6 +442,32 @@
     <figSize height="17" width="95"/>
     <node>subprocess0</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getWorkerWeight" displayName="getWorkerWeight" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="750" y="151"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.common.common.getWorkerWeight</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="empid" type="query" value="String" valueType="Primitive" pattern="reference">t</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="weight" type="query" value="Int" valueType="Primitive">weight</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="711" y="186"/>
+    <figSize height="17" width="105"/>
+    <node>subprocess1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-08 16:25:22" date="2018-08-08Z" description="" name="insItemWorkers" version="7.0.0.0"/>
@@ -445,6 +484,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="workerIds" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="workers" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="weight" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="item"/>

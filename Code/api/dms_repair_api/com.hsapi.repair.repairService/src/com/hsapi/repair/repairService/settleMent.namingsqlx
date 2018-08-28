@@ -115,12 +115,12 @@
 	
 	<select id="getRpsPkgDetailAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPackage">
 		SELECT
-			d.package_id id,
+			d.bill_package_id id,
 			sum( d.subtotal ) detailAmt 
 		FROM
 			(
 		SELECT
-			package_id,
+			bill_package_id,
 			sum( ifnull( subtotal, 0 ) ) subtotal 
 		FROM
 			rps_part 
@@ -128,9 +128,9 @@
 			service_id = #serviceId# 
 			AND bill_package_id > 0 
 		GROUP BY
-			package_id UNION
+			bill_package_id UNION
 		SELECT
-			package_id,
+			bill_package_id,
 			sum( ifnull( subtotal, 0 ) ) subtotal 
 		FROM
 			rps_item 
@@ -138,10 +138,10 @@
 			service_id = #serviceId# 
 			AND bill_package_id > 0
 		GROUP BY
-			package_id 
+			bill_package_id
 			) d 
 		GROUP BY
-			d.package_id		
+			d.bill_package_id		
 	</select>
 	<select id="getRpsPkgCostAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPackage">
 		SELECT
@@ -170,6 +170,63 @@
 			AND a.STATUS = 1
 	</select>
 	
+	<!--
+		套餐只计算销售和服务提成
+		配件只计算销售提成
+		工时计算计算销售，服务和技师提成
+	-->
+	<select id="getRpsDeductDetailAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsDeductDetail">
+		SELECT
+			d.workerId as workerId,
+			d.worker as worker,
+			sum( d.salesDeductValue ) as salesDeductValue,
+			sum( d.techDeductValue ) as techDeductValue,
+			sum( d.advisorDeductValue ) as advisorDeductValue
+		FROM
+			(
+			select sale_man_id as workerId, sale_man as worker, sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
+			       0 as techDeductValue, 0 as advisorDeductValue
+			from rps_package a
+			WHERE
+				service_id = #serviceId# 
+			group by sale_man_id, sale_man
+				union
+			SELECT sale_man_id as workerId, sale_man as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
+			       0 as techDeductValue, 0 as advisorDeductValue
+			from rps_item
+			WHERE
+				service_id = #serviceId# 
+			group by sale_man_id, sale_man
+				union		
+			SELECT sale_man_id as workerId, sale_man as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
+			       0 as techDeductValue, 0 as advisorDeductValue
+			from rps_part
+			WHERE
+				service_id = #serviceId# 
+			group by sale_man_id, sale_man
+				union
+			select #mtAdvisorId#  as workerId, #mtAdvisor#  as worker, 0 as salesDeductValue, 
+			       0 as techDeductValue, sum(IFNULL(advisor_deduct_value,0)) as advisorDeductValue
+			from rps_package a
+			WHERE
+				service_id = #serviceId# 
+				union
+			select #mtAdvisorId#  as workerId, #mtAdvisor#  as worker, 0 as salesDeductValue, 
+			       0 as techDeductValue, sum(IFNULL(advisor_deduct_value,0)) as advisorDeductValue
+			from rps_item a
+			WHERE
+				service_id = #serviceId# 
+				union
+			SELECT worker_id as workerId, worker as worker, 0 as salesDeductValue, 
+			       sum(IFNULL(deduct_value,deduct_value)) as techDeductValue, 0 as advisorDeductValue
+			from rps_item_workers 
+			WHERE
+				service_id = #serviceId# 
+			group by worker_id, worker
+			) d 
+		GROUP BY
+			d.workerId, d.worker	
+	</select>
 	
 	
 </sqlMap>

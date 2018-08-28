@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: manage
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.frm.manage
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.frm.manage
+

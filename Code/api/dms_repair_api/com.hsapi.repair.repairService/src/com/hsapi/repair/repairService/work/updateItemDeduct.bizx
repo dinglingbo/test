@@ -332,7 +332,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="技师" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>assign19</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link15" name="2" displayName="连接线" type="transition">
       <sourceNode>assign6</sourceNode>
@@ -761,6 +761,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link43</targetConnections>
+    <targetConnections>link13</targetConnections>
     <location x="861" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
@@ -813,15 +814,14 @@
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign19</targetNode>
     </sourceConnections>
-    <targetConnections>link13</targetConnections>
     <targetConnections>link18</targetConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link21</targetConnections>
     <targetConnections>link22</targetConnections>
-    <location x="765" y="144"/>
+    <location x="765" y="125"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updateItemWorkersDeduct</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">temp/id</process:inputVariable>
@@ -834,7 +834,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="699" y="179"/>
+    <location x="699" y="160"/>
     <figSize height="17" width="159"/>
     <node>subprocess0</node>
   </nodes>

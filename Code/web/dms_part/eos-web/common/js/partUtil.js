@@ -114,7 +114,7 @@ function getProvinceAndCity(callback) {
 				provinceList = window.top._provinceList;
 				window.top._cityList = data.city;
 				provinceList.forEach(function(v) {
-					provinceHash[v.code] = v;
+					provinceHash[v.id] = v;
 				});
 				if (provinceEl) {
 					provinceEl.setData(provinceList);

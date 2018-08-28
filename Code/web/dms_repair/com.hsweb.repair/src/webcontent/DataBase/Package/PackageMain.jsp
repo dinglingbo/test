@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.0.7"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.3.0"></script>
 
 </head>
 
@@ -116,7 +116,7 @@
 									<label>套餐金额：</label>
 								</td>
 								<td colspan="1">
-									<input name="amount"
+									<input name="amount" enabled="false"
 										   class="nui-spinner"
 										   format="￥0.00"
 										   showButton="false"
@@ -192,23 +192,29 @@
 									<div id="itemGrid"
 										 dataField="rpbItime"
 										 class="nui-datagrid"
-										 style="width: 100%; height:100%;" 
-										 showPager="false" onDrawCell="onDrawCell"
-										 idField="itemId" showSummaryRow="true" showGroupSummary="true"
+										 style="width: 100%; height:100%;" allowCellEdit="true"
+										 showPager="false"
+										 idField="itemId"
+										 allowCellEdit="true" showSummaryRow="true" showGroupSummary="true"
+										 allowCellSelect="true"
 										 allowSortColumn="true">
 										<div property="columns" >
-											<div type="indexcolumn" width="30" summaryType="count">序号</div>
-											<div header="工时信息" headerAlign="center">
+											<div type="indexcolumn" width="40" summaryType="count">序号</div>
+											<div header="工时信息" headerAlign="center" >
 												<div property="columns">
 													<div field="itemCode" headerAlign="center" allowSort="true" visible="true">工时编码</div>
 													<div field="itemName" headerAlign="center" allowSort="true" visible="true">工时名称</div>
 													<!-- <div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种</div> -->
 													<div field="type" headerAlign="center" allowSort="true" visible="true">工时类型</div>
-													<div field="itemTime" headerAlign="center" allowSort="true" visible="true">工时数量</div>
-													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true">单价</div>
-													<div field="amt" headerAlign="center" allowSort="true" visible="true" summaryType="sum">金额</div>
-													<div  field="techDeductType" headerAlign="center" allowSort="true" visible="true" >提成类型</div>
-													<div field="techDeductValue" headerAlign="center" allowSort="true" visible="true">提成值</div>
+													<div field="itemTime" headerAlign="center" width="70" allowSort="true" visible="true">工时数量</div>
+													<div field="unitPrice" headerAlign="center" width="70" allowSort="true" visible="true">原价</div>
+													<div field="truePrice" allowSort="true" align="left" headerAlign="center" width="">
+														销价 <input class="nui-textbox" name="sellPrice" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
+													</div>
+													<div field="amt" headerAlign="center" width="70" allowSort="true" visible="true" summaryType="sum">原金额</div>
+													<div field="trueAmt" headerAlign="center" width="70" allowSort="true" visible="true" summaryType="sum">销售金额</div>
+													<div  field="techDeductType" headerAlign="center"  width="130" allowSort="true" visible="true" >提成类型</div>
+													<div field="techDeductValue" headerAlign="center" width="70" allowSort="true" visible="true">提成值</div>
 												</div>
 											</div>
 										</div>
@@ -237,7 +243,7 @@
 										 allowCellSelect="true"
 										 allowSortColumn="true">
 										<div property="columns">
-											<div type="indexcolumn" width="30" summaryType="count">序号</div>
+											<div type="indexcolumn" width="40" summaryType="count">序号</div>
 											<div header="零件信息" headerAlign="center">
 												<div property="columns">
 													<div field="partCode" headerAlign="center" allowSort="true" visible="true">零件编码</div>
@@ -246,16 +252,21 @@
 											</div>
 											<div header="价格信息" headerAlign="center">
 												<div property="columns">
-													<div field="qty" headerAlign="center" allowSort="true" visible="true" header="数量" dataType="int">
+													<div field="qty" headerAlign="center" allowSort="true" visible="true" header="数量"  width="70" dataType="int">
 														<input property="editor" class="nui-spinner"  minValue="1" maxValue="100000000" style="width:100%;"
 															   decimalPlaces="0"
 															   allowNull="false"/>
 													</div>
-													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true" header="单价" dataType="float">
+													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true" header="单价"  width="70" dataType="float">
+														<input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false" width="70"
+															   allowNull="false" style="width:100%;" decimalPlaces="2"/>
+													</div>
+													<div field="truePrice" headerAlign="center" allowSort="true" visible="true" header="销价"  width="70" dataType="float">
 														<input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false"
 															   allowNull="false" style="width:100%;" decimalPlaces="2"/>
 													</div>
-													<div field="amt" headerAlign="center" allowSort="true" visible="true" decimalPlaces="2" dataType="float" summaryType="sum">金额</div>
+													<div field="amt" headerAlign="center" allowSort="true" visible="true" decimalPlaces="2" dataType="float"  width="70" summaryType="sum">原金额</div>
+												<div field="trueAmt" headerAlign="center" allowSort="true" visible="true" decimalPlaces="2" dataType="float"  width="70" summaryType="sum">销售金额</div>
 												</div>
 											</div>
 										</div>

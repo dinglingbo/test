@@ -94,6 +94,14 @@ function setData(data)
 var saveUrl = baseUrl+"com.hsapi.repair.baseData.item.saveRpbItem.biz.ext";
 function onOk(){
 	var data = basicInfoForm.getData();
+	if(data.id){
+		var row = leftGrid.getSelected();
+		var orgid = row.orgid||0;
+		if(orgid != currOrgId){
+			showMsg("只能修改本店套餐!",);
+			return;
+		}
+	}
 	for(var key in requiredField){
 		if(!data[key] || data[key].trim().length==0)
         {

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.2"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.3"></script>
 
 </head>
 
@@ -72,6 +72,7 @@
 								<div field="name" headerAlign="center" allowSort="true" visible="true">套餐名称</div>
 								<div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true">套餐类别</div>
 								<div field="amount" headerAlign="center" allowSort="true" visible="true">套餐金额</div>
+								<div field="orgid" headerAlign="center" allowSort="true" visible="true">所属</div>
 							</div>
 						</div>
 					</div>
@@ -83,7 +84,7 @@
 				<div title="基本信息">
 					<!-- 基本信息 -->
 					<div class="form" id="basicInfoForm">
-						<!--<input class="nui-hidden" name="id"/>-->
+						<input class="nui-hidden" name="id"/>
 						<table class="nui-form-table" style="width: inherit;">
 							<tr>
 								<td class="form_label">
@@ -279,7 +280,7 @@
 						<div title="提成设置" id="deductTab" name="deductTab" >
 			<div id="deductForm" class="form">
 					<div class="form" id="basicInfoForm1">
-				<input name="id" class="nui-hidden"/>
+				<!-- <input name="id" class="nui-hidden"/> -->
 				<table class="dtable" border="0" cellspacing="0" cellpadding="0" align="center" width="100%" height="80%">
 					<tr>
 						<td rowspan="2" width="11%" align="center">

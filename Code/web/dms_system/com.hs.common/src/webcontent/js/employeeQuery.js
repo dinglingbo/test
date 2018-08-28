@@ -74,8 +74,13 @@ function search() {
 
 function getSearchParam() {
     var params = {};
-    params.name = nui.get("name").getValue();
-    params.mobile = nui.get("mobile").getValue();
+    params.empName = nui.get("name").getValue();
+    params.empTel = nui.get("mobile").getValue();
+    if(currIsMaster == "1"){
+    	params.tenantId = currTenantId;
+    }else{
+    	params.orgid = currOrgId;
+    }
 
     return params;
 }

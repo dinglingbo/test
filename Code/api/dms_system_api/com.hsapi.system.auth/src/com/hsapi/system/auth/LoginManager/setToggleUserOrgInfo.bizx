@@ -92,18 +92,6 @@
       <process:to type="query">m:userObject/attributes/tenantId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">m:userObject/attributes/compCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">m:userObject/attributes/compTel</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">m:userObject/attributes/compAddress</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">comp/code</process:from>
       <process:to type="query">m:userObject/attributes/compCode</process:to>
     </process:copy>
@@ -114,6 +102,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">comp/address</process:from>
       <process:to type="query">m:userObject/attributes/compAddress</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/isMaster</process:from>
+      <process:to type="query">m:userObject/attributes/isMaster</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>

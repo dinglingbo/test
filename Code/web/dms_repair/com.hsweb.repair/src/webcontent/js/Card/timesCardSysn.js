@@ -49,10 +49,20 @@ function onValueChangedTimes(e){
 	var row = timesCardDetail.getSelected();
 	if(row.prdtType && (row.prdtType == "2"  || row.prdtType == "1"))
 	{
-		sellAmt = row.sellPrice*e.value;
-		oldAmt = row.oldPrice*e.value;
-		sellAmt = parseFloat(sellAmt).toFixed(2);
-		oldAmt = parseFloat(oldAmt).toFixed(2);
+		var oldPrice = isNaN(row.oldPrice);
+		var b = isNaN(e.value);
+		var sellPrice = isNaN(row.sellPrice);
+		if(!oldPrice && !b)
+		{
+			sellAmt = row.sellPrice*e.value;
+			sellAmt = parseFloat(sellAmt).toFixed(2);
+		}
+		if(!sellPrice && !b)
+		{
+			oldAmt = row.oldPrice*e.value;
+			oldAmt = parseFloat(oldAmt).toFixed(2);
+		}
+		
 		data = {
 			sellAmt:sellAmt,
 			oldAmt:oldAmt
@@ -65,10 +75,21 @@ function onValueChangedQty(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	oldAmt = row.oldPrice*e.value; 	
-	sellAmt = row.sellPrice*e.value;
-	sellAmt = parseFloat(sellAmt).toFixed(2);
-	oldAmt = parseFloat(oldAmt).toFixed(2);
+	
+	var oldPrice = isNaN(row.oldPrice);
+	var b = isNaN(e.value);
+	var sellPrice = isNaN(row.sellPrice);
+	if(!oldPrice && !b){
+		oldAmt = row.oldPrice*e.value; 
+		oldAmt = parseFloat(oldAmt).toFixed(2);
+	}
+	if(!sellPrice && !b)
+	{
+		sellAmt = row.sellPrice*e.value;
+		sellAmt = parseFloat(sellAmt).toFixed(2);
+	}	
+	
+	
 	data = {
 		oldAmt:oldAmt, 
 		sellAmt:sellAmt
@@ -81,10 +102,22 @@ function onValueChangedOldPrice(e){
 	oldAmt = null;
 	sellAmt = null;	
 	var row = timesCardDetail.getSelected();
-	oldAmt = row.qty*e.value;		
-	sellAmt =  row.sellPrice*row.qty; 
-	sellAmt = parseFloat(sellAmt).toFixed(2);
-	oldAmt = parseFloat(oldAmt).toFixed(2);
+	
+	var qty = isNaN(row.qty);
+	var b = isNaN(e.value);
+	var sellPrice = isNaN(row.sellPrice);
+	if(!qty && !b)
+	{
+		oldAmt = row.qty*e.value;
+		oldAmt = parseFloat(oldAmt).toFixed(2);
+	}
+	
+	if(!qty && !sellPrice)
+	{
+		sellAmt =  row.sellPrice*row.qty; 
+		sellAmt = parseFloat(sellAmt).toFixed(2);
+	}
+				
 	data = {
 		oldAmt:oldAmt, 
 		sellAmt:sellAmt
@@ -97,13 +130,19 @@ function onValueChangedSellPrice(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	
-	if(row.prdtType && (row.prdtType == "2"  || row.prdtType == "1"))
+	var b = isNaN(e.value);
+	if(row.prdtType && (row.prdtType == "2"  || row.prdtType == "1") )
 	{
-		sellAmt = row.times*e.value;
+		if(!b)
+		{
+			
+			sellAmt = row.times*e.value;
+			sellAmt = parseFloat(sellAmt).toFixed(2);
+		}
+		
 		oldAmt = row.oldPrice*row.times;
-		sellAmt = parseFloat(sellAmt).toFixed(2);
 		oldAmt = parseFloat(oldAmt).toFixed(2);
+		
 		data = {
 			sellAmt:sellAmt,
 			oldAmt:oldAmt
@@ -111,10 +150,20 @@ function onValueChangedSellPrice(e){
 		timesCardDetail.updateRow(row,data);	
 	}else
 	{
-		oldAmt = row.qty*row.oldPrice;			
-		sellAmt = e.value*row.qty;
-		sellAmt = parseFloat(sellAmt).toFixed(2);
-		oldAmt = parseFloat(oldAmt).toFixed(2);
+		var qty = isNaN(row.qty);
+		var oldPrice = isNaN(row.oldPrice);
+		if(!b && !qty)
+		{
+			sellAmt = e.value*row.qty;
+			sellAmt = parseFloat(sellAmt).toFixed(2);
+		}
+		
+		if(!qty && !oldPrice)
+		{
+			oldAmt = row.qty*row.oldPrice;			
+			oldAmt = parseFloat(oldAmt).toFixed(2);
+		}
+		
 		data = {
 			oldAmt:oldAmt, 
 			sellAmt:sellAmt
@@ -151,13 +200,15 @@ function onDrawSummaryCell(e){
 		  }
 	  } 
 	  if(sumSell && sumSell>=0)
-	  {
+	  {   
+		  sumSell = sumSell.toFixed(2);
 		  nui.get("sellAmt").setValue(sumSell); 
 	  }else{
 		  nui.get("sellAmt").setValue("0");
 	  }
 	  if(sumOld && sumOld>=0)
 	  {
+		  sumOld = sumOld.toFixed(2);
 		  nui.get("totalAmt").setValue(sumOld); 
 	  }else{
 		  nui.get("totalAmt").setValue("0");

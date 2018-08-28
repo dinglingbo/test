@@ -325,10 +325,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">tmpList[1]</process:from>
-      <process:to type="query">tmp</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">tmp/packageAmt</process:from>
       <process:to type="query">packageAmt</process:to>
     </process:copy>

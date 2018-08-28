@@ -50,8 +50,8 @@
 					visible="false">会员卡ID</div>
 				<div field="name" headerAlign="center" allowSort="true">会员卡名称</div>
 
-				<div field="useRange" headerAlign="center" allowSort="true">
-					适用范围</div>
+<!-- 				<div field="useRange" headerAlign="center" allowSort="true"> -->
+<!-- 					适用范围</div> -->
 				<div field="canModify" headerAlign="center" allowSort="true">
 					是否允许修改金额</div>
 				<div field="periodValidity" headerAlign="center" allowSort="true">

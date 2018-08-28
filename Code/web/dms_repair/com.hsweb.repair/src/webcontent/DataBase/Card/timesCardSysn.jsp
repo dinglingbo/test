@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.7"></script>
 </head>
 <body>
    <div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
@@ -130,8 +130,8 @@
 							<div field="prdtName" allowSort="true" align="left" summaryType="count" 
 								headerAlign="center" width="">项目名称</div>
 							<div field="times" allowSort="true" align="left"
-								headerAlign="center" width="">
-								次数 <input class="nui-textbox" name="times" property="editor"  onvaluechanged ="onValueChangedTimes"/>
+								headerAlign="center" width="" dataType="int">
+								次数 <input class="nui-spinner" name="times" property="editor" decimalPlaces="0"   minValue="1"  onvaluechanged ="onValueChangedTimes"/>
 							</div>
 							<div field="prdtType" allowSort="true" align="left"
 								headerAlign="center" width="">项目类型</div>

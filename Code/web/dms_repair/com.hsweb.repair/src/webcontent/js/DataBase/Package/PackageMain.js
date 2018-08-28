@@ -67,27 +67,33 @@ $(document).ready(function (v)
 	rightPartGrid.on("cellendedit",function(e)
 	{
 				
+	
+		
 		var row = e.record;
 		if(row)
 		{
 			var qty = row.qty;
 			var unitPrice = row.unitPrice;
 			var truePrice = row.truePrice;
-			if(qty && unitPrice)
+			if(qty>=0 && unitPrice>=0)
 			{
 				var amt = unitPrice*qty;
 				row.amt = amt;
 				//修改行
 				rightPartGrid.updateRow(row,row);
 			}
-			if(qty && truePrice)
+			if(qty>=0 && truePrice>=0)
 			{
 				var trueAmt = truePrice*qty;
 				row.trueAmt = trueAmt;
 				//修改行
 				rightPartGrid.updateRow(row,row);
+				
 			}
+			countj();
 		}
+		
+
 	});
 
 	
@@ -378,6 +384,14 @@ function addPackage()
 	basicInfoForm.setData(data);
 	//basicInfoForm1.setData(data1);
 }
+var rightItemGridField = {
+		truePrice : "销价"
+	};
+var requiredField = {
+		qty : "计次卡名称:",
+		unitPrice : "销售价格",
+		truePrice : "总价值"
+	};
 var saveUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.savePackage.biz.ext";
 function save()
 {
@@ -385,6 +399,8 @@ function save()
     if (deductForm.isValid() == false) {
         return;
 	}
+    var rightItemGridData = rightItemGrid.getData();
+    var rightPartGridData = rightPartGrid.getData();
 	var data = basicInfoForm.getData();
 	var data1 = basicInfoForm1.getData();
 	data.advisorDeductType=data1.advisorDeductType;
@@ -515,6 +531,7 @@ function addPart()
 			amt:0
 		};
 		rightPartGrid.addRow(packagePart);
+		countj();
 	});
 }
 function removePart()
@@ -531,7 +548,7 @@ function selectItem(callback)
 	nui.open({
 		targetWindow: window,
 		url: "com.hsweb.repair.DataBase.RepairItemMain.flow",
-		title: "维修项目", width: 930, height: 560,
+		title: "选择工时", width: 930, height: 560,
 		allowDrag:true,
 		allowResize:true,
 		onload: function ()
@@ -582,9 +599,12 @@ function addItem()
 			amt:item.amt,
 			techDeductType:item.techDeductType,
 			techDeductTypeName:techDeductTypeName,
-			techDeductValue:item.techDeductValue
+			techDeductValue:item.techDeductValue,
+			truePrice:item.unitPrice,
+			trueAmt:item.amt
 		};
 		rightItemGrid.addRow(packageItem);
+		countj();
 	});
 }
 function removeItem()
@@ -593,6 +613,7 @@ function removeItem()
 	if(row)
 	{
 		rightItemGrid.removeRow(row,true);
+		countj();
 	}
 }
 function onDrawCell(e){
@@ -615,9 +636,44 @@ function onDrawCell(e){
 function onValueChangedSellPrice(e){
 	trueAmt = null;
 	var row = rightItemGrid.getSelected();
+	var itemList = rightItemGrid.getData();	
 	trueAmt = row.itemTime*e.value;
 		data = {
 				trueAmt:trueAmt
 		   };
 		rightItemGrid.updateRow(row,data);	
+		countj();
+
 }
+
+function countj(){
+	var itemList = rightItemGrid.getData();	
+	var partList = rightPartGrid.getData();
+	var i,tmp;
+	var total = 0;
+	var amount = 0;
+	for(i=0;i<partList.length;i++)
+	{
+		tmp = partList[i];
+		if(tmp.amt && tmp.amt>=0){
+			total += tmp.amt;
+		}
+		if(tmp.trueAmt && tmp.trueAmt>=0){
+			amount += tmp.trueAmt;
+		}
+	}
+	for(i=0;i<itemList.length;i++)
+	{
+		tmp = itemList[i];
+		if(tmp.amt && tmp.amt>=0){
+			total += tmp.amt;
+		}
+		if(tmp.trueAmt && tmp.trueAmt>=0){
+			amount += tmp.trueAmt;
+		}
+
+	}
+	nui.get("tAmt").setValue(amount);
+	nui.get("sAmt").setValue(total);
+}
+

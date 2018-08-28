@@ -185,6 +185,7 @@ function onAdvancedAddCancel(){
 var saveUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDictList.biz.ext";
 function onAdvancedAddOk(){
 	var value = nui.get('name').getValue();
+	var id = nui.get('id').getValue();
 	if(!value){
 		showMsg("类型名称不能为空!","W");
 		return;
@@ -200,7 +201,7 @@ function onAdvancedAddOk(){
     var addList = [];
 	var updateList = [];
 	if(data.id){
-		var newObj = {name: value, rootId: 'DDT20130703000063'};
+		var newObj = {id : id,dictid : dictid,name: value, rootId: 'DDT20130703000063'};
 		updateList.push(newObj);
 	}else{
 		var newObj = {name: value, rootId: 'DDT20130703000063'};

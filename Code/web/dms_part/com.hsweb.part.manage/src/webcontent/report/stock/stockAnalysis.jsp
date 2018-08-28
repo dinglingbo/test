@@ -6,7 +6,7 @@
 
 <head>
 <title>库存分析</title>
-<script src="<%=webPath + contextPath%>/report/js/stock/stockAnalysis.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/stock/stockAnalysis.js?v=1.0.0"></script>
 </head>
 
 <body>

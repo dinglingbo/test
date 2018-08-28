@@ -20,9 +20,9 @@
 	int auditSign = Integer.parseInt(request.getParameter("auditSign"));
 	String fileAddr = "";
 	if(auditSign == 0){
-		fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/unaudit/pchsOrderEnterReport.jasper";
+		fileAddr = request.getSession().getServletContext().getRealPath("") +"/manage/inOutManage/iReport/unaudit/pchsOrderEnterReport.jasper";
 	}else{
-		fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/audit/pchsOrderEnterReport.jasper";
+		fileAddr = request.getSession().getServletContext().getRealPath("") +"/manage/inOutManage/iReport/audit/pchsOrderEnterReport.jasper";
 	}
 	//String fileAddr = request.getSession().getServletContext().getRealPath("") +"/purchase/iReport/pchsOrderEnterReport.jasper";
 	//System.out.println("fileAddr=" + fileAddr);

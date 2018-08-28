@@ -9,8 +9,8 @@
 -->
 <head>
 <title>库存分布</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containBottomChainStock.js?v=1.0.2"></script>
-<style type="text/css">
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containBottomChainStock.js?v=1.0.2"></script>
+<style type="text/css">                 
 .title {
     width: 90px;
     text-align: right;

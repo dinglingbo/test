@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商选择</title>
-<script src="<%=webPath + contextPath%>/common/js/supplierSelect.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/supplierSelect.js?v=2.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

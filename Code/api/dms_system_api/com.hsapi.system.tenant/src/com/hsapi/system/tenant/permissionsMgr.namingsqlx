@@ -58,4 +58,63 @@
     </select>
     
     
+    <select id="queryMemberList" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.empid as empid,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`name` as name,
+			a.sex as sex,
+			a.idcardno as idcardno,
+			a.birthday as birthday,
+			a.tel as tel,
+			a.user_id as userId,
+			a.is_dimission as isDimission,
+			a.is_open_account as isOpenAccount,
+			a.is_artificer as isArtificer,
+			a.member_group_id as memberGroupId,
+			a.member_level_id as memberLevelId,
+			a.integral_discount_max as integralDiscountMax,
+			a.item_discount_rate AS itemDiscountRate,
+			a.part_discount_rate AS partDiscountRate,
+			a.free_discount_max as freeDiscountMax,
+			a.cash_discount_max as cashDiscountMax,
+			a.display_remind_tag as displayRemindTag,
+			a.display_business_tag as displayBusinessTag,
+			a.display_bill_tag as displayBillTag,
+			a.system_account as systemAccount,
+			a.login_pwd as loginPwd,
+			a.authorize_pwd as authorizePwd,
+			a.wechat as wechat,
+			a.open_id as openId,
+			a.urgency_person as urgencyPerson,
+			a.urgency_person_phone as urgencyPersonPhone,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			b.`code` as compCode,
+			b.`name` as compName,
+			b.short_name as compShortName
+		from com_member a
+			inner join com_company b
+			on a.orgid = b.orgid
+
+		where 1 = 1
+		      <isNotEmpty prepend="and" property="tenantId">  
+                    a.tenant_id = #tenantId#
+              </isNotEmpty>
+		      <isNotEmpty prepend="and" property="orgid">  
+                    a.orgid = #orgid#
+              </isNotEmpty>
+    		  <isNotEmpty prepend="and" property="empName">  
+                    (a.`name` like '%$empName$%')
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="empTel">  
+                    (a.tel like '%$empTel$%')
+              </isNotEmpty>
+              order by EMPid
+    </select>
+    
+    
 </sqlMap>

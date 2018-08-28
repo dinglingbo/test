@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8" session="false"%> 
 <%@include file="/common/sysCommon.jsp"%> 
 <link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
 <script type="text/javascript">
 <% IMUODataContext muo = DataContextManager.current()
 					.getMUODataContext();
@@ -62,7 +63,7 @@
 	window._webRepairUrl = webPath + contextPath + "/";
 	//console.log(window._rootUrl);
 	</script>
-<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.3" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.8" type="text/javascript"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

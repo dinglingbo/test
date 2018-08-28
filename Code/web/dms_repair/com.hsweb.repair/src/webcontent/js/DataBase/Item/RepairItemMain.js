@@ -254,6 +254,9 @@ function onDrawCell(e) {
 	case "isShare":
 		e.cellHtml = e.value == 1 ? "是" : "否";
 		break;
+	case "isDisabled":
+		e.cellHtml = e.value == 1 ? "是" : "否";
+		break;
 	default:
 		break;
 	}

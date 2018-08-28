@@ -133,22 +133,6 @@
       <process:from type="query" pattern="reference">packageId</process:from>
       <process:to type="query">tmp/packageId</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">tmp/amt</process:from>
-      <process:to type="query">amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">tmp/unitPrice</process:from>
-      <process:to type="query">unitPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">unitPrice*rate</process:from>
-      <process:to type="query">tmp/truePrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">amt*rate</process:from>
-      <process:to type="query">tmp/trueAmt</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="176" y="180"/>
@@ -232,14 +216,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">tmp/modifyDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">tmp/amt</process:from>
-      <process:to type="query">amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">tmp/unitPrice</process:from>
-      <process:to type="query">unitPrice</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

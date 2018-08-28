@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.3.0"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.2"></script>
 
 </head>
 
@@ -106,7 +106,7 @@
 									<label>市场金额：</label>
 								</td>
 								<td colspan="1">
-									<input name="total" class="nui-spinner" enabled="false"
+									<input name="total" class="nui-spinner" enabled="false" id="sAmt"
 										   format="￥0.00" allowInput="false" showButton="false"
 										   inputStyle="text-align:right;"
 										   minValue="0" maxValue="1000000000"
@@ -116,7 +116,7 @@
 									<label>套餐金额：</label>
 								</td>
 								<td colspan="1">
-									<input name="amount" enabled="false"
+									<input name="amount" enabled="false" id="tAmt"
 										   class="nui-spinner"
 										   format="￥0.00"
 										   showButton="false"
@@ -192,7 +192,7 @@
 									<div id="itemGrid"
 										 dataField="rpbItime"
 										 class="nui-datagrid"
-										 style="width: 100%; height:100%;" allowCellEdit="true"
+										 style="width: 100%; height:100%;" allowCellEdit="true"  
 										 showPager="false"
 										 idField="itemId"
 										 allowCellEdit="true" showSummaryRow="true" showGroupSummary="true"
@@ -202,19 +202,19 @@
 											<div type="indexcolumn" width="40" summaryType="count">序号</div>
 											<div header="工时信息" headerAlign="center" >
 												<div property="columns">
-													<div field="itemCode" headerAlign="center" allowSort="true" visible="true">工时编码</div>
-													<div field="itemName" headerAlign="center" allowSort="true" visible="true">工时名称</div>
-													<!-- <div field="itemKind" headerAlign="center" allowSort="true" visible="true">工种</div> -->
-													<div field="type" headerAlign="center" allowSort="true" visible="true">工时类型</div>
-													<div field="itemTime" headerAlign="center" width="70" allowSort="true" visible="true">工时数量</div>
-													<div field="unitPrice" headerAlign="center" width="70" allowSort="true" visible="true">原价</div>
-													<div field="truePrice" allowSort="true" align="left" headerAlign="center" width="">
-														销价 <input class="nui-textbox" name="sellPrice" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
+													<div field="itemCode" headerAlign="center" width="60" visible="true">工时编码</div>
+													<div field="itemName" headerAlign="center" width="60"  visible="true">工时名称</div>
+													<!-- <div field="itemKind" headerAlign="center"  width="60"  visible="true">工种</div> -->
+													<div field="type" headerAlign="center" width="80"  visible="true">工时类型</div>
+													<div field="itemTime" headerAlign="center" width="55"  visible="true">工时数量</div>
+													<div field="unitPrice" headerAlign="center" width="55"  visible="true">原价</div>
+													<div field="truePrice"  align="left" headerAlign="center" width="55">
+														销价 <input class="nui-spinner" name="sellPrice" property="editor" minValue="0" dataType="float" showButton="false" maxValue="100000000" onvaluechanged ="onValueChangedSellPrice"/>
 													</div>
-													<div field="amt" headerAlign="center" width="70" allowSort="true" visible="true" summaryType="sum">原金额</div>
-													<div field="trueAmt" headerAlign="center" width="70" allowSort="true" visible="true" summaryType="sum">销售金额</div>
-													<div  field="techDeductType" headerAlign="center"  width="130" allowSort="true" visible="true" >提成类型</div>
-													<div field="techDeductValue" headerAlign="center" width="70" allowSort="true" visible="true">提成值</div>
+													<div field="amt" headerAlign="center" width="55"  visible="true" summaryType="sum">原金额</div>
+													<div field="trueAmt" headerAlign="center" width="55"  visible="true" summaryType="sum">销售金额</div>
+													<div  field="techDeductType" headerAlign="center"  width="90"  visible="true" >提成类型</div>
+													<div field="techDeductValue" headerAlign="center" width="55"  visible="true">提成值</div>
 												</div>
 											</div>
 										</div>
@@ -246,27 +246,27 @@
 											<div type="indexcolumn" width="40" summaryType="count">序号</div>
 											<div header="零件信息" headerAlign="center">
 												<div property="columns">
-													<div field="partCode" headerAlign="center" allowSort="true" visible="true">零件编码</div>
-													<div field="partName" headerAlign="center" allowSort="true" visible="true">零件名称</div>
+													<div field="partCode" headerAlign="center"  visible="true" width="60">零件编码</div>
+													<div field="partName" headerAlign="center"  visible="true" width="60">零件名称</div>
 												</div>
 											</div>
 											<div header="价格信息" headerAlign="center">
 												<div property="columns">
-													<div field="qty" headerAlign="center" allowSort="true" visible="true" header="数量"  width="70" dataType="int">
+													<div field="qty" headerAlign="center"  visible="true" header="数量"  width="50" dataType="int">
 														<input property="editor" class="nui-spinner"  minValue="1" maxValue="100000000" style="width:100%;"
 															   decimalPlaces="0"
 															   allowNull="false"/>
 													</div>
-													<div field="unitPrice" headerAlign="center" allowSort="true" visible="true" header="单价"  width="70" dataType="float">
-														<input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false" width="70"
+													<div field="unitPrice" headerAlign="center"  visible="true" header="原价"  width="60" dataType="float">
+														<input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false" width="55"
 															   allowNull="false" style="width:100%;" decimalPlaces="2"/>
 													</div>
-													<div field="truePrice" headerAlign="center" allowSort="true" visible="true" header="销价"  width="70" dataType="float">
+													<div field="truePrice" headerAlign="center"  visible="true" header="销价"  width="55" dataType="float">
 														<input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false"
 															   allowNull="false" style="width:100%;" decimalPlaces="2"/>
 													</div>
-													<div field="amt" headerAlign="center" allowSort="true" visible="true" decimalPlaces="2" dataType="float"  width="70" summaryType="sum">原金额</div>
-												<div field="trueAmt" headerAlign="center" allowSort="true" visible="true" decimalPlaces="2" dataType="float"  width="70" summaryType="sum">销售金额</div>
+													<div field="amt" headerAlign="center"  visible="true" decimalPlaces="2" dataType="float"  width="55" summaryType="sum">原金额</div>
+												<div field="trueAmt" headerAlign="center"  visible="true" decimalPlaces="2" dataType="float"  width="55" summaryType="sum">销售金额</div>
 												</div>
 											</div>
 										</div>

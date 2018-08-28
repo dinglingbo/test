@@ -137,11 +137,16 @@ function saveData() {
 		contentType : 'text/json',
 		success : function(text) {
 			var returnJson = nui.decode(text);
-			if (returnJson.exception == null) {
+			if (returnJson.errCode == 'S') {
 				showMsg("保存成功");
 				CloseWindow("saveSuccess");
+	
 			} else {
+				if(returnJson.errCode == 'E' && returnJson.errMsg==null){
+					nui.alert("卡已经存在,请修改卡名");
+				}
 				nui.alert("保存失败", "系统提示", function(action) {
+
 					if (action == "ok" || action == "close") {
 						// CloseWindow("saveFailed");
 					}

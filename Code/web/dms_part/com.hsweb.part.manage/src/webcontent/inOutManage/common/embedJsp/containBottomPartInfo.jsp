@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件详情</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containBottomPartInfo.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containBottomPartInfo.js?v=2.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

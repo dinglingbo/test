@@ -174,7 +174,7 @@ function pay(){
 		success: function(data){
 			nui.unmask(document.body);
 			if(data.errCode =='S'){
-				showMsg("保存成功!","S");			
+				showMsg("保存成功!","S");
 			}else{
 				showMsg(data.errMsg || "保存失败!","W");
 			}

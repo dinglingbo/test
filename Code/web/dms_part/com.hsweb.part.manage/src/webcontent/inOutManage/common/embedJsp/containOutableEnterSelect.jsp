@@ -9,7 +9,7 @@
 -->
 <head>
 <title>入库记录选择</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containOutableEnterSelect.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containOutableEnterSelect.js?v=2.0.0"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

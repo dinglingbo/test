@@ -5,7 +5,7 @@
 
 <head>
 <title>品牌采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/report/js/partBrandPchsForMonth.js?v=1.6.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partBrandPchsForMonth.js?v=1.6.1"></script>
 </head>
 
 <body>

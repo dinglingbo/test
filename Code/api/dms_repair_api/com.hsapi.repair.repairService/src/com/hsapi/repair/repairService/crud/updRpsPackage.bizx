@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updRpsPackage" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="套餐的工时和数量不能修改  单价可以修改&#xD;&#xA;&#xD;&#xA;添加套餐后，需要汇总套餐工时，套餐配件信息到套餐主表&#xD;&#xA;" title="Administrator&#x9;18-8-10 上午9:12">
-    <location x="-168" y="-9"/>
-    <size height="100" width="494"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="套餐的工时和数量不能修改  单价可以修改&#xD;&#xA;&#xD;&#xA;添加套餐后，需要汇总套餐工时，套餐配件信息到套餐主表&#xD;&#xA;&#xD;&#xA;考虑到套餐套餐的优惠率可能有修改，则完工后需要更新套餐的工时，配件的金额" title="Administrator&#x9;18-8-10 上午9:12">
+    <location x="-168" y="-45"/>
+    <size height="136" width="494"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -379,6 +379,15 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link30" name="link30" displayName="连接线" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="977" y="154"/>
     <size height="28" width="22"/>
@@ -448,6 +457,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
+    <targetConnections>link30</targetConnections>
     <location x="1159" y="154"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -578,7 +588,7 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>transactionrollback0</targetNode>
@@ -786,7 +796,7 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="1080" y="154"/>
+    <location x="1080" y="90"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -801,7 +811,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="1038" y="190"/>
+    <location x="1038" y="126"/>
     <figSize height="17" width="106"/>
     <node>invokePojo1</node>
   </nodes>

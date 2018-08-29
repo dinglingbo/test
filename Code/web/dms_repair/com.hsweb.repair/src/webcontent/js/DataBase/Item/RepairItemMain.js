@@ -6,6 +6,7 @@ var rightGrid = null;
 var typeHash = {};
 var advancedAddWin = null;
 var advancedAddForm = null;
+var isOpenWin = 0;
 
 $(document).ready(function()
 {
@@ -77,8 +78,10 @@ function onSearch()
 }
 function doSearch(params)
 {
-	params.orgid = currOrgid;
-    params.orgid = currOrgid;
+	params.orgid = currOrgId;
+	if(isOpenWin == 1){
+		params.isDisabled = 0;
+	}
 	rightGrid.load({
 		token:token,
 		params:params
@@ -138,6 +141,7 @@ function setData(data)
 	nui.get("editItemType").hide();
 	document.getElementById('sep').style.display = "none";  
 	nui.get("selectBtn").show();
+	isOpenWin = 1;
 }
 function onOk()
 {
@@ -256,6 +260,9 @@ function onDrawCell(e) {
 		break;
 	case "isDisabled":
 		e.cellHtml = e.value == 1 ? "是" : "否";
+		break;
+	case "orgid":
+		e.cellHtml = currOrgId == e.value? '本店' : '连锁';
 		break;
 	default:
 		break;

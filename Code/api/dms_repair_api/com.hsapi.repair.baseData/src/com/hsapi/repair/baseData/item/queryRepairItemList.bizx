@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryRepairItemList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.baseData.repairItem.queryRpbItemList" title="Administrator&#x9;18-7-12 下午5:06">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.baseData.repairItem.queryRpbItemList&#xD;&#xA;本租户下共享或是本机构的数据" title="Administrator&#x9;18-7-12 下午5:06">
     <location x="134" y="215"/>
     <size height="100" width="437"/>
   </nodes>
@@ -127,6 +127,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[5]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isDisabled</process:from>
+      <process:to type="query">cond/_expr[6]/isDisabled</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[6]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

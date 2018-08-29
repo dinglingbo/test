@@ -409,6 +409,14 @@ function save()
 	data.salesDeductValue=data1.salesDeductValue;
 	data.techDeductType=data1.techDeductType;
 	data.techDeductValue=data1.techDeductValue;
+	if(data.id){
+		var row = leftGrid.getSelected();
+		var orgid = row.orgid||0;
+		if(orgid != currOrgId){
+			showMsg("只能修改本店套餐!",);
+			return;
+		}
+	}
 
 	var partList = rightPartGrid.getData();
 	var i,tmp;
@@ -619,9 +627,12 @@ function removeItem()
 function onDrawCell(e){
 	var hash = new Array("按原价比例(%)", "按折后价比例(%)", "按产值比例(%)","固定金额(元)");
 	switch (e.field) {
-	case "techDeductType":
-		e.cellHtml = hash[e.value - 1];
-		break;
+		case "techDeductType":
+			e.cellHtml = hash[e.value - 1];
+			break;
+		case "orgid":
+			e.cellHtml = currOrgId == e.value? '本店' : '连锁';
+			break;
 	}
 	if (e.field == "serviceTypeId") {
         if (servieTypeHash && servieTypeHash[e.value]) {

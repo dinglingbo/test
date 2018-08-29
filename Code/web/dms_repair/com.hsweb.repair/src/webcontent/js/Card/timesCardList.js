@@ -170,6 +170,7 @@ function lookCardTimes(){
 }
 
 //购买次卡
+var action = null;
 var buyUrl =webPath + contextPath + "/repair/DataBase/Card/buyCardTimes.jsp?token"+token;
 function onBuy(){
 	var row = grid.getSelected();
@@ -185,12 +186,18 @@ function onBuy(){
 				//把数据传到子页面
 				iframe.contentWindow.giveData(data);
 			},
-			ondestroy : function() {
-				var iframe = this.getIFrameEl();
-			}
 		});
 	} else {
 		nui.alert("请选中一条记录", "提示");
 	}
 	
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+		return window.CloseOwnerWindow("saveSuccess");
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

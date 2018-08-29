@@ -236,9 +236,9 @@ var tcd = {
 var falg = null;
 function onOk() {
 	falg =  null;
-	var qtyTest = "^[0-9]*[1-9][0-9]*$";
+	//var qtyTest = "^[0-9]*[1-9][0-9]*$";
 	var yz = /^(\d*)(\.\d{1,2})?$/;
-	var zz = new RegExp(yz);
+	//var zz = new RegExp(yz);
 	g = nui.get("timesCardDetail");
 	var data1 = g.getData();
 	var data = form.getData();
@@ -301,6 +301,7 @@ function setData(data) {
 	// 计次卡明细查询
 	var json1 = nui.encode({
 		"timesCard" : json,
+		token:token
 	});
 	nui.ajax({
 		url : gridUrl,
@@ -384,6 +385,7 @@ function saveData() {
 				CloseWindow("saveSuccess");
 			} else {
 				nui.alert("保存失败", "系统提示", function(action) {
+					
 					if (action == "ok" || action == "close") {
 						// CloseWindow("saveFailed");
 						

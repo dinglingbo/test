@@ -187,26 +187,6 @@
     <location x="480" y="143"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/salesDeductType</process:from>
-      <process:to type="query">sales_deduct_type</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/salesDeductOriginValue</process:from>
-      <process:to type="query">sales_deduct_origin_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">sales_deduct_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/amt</process:from>
-      <process:to type="query">amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/subtotal</process:from>
-      <process:to type="query">subtotal</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="482" y="179"/>
@@ -430,6 +410,26 @@
     <process:copy>
       <process:from type="query" pattern="reference">temp/packageId</process:from>
       <process:to type="query">packageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/salesDeductType</process:from>
+      <process:to type="query">sales_deduct_type</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/salesDeductOriginValue</process:from>
+      <process:to type="query">sales_deduct_origin_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sales_deduct_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/amt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/subtotal</process:from>
+      <process:to type="query">subtotal</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="repairSureMt.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="确定维修后计算客户来厂次数，生成车辆扩展数据，维修记录&#xD;&#xA;&#xD;&#xA;更新工时开始时间" title="Administrator&#x9;18-8-8 上午10:13">
-    <location x="20" y="-90"/>
-    <size height="100" width="386"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="确定维修后计算客户来厂次数，生成车辆扩展数据，维修记录&#xD;&#xA;&#xD;&#xA;rps_guest_file 1个公司，1台车，1条数据&#xD;&#xA;&#xD;&#xA;更新工时开始时间" title="Administrator&#x9;18-8-8 上午10:13">
+    <location x="14" y="-135"/>
+    <size height="136" width="386"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

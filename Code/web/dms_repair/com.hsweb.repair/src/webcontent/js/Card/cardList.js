@@ -17,11 +17,15 @@ $(document).ready(function(v) {
 
 // 新增
 function add() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请储值卡定义!","W");
+		return;
+	}
 	nui.open({
 		url : sysnUrl,
-		title : "新增记录",
+		title : "新增储值卡",
 		width : 650,
-		height : 520,
+		height : 480,
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var data = {
@@ -40,13 +44,17 @@ function add() {
 
 // 编辑
 function edit() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请储值卡定义!","W");
+		return;
+	}
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({
 			url : sysnUrl,
-			title : "编辑数据",
+			title : "修改储值卡",
 			width : 650,
-			height : 520,
+			height : 480,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var data = row;
@@ -102,7 +110,8 @@ function selectionChanged() {
 }
 
 function onDrawCell(e) {
-	var hash = new Array("原价比例(%)", "折后价比例(%)", "产值比例(%)", "固定金额(元)");
+	//var hash = new Array("原价比例(%)", "折后价比例(%)", "产值比例(%)", "固定金额(元)");
+	var hash = {"1":"原价比例(%)","2":"折后价比例(%)","3":"产值比例(%)","4":"固定金额(元)"};
 	switch (e.field) {
 	case "useRange":
 		e.cellHtml = e.value == 1 ? "连锁" : "本店";

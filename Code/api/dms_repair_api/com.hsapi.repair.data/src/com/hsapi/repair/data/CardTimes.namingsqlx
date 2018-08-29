@@ -7,12 +7,11 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-   <select id="queryCardTimesList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-        SELECT
+   <select id="queryCardTimesList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
          a.id id,
          c.full_name fullName,
          c.mobile mobile,
-         d.car_no carOn,
          a.card_name cardName,
          a.record_date recordData,
          a.sell_amt sellAmt,
@@ -20,18 +19,37 @@
          a.past_date pastDate
          FROM rps_card_times a 
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
-         INNER JOIN rpb_car d  on (a.guest_id = d.guest_id)
+         WHERE  a.orgid = #orgid#
+         <dynamic>
+         <isNotEmpty prepend="and" property="guestName">  
+	            (a.guest_name like '%$guestName$%')
+	     </isNotEmpty>
+	            
+	     <isNotEmpty prepend="and" property="cardName">  
+	            (a.card_name like '%$cardName$%')
+	    </isNotEmpty>
+    	<isNotEmpty prepend="and" property="startDate"> 
+                (date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
+         </isNotEmpty>
+         <isNotEmpty prepend="and" property="endDate">
+                (date_format(a.record_date,'%Y-%m-%d') &lt;= #endDate#)
+         </isNotEmpty>
+        </dynamic>
+ 
 	</select>
 <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">
 	
 	select 
-       b.card_id cardId,
+       b.main_id mainId,
        b.prdt_id prdtId,
        b.prdt_name prdtName,
-       b.bala_times balaTimes
-   FROM  rps_card_times_detail b WHERE  b.card_id = #Id#
-
+       b.bala_times balaTimes,
+       b.total_times totalTimes,
+       b.can_use_times canUseTimes,
+       b.is_finish Isfinish
+    FROM  rps_card_times_detail b WHERE b.main_id = #Id#
+  
  
 </select>
-	
+
 </sqlMap>

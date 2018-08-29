@@ -107,11 +107,11 @@
       <process:to type="query">criteria/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">criteria/_expr[2]/_value</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">orgid</process:from>
+      <process:from type="literal" pattern="reference">tenantId</process:from>
       <process:to type="query">criteria/_expr[2]/_property</process:to>
     </process:copy>
   </nodes>

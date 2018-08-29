@@ -12,7 +12,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.0"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.5"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -27,10 +27,12 @@
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 						<a class="nui-button" onclick="search()" plain="true"> <span
 							class="fa fa-search fa-lg"></span>&nbsp; 查询
-					</a> <span>&nbsp&nbsp&nbsp&nbsp&nbsp</span> <a
-						class="nui-button" iconCls="icon-add" onclick="add()" plain="true">
-							增加 </a> <a id="update" class="nui-button" iconCls="icon-edit"
-						onclick="edit()" plain="true"> 编辑 </a>
+					</a> <span></span> <a
+						class="nui-button"  onclick="add()" plain="true">
+							<span class="fa fa-plus fa-lg"></span>增加 </a> <a id="update" class="nui-button" 
+						onclick="edit()" plain="true"> 
+						<span class="fa fa-edit fa-lg"></span>
+					修改 </a>
 					</td>
 				</tr>
 			</table>
@@ -38,8 +40,8 @@
 	</div>
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="card" class="nui-datagrid"
-			pageSize="20" onDrawCell="onDrawCell"
-			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
+			pageSize="50" onDrawCell="onDrawCell"
+			onrowclick="" allowSortColumn="true"
 			style="width: 100%; height: 100%;">
 			<div property="columns">
 				<div type="indexcolumn"></div>
@@ -48,8 +50,8 @@
 					visible="false">会员卡ID</div>
 				<div field="name" headerAlign="center" allowSort="true">会员卡名称</div>
 
-				<div field="useRange" headerAlign="center" allowSort="true">
-					适用范围</div>
+<!-- 				<div field="useRange" headerAlign="center" allowSort="true"> -->
+<!-- 					适用范围</div> -->
 				<div field="canModify" headerAlign="center" allowSort="true">
 					是否允许修改金额</div>
 				<div field="periodValidity" headerAlign="center" allowSort="true">
@@ -60,12 +62,7 @@
 					赠送金额</div>
 				<div field="totalAmt" headerAlign="center" allowSort="true">
 					总金额</div>
-				<div field="packageRate" headerAlign="center" allowSort="true">
-					套餐优惠率</div>
-				<div field="itemRate" headerAlign="center" allowSort="true">
-					工时优惠率</div>
-				<div field="partRate" headerAlign="center" allowSort="true">
-					配件优惠率</div>
+
 				<div field="salesDeductType" headerAlign="center" allowSort="true">
 					销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true">

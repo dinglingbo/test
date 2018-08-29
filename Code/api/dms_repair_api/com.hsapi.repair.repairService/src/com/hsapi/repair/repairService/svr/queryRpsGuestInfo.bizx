@@ -253,6 +253,10 @@
       <process:from type="query" pattern="reference">maintain/contactorId</process:from>
       <process:to type="query">data/contactorId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/recordDate</process:from>
+      <process:to type="query">data/recordDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="355" y="186"/>

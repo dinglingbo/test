@@ -946,9 +946,8 @@
         </isNotEmpty>
     </select>
     
-    <!--查询客户充值会员卡记录-->
-    <select id="queryStoreRecord" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT
+	<select id="queryStoreRecord" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
 			a.id AS id,
 			a.tenant_id AS tenant_id,
 			a.orgid AS orgid,
@@ -974,8 +973,7 @@
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			b.full_name AS fullName,
-			b.mobile AS mobile,
-			b.card_no AS cardNo
+			b.mobile AS mobile
 		FROM
 			wb_repair.rps_stored_record a
 		inner JOIN wb_common.com_guest b ON a.guest_id = b.id
@@ -987,7 +985,7 @@
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="cardNo"> 
-               b.card_no LIKE '%$cardNo$%'
+               a.card_id = #cardId#
         </isNotEmpty>
 		<isNotEmpty prepend="and" property="startDate"> 
                DATE_FORMAT(a.record_date,'%Y-%m-%d') &gt;= #startDate#
@@ -995,5 +993,229 @@
         <isNotEmpty prepend="and" property="endDate"> 
                DATE_FORMAT(a.record_date,'%Y-%m-%d') &lt;= #endDate#
         </isNotEmpty>
+	</select>
+    
+    <!--工单营收-->
+    <select id="queryNetinAmtByDay" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT b.datekey, sum(a.netin_amt) as netinAmt
+		from rps_settlement a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+		
+		group by b.datekey
+
     </select>
+    
+     <!--套餐营收统计-->
+    <select id="queryPkgRank" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+		SELECT a.package_name as prdtName, 
+			   1 as prdtType,
+			   sum(a.subtotal) as amt
+		from rps_package a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+        
+		group by a.package_name
+		
+		order by sum(a.subtotal) desc
+		
+		<isNotEmpty prepend="" property="limitCount"> 
+              LIMIT #limitCount#
+        </isNotEmpty>
+
+    </select>
+    
+    <!--工时营收统计-->
+    <select id="queryItemRank" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+		SELECT a.item_name as prdtName, 
+			   2 as prdtType,
+			   sum(a.subtotal) as amt
+		from rps_item a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+			  and a.package_id = 0
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+        
+		group by a.item_name
+		
+		order by sum(a.subtotal) desc
+		
+		<isNotEmpty prepend="" property="limitCount"> 
+              LIMIT #limitCount#
+        </isNotEmpty>
+
+    </select>
+    
+    <!--配件营收统计-->
+    <select id="queryPartRank" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+		SELECT a.part_name as prdtName, 
+			   3 as prdtType,
+			   sum(a.subtotal) as amt
+		from rps_part a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+			  and a.package_id = 0
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+        
+		group by a.part_name
+		
+		order by sum(a.subtotal) desc
+		
+		<isNotEmpty prepend="" property="limitCount"> 
+              LIMIT #limitCount#
+        </isNotEmpty>
+
+    </select>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     <!--套餐销售次数统计-->
+    <select id="queryPkgCtRank" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+		SELECT a.package_name as prdtName, 
+			   1 as prdtType,
+			   count(1) as ct
+		from rps_package a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+        
+		group by a.package_name
+		
+		order by sum(a.subtotal) desc
+		
+		<isNotEmpty prepend="" property="limitCount"> 
+              LIMIT #limitCount#
+        </isNotEmpty>
+
+    </select>
+    
+    <!--工时销售次数统计-->
+    <select id="queryItemCtRank" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+		SELECT a.item_name as prdtName, 
+			   2 as prdtType,
+			   count(1) as ct
+		from rps_item a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+			  and a.package_id = 0
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+        
+		group by a.item_name
+		
+		order by sum(a.subtotal) desc
+		
+		<isNotEmpty prepend="" property="limitCount"> 
+              LIMIT #limitCount#
+        </isNotEmpty>
+
+    </select>
+    
+    <!--配件销售次数统计-->
+    <select id="queryPartCtRank" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+		SELECT a.part_name as prdtName, 
+			   3 as prdtType,
+			   count(1) as ct
+		from rps_part a
+		inner join rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1 
+			  and a.package_id = 0
+		      and b.orgid= #orgid#
+		
+		<isNotEmpty prepend="and" property="startDate"> 
+              b.out_date &gt;= #startDate#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDate"> 
+              b.out_date &lt;= #endDate#
+        </isNotEmpty>
+        
+		group by a.part_name
+		
+		order by sum(a.subtotal) desc
+		
+		<isNotEmpty prepend="" property="limitCount"> 
+              LIMIT #limitCount#
+        </isNotEmpty>
+
+    </select>
+    
+    <!--新车辆数统计-->
+    <select id="queryNewCarByDay" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.datekey, count(1) as ct
+		from rps_guest_file a
+		where a.comp_come_times = 1
+			  and a.orgid= #orgid#
+			  	<isNotEmpty prepend="and" property="startDate"> 
+		              a.modify_date &gt;= #startDate#
+		        </isNotEmpty>
+		        <isNotEmpty prepend="and" property="endDate"> 
+		              a.modify_date &lt;= #endDate#
+		        </isNotEmpty>
+		group by a.datekey
+		      
+
+    </select>
+    
 </sqlMap>

@@ -6,18 +6,52 @@ var saveDataUrl = apiPath + repairApi
 var form = null;
 var set = null;
 var input = null;
+var baseUrl = apiPath + repairApi + "/";
+var contentUrl = baseUrl + "com.hsapi.repair.baseData.query.quryCardIdRateSrv.biz.ext";
+var contentGrid = null;
+var cardId=null;
+
+var discountHash={};
 $(document).ready(function(v) {
     input = mini.get("inputMonth");
 	 set = mini.get("setMonth");
 	form = new nui.Form("#dataform1");
+	 contentGrid = nui.get("contentGrid");
+	 contentGrid.setUrl(contentUrl);
+	 contentGrid.on("preload",function(e){
+	        //var typeList = e.result.typeList;
+	        var listSrv = e.result.list;
+	        var resList = e.result.resList;
+	        contentGrid.setData([]);
+	        if(resList && resList.length>0){
+
+	            listSrv.forEach(function(v) {
+	            	discountHash[v.serviceTypeId] = v;
+	            });
+
+	            for(var i=0; i<resList.length; i++){
+	                var newRow = {};
+	                var rs = resList[i];
+	                var id = rs.serviceTypeId;
+	                resList[i].cardId = cardId;
+	                if(discountHash && discountHash[id]){
+	                    var disVal = discountHash[id];
+	                    resList[i].id = disVal.id;
+	                    resList[i].packageDiscountRate = disVal.packageDiscountRate;
+	                    resList[i].itemDiscountRate = disVal.itemDiscountRate;
+	                    resList[i].partDiscountRate = disVal.partDiscountRate;
+	                } 
+	            }
+
+	            contentGrid.setData(resList);
+	        }
+	    });
+
 });
 var requiredField = {
 	name : "会员卡名称",
 	rechargeAmt : "充值金额",
 	giveAmt : "赠送金额",
-	packageRate : "套餐优惠率",
-	partRate : "配件优惠率",
-	itemRate : "工时优惠率",
 	periodValidity : "有效期",
 	salesDeductValue : "提成值"
 };
@@ -69,13 +103,32 @@ function setGridData(datagrid, dataid) {
 	nui.get(dataid).setValue(grid_data);
 }
 
+
+
 function saveData() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请储值卡定义!","W");
+		return;
+	}
 	form.validate();
 	if (form.isValid() == false)
 		return;
 	var data = form.getData(false, true);
 	// var json = nui.encode(data);//变成json格式
+	var list = contentGrid.getChanges("modified");
+    var addList = [];
+    var updateList = [];
+    for(var i=0; i<list.length; i++){
+        var r = list[i];
+        if(r.id){
+            updateList.push(r);
+        }else{
+            addList.push(r);
+        }
+    }
 	var param = {
+		addList:addList,
+		updateList:updateList,
 		card : data,
 		token:token
 	}
@@ -88,10 +141,16 @@ function saveData() {
 		contentType : 'text/json',
 		success : function(text) {
 			var returnJson = nui.decode(text);
-			if (returnJson.exception == null) {
+			if (returnJson.errCode == 'S') {
+				showMsg("保存成功");
 				CloseWindow("saveSuccess");
+	
 			} else {
+				if(returnJson.errCode == 'E' && returnJson.errMsg==null){
+					nui.alert("卡已经存在,请修改卡名");
+				}
 				nui.alert("保存失败", "系统提示", function(action) {
+
 					if (action == "ok" || action == "close") {
 						// CloseWindow("saveFailed");
 					}
@@ -117,18 +176,31 @@ function CloseWindow(action) {
 
 function setData(data) {
 	// 跨页面传递的数据对象，克隆后才可以安全使用
+	data = data||{};
 	var json = nui.clone(data);
+	cardId = data.id||0;
+	 contentGrid.load({
+		 	cardId:cardId,
+	        token:token
+    });
 
 	// 如果是点击编辑类型页面
 	if (json.id != null) {
+		
+		if(json.periodValidity==-1){
+			json.periodValidity = "";
+			input.disable();
+			set.setValue(true);
+		}
 		form.setData(json);
 		form.setChanged(false);
+		updateError();
 	}
 }
 
 function updateError(e) {
 
-	if (nui.get('x').getValue() == "3") {
+	if (nui.get('x').getValue() == "4") {
 		document.getElementById('y').innerHTML = "元";
 	} else {
 

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户储值卡消费记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreConsumeQuery.js?v=1.1.8"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreConsumeQuery.js?v=1.1.9"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -45,7 +45,7 @@ html,body {
                     <input class="nui-datepicker" id="endDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 </td>
                 <td>
-                 	<input class="nui-combobox" data="dataList" width="100px"textFeild="text" id="data"/>
+                 	<input class="nui-combobox" data="dataList" width="100px"textFeild="text" id="data" text="客户名称"/>
                 </td>
                 <td>
                 	<input id="search" class="nui-textbox" emptyText="输入查询条件" />

@@ -28,6 +28,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -50,7 +52,6 @@ import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eos.system.annotation.Bizlet;
-
 /**
  * @author chenyy
  * @date 2016-07-06 10:19:35
@@ -58,6 +59,8 @@ import com.eos.system.annotation.Bizlet;
  */
 @Bizlet("Http工具类")
 public class HttpUtils {
+	private static String USER_NAME = "admin";
+	private static String PASSWORD = "123456@123456";
 
 	/***
 	 * 发送get请求
@@ -920,4 +923,6 @@ public class HttpUtils {
 			throw new RuntimeException(ex);
 		}
 	}
+	
+	
 }

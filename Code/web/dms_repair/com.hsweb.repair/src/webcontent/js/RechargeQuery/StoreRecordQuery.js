@@ -32,7 +32,7 @@ function getSearchParams()
     if(data==0){
     	params.fullName=search;
     }else if(data==1){
-    	params.cardNo=search;
+    	params.cardId=search;
     }
     return params;
 }
@@ -57,9 +57,14 @@ function getNowFormatDate(){
 	    if (month >= 1 && month <= 9) {
 	        month = "0" + month;
 	    }
+	    if (strDate >= 0 && strDate <= 9) {
+	        strDate = "0" + strDate;
+	    }
 
-	    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + "01";
-	    nui.get('startDate').setValue(currentdate);
+	    var startDate = date.getFullYear() + seperator1 + month + seperator1 + "01";
+	    var endDate=date.getFullYear() + seperator1 + month+seperator1+strDate;
+	    nui.get('startDate').setValue(startDate);
+	    nui.get('endDate').setValue(endDate);
 }
 
 function onDrawCell(e) {

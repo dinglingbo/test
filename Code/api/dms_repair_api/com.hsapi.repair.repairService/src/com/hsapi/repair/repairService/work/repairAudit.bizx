@@ -4,7 +4,7 @@
     <location x="255" y="291"/>
     <size height="100" width="451"/>
   </nodes>
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;完工后计算员工提成信息,更新套餐，工时，配件的提成金额&#xD;&#xA;（套餐，工时一定设置了提成信息；配件可能没设置需要用到通用提成）&#xD;&#xA;如果是产值提成，需要等到工单结算后再计算提成信息" title="Administrator&#x9;18-8-7 下午7:47">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-8-7 下午7:47">
     <location x="64" y="-30"/>
     <size height="121" width="509"/>
   </nodes>
@@ -63,9 +63,15 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="expandMaintainById" displayName="expandMaintainById" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link2" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="link2" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="link3" type="transition">
       <sourceNode>subprocess0</sourceNode>

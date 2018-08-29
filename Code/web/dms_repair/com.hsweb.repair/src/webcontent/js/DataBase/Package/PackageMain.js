@@ -6,6 +6,7 @@ var leftGrid = null;
 var rightItemGrid = null;
 var rightPartGrid = null;
 var basicInfoForm = null;
+var basicInfoForm1 = null;
 var carBrandIdEl = null;
 var carModelIdEl = null;
 var carModelIdHash = {};
@@ -15,8 +16,20 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var typeHash = {};
 var typeList = [];
+var salesDeductTypeEl = null;
+//var techDeductTypeEl = null;
+var advisorDeductTypeEl = null;
+var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
+var deductForm = null;
 $(document).ready(function (v)
 {
+	deductForm = new nui.Form("#deductForm");
+	salesDeductTypeEl = nui.get("salesDeductType");
+	//techDeductTypeEl = nui.get("techDeductType");
+	advisorDeductTypeEl = nui.get("advisorDeductType");
+	salesDeductTypeEl.setData(typeList);
+	//techDeductTypeEl.setData(typeList);
+	advisorDeductTypeEl.setData(typeList);
 	leftGrid = nui.get("leftGrid"); 
 	leftGrid.setUrl(leftGridUrl);
 	leftGrid.on("drawcell",onDrawCell);
@@ -36,26 +49,56 @@ $(document).ready(function (v)
 	rightPartGrid = nui.get("rightPartGrid");
 	rightPartGrid.setUrl(rightPartGridUrl);
 	
-	
+
+	rightItemGrid.on("cellbeginedit",function(e){
+		var row = rightItemGrid.getSelected();
+		if(row)
+		{
+			switch (e.field)
+			{
+			case "truePrice":
+				e.cancel = false;
+				break;
+			default:
+				break;
+			}
+		}
+	});
 	rightPartGrid.on("cellendedit",function(e)
 	{
 				
+	
+		
 		var row = e.record;
 		if(row)
 		{
 			var qty = row.qty;
 			var unitPrice = row.unitPrice;
-			if(qty && unitPrice)
+			var truePrice = row.truePrice;
+			if(qty>=0 && unitPrice>=0)
 			{
 				var amt = unitPrice*qty;
 				row.amt = amt;
 				//修改行
 				rightPartGrid.updateRow(row,row);
 			}
+			if(qty>=0 && truePrice>=0)
+			{
+				var trueAmt = truePrice*qty;
+				row.trueAmt = trueAmt;
+				//修改行
+				rightPartGrid.updateRow(row,row);
+				
+			}
+			countj();
 		}
+		
+
 	});
 
+	
 	basicInfoForm = new nui.Form("#basicInfoForm");
+	basicInfoForm1 = new nui.Form("#basicInfoForm1");
 	queryForm = new nui.Form("#queryForm");
 	carBrandIdEl = nui.get("carBrandId");
 	carModelIdEl = nui.get("carModelId");
@@ -63,7 +106,96 @@ $(document).ready(function (v)
 	init();
 });
 
+function onRateValidation(e){
+	var el = e.sender.id;
+	var value = 0;
+	if(el == "salesDeductValue"){
+		value = salesDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$|0$)/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}else if(el == "techDeductValue"){
+		//value = techDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}else if(el == "advisorDeductValue"){
+		value = advisorDeductTypeEl.getValue();
+		if(value == 4){
+			var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
+			if (!reg.test(e.value)) {
+				e.errorText = "请输入大于等于0的整数或者保留两位小数";
+				e.isValid = false;
+				showMsg("请输入大于0的整数或者保留两位小数","W");
+			}
+		}else {
+			if (e.isValid) {
+				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入0~100的数,最多可保留两位小数";
+					e.isValid = false;
+					showMsg("请输入0~100的数,最多可保留两位小数","W");
+				}
+			}
+		}
+	}
 
+
+}
+function hidePercent(e){
+	var value = e.value;
+	var el = e.sender.id;
+	if(el == "salesDeductType"){
+		if(value == 4){
+			$("#salesDeductValue").next().hide();
+		}else {
+			$("#salesDeductValue").next().show();
+		}
+	}else if(el == "techDeductType"){
+		if(value == 4){
+			$("#techDeductValue").next().hide();
+		}else {
+			$("#techDeductValue").next().show();
+		}
+	}else if(el == "advisorDeductType"){
+		if(value == 4){
+			$("#advisorDeductValue").next().hide();
+		}else {
+			$("#advisorDeductValue").next().show();
+		}
+	}
+}
 function init()
 {
 	/*carBrandIdEl.on("valuechanged",function()
@@ -190,7 +322,9 @@ function onLeftGridRowClick(e)
 	if(row)
 	{
 		basicInfoForm.clear();
+		basicInfoForm1.clear();
 		basicInfoForm.setData(row);
+		basicInfoForm1.setData(row);
 		carBrandIdEl.doValueChanged();
 		loadRightPartGridData(row.id);
 		loadRightItemGridData(row.id);
@@ -239,6 +373,7 @@ function addPackage()
 {
 	//添加时清除右边基本数据
 	basicInfoForm.clear();
+	basicInfoForm1.clear();
 	rightItemGrid.clearRows();
 	rightPartGrid.clearRows();
 	var data = {
@@ -247,18 +382,51 @@ function addPackage()
 	};
 	//设置原始数据
 	basicInfoForm.setData(data);
+	//basicInfoForm1.setData(data1);
 }
+var rightItemGridField = {
+		truePrice : "销价"
+	};
+var requiredField = {
+		qty : "计次卡名称:",
+		unitPrice : "销售价格",
+		truePrice : "总价值"
+	};
 var saveUrl = baseUrl + "com.hsapi.repair.baseData.rpb_package.savePackage.biz.ext";
 function save()
 {
+	deductForm.validate();
+    if (deductForm.isValid() == false) {
+        return;
+	}
+    var rightItemGridData = rightItemGrid.getData();
+    var rightPartGridData = rightPartGrid.getData();
 	var data = basicInfoForm.getData();
+	var data1 = basicInfoForm1.getData();
+	data.advisorDeductType=data1.advisorDeductType;
+	data.advisorDeductValue=data1.advisorDeductValue;
+	data.salesDeductType=data1.salesDeductType;
+	data.salesDeductValue=data1.salesDeductValue;
+	data.techDeductType=data1.techDeductType;
+	data.techDeductValue=data1.techDeductValue;
+	if(data.id){
+		var row = leftGrid.getSelected();
+		var orgid = row.orgid||0;
+		if(orgid != currOrgId){
+			showMsg("只能修改本店套餐!",);
+			return;
+		}
+	}
+
 	var partList = rightPartGrid.getData();
 	var i,tmp;
 	var total = 0;
+	var amount = 0;
 	for(i=0;i<partList.length;i++)
 	{
 		tmp = partList[i];
 		total += tmp.amt;
+		amount += tmp.trueAmt;
 	}
 	var insParts = partList.filter(function(v){
 		return !v.packageId;
@@ -276,8 +444,10 @@ function save()
 	{
 		tmp = itemList[i];
 		total += tmp.amt;
+		amount += tmp.trueAmt;
 	}
 	data.total = total;
+	data.amount = amount;
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
@@ -302,6 +472,7 @@ function save()
 			{
 				nui.alert("保存成功");
 				basicInfoForm.clear();
+				basicInfoForm1.clear();
 				leftGrid.reload();
 			}
 			else{
@@ -368,6 +539,7 @@ function addPart()
 			amt:0
 		};
 		rightPartGrid.addRow(packagePart);
+		countj();
 	});
 }
 function removePart()
@@ -384,7 +556,7 @@ function selectItem(callback)
 	nui.open({
 		targetWindow: window,
 		url: "com.hsweb.repair.DataBase.RepairItemMain.flow",
-		title: "维修项目", width: 930, height: 560,
+		title: "选择工时", width: 930, height: 560,
 		allowDrag:true,
 		allowResize:true,
 		onload: function ()
@@ -405,6 +577,7 @@ function selectItem(callback)
 		}
 	});
 }
+var techDeductTypeName=null;
 function addItem()
 {
 	selectItem(function(data)
@@ -420,6 +593,7 @@ function addItem()
 			showMsg("套餐已经包含此工时!","W");
 			return;
 		}
+
 		var packageItem = {
 			itemId:item.id,
 			itemCode:item.code,
@@ -430,9 +604,15 @@ function addItem()
 			serviceTypeId:item.serviceTypeId,
 			itemKindName:item.itemKindName,
 			unitPrice:item.unitPrice,
-			amt:item.amt
+			amt:item.amt,
+			techDeductType:item.techDeductType,
+			techDeductTypeName:techDeductTypeName,
+			techDeductValue:item.techDeductValue,
+			truePrice:item.unitPrice,
+			trueAmt:item.amt
 		};
 		rightItemGrid.addRow(packageItem);
+		countj();
 	});
 }
 function removeItem()
@@ -441,9 +621,19 @@ function removeItem()
 	if(row)
 	{
 		rightItemGrid.removeRow(row,true);
+		countj();
 	}
 }
 function onDrawCell(e){
+	var hash = new Array("按原价比例(%)", "按折后价比例(%)", "按产值比例(%)","固定金额(元)");
+	switch (e.field) {
+		case "techDeductType":
+			e.cellHtml = hash[e.value - 1];
+			break;
+		case "orgid":
+			e.cellHtml = currOrgId == e.value? '本店' : '连锁';
+			break;
+	}
 	if (e.field == "serviceTypeId") {
         if (servieTypeHash && servieTypeHash[e.value]) {
             e.cellHtml = servieTypeHash[e.value].name;
@@ -452,5 +642,49 @@ function onDrawCell(e){
         if (typeHash && typeHash[e.value]) {
             e.cellHtml = typeHash[e.value].name;
         }
-    }
+    }	
 }
+function onValueChangedSellPrice(e){
+	trueAmt = null;
+	var row = rightItemGrid.getSelected();
+	var itemList = rightItemGrid.getData();	
+	trueAmt = row.itemTime*e.value;
+		data = {
+				trueAmt:trueAmt
+		   };
+		rightItemGrid.updateRow(row,data);	
+		countj();
+
+}
+
+function countj(){
+	var itemList = rightItemGrid.getData();	
+	var partList = rightPartGrid.getData();
+	var i,tmp;
+	var total = 0;
+	var amount = 0;
+	for(i=0;i<partList.length;i++)
+	{
+		tmp = partList[i];
+		if(tmp.amt && tmp.amt>=0){
+			total += tmp.amt;
+		}
+		if(tmp.trueAmt && tmp.trueAmt>=0){
+			amount += tmp.trueAmt;
+		}
+	}
+	for(i=0;i<itemList.length;i++)
+	{
+		tmp = itemList[i];
+		if(tmp.amt && tmp.amt>=0){
+			total += tmp.amt;
+		}
+		if(tmp.trueAmt && tmp.trueAmt>=0){
+			amount += tmp.trueAmt;
+		}
+
+	}
+	nui.get("tAmt").setValue(amount);
+	nui.get("sAmt").setValue(total);
+}
+

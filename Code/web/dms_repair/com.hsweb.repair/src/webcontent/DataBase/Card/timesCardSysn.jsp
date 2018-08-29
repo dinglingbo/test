@@ -12,12 +12,23 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.8"></script>
 </head>
 <body>
+   <div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
+			<table width="100%">
+				<tr >
+					<td style="text-align: left; width:20px" colspan="4" ><a
+						class="nui-button"  onclick="onOk()" id = "save"><span class="fa fa-save fa-lg"></span>&nbsp; 保存 </a> 
+				     
+				</tr>
+			</table>
+	</div>
+	
 	<fieldset
 		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend> 计次卡 </legend>
+		
 		<div id="dataform1" style="padding-top: 5px;">
 			<!-- hidden域 -->
 			<input class="nui-hidden" name="id"  /> 
@@ -38,21 +49,21 @@
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售价格:</td>
-					<td colspan="1"><input class="nui-textbox" name="sellAmt"
-						vtype="float" /></td>
+					<td colspan="1"><input class="nui-textbox" name="sellAmt" id="sellAmt"
+						vtype="float"  readonly="readonly" value="0"/></td>
 					<td class="form_label" align="right">总价值:</td>
-					<td colspan="2"><input class="nui-textbox" name="totalAmt"
-						vtype="float" /></td>
+					<td colspan="2"><input class="nui-textbox" name="totalAmt" id = "totalAmt"
+						vtype="float" readonly="readonly" value="0"/></td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right">销售提成方式:</td>
 					<td colspan="1"><input class="nui-combobox"
-						data="[{value:'0',text:'按原价比例',},{value:'1',text:'按折后价比例'},{value:'2',text:'按产值比例',},{value:'3',text:'固定金额'}]"
+						data="[{value:'1',text:'按原价比例',},{value:'2',text:'按折后价比例'},{value:'3',text:'按产值比例',},{value:'4',text:'固定金额'}]"
 						textField="text" valueField="value" name="salesDeductType"
 						value="0" onvalidation="updateError()" id="x" /></td>
 					<td class="form_label" align="right">销售提成值:</td>
 					<td colspan="1" width="120px"><input class="nui-textbox"
-						name="salesDeductValue" requiredErrorText="元" vtype="float"
+						name="salesDeductValue" requiredErrorText="元" vtype="range:0,1000
 						width="60%" /> <span id="y">&nbsp;%</span></td>
 				</tr>
 				<tr>
@@ -92,13 +103,13 @@
 					<table style="width: 100%;">
 						<tr >
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectPackage()" iconCls="icon-add" id = "addp"> 添加套餐 </a></td>
+								onclick="selectPackage()"  id = "addp"> <span class="fa fa-plus fa-lg"></span>添加套餐 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectItem()" iconCls="icon-add" id = "addi"> 添加工时 </a></td>
+								onclick="selectItem()"  id = "addi"> <span class="fa fa-plus fa-lg"></span>添加工时 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="addDetail()" iconCls="icon-add" id = "addr"> 添加配件 </a></td>
+								onclick="addDetail()"  id = "addr"> <span class="fa fa-plus fa-lg"></span>添加配件 </a></td>
 							<td style="width: 55%;"><a class="nui-button "
-								iconCls="icon-remove" onclick="gridRemoveRow" id = "delect"> &nbsp;删除 </a>
+								onclick="gridRemoveRow" id = "delect"> <span class="mini-button-text " style=""><i class="fa fa-trash-o"></i>&nbsp;删除</span> </a>
 							</td>
 						</tr>
 					</table>
@@ -106,39 +117,41 @@
 				<div class="nui-fit" >
 					<div id="timesCardDetail" class="nui-datagrid" style="width: 100%;height:100%"
 						showPager="false" sortMode="client" allowCellEdit="true"
-						allowCellSelect="true" multiSelect="true"
-						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell">
+						allowCellSelect="true" multiSelect="true" showsummaryrow = "true"
+						editNextOnEnterKey="true" onDrawCell="onDrawCell"  ondrawsummarycell="onDrawSummaryCell"
+						onvaluechanged = "onValueChanged"			
+						>
 						<div property="columns">
-							<div type="checkcolumn"></div>
+							<!-- <div type="checkcolumn"></div> -->
 							<div field="prdtId" class="nui-hidden" allowSort="true"
 								align="left" headerAlign="center" width="" visible="false">
 								项目ID <input class="nui-textbox" name="times" property="editor" />
 							</div>
-							<div field="prdtName" allowSort="true" align="left"
+							<div field="prdtName" allowSort="true" align="left" summaryType="count" 
 								headerAlign="center" width="">项目名称</div>
 							<div field="times" allowSort="true" align="left"
-								headerAlign="center" width="">
-								次数 <input class="nui-textbox" name="times" property="editor" />
+								headerAlign="center" width="" dataType="int">
+								次数 <input class="nui-spinner" name="times" property="editor" decimalPlaces="0"   minValue="1"  onvaluechanged ="onValueChangedTimes"/>
 							</div>
 							<div field="prdtType" allowSort="true" align="left"
 								headerAlign="center" width="">项目类型</div>
 							<div field="qty" allowSort="true" align="left"
 								headerAlign="center" width="">
-								工时/数量 <input class="nui-textbox" name="qty" property="editor" />
+								工时/数量 <input class="nui-textbox" name="qty" property="editor" onvaluechanged ="onValueChangedQty" />
 							</div>
 							<div field="oldPrice" allowSort="true" align="left"
 								headerAlign="center" width="">
-								原价 <input class="nui-textbox" name="oldPrice" property="editor" />
+								原价 <input class="nui-textbox" name="oldPrice" property="editor" onvaluechanged ="onValueChangedOldPrice"/>
 							</div>
 							<div field="sellPrice" allowSort="true" align="left"
 								headerAlign="center" width="">
-								销价 <input class="nui-textbox" name="sellPrice" property="editor" />
+								销价 <input class="nui-textbox" name="sellPrice" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
 							</div>
-							<div field="oldAmt" allowSort="true" align="left"
+							<div field="oldAmt" allowSort="true" align="left" summaryType="sum" 
 								headerAlign="center" width="">
 								原销售金额 
 							</div>
-							<div field="sellAmt" allowSort="true" align="left"
+							<div field="sellAmt" allowSort="true" align="left" summaryType="sum" 
 								headerAlign="center" width="">
 								现销售金额 
 							</div>
@@ -147,16 +160,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
-			<table width="100%">
-				<tr >
-					<td style="text-align: center;" colspan="4" ><a
-						class="nui-button" iconCls="icon-save" onclick="onOk()" id = "save"> 保存 </a> <span
-						style="display: inline-block; width: 25px;">
-				</tr>
-			</table>
-		</div>
 	</div>
-
 </body>
 </html>

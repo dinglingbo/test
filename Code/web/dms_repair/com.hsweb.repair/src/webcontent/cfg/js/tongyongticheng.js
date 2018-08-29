@@ -1,10 +1,11 @@
 var param = null;
 var grid = null;
+var baseUrl="http://127.0.0.1:8080/default/";
+var gridUrl= apiPath + repairApi + "/com.hsapi.repair.baseData.brand.getBusinessType.biz.ext";
 $(document).ready(function (v)
 {
-	grid = nui.get("grid");
-	grid.setUrl("com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
-	grid.load();
+	doSearch();
+
 });
 
 function ontypeRenderer(e) {
@@ -20,10 +21,10 @@ function saveAll(){
     var d = grid.getChanges("removed");
 	var u = grid.getChanges("modified");
 	for (var j = 0; j < u.length; j++) {
-		u[j].salesDeductValue = parseInt(u[j].salesDeductValue);
+		u[j].salesDeductValue = parseFloat(u[j].salesDeductValue);
 	}
 	nui.ajax({
-        url: "com.hsapi.repair.baseData.brand.saveBusinessDeduct.biz.ext",
+        url:  apiPath + repairApi+"/com.hsapi.repair.baseData.brand.saveBusinessDeduct.biz.ext",
         type: "post",
         cache: false,
         async: false,
@@ -33,8 +34,25 @@ function saveAll(){
         	d : d
         },
         success: function(text) {
-        	grid.setUrl("com.hsapi.repair.baseData.brand.getBusinessType.biz.ext");
-        	grid.load();
+        	grid.setUrl(gridUrl);
+        	grid.load({token:token});
         }
     });
+}
+function doSearch(){
+	grid = nui.get("grid");
+	grid.setUrl(gridUrl);
+	grid.load({token:token});
+}
+//提交单元格编辑数据前激发
+function onCellCommitEdit(e) {
+    var editor = e.editor;
+    var record = e.record;
+    var row = e.row;
+
+    editor.validate();
+    if (editor.isValid() == false) {
+		showMsg("请输入0到100的数!","W");
+        e.cancel = true;
+    } 
 }

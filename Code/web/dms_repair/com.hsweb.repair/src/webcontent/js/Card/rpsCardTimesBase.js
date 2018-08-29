@@ -4,20 +4,20 @@
 var getUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimes.biz.ext";
 
 var form = null;
-
+var form1 = null
 //页面加载时获取 form
 $(document).ready(function (v)
-		{
-		    form = new nui.Form("#dataform1");//获取表单的
-		    form1 = new nui.get("datagrid1");//获取表格的
+{
+	form = new nui.Form("#dataform1");//获取表单的
+	form1 = new nui.get("datagrid1");//获取表格的
 		    
-		});
-
+});
 
 
 function setData(data){
 	 data = nui.clone(data);
-	 var json = nui.encode({cardTimes:data,
+	 var json = nui.encode({
+		 cardTimes:data,
 		 token : token	 
 	 });
 	$.ajax({
@@ -37,7 +37,7 @@ function setData(data){
 	    }
 	    form.setChanged(false);
 	    form1.setData(obj.cardTimesDe);    
-	    form1.setChanged(false);
+	    //form1.setChanged(false);表格没有这个属性
 	  }
   });
 }

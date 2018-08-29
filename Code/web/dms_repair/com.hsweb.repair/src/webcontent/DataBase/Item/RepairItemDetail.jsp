@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.0"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.2"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -87,15 +87,20 @@
 									<input class="nui-textbox" name="code" width="100%"/>
 								</td>
 								
-								<!-- <td class="form_label required">
-									<label>工种：</label>
+								 <td >
+									<label>是否共享：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-combobox" name="itemKind" id="itemKind"
-											valueField="customid"
-											textField="name"
-											width="100%"/>
-								</td> -->
+									
+									<input name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+								<label>是否禁用：</label>
+								
+					
+									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+								</td>
+									
+
+								
 							</tr>
 							<tr>
 								<td class="form_label">

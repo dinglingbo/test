@@ -93,6 +93,30 @@ function showTabInfo(){
             }
             
             break;
+        case "tongyongticheng":
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/sixsixsix/tongyongticheng.jsp?token="+token, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
+            }
+            
+            break;
+        case "workTeam":
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/workTeam.jsp?token="+token, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
+            }
+            
+            break;
+        case "x_makeAnAppointmentLocation":
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/x_makeAnAppointmentLocation.jsp?token="+token, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
+            }
+            
+            break;
         default:
             break;
     }

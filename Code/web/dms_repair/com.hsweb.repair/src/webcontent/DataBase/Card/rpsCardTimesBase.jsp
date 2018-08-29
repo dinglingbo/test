@@ -14,7 +14,7 @@
     <title>
                 计次卡详细信息
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.2"></script>
 
   </head>
   <body>
@@ -22,7 +22,7 @@
       <legend>
         计次卡基本信息
       </legend>
-      <div id="dataform1" style="padding-top:5px;" >
+      <div id="dataform1" style="padding-top:5px;height:180px" >
         <!-- hidden域 -->
         <input class="nui-hidden" id="id"/>
         <table style="table-layout:fixed;" class="nui-form-table" > 
@@ -48,7 +48,7 @@
 	             过期日期:
 	            </td>
 	            <td colspan="1"  >
-	              <input format="yyyy-MM-dd" class="mini-datepicker"   name="pastDate" dateFormat="yyyy-MM-dd" readonly="readonly" />
+	              <input format="yyyy-MM-dd HH:mm:ss"  style="width:160px"  class="mini-datepicker"   name="pastDate"  readonly="readonly" />
 	            </td>
             </tr>
             <tr>
@@ -104,7 +104,7 @@
     
     <!-- 从表的修改 -->
 	
-		 <div class="nui-tabs"  activeIndex="0" style="width: 100%;height:358px" >
+		 <div class="nui-tabs"  activeIndex="0" style="width: 100%;height:360px" >
 			<div title="计次卡明细" >	
 		  <div class="nui-fit">
 					<div  class="nui-datagrid"  id="datagrid1"  onDrawCell="onDrawCell"

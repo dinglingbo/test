@@ -4,14 +4,22 @@ var treeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTr
 var tree1 = null;
 var rightGrid = null;
 var typeHash = {};
+var advancedAddWin = null;
+var advancedAddForm = null;
+var isOpenWin = 0;
 
 $(document).ready(function()
 {
 	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
+	
+	advancedAddWin = nui.get("advancedAddWin");
+	advancedAddForm  = new nui.Form("#advancedAddForm");
+	
 	var parentId = "DDT20130703000063";
     tree1.setUrl(treeUrl+"?p/rootId=DDT20130703000063&token="+token);
     var data = tree1.getList();
+    nui.get('dictid').setData(data);
 	data.forEach(function(v) {
 		typeHash[v.customid] = v;
 	});
@@ -70,8 +78,10 @@ function onSearch()
 }
 function doSearch(params)
 {
-	params.orgid = currOrgid;
-    params.orgid = currOrgid;
+	params.orgid = currOrgId;
+	if(isOpenWin == 1){
+		params.isDisabled = 0;
+	}
 	rightGrid.load({
 		token:token,
 		params:params
@@ -127,7 +137,11 @@ function setData(data)
 	list = data.list||[];
 	nui.get("add").hide();
 	nui.get("update").hide();
+	nui.get("addItemType").hide();
+	nui.get("editItemType").hide();
+	document.getElementById('sep').style.display = "none";  
 	nui.get("selectBtn").show();
+	isOpenWin = 1;
 }
 function onOk()
 {
@@ -150,4 +164,108 @@ function CloseWindow(action)
 
 function onCancel() {
 	CloseWindow("cancel");
+}
+
+function addItemType(){
+	advancedAddForm.setData([]);
+	advancedAddWin.show();
+	nui.get('name').focus();
+}
+function editItemType(){	
+	var row = tree1.getSelected();
+	var orgid = row.orgid;
+	if(orgid != currOrgId){
+		showMsg("只能修改本店定义的工时类型!","W");
+		return;
+	}
+	advancedAddForm.setData([]);
+	advancedAddWin.show();
+	advancedAddForm.setData(row);
+}
+function onAdvancedAddCancel(){
+	advancedAddWin.hide();
+	advancedAddForm.setData([]);
+}
+var saveUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDictList.biz.ext";
+function onAdvancedAddOk(){
+	var value = nui.get('name').getValue();
+	var id = nui.get('id').getValue();
+	if(!value){
+		showMsg("类型名称不能为空!","W");
+		return;
+	}
+
+	var dictid = nui.get('dictid').getValue();
+	if(!dictid){
+		dictid = 'DDT20130703000063';
+	}
+
+	var data = advancedAddForm.getData();
+
+    var addList = [];
+	var updateList = [];
+	if(data.id){
+		var newObj = {id : id,dictid : dictid,name: value, rootId: 'DDT20130703000063'};
+		updateList.push(newObj);
+	}else{
+		var newObj = {name: value, rootId: 'DDT20130703000063'};
+		addList.push(newObj);
+	}
+
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
+
+	nui.ajax({
+		url : saveUrl,
+		type : "post",
+		data : JSON.stringify({
+			addList : addList,
+			updateList : updateList,
+			dictid : dictid,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("保存成功!","S");
+
+				tree1.setUrl(treeUrl+"?p/rootId=DDT20130703000063&token="+token);
+				var data = tree1.getList();
+				nui.get('dictid').setData(data);
+				data.forEach(function(v) {
+					typeHash[v.customid] = v;
+				});
+
+				onAdvancedAddCancel();
+				
+			} else {
+				showMsg(data.errMsg || "保存失败!","W");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+
+}
+function onDrawCell(e) {
+	switch (e.field) {
+	case "isShare":
+		e.cellHtml = e.value == 1 ? "是" : "否";
+		break;
+	case "isDisabled":
+		e.cellHtml = e.value == 1 ? "是" : "否";
+		break;
+	case "orgid":
+		e.cellHtml = currOrgId == e.value? '本店' : '连锁';
+		break;
+	default:
+		break;
+	}
+
 }

@@ -14,9 +14,9 @@ $(document).ready(function(){
 	var cardId=null;
 	var cardObj=null;
 	var name=null;
-	var itemRate=null;
-	var packageRate=null;
-	var partRate=null;
+//	var itemRate=null;
+//	var packageRate=null;
+//	var partRate=null;
 	var giveAmt=null;
 	var totalAmt=null;
 	var canModify=null;
@@ -99,16 +99,16 @@ function onCard(text){
 					if(name==text){
 						name=text;
 						cardId=cardObj.id;
-						itemRate=cardObj.itemRate;
-						packageRate=cardObj.packageRate;
-						partRate=cardObj.partRate;
+//						itemRate=cardObj.itemRate;
+//						packageRate=cardObj.packageRate;
+//						partRate=cardObj.partRate;
 						giveAmt=cardObj.giveAmt;
 						totalAmt=cardObj.totalAmt;
 						canModify=cardObj.canModify;
 						rechargeAmt=cardObj.rechargeAmt;
-						nui.get('itemRate').setValue(itemRate);
-						nui.get('packageRate').setValue(packageRate);
-						nui.get('partRate').setValue(partRate);
+//						nui.get('itemRate').setValue(itemRate);
+//						nui.get('packageRate').setValue(packageRate);
+//						nui.get('partRate').setValue(partRate);
 						nui.get('giveAmt').setValue(giveAmt);
 						nui.get('rechargeAmt').setValue(rechargeAmt);
 						nui.get('totalAmt').setValue(totalAmt);
@@ -150,9 +150,9 @@ function pay(){
 			giveAmt		: giveAmt,
 			guestId		: guestId,
 			guestName	: guestName,	
-			itemRate	: itemRate,		
-			packageRate	: packageRate,	
-			partRate	: partRate,
+//			itemRate	: itemRate,		
+//			packageRate	: packageRate,	
+//			partRate	: partRate,
 			rechargeAmt	: rechargeAmt,
 			totalAmt 	: totalAmt
 	};
@@ -174,7 +174,7 @@ function pay(){
 		success: function(data){
 			nui.unmask(document.body);
 			if(data.errCode =='S'){
-				showMsg("保存成功!","S");			
+				showMsg("保存成功!","S");
 			}else{
 				showMsg(data.errMsg || "保存失败!","W");
 			}

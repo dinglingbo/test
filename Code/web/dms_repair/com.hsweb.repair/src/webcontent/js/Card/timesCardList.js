@@ -16,9 +16,13 @@ $(document).ready(function(v) {
 
 // 新增
 function add() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请计次卡定义!","W");
+		return;
+	}
 	nui.open({
 		url : sysnUrl,
-		title : "新增记录",
+		title : "新增计次卡",
 		width : 890,
 		height : 580,
 		onload : function() {
@@ -39,11 +43,15 @@ function add() {
 
 // 编辑
 function edit() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请计次卡定义!","W");
+		return;
+	}
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({
 			url : sysnUrl,
-			title : "编辑数据",
+			title : "修改计次卡",
 			width : 900,
 			height : 580,
 			onload : function() {
@@ -170,6 +178,7 @@ function lookCardTimes(){
 }
 
 //购买次卡
+var action = null;
 var buyUrl =webPath + contextPath + "/repair/DataBase/Card/buyCardTimes.jsp?token"+token;
 function onBuy(){
 	var row = grid.getSelected();
@@ -177,21 +186,26 @@ function onBuy(){
 		nui.open({
 			url : buyUrl,
 			title : "购买次卡",
-			width : 930,
-			height : 663,
+			width : 400,
+			height : 240,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var data = row;
-				data.type = 'VIEW';
-				iframe.contentWindow.disableEle();
-				iframe.contentWindow.setData(data);
+				//把数据传到子页面
+				iframe.contentWindow.giveData(data);
 			},
-			ondestroy : function() {
-				var iframe = this.getIFrameEl();
-			}
 		});
 	} else {
 		nui.alert("请选中一条记录", "提示");
 	}
 	
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+		return window.CloseOwnerWindow("saveSuccess");
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

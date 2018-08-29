@@ -94,6 +94,13 @@ function setData(data)
 var saveUrl = baseUrl+"com.hsapi.repair.baseData.item.saveRpbItem.biz.ext";
 function onOk(){
 	var data = basicInfoForm.getData();
+	if(data.id){
+		var orgid = data.orgid||0;
+		if(orgid != currOrgId){
+			showMsg("只能修改本店套餐!",S);
+			return;
+		}
+	}
 	for(var key in requiredField){
 		if(!data[key] || data[key].trim().length==0)
         {
@@ -168,7 +175,7 @@ function onRateValidation(e){
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;
@@ -188,7 +195,7 @@ function onRateValidation(e){
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;
@@ -208,7 +215,7 @@ function onRateValidation(e){
 		}else {
 			if (e.isValid) {
 				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-				var reg=/^\d\.([1-9]{1,2}|[0-9][1-9])$|^[1-9]\d{0,1}(\.\d{1,2}){0,1}$|^100(\.0{1,2}){0,1}$|0$/
+				var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入0~100的数,最多可保留两位小数";
 					e.isValid = false;

@@ -258,11 +258,12 @@
 	            <isNotEmpty prepend="and" property="carNo">  
 	                (a.car_no like '%$carNo$%')
 	            </isNotEmpty>
-	            
 	            <isNotEmpty prepend="and" property="guestTel">  
 	                (c.mobile like '%$guestTel$%')
-	            </isNotEmpty>
-	            
+	            </isNotEmpty> 
+	            <isNotEmpty prepend="and" property="guestId"> 
+                   (a.guest_id = #guestId#)
+                </isNotEmpty>
 	            
         </dynamic>  
         order by a.id desc
@@ -299,11 +300,11 @@
 	            </isNotEmpty>
 	            
 	            <isNotEmpty prepend="and" property="carNo">  
-	                (a.car_no like '%$guestName$%')
+	                (a.car_no like '%$carNo$%')
 	            </isNotEmpty>
 	            
 	            <isNotEmpty prepend="and" property="guestTel">  
-	                (c.mobile like '%$guestName$%')
+	                (c.mobile like '%$guestTel$%')
 	            </isNotEmpty>
 	            
 	            
@@ -330,6 +331,22 @@
             </isNotEmpty>
         </dynamic>  
         order by id desc
+	</select>
+	
+	<select id="getCardRate" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.card_id as cardId,
+			a.service_type_id as serviceTypeId,
+			a.service_type_name as serviceTypeName ,
+			a.package_discount_rate as packageDiscountRate,
+			a.item_discount_rate AS itemDiscountRate,
+			a.part_discount_rate AS partDiscountRate
+		FROM
+		rpb_card_rate AS a
+		WHERE A.is_disabled = 0
+		  AND A.card_id = #cardId#
+		  and a.service_type_id = #serviceTypeId#
 	</select>
 	
 </sqlMap>

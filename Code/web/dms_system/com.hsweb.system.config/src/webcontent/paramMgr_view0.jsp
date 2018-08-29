@@ -6,7 +6,7 @@
 
 <head>
 <title>参数设置</title>
-<script src="<%=webPath + contextPath%>/config/js/paramMgr.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/config/js/paramMgr.js?v=1.0.1"></script>
 </head>
 <body>
 	<div class="nui-fit">
@@ -33,6 +33,12 @@
 			<div title="绩效设置" name="basicDeductTab" url="" >
 			</div>
 			<div title="提醒设置" name="remindTab" url="" >
+			</div> 
+			<div title="通用提成" name="tongyongticheng" url="" >
+			</div> 
+			<div title="工作组" name="workTeam" url="" >
+			</div> 
+			<div title="技师等级" name="x_makeAnAppointmentLocation" url="" >
 			</div> 
 		</div>	
 	</div>

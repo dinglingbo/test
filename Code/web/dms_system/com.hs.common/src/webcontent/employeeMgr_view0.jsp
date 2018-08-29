@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 
-<%@ include file="/common/sysCommon.jsp"%>	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/common/sysCommon.jsp"%>	
 <html>
 <!-- 
   - Author(s): Administrator
@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.0.9" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.0" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -62,6 +62,7 @@
 						<div type="checkcolumn">选择</div>
 						<div id="empid" field="empid" headerAlign="center" allowSort="true"  width="40px" visible="false">id</div>
 						<div id="name" field="name" headerAlign="center" allowSort="true" visible="true" width="40px">姓名</div>
+						<div id="compShortName" field="compShortName" headerAlign="center" allowSort="true" visible="true" width="60px">所属机构</div>
 						<div id="sex" field="sex" headerAlign="center" allowSort="true" visible="true" width="20px">性别</div>
 						<div id="idcardno" field="idcardno" headerAlign="center" allowSort="true" visible="true" >身份证</div>
 						<div id="birthday" field="birthday" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd" width="60px">生日</div>

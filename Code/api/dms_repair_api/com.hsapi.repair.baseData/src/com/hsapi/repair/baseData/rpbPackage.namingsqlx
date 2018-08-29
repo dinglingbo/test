@@ -31,10 +31,11 @@
 			a.recorder as recorder,
 			a.recorde_date as recordeDate,
 			a.modifier as modifier,
-			a.modify_date as modifyDate
+			a.modify_date as modifyDate,
+			a.is_can_rate as isCanRate
 		FROM
 			rpb_package a
-		WHERE a.orgid = #orgid#
+		WHERE ((a.tenant_id = #tenantId# and a.is_share = 1) or a.orgid = #orgid#)
 		<dynamic>
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)

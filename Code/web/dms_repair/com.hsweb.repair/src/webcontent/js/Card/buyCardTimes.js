@@ -50,7 +50,8 @@ var payType = {
 		'020101':'现金',
 		'020102':'刷卡',
 	    '020104':'微信/支付宝'		
-}
+};
+
 
 var payMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.receiveCardTimes.biz.ext";
 function payOk(){	
@@ -98,18 +99,10 @@ function payOk(){
 			            nui.unmask(document.body);
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
-				            nui.alert("结算成功", "系统提示", function(action) {
-				               if (action == "ok" || action == "close") {
-				                   // CloseWindow("saveFailed");
-				               }
-				            });
+				            nui.alert("结算成功", "系统提示");
 				        }
 				        else {
-				            nui.alert("结算失败:"+returnJson.errMsg, "系统提示", function(action) {
-				               if (action == "ok" || action == "close") {
-				                   // CloseWindow("saveFailed");
-				               }
-				           });
+				            nui.alert("结算失败:"+returnJson.errMsg, "系统提示");
 				        }
 				   }				        	  
 			  });		

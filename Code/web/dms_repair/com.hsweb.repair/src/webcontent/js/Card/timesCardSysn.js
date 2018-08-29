@@ -347,6 +347,10 @@ function setGridData(datagrid, dataid) {
 }
 
 function saveData() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请计次卡定义!","W");
+		return;
+	}
 	g = nui.get("#timesCardDetail");
 	form.validate();
 	if (form.isValid() == false)

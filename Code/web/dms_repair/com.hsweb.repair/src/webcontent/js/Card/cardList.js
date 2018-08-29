@@ -17,6 +17,10 @@ $(document).ready(function(v) {
 
 // 新增
 function add() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请储值卡定义!","W");
+		return;
+	}
 	nui.open({
 		url : sysnUrl,
 		title : "新增储值卡",
@@ -40,6 +44,10 @@ function add() {
 
 // 编辑
 function edit() {
+	if(currIsMaster != "1"){
+		showMsg("请向总部申请储值卡定义!","W");
+		return;
+	}
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({

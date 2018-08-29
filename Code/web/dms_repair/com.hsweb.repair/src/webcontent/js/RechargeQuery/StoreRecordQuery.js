@@ -32,7 +32,7 @@ function getSearchParams()
     if(data==0){
     	params.fullName=search;
     }else if(data==1){
-    	params.cardNo=search;
+    	params.cardId=search;
     }
     return params;
 }

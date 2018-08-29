@@ -12,7 +12,7 @@
 <head>
 <title>套餐操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.2.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.2.9"></script>
 
 </head>
 

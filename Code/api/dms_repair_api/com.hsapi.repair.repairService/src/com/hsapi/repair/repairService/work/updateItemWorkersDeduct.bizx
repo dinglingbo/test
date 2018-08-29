@@ -323,7 +323,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItemWorkers" name="itemWorkers"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="totalWeight" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItemWorkers" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="weight" primitiveType="Float"/>

@@ -254,6 +254,15 @@
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>subprocess6</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link7</targetConnections>
     <targetConnections>link13</targetConnections>
     <location x="406" y="133"/>
@@ -403,6 +412,7 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="525" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>

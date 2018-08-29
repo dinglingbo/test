@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户办卡、充值记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.1.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreRecordQuery.js?v=1.1.5"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -71,7 +71,7 @@ html,body {
             </div>
             <div header="会员卡信息" headerAlign="center">
                 <div property="columns">
-                    <div field="cardNo" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
+                    <div field="cardId" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
                     <div field="cardName" headerAlign="center" allowSort="true" visible="true" width="">会员卡名称</div>
                     <div field="periodValidity" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">有效期</div>
                 </div>

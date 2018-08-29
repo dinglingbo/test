@@ -1,6 +1,6 @@
 
-var baseUrl = apiPath + cloudPartApi + "/";
-var notStatementUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryOrderBill.biz.ext";
+var baseUrl = apiPath + repairApi + "/";
+var notStatementUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryOrderBill.biz.ext";
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var notStatementGrid = null;

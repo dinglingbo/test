@@ -1,14 +1,14 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPAccountList.biz.ext";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryRPAccountList.biz.ext";
 /*var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
 */
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
-var innerStateGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
+var innerStateGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.getPJStatementDetailById.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -190,7 +190,7 @@ $(document).ready(function(v)
     quickSearch(currType);
 });
 var queryUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+        + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 function getItemType(callback) {
     nui.ajax({
         url : queryUrl,
@@ -398,7 +398,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: "com.hsweb.frm.arap.supplierSelect.flow",
         title: "结算单位资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1313,7 +1313,7 @@ function settleCancel(){
 
     settleAccountGrid.setData([]);
 }
-var settleAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.rpAccountSettle.biz.ext";
+var settleAuditUrl = baseUrl+"com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
 function settleOK(){
     var msg = checkSettleRow();
     if(msg){
@@ -1716,14 +1716,14 @@ function OnModelCellBeginEdit(e) {
     var row = settleAccountGrid.getSelected();
 
     if (column.field == "settAccountId") {
-        var url = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext?token="+token;
+        var url = baseUrl + "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="+token;
         editor.setUrl(url);
     }
 
 
     if (column.field == "balaTypeCode") {
         var str = "accountId="+row.settAccountId+"&token="+token;
-        var url = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        var url = baseUrl + "com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
         editor.setUrl(url);
     }
 

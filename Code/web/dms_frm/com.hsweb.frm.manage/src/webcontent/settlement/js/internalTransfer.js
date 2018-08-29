@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryInternalTransfer.biz.ext";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryInternalTransfer.biz.ext";
 
 var searchBeginDate = null;
 var searchEndDate = null;
@@ -52,7 +52,7 @@ $(document).ready(function(v)
 
 });
 var querySettleTypeUrl = baseUrl
-        + "com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext";
+        + "com.hsapi.frm.setting.querySettleType.biz.ext";
 function getSettleType(callback) {
     nui.ajax({
         url : querySettleTypeUrl,
@@ -72,7 +72,7 @@ function getSettleType(callback) {
         }
     });
 }
-var queryUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 function getInComeExpenses(callback) {
     var params = {itemTypeId : -1, isMain: 0};
     nui.ajax({
@@ -93,7 +93,7 @@ function getInComeExpenses(callback) {
         }
     });
 }
-var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
+var queryAccountUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext";
 function getAccountList(callback) {
     nui.ajax({
         url : queryAccountUrl,
@@ -196,7 +196,7 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.saveInternalTransferList.biz.ext";
+        + "com.hsapi.frm.frmService.crud.saveInternalTransferList.biz.ext";
 function save(){
     var data = mainGrid.getData();
 
@@ -339,7 +339,7 @@ function save(){
     
 }
 var auditUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.auditInternalTransferList.biz.ext";
+        + "com.hsapi.frm.frmService.crud.auditInternalTransferList.biz.ext";
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
@@ -420,7 +420,7 @@ function OnrpMainGridCellBeginEdit(e){
 
     if (column.field == "balaTypeCode") {
         var str = "accountId="+row.settAccountId;
-        var url = "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        var url = "com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
         editor.setUrl(url);
     }
 }

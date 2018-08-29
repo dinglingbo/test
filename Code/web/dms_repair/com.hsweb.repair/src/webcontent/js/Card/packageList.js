@@ -11,8 +11,14 @@ var servieTypeList = [];
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
+	
+	grid.on("beforeload",function(e){
+        e.data.token = token;
+	});
+	
 	var formData = new nui.Form("#queryform").getData(false, false);
 	grid.load(formData);
+	
 	
 	initServiceType("serviceTypeId",function(data) {
 	    servieTypeList = nui.get("serviceTypeId").getData();
@@ -46,6 +52,7 @@ function CloseWindow(action) {
 function refresh() {
 	var form = new nui.Form("#queryform");
 	var json = form.getData(false, false);
+	json.isDisabled = 0;
 	grid.load(json);// grid查询
 	nui.get("update").enable();
 }
@@ -55,6 +62,7 @@ function search() {
 
 	var form = new nui.Form("#queryform");
 	var json = form.getData(false, false);
+	json.isDisabled = 0;
 	grid.load(json);// grid查询
 }
 

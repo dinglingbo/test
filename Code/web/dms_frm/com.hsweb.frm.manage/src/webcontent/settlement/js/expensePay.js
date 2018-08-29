@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryAccountList.biz.ext";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryAccountList.biz.ext";
 
 var searchBeginDate = null;
 var searchEndDate = null;
@@ -35,7 +35,7 @@ $(document).ready(function(v)
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
 
     getInComeExpenses(function(data) {
-        IClist = data.list;
+        IClist = data.list||[];
     });
 
     getAccountList(function(data) {
@@ -55,7 +55,7 @@ $(document).ready(function(v)
 
 });
 var querySettleTypeUrl = baseUrl
-        + "com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext";
+        + "com.hsapi.frm.setting.querySettleType.biz.ext";
 function getSettleType(callback) {
     nui.ajax({
         url : querySettleTypeUrl,
@@ -75,7 +75,7 @@ function getSettleType(callback) {
         }
     });
 }
-var queryUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 function getInComeExpenses(callback) {
     var params = {itemTypeId : -1, isMain: 0};
     nui.ajax({
@@ -96,7 +96,7 @@ function getInComeExpenses(callback) {
         }
     });
 }
-var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
+var queryAccountUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext";
 function getAccountList(callback) {
     nui.ajax({
         url : queryAccountUrl,
@@ -174,7 +174,8 @@ function addGuest(){
     var supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
+//        url: "com.hsweb.frm.arap.supplierSelect.flow",
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "选择往来单位", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -219,7 +220,7 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.saveQTAccountList.biz.ext";
+        + "com.hsapi.frm.frmService.crud.saveQTAccountList.biz.ext";
 function save(){
     var data = mainGrid.getData();
 
@@ -334,7 +335,7 @@ function save(){
     
 }
 var auditUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.auditQTAccountList.biz.ext";
+        + "com.hsapi.frm.frmService.crud.auditQTAccountList.biz.ext";
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
@@ -416,7 +417,7 @@ function OnrpMainGridCellBeginEdit(e){
 
     if (column.field == "balaTypeCode") {
         var str = "accountId="+row.balaAccountId;
-        var url = "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        var url = "com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
         editor.setUrl(url);
     }
 }
@@ -425,7 +426,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: "com.hsweb.frm.arap.supplierSelect.flow",
         title: "结算单位资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

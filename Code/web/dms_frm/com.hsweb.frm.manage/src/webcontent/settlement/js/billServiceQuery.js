@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPBill.biz.ext";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryRPBill.biz.ext";
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
 var advancedSearchWin = null;
@@ -141,7 +141,7 @@ $(document).ready(function(v)
     });
 });
 var queryItemTypeUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+        + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 function getItemType(callback) {
     nui.ajax({
         url : queryItemTypeUrl,
@@ -326,7 +326,8 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+//        url: "com.hsweb.frm.arap.supplierSelect.flow",
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "往来单位资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

@@ -69,10 +69,10 @@
 					<div property="columns">
 						<div header="套餐信息" headerAlign="center">
 							<div property="columns">
-								<div field="name" headerAlign="center" allowSort="true" visible="true">套餐名称</div>
-								<div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true">套餐类别</div>
-								<div field="amount" headerAlign="center" allowSort="true" visible="true">套餐金额</div>
-								<div field="orgid" headerAlign="center" allowSort="true" visible="true">所属</div>
+								<div field="name" headerAlign="center" width="80" visible="true">套餐名称</div>
+								<div field="serviceTypeId" headerAlign="center" width="60" visible="true">套餐类别</div>
+								<div field="amount" headerAlign="center" width="70" visible="true">套餐金额</div>
+								<div field="orgid" headerAlign="center" width="70" visible="true">所属</div>
 							</div>
 						</div>
 					</div>

@@ -95,10 +95,9 @@ var saveUrl = baseUrl+"com.hsapi.repair.baseData.item.saveRpbItem.biz.ext";
 function onOk(){
 	var data = basicInfoForm.getData();
 	if(data.id){
-		var row = leftGrid.getSelected();
-		var orgid = row.orgid||0;
+		var orgid = data.orgid||0;
 		if(orgid != currOrgId){
-			showMsg("只能修改本店套餐!",);
+			showMsg("只能修改本店套餐!",S);
 			return;
 		}
 	}

@@ -11,7 +11,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link3</targetConnections>
-    <location x="525" y="161"/>
+    <location x="596" y="159"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -25,7 +25,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="527" y="197"/>
+    <location x="598" y="195"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -35,7 +35,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="285" y="161"/>
+    <location x="345" y="161"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -52,7 +52,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="188" y="197"/>
+    <location x="248" y="197"/>
     <figSize height="17" width="217"/>
     <node>invokePojo0</node>
   </nodes>
@@ -113,6 +113,18 @@
       <process:from type="literal" pattern="reference">orgid</process:from>
       <process:to type="query">criteria/_expr[2]/_property</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">status</process:from>
+      <process:to type="query">criteria/_expr[3]/_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">status</process:from>
+      <process:to type="query">criteria/_expr[3]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">criteria/_expr[3]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="183" y="197"/>
@@ -125,12 +137,12 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="420" y="161"/>
+    <location x="495" y="161"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="418" y="197"/>
+    <location x="493" y="197"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -144,6 +156,7 @@
     <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
     <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
     <process:input description="" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
+    <process:input description="启用：0" isArray="false" name="status" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimes" name="timesCard"/>

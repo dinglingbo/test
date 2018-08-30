@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 var mainForm = null;
 var rowT = null;
 var newRowT = null;
@@ -71,7 +71,7 @@ var requiredField = {
 };
 
 var saveUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.saveFibInComeExpenses.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.saveFibInComeExpenses.biz.ext";
 function saveType(type){
 	var data = mainForm.getData();
 

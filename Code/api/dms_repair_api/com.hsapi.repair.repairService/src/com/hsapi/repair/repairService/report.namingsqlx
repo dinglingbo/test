@@ -946,9 +946,8 @@
         </isNotEmpty>
     </select>
     
-    <!--查询客户充值会员卡记录-->
-    <select id="queryStoreRecord" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT
+	<select id="queryStoreRecord" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
 			a.id AS id,
 			a.tenant_id AS tenant_id,
 			a.orgid AS orgid,
@@ -974,8 +973,7 @@
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			b.full_name AS fullName,
-			b.mobile AS mobile,
-			b.card_no AS cardNo
+			b.mobile AS mobile
 		FROM
 			wb_repair.rps_stored_record a
 		inner JOIN wb_common.com_guest b ON a.guest_id = b.id
@@ -987,7 +985,7 @@
                b.full_name LIKE '%$fullName$%'
         </isNotEmpty>
         <isNotEmpty prepend="and" property="cardNo"> 
-               b.card_no LIKE '%$cardNo$%'
+               a.card_id = #cardId#
         </isNotEmpty>
 		<isNotEmpty prepend="and" property="startDate"> 
                DATE_FORMAT(a.record_date,'%Y-%m-%d') &gt;= #startDate#
@@ -995,7 +993,7 @@
         <isNotEmpty prepend="and" property="endDate"> 
                DATE_FORMAT(a.record_date,'%Y-%m-%d') &lt;= #endDate#
         </isNotEmpty>
-    </select>
+	</select>
     
     <!--工单营收-->
     <select id="queryNetinAmtByDay" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

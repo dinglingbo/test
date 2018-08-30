@@ -100,6 +100,7 @@
     <location x="315" y="145"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="packages" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -199,54 +200,6 @@
     <location x="419" y="143"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/salesDeductType</process:from>
-      <process:to type="query">sales_deduct_type</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/salesDeductOriginValue</process:from>
-      <process:to type="query">sales_deduct_origin_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">sales_deduct_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/techDeductType</process:from>
-      <process:to type="query">tech_deduct_type</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/techDeductOriginValue</process:from>
-      <process:to type="query">tech_deduct_origin_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">tech_deduct_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/advisorDeductType</process:from>
-      <process:to type="query">advisor_deduct_type</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/advisorDeductOriginValue</process:from>
-      <process:to type="query">advisor_deduct_origin_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">advisor_deduct_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">total_deduct_amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/amt</process:from>
-      <process:to type="query">amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/subtotal</process:from>
-      <process:to type="query">subtotal</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="421" y="179"/>
@@ -739,6 +692,54 @@
       <process:from type="query" pattern="reference">temp/packageId</process:from>
       <process:to type="query">packageId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/salesDeductType</process:from>
+      <process:to type="query">sales_deduct_type</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/salesDeductOriginValue</process:from>
+      <process:to type="query">sales_deduct_origin_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sales_deduct_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/techDeductType</process:from>
+      <process:to type="query">tech_deduct_type</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/techDeductOriginValue</process:from>
+      <process:to type="query">tech_deduct_origin_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">tech_deduct_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/advisorDeductType</process:from>
+      <process:to type="query">advisor_deduct_type</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/advisorDeductOriginValue</process:from>
+      <process:to type="query">advisor_deduct_origin_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">advisor_deduct_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">total_deduct_amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/amt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/subtotal</process:from>
+      <process:to type="query">subtotal</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
     <location x="362" y="179"/>
@@ -813,6 +814,7 @@
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign19</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
     <targetConnections>link17</targetConnections>

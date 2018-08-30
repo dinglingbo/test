@@ -184,6 +184,7 @@
     <location x="630" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="itemWorkers" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -229,7 +230,7 @@
       <process:to type="query">weight</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">weight/totalWeight</process:from>
+      <process:from type="expression" pattern="reference">weight*1.0/totalWeight</process:from>
       <process:to type="query">rate</process:to>
     </process:copy>
     <process:copy>
@@ -252,7 +253,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">1/len</process:from>
+      <process:from type="expression" pattern="reference">1.0/len</process:from>
       <process:to type="query">rate</process:to>
     </process:copy>
     <process:copy>

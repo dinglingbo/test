@@ -33,8 +33,6 @@ $(document).ready(function (v)
     	token : token
     });
        
-   //alert(date.format('dd/MM/yyyy hh:mm:ss'));
-    //date.dateFormat("yyyy-MM-dd hh:mm:ss");
 });
 
 
@@ -64,7 +62,7 @@ function searchOne() {
     }
     
  
-//增加次卡套餐
+//购买次卡套餐
 var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
 function dealtWithCard(){	
  	nui.open({
@@ -76,11 +74,11 @@ function dealtWithCard(){
  		    var iframe = this.getIFrameEl();
  			iframe.contentWindow.setStely();
  		},
- 		/*ondestroy : function(action) {// 弹出页面关闭前
+ 		ondestroy : function(action) {// 弹出页面关闭前
  			if (action == "saveSuccess") {
  				grid.reload();
  			}
- 		}*/
+ 		}
  	});
  	
  }
@@ -103,7 +101,7 @@ function refresh(){
   //剩余次数
   var balaTimes = null;
   //总次数
-  var totalTimes = null;r
+  var totalTimes = null;
   //剩余可使用次数
   var canUseTimes = null;
   var id = null;

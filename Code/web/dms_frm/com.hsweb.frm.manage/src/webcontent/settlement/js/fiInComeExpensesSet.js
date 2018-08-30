@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 var mainGrid = null;
 var disableEl = null;
 var undisableEl = null;
@@ -41,7 +41,7 @@ function refresh(){
 	doSearch()
 }
 var deleteUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.deleteFibInComeExpenses.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.deleteFibInComeExpenses.biz.ext";
 function deleteType(){
 	var row = mainGrid.getSelected();
 	if(row && row.id){
@@ -116,7 +116,7 @@ function showEditModal(row, newRow, type){
 	}
 
 	nui.open({
-		url: "com.hsweb.cloud.part.settlement.fiInComeExpensesEdit.flow",
+		url: "com.hsweb.frm.manage.fiInComeExpensesEdit.flow",
 		title: title,
 		width: "500px",
 		height: "250px",

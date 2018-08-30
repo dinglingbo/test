@@ -89,6 +89,10 @@
       <process:from type="query" pattern="reference">params/tenantId</process:from>
       <process:to type="query">tenantId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="227" y="136"/>
@@ -99,6 +103,7 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="226" y="210"/>

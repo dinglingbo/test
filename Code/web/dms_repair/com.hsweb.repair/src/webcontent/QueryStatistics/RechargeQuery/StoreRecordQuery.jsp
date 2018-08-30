@@ -93,12 +93,12 @@ html,body {
                     <div field="integral" headerAlign="center" allowSort="true" visible="true" width="" datatype="int" align="right">积分</div>
                 </div>
             </div>
-            <div header="优惠率" headerAlign="center">
+            <!-- <div header="优惠率" headerAlign="center">
                 <div property="columns">
                     <div field="packageRate" headerAlign="center" allowSort="true" visible="true" width="" >套餐优惠率</div>
                     <div field="itemRate" headerAlign="center" allowSort="true" visible="true" width=""  >工时优惠率</div>
                     <div field="partRate" headerAlign="center" allowSort="true" visible="true" width=""   >配件优惠率</div>
-                </div>
+                </div> -->
             </div>
             <div header="备注" headerAlign="center">
                 <div property="columns">

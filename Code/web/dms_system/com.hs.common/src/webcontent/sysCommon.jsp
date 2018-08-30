@@ -70,9 +70,6 @@
 		nui.context='<%=contextPath %>'
 	})
     
-    
-    var currOrgs = [];
-    
     <%
 	HttpSession session = request.getSession(false);
     String orgId="";
@@ -84,7 +81,6 @@
     String tenantId = "default";
     String compType = "";
     String isMaster = "";
-    Object orgs=null;
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -104,9 +100,8 @@
 				token = attr.get("token").toString();
                 noOrgId = session.getAttribute("noOrgId").toString();
                 tenantId = attr.get("tenantId").toString();
-                compType = attr.get("compType").toString();
-                orgs = attr.get("orgs");
                 isMaster = attr.get("isMaster").toString();
+                compType = attr.get("compType").toString();
 			} catch (Exception e) {
 			}
             

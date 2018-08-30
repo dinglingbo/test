@@ -24,7 +24,7 @@
       </legend>
       <div id="dataform1" style="padding-top:5px;height:180px" >
         <!-- hidden域 -->
-        <input class="nui-hidden" id="id"/>
+        <input class="nui-hidden"  name = "id"/>
         <table style="table-layout:fixed;" class="nui-form-table" > 
         	
         	<tr >

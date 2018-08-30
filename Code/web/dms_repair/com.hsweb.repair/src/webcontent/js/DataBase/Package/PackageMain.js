@@ -413,7 +413,7 @@ function save()
 		var row = leftGrid.getSelected();
 		var orgid = row.orgid||0;
 		if(orgid != currOrgId){
-			showMsg("只能修改本店套餐!",);
+			showMsg("只能修改本店套餐!",'W');
 			return;
 		}
 	}

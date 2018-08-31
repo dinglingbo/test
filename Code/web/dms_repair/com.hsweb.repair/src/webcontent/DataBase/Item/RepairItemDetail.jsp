@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.2"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.4"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -57,6 +57,7 @@
 		<div title="工时设置" id="itemTab" name="itemTab" >
 				<div id="basicInfoForm" class="form">
 					<input name="id" class="nui-hidden"/>
+					<input name="orgid" class="nui-hidden"/>
 					<div class="nui-panel" showToolbar="false" title="基本信息" showFooter="false"
 						style="width:calc(100% - 20px);">
 						<table class="nui-form-table" border=0>

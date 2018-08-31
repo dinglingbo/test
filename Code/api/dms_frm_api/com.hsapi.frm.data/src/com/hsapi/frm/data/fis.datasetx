@@ -3,7 +3,7 @@
   <nodes xsi:type="model:PEntityNode" id="node0" name="FisGuestBalance" nodeType="table" displayName="FisGuestBalance" author="Administrator" instanceClass="" table="fis_guest_balance">
     <location x="60" y="60"/>
     <size height="408" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="214"/>
     <columnProperty id="property0" name="orgid" displayName="orgid" columnName="orgid" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>??ID</comment>
       <viewField dict="false" dictTypeId="" displayName="orgid" entityField="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
@@ -3544,7 +3544,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3" name="FisRpAccountDetail" nodeType="table" displayName="FisRpAccountDetail" author="Administrator" instanceClass="" table="fis_rp_account_detail" genStrategy="native">
     <location x="60" y="1194"/>
     <size height="426" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="214"/>
     <columnProperty id="property62" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>ID</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -5020,7 +5020,7 @@
   <nodes xsi:type="model:PEntityNode" id="node4" name="FisRpBill" nodeType="table" displayName="FisRpBill" author="Administrator" instanceClass="" table="fis_rp_bill" genStrategy="native">
     <location x="60" y="1680"/>
     <size height="786" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="214"/>
     <columnProperty id="property84" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>ID</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -7819,7 +7819,7 @@
   <nodes xsi:type="model:PEntityNode" id="node5" name="FisRpInternalTransfer" nodeType="table" displayName="FisRpInternalTransfer" author="Administrator" instanceClass="" table="fis_rp_internal_transfer" genStrategy="native">
     <location x="60" y="2526"/>
     <size height="588" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="233"/>
     <columnProperty id="property126" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -9888,7 +9888,7 @@
   <nodes xsi:type="model:PEntityNode" id="node6" name="FisSettleAccountBala" nodeType="table" displayName="FisSettleAccountBala" author="Administrator" instanceClass="" table="fis_settle_account_bala" genStrategy="native">
     <location x="60" y="3174"/>
     <size height="426" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="215"/>
     <columnProperty id="property157" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -11354,7 +11354,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2" name="FisRpAccountDType" nodeType="table" displayName="FisRpAccountDType" author="Administrator" allUseViewModel="true" table="fis_rp_account_d_type" genStrategy="native">
     <location x="60" y="3660"/>
     <size height="232" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="215"/>
     <columnProperty id="property31" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">

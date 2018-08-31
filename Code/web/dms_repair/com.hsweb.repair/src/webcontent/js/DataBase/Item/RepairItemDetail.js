@@ -97,7 +97,7 @@ function onOk(){
 	if(data.id){
 		var orgid = data.orgid||0;
 		if(orgid != currOrgId){
-			showMsg("只能修改本店套餐!",S);
+			showMsg("只能修改本店工时!","S");
 			return;
 		}
 	}

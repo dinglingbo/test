@@ -24,12 +24,15 @@ $(document).ready(function(v) {
     btnisDimission = nui.get("btnisDimission");
     btnisOpenAccount = nui.get("btnisOpenAccount");
 	grid.setUrl(gridUrl);
+	
+	
+
     var request = {
         "params":{
-
+        	
         }
     };
-
+    request.params = getSearchParam();
     grid.load(request,function(){
         //成功;
        // nui.alert("数据成功！");
@@ -38,6 +41,8 @@ $(document).ready(function(v) {
         showMsg("数据加载失败!","W");
     });
 
+	//search();
+	
     grid.on("drawcell", function (e){
     	onDrawCell(e);
     });

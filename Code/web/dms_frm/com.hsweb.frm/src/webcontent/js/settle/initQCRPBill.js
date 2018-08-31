@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl =  apiPath + frmApi +  "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.frm.QCRPBill.queryQCRPBill.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryQCRPBill.biz.ext";
 
 
 var mainGrid = null;
@@ -65,7 +65,8 @@ function addGuest(){
     var supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.frm.arap.supplierSelect.flow",
+       // url: "com.hsweb.frm.arap.supplierSelect.flow",
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "往来单位", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -125,7 +126,7 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.frm.QCRPBill.saveInitRpBill.biz.ext";
+        + "com.hsapi.frm.frmService.crud.saveInitRpBill.biz.ext";
 function save(){
     var data = mainGrid.getData();
     var rpAdd = mainGrid.getChanges("added");

@@ -157,6 +157,8 @@
                         showNullItem="false"
                         nullItemText="请选择..."/>
                     </td> -->
+                    <td class=" right fwidthb">OEM码:</td>
+                    <td ><input name="oemCode" class="nui-textbox" width="100%"/></td>
                     <td class=" right fwidthb">规格:</td>
                     <td ><input name="spec" class="nui-textbox" width="100%"/></td>
                     <td class=" right fwidthb">型号:</td>
@@ -191,8 +193,10 @@
                     <td class=" right fwidthb">是否禁用:</td>
                     <td ><input name="isDisabled" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/><!-- </td><td class=" right fwidthb">统一售价:</td>
                     <td ><input name="isUniform" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/></td> -->
+                    <td class=" right fwidthb">备注:</td>
+                    <td ><input name="remark" class="nui-textbox" width="100%" enabled="true"/></td>
                     <td class=" right fwidthb">配件全称:</td>
-                    <td colspan="5"><input name="fullName" class="nui-textbox" width="100%" enabled="false"/></td>
+                    <td colspan="3"><input name="fullName" class="nui-textbox" width="100%" enabled="false"/></td>
                 </tr>
             </table>
 

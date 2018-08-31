@@ -136,6 +136,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[6]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/ltype</process:from>
+      <process:to type="query">cond/_expr[7]/type</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">cond/_expr[7]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="357" y="96"/>

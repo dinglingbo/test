@@ -9,6 +9,7 @@ var searchEndDate = null;
 var auditSignEl = null;
 var mainGrid = null;
 var list = null;
+var row=null;
 var accountList = null;
 var accountTypeHash = {};
 var auditSignHash = {
@@ -159,7 +160,7 @@ function onDrawCell(e)
 function onbillTypeChange(e){
     var se = e.selected;
     var billTypeCode = se.code;
-    var row = mainGrid.getSelected();
+    row = mainGrid.getSelected();
     var newRow = {itemTypeCode: billTypeCode};
     mainGrid.updateRow(row, newRow);
 
@@ -168,8 +169,9 @@ function onRAccountChange(e){
     var se = e.selected;
     var code = se.code;
     var name = se.name;
-    var row = mainGrid.getSelected();
-    var newRow = {toAccountCode: code, toSettAccountName: name};
+    var id   = se.id;
+    row = mainGrid.getSelected();
+    var newRow = {toSettAccountId: id,toAccountCode: code, toSettAccountName: name};
     mainGrid.updateRow(row, newRow);
 
 }
@@ -177,7 +179,7 @@ function onPAccountChange(e){
     var se = e.selected;
     var code = se.code;
     var name = se.name;
-    var row = mainGrid.getSelected();
+    row = mainGrid.getSelected();
     var newRow = {settAccountCode: code, settAccountName: name, balaTypeCode: null};
     mainGrid.updateRow(row, newRow);
 
@@ -201,7 +203,6 @@ function save(){
     var data = mainGrid.getData();
 
     if(data && data.length <= 0) return;
-
     var rows = mainGrid.findRow(function(row){
         var toSettAccountId = row.toSettAccountId;
         if(toSettAccountId){
@@ -211,7 +212,7 @@ function save(){
         }
     });
 
-    if(rows) {
+    if(!row.toSettAccountId) {
         nui.alert("请选择收款账户后再保存!");
         return;
     }
@@ -253,7 +254,7 @@ function save(){
         }
     });
 
-    if(rows) {
+    if(!row.balaTypeCode) {
         nui.alert("请选择付款账户对应的付款方式后再保存!");
         return;
     }
@@ -267,7 +268,7 @@ function save(){
         }
     });
 
-    if(rows) {
+    if(!row.itemTypeId) {
         nui.alert("请选择费用科目后再保存!");
         return;
     }
@@ -410,7 +411,7 @@ function refresh(){
 }
 function OnrpMainGridCellBeginEdit(e){
     var column = e.column;
-    var row = e.row;
+    row = e.row;
     var column = e.column;
     var editor = e.editor;
 

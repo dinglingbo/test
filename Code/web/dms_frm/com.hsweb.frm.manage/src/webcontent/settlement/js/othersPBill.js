@@ -181,7 +181,7 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.frm.QCRPBill.saveInitRpBill.biz.ext";
+        + "com.hsapi.frm.frmService.crud.saveInitRpBill.biz.ext";
 function save(){
     var data = mainGrid.getData();
 
@@ -268,7 +268,7 @@ function save(){
     
 }
 var auditUrl = baseUrl
-        + "com.hsapi.frm.QCRPBill.auditInitRpBill.biz.ext";
+        + "com.hsapi.frm.frmService.crud.auditInitRpBill.biz.ext";
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
@@ -342,7 +342,8 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.frm.arap.supplierSelect.flow",
+//        url: "com.hsweb.frm.arap.supplierSelect.flow",
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "结算单位资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

@@ -19,7 +19,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.pts.FiSettleAccount[]" name="settleAccount" type="query" valueType="DataObject">settleAccount</process:return>
+      <process:return id="0" language="com.hsapi.frm.data.fib.FibSettleAccount[]" name="settleAccount" type="query" valueType="DataObject">settleAccount</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -74,7 +74,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">frm</process:inputVariable>
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -96,7 +96,7 @@
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiSettleAccount" name="settleAccount"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.frm.data.fib.FibSettleAccount" name="settleAccount"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

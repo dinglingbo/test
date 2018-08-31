@@ -9,7 +9,7 @@
 -->
 <head>
 <title>内部转账单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/internalTransfer.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/internalTransfer.js?v=2.1.1"></script>
 <style type="text/css">
 .title {
   width: 60px;

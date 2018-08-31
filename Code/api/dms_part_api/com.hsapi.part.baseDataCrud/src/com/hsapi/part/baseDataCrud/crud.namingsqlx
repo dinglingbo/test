@@ -434,7 +434,8 @@
 		       a.is_disabled isDisabled,
 		       a.is_host isHost,
 		       a.orgid orgid,
-		       a.common_id as commonId
+		       a.common_id as commonId,
+		       a.remark as remark
         FROM com_attribute a
         where 1 = 1
     	<dynamic>
@@ -476,6 +477,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (a.name like '%$name$%' or a.full_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="PNP">  
+                (a.name like '%$name$%' or a.full_name like '%$name$%' or a.query_code like like '%$code$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarModel">  
                 (a.apply_car_model like '%$applyCarModel$%')

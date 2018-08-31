@@ -81,6 +81,7 @@
     String tenantId = "default";
     String compType = "";
     String isMaster = "";
+    String empId = "";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -101,6 +102,7 @@
                 noOrgId = session.getAttribute("noOrgId").toString();
                 tenantId = attr.get("tenantId").toString();
                 isMaster = attr.get("isMaster").toString();
+                empId = attr.get("empId").toString();
                 compType = attr.get("compType").toString();
 			} catch (Exception e) {
 			}
@@ -133,10 +135,11 @@
     var currTenantId = "<%=tenantId %>";
     var currCompType = "<%=compType %>";
     var currIsMaster = "<%=isMaster %>";
+    var currEmpId = "<%=empId %>";
     var token = "<%=token %>";
     //alert("token=" + token);
     
-    var _sysMsg_;
+    /* var _sysMsg_;
 	//提示成功信息	
 	function showMsgBox(message, life) {
 		var time = 3000;
@@ -169,6 +172,25 @@
         if((""+message).length < 36){
             $("#_sys_tip_msg_ span").addClass("small");
         }
+	};
+    
+    function showError(message) {
+		showMsg(message, "E");
+	};
+    
+    function showWarn(message) {
+		showMsg(message, "W");
+	}; */
+	
+	var _sysMsg_;
+	//提示成功信息	
+	function showMsgBox(message, life) {
+		parent.showMsgBox_index(message, life);
+	};
+	
+	//提示错误信息
+	function showMsg(message, msgType) {
+		parent.showIndexMsg(message, msgType);
 	};
     
     function showError(message) {

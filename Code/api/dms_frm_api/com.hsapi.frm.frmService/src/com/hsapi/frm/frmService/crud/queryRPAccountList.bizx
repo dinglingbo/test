@@ -25,7 +25,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.pts.FiRpBill[]" name="detailList" type="query" valueType="DataObject">detailList</process:return>
+      <process:return id="0" language="com.hsapi.frm.data.fis.FisRpBill[]" name="detailList" type="query" valueType="DataObject">detailList</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
       <process:return id="2" language="Int" name="totalPage" type="query" valueType="Primitive">totalPage</process:return>
     </process:returns>
@@ -72,7 +72,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">frm</process:inputVariable>
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">ct</process:inputVariable>
       <process:inputVariable id="2" name="pagecond" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">page</process:inputVariable>
     </process:inputVariables>
@@ -117,7 +117,7 @@
       <process:to type="query">page/length</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.FiRpBill</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.data.fis.FisRpBill</process:from>
       <process:to type="query">ct/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -301,7 +301,7 @@
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.FiRpBill" name="detailList"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.frm.data.fis.FisRpBill" name="detailList"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
     <process:output description="" isArray="false" name="totalPage" primitiveType="Int"/>
   </process:outputs>

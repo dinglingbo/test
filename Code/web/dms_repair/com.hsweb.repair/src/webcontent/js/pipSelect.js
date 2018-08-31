@@ -4,6 +4,12 @@
 
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
 
+var packageGridUrl = baseUrl+"com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
+var packageDetailUrl = baseUrl+"com.hsapi.repair.baseData.rpb_package.getPackageDetail.biz.ext";
+var itemGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
+var partGridUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
+var itemTypeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
+
 var queryItemEl = null;
 var queryValueEL = null;
 var queryTabIdEl = null;
@@ -13,12 +19,18 @@ var packageDetail = null;
 var detailGrid_Form = null;
 var itemGrid = null;
 var partGrid = null;
+var servieTypeList = [];
+var servieTypeHash = {};
+var typeList = [];
+var typeHash = {};
 
-var itemKindHash = {
-    JD:"机电",
-    BJ:"钣金",
-    PQ:"喷漆",
-    MR:"洗美"
+var callback = null;
+var checkcallback = null;
+
+var prdtTypeHash = {
+    "1":"套餐",
+    "2":"工时",
+    "3":"配件"
 };
 $(document).ready(function ()
 {
@@ -26,9 +38,12 @@ $(document).ready(function ()
 });
 function init()
 {
-    var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
     packageGrid = nui.get("packageGrid");
     packageGrid.setUrl(packageGridUrl);
+    packageDetail = nui.get("packageDetail");
+    packageDetail.setUrl(packageDetailUrl);
+    detailGrid_Form = document.getElementById("detailGrid_Form");
+
     packageGrid.on("beforeload",function(e)
     {
         e.data["token"] = "";
@@ -36,15 +51,23 @@ function init()
     });
     packageGrid.on("drawcell",function(e)
     {
-        if(e.field == "packageTypeId" && treeHash[e.value])
+        if(e.field == "serviceTypeId" && servieTypeHash[e.value])
         {
-            e.cellHtml = treeHash[e.value].name.split(" ")[1];
+            e.cellHtml = servieTypeHash[e.value].name;
         }
     });
-    var packageDetailUrl = baseUrl+"com.hsapi.system.product.items.getPkgDetail.biz.ext";
-    packageDetail = nui.get("packageDetail");
-    packageDetail.setUrl(packageDetailUrl);
-    detailGrid_Form = document.getElementById("detailGrid_Form");
+    packageGrid.on("rowdblclick",function(e)
+    {
+        onOk();
+    });
+    packageDetail.on("drawcell",function(e)
+    {
+        if(e.field == "prdtType" && prdtTypeHash[e.value])
+        {
+            e.cellHtml = prdtTypeHash[e.value];
+        }
+    });
+    
     packageGrid.on("showrowdetail",function(e)
     {
         var grid = e.sender;
@@ -56,7 +79,7 @@ function init()
         packageDetail.clearRows();
         loadPackageDetailByPkgId(row.id,function(){});
     });
-    var itemGridUrl = baseUrl+"com.hsapi.system.product.items.getItem.biz.ext";
+    
     itemGrid = nui.get("itemGrid");
     itemGrid.setUrl(itemGridUrl);
     itemGrid.on("beforeload",function(e)
@@ -66,32 +89,28 @@ function init()
     });
     itemGrid.on("drawcell",function(e)
     {
-        if(e.field == "typeId" && treeHash[e.value])
+        if(e.field == "type" && typeHash[e.value])
         {
-            e.cellHtml = treeHash[e.value].name.split(" ")[1];
-        }
-        if(e.field == "itemKind")
-        {
-            e.cellHtml = itemKindHash[e.value];
+            e.cellHtml = typeHash[e.value].name;
         }
     });
-    var brandPartGridUrl = baseUrl+"com.hsapi.system.product.items.getBrandPart.biz.ext";
-    brandPartGrid = nui.get("brandPartGrid");
-    brandPartGrid.setUrl(brandPartGridUrl);
-    brandPartGrid.on("beforeload",function(e)
+    itemGrid.on("rowdblclick",function(e)
     {
-        e.data["token"] = "";
-        e.data["page/isCount"] = true;
+        onOk();
     });
-    var partGridUrl = baseUrl+"com.hsapi.system.product.items.getPart.biz.ext";
+    
     partGrid = nui.get("partGrid");
     partGrid.on("rowdblclick",function(e)
     {
         var row = e.record;
-        brandPartGrid.load({
-            partId:row.id,
-            token:token,
-        });
+        // brandPartGrid.load({
+        //     partId:row.id,
+        //     token:token,
+        // });
+    });
+    partGrid.on("rowdblclick",function(e)
+    {
+        onOk();
     });
     partGrid.on("beforeload",function(e)
     {
@@ -99,98 +118,64 @@ function init()
         e.data["page/isCount"] = true;
     });
     partGrid.setUrl(partGridUrl);
-    carBrandIdEl = nui.get("carBrandId");
-    queryCarBrand(function(data)
-    {
-        data = data||{};
-        if(data.errCode == "S")
-        {
-            var list = data.rs||[];
-            carBrandIdEl.setData(list);
-        }
-    });
-    carModelIdEL = nui.get("carModelId");
-    carBrandIdEl.on("valuechanged",function()
-    {
-        var carBrandId = carBrandIdEl.getValue();
-        queryCarModel(carBrandId,function(data)
-        {
-            data = data||{};
-            if(data.errCode == "S")
-            {
-                var list = data.rs||[];
-                carModelIdEL.setData(list);
-            }
-        });
-    });
-
-    carInfoForm = new nui.Form("#carInfoForm");
-    vinEl = nui.get("vin");
-    vinEl.on("valuechanged",function()
-    {
-        var vin = vinEl.getValue();
-        getCarVinModel(vin,function(data)
-        {
-            data = data||{};
-            if(data.errCode == "S")
-            {
-                var list = data.rs||[];
-                var carVinModel = list[0];
-                carVinModel = carVinModel||{};
-                carVinModel.vin = vin;
-                carInfoForm.setData(carVinModel);
-                carBrandIdEl.doValueChanged();
-                tree.load({
-                    carBrandId:carVinModel.carBrandId
-                });
-            }
-        });
-
-    });
-    queryTabIdEl = nui.get("queryTabId");
+  
+    //queryTabIdEl = nui.get("queryTabId");
     mainTabEl = nui.get("mainTab");
-    queryTabIdEl.on("valuechanged",function()
-    {
-        var tabIdx = queryTabIdEl.getValue();
-        var tab = mainTabEl.getTab(parseInt(tabIdx));
-        mainTabEl.activeTab(tab);
+
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+            servieTypeHash[v.id] = v;
+        });
+		
     });
+
+    var dictDefs ={"type":"DDT20130703000063"};
+	initTreeDicts(dictDefs,function(){
+		typeList = nui.get('type').getData();
+		typeList.forEach(function(v) {
+			typeHash[v.customid] = v;
+		});
+    });
+
+    onSearch();
 }
 function loadPackageDetailByPkgId(pkgId,callback)
 {
     packageDetail.load({
-        pkgCarMtId:pkgId
+        packageId:pkgId
     },callback);
+}
+function queryType(t){
+    var menuqueryItemTab = nui.get("itemTab");
+    if(t == 1){
+        menuqueryItemTab.setText("套餐");
+    }else if(t == 2){
+        menuqueryItemTab.setText("工时");
+    }else if(t == 3){
+        menuqueryItemTab.setText("配件");
+    }
+    var index = parseInt(t) - 1;
+    var tab = mainTabEl.getTab(index);
+    mainTabEl.activeTab(tab);
+}
+function onTabChanged(e){
+	var tab = e.tab;
+	var title = tab.title;
+    var menuqueryItemTab = nui.get("itemTab");
+    menuqueryItemTab.setText(title);
 }
 function getSearchParams()
 {
-    var carInfo = carInfoForm.getData();
-    var params = {
-        carBrandId:carInfo.carBrandId,
-        carLevelId:carInfo.carLevelId,
-        carLineId:carInfo.carLineId,
-        carModelId:carInfo.carModelId
-    };
-    var queryItem = nui.get("queryItem").getValue();
+    var params = {};
     var queryValue = nui.get("queryValue").getValue();
-    if(queryItem == 0)
-    {
-        params.code = queryValue
-    }
-    else if(queryItem == 1)
-    {
-        params.name = queryValue
-    }
-    else if(queryItem == 2)
-    {
-        params.pyCode = queryValue
-    }
+    params.name = queryValue.replace(/\s+/g, "");
     return params;
 }
 function onSearch()
 {
     var params = getSearchParams();
-    var tabIdx = queryTabIdEl.getValue();
+    var tabIdx = mainTabEl.activeIndex;
     if(tabIdx == 0)
     {
         doSearchPackage(params);
@@ -206,212 +191,175 @@ function onSearch()
 }
 function doSearchPackage(params)
 {
-    params.packageId = params.code;
-    params.packageName = params.name;
+    var p = {};
+    p.name = params.code;
+    p.serviceTypeId = params.serviceTypeId;
+    p.isDisabled = 0;
+    packageGrid.clearRows();
     packageGrid.load({
     	token:token,
-        p:params
+        params:p
     });
 }
 function doSearchItem(params)
 {
-    params.itemCode = params.code||"";
-    params.itemName = params.name||"";
+    var p = {};
+    p.isDisabled = 0;
+    p.name = params.name||"";
+    p.ltype = params.ltype||"";
+    itemGrid.clearRows();
     itemGrid.load({
     	token:token,
-        p:params
+        params:p
     });
 }
 function doSearchPart(params)
 {
-    brandPartGrid.clearRows();
+    var p = {};
+    p.orgids = currOrgId;
+    p.isDisabled = 0;
+    p.PNP = params.name||"";
+    p.carTypeIdF = params.carTypeIdF||"";
+    partGrid.clearRows();
     partGrid.load({
     	token:token,
-        p:params
+        params:p
     });
 }
-var callback = null;
-function setData(data,ck)
+var resultData = {};
+function onOk()
 {
-    data = data||{};
-    callback = ck;
-    var vin = data.vin||"";
-    init();
-    vinEl.setValue(vin);
-    vinEl.doValueChanged();
-}
-function getItemKind(item_kind)
-{
-    item_kind = item_kind == 'JD' ? '040701' : item_kind == 'BJ' ? '040702' : item_kind == 'PQ' ? '040703' : item_kind == 'MR' ? '040705' : '040701';
-    return item_kind;
-}
-function doSelect(idx)
-{
-    var result = {};
-    var row = null;
-    if(idx == 0)
+    var node = {};
+    var tabIdx = mainTabEl.activeIndex;
+    var type = "";
+    if(tabIdx == 0)
     {
-        result.pkg = packageGrid.getSelected();
-        row = result.pkg;
+        type = 1;
+        node = packageGrid.getSelected();
     }
-    else if(idx == 1){
-        result.item = itemGrid.getSelected();
-        row = result.item;
-        var item_kind = getItemKind(row.itemKind);
-        row.itemKind = item_kind
+    else if(tabIdx == 1)
+    {
+        type = 2;
+        node = itemGrid.getSelected();
     }
-    if(!row)
+    else if(tabIdx == 2)
+    {
+        type = 3;
+        node = partGrid.getSelected();
+    }
+    var nodec = nui.clone(node);
+    
+    if(!nodec)
     {
         return;
     }
-    if(result.pkg)
-    {
-        var list = packageDetail.getData();
-        var doCallback = function()
-        {
-            list.forEach(function(v)
-            {
-                if(v.itemKind)
-                {
-                    var item_kind = getItemKind(v.itemKind);
-                    v.itemKind = item_kind;
-                }
-            });
-            var itemList = list.filter(function(v)
-            {
-                return v.type == "工时";
-            });
-            var partList = list.filter(function(v){
-                return v.type == "配件";
-            });
-            result.itemList = itemList;
-            result.partList = partList;
-            callback && callback(result,function(){
-                nui.showTips({
-                    content: "<b>成功</b> <br/>套餐添加成功",
-                    state: "success",
-                    x: "center",
-                    y: "top",
-                    timeout: 3000
-                });
-            });
-        };
-        if(list.length > 0)
-        {
-            doCallback();
-        }
-        else{
-            loadPackageDetailByPkgId(row.id,function()
-            {
-                list = packageDetail.getData();
-                doCallback();
-            });
-        }
-    }
-    else{
-        callback && callback(result);
-    }
-}
-function onOk()
-{
-    var getActiveTab = mainTabEl.getActiveTab();
-    console.log(getActiveTab);
-    var _id = getActiveTab._id;
-    doSelect(_id-1);
-}
-//关闭窗口
-function CloseWindow(action) {
-    if (action == "close" && form.isChanged()) {
-        if (confirm("数据被修改了，是否先保存？")) {
-            saveData();
-        }
-    }
-    if (window.CloseOwnerWindow)
-        return window.CloseOwnerWindow(action);
-    else window.close();
-}
-//取消
-function onCancel() {
-    CloseWindow("cancel");
-}
+    resultData = {
+        type:type,
+        rtnRow:nodec
+    };
 
-//commonRepair
-function doPost(opt) {
-    var url = opt.url;
-    var data = opt.data;
-    var success = opt.success || function () {
-        };
-    var error = opt.error || function () {
-        };
-    data.orgid = currOrgid;
-    data.userName = currUserName;
-    nui.ajax({
-        url: url,
-        type: "post",
-        data: JSON.stringify(data),
-        success: success,
-        error: error
-    });
-}
-var queryCarBrandUrl = baseUrl
-    + "com.hsapi.system.product.cars.carBrand.biz.ext";
-function queryCarBrand(callback)
-{
-    var params = {};
-    doPost({
-        url: queryCarBrandUrl,
-        data: params,
-        success: function (data) {
-            //data.rs
-            callback && callback(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            callback && callback(null);
+    if(parent && parent.addPrdt){
+        //需要判断是否已经添加相同 套餐，工时或是配件
+        if(parent && parent.checkPrdt){
+            var checkMsg = parent.checkPrdt(resultData);
+            if(checkMsg) {
+                showMsg(checkMsg,"W");
+            }else{
+                //弹出数量，单价和金额的编辑界面
+                parent.addPrdt(resultData);
+            }
+        }else{
+            parent.addPrdt(resultData);
         }
-    });
+    }
 }
+function getData(){
+    return resultData;
+}
+// function doSelect(idx)
+// {
+//     var result = {};
+//     var row = null;
+//     if(idx == 0)
+//     {
+//         result.pkg = packageGrid.getSelected();
+//         row = result.pkg;
+//     }
+//     else if(idx == 1){
+//         result.item = itemGrid.getSelected();
+//         row = result.item;
+//     }
+//     if(!row)
+//     {
+//         return;
+//     }
+//     if(result.pkg)
+//     {
+//         var list = packageDetail.getData();
+//         var doCallback = function()
+//         {
+//             list.forEach(function(v)
+//             {
+//                 if(v.itemKind)
+//                 {
+//                     var item_kind = getItemKind(v.itemKind);
+//                     v.itemKind = item_kind;
+//                 }
+//             });
+//             var itemList = list.filter(function(v)
+//             {
+//                 return v.type == "工时";
+//             });
+//             var partList = list.filter(function(v){
+//                 return v.type == "配件";
+//             });
+//             result.itemList = itemList;
+//             result.partList = partList;
+//             callback && callback(result,function(){
+//                 nui.showTips({
+//                     content: "<b>成功</b> <br/>套餐添加成功",
+//                     state: "success",
+//                     x: "center",
+//                     y: "top",
+//                     timeout: 3000
+//                 });
+//             });
+//         };
+//         if(list.length > 0)
+//         {
+//             doCallback();
+//         }
+//         else{
+//             loadPackageDetailByPkgId(row.id,function()
+//             {
+//                 list = packageDetail.getData();
+//                 doCallback();
+//             });
+//         }
+//     }
+//     else{
+//         callback && callback(result);
+//     }
+// }
+// function onOk()
+// {
+//     var getActiveTab = mainTabEl.getActiveTab();
+//     var _id = getActiveTab._id;
+//     doSelect(_id-1);
+// }
 
-var queryCarModelUrl = baseUrl
-    + "com.hsapi.system.product.cars.carModel.biz.ext";
-function queryCarModel(carBrandId, callback) {
-    var params = {};
-    params.carBrandId = carBrandId;
-    doPost({
-        url: queryCarModelUrl,
-        data: params,
-        success: function (data)
-        {
-            //data.rs
-            callback && callback(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            callback && callback(null);
-        }
-    });
-}
-var getCarVinModelUrl = baseUrl
-    + "com.hsapi.system.product.cars.carVinModel.biz.ext";
-function getCarVinModel(vin, callback) {
-    var params = {};
-    params.vin = vin;
-    doPost({
-        url: getCarVinModelUrl,
-        data: params,
-        success: function (data)
-        {
-            //data.rs;
-            callback && callback(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            callback && callback(null);
-        }
-    });
-}
-var currOrgid = 2;
-var currUserName = '刘阳';
+// //关闭窗口
+// function CloseWindow(action) {
+//     if (action == "close" && form.isChanged()) {
+//         if (confirm("数据被修改了，是否先保存？")) {
+//             saveData();
+//         }
+//     }
+//     if (window.CloseOwnerWindow)
+//         return window.CloseOwnerWindow(action);
+//     else window.close();
+// }
+// //取消
+// function onCancel() {
+//     CloseWindow("cancel");
+// }

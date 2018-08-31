@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl =  apiPath + frmApi +  "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.frm.QCRPBill.queryQCRPBill.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryQCRPBill.biz.ext";
 
 
 var mainGrid = null;
@@ -125,7 +125,7 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.frm.QCRPBill.saveInitRpBill.biz.ext";
+        + "com.hsapi.frm.frmService.crud.saveInitRpBill.biz.ext";
 function save(){
     var data = mainGrid.getData();
     var rpAdd = mainGrid.getChanges("added");

@@ -18,12 +18,21 @@ var receTypeIdList = [];
 var receTypeIdHash = {};
 var serviceTypeIdEl = null;
 var mtAdvisorIdEl = null;
+var searchNameEl = null;
+var servieIdEl = null;
 
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
 var rpsPartGrid = null;
 var packageDetailGrid = null;
 var packageDetailGridForm = null;
+
+var fguestId = 0;
+var fcarId = 0;
+var mpackageRate = 0;
+var mitemRate = 0;
+var mpartRate = 0;
+
 $(document).ready(function ()
 {
     rpsPackageGrid = nui.get("rpsPackageGrid");
@@ -33,6 +42,8 @@ $(document).ready(function ()
     billForm = new nui.Form("#billForm");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     serviceTypeIdEl = nui.get("serviceTypeId");
+    searchNameEl = nui.get("search_name");
+    servieIdEl = nui.get("servieIdEl");
     
     // innerItemGrid = nui.get("innerItemGrid");
     // innerPartGrid = nui.get("innerPartGrid");
@@ -49,12 +60,6 @@ $(document).ready(function ()
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
             servieTypeHash[v.id] = v;
-        });
-    });
-    initCarBrand("carBrandId",function(data) {
-        brandList = nui.get("carBrandId").getData();
-        brandList.forEach(function(v) {
-            brandHash[v.id] = v;
         });
     });
     mtAdvisorIdEl.on("valueChanged",function(e){
@@ -176,77 +181,98 @@ function onShowRowDetail(e) {
         token: token
     });
 }
-function quickSearch(type) {
-    var params = {};
-    switch (type) {
-        case 0:
-            params.status = 0;  //制单
-            break;
-        case 1:
-            params.status = 1;  //施工
-            break;
-        case 2:
-            params.status = 2;  //完工
-            document.getElementById("advancedMore").style.display='block';
-            break;
-        case 3:
-            params.status = 2;  //待结算  is_settle
-            params.isSettle = 0;
-            break;
-        case 4:
-            params.isSettle = 1;
-            document.getElementById("advancedMore").style.display='block';
-            break;
-        default:
-            break;
-    }
+function onApplyClick(){
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        title:"新增客户资料",
+        width:500,
+        height:630,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            var params = {};
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {
+                var iframe = this.getIFrameEl();
+                var guest = iframe.contentWindow.getSaveData();
+                if(guest){
+                    var maintain = billForm.getData();
+                    maintain.carId = guest.carId||0;
+                    maintain.carNo = guest.carNo;
+                    maintain.carVin = guest.vin;
+                    maintain.engineNo = guest.engineNo;
+                    maintain.contactorId = guest.contactorId||0;
+                    maintain.contactorName = guest.contactName;
+                    maintain.identity = guest.identity;
+                    maintain.mobile = guest.mobile;
+                    maintain.guestFullName = guest.guestFullName;
+                    maintain.guestId = guest.guestId;
+                    maintain.carModel = guest.carModel;
+                    carNoEl.setText(guest.carNo);
+                    billForm.setData(maintain);
 
-    doSearch(params);
-}
-function onSearch()
-{
-    var params = {};
-    if(document.getElementById("advancedMore").style.display!='block'){
-        var value = nui.get("carNo-search").getValue()||"";
-        value = value.replace(/\s+/g, "");
-        if(!value){
-            showMsg("请输入查询条件!","W");
-            return;
+                    fguestId = guest.guestId||0;
+                    fcarId = guest.carId||0;
+
+                    mpackageRate = 0;
+                    mitemRate = 0;
+                    mpartRate = 0;
+
+                    $("#carNoEl").html(car.carNo);
+                    $("#guestNameEl").html(car.guestFullName);
+                    $("#guestTelEl").html(car.mobile);
+                }
+            }
         }
-    }
-    doSearch(params);
-}
-function doSearch(params) {
-    var gsparams = getSearchParam();
-    gsparams.status = params.status;
-    gsparams.statusList = params.statusList;
-    gsparams.isSettle = params.isSettle;
-
-    mainGrid.load({
-        token:token,
-        params: gsparams
     });
 }
-function getSearchParam() {
-    var params = {};
-    if(document.getElementById("advancedMore").style.display=='block'){
-        params.sEnterDate = beginDateEl.getValue();
-        params.eEnterDate = endDateEl.getValue();
-        params.mtAuditor = mtAdvisorIdEl.getValue();
-        params.serviceTypeId = serviceTypeIdEl.getValue();
+function onSearchClick(){
+    var maintain = billForm.getData();
+    if(maintain.id){
+        return;
     }
-    var type = nui.get("search-type").getValue();
-    var typeValue = nui.get("carNo-search").getValue();
-    if(type==0){
-        params.carNo = typeValue;
-    }else if(type==1){
-        params.vin = typeValue;
-    }else if(type==2){
-        params.name = typeValue;
-    }else if(type==3){
-        params.tel = typeValue;
-    }
-    return params;
+    selectCustomer(function (car) {
+        maintain.carId = car.id;
+        maintain.carNo = car.carNo;
+        maintain.carVin = car.vin;
+        maintain.engineNo = car.engineNo;
+        maintain.contactorId = car.contactorId;
+        maintain.contactorName = car.contactName;
+        maintain.identity = car.identity;
+        maintain.mobile = car.mobile;
+        maintain.guestFullName = car.guestFullName;
+        maintain.guestId = car.guestId;
+        maintain.carModel = car.carModel;
+
+        mpackageRate = 0;
+        mitemRate = 0;
+        mpartRate = 0;
+
+        billForm.setData(maintain);
+
+        fguestId = car.guestId||0;
+        fcarId = car.id||0;
+
+    });
+}
+function selectCustomer(callback) {
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.Customer.flow?token="+token,
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                callback && callback(guest);
+            }
+        }
+    });
 }
 function add(){
     // $("#servieIdEl").html("综合开单详情");
@@ -258,6 +284,8 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
+    searchNameEl.setEnabled(true);
+    searchNameEl.setText("");
 
     rpsPackageGrid.setData([]);
     rpsItemGrid.setData([]);
@@ -276,6 +304,83 @@ function add(){
     rpsPackageGrid.addRow(row);
     rpsItemGrid.addRow(row);
     rpsPartGrid.addRow(row);
+}
+function save(){
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+    saveMaintain(function(data){
+        billForm.setData(data);
+        showMsg("保存成功!");
+
+        if(data.id){
+            $("#servieIdEl").html(data.serviceCode);
+            var carNo = data.carNo||"";
+            var tel = data.carNo||"";
+            var guestName = data.carNo||"";
+            var carVin = data.carVin||"";
+            if(tel){
+                tel += "/"+tel;
+            }
+            if(guestName){
+                guestName += "/"+guestName;
+            }
+            if(carVin){
+                carVin += "/"+carVin;
+            }
+            var t = carNo + tel + guestName + carVin;
+            searchNameEl.setText(t);
+            searchNameEl.setEnabled(false);
+            
+        }
+
+    },function(){ 
+        nui.unmask(document.body);
+    });
+}
+var requiredField = {
+    carNo : "车牌号",
+    guestId : "客户",
+    serviceTypeId : "业务类型",
+    mtAdvisorId : "服务顾问"
+};
+var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
+function saveMaintain(callback,unmaskcall){
+    var data = billForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+            unmaskcall && unmaskcall();
+            showMsg(requiredField[key] + "不能为空!","W");
+			return;
+		}
+    }
+    
+    nui.ajax({
+        url : saveMaintainUrl,
+        type : "post",
+        data : JSON.stringify({
+            maintain : data,
+            token : token
+        }),
+        success : function(data) {
+            data = data || {};
+            if (data.errCode == "S") {
+                unmaskcall && unmaskcall();
+                var main = data.data;
+                callback && callback(main);
+            } else {
+                unmaskcall && unmaskcall();
+                showMsg(data.errMsg || "保存单据失败","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 function addPrdt(){
     var row = {};

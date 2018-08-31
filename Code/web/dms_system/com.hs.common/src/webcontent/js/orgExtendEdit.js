@@ -199,8 +199,8 @@ function setAddress() {
 function onMobileValidation(e) {
 	if(e.value=="" || e.value==null){ return;}
 	if (e.isValid) {
-        var pattern = /0\d{2}-\d{7,8}/;
-        if (e.value.length != 11  || pattern.test(e.value) == false) {
+        var pattern = /^0\d{2,3}-\d{7,8}$/; ///0\d{2}-\d{7,8}/;
+        if (pattern.test(e.value) == false) {
             e.errorText = "必须是电话，如：028-2580344";
             e.isValid = false;
         }

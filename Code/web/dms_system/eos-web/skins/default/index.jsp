@@ -40,6 +40,50 @@
     <link href="res/tabs.css" rel="stylesheet" type="text/css" />
     <link href="res/frame.css" rel="stylesheet" type="text/css" />
     <link href="res/index.css" rel="stylesheet" type="text/css" /> -->
+    <style type="text/css">
+
+	    #_sys_tip_msg_ {
+	        z-index: 9999;
+	        position: fixed;
+	        left: -20;
+	        top: 90;
+	        text-align: center;/* right*/        
+	
+	
+	        
+	        width: 100%;/**/
+	    }
+	     
+	    #_sys_tip_msg_ span {
+	        background-color: #03C440;
+	        /*opacity: .8;*/
+	        padding: 15px 20px;
+	        border-radius: 5px;
+	        text-align: center;
+	        
+	        word-wrap:break-word;
+	        word-break:break-all;
+	        overflow: hidden;
+	        width: 180px;
+	        height: 56px;
+	        display:inline-block;
+	        
+	        color: #fff;
+	        font-size: 14px;
+	    }
+	     
+	    #_sys_tip_msg_ span.E {
+	        background-color: #FC4236;
+	    }
+	    
+	    #_sys_tip_msg_ span.W {
+	        background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
+	    }
+	    
+	    #_sys_tip_msg_ span.small {
+	        height: auto;
+	    }
+	</style>
     
 </head>
 <body>
@@ -441,5 +485,49 @@
         });
     	
     }
+    
+    
+    var _sysMsg_index;
+	//提示成功信息	
+	function showMsgBox_index(message, life) {
+		var time = 3000;
+		if (life) {
+			time = life;
+		}
+		
+		_sysMsg_index = message;
+        $("#_sys_tip_msg_").remove();
+        
+        if ($("#_sys_tip_msg_").text().length > 0) {
+	    	var msg = "<span>" + message + "</span>";
+	        $("#_sys_tip_msg_").empty().append(msg);
+	    } else {
+			var msg = "<div id='_sys_tip_msg_'><span>" + message + "</span></div>";
+			$("body").append(msg);
+	    }
+		
+		//$("#_sys_tip_msg_").fadeIn(1000);
+  
+		setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
+	};
+	
+	//提示错误信息
+	function showIndexMsg(message, msgType) {
+		showMsgBox_index(message, 2000);
+        if(msgType){
+            $("#_sys_tip_msg_ span").addClass(msgType);
+        }
+        if((""+message).length < 36){
+            $("#_sys_tip_msg_ span").addClass("small");
+        }
+	};
+    
+    function showIndexError(message) {
+		showMsgBox_index(message, "E");
+	};
+    
+    function showIndexWarn(message) {
+		showMsgBox_index(message, "W");
+	};
 
 </script>

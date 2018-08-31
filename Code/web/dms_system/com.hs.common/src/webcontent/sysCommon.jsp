@@ -139,7 +139,7 @@
     var token = "<%=token %>";
     //alert("token=" + token);
     
-    var _sysMsg_;
+    /* var _sysMsg_;
 	//提示成功信息	
 	function showMsgBox(message, life) {
 		var time = 3000;
@@ -172,6 +172,25 @@
         if((""+message).length < 36){
             $("#_sys_tip_msg_ span").addClass("small");
         }
+	};
+    
+    function showError(message) {
+		showMsg(message, "E");
+	};
+    
+    function showWarn(message) {
+		showMsg(message, "W");
+	}; */
+	
+	var _sysMsg_;
+	//提示成功信息	
+	function showMsgBox(message, life) {
+		parent.showMsgBox_index(message, life);
+	};
+	
+	//提示错误信息
+	function showMsg(message, msgType) {
+		parent.showIndexMsg(message, msgType);
 	};
     
     function showError(message) {

@@ -104,17 +104,8 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="连接线" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>assign16</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">m:userObject/attributes/tenantId</process:leftOperand>
-          <process:rightOperand type="literal">default</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link12</targetConnections>
+    <targetConnections>link38</targetConnections>
     <location x="285" y="254"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -175,7 +166,7 @@
       <process:to type="query">maintain/isJudge</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">maintain/tenantId</process:to>
     </process:copy>
     <process:copy>
@@ -226,7 +217,6 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <targetConnections>link38</targetConnections>
     <location x="397" y="254"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -321,6 +311,16 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="连接线" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign16</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">m:userObject/attributes/tenantId</process:leftOperand>
+          <process:rightOperand type="literal">default</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="181" y="254"/>
@@ -445,7 +445,7 @@
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">main/status</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
@@ -499,7 +499,7 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
+          <process:leftOperand type="query"></process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -791,19 +791,19 @@
   <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
-    <location x="283" y="357"/>
+    <location x="181" y="357"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">maintain/tenantId</process:to>
+      <process:to type="query">tenantId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
-    <location x="278" y="393"/>
+    <location x="176" y="393"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
@@ -823,6 +823,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="carVin" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mtAdvisorId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceTypeId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>

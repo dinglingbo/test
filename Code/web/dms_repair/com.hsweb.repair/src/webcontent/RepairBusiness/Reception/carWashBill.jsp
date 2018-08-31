@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.0.4"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -49,16 +49,16 @@
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
             <td>
-                <input id="carNo"
-                name="carNo"
+                <input id="search_name"
+                name="search_name"
                 class="nui-buttonedit"
                 emptyText="车牌号/手机号/客户名称/VIN码"
-                onbuttonclick="onApplyClick()"
-                oncloseclick="onSearchClick()"
-                width="40%"
+                onbuttonclick="onSearchClick()"
+                width="50%"
                 showClose="false"
                 allowInput="true"/>
-                工单号:
+                <label style="font-family:Verdana;">工单号:</label>
+                <label id="servieIdEl" style="font-family:Verdana;font-size:15px;font-weight:bold;">洗车开单详情</label>
             </td>
             <td style="text-align:right;">
                 <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>
@@ -96,7 +96,16 @@
 <div class="nui-fit">
     <div id="billForm" class="form">
         <input name="id" class="nui-hidden"/>
+        <input name="guestId" class="nui-hidden"/>
         <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
+        <input class="nui-hidden" name="contactorId"/>
+        <input class="nui-hidden" name="carId"/>
+        <input class="nui-hidden" name="status"/>
+        <input class="nui-hidden" name="carVin"/>
+        <input class="nui-hidden" name="drawOutReport"/>
+        <input class="nui-hidden" name="contactorName"/>
+        <input class="nui-hidden" name="carModel"/>
+        <input class="nui-hidden" name="identity"/>
         <table  style=" left:0;right:0;margin: 0 auto;"> 
             <tr>   
                 <td class="title required">车牌号:</td> 
@@ -138,9 +147,9 @@
             </tr>
             <tr>   
                 <td class="title required">客户名称:</td> 
-                <td class=""><input  class="nui-textbox" name="enterKilometers" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="guestFullName" enabled="false"/></td>
                 <td class="title required">联系方式:</td> 
-                <td class=""><input  class="nui-textbox" name="enterKilometers" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="mobile" enabled="false"/></td>
                 <td class="title">备注:</td> 
                 <td class="" colspan=""><input  class="nui-textbox" name="remark"/></td>
                 <td class="title">开单时间:</td> 

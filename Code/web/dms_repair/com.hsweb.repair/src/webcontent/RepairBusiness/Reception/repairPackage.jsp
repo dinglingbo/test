@@ -11,7 +11,7 @@
         <div headerAlign="center" type="indexcolumn" width="30">序号</div>
         <div header="套餐信息">
             <div property="columns">
-                <div field="packageOptBtn" name="packageOptBtn" width="30" headerAlign="center" header="操作" align="center"></div>
+                <div field="packageOptBtn" name="packageOptBtn" width="50" headerAlign="center" header="操作" align="center"></div>
                 <div type="expandcolumn" >#</div>
                 <div field="packageName" headerAlign="center" allowSort="false"
                      visible="true" width="">套餐名称

@@ -48,94 +48,130 @@ table {
         <table class="nui-form-table">
             <tr>
                 <td>
-                    <label>查询项：</label>
-                </td>
-                <td>
-                    <input class="nui-combobox" id="queryItem"
-                            data="[{id:0,text:'编码'},{id:1,text:'名称'},{id:2,text:'拼音'}]" value="1"/>
-                </td>
-                <td>
-                    <label>查询值：</label>
-                </td>
-                <td>
-                    <input class="nui-textbox" id="queryValue"/>
-                </td>
-                <td>
-                    <div class="nui-radiobuttonlist" valueField="id" repeatItems="3" textField="text" repeatLayout="table"
-                            id="queryTabId"
-                            data="[{ id: 1, text: '套餐'},{ id: 2, text: '工时' },{ id: 3, text: '配件' }]" value="1">
-                    </div>
+                    <input class="nui-textbox" id="queryValue" emptyText="请输入查询条件" width="130px"/>
                 </td>
                 <td>
                     <a class="nui-button" plain="false"  onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
-                    <a class="nui-button" plain="false"  onclick="onOk()"><span class="fa fa-check"></span>&nbsp;选择</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a class="nui-menubutton" plain="true" menu="#queryItemTab" id="itemTab">套餐</a>
+
+                    <ul id="queryItemTab" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="queryType(1)" id="type10">套餐</li>
+                        <li iconCls="" onclick="queryType(2)" id="type11">工时</li>
+                        <li iconCls="" onclick="queryType(3)" id="type11">配件</li>
+                    </ul>
+
+                    <a class="nui-button" plain="false"  onclick="onSearch()">选择分类查</a>
+                    <input class="nui-combobox" name="serviceTypeId" id="serviceTypeId" valueField="id" textField="name"
+                           allowInput="true" valueFromSelect="true" visible="false"/>
+                    <input name="type" id="type" visible="false" class="nui-combobox" textField="name" valueField="customid"/>
                 </td>
             </tr>
         </table>
     </div>
-    <div  class="nui-fit">
+    <div class="nui-fit">
         <div class="nui-tabs"
-                id="mainTab"
+                id="mainTab" onactivechanged="onTabChanged"
                 activeIndex="0" style="width: 100%; height: 100%;" plain="false" borderStyle="border:0;">
-            <div title="套餐信息" borderStyle="border:0;">
-                <div class="nui-datagrid" style="width:100%;height:100%;"
-                        id="packageGrid"
-                        dataField="rs"
-                        idField="id"
-                        showPager="true"
-                        totalField="page.count"
-                        pageSize="20"
-                        allowSortColumn="true"
-                        sortMode="client">
-                    <div property="columns">
-                        <div type="expandcolumn" >#</div>
-                        <div field="packageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
-                        <div field="packageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
-                    </div>
-                </div>
-                <div id="detailGrid_Form" style="display:none;">
-                    <div id="packageDetail" class="nui-datagrid" style="width:100%;"
-                        dataField="rs" showPager="false">
+            <div title="套餐" borderStyle="border:0;">
+                <div  class="nui-fit">
+                    <div class="nui-datagrid" style="width:100%;height:100%;"
+                            id="packageGrid"
+                            dataField="list"
+                            idField="id"
+                            showPager="true"
+                            totalField="page.count"
+                            pageSize="20"
+                            allowSortColumn="true"
+                            sortMode="client">
                         <div property="columns">
-                            <div field="type" width="60" headerAlign="center" allowSort="true" header="类型"></div>
-                            <div field="itemName" width="120" headerAlign="center" allowSort="true" header="名称"></div>
-                            <div field="qty" width="120" headerAlign="center" allowSort="true" header="工时/数量"></div>
-                            <div field="amt" width="120" headerAlign="center" allowSort="true" header="工时/配件金额"></div>
+                            <div type="expandcolumn" >#</div>
+                            <div field="name" width="100" headerAlign="center" allowSort="true" header="套餐名称"></div>
+                            <div field="amount" width="60" headerAlign="center" allowSort="true" header="套餐金额"></div>
+                            <div field="serviceTypeId" width="60" headerAlign="center" allowSort="true" header="套餐类别"></div>
+                        </div>
+                    </div>
+                    <div id="detailGrid_Form" style="display:none;">
+                        <div id="packageDetail" class="nui-datagrid" style="width:100%;"
+                            dataField="data" showPager="false">
+                            <div property="columns">
+                                <div field="prdtName" width="100" headerAlign="center" allowSort="true" header="名称"></div>
+                                <div field="qty" width="60" headerAlign="center" allowSort="true" header="工时/数量"></div>
+                                <div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
+                                <div field="prdtType" width="60" headerAlign="center" allowSort="true" header="类型"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div title="工时信息">
-                <div class="nui-datagrid" style="width:100%;height:100%"
-                        id="itemGrid"
-                        dataField="rs"
-                        pageSize="20"
-                        totalField="page.count"
-                        allowSortColumn="true">
-                    <div property="columns">
-                        <div field="itemName" width="180" headerAlign="center" allowSort="true" header="项目名称"></div>
-                        <div field="astandTime" width="100" headerAlign="center" allowSort="true" header="时间（h）/（副）"></div>
-                        <div field="astandSum" headerAlign="center" allowSort="true" header="工时金额"></div>
+            <div title="工时">
+                <div  class="nui-fit">
+                    <div class="nui-datagrid" style="width:100%;height:100%"
+                            id="itemGrid"
+                            dataField="list"
+                            pageSize="20"
+                            totalField="page.count"
+                            allowSortColumn="true">
+                        <div property="columns">
+                            <div field="name" width="100" headerAlign="center" allowSort="true" header="项目名称"></div>
+                            <div field="itemTime" width="50" headerAlign="center" allowSort="true" header="工时"></div>
+                            <div field="amt" width="60" headerAlign="center" allowSort="true" header="工时金额"></div>
+                            <div field="type" width="60" headerAlign="center" allowSort="true" header="工时类型"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div title="配件信息">
+            <div title="配件">
                 <div class="nui-fit">
                     <div class="nui-datagrid" style="width:100%;height:100%"
-                            id="partGrid" dataField="rs"
+                            id="partGrid" dataField="parts"
                             pageSize="20"
                             totalField="page.count"
                             allowSortColumn="true" >
                         <div property="columns">
+                            <div field="name" width="100" headerAlign="center" allowSort="true" header="配件名称"></div>
                             <div field="code" width="100" headerAlign="center" allowSort="true" header="配件编码"></div>
-                            <div field="name" width="180" headerAlign="center" allowSort="true" header="配件名称"></div>
-                            <div field="astandSum" headerAlign="center" allowSort="true" header="OEM码"></div>
-                            <div field="astandSum" headerAlign="center" allowSort="true" header="库存"></div>
-                            <div field="id" headerAlign="center" allowSort="true" header="配件品牌"></div>
+                            <div field="oemCode" headerAlign="center" width="100" allowSort="true" header="OEM码"></div>
+                            <div field="" headerAlign="center" width="50" allowSort="true" header="库存"></div>
+                            <div field="partBrandId" headerAlign="center" width="60" allowSort="true" header="配件品牌"></div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+            <div title="客户已购买">
+                <div  class="nui-fit">
+                    <div class="nui-datagrid" style="width:100%;height:100%;"
+                            id="packageGrid"
+                            dataField="list"
+                            idField="id"
+                            showPager="true"
+                            totalField="page.count"
+                            pageSize="20"
+                            allowSortColumn="true"
+                            sortMode="client">
+                        <div property="columns">
+                            <div type="expandcolumn" >#</div>
+                            <div field="name" width="100" headerAlign="center" allowSort="true" header="产品名称"></div>
+                            <div field="serviceTypeId" width="60" headerAlign="center" allowSort="true" header="产品类别"></div>
+                            <div field="amount" width="60" headerAlign="center" allowSort="true" header="剩余次数"></div>
+                        </div>
+                    </div>
+                    <div id="detailGrid_Form" style="display:none;">
+                        <div id="packageDetail" class="nui-datagrid" style="width:100%;"
+                            dataField="data" showPager="false">
+                            <div property="columns">
+                                <div field="prdtName" width="100" headerAlign="center" allowSort="true" header="名称"></div>
+                                <div field="qty" width="60" headerAlign="center" allowSort="true" header="工时/数量"></div>
+                                <div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
+                                <div field="prdtType" width="60" headerAlign="center" allowSort="true" header="类型"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8" session="false" %>
     
-
 <div id="rpsPartGrid"
      dataField="list"
      class="nui-datagrid"
@@ -12,7 +11,7 @@
      showModified="false"
      editNextOnEnterKey="true"
      allowSortColumn="true">
-    <div property="columns">
+    <div property="columns" fitColumns="false">
         <div headerAlign="center" type="indexcolumn" width="30">序号</div>
         <div header="配件信息">
             <div property="columns">
@@ -24,23 +23,23 @@
                     <input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="customid" textField="name" data="receTypeIdList"
                      url="" onvaluechanged="" emptyText=""  vtype="required"/>
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="80" datatype="int" align="right" header="数量">
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="int" align="right" header="数量">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="80" datatype="float" align="right" header="单价">
+                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" header="单价">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="amt" headerAlign="center" allowSort="false" visible="true" width="80" datatype="float" align="right" header="金额"></div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="80" datatype="float" align="right" numberFormat="p" header="优惠率">
+                <div field="amt" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" header="金额"></div>
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" numberFormat="p" header="优惠率">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="discountAmt" headerAlign="center" allowSort="false" visible="true" width="100" datatype="float" align="right" header="优惠金额">
+                <div field="discountAmt" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" header="优惠金额">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="" header="配件编码">
+                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="60px" header="配件编码">
                   <input property="editor" vtype="float" class="nui-textbox"/> 
                 </div>
-                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="" header="销售员">
+                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="60px" header="销售员">
                   <input property="editor" vtype="float" class="nui-textbox"/> 
                 </div>
             </div>
@@ -82,6 +81,6 @@
               </div>
           </div>
     </div>
-</div>    
+</div> 
 
 

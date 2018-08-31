@@ -81,6 +81,7 @@
     String tenantId = "default";
     String compType = "";
     String isMaster = "";
+    String empId = "";
 	Map attr=new HashMap();
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -101,6 +102,7 @@
                 noOrgId = session.getAttribute("noOrgId").toString();
                 tenantId = attr.get("tenantId").toString();
                 isMaster = attr.get("isMaster").toString();
+                empId = attr.get("empId").toString();
                 compType = attr.get("compType").toString();
 			} catch (Exception e) {
 			}
@@ -133,6 +135,7 @@
     var currTenantId = "<%=tenantId %>";
     var currCompType = "<%=compType %>";
     var currIsMaster = "<%=isMaster %>";
+    var currEmpId = "<%=empId %>";
     var token = "<%=token %>";
     //alert("token=" + token);
     

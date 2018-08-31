@@ -265,7 +265,13 @@ function addPart(){
     addOrEditPart();
 }
 function editPart(){
-    var row = partLoalGrid.getSelected();
+	var index = mainTabs.activeIndex;
+	var row = {};
+	if(index==0){
+		row = partGrid.getSelected();
+	}else {
+		row = partLoalGrid.getSelected();
+	}
     if(row && row.orgid == currOrgid)
     {
         addOrEditPart(row);

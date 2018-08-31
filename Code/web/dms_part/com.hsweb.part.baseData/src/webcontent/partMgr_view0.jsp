@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMgr.js?v=1.0.13"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMgr.js?v=1.0.14"></script>
 <style type="text/css">
 </style>
 </head>
@@ -134,6 +134,8 @@
                                 </div> -->
                                 <div header="辅助信息" headerAlign="center">
                                     <div property="columns">
+                                    	<div allowSort="true" field="remark" width="60" headerAlign="center" allowSort="true">备注</div>
+                                    
                                         <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true">助记码</div>
 
                                         <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>

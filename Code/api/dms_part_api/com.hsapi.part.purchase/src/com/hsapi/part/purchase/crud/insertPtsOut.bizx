@@ -280,7 +280,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.part.common.data.getGeustByInternalId</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.x_data.getGeustByInternalId</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="internalId" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
@@ -385,15 +385,15 @@
   <process:info author="chenziming" createTime="2018-01-29 16:49:34" date="2018-01-29Z" description="" name="insertPtsEnter" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsOutDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="time" primitiveType="Long"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="org"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutMain" name="outMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsOutMain" name="outMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsOutDetail" name="outDetail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

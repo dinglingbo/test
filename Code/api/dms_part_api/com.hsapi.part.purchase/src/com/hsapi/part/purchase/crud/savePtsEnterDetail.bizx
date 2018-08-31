@@ -41,7 +41,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertPtsEnterDetail</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="ptsEnterDetail" type="query" value="com.hsapi.part.data.pts.PtsEnterDetail" valueType="DataObject" pattern="reference">ptsEnterDetail</process:inputVariable>
+        <process:inputVariable id="0" name="ptsEnterDetail" type="query" value="com.hsapi.part.data.x_pts.PtsEnterDetail" valueType="DataObject" pattern="reference">ptsEnterDetail</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -74,7 +74,7 @@
   <process:info author="chenziming" createTime="2018-01-29 17:41:33" date="2018-01-29Z" description="" name="savePtsEnterDetail" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="ptsEnterDetail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="ptsEnterDetail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -217,8 +217,8 @@
   <process:info author="chenziming" createTime="2018-03-09 15:51:38" date="2018-03-09Z" description="" name="deleteStockCheck" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="list"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="main"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsStockCheckMain" name="main"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="checkId" primitiveType="Int"/>

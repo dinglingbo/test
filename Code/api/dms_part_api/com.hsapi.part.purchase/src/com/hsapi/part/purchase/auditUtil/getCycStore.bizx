@@ -117,7 +117,7 @@
     <process:input description="" isArray="false" name="storeId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsCycStore" name="cycOrg"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="cycOrg"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

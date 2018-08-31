@@ -136,7 +136,7 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getGeustByInternalId" displayName="genPtsOut" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getGeustByInternalId" displayName="getGeustByInternalId" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -156,7 +156,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.part.common.data.getGeustByInternalId</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.x_data.getGeustByInternalId</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="internalId" type="query" value="String" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
       </process:inputVariables>
@@ -271,7 +271,7 @@
     <figSize height="17" width="72"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="genPtsEnter" displayName="genPtsOut" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="genPtsEnter" displayName="getGeustByInternalId" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>subprocess2</targetNode>
@@ -297,7 +297,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.genPtsEnter</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="checkMain" type="query" value="com.hsapi.part.data.pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="0" name="checkMain" type="query" value="com.hsapi.part.data.x_pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
         <process:inputVariable id="1" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">guestId</process:inputVariable>
         <process:inputVariable id="2" name="guestFullName" type="query" value="String" valueType="Primitive" pattern="reference">guestFullName</process:inputVariable>
         <process:inputVariable id="3" name="enterCode" type="query" value="String" valueType="Primitive" pattern="reference">enterCode</process:inputVariable>
@@ -414,7 +414,7 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="genPtsOut" displayName="genPtsOut" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="genPtsOut" displayName="getGeustByInternalId" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -440,7 +440,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.genPtsOut</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="checkMain" type="query" value="com.hsapi.part.data.pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="0" name="checkMain" type="query" value="com.hsapi.part.data.x_pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
         <process:inputVariable id="1" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">guestId</process:inputVariable>
         <process:inputVariable id="2" name="guestFullName" type="query" value="String" valueType="Primitive" pattern="reference">guestFullName</process:inputVariable>
         <process:inputVariable id="3" name="outCode" type="query" value="String" valueType="Primitive" pattern="reference">outCode</process:inputVariable>
@@ -474,7 +474,7 @@
     <process:input description="" isArray="false" name="outCode" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="main"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsStockCheckMain" name="main"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

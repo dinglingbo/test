@@ -82,8 +82,8 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertPtsEnter</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.PtsEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
-        <process:inputVariable id="1" name="enterDetail" type="query" value="com.hsapi.part.data.pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
+        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.x_pts.PtsEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
+        <process:inputVariable id="1" name="enterDetail" type="query" value="com.hsapi.part.data.x_pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -137,10 +137,10 @@
     <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updatePtsEnter</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.PtsEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
-        <process:inputVariable id="1" name="enterDetailAdd" type="query" value="com.hsapi.part.data.pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="enterDetailUpdate" type="query" value="com.hsapi.part.data.pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailUpdate</process:inputVariable>
-        <process:inputVariable id="3" name="enterDetailDelete" type="query" value="com.hsapi.part.data.pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailDelete</process:inputVariable>
+        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.x_pts.PtsEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
+        <process:inputVariable id="1" name="enterDetailAdd" type="query" value="com.hsapi.part.data.x_pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="enterDetailUpdate" type="query" value="com.hsapi.part.data.x_pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailUpdate</process:inputVariable>
+        <process:inputVariable id="3" name="enterDetailDelete" type="query" value="com.hsapi.part.data.x_pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailDelete</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -184,7 +184,7 @@
       <targetNode>end0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -246,10 +246,10 @@
   <process:info author="chenziming" createTime="2018-01-29 16:48:07" date="2018-01-29Z" description="" name="savePstEnter" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="enterMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetailDelete"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterMain" name="enterMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="enterDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="enterDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="enterDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

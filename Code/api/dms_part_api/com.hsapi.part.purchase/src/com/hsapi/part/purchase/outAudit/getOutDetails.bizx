@@ -118,7 +118,7 @@
     <process:input description="" isArray="false" name="outId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="details"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsOutDetail" name="details"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

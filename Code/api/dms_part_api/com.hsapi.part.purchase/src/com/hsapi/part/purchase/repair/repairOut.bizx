@@ -201,7 +201,7 @@
         <process:inputVariable id="0" name="detailId" type="query" value="String" valueType="Primitive" pattern="reference">sourceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.pts.PtsEnterDetail" valueType="DataObject">enterDetail</process:outputVariable>
+        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.x_pts.PtsEnterDetail" valueType="DataObject">enterDetail</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -304,7 +304,7 @@
         <process:inputVariable id="1" name="partId" type="query" value="String" valueType="Primitive" pattern="reference">partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.pts.PtsInvoicingDetail" valueType="DataObject">invDetail</process:outputVariable>
+        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.x_pts.PtsInvoicingDetail" valueType="DataObject">invDetail</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -342,7 +342,7 @@
         <process:inputVariable id="2" name="storeId" type="query" value="String" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.pts.PtsInvoicingStoreDetail" valueType="DataObject">invStDetail</process:outputVariable>
+        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.x_pts.PtsInvoicingStoreDetail" valueType="DataObject">invStDetail</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -762,7 +762,7 @@
         <process:inputVariable id="2" name="storeId" type="query" value="String" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.pts.PtsCycStore" valueType="DataObject">cycStore</process:outputVariable>
+        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.x_pts.PtsCycStore" valueType="DataObject">cycStore</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -789,7 +789,7 @@
         <process:inputVariable id="1" name="orgId" type="query" value="String" valueType="Primitive" pattern="reference">orgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.pts.PtsCycOrg" valueType="DataObject">cycOrg</process:outputVariable>
+        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.x_pts.PtsCycOrg" valueType="DataObject">cycOrg</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -1203,11 +1203,11 @@
   <process:info author="chenziming" createTime="2018-03-10 14:39:28" date="2018-03-10Z" description="" name="consumableItemOut" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sourceId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="enterDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="storeId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsInvoicingDetail" name="invDetail"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsInvoicingStoreDetail" name="invStDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsInvoicingDetail" name="invDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsInvoicingStoreDetail" name="invStDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partFullName" primitiveType="String"/>
@@ -1229,13 +1229,13 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="recorder" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceCode" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsCycOrg" name="cycOrg"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsCycStore" name="cycStore"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsCycOrg" name="cycOrg"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="cycStore"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="fyear" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="fperiod" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsRepairOut" name="out"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsRepairOut" name="out"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -194,11 +194,11 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-01-29 17:41:33" date="2018-01-29Z" description="" name="savePtsEnterDetail" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="detail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="detail"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="detailList"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="detailList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterMain" name="main"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

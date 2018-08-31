@@ -297,15 +297,15 @@
   <process:info author="chenziming" createTime="2018-01-29 16:49:34" date="2018-01-29Z" description="" name="insertPtsEnter" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsOutDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="time" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsOutMain" name="outMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsOutDetail" name="outDetailDelete"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsOutMain" name="outMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsOutDetail" name="outDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsOutDetail" name="outDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsOutDetail" name="outDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

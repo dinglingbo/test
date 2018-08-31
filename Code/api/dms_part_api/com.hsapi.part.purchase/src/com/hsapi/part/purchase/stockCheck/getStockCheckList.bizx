@@ -99,7 +99,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckMain" name="list"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

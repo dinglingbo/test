@@ -163,7 +163,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.part.common.data.getGeustByInternalId</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.x_data.getGeustByInternalId</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="internalId" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
@@ -263,7 +263,7 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="insertPtsEnterDetailBatch" displayName="insertPtsEnterDetailBatch" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="insertPtsEnterDetailBatch" displayName="getGeustByInternalId" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -275,8 +275,8 @@
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertPtsEnterDetailBatch</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetail</process:inputVariable>
-        <process:inputVariable id="1" name="main" type="query" value="com.hsapi.part.data.pts.PtsEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
+        <process:inputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.x_pts.PtsEnterDetail[]" valueType="DataObject" pattern="reference">enterDetail</process:inputVariable>
+        <process:inputVariable id="1" name="main" type="query" value="com.hsapi.part.data.x_pts.PtsEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -294,15 +294,15 @@
   <process:info author="chenziming" createTime="2018-01-29 16:49:34" date="2018-01-29Z" description="" name="insertPtsEnter" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="time" primitiveType="String"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="org"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="enterMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="enterDetail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterMain" name="enterMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="enterDetail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

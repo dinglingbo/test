@@ -184,11 +184,11 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-30 10:39:37" date="2018-03-30Z" description="" name="partAudit" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsRepairOut" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsRepairOut" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsRepairOut" name="list"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsRepairOut" name="list"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

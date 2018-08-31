@@ -159,7 +159,7 @@
     <process:input description="" isArray="false" name="storeId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsInvoicingStoreDetail" name="detail"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsInvoicingStoreDetail" name="detail"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

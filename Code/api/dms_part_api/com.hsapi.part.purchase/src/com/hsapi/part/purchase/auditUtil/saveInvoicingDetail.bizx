@@ -347,9 +347,9 @@
         <process:inputVariable id="1" name="partId" type="query" value="String" valueType="Primitive" pattern="reference">partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.pts.PtsInvoicingDetail" valueType="DataObject">detail</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="detail" type="query" value="com.hsapi.part.data.x_pts.PtsInvoicingDetail" valueType="DataObject">detail</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -374,9 +374,9 @@
         <process:inputVariable id="1" name="orgId" type="query" value="String" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.pts.PtsCycOrg" valueType="DataObject">cyc</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.x_pts.PtsCycOrg" valueType="DataObject">cyc</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -392,9 +392,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaQty" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaUnitPrice" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsInvoicingDetail" name="detail"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsInvoicingDetail" name="insDetail"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsCycOrg" name="cyc"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsInvoicingDetail" name="detail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsInvoicingDetail" name="insDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsCycOrg" name="cyc"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="fyear" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="fperiod" primitiveType="Int"/>

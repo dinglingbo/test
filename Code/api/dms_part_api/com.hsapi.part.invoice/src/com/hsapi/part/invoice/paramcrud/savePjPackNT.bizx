@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-53" y="110"/>
-    <figSize height="17" width="25"/>
+    <location x="-56" y="110"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -45,8 +45,8 @@
     <nodeLabel>assign0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="112" y="110"/>
-    <figSize height="17" width="25"/>
+    <location x="109" y="110"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -61,8 +61,8 @@
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="108" y="216"/>
-    <figSize height="17" width="32"/>
+    <location x="104" y="216"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePjPack" displayName="updatePjPack" type="subprocess">
@@ -77,10 +77,10 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updatePjPack</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="packMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPackMain" valueType="DataObject" pattern="reference">packMain</process:inputVariable>
-        <process:inputVariable id="1" name="packDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="packDetailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailDelete</process:inputVariable>
-        <process:inputVariable id="3" name="packDetailList" type="query" value="com.hsapi.cloud.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailList</process:inputVariable>
+        <process:inputVariable id="0" name="packMain" type="query" value="com.hsapi.part.data.pts.XPjPackMain" valueType="DataObject" pattern="reference">packMain</process:inputVariable>
+        <process:inputVariable id="1" name="packDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="packDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailDelete</process:inputVariable>
+        <process:inputVariable id="3" name="packDetailList" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -90,8 +90,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="529" y="215"/>
-    <figSize height="17" width="79"/>
+    <location x="519" y="215"/>
+    <figSize height="20" width="99"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insertPjPack" displayName="insertPjPack" type="subprocess">
@@ -106,8 +106,8 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertPjPack</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="packMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPackMain" valueType="DataObject" pattern="reference">packMain</process:inputVariable>
-        <process:inputVariable id="1" name="packDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
+        <process:inputVariable id="0" name="packMain" type="query" value="com.hsapi.part.data.pts.XPjPackMain" valueType="DataObject" pattern="reference">packMain</process:inputVariable>
+        <process:inputVariable id="1" name="packDetail" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -117,8 +117,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="399" y="109"/>
-    <figSize height="17" width="70"/>
+    <location x="390" y="109"/>
+    <figSize height="20" width="88"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getColumnIntValue" displayName="getColumnIntValue" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -157,8 +157,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="247" y="216"/>
-    <figSize height="17" width="111"/>
+    <location x="232" y="216"/>
+    <figSize height="20" width="141"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getColumnDateValue" displayName="getColumnDateValue" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -196,8 +196,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="374" y="216"/>
-    <figSize height="17" width="123"/>
+    <location x="357" y="216"/>
+    <figSize height="20" width="156"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值4" displayName="赋值" collapsed="false" type="assign">
@@ -219,8 +219,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="420" y="321"/>
-    <figSize height="17" width="32"/>
+    <location x="416" y="321"/>
+    <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值3" displayName="赋值" collapsed="false" type="assign">
@@ -242,8 +242,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="287" y="321"/>
-    <figSize height="17" width="32"/>
+    <location x="283" y="321"/>
+    <figSize height="20" width="40"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -262,8 +262,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="643" y="110"/>
-    <figSize height="17" width="32"/>
+    <location x="639" y="110"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="queryPJStatementList" displayName="queryPJPackList" type="subprocess">
@@ -291,8 +291,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="717" y="109"/>
-    <figSize height="17" width="123"/>
+    <location x="699" y="109"/>
+    <figSize height="20" width="159"/>
     <node>subprocess3</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -308,8 +308,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="423" y="401"/>
-    <figSize height="17" width="25"/>
+    <location x="420" y="401"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
@@ -324,8 +324,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="973" y="110"/>
-    <figSize height="17" width="32"/>
+    <location x="969" y="110"/>
+    <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
   <topRuler/>
@@ -340,10 +340,10 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="主表信息" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPackMain" name="packMain"/>
-    <process:input description="新增" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPackDetail" name="packDetailAdd"/>
-    <process:input description="删除" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPackDetail" name="packDetailDelete"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPackDetail" name="packDetailList"/>
+    <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.XPjPackMain" name="packMain"/>
+    <process:input description="新增" isArray="true" modelType="com.hsapi.part.data.pts.XPjPackDetail" name="packDetailAdd"/>
+    <process:input description="删除" isArray="true" modelType="com.hsapi.part.data.pts.XPjPackDetail" name="packDetailDelete"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjPackDetail" name="packDetailList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -19,17 +19,17 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.pts.PjShopCart[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.XPjShopCart[]" name="list" type="query" valueType="DataObject">list</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="62" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="59" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="613" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="610" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -42,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjShopCart</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjShopCart</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -99,8 +99,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="167" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="164" y="186"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="queryEntitiesByCriteriaEntityWithPage" displayName="queryEntitiesByCriteriaEntityWithPage" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -126,8 +126,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="218" y="186"/>
-    <figSize height="17" width="217"/>
+    <location x="188" y="186"/>
+    <figSize height="20" width="277"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -149,8 +149,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="493" y="186"/>
-    <figSize height="17" width="32"/>
+    <location x="489" y="186"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <topRuler/>
@@ -166,7 +166,7 @@
     <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjShopCart" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjShopCart" name="list"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

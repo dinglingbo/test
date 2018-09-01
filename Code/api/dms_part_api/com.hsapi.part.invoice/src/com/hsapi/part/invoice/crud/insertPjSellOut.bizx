@@ -240,7 +240,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="insertPjStockCheck" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="getCompBillNO" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="link17" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign0</targetNode>
@@ -255,15 +255,14 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.insertPjStockCheck</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckMain" valueType="DataObject" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="1" name="orderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billNoPreFix</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="mainId" type="query" value="Long" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -670,27 +669,6 @@
     <location x="-76" y="386"/>
     <figSize height="17" width="26"/>
     <node>assign11</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="getCompBillNO1" displayName="getCompBillNO" collapsed="false" type="subprocess">
-    <location x="91" y="201"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billNoPreFix</process:inputVariable>
-        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="55" y="236"/>
-    <figSize height="17" width="99"/>
-    <node>subprocess2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

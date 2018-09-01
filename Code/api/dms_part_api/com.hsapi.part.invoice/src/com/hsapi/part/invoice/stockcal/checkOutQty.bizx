@@ -35,7 +35,7 @@
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="enterAuditDetail" type="query" value="com.hsapi.part.data.pts.XPjEnterDetailChk[]" valueType="DataObject">enterChks</process:outputVariable>
+        <process:outputVariable id="0" name="enterAuditDetail" type="query" value="com.hsapi.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">enterChks</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

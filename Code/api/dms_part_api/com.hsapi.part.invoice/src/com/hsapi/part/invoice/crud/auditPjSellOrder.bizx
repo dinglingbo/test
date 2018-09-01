@@ -362,11 +362,11 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.savePjSellOrderAddOrUpdate</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
-        <process:inputVariable id="1" name="sellOrderDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="sellOrderDetailUpdate" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailUpdate</process:inputVariable>
-        <process:inputVariable id="3" name="sellOrderDetailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailDelete</process:inputVariable>
-        <process:inputVariable id="4" name="sellOrderDetailList" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailList</process:inputVariable>
+        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.part.data.pts.XPjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
+        <process:inputVariable id="1" name="sellOrderDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="sellOrderDetailUpdate" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailUpdate</process:inputVariable>
+        <process:inputVariable id="3" name="sellOrderDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailDelete</process:inputVariable>
+        <process:inputVariable id="4" name="sellOrderDetailList" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

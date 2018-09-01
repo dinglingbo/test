@@ -19,7 +19,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.part.data.pts.XPjSellPriceGuest[]" name="guest" type="query" valueType="DataObject">guest</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.PjSellPriceGuest[]" name="guest" type="query" valueType="DataObject">guest</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -42,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjSellPriceGuest</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjSellPriceGuest</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

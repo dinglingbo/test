@@ -38,7 +38,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjDataRemind</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjDataRemind</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

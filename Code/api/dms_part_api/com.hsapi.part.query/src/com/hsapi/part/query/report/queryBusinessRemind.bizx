@@ -4,6 +4,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="60" y="150"/>
     <size height="28" width="28"/>
@@ -38,7 +39,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjBusinessRemind</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjBusinessRemind</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

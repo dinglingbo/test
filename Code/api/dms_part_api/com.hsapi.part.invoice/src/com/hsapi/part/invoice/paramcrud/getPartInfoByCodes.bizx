@@ -640,7 +640,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">value</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">value</process:outputVariable>
-        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.XPjPartStoreStock" valueType="DataObject">storeStockRecord</process:outputVariable>
+        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.PjPartStoreStock" valueType="DataObject">storeStockRecord</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -681,7 +681,7 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="tmp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="storeStockRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="storeStockRecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="remark" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">

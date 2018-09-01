@@ -438,8 +438,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjStatementMain" name="main"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjStatementDetail" name="detail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjStatementMain" name="main"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjStatementDetail" name="detail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

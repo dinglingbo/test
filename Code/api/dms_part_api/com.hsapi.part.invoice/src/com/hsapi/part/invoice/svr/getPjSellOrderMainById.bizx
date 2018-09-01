@@ -135,14 +135,14 @@
   <process:info author="Administrator" createTime="2018-02-27 06:44:38" date="2018-02-26Z" description="" name="getPjPchsOrderMainById" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderMain" name="mainList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="mainList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Long"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMain" name="main"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="main"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -211,7 +211,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.XPjPartStock" valueType="DataObject">stockRecord</process:outputVariable>
+        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.PjPartStock" valueType="DataObject">stockRecord</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -247,7 +247,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.XPjPartStoreStock" valueType="DataObject">storeStockRecord</process:outputVariable>
+        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.PjPartStoreStock" valueType="DataObject">storeStockRecord</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -298,7 +298,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.XPjPartStock" valueType="DataObject">stockRecord</process:outputVariable>
+        <process:outputVariable id="2" name="priceRecord" type="query" value="com.hsapi.part.data.pts.PjPartStock" valueType="DataObject">stockRecord</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -388,8 +388,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partId" primitiveType="Int"/>
     <process:variable description="如果有仓库ID，pj_part_store_stock；没有pj_part_stock" historyStateLocation="client" isArray="false" name="storeId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStock" name="stockRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="storeStockRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStock" name="stockRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="storeStockRecord"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="orgid，partId" isArray="false" name="params"/>

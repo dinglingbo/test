@@ -670,8 +670,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Float"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="balanceInvocing"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="storeInvocing"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjStoreInvocing" name="sdInvocing"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjInvocing" name="dInvocing"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStoreInvocing" name="sdInvocing"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjInvocing" name="dInvocing"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="fId" primitiveType="Long"/>
   </process:variables>
@@ -697,8 +697,8 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjStoreInvocing" name="sdInvocingB"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjInvocing" name="dInvocingB"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjStoreInvocing" name="sdInvocingB"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjInvocing" name="dInvocingB"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

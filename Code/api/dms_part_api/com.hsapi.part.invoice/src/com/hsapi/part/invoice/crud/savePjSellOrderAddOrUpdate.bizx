@@ -87,7 +87,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updatePjSellOrder</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.part.data.pts.XPjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
+        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.part.data.pts.PjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
         <process:inputVariable id="1" name="sellOrderDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailAdd</process:inputVariable>
         <process:inputVariable id="2" name="sellOrderDetailUpdate" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailUpdate</process:inputVariable>
         <process:inputVariable id="3" name="sellOrderDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailDelete</process:inputVariable>
@@ -127,7 +127,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertPjSellOrder</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.part.data.pts.XPjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
+        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.part.data.pts.PjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
         <process:inputVariable id="1" name="sellOrderDetail" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailAdd</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -364,11 +364,11 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMain" name="sellOrderMain"/>
-    <process:input description="新增" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailAdd"/>
-    <process:input description="修改" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailUpdate"/>
-    <process:input description="删除" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailDelete"/>
-    <process:input description="全部" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailList"/>
+    <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="sellOrderMain"/>
+    <process:input description="新增" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailAdd"/>
+    <process:input description="修改" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailUpdate"/>
+    <process:input description="删除" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailDelete"/>
+    <process:input description="全部" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

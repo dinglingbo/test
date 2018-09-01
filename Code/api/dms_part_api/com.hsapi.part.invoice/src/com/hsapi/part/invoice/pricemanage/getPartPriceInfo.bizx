@@ -728,13 +728,13 @@
   <process:variables>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="straPriceList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPartPrice" name="partPriceList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartPrice" name="partPrice"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPartPrice" name="partPriceList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartPrice" name="partPrice"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="unifyPrice"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="unify" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdStra"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceStrategy" name="straList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceStrategy" name="straList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellPriceStrategy" name="stra"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="lo" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="lt" primitiveType="Int"/>

@@ -188,10 +188,10 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.allotBatchOfOutChk</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.allotBatchOfOutChk</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
         <process:inputVariable id="2" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">050202</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -482,11 +482,11 @@
     <location x="585" y="60"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.allotPchsRtnBatchOfOut</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.allotPchsRtnBatchOfOut</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
         <process:inputVariable id="2" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">050201</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -592,10 +592,10 @@
     <location x="979" y="255"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.settle.generateCashSettleR</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.invoice.settle.generateCashSettleR</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -775,8 +775,8 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMainChk" name="main"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetailChk" name="detail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetailChk" name="detail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

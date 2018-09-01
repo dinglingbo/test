@@ -291,12 +291,12 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-16 14:10:16" date="2018-05-16Z" description="" name="saveStrategyGuest" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellPriceGuest" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellPriceGuest" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceGuest" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceGuest" name="deleteList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceGuest" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceGuest" name="deleteList"/>
     <process:input description="" isArray="false" name="stragegyId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>

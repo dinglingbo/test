@@ -104,7 +104,7 @@
     <process:input description="" isArray="false" name="strategyId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceGuest" name="part"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceGuest" name="part"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

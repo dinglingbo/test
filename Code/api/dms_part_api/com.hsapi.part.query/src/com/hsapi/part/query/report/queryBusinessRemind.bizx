@@ -91,7 +91,7 @@
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjBusinessRemind" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PjBusinessRemind" name="list"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -238,10 +238,10 @@
   <process:info author="Administrator" createTime="2018-06-11 22:55:09" date="2018-06-11Z" description="" name="saveStoreStockSet" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="partStoreStock"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="partStoreStock"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

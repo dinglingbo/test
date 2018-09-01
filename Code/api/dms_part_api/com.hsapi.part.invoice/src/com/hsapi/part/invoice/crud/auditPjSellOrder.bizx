@@ -362,7 +362,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.savePjSellOrderAddOrUpdate</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.part.data.pts.XPjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
+        <process:inputVariable id="0" name="sellOrderMain" type="query" value="com.hsapi.part.data.pts.PjSellOrderMain" valueType="DataObject" pattern="reference">sellOrderMain</process:inputVariable>
         <process:inputVariable id="1" name="sellOrderDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailAdd</process:inputVariable>
         <process:inputVariable id="2" name="sellOrderDetailUpdate" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailUpdate</process:inputVariable>
         <process:inputVariable id="3" name="sellOrderDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetail[]" valueType="DataObject" pattern="reference">sellOrderDetailDelete</process:inputVariable>
@@ -395,7 +395,7 @@
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.XPjSellOrderMain" valueType="DataObject">main</process:outputVariable>
+        <process:outputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.PjSellOrderMain" valueType="DataObject">main</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -509,7 +509,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.svr.queryPjSellOrderMainList</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="1" name="pageIndex" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
@@ -658,8 +658,8 @@
       <process:partner type="literal">this.auditSellOrderToOut</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="1" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
-        <process:inputVariable id="2" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">auditDetails</process:inputVariable>
+        <process:inputVariable id="1" name="main" type="query" value="com.hsapi.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
+        <process:inputVariable id="2" name="detail" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">auditDetails</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -694,24 +694,24 @@
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="auditMainObj"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="auditDetailsObj"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderDetailChk" name="auditMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetailChk" name="auditDetails"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="auditMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetailChk" name="auditDetails"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="auditSign" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMain" name="main"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="details"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="main"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="details"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Long"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="pjSellOrderMainListTemp"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="stockOutList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="stockOutList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isInner" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMain" name="sellOrderMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailDelete"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="sellOrderMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailDelete"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailList"/>
     <process:input description="0提交；1直接出库" isArray="false" name="operateFlag" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>

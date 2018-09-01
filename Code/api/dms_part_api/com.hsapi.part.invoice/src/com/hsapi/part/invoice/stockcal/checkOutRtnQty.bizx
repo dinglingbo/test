@@ -200,8 +200,8 @@
   <process:info author="Administrator" createTime="2018-03-09 20:19:24" date="2018-03-09Z" description="" name="checkOutRtnQty" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rtnableQty" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outChks"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outChk"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjOutDetailChk" name="outChks"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjOutDetailChk" name="outChk"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgpre" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgsuf" primitiveType="String"/>
@@ -215,7 +215,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outDetail"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjOutDetailChk" name="outDetail"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

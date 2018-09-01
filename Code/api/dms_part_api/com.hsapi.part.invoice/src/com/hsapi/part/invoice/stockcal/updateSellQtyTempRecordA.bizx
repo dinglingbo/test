@@ -919,7 +919,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="store" type="query" value="com.hsapi.part.data.com.ComStore" valueType="DataObject">storeInfo</process:outputVariable>
-        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1050,10 +1050,10 @@
   <process:info author="Administrator" createTime="2017-07-13 10:10:24" date="2017-07-13Z" description="" name="updateSellQtyTempRecord" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellQtyTempRecord" name="sellRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="stockStoreRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="stockStoreRecords"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStock" name="stockRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="stockStoreRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="stockStoreRecords"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStock" name="stockRecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.com.ComStore" name="storeGrids"/>
@@ -1061,12 +1061,12 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="prevOrderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outableQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellQtyTempRecord" name="sellRecords"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPartStock" name="stockRecords"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecords"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPartStock" name="stockRecords"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="diffQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="prevSellRecordQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="diffAdjustQty" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="stockStoreRecordTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="stockStoreRecordTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sellSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sellSignt" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdPart"/>

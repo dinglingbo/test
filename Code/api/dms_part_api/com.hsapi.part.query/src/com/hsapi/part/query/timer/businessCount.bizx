@@ -406,7 +406,7 @@
   <process:info author="Administrator" createTime="2018-06-05 20:13:58" date="2018-06-05Z" description="" name="businessCount" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjBusinessRemind" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjBusinessRemind" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs/>

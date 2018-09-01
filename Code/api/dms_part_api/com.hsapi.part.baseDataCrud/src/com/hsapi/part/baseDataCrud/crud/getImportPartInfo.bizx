@@ -674,7 +674,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComAttribute" name="part"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.com.ComAttribute" name="partList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enter"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enter"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partMsg" primitiveType="String"/>
@@ -689,8 +689,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMain" name="enterMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterMain" name="enterMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

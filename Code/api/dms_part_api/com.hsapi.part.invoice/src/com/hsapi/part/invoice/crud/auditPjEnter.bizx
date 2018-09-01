@@ -379,7 +379,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.savePjEnterNT</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.XPjEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
+        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.PjEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
         <process:inputVariable id="1" name="enterDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
         <process:inputVariable id="2" name="enterDetailUpdate" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailUpdate</process:inputVariable>
         <process:inputVariable id="3" name="enterDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailDelete</process:inputVariable>
@@ -434,7 +434,7 @@
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.XPjEnterMain" valueType="DataObject">main</process:outputVariable>
+        <process:outputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.PjEnterMain" valueType="DataObject">main</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -713,8 +713,8 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="sdInvocingB" type="query" value="com.hsapi.part.data.pts.XPjStoreInvocing" valueType="DataObject">sdInvocing</process:outputVariable>
-        <process:outputVariable id="3" name="dInvocingB" type="query" value="com.hsapi.part.data.pts.XPjInvocing" valueType="DataObject">dInvocing</process:outputVariable>
+        <process:outputVariable id="2" name="sdInvocingB" type="query" value="com.hsapi.part.data.pts.PjStoreInvocing" valueType="DataObject">sdInvocing</process:outputVariable>
+        <process:outputVariable id="3" name="dInvocingB" type="query" value="com.hsapi.part.data.pts.PjInvocing" valueType="DataObject">dInvocing</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1001,7 +1001,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="outDetail" type="query" value="com.hsapi.part.data.pts.XPjOutDetailChk" valueType="DataObject">outAuditDetail</process:outputVariable>
+        <process:outputVariable id="2" name="outDetail" type="query" value="com.hsapi.part.data.pts.PjOutDetailChk" valueType="DataObject">outAuditDetail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1169,7 +1169,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updatePchsOrderToEnter</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.XPjEnterMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.PjEnterMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
         <process:inputVariable id="1" name="enterDetail" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">details</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -1523,8 +1523,8 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.generateRPAccount</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.XPjStatementMain" valueType="DataObject" pattern="reference">stateMain</process:inputVariable>
-        <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.part.data.pts.XPjStatementDetail" valueType="DataObject" pattern="reference">stateDetail</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.PjStatementMain" valueType="DataObject" pattern="reference">stateMain</process:inputVariable>
+        <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.part.data.pts.PjStatementDetail" valueType="DataObject" pattern="reference">stateDetail</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1738,36 +1738,36 @@
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="auditMainObj"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="auditDetailsObj"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMainChk" name="auditMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetailChk" name="auditDetails"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterMainChk" name="auditMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="auditDetails"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="auditSign" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMain" name="main"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="details"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterMain" name="main"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="details"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Long"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="pjEnterMainListTemp"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="f"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjStoreInvocing" name="sdInvocing"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjInvocing" name="dInvocing"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="f"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStoreInvocing" name="sdInvocing"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjInvocing" name="dInvocing"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sellRtnAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billAmt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outAuditDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjOutDetailChk" name="outAuditDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rtnableQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="codeId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjStatementMain" name="stateMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjStatementDetail" name="stateDetail"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMainChk" name="enter"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStatementMain" name="stateMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStatementDetail" name="stateDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterMainChk" name="enter"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMain" name="enterMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailDelete"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterMain" name="enterMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="pjEnterMainList"/>

@@ -91,7 +91,7 @@
     <process:input description="" isArray="false" name="mainId" primitiveType="Long"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="detailList"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="detailList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

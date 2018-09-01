@@ -238,10 +238,10 @@
   <process:info author="Administrator" createTime="2018-05-20 12:55:56" date="2018-05-20Z" description="" name="updateOrderCart" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjShopCart" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjShopCart" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjShopCart" name="list"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjShopCart" name="list"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

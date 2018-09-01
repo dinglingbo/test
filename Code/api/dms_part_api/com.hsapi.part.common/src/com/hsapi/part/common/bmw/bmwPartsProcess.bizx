@@ -407,7 +407,7 @@
   <leftRuler/>
   <process:info author="Guine" createTime="2018-07-07 20:34:53" date="2018-07-07Z" description="" name="bmwPartsProcess" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjBmwOfficialStock" name="bmwStock"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjBmwOfficialStock" name="bmwStock"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="agioCode"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmp" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="agioRate" primitiveType="Float"/>
@@ -417,7 +417,7 @@
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjBmwOfficialStock" name="data"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjBmwOfficialStock" name="data"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

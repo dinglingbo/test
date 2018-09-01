@@ -380,13 +380,13 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-16 08:20:52" date="2018-05-16Z" description="" name="saveSellStrategy" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellPriceStrategy" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellPriceStrategy" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceStrategy" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceStrategy" name="updateList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceStrategy" name="deleteList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceStrategy" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceStrategy" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceStrategy" name="deleteList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

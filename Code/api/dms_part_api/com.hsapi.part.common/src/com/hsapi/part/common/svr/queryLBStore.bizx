@@ -91,7 +91,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjStore" name="store"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PjStore" name="store"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

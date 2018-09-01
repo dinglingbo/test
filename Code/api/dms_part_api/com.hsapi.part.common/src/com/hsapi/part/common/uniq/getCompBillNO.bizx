@@ -26,7 +26,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="serviceno" type="query" valueType="Primitive">serviceno</process:return>
-      <process:return id="1" language="com.hsapi.part.data.pts.XPjBillRecord[]" name="billrecords" type="query" valueType="DataObject">billrecords</process:return>
+      <process:return id="1" language="com.hsapi.part.data.pts.PjBillRecord[]" name="billrecords" type="query" valueType="DataObject">billrecords</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -72,7 +72,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjBillRecord</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjBillRecord</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -519,7 +519,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="nowDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="yearmonth" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjBillRecord" name="billrecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjBillRecord" name="billrecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="customCode" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="maxnostr" primitiveType="String"/>
@@ -535,7 +535,7 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="serviceno" primitiveType="String"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjBillRecord" name="billrecords"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PjBillRecord" name="billrecords"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

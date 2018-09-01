@@ -93,7 +93,7 @@
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellPriceStrategy" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellPriceStrategy" name="list"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

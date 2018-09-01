@@ -1637,7 +1637,7 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="detailId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxAmt" primitiveType="Float"/>
@@ -1655,18 +1655,18 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isMarkBatch" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="batchSourceId" primitiveType="Long"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetailChk" name="enterChks"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterDetailChk" name="enterChk"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterDetailChk" name="enter"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="enterChks"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="enterChk"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="enter"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outableqty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="preoutqty" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMain" name="sellOrderMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailDelete"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="sellOrderMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailDelete"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellOrderDetailList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

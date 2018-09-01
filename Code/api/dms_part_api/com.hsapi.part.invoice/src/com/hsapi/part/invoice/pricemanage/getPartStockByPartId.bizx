@@ -255,7 +255,7 @@
   <process:info author="Administrator" createTime="2018-05-11 15:03:01" date="2018-05-11Z" description="" name="getPchsDefaultPrice" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPartStock" name="priceList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPartStock" name="priceList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partId" primitiveType="Int"/>
   </process:variables>
@@ -265,7 +265,7 @@
   <process:outputs>
     <process:output description="E" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStock" name="priceRecord"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStock" name="priceRecord"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

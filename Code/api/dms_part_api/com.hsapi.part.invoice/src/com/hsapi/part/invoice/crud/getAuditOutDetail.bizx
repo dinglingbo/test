@@ -101,7 +101,7 @@
     <process:input description="" isArray="false" name="mainId" primitiveType="Long"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outAuditDetail"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.PjOutDetailChk" name="outAuditDetail"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -339,10 +339,10 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMain" name="enterMain"/>
-    <process:input description="新增" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailAdd"/>
-    <process:input description="修改" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailUpdate"/>
-    <process:input description="删除" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailDelete"/>
+    <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterMain" name="enterMain"/>
+    <process:input description="新增" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetailAdd"/>
+    <process:input description="修改" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetailUpdate"/>
+    <process:input description="删除" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

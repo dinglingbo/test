@@ -58,7 +58,7 @@
         <process:inputVariable id="0" name="billMainId" type="query" value="Int" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="pack" type="query" value="com.hsapi.part.data.pts.XPjPackMain" valueType="DataObject">pack</process:outputVariable>
+        <process:outputVariable id="0" name="pack" type="query" value="com.hsapi.part.data.pts.PjPackMain" valueType="DataObject">pack</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -205,7 +205,7 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-03 11:06:30" date="2018-08-03Z" description="" name="getPrintLogistics" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPackMain" name="pack"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPackMain" name="pack"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.com.ComGuest" name="guestList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Require-Bundle: 
-eos-webCtxPath: query
+Require-Bundle: com.hsapi.part.data
 Bundle-Vendor: Administrator
+eos-webCtxPath: query
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.part.query
 Bundle-Description: 

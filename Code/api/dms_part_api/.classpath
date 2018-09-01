@@ -11,5 +11,7 @@
 	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
+	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/httpcore-4.3.2.jar"/>
+	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/httpclient-4.3.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

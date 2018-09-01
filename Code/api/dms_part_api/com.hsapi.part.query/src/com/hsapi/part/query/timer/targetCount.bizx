@@ -22,13 +22,13 @@
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-58" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="-61" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1026" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="1023" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
@@ -42,8 +42,8 @@
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="12" y="186"/>
-    <figSize height="17" width="49"/>
+    <location x="6" y="186"/>
+    <figSize height="20" width="61"/>
     <node>transactionbegin0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
@@ -57,8 +57,8 @@
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="941" y="186"/>
-    <figSize height="17" width="49"/>
+    <location x="935" y="186"/>
+    <figSize height="20" width="61"/>
     <node>transactioncommit0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -77,7 +77,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjDataRemind</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjDataRemind</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -86,8 +86,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="107" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="104" y="186"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="更新remindValue为0" displayName="updateEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -113,8 +113,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="163" y="186"/>
-    <figSize height="17" width="117"/>
+    <location x="148" y="186"/>
+    <figSize height="20" width="147"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="今日收入" displayName="executeNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -142,8 +142,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="362" y="186"/>
-    <figSize height="17" width="49"/>
+    <location x="356" y="186"/>
+    <figSize height="20" width="61"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="今日支出" displayName="未入库采购订单" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -171,8 +171,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="463" y="186"/>
-    <figSize height="17" width="49"/>
+    <location x="457" y="186"/>
+    <figSize height="20" width="61"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="库存总成本" displayName="未出库销售订单" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -200,8 +200,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="545" y="186"/>
-    <figSize height="17" width="61"/>
+    <location x="537" y="186"/>
+    <figSize height="20" width="76"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="库存SKU种类" displayName="未付款对账单" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -229,8 +229,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="635" y="186"/>
-    <figSize height="17" width="73"/>
+    <location x="626" y="186"/>
+    <figSize height="20" width="91"/>
     <node>invokePojo4</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="客户欠款" displayName="未收款对账单" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -258,8 +258,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="736" y="186"/>
-    <figSize height="17" width="49"/>
+    <location x="730" y="186"/>
+    <figSize height="20" width="61"/>
     <node>invokePojo5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -273,8 +273,8 @@
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="298" y="186"/>
-    <figSize height="17" width="32"/>
+    <location x="294" y="186"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="供应商欠款" displayName="本月月结未对账" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -302,8 +302,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
-    <location x="827" y="186"/>
-    <figSize height="17" width="61"/>
+    <location x="819" y="186"/>
+    <figSize height="20" width="76"/>
     <node>invokePojo8</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -322,8 +322,8 @@
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="744" y="72"/>
-    <figSize height="17" width="32"/>
+    <location x="740" y="72"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
@@ -337,8 +337,8 @@
     <nodeLabel>transactionrollback0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="968" y="72"/>
-    <figSize height="17" width="49"/>
+    <location x="962" y="72"/>
+    <figSize height="20" width="61"/>
     <node>transactionrollback0</node>
   </nodes>
   <topRuler/>
@@ -346,7 +346,7 @@
   <process:info author="Administrator" createTime="2018-06-05 20:13:58" date="2018-06-05Z" description="" name="businessCount" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjDataRemind" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjDataRemind" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs/>

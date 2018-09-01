@@ -16,17 +16,17 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.com.ComCompany" name="comp" type="query" valueType="DataObject">comp</process:return>
+      <process:return id="0" language="com.hsapi.part.data.com.ComCompany" name="comp" type="query" valueType="DataObject">comp</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="102" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="99" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="402" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="399" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -40,8 +40,8 @@
     <nodeLabel>assign0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="178" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="175" y="186"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="expandEntity" displayName="expandEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -70,8 +70,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="259" y="186"/>
-    <figSize height="17" width="75"/>
+    <location x="248" y="186"/>
+    <figSize height="20" width="96"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -85,8 +85,8 @@
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="281" y="111"/>
-    <figSize height="17" width="32"/>
+    <location x="277" y="111"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <topRuler/>
@@ -94,10 +94,10 @@
   <process:info author="Administrator" createTime="2018-05-04 18:42:44" date="2018-05-04Z" description="" name="queryComCompany" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComCompany" name="comp"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.com.ComCompany" name="comp"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComCompany" name="comp"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.com.ComCompany" name="comp"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

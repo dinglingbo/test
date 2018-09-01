@@ -185,10 +185,10 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess9label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.crud.generateRPAccount</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.crud.generateRPAccount</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementMain" valueType="DataObject" pattern="reference">stateMain</process:inputVariable>
-        <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail" valueType="DataObject" pattern="reference">stateDetail</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.XPjStatementMain" valueType="DataObject" pattern="reference">stateMain</process:inputVariable>
+        <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.part.data.pts.XPjStatementDetail" valueType="DataObject" pattern="reference">stateDetail</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -359,12 +359,12 @@
   <process:info author="Administrator" createTime="2018-05-29 09:02:05" date="2018-05-29Z" description="" name="generateCashSettleP" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementMain" name="stateMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="stateDetail"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="mainTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjStatementMain" name="stateMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjStatementDetail" name="stateDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPchsOrderMainChk" name="mainTemp"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="main"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjPchsOrderMainChk" name="main"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

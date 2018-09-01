@@ -44,7 +44,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign40label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartStoreStock</process:from>
       <process:to type="query">cdStoreStock/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -83,7 +83,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign45label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartStock</process:from>
       <process:to type="query">cdStock/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -333,12 +333,12 @@
   <process:info author="Administrator" createTime="2018-07-05 14:39:28" date="2018-07-05Z" description="" name="updatePartStock" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdStoreStock"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="storeStockList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="storeStockList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumOrderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumOutableQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumStockQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdStock"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStock" name="stock"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStock" name="stock"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumStockAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="stockCost" primitiveType="Double"/>
   </process:variables>

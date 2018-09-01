@@ -74,7 +74,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjGuestPartPrice</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjGuestPartPrice</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -684,9 +684,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="topestSellPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjGuestPartPrice" name="guestPriceList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjGuestPartPrice" name="guestPrice"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjGuestPartPrice" name="tempPrice"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjGuestPartPrice" name="guestPriceList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjGuestPartPrice" name="guestPrice"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjGuestPartPrice" name="tempPrice"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>

@@ -364,11 +364,11 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="主表信息" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMain" name="sellOrderMain"/>
-    <process:input description="新增" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellOrderDetailAdd"/>
-    <process:input description="修改" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellOrderDetailUpdate"/>
-    <process:input description="删除" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellOrderDetailDelete"/>
-    <process:input description="全部" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellOrderDetailList"/>
+    <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMain" name="sellOrderMain"/>
+    <process:input description="新增" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailAdd"/>
+    <process:input description="修改" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailUpdate"/>
+    <process:input description="删除" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailDelete"/>
+    <process:input description="全部" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetail" name="sellOrderDetailList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -25,7 +25,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="partStoreStock" type="query" valueType="DataObject">partStoreStock</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.XPjPartStoreStock" name="partStoreStock" type="query" valueType="DataObject">partStoreStock</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -69,7 +69,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartStoreStock</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -156,7 +156,7 @@
   <process:info author="Administrator" createTime="2017-07-19 19:25:19" date="2017-07-19Z" description="" name="getPartStoreStock" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="partStoreStocks"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="partStoreStocks"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
@@ -164,7 +164,7 @@
     <process:input description="" isArray="false" name="partId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="partStoreStock"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStoreStock" name="partStoreStock"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

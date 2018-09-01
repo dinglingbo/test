@@ -49,7 +49,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPchsOrderDetailChk</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -690,10 +690,10 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-13 16:08:48" date="2018-05-13Z" description="" name="updatePchsOrderToEnter" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderDetailId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderMainId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="orderTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPchsOrderDetailChk" name="orderTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterAmt" primitiveType="Float"/>
@@ -702,15 +702,15 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="notEnterQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="orderUpdate"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPchsOrderDetailChk" name="orderUpdate"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="orderMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="orderDetails"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPchsOrderMainChk" name="orderMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjPchsOrderDetailChk" name="orderDetails"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMain" name="enterMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMain" name="enterMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -146,7 +146,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">enterMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjEnterMainChk</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.XPjEnterMainChk</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">auditSign</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
@@ -186,7 +186,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">enterMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjEnterMain</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.XPjEnterMainChk</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">operateDate</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
@@ -339,10 +339,10 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="主表信息" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMain" name="enterMain"/>
-    <process:input description="新增" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetailAdd"/>
-    <process:input description="修改" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetailUpdate"/>
-    <process:input description="删除" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetailDelete"/>
+    <process:input description="主表信息" isArray="false" modelType="com.hsapi.part.data.pts.XPjEnterMain" name="enterMain"/>
+    <process:input description="新增" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailAdd"/>
+    <process:input description="修改" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailUpdate"/>
+    <process:input description="删除" isArray="true" modelType="com.hsapi.part.data.pts.XPjEnterDetail" name="enterDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

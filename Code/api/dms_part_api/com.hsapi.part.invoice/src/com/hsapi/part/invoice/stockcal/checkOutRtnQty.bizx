@@ -29,7 +29,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.crud.getAuditOutDetail</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.crud.getAuditOutDetail</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="id" type="query" value="Long" valueType="Primitive" pattern="reference">sourceId</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">value</process:inputVariable>
@@ -171,7 +171,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outDetail" type="query" valueType="DataObject">outDetail</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.XPjOutDetailChk" name="outDetail" type="query" valueType="DataObject">outDetail</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -200,8 +200,8 @@
   <process:info author="Administrator" createTime="2018-03-09 20:19:24" date="2018-03-09Z" description="" name="checkOutRtnQty" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rtnableQty" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outChks"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outChk"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outChks"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outChk"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgpre" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgsuf" primitiveType="String"/>
@@ -215,7 +215,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outDetail"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjOutDetailChk" name="outDetail"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

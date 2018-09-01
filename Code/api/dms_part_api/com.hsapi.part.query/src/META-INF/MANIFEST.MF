@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+eos-webCtxPath: query
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.part.query
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.part.query
+

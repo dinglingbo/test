@@ -105,7 +105,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjSellOrderDetailChk</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -775,8 +775,8 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="main"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetailChk" name="detail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.XPjSellOrderMainChk" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.XPjSellOrderDetailChk" name="detail"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

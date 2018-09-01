@@ -1304,7 +1304,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.com.QuickPartWithStock" name="epcPartList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partMsg" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComAttribute" name="partTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStock" name="partStock"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStock" name="partStock"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.QuickPartWithStock" name="epcPart"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pcodelist"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="ids" primitiveType="String"/>

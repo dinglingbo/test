@@ -78,9 +78,9 @@
       <process:partner type="literal">this.updatePjPack</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="packMain" type="query" value="com.hsapi.part.data.pts.PjPackMain" valueType="DataObject" pattern="reference">packMain</process:inputVariable>
-        <process:inputVariable id="1" name="packDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="packDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailDelete</process:inputVariable>
-        <process:inputVariable id="3" name="packDetailList" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailList</process:inputVariable>
+        <process:inputVariable id="1" name="packDetailAdd" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="packDetailDelete" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailDelete</process:inputVariable>
+        <process:inputVariable id="3" name="packDetailList" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -107,7 +107,7 @@
       <process:partner type="literal">this.insertPjPack</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="packMain" type="query" value="com.hsapi.part.data.pts.PjPackMain" valueType="DataObject" pattern="reference">packMain</process:inputVariable>
-        <process:inputVariable id="1" name="packDetail" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
+        <process:inputVariable id="1" name="packDetail" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

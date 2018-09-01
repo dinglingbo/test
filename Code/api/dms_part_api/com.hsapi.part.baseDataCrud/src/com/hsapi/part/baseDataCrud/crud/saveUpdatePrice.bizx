@@ -194,6 +194,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>
@@ -238,7 +239,7 @@
       <process:to type="query">straPrice/sellPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjSellPricePart</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjSellPricePart</process:from>
       <process:to type="query">cdStra/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -291,7 +292,7 @@
       <process:to type="query">partPrice/sellPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartPrice</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartPrice</process:from>
       <process:to type="query">cdUnify/_entity</process:to>
     </process:copy>
     <process:copy>

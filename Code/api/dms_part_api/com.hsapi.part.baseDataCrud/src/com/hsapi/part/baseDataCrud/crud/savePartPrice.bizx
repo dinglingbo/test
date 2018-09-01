@@ -441,7 +441,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartPrice</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartPrice</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>

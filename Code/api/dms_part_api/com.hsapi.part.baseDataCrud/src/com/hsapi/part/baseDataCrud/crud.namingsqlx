@@ -435,4 +435,114 @@
         </dynamic>  
     </select>
     
+    <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComGuest">
+    	SELECT a.orgid,
+			 a.short_name shortName,
+			 a.full_name fullName,
+			 a.code      code,
+			 a.id        id,
+			 a.card_no   cardNo,
+			 a.py_name   pyName,
+			 a.guest_type guestType,
+			 a.is_supplier isSupplier,
+			 a.is_client isClient,
+			 a.contactor contactor,
+			 a.contactor_tel contactorTel,
+			 a.manager       manager,
+			 a.manager_duty  managerDuty,
+			 a.province_id   provinceId,
+			 a.area_id       areaId,
+			 a.city_id       cityId,
+			 a.addr          addr,
+			 a.postal_code   postalCode,
+			 a.website       website,
+			 a.tel           tel,
+			 a.mobile        mobile,
+			 a.fax           fax,
+			 a.email         email,
+			 a.supplier_type supplierType,
+			 a.advantage_carbrand_id advantageCarbrandId,
+			 a.instant_msg           instantMsg,
+			 a.mem_car_no            memCarNo,
+			 a.taxpayer_code         taxpayerCode,
+			 a.taxpayer_name         taxpayerName,
+			 a.manage_addr           manageAddr,
+			 a.taxpayer_tel          taxpayerTel,
+			 a.account_bank          accountBank,
+			 a.account_bank_no       accountBankNo,
+			 a.bill_type_id          billTypeId,
+			 a.sett_type_id          settTypeId,
+			 a.tgrade                tgrade,
+			 a.credit_limit          creditLimit,
+			 a.is_disabled           isDisabled,
+			 a.remark                remark,
+			 a.is_internal           isInternal,
+			 a.is_internal_id        isInternalId,
+			 a.order_index           orderIndex,
+			 a.recorder              recorder,
+			 a.record_date           recordDate,
+			 a.modifier              modifier,
+			 a.modify_date           modifyDate,
+			 a.is_need_pack as isNeedPack,
+		     a.default_logistics_id as defaultLogisticsId,
+		     a.default_logistics as defaultLogistics
+		FROM com_guest a
+		WHERE (a.orgid = #orgid# or a.orgid = 0)
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="code">  
+                (code like '%$code$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="supplierType">  
+                (supplier_type = #supplierType#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeList">  
+                (guest_type in ($guestTypeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestType">  
+                (guest_type = #guestType#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSupplier">  
+                (a.is_supplier = #isSupplier#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isClient">  
+                (is_client = #isClient#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="cityId">  
+                (city_id = #cityId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="provinceId">  
+                (province_id = #provinceId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">  
+                (is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="memLevel">  
+                (mem_level = #memLevel#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="memCarNo">  
+                (mem_car_no like '%$memCarNo$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="advantageCarbrandId">  
+                (advantage_carbrand_id like '%$advantageCarbrandId$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">  
+                (short_name like '%$shortName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="manager">  
+                (manager like '%$manager$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (full_name like '%$name$%' or short_name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
 </sqlMap>

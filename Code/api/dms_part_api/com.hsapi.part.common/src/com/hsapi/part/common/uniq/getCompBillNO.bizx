@@ -526,8 +526,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="seqId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="yearmonthc" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComCompany" name="comps"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComCompany" name="comp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.com.ComCompany" name="comps"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComCompany" name="comp"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="billTypeCode" primitiveType="String"/>

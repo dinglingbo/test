@@ -356,7 +356,7 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign4</targetNode>
     </sourceConnections>
-    <targetConnections>link32</targetConnections>
+    <targetConnections>link40</targetConnections>
     <location x="1493" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
@@ -649,18 +649,23 @@
     <chidren>assign11</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign9</sourceNode>
-      <targetNode>invokePojo3</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link38" name="link38" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link38" name="link38" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign12</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
           <process:leftOperand type="query">errCode</process:leftOperand>
           <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>invokePojo7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -818,6 +823,29 @@
     <location x="583" y="217"/>
     <figSize height="20" width="91"/>
     <node>subprocess1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="getPrimaryKey" displayName="Generate sequence for primary key  of persistent entity" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo7</sourceNode>
+      <targetNode>invokePojo3</targetNode>
+    </sourceConnections>
+    <targetConnections>link32</targetConnections>
+    <location x="1422" y="151"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo7label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">f</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
+    <location x="1379" y="187"/>
+    <figSize height="20" width="108"/>
+    <node>invokePojo7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

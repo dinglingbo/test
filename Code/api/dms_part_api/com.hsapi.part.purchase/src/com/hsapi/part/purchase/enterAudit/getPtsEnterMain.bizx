@@ -151,13 +151,13 @@
   <leftRuler/>
   <process:info author="steven" createTime="2018-02-11 15:41:16" date="2018-02-11Z" description="" name="checkPurchaseIsAudit" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterMain" name="tmp"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="ptsEnterMain"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterMain" name="ptsEnterMain"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

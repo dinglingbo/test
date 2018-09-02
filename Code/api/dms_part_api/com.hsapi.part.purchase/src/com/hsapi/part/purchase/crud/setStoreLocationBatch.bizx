@@ -283,8 +283,8 @@
   <process:info author="chenziming" createTime="2018-03-07 15:24:05" date="2018-03-07Z" description="" name="setStoreLocationBatch" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PtsCycStore" name="cycList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsCycStore" name="cyc"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="cycList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="cyc"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="modifier" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="modifyDate" primitiveType="Date"/>
   </process:variables>

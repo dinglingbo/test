@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.part.query/bin" path="com.hsapi.part.query/src"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.part.invoice/bin" path="com.hsapi.part.invoice/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.part.purchase/bin" path="com.hsapi.part.purchase/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.part.common/bin" path="com.hsapi.part.common/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsapi.part.baseDataCrud/bin" path="com.hsapi.part.baseDataCrud/src"/>
@@ -9,6 +11,7 @@
 	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
-	<classpathentry kind="src" path="/dms_system"/>
+	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/httpcore-4.3.2.jar"/>
+	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/httpclient-4.3.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

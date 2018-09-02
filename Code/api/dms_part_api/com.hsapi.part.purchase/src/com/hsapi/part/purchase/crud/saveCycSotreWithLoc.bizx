@@ -56,9 +56,9 @@
         <process:inputVariable id="2" name="storeId" type="query" value="String" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.pts.PtsCycStore" valueType="DataObject">cyc</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="cycOrg" type="query" value="com.hsapi.part.data.x_pts.PtsCycStore" valueType="DataObject">cyc</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -435,12 +435,12 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-08 14:11:15" date="2018-03-08Z" description="" name="insertCycSotreWithLoc" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsCycStore" name="cyc"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="cyc"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="detail"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PtsCycStore" name="insertList"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PtsCycStore" name="updateList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="insertList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="updateList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="storeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgId" primitiveType="String"/>
   </process:variables>

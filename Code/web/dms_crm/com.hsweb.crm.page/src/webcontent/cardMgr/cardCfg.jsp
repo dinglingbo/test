@@ -40,7 +40,6 @@
   margin-top: 20px;
   background-size: 50%;
 }
-
 </style>
 
 </head>

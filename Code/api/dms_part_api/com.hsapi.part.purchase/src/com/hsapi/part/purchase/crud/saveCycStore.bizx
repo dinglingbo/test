@@ -132,7 +132,7 @@
   <process:info author="chenziming" createTime="2018-03-07 14:43:19" date="2018-03-07Z" description="" name="saveCycStore" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsCycStore" name="storeCyc"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsCycStore" name="storeCyc"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

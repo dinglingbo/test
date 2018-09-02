@@ -448,9 +448,9 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-09 17:11:47" date="2018-03-09Z" description="" name="genPtsEnterAndAudit" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="main"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="detail"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PtsEnterDetail" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterMain" name="main"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="detail"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsEnterDetail" name="list"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="param"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="totalQty" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterQty" primitiveType="Int"/>
@@ -466,7 +466,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxUnitPrice" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="checkMain"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsStockCheckMain" name="checkMain"/>
     <process:input description="" isArray="false" name="guestId" primitiveType="String"/>
     <process:input description="" isArray="false" name="guestFullName" primitiveType="String"/>
     <process:input description="" isArray="false" name="enterCode" primitiveType="String"/>

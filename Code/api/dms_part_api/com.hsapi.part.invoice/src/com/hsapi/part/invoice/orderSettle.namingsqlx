@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+	<update id="updatePchsOrderAllIn" parameterClass="java.util.HashMap" >
+		update pj_pchs_order_detail_chk 
+			set true_enter_qty = order_qty, 
+				true_enter_amt = order_amt,
+				not_enter_amt = 0, 
+				not_enter_qty = 0, 
+				is_finished = 1, 
+				finish_date = SYSDATE()
+			where 1 = 1
+			<isNotNull prepend = "and" property = "mainId">
+					main_id = #mainId#					
+			</isNotNull>
+	</update>
+	
+	<update id="updatePchsEnterOriginId" parameterClass="java.util.HashMap" >
+		update pj_enter_detail_chk set origin_id = id 
+		where 1 = 1
+			<isNotNull prepend = "and" property = "mainId">
+					main_id = #mainId#					
+			</isNotNull>
+	</update>
+	
+	<update id="updateSellRtnOriginId" parameterClass="java.util.HashMap" >
+		update pj_enter_detail_chk set origin_id = id 
+		where IFNULL(origin_id,0) = 0
+			<isNotNull prepend = "and" property = "mainId">
+					main_id = #mainId#					
+			</isNotNull>
+	</update>
+	
+</sqlMap>

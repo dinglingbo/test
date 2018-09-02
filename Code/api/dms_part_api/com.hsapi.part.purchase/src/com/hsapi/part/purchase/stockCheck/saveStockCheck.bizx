@@ -230,10 +230,10 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.saveStockCheckDetails</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="insertDetailList" type="query" value="com.hsapi.part.data.pts.PtsStockCheckDetail[]" valueType="DataObject" pattern="reference">insertDetailList</process:inputVariable>
-        <process:inputVariable id="2" name="updateDetailList" type="query" value="com.hsapi.part.data.pts.PtsStockCheckDetail[]" valueType="DataObject" pattern="reference">updateDetailList</process:inputVariable>
-        <process:inputVariable id="3" name="deleteDetailList" type="query" value="com.hsapi.part.data.pts.PtsStockCheckDetail[]" valueType="DataObject" pattern="reference">deleteDetailList</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.part.data.x_pts.PtsStockCheckMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="1" name="insertDetailList" type="query" value="com.hsapi.part.data.x_pts.PtsStockCheckDetail[]" valueType="DataObject" pattern="reference">insertDetailList</process:inputVariable>
+        <process:inputVariable id="2" name="updateDetailList" type="query" value="com.hsapi.part.data.x_pts.PtsStockCheckDetail[]" valueType="DataObject" pattern="reference">updateDetailList</process:inputVariable>
+        <process:inputVariable id="3" name="deleteDetailList" type="query" value="com.hsapi.part.data.x_pts.PtsStockCheckDetail[]" valueType="DataObject" pattern="reference">deleteDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -317,13 +317,13 @@
   <process:info author="chenziming" createTime="2018-03-09 14:44:10" date="2018-03-09Z" description="" name="saveStockCheck" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="main"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="insertDetailList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="updateDetailList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="deleteDetailList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsStockCheckMain" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="insertDetailList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="updateDetailList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="deleteDetailList"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="main"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsStockCheckMain" name="main"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

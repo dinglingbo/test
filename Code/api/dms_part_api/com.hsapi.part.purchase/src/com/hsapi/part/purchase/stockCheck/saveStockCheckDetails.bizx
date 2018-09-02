@@ -209,13 +209,13 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-09 14:44:10" date="2018-03-09Z" description="" name="saveStockCheck" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="detail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="detail"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsStockCheckMain" name="main"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="insertDetailList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="updateDetailList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PtsStockCheckDetail" name="deleteDetailList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsStockCheckMain" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="insertDetailList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="updateDetailList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.x_pts.PtsStockCheckDetail" name="deleteDetailList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

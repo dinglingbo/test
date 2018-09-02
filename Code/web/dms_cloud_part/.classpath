@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.report/bin" path="com.hsweb.cloud.part.report/src"/>
-	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.primeton.eos/bin" path="com.primeton.eos/src"/>
-	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.basic/bin" path="com.hsweb.cloud.part.basic/src"/>
 	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.common/bin" path="com.hsweb.cloud.part.common/src"/>
-	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.primeton.eos/bin" path="com.primeton.eos/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.settlement/bin" path="com.hsweb.cloud.part.settlement/src"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.report/bin" path="com.hsweb.cloud.part.report/src"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.basic/bin" path="com.hsweb.cloud.part.basic/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/jasperreports-5.6.0.jar"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.cloud.part.purchase/bin" path="com.hsweb.cloud.part.purchase/src"/>
-	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/jasperreports-5.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -155,7 +155,7 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-02-06 16:13:03" date="2018-02-06Z" description="" name="auditEnter" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PtsEnterMain" name="main"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsEnterMain" name="main"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">

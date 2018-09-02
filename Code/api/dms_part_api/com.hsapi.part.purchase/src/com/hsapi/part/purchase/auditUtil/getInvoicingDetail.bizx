@@ -181,7 +181,7 @@
     <process:input description="" isArray="false" name="partId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PtsInvoicingDetail" name="detail"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.x_pts.PtsInvoicingDetail" name="detail"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

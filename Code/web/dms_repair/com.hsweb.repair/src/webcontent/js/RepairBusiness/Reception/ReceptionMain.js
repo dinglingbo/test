@@ -74,6 +74,12 @@ $(document).ready(function ()
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
+        }else if(e.field == "isSettle"){
+            if(e.value == 1){
+                e.cellHtml = "已结算";
+            }else{
+                e.cellHtml = "未结算";
+            }
         }
     });
 
@@ -93,8 +99,8 @@ $(document).ready(function ()
     doSearch(p);
 });
 var statusHash = {
-    "0" : "制单",
-    "1" : "维修",
+    "0" : "报价",
+    "1" : "施工",
     "2" : "完工",
     "3" : "待结算",
     "4" : "已结算"

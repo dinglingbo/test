@@ -11,40 +11,46 @@
      showModified="false"
      editNextOnEnterKey="true"
      allowSortColumn="true">
-    <div property="columns" fitColumns="false">
-        <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+    <div property="columns" >
+        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="配件信息">
             <div property="columns">
-                <div field="partOptBtn" name="partOptBtn" width="30" headerAlign="center" header="操作" align="center"></div>
                 <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
                     <!-- <input property="editor" class="nui-textbox" emptyText="配件编码、名称、拼音" /> -->
                 </div>
-                <div field="receTypeId" headerAlign="center" allowSort="false" visible="true" width="80" header="业务类型">
+                <div field="receTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型">
                     <input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="customid" textField="name" data="receTypeIdList"
                      url="" onvaluechanged="" emptyText=""  vtype="required"/>
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="int" align="right" header="数量">
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="right" header="数量">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" header="单价">
+                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="right" header="单价">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="amt" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" header="金额"></div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" numberFormat="p" header="优惠率">
+                <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right" header="金额"></div>
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="right" numberFormat="p" header="优惠率">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="discountAmt" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="right" header="优惠金额">
+                <div field="discountAmt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right" header="优惠金额">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="60px" header="配件编码">
+                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right">小计金额</div>
+                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码">
                   <input property="editor" vtype="float" class="nui-textbox"/> 
                 </div>
                 <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="60px" header="销售员">
                   <input property="editor" vtype="float" class="nui-textbox"/> 
                 </div>
+                <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center"></div>
             </div>
         </div>
     </div>
+</div>
+<div style="text-align:center;">
+    <span id="carHealthEl" >
+        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
+    </span>
 </div>
 <div id="advancedMorePartWin" class="nui-window"
      title="" style="width:450px;height:200px;"

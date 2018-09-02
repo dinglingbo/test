@@ -21,6 +21,50 @@
     <link href="<%=request.getContextPath()%>/common/nui/themes/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/themes/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
 
+	<style type="text/css">
+    
+    #_sys_tip_msg_ {
+        z-index: 9999;
+        position: fixed;
+        left: -20;
+        top: 190;
+        text-align: center;/* right*/        
+
+
+        
+        width: 100%;/**/
+    }
+     
+    #_sys_tip_msg_ span {
+        background-color: #03C440;
+        /*opacity: .8;*/
+        padding: 15px 20px;
+        border-radius: 5px;
+        text-align: center;
+        
+        word-wrap:break-word;
+        word-break:break-all;
+        overflow: hidden;
+        width: 180px;
+        height: 56px;
+        display:inline-block;
+        
+        color: #fff;
+        font-size: 14px;
+    }
+     
+    #_sys_tip_msg_ span.E {
+        background-color: #FC4236;
+    }
+    
+    #_sys_tip_msg_ span.W {
+        background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
+    }
+    
+    #_sys_tip_msg_ span.small {
+        height: auto;
+    }
+</style>
 </head>
 <body>
     
@@ -52,8 +96,9 @@
                 <!--<a class="dropdown-toggle userinfo">
                     <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
                 </a>-->
-                <a class="dropdown-toggle userinfo">
-	                <img class="user-img" src="res/images/user.jpg" /><span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
+                <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
+	                <!--<img class="user-img" src="res/images/user.jpg" />-->
+	                <span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
 	            </a>
                 <ul class="dropdown-menu pull-right">
                     <li id="orgName"><a href="#">所属：</a></li>
@@ -67,7 +112,7 @@
 
     <div class="main">
         <div id="mainTabs" class="mini-tabs indexTabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
-                buttons="#tabsButtons" arrowPosition="side">
+                buttons="#tabsButtons" arrowPosition="side" ontabload="ontabload">
             <div name="index" iconCls="fa-home" title="首页">
                     <iframe id="formIframe" src="<%=request.getContextPath()%>/purchase/indexCloudPart_view0.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             </div>
@@ -92,6 +137,9 @@
 
 <script>
     var defDomin = "<%=request.getContextPath()%>";
+    var mainTabs = mini.get("mainTabs");
+    var loadingV = false;
+    var obj = {};
     function activeTab(item) {
         var tabs = mini.get("mainTabs");
         var tab = tabs.getTab(item.id);
@@ -101,17 +149,31 @@
         }
         tabs.activeTab(tab);
     }
+    
+    function ontabload(){
+	    if(loadingV){
+    		if(obj){
+    			doInitTab(obj);
+    		}
+    	}
+	}
 
     function activeTabAndInit(item,params) {
         var tabs = mini.get("mainTabs");
         var tab = tabs.getTab(item.id);
+        loadingV = true;
         if (!tab) {
             tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
             tab = tabs.addTab(tab);
-        }
-        tabs.activeTab(tab);
+            
+            tabs.activeTab(tab);
         
-        doInitTab(params);
+        	obj = params;
+        	//doInitTab(params);
+        }else{
+        	tabs.activeTab(tab);
+        	doInitTab(params);
+        }
     }
     
     function doInitTab(params){
@@ -373,5 +435,48 @@
         });
     	
     }
+    
+    var _sysMsg_index;
+	//提示成功信息	
+	function showMsgBox_index(message, life) {
+		var time = 3000;
+		if (life) {
+			time = life;
+		}
+		
+		_sysMsg_index = message;
+        $("#_sys_tip_msg_").remove();
+        
+        if ($("#_sys_tip_msg_").text().length > 0) {
+	    	var msg = "<span>" + message + "</span>";
+	        $("#_sys_tip_msg_").empty().append(msg);
+	    } else {
+			var msg = "<div id='_sys_tip_msg_'><span>" + message + "</span></div>";
+			$("body").append(msg);
+	    }
+		
+		//$("#_sys_tip_msg_").fadeIn(1000);
+  
+		setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
+	};
+	
+	//提示错误信息
+	function showIndexMsg(message, msgType) {
+		showMsgBox_index(message, 2000);
+        if(msgType){
+            $("#_sys_tip_msg_ span").addClass(msgType);
+        }
+        if((""+message).length < 36){
+            $("#_sys_tip_msg_ span").addClass("small");
+        }
+	};
+    
+    function showIndexError(message) {
+		showMsgBox_index(message, "E");
+	};
+    
+    function showIndexWarn(message) {
+		showMsgBox_index(message, "W");
+	};
 
 </script>

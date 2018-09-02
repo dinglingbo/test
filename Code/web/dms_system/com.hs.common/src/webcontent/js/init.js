@@ -66,6 +66,19 @@ function processComp(data){
     _initDmsCallback["initComp"] && _initDmsCallback["initComp"]() && (_initDmsCallback["initComp"] = null);
 }
 
+//配件品牌
+function initPartBrand(id,callback){
+	_initDmsCallback["initPartBrand"] = callback;
+  if(checkObjExists(id, "initPartBrand")){
+      //var url = _sysApiRoot + "/com.hsapi.system.product.cars.carBrand.biz.ext";
+      var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryPartBrand.biz.ext";
+      callAjax(url, {}, processAjax, processPartBrand, null); 
+  }
+}
+function processPartBrand(data){
+  _initDmsObj["initPartBrand"].setData(data);
+  _initDmsCallback["initPartBrand"] && _initDmsCallback["initPartBrand"]() && (_initDmsCallback["initPartBrand"] = null);
+}
 //车辆品牌
 function initCarBrand(id,callback){
 	_initDmsCallback["initCarBrand"] = callback;

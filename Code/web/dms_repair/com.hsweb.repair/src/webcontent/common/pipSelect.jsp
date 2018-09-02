@@ -11,7 +11,7 @@
 -->
 <head>
 <title>产品选择</title>
-<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.1"></script>
 <style type="text/css">
 
 table {
@@ -59,6 +59,7 @@ table {
                     <a class="nui-menubutton" plain="true" menu="#queryItemTab" id="itemTab">套餐</a>
 
                     <ul id="queryItemTab" class="nui-menu" style="display:none;">
+                            <li iconCls="" onclick="queryType(0)" id="type10">客户已购买</li>
                         <li iconCls="" onclick="queryType(1)" id="type10">套餐</li>
                         <li iconCls="" onclick="queryType(2)" id="type11">工时</li>
                         <li iconCls="" onclick="queryType(3)" id="type11">配件</li>
@@ -68,6 +69,8 @@ table {
                     <input class="nui-combobox" name="serviceTypeId" id="serviceTypeId" valueField="id" textField="name"
                            allowInput="true" valueFromSelect="true" visible="false"/>
                     <input name="type" id="type" visible="false" class="nui-combobox" textField="name" valueField="customid"/>
+                    <input class="nui-combobox" name="partBrand" id="partBrand" valueField="id" textField="name"
+                           allowInput="true" valueFromSelect="true" visible="false"/>
                 </td>
             </tr>
         </table>
@@ -76,6 +79,37 @@ table {
         <div class="nui-tabs"
                 id="mainTab" onactivechanged="onTabChanged"
                 activeIndex="0" style="width: 100%; height: 100%;" plain="false" borderStyle="border:0;">
+            <div title="客户已购买">
+                <div  class="nui-fit">
+                    <div class="nui-datagrid" style="width:100%;height:100%;"
+                            id="cardTimesGrid"
+                            dataField="data"
+                            idField="id"
+                            showPager="false"
+                            allowSortColumn="true"
+                            sortMode="client">
+                        <div property="columns">
+                            <div type="expandcolumn" >#</div>
+                            <div field="prdtName" width="100" headerAlign="center" allowSort="true" header="产品名称"></div>
+                            <div field="prdtType" width="60" headerAlign="center" allowSort="true" header="产品类别"></div>
+                            <div field="canUseTimes" width="60" headerAlign="center" allowSort="true" header="可使用次数"></div>
+                            <div field="doTimes" name="doTimes" width="60" headerAlign="center" header="使用中次数"></div>
+                            <div field="balaTimes" width="60" headerAlign="center" allowSort="true" header="剩余次数"></div>
+                        </div>
+                    </div>
+                    <div id="cardDetailGrid_Form" style="display:none;">
+                        <div id="cardTimesDetail" class="nui-datagrid" style="width:100%;"
+                            dataField="data" showPager="false">
+                            <div property="columns">
+                                <div field="prdtName" width="100" headerAlign="center" allowSort="true" header="名称"></div>
+                                <div field="qty" width="60" headerAlign="center" allowSort="true" header="工时/数量"></div>
+                                <div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
+                                <div field="prdtType" width="60" headerAlign="center" allowSort="true" header="类型"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div title="套餐" borderStyle="border:0;">
                 <div  class="nui-fit">
                     <div class="nui-datagrid" style="width:100%;height:100%;"
@@ -141,37 +175,6 @@ table {
                     </div>
                 </div>
 
-            </div>
-            <div title="客户已购买">
-                <div  class="nui-fit">
-                    <div class="nui-datagrid" style="width:100%;height:100%;"
-                            id="packageGrid"
-                            dataField="list"
-                            idField="id"
-                            showPager="true"
-                            totalField="page.count"
-                            pageSize="20"
-                            allowSortColumn="true"
-                            sortMode="client">
-                        <div property="columns">
-                            <div type="expandcolumn" >#</div>
-                            <div field="name" width="100" headerAlign="center" allowSort="true" header="产品名称"></div>
-                            <div field="serviceTypeId" width="60" headerAlign="center" allowSort="true" header="产品类别"></div>
-                            <div field="amount" width="60" headerAlign="center" allowSort="true" header="剩余次数"></div>
-                        </div>
-                    </div>
-                    <div id="detailGrid_Form" style="display:none;">
-                        <div id="packageDetail" class="nui-datagrid" style="width:100%;"
-                            dataField="data" showPager="false">
-                            <div property="columns">
-                                <div field="prdtName" width="100" headerAlign="center" allowSort="true" header="名称"></div>
-                                <div field="qty" width="60" headerAlign="center" allowSort="true" header="工时/数量"></div>
-                                <div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
-                                <div field="prdtType" width="60" headerAlign="center" allowSort="true" header="类型"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

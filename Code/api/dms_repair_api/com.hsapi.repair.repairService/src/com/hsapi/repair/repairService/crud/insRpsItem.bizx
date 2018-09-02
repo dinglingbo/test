@@ -389,6 +389,7 @@
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link54" name="link54" displayName="连接线" type="transition">
       <sourceNode>subprocess2</sourceNode>
@@ -409,6 +410,7 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="cardDetailId" type="query" value="Int" valueType="Primitive" pattern="reference">cardDetailId</process:inputVariable>
         <process:inputVariable id="1" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
+        <process:inputVariable id="2" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">main/guestId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

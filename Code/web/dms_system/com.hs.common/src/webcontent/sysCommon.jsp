@@ -225,8 +225,8 @@
 </script>
 <script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.3" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.7" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/date.js?v=1.1" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.8" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/date.js?v=1.2" type="text/javascript"></script>
 <link href="<%=webPath + contextPath%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
 <link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
@@ -241,45 +241,5 @@
         /**overflow:hidden;**/
     }
     
-    #_sys_tip_msg_ {
-        z-index: 9999;
-        position: fixed;
-        left: -20;
-        top: 90;
-        text-align: center;/* right*/        
-
-
-        
-        width: 100%;/**/
-    }
-     
-    #_sys_tip_msg_ span {
-        background-color: #03C440;
-        /*opacity: .8;*/
-        padding: 15px 20px;
-        border-radius: 5px;
-        text-align: center;
-        
-        word-wrap:break-word;
-        word-break:break-all;
-        overflow: hidden;
-        width: 180px;
-        height: 56px;
-        display:inline-block;
-        
-        color: #fff;
-        font-size: 14px;
-    }
-     
-    #_sys_tip_msg_ span.E {
-        background-color: #FC4236;
-    }
     
-    #_sys_tip_msg_ span.W {
-        background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
-    }
-    
-    #_sys_tip_msg_ span.small {
-        height: auto;
-    }
 </style>

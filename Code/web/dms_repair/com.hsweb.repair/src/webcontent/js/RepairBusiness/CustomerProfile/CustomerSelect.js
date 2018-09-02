@@ -5,6 +5,16 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 $(document).ready(function()
 {
     init();
+
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+     
+    }
 });
 var grid = null;
 var gridUrl = baseUrl+"com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";

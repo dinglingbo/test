@@ -1,28 +1,31 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var payType=0;
 
+var basicInfoForm=null;
+var accountTypeList=null;
+var accountTypeIdEl = null;
+var guestId=null;
+var guestName=null;
+var cardId=null;
+var cardObj=null;
+var name=null;
+//var itemRate=null;
+//var packageRate=null;
+//var partRate=null;
+var giveAmt=null;
+var totalAmt=null;
+var canModify=null;
+var rechargeAmt=null;
+var radio=null;
+var text=null;
+var periodValidity = -1;
+
 $(document).ready(function(){
 	var accountTypeIdEl = null;
 	accountTypeIdEl=nui.get('radio');
 	accountTypeList=[{id:1,name:"现金"},{id:2,name:"刷卡"},{id:3,name:"微信/支付宝"}];
 	accountTypeIdEl.setData(accountTypeList);
-	var basicInfoForm=null;
-	var accountTypeList=null;
-	var accountTypeIdEl = null;
-	var guestId=null;
-	var guestName=null;
-	var cardId=null;
-	var cardObj=null;
-	var name=null;
-//	var itemRate=null;
-//	var packageRate=null;
-//	var partRate=null;
-	var giveAmt=null;
-	var totalAmt=null;
-	var canModify=null;
-	var rechargeAmt=null;
-	var radio=null;
-	var text=null;
+
 
 	getCard();
 	
@@ -106,6 +109,7 @@ function onCard(text){
 						totalAmt=cardObj.totalAmt;
 						canModify=cardObj.canModify;
 						rechargeAmt=cardObj.rechargeAmt;
+						periodValidity=cardObj.periodValidity;
 //						nui.get('itemRate').setValue(itemRate);
 //						nui.get('packageRate').setValue(packageRate);
 //						nui.get('partRate').setValue(partRate);
@@ -154,7 +158,8 @@ function pay(){
 //			packageRate	: packageRate,	
 //			partRate	: partRate,
 			rechargeAmt	: rechargeAmt,
-			totalAmt 	: totalAmt
+			totalAmt 	: totalAmt,
+			periodValidity : periodValidity
 	};
 	stored.push(form);
 	nui.mask({

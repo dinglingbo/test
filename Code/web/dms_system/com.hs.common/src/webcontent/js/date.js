@@ -279,15 +279,121 @@ function getMonths(date1 , date2){
 
 //两个日期相减得到天数
 function dateDiff(date1, date2) {
-            var type1 = typeof date1, type2 = typeof date2;
-            if (type1 == 'string')
-                date1 = stringToTime(date1);
-            else if (date1.getTime)
-                date1 = date1.getTime();
-            if (type2 == 'string')
-                date2 = stringToTime(date2);
-            else if (date2.getTime)
-                date2 = date2.getTime();
-            //alert((date1 - date2) / (1000*60*60)); 
-            return (date2 - date1) / (1000 * 60 * 60 * 24); //结果是小时 
-        }
+    var type1 = typeof date1, type2 = typeof date2;
+    if (type1 == 'string')
+        date1 = stringToTime(date1);
+    else if (date1.getTime)
+        date1 = date1.getTime();
+    if (type2 == 'string')
+        date2 = stringToTime(date2);
+    else if (date2.getTime)
+        date2 = date2.getTime();
+    //alert((date1 - date2) / (1000*60*60)); 
+    return (date2 - date1) / (1000 * 60 * 60 * 24); //结果是小时 
+}
+
+
+//判断是否闰年
+//参数        intYear 代表年份的值
+//return    true: 是闰年   false: 不是闰年
+function IsLeapYear(intYear) {
+  if (intYear % 100 == 0) {
+      if (intYear % 400 == 0) { return true; }
+  }
+  else {
+      if ((intYear % 4) == 0) { return true; }
+  }
+  return false;
+};
+//日期加年，加月，加天的方法
+//加年日期功能 OK
+function AddYearNumsDate(p_date, YearNums) {
+  if (!YearNums && YearNums == '') {
+      YearNums = 0;
+  }
+  YearNums = parseInt(YearNums);
+  var monthNums = YearNums * 12;
+  return AddMonthNumsDate(p_date, monthNums);
+};
+//加月 日期功能 OK
+function AddMonthNumsDate(p_date, MonthNums) {
+  if (!MonthNums && MonthNums == '') {
+      MonthNums = 0;
+  }
+  MonthNums = parseInt(MonthNums);
+  var t_date = new Date(p_date);
+  //记录开始月日
+  var M = t_date.getMonth() + 1;
+  var D = t_date.getDate();
+  //获取当前月最大天数
+  var s_max_D =GetMaxDays(t_date.getFullYear(), t_date.getMonth(), 0); 
+  var isMaxDay = false;
+  if (D == s_max_D) isMaxDay = true;
+  //
+  t_date.setMonth(t_date.getMonth() + parseInt(MonthNums));       
+  //
+  //ShowAlert(isMaxDay + " " + s_max_D + " " + D);
+  if (isMaxDay == true) {
+      var e_max_D = GetMaxDays(t_date.getFullYear(), t_date.getMonth(), 0);        
+      t_date.setDate(e_max_D);            
+  }    
+  if (0 != MonthNums) {
+      t_date.setDate(t_date.getDate() - 1);  //减一天
+  }
+  //
+  return t_date.Format('yyyy-MM-dd');
+};
+//获取年月的最大天数 OK
+function GetMaxDays(year, month, day_0) {
+  //2月
+  if (IsLeapYear(year) == true) {
+      if (1 == month) return 29;   //是闰年2月29天
+  }
+  else {
+      if (1 == month) return 28;   //是平年2月28天
+  }
+  if (0 == month) return 31;   //1月
+  if (2 == month) return 31;   //3月
+  if (3 == month) return 30;   //4月
+  if (4 == month) return 31;   //5月
+  if (5 == month) return 30;   //6月
+  if (6 == month) return 31;   //7月
+  if (7 == month) return 31;   //8月
+  //
+  if (8 == month) return 30;   //9月
+  if (9 == month) return 31;   //10月
+  if (10 == month) return 30;   //11月
+  if (11 == month) return 31;   //12月
+}
+//加天 日期功能 OK
+function AddDayNumsDate(p_date, DayNums) {
+  if (!DayNums && DayNums == '') {
+      DayNums = 1;
+  }
+  DayNums = parseInt(DayNums);
+  var t_date = new Date(p_date);
+  //
+  DayNums -= 1;
+  t_date.setDate(t_date.getDate() + parseInt(DayNums));
+  //
+  return t_date.Format('yyyy-MM-dd');
+};
+//Date类原型扩展方法
+Date.prototype.Format = function (fmt) { //author: meizz   
+    var o = {
+        "M+": this.getMonth() + 1,                 //月份   
+        "d+": this.getDate(),                    //日   
+        "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时           
+        "H+": this.getHours(), //小时 
+        "m+": this.getMinutes(),                 //分   
+        "s+": this.getSeconds(),                 //秒   
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度   
+        "S": this.getMilliseconds()             //毫秒   
+    };
+    if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+};

@@ -152,6 +152,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="220" y="90"/>
@@ -181,7 +182,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.common.stockquery.queryHSStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.common.stockquery.queryHSStock</process:from>
       <process:to type="query">namesql</process:to>
     </process:copy>
     <process:copy>

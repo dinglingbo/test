@@ -240,7 +240,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">mainId</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjSellOrderMainChk</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjSellOrderMainChk</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">isSend</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
@@ -288,6 +288,7 @@
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="495" y="151"/>
@@ -342,9 +343,9 @@
       <process:partner type="literal">this.savePjPackNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="packMain" type="query" value="com.hsapi.part.data.pts.PjPackMain" valueType="DataObject" pattern="reference">packMain</process:inputVariable>
-        <process:inputVariable id="1" name="packDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="packDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailDelete</process:inputVariable>
-        <process:inputVariable id="3" name="packDetailList" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject" pattern="reference">packDetailList</process:inputVariable>
+        <process:inputVariable id="1" name="packDetailAdd" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="packDetailDelete" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailDelete</process:inputVariable>
+        <process:inputVariable id="3" name="packDetailList" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject" pattern="reference">packDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -468,7 +469,7 @@
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.XPjPackDetail[]" valueType="DataObject">packDetail</process:outputVariable>
+        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PjPackDetail[]" valueType="DataObject">packDetail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

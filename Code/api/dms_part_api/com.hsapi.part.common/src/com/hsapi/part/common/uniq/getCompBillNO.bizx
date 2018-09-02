@@ -358,8 +358,8 @@
     <location x="719" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo6label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.BillNOUtils.getMaxNOToStr</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.BillNOUtils.getMaxNOToStr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

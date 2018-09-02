@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.part.common,com.hsapi.part.data,com.eos.foun
- dation,com.hs.common
+Require-Bundle: com.hsapi.part.common,com.hsapi.part.baseDataCrud,com.
+ hsapi.part.data,com.hs.common
 eos-webCtxPath: invoice
 Bundle-Vendor: Administrator
 Bundle-Version: 1.0.0

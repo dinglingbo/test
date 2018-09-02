@@ -107,7 +107,7 @@
         <process:inputVariable id="0" name="partId" type="query" value="String" valueType="Primitive" pattern="reference">part/partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="partStock" type="query" value="com.hsapi.part.data.pts.XPjPartStock" valueType="DataObject">partStock</process:outputVariable>
+        <process:outputVariable id="0" name="partStock" type="query" value="com.hsapi.part.data.pts.PjPartStock" valueType="DataObject">partStock</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -163,8 +163,8 @@
     <location x="225" y="182"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.baseDataCrud.crud.queryPartCommon</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.baseDataCrud.crud.queryPartCommon</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="partId" type="query" value="Int" valueType="Primitive" pattern="reference">partId</process:inputVariable>
         <process:inputVariable id="1" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">partCode</process:inputVariable>
@@ -188,7 +188,7 @@
   <process:info author="Administrator" createTime="2018-07-03 14:44:38" date="2018-07-03Z" description="" name="queryPartCommon" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.QuickPartWithStock" name="part"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.XPjPartStock" name="partStock"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStock" name="partStock"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="partId" primitiveType="Int"/>

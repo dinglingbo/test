@@ -90,7 +90,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.com.ComGuest</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.com.ComGuest</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

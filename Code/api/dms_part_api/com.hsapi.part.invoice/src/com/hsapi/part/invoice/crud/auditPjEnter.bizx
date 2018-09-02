@@ -131,7 +131,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="srcDataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">auditMainObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.XPjEnterMainChk</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjEnterMainChk</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -158,7 +158,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="objs" type="query" value="java.lang.Object" valueType="Java" pattern="reference">auditDetailsObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.XPjEnterDetailChk</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjEnterDetailChk</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -380,9 +380,9 @@
       <process:partner type="literal">this.savePjEnterNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.PjEnterMain" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
-        <process:inputVariable id="1" name="enterDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="enterDetailUpdate" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailUpdate</process:inputVariable>
-        <process:inputVariable id="3" name="enterDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailDelete</process:inputVariable>
+        <process:inputVariable id="1" name="enterDetailAdd" type="query" value="com.hsapi.part.data.pts.PjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="enterDetailUpdate" type="query" value="com.hsapi.part.data.pts.PjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailUpdate</process:inputVariable>
+        <process:inputVariable id="3" name="enterDetailDelete" type="query" value="com.hsapi.part.data.pts.PjEnterDetail[]" valueType="DataObject" pattern="reference">enterDetailDelete</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -468,7 +468,7 @@
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject">details</process:outputVariable>
+        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PjEnterDetail[]" valueType="DataObject">details</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1170,7 +1170,7 @@
       <process:partner type="literal">this.updatePchsOrderToEnter</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.part.data.pts.PjEnterMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="enterDetail" type="query" value="com.hsapi.part.data.pts.XPjEnterDetail[]" valueType="DataObject" pattern="reference">details</process:inputVariable>
+        <process:inputVariable id="1" name="enterDetail" type="query" value="com.hsapi.part.data.pts.PjEnterDetail[]" valueType="DataObject" pattern="reference">details</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

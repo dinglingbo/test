@@ -92,7 +92,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="srcDataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">auditMainObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMain</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMain</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -119,7 +119,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="objs" type="query" value="java.lang.Object" valueType="Java" pattern="reference">auditDetailsObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderDetail</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderDetail</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -465,7 +465,7 @@
       <process:to type="query">main/id</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderDetailChk</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -697,13 +697,13 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-26 21:02:48" date="2018-02-26Z" description="" name="auditPjPchsOrder" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="main"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="detail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="main"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPchsOrderDetailChk" name="detail"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="auditMainObj"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="auditDetailsObj"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" name="auditMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="auditDetails"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMain" name="auditMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPchsOrderDetail" name="auditDetails"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="auditSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>

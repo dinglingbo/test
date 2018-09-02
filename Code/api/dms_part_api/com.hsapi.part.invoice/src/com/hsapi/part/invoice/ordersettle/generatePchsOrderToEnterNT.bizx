@@ -219,7 +219,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.XPjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -434,7 +434,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array" displayName="add2Array" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array" displayName="add2Array" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -443,8 +443,8 @@
     <location x="615" y="149"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -672,7 +672,7 @@
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.XPjPchsOrderDetailChk[]" valueType="DataObject">detail</process:outputVariable>
+        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject">detail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

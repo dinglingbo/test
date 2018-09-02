@@ -200,7 +200,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.XPjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1143,7 +1143,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1200,7 +1200,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo10label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1549,7 +1549,7 @@
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="enterAuditDetail" type="query" value="com.hsapi.part.data.pts.XPjEnterDetailChk[]" valueType="DataObject">enterChks</process:outputVariable>
+        <process:outputVariable id="0" name="enterAuditDetail" type="query" value="com.hsapi.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">enterChks</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1944,7 +1944,7 @@
     <figSize height="17" width="71"/>
     <node>invokePojo9</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo12" name="appendList3" displayName="appendList2" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo12" name="appendList3" displayName="appendList" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link61" name="link61" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo12</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -1954,7 +1954,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo12label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -2034,7 +2034,6 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterPrice" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="recordId" primitiveType="Long"/>
     <process:variable anyType="java.util.List" description="" historyStateLocation="client" isArray="false" name="sellRecordList"/>
@@ -2052,6 +2051,7 @@
     <process:variable description="批次的来源" historyStateLocation="client" isArray="false" name="batchSourceId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="enterChks"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="enterChk"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="mainenter"/>

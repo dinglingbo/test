@@ -542,7 +542,7 @@
     <location x="360" y="96"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
@@ -618,7 +618,7 @@
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">enterMain/id</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.XPjEnterDetailChk[]" valueType="DataObject">details</process:outputVariable>
+        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">details</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

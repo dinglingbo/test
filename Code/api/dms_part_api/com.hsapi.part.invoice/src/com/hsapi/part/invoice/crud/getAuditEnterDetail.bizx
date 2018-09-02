@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.part.data.pts.XPjEnterDetailChk[]" name="enterAuditDetail" type="query" valueType="DataObject">enterAuditDetail</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.PjEnterDetailChk[]" name="enterAuditDetail" type="query" valueType="DataObject">enterAuditDetail</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -64,7 +64,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjEnterDetailChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjEnterDetailChk</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>

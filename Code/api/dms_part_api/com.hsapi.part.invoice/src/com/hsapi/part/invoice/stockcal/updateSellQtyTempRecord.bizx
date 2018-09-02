@@ -844,7 +844,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -1161,7 +1161,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStoreStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -1683,7 +1683,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStoreStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -1838,7 +1838,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign32label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStoreStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -2241,13 +2241,13 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.svr.getStoreById</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.svr.getStoreById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="id" type="query" value="Long" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="store" type="query" value="com.hsapi.cloud.part.data.com.ComStore" valueType="DataObject">storeInfo</process:outputVariable>
-        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"/>
+        <process:outputVariable id="0" name="store" type="query" value="com.hsapi.part.data.com.ComStore" valueType="DataObject">storeInfo</process:outputVariable>
+        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -2266,13 +2266,13 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.svr.getStoreById</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.svr.getStoreById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="id" type="query" value="Long" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="store" type="query" value="com.hsapi.cloud.part.data.com.ComStore" valueType="DataObject">storeInfo</process:outputVariable>
-        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"/>
+        <process:outputVariable id="0" name="store" type="query" value="com.hsapi.part.data.com.ComStore" valueType="DataObject">storeInfo</process:outputVariable>
+        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -2307,7 +2307,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStoreStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -2492,7 +2492,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign43label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStoreStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -2698,36 +2698,36 @@
   <process:info author="Administrator" createTime="2017-07-13 10:10:24" date="2017-07-13Z" description="" name="updateSellQtyTempRecord" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord" name="sellRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="stockStoreRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="stockStoreRecords"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStock" name="stockRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="stockStoreRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="stockStoreRecords"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStock" name="stockRecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="size" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComStore" name="storeGrids"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComStore" name="storeInfo"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.com.ComStore" name="storeGrids"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComStore" name="storeInfo"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="prevOrderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outableQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord" name="sellRecords"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPartStock" name="stockRecords"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecords"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPartStock" name="stockRecords"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="diffQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="prevSellRecordQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="diffAdjustQty" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="stockStoreRecordTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="stockStoreRecordTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sellSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sellSignt" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdPart"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="nbillQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="nlockQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdStoreStock"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPartStoreStock" name="storeStockList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPartStoreStock" name="storeStockList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumOrderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumOccupyQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sumOutableQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cdStock"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPartStock" name="stock"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPartStock" name="stock"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="detailId" primitiveType="Long"/>

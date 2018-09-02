@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.part.data.pts.XPjPchsOrderMain" name="main" type="query" valueType="DataObject">main</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.PjPchsOrderMain" name="main" type="query" valueType="DataObject">main</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -39,7 +39,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPchsOrderMain</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMain</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

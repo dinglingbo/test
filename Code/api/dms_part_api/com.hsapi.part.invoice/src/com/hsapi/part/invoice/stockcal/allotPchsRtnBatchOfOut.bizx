@@ -192,7 +192,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.XPjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -395,7 +395,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjSellQtyTempRecord</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -997,7 +997,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo13label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ListUtils.appendList</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.ListUtils.appendList</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

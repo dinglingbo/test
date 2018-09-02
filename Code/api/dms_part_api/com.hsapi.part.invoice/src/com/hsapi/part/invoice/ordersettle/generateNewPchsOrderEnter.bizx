@@ -28,8 +28,8 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="orderMainAudit" type="query" valueType="DataObject">orderMainAudit</process:return>
-      <process:return id="3" language="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" name="orderDetailAudit" type="query" valueType="DataObject">orderDetailAudit</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="orderMainAudit" type="query" valueType="DataObject">orderMainAudit</process:return>
+      <process:return id="3" language="com.hsapi.part.data.pts.PjPchsOrderDetailChk[]" name="orderDetailAudit" type="query" valueType="DataObject">orderDetailAudit</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -124,14 +124,14 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">CGD</process:inputVariable>
         <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">orderNO</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -295,13 +295,13 @@
     <location x="-186" y="50"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderMainChkById</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.invoice.svr.getPjPchsOrderMainChkById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject">main</process:outputVariable>
+        <process:outputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.PjPchsOrderMainChk" valueType="DataObject">main</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -329,13 +329,13 @@
     <location x="-102" y="49"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.svr.getPjPchsOrderDetailChkById</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.invoice.svr.getPjPchsOrderDetailChkById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject">detail</process:outputVariable>
+        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject">detail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -616,7 +616,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="srcDataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">mainObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMainChk</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -643,7 +643,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="objs" type="query" value="java.lang.Object" valueType="Java" pattern="reference">detailObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderDetailChk</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -944,7 +944,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="srcDataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">mainObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMain</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMain</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -971,7 +971,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="objs" type="query" value="java.lang.Object" valueType="Java" pattern="reference">detailObj</process:inputVariable>
-      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderDetail</process:inputVariable>
+      <process:inputVariable id="1" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderDetail</process:inputVariable>
       <process:inputVariable id="2" name="convertAll" type="literal" value="boolean" valueType="Java" pattern="reference">true</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -1179,8 +1179,8 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.generatePchsOrderToEnterNT</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">orderMainAudit</process:inputVariable>
-        <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">orderDetailAudit</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">orderMainAudit</process:inputVariable>
+        <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">orderDetailAudit</process:inputVariable>
         <process:inputVariable id="2" name="orderMainId" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -1351,32 +1351,32 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderDetailChk" name="temp"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="pmain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="pmain"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pe"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isInner" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="sell"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="sell"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="codeId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="mainTemp"/>
-    <process:variable description="采购订单未审表" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" name="orderMain"/>
-    <process:variable description="采购订单未审表" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="orderDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="mainTemp"/>
+    <process:variable description="采购订单未审表" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMain" name="orderMain"/>
+    <process:variable description="采购订单未审表" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPchsOrderDetail" name="orderDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderNO" primitiveType="String"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="mainObj"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="detailObj"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="orderTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail" name="dTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderDetail" name="orderTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderDetail" name="dTemp"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="main"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="detail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjPchsOrderDetailChk" name="detail"/>
     <process:input description="" isArray="false" name="orderMainId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="采购订单已审表" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="orderMainAudit"/>
-    <process:output description="采购订单已审表" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="orderDetailAudit"/>
+    <process:output description="采购订单已审表" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="orderMainAudit"/>
+    <process:output description="采购订单已审表" isArray="true" modelType="com.hsapi.part.data.pts.PjPchsOrderDetailChk" name="orderDetailAudit"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

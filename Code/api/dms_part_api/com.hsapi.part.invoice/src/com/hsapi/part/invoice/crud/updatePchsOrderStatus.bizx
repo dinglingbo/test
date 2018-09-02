@@ -146,7 +146,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMainChk</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -229,7 +229,7 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-23 19:32:06" date="2018-05-23Z" description="" name="updatePchsOrderStatus" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="pchsOrder"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="pchsOrder"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">

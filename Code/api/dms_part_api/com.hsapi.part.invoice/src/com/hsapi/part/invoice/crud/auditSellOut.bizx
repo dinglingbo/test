@@ -536,7 +536,7 @@
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.XPjOutDetailChk[]" valueType="DataObject">details</process:outputVariable>
+        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PjOutDetailChk[]" valueType="DataObject">details</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

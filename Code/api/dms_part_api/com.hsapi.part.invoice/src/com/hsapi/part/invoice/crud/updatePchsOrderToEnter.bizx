@@ -49,7 +49,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPchsOrderDetailChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderDetailChk</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -440,7 +440,7 @@
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="add2Array" displayName="add2Array" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="add2Array" displayName="add2Array" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -449,8 +449,8 @@
     <location x="851" y="106"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

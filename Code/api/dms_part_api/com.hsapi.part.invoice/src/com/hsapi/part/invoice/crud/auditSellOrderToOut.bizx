@@ -105,7 +105,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjSellOrderDetailChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjSellOrderDetailChk</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -191,7 +191,7 @@
       <process:partner type="literal">com.hsapi.part.invoice.stockcal.allotBatchOfOutChk</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.PjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
         <process:inputVariable id="2" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">050202</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -486,7 +486,7 @@
       <process:partner type="literal">com.hsapi.part.invoice.stockcal.allotPchsRtnBatchOfOut</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainenter" type="query" value="com.hsapi.part.data.pts.PjSellOrderMainChk" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.XPjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="1" name="details" type="query" value="com.hsapi.part.data.pts.PjSellOrderDetailChk[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
         <process:inputVariable id="2" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">050201</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>

@@ -69,7 +69,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStoreStock</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>

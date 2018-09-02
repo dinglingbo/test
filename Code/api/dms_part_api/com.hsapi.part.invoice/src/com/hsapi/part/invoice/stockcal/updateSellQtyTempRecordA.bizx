@@ -143,7 +143,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartStoreStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStoreStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -620,7 +620,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjSellQtyTempRecord</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjSellQtyTempRecord</process:from>
       <process:to type="query">cdRecord/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -789,7 +789,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

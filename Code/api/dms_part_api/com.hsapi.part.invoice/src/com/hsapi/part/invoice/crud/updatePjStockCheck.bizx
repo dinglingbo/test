@@ -357,7 +357,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordA</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.updateSellQtyTempRecordA</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/id</process:inputVariable>
@@ -516,7 +516,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordA</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.updateSellQtyTempRecordA</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/id</process:inputVariable>
@@ -775,7 +775,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordA</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.updateSellQtyTempRecordA</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/id</process:inputVariable>
@@ -1034,13 +1034,13 @@
     <location x="-315" y="58"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.svr.getPjStockCheckDetailById</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.part.invoice.svr.getPjStockCheckDetailById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/id</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject">detail</process:outputVariable>
+        <process:outputVariable id="0" name="detailList" type="query" value="com.hsapi.part.data.pts.PjStockCheckDetail[]" valueType="DataObject">detail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1112,7 +1112,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.stockcal.updateSellQtyTempRecordD</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.stockcal.updateSellQtyTempRecordD</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">orderMain/id</process:inputVariable>
@@ -1218,7 +1218,7 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckDetail" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStockCheckDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="detailId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxAmt" primitiveType="Float"/>
@@ -1229,21 +1229,21 @@
     <process:variable description="010101 收据 010102 普票 010103 增票" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxRate" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComGuest" name="guest"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isInner" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="morderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="morderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="storeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="receiveStoreId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckDetail" name="detail"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjStockCheckDetail" name="detail"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckMain" name="orderMain"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckDetail" name="orderDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckDetail" name="orderDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckDetail" name="orderDetailDelete"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjStockCheckDetail" name="orderDetailList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjStockCheckMain" name="orderMain"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjStockCheckDetail" name="orderDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjStockCheckDetail" name="orderDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjStockCheckDetail" name="orderDetailDelete"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjStockCheckDetail" name="orderDetailList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

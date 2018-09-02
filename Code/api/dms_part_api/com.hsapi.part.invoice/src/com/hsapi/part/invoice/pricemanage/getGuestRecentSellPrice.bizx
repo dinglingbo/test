@@ -27,13 +27,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-140" y="261"/>
-    <figSize height="20" width="31"/>
+    <location x="-137" y="261"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="584" y="261"/>
-    <figSize height="20" width="31"/>
+    <location x="587" y="261"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -79,8 +79,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="2" y="261"/>
-    <figSize height="20" width="31"/>
+    <location x="5" y="261"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
@@ -94,7 +94,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjGuestPartPrice</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjGuestPartPrice</process:from>
       <process:to type="query">condGuestPrice/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -123,8 +123,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="159" y="261"/>
-    <figSize height="20" width="40"/>
+    <location x="163" y="261"/>
+    <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
@@ -146,8 +146,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="84" y="202"/>
-    <figSize height="20" width="40"/>
+    <location x="88" y="202"/>
+    <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="查询1" displayName="查询" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -186,8 +186,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="246" y="261"/>
-    <figSize height="20" width="40"/>
+    <location x="250" y="261"/>
+    <figSize height="17" width="32"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
@@ -221,8 +221,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="350" y="261"/>
-    <figSize height="20" width="40"/>
+    <location x="354" y="261"/>
+    <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
@@ -240,8 +240,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="350" y="202"/>
-    <figSize height="20" width="40"/>
+    <location x="354" y="202"/>
+    <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -259,8 +259,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="246" y="159"/>
-    <figSize height="20" width="40"/>
+    <location x="250" y="159"/>
+    <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -274,8 +274,8 @@
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="451" y="159"/>
-    <figSize height="20" width="40"/>
+    <location x="455" y="159"/>
+    <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
   <topRuler/>
@@ -286,8 +286,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="partId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condGuestPrice"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjGuestPartPrice" name="condGuestPriceList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjGuestPartPrice" name="condGuestPriceRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjGuestPartPrice" name="condGuestPriceList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjGuestPartPrice" name="condGuestPriceRecord"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="orgid，partId" isArray="false" name="params"/>

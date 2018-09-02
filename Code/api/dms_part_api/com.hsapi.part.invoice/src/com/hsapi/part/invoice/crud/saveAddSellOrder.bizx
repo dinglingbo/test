@@ -22,7 +22,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjSellOrderMain" name="main" type="query" valueType="DataObject">main</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.PjSellOrderMain" name="main" type="query" valueType="DataObject">main</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -110,14 +110,14 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">XSD</process:inputVariable>
         <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -302,12 +302,12 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMain" name="main"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="main"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMain" name="main"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMain" name="main"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

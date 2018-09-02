@@ -87,11 +87,11 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updatePjStockCheck</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckMain" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
-        <process:inputVariable id="1" name="orderDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="orderDetailUpdate" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailUpdate</process:inputVariable>
-        <process:inputVariable id="3" name="orderDetailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailDelete</process:inputVariable>
-        <process:inputVariable id="4" name="orderDetailList" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailList</process:inputVariable>
+        <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.part.data.pts.PjStockCheckMain" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
+        <process:inputVariable id="1" name="orderDetailAdd" type="query" value="com.hsapi.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="orderDetailUpdate" type="query" value="com.hsapi.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailUpdate</process:inputVariable>
+        <process:inputVariable id="3" name="orderDetailDelete" type="query" value="com.hsapi.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailDelete</process:inputVariable>
+        <process:inputVariable id="4" name="orderDetailList" type="query" value="com.hsapi.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -127,8 +127,8 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertPjStockCheck</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckMain" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
-        <process:inputVariable id="1" name="orderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailAdd</process:inputVariable>
+        <process:inputVariable id="0" name="orderMain" type="query" value="com.hsapi.part.data.pts.PjStockCheckMain" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
+        <process:inputVariable id="1" name="orderDetail" type="query" value="com.hsapi.part.data.pts.PjStockCheckDetail[]" valueType="DataObject" pattern="reference">orderDetailAdd</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -162,8 +162,8 @@
     <location x="291" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.BillStateUtils.getColumnIntValue</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.BillStateUtils.getColumnIntValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -201,14 +201,14 @@
     <location x="424" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.BillStateUtils.getColumnDateValue</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.BillStateUtils.getColumnDateValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">orderMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjStockCheckMain</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjStockCheckMain</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">operateDate</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
@@ -277,7 +277,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.svr.queryPjStockCheckMainList</process:partner>
+      <process:partner type="literal">com.hsapi.part.invoice.svr.queryPjStockCheckMainList</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="1" name="pageIndex" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>

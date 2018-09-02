@@ -88,9 +88,9 @@
       <process:partner type="literal">this.updatePjPchsOrder</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="pchsOrderMain" type="query" value="com.hsapi.part.data.pts.PjPchsOrderMain" valueType="DataObject" pattern="reference">pchsOrderMain</process:inputVariable>
-        <process:inputVariable id="1" name="pchsOrderDetailAdd" type="query" value="com.hsapi.part.data.pts.XPjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="pchsOrderDetailUpdate" type="query" value="com.hsapi.part.data.pts.XPjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailUpdate</process:inputVariable>
-        <process:inputVariable id="3" name="pchsOrderDetailDelete" type="query" value="com.hsapi.part.data.pts.XPjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailDelete</process:inputVariable>
+        <process:inputVariable id="1" name="pchsOrderDetailAdd" type="query" value="com.hsapi.part.data.pts.PjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="pchsOrderDetailUpdate" type="query" value="com.hsapi.part.data.pts.PjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailUpdate</process:inputVariable>
+        <process:inputVariable id="3" name="pchsOrderDetailDelete" type="query" value="com.hsapi.part.data.pts.PjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailDelete</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -127,7 +127,7 @@
       <process:partner type="literal">this.insertPjPchsOrder</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="pchsOrderMain" type="query" value="com.hsapi.part.data.pts.PjPchsOrderMain" valueType="DataObject" pattern="reference">pchsOrderMain</process:inputVariable>
-        <process:inputVariable id="1" name="pchsOrderDetail" type="query" value="com.hsapi.part.data.pts.XPjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
+        <process:inputVariable id="1" name="pchsOrderDetail" type="query" value="com.hsapi.part.data.pts.PjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -161,14 +161,14 @@
     <location x="291" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hsapi.part.common.BillStateUtils.getColumnIntValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">pchsOrderMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMainChk</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">auditSign</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
@@ -200,14 +200,14 @@
     <location x="424" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hsapi.part.common.BillStateUtils.getColumnDateValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">pchsOrderMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMain</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMain</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">operateDate</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>

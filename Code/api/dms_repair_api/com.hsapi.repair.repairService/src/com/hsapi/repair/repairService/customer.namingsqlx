@@ -125,6 +125,7 @@
 			a.car_no carNo,
 			a.guest_id guestId,
 			b.full_name guestFullName,
+			b.mobile as guestMobile,
 			a.car_model_id carModelId,
 			a.car_model carModel,
 			a.car_brand_id carBrandId,
@@ -180,13 +181,39 @@
             <isNotEmpty prepend="and" property="carModel">  
                 (a.car_model like '%$carModel$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="carVin">  
+                (a.vin like '%$carVin$%')
+            </isNotEmpty>
            
             <isNotEmpty prepend="and" property="mobile">  
-                (b.mobile like '%$mobile$%')
+                (b.mobile like '%$mobile$%' or d.mobile like '%$mobile$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestFullName">  
                 (b.full_name like '%$guestFullName$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="contactor">  
+                (d.name like '%$contactor$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (b.full_name like '%$name$%' or d.name like '%$name$%')
+            </isNotEmpty>
+            
+             <!--纯数字  手机，车牌，车驾号-->
+            <isNotEmpty prepend="and" property="nums">  
+                (b.mobile like '%$nums$%' or d.mobile like '%$nums$%' or a.car_no like '%$nums$%' or a.vin like '%$nums$%')
+            </isNotEmpty>
+             
+             <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">  
+                (a.car_no like '%$letters$%' or a.vin like '%$letters$%')
+            </isNotEmpty>
+             
+             <!--包含中文   只按名称查询 -->
+            <isNotEmpty prepend="and" property="chis">  
+                (b.full_name like '%$chis$%' or d.name like '%$chis$%')
+            </isNotEmpty>
+             
         </dynamic>
+        order by a.id
 	</select>
 </sqlMap>

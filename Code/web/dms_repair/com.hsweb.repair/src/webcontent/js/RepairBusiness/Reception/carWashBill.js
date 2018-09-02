@@ -7,6 +7,9 @@ var mainGrid = null;
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
 var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
+var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
+var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
+var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 
 var billForm = null;
 
@@ -16,10 +19,12 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var receTypeIdList = [];
 var receTypeIdHash = {};
+var memList = [];
 var serviceTypeIdEl = null;
 var mtAdvisorIdEl = null;
 var searchNameEl = null;
 var servieIdEl = null;
+var searchKeyEl = null;
 
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
@@ -27,11 +32,25 @@ var rpsPartGrid = null;
 var packageDetailGrid = null;
 var packageDetailGridForm = null;
 
+var advancedCardTimesWin = null;
+var cardTimesGrid = null;
+var advancedMemCardWin = null;
+var memCardGrid = null;
+
+var fserviceId = 0;
 var fguestId = 0;
 var fcarId = 0;
 var mpackageRate = 0;
 var mitemRate = 0;
 var mpartRate = 0;
+var x = 0;
+var y = 0;
+
+var prdtTypeHash = {
+    "1":"套餐",
+    "2":"工时",
+    "3":"配件"
+};
 
 $(document).ready(function ()
 {
@@ -40,11 +59,94 @@ $(document).ready(function ()
     rpsPartGrid = nui.get("rpsPartGrid");
 
     billForm = new nui.Form("#billForm");
+    advancedCardTimesWin = nui.get("advancedCardTimesWin");
+    cardTimesGrid = nui.get("cardTimesGrid");
+    cardTimesGrid.setUrl(cardTimesGridUrl);
+    advancedMemCardWin = nui.get("advancedMemCardWin");
+    memCardGrid = nui.get("memCardGrid");
+    memCardGrid.setUrl(memCardGridUrl);
+
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     serviceTypeIdEl = nui.get("serviceTypeId");
     searchNameEl = nui.get("search_name");
     servieIdEl = nui.get("servieIdEl");
-    
+    searchKeyEl = nui.get("search_key");
+    searchKeyEl.setUrl(guestInfoUrl);
+    searchKeyEl.on("beforeload",function(e){
+        if(fserviceId){
+            e.cancel = true;
+            return;
+        }
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<3){
+            e.cancel = true;
+            return;
+        }else{
+            var reg = /^[0-9]*$/;//纯数字
+            if(reg.test(value)){
+                params.nums = value;
+
+                data.params = params;
+                e.data =data;
+                return;
+            }
+
+            //包含字母
+            var reg = /[a-z]/i;
+            if(reg.test(value)){
+                params.letters = value;
+
+                data.params = params;
+                e.data =data;
+                return;
+            }
+
+            //包含中文
+            var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+            if(reg.test(value)){
+                params.chis = value;
+
+                data.params = params;
+                e.data =data;
+                return;
+            }
+        }
+    });
+    searchKeyEl.on("valuechanged",function(e){
+        var item = e.selected;
+        if(fserviceId){
+            return;
+        }
+        if (item) { 
+            var sk = document.getElementById("search_key");
+            sk.style.display = "none";
+
+            searchNameEl.setVisible(true);
+
+            var carNo = item.carNo||"";
+            var tel = item.guestMobile||"";
+            var guestName = item.guestFullName||"";
+            var carVin = item.vin||"";
+            if(tel){
+                tel = "/"+tel;
+            }
+            if(guestName){
+                guestName = "/"+guestName;
+            }
+            if(carVin){
+                carVin = "/"+carVin;
+            }
+            var t = carNo + tel + guestName + carVin;
+            searchNameEl.setValue(t);
+            //searchNameEl.setEnabled(false);
+
+            doSetMainInfo(item);
+        }
+    });
+    searchKeyEl.focus();
     // innerItemGrid = nui.get("innerItemGrid");
     // innerPartGrid = nui.get("innerPartGrid");
     // innerItemGrid.setUrl(itemGridUrl);
@@ -53,9 +155,11 @@ $(document).ready(function ()
     // beginDateEl.setValue(getMonthStartDate());
     // endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
-    document.getElementById("formIframe").src=webPath + contextPath + "/repair/common/pipSelect.jsp";
+    document.getElementById("formIframe").src=webPath + contextPath + "/repair/common/pipSelect.jsp?token"+token;
 
-    initMember("mtAdvisorId",null);
+    initMember("mtAdvisorId",function(){
+        memList = mtAdvisorIdEl.getData();
+    });
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -98,36 +202,88 @@ $(document).ready(function ()
     //     }
     // });
 
-    add();
+    //add();
     rpsPackageGrid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+
         switch (e.field) {
             case "packageOptBtn":
-                    e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                                '<span class="fa fa-plus" onClick="javascript:addPackNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
-                                ' <span class="fa fa-close" onClick="javascript:deletePackRow()" title="删除行"></span>';
-                    break;
+                var s = '<a class="optbtn" href="javascript:newRow()">修改</a>'
+                        + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
+
+                if (grid.isEditingRow(record)) {
+                    s = '<a class="optbtn" href="javascript:newRow()">确定</a>'
+                        + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
+                }
+                e.cellHtml = s;
+                 //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                           // '<span class="fa fa-plus" onClick="javascript:addPackNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
+                            //' <span class="fa fa-close" onClick="javascript:deletePackRow()" title="删除行"></span>';
+                break;
+            case "serviceTypeId":
+                if(servieTypeHash[e.value])
+                {
+                    e.cellHtml = servieTypeHash[e.value].name;
+                }
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
             default:
                 break;
         }
     });
     rpsItemGrid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+
         switch (e.field) {
             case "itemOptBtn":
-                    e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                                '<span class="fa fa-plus" onClick="javascript:addItemNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
-                                ' <span class="fa fa-close" onClick="javascript:deleteItemRow()" title="删除行"></span>';
-                    break;
+                var s = '<a class="optbtn" href="javascript:newRow()">修改</a>'
+                        + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
+
+                if (grid.isEditingRow(record)) {
+                    s = '<a class="optbtn" href="javascript:newRow()">确定</a>'
+                        + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
+                }
+
+                //e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                //            '<span class="fa fa-plus" onClick="javascript:addItemNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
+                //            ' <span class="fa fa-close" onClick="javascript:deleteItemRow()" title="删除行"></span>';
+                e.cellHtml = s
+                break;
             default:
                 break;
         }
     });
     rpsPartGrid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+
         switch (e.field) {
             case "partOptBtn":
-                    e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                                '<span class="fa fa-plus" onClick="javascript:addPartNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
-                                ' <span class="fa fa-close" onClick="javascript:deletePartRow()" title="删除行"></span>';
-                    break;
+                var s = '<a class="optbtn" href="javascript:newRow()">修改</a>'
+                        + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
+
+                if (grid.isEditingRow(record)) {
+                    s = '<a class="optbtn" href="javascript:newRow()">确定</a>'
+                        + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
+                }
+                e.cellHtml = s;
+                //e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                            //'<span class="fa fa-plus" onClick="javascript:addPartNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
+                            //' <span class="fa fa-close" onClick="javascript:deletePartRow()" title="删除行"></span>';
+                break;
             case "receTypeId":
                 if (receTypeIdHash && receTypeIdHash[e.value]) {
                     e.cellHtml = receTypeIdHash[e.value].name;
@@ -136,8 +292,67 @@ $(document).ready(function ()
                 break;
         }
     });   
-    //doSearch(p);
+    
+    cardTimesGrid.on("drawcell",function(e)
+    {
+        if(e.field == "prdtType" && prdtTypeHash[e.value])
+        {
+            e.cellHtml = prdtTypeHash[e.value];
+        }
+        if(e.field == "doTimes")
+        {
+            var row = e.row;
+            var balaTimes = row.balaTimes || 0;
+            var canUseTimes = row.canUseTimes||0;
+            e.cellHtml = balaTimes - canUseTimes;
+        }
+    });
+    memCardGrid.on("drawcell",function(e)
+    {
+        var row = e.row;
+        if(e.field == "balaAmt")
+        {
+            var totalAmt = row.totalAmt || 0;
+            var useAmt = row.useAmt||0;
+            e.cellHtml = totalAmt - useAmt;
+        }
+        if(e.field == "periodValidity")
+        {
+            if(e.value == -1){
+                e.cellHtml = "永久有效";
+            }else{
+                var st = row.modifyDate;
+                e.cellHtml = AddMonthNumsDate(st,e.value);
+            }
+        }
+    });
+
+
+    // document.onmousedown=function(event){ 
+    //     var i = 0;
+    // };
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+	  
+	    if((keyCode==78)&&(event.altKey))  {  //新建
+			add();	
+	    } 
+	  
+	    if((keyCode==83)&&(event.altKey))  {   //保存
+			save();
+	    } 
+	  
+	    // if((keyCode==80)&&(event.altKey))  {   //打印
+		// 	onPrint();
+	    // } 
+	    // if((keyCode==113))  {  
+		// 	addMorePart();
+		// } 
+	 
+	}
 });
+
 var statusHash = {
     "0" : "制单",
     "1" : "维修",
@@ -235,28 +450,43 @@ function onSearchClick(){
         return;
     }
     selectCustomer(function (car) {
-        maintain.carId = car.id;
-        maintain.carNo = car.carNo;
-        maintain.carVin = car.vin;
-        maintain.engineNo = car.engineNo;
-        maintain.contactorId = car.contactorId;
-        maintain.contactorName = car.contactName;
-        maintain.identity = car.identity;
-        maintain.mobile = car.mobile;
-        maintain.guestFullName = car.guestFullName;
-        maintain.guestId = car.guestId;
-        maintain.carModel = car.carModel;
-
-        mpackageRate = 0;
-        mitemRate = 0;
-        mpartRate = 0;
-
-        billForm.setData(maintain);
-
-        fguestId = car.guestId||0;
-        fcarId = car.id||0;
-
+        doSetMainInfo(car);
     });
+}
+function doSetMainInfo(car){
+    var maintain = billForm.getData();
+    maintain.carId = car.id;
+    maintain.carNo = car.carNo;
+    maintain.carVin = car.vin;
+    maintain.engineNo = car.engineNo;
+    maintain.contactorId = car.contactorId;
+    maintain.contactorName = car.contactName;
+    maintain.identity = car.identity;
+    maintain.mobile = car.mobile;
+    maintain.guestFullName = car.guestFullName;
+    maintain.guestId = car.guestId;
+    maintain.carModel = car.carModel;
+    maintain.billTypeId = 2;
+    maintain.serviceTypeId = 3;
+    maintain.mtAdvisorId = currEmpId;
+    maintain.mtAdvisor = currUserName;
+    maintain.recordDate = now;
+
+    mpackageRate = 0;
+    mitemRate = 0;
+    mpartRate = 0;
+
+    billForm.setData(maintain);
+
+    fguestId = car.guestId||0;
+    fcarId = car.id||0;
+
+    doSearchCardTimes(fguestId);
+    doSearchMemCard(fguestId);
+    
+    $("#guestNameEl").html(car.guestFullName);
+    $("#showCarInfoEl").html(car.carNo);
+    $("#guestTelEl").html(car.mobile);
 }
 function selectCustomer(callback) {
     nui.open({
@@ -274,6 +504,13 @@ function selectCustomer(callback) {
         }
     });
 }
+function setInitData(params){
+    if(!params.id){
+        add();
+    }else{
+        showMsg("加载");
+    }
+}
 function add(){
     // $("#servieIdEl").html("综合开单详情");
     // $("#carNoEl").html("");
@@ -284,12 +521,17 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
-    searchNameEl.setEnabled(true);
-    searchNameEl.setText("");
+    searchNameEl.setVisible(false);
+    searchNameEl.setEnabled(false);
+    searchNameEl.setValue("");
+    var sk = document.getElementById("search_key");
+    sk.style.display = "";
+    searchKeyEl.focus();
 
-    rpsPackageGrid.setData([]);
-    rpsItemGrid.setData([]);
-    rpsPartGrid.setData([]);
+
+    rpsPackageGrid.clearRows();
+    rpsItemGrid.clearRows();
+    rpsPartGrid.clearRows();
     billForm.setData([]);
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);
@@ -300,10 +542,17 @@ function add(){
     nui.get("serviceTypeId").setValue(3);
     nui.get("recordDate").setValue(now);
 
-    var row = {};
-    rpsPackageGrid.addRow(row);
-    rpsItemGrid.addRow(row);
-    rpsPartGrid.addRow(row);
+    fguestId = 0;
+    fcarId = 0;
+
+    document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
+    $("#servieIdEl").html("");
+    $("#showCardTimesEl").html("次卡套餐(0)");
+    $("#showCardEl").html("储值卡(0)");
+    $("#showCarInfoEl").html("");
+    $("#guestNameEl").html("");
+    $("#guestTelEl").html("");
+
 }
 function save(){
     nui.mask({
@@ -318,20 +567,20 @@ function save(){
         if(data.id){
             $("#servieIdEl").html(data.serviceCode);
             var carNo = data.carNo||"";
-            var tel = data.carNo||"";
-            var guestName = data.carNo||"";
+            var tel = nui.get("mobile").getValue()||"";
+            var guestName = nui.get("guestFullName").getValue()||"";
             var carVin = data.carVin||"";
             if(tel){
-                tel += "/"+tel;
+                tel = "/"+tel;
             }
             if(guestName){
-                guestName += "/"+guestName;
+                guestName = "/"+guestName;
             }
             if(carVin){
-                carVin += "/"+carVin;
+                carVin = "/"+carVin;
             }
             var t = carNo + tel + guestName + carVin;
-            searchNameEl.setText(t);
+            searchNameEl.setValue(t);
             searchNameEl.setEnabled(false);
             
         }
@@ -356,6 +605,7 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
+    data.billTypeId = 2;
     
     nui.ajax({
         url : saveMaintainUrl,
@@ -369,6 +619,7 @@ function saveMaintain(callback,unmaskcall){
             if (data.errCode == "S") {
                 unmaskcall && unmaskcall();
                 var main = data.data;
+                fserviceId = main.id||0;
                 callback && callback(main);
             } else {
                 unmaskcall && unmaskcall();
@@ -382,17 +633,68 @@ function saveMaintain(callback,unmaskcall){
         }
     });
 }
-function addPrdt(){
-    var row = {};
-    rpsPackageGrid.addRow(row);
-    rpsItemGrid.addRow(row);
-    rpsPartGrid.addRow(row);
+var loadMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
+function loadMaintain(callback,unmaskcall){
+    var data = billForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+            unmaskcall && unmaskcall();
+            showMsg(requiredField[key] + "不能为空!","W");
+			return;
+		}
+    }
+    data.billTypeId = 2;
+    
+    nui.ajax({
+        url : saveMaintainUrl,
+        type : "post",
+        data : JSON.stringify({
+            maintain : data,
+            token : token
+        }),
+        success : function(data) {
+            data = data || {};
+            if (data.errCode == "S") {
+                unmaskcall && unmaskcall();
+                var main = data.data;
+                fserviceId = main.id||0;
+                callback && callback(main);
+            } else {
+                unmaskcall && unmaskcall();
+                showMsg(data.errMsg || "保存单据失败","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
-function checkPrdt(){
+function addPrdt(data){
+    if(!fguestId){
+        showMsg("请先保存工单!","E");
+        return;
+    }
+    var type = data.type||-1;
+    var rtnRow = data.rtnRow||{};
     var row = {};
     rpsPackageGrid.addRow(row);
-    rpsItemGrid.addRow(row);
-    rpsPartGrid.addRow(row);
+    //rpsItemGrid.addRow(row);
+    //rpsPartGrid.addRow(row);
+}
+function checkPrdt(data){
+    if(!fguestId){
+        showMsg("请先保存工单!","E");
+        return;
+    }
+    var type = data.type||-1;
+    var rtnRow = data.rtnRow||{};
+    if(type == 0){
+
+    }else if(type == 1){
+
+    }
 }
 function addPackNewRow(){
     var newRow = {};
@@ -418,15 +720,14 @@ function deletePackRow(){
         rpsPackageGrid.removeRow(row);
     }
 }
-function deleteItemRow(){
+function deleteItemRow(row_uid){
     var data = rpsItemGrid.getData();
+    var row = rpsItemGrid.getRowByUID(row_uid);
     if(data && data.length==1){
-        var row = rpsItemGrid.getSelected();
-        rpsItemGrid.removeRow(row);
+        rpsItemGrid.removeRow(data[0]);
         var newRow = {};
         rpsItemGrid.addRow(newRow);
     }else{
-        var row = rpsItemGrid.getSelected();
         rpsItemGrid.removeRow(row);
     }
 }
@@ -441,4 +742,142 @@ function deletePartRow(){
         var row = rpsPartGrid.getSelected();
         rpsPartGrid.removeRow(row);
     }
+}
+function showCardTimes(){
+    if(!fguestId || advancedCardTimesWin.visible) {
+        advancedCardTimesWin.hide();
+        cardTimesGrid.clearRows();
+        return;
+    }
+
+    var atEl = document.getElementById("cardPackageEl");  
+    advancedCardTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    advancedMemCardWin.hide();
+    memCardGrid.clearRows();
+
+    doSearchCardTimes(fguestId);
+}
+function showCard(){
+    if(!fguestId || advancedMemCardWin.visible) {
+        advancedMemCardWin.hide();
+        memCardGrid.clearRows();
+        return;
+    }
+
+    var atEl = document.getElementById("clubCardEl");  
+    advancedMemCardWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    advancedCardTimesWin.hide();
+    cardTimesGrid.clearRows();
+    doSearchMemCard(fguestId);
+}
+function showHealth(){
+    window.open("http://www.baidu.com?backurl="+window.location.href); 
+}
+function doSearchCardTimes(guestId)
+{
+    cardTimesGrid.clearRows();
+    if(!guestId) return;
+
+    var p = {};
+    p.detailFinish = 0;
+    p.guestId = guestId;
+    p.notPast = 1;
+    p.status = 2;
+    cardTimesGrid.load({
+    	token:token,
+        p:p
+    },function(){
+        var data = cardTimesGrid.getData();
+        var len = data.length||0;
+        $("#showCardTimesEl").html("次卡套餐("+len+")");
+        document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
+    });
+}
+function doSearchMemCard(guestId)
+{
+    memCardGrid.clearRows();
+    if(!guestId) return;
+
+    memCardGrid.load({
+    	token:token,
+        guestId:guestId
+    },function(){
+        var data = memCardGrid.getData();
+        var len = data.length||0;
+        $("#showCardEl").html("储值卡("+len+")");
+    });
+}
+function addGuest(){
+    var title = "新增客户资料";
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        title: title, width: 560, height: 570,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var params = {};
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if("ok" == action)
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getSaveData();
+                var carNo = data.carNo||"";
+                var mobile = data.mobile||"";
+                var guestName = data.guestFullName||"";
+                if(carNo){
+                    searchKeyEl.setValue(carNo);
+                    searchKeyEl.setText(carNo);
+                    searchKeyEl.doQuery();
+                    return;
+                }
+                if(mobile){
+                    searchKeyEl.setValue(mobile);
+                    searchKeyEl.setText(mobile);
+                    searchKeyEl.doQuery();
+                    return;
+                }
+                if(guestName){
+                    searchKeyEl.setValue(guestName);
+                    searchKeyEl.setText(guestName);
+                    searchKeyEl.doQuery();
+                    return;
+                }
+
+            }
+        }
+    });
+}
+function onCloseClick(e){
+    var obj = e.sender;
+    obj.setText("");
+    obj.setValue("");
+    var row = rpsPackageGrid.getSelected();
+    var newRow = {workerIds:"",workers:""};
+    rpsPackageGrid.updateRow(row, newRow);
+}
+function onworkerChanged(e){
+    var obj = e.sender;
+    var rows = e.selecteds;
+    var workerIds = "";
+    var workerIdList = [];
+    if(!rows || rows.length==0){
+        workerIds = "";
+    }else{
+        for(var i=i; i<rows.length; i++){
+            var row = rows[i];
+            var empId = row.empId;
+            workerIdList.push(empId);
+        }
+
+        if(workerIdList&&workerIdList.length>0){
+            workerIds = workerIdList.join(",");
+        }else{
+            workerIds = "";
+        }
+    }
+    var row = rpsPackageGrid.getSelected();
+    var newRow = {workerIds:workerIds};
+    rpsPackageGrid.updateRow(row, newRow);
 }

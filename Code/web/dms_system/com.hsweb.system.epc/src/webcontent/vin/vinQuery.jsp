@@ -14,8 +14,8 @@
     <%@include file="/common/sysCommon.jsp" %>
     <link href="<%=contextPath%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     
-    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=contextPath%>/epc/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.1" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/vin/js/vinQuery.js?v=1.4" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;

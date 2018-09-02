@@ -4,6 +4,7 @@
 
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
 
+var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
 var packageGridUrl = baseUrl+"com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
 var packageDetailUrl = baseUrl+"com.hsapi.repair.baseData.rpb_package.getPackageDetail.biz.ext";
 var itemGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
@@ -14,6 +15,9 @@ var queryItemEl = null;
 var queryValueEL = null;
 var queryTabIdEl = null;
 var mainTabEl = null;
+var cardTimesGrid = null;
+var cardTimesDetail = null;
+var cardDetailGrid_Form = null;
 var packageGrid = null;
 var packageDetail = null;
 var detailGrid_Form = null;
@@ -23,6 +27,8 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var typeList = [];
 var typeHash = {};
+var brandList = [];
+var brandHash = {};
 
 var callback = null;
 var checkcallback = null;
@@ -38,11 +44,58 @@ $(document).ready(function ()
 });
 function init()
 {
+    cardTimesGrid = nui.get("cardTimesGrid");
+    cardTimesGrid.setUrl(cardTimesGridUrl);
+    cardTimesDetail = nui.get("cardTimesDetail");
+    cardTimesDetail.setUrl(packageDetailUrl);
+    cardDetailGrid_Form = document.getElementById("cardDetailGrid_Form");
+
     packageGrid = nui.get("packageGrid");
     packageGrid.setUrl(packageGridUrl);
     packageDetail = nui.get("packageDetail");
     packageDetail.setUrl(packageDetailUrl);
     detailGrid_Form = document.getElementById("detailGrid_Form");
+
+    cardTimesGrid.on("beforeload",function(e)
+    {
+        e.data["token"] = "";
+    });
+    cardTimesGrid.on("drawcell",function(e)
+    {
+        if(e.field == "prdtType" && prdtTypeHash[e.value])
+        {
+            e.cellHtml = prdtTypeHash[e.value];
+        }
+    });
+    cardTimesGrid.on("showrowdetail",function(e)
+    {
+        var grid = e.sender;
+        var row = e.record;
+        if(row.prdtType != 1) return;
+
+        var td = grid.getRowDetailCellEl(row);
+        td.appendChild(cardDetailGrid_Form);
+        cardDetailGrid_Form.style.display = "block";
+        cardTimesDetail.clearRows();
+        loadCardTimesDetailByPkgId(row.prdtId,function(){});
+    });
+    cardTimesDetail.on("drawcell",function(e)
+    {
+        if(e.field == "prdtType" && prdtTypeHash[e.value])
+        {
+            e.cellHtml = prdtTypeHash[e.value];
+        }
+    });
+    cardTimesGrid.on("drawcell",function(e)
+    {
+        if(e.field == "doTimes")
+        {
+            var row = e.row;
+            var balaTimes = row.balaTimes || 0;
+            var canUseTimes = row.canUseTimes||0;
+            e.cellHtml = balaTimes - canUseTimes;
+        }
+    });
 
     packageGrid.on("beforeload",function(e)
     {
@@ -117,7 +170,14 @@ function init()
         e.data["token"] = "";
         e.data["page/isCount"] = true;
     });
-    partGrid.setUrl(partGridUrl);
+    partGrid.setUrl(partGridUrl);    
+    partGrid.on("drawcell",function(e)
+    {
+        if(e.field == "partBrandId" && brandHash[e.value])
+        {
+            e.cellHtml = brandHash[e.value].name;
+        }
+    });
   
     //queryTabIdEl = nui.get("queryTabId");
     mainTabEl = nui.get("mainTab");
@@ -137,8 +197,20 @@ function init()
 			typeHash[v.customid] = v;
 		});
     });
+	initPartBrand('partBrand',function(data){
+		brandList = nui.get('partBrand').getData();
+        brandList.forEach(function(v) {
+            brandHash[v.id] = v;
+        });
+    });
 
-    onSearch();
+    //onSearch();
+}
+function loadCardTimesDetailByPkgId(pkgId,callback)
+{
+    cardTimesDetail.load({
+        packageId:pkgId
+    },callback);
 }
 function loadPackageDetailByPkgId(pkgId,callback)
 {
@@ -154,8 +226,10 @@ function queryType(t){
         menuqueryItemTab.setText("工时");
     }else if(t == 3){
         menuqueryItemTab.setText("配件");
+    }else if(t == 0){
+        menuqueryItemTab.setText("客户已购买");
     }
-    var index = parseInt(t) - 1;
+    var index = parseInt(t);
     var tab = mainTabEl.getTab(index);
     mainTabEl.activeTab(tab);
 }
@@ -164,6 +238,19 @@ function onTabChanged(e){
 	var title = tab.title;
     var menuqueryItemTab = nui.get("itemTab");
     menuqueryItemTab.setText(title);
+    var tabIdx = mainTabEl.activeIndex;
+    if(tabIdx == 1)
+    {
+        doSearchPackage(params);
+    }
+    else if(tabIdx == 2)
+    {
+        doSearchItem(params);
+    }
+    else if(tabIdx == 3)
+    {
+        doSearchPart(params);
+    }
 }
 function getSearchParams()
 {
@@ -176,23 +263,28 @@ function onSearch()
 {
     var params = getSearchParams();
     var tabIdx = mainTabEl.activeIndex;
-    if(tabIdx == 0)
+    if(tabIdx == 1)
     {
         doSearchPackage(params);
     }
-    else if(tabIdx == 1)
+    else if(tabIdx == 2)
     {
         doSearchItem(params);
     }
-    else if(tabIdx == 2)
+    else if(tabIdx == 3)
     {
         doSearchPart(params);
     }
 }
+function doSetCardTimes(data)
+{
+    cardTimesGrid.clearRows();
+    cardTimesGrid.setData(data);
+}
 function doSearchPackage(params)
 {
     var p = {};
-    p.name = params.code;
+    p.name = params.name;
     p.serviceTypeId = params.serviceTypeId;
     p.isDisabled = 0;
     packageGrid.clearRows();
@@ -235,14 +327,19 @@ function onOk()
     if(tabIdx == 0)
     {
         type = 1;
-        node = packageGrid.getSelected();
+        node = cardTimesGrid.getSelected();
     }
     else if(tabIdx == 1)
+    {
+        type = 1;
+        node = packageGrid.getSelected();
+    }
+    else if(tabIdx == 2)
     {
         type = 2;
         node = itemGrid.getSelected();
     }
-    else if(tabIdx == 2)
+    else if(tabIdx == 3)
     {
         type = 3;
         node = partGrid.getSelected();

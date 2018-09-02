@@ -158,7 +158,7 @@
 
     <div class="main">
         <div id="mainTabs" class="mini-tabs main-tabs" activeIndex="0" style="height:100%;" plain="false"
-             buttons="#tabsButtons" arrowPosition="side">
+             buttons="#tabsButtons" arrowPosition="side" ontabload="ontabload">
             <div name="index" iconCls="fa-home" title="首页"> 
                 <iframe id="formIframe" src="<%=request.getContextPath()%>/purchase/indexCloudPart_view0.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             </div>
@@ -183,6 +183,9 @@
 </html>
 <script>
     var defDomin = "<%=request.getContextPath()%>";
+    var mainTabs = mini.get("mainTabs");
+    var loadingV = false;
+    var obj = {};
     function activeTab(item) {
         var tabs = mini.get("mainTabs");
         var tab = tabs.getTab(item.id);
@@ -192,19 +195,30 @@
         }
         tabs.activeTab(tab);
     }
-    
+
+    function ontabload(){
+	    if(loadingV){
+    		if(obj){
+    			doInitTab(obj);
+    		}
+    	}
+	}
+	
     function activeTabAndInit(item,params) {
         var tabs = mini.get("mainTabs");
         var tab = tabs.getTab(item.id);
+        loadingV = true;
         if (!tab) {
             tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
             tab = tabs.addTab(tab);
             
             tabs.activeTab(tab);
         
-        	doInitTab(params);
+        	obj = params;
+        	//doInitTab(params);
         }else{
         	tabs.activeTab(tab);
+        	doInitTab(params);
         }
         
     }
@@ -216,6 +230,7 @@
     	if(iframe.contentWindow && iframe.contentWindow.setInitData){
     		iframe.contentWindow.setInitData(params);
     	}
+    	obj = {};
     }
     
     function toClose(){

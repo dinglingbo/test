@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" name="pchs" type="query" valueType="DataObject">pchs</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.PjPchsOrderMain" name="pchs" type="query" valueType="DataObject">pchs</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -43,7 +43,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMain</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMain</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -120,13 +120,13 @@
   <process:info author="Administrator" createTime="2018-05-25 17:11:00" date="2018-05-25Z" description="" name="judgePchsOrder" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" name="pchslist"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPchsOrderMain" name="pchslist"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="sellMainId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" name="pchs"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMain" name="pchs"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -26,7 +26,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.cloud.part.data.pts.RtnRecord[]" name="rtnRecord" type="query" valueType="DataObject">rtnRecord</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.RtnRecord[]" name="rtnRecord" type="query" valueType="DataObject">rtnRecord</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -64,13 +64,13 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="p" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pGuestId</process:inputVariable>
         <process:inputVariable id="1" name="rtnQty" type="query" value="Float" valueType="Primitive" pattern="reference">rtnQty</process:inputVariable>
-        <process:inputVariable id="2" name="rtnCheckRecord" type="query" value="com.hsapi.cloud.part.data.pts.RtnRecord[]" valueType="DataObject" pattern="reference">rtnRecord</process:inputVariable>
+        <process:inputVariable id="2" name="rtnCheckRecord" type="query" value="com.hsapi.part.data.pts.RtnRecord[]" valueType="DataObject" pattern="reference">rtnRecord</process:inputVariable>
         <process:inputVariable id="3" name="isNeedExclude" type="literal" value="Short" valueType="Primitive" pattern="reference">0</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="rtnRecord" type="query" value="com.hsapi.cloud.part.data.pts.RtnRecord[]" valueType="DataObject">guestEnterRecord</process:outputVariable>
+        <process:outputVariable id="2" name="rtnRecord" type="query" value="com.hsapi.part.data.pts.RtnRecord[]" valueType="DataObject">guestEnterRecord</process:outputVariable>
         <process:outputVariable id="3" name="remainQty" type="query" value="Float" valueType="Primitive">remainQty</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -104,13 +104,13 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="p" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pStock</process:inputVariable>
         <process:inputVariable id="1" name="rtnQty" type="query" value="Float" valueType="Primitive" pattern="reference">remainQty</process:inputVariable>
-        <process:inputVariable id="2" name="rtnCheckRecord" type="query" value="com.hsapi.cloud.part.data.pts.RtnRecord[]" valueType="DataObject" pattern="reference">rtnRecord</process:inputVariable>
+        <process:inputVariable id="2" name="rtnCheckRecord" type="query" value="com.hsapi.part.data.pts.RtnRecord[]" valueType="DataObject" pattern="reference">rtnRecord</process:inputVariable>
         <process:inputVariable id="3" name="isNeedExclude" type="literal" value="Short" valueType="Primitive" pattern="reference">1</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="rtnRecord" type="query" value="com.hsapi.cloud.part.data.pts.RtnRecord[]" valueType="DataObject">stockRecord</process:outputVariable>
+        <process:outputVariable id="2" name="rtnRecord" type="query" value="com.hsapi.part.data.pts.RtnRecord[]" valueType="DataObject">stockRecord</process:outputVariable>
         <process:outputVariable id="3" name="remainQty" type="query" value="Float" valueType="Primitive">remainQty</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -248,7 +248,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -308,9 +308,9 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-04-16 22:48:55" date="2018-04-16Z" description="" name="getPchsRtnableRecord" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="供应商对应的可退货记录" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="guestEnterRecord"/>
-    <process:variable description="库存" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="stockRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="temp"/>
+    <process:variable description="供应商对应的可退货记录" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.RtnRecord" name="guestEnterRecord"/>
+    <process:variable description="库存" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.RtnRecord" name="stockRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.RtnRecord" name="temp"/>
     <process:variable description="分配后剩余需要分配的数量" historyStateLocation="client" isArray="false" name="remainQty" primitiveType="Decimal"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pGuestId"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pStock"/>
@@ -324,7 +324,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="rtnRecord"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.RtnRecord" name="rtnRecord"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

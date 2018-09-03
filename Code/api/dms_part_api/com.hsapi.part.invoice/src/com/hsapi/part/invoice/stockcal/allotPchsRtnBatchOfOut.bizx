@@ -553,7 +553,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="rtnRecord" type="query" value="com.hsapi.cloud.part.data.pts.RtnRecord[]" valueType="DataObject">outableDetails</process:outputVariable>
+        <process:outputVariable id="2" name="rtnRecord" type="query" value="com.hsapi.part.data.pts.RtnRecord[]" valueType="DataObject">outableDetails</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1127,17 +1127,17 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="billQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outaleQty" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="outableDetails"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="outableDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.RtnRecord" name="outableDetails"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.RtnRecord" name="outableDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="noTaxPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord" name="sellRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecord"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="recordId" primitiveType="Long"/>
     <process:variable anyType="java.util.List" description="" historyStateLocation="client" isArray="false" name="sellRecordList"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord" name="sellRecordArr"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellQtyTempRecord" name="sellRecordArr"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rootId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sourceId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mNoTaxAmt" primitiveType="Float"/>

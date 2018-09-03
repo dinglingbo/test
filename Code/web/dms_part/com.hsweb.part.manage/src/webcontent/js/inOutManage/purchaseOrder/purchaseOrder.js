@@ -290,9 +290,9 @@ function ontopTabChanged(e){
 		if(name == "partInfoTab"){
 			//mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartInfo.jsp", tab);
 		}else if(name == "partStockInfoTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp", tab);
+			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containStock.jsp", tab);
 		}else if(name == "purchaseAdvanceTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containOrderCart.jsp", tab);
+			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containOrderCart.jsp", tab);
 			
 		}else if(name == "billmain"){
 			var data = rightGrid.getChanges();

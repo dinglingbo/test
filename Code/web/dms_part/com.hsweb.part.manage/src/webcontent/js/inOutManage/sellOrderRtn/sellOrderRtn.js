@@ -1154,7 +1154,7 @@ function ontopTabChanged(e){
     var url = tab.url;
     if(!url){
         if(name == "guestOrdrTab"){
-            mainTabs.loadTab(webPath + contextPath + "/purchase/sellOrderRtn/pchsRtnOrderSettle_view0.jsp", tab);
+            mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/sellOrderRtn/pchsRtnOrderSettle_view0.jsp", tab);
         }else if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0){

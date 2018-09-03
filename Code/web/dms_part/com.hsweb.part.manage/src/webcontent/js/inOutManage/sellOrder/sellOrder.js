@@ -86,7 +86,7 @@ $(document).ready(function(v)
     billmainTab = mainTabs.getTab("billmain");
     partInfoTab = mainTabs.getTab("partInfoTab");
     document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp?token="+token;
-    document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp?token="+token;
+    document.getElementById("formIframePart").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartInfo.jsp?token="+token;
     //document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
     //document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
 
@@ -351,11 +351,11 @@ function ontopTabChanged(e){
     var url = tab.url;
     if(!url){
         if(name == "guestOrdrTab"){
-            mainTabs.loadTab(webPath + contextPath + "/purchase/sellOrder/pchsOrderSettle_view0.jsp?token="+token, tab);
+            mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/sellOrder/pchsOrderSettle_view0.jsp?token="+token, tab);
         }else if(name == "partStockInfoTab"){
-            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp?token="+token, tab);
+            mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containStock.jsp?token="+token, tab);
         }else if(name == "purchaseAdvanceTab"){
-            mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containOrderCart.jsp?token="+token, tab);
+            mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containOrderCart.jsp?token="+token, tab);
         }else if(name == "billmain"){
             var data = rightGrid.getChanges();
             if(data && data.length > 0){

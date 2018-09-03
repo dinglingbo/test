@@ -642,7 +642,7 @@
     <figSize height="20" width="77"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="仓库" displayName="propertyToStringArr" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="仓库" displayName="propertyToStringArr" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo14</targetNode>
@@ -651,8 +651,8 @@
     <location x="144" y="149"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.propertyToStringArr</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToStringArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

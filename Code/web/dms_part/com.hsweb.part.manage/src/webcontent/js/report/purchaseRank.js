@@ -1,8 +1,8 @@
-var baseUrl = apiPath + cloudPartApi + "/";
-var supplierGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsSupplier.biz.ext";
-var partGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsPart.biz.ext";
-var partBrandGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsPartBrand.biz.ext";
-var partTypeGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryPchsPartType.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var supplierGridUrl = baseUrl + "com.hsapi.part.query.report.queryPchsSupplier.biz.ext";
+var partGridUrl = baseUrl + "com.hsapi.part.query.report.queryPchsPart.biz.ext";
+var partBrandGridUrl = baseUrl + "com.hsapi.part.query.report.queryPchsPartBrand.biz.ext";
+var partTypeGridUrl = baseUrl + "com.hsapi.part.query.report.queryPchsPartType.biz.ext";
 
 var partBrandList = [];
 var brandHash = {};

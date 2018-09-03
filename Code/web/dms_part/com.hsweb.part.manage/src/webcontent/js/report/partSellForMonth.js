@@ -1,5 +1,5 @@
-var baseUrl = apiPath + cloudPartApi + "/";
-var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellPartForMonth.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var rightGridUrl = baseUrl + "com.hsapi.part.query.report.querySellPartForMonth.biz.ext";
 
 var partBrandList = [];
 var brandHash = {};

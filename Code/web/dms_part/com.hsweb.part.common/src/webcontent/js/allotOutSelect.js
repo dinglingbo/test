@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.part.purchase.svr.queryPtsOutMainDetail.biz.ext";
-
+                       
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;

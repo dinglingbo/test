@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOutMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOutDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -650,7 +650,7 @@ var requiredField = {
     orderMan: "业务员",
     outDate : "移仓日期"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOut.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjSellOut.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -825,7 +825,7 @@ function selectPart(callback,checkcallback)
     });*/
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.outableEnterSelect.flow",
+        url: "com.hsweb.part.manage.outableEnterSelect.flow",
         title: "入库记录选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -846,7 +846,7 @@ function addSellOutDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.shiftPopOperate.flow",
+        url: "com.hsweb.part.manage.shiftPopOperate.flow",
         title: "移仓数量", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -1031,7 +1031,7 @@ function checkStockOutQty(){
     }
     return msg;
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjShiftOut.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditPjShiftOut.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -1138,7 +1138,7 @@ function onGuestValueChanged(e)
     params.pny = e.value;
     setGuestInfo(params);
 }
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 
 function onPrint() {
     var row = leftGrid.getSelected();
@@ -1146,7 +1146,7 @@ function onPrint() {
 
         nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.shiftPositionPrint.flow?ID="
+            url : "com.hsweb.part.manage.shiftPositionPrint.flow.flow?ID="
                     + row.id,// "view_Guest.jsp",
             title : "移仓单打印",
             width : 900,

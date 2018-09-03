@@ -1,6 +1,6 @@
-var baseUrl = apiPath + cloudPartApi + "/";
-var rightGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellClientForMonth.biz.ext";
-
+var baseUrl = apiPath + partApi + "/";
+var rightGridUrl = baseUrl + "com.hsapi.part.query.report.querySellClientForMonth.biz.ext";
+                              
 var partBrandList = [];
 var brandHash = {};
 var guestTypeHash = {};

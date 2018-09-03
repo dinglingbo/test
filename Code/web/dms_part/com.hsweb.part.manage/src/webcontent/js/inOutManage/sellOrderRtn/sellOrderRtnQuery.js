@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsOrderMainDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryPjPchsOrderMainDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -280,7 +280,7 @@ function selectSupplier(elId)
 {
     supplier = null;
     nui.open({
-        targetWindow: window,
+        targetWindow: window,      
         url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,

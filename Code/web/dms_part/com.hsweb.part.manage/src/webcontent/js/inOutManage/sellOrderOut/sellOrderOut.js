@@ -2,11 +2,11 @@
  * Created by Administrator on 2018/2/23.
  */
 var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
-var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
-var enterUrl = baseUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
+var partInfoUrl = baseUrl + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";
+var enterUrl = baseUrl + "com.hsapi.part.invoice.stockcal.queryOutableEnterGridWithPage.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -335,7 +335,7 @@ function loadMainAndDetailInfo(row)
    }
 }
 var partPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
+        + "com.hsapi.part.invoice.pricemanage.getSellDefaultPrice.biz.ext";
 function getPartPrice(params){
     var price = 0;
     nui.ajax({
@@ -478,7 +478,7 @@ function showPartInfo(row, value, mainId){
 
     nui.open({
         targetWindow: window,
-        url: webBaseUrl+"com.hsweb.cloud.part.common.fastPartChoose.flow?token="+token,
+        url: webBaseUrl+"com.hsweb.part.manage.fastPartChoose.flow?token="+token,
         title: "配件信息", width: 980, height: 560,
         showHeader:false,
         allowDrag:true,
@@ -1030,7 +1030,7 @@ function getMainData()
     return data;
 }
 //新增单据时，取单据ID
-var saveAddUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.saveAddSellOrder.biz.ext";
+var saveAddUrl = baseUrl + "com.hsapi.part.invoice.crud.saveAddSellOrder.biz.ext";
 function getSellOrderBillNO(callback){
     var data = basicInfoForm.getData();
     data.isDiffOrder = 1;
@@ -1063,7 +1063,7 @@ var requiredField = {
 	billTypeId : "票据类型",
     settleTypeId : "结算方式"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOrder.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjSellOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -1409,7 +1409,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.partSelectView.flow",
+        url: "com.hsweb.part.common.partSelectView.flow",
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1490,7 +1490,7 @@ function addDetail(row,data,ck)
     //rightGrid.beginEditCell(newRow, "comPartCode");
 
 }
-var saveStepUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.insertPjSellOrderStepTran.biz.ext";
+var saveStepUrl = baseUrl + "com.hsapi.part.invoice.crud.insertPjSellOrderStepTran.biz.ext";
 function saveDetail(detail, callback){
     nui.ajax({
 		url : saveStepUrl,
@@ -1634,7 +1634,7 @@ function checkStockOutQty(){
     }
     return msg;
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditPjSellOrder.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -1745,7 +1745,7 @@ function onGuestValueChanged(e)
     params.isClient = 1;
     setGuestInfo(params);
 }
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {
     nui.ajax({
@@ -1877,7 +1877,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
+            url : webPath + contextPath + "/com.hsweb.part.manage.sellOrderOutPrint.flow?ID="
                     + row.id+"&printMan="+currUserName+"&auditSign="+auditSign+"&logisticsName="+logisticsName,// "view_Guest.jsp",
             title : "销售出库打印",
             width : 900,
@@ -1893,7 +1893,7 @@ function onPrint() {
 function getLogistics(mainId, guestId){
     var logName = "";
     nui.ajax({
-        url : baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.getPrintLogistics.biz.ext",
+        url : baseUrl + "com.hsapi.part.invoice.paramcrud.getPrintLogistics.biz.ext",
         async : false,
         data : {
             token: token, 
@@ -2054,7 +2054,7 @@ function onAdvancedAddOk(){
             });
 
             nui.ajax({
-                url : baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.getPartInfoByCodes.biz.ext",
+                url : baseUrl + "com.hsapi.part.invoice.paramcrud.getPartInfoByCodes.biz.ext",
                 type : "post",
                 data : JSON.stringify({
                     list : partList,
@@ -2266,7 +2266,7 @@ function addPchsEnter()
 function showPchsEnter(mainId,serviceId,guestId){
     nui.open({
         targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchsOrderEnterSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.part.manage.pchsOrderEnterSelect.flow?token="+token,
         title: "采购单据选择", width: 980, height: 560,
         showHeader:false,
         allowDrag:true,
@@ -2297,7 +2297,7 @@ function showPchsEnter(mainId,serviceId,guestId){
         }
     });
 }
-var pchsOrderEnterUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.insertPchsOrderEnterToSell.biz.ext";
+var pchsOrderEnterUrl = baseUrl+"com.hsapi.part.invoice.crud.insertPchsOrderEnterToSell.biz.ext";
 function getPchsOrderEnterDetail(pchsMainId, sellMainId, serviceId, guestId){
     nui.mask({
         el: document.body,
@@ -2338,7 +2338,7 @@ function packOut(){
         if(row.isOut == 1) {
             nui.open({
                 targetWindow: window,
-                url: webBaseUrl+"com.hsweb.cloud.part.common.packPopOperate.flow?token="+token,
+                url: webBaseUrl+"com.hsweb.part.common.packPopOperate.flow?token="+token,
                 title: "发货信息编辑", 
                 width: 580, height: 260,
                 showHeader:true,

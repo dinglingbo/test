@@ -1,10 +1,10 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";
-var workBoardUrl = baseUrl + "com.hsapi.cloud.part.report.timer.queryTodayBill.biz.ext";
-var businessRemindUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryBusinessRemind.biz.ext";
-var targetDataRemindUrl = baseUrl + "com.hsapi.cloud.part.report.report.queryDataRemind.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var workBoardUrl = baseUrl + "com.hsapi.part.report.timer.queryTodayBill.biz.ext";
+var businessRemindUrl = baseUrl + "com.hsapi.part.report.report.queryBusinessRemind.biz.ext";
+var targetDataRemindUrl = baseUrl + "com.hsapi.part.report.report.queryDataRemind.biz.ext";
 
 var gridWorkBoard = null;
 var gridWaitDo = null;
@@ -178,7 +178,7 @@ function toAskPartPrice(){
 	var item={};
 	item.id = "010";
 	item.text = "快速报价";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.quickSearch.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.manage.quickSearch.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -186,7 +186,7 @@ function toPchsOrder(){
 	var item={};
 	item.id = "1184";
 	item.text = "采购订单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrder.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrder.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -194,7 +194,7 @@ function toSellOrder(){
 	var item={};
 	item.id = "1269";
 	item.text = "销售订单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrder.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.manage.sellOrderOutPrint.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -210,7 +210,7 @@ function toPackOut(){
 	var item={};
 	item.id = "1561";
 	item.text = "打包发货";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.packOut.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.manage.packOut.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -317,7 +317,7 @@ function showMain() {
     params.endDate = addDate(getQuarterEndDate(), 1);
 
     var staffArr,staffAchValue;
-	var dataurl = baseUrl + "com.hsapi.cloud.part.report.timer.queryStaffAchievement.biz.ext";
+	var dataurl = baseUrl + "com.hsapi.part.report.timer.queryStaffAchievement.biz.ext";
 	nui.ajax({
 		url : dataurl,
 		type: 'post',

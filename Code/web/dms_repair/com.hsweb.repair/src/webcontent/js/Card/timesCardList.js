@@ -11,6 +11,13 @@ $(document).ready(function(v) {
 		token:token
 	});
 	
+	if(currIsMaster=="1"){
+		nui.get('addBtn').setVisible(true);
+		nui.get('updateBtn').setVisible(true);
+	}else{
+		nui.get('addBtn').setVisible(false);
+		nui.get('updateBtn').setVisible(false);
+	}
 	
 });
 
@@ -147,8 +154,8 @@ function setStely(){
 	nui.get("add").disable();*/
 	/*$("#update").remove();
 	$("#add").remove();*/
-	mini.get("update").setVisible(false);
-	mini.get("add").setVisible(false);
+	mini.get("updateBtn").setVisible(false);
+	mini.get("addBtn").setVisible(false);
 	mini.get("onBuy").setVisible(true);
 }
 

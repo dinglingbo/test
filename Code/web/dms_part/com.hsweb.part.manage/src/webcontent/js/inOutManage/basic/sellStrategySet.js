@@ -325,7 +325,7 @@ function importPart(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.basic.importPartPrice.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.importPartPrice.flow?token="+token,
         title: "价格导入", 
         width: 930, 
         height: 560,
@@ -600,7 +600,7 @@ function importUnifyPart(){
     }
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.basic.importPartPrice.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.importPartPrice.flow?token="+token,
         title: "价格导入", 
         width: 930, 
         height: 560,

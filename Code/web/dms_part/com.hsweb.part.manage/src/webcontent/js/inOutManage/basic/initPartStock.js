@@ -511,7 +511,7 @@ function addEnterDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.common.detailQPAPopOperate.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,

@@ -1067,8 +1067,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="orderTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="storeId" primitiveType="Int"/>
-    <process:variable description="采购订单主表信息" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="pchsMain"/>
-    <process:variable description="采购订单明细信息" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetailChk" name="pchsDetail"/>
+    <process:variable description="采购订单主表信息" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPchsOrderMainChk" name="pchsMain"/>
+    <process:variable description="采购订单明细信息" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjPchsOrderDetailChk" name="pchsDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="internalId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>

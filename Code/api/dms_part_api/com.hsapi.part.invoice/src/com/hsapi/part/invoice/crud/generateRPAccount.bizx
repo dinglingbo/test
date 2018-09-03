@@ -9,6 +9,10 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
     <location x="-135" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -121,7 +125,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -425,6 +429,17 @@
     <location x="791" y="303"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <targetConnections>link0</targetConnections>
+    <location x="3" y="267"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="1" y="303"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

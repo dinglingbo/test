@@ -698,7 +698,7 @@
     <process:variable description="010101 收据 010102 普票 010103 增票" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxRate" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComGuest" name="guest"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isInner" primitiveType="Int"/>
     <process:variable description="CGD,XTD,XSD,CTD" historyStateLocation="client" isArray="false" name="billNoPreFix" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="morderQty" primitiveType="Float"/>

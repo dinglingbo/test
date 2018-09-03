@@ -859,6 +859,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="auditDetails"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterMainChk" name="main"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="details"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="f"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.part.data.pts.PjOutMainChk" name="outMain"/>

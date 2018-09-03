@@ -81,7 +81,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjEnterDetailChk</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjEnterDetailChk</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -455,18 +455,18 @@
     <location x="930" y="202"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertPjSellOrderStep</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="sellOrderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" valueType="DataObject" pattern="value">sellTemp</process:inputVariable>
+        <process:inputVariable id="0" name="sellOrderDetail" type="query" value="com.hsapi.part.data.pts.PjSellOrderDetail" valueType="DataObject" pattern="reference">sellTemp</process:inputVariable>
         <process:inputVariable id="1" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="mainId" type="query" value="Long" valueType="Primitive"/>
-        <process:outputVariable id="3" name="sellOrderDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" valueType="DataObject"/>
-        <process:outputVariable id="4" name="p" type="query" value="java.util.HashMap" valueType="Java"/>
+        <process:outputVariable id="2" name="mainId" type="query" value="Long" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="3" name="sellOrderDetail" type="query" value="com.hsapi.part.data.pts.PjSellOrderDetail" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="4" name="p" type="query" value="java.util.HashMap" valueType="Java"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -675,10 +675,10 @@
   <process:info author="Administrator" createTime="2018-07-06 17:26:10" date="2018-07-06Z" description="" name="insertPchsOrderEnterToSell" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="pchsList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="pchsTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderDetail" name="sellList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="pchsList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjEnterDetailChk" name="pchsTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderDetail" name="sellList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="outableQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="preOutQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>

@@ -18,13 +18,13 @@
     <nodeLabel>end0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="102" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="99" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="402" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="399" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="sellOrder_view0.jsp" type="view" contextPath="" contributionName="com.hsweb.cloud.part.purchase" method="forward" uri="/manage/inOutManage/sellOrder/sellOrder_view0.jsp">
@@ -40,8 +40,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="254" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="251" y="186"/>
+    <figSize height="20" width="31"/>
     <node>view0</node>
   </nodes>
   <topRuler/>

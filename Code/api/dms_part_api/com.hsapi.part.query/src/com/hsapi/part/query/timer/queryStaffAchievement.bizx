@@ -85,7 +85,7 @@
     <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="业绩" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="业绩" displayName="propertyToFloatArr" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo11</sourceNode>
       <targetNode>assign1</targetNode>
@@ -94,8 +94,8 @@
     <location x="255" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo11label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -130,7 +130,7 @@
     <figSize height="20" width="40"/>
     <node>assign12</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="仓库" displayName="" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="仓库" displayName="propertyToStringArr" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo11</targetNode>
@@ -145,8 +145,8 @@
     <location x="165" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.propertyToStringArr</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToStringArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

@@ -1,4 +1,4 @@
-var baseUrl = apiPath + cloudPartApi + "/";
+var baseUrl = apiPath + partApi + "/";
 
 $(document).ready(function(v)
 {
@@ -14,8 +14,8 @@ function showMainQty() {
 	//省份
 	var rot = 0;
 	var storeArr,stockQty,outQty,inQty;
-	var dataurl = baseUrl + "com.hsapi.cloud.part.report.stock.queryExandStockQtyWithStore.biz.ext";
-	nui.ajax({
+	var dataurl = baseUrl + "com.hsapi.part.query.stock.queryExandStockQtyWithStore.biz.ext";
+	nui.ajax({               
 		url : dataurl,
 		type: 'post',
         async: false, //同步执行，返回成功后才能进行下面的操作
@@ -139,7 +139,7 @@ function showMainAmt() {
 	//省份
 	var rot = 0;
 	var storeArr,stockAmt,outAmt,inAmt;
-	var dataurl = baseUrl + "com.hsapi.cloud.part.report.stock.queryExandStockAmtWithStore.biz.ext";
+	var dataurl = baseUrl + "com.hsapi.part.report.stock.queryExandStockAmtWithStore.biz.ext";
 	nui.ajax({
 		url : dataurl,
 		type: 'post',

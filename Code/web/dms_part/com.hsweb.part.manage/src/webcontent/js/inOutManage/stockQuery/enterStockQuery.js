@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.stockcal.queryOutableEnterGridWithPage.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;

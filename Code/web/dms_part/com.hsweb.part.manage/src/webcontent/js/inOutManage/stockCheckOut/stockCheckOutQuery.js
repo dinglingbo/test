@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjCheckOutMainDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryPjCheckOutMainDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -271,7 +271,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: "com.hsweb.part.manage.supplierSelect.flow",
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

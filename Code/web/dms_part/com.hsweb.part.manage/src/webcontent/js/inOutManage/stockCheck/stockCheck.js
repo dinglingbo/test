@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjStockCheckMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjStockCheckDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjStockCheckMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjStockCheckDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -307,7 +307,7 @@ var requiredField = {
     orderMan : "盘点员",
     createDate : "盘点日期"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjStockCheck.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjStockCheck.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -608,7 +608,7 @@ function onRightGridDraw(e)
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjStockCheckOut.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditPjStockCheckOut.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -909,7 +909,7 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
     var part = null;
     nui.ajax({
@@ -1229,7 +1229,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.orderBillChoose.flow?token="+token,
         title: "采购订单选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1247,7 +1247,7 @@ function selectPart(callback,checkcallback)
         }
     });
 }
-var guestUrl = baseUrl + "com.hsapi.cloud.part.common.svr.getGuestByInternalId.biz.ext";
+var guestUrl = baseUrl + "com.hsapi.part.common.svr.getGuestByInternalId.biz.ext";
 function getGuestId() {
 
     nui.ajax({
@@ -1270,7 +1270,7 @@ function getGuestId() {
     });
 }
 var partPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getPartStoreStockByPartId.biz.ext";
+        + "com.hsapi.part.invoice.pricemanage.getPartStoreStockByPartId.biz.ext";
 function getPartPrice(params){
     var rtn = {};
     nui.ajax({

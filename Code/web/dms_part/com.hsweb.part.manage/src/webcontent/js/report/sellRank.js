@@ -1,8 +1,8 @@
-var baseUrl = apiPath + cloudPartApi + "/";
-var clientGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellClient.biz.ext";
-var partGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellPart.biz.ext";
-var partBrandGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellPartBrand.biz.ext";
-var partTypeGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellPartType.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var clientGridUrl = baseUrl + "com.hsapi.part.query.report.querySellClient.biz.ext";
+var partGridUrl = baseUrl + "com.hsapi.part.query.report.querySellPart.biz.ext";
+var partBrandGridUrl = baseUrl + "com.hsapi.part.query.report.querySellPartBrand.biz.ext";
+var partTypeGridUrl = baseUrl + "com.hsapi.part.query.report.querySellPartType.biz.ext";
 
 var partBrandList = [];
 var brandHash = {};

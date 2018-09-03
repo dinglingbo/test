@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjEnterMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjEnterDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -570,7 +570,7 @@ var requiredField = {
     enterDate : "盘点日期",
     taxRate : "开票税点"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjEnter.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjEnter.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -794,7 +794,7 @@ function addEnterDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
+        url: "com.hsweb.part.manage.detailQPAPopOperate.flow",
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -941,7 +941,7 @@ function checkRightData()
     }
     return msg;
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjEnter.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditPjEnter.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -1040,7 +1040,7 @@ function onPrint() {
 
         nui.open({
 
-            url : "com.hsweb.cloud.part.purchase.stockCheckInPrint.flow?ID="
+            url : "com.hsweb.part.manage.stockCheckInPrint.flow?ID="
                     + row.id,// "view_Guest.jsp",
             title : "盘盈入库打印",
             width : 900,

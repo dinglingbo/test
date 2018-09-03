@@ -2,9 +2,9 @@
  * Created by Administrator on 2018/1/23.
  * There must be a query condition
  */
-var baseUrl = apiPath + cloudPartApi + "/";
-var partGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryQuickPartWithStock.biz.ext";
-var innerPartCommonGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryQuickPartCommonWithStock.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var partGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryQuickPartWithStock.biz.ext";
+var innerPartCommonGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryQuickPartCommonWithStock.biz.ext";
 var partGrid = null;
 var queryConditionsEl = null;
 var conditoinsValueEl = null;
@@ -382,7 +382,7 @@ function showQuote(){
         searchPrice(params);
     }
 }
-var spUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getQuickPartPrice.biz.ext";
+var spUrl = cloudPartApiUrl+"com.hsapi.part.invoice.pricemanage.getQuickPartPrice.biz.ext";
 function searchPrice(params){
     var price = [];
     var flag = false;
@@ -637,7 +637,7 @@ function deleteCartShop(){
 function openGeneratePop(partList, type, title){
     nui.open({
         targetWindow : window,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.manage.shopCarPop.flow?token="+token,
         title : title,
         width : 600,
         height : 400,

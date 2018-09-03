@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPartStoreStock.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;
@@ -249,7 +249,7 @@ function onCellCommitEdit(e) {
         } 
     }
 }
-var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStoreStockSet.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveStoreStockSet.biz.ext";
 function save(){
     var gridData = rightGrid.getChanges("modified");
     if(gridData && gridData.length > 0){

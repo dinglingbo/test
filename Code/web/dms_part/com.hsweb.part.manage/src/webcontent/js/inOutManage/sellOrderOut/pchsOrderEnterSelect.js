@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var rightGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPchsOrderEnterMain.biz.ext";
-var innerPchsGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPjPchsOrderEnterDetailChkList.biz.ext";
+var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.paramcrud.queryPchsOrderEnterMain.biz.ext";
+var innerPchsGridUrl = partApiUrl+"com.hsapi.part.invoice.paramcrud.queryPjPchsOrderEnterDetailChkList.biz.ext";
 var rightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;

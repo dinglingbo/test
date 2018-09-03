@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
+var partApiUrl = partApiUrl+partApi+"/";
 var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.paramcrud.queryPchsOrderEnterMain.biz.ext";
 var innerPchsGridUrl = partApiUrl+"com.hsapi.part.invoice.paramcrud.queryPjPchsOrderEnterDetailChkList.biz.ext";
 var rightGrid = null;

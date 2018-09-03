@@ -1,6 +1,6 @@
 var baseUrl = apiPath + partApi + "/";
 var rightGridUrl = baseUrl + "com.hsapi.part.query.report.queryPchsPartForMonth.biz.ext";
-
+                                
 var partBrandList = [];
 var brandHash = {};
 var partTypeList = [];

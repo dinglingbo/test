@@ -96,13 +96,13 @@ $(document).ready(function() {
         gpartCode = row.partCode||"";
         if(row.partId){
             showTabInfo(gpartId,gpartCode);
-            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/manage/inOutManage/epcTip.html";
         }else if(row.brand && row.partCode){
             showTabInfo(0,"");
             document.getElementById("epcFormIframe").src=webPath + contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
         }else{
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/manage/inOutManage/epcTip.html";
         }
     });
     partGrid.on("cellclick",function(e){ 
@@ -128,13 +128,13 @@ $(document).ready(function() {
         gpartCode = row.partCode||"";
         if(row.partId){
             showTabInfo(gpartId,gpartCode);
-            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/manage/inOutManage/epcTip.html";
         }else if(row.brand && row.partCode){
             showTabInfo(0,"");
             document.getElementById("epcFormIframe").src=webPath + contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
         }else{
             showTabInfo(0,"");
-            document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
+            document.getElementById("epcFormIframe").src=webPath + contextPath+"/manage/inOutManage/epcTip.html";
         }
     });
     innerPartCommonGrid.on("drawcell",function(e){

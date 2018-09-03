@@ -177,7 +177,7 @@ function showTabInfo(){
             if(!url){
                 //mainTabs.updateTab(stockselectTab, {url: webPath + contextPath + "/common/embedJsp/containBottomStock.jsp"});
                 //mainTabs.reloadTab(stockselectTab);
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomStock.jsp?token="+token, stockselectTab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottomStock.jsp?token="+token, stockselectTab);
             }else {
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(gparams);
             }            
@@ -190,7 +190,7 @@ function showTabInfo(){
             }*/
             gparams.guestId=null;
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomOutableRecord.jsp?token="+token, outableRecordTab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottomOutableRecord.jsp?token="+token, outableRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(outableRecordTab).contentWindow.doSearch(gparams);
             }
@@ -203,7 +203,7 @@ function showTabInfo(){
             }*/
             gparams.guestId=null;
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomPchsRecord.jsp?token="+token, pchsRecordTab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottomPchsRecord.jsp?token="+token, pchsRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(pchsRecordTab).contentWindow.doSearch(gparams);  
             }
@@ -216,7 +216,7 @@ function showTabInfo(){
             }*/
             gparams.guestId=null;
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomSellRecord.jsp?token="+token, sellRecordTab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottomSellRecord.jsp?token="+token, sellRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(sellRecordTab).contentWindow.doSearch(gparams);
             }
@@ -240,7 +240,7 @@ function showTabInfo(){
                 document.getElementById("bottomFormIframeRtnRecord").contentWindow.doSearch(params);
             }*/
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomPchsRtnRecord.jsp?token="+token, rtnRecordTab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottomPchsRtnRecord.jsp?token="+token, rtnRecordTab);
             }else{
                 mainTabs.getTabIFrameEl(rtnRecordTab).contentWindow.doSearch(gparams); 
             }
@@ -252,7 +252,7 @@ function showTabInfo(){
                 document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
             }*/
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomPartInfo.jsp?token="+token, partInfoTab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottomPartInfo.jsp?token="+token, partInfoTab);
             }else{
                 mainTabs.getTabIFrameEl(partInfoTab).contentWindow.doSearch(gparams);
             }
@@ -263,7 +263,7 @@ function showTabInfo(){
                 document.getElementById("bottomFormIframePartInfo").contentWindow.doSearch(params);
             }*/
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containBottomChainStock.jsp?token="+token, chainStockTab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottomChainStock.jsp?token="+token, chainStockTab);
             }else{
                 mainTabs.getTabIFrameEl(chainStockTab).contentWindow.doSearch(gparams);
             }

@@ -13,6 +13,13 @@ $(document).ready(function(v) {
 		formData:formData,
 		token:token
 	});
+	if(currIsMaster=="1"){
+		nui.get('addBtn').setVisible(true);
+		nui.get('updateBtn').setVisible(true);
+	}else{
+		nui.get('addBtn').setVisible(false);
+		nui.get('updateBtn').setVisible(false);
+	}
 });
 
 // 新增
@@ -77,7 +84,7 @@ function refresh() {
 	var form = new nui.Form("#queryform");
 	var json = form.getData(false, false);
 	grid.load(json);// grid查询
-	nui.get("update").enable();
+	nui.get("updateBtn").enable();
 }
 
 // 查询

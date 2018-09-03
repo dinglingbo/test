@@ -456,13 +456,14 @@
     <sourceConnections xsi:type="process:tLink" id="link51" name="link51" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo11</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link36</targetConnections>
     <location x="1434" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo11label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -609,7 +610,7 @@
     <figSize height="20" width="110"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="add2Array" displayName="add2Array" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="add2Array" displayName="add2Array" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -618,8 +619,8 @@
     <location x="1290" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -662,7 +663,7 @@
     <figSize height="20" width="31"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="出库" displayName="库存" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="出库" displayName="propertyToFloatArr" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo3</targetNode>
@@ -671,8 +672,8 @@
     <location x="1485" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -688,7 +689,7 @@
     <figSize height="20" width="31"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="入库" displayName="库存" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="入库" displayName="propertyToFloatArr" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign1</targetNode>
@@ -697,8 +698,8 @@
     <location x="1545" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

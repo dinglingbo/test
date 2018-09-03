@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.part.settle.svr.queryFiSettleAccount.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext";
 var mainGrid = null;
 var disableEl = null;
 var undisableEl = null;
@@ -41,7 +41,7 @@ function refresh(){
 	doSearch();
 }
 var deleteUrl = baseUrl
-		+ "com.hsapi.part.settle.svr.deleteFiSettleAccountById.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.deleteFiSettleAccountById.biz.ext";
 function deleteType(){
 	var row = mainGrid.getSelected();
 	if(row && row.id){

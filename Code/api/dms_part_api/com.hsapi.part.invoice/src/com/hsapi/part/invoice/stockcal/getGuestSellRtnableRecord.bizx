@@ -26,7 +26,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.cloud.part.data.pts.RtnRecord[]" name="rtnRecord" type="query" valueType="DataObject">rtnRecord</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.RtnRecord[]" name="rtnRecord" type="query" valueType="DataObject">rtnRecord</process:return>
       <process:return id="3" language="Float" name="remainQty" type="query" valueType="Primitive">remainQty</process:return>
     </process:returns>
   </nodes>
@@ -358,8 +358,8 @@
     <location x="455" y="310"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -375,7 +375,7 @@
     <figSize height="17" width="62"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array1" displayName="add2Array1" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array1" displayName="add2Array" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="link6" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -384,8 +384,8 @@
     <location x="490" y="132"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -446,7 +446,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.checkStringValue</process:partner>
+      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.checkStringValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -559,22 +559,22 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-04-18 11:20:37" date="2018-04-18Z" description="" name="getOnLineEnterRtnRecord" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="guestOutRecord"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.RtnRecord" name="guestOutRecord"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.RtnRecord" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tempQty" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="rtnTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.RtnRecord" name="rtnTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="checkSign" primitiveType="Boolean"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="p"/>
     <process:input description="" isArray="false" name="rtnQty" primitiveType="Float"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="rtnCheckRecord"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.RtnRecord" name="rtnCheckRecord"/>
     <process:input description="0不需要；1需要" isArray="false" name="isNeedExclude" primitiveType="Short"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.RtnRecord" name="rtnRecord"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.part.data.pts.RtnRecord" name="rtnRecord"/>
     <process:output description="" isArray="false" name="remainQty" primitiveType="Float"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

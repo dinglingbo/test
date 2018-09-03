@@ -1138,7 +1138,7 @@ function addDetail(part) {
 	
 	nui.open({
 				targetWindow : window,
-				url : webPath+contextPath+"/com.hsweb.part.common.detailQPAPopOperate.flow?token="+token,
+				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
 				height : 210,
@@ -1568,7 +1568,7 @@ function onPrint() {
 
 		nui.open({
 
-			url : "com.hsweb.part.purchase.purchaseOrderPrint.flow?ID="
+			url : "com.hsweb.part.manage.purchaseOrderPrint.flow?ID="
 					+ row.id,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,

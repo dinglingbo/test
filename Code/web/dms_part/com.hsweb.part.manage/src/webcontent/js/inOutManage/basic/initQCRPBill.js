@@ -328,7 +328,7 @@ function importGuest(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.basic.initQCRPBillImport.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.initQCRPBillImport.flow?token="+token,
         title: "期初应收应付导入", 
         width: 930, 
         height: 560,

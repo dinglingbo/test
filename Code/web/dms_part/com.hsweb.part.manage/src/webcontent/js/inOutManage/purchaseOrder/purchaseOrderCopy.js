@@ -801,7 +801,7 @@ function addPchsOrderDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.part.common.detailQPAPopOperate.flow",
+        url: "com.hsweb.part.manage.detailQPAPopOperate.flow",
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,

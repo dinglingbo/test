@@ -1,5 +1,5 @@
 var pchsOrderRecordGrid = null;
-var pchsOrderRecordUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.query.queryPjPchsOrderMainDetailList.biz.ext";
+var pchsOrderRecordUrl = partApiUrl + "com.hsapi.part.invoice.query.queryPjPchsOrderMainDetailList.biz.ext";
 
 var storehouseHash = {};
 var billTypeIdHash = {};

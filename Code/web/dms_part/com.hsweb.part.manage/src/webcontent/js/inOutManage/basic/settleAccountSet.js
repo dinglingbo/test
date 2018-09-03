@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
+		+ "com.hsapi.part.settle.svr.queryFiSettleAccount.biz.ext";
 var mainGrid = null;
 var disableEl = null;
 var undisableEl = null;
@@ -41,7 +41,7 @@ function refresh(){
 	doSearch();
 }
 var deleteUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.deleteFiSettleAccountById.biz.ext";
+		+ "com.hsapi.part.settle.svr.deleteFiSettleAccountById.biz.ext";
 function deleteType(){
 	var row = mainGrid.getSelected();
 	if(row && row.id){
@@ -116,7 +116,7 @@ function showEditModal(row, newRow, type){
 	}
 
 	nui.open({
-		url: webPath+contextPath+"/com.hsweb.cloud.part.basic.settleAccountEdit.flow?token="+token,
+		url: webPath+contextPath+"/com.hsweb.part.manage.settleAccountEdit.flow?token="+token,
 		title: title,
 		width: "500px",
 		height: "300px",
@@ -157,7 +157,7 @@ function edit(){
 
 }
 var disableUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.updateFiSettleAccountDisabled.biz.ext";
+		+ "com.hsapi.part.settle.svr.updateFiSettleAccountDisabled.biz.ext";
 function disablePlay(isDisabled){
 	var row = mainGrid.getSelected();
 	if(row && row.id){

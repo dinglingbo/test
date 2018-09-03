@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/1/23.
  * Query what not done
  */
-var baseUrl = apiPath + cloudPartApi + "/";
-var cartGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryOrderCart.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var cartGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryOrderCart.biz.ext";
 var cartGrid = null;
 var type = null;
 var pchsOrderBtn = null;
@@ -120,7 +120,7 @@ function deleteCartShop(){
 function openGeneratePop(partList, type, title){
     nui.open({
         targetWindow : window,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.common.shopCarPop.flow?token="+token,
         title : title,
         width : 600,
         height : 400,

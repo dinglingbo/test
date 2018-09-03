@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 //var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 //var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var advancedSearchWin = null;
@@ -129,7 +129,7 @@ function setBtnable(flag)
     }
 }
 
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjPchsOrder.biz.ext";
 var supplier = null;	
 function selectSupplier(elId)
 {

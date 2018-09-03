@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
+		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -754,7 +754,7 @@ var requiredField = {
 	taxRate : "开票税点"
 };
 var saveUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
+		+ "com.hsapi.part.invoice.crud.savePjPchsOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -1058,7 +1058,7 @@ function onCellCommitEdit(e) {
 	}
 }
 var partInfoUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
+		+ "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
 	var part = null;
 	nui.ajax({
@@ -1100,7 +1100,7 @@ function getPartInfo(params){
 function selectPart(callback, checkcallback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
 		title : "配件选择",
 		width : 930,
 		height : 560,
@@ -1138,7 +1138,7 @@ function addDetail(part) {
 	
 	nui.open({
 				targetWindow : window,
-				url : webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
+				url : webPath+contextPath+"/com.hsweb.part.common.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
 				height : 210,
@@ -1205,7 +1205,7 @@ function addDetail(part) {
 			});
 }
 var partPriceUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.pricemanage.getPchsDefaultPrice.biz.ext";
+		+ "com.hsapi.part.invoice.pricemanage.getPchsDefaultPrice.biz.ext";
 function getPartPrice(params){
 	var price = 0;
 	var shelf = null;
@@ -1398,7 +1398,7 @@ function checkRightData() {
 	return msg;
 }
 var auditUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrder.biz.ext";
+		+ "com.hsapi.part.invoice.crud.auditPjPchsOrder.biz.ext";
 function audit() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -1494,7 +1494,7 @@ function onGuestValueChanged(e) {
 	setGuestInfo(params);
 }
 var getGuestInfo = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params) {
 	nui.ajax({
 		url : getGuestInfo,
@@ -1568,7 +1568,7 @@ function onPrint() {
 
 		nui.open({
 
-			url : "com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+			url : "com.hsweb.part.purchase.purchaseOrderPrint.flow?ID="
 					+ row.id,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,

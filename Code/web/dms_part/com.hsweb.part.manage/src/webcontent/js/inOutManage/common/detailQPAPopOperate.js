@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/24.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
 var qtyEdit = null;
 var guestId = null;
@@ -68,7 +68,7 @@ function init()
     });
 }
 var partPchsPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getPchsDefaultPrice.biz.ext";
+        + "com.hsapi.part.invoice.pricemanage.getPchsDefaultPrice.biz.ext";
 function getPchsPartPrice(params){
     var price = 0;
     var shelf = null;
@@ -104,7 +104,7 @@ function getPchsPartPrice(params){
     return dInfo;
 }
 var partSellPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
+        + "com.hsapi.part.invoice.pricemanage.getSellDefaultPrice.biz.ext";
 function getSellPartPrice(params){
     var price = 0;
     nui.ajax({

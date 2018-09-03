@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjEnterMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjEnterDetailList.biz.ext";
 
 var basicInfoForm = null;
 
@@ -49,7 +49,7 @@ $(document).ready(function(v)
     add();
 
 });
-var guestUrl = baseUrl + "com.hsapi.cloud.part.common.svr.getGuestByInternalId.biz.ext";
+var guestUrl = baseUrl + "com.hsapi.part.common.svr.getGuestByInternalId.biz.ext";
 function getGuestId() {
 
     nui.ajax({
@@ -294,7 +294,7 @@ function getMainData()
 var requiredField = {
     storeId : "默认仓库"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.saveQCEnter.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.saveQCEnter.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -493,7 +493,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath +"/com.hsweb.part.common.partSelectView.flow?token="+token,//"com.hsweb.cloud.part.common.partSelectView.flow",
+        url: webPath + contextPath +"/com.hsweb.part.common.partSelectView.flow?token="+token,//"com.hsweb.part.common.partSelectView.flow",
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -511,7 +511,7 @@ function addEnterDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.common.detailQPAPopOperate.flow?token="+token,
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -653,7 +653,7 @@ function checkRightData()
     }
     return msg;
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditQCEnter.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditQCEnter.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -730,7 +730,7 @@ function onGuestValueChanged(e)
 function open(){
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.initPartStockSelect.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.initPartStockSelect.flow?token="+token,
         title: "期初入库单选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -770,7 +770,7 @@ function importPart(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.initPartStockImport.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.initPartStockImport.flow?token="+token,
         title: "库存导入", 
         width: 930, 
         height: 560,

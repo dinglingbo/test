@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
+		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -881,7 +881,7 @@ var requiredField = {
 	settleTypeId : "结算方式"
 };
 var saveUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
+		+ "com.hsapi.part.invoice.crud.savePjPchsOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -1175,8 +1175,8 @@ function onCellCommitEdit(e) {
 		}
 	}
 }
-var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
-		//+ "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
+var partInfoUrl = baseUrl + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";
+		//+ "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
 	var part = null;
 	var page = {size:100,length:100};
@@ -1248,7 +1248,7 @@ function getPartInfo(params){
 function selectPart(callback, checkcallback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
 		title : "配件选择",
 		width : 930,
 		height : 560,
@@ -1286,7 +1286,7 @@ function addDetail(part) {
 	
 	nui.open({
 				targetWindow : window,
-				url : webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
+				url : webPath+contextPath+"/com.hsweb.part.common.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
 				height : 210,
@@ -1330,7 +1330,7 @@ function addDetail(part) {
 			});
 }
 var partPriceUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.pricemanage.getPchsDefaultPrice.biz.ext";
+		+ "com.hsapi.part.invoice.pricemanage.getPchsDefaultPrice.biz.ext";
 function getPartPrice(params){
 	var price = 0;
 	var shelf = null;
@@ -1591,7 +1591,7 @@ function auditToEnter(){
 
 }
 var auditUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrder.biz.ext";
+		+ "com.hsapi.part.invoice.crud.auditPjPchsOrder.biz.ext";
 function auditOrder(flagSign, flagStr, flagRtn) {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -1762,7 +1762,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 }
 
 var enterUrl = baseUrl
-		+ "com.hsapi.cloud.part.invoicing.ordersettle.generateNewPchsOrderEnter.biz.ext";
+		+ "com.hsapi.part.invoice.ordersettle.generateNewPchsOrderEnter.biz.ext";
 function orderEnter(mainId) {
 	var row = leftGrid.getSelected();
 	if(row.auditSign!=1){
@@ -1843,7 +1843,7 @@ function onGuestValueChanged(e) {
 	setGuestInfo(params);
 }
 var getGuestInfo = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params) {
 	nui.ajax({
 		url : getGuestInfo,
@@ -1967,7 +1967,7 @@ function onPrint() {
 
 		nui.open({
 
-			url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+			url : webPath + contextPath + "/com.hsweb.part.purchase.purchaseOrderPrint.flow?ID="
 					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,
@@ -1988,7 +1988,7 @@ function onPrint() {
 
 	// 	nui.open({
 
-	// 		url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+	// 		url : webPath + contextPath + "/com.hsweb.part.purchase.pchsOrderEnterPrint.flow?ID="
 	// 				+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
 	// 		title : "进货单打印",
 	// 		width : 900,
@@ -2124,7 +2124,7 @@ function onAdvancedAddOk(){
 			});
 
 			nui.ajax({
-				url : baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.getPartInfoByCodes.biz.ext",
+				url : baseUrl + "com.hsapi.part.invoice.paramcrud.getPartInfoByCodes.biz.ext",
 				type : "post",
 				data : JSON.stringify({
 					list : partList,
@@ -2234,7 +2234,7 @@ function addNewKeyRow(){
 	}
 
 }
-var unAuditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.unAuditPjPchsOrder.biz.ext";
+var unAuditUrl = baseUrl+"com.hsapi.part.invoice.crud.unAuditPjPchsOrder.biz.ext";
 function unAudit()
 {
     var data = basicInfoForm.getData();
@@ -2306,7 +2306,7 @@ function importPart(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.getPartInfoImoprt.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.purchase.getPartInfoImoprt.flow?token="+token,
         title: "配件导入", 
         width: 930, 
         height: 560,

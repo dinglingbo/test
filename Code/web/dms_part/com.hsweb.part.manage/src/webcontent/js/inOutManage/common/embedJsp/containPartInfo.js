@@ -2,9 +2,9 @@
  * Created by Administrator on 2018/1/23.
  * There must be a query condition
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var treeUrl = baseUrl+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
-var partGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPartJoinStockList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
+var partGridUrl = baseUrl+"com.hsapi.part.invoice.paramcrud.queryPartJoinStockList.biz.ext";
 var partGrid = null;
 var pchsOrderAddBtn = null;
 var sellOrderAddBtn = null;
@@ -398,7 +398,7 @@ function onGridSelectionChanged(){
 function openGeneratePop(partList, type, title){
     nui.open({
         targetWindow : window,
-        url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.part.manage.shopCarPop.flow?token="+token,
         title : title,
         width : 600,
         height : 400,

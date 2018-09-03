@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var queryUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.queryAccountSettleType.biz.ext";
 var mainForm = null;
 var rowT = null;
 var newRowT = null;
@@ -62,7 +62,7 @@ var requiredField = {
 };
 
 var saveUrl = baseUrl
-		+ "com.hsapi.cloud.part.settle.svr.saveFiSettleAccount.biz.ext";
+		+ "com.hsapi.part.settle.svr.saveFiSettleAccount.biz.ext";
 function saveType(type){
 	var data = mainForm.getData();
 	var settleTypeData = settleAccountGrid.getData();
@@ -187,13 +187,13 @@ function OnModelCellBeginEdit(e) {
 	var column = e.column;
     var editor = e.editor;
     if (e.field == "customId") {
-        var url = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext?dictId=DDT20130703000031&token=" + token;
+        var url = baseUrl+"com.hsapi.part.baseDataCrud.query.querySettleType.biz.ext?dictId=DDT20130703000031&token=" + token;
         editor.setUrl(url);
     }
 
 }
 var querySettleTypeUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.query.querySettleType.biz.ext";
 function getSettleType(callback) {
 	nui.ajax({
 		url : querySettleTypeUrl,

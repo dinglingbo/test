@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPartStoreStock.biz.ext";
-var priceGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
+var priceGridUrl = baseUrl+"com.hsapi.part.invoice.pricemanage.getPartPriceInfo.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
 var priceGrid = null;

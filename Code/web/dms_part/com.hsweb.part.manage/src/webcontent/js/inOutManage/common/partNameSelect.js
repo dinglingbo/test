@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/1/27.
  */
 
-var baseUrl = apiPath + cloudPartApi + "/";
+var baseUrl = apiPath + partApi + "/";
 var gridUrl = baseUrl+"com.hsapi.part.common.svr.queryPartName.biz.ext";
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 var grid = null;

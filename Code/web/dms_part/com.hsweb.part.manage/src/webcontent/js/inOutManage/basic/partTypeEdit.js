@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.queryComPartType.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.crud.queryComPartType.biz.ext";
 var mainForm = null;
 var rowT = null;
 var newRowT = null;
@@ -56,7 +56,7 @@ var requiredField = {
 };
 
 var saveUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.saveComPartType.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.crud.saveComPartType.biz.ext";
 function saveType(type){
 	var data = mainForm.getData();
 

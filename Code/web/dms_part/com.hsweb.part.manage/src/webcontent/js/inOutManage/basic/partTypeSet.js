@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.queryComPartType.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.crud.queryComPartType.biz.ext";
 var mainGrid = null;
 var disableEl = null;
 var undisableEl = null;
@@ -60,7 +60,7 @@ function showEditModal(row, newRow, type){
 	}
 
 	nui.open({
-		url: webPath+contextPath+"/com.hsweb.cloud.part.basic.partTypeEdit.flow?token="+token,
+		url: webPath+contextPath+"/com.hsweb.part.manage.partTypeEdit.flow?token="+token,
 		title: title,
 		width: "500px",
 		height: "200px",
@@ -101,7 +101,7 @@ function edit(){
 
 }
 var disableUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.updateComPartTypeDisabled.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.crud.updateComPartTypeDisabled.biz.ext";
 function disablePlay(isDisabled){
 	var row = mainGrid.getSelected();
 	if(row && row.id){

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
-var rightGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.query.queryChainStockByPartId.biz.ext";
+var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.query.queryChainStockByPartId.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;

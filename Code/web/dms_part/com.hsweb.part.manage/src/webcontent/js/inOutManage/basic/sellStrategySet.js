@@ -1,16 +1,16 @@
 /**
  * Created by Administrator on 2018/1/24.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var straGrid = null;
 var rightGuestGrid = null;
 var rightPartGrid = null;
 var rightUnifyGrid = null;
 var mainTabs = null;
-var straGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategy.biz.ext";
-var rightGuestGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyGuest.biz.ext";
-var rightPartGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyPrice.biz.ext";
-var rightUnifyGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryUnifyPrice.biz.ext";
+var straGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySellStrategy.biz.ext";
+var rightGuestGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryStrategyGuest.biz.ext";
+var rightPartGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryStrategyPrice.biz.ext";
+var rightUnifyGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryUnifyPrice.biz.ext";
 $(document).ready(function(v)
 {
     mainTabs = nui.get("mainTabs");
@@ -117,7 +117,7 @@ function onAddNode()
     var newRow = {};
     straGrid.addRow(newRow);
 }
-var saveStraUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveSellStrategy.biz.ext";
+var saveStraUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveSellStrategy.biz.ext";
 function onSaveNode(){
     var data = straGrid.getChanges();
     if(data.length<=0) return;
@@ -215,7 +215,7 @@ function selectSupplier(elId) {
         }
     });
 }
-var checkStraGuestUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getSellPriceGuest.biz.ext";
+var checkStraGuestUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.getSellPriceGuest.biz.ext";
 function checkStraGuest(guestId){
     var row = rightGuestGrid.findRow(function(row){
         if(row.guestId == guestId) {
@@ -252,7 +252,7 @@ function checkStraGuest(guestId){
     });
     return strategyId;
 }
-var saveStraGuestUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStrategyGuest.biz.ext";
+var saveStraGuestUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveStrategyGuest.biz.ext";
 function saveStraGuest(){
     var row = straGrid.getSelected();
     if(!row) {
@@ -325,7 +325,7 @@ function importPart(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.importPartPrice.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.basic.importPartPrice.flow?token="+token,
         title: "价格导入", 
         width: 930, 
         height: 560,
@@ -431,7 +431,7 @@ function addPartDetail(row, strategyId){
     };
     rightPartGrid.addRow(newRow);
 }
-var checkStraPartUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getSellPricePart.biz.ext";
+var checkStraPartUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.getSellPricePart.biz.ext";
 function checkStraPart(strategyId, partId){
     var check = 0;
     nui.ajax({
@@ -471,7 +471,7 @@ function delStraPart(){
         rightPartGrid.removeRows(rows);
     }
 }
-var saveStraPartUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStrategyPart.biz.ext";
+var saveStraPartUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveStrategyPart.biz.ext";
 function saveStraPart(){
     var row = straGrid.getSelected();
     if(!row.id) {
@@ -544,7 +544,7 @@ function delStraGuest(){
         rightGuestGrid.removeRows(rows);
     }
 }
-var saveUnifyUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartPrice.biz.ext";
+var saveUnifyUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePartPrice.biz.ext";
 function saveUnifyPart(){
 
     var data = rightUnifyGrid.getChanges();
@@ -600,7 +600,7 @@ function importUnifyPart(){
     }
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.importPartPrice.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.basic.importPartPrice.flow?token="+token,
         title: "价格导入", 
         width: 930, 
         height: 560,

@@ -24,7 +24,7 @@ function doSearch(params){
         return;
     }
     
-    var url = apiPath + cloudPartApi + "/com.hsapi.cloud.part.common.bmw.bmwParts.biz.ext";
+    var url = apiPath + cloudPartApi + "/com.hsapi.part.common.bmw.bmwParts.biz.ext";
     // var params = {
     //     "partId": partCode,
     //     "token": token

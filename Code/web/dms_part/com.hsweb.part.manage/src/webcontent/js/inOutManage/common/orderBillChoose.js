@@ -1,8 +1,8 @@
 
-var baseUrl = apiPath + cloudPartApi + "/";
-var notStatementUrl = baseUrl + "com.hsapi.cloud.part.invoicing.svr.queryPjSellOrPchsOrderMainChkList.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var notStatementUrl = baseUrl + "com.hsapi.part.invoice.svr.queryPjSellOrPchsOrderMainChkList.biz.ext";
+var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var notStatementGrid = null;
 var leftGrid = null;
 var rightGrid = null;
@@ -263,7 +263,7 @@ function CloseWindow(action)
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
-var querySellUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
+var querySellUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 function getSellDetails()
 {
     var rows = notStatementGrid.getSelecteds();
@@ -310,7 +310,7 @@ function getSellDetails()
     }
 
 }
-var queryPchsUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var queryPchsUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 function getPchsDetails()
 {
     var rows = notStatementGrid.getSelecteds();

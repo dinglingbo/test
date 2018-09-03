@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/5/4.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.query.queryComCompany.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.query.queryComCompany.biz.ext";
 
 var comForm = null;
 var ynData = [{id:"0",text:"否"},{id:"1",text:"是"}];
@@ -130,7 +130,7 @@ function onFloatValidate(e) {
 }
 
 var saveUrl = baseUrl
-		+ "com.hsapi.cloud.part.baseDataCrud.crud.saveComCompany.biz.ext";
+		+ "com.hsapi.part.baseDataCrud.crud.saveComCompany.biz.ext";
 function save() {
 	var check = checkValidate();
     if(!check) return;

@@ -2,9 +2,9 @@
  * Created by Administrator on 2018/1/23.
  * There must be a query condition
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var treeUrl = baseUrl+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
-var partGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryPartList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
+var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
 
 var qualityList = [];

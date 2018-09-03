@@ -1,5 +1,5 @@
 var partCommonGrid = null;
-var partCommonUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.query.queryQuickPartCommonWithStock.biz.ext";
+var partCommonUrl = partApiUrl + "com.hsapi.part.invoice.query.queryQuickPartCommonWithStock.biz.ext";
 var qualityList = [];
 var qualityHash = {};
 var brandHash = {};

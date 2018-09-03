@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/31.
  */
-var baseUrl = apiPath + cloudPartApi + "/";
+var baseUrl = apiPath + partApi + "/";
 var gridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryCustomList.biz.ext";
 var treeUrl = baseUrl+"";
 

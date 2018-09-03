@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPjPackByBillDetailId.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.paramcrud.queryPjPackByBillDetailId.biz.ext";
 
 var basicInfoForm = null;
 var billTypeIdHash = {};
@@ -193,7 +193,7 @@ var requiredField = {
     packItem : "总包数",
     truePayAmt : "运费"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.savePjPack.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.paramcrud.savePjPack.biz.ext";
 function onOk() {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
@@ -275,7 +275,7 @@ function onGuestValueChanged(e)
     rightGrid.removeRows(data);
 
 }
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {
     nui.ajax({

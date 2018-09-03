@@ -1,6 +1,6 @@
-var partInfoUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
-var enterUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
-var priceGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+var partInfoUrl = partApiUrl + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";
+var enterUrl = partApiUrl + "com.hsapi.part.invoice.stockcal.queryOutableEnterGridWithPage.biz.ext";
+var priceGridUrl = partApiUrl+"com.hsapi.part.invoice.pricemanage.getPartPriceInfo.biz.ext";
 
 var morePartTabs = null;
 var enterTab = null;
@@ -721,7 +721,7 @@ function calc(type){
         }
     }
 }
-var partPriceUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
+var partPriceUrl = cloudPartApiUrl + "com.hsapi.part.invoice.pricemanage.getSellDefaultPrice.biz.ext";
 function getPartPrice(params){
     var price = 0;
     nui.ajax({
@@ -778,7 +778,7 @@ function showTabInfo(){
         });
     }
 }
-var saveUrl = cloudPartApiUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
+var saveUrl = cloudPartApiUrl + "com.hsapi.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
 function savePrice(){
     var data = priceGrid.getChanges("modified");
     if(data && data.length>0){

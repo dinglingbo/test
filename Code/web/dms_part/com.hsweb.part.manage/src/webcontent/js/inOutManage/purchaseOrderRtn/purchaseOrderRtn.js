@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -335,7 +335,7 @@ var requiredField = {
     rtnReasonId : "退货原因",
     settleTypeId : "结算方式"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOrder.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjSellOrder.biz.ext";
 function save() {
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
@@ -632,7 +632,7 @@ function onRightGridDraw(e)
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditPjSellOrder.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -722,7 +722,7 @@ function audit()
         }
     });
 }
-var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOutTran.biz.ext";
+var auditToOutUrl = baseUrl+"com.hsapi.part.invoice.crud.auditSellOrderToOutTran.biz.ext";
 function auditToOut()
 {
 
@@ -793,7 +793,7 @@ function onPrint() {
 
         nui.open({
 
-            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderRtnPrint.flow?ID="
+            url : webPath + contextPath + "/com.hsweb.part.manage.pchsOrderRtnPrint.flow?ID="
                     + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
             title : "采购退货打印",
             width : 900,
@@ -1014,7 +1014,7 @@ function onCellEditEnter(e){
         }
     }
 }
-// var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjSellOrder.biz.ext";
+// var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditPjSellOrder.biz.ext";
 // function audit()
 // {
 //     var data = basicInfoForm.getData();
@@ -1149,7 +1149,7 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
     var part = null;
     nui.ajax({
@@ -1189,7 +1189,7 @@ function getPartInfo(params){
     return part;
 }
 var partPriceUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.pricemanage.getSellDefaultPrice.biz.ext";
+        + "com.hsapi.part.invoice.pricemanage.getSellDefaultPrice.biz.ext";
 function getPartPrice(params){
     var price = 0;
     nui.ajax({
@@ -1349,7 +1349,7 @@ function onGuestValueChanged(e)
     params.isSupplier = 1;
     setGuestInfo(params);
 }
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {
     nui.ajax({
@@ -1550,7 +1550,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.common.orderBillChoose.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.orderBillChoose.flow?token="+token,
         title: "采购订单选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,

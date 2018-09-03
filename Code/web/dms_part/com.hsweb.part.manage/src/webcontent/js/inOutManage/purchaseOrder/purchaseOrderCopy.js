@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -531,7 +531,7 @@ var requiredField = {
     settleTypeId : "结算方式",
     taxRate : "开票税点"
 };
-var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjPchsOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -620,7 +620,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
+        url: "com.hsweb.part.common.supplierSelect.flow",
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -783,7 +783,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.partSelectView.flow",
+        url: "com.hsweb.part.common.partSelectView.flow",
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -801,7 +801,7 @@ function addPchsOrderDetail(part)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
+        url: "com.hsweb.part.common.detailQPAPopOperate.flow",
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
         allowResize:false,
@@ -948,7 +948,7 @@ function checkRightData()
     }
     return msg;
 }
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrder.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.crud.auditPjPchsOrder.biz.ext";
 function audit()
 {
     var data = basicInfoForm.getData();
@@ -1041,7 +1041,7 @@ function onGuestValueChanged(e)
     params.pny = e.value;
     setGuestInfo(params);
 }
-var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {
     params.token = token;

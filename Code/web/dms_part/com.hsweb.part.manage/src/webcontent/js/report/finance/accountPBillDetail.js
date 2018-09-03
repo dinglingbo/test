@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = baseUrl + "com.hsapi.cloud.part.report.finance.queryRPBillDetail.biz.ext";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var queryUrl = baseUrl + "com.hsapi.part.query.finance.queryRPBillDetail.biz.ext";
 var mainGrid = null;
 var beginDateEl = null;
 var endDateEl = null;
@@ -105,7 +105,7 @@ function onDrawCell(e){
     }
 }
 var typeUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+        + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 function getItemType(callback) {
     nui.ajax({
         url : typeUrl,

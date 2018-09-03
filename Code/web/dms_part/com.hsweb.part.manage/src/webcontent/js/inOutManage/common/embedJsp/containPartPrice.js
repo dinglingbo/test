@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
-var priceGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+var priceGridUrl = partApiUrl+"com.hsapi.part.invoice.pricemanage.getPartPriceInfo.biz.ext";
 var basicInfoForm = null;
 var priceGrid = null;
 

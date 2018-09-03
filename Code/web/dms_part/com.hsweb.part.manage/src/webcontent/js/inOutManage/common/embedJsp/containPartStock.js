@@ -1,7 +1,7 @@
 var storeStockGrid = null;
 var enterGrid = null;
-var storeStockUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.query.queryPartStoreStock.biz.ext";
-var enterDetailUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.query.queryOutableDetailList.biz.ext";
+var storeStockUrl = partApiUrl + "com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
+var enterDetailUrl = partApiUrl + "com.hsapi.part.invoice.query.queryOutableDetailList.biz.ext";
 var billTypeList = null;
 var billTypeHash = {};
 var storehouse = null;

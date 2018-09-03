@@ -1,7 +1,7 @@
 
-var baseUrl = apiPath + cloudPartApi + "/";
-var notSettleUrl = baseUrl + "com.hsapi.cloud.part.invoicing.ordersettle.queryNotSettlePchsOrderMainList.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var notSettleUrl = baseUrl + "com.hsapi.part.invoice.ordersettle.queryNotSettlePchsOrderMainList.biz.ext";
+var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 var notSettleGrid = null;
 var leftGrid = null;
 var rightGrid = null;
@@ -257,7 +257,7 @@ function generateSellOrder(mainId){
         html: '处理中...'
     });
     nui.ajax({
-        url : baseUrl + "com.hsapi.cloud.part.invoicing.ordersettle.generateSellOrder.biz.ext",
+        url : baseUrl + "com.hsapi.part.invoice.ordersettle.generateSellOrder.biz.ext",
         type : "post",
         async: false,
         data : {
@@ -294,7 +294,7 @@ function backPchsOrder(mainId){
         html: '处理中...'
     });
     nui.ajax({
-        url : baseUrl + "com.hsapi.cloud.part.invoicing.ordersettle.generateSellOrder.biz.ext",
+        url : baseUrl + "com.hsapi.part.invoice.ordersettle.generateSellOrder.biz.ext",
         type : "post",
         async: false,
         data : {

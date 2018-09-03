@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/24.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var batchInfoForm = null;
 var mainGrid = null;
 var FStoreId = null;
@@ -227,7 +227,7 @@ function onGuestValueChanged(e) {
     setGuestInfo(params);
 }
 var getGuestInfo = baseUrl
-        + "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
+        + "com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params) {
     nui.ajax({
         url : getGuestInfo,
@@ -300,7 +300,7 @@ function onCellCommitEdit(e) {
     }
 }
 var generateOrderUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.paramcrud.generateOrderByBatch.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.generateOrderByBatch.biz.ext";
 function generateOrderByBatch(main,detail,type){
     nui.mask({
         el : document.body,

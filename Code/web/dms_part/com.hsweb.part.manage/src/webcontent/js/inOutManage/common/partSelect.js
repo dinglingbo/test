@@ -1,9 +1,9 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = apiPath + cloudPartApi + "/";
-var treeUrl = baseUrl+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
-var partGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryPartList.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
+var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
 
 var qualityList = [];

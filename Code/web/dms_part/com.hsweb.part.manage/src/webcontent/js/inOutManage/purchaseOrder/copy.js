@@ -70,7 +70,7 @@ $(document).ready(function(v) {
 	partInfoTab = mainTabs.getTab("partInfoTab");
 
 	//setTimeout(function(){ 
-		document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
+		document.getElementById("formIframe").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottom.jsp";
 		//document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
 		//document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
 		//document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
@@ -194,11 +194,11 @@ function ontopTabChanged(e){
 	var url = tab.url;
 	if(!url){
 		if(name == "partInfoTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartInfo.jsp", tab);
+			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartInfo.jsp", tab);
 		}else if(name == "partStockInfoTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp", tab);
+			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containStock.jsp", tab);
 		}else if(name == "purchaseAdvanceTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp", tab);
+			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPchsAdvance.jsp", tab);
 		}else if(name == "billmain"){
 			var guestId = nui.get("guestId");
 			if(!guestId){
@@ -1138,7 +1138,7 @@ function addDetail(part) {
 	
 	nui.open({
 				targetWindow : window,
-				url : webPath+contextPath+"/com.hsweb.part.common.detailQPAPopOperate.flow?token="+token,
+				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
 				height : 210,
@@ -1568,7 +1568,7 @@ function onPrint() {
 
 		nui.open({
 
-			url : "com.hsweb.part.purchase.purchaseOrderPrint.flow?ID="
+			url : "com.hsweb.part.manage.purchaseOrderPrint.flow?ID="
 					+ row.id,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,

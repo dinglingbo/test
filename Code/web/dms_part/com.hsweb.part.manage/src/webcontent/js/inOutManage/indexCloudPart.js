@@ -218,7 +218,7 @@ function toState(){
 	var item={};
 	item.id = "1541";
 	item.text = "月结对账";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.settlement.billStatement.flow";
+	item.url = webPath + contextPath + "/com.hsweb.frm.manage.billStatement.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
@@ -226,7 +226,7 @@ function toSettleAccount(){
 	var item={};
 	item.id = "1282";
 	item.text = "应收应付结算";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.settlement.rpAccountSettle.flow";
+	item.url = webPath + contextPath + "/com.hsweb.frm.manage.rpAccountSettle.flow";
 	item.iconCls = "fa fa-exchange";
 	window.parent.activeTab(item);
 }
@@ -234,7 +234,7 @@ function toCostOut(){
 	var item={};
 	item.id = "1425";
 	item.text = "费用支出单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.settlement.expensePay.flow";
+	item.url = webPath + contextPath + "/com.hsweb.frm.manage.expensePay.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }

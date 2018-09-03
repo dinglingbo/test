@@ -9,7 +9,7 @@
     </resultMap>
     <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
     
-    <select id="queryPtsEnterMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterMain">
+    <select id="queryPtsEnterMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.id ID,
     		   a.enter_code enterCode,
 		       a.source_id sourceId,

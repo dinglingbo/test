@@ -136,7 +136,7 @@ function selectSupplier(elId)
 	supplier = null;
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
+        url: "com.hsweb.part.common.supplierSelect.flow",
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -269,7 +269,7 @@ function selectPart(callback,checkcallback)
 {
     nui.open({
         targetWindow: window,
-        url: "com.hsweb.cloud.part.common.partSelectView.flow",
+        url: "com.hsweb.part.common.partSelectView.flow",
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
         allowResize:true,

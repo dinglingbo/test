@@ -92,7 +92,7 @@ function deleteCartShop(){
         });
 
         nui.ajax({
-            url : baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.deleteOrderCart.biz.ext",
+            url : baseUrl+"com.hsapi.part.invoice.paramcrud.deleteOrderCart.biz.ext",
             type : "post",
             data : JSON.stringify({
                 list : rows,
@@ -146,7 +146,7 @@ function openGeneratePop(partList, type, title){
 }
 
 var updateOrderUrl = baseUrl
-        + "com.hsapi.cloud.part.invoicing.paramcrud.updateOrderCart.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.updateOrderCart.biz.ext";
 function updateOrderCart(list){
     nui.ajax({
         url : updateOrderUrl,

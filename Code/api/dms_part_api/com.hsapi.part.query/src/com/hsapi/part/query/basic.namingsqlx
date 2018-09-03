@@ -7,7 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    
+   
     <!--根据条件查询有入的信息-->
 	<select id="queryInvocingInBrand" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	

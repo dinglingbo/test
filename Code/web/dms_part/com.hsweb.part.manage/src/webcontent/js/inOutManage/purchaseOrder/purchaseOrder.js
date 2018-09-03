@@ -290,9 +290,9 @@ function ontopTabChanged(e){
 		if(name == "partInfoTab"){
 			//mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartInfo.jsp", tab);
 		}else if(name == "partStockInfoTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containStock.jsp", tab);
+			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containStock.jsp", tab);
 		}else if(name == "purchaseAdvanceTab"){
-			mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containOrderCart.jsp", tab);
+			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containOrderCart.jsp", tab);
 			
 		}else if(name == "billmain"){
 			var data = rightGrid.getChanges();
@@ -1286,7 +1286,8 @@ function addDetail(part) {
 	
 	nui.open({
 				targetWindow : window,
-				url : webPath+contextPath+"/com.hsweb.part.common.detailQPAPopOperate.flow?token="+token,
+				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
+
 				title : "入库数量金额",
 				width : 430,
 				height : 210,
@@ -1967,7 +1968,7 @@ function onPrint() {
 
 		nui.open({
 
-			url : webPath + contextPath + "/com.hsweb.part.purchase.purchaseOrderPrint.flow?ID="
+			url : webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderPrint.flow?ID="
 					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购订单打印",
 			width : 900,
@@ -2306,7 +2307,7 @@ function importPart(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.purchase.getPartInfoImoprt.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.getPartInfoImoprt.flow?token="+token,
         title: "配件导入", 
         width: 930, 
         height: 560,

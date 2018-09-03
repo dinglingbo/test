@@ -1,4 +1,7 @@
+var partApiUrl = apiPath +  partApi + "/";
+
 var partInfoUrl = partApiUrl + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";
+                               
 var enterUrl = partApiUrl + "com.hsapi.part.invoice.stockcal.queryOutableEnterGridWithPage.biz.ext";
 var priceGridUrl = partApiUrl+"com.hsapi.part.invoice.pricemanage.getPartPriceInfo.biz.ext";
 
@@ -721,7 +724,7 @@ function calc(type){
         }
     }
 }
-var partPriceUrl = cloudPartApiUrl + "com.hsapi.part.invoice.pricemanage.getSellDefaultPrice.biz.ext";
+var partPriceUrl = partApiUrl + "com.hsapi.part.invoice.pricemanage.getSellDefaultPrice.biz.ext";
 function getPartPrice(params){
     var price = 0;
     nui.ajax({
@@ -778,7 +781,7 @@ function showTabInfo(){
         });
     }
 }
-var saveUrl = cloudPartApiUrl + "com.hsapi.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
+var saveUrl = partApiUrl + "com.hsapi.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
 function savePrice(){
     var data = priceGrid.getChanges("modified");
     if(data && data.length>0){
@@ -821,8 +824,8 @@ function showBottomTabInfo(partId){
             var params = {};
             params.partId=partId;
             if(!url){
-                mainTabs.loadTab(cloudPartWebUrl + "/common/embedJsp/containPartPrice.jsp?partId="+partId, tab);
-            }else {
+                mainTabs.loadTab(cloudPartWebUrl + "/manage/inOutManage/common/embedJsp/containPartPrice.jsp?partId="+partId, tab);
+            }else {                                 
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }  
             break;
@@ -830,7 +833,7 @@ function showBottomTabInfo(partId){
             var params = {};
             params.partId=partId;
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }
@@ -841,7 +844,7 @@ function showBottomTabInfo(partId){
             params.partId=partId;
             params.type="LOCAL";
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartCommon.jsp?partId="+partId, tab);
+                mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartCommon.jsp?partId="+partId, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch(params);
             }

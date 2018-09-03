@@ -7,7 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    <select id="queryPartList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComAttribute">
+    <select id="queryPartList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComAttribute">
     	SELECT a.id id,
     		   a.orgid orgid,
 		       a.code code,
@@ -116,7 +116,7 @@
     </select>
     
     
-    <select id="querySupplierList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComGuest">
+    <select id="querySupplierList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComGuest">
     	SELECT a.short_name shortName,
 		       a.full_name fullName,
 		       a.code      CODE,
@@ -226,12 +226,12 @@
         </dynamic>  
     </select>
     
-    <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComGuest">
+    <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComGuest">
     	SELECT a.short_name shortName,
 		       a.full_name fullName,
 		       a.code      CODE,
 		       a.id        ID,
-		       a.orgcode orgcode,
+		   <!--a.orgcode orgcode,-->
 		       a.card_no   cardNo,
 		       a.py_name   pyName,
 		       a.guest_type guestType,
@@ -267,9 +267,9 @@
 		       a.credit_limit          creditLimit,
 		       a.is_disabled           isDisabled,
 		       a.remark                remark,
-		       a.face_visit_status     faceVisitStatus,
+		   <!--a.face_visit_status     faceVisitStatus,
 		       a.face_visit_date       faceVisitDate,
-		       a.face_visit_man        faceVisitMan,
+		       a.face_visit_man        faceVisitMan,-->
 		       a.is_internal           isInternal,
 		       a.is_internal_id        isInternalId,
 		       a.order_index           orderIndex,

@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.settle.svr.queryQCRPBill.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryQCRPBill.biz.ext";
 
 
 var mainGrid = null;
@@ -123,7 +123,7 @@ function deleteGuest(){
     mainGrid.removeRow(record,true);
 }
 var saveUrl = baseUrl
-        + "com.hsapi.part.settle.svr.saveInitRpBill.biz.ext";
+        + "com.hsapi.frm.frmService.crud.saveInitRpBill.biz.ext";
 function save(){
     var data = mainGrid.getData();
     var rpAdd = mainGrid.getChanges("added");
@@ -250,7 +250,7 @@ function save(){
     
 }
 var auditUrl = baseUrl
-        + "com.hsapi.part.settle.svr.auditInitRpBill.biz.ext";
+        + "com.hsapi.frm.frmService.crud.auditInitRpBill.biz.ext";
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
@@ -328,7 +328,7 @@ function importGuest(){
 
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.basic.initQCRPBillImport.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.part.manage.initQCRPBillImport.flow?token="+token,
         title: "期初应收应付导入", 
         width: 930, 
         height: 560,

@@ -3,8 +3,8 @@
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryRPBill.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
+var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjEnterDetailList.biz.ext";
+var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOutDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;

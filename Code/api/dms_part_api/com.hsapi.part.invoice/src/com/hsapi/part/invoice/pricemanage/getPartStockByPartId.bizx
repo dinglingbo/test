@@ -23,7 +23,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.part.data.pts.XPjPartStock" name="priceRecord" type="query" valueType="DataObject">priceRecord</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.PjPartStock" name="priceRecord" type="query" valueType="DataObject">priceRecord</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -210,7 +210,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPartStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartStock</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>

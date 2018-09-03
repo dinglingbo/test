@@ -9,8 +9,8 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartChoose.js?v=1.0.6"></script>
-<style type="text/css">
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartChoose.js?v=1.0.8"></script>
+<style type="text/css">                
 .table-label {
 	text-align: right;
 }

@@ -10,7 +10,7 @@
 <head>
 <title>销售记录</title>
 <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containSellOrderRecord.js?v=1.0.2"></script>
-<style type="text/css">
+<style type="text/css">                
 .title {
   width: 90px;
   text-align: right;

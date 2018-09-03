@@ -3,7 +3,8 @@
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
-		+ "com.hsapi.part.settle.svr.queryFiSettleAccount.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext";
+
 var mainGrid = null;
 var disableEl = null;
 var undisableEl = null;
@@ -42,7 +43,7 @@ function refresh(){
 }
 
 var saveUrl = baseUrl
-		+ "com.hsapi.part.settle.svr.saveFiSettleAccountBatch.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.saveFiSettleAccountBatch.biz.ext";
 function save(){
 	var data = mainGrid.getChanges("modified");
 	var settleAccount = [];
@@ -90,7 +91,7 @@ function save(){
 	
 }
 var auditUrl = baseUrl
-		+ "com.hsapi.part.settle.svr.initSettleAccountBalance.biz.ext";
+		+ "com.hsapi.frm.frmService.crud.initSettleAccountBalance.biz.ext";
 function audit(){
 	var data = mainGrid.getData();
 	var settleAccount = [];

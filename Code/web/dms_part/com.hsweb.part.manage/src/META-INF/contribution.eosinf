@@ -28,6 +28,7 @@
 				and the field value 'default' of 'configValue' node stands for an application datasource. 
 			-->
 			<configValue key="default">default</configValue>
+			<configValue key="part">DB03_ORA_WB_PART</configValue>
 		</group>
 	</module>
 </contribution>

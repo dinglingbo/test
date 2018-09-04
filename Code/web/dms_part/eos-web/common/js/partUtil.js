@@ -174,7 +174,27 @@ var getAllPartBrandUrl = window._rootUrl
 	+ "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
 function getAllPartBrand(callback) {
 	doPost({
+		async: false,
 		url : getAllPartBrandUrl,
+		success : function(data) {
+			if (data && data.quality && data.brand) {
+				callback && callback(data);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			//  nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+
+var getAllPartTypeUrl=window._rootUrl
++ "com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
+function getAllPartType(callback)
+{
+	doPost({		
+		url : getAllPartTypeUrl,
 		async: false,
 		success : function(data) {
 			if (data && data.quality && data.brand) {
@@ -187,17 +207,19 @@ function getAllPartBrand(callback) {
 		}
 	});
 }
+
+
 var getPartByIdUrl = window._rootUrl
 	+ "com.hsapi.part.baseDataCrud.crud.getPartById.biz.ext";
 function getPartById(id, callback) {
 	var params = {};
 	params.id = id;
 	doPost({
+		async: false,
 		url : getPartByIdUrl,
 		data : {
 			id: id
 		},
-		async: false,
 		success : function(data) {
 			callback && callback(data);
 		},

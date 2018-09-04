@@ -95,6 +95,11 @@ $(document).ready(function (v)
 		
 
 	});
+	
+	if(currIsMaster!="1"){
+		document.getElementById( "isShareLab").style.display= "none"; 
+		nui.get("isShare").setVisible(false);
+	}
 
 	
 	basicInfoForm = new nui.Form("#basicInfoForm");

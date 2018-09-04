@@ -1412,9 +1412,15 @@
     <node>assign21</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值21" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link56" name="link56" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link56" name="link56" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign22</sourceNode>
       <targetNode>subprocess5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link59</targetConnections>
     <location x="1544" y="206"/>
@@ -1484,6 +1490,10 @@
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">msgRecord/recorderId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">收款成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
     <location x="1539" y="242"/>
@@ -1508,9 +1518,9 @@
         <process:inputVariable id="3" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/mtAdvisorId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1549,7 +1559,7 @@
       <process:to type="query">msgParams/carVin</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:from type="query" pattern="reference">tbala</process:from>
       <process:to type="query">msgParams/balaAmt</process:to>
     </process:copy>
     <process:copy>
@@ -1621,7 +1631,7 @@
       <process:to type="query">contentStr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:from type="query" pattern="reference">tbala</process:from>
       <process:to type="query">strTemp</process:to>
     </process:copy>
     <process:copy>
@@ -1684,7 +1694,7 @@
         <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="s" type="query" value="Double" valueType="Primitive">settlement/balaAmt</process:outputVariable>
+        <process:outputVariable id="0" name="s" type="query" value="Double" valueType="Primitive">tbala</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1739,6 +1749,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="strTemp" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
     <process:variable description="工单金额 " historyStateLocation="client" isArray="false" name="mtAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tbala" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/packOut/packOut.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/packOut/packOut.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;

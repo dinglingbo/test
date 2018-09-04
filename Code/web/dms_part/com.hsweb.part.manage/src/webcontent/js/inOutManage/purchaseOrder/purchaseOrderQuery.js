@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var partApiUrl = partApiUrl+partApi+"/";
+var partApiUrl  = apiPath + partApi + "/";
 var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.query.queryPjPchsOrderMainDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;

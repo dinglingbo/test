@@ -85,7 +85,7 @@ $(document).ready(function(v)
     mainTabs = nui.get("mainTabs");
     billmainTab = mainTabs.getTab("billmain");
     partInfoTab = mainTabs.getTab("partInfoTab");
-    document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp?token="+token;
+    document.getElementById("formIframe").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottom.jsp?token="+token;
     document.getElementById("formIframePart").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartInfo.jsp?token="+token;
     //document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
     //document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";

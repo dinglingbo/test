@@ -12,7 +12,7 @@
 <body>
 
 
-<form id="form1" action="com.hsweb.cloud.part.basic.uniformPriceSet.flow"  method="post">
+<form id="form1" action="com.hsweb.part.manage.uniformPriceSet.flow"  method="post">
 	<h:hidden name="_eosFlowKey" property="_eosFlowKey"></h:hidden>
 	
 		

@@ -162,9 +162,9 @@
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo
                 FROM
-                DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
+                Wb_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-                LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
             <dynamic>
@@ -275,9 +275,9 @@
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo
                 FROM
-                DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
+                Wb_PART.PJ_PCHS_ORDER_MAIN_CHK A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-                LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
             <dynamic>
@@ -476,7 +476,7 @@
                 B.SPEC AS comSpec,
                 B.DIRECTION AS comDirection
             FROM
-            DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL A
+            Wb_PART.PJ_PCHS_ORDER_DETAIL A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
                 where 1=1
             <dynamic>
@@ -531,7 +531,7 @@
                 B.SPEC AS comSpec,
                 B.DIRECTION AS comDirection
             FROM
-            DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK A
+            Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
                 where 1=1
             <dynamic>
@@ -664,9 +664,9 @@
 			B.SHORT_NAME AS guestShortName,
 			a.version_no as versionNo
 			FROM
-			DMS_CLOUD_PART.PJ_ENTER_MAIN A
+			Wb_PART.PJ_ENTER_MAIN A
 			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-			LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+			LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
 			where 1=1
             <dynamic>
@@ -769,9 +769,9 @@
 			B.SHORT_NAME AS guestShortName,
 			a.version_no as versionNo
 			FROM
-			DMS_CLOUD_PART.PJ_ENTER_MAIN_CHK A
+			Wb_PART.PJ_ENTER_MAIN_CHK A
 			INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-			LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
+			LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK C ON A.ID = C.MAIN_ID
 			LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
 			where 1=1
             <dynamic>
@@ -994,7 +994,7 @@
 			B.SPEC AS comSpec,
 			B.DIRECTION AS comDirection
 			FROM
-			DMS_CLOUD_PART.PJ_ENTER_DETAIL A
+			Wb_PART.PJ_ENTER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
             <dynamic>
@@ -1056,7 +1056,7 @@
 			B.SPEC AS comSpec,
 			B.DIRECTION AS comDirection
 			FROM
-			DMS_CLOUD_PART.PJ_ENTER_DETAIL_CHK A
+			Wb_PART.PJ_ENTER_DETAIL_CHK A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
             <dynamic>
@@ -1118,7 +1118,7 @@
                 B.SPEC AS comSpec,
                 B.DIRECTION AS comDirection
             FROM
-            DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_CHK A
+            Wb_PART.PJ_PCHS_ORDER_DETAIL_CHK A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			left join pj_part_store_stock c on a.store_id = c.store_id and a.part_id = c.part_id
                 where 1=1
@@ -1189,7 +1189,7 @@
 			B.SPEC AS comSpec,
 			B.DIRECTION AS comDirection
 			FROM
-			DMS_CLOUD_PART.PJ_ENTER_DETAIL_CHK A
+			Wb_PART.PJ_ENTER_DETAIL_CHK A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
             <dynamic>
@@ -1248,7 +1248,7 @@
                 c.FULL_NAME AS guestFullName,
                 c.SHORT_NAME AS guestShortName
                 FROM
-                DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
+                Wb_PART.PJ_PCHS_ORDER_MAIN_CHK A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
                 inner join wb_common.COM_GUEST c on a.orgid = c.is_internal_id
                 where 1=1 and a.is_inner = 1 and b.is_disabled = 0 and c.is_disabled = 0
@@ -1372,9 +1372,9 @@
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder
                 FROM
-                DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
+                Wb_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-                LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
             <dynamic>
@@ -1507,9 +1507,9 @@
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder
                 FROM
-                DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_chk A
+                Wb_PART.PJ_PCHS_ORDER_MAIN_chk A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-                LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
+                LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
                 LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID 
                 where 1=1
             <dynamic>
@@ -1632,7 +1632,7 @@
                 B.SPEC AS comSpec,
                 B.DIRECTION AS comDirection
             FROM
-            DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL A
+            Wb_PART.PJ_PCHS_ORDER_DETAIL A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
                 where 1=1
             <dynamic>
@@ -1693,7 +1693,7 @@
                 B.SPEC AS comSpec,
                 B.DIRECTION AS comDirection
             FROM
-            DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_chk A
+            Wb_PART.PJ_PCHS_ORDER_DETAIL_chk A
             INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
                 where 1=1
             <dynamic>

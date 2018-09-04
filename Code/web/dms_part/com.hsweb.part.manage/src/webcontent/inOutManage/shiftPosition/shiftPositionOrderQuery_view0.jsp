@@ -1,6 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/sysCommon.jsp"%>
-<%@include file="/common/commonCloudPart.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming

@@ -52,8 +52,9 @@ $(document).ready(function(v)
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
     bottomInfoForm = new nui.Form("#bottomForm");
+    document.getElementById("formIframe").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottom.jsp";
     
-    document.getElementById("formIframe").src=webPath + contextPath + "/common/srvBottom.jsp";
+//    document.getElementById("formIframe").src=webPath + contextPath + "/common/srvBottom.jsp";
 
     //绑定表单
     //var db = new nui.DataBinding();

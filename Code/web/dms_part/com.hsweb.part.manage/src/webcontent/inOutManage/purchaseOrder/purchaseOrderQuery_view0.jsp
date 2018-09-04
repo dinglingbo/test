@@ -1,6 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/sysCommon.jsp"%>
-<%@include file="/common/commonCloudPart.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -9,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=2.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=2.0.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;

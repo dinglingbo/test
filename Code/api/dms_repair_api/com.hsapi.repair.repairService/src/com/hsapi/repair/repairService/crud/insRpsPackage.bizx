@@ -235,19 +235,11 @@
       <process:to type="query">item/rate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">item/itemTime</process:from>
-      <process:to type="query">itemTime</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">item/unitPrice</process:from>
-      <process:to type="query">price</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">item/rate</process:from>
       <process:to type="query">rate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">itemTime*price</process:from>
+      <process:from type="query" pattern="reference">item/amt</process:from>
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
@@ -257,10 +249,6 @@
     <process:copy>
       <process:from type="expression" pattern="reference">amt-discountAmt</process:from>
       <process:to type="query">subtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">amt</process:from>
-      <process:to type="query">item/amt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">discountAmt</process:from>
@@ -368,19 +356,11 @@
       <process:to type="query">part/rate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">part/qty</process:from>
-      <process:to type="query">qty</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">part/unitPrice</process:from>
-      <process:to type="query">price</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">part/rate</process:from>
       <process:to type="query">rate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">qty*price</process:from>
+      <process:from type="query" pattern="reference">part/amt</process:from>
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
@@ -390,10 +370,6 @@
     <process:copy>
       <process:from type="expression" pattern="reference">amt-discountAmt</process:from>
       <process:to type="query">subtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">amt</process:from>
-      <process:to type="query">part/amt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">discountAmt</process:from>
@@ -632,6 +608,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="152" y="152"/>
@@ -1199,6 +1176,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link65</targetConnections>
     <location x="-113" y="151"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
@@ -1232,9 +1210,8 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link58</targetConnections>
-    <targetConnections>link60</targetConnections>
     <targetConnections>link61</targetConnections>
-    <location x="-221" y="151"/>
+    <location x="-225" y="91"/>
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
@@ -1267,7 +1244,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
-    <location x="-226" y="187"/>
+    <location x="-230" y="127"/>
     <figSize height="17" width="39"/>
     <node>assign20</node>
   </nodes>
@@ -1287,7 +1264,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="-337" y="69"/>
+    <location x="-406" y="33"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
@@ -1305,7 +1282,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="-373" y="104"/>
+    <location x="-442" y="68"/>
     <figSize height="17" width="98"/>
     <node>subprocess3</node>
   </nodes>
@@ -1315,7 +1292,7 @@
       <targetNode>assign20</targetNode>
     </sourceConnections>
     <targetConnections>link57</targetConnections>
-    <location x="-222" y="69"/>
+    <location x="-226" y="33"/>
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
@@ -1324,26 +1301,58 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
-    <location x="-227" y="105"/>
+    <location x="-231" y="69"/>
     <figSize height="17" width="39"/>
     <node>assign21</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值22" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link60" name="link60" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link65" name="link65" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign22</sourceNode>
-      <targetNode>assign20</targetNode>
+      <targetNode>subprocess2</targetNode>
     </sourceConnections>
     <targetConnections>link59</targetConnections>
-    <location x="-311" y="152"/>
+    <location x="-304" y="151"/>
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">pkg/rate</process:from>
       <process:to type="query">pkgDiscountRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg/id</process:from>
+      <process:to type="query">pkgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgDiscountRate</process:from>
+      <process:to type="query">pkg/rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/oldPrice</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/sellPrice</process:from>
+      <process:to type="query">subtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">amt-subtotal</process:from>
+      <process:to type="query">discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/oldPrice</process:from>
+      <process:to type="query">pkg/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">discountAmt</process:from>
+      <process:to type="query">pkg/discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">subtotal</process:from>
+      <process:to type="query">pkg/subtotal</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
-    <location x="-316" y="188"/>
+    <location x="-309" y="187"/>
     <figSize height="17" width="39"/>
     <node>assign22</node>
   </nodes>
@@ -1353,7 +1362,7 @@
       <targetNode>assign20</targetNode>
     </sourceConnections>
     <targetConnections>link56</targetConnections>
-    <location x="-278" y="110"/>
+    <location x="-337" y="64"/>
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
@@ -1362,7 +1371,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">
-    <location x="-283" y="146"/>
+    <location x="-342" y="100"/>
     <figSize height="17" width="39"/>
     <node>assign23</node>
   </nodes>

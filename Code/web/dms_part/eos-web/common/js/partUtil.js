@@ -19,6 +19,7 @@ function doPost(opt) {
 	nui.ajax({
 		url : url,
 		type : "post",
+		async: false,
 		data : JSON.stringify(data),
 		success : success,
 		error : error
@@ -63,6 +64,7 @@ function getDictItems(dictIdList, callback) {
 	doPost({
 		url : getDictItemsUrl,
 		data : params,
+		async: false,
 		success : function(data) {
 			if (data && data.dataItems) {
 				callback && callback({
@@ -108,6 +110,7 @@ function getProvinceAndCity(callback) {
 	doPost({
 		url : getProvinceAndCityUrl,
 		data:{},
+		async: false,
 		success : function(data) {
 			if (data && data.province) {
 				window.top._provinceList = data.province;
@@ -138,6 +141,7 @@ var getStorehouseUrl = window._rootUrl
 function getStorehouse(callback) {
 	doPost({
 		url : getStorehouseUrl,
+		async: false,
 		success : function(data) {
 			if (data && data.storehouse) {
 				callback && callback(data);
@@ -154,6 +158,7 @@ var getAllCarBrandUrl = window._rootUrl
 function getAllCarBrand(callback) {
 	doPost({
 		url : getAllCarBrandUrl,
+		async: false,
 		success : function(data) {
 			if (data && data.carBrands) {
 				callback && callback(data);
@@ -169,6 +174,7 @@ var getAllPartBrandUrl = window._rootUrl
 	+ "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
 function getAllPartBrand(callback) {
 	doPost({
+		async: false,
 		url : getAllPartBrandUrl,
 		success : function(data) {
 			if (data && data.quality && data.brand) {
@@ -181,12 +187,35 @@ function getAllPartBrand(callback) {
 		}
 	});
 }
+
+
+var getAllPartTypeUrl=window._rootUrl
++ "com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
+function getAllPartType(callback)
+{
+	doPost({		
+		url : getAllPartTypeUrl,
+		async: false,
+		success : function(data) {
+			if (data && data.quality && data.brand) {
+				callback && callback(data);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			//  nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+
 var getPartByIdUrl = window._rootUrl
 	+ "com.hsapi.part.baseDataCrud.crud.getPartById.biz.ext";
 function getPartById(id, callback) {
 	var params = {};
 	params.id = id;
 	doPost({
+		async: false,
 		url : getPartByIdUrl,
 		data : {
 			id: id
@@ -205,6 +234,7 @@ var getOrgListUrl = window._rootUrl
 function getOrgList(callback) {
 	doPost({
 		url : getOrgListUrl,
+		async: false,
 		success : function(data) {
 			if (data && data.orgList) {
 				callback && callback({
@@ -227,6 +257,7 @@ function getRoleMember(roleId, callback) {
 	doPost({
 		url : getRoleMemberUrl,
 		data : JSON.stringify(params),
+		async: false,
 		success : function(data) {
 			callback && callback(data);
 		},
@@ -344,6 +375,7 @@ function getCompBillNO(billTypeCode, callback) {
 	doPost({
 		url : getCompBillNOUrl,
 		data : JSON.stringify(params),
+		async: false,
 		success : function(data) {
 			callback && callback(data);
 		},

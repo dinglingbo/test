@@ -54,7 +54,7 @@
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
-				DMS_CLOUD_PART.pj_sell_order_main_chk A
+				Wb_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
 				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.3"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.4"></script>
 
 </head>
 
@@ -153,11 +153,11 @@
 										   valueField="carModelId" showNullItem="false"/>
 								</td>
 								<td colspan="2" style="width:50px;">
-									<label>是否共享：</label>
-									<input name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+									<label id="isShareLab" >是否共享：</label>
+									<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 									<label>是否禁用：</label>
 									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
-									<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 									<label>是否允许优惠：</label>
 									<input name="isCanRate" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 								</td>

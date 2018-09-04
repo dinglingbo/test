@@ -145,6 +145,10 @@
       <process:to type="query">itemTime</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">insItem/a</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">insItem/unitPrice</process:from>
       <process:to type="query">price</process:to>
     </process:copy>

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.4"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.5"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -89,12 +89,12 @@
 								</td>
 								
 								 <td >
-									<label>是否共享：</label>
+									<label id="isShareTd">是否共享：</label>
 								</td>
 								<td colspan="1">
 									
-									<input name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
-								<label>是否禁用：</label>
+									<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+								<label id="isDisabledTd">是否禁用：</label>
 								
 					
 									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>

@@ -32,7 +32,7 @@
 				A.operate_date as operateDate
 			FROM
 				pj_stock_shift_main A
-				LEFT JOIN DMS_CLOUD_PART.pj_stock_shift_detail C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.pj_stock_shift_detail C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
 			where 1=1
             <dynamic>
@@ -125,7 +125,7 @@
 					B.spec AS comSpec,
 					B.direction AS comDirection
 			FROM
-						DMS_CLOUD_PART.pj_stock_shift_detail A
+						Wb_PART.pj_stock_shift_detail A
 						INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
 

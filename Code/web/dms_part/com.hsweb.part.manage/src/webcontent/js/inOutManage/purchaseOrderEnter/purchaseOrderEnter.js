@@ -1761,8 +1761,7 @@ function onPrint() {
 
 		var auditSign = row.auditSign||0;
 
-		nui.open({
-
+		nui.open({                                    
 			url : webPath + contextPath + "/com.hsweb.part.manage.pchsOrderEnterPrint.flow?ID="
 					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
 			title : "采购入库打印",

@@ -1,7 +1,7 @@
 
-var baseUrl = apiPath + cloudPartApi + "/";
-var notPackUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryNotPackSellOrder.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
+var baseUrl = apiPath + partApi + "/";
+var notPackUrl = baseUrl + "com.hsapi.part.invoice.paramcrud.queryNotPackSellOrder.biz.ext";
+var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var notPackGrid = null;
 var leftGrid = null;
 var rightGrid = null;

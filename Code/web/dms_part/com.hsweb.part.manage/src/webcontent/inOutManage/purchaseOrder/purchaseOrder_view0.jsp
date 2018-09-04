@@ -58,10 +58,10 @@ body .mini-grid-row-selected{
             <!--采购订单信息-->
             <%@include file="/purchase/purchaseOrder/purchaseOrderDetail.jsp" %>
         </div>
-        <div title="采购车" name="purchaseAdvanceTab" url="" >
-          <!-- <div class="nui-fit">
+         <div title="采购车" name="purchaseAdvanceTab" url="" >
+          <div class="nui-fit">
                 <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-          </div> -->
+          </div>
         </div>   
     </div>
 </div>

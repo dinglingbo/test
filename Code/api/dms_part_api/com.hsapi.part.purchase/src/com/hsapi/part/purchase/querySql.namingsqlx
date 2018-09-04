@@ -43,7 +43,7 @@
 		       a.modify_date modifyDate,
 		       a.sett_type settType,
 		       a.bill_tax_rate billTaxRate
-		       FROM PTS_ENTER_MAIN a where a.orgid = #orgid#
+		       FROM PJ_ENTER_MAIN a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
                 (enter_code like '%$id$%')
@@ -166,8 +166,8 @@
 		FROM
 			pts_enter_main a
 			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
-			LEFT JOIN pts_enter_detail d ON ( d.detail_id = b.root_enter_detail_id )
-			LEFT JOIN pts_enter_main e ON ( e.id = d.enter_id )
+			LEFT JOIN pj_enter_detail d ON ( d.detail_id = b.root_enter_detail_id )
+			LEFT JOIN pj_enter_main e ON ( e.id = d.enter_id )
 			LEFT JOIN wb_common.com_attribute c ON ( c.id = b.part_id )
 		     where a.orgid = #orgid#
 		     and a.audit_status = 1
@@ -307,7 +307,7 @@
 			c.part_brand_id partBrandId
 		FROM
 			pts_out_main a
-			JOIN pts_out_detail b ON ( a.id = b.out_id )
+			JOIN pj_out_detail b ON ( a.id = b.out_id )
 			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id ) 
 		WHERE
 			a.audit_status = 1
@@ -472,7 +472,7 @@
         </dynamic>  
     </select>
     
-    <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutMain">
+    <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PjOutMain">
     	SELECT a.id ID,
     		   a.out_code outCode,
 		       a.source_id sourceId,
@@ -506,7 +506,7 @@
 		       a.modifier modifier,
 		       a.modify_date modifyDate,
 		       a.bill_tax_rate billTaxRate
-		 FROM pts_out_main a where a.orgid = #orgid#
+		 FROM pj_out_main a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
                 (out_code like '%$id$%')

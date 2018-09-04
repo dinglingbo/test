@@ -381,7 +381,7 @@
         </dynamic>  
     </select>
  
-    <select id="queryPtsStockCycVList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <select id="queryPtsStockCycVList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsStockCycV">
     	SELECT
 			a.id id,
 			a.part_id partId,

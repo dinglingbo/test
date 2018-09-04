@@ -472,7 +472,7 @@
         </dynamic>  
     </select>
     
-    <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutMain">
+    <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PjOutMain">
     	SELECT a.id ID,
     		   a.out_code outCode,
 		       a.source_id sourceId,

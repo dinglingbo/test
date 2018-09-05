@@ -161,6 +161,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="422" y="150"/>
@@ -368,17 +369,18 @@
     <figSize height="20" width="40"/>
     <node>assign6</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array" displayName="add2Array" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array" displayName="add2Array" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="480" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.frm.com.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -414,7 +416,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.settle.rpsettle.initialAccountBalance</process:partner>
+      <process:partner type="literal">com.hsapi.frm.frmService.rpsettle.initialAccountBalance</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="settAccountId" type="query" value="Long" valueType="Primitive" pattern="reference">f/balaAccountId</process:inputVariable>
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">f/fYear</process:inputVariable>

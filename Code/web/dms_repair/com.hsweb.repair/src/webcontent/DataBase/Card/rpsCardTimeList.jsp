@@ -31,7 +31,7 @@
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "endDate" value=""/>
-					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
+					<a class="nui-button" plain="true"  onclick="onSearch()"> <span class="fa fa-search fa-lg"></span>查询</a>
 				</td>
 				<td >		
 			       <a class="nui-button" onclick="searchOne()">查看详情</a>	

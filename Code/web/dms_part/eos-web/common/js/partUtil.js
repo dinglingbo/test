@@ -61,10 +61,11 @@ var getDictItemsUrl = window._rootUrl
 function getDictItems(dictIdList, callback) {
 	var params = {};
 	params.dictIdList = dictIdList;
-	doPost({
+	params.token = token;
+	nui.ajax({
 		url : getDictItemsUrl,
-		data : params,
-		async: false,
+		type : "post",
+		data : JSON.stringify(params),
 		success : function(data) {
 			if (data && data.dataItems) {
 				callback && callback({
@@ -79,6 +80,7 @@ function getDictItems(dictIdList, callback) {
 		}
 	});
 }
+
 var getProvinceAndCityUrl = window._rootUrl
 	+ "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
 function getProvinceAndCity(callback) {
@@ -139,9 +141,10 @@ function getProvinceAndCity(callback) {
 var getStorehouseUrl = window._rootUrl
 	+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
 function getStorehouse(callback) {
-	doPost({
+	nui.ajax({
 		url : getStorehouseUrl,
-		async: false,
+		data : {token: token},
+		type : "post",
 		success : function(data) {
 			if (data && data.storehouse) {
 				callback && callback(data);
@@ -155,37 +158,25 @@ function getStorehouse(callback) {
 }
 var getAllCarBrandUrl = window._rootUrl
 	+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
-function getAllCarBrand(callback) {
-	doPost({
-		url : getAllCarBrandUrl,
-		async: false,
-		success : function(data) {
-			if (data && data.carBrands) {
-				callback && callback(data);
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			//  nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
-}
-var getAllPartBrandUrl = window._rootUrl
-	+ "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
-function getAllPartBrand(callback) {
-	doPost({
-		async: false,
-		url : getAllPartBrandUrl,
-		success : function(data) {
-			if (data && data.quality && data.brand) {
-				callback && callback(data);
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			//  nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
+function getAllPartBrand(callback)
+{
+    nui.ajax({
+        url:getAllPartBrandUrl,
+        data : {token: token},
+        type:"post",
+        async:false,
+        success:function(data)
+        {
+            if(data && data.quality && data.brand)
+            {
+                callback && callback(data);
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 
 

@@ -5,6 +5,7 @@
 	<projects>
 		<project>dms_system_api</project>
 		<project>dms_part_api</project>
+		<project>dms_system</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

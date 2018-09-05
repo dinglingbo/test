@@ -1307,6 +1307,10 @@
       <process:from type="query" pattern="reference">bPartRate</process:from>
       <process:to type="query">stored/partRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/name</process:from>
+      <process:to type="query">stored/cardName</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
     <location x="73" y="182"/>

@@ -21,6 +21,7 @@
 		Update rps_part_quote set status = 1, modifier = #userName#, modify_date = now() Where package_id = #packageId#
 	</update>
 	
+	<!--20180905作废，套餐在新增和修改时已经保证数据统一；不用重新汇总套餐金额-->
 	<update id="updatePackageAmt" parameterClass="java.util.HashMap">
 		update rps_package a
 		inner join (
@@ -43,6 +44,18 @@
 		    a.discount_amt = ifnull(b.sumtDiscountAmt,0) + ifnull(c.sumtDiscountAmt,0),
 		    a.subtotal = ifnull(b.sumAmt,0) + ifnull(c.sumAmt,0) - ifnull(b.sumtDiscountAmt,0) - ifnull(c.sumtDiscountAmt,0)
 		where a.service_id = #serviceId#
+	</update>
+	
+	<!--套餐的优惠率修改后，更新工时的优惠信息-->
+	<update id="updateRpsItem" parameterClass="java.util.HashMap">
+		update rps_item set rate = #rate#, discount_amt = amt * 1.0 * #rate#, subtotal = amt * (1.0 - #rate#)
+		where bill_package_id = #billPackageId#
+	</update>
+	
+	<!--套餐的优惠率修改后，更新配件的优惠信息-->
+	<update id="updateRpsPart" parameterClass="java.util.HashMap">
+		update rps_partset rate = #rate#, discount_amt = amt * 1.0 * #rate#, subtotal = amt * (1.0 - #rate#)
+		where bill_package_id = #billPackageId#
 	</update>
 	
 	<update id="updateCardTimesFinish" parameterClass="java.util.HashMap">

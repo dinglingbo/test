@@ -57,7 +57,7 @@ $(document).ready(function(v)
 
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
-
+    getGuestId();
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
@@ -77,7 +77,7 @@ $(document).ready(function(v)
         });
     });
 
-    getGuestId();
+
 
     gsparams.auditSign = 0;
     quickSearch(0);

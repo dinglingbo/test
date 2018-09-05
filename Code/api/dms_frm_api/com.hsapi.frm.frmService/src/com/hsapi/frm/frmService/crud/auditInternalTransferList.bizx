@@ -388,7 +388,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.settle.rpsettle.initialAccountBalance</process:partner>
+      <process:partner type="literal">com.hsapi.frm.frmService.rpsettle.initialAccountBalance</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="settAccountId" type="query" value="Long" valueType="Primitive" pattern="reference">f/settAccountId</process:inputVariable>
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">f/fYear</process:inputVariable>
@@ -427,7 +427,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.settle.rpsettle.initialAccountBalance</process:partner>
+      <process:partner type="literal">com.hsapi.frm.frmService.rpsettle.initialAccountBalance</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="settAccountId" type="query" value="Long" valueType="Primitive" pattern="reference">f/toSettAccountId</process:inputVariable>
         <process:inputVariable id="1" name="FYear" type="query" value="Int" valueType="Primitive" pattern="reference">f/fYear</process:inputVariable>

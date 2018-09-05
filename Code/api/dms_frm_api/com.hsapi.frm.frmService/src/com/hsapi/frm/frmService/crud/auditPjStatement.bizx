@@ -289,8 +289,8 @@
     <location x="361" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.BillStateUtils.getColumnIntValue</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hsapi.frm.com.BillStateUtils.getColumnIntValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -397,10 +397,10 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.savePjStatementNT</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="stateMain" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementMain" valueType="DataObject" pattern="reference">stateMain</process:inputVariable>
-        <process:inputVariable id="1" name="stateDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="stateDetailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailDelete</process:inputVariable>
-        <process:inputVariable id="3" name="stateDetailList" type="query" value="com.hsapi.cloud.part.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailList</process:inputVariable>
+        <process:inputVariable id="0" name="stateMain" type="query" value="com.hsapi.frm.data.pts.PjStatementMain" valueType="DataObject" pattern="reference">stateMain</process:inputVariable>
+        <process:inputVariable id="1" name="stateDetailAdd" type="query" value="com.hsapi.frm.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="stateDetailDelete" type="query" value="com.hsapi.frm.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailDelete</process:inputVariable>
+        <process:inputVariable id="3" name="stateDetailList" type="query" value="com.hsapi.frm.data.pts.PjStatementDetail[]" valueType="DataObject" pattern="reference">stateDetailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -583,7 +583,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
+      <process:partner type="literal">com.hsapi.frm.com.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -609,7 +609,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
+      <process:partner type="literal">com.hsapi.frm.com.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

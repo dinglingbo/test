@@ -161,6 +161,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="422" y="150"/>
@@ -372,13 +373,14 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="480" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
+      <process:partner type="literal">com.hsapi.frm.com.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

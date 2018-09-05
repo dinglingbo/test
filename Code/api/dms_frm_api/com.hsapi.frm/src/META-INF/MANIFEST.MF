@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: com.eos.workflow,com.hs.common,com.primeton.eos.richwe
- b,com.eos.foundation
+Require-Bundle: com.eos.foundation,com.hsapi.part.common,com.hsapi.par
+ t.data,com.hs.common
 Bundle-Vendor: Guine
 eos-webCtxPath: frm
 Bundle-Version: 1.0.0

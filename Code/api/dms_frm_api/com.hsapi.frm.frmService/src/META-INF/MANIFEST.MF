@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hs.common,com.eos.foundation,com.hsapi.frm.data
+Require-Bundle: com.hsapi.frm.data,com.hsapi.part.data
 eos-webCtxPath: frmService
 Bundle-Vendor: Administrator
 Bundle-Version: 1.0.0

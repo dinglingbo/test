@@ -156,8 +156,9 @@ function getStorehouse(callback) {
 		}
 	});
 }
-var getAllCarBrandUrl = window._rootUrl
-	+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
+var getAllPartBrandUrl = window._rootUrl
+	+ "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
+
 function getAllPartBrand(callback)
 {
     nui.ajax({

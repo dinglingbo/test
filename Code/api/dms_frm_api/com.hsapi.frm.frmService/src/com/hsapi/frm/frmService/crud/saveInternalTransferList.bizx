@@ -244,6 +244,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>subprocess3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="480" y="151"/>
@@ -487,7 +488,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.frm.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

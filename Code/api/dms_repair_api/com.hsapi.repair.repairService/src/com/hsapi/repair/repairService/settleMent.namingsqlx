@@ -12,7 +12,7 @@
 
 	<!--ifnull(package_id, '') = ''-->
 	<update id="calculateItemDiscount" parameterClass="java.util.HashMap">
-		update rps_item set discount_amt = rate * amt, subtotal = (.0 - rate) * amt where service_id = #serviceId# AND bill_package_id = 0
+		update rps_item set discount_amt = rate * amt, subtotal = (1.0 - rate) * amt where service_id = #serviceId# AND bill_package_id = 0
 	</update>
 	<update id="calculatePartDiscount" parameterClass="java.util.HashMap">
 		update rps_part set discount_amt = rate * amt, subtotal = (1.0 - rate) * amt where service_id = #serviceId# AND bill_package_id = 0

@@ -334,47 +334,224 @@
             <a class="nui-button" onclick="" plain="false">相关单据</a>
         </div>
         <div>
-            <div id="datagrid1" class="nui-datagrid" showPager="false">
-                <div property="columns">
-
-                    <div field="" width="100" headerAlign="center" align="center">项目名称</div>
-                    <div field="" width="100" headerAlign="center" align="center">业务分类</div>
-                    <div field="" width="100" headerAlign="center" align="center">工时</div>
-                    <div field="" width="100" headerAlign="center" align="center">单价</div>
-                    <div field="" width="100" headerAlign="center" align="center">工时费</div>
-                    <div field="" width="100" headerAlign="center" align="center">折扣</div>
-                    <div field="" width="100" headerAlign="center" align="center">折后金额</div>
-                    <div field="" width="300" headerAlign="center" align="center">服务技师</div>
-                    <div field="" width="100" headerAlign="center" align="center">增项</div>
-                    <div field="" width="100" headerAlign="center" align="center">备注</div>
-                    <div field="" width="100" headerAlign="center" align="center">删除</div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div id="datagrid2" class="nui-datagrid" showPager="false">
+            <div id="rpsPackageGrid" class="nui-datagrid"
+     style="width:100%;height:auto;"
+     dataField="list"
+     showPager="false"
+     showModified="false"
+     allowCellSelect="true"
+     allowCellEdit="true"
+     allowSortColumn="true">
+    <div property="columns">
+        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+        <div header="套餐信息">
             <div property="columns">
-
-                <div field="" width="100" headerAlign="center" align="center">材料名称</div>
-                <div field="" width="100" headerAlign="center" align="center">业务分类</div>
-                <div field="" width="100" headerAlign="center" align="center">数量</div>
-                <div field="" width="100" headerAlign="center" align="center">单价</div>
-                <div field="" width="100" headerAlign="center" align="center">材料费</div>
-                <div field="" width="100" headerAlign="center" align="center">折扣</div>
-                <div field="" width="100" headerAlign="center" align="center">折后金额</div>
-                <div field="" width="100" headerAlign="center" align="center">库存</div>
-                <div field="" width="100" headerAlign="center" align="center">领取</div>
-                <div field="" width="100" headerAlign="center" align="center">领料人</div>
-                <div field="" width="100" headerAlign="center" align="center">增项</div>
-                <div field="" width="100" headerAlign="center" align="center">备注</div>
-                <div field="" width="100" headerAlign="center" align="center">删除</div>
-
+                <div field="packageName" headerAlign="center" allowSort="false"
+                     visible="true" width="100" header="套餐名称">
+                </div>
+                <div field="serviceTypeId" headerAlign="center"
+                     allowSort="false" visible="true" width="50" header="业务类型">
+                     <input  property="editor" enabled="true" dataField="servieTypeList" 
+                             class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
+                             url="" onvaluechanged="" emptyText=""  vtype="required"/> 
+                </div>
+                <div field="pkgamt" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="套餐金额">
+                </div>
+                <div field="rate" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="优惠率">
+                     <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="discountAmt" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="优惠金额">
+                </div>
+                <div field="subtotal" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="小计金额">
+                </div>
+                <div field="workers" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="施工员">
+                    <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
+                    <!-- <div property="columns">
+                        <div header="ID" field="id"></div>
+                        <div header="名称" field="empName"></div>
+                    </div> -->
+                </div>
+                </div>
+                <div field="workerIds" headerAlign="center"
+                     allowSort="false" visible="false" width="80" header="施工员">
+                </div>
+                <div field="remark" headerAlign="center"
+                     allowSort="false" visible="true" width="40" header="销售员">
+                </div>
+                <div field="packageOptBtn" name="packageOptBtn" width="100" headerAlign="center" header="操作" align="center"></div>
             </div>
         </div>
-        <div style="width:100%;margin-top: 10px;text-align: center;">
-            <a href="##" onclick="">添加自带材料</a>
+    </div>
+</div>
+<div style="text-align:center;">
+    <span id="carHealthEl" >
+        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
+    </span>
+</div>
+<div id="packageDetailGridForm" style="display:none;">
+    <div id="packageDetailGrid" class="nui-datagrid"
+         style="width: 100%; "
+         dataField="list"
+         showPager="false"
+         selectOnLoad="true"
+         allowSortColumn="true">
+        <div property="columns">
+            <div field="typeName" headerAlign="center" allowSort="false"
+                 visible="true" width="60">类型
+            </div>
+            <div field="name" headerAlign="center"
+                 allowSort="false" visible="true" width="">名称
+            </div>
+            <div field="qty" headerAlign="center"
+                 allowSort="false" visible="true" width="80">工时/数量
+            </div>
+            <div field="remark" headerAlign="center"
+                 allowSort="false" visible="true" width="80">备注
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+
+                            <div style="width:100%;height:5px;"></div>
+                            
+    
+<div id="rpsItemGrid"
+     borderStyle="border-bottom:1;"
+     class="nui-datagrid"
+     dataField="list"
+     style="width: 100%; height:auto;"
+     showPager="false"
+     showModified="false"
+     allowCellSelect="true"
+     allowCellEdit="true"
+     allowSortColumn="true">
+    <div property="columns">
+        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+        <div header="工时信息">
+            <div property="columns">
+                <div field="itemName" headerAlign="center" allowSort="false" visible="true" width="100">工时名称</div>
+                <div field="itemName" headerAlign="center" allowSort="false" visible="true" width="60">业务类型</div>
+                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="right">工时</div>
+                <div field="amt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="right">工时单价</div>
+                <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right">工时金额</div>
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="right" numberFormat="p">优惠率</div>
+                <div field="discountAmt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right">优惠金额</div>
+                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right">小计金额</div>
+                <div field="worker" headerAlign="center" allowSort="false" visible="true" width="80">施工员</div>
+                <div field="worker" headerAlign="center" allowSort="false" visible="true" width="60">销售员</div>
+                <div field="itemOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="text-align:center;">
+    <span id="carHealthEl" >
+        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择工时</a>
+    </span>
+</div>
+    
+
+
+
+                            <div style="width:100%;height:5px;"></div>
+                            
+    
+<div id="rpsPartGrid"
+     dataField="list"
+     class="nui-datagrid"
+     style="width: 100%; height:auto;"
+     showPager="false"
+     allowCellSelect="true"
+     allowCellEdit="true"
+     showModified="false"
+     editNextOnEnterKey="true"
+     allowSortColumn="true">
+    <div property="columns" >
+        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+        <div header="配件信息">
+            <div property="columns">
+                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
+                    <!-- <input property="editor" class="nui-textbox" emptyText="配件编码、名称、拼音" /> -->
+                </div>
+                <div field="receTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型">
+                    <input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="customid" textField="name" data="receTypeIdList"
+                     url="" onvaluechanged="" emptyText=""  vtype="required"/>
+                </div>
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="right" header="数量">
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="right" header="单价">
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right" header="金额"></div>
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="right" numberFormat="p" header="优惠率">
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="discountAmt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right" header="优惠金额">
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="right">小计金额</div>
+                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码">
+                  <input property="editor" vtype="float" class="nui-textbox"/> 
+                </div>
+                <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="60px" header="销售员">
+                  <input property="editor" vtype="float" class="nui-textbox"/> 
+                </div>
+                <div field="partOptBtn" name="partOptBtn" width="80" headerAlign="center" header="操作" align="center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="text-align:center;">
+    <span id="carHealthEl" >
+        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
+    </span>
+</div>
+<div id="advancedMorePartWin" class="nui-window"
+     title="" style="width:450px;height:200px;"
+     showModal="false"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:95%;"
+               selectOnLoad="true"
+               showPager="false"
+               dataField=""
+               frozenStartColumn="0"
+               frozenEndColumn="1"
+               onrowdblclick="addSelectPart"
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               url="">
+              <div property="columns">
+                  <div type="indexcolumn">序号</div>
+                  <div field="code" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+                  <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OEM码"></div>
+                  <div field="fullName" name="comPartCode" width="200" headerAlign="center" header="配件全称"></div>
+              </div>
+          </div>
+    </div>
+</div> 
         </div>
         <div id="datagrid3" class="nui-datagrid" showPager="false">
             <div property="columns">
@@ -385,7 +562,9 @@
 
             </div>
         </div>
-
+ 		<div style="width:100%;margin-top: 10px;text-align: center;">
+            <a href="##" onclick="">添加自带材料</a>
+        </div>
 
         <table>
             <tr>

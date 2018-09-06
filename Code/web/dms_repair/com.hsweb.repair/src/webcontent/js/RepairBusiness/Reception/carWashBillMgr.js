@@ -237,5 +237,22 @@ function edit(){
     var params = {
         id: row.id
     };
-    window.parent.activeTabAndInit(item,params)
+    window.parent.activeTabAndInit(item,params);
+}
+//根据开单界面传递的车牌号查询未结算的工单
+function setInitData(params){
+    var carNo = params.carNo||"";
+    var type = params.type||""
+    if(type=='view' && carNo != ""){
+        var p = {
+            carNoEqual: carNo,
+            isSettle: 0
+        };
+        mainGrid.load({
+            token:token,
+            params: p
+        });
+    }else{
+        showMsg("加载");
+    }
 }

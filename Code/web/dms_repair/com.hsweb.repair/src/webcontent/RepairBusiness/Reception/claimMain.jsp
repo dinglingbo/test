@@ -71,7 +71,7 @@
         allowCellSelect="true"
         editNextOnEnterKey="true"
         onshowrowdetail="onShowRowDetail"
-        url="">
+        url="com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext">
         <div property="columns">
           <div field="" name="" width="40" headerAlign="center" align="center" >套餐名称号</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>

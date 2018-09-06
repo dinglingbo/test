@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//com.hsapi.part.common/eosdebug/com/hsapi/part/common/data/getGeustByInternalId.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.common/eosdebug/com/hsapi/part/common/data/getSequenceValue.bizx.eosdebug=UTF-8
+encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/crud/auditSellOrderToOut.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.invoice/eosdebug/com/hsapi/part/invoice/crud/savePjSellOutNT.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.purchase/eosdebug/com/hsapi/part/purchase/enterAudit/auditPtsEnterMain.bizx.eosdebug=UTF-8
 encoding//com.hsapi.part.purchase/eosdebug/com/hsapi/part/purchase/svr/queryPtsEnterMainList.bizx.eosdebug=UTF-8

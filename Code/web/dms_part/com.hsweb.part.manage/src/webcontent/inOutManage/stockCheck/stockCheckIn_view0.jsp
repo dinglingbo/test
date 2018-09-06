@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘盈入库</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheckIn/stockCheckIn.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheckIn/stockCheckIn.js?v=2.0.2"></script>
 <style type="text/css">
 .title {
 	width: 60px;

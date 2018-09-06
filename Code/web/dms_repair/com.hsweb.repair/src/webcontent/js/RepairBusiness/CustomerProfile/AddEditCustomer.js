@@ -152,6 +152,12 @@ function addContact()
     contactList.push({});
     setContactByIdx(contactList.length-1);
 }
+function addCar()
+{
+    //添加联系人
+    carList.push({});
+    setCarByIdx(carList.length-1);
+}
 //关闭窗口
 function CloseWindow(action) {
     if (action == "close" && form.isChanged()) {

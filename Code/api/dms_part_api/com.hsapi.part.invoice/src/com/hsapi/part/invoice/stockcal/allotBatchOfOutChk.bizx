@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="allotBatchOfOutChk" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、出库主表插入数据&#xD;&#xA;2、取出库明细，进行批次分配&#xD;&#xA;根据 is_mark_batch 判断是直接取批次，还是先进先出&#xD;&#xA;is_mark_batch，batch_source_id&#xD;&#xA;3、如果指定了批次，直接将本批次作为成本，不考虑数量够不够（理论上选择的批次数量肯定是够的）&#xD;&#xA;    指定了批次，批次的ID，仓库必须是一致的，如果存在仓库ID与成本ID不一致的情况，提示联系管理员&#xD;&#xA;4、outdetail/isMarkBatch = 1表示是指定批次的出库，其他为先进先出" title="DLB&#x9;17-7-15 下午4:21">
     <location x="44" y="-150"/>
@@ -1185,7 +1185,7 @@
     <figSize height="20" width="80"/>
     <node>invokePojo4</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="appendList2" displayName="" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="appendList2" displayName="appendList" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>invokePojo10</sourceNode>
       <targetNode>loopend1</targetNode>
@@ -1252,7 +1252,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjSellQtyTempRecord</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjSellQtyTempRecord</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>

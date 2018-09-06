@@ -190,7 +190,7 @@ $(document).ready(function(v) {
             }
         }
 	 
-	}
+	};
 
 	$("partTempId").focus(function(){
 		$("orderMan").css("background-color","#FFFFCC");
@@ -226,8 +226,10 @@ $(document).ready(function(v) {
 			
 		});
 	});
+	
 
 });
+
 var StatusHash = {
 	"0" : "草稿",
 	"1" : "待发货",
@@ -282,6 +284,7 @@ function addNewRow(check){
 		
 	}
 }
+
 function ontopTabChanged(e){
 	var tab = e.tab;
 	var name = tab.name;

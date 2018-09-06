@@ -12,7 +12,7 @@
 <head>
     <title>理赔工单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-
+	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/claimMain.js" type="text/javascript"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -192,11 +192,11 @@
             <tr>
                 <td class="tbtext">车主</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="guestFullName"/>
                 </td>
                 <td class="tbtext">车主电话</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="guestMobile"/>
                 </td>
                 <td class="tbtext">级别</td>
                 <td class="tbCtrl">
@@ -211,19 +211,19 @@
             <tr>
                 <td class="tbtext">车牌</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="carNO"/>
                 </td>
                 <td class="tbtext">车型</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="carModel"/>
                 </td>
                 <td class="tbtext">VIN码</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="carVin"/>
                 </td>
                 <td class="tbtext">车身颜色</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="color"/>
                 </td>
 
             </tr>
@@ -242,22 +242,22 @@
                 </td>
                 <td class="tbtext">油量</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="enterOilMass"/>
                 </td>
 
             </tr>
             <tr>
                 <td class="tbtext">车辆分类</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name=""/>
                 </td>
                 <td class="tbtext">业务分类</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name=""/>
                 </td>
                 <td class="tbtext">建档人</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name=""/>
                 </td>
 
             </tr>
@@ -268,30 +268,30 @@
                 <tr>
                     <td class="tbtext">姓名</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name="mtAdvisor"/>
                     </td>
                     <td class="tbtext">联系方式</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name="contactMobile"/>
                     </td>
                     <td class="tbtext">证件类型</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name=""/>
                     </td>
                     <td class="tbtext">证件号</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name=""/>
                     </td>
 
                 </tr>
                 <tr>
                     <td class="tbtext">性别</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name=""/>
                     </td>
                     <td class="tbtext">详细地址</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name=""/>
                     </td>
 
 
@@ -306,15 +306,15 @@
                 <tr>
                     <td class="tbtext">理赔公司</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name="insureCompName"/>
                     </td>
                     <td class="tbtext">理赔保单号</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name="insureNo"/>
                     </td>
                     <td class="tbtext">同本车保险</td>
                     <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" />
+                        <input class="nui-textbox tabwidth" name=""/>
                     </td>
                     <td class="tbtext"></td>
                     <td class="tbCtrl">

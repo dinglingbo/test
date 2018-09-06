@@ -173,18 +173,20 @@
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="40" headerAlign="center" header="进程"></div>
-                  <div field="carNO" name="carNO" width="60" headerAlign="center" header="车牌"></div>
+                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌"></div>
+                  <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
+                  <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
+                  <div field="serviceTypeId" name="serviceTypeId" width="55" headerAlign="center" header="业务类型"></div>
                   <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
                   <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
                   <div field="carVin" name="carVin" width="120" headerAlign="center" header="VIN码"></div>
-                  <div field="guestFullName" name="guestFullName" width="50" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
-                  <div field="contactName" name="contactName" width="60" headerAlign="center" header="送修人姓名"></div>
+                  <div field="contactName" name="contactName" width="65" headerAlign="center" header="送修人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="送修人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
-                  <div field="serviceTypeId" name="serviceTypeId" width="50" headerAlign="center" header="业务类型"></div>
                   <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
+                  <div field="recordDate" name="recordDate" width="120" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                  <div field="modifyDate" name="modifyDate" width="120" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
               </div>
           </div>
     </div>

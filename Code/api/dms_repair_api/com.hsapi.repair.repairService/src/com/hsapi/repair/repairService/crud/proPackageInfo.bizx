@@ -508,7 +508,7 @@
       <process:to type="query">pkgUpdate/discountAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">(discountAmt*1.0)/amt</process:from>
+      <process:from type="expression" pattern="reference">amt==0?0:((discountAmt*1.0)/amt)</process:from>
       <process:to type="query">uPkgDiscountRate</process:to>
     </process:copy>
     <process:copy>
@@ -623,7 +623,7 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

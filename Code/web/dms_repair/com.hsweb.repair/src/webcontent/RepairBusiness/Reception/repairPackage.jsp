@@ -11,10 +11,10 @@
      allowCellEdit="true"
      allowSortColumn="true">
     <div property="columns">
-        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+        <div headerAlign="center" field="orderIndex" width="25" align="right">序号</div>
         <div header="套餐信息">
             <div property="columns">
-                <div field="packageName" headerAlign="center" allowSort="false"
+                <div field="prdtName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
                 </div>
                 <div field="serviceTypeId" headerAlign="center"
@@ -23,7 +23,7 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="pkgamt" headerAlign="center"
+                <div field="amt" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="套餐金额">
                 </div>
                 <div field="rate" headerAlign="center"

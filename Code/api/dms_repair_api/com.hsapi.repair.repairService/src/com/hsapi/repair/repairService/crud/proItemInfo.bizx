@@ -57,7 +57,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -86,7 +86,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -605,6 +605,7 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link55" isDefault="true" type="transition">
       <sourceNode>assign29</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="link57" type="transition">
       <sourceNode>assign29</sourceNode>
@@ -626,7 +627,7 @@
       <process:to type="query">discountAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">discountAmt*1.0/uAmt</process:from>
+      <process:from type="expression" pattern="reference">uAmt==0?0:(discountAmt*1.0/uAmt)</process:from>
       <process:to type="query">uRate</process:to>
     </process:copy>
     <process:copy>

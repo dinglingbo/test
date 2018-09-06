@@ -156,28 +156,6 @@ function getStorehouse(callback) {
 		}
 	});
 }
-var getAllCarBrandUrl = window._rootUrl
-	+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
-function getAllPartBrand(callback)
-{
-    nui.ajax({
-        url:getAllPartBrandUrl,
-        data : {token: token},
-        type:"post",
-        async:false,
-        success:function(data)
-        {
-            if(data && data.quality && data.brand)
-            {
-                callback && callback(data);
-            }
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
 
 
 var getAllPartTypeUrl=window._rootUrl
@@ -476,6 +454,31 @@ function SelectCustomer(params)
                 var tmp = nui.get(params["guestId"]);
                 tmp && tmp.setText && tmp.setText(name);
             }
+        }
+    });
+}
+
+
+
+var getAllPartBrandUrl = window._rootUrl
+	+ "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
+function getAllPartBrand(callback)
+{
+    nui.ajax({
+        url: getAllPartBrandUrl,
+        data : {token: token},
+        type:"post",
+        async:false,
+        success:function(data)
+        {
+            if(data && data.quality && data.brand)
+            {
+                callback && callback(data);
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
         }
     });
 }

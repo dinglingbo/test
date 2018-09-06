@@ -200,7 +200,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.uniq.getCompBillNO</process:partner>
+      <process:partner type="literal">com.hsapi.frm.com.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">RPD</process:inputVariable>
         <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
@@ -216,7 +216,7 @@
     <figSize height="17" width="92"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getNowYear" displayName="getNowYear" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getNowYear" displayName="" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link0" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -226,8 +226,8 @@
     <location x="170" y="159"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getNowYear</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.DateUtils.getNowYear</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables/>
@@ -249,8 +249,8 @@
     <location x="240" y="159"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getNowMonth</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.DateUtils.getNowMonth</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables/>

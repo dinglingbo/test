@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insItemWorkers.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="  用  ,  分隔&#xD;&#xA;deduct_type 提成方式&#xD;&#xA;deduct_value  提成金额  在完工时修改计算&#xD;&#xA;&#xD;&#xA;销售提成类型(1-按原价比例;2-按折后价比例;3-按产值比例;4-固定金额)&#xD;&#xA;" title="Administrator&#x9;18-8-8 下午4:28">
-    <location x="90" y="-45"/>
-    <size height="151" width="498"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="  用  ,  分隔&#xD;&#xA;deduct_type 提成方式&#xD;&#xA;deduct_value  提成金额  在完工时修改计算&#xD;&#xA;&#xD;&#xA;销售提成类型(1-按原价比例;2-按折后价比例;3-按产值比例;4-固定金额)&#xD;&#xA;&#xD;&#xA;注：施工员的提成方式到完工后更新，提成方式 = 对应工时的提成方式，不用管item/techDeductType有没有值&#xD;&#xA;" title="Administrator&#x9;18-8-8 下午4:28">
+    <location x="-4" y="-90"/>
+    <size height="181" width="661"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>assign2</targetNode>
     </sourceConnections>
     <location x="45" y="150"/>
     <size height="28" width="28"/>
@@ -38,8 +38,7 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <targetConnections>link9</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="420" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -88,11 +87,7 @@
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>assign2</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="没有派工人" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="没有派工" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>end1</targetNode>
       <process:transitionCondition>
@@ -102,8 +97,19 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link0</targetConnections>
-    <location x="150" y="150"/>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="285" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -124,14 +130,14 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="152" y="186"/>
+    <location x="287" y="186"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link3</targetConnections>
     <targetConnections>link11</targetConnections>
-    <location x="150" y="360"/>
+    <location x="285" y="360"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -140,7 +146,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="148" y="396"/>
+    <location x="283" y="396"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -180,7 +186,8 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link7" name="需要删除之前记录" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>
@@ -192,13 +199,13 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="285" y="150"/>
+    <targetConnections>link0</targetConnections>
+    <location x="165" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="283" y="186"/>
+    <location x="163" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -395,7 +402,7 @@
     <figSize height="17" width="96"/>
     <node>invokePojo4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign5</targetNode>
@@ -413,7 +420,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="delItemWorkers" displayName="delItemWorkers" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>assign0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
@@ -426,7 +433,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="417" y="256"/>
+    <location x="165" y="255"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -438,7 +445,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="383" y="291"/>
+    <location x="131" y="290"/>
     <figSize height="17" width="95"/>
     <node>subprocess0</node>
   </nodes>

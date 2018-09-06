@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>期初现金银行</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script  src="<%=webPath + contextPath%>/frm/js/settle/initSettleAccountBala.js?v=1.0.2"></script>
+    <script  src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initSettleAccountBala.js?v=1.0.4"></script>
     <style type="text/css">
     body {
         margin: 0;

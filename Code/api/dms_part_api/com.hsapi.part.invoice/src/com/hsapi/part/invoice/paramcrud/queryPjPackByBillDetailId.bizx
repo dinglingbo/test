@@ -44,7 +44,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPackDetail</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPackDetail</process:from>
       <process:to type="query">condo/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -65,6 +65,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -101,6 +102,7 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="264" y="60"/>
@@ -126,7 +128,7 @@
       <process:to type="query">packDetail</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.XPjPackMain</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPackMain</process:from>
       <process:to type="query">condt/_entity</process:to>
     </process:copy>
     <process:copy>

@@ -73,7 +73,7 @@
         onshowrowdetail="onShowRowDetail"
         url="">
         <div property="columns">
-          <div field="" name="" width="40" headerAlign="center" align="center" >单号</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >套餐名称号</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >车牌号</div>

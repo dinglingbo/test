@@ -121,29 +121,84 @@ $(document).ready(function ()
             return;
         }
         if (item) { 
-            var sk = document.getElementById("search_key");
-            sk.style.display = "none";
-
-            searchNameEl.setVisible(true);
 
             var carNo = item.carNo||"";
             var tel = item.guestMobile||"";
             var guestName = item.guestFullName||"";
             var carVin = item.vin||"";
-            if(tel){
-                tel = "/"+tel;
-            }
-            if(guestName){
-                guestName = "/"+guestName;
-            }
-            if(carVin){
-                carVin = "/"+carVin;
-            }
-            var t = carNo + tel + guestName + carVin;
-            searchNameEl.setValue(t);
-            //searchNameEl.setEnabled(false);
 
-            doSetMainInfo(item);
+            var params = {
+                carNo: carNo,
+                isSettle: 0,
+                orgid: currOrgId
+            }
+            checkRpsMaintain(params, function(text){
+                var data = text.data||[];
+                if(data && data.length>0){
+                    nui.showMessageBox({
+                        showHeader: true,
+                        width: 255,
+                        title: "工单",
+                        buttons: ["继续", "查看"],
+                        message: "该客户存在未结算记录",
+                        iconCls: "mini-messagebox-warning",
+                        callback: function (action) {
+                            if(action == "继续"){
+                                var sk = document.getElementById("search_key");
+                                sk.style.display = "none";
+                                searchNameEl.setVisible(true);
+                                
+                                if(tel){
+                                    tel = "/"+tel;
+                                }
+                                if(guestName){
+                                    guestName = "/"+guestName;
+                                }
+                                if(carVin){
+                                    carVin = "/"+carVin;
+                                }
+                                var t = carNo + tel + guestName + carVin;
+                                searchNameEl.setValue(t);
+                                //searchNameEl.setEnabled(false);
+                    
+                                doSetMainInfo(item);
+                            }else if(action == "查看"){
+                                var opt={};
+                                opt.iconCls="fa fa-desktop";
+                                opt.id="1104";
+                                opt.text="洗车开单";
+                                opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/carWashMgr.jsp";
+                                
+                                var params = {
+                                    type: 'view',
+                                    carNo: carNo
+                                };
+                                window.parent.activeTabAndInit(opt,params);
+                            }
+                        }
+                    });
+                }else{
+                    var sk = document.getElementById("search_key");
+                    sk.style.display = "none";
+                    searchNameEl.setVisible(true);
+                    
+                    if(tel){
+                        tel = "/"+tel;
+                    }
+                    if(guestName){
+                        guestName = "/"+guestName;
+                    }
+                    if(carVin){
+                        carVin = "/"+carVin;
+                    }
+                    var t = carNo + tel + guestName + carVin;
+                    searchNameEl.setValue(t);
+                    //searchNameEl.setEnabled(false);
+        
+                    doSetMainInfo(item);
+                }
+            });
+            
         }
     });
     searchKeyEl.focus();
@@ -305,6 +360,9 @@ $(document).ready(function ()
             var balaTimes = row.balaTimes || 0;
             var canUseTimes = row.canUseTimes||0;
             e.cellHtml = balaTimes - canUseTimes;
+        }
+        if(e.field == 'cardTimesOpt'){
+            e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">确定</a>';
         }
     });
     memCardGrid.on("drawcell",function(e)
@@ -880,4 +938,49 @@ function onworkerChanged(e){
     var row = rpsPackageGrid.getSelected();
     var newRow = {workerIds:workerIds};
     rpsPackageGrid.updateRow(row, newRow);
+}
+function addCardTimesToBill(){
+    var main = billForm.getData();
+    if(!main.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }
+    var row = cardTimesGrid.getSelected();
+    if(row){
+        var t = row.prdtType||0;
+        var interType = "";
+        if(t == 1){
+            interType = "package";
+        }else if(t == 2){
+            interType = "item";
+        }else if(t == 3){
+            interType = "part";
+        }
+        if(!interType){
+            showMsg("次卡类型有误!","W");
+            return;
+        }
+        var pkg = {
+            serviceId:main.id,
+            packageId:row.prdtId,
+            cardDetailId:row.id
+        };
+        var params = {
+            type:"insert",
+            interType:interType,
+            data:pkg
+        };
+        svrCRUD(params,function(text){
+            var errCode = text.errCode||"";
+            if(errCode == 'S'){
+                //根据工单ID查询套餐
+            }else{
+                showMsg("添加次卡信息失败!","W");
+                return;
+            }
+        })
+    }else{
+        showMsg("请选择次卡记录!","W");
+        return;
+    }
 }

@@ -52,9 +52,15 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="insItemWorkers1" displayName="insItemWorkers" collapsed="false" grouped="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="link19" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="link19" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link27" name="link27" displayName="link22" type="transition">
       <sourceNode>subprocess1</sourceNode>
@@ -67,7 +73,8 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <targetConnections>link74</targetConnections>
+    <targetConnections>link15</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="965" y="275"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
@@ -188,7 +195,7 @@
       <targetNode>assign16</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -388,7 +395,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" grouped="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link74" name="link74" displayName="link46" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
-      <targetNode>subprocess1</targetNode>
+      <targetNode>assign13</targetNode>
     </sourceConnections>
     <targetConnections>link73</targetConnections>
     <location x="783" y="275"/>
@@ -674,7 +681,7 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -719,14 +726,14 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
-    <targetConnections>link105</targetConnections>
-    <targetConnections>link106</targetConnections>
-    <location x="1260" y="164"/>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="1350" y="163"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="1258" y="200"/>
+    <location x="1348" y="199"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -753,7 +760,7 @@
     <targetConnections>link101</targetConnections>
     <targetConnections>link102</targetConnections>
     <targetConnections>link103</targetConnections>
-    <location x="1425" y="165"/>
+    <location x="1515" y="164"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -763,14 +770,14 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="1427" y="201"/>
+    <location x="1517" y="200"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link106" name="link106" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>assign11</targetNode>
     </sourceConnections>
     <targetConnections>link104</targetConnections>
     <location x="1141" y="102"/>
@@ -793,7 +800,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link105" name="link105" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>assign11</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link104" name="link104" displayName="连接线" type="transition">
       <sourceNode>assign6</sourceNode>
@@ -814,6 +821,95 @@
     <location x="1139" y="201"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>assign8</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>assign12</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULL">
+          <process:leftOperand type="query">tmp/serviceTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link105</targetConnections>
+    <targetConnections>link106</targetConnections>
+    <location x="1209" y="164"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign11label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
+    <location x="1204" y="200"/>
+    <figSize height="17" width="39"/>
+    <node>assign11</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign12</sourceNode>
+      <targetNode>assign8</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="1210" y="102"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign12label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/serviceTypeId</process:from>
+      <process:to type="query">updateItemTemp/serviceTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
+    <location x="1205" y="138"/>
+    <figSize height="17" width="39"/>
+    <node>assign12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>assign14</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULL">
+          <process:leftOperand type="query">tmp/serviceTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link74</targetConnections>
+    <location x="864" y="274"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="859" y="310"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="864" y="360"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/serviceTypeId</process:from>
+      <process:to type="query">updateItemTemp/serviceTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="859" y="396"/>
+    <figSize height="17" width="39"/>
+    <node>assign14</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

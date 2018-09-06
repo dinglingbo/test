@@ -12,7 +12,7 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.6"></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "endDate" value=""/>
-					<a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
+					<a class="nui-button" plain="true"  onclick="onSearch()"> <span class="fa fa-search fa-lg"></span>查询</a>
 				</td>
 				<td >		
 			       <a class="nui-button" onclick="searchOne()">查看详情</a>	
@@ -69,9 +69,9 @@
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
 				
-				<!-- <div field="id" headerAlign="center" allowSort="true">
+				 <!-- <div field="id" headerAlign="center" allowSort="true">
 					剩余次数
-				</div> -->
+				</div>  -->
 				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">
 					创建时间</div>
 				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">

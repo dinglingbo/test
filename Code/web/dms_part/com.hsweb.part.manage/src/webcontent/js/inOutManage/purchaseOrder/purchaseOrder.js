@@ -94,8 +94,8 @@ $(document).ready(function(v) {
 	advancedTipWin = nui.get("advancedTipWin");
 
 	//setTimeout(function(){ 
-	document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
-	document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
+	document.getElementById("formIframe").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottom.jsp";
+	document.getElementById("formIframePart").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartInfo.jsp";
 		//document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
 		//document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
 	//}, 3000);
@@ -190,7 +190,7 @@ $(document).ready(function(v) {
             }
         }
 	 
-	}
+	};
 
 	$("partTempId").focus(function(){
 		$("orderMan").css("background-color","#FFFFCC");
@@ -226,8 +226,10 @@ $(document).ready(function(v) {
 			
 		});
 	});
+	
 
 });
+
 var StatusHash = {
 	"0" : "草稿",
 	"1" : "待发货",
@@ -282,6 +284,7 @@ function addNewRow(check){
 		
 	}
 }
+
 function ontopTabChanged(e){
 	var tab = e.tab;
 	var name = tab.name;

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>仓库信息</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containBottomStock.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containBottomStock.js?v=2.0.6"></script>
 <style type="text/css">
 .title {
     width: 90px;

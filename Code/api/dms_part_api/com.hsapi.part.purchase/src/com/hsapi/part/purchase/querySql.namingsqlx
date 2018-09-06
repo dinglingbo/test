@@ -43,7 +43,7 @@
 		       a.modify_date modifyDate,
 		       a.sett_type settType,
 		       a.bill_tax_rate billTaxRate
-		       FROM PTS_ENTER_MAIN a where a.orgid = #orgid#
+		       FROM PJ_ENTER_MAIN a where a.orgid = #orgid#
     	<dynamic>
     		<isNotEmpty prepend="and" property="id">  
                 (enter_code like '%$id$%')
@@ -110,103 +110,6 @@
         </dynamic>  
     </select>
     
-    <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutMain">
-    	SELECT a.id ID,
-    		   a.out_code outCode,
-		       a.source_id sourceId,
-		       a.out_date outDate,
-		       a.store_id storeId,
-		       a.guest_id guestId,
-		       a.guest_full_name guestFullName,
-		       a.out_type_id outTypeId,
-		       a.out_total_qty outTotalQty,
-		       a.true_cost trueCost,
-		       a.tax_amt taxAmt,
-		       a.total_discount_amt totalDiscountAmt,
-		       a.goods_amt goodsAmt,
-		       a.total_amt totalAmt,
-		       a.receivable_amt receivableAmt,
-		       a.bill_type_id billTypeId,
-		       a.bill_status billStatus,
-		       a.back_reason_id backReasonId,
-		       a.checker checker,
-		       a.seller seller,
-		       a.store_keeper storeKeeper,
-		       a.audit_status auditStatus,
-		       a.auditor auditor,
-		       a.audit_date auditDate,
-		       a.post_status postStatus,
-		       a.post_man postMan,
-		       a.post_date postDate,
-		       a.remark remark,
-		       a.recorder recorder,
-		       a.record_date recordDate,
-		       a.modifier modifier,
-		       a.modify_date modifyDate,
-		       a.bill_tax_rate billTaxRate
-		 FROM pts_out_main a where a.orgid = #orgid#
-    	<dynamic>
-    		<isNotEmpty prepend="and" property="id">  
-                (out_code like '%$id$%')
-            </isNotEmpty>
-    		<isNotEmpty prepend="and" property="storeId">  
-                (store_id = #storeId#)
-            </isNotEmpty>              
-            <isNotEmpty prepend="and" property="billStatus">  
-                (A.bill_status = #billStatus#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="startDate">  
-                (date_format(record_date,'%Y-%m-%d') &gt;= #startDate#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="endDate">  
-                (date_format(record_date,'%Y-%m-%d') &lt;= #endDate#)
-            </isNotEmpty>
-    		<isNotEmpty prepend="and" property="outTypeId">  
-                (out_type_id = #outTypeId#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="outIdList">  
-                (A.out_code in ($outIdList$))
-            </isNotEmpty>
-    		<isNotEmpty prepend="and" property="guestId">  
-                (A.guest_id = #guestId#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisMonth"> 
-            <!--本月 --> 
-                (date_format(record_date,'%Y-%m')=date_format(now(),'%Y-%m'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastMonth"> 
-            <!--上月 --> 
-                (date_format(record_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="today">  
-            <!--本日-->
-                (date_format(record_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="yesterday">  
-            <!--昨日-->
-                (date_format(record_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="thisWeek">  
-            <!--本周-->
-                (date_format(record_date,'%X-%V')=date_format(now(),'%X-%V'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="lastWeek">  
-            <!--上周-->
-                (date_format(record_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="auditStatus">  
-            <!--审核状态-->
-                (audit_status = #auditStatus#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="postStatus">  
-            <!--是否过账-->
-                (post_status = #postStatus#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="sortField">  
-                $sortField$ $sortOrder$
-            </isNotEmpty>  
-        </dynamic>  
-    </select>
     
     
     <select id="queryPtsEnterMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsEnterMainDetailV">
@@ -263,8 +166,8 @@
 		FROM
 			pts_enter_main a
 			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
-			LEFT JOIN pts_enter_detail d ON ( d.detail_id = b.root_enter_detail_id )
-			LEFT JOIN pts_enter_main e ON ( e.id = d.enter_id )
+			LEFT JOIN pj_enter_detail d ON ( d.detail_id = b.root_enter_detail_id )
+			LEFT JOIN pj_enter_main e ON ( e.id = d.enter_id )
 			LEFT JOIN wb_common.com_attribute c ON ( c.id = b.part_id )
 		     where a.orgid = #orgid#
 		     and a.audit_status = 1
@@ -404,7 +307,7 @@
 			c.part_brand_id partBrandId
 		FROM
 			pts_out_main a
-			JOIN pts_out_detail b ON ( a.id = b.out_id )
+			JOIN pj_out_detail b ON ( a.id = b.out_id )
 			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id ) 
 		WHERE
 			a.audit_status = 1
@@ -478,7 +381,7 @@
         </dynamic>  
     </select>
  
-    <select id="queryPtsStockCycVList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <select id="queryPtsStockCycVList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsStockCycV">
     	SELECT
 			a.id id,
 			a.part_id partId,
@@ -568,4 +471,107 @@
             </isNotEmpty>
         </dynamic>  
     </select>
+    
+    <select id="queryPtsOutMainList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PjOutMain">
+    	SELECT a.id ID,
+    		   a.out_code outCode,
+		       a.source_id sourceId,
+		       a.out_date outDate,
+		       a.store_id storeId,
+		       a.guest_id guestId,
+		       a.guest_full_name guestFullName,
+		       a.out_type_id outTypeId,
+		       a.out_total_qty outTotalQty,
+		       a.true_cost trueCost,
+		       a.tax_amt taxAmt,
+		       a.total_discount_amt totalDiscountAmt,
+		       a.goods_amt goodsAmt,
+		       a.total_amt totalAmt,
+		       a.receivable_amt receivableAmt,
+		       a.bill_type_id billTypeId,
+		       a.bill_status billStatus,
+		       a.back_reason_id backReasonId,
+		       a.checker checker,
+		       a.seller seller,
+		       a.store_keeper storeKeeper,
+		       a.audit_status auditStatus,
+		       a.auditor auditor,
+		       a.audit_date auditDate,
+		       a.post_status postStatus,
+		       a.post_man postMan,
+		       a.post_date postDate,
+		       a.remark remark,
+		       a.recorder recorder,
+		       a.record_date recordDate,
+		       a.modifier modifier,
+		       a.modify_date modifyDate,
+		       a.bill_tax_rate billTaxRate
+		 FROM pj_out_main a where a.orgid = #orgid#
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="id">  
+                (out_code like '%$id$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="storeId">  
+                (store_id = #storeId#)
+            </isNotEmpty>              
+            <isNotEmpty prepend="and" property="billStatus">  
+                (A.bill_status = #billStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">  
+                (date_format(record_date,'%Y-%m-%d') &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (date_format(record_date,'%Y-%m-%d') &lt;= #endDate#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="outTypeId">  
+                (out_type_id = #outTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outIdList">  
+                (A.out_code in ($outIdList$))
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="guestId">  
+                (A.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisMonth"> 
+            <!--本月 --> 
+                (date_format(record_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastMonth"> 
+            <!--上月 --> 
+                (date_format(record_date,'%Y-%m')=date_format(ADDDATE(NOW(), INTERVAL -1 MONTH),'%Y-%m'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="today">  
+            <!--本日-->
+                (date_format(record_date,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="yesterday">  
+            <!--昨日-->
+                (date_format(record_date,'%Y-%m-%d')=date_format(ADDDATE(NOW(), INTERVAL -1 DAY),'%Y-%m-%d'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="thisWeek">  
+            <!--本周-->
+                (date_format(record_date,'%X-%V')=date_format(now(),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lastWeek">  
+            <!--上周-->
+                (date_format(record_date,'%X-%V')=date_format(ADDDATE(NOW(), INTERVAL -7 DAY),'%X-%V'))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="auditStatus">  
+            <!--审核状态-->
+                (audit_status = #auditStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="postStatus">  
+            <!--是否过账-->
+                (post_status = #postStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
+    
+    
+    
+    
+    
 </sqlMap>

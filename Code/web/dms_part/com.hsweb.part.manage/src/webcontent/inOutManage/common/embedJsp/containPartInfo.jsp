@@ -8,7 +8,7 @@
 -->
 <head>
 <title>配件查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containPartInfo.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/embedJsp/containPartInfo.js?v=2.0.6"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

@@ -105,8 +105,8 @@
     <location x="165" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getNowYear</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.DateUtils.getNowYear</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables/>
@@ -128,8 +128,8 @@
     <location x="240" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.DateUtils.getNowMonth</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.DateUtils.getNowMonth</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables/>
@@ -664,7 +664,7 @@
       <targetNode>invokePojo7</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

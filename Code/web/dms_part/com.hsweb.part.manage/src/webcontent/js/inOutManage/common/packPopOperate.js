@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + partApi + "/";
 var leftGridUrl = baseUrl+"com.hsapi.part.invoice.paramcrud.queryPjPackByBillDetailId.biz.ext";
-
+							
 var basicInfoForm = null;
 var billTypeIdHash = {};
 var settTypeIdHash = {};

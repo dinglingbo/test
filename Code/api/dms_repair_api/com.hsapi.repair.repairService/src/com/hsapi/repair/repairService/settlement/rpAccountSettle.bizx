@@ -426,10 +426,6 @@
       <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">结算失败</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="659" y="372"/>
@@ -790,6 +786,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo8</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="465" y="226"/>

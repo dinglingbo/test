@@ -84,7 +84,7 @@ function refresh() {
 	var form = new nui.Form("#queryform");
 	var json = form.getData(false, false);
 	grid.load(json);// grid查询
-	nui.get("update").enable();
+	nui.get("updateBtn").enable();
 }
 
 // 查询
@@ -111,9 +111,9 @@ function onKeyEnter(e) {
 function selectionChanged() {
 	var rows = grid.getSelecteds();
 	if (rows.length > 1) {
-		nui.get("update").disable();
+		nui.get("updateBtn").disable();
 	} else {
-		nui.get("update").enable();
+		nui.get("updateBtn").enable();
 	}
 }
 function onDrawCell(e) {

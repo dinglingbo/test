@@ -135,9 +135,9 @@
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
-				DMS_CLOUD_PART.pj_sell_order_main A
+				Wb_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -239,9 +239,9 @@
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
-				DMS_CLOUD_PART.pj_sell_order_main_chk A
+				Wb_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -425,7 +425,7 @@
 			B.spec AS comSpec,
 			B.direction AS comDirection
 			FROM
-			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL A
+			Wb_PART.PJ_SELL_ORDER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
 
@@ -476,7 +476,7 @@
 			B.spec AS comSpec,
 			B.direction AS comDirection
 			FROM
-			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
+			Wb_PART.PJ_SELL_ORDER_DETAIL_chk A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
             <dynamic>
@@ -624,9 +624,9 @@
 			B.full_name AS guestFullName,
 			B.short_name AS guestShortName
 			FROM
-			DMS_CLOUD_PART.pj_out_main A
+			Wb_PART.pj_out_main A
 			INNER JOIN WB_COMMON.com_guest B ON A.GUEST_ID = B.ID
-			LEFT JOIN DMS_CLOUD_PART.pj_out_detail C ON A.ID = C.MAIN_ID
+			LEFT JOIN Wb_PART.pj_out_detail C ON A.ID = C.MAIN_ID
 			LEFT JOIN WB_COMMON.com_attribute D ON C.PART_ID = D.ID
 			where 1 = 1
             <dynamic>
@@ -734,9 +734,9 @@
 			B.full_name AS guestFullName,
 			B.short_name AS guestShortName
 			FROM
-			DMS_CLOUD_PART.pj_out_main_chk A
+			Wb_PART.pj_out_main_chk A
 			INNER JOIN WB_COMMON.com_guest B ON A.GUEST_ID = B.ID
-			LEFT JOIN DMS_CLOUD_PART.pj_out_detail_chk C ON A.ID = C.MAIN_ID
+			LEFT JOIN Wb_PART.pj_out_detail_chk C ON A.ID = C.MAIN_ID
 			LEFT JOIN WB_COMMON.com_attribute D ON C.PART_ID = D.ID
 			where 1 = 1
             <dynamic>
@@ -962,7 +962,7 @@
 			B.spec AS comSpec,
 			B.direction AS comDirection
 			FROM
-			DMS_CLOUD_PART.pj_out_detail A
+			Wb_PART.pj_out_detail A
 				INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
 
@@ -1026,7 +1026,7 @@
 			B.spec AS comSpec,
 			B.direction AS comDirection
 			FROM
-			DMS_CLOUD_PART.pj_out_detail_chk A
+			Wb_PART.pj_out_detail_chk A
 				INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
             <dynamic>
@@ -1096,7 +1096,7 @@
 			B.spec AS comSpec,
 			B.direction AS comDirection
 			FROM
-			DMS_CLOUD_PART.pj_out_detail_chk A
+			Wb_PART.pj_out_detail_chk A
 				INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
             <dynamic>
@@ -1160,9 +1160,9 @@
                 a.is_diff_order as isDiffOrder,
                 a.rtn_sign_date as rtnSignDate
 				FROM
-				DMS_CLOUD_PART.pj_sell_order_main A
+				Wb_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -1292,9 +1292,9 @@
                 a.rtn_sign_date as rtnSignDate,
                 a.is_out as isOut
 				FROM
-				DMS_CLOUD_PART.pj_sell_order_main_chk A
+				Wb_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -1417,7 +1417,7 @@
 			B.spec AS comSpec,
 			B.direction AS comDirection
 			FROM
-			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL A
+			Wb_PART.PJ_SELL_ORDER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
 
@@ -1475,7 +1475,7 @@
 			B.spec AS comSpec,
 			B.direction AS comDirection
 			FROM
-			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
+			Wb_PART.PJ_SELL_ORDER_DETAIL_chk A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1
 

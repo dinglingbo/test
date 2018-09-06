@@ -2338,9 +2338,9 @@ function packOut(){
         if(row.isOut == 1) {
             nui.open({
                 targetWindow: window,
-                url: webBaseUrl+"com.hsweb.part.common.packPopOperate.flow?token="+token,
+                url: webBaseUrl+"com.hsweb.part.manage.packPopOperate.flow?token="+token,
                 title: "发货信息编辑", 
-                width: 580, height: 260,
+                width: 580, height: 300,
                 showHeader:true,
                 allowDrag:true,
                 allowResize:true,

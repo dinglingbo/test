@@ -50,7 +50,7 @@ html,body {
                  <td>
                 	<input id="search" class="nui-textbox" emptyText="输入查询条件" />
                 </td>
-                <td><a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a></td>
+                <td><a class="nui-button"  plain="true" onclick="onSearch()"> <span class="fa fa-search fa-lg"></span> 查询</a></td>
                 </td>
             </tr>
         </table>

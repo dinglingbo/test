@@ -6,6 +6,7 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 var partGridUrl = baseUrl+"com.hsapi.part.invoice.paramcrud.queryPartJoinStockList.biz.ext";
 var partGrid = null;
+
 var pchsOrderAddBtn = null;
 var sellOrderAddBtn = null;
 var pchsShopAddBtn = null;

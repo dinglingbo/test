@@ -155,7 +155,7 @@
                 <tr>
                     <td style="width:80px;">姓名</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="contactor" width="100%"/>
+                        <input class="nui-textbox" name="shortName" width="100%"/>
                     </td>
                     <td style="width:80px;">性别</td>
                     <td style="width:150px;">
@@ -169,7 +169,7 @@
                 <tr>
                     <td style="width:80px;">手机号</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="contactorTel" width="100%"/>
+                        <input class="nui-textbox" name="mobile" width="100%"/>
                     </td>
                     <td style="width:80px;">生日</td>
                     <td style="width:150px;">
@@ -183,7 +183,7 @@
                 <tr>
                     <td style="width:80px;">客户单位</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="fullName" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"/>
                     </td>
                     <td style="width:80px;">积分</td>
                     <td style="width:150px;">

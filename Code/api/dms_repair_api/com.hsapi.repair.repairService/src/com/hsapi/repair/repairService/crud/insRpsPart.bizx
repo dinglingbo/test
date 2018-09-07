@@ -954,6 +954,18 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">insPart/salesDeductValue</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/partId</process:from>
+      <process:to type="query">insPart/partId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/partCode</process:from>
+      <process:to type="query">insPart/partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/partName</process:from>
+      <process:to type="query">insPart/partName</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
     <location x="232" y="178"/>
@@ -964,6 +976,16 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign7</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link40" name="link40" displayName="连接线" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign18</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="-150" y="142"/>
@@ -1017,6 +1039,18 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">insPart/partIsNeed</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/partId</process:from>
+      <process:to type="query">insPart/partId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/partCode</process:from>
+      <process:to type="query">insPart/partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/partName</process:from>
+      <process:to type="query">insPart/partName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">insPart/amt</process:from>
@@ -1093,6 +1127,7 @@
     <targetConnections>link31</targetConnections>
     <targetConnections>link34</targetConnections>
     <targetConnections>link41</targetConnections>
+    <targetConnections>link48</targetConnections>
     <location x="-471" y="306"/>
     <size height="28" width="28"/>
     <nodeLabel>end3label</nodeLabel>
@@ -1139,6 +1174,21 @@
     <location x="1129" y="179"/>
     <figSize height="17" width="32"/>
     <node>end2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign18" name="赋值18" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link48" name="link48" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>end3</targetNode>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <location x="-150" y="227"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign18label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
+    <location x="-155" y="263"/>
+    <figSize height="17" width="39"/>
+    <node>assign18</node>
   </nodes>
   <topRuler/>
   <leftRuler>

@@ -364,7 +364,7 @@ function onOk()
         if(parent && parent.checkPrdt){
             var checkMsg = parent.checkPrdt(resultData);
             if(checkMsg) {
-                showMsg(checkMsg,"W");
+                parent.showMsg(checkMsg,"W");
             }else{
                 //弹出数量，单价和金额的编辑界面
                 parent.addPrdt(resultData);

@@ -545,6 +545,7 @@
             </isNotEmpty>  
         </dynamic>  
     </select>
+    
     <!--查询云配件资料 查询本地配件资料-->
     <select id="queryPartListByOrgid" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComAttribute">
     	SELECT a.id ID,

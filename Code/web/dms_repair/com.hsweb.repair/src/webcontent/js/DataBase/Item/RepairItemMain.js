@@ -7,6 +7,8 @@ var typeHash = {};
 var advancedAddWin = null;
 var advancedAddForm = null;
 var isOpenWin = 0;
+var tempGrid = null;
+var isChooseClose = 1;//默认选择后就关闭窗体
 
 $(document).ready(function()
 {
@@ -15,6 +17,7 @@ $(document).ready(function()
 	
 	advancedAddWin = nui.get("advancedAddWin");
 	advancedAddForm  = new nui.Form("#advancedAddForm");
+	tempGrid = nui.get("tempGrid");
 	
 	var parentId = "DDT20130703000063";
     tree1.setUrl(treeUrl+"?p/rootId=DDT20130703000063&token="+token);
@@ -62,6 +65,22 @@ $(document).ready(function()
 				break;
 		}
 	});
+    rightGrid.on("celldbclick",function(e){
+		onOk();
+	});
+	tempGrid.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="check" ){
+            //if(e.row.check==1){
+			//}else{}
+			//删除所选记录
+			delcallback && delcallback(row,function(){
+				tempGrid.removeRow(row);
+			});
+			tempGrid.removeRow(row);
+        }
+    });
 });
 function onClear(){
 	queryForm.clear();
@@ -143,13 +162,52 @@ function setData(data)
 	nui.get("selectBtn").show();
 	isOpenWin = 1;
 }
+var callback = null;
+var delcallback = null;
+var ckcallback = null;
+//用于工单添加工时
+function setInitData(ck, delck, cck){
+	//ck 保存数据 delck 删除数据 cck 判断数据
+	isChooseClose = 0;
+	callback = ck;
+	delcallback = delck;
+	ckcallback = cck;
+	rightGrid.setWidth("70%");
+	tempGrid.setStyle("display:inline");
+	document.getElementById("splitDiv").style.display="";
+}
 function onOk()
 {
 	var row = rightGrid.getSelected();
 	if(row)
 	{
+		if(ckcallback){
+			var rs = ckcallback(row);
+			if(rs){
+				showMsg("此工时已添加,请返回查看!","W");
+				return;
+			}else{
+				if(callback){
+					callback(row,function(data){
+						if(data){
+							tempGrid.addRow(data);
+						}
+					})
+				}
+			}
+		}else{
+			if(callback){
+				callback(row,function(data){
+					if(data){
+						tempGrid.addRow(data);
+					}
+				})
+			}
+		}
 		resultData.item = row;
-		CloseWindow("ok");
+		if(isChooseClose == 1){
+			CloseWindow("ok");
+		}
 	}
 	else{
 		showMsg("请选择一个工时", "W");

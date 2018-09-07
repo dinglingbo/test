@@ -265,14 +265,39 @@ $(document).ready(function ()
         var rowIndex = e.rowIndex;
 
         switch (e.field) {
-            case "packageOptBtn":
-                var s = '<a class="optbtn" href="javascript:newRow()">修改</a>'
-                        + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
-
-                if (grid.isEditingRow(record)) {
-                    s = '<a class="optbtn" href="javascript:newRow()">确定</a>'
-                        + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
+            case "prdtName":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId>0){
+                    e.cellHtml = e.value + "(预存)";
                 }
+                break;
+            case "serviceTypeId":
+                var type = record.type||0;
+                if(type>1){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = servieTypeHash[e.value].name;
+                }
+                break;
+            case "packageOptBtn":
+                var pid = record.pid||0;
+
+                if(pid == 0){
+                    var s = '<a class="optbtn" href="javascript:editRpsPackage(\'' + uid + '\')">修改</a>'
+                    + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
+
+                    if (grid.isEditingRow(record)) {
+                        s = '<a class="optbtn" href="javascript:updateRpsPackage(\'' + uid + '\')">确定</a>'
+                            + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
+                    }
+                }else{
+                    var s = '<a class="optbtn" href="javascript:editRpsPackage(\'' + uid + '\')">修改</a>';
+
+                    if (grid.isEditingRow(record)) {
+                        s = '<a class="optbtn" href="javascript:updateRpsPackage(\'' + uid + '\')">确定</a>';
+                    }
+                }
+                
                 e.cellHtml = s;
                  //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
                            // '<span class="fa fa-plus" onClick="javascript:addPackNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
@@ -294,6 +319,38 @@ $(document).ready(function ()
                 break;
         }
     });
+    rpsPackageGrid.on("cellbeginedit",function(e){
+        var field=e.field; 
+        var editor = e.editor;
+        var row = e.row;
+        var column = e.column;
+        var editor = e.editor;
+
+        if(field == 'serviceTypeId'){
+            if(row.type > 1) {
+                e.cancel = true;
+            }
+        }
+        if(field == 'subtotal' || field == 'rate'){
+            if(row.type > 1) {
+                e.cancel = true;
+            }else{
+                if(row.cardDetailId > 0){
+                    e.cancel = true;
+                }
+            }
+        }
+        if(field == 'workers'){
+            if(row.type != 2){
+                e.cancel = true;
+            }
+        }
+        if(field == 'saleMan'){
+            if(row.type != 1 || row.cardDetailId > 0){
+                e.cancel = true;
+            }
+        }
+    });
     rpsItemGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -301,12 +358,18 @@ $(document).ready(function ()
         var rowIndex = e.rowIndex;
 
         switch (e.field) {
+            case "itemName":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId>0){
+                    e.cellHtml = e.value + "(预存)";
+                }
+                break;
             case "itemOptBtn":
-                var s = '<a class="optbtn" href="javascript:newRow()">修改</a>'
+                var s = '<a class="optbtn" href="javascript:editRpsItem(\'' + uid + '\')">修改</a>'
                         + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
 
                 if (grid.isEditingRow(record)) {
-                    s = '<a class="optbtn" href="javascript:newRow()">确定</a>'
+                    s = '<a class="optbtn" href="javascript:updateRpsItem(\'' + uid + '\')">确定</a>'
                         + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
                 }
 
@@ -319,6 +382,19 @@ $(document).ready(function ()
                 break;
         }
     });
+    rpsItemGrid.on("cellbeginedit",function(e){
+        var field=e.field; 
+        var editor = e.editor;
+        var row = e.row;
+        var column = e.column;
+        var editor = e.editor;
+
+        if(field == 'itemTime' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
+            if(row.cardDetailId > 0){
+                e.cancel = true;
+            }
+        }
+    });
     rpsPartGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -326,12 +402,18 @@ $(document).ready(function ()
         var rowIndex = e.rowIndex;
 
         switch (e.field) {
+            case "partName":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId>0){
+                    e.cellHtml = e.value + "(预存)";
+                }
+                break;
             case "partOptBtn":
-                var s = '<a class="optbtn" href="javascript:newRow()">修改</a>'
+                var s = '<a class="optbtn" href="javascript:editRpsPart(\'' + uid + '\')">修改</a>'
                         + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
 
                 if (grid.isEditingRow(record)) {
-                    s = '<a class="optbtn" href="javascript:newRow()">确定</a>'
+                    s = '<a class="optbtn" href="javascript:updateRpsPart(\'' + uid + '\')">确定</a>'
                         + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
                 }
                 e.cellHtml = s;
@@ -347,6 +429,19 @@ $(document).ready(function ()
                 break;
         }
     });   
+    rpsPartGrid.on("cellbeginedit",function(e){
+        var field=e.field; 
+        var editor = e.editor;
+        var row = e.row;
+        var column = e.column;
+        var editor = e.editor;
+
+        if(field == 'qty' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
+            if(row.cardDetailId > 0){
+                e.cancel = true;
+            }
+        }
+    });
     
     cardTimesGrid.on("drawcell",function(e)
     {
@@ -881,26 +976,73 @@ function addPartNewRow(){
 }
 function deletePackRow(row_uid){
     var data = rpsPackageGrid.getData();
+    var row = rpsPackageGrid.getRowByUID(row_uid);
     if(data && data.length==1){
-        var row = rpsPackageGrid.getSelected();
-        rpsPackageGrid.removeRow(row);
-        var newRow = {};
-        rpsPackageGrid.addRow(newRow);
-    }else{
-        var row = rpsPackageGrid.getSelected();
-        rpsPackageGrid.removeRow(row);
+        row = data[0];
     }
+    var pkg = {
+        serviceId:row.serviceId,
+        id:row.id,
+        cardDetailId:row.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"package",
+        data:{
+            pkg: pkg
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            var rows = rpsPackageGrid.findRows(function(row){
+                if(row.prdtId == row.prdtId || row.pid == row.prdtID){
+                    return true;
+                }
+            });
+
+            rpsPackageGrid.removeRows(rows);
+        }else{
+            showMsg(errMsg||"删除套餐信息失败!","W");
+            return;
+        }
+    });
 }
 function deleteItemRow(row_uid){
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
     if(data && data.length==1){
-        rpsItemGrid.removeRow(data[0]);
-        var newRow = {};
-        rpsItemGrid.addRow(newRow);
-    }else{
-        rpsItemGrid.removeRow(row);
+        row = data[0];
     }
+    var item = {
+        serviceId:row.serviceId,
+        id:row.id,
+        cardDetailId:row.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"item",
+        data:{
+            item: item
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            if(data && data.length==1){
+                rpsItemGrid.removeRow(data[0]);
+                //var newRow = {};
+                //rpsPartGrid.addRow(newRow);
+            }else{
+                rpsItemGrid.removeRow(row);
+            }
+        }else{
+            showMsg(errMsg||"删除工时信息失败!","W");
+            return;
+        }
+    });
 }
 function deletePartRow(row_uid){
     var data = rpsPartGrid.getData();
@@ -922,16 +1064,17 @@ function deletePartRow(row_uid){
     };
     svrCRUD(params,function(text){
         var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
         if(errCode == 'S'){   
             if(data && data.length==1){
                 rpsPartGrid.removeRow(data[0]);
-                var newRow = {};
-                rpsPartGrid.addRow(newRow);
+                //var newRow = {};
+                //rpsPartGrid.addRow(newRow);
             }else{
                 rpsPartGrid.removeRow(row);
             }
         }else{
-            showMsg("删除配件信息失败!","W");
+            showMsg(errMsg||"删除配件信息失败!","W");
             return;
         }
     });
@@ -1062,7 +1205,7 @@ function onworkerChanged(e){
     if(!rows || rows.length==0){
         workerIds = "";
     }else{
-        for(var i=i; i<rows.length; i++){
+        for(var i=0; i<rows.length; i++){
             var row = rows[i];
             var empId = row.empId;
             workerIdList.push(empId);
@@ -1076,7 +1219,73 @@ function onworkerChanged(e){
     }
     var row = rpsPackageGrid.getSelected();
     var newRow = {workerIds:workerIds};
-    rpsPackageGrid.updateRow(row, newRow);
+    __workerIds = workerIds;
+}
+function onitemworkerChanged(e){
+    var obj = e.sender;
+    var rows = e.selecteds;
+    var workerIds = "";
+    var workerIdList = [];
+    if(!rows || rows.length==0){
+        workerIds = "";
+    }else{
+        for(var i=0; i<rows.length; i++){
+            var row = rows[i];
+            var empId = row.empId;
+            workerIdList.push(empId);
+        }
+
+        if(workerIdList&&workerIdList.length>0){
+            workerIds = workerIdList.join(",");
+        }else{
+            workerIds = "";
+        }
+    }
+    var row = rpsItemGrid.getSelected();
+    //var newRow = {workerIds:workerIds};
+    //rpsItemGrid.updateRow(row, newRow);
+    __workerIds = workerIds;
+}
+function onsalemanChanged(e){
+    var obj = e.sender;
+    var row = e.selected;
+    var saleManId = 0;
+    if(!row){
+        saleManId = 0;
+    }else{
+        saleManId = row.empId;
+    }
+    var row = rpsPackageGrid.getSelected();
+    __saleManId = saleManId;
+    //rpsPackageGrid.updateRow(row, newRow);
+}
+function onitemsalemanChanged(e){
+    var obj = e.sender;
+    var row = e.selected;
+    var saleManId = 0;
+    if(!row){
+        saleManId = 0;
+    }else{
+        saleManId = row.empId;
+    }
+    var row = rpsItemGrid.getSelected();
+    var newRow = {saleManId:saleManId};
+    //rpsItemGrid.updateRow(row, newRow);
+    __saleManId = saleManId;
+}
+function onpartsalemanChanged(e){
+    var obj = e.sender;
+    var row = e.selected;
+    var saleManId = 0;
+    if(!row){
+        saleManId = 0;
+    }else{
+        saleManId = row.empId;
+    }
+    var row = rpsPartGrid.getSelected();
+    //var newRow = {saleManId:saleManId};
+    //rpsPartGrid.updateRow(row, newRow);
+    __saleManId = saleManId;
 }
 function addCardTimesToBill(){
     var main = billForm.getData();
@@ -1119,7 +1328,8 @@ function addCardTimesToBill(){
             var insPart = {
                 serviceId:main.id||0,
                 partId:row.prdtId,
-                cardDetailId:row.id||0
+                cardDetailId:row.id||0,
+                partCode:row.prdtCode
             };
             data.insPart = insPart;
             data.serviceId = main.id||0;
@@ -1131,6 +1341,7 @@ function addCardTimesToBill(){
         };
         svrCRUD(params,function(text){
             var errCode = text.errCode||"";
+            var errMsg = text.errMsg||"";
             if(errCode == 'S'){
                 //showMsg("添加次卡信息成功!","W");
                 //根据工单ID查询套餐,隐藏次卡信息
@@ -1160,7 +1371,7 @@ function addCardTimesToBill(){
                     }
                 }, function(){});
             }else{
-                showMsg("添加次卡信息失败!","W");
+                showMsg(errMsg||"添加预存信息失败!","W");
                 return;
             }
         });
@@ -1177,6 +1388,7 @@ function loadDetail(p1, p2, p3){
             if(errCode == "S"){
                 rpsPackageGrid.clearRows();
                 rpsPackageGrid.addRows(data);
+                rpsPackageGrid.accept();
             }
         }, function(){});
     }
@@ -1187,6 +1399,7 @@ function loadDetail(p1, p2, p3){
             if(errCode == "S"){
                 rpsItemGrid.clearRows();
                 rpsItemGrid.addRows(data);
+                rpsItemGrid.accept();
             }
         }, function(){});
     }
@@ -1197,8 +1410,313 @@ function loadDetail(p1, p2, p3){
             if(errCode == "S"){
                 rpsPartGrid.clearRows();
                 rpsPartGrid.addRows(data);
+                rpsPartGrid.accept();
             }
         }, function(){});
     }
 
+}
+var __workerIds="";
+var __saleManId="";
+function editRpsPackage(row_uid){
+    var row = rpsPackageGrid.getRowByUID(row_uid);
+    if (row) {
+        __workerIds = "";
+        __saleManId = "";
+        rpsPackageGrid.cancelEdit();
+        rpsPackageGrid.beginEditRow(row);
+    }
+}
+function updateRpsPackage(row_uid){
+    var rowc = rpsPackageGrid.getRowByUID(row_uid);
+    if (rowc) {
+        rpsPackageGrid.commitEdit();
+        var rows = rpsPackageGrid.getChanges();
+
+        var isSubtotalModify = 0;
+        if(rows && rows.length>0){
+            var row = rows[0];
+            if(row.type == 3){
+                rpsPackageGrid.accept();
+                return;
+            }
+            var serviceId = row.serviceId||0;
+            var cardDetailId = row.cardDetailId||0;
+            var pkg = {
+                serviceId:row.serviceId
+            };
+            var itemList = [];
+            if(row.type == 1){
+                pkg.id = row.id||0;
+                if(cardDetailId > 0){
+                    pkg.serviceTypeId = row.serviceTypeId;
+                }else{
+                    pkg.subtotal = row.subtotal
+                    pkg.serviceTypeId = row.serviceTypeId;
+                    if(__saleManId){
+                        pkg.saleMan = row.saleMan;
+                        pkg.saleManId = __saleManId;
+                    }
+                    isSubtotalModify = 1;
+                }
+            }else{
+                pkg.id = row.billPackageId||0;
+                if(__workerIds){
+                    var item = {
+                        id: row.id,
+                        serviceId: row.serviceId,
+                        workerIds:__workerIds,
+                        workers:row.workers
+                    }
+                    itemList.push(item);
+                }
+            }
+            var params = {
+                type:"update",
+                interType:"package",
+                data:{
+                    pkg: pkg,
+                    itemList : itemList
+                }
+            };
+
+            svrCRUD(params,function(text){
+                var errCode = text.errCode||"";
+                var errMsg = text.errMsg||"";
+                if(errCode == 'S'){   
+                    __workerIds = "";
+                    __saleManId = "";
+                    rpsPackageGrid.accept();
+                    if(isSubtotalModify == 1){
+                        var p1 = {
+                            interType: "package",
+                            data:{
+                                serviceId: serviceId
+                            }
+                        }
+                        loadDetail(p1, {}, {});
+                    }
+                }else{
+                    showMsg(errMsg||"修改数据失败!","W");
+                    return;
+                }
+            });
+        }
+    }
+}
+function editRpsItem(row_uid){
+    var row = rpsItemGrid.getRowByUID(row_uid);
+    if (row) {
+        __workerIds = "";
+        __saleManId = "";
+        rpsItemGrid.cancelEdit();
+        rpsItemGrid.beginEditRow(row);
+    }
+}
+function updateRpsItem(row_uid){
+    var rowc = rpsItemGrid.getRowByUID(row_uid);
+    if (rowc) {
+        rpsItemGrid.commitEdit();
+        var rows = rpsItemGrid.getChanges();
+
+        if(rows && rows.length>0){
+            var row = rows[0];
+            var serviceId = row.serviceId||0;
+            var cardDetailId = row.cardDetailId||0;
+            
+            var updList = [];
+            if(cardDetailId == 1){ //预存的
+                var item = {};
+                item.serviceTypeId = row.serviceTypeId;
+                if(__workerIds){
+                    item.workerIds = __workerIds;
+                    item.workers = row.workers;
+                }
+                updList.push(item);
+            }else{
+                var item = {};
+                item.itemTime = row.itemTime;
+                item.subtotal = row.subtotal;
+                item.serviceTypeId = row.serviceTypeId;
+                if(__workerIds){
+                    item.workerIds = __workerIds;
+                    item.workers = row.workers;
+                }
+                if(__saleManId){
+                    item.saleMan = row.saleMan;
+                    item.saleManId = __saleManId;
+                }
+                updList.push(item);
+            }
+            var params = {
+                type:"update",
+                interType:"item",
+                data:{
+                    serviceId: serviceId,
+                    updList : updList
+                }
+            };
+
+            svrCRUD(params,function(text){
+                var errCode = text.errCode||"";
+                var errMsg = text.errMsg||"";
+                if(errCode == 'S'){   
+                    __workerIds = "";
+                    __saleManId = "";
+                    rpsItemGrid.accept();
+                }else{
+                    showMsg(errMsg||"修改数据失败!","W");
+                    return;
+                }
+            });
+        }
+    }
+}
+function editRpsPart(row_uid){
+    var row = rpsPartGrid.getRowByUID(row_uid);
+    if (row) {
+        __workerIds = "";
+        __saleManId = "";
+        rpsPartGrid.cancelEdit();
+        rpsPartGrid.beginEditRow(row);
+    }
+}
+function updateRpsPart(row_uid){
+    var rowc = rpsPartGrid.getRowByUID(row_uid);
+    if (rowc) {
+        rpsPartGrid.commitEdit();
+        var rows = rpsPartGrid.getChanges();
+
+        if(rows && rows.length>0){
+            var row = rows[0];
+            var serviceId = row.serviceId||0;
+            var cardDetailId = row.cardDetailId||0;
+            
+            var updList = [];
+            if(cardDetailId == 1){ //预存的
+                var part = {};
+                part.serviceTypeId = row.serviceTypeId;
+                updList.push(part);
+            }else{
+                var part = {};
+                part.qty = row.qty;
+                part.subtotal = row.subtotal;
+                part.serviceTypeId = row.serviceTypeId;
+                if(__saleManId){
+                    part.saleMan = row.saleMan;
+                    part.saleManId = __saleManId;
+                }
+                updList.push(part);
+            }
+            var params = {
+                type:"update",
+                interType:"part",
+                data:{
+                    serviceId: serviceId,
+                    updList : updList
+                }
+            };
+
+            svrCRUD(params,function(text){
+                var errCode = text.errCode||"";
+                var errMsg = text.errMsg||"";
+                if(errCode == 'S'){   
+                    __workerIds = "";
+                    __saleManId = "";
+                    rpsPartGrid.accept();
+                }else{
+                    showMsg(errMsg||"修改数据失败!","W");
+                    return;
+                }
+            });
+        }
+    }
+}
+function chooseItem(){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能添加工时!","S");
+        return;
+    }
+
+    doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
+        var p1 = { }
+        var p2 = {
+            interType: "item",
+            data:{
+                serviceId: text.serviceId||0
+            }
+        }
+        var p3 = {}
+        loadDetail(p1, p2, p3);
+    });
+}
+function addToBillItem(row, callback){
+    var main = billForm.getData();
+    var data = {};
+    var insItem = {
+        serviceId:main.id||0,
+        itemId:row.id,
+        cardDetailId:0
+    };
+    data.insItem = insItem;
+    data.serviceId = main.id||0;
+    
+    var params = {
+        type:"insert",
+        interType:'item',
+        data:data
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        var res = text.data||{};
+        if(errCode == 'S'){
+            callback && callback(res);
+        }else{
+            showMsg(errMsg||"添加工时失败!","W");
+            return;
+        }
+    });
+}
+function delFromBillItem(data, callback){
+    var item = {
+        serviceId:data.serviceId,
+        id:data.id,
+        cardDetailId:data.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"item",
+        data:{
+            item: item
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            callback && callback();
+        }else{
+            showMsg(errMsg||"删除工时信息失败!","W");
+            return;
+        }
+    });
+}
+function checkFromBillItem(data){
+    var itemId= data.id;
+    var rows = rpsItemGrid.findRows(function(row){
+        if(row && row.itemId == itemId){
+            return true;
+        }
+    });
+    if(rows && row.length>0){
+        return true;
+    }
+    return false;
 }

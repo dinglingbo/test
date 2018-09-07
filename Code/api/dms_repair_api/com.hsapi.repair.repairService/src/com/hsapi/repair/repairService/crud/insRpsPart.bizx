@@ -103,7 +103,6 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link32</targetConnections>
     <targetConnections>link29</targetConnections>
     <location x="-245" y="142"/>
     <size height="28" width="22"/>
@@ -442,17 +441,7 @@
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="link32" displayName="link45" isDefault="true" type="transition">
-      <sourceNode>assign14</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="link46" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="link46" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>assign15</targetNode>
       <process:transitionCondition>
@@ -940,7 +929,7 @@
       <process:to type="query">insPart/rate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">rpsCard/id</process:from>
+      <process:from type="query" pattern="reference">rpsCard/prdtId</process:from>
       <process:to type="query">insPart/partId</process:to>
     </process:copy>
     <process:copy>
@@ -1155,10 +1144,11 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="partDiscountRate" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="rpsCard"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPart" name="rpbPart"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPart" name="insPart"/>
-    <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

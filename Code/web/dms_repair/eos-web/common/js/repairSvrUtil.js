@@ -29,7 +29,6 @@ function checkRpsMaintain(params, callback){
 			callback && callback(data);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 			callback && callback(null);
 		}
@@ -47,7 +46,7 @@ var delRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud
 var addRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsPart.biz.ext";
 var updRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsPart.biz.ext";
 var delRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsPart.biz.ext";
-function svrCRUD(params,callback){
+function svrCRUD(params, callback, unmaskcall){
     var type = params.type||""; // insert update delete
     var interType = params.interType||"";// package item part
     var data = params.data||{};
@@ -82,12 +81,159 @@ function svrCRUD(params,callback){
 		url : url,
 		data : data,
 		success : function(data) {
+            unmaskcall && unmaskcall();
 			callback && callback(data);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
+            unmaskcall && unmaskcall();
 			console.log(jqXHR.responseText);
 			callback && callback(null);
+		}
+	});
+}
+
+var getGuestContactorCarUrl =  window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext";
+function getGuestContactorCar(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : getGuestContactorCarUrl,
+		data : data,
+		success : function(data) {
+            unmaskcall && unmaskcall();
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+			console.log(jqXHR.responseText);
+			callback && callback(null);
+		}
+	});
+}
+
+var getdRpsMaintainUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext";
+function getMaintain(params, callback, unmaskcall){
+    var data = params.data||{};
+
+    doPost({
+		url : getdRpsMaintainUrl,
+		data : data,
+		success : function(data) {
+            unmaskcall && unmaskcall();
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+			console.log(jqXHR.responseText);
+			callback && callback(null);
+		}
+	});
+}
+
+var getdRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
+var getRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext";
+var getRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
+function getBillDetail(params, callback, unmaskcall){
+    var interType = params.interType||"";// package item part
+    var data = params.data||{};
+    var url = "";
+    if(interType == "package"){
+        url = getdRpsPackageUrl;
+    }else if(interType == "item"){
+        url = getRpsItemUrl;
+    }else if(interType == "part"){
+        url = getRpsPartUrl;
+    }
+
+    doPost({
+		url : url,
+		data : data,
+		success : function(data) {
+            unmaskcall && unmaskcall();
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+//保存工单主表信息
+var svrSaveMaintainUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
+function svrSaveMaintain(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSaveMaintainUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//新增客户
+function doApplyCustomer(params,callback){
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        title:"新增客户资料",
+        width:560,
+        height:570,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            callback && callback(action);
+        }
+    });
+}
+
+function doSelectCustomer(callback) {
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.Customer.flow?token="+token,
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                callback && callback(guest);
+            }
+        }
+    });
+}
+
+function doSelectItem(dock, dodelck, docck, callback) {
+	nui.open({
+		targetWindow : window,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
+		title : "维修工时",
+		width : 1000,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var list = [];
+			var params = {
+				list : list
+			};
+            iframe.contentWindow.setData(params);
+            iframe.contentWindow.setViewData(dock, dodelck, docck);
+		},
+		ondestroy : function(action) {
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            data = data || {};
+            data.action = action
+            callback && callback(data);
 		}
 	});
 }

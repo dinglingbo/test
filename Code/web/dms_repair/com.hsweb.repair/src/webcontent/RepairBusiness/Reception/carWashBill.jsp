@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.0.10"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -208,7 +208,7 @@
                 <td class="title required">客户名称:</td> 
                 <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false"/></td>
                 <td class="title required">客户手机:</td> 
-                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false"/></td>
                 <td class="title required">送修人名称:</td> 
                 <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false"/></td>
                 <td class="title required">送修人手机:</td> 
@@ -366,7 +366,7 @@
                selectOnLoad="true"
                showPager="false"
                dataField="data"
-               onrowdblclick="addSelectPart"
+               idField="id"
                allowCellSelect="true"
                editNextOnEnterKey="true"
                url="">

@@ -32,7 +32,13 @@
 			a.modifier as modifier, 
 			a.modify_date as modifyDate, 
 			a.recorder as recorder, 
-			a.record_date as recordDate
+			a.record_date as recordDate,
+			a.plan_finish_date as planFinishDate,
+			b.insure_comp_name as insureCompName,
+			a.package_amt as packageAmt,
+			b.insure_no as insureNo,
+			b.color as color,
+			a.enter_oil_mass as enterOilMass
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )

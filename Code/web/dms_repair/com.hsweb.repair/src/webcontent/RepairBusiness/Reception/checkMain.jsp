@@ -56,7 +56,7 @@
             <span class="separator"></span>
             <a class="nui-button" iconCls="" plain="true" onclick="newCheckPrecheck" id="addBtn">
               <span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="newCheckBill()" id="addBtn">
+            <a class="nui-button" iconCls="" plain="true" onclick="selectModel" id="addBtn">
               <span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单</a>
           </td>
         </tr>
@@ -81,7 +81,7 @@
 
     <script type="text/javascript">
       nui.parse();
-  
+/*  
       function newCheckBill() {
         var item={};
             item.id = "checkDetail";
@@ -90,6 +90,25 @@
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
       }
+*/
+
+function selectModel(){
+  nui.open({
+    url:"com.hsweb.repair.DataBase.checkMainSelect.flow",
+    title:"选择模板",
+    height:"300px",
+    width:"400px",
+    onload:function(){
+
+    },
+    ondestroy:function(action){
+
+    }
+
+  });
+}
+
+
 
       function newCheckPrecheck() {
         var item={};

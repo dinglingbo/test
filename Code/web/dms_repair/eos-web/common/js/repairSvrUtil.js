@@ -237,3 +237,31 @@ function doSelectItem(dock, dodelck, docck, callback) {
 		}
 	});
 }
+
+function doSelectPart(dock, dodelck, docck, callback) {
+	nui.open({
+		targetWindow : window,
+		url : webPath + contextPath + "/com.hsweb.part.baseData.partMgr.flow?token=" + token,
+		title : "配件管理",
+		width : 1000,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var list = [];
+			var params = {
+				list : list
+			};
+            iframe.contentWindow.setData(params);
+            iframe.contentWindow.setViewData(dock, dodelck, docck);
+		},
+		ondestroy : function(action) {
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            data = data || {};
+            data.action = action
+            callback && callback(data);
+		}
+	});
+}

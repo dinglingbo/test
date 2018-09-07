@@ -17,7 +17,8 @@
 				IUserObject userobject = muo.getUserObject();
 				if (userobject != null) {
 					//String ip = userobject.getUserRemoteIP();
-					currUserName = userobject.getUserRealName();
+					//currUserName = userobject.getUserRealName();
+					currUserName = userobject.getUserName();
 					currOrgid = userobject.getUserOrgId();
 					currOrgName = userobject.getUserOrgName();
 					currUserId = userobject.getUserId();
@@ -63,7 +64,7 @@
 	window._webRepairUrl = webPath + contextPath + "/";
 	//console.log(window._rootUrl);
 	</script>
-<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.0.0" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.0.1" type="text/javascript"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

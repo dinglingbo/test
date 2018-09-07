@@ -7,9 +7,7 @@
      dataField="list"
      showPager="false"
      showModified="false"
-     allowCellSelect="true"
-     allowCellEdit="true"
-     allowSortColumn="true">
+     allowSortColumn="false">
     <div property="columns">
         <div headerAlign="center" field="orderIndex" width="25" align="right">序号</div>
         <div header="套餐信息">
@@ -18,23 +16,21 @@
                      visible="true" width="100" header="套餐名称">
                 </div>
                 <div field="serviceTypeId" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="业务类型">
+                     allowSort="false" visible="true" width="50" header="业务类型" align="center">
                      <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="amt" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="套餐金额">
-                </div>
-                <div field="rate" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="优惠率">
+                <div field="subtotal" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="套餐金额" align="center">
                      <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="discountAmt" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="优惠金额">
+                <div field="rate" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="优惠率" align="center">
+                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="subtotal" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="小计金额">
+                <div field="amt" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="施工员">
@@ -47,11 +43,17 @@
                 </div>
                 </div>
                 <div field="workerIds" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="施工员">
+                     allowSort="false" visible="false" width="80" header="施工员" align="center">
+                </div>                
+                <div field="saleMan" headerAlign="center"
+                     allowSort="false" visible="true" width="50" header="销售员" align="center">
+                     <input  property="editor" enabled="true" dataField="memList" 
+                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
+                             url="" onvaluechanged="onsalemanChanged" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="remark" headerAlign="center"
-                     allowSort="false" visible="true" width="40" header="销售员">
-                </div>
+                <div field="saleManId" headerAlign="center"
+                     allowSort="false" visible="false" width="80" header="销售员" align="center">
+                </div>   
                 <div field="packageOptBtn" name="packageOptBtn" width="100" headerAlign="center" header="操作" align="center"></div>
             </div>
         </div>

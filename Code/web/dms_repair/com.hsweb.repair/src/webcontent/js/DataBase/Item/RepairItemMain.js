@@ -176,6 +176,7 @@ function setViewData(ck, delck, cck){
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";
 }
+
 function onOk()
 {
 	var row = rightGrid.getSelected();

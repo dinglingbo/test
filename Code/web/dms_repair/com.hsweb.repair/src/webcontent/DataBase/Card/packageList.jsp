@@ -12,13 +12,16 @@
 <head>
 <title>套餐操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.2.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.4"></script>
 
 </head>
 
 <body>
 	<div id="queryform" class="nui-form">
 		<div class="nui-toolbar">
+			<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
+										   valueField="id" allowInput="true" valueFromSelect="true"
+										   textField="name"/>
 			<input class="nui-hidden" name="criteria/_entity"
 				value="com.hsapi.repair.data.rpb.RpbCardStored">
 			<table id="table1">
@@ -40,11 +43,14 @@
 			</table>
 		</div>
 	</div>
+	
+
 	<div class="nui-fit">
+		
 		<div id="datagrid1" dataField="package1" class="nui-datagrid"
 			pageSize="20" onDrawCell="onDrawCell"
 			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
-			style="width: 100%; height: 100%;">
+			style="width: 100%; height: 100%;float:left;">
 			<div property="columns">
 				<div type="indexcolumn"></div>
 				<div type="checkcolumn"></div>
@@ -61,10 +67,42 @@
 					allowSort="true">是否共享</div>
 				<div field="isDisabled" renderer="onstatus" headerAlign="center"
 					allowSort="true">状态</div>
+		  </div>
 		</div>
-	</div>
-	<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
-										   valueField="id" allowInput="true" valueFromSelect="true"
-										   textField="name"/>
+		
+		
+		
+		<div id="splitDiv" style="float:left;width:1%;height:100%;display:none"></div>
+			<div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
+					showPager="false"
+					pageSize="1000"
+					selectOnLoad="true"
+					showModified="false"
+					onrowdblclick=""
+					multiSelect="true"
+					dataField="parts"
+					url="">
+					<div property="columns" >
+						<div type="indexcolumn" width="20px" headerAlign="center">序号</div>
+						<div header="已添加套餐" headerAlign="left">
+							<div property="columns">
+								<div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
+									width="20" headerAlign="center" header="">操作
+								</div>
+								<div field="packName" headerAlign="center" allowSort="true" width="80px">套餐名称</div>
+								<div field="amt" headerAlign="center" allowSort="true" width="20px">金额</div>								
+							</div>
+						</div>
+				   </div>
+	        </div>
+</div>
+		
+	
+	
+	
+	
+	 
+	 
+
 </body>
 </html>

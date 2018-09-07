@@ -22,7 +22,6 @@ var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rRightGrid = null;
 
-var qRightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var comPartNameAndPY = null;
@@ -297,8 +296,7 @@ function doSearch(params) {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {
-
-
+	
 	case "rRightTab":
 		params.billDc = 1;
 		rRightGrid.load({
@@ -306,12 +304,7 @@ function doSearch(params) {
 			token : token
 		});
 		break;
-	case "qRightTab":
-		qRightGrid.load({
-			params : params,
-			token : token
-		});
-		break;
+
 	default:
 		break;
 	}
@@ -473,13 +466,10 @@ function onShowRowDetail(e) {
 	var name = tab.name;
 	switch (name) {
 
-
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}
@@ -620,14 +610,10 @@ function doBalance() {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {
-
-
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}
@@ -690,14 +676,10 @@ function checkAuditRow(flag) {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {
-
-
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}
@@ -746,9 +728,7 @@ function balanceOK() {
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}
@@ -808,14 +788,10 @@ function doUnBalance() {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {
-
-
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}
@@ -874,9 +850,7 @@ function checkSettleRow() {
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}
@@ -945,9 +919,7 @@ function doSettle() {
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}
@@ -1180,9 +1152,7 @@ function settleOK() {
 	case "rRightTab":
 		rightGrid = rRightGrid;
 		break;
-	case "qRightTab":
-		rightGrid = qRightGrid;
-		break;
+
 	default:
 		break;
 	}

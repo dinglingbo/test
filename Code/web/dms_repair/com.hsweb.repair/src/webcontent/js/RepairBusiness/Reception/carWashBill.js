@@ -1349,9 +1349,9 @@ function showCard(){
     cardTimesGrid.clearRows();
     doSearchMemCard(fguestId);
 }
-function showHealth(){
+/*function showHealth(){
     window.open("http://www.baidu.com?backurl="+window.location.href); 
-}
+}*/
 function doSearchCardTimes(guestId)
 {
     cardTimesGrid.clearRows();
@@ -1904,11 +1904,100 @@ function chooseItem(){
             data:{
                 serviceId: main.id||0
             }
-        }
-        var p3 = {}
+        };
+        var p3 = {};
         loadDetail(p1, p2, p3);
     });
 }
+
+function showHealth(){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存套餐!","S");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能添加套餐!","S");
+        return;
+    }
+                                                       
+    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
+        var p1 = { };
+        var p2 = {
+            interType: "package",
+            data:{
+                serviceId: main.id||0
+            }
+        };
+        var p3 = {};
+        loadDetail(p1, p2, p3);
+    });
+}
+
+
+
+
+function addToBillPackage(row, callback, unmaskcall){
+    var main = billForm.getData();
+    var data = {};
+    var pkg = {
+        serviceId:main.id,
+        packageId:rtnRow.prdtId,
+        cardDetailId:rtnRow.id||0
+    };
+    data.pkg = pkg;
+    data.serviceId = main.id||0;
+    
+    var params = {
+        type:"insert",
+        interType:'package',
+        data:data
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        var res = text.data||{};
+        if(errCode == 'S'){
+            unmaskcall && unmaskcall();
+            callback && callback(res);
+        }else{
+            unmaskcall && unmaskcall();
+            showMsg(errMsg||"添加套餐失败!","W");
+            return;
+        }
+    },function(){
+        unmaskcall && unmaskcall();
+    });
+}
+
+
+function delFromBillPackage(data, callback){
+    var pkg = {
+        serviceId:data.serviceId,
+        id:data.id,
+        cardDetailId:data.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"package",
+        data:{
+        	pkg: pkg
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            callback && callback();
+        }else{
+            showMsg(errMsg||"删除套餐信息失败!","W");
+            return;
+        }
+    });
+}
+
+
 function addToBillItem(row, callback, unmaskcall){
     var main = billForm.getData();
     var data = {};
@@ -1941,6 +2030,7 @@ function addToBillItem(row, callback, unmaskcall){
         unmaskcall && unmaskcall();
     });
 }
+
 function delFromBillItem(data, callback){
     var item = {
         serviceId:data.serviceId,
@@ -1965,6 +2055,9 @@ function delFromBillItem(data, callback){
         }
     });
 }
+
+
+
 function checkFromBillItem(data){
     var itemId= data.id;
     var rows = rpsItemGrid.findRows(function(row){
@@ -1977,6 +2070,7 @@ function checkFromBillItem(data){
     }
     return false;
 }
+
 function checkFromBillPackage(data){
     var packageId= data.id;
     var rows = rpsPackageGrid.findRows(function(row){

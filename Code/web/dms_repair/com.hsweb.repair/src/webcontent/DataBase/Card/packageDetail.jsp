@@ -12,7 +12,7 @@
 <head>
 <title>套餐明细</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.1.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.1.5"></script>
 </head>
 <body>
 		<fieldset

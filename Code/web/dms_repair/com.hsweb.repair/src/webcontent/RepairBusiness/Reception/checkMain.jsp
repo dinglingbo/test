@@ -67,20 +67,23 @@
     <div class="nui-fit">
       <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
         totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-        onshowrowdetail="onShowRowDetail" url="">
+        onshowrowdetail="onShowRowDetail" url="com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext">
         <div property="columns">
-          <div field="" name="" width="40" headerAlign="center" align="center">单号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center">客户姓名</div>
-          <div field="" name="" width="40" headerAlign="center" align="center">手机号码</div>
-          <div field="" name="" width="40" headerAlign="center" align="center">车牌号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center">车型</div>
-          <div field="" name="" width="40" headerAlign="center" align="center">查车日期</div>
+          <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
+          <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
+          <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
+          <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
+          <div field="carModel" name="carModel" width="40" headerAlign="center" align="center">车型</div>
+          <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
         </div>
       </div>
     </div>
 
     <script type="text/javascript">
       nui.parse();
+          var mainGrid = nui.get("mainGrid");
+
+    mainGrid.load({billTypeId:1});
 /*  
       function newCheckBill() {
         var item={};

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.6" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.7" type="text/javascript"></script>
 
 </head>
 <body>
@@ -159,7 +159,7 @@
 						</div>
 					</div>
 				</div>
-				
+						
 			</div>
 		</div>
 	</div>

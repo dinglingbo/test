@@ -395,6 +395,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link30" isDefault="true" type="transition">
       <sourceNode>assign23</sourceNode>
       <targetNode>assign25</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="link47" type="transition">
       <sourceNode>assign23</sourceNode>
@@ -571,11 +572,11 @@
       <process:to type="query">discountAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">discountAmt*1.0/uAmt</process:from>
+      <process:from type="expression" pattern="reference">uAmt==0?0:(discountAmt*1.0/uAmt)</process:from>
       <process:to type="query">uRate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">uItemTime==0?uAmt:(uAmt*1.0/uQty)</process:from>
+      <process:from type="expression" pattern="reference">uQty==0?uAmt:(uAmt*1.0/uQty)</process:from>
       <process:to type="query">uPrice</process:to>
     </process:copy>
     <process:copy>
@@ -696,7 +697,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign29</targetNode>
@@ -741,7 +742,7 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>assign18</targetNode>

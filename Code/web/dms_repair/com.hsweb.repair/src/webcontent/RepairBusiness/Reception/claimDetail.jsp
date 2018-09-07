@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@include file="/common/sysCommon.jsp"%>
+ <%@include file="/common/sysCommon.jsp"%>
 
 <html>
 <!-- 
@@ -12,9 +12,9 @@
 <head>
     <title>理赔工单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/claimMain.js" type="text/javascript"></script>
+	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/claimDetail.js" type="text/javascript"></script>
     <style type="text/css">
-        body {
+         body { 
             margin: 0;
             padding: 0;
             border: 0;
@@ -22,72 +22,40 @@
             height: 100%;
             overflow: hidden;
         }
-
-
-        table {
-
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-        }
-
-
-        #table_A tr {
+        .btnType{
+            font-family:Verdana;
+            font-size: 14px;
+            text-align: center;
             height: 40px;
+            width: 120px;
+            line-height:40px;
+        }
+        .title {
+            width: 80px;
+            text-align: right;
+        }
+        .required {
+            color: red;
         }
 
-        table tr td span {
+        #guestInfo a:link { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: none; 
+        }  
+        #guestInfo a:visited { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: none; 
+        } 
+        #guestInfo a:hover { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: underline; 
+        }  
 
-            display: inline-block;
-        }
-
-
-        #table_A tr {
-            height: 40px;
-        }
-
-        table tr td span {
-
-            display: inline-block;
-        }
-
-        .tabwidth {
-            width: 100%;
-        }
-
-        .tbtext {
-            float: right;
-            line-height: 40px;
-        }
-
-        .tbCtrl {
-            width: 150px;
-        }
-
-        .mini-textbox {
-            height: 28px;
-        }
-
-        .mini-textbox-border {
-            height: 25px;
-        }
-
-        .mini-textbox-input {
-            /* 输入框的里面的高度 */
-            height: 24px;
-        }
-
-        .checkboxwidth {
-            width: 65px;
-            margin-left: 20px;
-        }
-
-        .mini-tabs-header {
-            height: 30px;
-        }
-
-        .mini-button-text {
-            line-height: 26px;
+        #wechatTag{
+            color:#62b900;
         }
 
 
@@ -178,155 +146,59 @@
 
 <body>
     <div class="nui-fit">
-        <table>
+        <table style=" left:0;right:0;margin: 0 auto;">
             <tr>
-                <td class="tbtext">进场日期</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                <td class="title required">车牌号:</td>
+                <td class="">
+                    <input class="nui-textbox" name="carNo" id="carNo" enabled="false" />
                 </td>
-                <td class="tbtext">预计交车日期</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                <td class="title required">
+                    <label>业务类型:</label>
+                </td>
+                <td class="">
+                    <input name="serviceTypeId" id="serviceTypeId" class="nui-combobox width1" textField="name" valueField="id" emptyText="请选择..."
+                        url="" allowInput="true" showNullItem="false" valueFromSelect="true" nullItemText="请选择..." />
+                </td>
+                <td class="title required">
+                    <label>服务顾问：</label>
+                </td>
+                <td>
+                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId" emptyText="请选择..."
+                        url="" allowInput="true" showNullItem="false" valueFromSelect="true" nullItemText="请选择..." />
+                </td>
+                <td class="title">进厂里程:</td>
+                <td class="">
+                    <input class="nui-textbox" name="enterKilometers" />
+                </td>
+                <td class="title">备注:</td>
+                <td class="" colspan="">
+                    <input class="nui-textbox" name="remark" />
                 </td>
             </tr>
             <tr>
-                <td class="tbtext">车主</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestFullName"/>
+                <td class="title required">客户名称:</td>
+                <td class="">
+                    <input class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" />
                 </td>
-                <td class="tbtext">车主电话</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestMobile"/>
+                <td class="title required">客户手机:</td>
+                <td class="">
+                    <input class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" />
                 </td>
-                <td class="tbtext">级别</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                <td class="title required">送修人名称:</td>
+                <td class="">
+                    <input class="nui-textbox" name="contactorName" id="contactorName" enabled="false" />
                 </td>
-                <td class="tbtext">来电途径</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                <td class="title required">送修人手机:</td>
+                <td class="">
+                    <input class="nui-textbox" name="mobile" id="mobile" enabled="false" />
                 </td>
-
+                <td class="title">开单时间:</td>
+                <td class="">
+                    <input id="recordDate" name="recordDate" allowInput="false" format="yyyy-MM-dd H:mm:ss" class="nui-datepicker" enabled="false"
+                    />
+                </td>
             </tr>
-            <tr>
-                <td class="tbtext">车牌</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="carNO"/>
-                </td>
-                <td class="tbtext">车型</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="carModel"/>
-                </td>
-                <td class="tbtext">VIN码</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="carVin"/>
-                </td>
-                <td class="tbtext">车身颜色</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="color"/>
-                </td>
-
-            </tr>
-            <tr>
-                <td class="tbtext">当前里程</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">下次保养</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">下次保养日期</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">油量</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="enterOilMass"/>
-                </td>
-
-            </tr>
-            <tr>
-                <td class="tbtext">车辆分类</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name=""/>
-                </td>
-                <td class="tbtext">业务分类</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name=""/>
-                </td>
-                <td class="tbtext">建档人</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name=""/>
-                </td>
-
-            </tr>
-
         </table>
-        <div class="nui-panel" title="送修人信息" width="100%" showCollapseButton="true">
-            <table>
-                <tr>
-                    <td class="tbtext">姓名</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name="mtAdvisor"/>
-                    </td>
-                    <td class="tbtext">联系方式</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name="contactMobile"/>
-                    </td>
-                    <td class="tbtext">证件类型</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name=""/>
-                    </td>
-                    <td class="tbtext">证件号</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name=""/>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tbtext">性别</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name=""/>
-                    </td>
-                    <td class="tbtext">详细地址</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name=""/>
-                    </td>
-
-
-                </tr>
-
-
-            </table>
-        </div>
-
-        <div class="nui-panel" title="保险/理赔信息" width="100%" showCollapseButton="true">
-            <table>
-                <tr>
-                    <td class="tbtext">理赔公司</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name="insureCompName"/>
-                    </td>
-                    <td class="tbtext">理赔保单号</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name="insureNo"/>
-                    </td>
-                    <td class="tbtext">同本车保险</td>
-                    <td class="tbCtrl">
-                        <input class="nui-textbox tabwidth" name=""/>
-                    </td>
-                    <td class="tbtext"></td>
-                    <td class="tbCtrl">
-                        <a class="nui-button" onclick="" plain="false">新增保险公司</a>
-                    </td>
-
-                </tr>
-
-
-
-            </table>
-        </div>
         <div style="width:100%;margin-top: 10px;">
             <a class="nui-button" onclick="" plain="false">套餐选择</a>
             <a class="nui-button" onclick="" plain="false">会员卡</a>
@@ -552,67 +424,69 @@
           </div>
     </div>
 </div> 
+<div class="nui-fit">
+        <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:200px;" 
+            showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
+        >
+            <div id="billForm" class="form">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td class="title">
+                                <label>套餐金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>套餐优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>工时金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>工时优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>零件金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>零件优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title required">
+                                <label>应收总计：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
         </div>
-        <div id="datagrid3" class="nui-datagrid" showPager="false">
-            <div property="columns">
-
-                <div field="" width="100" headerAlign="center" align="center">材料名称</div>
-                <div field="" width="100" headerAlign="center" align="center">数量</div>
-                <div field="" width="100" headerAlign="center" align="center">删除</div>
-
-            </div>
-        </div>
- 		<div style="width:100%;margin-top: 10px;text-align: center;">
-            <a href="##" onclick="">添加自带材料</a>
-        </div>
-
-        <table>
-            <tr>
-                <td class="tbtext">代办费</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">诊断费</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">检测费</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">加工费</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">管理费</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-
-            </tr>
-            <tr>
-                <td class="tbtext">备注</td>
-                <td colspan="9" class="tbCtrl">
-                    <input class="nui-textarea tabwidth" style="height: 100px;" />
-                </td>
-
-
-            </tr>
-
-            <tr>
-                <td class="tbtext">应收总计</td>
-                <td colspan="5" class="tbCtrl">￥0.00 = 工时费小计：￥0.00 + 材料费小计：￥0.00 +附加费小计：￥0.00</td>
-
-            </tr>
-
-        </table>
+    </div>
         <div style="width:100%;margin-top: 10px;text-align: center;">
             <a class="nui-button" onclick="" plain="false">保存</a>
 
             <a class="nui-button" onclick="" plain="false">价参</a>
         </div>
-
     </div>
+</div>
     <script type="text/javascript">
         nui.parse();
     </script>

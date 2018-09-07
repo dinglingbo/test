@@ -12,7 +12,7 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.6"></script>
 </head>
 
 <body>
@@ -69,9 +69,9 @@
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
 				
-				<!-- <div field="id" headerAlign="center" allowSort="true">
+				 <!-- <div field="id" headerAlign="center" allowSort="true">
 					剩余次数
-				</div> -->
+				</div>  -->
 				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">
 					创建时间</div>
 				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">

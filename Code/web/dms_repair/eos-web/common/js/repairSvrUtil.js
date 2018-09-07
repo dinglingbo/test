@@ -239,35 +239,6 @@ function doSelectItem(dock, dodelck, docck, callback) {
 }
 
 
-function doSelectPackage(dock, dodelck, docck, callback) {
-	nui.open({
-		targetWindow : window,
-		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
-		title : "维修工时",
-		width : 1000,
-		height : 560,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			var iframe = this.getIFrameEl();
-			var list = [];
-			var params = {
-				list : list
-			};
-
-            iframe.contentWindow.setViewData();
-		},
-		ondestroy : function(action) {
-            var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getData();
-            data = data || {};
-            data.action = action;
-            callback && callback(data);
-		}
-	});
-}
-
-
 function doSelectPart(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
@@ -289,6 +260,35 @@ function doSelectPart(dock, dodelck, docck, callback) {
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();
             var data = iframe.contentWindow.getData();
+            data = data || {};
+            data.action = action;
+            callback && callback(data);
+		}
+	});
+}
+
+
+function doSelectPackage(dock, dodelck, docck, callback) {
+	nui.open({
+		targetWindow : window,
+		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
+		title : "套餐项目",
+		width : 1000,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var list = [];
+			var params = {
+				list : list
+			};
+
+            iframe.contentWindow.setViewData();
+		},
+		ondestroy : function(action) {
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData(dock, dodelck, docck);
             data = data || {};
             data.action = action;
             callback && callback(data);

@@ -8,8 +8,6 @@
      style="width: 100%; height:auto;"
      showPager="false"
      showModified="false"
-     allowCellSelect="false"
-     allowCellEdit="false"
      allowSortColumn="true">
     <div property="columns">
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
@@ -21,12 +19,18 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时</div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价</div>
-                <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">工时金额</div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" numberFormat="p">优惠率</div>
-                <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">优惠金额</div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额</div>
+                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" numberFormat="p">优惠率
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额
+                    <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="80" header="施工员">
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
@@ -49,7 +53,6 @@
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">
                 </div> 
-                <div field="worker" headerAlign="center" allowSort="false" visible="true" width="60" align="center">销售员</div>
                 <div field="itemOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
             </div>
         </div>
@@ -57,7 +60,7 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择工时</a>
+        <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择工时</a>
     </span>
 </div>
     

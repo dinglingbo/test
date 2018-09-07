@@ -226,7 +226,7 @@ function doSelectItem(dock, dodelck, docck, callback) {
 				list : list
 			};
             iframe.contentWindow.setData(params);
-            iframe.contentWindow.setInitData(dock, dodelck, docck);
+            iframe.contentWindow.setViewData(dock, dodelck, docck);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();

@@ -27,10 +27,10 @@
                 <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" numberFormat="p" header="优惠率">
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="金额">
+                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>

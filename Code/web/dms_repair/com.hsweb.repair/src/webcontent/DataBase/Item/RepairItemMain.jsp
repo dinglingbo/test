@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.6" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.7" type="text/javascript"></script>
 
 </head>
 <body>
@@ -101,9 +101,9 @@
 				<div id="rightGrid"
 					 dataField="list"
 					 class="nui-datagrid"
-					 style="width: 100%; height: 100%;"
+					 style="float:left;width: 100%; height: 100%;"
 					 url=""
-					 borderStyle="border:0"
+					 borderStyle="border:1"
 					 pageSize="50"
 					 totalField="page.count"
 					 sortMode="client"
@@ -118,23 +118,48 @@
 						<div type="indexcolumn">序号</div>
 						<div header="工时基本信息" headerAlign="center">
 							<div property="columns">
-								<div field="code" headerAlign="center" width="100px">工时编号</div>
+								<div field="code" headerAlign="center" width="60px">工时编号</div>
 								<div field="name" headerAlign="center" allowSort="true" width="150px">工时名称</div>
 								<div field="type" headerAlign="center" allowSort="true" width="100px">工时类型</div>
-								<div field="isShare" headerAlign="center" allowSort="true" width="100px">是否共享</div>
-								<div field="isDisabled" headerAlign="center" allowSort="true" width="100px">是否禁用</div>
-								<div field="orgid" headerAlign="center" allowSort="true" width="50px">所属</div>
+								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
+								<div field="unitPrice" headerAlign="center" allowSort="true" width="70px">工时单价</div>
+								<div field="amt" headerAlign="center" allowSort="true" width="70px">工时费</div>
 							</div>
 						</div>
-						<div header="工时价格信息" headerAlign="center">
+						<div header="其他" headerAlign="center">
 							<div property="columns">
-								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="70px">工时</div>
-								<div field="unitPrice" headerAlign="center" allowSort="true" width="80px">工时单价</div>
-								<div field="amt" headerAlign="center" allowSort="true" width="80px">工时费</div>
+								<div field="isShare" headerAlign="center" allowSort="true" width="70px">是否共享</div>
+								<div field="isDisabled" headerAlign="center" allowSort="true" width="70px">是否禁用</div>
+								<div field="orgid" headerAlign="center" allowSort="true" width="50px">所属</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+				<div id="splitDiv" style="float:left;width:1%;height:100%;display:none"></div>
+				<div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
+					showPager="false"
+					pageSize="1000"
+					selectOnLoad="true"
+					showModified="false"
+					onrowdblclick=""
+					multiSelect="true"
+					dataField="parts"
+					url="">
+					<div property="columns" >
+						<div type="indexcolumn" width="20px" headerAlign="center">序号</div>
+						<div header="已添加工时" headerAlign="left">
+							<div property="columns">
+								<div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
+									width="20" headerAlign="center" header="">操作
+								</div>
+								<div field="itemName" headerAlign="center" allowSort="true" width="80px">工时名称</div>
+								<div field="amt" headerAlign="center" allowSort="true" width="20px">金额</div>								
+							</div>
+						</div>
+					</div>
+				</div>
+						
 			</div>
 		</div>
 	</div>

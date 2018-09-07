@@ -8,6 +8,11 @@ var sti = "";
 var resultData = {};
 var servieTypeHash = {};
 var servieTypeList = [];
+var tempGrid = null;
+var callback = null;
+var delcallback = null;
+var ckcallback = null;
+var isChooseClose = 1;//默认选择后就关闭窗体
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -26,20 +31,85 @@ $(document).ready(function(v) {
 	        servieTypeHash[v.id] = v;
 	    });
 	 });
-});
+	
+	//双击
+	grid.on("rowdblclick",function(e){
+		edit();
+	});
+	tempGrid = nui.get("tempGrid");
+	//左边菜单删除
+	tempGrid.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="check" ){
+            //if(e.row.check==1){
+			//}else{}
+			//删除所选记录
+			delcallback && delcallback(row,function(){
+				tempGrid.removeRow(row);
+			});
+			tempGrid.removeRow(row);
+        }
+    });
+	
+	
 
+});
 
 
 // 选择
 function edit() {
 	var row = grid.getSelected();
-	if (row) {
+	if (row){
+		
+		if(ckcallback){
+			var rs = ckcallback(row);
+			if(rs){
+				showMsg("此套餐已添加,请返回查看!","W");
+				return;
+			}else{
+				if(callback){
+					nui.mask({
+						el: document.body,
+						cls: 'mini-mask-loading',
+						html: '处理中...'
+					});
+
+					callback(row,function(data){
+						if(data){
+							data.check = 1;
+							tempGrid.addRow(data);
+						}
+					},function(){
+						nui.unmask(document.body);
+					})
+				}
+			}
+		}else{
+			if(callback){
+				callback(row,function(data){
+					if(data){
+						data.check = 1;
+						tempGrid.addRow(data);
+					}
+				});
+			}
+		}
 		resultData.package1 = row;
-		CloseWindow("ok");
+		if(isChooseClose == 1){
+			CloseWindow("ok");
+		}
+		
 	} else {
-		nui.alert("请选择一个工时", "提示");
+		nui.alert("请选择一个套餐", "W");
 	}
 }
+
+
+
+
+
+
 
 function CloseWindow(action) {
 	if (window.CloseOwnerWindow)
@@ -116,6 +186,19 @@ function setData(data) {
 	list = data.list || [];
 	nui.get("selectBtn").show();
 }
+
+function setViewData(ck, delck, cck){
+	
+	isChooseClose = 0;
+	callback = ck;
+	delcallback = delck;
+	ckcallback = cck;
+	grid.setWidth("70%");
+	tempGrid.setStyle("display:inline");
+	document.getElementById("splitDiv").style.display="";
+}
+
+
 
 
 //查看详情

@@ -12,7 +12,7 @@
 <head>
 <title>套餐明细</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.1.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.1.5"></script>
 </head>
 <body>
 		<fieldset
@@ -77,7 +77,7 @@
     <div title="工时明细" >
 	<div id="item" class="nui-datagrid" style="width: 100%;height: 100%;"
 						showPager="false" sortMode="client" allowCellEdit="true"
-						allowCellSelect="true" multiSelect="true"
+						allowCellSelect="true" multiSelect="true" showSummaryRow="true"
 						editNextOnEnterKey="true" onDrawCell="onDrawCell">
 						<div property="columns">
 							<div field="prdtId" class="nui-hidden" allowSort="true"
@@ -86,18 +86,14 @@
 							</div>
 							<div field="itemName" allowSort="true" align="left"
 								headerAlign="center" width="">工时名称</div>
-							<div field="service_type_id" allowSort="true" align="left"
-								headerAlign="center" width="">
-								工种 
-							</div>
 							<div field="itemTime" allowSort="true" align="left"
-								headerAlign="center" width="">工时时间</div>
+								headerAlign="center" width="">工时</div>
 							<div field="qty" allowSort="true" align="left"
-								headerAlign="unit_price" width="">
+								headerAlign="unit_price" width="" headerAlign="center">
 								工时单价 
 							</div>
 							<div field="amt" allowSort="true" align="left"
-								headerAlign="center" width="">
+								headerAlign="center" width="" summaryType="sum">
 								金额 
 							</div>
 							<div field="remark" allowSort="true" align="left"
@@ -112,7 +108,7 @@
     	<div title="配件明细"  >
 					<div id="part" class="nui-datagrid" style="width: 100%; height: 100%;"
 						showPager="false" sortMode="client" allowCellEdit="true"
-						allowCellSelect="true" multiSelect="true"
+						allowCellSelect="true" multiSelect="true" showSummaryRow="true"
 						editNextOnEnterKey="true" onDrawCell="onDrawCell">
 						<div property="columns">
 							<div field="prdtId" class="nui-hidden" allowSort="true"
@@ -121,10 +117,6 @@
 							</div>
 							<div field="partName" allowSort="true" align="left"
 								headerAlign="center" width="">配件名称</div>
-							<div field="service_type_id" allowSort="true" align="left"
-								headerAlign="center" width="">
-								工种 
-							</div>
 							<div field="qty" allowSort="true" align="left"
 								headerAlign="center" width="">数量</div>
 							<div field="unitPrice" allowSort="true" align="left"
@@ -136,7 +128,7 @@
 								单位 
 							</div>
 							<div field="amt" allowSort="true" align="left"
-								headerAlign="center" width="">
+								headerAlign="center" width="" summaryType="sum">
 								金额
 							</div>
 							<div field="remark" allowSort="true" align="left"

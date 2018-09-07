@@ -2,14 +2,14 @@
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveRpsMaintain.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="datekey&#xD;&#xA;comp_come_times&#xD;&#xA;chain_come_times&#xD;&#xA;以上3个字段在结算后赋值" title="Administrator&#x9;18-8-6 下午2:29">
     <location x="100" y="0"/>
-    <size height="100" width="366"/>
+    <size height="136" width="366"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign14</targetNode>
+      <targetNode>assign18</targetNode>
     </sourceConnections>
-    <location x="-555" y="149"/>
+    <location x="-615" y="149"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -26,7 +26,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-553" y="185"/>
+    <location x="-613" y="185"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -728,7 +728,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link20</targetConnections>
+    <targetConnections>link41</targetConnections>
     <location x="-489" y="149"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
@@ -849,6 +849,25 @@
     <figSize height="17" width="125"/>
     <node>subprocess2</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign14</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="-555" y="149"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign18label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">billTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
+    <location x="-560" y="185"/>
+    <figSize height="17" width="39"/>
+    <node>assign18</node>
+  </nodes>
   <topRuler/>
   <leftRuler>
     <guides position="49" horizontal="true"/>
@@ -866,6 +885,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mtAdvisorId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>

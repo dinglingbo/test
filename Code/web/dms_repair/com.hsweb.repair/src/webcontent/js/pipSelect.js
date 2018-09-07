@@ -96,6 +96,10 @@ function init()
             e.cellHtml = balaTimes - canUseTimes;
         }
     });
+    cardTimesGrid.on("rowdblclick",function(e)
+    {
+        onOk();
+    });
 
     packageGrid.on("beforeload",function(e)
     {
@@ -326,7 +330,7 @@ function onOk()
     var type = "";
     if(tabIdx == 0)
     {
-        type = 1;
+        type = 0;
         node = cardTimesGrid.getSelected();
     }
     else if(tabIdx == 1)
@@ -360,7 +364,7 @@ function onOk()
         if(parent && parent.checkPrdt){
             var checkMsg = parent.checkPrdt(resultData);
             if(checkMsg) {
-                showMsg(checkMsg,"W");
+                parent.showMsg(checkMsg,"W");
             }else{
                 //弹出数量，单价和金额的编辑界面
                 parent.addPrdt(resultData);

@@ -323,6 +323,10 @@
       <process:to type="query">tempHash/id</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">pkgTemp/serviceId</process:from>
+      <process:to type="query">tempHash/serviceId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/packageId</process:from>
       <process:to type="query">tempHash/prdtId</process:to>
     </process:copy>
@@ -331,7 +335,7 @@
       <process:to type="query">tempHash/prdtName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">tempHash/pid</process:to>
     </process:copy>
     <process:copy>
@@ -348,6 +352,10 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/rate</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rate*100.0</process:from>
       <process:to type="query">tempHash/rate</process:to>
     </process:copy>
     <process:copy>
@@ -376,7 +384,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">tempHash/worders</process:to>
+      <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/cardDetailId</process:from>
@@ -405,6 +413,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">tempHash/unit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">tempHash/billPackageId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -554,6 +566,10 @@
       <process:from type="query" pattern="reference">partTemp/billPackageId</process:from>
       <process:to type="query">packageId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgTemp/id</process:from>
+      <process:to type="query">tempHash/billPackageId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="1262" y="178"/>
@@ -665,6 +681,7 @@
     <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="933" y="142"/>
@@ -716,6 +733,10 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">itemTemp/rate</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rate*100.0</process:from>
       <process:to type="query">tempHash/rate</process:to>
     </process:copy>
     <process:copy>
@@ -744,7 +765,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">itemTemp/workers</process:from>
-      <process:to type="query">tempHash/worders</process:to>
+      <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -765,6 +786,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">tempHash/unit</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgTemp/serviceId</process:from>
+      <process:to type="query">tempHash/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgTemp/id</process:from>
+      <process:to type="query">tempHash/billPackageId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -830,7 +859,7 @@
       <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -889,6 +918,10 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/rate</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rate*100.0</process:from>
       <process:to type="query">tempHash/rate</process:to>
     </process:copy>
     <process:copy>
@@ -917,7 +950,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">tempHash/worders</process:to>
+      <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -934,6 +967,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">inxs</process:from>
       <process:to type="query">tempHash/orderIndex</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgTemp/serviceId</process:from>
+      <process:to type="query">tempHash/serviceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -1014,6 +1051,7 @@
     <process:variable description="套餐工时，配件的序号" historyStateLocation="client" isArray="false" name="t" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="s1" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="s2" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

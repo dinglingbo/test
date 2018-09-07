@@ -9,6 +9,7 @@
 -->
 <head> 
   <title>工单-理赔单</title>
+  <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/claimMain.js" type="text/javascript"></script>
   <style type="text/css">
 
   .title {
@@ -50,7 +51,7 @@
         <tr>
           <td>
             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
-            <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <span class="separator"></span>
             <a class="nui-button" iconCls="" plain="true" onclick="newClaimBill()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新建</a>
           </td>
@@ -74,23 +75,23 @@
         url="com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext">
         <div property="columns">
           <div field="" name="" width="40" headerAlign="center" align="center" >套餐名称号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >车牌号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >车型</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >VIN码</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >保险公司</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >保险单号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >服务顾问</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >进场时间</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >预计交车</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >应收金额</div>
+          <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center" >客户姓名</div>
+          <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center" >手机号码</div>
+          <div field="carNO" name="carNO" width="40" headerAlign="center" align="center" >车牌号</div>
+          <div field="carModel" name="carModel" width="40" headerAlign="center" align="center" >车型</div>
+          <div field="carVin" name="carVin" width="40" headerAlign="center" align="center" >VIN码</div>
+          <div field="insureCompName" name="insureCompName" width="40" headerAlign="center" align="center" >保险公司</div>
+          <div field="insureNo" name="insureNo" width="40" headerAlign="center" align="center" >保险单号</div>
+          <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center" >服务顾问</div>
+          <div field="enterDate" name="enterDate" width="40" headerAlign="center" align="center" >进厂时间</div>
+          <div field="planFinishDate" name="planFinishDate" width="40" headerAlign="center" align="center" >预计交车</div>
+          <div field="packageAmt" name="packageAmt" width="40" headerAlign="center" align="center" >应收金额</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >实收金额</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >单据状态</div>
+          <div field="status" name="status" width="40" headerAlign="center" align="center" >单据状态</div>
         </div>
       </div>
     </div>
-
+</div>
 
     <script type="text/javascript">
       nui.parse();

@@ -555,10 +555,15 @@
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign23" name="赋值22" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link62" name="link62" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link62" name="link62" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign23</sourceNode>
       <targetNode>transactionbegin0</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="-26" y="155"/>
@@ -589,7 +594,7 @@
     <location x="-131" y="155"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.proPackageInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="pkg" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pkg</process:inputVariable>

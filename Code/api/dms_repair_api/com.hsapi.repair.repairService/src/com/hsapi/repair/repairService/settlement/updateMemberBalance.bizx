@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateMemberBalance.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、判断会员余额&#xD;&#xA;2、更新会员余额&#xD;&#xA;3、生成消费记录&#xD;&#xA;4、更新会员卡余额，按时间先后顺序扣减余额&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.query.getGuestCardAmt&#xD;&#xA;" title="Administrator&#x9;18-8-13 上午12:27">
-    <location x="150" y="-90"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、判断会员余额&#xD;&#xA;2、更新会员余额&#xD;&#xA;3、生成消费记录 要关联到卡&#xD;&#xA;4、更新会员卡余额，按时间先后顺序扣减余额&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.query.getGuestCardAmt&#xD;&#xA;" title="Administrator&#x9;18-8-13 上午12:27">
+    <location x="135" y="-90"/>
     <size height="136" width="496"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -547,7 +547,7 @@
       <targetNode>loopend0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

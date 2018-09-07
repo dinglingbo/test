@@ -258,6 +258,8 @@ $(document).ready(function ()
                 var cardDetailId = record.cardDetailId||0;
                 if(type != 2){
                     e.cellHtml = "--";
+                }else{
+                    e.cellHtml = e.value;
                 }
                 break;
             case "packageOptBtn":
@@ -1039,8 +1041,8 @@ function addPrdt(data){
         var data = {};
         var pkg = {
             serviceId:main.id,
-            packageId:rtnRow.prdtId,
-            cardDetailId:rtnRow.id||0
+            packageId:rtnRow.id,
+            cardDetailId:0
         };
         data.pkg = pkg;
 
@@ -1077,8 +1079,8 @@ function addPrdt(data){
         var data = {};
         var insItem = {
             serviceId:main.id||0,
-            itemId:rtnRow.prdtId,
-            cardDetailId:rtnRow.id||0
+            itemId:rtnRow.id,
+            cardDetailId:0
         };
         data.insItem = insItem;
         data.serviceId = main.id||0;
@@ -1117,9 +1119,9 @@ function addPrdt(data){
         var data = {};
         var insPart = {
             serviceId:main.id||0,
-            partId:rtnRow.prdtId,
-            cardDetailId:rtnRow.id||0,
-            partCode:rtnRow.prdtCode
+            partId:rtnRow.id,
+            cardDetailId:0,
+            partCode:rtnRow.code
         };
         data.insPart = insPart;
         data.serviceId = main.id||0;
@@ -1216,6 +1218,7 @@ function addPartNewRow(){
 function deletePackRow(row_uid){
     var data = rpsPackageGrid.getData();
     var row = rpsPackageGrid.getRowByUID(row_uid);
+    var prdtId = row.prdtId;
     if(data && data.length==1){
         row = data[0];
     }
@@ -1236,7 +1239,7 @@ function deletePackRow(row_uid){
         var errMsg = text.errMsg||"";
         if(errCode == 'S'){   
             var rows = rpsPackageGrid.findRows(function(row){
-                if(row.prdtId == row.prdtId || row.pid == row.prdtID){
+                if(row.prdtId == prdtId || row.pid == prdtId){
                     return true;
                 }
             });

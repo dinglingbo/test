@@ -384,7 +384,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">tempHash/worders</process:to>
+      <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/cardDetailId</process:from>
@@ -681,6 +681,7 @@
     <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="933" y="142"/>
@@ -764,7 +765,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">itemTemp/workers</process:from>
-      <process:to type="query">tempHash/worders</process:to>
+      <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -858,7 +859,7 @@
       <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -949,7 +950,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">tempHash/worders</process:to>
+      <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>

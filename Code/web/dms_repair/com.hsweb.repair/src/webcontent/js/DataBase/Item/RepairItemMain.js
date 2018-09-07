@@ -65,7 +65,7 @@ $(document).ready(function()
 				break;
 		}
 	});
-    rightGrid.on("celldbclick",function(e){
+    rightGrid.on("rowdblclick",function(e){
 		onOk();
 	});
 	tempGrid.on("cellclick",function(e){ 
@@ -166,7 +166,7 @@ var callback = null;
 var delcallback = null;
 var ckcallback = null;
 //用于工单添加工时
-function setInitData(ck, delck, cck){
+function setViewData(ck, delck, cck){
 	//ck 保存数据 delck 删除数据 cck 判断数据
 	isChooseClose = 0;
 	callback = ck;
@@ -188,10 +188,19 @@ function onOk()
 				return;
 			}else{
 				if(callback){
+					nui.mask({
+						el: document.body,
+						cls: 'mini-mask-loading',
+						html: '处理中...'
+					});
+
 					callback(row,function(data){
 						if(data){
+							data.check = 1;
 							tempGrid.addRow(data);
 						}
+					},function(){
+						nui.unmask(document.body);
 					})
 				}
 			}
@@ -199,6 +208,7 @@ function onOk()
 			if(callback){
 				callback(row,function(data){
 					if(data){
+						data.check = 1;
 						tempGrid.addRow(data);
 					}
 				})

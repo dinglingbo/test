@@ -490,7 +490,7 @@ function onApplyClick(){
 
                     $("#carNoEl").html(car.carNo);
                     $("#guestNameEl").html(car.guestFullName);
-                    $("#guestTelEl").html(car.mobile);
+                    $("#guestTelEl").html(car.guestMobile);
                 }
             }
         }
@@ -523,7 +523,7 @@ function onSearchClick(){
 
         $("#carNoEl").html(car.carNo);
         $("#guestNameEl").html(car.guestFullName);
-        $("#guestTelEl").html(car.mobile);
+        $("#guestTelEl").html(car.guestMobile);
     });
 }
 function selectCustomer(callback) {
@@ -873,5 +873,26 @@ function addcardTime(){
 	
 }
 
+function addcard(callback){
 
+		nui.open({
+			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 600, height: 460,
+			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :xyguest
+				};
+				
+				iframe.contentWindow.SetData(params);
+		
+			},
+			onedestroy: function(action){
+				if("ok" == action){
+					grid.reload();
+				}
+			}
+		});
+
+}
 

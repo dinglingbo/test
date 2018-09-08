@@ -28,6 +28,8 @@ function selectCustomer() {
        var  main = form2.getData();
         main.guestId = v.guestId;
         main.contactorName = v.guestFullName;
+        main.carId = v.carId;
+        main.carNo = v.carNo;
         contactorName.setText(v.guestFullName);
         form2.setData(main);
        // $("#contactorName").setValue(v.guestFullName);
@@ -77,7 +79,9 @@ function payOk(){
 			salesDeductValue:rpbCard.salesDeductValue,
 			sellAmt:rpbCard.sellAmt,
 			totalAmt:rpbCard.totalAmt,
-			useRemark:rpbCard.useRemark
+			useRemark:rpbCard.useRemark,
+			carId:data.carId,
+			carNo:carNo
 	    };
 	//整理数据
 	    payAmt = rpbCard.sellAmt;

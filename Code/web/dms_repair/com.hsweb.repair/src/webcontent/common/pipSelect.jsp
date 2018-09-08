@@ -65,7 +65,7 @@ table {
                         <li iconCls="" onclick="queryType(3)" id="type11">配件</li>
                     </ul>
 
-                    <a class="nui-button" plain="false"  onclick="onSearch()">选择分类查</a>
+                    <!-- <a class="nui-button" plain="false"  onclick="onSearch()">选择分类查</a> -->
                     <input class="nui-combobox" name="serviceTypeId" id="serviceTypeId" valueField="id" textField="name"
                            allowInput="true" valueFromSelect="true" visible="false"/>
                     <input name="type" id="type" visible="false" class="nui-combobox" textField="name" valueField="customid"/>

@@ -172,6 +172,10 @@
       <process:to type="query">comd/code</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">comd/isMaster</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">ten/isDisabled</process:to>
     </process:copy>

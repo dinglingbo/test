@@ -80,7 +80,7 @@
 					showModified="false"
 					onrowdblclick=""
 					multiSelect="true"
-					dataField="parts"
+					dataField="data"
 					url="">
 					<div property="columns" >
 						<div type="indexcolumn" width="20px" headerAlign="center">序号</div>
@@ -89,7 +89,7 @@
 								<div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
 									width="20" headerAlign="center" header="">操作
 								</div>
-								<div field="packName" headerAlign="center" allowSort="true" width="80px">套餐名称</div>
+								<div field="packageName" headerAlign="center" allowSort="true" width="80px">套餐名称</div>
 								<div field="amt" headerAlign="center" allowSort="true" width="20px">金额</div>								
 							</div>
 						</div>

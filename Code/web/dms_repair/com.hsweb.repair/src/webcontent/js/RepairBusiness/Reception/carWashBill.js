@@ -1906,12 +1906,13 @@ function chooseItem(){
             data:{
                 serviceId: main.id||0
             }
-
+        };
+        var p3 = {};
         loadDetail(p1, p2, p3);
     });
 }
 
-function showHealth(){
+function choosePackage(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -1924,13 +1925,13 @@ function showHealth(){
     }
                                                        
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "package",
+        var p1 = { 
+    		interType: "package",
             data:{
                 serviceId: main.id||0
             }
         };
+        var p2 = {};
         var p3 = {};
         loadDetail(p1, p2, p3);
     });
@@ -1944,8 +1945,8 @@ function addToBillPackage(row, callback, unmaskcall){
     var data = {};
     var pkg = {
         serviceId:main.id,
-        packageId:rtnRow.prdtId,
-        cardDetailId:rtnRow.id||0
+        packageId:row.id,
+        cardDetailId:0
     };
     data.pkg = pkg;
     data.serviceId = main.id||0;
@@ -2110,14 +2111,14 @@ function choosePart(){
     }
 
     doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
-        var p1 = { }
-        var p2 = {
-            interType: "part",
-            data:{
-                serviceId: main.id||0
-            }
-        }
-        var p3 = {}
+        var p1 = { };
+        var p2 = { };
+        var p3 = {
+			 interType: "part",
+	         data:{
+	             serviceId: main.id||0
+	         }
+        };
         loadDetail(p1, p2, p3);
     });
 }

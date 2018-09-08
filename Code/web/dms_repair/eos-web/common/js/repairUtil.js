@@ -113,6 +113,7 @@ function getProvinceAndCity(callback) {
 	});
 }
 
+
 var getAllCarBrandUrl = window._rootPartUrl
 		+ "com.hsapi.part.common.svr.getAllCarBrand.biz.ext";
 function getAllCarBrand(callback) {
@@ -414,4 +415,27 @@ function SelectCustomer(params)
             }
         }
     });
+}
+
+var getAllPartBrandUrl = window._rootUrl
++ "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
+function getAllPartBrand(callback)
+{
+nui.ajax({
+    url: getAllPartBrandUrl,
+    data : {token: token},
+    type:"post",
+    async:false,
+    success:function(data)
+    {
+        if(data && data.quality && data.brand)
+        {
+            callback && callback(data);
+        }
+    },
+    error:function(jqXHR, textStatus, errorThrown){
+        //  nui.alert(jqXHR.responseText);
+        console.log(jqXHR.responseText);
+    }
+});
 }

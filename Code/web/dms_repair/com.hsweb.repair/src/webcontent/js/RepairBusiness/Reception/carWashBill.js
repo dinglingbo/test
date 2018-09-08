@@ -1438,6 +1438,7 @@ function onCloseClick(e){
     var row = rpsPackageGrid.getSelected();
     var newRow = {workerIds:"",workers:""};
     rpsPackageGrid.updateRow(row, newRow);
+
 }
 function onworkerChanged(e){
     var obj = e.sender;
@@ -1909,6 +1910,8 @@ function chooseItem(){
         loadDetail(p1, p2, p3);
     });
 }
+
+
 function addToBillItem(row, callback, unmaskcall){
     var main = billForm.getData();
     var data = {};
@@ -2000,4 +2003,85 @@ function checkFromBillPart(data){
         return true;
     }
     return false;
+}
+//配件
+function choosePart(){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能添加配件!","S");
+        return;
+    }
+
+    doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
+        var p1 = { }
+        var p2 = {
+            interType: "part",
+            data:{
+                serviceId: main.id||0
+            }
+        }
+        var p3 = {}
+        loadDetail(p1, p2, p3);
+    });
+}
+function addToBillPart(row, callback, unmaskcall){
+    var main = billForm.getData();
+    var data = {};
+    var insPart = {
+        serviceId:main.id||0,
+        partId:row.id,
+        cardDetailId:0
+    };
+    data.insPart = insPart;
+    data.serviceId = main.id||0;
+    
+    var params = {
+        type:"insert",
+        interType:'part',
+        data:data
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        var res = text.data||{};
+        if(errCode == 'S'){
+            unmaskcall && unmaskcall();
+            callback && callback(res);
+        }else{
+            unmaskcall && unmaskcall();
+            showMsg(errMsg||"添加配件失败!","W");
+            return;
+        }
+    },function(){
+        unmaskcall && unmaskcall();
+    });
+}
+function delFromBillPart(data, callback){
+    var part = {
+        serviceId:data.serviceId,
+        id:data.id,
+        cardDetailId:data.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"part",
+        data:{
+        	part: part
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            callback && callback();
+        }else{
+            showMsg(errMsg||"删除配件信息失败!","W");
+            return;
+        }
+    });
 }

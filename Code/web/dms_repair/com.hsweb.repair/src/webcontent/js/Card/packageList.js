@@ -60,8 +60,7 @@ $(document).ready(function(v) {
 // 选择
 function edit() {
 	var row = grid.getSelected();
-	if (row){
-		
+	if (row){	
 		if(ckcallback){
 			var rs = ckcallback(row);
 			if(rs){
@@ -74,7 +73,7 @@ function edit() {
 						cls: 'mini-mask-loading',
 						html: '处理中...'
 					});
-
+		
 					callback(row,function(data){
 						if(data){
 							data.check = 1;
@@ -104,12 +103,6 @@ function edit() {
 		nui.alert("请选择一个套餐", "W");
 	}
 }
-
-
-
-
-
-
 
 function CloseWindow(action) {
 	if (window.CloseOwnerWindow)
@@ -197,9 +190,6 @@ function setViewData(ck, delck, cck){
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";
 }
-
-
-
 
 //查看详情
 function look() {

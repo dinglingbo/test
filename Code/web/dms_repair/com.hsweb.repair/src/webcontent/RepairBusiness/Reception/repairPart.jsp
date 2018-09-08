@@ -40,7 +40,7 @@
                      allowSort="false" visible="true" width="50" header="销售员" align="center">
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onpartsalemanChanged"oncloseclick="onCloseClick" emptyText=""  vtype="required"/> 
+                             url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">

@@ -10,6 +10,7 @@
     <select id="queryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id as id,
+			a.guest_id as guestId,
 			a.service_code as serviceCode,
 			a.enter_date as enterDate,
 			c.full_name as guestFullName,

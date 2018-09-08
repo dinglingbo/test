@@ -2111,16 +2111,14 @@ function choosePart(){
     }
 
     doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
-        var p1 = { }
-        var p2 = {
-         
-        }
+        var p1 = { };
+        var p2 = { };
         var p3 = {
 			 interType: "part",
 	         data:{
 	             serviceId: main.id||0
 	         }
-        }
+        };
         loadDetail(p1, p2, p3);
     });
 }

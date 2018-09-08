@@ -284,11 +284,11 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 				list : list
 			};
 
-            iframe.contentWindow.setViewData();
+            iframe.contentWindow.setViewData(dock, dodelck, docck);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getData(dock, dodelck, docck);
+            var data = iframe.contentWindow.getData();
             data = data || {};
             data.action = action;
             callback && callback(data);

@@ -1,7 +1,7 @@
-var mainGrid = nui.get("mainGrid");
+var mainGrid = null;
 
 $(document).ready(function () {
-    
+	mainGrid = nui.get("mainGrid");
 });
 
 function onSearch(){

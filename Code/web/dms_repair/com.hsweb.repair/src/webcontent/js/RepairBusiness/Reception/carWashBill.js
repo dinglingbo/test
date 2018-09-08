@@ -1906,12 +1906,13 @@ function chooseItem(){
             data:{
                 serviceId: main.id||0
             }
-
+        };
+        var p3 = {};
         loadDetail(p1, p2, p3);
     });
 }
 
-function showHealth(){
+function choosePackage(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -1924,13 +1925,13 @@ function showHealth(){
     }
                                                        
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "package",
+        var p1 = { 
+    		interType: "package",
             data:{
                 serviceId: main.id||0
             }
         };
+        var p2 = {};
         var p3 = {};
         loadDetail(p1, p2, p3);
     });
@@ -1944,8 +1945,8 @@ function addToBillPackage(row, callback, unmaskcall){
     var data = {};
     var pkg = {
         serviceId:main.id,
-        packageId:rtnRow.prdtId,
-        cardDetailId:rtnRow.id||0
+        packageId:row.id,
+        cardDetailId:0
     };
     data.pkg = pkg;
     data.serviceId = main.id||0;
@@ -2110,14 +2111,14 @@ function choosePart(){
     }
 
     doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
-        var p1 = { }
-        var p2 = {
-            interType: "part",
-            data:{
-                serviceId: main.id||0
-            }
-        }
-        var p3 = {}
+        var p1 = { };
+        var p2 = { };
+        var p3 = {
+			 interType: "part",
+	         data:{
+	             serviceId: main.id||0
+	         }
+        };
         loadDetail(p1, p2, p3);
     });
 }
@@ -2177,3 +2178,43 @@ function delFromBillPart(data, callback){
         }
     });
 }
+
+function onPrint(e){
+	var main = billForm.getData();
+	if(main.id){
+		var params = {
+				id : main.id,
+				serviceId : main.id,
+				comp : currOrgName
+		};
+		if(e == 1){
+			nui.open({
+	            url: "com.hsweb.print.repairOrder.flow",
+	            width: "100%",
+	            height: "100%",
+	            showMaxButton: false,
+				allowResize: false,
+	            showHeader: true,
+	            onload: function() {
+	                var iframe = this.getIFrameEl();
+	                iframe.contentWindow.SetData(params);
+	            },
+	        });
+		}else if(e == 2){
+			nui.open({
+	            url: "com.hsweb.print.settlement.flow",
+	            width: "100%",
+	            height: "100%",
+	            showMaxButton: false,
+				allowResize: false,
+	            showHeader: true,
+	            onload: function() {
+	                var iframe = this.getIFrameEl();
+	                iframe.contentWindow.SetData(params);
+	            },
+	        });
+		}
+	}
+}
+
+

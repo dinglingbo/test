@@ -2,6 +2,7 @@ var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext";
 var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/timesCardSysn.jsp?token"+token;
 var grid = null;
+var xyguest = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -197,7 +198,11 @@ function onBuy(){
 			height : 240,
 			onload : function() {
 				var iframe = this.getIFrameEl();
-				var data = row;
+				//var data = row;
+				var data ={
+						xyguest:xyguest,
+						row:row
+				} 
 				//把数据传到子页面
 				iframe.contentWindow.giveData(data);
 			},
@@ -215,4 +220,10 @@ function CloseWindow(action) {
 		return window.CloseOwnerWindow(action);
 	else
 		return window.close();
+}
+
+function setData(data)
+{
+	xyguest = data.xyguest;
+
 }

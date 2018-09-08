@@ -13,7 +13,7 @@ function doPost(opt) {
 	var error = opt.error || function() {
 	};
 	data.userId = currUserId;
-	data.orgid = currOrgid;
+	data.orgid = currOrgId;
 	data.userName = currUserName;
 	data.token = token;
 	nui.ajax({

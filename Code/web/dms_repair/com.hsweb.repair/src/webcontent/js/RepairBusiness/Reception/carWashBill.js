@@ -618,6 +618,7 @@ function doSetMainInfo(car){
     $("#showCarInfoEl").html(car.carNo);
     $("#guestTelEl").html(car.guestMobile);
 }
+
 function setInitData(params){
     if(!params.id){
         add();
@@ -1912,7 +1913,7 @@ function chooseItem(){
     });
 }
 
-function showHealth(){
+function choosePackage(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -1925,13 +1926,13 @@ function showHealth(){
     }
                                                        
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "package",
+        var p1 = { 
+    		interType: "package",
             data:{
                 serviceId: main.id||0
             }
         };
+        var p2 = {};
         var p3 = {};
         loadDetail(p1, p2, p3);
     });

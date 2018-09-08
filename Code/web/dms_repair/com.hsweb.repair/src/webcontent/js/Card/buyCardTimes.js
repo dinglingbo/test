@@ -9,8 +9,15 @@ $(document).ready(function(v) {
 var rpbCardTimes = null;
 function giveData(data)
 {
-    rpbCardTimes = nui.clone(data);
+    var data = nui.clone(data);
+    rpbCardTimes = data.row;
     sellAmt.setValue(rpbCardTimes.sellAmt);
+	contactorName = mini.get("contactorName");	
+    var  main = form2.getData();
+     main.guestId = data.xyguest.guestId;
+     main.contactorName = data.xyguest.guestFullName;
+     contactorName.setText(data.xyguest.guestFullName);
+     form2.setData(main);
 }
 
 

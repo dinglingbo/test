@@ -1906,7 +1906,8 @@ function chooseItem(){
             data:{
                 serviceId: main.id||0
             }
-
+        };
+        var p3 = {};
         loadDetail(p1, p2, p3);
     });
 }
@@ -2112,12 +2113,14 @@ function choosePart(){
     doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
         var p1 = { }
         var p2 = {
-            interType: "part",
-            data:{
-                serviceId: main.id||0
-            }
+         
         }
-        var p3 = {}
+        var p3 = {
+			 interType: "part",
+	         data:{
+	             serviceId: main.id||0
+	         }
+        }
         loadDetail(p1, p2, p3);
     });
 }

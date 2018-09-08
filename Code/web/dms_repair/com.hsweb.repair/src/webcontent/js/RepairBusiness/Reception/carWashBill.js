@@ -1943,8 +1943,8 @@ function addToBillPackage(row, callback, unmaskcall){
     var data = {};
     var pkg = {
         serviceId:main.id,
-        packageId:rtnRow.prdtId,
-        cardDetailId:rtnRow.id||0
+        packageId:row.id,
+        cardDetailId:0
     };
     data.pkg = pkg;
     data.serviceId = main.id||0;

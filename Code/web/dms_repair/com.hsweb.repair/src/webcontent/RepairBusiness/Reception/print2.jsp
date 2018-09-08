@@ -11,8 +11,8 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    
+	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>    
 </head>
 <style>
         table, td {
@@ -129,44 +129,9 @@
     </style>
 <body>
 <div class="boxbg" style="display:none"></div>
-    <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
-        <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
-        <div style="padding-top:15px; margin:0 15px;">
-            <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td class="color999" width="76" height="46">单据编号</td>
-                        <td><input type="text" id="txtno" class="peijianss" value="1809070080" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">门店名称</td>
-                        <td><input type="text" id="txtstorename" class="peijianss" value="易维天下" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">地址</td>
-                        <td><input type="text" id="txtaddress" class="peijianss" value="杭州市滨江区长河路和瑞科技园S4/汽车美容 123.45631" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">电话</td>
-                        <td><input type="text" id="txtphoneno" class="peijianss" value="18546239871" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="90">底部说明</td>
-                        <td>
-                            <textarea class="sminput" id="txtremark" style="width:94%; height:66px; font-size:14px; border-radius:3px;">56156165165165165</textarea>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div class="boxbtn"><ul><a href="javascript:box_setup_close()" class="qc">取消</a><a href="javascript:" id="btn_save">保存</a></ul></div>
-    </div>
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
-        
         <a href="/Main/serve/PrintStatementA5/4207501">A5打印</a>
-            <a href="javascript:box_setup_open()">修改</a>
     </div>
     <div style="margin: 0 10px;" class="printny">
         
@@ -174,10 +139,10 @@
             <tbody>
                 <tr>
                     <td>
-                            <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename">易维天下</span>维修结算单</b></div>
+                            <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span>维修结算单</b></div>
                         
                         <div style="padding-top: 2px; font-size: 16px;">
-                            编号：<span id="spno">1809070080</span>
+                            编号：<span id="spno"></span>
                             
                         </div>
                     </td>
@@ -193,12 +158,12 @@
         <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td>地址：<span id="spaddress">杭州市滨江区长河路和瑞科技园S4/汽车美容 123.45631</span></td>
-                <td align="right">进厂时间：2018-09-07 17:56:00</td>
+                <td>地址：<span id="spaddress"></span></td>
+                <td align="right">进厂时间：</td>
             </tr>
             <tr>
-                <td>电话：<span id="spphoneno">18546239871</span></td>
-                    <td align="right">打印时间：2018-09-07 18:51:39</td>
+                <td>电话：<span id="spphoneno"></span></td>
+                    <td align="right">打印时间：</td>
 
             </tr>
         </table>
@@ -206,19 +171,19 @@
         <div style="padding-top: 10px;">
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td height="24" width="33%">&nbsp;客户名称：张总</td>
-                        <td>&nbsp;联系电话：135****615</td>
-                    <td width="33%">&nbsp;接待人员：杨二毛</td>
+                    <td height="24" width="33%">&nbsp;客户名称：</td>
+                        <td>&nbsp;联系电话：</td>
+                    <td width="33%">&nbsp;接待人员：</td>
                 </tr>
                 <tr>
-                    <td height="24">&nbsp;车牌：琼BE65476</td>
+                    <td height="24">&nbsp;车牌：</td>
                     <td>&nbsp;车辆型号： </td>
                     <td>&nbsp;车架号：</td>
                 </tr>
                 <tr>
                     <td height="24">&nbsp;送修人：</td>
                     <td>&nbsp;送修人电话：</td>
-                    <td>&nbsp;行驶里程：1000公里</td>
+                    <td>&nbsp;行驶里程：</td>
                 </tr>
             </table>
         </div>
@@ -226,44 +191,39 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b>序号</b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>工时项目</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>价格</b></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>折扣</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>费用</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
+                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                 </tr>
-                    <tr>
-                        <td align="center">1</td>
-                        <td height="24">&nbsp;更换刹车片</td>
-                        <td align="center">&nbsp;200</td>
-                        <td align="center">&nbsp;1</td>
-                        <td align="center">&nbsp;</td>
-                        <td align="center">&nbsp;200.00</td>
-                    </tr>
+            </table>
+        <div style="height: 12px;"></div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
+                <tr>
+                    <td width="40" align="center" bgcolor="#f8f8f8"><b>序号</b></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"><b>工时项目</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
+                    <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
+                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
+                </tr>
             </table>
             <div style="height: 12px;"></div>
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b>序号</b></td>
                     <td height="28" align="center" bgcolor="#f8f8f8"><b>配件项目</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>价格</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>折扣</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>费用</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
+                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                 </tr>
-                    <tr>
-                        <td align="center">2</td>
-                        <td height="24">&nbsp;刹车片</td>
-                        <td align="center">&nbsp;600</td>
-                        <td align="center">&nbsp;1(副)</td>
-                        <td align="center">&nbsp;</td>
-                        <td align="center">&nbsp;600.00</td>
-                    </tr>
             </table>
             <div style="height: 12px;"></div>
                 <div style="color:#000;height:32px; margin-top:-8px;">
-            <span style="font-size: 16px; float:right; font-weight: bold;">原价合计：&yen;800.00元</span>
-            工时：200.00&nbsp;&nbsp;+&nbsp;&nbsp;配件：600.00&nbsp;&nbsp;+&nbsp;&nbsp;其它：0.00
+            <span style="font-size: 16px; float:right; font-weight: bold;">原价合计：&yen;元</span>
+            工时：&nbsp;&nbsp;+&nbsp;&nbsp;配件：&nbsp;&nbsp;+&nbsp;&nbsp;其它：
         </div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
             <tr>
@@ -272,7 +232,7 @@
                         <span style="margin-right: 15px;">
                             <b style="font-size: 16px;">合计</b>：
                             <font style="font-size: 15px; font-weight: bold;">
-                                800.00
+                                
                             </font>元
                         </span>
                         <b style="font-size: 16px;">大写</b>：
@@ -309,7 +269,7 @@
                 <td height="30" style="padding: 8px;">
                     <div style="font-size: 15px;">
                         <span id="spremark">
-                            56156165165165165
+                            
                         </span>
 
 
@@ -325,7 +285,13 @@
         </table>
     </div>
 	<script type="text/javascript">
-    	nui.parse();
+		$(document).ready(function (){
+			$("#print").click(function () {
+	            $(".print_btn").hide();
+	            window.print();
+	        });  
+	          	
+        });
     </script>
 </body>
 </html>

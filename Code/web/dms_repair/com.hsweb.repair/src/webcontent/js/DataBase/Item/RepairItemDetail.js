@@ -90,9 +90,29 @@ function setData(data)
 		basicInfoForm.setData(item);
 		deductForm.setData(item);
 		carBrandIdEl.doValueChanged();
-        carSeriesId.doValueChanged();
+		carSeriesId.doValueChanged();
+		
+		var salesDeductType = item.salesDeductType||0;
+		var techDeductType = item.techDeductType||0;
+		var advisorDeductType = item.advisorDeductType||0;
+		if(salesDeductType == 4){
+			$("#salesDeductValue").next().hide();
+		}else {
+			$("#salesDeductValue").next().show();
+		}
+	
+		if(techDeductType == 4){
+			$("#techDeductValue").next().hide();
+		}else {
+			$("#techDeductValue").next().show();
+		}
+	
+		if(advisorDeductType == 4){
+			$("#advisorDeductValue").next().hide();
+		}else {
+			$("#advisorDeductValue").next().show();
+		}
 	}
-
 	
 }
 var saveUrl = baseUrl+"com.hsapi.repair.baseData.item.saveRpbItem.biz.ext";

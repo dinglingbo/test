@@ -33,7 +33,7 @@
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
                 <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="施工员">
+                     allowSort="false" visible="true" width="60" header="施工员" align="center">
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
                     url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
                     <!-- <div property="columns">
@@ -87,6 +87,6 @@
         </div>
     </div>
 </div>
-    
+    	
 
 

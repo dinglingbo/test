@@ -25,7 +25,7 @@
                 <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" numberFormat="p">优惠率
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额

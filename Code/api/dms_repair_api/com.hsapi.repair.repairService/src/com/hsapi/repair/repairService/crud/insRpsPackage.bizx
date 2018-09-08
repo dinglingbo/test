@@ -1223,6 +1223,14 @@
       <process:to type="query">pkg/isCanRate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">rpbPackage/id</process:from>
+      <process:to type="query">pkg/packageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPackage/name</process:from>
+      <process:to type="query">pkg/packageName</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">rpbPackage/amount</process:from>
       <process:to type="query">pkg/amt</process:to>
     </process:copy>

@@ -225,14 +225,72 @@ function doSelectItem(dock, dodelck, docck, callback) {
 			var params = {
 				list : list
 			};
-            iframe.contentWindow.setData(params);
-            iframe.contentWindow.setInitData(dock, dodelck, docck);
+            iframe.contentWindow.setData(params);//显示该显示的功能
+            iframe.contentWindow.setViewData(dock, dodelck, docck);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();
             var data = iframe.contentWindow.getData();
             data = data || {};
-            data.action = action
+            data.action = action;
+            callback && callback(data);
+		}
+	});
+}
+
+
+function doSelectPart(dock, dodelck, docck, callback) {
+	nui.open({
+		targetWindow : window,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
+		title : "配件管理",
+		width : 1300,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var list = [];
+			var params = {
+				list : list
+			};
+            iframe.contentWindow.setData(params);
+            iframe.contentWindow.setViewData(dock, dodelck, docck);
+		},
+		ondestroy : function(action) {
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            data = data || {};
+            data.action = action;
+            callback && callback(data);
+		}
+	});
+}
+
+
+function doSelectPackage(dock, dodelck, docck, callback) {
+	nui.open({
+		targetWindow : window,
+		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
+		title : "套餐项目",
+		width : 1000,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var list = [];
+			var params = {
+				list : list
+			};
+
+            iframe.contentWindow.setViewData();
+		},
+		ondestroy : function(action) {
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData(dock, dodelck, docck);
+            data = data || {};
+            data.action = action;
             callback && callback(data);
 		}
 	});

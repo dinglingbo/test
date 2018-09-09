@@ -11,7 +11,7 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=3" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=5" type="text/javascript"></script>
 </head>
 <body>
 <div id="editForm1">
@@ -224,31 +224,26 @@
         </div>
         <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>计次卡</legend>
-                 <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
+                 <div id="grid1" class="nui-datagrid" style="width:100%;height:auto;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext">
                     <div property="columns">
-                        <div type="indexcolumn" headerAlign="center" align="center">序号</div>
-                        <div field="prdtName" name="prdtName"  headerAlign="center" align="center">套餐名称</div>
-                        <div field="" name=""  headerAlign="center" align="center">套餐价格</div>
-                        <div field="" name=""  headerAlign="center" align="center">套餐内容</div>
-                        <div field="" name=""  headerAlign="center" align="center">剩余</div>
-                        <div field="" name=""  headerAlign="center" align="center">到期时间</div>
+                          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
+		                  <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
+		                  <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
+		                  <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
+		                  <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
                     </div>
                 </div>
         </fieldset>
         <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>储值卡</legend>
-            <div id="grid2" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
-                totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="">
+            <div id="grid2" class="nui-datagrid" style="width:100%;height:auto;" selectOnLoad="true" showPager="true" pageSize="50"
+                totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext">
                 <div property="columns">
-                    <div type="indexcolumn" headerAlign="center" align="center">序号</div>
-                    <div field="" name="" headerAlign="center" align="center">卡类型</div>
-                    <div field="" name="" headerAlign="center" align="center">充值/扣款</div>
-                    <div field="" name="" headerAlign="center" align="center">卡号</div>
-                    <div field="" name="" headerAlign="center" align="center">绑定车辆</div>
-                    <div field="" name="" headerAlign="center" align="center">余额</div>
-                    <div field="" name="" headerAlign="center" align="center">现金账户</div>
-                    <div field="" name="" headerAlign="center" align="center">到期时间</div>
+                    <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
+                    <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
+                    <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="储值日期" dateFormat="yyyy-MM-dd"></div>
+                    <div field="periodValidity" name="periodValidity" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
                 </div>
             </div>
         </fieldset>
@@ -269,30 +264,18 @@
     </div>
     <div title="服务记录" >
         <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="RpsMaintain" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.common.carDetails.searchRpsMaintain.biz.ext">
+            totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.repairService.query.querySettleList.biz.ext">
             <div property="columns">
-                <div field="serviceCode" name="serviceCode" headerAlign="center" align="center">工单号</div>
-                <div field="" name="" headerAlign="center" align="center">服务项目</div>
-                <div field="" name="" headerAlign="center" align="center">金额</div>
-                <div field="" name="" headerAlign="center" align="center">单据日期</div>
-                <div field="enterKilometers" name="" headerAlign="center" align="center">里程/KM</div>
-                <div field="" name="" headerAlign="center" align="center">服务性质</div>
-                <div field="" name="" headerAlign="center" align="center">门店</div>
-            </div>
-        </div>
-    </div>
-    <div title="历史维修记录（导入）">
-        <div id="mainGrid2" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="">
-            <div property="columns">
-                <div type="indexcolumn" headerAlign="center" align="center">序号</div>
-                <div field="" name="" headerAlign="center" align="center">服务项目</div>
-                <div field="" name="" headerAlign="center" align="center">所需物料</div>
-                <div field="" name="" headerAlign="center" align="center">金额</div>
-                <div field="" name="" headerAlign="center" align="center">服务时间</div>
-                <div field="" name="" headerAlign="center" align="center">里程/KM</div>
-                <div field="" name="" headerAlign="center" align="center">服务性质</div>
-                <div field="" name="" headerAlign="center" align="center">服务门店</div>
+                	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
+	                <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
+	                <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
+	                <div field="contactName" name="contactName" width="65" headerAlign="center" header="送修人姓名"></div>
+                  	<div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="送修人手机"></div>
+                  	<div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
+	                <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
+                    <div field="recordDate" name="recordDate" width="120" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                    <div field="balaAmt" name="balaAmt" width="120" headerAlign="center" header="金额"></div>
+                    
             </div>
         </div>
     </div>

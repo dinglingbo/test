@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单详情</title>
-<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.0.4"></script>
+<script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.1.2"></script>
 <style type="text/css">
     body {
         margin: 0;
@@ -119,7 +119,7 @@ html body .searchbox .mini-buttonedit-icon:before
                     </td>
                     <td rowspan="2" style="text-align:left;">
                         <a class="nui-button btnType" iconCls="" plain="false" onclick="addcardTime()" id="addBtn"><span class="btnType"><span class="fa fa-gift fa-lg"></span>&nbsp;次卡套餐</span></a>
-                        <a class="nui-button btnType" iconCls="" plain="false" onclick="add()" id="addBtn"><span class="btnType"><span class="fa fa-dollar fa-lg"></span>&nbsp;充值办卡</span></a>
+                        <a class="nui-button btnType" iconCls="" plain="false" onclick="addcard()" id="addBtn"><span class="btnType"><span class="fa fa-dollar fa-lg"></span>&nbsp;充值办卡</span></a>
                     </td>
                 </tr>
                 <tr>

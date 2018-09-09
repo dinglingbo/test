@@ -11,8 +11,9 @@
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>
 </head>
-<body>
+<body oncontextmenu = "return false">
     <style>
         * {
             margin: 0;
@@ -373,28 +374,28 @@
     </div>
     <div id="print-container">
         <div class="company-info">
-            <h3>易维天下</h3>
+            <h3><span id="comp"></span></h3>
         </div>
         <h1 id="title">派工单</h1>
         <div class="content">
-            <h5>单据编号:1809070092</h5>
+            <h5>单据编号：<span id="serviceCode"></span></h5>
             <hr />
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>
-                        <td class="left" width="33.3%">客户名称：张慧洁</td>
-                        <td class="left" width="33.3%">车牌号：闽FL1105</td>
-                            <td class="left">联系电话：180****856</td>
+                        <td class="left" width="33.3%" id="guestId">客户名称：</td>
+                        <td class="left" width="33.3%" id="carNo">车牌号：</td>
+                            <td class="left" id="tel">联系电话：</td>
                     </tr>
                     <tr>
-                        <td class="left">车型：日产 骏逸(国产)</td>
-                        <td class="left">公里数：500</td>
-                        <td class="left">服务顾问：张慧洁</td>
+                        <td class="left">车型：</td>
+                        <td class="left"id="enterKilometers">公里数：</td>
+                        <td class="left"id="mtAdvisor">服务顾问：</td>
                     </tr>
                     <tr>
-                        <td class="left">VIN：</td>
-                        <td class="left">进厂时间：<span class="left" style="width: 33.33%">2018-09-07 22:24</span></td>
-                        <td class="left">预计完工时间：</td>
+                        <td class="left" id ="carVin">VIN：</td>
+                        <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
+                        <td class="left" id="planFinishDate">预计完工时间：</td>
                     </tr>
                 </tbody>
             </table>
@@ -428,10 +429,10 @@
             <table class="table theader" style="margin-top: 5px">
                 <tbody>
                     <tr>
-                        <td height="40">故障描述：</td>
+                        <td height="40" id="faultPhen">故障描述：</td>
                     </tr>
                     <tr>
-                        <td style="width: 25%">备注：</td>
+                        <td style="width: 25%" id="remark">备注：</td>
                     </tr>
                 </tbody>
             </table>
@@ -445,45 +446,80 @@
             $(".print_btn").hide();
             window.print();
         });
-        $.post("com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",{141 : serviceId},function(data){
-        
-        });        
-        /* $.post({
-	                url: "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
-	                type : "post",
-	                data : {
-	                	serviceId : "141"
-	                },
-	                success: function (text) {
-	                	var data = nui.decode(text.data);
-	                	var tBody = $("#tbodyId");
-	    				tBody.empty();
-	    				var tds = '<td align="center">[id]</td>' +
-		    			"<td align='center'>[prdtName]</td>"+
-		    			"<td align='center'>[serviceTypeId]</td>"+ 
-		    			"<td align='center'>[workers]</td>"+
-		    			"<td align='center'></td>"+
-		    			"<td align='center'></td>";
-	                   if(text.errCode == "S"){
-	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
-				    			var tr = $("<tr></tr>");
-				    			tr.append(
+	});	
+	
+	function SetData(params){
+		document.getElementById("comp").innerHTML = params.comp;
+		$.ajaxSettings.async = false;//设置为同步执行
+        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.id,{},function(text){
+        	if(text.errCode == "S"){
+        		var maintain = text.maintain;
+        		var carNo = maintain.carNo;
+        		var carVin = maintain.carVin;
+        		var enterDate = maintain.enterDate || "";
+        		if(enterDate){
+        			enterDate = enterDate.replace(/-/g,"/");
+        			enterDate = new Date(enterDate);
+        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
+        		}
+        		var guestId = maintain.guestId;
+        		var enterKilometers = maintain.enterKilometers;
+        		var mtAdvisor = maintain.mtAdvisor;
+        		var planFinishDate = maintain.planFinishDate || "";
+        		if(planFinishDate){
+        			planFinishDate = planFinishDate.replace(/-/g,"/");
+        			planFinishDate = new Date(planFinishDate);
+        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
+        		}
+        		var faultPhen = maintain.faultPhen;
+        		var serviceCode = maintain.serviceCode;
+        		var remark = maintain.remark || "";
+        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
+        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
+        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
+        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+        		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + guestId;
+        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
+        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
+        		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate;
+        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
+        		document.getElementById("remark").innerHTML = document.getElementById("remark").innerHTML + remark; 
+        	}
+        });
+        $.ajaxSettings.async = true;//设置为异步执行
+        var guestId = document.getElementById("guestId").innerHTML;
+        $.post("com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,""),{},function(text){
+        	if(text.errCode == "S"){
+        		var guest = text.guest;
+        		var fullName = guest.fullName;
+           		var tel = guest.tel;
+           		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
+           		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
+        	}
+        });
+        $.post("com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId,{},function(text){
+        	if(text.errCode == "S"){
+            	var tBody = $("#tbodyId");
+				tBody.empty();
+				var tds = '<td align="center">[id]</td>' +
+    			"<td align='center'>[prdtName]</td>"+
+    			"<td align='center'>[serviceTypeId]</td>"+ 
+    			"<td align='center'>[workers]</td>"+
+    			"<td align='center'></td>"+
+    			"<td align='center'></td>";
+        		var data = text.data;
+        		for(var i = 0 , l = data.length ; i < l ; i++){
+        			var tr = $("<tr></tr>");
+        			tr.append(
 				    				tds.replace("[id]",i +1)
 				    				.replace("[prdtName]",data[i].prdtName)
 				    				.replace("[serviceTypeId]",data[i].serviceTypeId)
-				    				.replace("[workers]",data[i].workers));
+				    				.replace("[workers]",data[i].workers || ""));
 				    			tBody.append(tr);
-	                   		}
-	                   }else{
-	                   		
-	                   }
-	                },
-	                error: function (jqXHR, textStatus, errorThrown) {
-	                    console.log(jqXHR.responseText);
-	                    showMsg("网络出错", "W");
-	                }
-    	}); */
-	});	
+        		}
+        	}
+        });
+	}
     </script>
 </body>
 </html>

@@ -39,7 +39,9 @@
 			a.package_amt as packageAmt,
 			b.insure_no as insureNo,
 			b.color as color,
-			a.enter_oil_mass as enterOilMass
+			a.enter_oil_mass as enterOilMass,
+			a.enter_kilometers as enterKilometers,
+			c.addr as guestAddr
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -48,6 +50,9 @@
 		WHERE
 			a.orgid = #orgid#
 		<dynamic>
+			<isNotEmpty prepend="and" property="rid">
+                (a.id = #rid#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>
@@ -75,6 +80,13 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eEnterDate">  
                 (a.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)

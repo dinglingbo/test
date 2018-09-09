@@ -9,8 +9,17 @@ $(document).ready(function(v) {
 var rpbCardTimes = null;
 function giveData(data)
 {
-    rpbCardTimes = nui.clone(data);
+    var data = nui.clone(data);
+    rpbCardTimes = data.row;
     sellAmt.setValue(rpbCardTimes.sellAmt);
+	contactorName = mini.get("contactorName");	
+    var  main = form2.getData();
+     main.guestId = data.xyguest.guestId;
+     main.contactorName = data.xyguest.guestFullName;
+     main.carNo = data.xyguest.carNo;
+     main.carId = data.xyguest.carId;
+     contactorName.setText(data.xyguest.guestFullName);
+     form2.setData(main);
 }
 
 
@@ -21,6 +30,8 @@ function selectCustomer() {
        var  main = form2.getData();
         main.guestId = v.guestId;
         main.contactorName = v.guestFullName;
+        main.carId = v.carId;
+        main.carNo = v.carNo;
         contactorName.setText(v.guestFullName);
         form2.setData(main);
        // $("#contactorName").setValue(v.guestFullName);
@@ -70,7 +81,9 @@ function payOk(){
 			salesDeductValue:rpbCard.salesDeductValue,
 			sellAmt:rpbCard.sellAmt,
 			totalAmt:rpbCard.totalAmt,
-			useRemark:rpbCard.useRemark
+			useRemark:rpbCard.useRemark,
+			carId:data.carId,
+			carNo:data.carNo
 	    };
 	//整理数据
 	    payAmt = rpbCard.sellAmt;

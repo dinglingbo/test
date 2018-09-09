@@ -5,7 +5,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="100" y="150"/>
+    <location x="56" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -17,10 +17,11 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="java.util.HashMap" name="data" type="query" valueType="Java">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="102" y="186"/>
+    <location x="58" y="186"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -29,18 +30,22 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="179" y="150"/>
+    <location x="135" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain</process:from>
+      <process:to type="query">data</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="181" y="186"/>
+    <location x="137" y="186"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -60,7 +65,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="239" y="143"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -115,10 +120,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">f/recorder</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1111111111</process:from>
-      <process:to type="query">f/serviceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -234,6 +235,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

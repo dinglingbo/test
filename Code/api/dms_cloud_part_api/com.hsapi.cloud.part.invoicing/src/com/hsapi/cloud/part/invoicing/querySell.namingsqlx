@@ -1425,6 +1425,7 @@
                 <isNotEmpty prepend="and" property="mainId">  
                     (A.MAIN_ID = #mainId#)
                 </isNotEmpty>
+                
             </dynamic>  
             
         

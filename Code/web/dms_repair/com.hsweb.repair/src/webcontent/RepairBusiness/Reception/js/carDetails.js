@@ -1,15 +1,17 @@
 var tabs = null;
-var grid_fw = null;
+var mainGrid1 = null;
 var params = {};
 var form = null;
 var grid1 = null;
 var grid2 = null;
+var mainGrid2 = null;
 $(document).ready(function () {
     tabs = nui.get("tabs");
-    grid_fw = nui.get("mainGrid1");
+    mainGrid1 = nui.get("mainGrid1");
     form = new nui.Form("#editForm1");
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
+    mainGrid2 = nui.get("mainGrid2");
     params = {
     		rid : 821
     };
@@ -54,12 +56,13 @@ $(document).ready(function () {
             		id : 2
             };
             grid1.load({p : p});
+            grid2.load({p : p});
         }
         if(index == 2){
-            grid_fw.load();
+        	mainGrid1.load();
         }
-        if(index == 3){
-
+        if(index == 3){//serviceCode
+        	mainGrid2.load();
         }
     });
 });

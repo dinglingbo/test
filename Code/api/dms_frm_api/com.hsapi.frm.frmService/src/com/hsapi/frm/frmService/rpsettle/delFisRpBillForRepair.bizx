@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="delFisRpBillForRepair" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="作废，删除应收款记录&#xD;&#xA;103  综合维修收款&#xD;&#xA;104  储值卡充值款&#xD;&#xA;105  洗美套餐销售款&#xD;&#xA;106  洗美开单收款&#xD;&#xA;107  销售开单收款&#xD;&#xA;108  理赔开单收款" title="Administrator&#x9;18-9-9 上午9:57">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="作废，删除应收款记录&#xD;&#xA;103  综合维修收款&#xD;&#xA;104  储值卡充值款&#xD;&#xA;105  洗美套餐销售款&#xD;&#xA;106  洗美开单收款&#xD;&#xA;107  销售开单收款&#xD;&#xA;108  理赔开单收款&#xD;&#xA;com.hsapi.repair.repairService.repairInterface.updateRepairInfo.biz.ext" title="Administrator&#x9;18-9-9 上午9:57">
     <location x="75" y="-45"/>
-    <size height="151" width="346"/>
+    <size height="166" width="413"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -177,6 +177,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link7</targetConnections>
+    <targetConnections>link26</targetConnections>
     <location x="87" y="319"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -221,6 +222,10 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="405" y="150"/>
@@ -521,6 +526,36 @@
     <location x="1055" y="270"/>
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>transactionrollback1</targetNode>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="402" y="234"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="400" y="270"/>
+    <figSize height="17" width="32"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback1" name="事务回滚1" displayName="事务回滚" type="transactionrollback">
+    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactionrollback1</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link25</targetConnections>
+    <location x="402" y="319"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactionrollback1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback1label" name="label" nodeType="label">
+    <location x="388" y="355"/>
+    <figSize height="17" width="56"/>
+    <node>transactionrollback1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

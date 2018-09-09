@@ -16,6 +16,7 @@ var innerSellGridUrl = baseUrl
 		+ "com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = baseUrl
 		+ "com.hsapi.frm.frmService.crud.getPJStatementDetailById.biz.ext";
+var rechargeBalaAmt = null;
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -943,6 +944,10 @@ function doSettle() {
 			document.getElementById('ptTr').style.display = "";
 			document.getElementById('pcTr').style.display = "";
 		}
+		if(rows.billTypeCode==105||rows.billTypeCode==104){
+			document.getElementById('ctTr').style.display = "none";
+			document.getElementById('ccTr').style.display = "none";
+		}
 		var rtn = getSettleAmount(rows);
 		var errCode = rtn.errCode;
 		if (errCode != 'S') {
@@ -951,23 +956,44 @@ function doSettle() {
 		}
 
 		settleWin.show();
-
+		
 		var guestName = rows[0].guestName;
-		document.getElementById('settleGuestName').innerHTML = "结算单位："
-				+ guestName;
-		document.getElementById('settleBillCount').innerHTML = "结算单据数：" + s;
-		document.getElementById('rRPAmt').innerHTML = rtn.rRPAmt;
-		document.getElementById('rTrueAmt').innerHTML = rtn.rTrueAmt;
-		document.getElementById('rVoidAmt').innerHTML = rtn.rVoidAmt;
-		document.getElementById('rNoCharOffAmt').innerHTML = rtn.rNoCharOffAmt;
-		document.getElementById('pRPAmt').innerHTML = rtn.pRPAmt;
-		document.getElementById('pTrueAmt').innerHTML = rtn.pTrueAmt;
-		document.getElementById('pVoidAmt').innerHTML = rtn.pVoidAmt;
-		document.getElementById('pNoCharOffAmt').innerHTML = rtn.pNoCharOffAmt;
-		document.getElementById('rpAmt').innerHTML = rtn.rpAmt;
+		var json = {
+				guestId:rows[0].guestId,
+				token : token
+		}
+		
+		nui.ajax({
+			url : baseUrl
+			+ "com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
+			type : "post",
+			data : json,
+			success : function(data) {
+				rechargeBalaAmt = data.member[0].rechargeBalaAmt;
+				document.getElementById('settleGuestName').innerHTML = "结算单位："
+					+ guestName;
+			document.getElementById('settleBillCount').innerHTML = "结算单据数：" + s;
+			document.getElementById('rRPAmt').innerHTML = rtn.rRPAmt;
+			document.getElementById('rTrueAmt').innerHTML = rtn.rTrueAmt;
+			document.getElementById('rVoidAmt').innerHTML = rtn.rVoidAmt;
+			document.getElementById('rNoCharOffAmt').innerHTML = rtn.rNoCharOffAmt;
+			document.getElementById('pRPAmt').innerHTML = rtn.pRPAmt;
+			document.getElementById('pTrueAmt').innerHTML = rtn.pTrueAmt;
+			document.getElementById('pVoidAmt').innerHTML = rtn.pVoidAmt;
+			document.getElementById('pNoCharOffAmt').innerHTML = rtn.pNoCharOffAmt;
+			document.getElementById('rpAmt').innerHTML = rtn.rpAmt;
+			//document.getElementById('rechargeBalaAmt').innerHTML =rechargeBalaAmt;
+			$("#rechargeBalaAmt").html(rechargeBalaAmt+"元");
+			
+			settleAccountGrid.setData([]);
+			addSettleAccountRow();
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				// nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
 
-		settleAccountGrid.setData([]);
-		addSettleAccountRow();
 	} else {
 		showMsg("请选择单据!", "W");
 		return;
@@ -1289,8 +1315,14 @@ function settleOK() {
 			account.trueCharOffAmt = rTrueAmt;
 			account.charOffAmt = rVoidAmt + rTrueAmt;
 		}
-
+		var dk = nui.get("dk").getValue();
 		var accountTypeList = settleAccountGrid.getData();
+		if(dk>rechargeBalaAmt){
+			nui-alert("抵扣金额超出储值卡金额！","提示");
+			return;
+		}
+		var list={balaTypeCode:"020107",charOffAmt:dk,settAccountId:"249"};
+		accountTypeList.push(list);
 		nui.mask({
 			el : document.body,
 			cls : 'mini-mask-loading',
@@ -1412,8 +1444,10 @@ function checkSettleAccountAmt(charOffAmt) {
 		if (charOffAmt) {
 			charOffAmt = parseFloat(charOffAmt);
 		}
+		var dk = nui.get("dk").getValue();
+		dk= parseFloat(dk);
 		tAmt += charOffAmt;
-
+		tAmt += dk;
 		if (!row.settAccountId) {
 			return true;
 		}
@@ -1423,7 +1457,6 @@ function checkSettleAccountAmt(charOffAmt) {
 		showMsg("请选择结算账户!", "W");
 		return false;
 	}
-
 	if (tAmt != charOffAmt) {
 		showMsg("请确定结算金额与合计金额一致!", "W");
 		return false;
@@ -1460,5 +1493,13 @@ function onAccountValueChanged(e) {
 		balaTypeCode : null
 	};
 	settleAccountGrid.updateRow(r, newRow);
+
+}
+
+function onChanged() {
+	var rows = rRightGrid.getSelecteds();
+	var rtn = getSettleAmount(rows);
+	var dk = nui.get("dk").getValue();
+	document.getElementById('rpAmt').innerHTML = rtn.rpAmt-dk;
 
 }

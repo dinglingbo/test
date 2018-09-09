@@ -41,7 +41,13 @@
 			b.color as color,
 			a.enter_oil_mass as enterOilMass,
 			a.enter_kilometers as enterKilometers,
-			c.addr as guestAddr
+			c.addr as guestAddr,
+			b.engine_no as engineNo,
+			b.first_reg_date as firstRegDate,
+			b.annual_verification_due_date as annualVerificationDueDate,
+			b.insure_due_date as insureDueDate,
+			b.annual_inspection_date as annualInspectionDate,
+			b.annual_inspection_no as annualInspectionNo
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )

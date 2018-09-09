@@ -27,7 +27,6 @@ var guestId = null;
 var optTabs = null;
 var priceGrid = null;
 var mainTabs = null;
-var gpartId = 0;
 
 $(document).ready(function(v)
 {
@@ -101,16 +100,16 @@ $(document).ready(function(v)
                 break;
         }
     });
-    morePartGrid.on("selectionchanged",function(e){
-        var row = morePartGrid.getSelected();
-        gpartId = row.id||0;
-        showBottomTabInfo(gpartId);
-    });
-    enterGrid.on("selectionchanged",function(e){
-        var row = enterGrid.getSelected();
-        gpartId = row.partId||0;
-        showBottomTabInfo(gpartId);
-    });
+//    morePartGrid.on("selectionchanged",function(e){
+//        var row = morePartGrid.getSelected();
+//        gpartId = row.id||0;
+//        showBottomTabInfo(gpartId);
+//    });
+//    enterGrid.on("selectionchanged",function(e){
+//        var row = enterGrid.getSelected();
+//        gpartId = row.partId||0;
+//        showBottomTabInfo(gpartId);
+//    });
 
     enterGrid.setUrl(enterUrl);
     enterGrid.on("beforeload",function(e){
@@ -168,9 +167,9 @@ $(document).ready(function(v)
         }
     });
 
-    mainTabs.on("activechanged",function(e){
-        showBottomTabInfo(gpartId);
-    });
+//    mainTabs.on("activechanged",function(e){
+//        showBottomTabInfo(gpartId);
+//    });
 
     $("#morePartCode").bind("keydown", function (e) {
 

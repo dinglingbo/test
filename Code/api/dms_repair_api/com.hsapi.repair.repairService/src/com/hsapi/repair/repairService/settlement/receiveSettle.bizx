@@ -645,6 +645,7 @@
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link34" name="储值卡支付>0" displayName="连接线" type="transition">
       <sourceNode>assign10</sourceNode>

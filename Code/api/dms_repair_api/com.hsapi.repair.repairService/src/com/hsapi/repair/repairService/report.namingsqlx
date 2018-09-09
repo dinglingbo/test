@@ -73,7 +73,6 @@
 			rps_maintain a
 			inner JOIN rps_settlement b ON ( a.id = b.service_id )
 			inner JOIN rpb_car d on (d.id = a.car_id)
-			inner join rpb_contactor e on (e.id = a.contactor_id)
 		where
 			1 = 1
 		<dynamic>

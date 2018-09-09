@@ -37,10 +37,13 @@ $(document).ready(function(){
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");
     var params = nui.clone(params);
-    guestId=params.data.guestId;
-    guestName=params.data.guestFullName;
-    params.data.mobile=params.data.guestMobile
-    basicInfoForm.setData(params.data);
+    if(params.data!=null){
+        guestId=params.data.guestId;
+        guestName=params.data.guestFullName;
+        params.data.mobile=params.data.guestMobile
+        basicInfoForm.setData(params.data);
+    }
+
 
 }
 var url=baseUrl+"com.hsapi.repair.baseData.query.queryCardstored.biz.ext";
@@ -164,32 +167,96 @@ function pay(){
 			periodValidity : periodValidity
 	};
 	stored.push(form);
-	nui.mask({
-		el: document.body,
-        cls: 'mini-mask-loading',
-        html: '支付中...'
-	});
-	nui.ajax({
-		url:payurl,
-		type:"post",
-		data :JSON.stringify({
-			payAmt :payAmt,
-			payType:payType,
-			stored: stored[0],
-			token:token
-		}),
-		success: function(data){
-			nui.unmask(document.body);
-			if(data.errCode =='S'){
-				showMsg("支付成功!","S");
-			}else{
-				showMsg(data.errMsg || "支付失败!","W");
-			}
-		},
-		error : function(jqXHR,textStatus,errorThrown){
-			console.log(jqXHR.responseText);
-		}
-	});
+    nui.confirm("结算金额【"+payAmt+"】元,确定保存进入待结算吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url:payurl,
+					type:"post",
+					data :JSON.stringify({
+						payAmt :payAmt,
+						payType:payType,
+						stored: stored[0],
+						token:token
+					}),
+					success: function(data){
+						nui.unmask(document.body);
+						if(data.errCode =='S'){
+							CloseWindow("saveSuccess");
+							showMsg("支付成功!","S");
+						}else{
+							showMsg(data.errMsg || "支付失败!","W");
+						}
+					},
+					error : function(jqXHR,textStatus,errorThrown){
+						console.log(jqXHR.responseText);
+					}
+				});		
+	     }else {
+				return;
+		 }
+		 });
+
+}
+
+//待支付
+var noPayurl=baseUrl+"com.hsapi.repair.repairService.settlement.preSettleRecharge.biz.ext";
+function noPay(){
+	var stored=[];
+	name=text;
+	var payAmt=rechargeAmt;
+	var form={
+			cardId		: cardId,
+			cardName	: name,
+			giveAmt		: giveAmt,
+			guestId		: guestId,
+			guestName	: guestName,	
+//			itemRate	: itemRate,		
+//			packageRate	: packageRate,	
+//			partRate	: partRate,
+			rechargeAmt	: rechargeAmt,
+			totalAmt 	: totalAmt,
+			periodValidity : periodValidity
+	};
+	stored.push(form);
+    nui.confirm("结算金额【"+payAmt+"】元,确定保存进入待结算吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url:noPayurl,
+					type:"post",
+					data :JSON.stringify({
+						stored: stored[0],
+						token:token
+					}),
+					success: function(data){
+						nui.unmask(document.body);
+						if(data.errCode =='S'){
+							CloseWindow("saveSuccess");
+							showMsg("转待支付成功!","S");
+							
+							
+						}else{
+							showMsg(data.errMsg || "转待支付失败失败!","W");
+						}
+					},
+					error : function(jqXHR,textStatus,errorThrown){
+						console.log(jqXHR.responseText);
+					}
+				});		
+	     }else {
+				return;
+		 }
+		 });
+
 }
 
 //充值金额或赠送金额改变时总金额改变
@@ -233,3 +300,11 @@ $ (function(){
 	});
 });
 
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
+}

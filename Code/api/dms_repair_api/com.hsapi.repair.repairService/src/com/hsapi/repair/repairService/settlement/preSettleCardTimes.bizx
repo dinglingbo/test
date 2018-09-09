@@ -115,7 +115,7 @@
       <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -151,8 +151,6 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link16</targetConnections>
-    <targetConnections>link42</targetConnections>
-    <targetConnections>link44</targetConnections>
     <targetConnections>link47</targetConnections>
     <targetConnections>link63</targetConnections>
     <location x="-182" y="329"/>
@@ -263,16 +261,6 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link43" name="link43" displayName="连接线" type="transition">
-      <sourceNode>invokePojo5</sourceNode>
-      <targetNode>assign9</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">cardTimes/sellAmt</process:leftOperand>
-          <process:rightOperand type="query">payAmt</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link27</targetConnections>
     <location x="-60" y="146"/>
     <size height="28" width="22"/>
@@ -300,16 +288,6 @@
       <targetNode>invokePojo5</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link41" name="link41" displayName="连接线" type="transition">
-      <sourceNode>invokePojo6</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">payType</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="-120" y="146"/>
     <size height="28" width="22"/>
@@ -331,56 +309,11 @@
     <figSize height="17" width="47"/>
     <node>invokePojo6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link41</targetConnections>
-    <location x="-123" y="225"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">结算方式不能为空</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="-125" y="261"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign9</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link43</targetConnections>
-    <location x="-62" y="225"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign9label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">结算金额与计次卡金额不一致</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="-64" y="261"/>
-    <figSize height="17" width="32"/>
-    <node>assign9</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link46" name="link46" displayName="连接线" type="transition">
       <sourceNode>assign10</sourceNode>
@@ -597,10 +530,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">cardTimes/sellAmt</process:from>
       <process:to type="query">params/BillAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">params/operateDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>

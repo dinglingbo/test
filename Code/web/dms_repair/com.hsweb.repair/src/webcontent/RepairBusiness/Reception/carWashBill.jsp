@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.1.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.1"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -131,16 +131,16 @@
 
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印派工单</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印领料单</li>
+                    <li iconCls="" onclick="onPrint(2)" id="type11">打印结算单</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印领料单</li>
                 </ul>
 
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>
 
                 <ul id="popupMenuQT" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="onPrint(0)" id="type10">计次卡销售</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">储值卡充值</li>
+                    <li iconCls="" onclick="addcardTime()" id="type10">计次卡销售</li>
+                    <li iconCls="" onclick="addcard()" id="type11">储值卡充值</li>
                 </ul>
             </td>
         </tr>

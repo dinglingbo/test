@@ -490,7 +490,7 @@ function onApplyClick(){
 
                     $("#carNoEl").html(car.carNo);
                     $("#guestNameEl").html(car.guestFullName);
-                    $("#guestTelEl").html(car.mobile);
+                    $("#guestTelEl").html(car.guestMobile);
                 }
             }
         }
@@ -523,7 +523,7 @@ function onSearchClick(){
 
         $("#carNoEl").html(car.carNo);
         $("#guestNameEl").html(car.guestFullName);
-        $("#guestTelEl").html(car.mobile);
+        $("#guestTelEl").html(car.guestMobile);
     });
 }
 function selectCustomer(callback) {
@@ -537,7 +537,7 @@ function selectCustomer(callback) {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
-                xyguest = data.guest;
+                xyguest =guest;
                 callback && callback(guest);
             }
         }
@@ -849,7 +849,7 @@ function savePackage(params, callback) {
 
 
 //增加次卡套餐
-var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
+/*var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
 function addcardTime(){	
 	var data = {
 			xyguest:xyguest
@@ -864,14 +864,26 @@ function addcardTime(){
 			iframe.contentWindow.setStely();
 			iframe.contentWindow.setData(data);
 		},
-		/*ondestroy : function(action) {// 弹出页面关闭前
+		ondestroy : function(action) {// 弹出页面关闭前
 			if (action == "saveSuccess") {
 				grid.reload();
 			}
-		}*/
+		}
 	});
 	
+}*/
+
+function addcardTime(){	
+	doAddcardTime(xyguest);
+	
 }
+
+
+
+	function addcard(){
+
+		doAddcard(xyguest);
+	}
 
 
 

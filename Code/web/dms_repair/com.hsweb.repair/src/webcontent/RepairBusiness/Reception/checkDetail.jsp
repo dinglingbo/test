@@ -5,14 +5,14 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 20:50:20
+  - Date: 2018-07-02 20:50:20 
   - Description:
--->  
-
-<head>
-    <title>查车单</title>
+-->        
+    
+<head> 
+    <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.9"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.91"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -24,165 +24,13 @@
     }
     .tbtext {
         float: right;
-
-    }
-/* 
-    table {
-
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-    }
-
-
-    #table_A tr {
-        height: 40px;
-    }
-
-    table tr td span {
-
-        display: inline-block;
-    }
-
-
-    #table_A tr {
-        height: 40px;
-    }
-
-    table tr td span {
-
-        display: inline-block;
-    }
-
-    .tabwidth {
-        width: 100%;
-    }
-
-    .tbtext {
-        float: right;
-        line-height: 40px;
-    }
-
-    .tbCtrl {
-        width: 150px;
-    }
-
-    .mini-textbox {
-        height: 28px;
-    }
-
-    .mini-textbox-border {
-        height: 25px;
-    }
-
-    .mini-textbox-input {
-        输入框的里面的高度
-        height: 24px;
-    }
-
-    .checkboxwidth {
-        width: 65px;
-        margin-left: 20px;
-    }
-
-    .mini-tabs-header {
-        height: 30px;
-    }
-
-    .mini-button-text {
-        line-height: 26px;
-    }
-
-
-
-
-    ////////////////下拉框样式///////////////////////////////
-
-    .mini-buttonedit {
-        height: 28px;
-    }
-
-    .mini-buttonedit-border {
-        height: 25px;
-    }
-
-    .mini-buttonedit-input {
-        height: 24px;
-    }
-
-    .mini-buttonedit-buttons {
-        top: 3px;
-        right: 10px;
-    }
-
-    .mini-buttonedit-button {
-        border-left: 0px;
-        background: #fff;
-    }
-
-    .mini-buttonedit-button-pressed,
-    .mini-buttonedit-popup .mini-buttonedit-button {
-        background: #fff;
-        color: #333333;
-        border-width: 0px;
-        border-left: 0px;
-    }
-
-    .mini-buttonedit-popup .mini-buttonedit-button {
-        background: #fff;
-        border-width: 0px;
-        border-left: 0px;
-    }
-
-    .mini-buttonedit-button-hover,
-    .mini-buttonedit-hover .mini-buttonedit-button {
-        color: #333;
-        background: #fff;
-        border-width: 0px;
-        border-left: 0px;
-    }
-
-    ///////////////////////////////////////////////
-
-    .red {
-        color: red;
-    }
-
-    .right {
-        text-align: right;
-    }
-
-    .fwidtha {
-        width: 120px;
-    }
-
-    .fwidthb {
-        width: 120px;
-    }
-
-    .bt_trWidth {
-        width: 170px;
-    }
-
-    .textboxWidth {
-        width: 100%;
-    }
-
-    .htr {
-        height: 30px;
-    }
-    */
-    .tmargin {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
+}
 
     .vpanel {
         border: 1px solid #d9dee9;
-        margin: 10px 0px 0px 20px;
-        width: 39%;
-        height: 248px;
+        margin: 10px 0px 10px 0px;
+        /* width: 39%;
+        height: 248px; */
 
     }
 
@@ -213,8 +61,10 @@
 
 <body>
 
-   <input class="nui-hidden" id="tid" name="tid" value='<b:write property="tid"/>'/>
-   <div class="nui-toolbar" style="padding:2px;height:30px">
+    <div class="nui-toolbar" id="toolbar1" style="padding:2px;height:30px">
+    <input class="nui-hidden" id="mid" name="mid" value='<b:write property="mid"/>'/>
+    <input class="nui-hidden" id="tid" name="tid" value='<b:write property="tid"/>'/>
+    <input class="nui-hidden" id="actionType" name="actionType" value='<b:write property="actionType"/>'/>
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
             <td>
@@ -246,9 +96,9 @@
         </td>     
         <td style="text-align:left;">
 
-          进场日期:<input class="nui-datepicker tabwidth" />
+          进场日期:<input class="nui-datepicker tabwidth" name="enterDate" id="enterDate" />
 
-          预计交车日期:<input class="nui-datepicker tabwidth" />
+          预计交车日期:<input class="nui-datepicker tabwidth" name="planFinishDate" id="planFinishDate"/>
       </td>     
   </tr>
 </table>
@@ -258,7 +108,7 @@
 
 <div class="nui-fit">
     <div id="billForm" class="form">
-        <input class="nui-hidden" name="id" />
+        <input class="nui-hidden" name="id" id="id"/>
         <input class="nui-hidden" name="guestId"/>
         <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
         <input class="nui-hidden" name="contactorId"/>
@@ -266,7 +116,6 @@
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="drawOutReport"/>
         <input class="nui-hidden" name="contactorName"/>
-        <input class="nui-hidden" name="carModel"/>
         <input class="nui-hidden" name="identity"/>
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
@@ -308,11 +157,11 @@
                 </td>
                 <td class="tbtext">油量:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
+                    <input class="nui-textbox tabwidth" name="enterOilMass" id="enterOilMass"/>
                 </td>
                 <td class="tbtext">当前里程:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth"  name="enterKilometers"/>
+                    <input class="nui-textbox tabwidth"  name="enterKilometers" id="enterKilometers"/>
                 </td>
                 <td class="tbtext">下次保养:</td>
                 <td class="tbCtrl">
@@ -320,8 +169,8 @@
                 </td>
             </tr>
             <tr>
-               <td class="tbtext">下次保养日期:</td>
-               <td class="tbCtrl">
+             <td class="tbtext">下次保养日期:</td>
+             <td class="tbCtrl">
                 <input class="nui-datepicker tabwidth" />
             </td>
             <td class="tbtext">服务顾问:</td>
@@ -342,7 +191,7 @@
             </td>
             <td class="tbtext">服务技师:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" />
+                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
             </td>
             <td class="tbtext">送修人:</td>
             <td class="tbCtrl">
@@ -359,99 +208,53 @@
 </div>
 
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-dataField="list"  allowCellSelect="true" OnCellBeginEdit="OnCellBeginEdit" 
-url="com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext" 
-allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" ondrawcell="ondrawcell" >
+dataField="list"  allowCellSelect="true" 
+url="com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext"  showModified="false"
+allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
 <div property="columns">
-    <div type="indexcolumn" align="center" headerAlign="center" width="30px"><strong>序号</strong></div>
-    <div field="id" name="mid" visible="false">id</div>
-    <div field="partName" name="partName" width="40" headerAlign="center" align="center"><strong>配件名称</strong></div>
-    <div field="status" name="status" width="40" headerAlign="center" align="center"><strong>正常状态</strong></div>
-    <div field="statusid" name="status" width="40" headerAlign="center" align="center" visible="false"><strong>正常状态id</strong></div>
-    <div field="nostatus" name="nostatus" width="40" headerAlign="center" align="center"><strong>异常状态</strong></div>
-    <div field="nostatusid" name="nostatus" width="40" headerAlign="center" align="center" visible="false"><strong>异常状态id</strong></div>
-    <div field="remark" name="remark" width="80" headerAlign="center" align="center"><strong>备注</strong>
+    <div type="indexcolumn" align="center" headerAlign="center" width="10px"><strong>序号</strong></div>
+    <div field="id" name="id" visible="false">id</div>
+    <div field="checkName" name="checkName" width="30" headerAlign="center" align="center"><strong>检查项目</strong></div>
+    <div field="checkCode" name="checkCode" width="30" headerAlign="center" align="center" visible="false"><strong>检查项目</strong></div>
+    <div field="checkId" name="checkId" width="30" headerAlign="center" align="center" visible="false"><strong>配件名称id</strong></div>
+    <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>正常状态</strong></div>
+    <div type="checkboxcolumn" field="nostatus" name="nostatus" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>异常状态</strong></div>
+    <div field="remark" name="remark" width="90" headerAlign="center" align="center"><strong>备注</strong>
         <input property="editor" class="nui-combobox" style="width:100%;" 
-        textfield="content" valuefield="content"  dataField="list"/>  
+        textfield="content" valuefield="content"  dataField="list" allowInput="true"/>  
 
     </div>
 </div>
 </div>
 
 
-<div class="vpanel" style="width:99%;height:100px;margin-left: auto;margin-right: auto;">
+<div class="vpanel" style="width:calc(100% - 2px);height:120px;">
     <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;">
         <span>客户描述</span>
     </div>
-    <div class="vpanel_body">
-
-        <input class="nui-textarea " style="width:100%;height: 100px;border:0px;" />
-    </div>
+    <div class="nui-fit">
+        <input class="nui-textarea " style="width:100%;height:100%;border:0px;" />
 </div>
-
-
-<div class="vpanel" style="width:99%;height:100px;margin-left: auto;margin-right: auto;margin-top: 40px;">
+</div>
+<div style="clear: both;">
+<div class="vpanel" style="width:calc(100% - 2px);height:100px;margin-left: auto;margin-right: auto;margin-top: 20px;">
     <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;">
         <span>检测照片</span>
     </div>
-    <div class="vpanel_body">
+    <div class="vpanel_body"> 
 
 
-    </div>
-</div>
+    </div> 
+</div> 
 
 <div style="width:100%;margin-top: 10px;">
-    <a class="nui-button" onclick="saveDetail()" plain="false">保存</a>
+    <a class="nui-button" onclick="save()" plain="false">保存</a>
     <a class="nui-button" onclick="" plain="false">退出</a>
 </div>
 </div>
+
 <script type="text/javascript">
     nui.parse();
-    var mainGrid = nui.get("mainGrid");
-    var mid = nui.get("tid").value;
-    mainGrid.load({mainid:mid});
-
-    function ondrawcell(e) {
-/*        var tree = e.sender,
-        record = e.record,
-        column = e.column,
-        field = e.field;
-        
-        var html1 = '<label class="function-item"><input onclick="'  +'" ' + ' type="radio" name="'+ record.id +'" hideFocus/>' + '正常' + '</label>';
-        var html2 = '<label class="function-item" style="margin-left:100px;"><input onclick="'  +'" ' + ' type="radio" name="'+ record.id +'" hideFocus/>' + '异常' + '</label>';
-
-        var html = html1 + html2;
-        if (field == 'status') {
-            e.cellHtml = html; 
-        }    */
-
-    }
-
-    function OnCellBeginEdit(e){ 
-        var record = e.record;
-        var field = e.field;
-        var value = e.value;
-        var editor = e.editor;
-        if (field == "remark") {
-            var id = record.id;
-            var url = "com.hsapi.repair.baseData.query.queryCheckModelDetailContent.biz.ext?checkId=" + id;
-            editor.setUrl(url);
-        } 
-    }
-
-    var selected = '<span class="icon-ok" style="display:inline-block;width:20px;text-align:center;margin-left:40%;" onClick="" title="">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-mainGrid.on("cellclick",function(e){
-    var field = e.field;
-    var record = e.record;
-    var column = e.column;
-    if(column.field == "status"){
-
-        e.cellHtml = "2";
-    }
-
-});
-
-
 </script>
 </body>
 

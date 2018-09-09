@@ -39,7 +39,15 @@
 			a.package_amt as packageAmt,
 			b.insure_no as insureNo,
 			b.color as color,
-			a.enter_oil_mass as enterOilMass
+			a.enter_oil_mass as enterOilMass,
+			a.enter_kilometers as enterKilometers,
+			c.addr as guestAddr,
+			b.engine_no as engineNo,
+			b.first_reg_date as firstRegDate,
+			b.annual_verification_due_date as annualVerificationDueDate,
+			b.insure_due_date as insureDueDate,
+			b.annual_inspection_date as annualInspectionDate,
+			b.annual_inspection_no as annualInspectionNo
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -48,6 +56,9 @@
 		WHERE
 			a.orgid = #orgid#
 		<dynamic>
+			<isNotEmpty prepend="and" property="rid">
+                (a.id = #rid#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>

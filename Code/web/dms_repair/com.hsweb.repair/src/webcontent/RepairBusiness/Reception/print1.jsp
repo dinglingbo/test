@@ -80,7 +80,7 @@
                 <div class="peijian">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td height="20" style="font-size: 16px;"><b>易维天下</b></td>
+                            <td height="20" style="font-size: 16px;"><b><span></span></b></td>
                         </tr>
                         <tr>
                             <td height="20" id="guestId">客户：</td>
@@ -182,15 +182,12 @@
                     showMsg("网络出错", "W");
                 }
             });
-            var type = 1;//1 2 3 套餐 工时 配件
-            if(type == 1){
-            	document.getElementById("name").innerHTML = "&nbsp;套餐";
+            	//document.getElementById("name").innerHTML = "&nbsp;套餐";
             	nui.ajax({
 	                url: "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=381",
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
 	                	var tBody = $("#tbodyId");
-	    				tBody.empty();
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
@@ -211,14 +208,12 @@
 	                    showMsg("网络出错", "W");
 	                }
             	});
-            }else if(type == 2){
-            	document.getElementById("name").innerHTML = "&nbsp;工时";
+            	//document.getElementById("name").innerHTML = "&nbsp;工时";
             	nui.ajax({
 	                url: "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext?serviceId=381",
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
 	                	var tBody = $("#tbodyId");
-	    				tBody.empty();
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
@@ -239,14 +234,12 @@
 	                    showMsg("网络出错", "W");
 	                }
             	});
-            }else{
-            	document.getElementById("name").innerHTML = "&nbsp;配件";
+            	//document.getElementById("name").innerHTML = "&nbsp;配件";
             	nui.ajax({
 	                url: "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext?serviceId=381",
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
 	                	var tBody = $("#tbodyId");
-	    				tBody.empty();
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
@@ -267,7 +260,6 @@
 	                    showMsg("网络出错", "W");
 	                }
             	});
-            }
     	}); 
     </script>
 </body>

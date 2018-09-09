@@ -90,6 +90,14 @@
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">01020103</process:from>
+      <process:to type="query">cond/_expr[3]/guestType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>

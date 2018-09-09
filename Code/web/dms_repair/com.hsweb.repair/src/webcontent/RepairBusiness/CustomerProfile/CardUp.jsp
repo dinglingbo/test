@@ -11,7 +11,7 @@
 -->
 <head>
 <title>会员卡充值</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.0.6"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.0"></script>
 	<style type="text/css">
 	
 	table {
@@ -63,7 +63,7 @@
                     </tr>
                 </table>
                 <div class="nui-form" id="form1">
-                <table id="table" style="border-collapse:separate; border-spacing:0px 10px;">
+                <table id="table" style="border-collapse:separate; border-spacing:0px 10px; height: 120px">
                 	<tr style="text-align: center;width:10%">
                 		<td  >充值金额(元)：<span style="width:10px"></span>&nbsp;&nbsp;&nbsp;
                 		<input id="rechargeAmt" name="rechargeAmt" class="nui-textbox" width="40%" allowInput="true" vtype="float;range:0,1000000"/>
@@ -97,17 +97,15 @@
 					</table>
 					<table style="width:100%;">
 					<tr >
-						<td align="center"  >支付方式：</td>
-					</tr>
-					<tr align="center"  width:10>
+						<td align="right"  width="36%">支付方式：</td>
 						<td  id="radio"  class="nui-radiobuttonlist" textField="name" valueField="id" ></td>
 					</tr>
-					<tr align="center" >
-						<td>
+					<tr align="center" height="40px">
+						<td colspan="2">
+							<a class="nui-button"onclick="noPay()">保存待支付</a>
 							<a class="nui-button"onclick="pay()">确认支付</a>
 						</td>
-					</tr>
-                
+					</tr>          
                 </table>
                 </div>
          </div> 

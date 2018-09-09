@@ -54,7 +54,7 @@ table {
                     <a class="nui-button" plain="false"  onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none">
                 <td colspan="2">
                     <a class="nui-menubutton" plain="true" menu="#queryItemTab" id="itemTab">套餐</a>
 

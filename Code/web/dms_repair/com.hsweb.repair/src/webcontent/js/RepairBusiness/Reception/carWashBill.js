@@ -2195,7 +2195,6 @@ function onPrint(e){
 	var main = billForm.getData();
 	if(main.id){
 		var params = {
-				id : main.id,
 				serviceId : main.id,
 				comp : currOrgName
 		};

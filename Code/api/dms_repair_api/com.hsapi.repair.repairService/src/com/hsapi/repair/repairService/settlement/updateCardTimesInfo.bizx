@@ -497,6 +497,7 @@
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <targetConnections>link24</targetConnections>
+    <targetConnections>link26</targetConnections>
     <location x="1124" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
@@ -677,6 +678,7 @@
     </sourceConnections>
     <targetConnections>link33</targetConnections>
     <targetConnections>link35</targetConnections>
+    <targetConnections>link27</targetConnections>
     <location x="1547" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend2label</nodeLabel>
@@ -1042,6 +1044,16 @@
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign7</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="连接线" lineType="inheritance" type="break">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>loopend1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link22</targetConnections>
     <location x="893" y="75"/>
     <size height="27" width="27"/>
@@ -1067,6 +1079,16 @@
     <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign10</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link27" name="link27" displayName="连接线" lineType="inheritance" type="break">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>loopend2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
     <location x="1320" y="75"/>

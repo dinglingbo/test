@@ -59,6 +59,9 @@
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">
+                (a.car_id = #carId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>

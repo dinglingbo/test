@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.1.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.1.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -139,8 +139,8 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>
 
                 <ul id="popupMenuQT" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="onPrint(0)" id="type10">计次卡销售</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">储值卡充值</li>
+                    <li iconCls="" onclick="addcardTime()" id="type10">计次卡销售</li>
+                    <li iconCls="" onclick="addcard()" id="type11">储值卡充值</li>
                 </ul>
             </td>
         </tr>

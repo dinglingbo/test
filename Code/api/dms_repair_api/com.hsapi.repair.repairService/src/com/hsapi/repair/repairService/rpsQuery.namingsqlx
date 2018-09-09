@@ -10,6 +10,7 @@
     <select id="queryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id as id,
+			a.guest_id as guestId,
 			a.service_code as serviceCode,
 			a.enter_date as enterDate,
 			c.full_name as guestFullName,
@@ -74,6 +75,13 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eEnterDate">  
                 (a.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)

@@ -242,9 +242,9 @@ function doSelectItem(dock, dodelck, docck, callback) {
 function doSelectPart(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath + contextPath + "/com.hsweb.part.baseData.partMgr.flow?token=" + token,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
 		title : "配件管理",
-		width : 1000,
+		width : 1300,
 		height : 560,
 		allowDrag : true,
 		allowResize : true,
@@ -284,11 +284,11 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 				list : list
 			};
 
-            iframe.contentWindow.setViewData();
+            iframe.contentWindow.setViewData(dock, dodelck, docck);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getData(dock, dodelck, docck);
+            var data = iframe.contentWindow.getData();
             data = data || {};
             data.action = action;
             callback && callback(data);

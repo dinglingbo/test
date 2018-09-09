@@ -182,9 +182,11 @@
 	</select>
 	
 	<select id="getGuestCardAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsCardStored">
-		select id as id, total_amt as totalAmt, use_amt as useAmt 
+		select id as id, total_amt as totalAmt, use_amt as useAmt ,
+		       orgid as orgid, guest_id as guestId, card_id as cardId,
+			   card_name as cardName, recharge_amt as rechargeAmt, give_amt as giveAmt
 		from rps_card_stored
-		where total_amt > use_amt and guest_id = #guestId#
+		where total_amt > use_amt and guest_id = #guestId# and orgid = #orgid#
 		order by record_date desc
 	</select>
 	

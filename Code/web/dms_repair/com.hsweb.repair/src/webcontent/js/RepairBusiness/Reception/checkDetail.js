@@ -6,7 +6,7 @@ var mainGrid = null;
 var mid = null;
 var tid = null;
 var mtAdvisorIdEl = null;
-var searchKeyEl = null;
+var searchKeyEl = null;  
 var servieIdEl = null;  
 var searchNameEl = null;
 var billForm = null;
@@ -50,10 +50,10 @@ $(document).ready(function ()
 
     }
     searchKeyEl.on("beforeload",function(e){
-        if(fserviceId){
+/*        if(fserviceId){
             e.cancel = true;
             return;
-        }
+        }*/
         var data = {};
         var params = {};
         var value = e.data.key;
@@ -125,6 +125,12 @@ $(document).ready(function ()
                 carVin = "/"+carVin;
             }
             var t = carNo + tel + guestName + carVin;
+
+                    var sk = document.getElementById("search_key");
+                    sk.style.display = "none";
+                    searchNameEl.setVisible(true);
+
+
             searchNameEl.setValue(t);
             //searchNameEl.setEnabled(false);
 
@@ -328,6 +334,12 @@ function save(){
                         carVin = "/"+carVin;
                     }
                     var t = carNo + tel + guestName + carVin;
+
+                    var sk = document.getElementById("search_key");
+                    sk.style.display = "none";
+                    searchNameEl.setVisible(true);
+
+
                     searchNameEl.setValue(t);
                     searchNameEl.setEnabled(false);
 
@@ -389,7 +401,7 @@ function saveMaintain(callback,unmaskcall){
         var mtain = text.data;
 
         if(errCode == "S") {
- 
+
             unmaskcall && unmaskcall();  
             var main = text.data||{};
             fserviceId = main.id||0;
@@ -397,6 +409,7 @@ function saveMaintain(callback,unmaskcall){
                 actionType = 'edit';
                 var rid = data.data.id; 
                 nui.get("id").setValue(rid);
+                 $("#servieIdEl").html(data.data.serviceCode);
                 mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                 mainGrid.load({mainId:rid});
                 nui.unmask(document.body);
@@ -423,10 +436,10 @@ function saveDetail(maintain,unmaskcall){
     var detailid = null;
     for(var i=0;i<grid_all.length;i++){
         var tem = grid_all[i];
-        tem.checkId = grid_all[i].id;
         tem.serviceId = maintain.id;
         tem.mainId = tid;
         if(actionType == "new"){
+            tem.checkId = grid_all[i].id;
             tem.id = null;
         }
         gridData.push(tem);

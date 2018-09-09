@@ -61,7 +61,7 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
+        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
     </span>
 </div>
 <div id="packageDetailGridForm" style="display:none;">

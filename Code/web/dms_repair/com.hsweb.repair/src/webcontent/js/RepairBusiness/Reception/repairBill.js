@@ -26,6 +26,7 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var receTypeIdList = [];
 var receTypeIdHash = {};
+var xyguest = null;
 
 var contactList = [];
 var contactHash = {};
@@ -489,7 +490,7 @@ function onApplyClick(){
 
                     $("#carNoEl").html(car.carNo);
                     $("#guestNameEl").html(car.guestFullName);
-                    $("#guestTelEl").html(car.mobile);
+                    $("#guestTelEl").html(car.guestMobile);
                 }
             }
         }
@@ -522,7 +523,7 @@ function onSearchClick(){
 
         $("#carNoEl").html(car.carNo);
         $("#guestNameEl").html(car.guestFullName);
-        $("#guestTelEl").html(car.mobile);
+        $("#guestTelEl").html(car.guestMobile);
     });
 }
 function selectCustomer(callback) {
@@ -536,6 +537,7 @@ function selectCustomer(callback) {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
+                xyguest = data.guest;
                 callback && callback(guest);
             }
         }
@@ -847,8 +849,11 @@ function savePackage(params, callback) {
 
 
 //增加次卡套餐
-var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
+var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
 function addcardTime(){	
+	var data = {
+			xyguest:xyguest
+	}
 	nui.open({
 		url : addcardTimeUrl,
 		title : "新增记录",
@@ -857,6 +862,7 @@ function addcardTime(){
 		onload : function() {
 		    var iframe = this.getIFrameEl();
 			iframe.contentWindow.setStely();
+			iframe.contentWindow.setData(data);
 		},
 		/*ondestroy : function(action) {// 弹出页面关闭前
 			if (action == "saveSuccess") {
@@ -867,5 +873,26 @@ function addcardTime(){
 	
 }
 
+function addcard(callback){
 
+		nui.open({
+			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 600, height: 460,
+			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :xyguest
+				};
+				
+				iframe.contentWindow.SetData(params);
+		
+			},
+			onedestroy: function(action){
+				if("ok" == action){
+					grid.reload();
+				}
+			}
+		});
+
+}
 

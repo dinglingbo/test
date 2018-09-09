@@ -12,7 +12,7 @@ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuest
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 
 var billForm = null;
-
+var xyguest = null;
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -607,7 +607,7 @@ function doSetMainInfo(car){
     mpartRate = 0;
 
     billForm.setData(maintain);
-
+    xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
@@ -1350,6 +1350,7 @@ function showCard(){
     cardTimesGrid.clearRows();
     doSearchMemCard(fguestId);
 }
+
 /*function showHealth(){
     window.open("http://www.baidu.com?backurl="+window.location.href); 
 }*/
@@ -1439,6 +1440,7 @@ function onCloseClick(e){
     var row = rpsPackageGrid.getSelected();
     var newRow = {workerIds:"",workers:""};
     rpsPackageGrid.updateRow(row, newRow);
+
 }
 function onworkerChanged(e){
     var obj = e.sender;
@@ -1911,7 +1913,7 @@ function chooseItem(){
     });
 }
 
-function showHealth(){
+function choosePackage(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -1924,13 +1926,13 @@ function showHealth(){
     }
                                                        
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "package",
+        var p1 = { 
+    		interType: "package",
             data:{
                 serviceId: main.id||0
             }
         };
+        var p2 = {};
         var p3 = {};
         loadDetail(p1, p2, p3);
     });
@@ -1944,8 +1946,8 @@ function addToBillPackage(row, callback, unmaskcall){
     var data = {};
     var pkg = {
         serviceId:main.id,
-        packageId:rtnRow.prdtId,
-        cardDetailId:rtnRow.id||0
+        packageId:row.id,
+        cardDetailId:0
     };
     data.pkg = pkg;
     data.serviceId = main.id||0;
@@ -2095,4 +2097,131 @@ function checkFromBillPart(data){
         return true;
     }
     return false;
+}
+//配件
+function choosePart(){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能添加配件!","S");
+        return;
+    }
+
+    doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
+        var p1 = { };
+        var p2 = { };
+        var p3 = {
+			 interType: "part",
+	         data:{
+	             serviceId: main.id||0
+	         }
+        };
+        loadDetail(p1, p2, p3);
+    });
+}
+function addToBillPart(row, callback, unmaskcall){
+    var main = billForm.getData();
+    var data = {};
+    var insPart = {
+        serviceId:main.id||0,
+        partId:row.id,
+        cardDetailId:0
+    };
+    data.insPart = insPart;
+    data.serviceId = main.id||0;
+    
+    var params = {
+        type:"insert",
+        interType:'part',
+        data:data
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        var res = text.data||{};
+        if(errCode == 'S'){
+            unmaskcall && unmaskcall();
+            callback && callback(res);
+        }else{
+            unmaskcall && unmaskcall();
+            showMsg(errMsg||"添加配件失败!","W");
+            return;
+        }
+    },function(){
+        unmaskcall && unmaskcall();
+    });
+}
+function delFromBillPart(data, callback){
+    var part = {
+        serviceId:data.serviceId,
+        id:data.id,
+        cardDetailId:data.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"part",
+        data:{
+        	part: part
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            callback && callback();
+        }else{
+            showMsg(errMsg||"删除配件信息失败!","W");
+            return;
+        }
+    });
+}
+var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
+function addcardTime(){	
+	var data = {
+			xyguest:xyguest
+	}
+	nui.open({
+		url : addcardTimeUrl,
+		title : "新增记录",
+		width : 965,
+		height : 573,
+		onload : function() {
+		    var iframe = this.getIFrameEl();
+			iframe.contentWindow.setStely();
+			iframe.contentWindow.setData(data);
+		},
+		/*ondestroy : function(action) {// 弹出页面关闭前
+			if (action == "saveSuccess") {
+				grid.reload();
+			}
+		}*/
+	});
+	
+}
+
+function addcard(callback){
+
+		nui.open({
+			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 600, height: 460,
+			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :xyguest
+				};
+				
+				iframe.contentWindow.SetData(params);
+		
+			},
+			onedestroy: function(action){
+				if("ok" == action){
+					grid.reload();
+				}
+			}
+		});
+
 }

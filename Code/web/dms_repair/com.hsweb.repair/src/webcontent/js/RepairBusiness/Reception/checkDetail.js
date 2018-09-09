@@ -1,27 +1,59 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 
-var searchKeyEl = null;
-var servieIdEl = null;
+
+var mainGrid = null; 
+var mid = null;
+var tid = null;
+var mtAdvisorIdEl = null;
+var searchKeyEl = null;  
+var servieIdEl = null;  
 var searchNameEl = null;
 var billForm = null;
+var topForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var fserviceId = 0;
+var actionType = null;
 
-$(document).ready(function ()  
+$(document).ready(function ()   
 {
 
+    var yy = (new Date()).getFullYear();
+    var mm = ((new Date()).getMonth() + 1);
+    var dd = (new Date()).getDate();
+    var nowDate = yy + "-" + mm + "-" + dd; //本月月
+    nui.get("enterDate").setValue(nowDate);
+    mainGrid = nui.get("mainGrid");
+    actionType = nui.get("actionType").value;
+    tid = nui.get("tid").value;
+    mid = nui.get("mid").value;
 
     billForm = new nui.Form("#billForm");
+    topForm = new nui.Form("#toolbar1");
+    mtAdvisorIdEl = nui.get("mtAdvisorId");
     servieIdEl = nui.get("servieIdEl");
     searchKeyEl = nui.get("search_key");
     searchNameEl = nui.get("search_name");
     searchKeyEl.setUrl(guestInfoUrl);
+
+    var par = {
+        id:mid
+    };
+    if(actionType == "new"){
+        mainGrid.load({mainid:tid});
+    }
+    if(actionType == "edit"){
+        setInitData(par);
+    }
+    if(actionType == "view"){
+        setInitData(par);
+
+    }
     searchKeyEl.on("beforeload",function(e){
-        if(fserviceId){
+/*        if(fserviceId){
             e.cancel = true;
             return;
-        }
+        }*/
         var data = {};
         var params = {};
         var value = e.data.key;
@@ -60,11 +92,18 @@ $(document).ready(function ()
             }
         }
     });
+    initMember("mtAdvisorId",function(){
+        memList = mtAdvisorIdEl.getData();
+    });
 
+    mtAdvisorIdEl.on("valueChanged",function(e){
+        var text = mtAdvisorIdEl.getText();
+        nui.get("mtAdvisor").setValue(text);
+    });
 
     searchKeyEl.on("valuechanged",function(e){
         var item = e.selected;
-        nui.alert(nui.encode(item));
+        
         if(fserviceId){
             return;
         }  
@@ -86,6 +125,12 @@ $(document).ready(function ()
                 carVin = "/"+carVin;
             }
             var t = carNo + tel + guestName + carVin;
+
+                    var sk = document.getElementById("search_key");
+                    sk.style.display = "none";
+                    searchNameEl.setVisible(true);
+
+
             searchNameEl.setValue(t);
             //searchNameEl.setEnabled(false);
 
@@ -94,6 +139,74 @@ $(document).ready(function ()
 
     });
 
+    mainGrid.on("cellbeginedit",function(e){
+        var record = e.record;
+        var field = e.field;
+        var value = e.value;
+        var editor = e.editor;
+        if (field == "remark") {
+
+            if(actionType == "new"){
+                var id = record.id;
+            }else{
+                var id = record.checkId;
+            }
+
+            
+            var url = "com.hsapi.repair.baseData.query.queryCheckModelDetailContent.biz.ext?checkId=" + id;
+            editor.setUrl(url);
+        } 
+
+    });
+
+    mainGrid.on("cellendedit",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        var row={status:0};
+        var nrow={nostatus:0};
+        var row2={status:1};
+        var nrow2={nostatus:1};
+        if(field == "status"){
+            if(record.status == 1){
+                mainGrid.updateRow(record,nrow);
+            }else{
+                mainGrid.updateRow(record,nrow2);
+            }
+        }
+        if(field == "nostatus"){
+            if(record.nostatus == 1){
+                mainGrid.updateRow(record,row);
+            }else{
+                mainGrid.updateRow(record,row2);
+            }
+        }
+
+
+    });
+
+    mainGrid.on("load",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        var row2={status:1};
+        var row3={nostatus:1};
+
+        if(actionType == "new"){
+            var row=mainGrid.findRow(function(row){
+                mainGrid.updateRow(row,row2);
+            });
+        }else{
+            var row=mainGrid.findRow(function(row){
+                if(row.status == 0){
+
+                    mainGrid.updateRow(row,row3);
+                }
+            });
+        }
+
+
+    });
 
 });
 
@@ -178,12 +291,6 @@ function doSetMainInfo(car){
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
-    //doSearchCardTimes(fguestId);
-   // doSearchMemCard(fguestId);
-
-   $("#guestNameEl").html(car.guestFullName);
-   $("#showCarInfoEl").html(car.carNo);
-   $("#guestTelEl").html(car.guestMobile);
 }
 
 
@@ -205,7 +312,7 @@ function save(){
                     guestId: data.guestId||0,
                     contactorId: data.contactorId||0
                 }
-            }
+            };
 
             getGuestContactorCar(params, function(text){
                 var errCode = text.errCode||"";
@@ -227,6 +334,12 @@ function save(){
                         carVin = "/"+carVin;
                     }
                     var t = carNo + tel + guestName + carVin;
+
+                    var sk = document.getElementById("search_key");
+                    sk.style.display = "none";
+                    searchNameEl.setVisible(true);
+
+
                     searchNameEl.setValue(t);
                     searchNameEl.setEnabled(false);
 
@@ -258,9 +371,14 @@ var requiredField = {
     serviceTypeId : "业务类型",
     mtAdvisorId : "服务顾问"
 };
+
+
+
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
+//var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
+    var tdata = topForm.getData();
 /*    for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
             unmaskcall && unmaskcall();
@@ -269,7 +387,9 @@ function saveMaintain(callback,unmaskcall){
         }
     }*/
     data.billTypeId = 1;
-
+    data.enterDate = tdata.enterDate;
+    data.planFinishDate = tdata.planFinishDate;
+    data.status = 0;
 
     var params = {
         data:{
@@ -278,61 +398,62 @@ function saveMaintain(callback,unmaskcall){
     };
     svrSaveMaintain(params, function(text){
         var errCode = text.errCode||"";
+        var mtain = text.data;
+
         if(errCode == "S") {
-            unmaskcall && unmaskcall();
+
+            unmaskcall && unmaskcall();  
             var main = text.data||{};
             fserviceId = main.id||0;
-            callback && callback(main);
+            saveDetail(mtain,function(data){
+                actionType = 'edit';
+                var rid = data.data.id; 
+                nui.get("id").setValue(rid);
+                 $("#servieIdEl").html(data.data.serviceCode);
+                mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+                mainGrid.load({mainId:rid});
+                nui.unmask(document.body);
+            });
+            showMsg("保存成功！","S");
         } else {
             unmaskcall && unmaskcall();
             showMsg(data.errMsg || "保存单据失败","W");
         }
     }, function(){
         unmaskcall && unmaskcall();
-    })
+    });
     
-    // nui.ajax({
-    //     url : saveMaintainUrl,
-    //     type : "post",
-    //     data : JSON.stringify({
-    //         maintain : data,
-    //         token : token
-    //     }),
-    //     success : function(data) {
-    //         data = data || {};
-    //         if (data.errCode == "S") {
-    //             unmaskcall && unmaskcall();
-    //             var main = data.data;
-    //             fserviceId = main.id||0;
-    //             callback && callback(main);
-    //         } else {
-    //             unmaskcall && unmaskcall();
-    //             showMsg(data.errMsg || "保存单据失败","W");
-    //         }
-    //     },
-    //     error : function(jqXHR, textStatus, errorThrown) {
-    //         unmaskcall && unmaskcall();
-    //         console.log(jqXHR.responseText);
-    //     }
-    // });
+
 }
 
 
 
-function saveDetail(){
+function saveDetail(maintain,unmaskcall){
+    //var mainGrid = nui.get("mainGrid");
     mainGrid.commitEdit();
-    var maintain = billForm.getData();
     var grid_all = mainGrid.getData(); //保存
+    var gridData = [];
+    var detailid = null;
+    for(var i=0;i<grid_all.length;i++){
+        var tem = grid_all[i];
+        tem.serviceId = maintain.id;
+        tem.mainId = tid;
+        if(actionType == "new"){
+            tem.checkId = grid_all[i].id;
+            tem.id = null;
+        }
+        gridData.push(tem);
+    }
     nui.ajax({
         url : "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext",
         type : "post",
         data : JSON.stringify({
-            listall:grid_all,
+            listall:gridData,
             maintain : maintain,
             token : token
         }),
         success : function(data) {
-
+            unmaskcall && unmaskcall(data);
         },
         error : function(jqXHR, textStatus, errorThrown) {
             unmaskcall && unmaskcall();
@@ -340,4 +461,121 @@ function saveDetail(){
         }
     });
 
+}
+
+
+
+function setAllData(){
+
+    nui.ajax({
+        url:"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
+        type:"post",
+        data:{ 
+            id:mid   
+        },
+        cache: false,
+        success: function (text) {  
+            if(text.list){ 
+                var list = text.list[0];
+                billForm.setData(list);
+                topForm.setData(list);
+            }else{
+                showMsg("数据加载失败,请重新打开工单!","W");
+            }
+        }
+    });
+
+    mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+    mainGrid.load({mainId:mid});
+}
+
+
+
+
+function setInitData(params){
+    if(!params.id){
+        //add(); 
+    }else{
+        nui.mask({
+            el: document.body, 
+            cls: 'mini-mask-loading',
+            html: '数据加载中...'
+        });
+
+        var mparams = {  
+            data: {
+                id: params.id
+            }
+        }
+        getMaintain(mparams, function(text){
+            var errCode = text.errCode||"";
+            var data = text.maintain||{};
+            if(errCode == 'S'){
+                var p = {
+                    data:{
+                        guestId: data.guestId||0,
+                        contactorId: data.contactorId||0
+                    }
+                };
+                getGuestContactorCar(p, function(text){
+                    var errCode = text.errCode||"";
+                    var guest = text.guest||{};
+                    var contactor = text.contactor||{};
+                    if(errCode == 'S'){
+                        $("#servieIdEl").html(data.serviceCode);
+                        var carNo = data.carNo||"";
+                        var tel = guest.mobile||"";
+                        var guestName = guest.fullName||"";
+                        var carVin = data.carVin||"";
+                        if(tel){
+                            tel = "/"+tel;
+                        }
+                        if(guestName){
+                            guestName = "/"+guestName;
+                        }
+                        if(carVin){
+                            carVin = "/"+carVin;
+                        }
+                        var t = carNo + tel + guestName + carVin;
+
+                        var sk = document.getElementById("search_key");
+                        sk.style.display = "none";
+                        searchNameEl.setVisible(true);
+
+                        searchNameEl.setValue(t);
+                        searchNameEl.setEnabled(false);
+
+                        data.guestFullName = guest.fullName;
+                        data.guestMobile = guest.mobile;
+                        data.contactorName = contactor.name;
+                        data.mobile = contactor.mobile;
+
+                        //$("#guestNameEl").html(guest.guestFullName);
+                        //$("#showCarInfoEl").html(data.carNo);
+                        //$("#guestTelEl").html(guest.mobile);
+
+                        //fguestId = data.guestId||0;
+                        //fcarId = data.carId||0;
+
+                       // doSearchCardTimes(fguestId);
+                        //doSearchMemCard(fguestId);
+
+                        billForm.setData(data);
+                        nui.get("enterDate").setValue(data.enterDate);
+                        nui.get("planFinishDate").setValue(data.planFinishDate);
+                        mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+                        mainGrid.load({mainId:params.id});
+
+                    }else{
+                        showMsg("数据加载失败,请重新打开工单!","W");
+                    }
+
+                }, function(){});
+            }else{
+                showMsg('数据加载失败!','W');
+            }
+        }, function(){
+            nui.unmask(document.body);
+        });
+    }
 }

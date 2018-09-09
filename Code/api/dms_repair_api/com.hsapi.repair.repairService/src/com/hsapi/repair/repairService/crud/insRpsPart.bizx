@@ -300,7 +300,7 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="cardDetailId" type="query" value="Int" valueType="Primitive" pattern="reference">cardDetailId</process:inputVariable>
         <process:inputVariable id="1" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
-        <process:inputVariable id="2" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">main/guestId</process:inputVariable>
+        <process:inputVariable id="2" name="carId" type="query" value="Int" valueType="Primitive" pattern="reference">main/carId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

@@ -92,7 +92,7 @@
         var item={};
         item.id = "checkDetail";
         item.text = "查车单";
-        item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp?tid="+tid;
+        item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp?tid="+tid+"&actionType=new";
         item.iconCls = "fa fa-cog";
         window.parent.activeTab(item);
     }

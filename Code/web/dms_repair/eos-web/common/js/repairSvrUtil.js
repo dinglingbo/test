@@ -295,3 +295,49 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 		}
 	});
 }
+
+var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
+function doAddcardTime(params,callback){	
+	
+	nui.open({
+		url : addcardTimeUrl,
+		title : "新增记录",
+		width : 965,
+		height : 573,
+		onload : function() {
+		    var iframe = this.getIFrameEl();
+			iframe.contentWindow.setStely();
+			iframe.contentWindow.setData(params);
+		},
+		ondestroy : function(action) {// 弹出页面关闭前
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            data = data || {};
+            data.action = action;
+            callback && callback(data);
+		}
+	});
+	
+}
+
+function doAddcard(params,callback){
+		params={
+				data:params
+		}
+		nui.open({
+			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 600, height: 460,
+			onload: function(){
+				var iframe=this.getIFrameEl();	
+				iframe.contentWindow.SetData(params);		
+			},
+			onedestroy: function(action){
+	            var iframe = this.getIFrameEl();
+	            var data = iframe.contentWindow.getData();
+	            data = data || {};
+	            data.action = action;
+	            callback && callback(data);
+			}
+		});
+
+}

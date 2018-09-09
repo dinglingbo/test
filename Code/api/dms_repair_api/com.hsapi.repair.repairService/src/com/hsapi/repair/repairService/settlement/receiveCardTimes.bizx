@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
-    <location x="-296" y="146"/>
+    <location x="-248" y="90"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -24,7 +24,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-294" y="182"/>
+    <location x="-246" y="126"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -1144,7 +1144,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign8</targetNode>

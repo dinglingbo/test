@@ -224,6 +224,6 @@ function CloseWindow(action) {
 
 function setData(data)
 {
-	xyguest = data.xyguest;
+	xyguest= data;
 
 }

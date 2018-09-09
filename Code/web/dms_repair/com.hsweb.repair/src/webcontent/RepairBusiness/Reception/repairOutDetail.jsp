@@ -196,7 +196,7 @@
 </div>
 
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-dataField="data"   multiSelect="true" 
+dataField="data"   multiSelect="false" 
 url="com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext"  showModified="false"
 allowCellEdit="true" >
 <div property="columns">
@@ -280,7 +280,7 @@ allowCellEdit="true"  >
 </div>
 
 <div style="width:100%;margin-top: 10px;">
-    <a class="nui-button" onclick="" plain="false">领料</a>
+    <a class="nui-button" onclick="LLSave()" plain="false">领料</a>
     <a class="nui-button" onclick="" plain="false">退货</a>
 </div>
 </div>

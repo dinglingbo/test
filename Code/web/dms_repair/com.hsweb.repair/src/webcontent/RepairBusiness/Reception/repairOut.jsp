@@ -84,8 +84,8 @@ a {
 </div>
 
 <script type="text/javascript">
-    var con_data_status = [{id:,text:"全部"},{id:0,text:"草稿"},{id:1,text:"施工中"},{id:2,text:"已完工"}];
-    var con_data_isSettle = [{id:,text:"全部"},{id:1,text:"已结算"},{id:0,text:"未结算"}];
+    var con_data_status = [{id:"",text:"全部"},{id:0,text:"草稿"},{id:1,text:"施工中"},{id:2,text:"已完工"}];
+    var con_data_isSettle = [{id:"",text:"全部"},{id:1,text:"已结算"},{id:0,text:"未结算"}];
     nui.parse();
     var mainGrid = nui.get("mainGrid");
     var status = nui.get("status");
@@ -108,11 +108,11 @@ a {
         var sdate = nui.formatDate (fdate1,"yyyy-MM-dd");
         var edate = nui.formatDate (fdate2,"yyyy-MM-dd");
         var params ={
-            part :1,
-            sdate:sdate,
-            eEnterDate:edate,
-            status:status.value,
-            isSettle:isSettle.value
+           // part :1,
+            //sdate:sdate,
+            //eEnterDate:edate,
+            //status:status.value,
+            //isSettle:isSettle.value
         };
         mainGrid.load({params:params});
     }

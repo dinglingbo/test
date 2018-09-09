@@ -618,6 +618,7 @@ function doSetMainInfo(car){
     $("#showCarInfoEl").html(car.carNo);
     $("#guestTelEl").html(car.guestMobile);
 }
+
 function setInitData(params){
     if(!params.id){
         add();

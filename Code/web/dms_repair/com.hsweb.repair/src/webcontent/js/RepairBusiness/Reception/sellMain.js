@@ -226,7 +226,7 @@ function addSell(){
     var part={};
     part.id = "4000";
     part.text = "销售-工单";
-    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/subpage/sellBill.jsp?token="+token;
+    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/sellBill.jsp?token="+token;
     part.iconCls = "fa fa-file-text";
     var params = {};
     window.parent.activeTabAndInit(part,params);
@@ -238,7 +238,7 @@ function editSell(){
     var part={};
     part.id = "4000";
     part.text = "销售-工单";
-    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/subpage/sellBill.jsp?token="+token;
+    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/sellBill.jsp?token="+token;
     part.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {

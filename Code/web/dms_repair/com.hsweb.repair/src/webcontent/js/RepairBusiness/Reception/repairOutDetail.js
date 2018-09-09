@@ -36,50 +36,50 @@ $(document).ready(function(){
 	};
 	setInitData(par);
 
-initMember("mtAdvisorId",function(){
-        memList = mtAdvisorIdEl.getData();
-    });
+	initMember("mtAdvisorId",function(){
+		memList = mtAdvisorIdEl.getData();
+	});
 
-    mtAdvisorIdEl.on("valueChanged",function(e){
-        var text = mtAdvisorIdEl.getText();
-        nui.get("mtAdvisor").setValue(text);
-    });
+	mtAdvisorIdEl.on("valueChanged",function(e){
+		var text = mtAdvisorIdEl.getText();
+		nui.get("mtAdvisor").setValue(text);
+	});
 
-    searchKeyEl.on("valuechanged",function(e){
-        var item = e.selected;
-        
-        if(fserviceId){
-            return;
-        }  
-        if (item) { 
-            var carNo = item.carNo||"";
-            var tel = item.guestMobile||"";
-            var guestName = item.guestFullName||"";
-            var carVin = item.vin||"";
+	searchKeyEl.on("valuechanged",function(e){
+		var item = e.selected;
 
-
-            
-            if(tel){
-                tel = "/"+tel;
-            }
-            if(guestName){
-                guestName = "/"+guestName;
-            }
-            if(carVin){
-                carVin = "/"+carVin;
-            }
-            var t = carNo + tel + guestName + carVin;
-
-                    var sk = document.getElementById("search_key");
-                    sk.style.display = "none";
-                    searchNameEl.setVisible(true);
+		if(fserviceId){
+			return;
+		}  
+		if (item) { 
+			var carNo = item.carNo||"";
+			var tel = item.guestMobile||"";
+			var guestName = item.guestFullName||"";
+			var carVin = item.vin||"";
 
 
-            searchNameEl.setValue(t);
+
+			if(tel){
+				tel = "/"+tel;
+			}
+			if(guestName){
+				guestName = "/"+guestName;
+			}
+			if(carVin){
+				carVin = "/"+carVin;
+			}
+			var t = carNo + tel + guestName + carVin;
+
+			var sk = document.getElementById("search_key");
+			sk.style.display = "none";
+			searchNameEl.setVisible(true);
+
+
+			searchNameEl.setValue(t);
             //searchNameEl.setEnabled(false);
 
         }
-});
+    });
 });
 
 
@@ -171,4 +171,44 @@ function setInitData(params){
     		nui.unmask(document.body);
     	});
     }
+}
+
+
+function LLSave(argument) {
+	var rows = mainGrid.getSelecteds();
+	if (rows.length > 0) {
+		var ids = [];
+		for (var i = 0, l = rows.length; i < l; i++) {
+			var r = rows[i].id;
+			var c = rows[i].partCode;
+			if(r){
+				ids.push(r);
+			}else if(c){
+				ids.push(c);
+			}else{
+				showMsg('部分配件需单独领取!','W');
+				return;
+			}
+		}
+		openPartSelect(ids);
+	}else{
+		showMsg('请先选择配件!','W');
+	}
+}
+
+function openPartSelect(ids){
+	nui.open({
+		url:"com.hsweb.RepairBusiness.partSelect.flow",
+		title:"选择配件",
+		height:"400px",
+		width:"900px",
+		onload:function(){
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.SetData(ids);
+		},
+		ondestroy:function(action){
+
+		}
+
+	});
 }

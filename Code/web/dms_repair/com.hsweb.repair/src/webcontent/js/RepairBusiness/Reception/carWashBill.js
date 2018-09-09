@@ -367,6 +367,7 @@ $(document).ready(function ()
             default:
                 break;
         }
+        
     });
     rpsItemGrid.on("cellbeginedit",function(e){
         var field=e.field; 
@@ -2230,8 +2231,8 @@ function showHealth(){
 	if(main.id){
 		nui.open({
             url: "com.hsweb.RepairBusiness.carDetails.flow",
-            width: "100%",
-            height: "100%",
+            width: "800",
+            height: "1000",
             showMaxButton: false,
 			allowResize: false,
             showHeader: true,

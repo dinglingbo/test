@@ -13,13 +13,24 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=7" type="text/javascript"></script>
 </head>
+<style type="text/css">
+        body { 
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+</style>
 <body>
+<div class="nui-fit">
 <input class="nui-hidden" id="carId"name="carId"/>
 <input class="nui-hidden" id="guestId"name="guestId"/>
 <div id="editForm1">
 <div class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" id="tabs">
     <div title="车辆信息">
-        <fieldset style="width:80%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>基本信息</legend>
             <div id="editForm" style="padding:5px;">
                 
@@ -73,7 +84,7 @@
                 </table>
             </div>
         </fieldset>
-        <fieldset style="width:80%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>保养</legend>
             <div id="editForm2" style="padding:5px;">
                 
@@ -95,7 +106,7 @@
                 </table>
             </div>
         </fieldset>
-        <fieldset style="width:80%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>保险</legend>
             <div id="editForm3" style="padding:5px;">
                 
@@ -157,69 +168,69 @@
                 <tr>
                     <td style="width:80px;">姓名</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="fullName" width="100%"/>
+                        <input class="nui-textbox" name="fullName" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">性别</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">客户来源</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:80px;">手机号</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="tel" width="100%"/>
+                        <input class="nui-textbox" name="tel" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">生日</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">服务顾问</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:80px;">客户单位</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">积分</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">挂账</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:80px;">客户分组</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">地址</td>
                     <td style="width:150px;" colspan="3">
-                        <input class="nui-textbox" name="addr" width="100%"/>
+                        <input class="nui-textbox" name="addr" width="100%"enabled="false"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:80px;">资料照片:</td>
                     <td style="width:150px;" colspan="5">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:80px;">上次消费时间</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                     <td style="width:80px;">累计消费</td>
                     <td style="width:150px;" colspan="3">
-                        <input class="nui-textbox" name="" width="100%"/>
+                        <input class="nui-textbox" name="" width="100%"enabled="false"/>
                     </td>
                 </tr>
             </table>
@@ -281,6 +292,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 	<script type="text/javascript">

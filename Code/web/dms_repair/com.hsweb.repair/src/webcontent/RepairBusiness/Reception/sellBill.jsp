@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.1.9"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.3.6"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -140,7 +140,7 @@
     <div id="billForm" class="form">
         <input name="id" class="nui-hidden"/>
         <input name="guestId" class="nui-hidden"/>
-        <input id="recorder" name="recorder" class="nui-hidden"/>
+        <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
         <input class="nui-hidden" name="contactorId"/>
         <input class="nui-hidden" name="carId"/>
         <input class="nui-hidden" name="status"/>
@@ -168,8 +168,8 @@
                     <label>销售员：</label>
                 </td>
                 <td>
-                    <input name="currEmpId"
-                            id="currEmpId"
+                    <input name="mtAdvisorId"
+                            id="mtAdvisorId"
                             class="nui-combobox width1"
                             textField="empName"
                             valueField="empId"
@@ -210,14 +210,102 @@
         </table>
     </div>
        
-   <div class="nui-fit">
-            <div class="" style="width:100%;height:auto;" >
-                <div style="width:100%;height:5px;"></div>
-                <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
+    <div id="rpsPartGrid"
+     dataField="list"
+     class="nui-datagrid"
+     style="width: 100%; height:auto;"
+     showPager="false"
+     showModified="false"
+     editNextOnEnterKey="true"
+     allowSortColumn="true"
+     allowCellSelect="true"
+     allowCellEdit="true"
+     oncellcommitedit="onCellCommitEdit"
+     >
+    <div property="columns" >
+        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+        <div header="配件信息">
+            <div property="columns">
+                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
+                </div>
+                
+                <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码">
+                </div>           
+                <!-- <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center"   header="数量">
+                    <input id="qty" property="editor"  class="nui-textbox"  minValue="0"  decimalPlaces="0" dataType="int" maxValue="100000000" onvaluechanged ="onValueChangedQty"/>
+                </div>
+                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
+                    <input id="unitPrice" property="editor" vtype="float" class="nui-spinner"  minValue="0" showbutton="false" onvaluechanged ="onValueChangedUnitPrice"/>
+                </div>
+                
+                <div field="amt" headerAlign="center" allowSort="false"  width="70" datatype="float" align="center" header="金额"></div>
+                 -->
+                <div field="qty" name="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量">
+                   <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                   <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
+                   <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="saleMan" headerAlign="center"
+                     allowSort="false" visible="true" width="50" header="销售员" align="center">
+                     <input  property="editor" enabled="true" dataField="memList" 
+                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
+                             url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
+                </div>
+                <div field="saleManId" headerAlign="center"
+                     allowSort="false" visible="false" width="80" header="销售员" align="center">
+                </div>   
+                <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center" align="center"></div>
             </div>
+        </div>
+    </div>
+  </div>
+
+ <div style="text-align:center;">
+    <span id="carHealthEl" >
+        <a href="javascript:choosePart()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
+    </span>
+</div>
+<div id="advancedMorePartWin" class="nui-window"
+     title="" style="width:450px;height:200px;"
+     showModal="false"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:95%;"
+               selectOnLoad="true"
+               showPager="false"
+               dataField=""
+               frozenStartColumn="0"
+               frozenEndColumn="1"
+               onrowdblclick="addSelectPart"
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               url="">
+              <div property="columns">
+                  <div type="indexcolumn">序号</div>
+                  <div field="code" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+                  <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OEM码"></div>
+                  <div field="fullName" name="comPartCode" width="200" headerAlign="center" header="配件全称"></div>
+              </div>
           </div>
-   </div>
-   
+    </div>
+ </div> 
+</div> 
   
 <script type="text/javascript">
  nui.parse();

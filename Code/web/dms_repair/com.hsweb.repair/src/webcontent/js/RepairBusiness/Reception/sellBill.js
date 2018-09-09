@@ -58,9 +58,9 @@ $(document).ready(function ()
     rpsPartGrid = nui.get("rpsPartGrid");
     
     serviceTypeIdEl = nui.get("serviceTypeId");
-    currEmpIdEl = nui.get("currEmpId");
+    currEmpIdEl = nui.get("mtAdvisorId");
     currEmpIdEl.setText(currUserName);
-    initMember("currEmpId",function(){
+    initMember("mtAdvisorId",function(){
         memList = currEmpIdEl.getData();
         
     });
@@ -74,7 +74,7 @@ $(document).ready(function ()
     
     currEmpIdEl.on("valueChanged",function(e){
         var text = currEmpIdEl.getText();
-        nui.get("recorder").setValue();
+        nui.get("mtAdvisor").setValue(text);
     });
     searchNameEl = nui.get("search_name");
     servieIdEl = nui.get("servieIdEl");
@@ -209,29 +209,7 @@ $(document).ready(function ()
             
         }
     });
-    searchKeyEl.focus();
-    // innerItemGrid = nui.get("innerItemGrid");
-    // innerPartGrid = nui.get("innerPartGrid");
-    // innerItemGrid.setUrl(itemGridUrl);
-    // innerPartGrid.setUrl(partGridUrl);
-
-    // beginDateEl.setValue(getMonthStartDate());
-    // endDateEl.setValue(addDate(getMonthEndDate(), 1));
-
-    //document.getElementById("formIframe").src=webPath + contextPath + "/repair/common/pipSelect.jsp?token"+token;
-
-   /* initMember("mtAdvisorId",function(){
-        memList = mtAdvisorIdEl.getData();
-    });*/
-    
-   
-    /*mtAdvisorIdEl.on("valueChanged",function(e){
-        var text = mtAdvisorIdEl.getText();
-        nui.get("mtAdvisor").setValue(text);
-    });*/
-    
-   
-   
+    searchKeyEl.focus();  
     rpsPartGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -239,51 +217,32 @@ $(document).ready(function ()
         var rowIndex = e.rowIndex;
 
         switch (e.field) {
-            case "partName":
-                var cardDetailId = record.cardDetailId||0;
-                if(cardDetailId>0){
-                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
-                }
-                break;
             case "partOptBtn":
-                var s = '<a class="optbtn" href="javascript:editRpsPart(\'' + uid + '\')">修改</a>'
-                        + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
-
+                var s = ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
                 if (grid.isEditingRow(record)) {
-                    s = '<a class="optbtn" href="javascript:updateRpsPart(\'' + uid + '\')">确定</a>'
-                        + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
+                    s = ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
+                         
                 }
                 e.cellHtml = s;
-                //e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                            //'<span class="fa fa-plus" onClick="javascript:addPartNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
-                            //' <span class="fa fa-close" onClick="javascript:deletePartRow()" title="删除行"></span>';
-                break;
-            case "receTypeId":
-                if (receTypeIdHash && receTypeIdHash[e.value]) {
-                    e.cellHtml = receTypeIdHash[e.value].name;
-                }
-            case "serviceTypeId":
-                e.cellHtml = servieTypeHash[e.value].name;
                 break;
             default:
                 break;
         }
     });   
-    rpsPartGrid.on("cellbeginedit",function(e){
-        var field=e.field; 
-        var editor = e.editor;
-        var row = e.row;
-        var column = e.column;
-        var editor = e.editor;
-
-        if(field == 'qty' || field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
-            if(row.cardDetailId > 0){
-                e.cancel = true;
-            }
-        }
-    });
-    
   
+    /*rpsPartGrid.on("cellendedit", function (e) {
+    	var row = rpsPartGrid.getSelected();
+        switch (e.field) {
+            case "qty":
+            	if(row.qty==0){
+            	   e.cellHtml = "KK0";
+            	}  
+                break;
+            default:
+                break;
+        }
+    }); */
+    
     document.onkeyup=function(event){
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;
@@ -313,16 +272,16 @@ var statusHash = {
     "3" : "待结算",
     "4" : "已结算"
 };
-function advancedSearch(){
+/*function advancedSearch(){
     if(document.getElementById("advancedMore").style.display=='block'){
         document.getElementById("advancedMore").style.display='none';
     }else{
         document.getElementById("advancedMore").style.display='block';
     }
     
-}
+}*/
 function clear(){
-    advancedSearchForm.setData([]); 
+    //advancedSearchForm.setData([]); 
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
 }
@@ -334,15 +293,9 @@ function onShowRowDetail(e) {
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
 
-    innerItemGrid.setData([]);
     innerPartGrid.setData([]);
 
     var params = {};
-    params.serviceId = row.id;
-    innerItemGrid.load({
-        params:params,
-        token: token
-    });
 
     innerPartGrid.load({
         params:params,
@@ -500,25 +453,14 @@ function setInitData(params){
     
                         billForm.setData(data);
 
-                        var p1 = {
-                            interType: "package",
-                            data:{
-                                serviceId: data.id||0
-                            }
-                        }
-                        var p2 = {
-                            interType: "item",
-                            data:{
-                                serviceId: data.id||0
-                            }
-                        }
+                       
                         var p3 = {
                             interType: "part",
                             data:{
                                 serviceId: data.id||0
                             }
                         }
-                        loadDetail(p1, p2, p3);
+                        loadDetail(p3);
 
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","W");
@@ -559,8 +501,8 @@ function add(){
     //insuranceForm.setData([]);
     //describeForm.setData([]);
 
-   // nui.get("mtAdvisorId").setValue(currEmpId);
-   // nui.get("mtAdvisor").setValue(currUserName);
+    nui.get("mtAdvisorId").setValue(currEmpId);
+    nui.get("mtAdvisor").setValue(currUserName);
     nui.get("serviceTypeId").setValue(3);
     nui.get("recordDate").setValue(now);
 
@@ -593,7 +535,6 @@ function save(){
                     contactorId: data.contactorId||0
                 }
             }
-
             getGuestContactorCar(params, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
@@ -624,25 +565,13 @@ function save(){
 
                     billForm.setData(data);
 
-                    var p1 = {
-                        interType: "package",
-                        data:{
-                            serviceId: data.id||0
-                        }
-                    }
-                    var p2 = {
-                        interType: "item",
-                        data:{
-                            serviceId: data.id||0
-                        }
-                    }
                     var p3 = {
                         interType: "part",
                         data:{
                             serviceId: data.id||0
                         }
                     }
-                    loadDetail(p1, p2, p3);
+                    loadDetail(p3);
 
                 }else{
                     showMsg("数据加载失败,请重新打开工单!","W");
@@ -696,32 +625,7 @@ function saveMaintain(callback,unmaskcall){
         }
     }, function(){
         unmaskcall && unmaskcall();
-    })
-    
-    // nui.ajax({
-    //     url : saveMaintainUrl,
-    //     type : "post",
-    //     data : JSON.stringify({
-    //         maintain : data,
-    //         token : token
-    //     }),
-    //     success : function(data) {
-    //         data = data || {};
-    //         if (data.errCode == "S") {
-    //             unmaskcall && unmaskcall();
-    //             var main = data.data;
-    //             fserviceId = main.id||0;
-    //             callback && callback(main);
-    //         } else {
-    //             unmaskcall && unmaskcall();
-    //             showMsg(data.errMsg || "保存单据失败","W");
-    //         }
-    //     },
-    //     error : function(jqXHR, textStatus, errorThrown) {
-    //         unmaskcall && unmaskcall();
-    //         console.log(jqXHR.responseText);
-    //     }
-    // });
+    });
 }
 var loadMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function loadMaintain(callback,unmaskcall){
@@ -773,11 +677,7 @@ function addPrdt(data){
         if(rtnRow){
             var t = rtnRow.prdtType||0;
             var interType = "";
-            if(t == 1){
-                interType = "package";
-            }else if(t == 2){
-                interType = "item";
-            }else if(t == 3){
+            if(t == 3){
                 interType = "part";
             }
             if(!interType){
@@ -785,22 +685,7 @@ function addPrdt(data){
                 return;
             }
             var data = {};
-            if(interType == 'package'){
-                var pkg = {
-                    serviceId:main.id,
-                    packageId:rtnRow.prdtId,
-                    cardDetailId:rtnRow.id||0
-                };
-                data.pkg = pkg;
-            }else if(interType == 'item'){
-                var insItem = {
-                    serviceId:main.id||0,
-                    itemId:rtnRow.prdtId,
-                    cardDetailId:rtnRow.id||0
-                };
-                data.insItem = insItem;
-                data.serviceId = main.id||0;
-            }else if(interType == 'part'){
+             if(interType == 'part'){
                 var insPart = {
                     serviceId:main.id||0,
                     partId:rtnRow.prdtId,
@@ -830,16 +715,10 @@ function addPrdt(data){
                         var errCode = text.errCode;
                         var data = text.data||[];
                         if(errCode == "S"){
-                            if(interType == 'package'){
-                               // rpsPackageGrid.clearRows();
-                              //  rpsPackageGrid.addRows(data);
-                            }else if(interType == 'item'){
-                              //  rpsItemGrid.clearRows();
-                               // rpsItemGrid.addRows(data);
-                            }else if(interType == 'part'){
+                             if(interType == 'part'){
                                 rpsPartGrid.clearRows();
                                 rpsPartGrid.addRows(data);
-                            }
+                             }
                         }
                     }, function(){});
                 }else{
@@ -851,84 +730,6 @@ function addPrdt(data){
             showMsg("请选择记录!","W");
             return;
         }
-    }else if(type == 1){
-        var data = {};
-        var pkg = {
-            serviceId:main.id,
-            packageId:rtnRow.id,
-            cardDetailId:0
-        };
-        data.pkg = pkg;
-
-        var params = {
-            type:"insert",
-            interType:'package',
-            data:data
-        };
-        svrCRUD(params,function(text){
-            var errCode = text.errCode||"";
-            var errMsg = text.errMsg||"";
-            if(errCode == 'S'){
-
-                var params = {
-                    interType: 'package',
-                    data:{
-                        serviceId: main.id||0
-                    }
-                }
-                getBillDetail(params, function(text){
-                    var errCode = text.errCode;
-                    var data = text.data||[];
-                    if(errCode == "S"){
-                      //  rpsPackageGrid.clearRows();
-                       // rpsPackageGrid.addRows(data);
-                    }
-                }, function(){});
-            }else{
-                showMsg(errMsg||"添加套餐失败!","W");
-                return;
-            }
-        });
-    }else if(type == 2){
-        var data = {};
-        var insItem = {
-            serviceId:main.id||0,
-            itemId:rtnRow.id,
-            cardDetailId:0
-        };
-        data.insItem = insItem;
-        data.serviceId = main.id||0;
-
-        var params = {
-            type:"insert",
-            interType:'item',
-            data:data
-        };
-        svrCRUD(params,function(text){
-            var errCode = text.errCode||"";
-            var errMsg = text.errMsg||"";
-            if(errCode == 'S'){
-
-                var params = {
-                    interType: 'item',
-                    data:{
-                        serviceId: main.id||0
-                    }
-                }
-                getBillDetail(params, function(text){
-                    var errCode = text.errCode;
-                    var data = text.data||[];
-                    if(errCode == "S"){
-                        /*rpsItemGrid.clearRows();
-                        rpsItemGrid.addRows(data);*/
-                    }
-                }, function(){});
-            }else{
-                showMsg(errMsg||"添加工时信息失败!","W");
-                return;
-            }
-        });
-
     }else if(type == 3){
         var data = {};
         var insPart = {
@@ -983,33 +784,13 @@ function checkPrdt(data){
         var prdtType = rtnRow.prdtType;
         var oldId = rtnRow.id;
         rtnRow.id = rtnRow.prdtId||0;
-        if(prdtType == 1){
-            var rs = checkFromBillPackage(rtnRow);
-            if(rs){
-                return "此套餐已经添加!";
-            }
-        }else if(prdtType == 2){
-            var rs = checkFromBillItem(rtnRow);
-            if(rs){
-                return "此工时已经添加!";
-            }
-        }else if(prdtType == 3){
+       if(prdtType == 3){
             var rs = checkFromBillPart(rtnRow);
             if(rs){
                 return "此配件已经添加!";
             }
         }
         rtnRow.id = oldId;
-    }else if(type == 1){
-        var rs = checkFromBillPackage(rtnRow);
-        if(rs){
-            return "此套餐已经添加!";
-        }
-    }else if(type == 2){
-        var rs = checkFromBillItem(rtnRow);
-        if(rs){
-            return "此工时已经添加!";
-        }
     }else if(type == 3){
         var rs = checkFromBillPart(rtnRow);
         if(rs){
@@ -1029,77 +810,7 @@ function addPartNewRow(){
     var newRow = {};
     rpsPartGrid.addRow(newRow);
 }
-/*function deletePackRow(row_uid){
-    var data = rpsPackageGrid.getData();
-    var row = rpsPackageGrid.getRowByUID(row_uid);
-    var prdtId = row.prdtId;
-    if(data && data.length==1){
-        row = data[0];
-    }
-    var pkg = {
-        serviceId:row.serviceId,
-        id:row.id,
-        cardDetailId:row.cardDetailId||0
-    };
-    var params = {
-        type:"delete",
-        interType:"package",
-        data:{
-            pkg: pkg
-        }
-    };
-    svrCRUD(params,function(text){
-        var errCode = text.errCode||"";
-        var errMsg = text.errMsg||"";
-        if(errCode == 'S'){   
-            var rows = rpsPackageGrid.findRows(function(row){
-                if(row.prdtId == prdtId || row.pid == prdtId){
-                    return true;
-                }
-            });
 
-            rpsPackageGrid.removeRows(rows);
-        }else{
-            showMsg(errMsg||"删除套餐信息失败!","W");
-            return;
-        }
-    });
-}*/
-/*function deleteItemRow(row_uid){
-    var data = rpsItemGrid.getData();
-    var row = rpsItemGrid.getRowByUID(row_uid);
-    if(data && data.length==1){
-        row = data[0];
-    }
-    var item = {
-        serviceId:row.serviceId,
-        id:row.id,
-        cardDetailId:row.cardDetailId||0
-    };
-    var params = {
-        type:"delete",
-        interType:"item",
-        data:{
-            item: item
-        }
-    };
-    svrCRUD(params,function(text){
-        var errCode = text.errCode||"";
-        var errMsg = text.errMsg||"";
-        if(errCode == 'S'){   
-            if(data && data.length==1){
-                rpsItemGrid.removeRow(data[0]);
-                //var newRow = {};
-                //rpsPartGrid.addRow(newRow);
-            }else{
-                rpsItemGrid.removeRow(row);
-            }
-        }else{
-            showMsg(errMsg||"删除工时信息失败!","W");
-            return;
-        }
-    });
-}*/
 function deletePartRow(row_uid){
     var data = rpsPartGrid.getData();
     var row = rpsPartGrid.getRowByUID(row_uid);
@@ -1136,71 +847,8 @@ function deletePartRow(row_uid){
     });
 
 }
-/*function showCardTimes(){
-    if(!fguestId || advancedCardTimesWin.visible) {
-        advancedCardTimesWin.hide();
-        cardTimesGrid.clearRows();
-        return;
-    }
 
-    var atEl = document.getElementById("cardPackageEl");  
-    advancedCardTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
-    advancedMemCardWin.hide();
-    memCardGrid.clearRows();
 
-    doSearchCardTimes(fguestId);
-}*/
-/*function showCard(){
-    if(!fguestId || advancedMemCardWin.visible) {
-        advancedMemCardWin.hide();
-        memCardGrid.clearRows();
-        return;
-    }
-
-    var atEl = document.getElementById("clubCardEl");  
-    advancedMemCardWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
-    advancedCardTimesWin.hide();
-   // cardTimesGrid.clearRows();
-    //doSearchMemCard(fguestId);
-}*/
-
-/*function showHealth(){
-    window.open("http://www.baidu.com?backurl="+window.location.href); 
-}*/
-/*function doSearchCardTimes(guestId)
-{
-    cardTimesGrid.clearRows();
-    if(!guestId) return;
-
-    var p = {};
-    p.detailFinish = 0;
-    p.guestId = guestId;
-    p.notPast = 1;
-    p.status = 2;
-    cardTimesGrid.load({
-    	token:token,
-        p:p
-    },function(){
-        var data = cardTimesGrid.getData();
-        var len = data.length||0;
-        $("#showCardTimesEl").html("次卡套餐("+len+")");
-        document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
-    });
-}*/
-/*function doSearchMemCard(guestId)
-{
-    memCardGrid.clearRows();
-    if(!guestId) return;
-
-    memCardGrid.load({
-    	token:token,
-        guestId:guestId
-    },function(){
-        var data = memCardGrid.getData();
-        var len = data.length||0;
-        $("#showCardEl").html("储值卡("+len+")");
-    });
-}*/
 function addGuest(){
     doApplyCustomer({},function(adction){
         if("ok" == action)
@@ -1231,20 +879,6 @@ function addGuest(){
 
         }
     });
-    // var title = "新增客户资料";
-    // nui.open({
-    //     url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
-    //     title: title, width: 560, height: 570,
-    //     onload: function () {
-    //         var iframe = this.getIFrameEl();
-    //         var params = {};
-    //         iframe.contentWindow.setData(params);
-    //     },
-    //     ondestroy: function (action)
-    //     {
-            
-    //     }
-    // });
 }
 function onCloseClick(e){
     var obj = e.sender;
@@ -1279,44 +913,6 @@ function onworkerChanged(e){
     var newRow = {workerIds:workerIds};
     __workerIds = workerIds;
 }
-/*function onitemworkerChanged(e){
-    var obj = e.sender;
-    var rows = e.selecteds;
-    var workerIds = "";
-    var workerIdList = [];
-    if(!rows || rows.length==0){
-        workerIds = "";
-    }else{
-        for(var i=0; i<rows.length; i++){
-            var row = rows[i];
-            var empId = row.empId;
-            workerIdList.push(empId);
-        }
-
-        if(workerIdList&&workerIdList.length>0){
-            workerIds = workerIdList.join(",");
-        }else{
-            workerIds = "";
-        }
-    }
-    var row = rpsItemGrid.getSelected();
-    //var newRow = {workerIds:workerIds};
-    //rpsItemGrid.updateRow(row, newRow);
-    __workerIds = workerIds;
-}*/
-/*function onsalemanChanged(e){
-    var obj = e.sender;
-    var row = e.selected;
-    var saleManId = 0;
-    if(!row){
-        saleManId = 0;
-    }else{
-        saleManId = row.empId;
-    }
-    var row = rpsPackageGrid.getSelected();
-    __saleManId = saleManId;
-    //rpsPackageGrid.updateRow(row, newRow);
-}*/
 
 function onpartsalemanChanged(e){
     var obj = e.sender;
@@ -1333,122 +929,8 @@ function onpartsalemanChanged(e){
     __saleManId = saleManId;
 }
 
-/*function addCardTimesToBill(){
-    var main = billForm.getData();
-    if(!main.id){
-        showMsg("请先保存工单!","W");
-        return;
-    }
-    var row = cardTimesGrid.getSelected();
-    if(row){
-        var t = row.prdtType||0;
-        var interType = "";
-        if(t == 1){
-            interType = "package";
-        }else if(t == 2){
-            interType = "item";
-        }else if(t == 3){
-            interType = "part";
-        }
-        if(!interType){
-            showMsg("次卡类型有误!","W");
-            return;
-        }
-        var data = {};
-        if(interType == 'package'){
-            var pkg = {
-                serviceId:main.id,
-                packageId:row.prdtId,
-                cardDetailId:row.id||0
-            };
-            data.pkg = pkg;
-        }else if(interType == 'item'){
-            var insItem = {
-                serviceId:main.id||0,
-                itemId:row.prdtId,
-                cardDetailId:row.id||0
-            };
-            data.insItem = insItem;
-            data.serviceId = main.id||0;
-        }else if(interType == 'part'){
-            var insPart = {
-                serviceId:main.id||0,
-                partId:row.prdtId,
-                cardDetailId:row.id||0,
-                partCode:row.prdtCode
-            };
-            data.insPart = insPart;
-            data.serviceId = main.id||0;
-        }
-        var params = {
-            type:"insert",
-            interType:interType,
-            data:data
-        };
-        svrCRUD(params,function(text){
-            var errCode = text.errCode||"";
-            var errMsg = text.errMsg||"";
-            if(errCode == 'S'){
-                //showMsg("添加次卡信息成功!","W");
-                //根据工单ID查询套餐,隐藏次卡信息
-                advancedCardTimesWin.hide();
-                cardTimesGrid.clearRows();
 
-                var params = {
-                    interType: interType,
-                    data:{
-                        serviceId: main.id||0
-                    }
-                }
-                getBillDetail(params, function(text){
-                    var errCode = text.errCode;
-                    var data = text.data||[];
-                    if(errCode == "S"){
-                        if(interType == 'package'){
-                            rpsPackageGrid.clearRows();
-                            rpsPackageGrid.addRows(data);
-                        }else if(interType == 'item'){
-                            rpsItemGrid.clearRows();
-                            rpsItemGrid.addRows(data);
-                        }else if(interType == 'part'){
-                            rpsPartGrid.clearRows();
-                            rpsPartGrid.addRows(data);
-                        }
-                    }
-                }, function(){});
-            }else{
-                showMsg(errMsg||"添加预存信息失败!","W");
-                return;
-            }
-        });
-    }else{
-        showMsg("请选择次卡记录!","W");
-        return;
-    }
-}*/
-function loadDetail(p1, p2, p3){
-    if(p1 && p1.interType){
-        getBillDetail(p1, function(text){
-            var errCode = text.errCode;
-            var data = text.data||[];
-            if(errCode == "S"){
-               // rpsPackageGrid.clearRows();
-               // rpsPackageGrid.addRows(data);
-               // rpsPackageGrid.accept();
-            }
-        }, function(){});
-    }
-    if(p2 && p2.interType){
-        getBillDetail(p2, function(text){
-            var errCode = text.errCode;
-            var data = text.data||[];
-            if(errCode == "S"){
-               /* rpsItemGrid.clearRows();
-                rpsItemGrid.addRows(data);
-                rpsItemGrid.accept();*/
-            }
-        }, function(){});
-    }
+function loadDetail(p3){
     if(p3 && p3.interType){
         getBillDetail(p3, function(text){
             var errCode = text.errCode;
@@ -1471,10 +953,11 @@ function editRpsPart(row_uid){
         __saleManId = "";
         rpsPartGrid.cancelEdit();
         rpsPartGrid.beginEditRow(row);
-        if(!row.rate){
-        	var rate = nui.get("rate");
-        	rate.setReadOnly(true);
-        }
+        /*if(!row.rate){
+        	var rate = nui.get("MML");
+        	//rate.setReadOnly(true);
+        	//row.rate.cancel(true);
+        }*/
     }
 }
 function updateRpsPart(row_uid){
@@ -1560,15 +1043,14 @@ function choosePart(){
     }
 
     doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
-        var p1 = { };
-        var p2 = { };
+       
         var p3 = {
 			 interType: "part",
 	         data:{
 	             serviceId: main.id||0
 	         }
         };
-        loadDetail(p1, p2, p3);
+        loadDetail(p3);
     });
 }
 function addToBillPart(row, callback, unmaskcall){
@@ -1635,8 +1117,117 @@ function setyouhuilu(){
 }
 
 
+
+//提交单元格编辑数据前激发
+function onCellCommitEdit(e) {
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!","W");
+		e.cancel = true;
+	} else {
+		var newRow = {};
+		if (e.field == "qty") {
+			var qty = e.value;
+			var unitPrice = record.unitPrice;
+
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				qty = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				qty = 0;
+			}
+
+			var amt = qty * unitPrice;
+
+			newRow = {
+				amt : amt
+			};
+			rpsPartGrid.updateRow(e.row, newRow);
+
+			// record.enteramt.cellHtml = enterqty * enterprice;
+		} else if (e.field == "unitPrice") {
+			var qty = record.qty;
+			var unitPrice = e.value;
+			
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				unitPrice = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				unitPrice = 0;
+			}
+
+			var amt = qty * unitPrice;
+
+			newRow = {
+				amt : amt
+			};
+			rpsPartGrid.updateRow(e.row, newRow);		
+
+		} else if (e.field == "amt") {
+			var qty = record.qty;
+			var amt = e.value;
+
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				amt = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				amt = 0;
+			}
+
+			// e.cellHtml = enterqty * enterprice;
+			var unitPrice = amt * 1.0 / qty;
+
+
+			if (qty) {
+				newRow = {
+					unitPrice : unitPrice
+				};
+				rpsPartGrid.updateRow(e.row, newRow);
+			}
+		} 		
+	}
+}
+
+
+
+
 function onValueChangedQty(e){
 	var row = rpsPartGrid.getSelected();
-	var data = e.value();
+    var data ={};
+    if(e.value == null ||e.value == '') {
+       data.qty = 0;
+    }
+	var amt = null;
+	if(row.unitPrice){
+		amt = row.unitPrice * e.value;
+		amt = parseFloat(amt).toFixed(2);
+	}else{
+		amt = 0;
+	}	
+	data.amt = amt;
+	rpsPartGrid.updateRow(row,data);
+	
+}
+
+function onValueChangedUnitPrice(e){
+	var row = rpsPartGrid.getSelected();
+	var amt = null;
+	if(row.qty){
+		amt = row.qty * e.value;
+		amt = parseFloat(amt).toFixed(2);
+	}else{
+		amt = 0;
+	}	
+	data = {
+			amt:amt
+		 };
+	rpsPartGrid.updateRow(row,data);
 	
 }

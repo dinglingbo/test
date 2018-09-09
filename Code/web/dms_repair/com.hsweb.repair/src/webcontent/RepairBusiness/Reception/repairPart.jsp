@@ -16,7 +16,7 @@
                 <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
                     <!-- <input property="editor" class="nui-textbox" emptyText="配件编码、名称、拼音" /> -->
                 </div>
-                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center">
+                 <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center">
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
@@ -27,8 +27,8 @@
                 <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" >
-                    <input property="editor" vtype="float" class="nui-textbox" id="rate"/>
+                <div  field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" >
+                    <input property="editor" vtype="float" class="nui-textbox" id="MML"/>
                 </div>
                 <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
                     <input property="editor" vtype="float" class="nui-textbox"/>

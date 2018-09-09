@@ -537,10 +537,7 @@ function selectCustomer(callback) {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
-                data =data.guest;
-                xyguest = {
-                	data:data
-                }
+                xyguest =guest;
                 callback && callback(guest);
             }
         }

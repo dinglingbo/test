@@ -71,6 +71,7 @@
 					<!-- <a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
 					<spand>&nbsp;&nbsp;&nbsp;</spand> -->
 					<a class="nui-button"  onclick="payOk()" id = "payOk" >结算收款</a> 
+					<a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >结算收款</a> 
 				</td>
 				</tr>
 			</table>

@@ -321,7 +321,9 @@ function doAddcardTime(params,callback){
 }
 
 function doAddcard(params,callback){
-
+		params={
+				data:params
+		}
 		nui.open({
 			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
 			title: "充值会员卡", width: 600, height: 460,

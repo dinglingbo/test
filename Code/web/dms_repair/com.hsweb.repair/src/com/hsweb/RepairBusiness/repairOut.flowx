@@ -4,6 +4,8 @@
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>
       <targetNode>view0</targetNode>
+      <process:validateRules/>
+      <process:inputParameters/>
     </sourceConnections>
     <location x="60" y="60"/>
     <size height="28" width="28"/>
@@ -25,7 +27,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.repair" uri="/repair/repairOut_view0.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="repairOut.jsp" type="view" contextPath="" contributionName="com.hsweb.repair" method="forward" uri="/repair/RepairBusiness/Reception/repairOut.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
@@ -34,6 +36,8 @@
     <location x="208" y="60"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
     <location x="207" y="96"/>

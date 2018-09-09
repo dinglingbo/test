@@ -766,20 +766,6 @@ function save() {
 
     data = getMainData();
    
-    /*var enterDetailAdd = rightGrid.getChanges("added")||[];
-    var enterDetailUpdate = [];
-    for(var key in editPartHash)
-    {
-        if(typeof editPartHash[key] == 'object')
-        {
-            enterDetailUpdate.push(editPartHash[key]);
-        }
-    }
-    var enterDetailDelete = rightGrid.getChanges("removed")||[];
-    enterDetailDelete = enterDetailDelete.filter(function(v)
-    {
-        return v.detailId;
-    });*/
 
     var sellOrderDetailAdd = enterGrid.getChanges("added");
     var sellOrderDetailUpdate = enterGrid.getChanges("modified");
@@ -811,16 +797,7 @@ function save() {
 			if (data.errCode == "S") {
                 showMsg("保存成功!","S");
                 var pjSellOrderMainList = data.pjSellOrderMainList;
-                if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
-                    var leftRow = pjSellOrderMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-
-                    
-                }
+   
 				//onLeftGridRowDblClick({});
                 
 			} else {
@@ -832,6 +809,123 @@ function save() {
 			console.log(jqXHR.responseText);
 		}
 	});
+}
+
+function checkStockOutQty(){
+    var msg = '';
+    var rows = enterGrid.findRows(function(row){
+        if(row.stockOutQty > 0){
+            return true;
+        }
+    });
+    
+    if(rows && rows.length > 0){
+        var comPartCode = rows[0].comPartCode;
+        msg = "配件：" + comPartCode + "缺货，不能出库！";
+    }
+    return msg;
+}
+
+function checkRightData()
+{
+    var msg = '';
+    var rows = enterGrid.findRows(function(row){
+        if(row.partId){
+            if(row.orderQty){
+                if(row.orderQty <= 0) return true;
+            }else{
+                return true;
+            }
+            if(row.orderPrice){
+                if(row.orderPrice <= 0) return true;
+            }else{
+                return true;
+            }
+            if(row.orderAmt){
+                if(row.orderAmt <= 0) return true;
+            }else{
+                return true;
+            }
+            
+            if(row.storeId){
+            }else{
+                return true;
+            }       
+        }
+
+    });
+    
+    if(rows && rows.length > 0){
+        msg = "请完善销售配件的数量，单价，金额，仓库等信息！";
+    }
+    return msg;
+}
+//出库
+var auditUrl = partApiUrl+"com.hsapi.part.invoice.crud.auditPjSellOrder.biz.ext";
+function audit()
+{
+
+    //审核时，数量，单价，金额，仓库不能为空
+    var msg = checkStockOutQty();
+    if(msg){
+        showMsg(msg,"W");
+        return;
+    }
+    //审核时，判断是否存在缺货信息
+    var msg = checkRightData();
+    if(msg){
+        showMsg(msg,"W");
+        return;
+    }
+
+    data = getMainData();
+
+    var sellOrderDetailAdd = enterGrid.getChanges("added");
+    var sellOrderDetailUpdate = enterGrid.getChanges("modified");
+    var sellOrderDetailDelete = enterGrid.getChanges("removed");
+    var sellOrderDetailList = enterGrid.getData();
+    if(sellOrderDetailList.length <= 0) {
+        showMsg("明细为空，不能出库!","W");
+        return;
+    }
+    sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
+
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '出库中...'
+    });
+
+    nui.ajax({
+        url : auditUrl,
+        type : "post",
+        data : JSON.stringify({
+            sellOrderMain : data,
+            sellOrderDetailAdd : sellOrderDetailAdd,
+            sellOrderDetailUpdate : sellOrderDetailUpdate,
+            sellOrderDetailDelete : sellOrderDetailDelete,
+            sellOrderDetailList : sellOrderDetailList,
+            operateFlag:1,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("出库成功!","S");
+                //onLeftGridRowDblClick({});
+                var pjSellOrderMainList = data.pjSellOrderMainList;
+  
+            } else {
+                showMsg(data.errMsg || "出库失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 function onOut(){
 	var row=enterGrid.getSelected();
@@ -874,5 +968,6 @@ function saveAndOut(){
 	getSellOrderBillNO();
 	saveDetail();
 	save();
+	audit();
 }
 

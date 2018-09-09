@@ -80,8 +80,8 @@
       <process:to type="query">p/notPast</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">guestId</process:from>
-      <process:to type="query">p/guestId</process:to>
+      <process:from type="query" pattern="reference">carId</process:from>
+      <process:to type="query">p/carId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
@@ -412,7 +412,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="cardDetailId" primitiveType="Int"/>
     <process:input description="1,-1" isArray="false" name="dc" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="carId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

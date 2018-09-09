@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateCardTimesInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断预存套餐是否超数，&#xD;&#xA;更新预存套餐的可使用次数，已使用次数&#xD;&#xA;&#xD;&#xA;工单中用到预存数据的很少，不考虑用多表关联查询，&#xD;&#xA;先查询预存的套餐，工时，配件，然后再循环判断有没有超数，并且更新数量&#xD;&#xA;&#xD;&#xA;判断套餐，工时，配件预存，更新套餐，工时，配件预存；&#xD;&#xA;最后更新客户对应的预存信息主表状态；&#xD;&#xA;&#xD;&#xA;不用判断次卡次数够不够，因为添加时已经做过判断 judgeCardTimesInfo" title="Administrator&#x9;18-8-11 下午4:40">
-    <location x="64" y="-180"/>
-    <size height="211" width="481"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断预存套餐是否超数，&#xD;&#xA;更新预存套餐的可使用次数，已使用次数&#xD;&#xA;&#xD;&#xA;工单中用到预存数据的很少，不考虑用多表关联查询，&#xD;&#xA;先查询预存的套餐，工时，配件，然后再循环判断有没有超数，并且更新数量&#xD;&#xA;&#xD;&#xA;判断套餐，工时，配件预存，更新套餐，工时，配件预存；&#xD;&#xA;最后更新客户对应的预存信息主表状态；&#xD;&#xA;&#xD;&#xA;不用判断次卡次数够不够，因为添加时已经做过判断 judgeCardTimesInfo&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.updateSql.updateCardTimesFinish" title="Administrator&#x9;18-8-11 下午4:40">
+    <location x="64" y="-240"/>
+    <size height="259" width="481"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -52,8 +52,8 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">guestId</process:from>
-      <process:to type="query">cardHash/guestId</process:to>
+      <process:from type="query" pattern="reference">carId</process:from>
+      <process:to type="query">cardHash/carId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
@@ -986,7 +986,7 @@
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign17" name="赋值17" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign17" name="赋值17" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign17</sourceNode>
       <targetNode>assign15</targetNode>
@@ -1116,7 +1116,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="carId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="d" primitiveType="Date"/>
   </process:inputs>
   <process:outputs>

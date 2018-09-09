@@ -184,6 +184,9 @@
             <isNotEmpty prepend="and" property="guestId">
                 (b.guest_id = #guestId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">
+                (b.car_id = #carId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mainFinish">
                 (b.is_finish = #mainFinish#)
             </isNotEmpty>

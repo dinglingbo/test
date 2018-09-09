@@ -9,7 +9,7 @@
 -->
 <head> 
   <title>工单-理赔单</title>
-  <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/claimMain.js" type="text/javascript"></script>
+  <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/claimMain.js?verson=1" type="text/javascript"></script>
   <style type="text/css">
 
   .title {

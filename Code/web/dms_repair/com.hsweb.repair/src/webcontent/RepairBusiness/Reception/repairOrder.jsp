@@ -13,7 +13,7 @@
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>
 </head>
-<body>
+<body oncontextmenu = "return false">
     <style>
         * {
             margin: 0;
@@ -374,7 +374,7 @@
     </div>
     <div id="print-container">
         <div class="company-info">
-            <h3>XXX</h3>
+            <h3><span id="comp"></span></h3>
         </div>
         <h1 id="title">派工单</h1>
         <div class="content">
@@ -446,13 +446,17 @@
             $(".print_btn").hide();
             window.print();
         });
-        $.ajaxSettings.async = false;//设置为同步执行
-        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id=1",{},function(text){
+	});	
+	
+	function SetData(params){
+		document.getElementById("comp").innerHTML = params.comp;
+		$.ajaxSettings.async = false;//设置为同步执行
+        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.id,{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.maintain;
         		var carNo = maintain.carNo;
         		var carVin = maintain.carVin;
-        		var enterDate = maintain.enterDate;
+        		var enterDate = maintain.enterDate || "";
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
@@ -461,7 +465,7 @@
         		var guestId = maintain.guestId;
         		var enterKilometers = maintain.enterKilometers;
         		var mtAdvisor = maintain.mtAdvisor;
-        		var planFinishDate = maintain.planFinishDate;
+        		var planFinishDate = maintain.planFinishDate || "";
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
         			planFinishDate = new Date(planFinishDate);
@@ -493,7 +497,7 @@
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}
         });
-        $.post("com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=141",{},function(text){
+        $.post("com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId,{},function(text){
         	if(text.errCode == "S"){
             	var tBody = $("#tbodyId");
 				tBody.empty();
@@ -514,8 +518,8 @@
 				    			tBody.append(tr);
         		}
         	}
-        });        
-	});	
+        });
+	}
     </script>
 </body>
 </html>

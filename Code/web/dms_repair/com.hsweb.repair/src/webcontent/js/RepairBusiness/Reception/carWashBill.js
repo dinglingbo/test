@@ -2225,3 +2225,41 @@ function addcard(callback){
 		});
 
 }
+
+function onPrint(e){
+	var main = billForm.getData();
+	if(main.id){
+		var params = {
+				id : main.id,
+				serviceId : main.id,
+				comp : currOrgName
+		};
+		if(e == 1){
+			nui.open({
+	            url: "com.hsweb.print.repairOrder.flow",
+	            width: "100%",
+	            height: "100%",
+	            showMaxButton: false,
+				allowResize: false,
+	            showHeader: true,
+	            onload: function() {
+	                var iframe = this.getIFrameEl();
+	                iframe.contentWindow.SetData(params);
+	            },
+	        });
+		}else if(e == 2){
+			nui.open({
+	            url: "com.hsweb.print.settlement.flow",
+	            width: "100%",
+	            height: "100%",
+	            showMaxButton: false,
+				allowResize: false,
+	            showHeader: true,
+	            onload: function() {
+	                var iframe = this.getIFrameEl();
+	                iframe.contentWindow.SetData(params);
+	            },
+	        });
+		}
+	}
+}

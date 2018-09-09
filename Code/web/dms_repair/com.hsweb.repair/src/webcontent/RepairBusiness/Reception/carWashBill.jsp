@@ -131,8 +131,8 @@
 
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印派工单</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印领料单</li>
+                    <li iconCls="" onclick="onPrint(2)" id="type11">打印结算单</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印领料单</li>
                 </ul>
 
 

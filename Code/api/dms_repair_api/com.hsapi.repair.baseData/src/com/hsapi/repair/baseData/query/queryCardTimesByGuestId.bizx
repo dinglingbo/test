@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCardTimesByGuestId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算的，未使用完的，未过期的&#xD;&#xA;com.hsapi.repair.baseData.queryMaintain.queryCardTimesList&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.baseData.queryMaintain.queryCardTimesList" title="Administrator&#x9;18-8-9 上午11:18">
-    <location x="71" y="28"/>
-    <size height="100" width="425"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算的，未使用完的，未过期的&#xD;&#xA;com.hsapi.repair.baseData.queryMaintain.queryCardTimesList&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.baseData.queryMaintain.queryCardTimesList&#xD;&#xA;&#xD;&#xA;查询客户的预存信息时,carId要传值" title="Administrator&#x9;18-8-9 上午11:18">
+    <location x="60" y="-30"/>
+    <size height="151" width="425"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

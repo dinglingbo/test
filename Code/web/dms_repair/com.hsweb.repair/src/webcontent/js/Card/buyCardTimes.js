@@ -16,6 +16,8 @@ function giveData(data)
     var  main = form2.getData();
      main.guestId = data.xyguest.guestId;
      main.contactorName = data.xyguest.guestFullName;
+     main.carNo = data.xyguest.carNo;
+     main.carId = data.xyguest.carId;
      contactorName.setText(data.xyguest.guestFullName);
      form2.setData(main);
 }
@@ -81,7 +83,7 @@ function payOk(){
 			totalAmt:rpbCard.totalAmt,
 			useRemark:rpbCard.useRemark,
 			carId:data.carId,
-			carNo:carNo
+			carNo:data.carNo
 	    };
 	//整理数据
 	    payAmt = rpbCard.sellAmt;

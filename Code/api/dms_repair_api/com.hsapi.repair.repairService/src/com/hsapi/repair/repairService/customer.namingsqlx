@@ -163,6 +163,9 @@
 			left join rpb_car_extend g on g.car_id=a.id
 		WHERE 1=1
 		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (b.tenant_id = #tenantId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
             </isNotEmpty>

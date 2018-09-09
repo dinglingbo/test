@@ -537,7 +537,7 @@ function selectCustomer(callback) {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
-                xyguest = data.guest;
+                xyguest =guest;
                 callback && callback(guest);
             }
         }
@@ -849,7 +849,7 @@ function savePackage(params, callback) {
 
 
 //增加次卡套餐
-var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
+/*var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
 function addcardTime(){	
 	var data = {
 			xyguest:xyguest
@@ -864,35 +864,26 @@ function addcardTime(){
 			iframe.contentWindow.setStely();
 			iframe.contentWindow.setData(data);
 		},
-		/*ondestroy : function(action) {// 弹出页面关闭前
+		ondestroy : function(action) {// 弹出页面关闭前
 			if (action == "saveSuccess") {
 				grid.reload();
 			}
-		}*/
+		}
 	});
+	
+}*/
+
+function addcardTime(){	
+	doAddcardTime(xyguest);
 	
 }
 
-function addcard(callback){
 
-		nui.open({
-			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 600, height: 460,
-			onload: function(){
-				var iframe=this.getIFrameEl();
-				var params={
-						data :xyguest
-				};
-				
-				iframe.contentWindow.SetData(params);
-		
-			},
-			onedestroy: function(action){
-				if("ok" == action){
-					grid.reload();
-				}
-			}
-		});
 
-}
+	function addcard(){
+
+		doAddcard(xyguest);
+	}
+
+
 

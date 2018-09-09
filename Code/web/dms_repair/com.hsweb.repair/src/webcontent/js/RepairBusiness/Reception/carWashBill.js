@@ -12,7 +12,7 @@ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuest
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 
 var billForm = null;
-
+var xyguest = null;
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -607,7 +607,7 @@ function doSetMainInfo(car){
     mpartRate = 0;
 
     billForm.setData(maintain);
-
+    xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
@@ -2178,4 +2178,52 @@ function delFromBillPart(data, callback){
             return;
         }
     });
+}
+function addcardTime(){	
+	doAddcardTime(xyguest);
+	
+}
+
+
+
+	function addcard(){
+
+		doAddcard(xyguest);
+	}
+
+function onPrint(e){
+	var main = billForm.getData();
+	if(main.id){
+		var params = {
+				serviceId : main.id,
+				comp : currOrgName
+		};
+		if(e == 1){
+			nui.open({
+	            url: "com.hsweb.print.repairOrder.flow",
+	            width: "100%",
+	            height: "100%",
+	            showMaxButton: false,
+				allowResize: false,
+	            showHeader: true,
+	            onload: function() {
+	                var iframe = this.getIFrameEl();
+	                iframe.contentWindow.SetData(params);
+	            },
+	        });
+		}else if(e == 2){
+			nui.open({
+	            url: "com.hsweb.print.settlement.flow",
+	            width: "100%",
+	            height: "100%",
+	            showMaxButton: false,
+				allowResize: false,
+	            showHeader: true,
+	            onload: function() {
+	                var iframe = this.getIFrameEl();
+	                iframe.contentWindow.SetData(params);
+	            },
+	        });
+		}
+	}
 }

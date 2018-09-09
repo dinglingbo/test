@@ -15,6 +15,7 @@
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=2" type="text/javascript"></script>
 </head>
 <body>
+<a id="print" href="javascript:hello()">打印</a>
 <div class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" id="tabs">
     <div title="车辆信息">
         <fieldset style="width:80%;border:solid 1px #aaa;margin-top:8px;position:relative;">
@@ -300,6 +301,20 @@
 </div>
 	<script type="text/javascript">
     	nui.parse();
+    	function hello(){
+    		nui.open({
+                url: "com.hsweb.repair.DataBase.newflow.flow",
+                width: "1%",
+                height: "1%",
+                showMaxButton: false,
+    			allowResize: false,
+                showHeader: true,
+                onload: function() {
+                    var iframe = this.getIFrameEl();
+                    iframe.contentWindow.SetData();
+                },
+            });
+    	}
     </script>
 </body>
 </html>

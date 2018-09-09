@@ -8,7 +8,7 @@
 -->
 <head>
 <title>领料</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.1.5"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.35"></script>
 <style type="text/css">                
 .table-label {
 	text-align: right;
@@ -94,7 +94,7 @@ body .mini-grid-row-selected{
                                     idField="id"
                                     totalField="page.count"
                                     allowCellSelect="true" 
-                                     allowCellEdit="true"  multiSelect="true" 
+                                     allowCellEdit="true"  multiSelect="false" 
                                     >
                                 <div property="columns">
                                 	<div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
@@ -104,7 +104,7 @@ body .mini-grid-row-selected{
                                     <div field="partName" partName="name" width="80" headerAlign="center" header="配件名称"></div>
                                     <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
                                     <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
-                                    <div allowSort="true" datatype="float" width="60" field="outSignQty" headerAlign="center" header="出库数量">
+                                    <div allowSort="true" datatype="float" width="60" field="orderQty" headerAlign="center" header="出库数量">
                                     	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                                     </div>
                                     <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
@@ -117,9 +117,15 @@ body .mini-grid-row-selected{
                                     <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
                                     <div field="guestName" width="120px" headerAlign="center" allowSort="true" header="供应商"></div>  
                                     <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
-                                    <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
-                                    <div field="operator" name="operator" width="50" headerAlign="center" header="领料人"></div>
-                                    <div field="remark" name="remark" width="50" headerAlign="center" header="备注"></div>
+                                    <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称">
+                                    	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
+                                    </div> 
+                                    <div field="orderMan" name="orderMan" width="50" headerAlign="center" header="领料人">
+                                    	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
+                                    </div>
+                                    <div field="remark" name="remark" width="50" headerAlign="center" header="备注">
+                                    	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

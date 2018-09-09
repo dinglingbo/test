@@ -21,14 +21,14 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" >
+                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged ="onValueChangedQty"/>
                 </div>
                 <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" >
+                    <input property="editor" vtype="float" class="nui-textbox" id="rate"/>
                 </div>
                 <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
                     <input property="editor" vtype="float" class="nui-textbox"/>

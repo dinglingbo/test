@@ -11,7 +11,7 @@ function onOk()
     {
         console.log(node);
         resultData = {
-        	partlist:node
+        	data:node
         };
         //  return;
         CloseWindow("ok");

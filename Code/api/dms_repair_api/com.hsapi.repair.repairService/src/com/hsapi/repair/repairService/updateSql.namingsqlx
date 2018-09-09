@@ -64,12 +64,12 @@
 		select a.id, count(1) t from rps_card_times a
 		inner join rps_card_times_detail b
 		on a.id = b.card_id
-		where b.is_finish = 0 and a.guest_id = #guestId# 
+		where b.is_finish = 0 and a.car_id = #carId# 
 		group by a.id
 		HAVING count(1) &lt;= 0) n
 		on m.id = n.id
 		set m.is_finish = 1 , modifier = #modifier#, modify_date = SYSDATE()
-		where m.guest_id = #guestId#  and n.id is null and m.is_finish = 0
+		where m.car_id = #carId#  and n.id is null and m.is_finish = 0
 	</update>
 	
 	<delete id="deleteRepairRecord" parameterClass="java.util.HashMap">

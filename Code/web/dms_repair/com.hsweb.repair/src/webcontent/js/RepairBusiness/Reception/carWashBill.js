@@ -2179,58 +2179,22 @@ function delFromBillPart(data, callback){
         }
     });
 }
-var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
 function addcardTime(){	
-	var data = {
-			xyguest:xyguest
-	}
-	nui.open({
-		url : addcardTimeUrl,
-		title : "新增记录",
-		width : 965,
-		height : 573,
-		onload : function() {
-		    var iframe = this.getIFrameEl();
-			iframe.contentWindow.setStely();
-			iframe.contentWindow.setData(data);
-		},
-		/*ondestroy : function(action) {// 弹出页面关闭前
-			if (action == "saveSuccess") {
-				grid.reload();
-			}
-		}*/
-	});
+	doAddcardTime(xyguest);
 	
 }
 
-function addcard(callback){
 
-		nui.open({
-			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 600, height: 460,
-			onload: function(){
-				var iframe=this.getIFrameEl();
-				var params={
-						data :xyguest
-				};
-				
-				iframe.contentWindow.SetData(params);
-		
-			},
-			onedestroy: function(action){
-				if("ok" == action){
-					grid.reload();
-				}
-			}
-		});
 
-}
+	function addcard(){
+
+		doAddcard(xyguest);
+	}
 
 function onPrint(e){
 	var main = billForm.getData();
 	if(main.id){
 		var params = {
-				id : main.id,
 				serviceId : main.id,
 				comp : currOrgName
 		};

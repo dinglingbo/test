@@ -314,7 +314,7 @@
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");; 
 	        $.ajaxSettings.async = false;//设置为同步执行
-	        $.post("com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.id,{},function(text){
+	        $.post("com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
 	        	if(text.list.length > 0){
 	        		var list = text.list[0];
 	        		var carNo = list.carNO;

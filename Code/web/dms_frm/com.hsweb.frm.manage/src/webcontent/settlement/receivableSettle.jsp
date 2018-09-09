@@ -11,7 +11,7 @@
 -->
 <head>
 <title>应收账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/receivableSettle.js?v=1.0.6"></script>
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/receivableSettle.js?v=1.1.8"></script>
   <style type="text/css">
 .title {
     width: 90px;
@@ -661,6 +661,23 @@
 
                         <td style="text-align:center" width="60px">未结金额:</td>
                         <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+	        <div id="ctTr" class="vpanel panelwidth" style="height:auto;">
+            <div id="ctTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span >储值卡  (余额: </span><span id="rechargeBalaAmt"></span><span >) </span></div>
+            <div class="vpanel_body">
+                <table class="tmargin">
+                    <tr id="ccTr">
+                       <!--  <td style="text-align:center" style="width:100px">余额:<input class="nui-textbox" id="ye" /></td> -->
+                        
+
+                        <td style="text-align:center" style="width:30%" >抵扣金额:<input class="nui-textbox" id="dk" style="width: 60px" onvaluechanged="onChanged"/></td>
+                        
+                        
                     </tr>
                 </table>
 

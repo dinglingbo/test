@@ -367,6 +367,7 @@ $(document).ready(function ()
             default:
                 break;
         }
+        
     });
     rpsItemGrid.on("cellbeginedit",function(e){
         var field=e.field; 

@@ -451,7 +451,7 @@
 	function SetData(params){
 		document.getElementById("comp").innerHTML = params.comp;
 		$.ajaxSettings.async = false;//设置为同步执行
-        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.id,{},function(text){
+        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId,{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.maintain;
         		var carNo = maintain.carNo;

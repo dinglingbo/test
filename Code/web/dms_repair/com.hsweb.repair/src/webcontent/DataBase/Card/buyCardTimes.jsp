@@ -12,7 +12,7 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.6"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -25,6 +25,17 @@
 				 <tr>
 				 <!-- hidden域 -->			
                         <td class="form_label" style="width:15%;" align="right">
+                            <label>车牌号:</label>
+                        </td>
+                        <td style="width:25%;">
+                            <input class="nui-textbox" id="carNo" name="carNo" textname="carNo" 
+                             allowInput="false"
+                            selectOnFocus="true" required="true" />
+                            <input class="nui-hidden" id="carId" name="carId" textname="carId" />
+                        </td>
+                   </tr>
+                   <tr>
+                    	<td class="form_label" style="width:15%;" align="right">
                             <label>客户名称:</label>
                         </td>
                         <td style="width:25%;">
@@ -32,7 +43,6 @@
                             emptyText="请选择..." onbuttonclick="selectCustomer"  allowInput="false"
                             selectOnFocus="true" required="true" />
                         </td>
-                    
                    
                    </tr>
                    <tr>

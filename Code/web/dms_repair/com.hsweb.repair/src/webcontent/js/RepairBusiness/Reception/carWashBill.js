@@ -12,7 +12,7 @@ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuest
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 
 var billForm = null;
-
+var xyguest = null;
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -607,7 +607,7 @@ function doSetMainInfo(car){
     mpartRate = 0;
 
     billForm.setData(maintain);
-
+    xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
@@ -618,6 +618,7 @@ function doSetMainInfo(car){
     $("#showCarInfoEl").html(car.carNo);
     $("#guestTelEl").html(car.guestMobile);
 }
+
 function setInitData(params){
     if(!params.id){
         add();
@@ -2178,12 +2179,57 @@ function delFromBillPart(data, callback){
         }
     });
 }
+var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token+"xyguest="+xyguest;
+function addcardTime(){	
+	var data = {
+			xyguest:xyguest
+	}
+	nui.open({
+		url : addcardTimeUrl,
+		title : "新增记录",
+		width : 965,
+		height : 573,
+		onload : function() {
+		    var iframe = this.getIFrameEl();
+			iframe.contentWindow.setStely();
+			iframe.contentWindow.setData(data);
+		},
+		/*ondestroy : function(action) {// 弹出页面关闭前
+			if (action == "saveSuccess") {
+				grid.reload();
+			}
+		}*/
+	});
+	
+}
+
+function addcard(callback){
+
+		nui.open({
+			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
+			title: "充值会员卡", width: 600, height: 460,
+			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :xyguest
+				};
+				
+				iframe.contentWindow.SetData(params);
+		
+			},
+			onedestroy: function(action){
+				if("ok" == action){
+					grid.reload();
+				}
+			}
+		});
+
+}
 
 function onPrint(e){
 	var main = billForm.getData();
 	if(main.id){
 		var params = {
-				id : main.id,
 				serviceId : main.id,
 				comp : currOrgName
 		};
@@ -2216,5 +2262,3 @@ function onPrint(e){
 		}
 	}
 }
-
-

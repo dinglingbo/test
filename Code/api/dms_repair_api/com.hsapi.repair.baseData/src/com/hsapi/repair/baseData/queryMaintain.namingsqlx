@@ -75,6 +75,9 @@
             <isNotEmpty prepend="and" property="name">  
                 (c.full_name like '%$name$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="part">  
+                exists(select 1 from rps_part d where a.id = d.service_id)
+            </isNotEmpty>
            
         </dynamic>  
         order by a.id desc

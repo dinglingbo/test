@@ -127,10 +127,11 @@
                           <label>姓名：</label>
                       </td>
                       <td >
-                          <input class="nui-combobox" id="contactName" name="name" width="100%" textField="id"
+                          <input class="nui-combobox" id="contactName" name="name" width="100%" textField="name"
                             valueField="name" 
                             onvaluechanged="onContactorChanged"
                             allowInput="false" selectOnFocus="true">
+                                                      <input class="nui-hidden"id="id" name="id" width="100%" textField="id">
                       </td>
                       <td class="title">
                           <label>性别：</label>

@@ -36,8 +36,10 @@ $(document).ready(function(){
 
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");
+    var params = nui.clone(params);
     guestId=params.data.guestId;
     guestName=params.data.guestFullName;
+    params.data.mobile=params.data.guestMobile
     basicInfoForm.setData(params.data);
 
 }
@@ -165,7 +167,7 @@ function pay(){
 	nui.mask({
 		el: document.body,
         cls: 'mini-mask-loading',
-        html: '保存中...'
+        html: '支付中...'
 	});
 	nui.ajax({
 		url:payurl,
@@ -179,9 +181,9 @@ function pay(){
 		success: function(data){
 			nui.unmask(document.body);
 			if(data.errCode =='S'){
-				showMsg("保存成功!","S");
+				showMsg("支付成功!","S");
 			}else{
-				showMsg(data.errMsg || "保存失败!","W");
+				showMsg(data.errMsg || "支付失败!","W");
 			}
 		},
 		error : function(jqXHR,textStatus,errorThrown){

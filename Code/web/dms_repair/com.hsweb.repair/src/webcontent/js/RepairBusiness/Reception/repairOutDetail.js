@@ -152,14 +152,14 @@ function setInitData(params){
                         //fcarId = data.carId||0; 
 
                        // doSearchCardTimes(fguestId); 
-                        //doSearchMemCard(fguestId);
+                        //doSearchMemCard(fguestId); 
 
                         billForm.setData(data);
                         //mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                         //mainGrid.load({mainId:params.id});
                         mainGrid.load({serviceId:params.id});
 
-                    }else{
+                    }else{ 
                     	showMsg("数据加载失败,请重新打开工单!","W");
                     }
 
@@ -177,26 +177,25 @@ function setInitData(params){
 function LLSave(argument) {
 	var rows = mainGrid.getSelecteds();
 	if (rows.length > 0) {
-		var ids = [];
 		for (var i = 0, l = rows.length; i < l; i++) {
-			var r = rows[i].id;
+			var r = rows[i].partId;
 			var c = rows[i].partCode;
 			if(r){
-				ids.push(r);
+				openPartSelect(r,"Id");
 			}else if(c){
-				ids.push(c);
+				openPartSelect(c,"Code");
 			}else{
 				showMsg('部分配件需单独领取!','W');
 				return;
 			}
 		}
-		openPartSelect(ids);
+		
 	}else{
 		showMsg('请先选择配件!','W');
 	}
 }
 
-function openPartSelect(ids){
+function openPartSelect(par,type){
 	nui.open({
 		url:"com.hsweb.RepairBusiness.partSelect.flow",
 		title:"选择配件",
@@ -204,11 +203,13 @@ function openPartSelect(ids){
 		width:"900px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.SetData(ids);
+			iframe.contentWindow.SetData(par,type);
 		},
 		ondestroy:function(action){
 
-		}
+               }
 
-	});
+           });
 }
+
+

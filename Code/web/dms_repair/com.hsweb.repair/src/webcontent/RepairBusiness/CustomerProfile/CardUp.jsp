@@ -11,7 +11,7 @@
 -->
 <head>
 <title>会员卡充值</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.0"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.5"></script>
 	<style type="text/css">
 	
 	table {
@@ -102,7 +102,7 @@
 					</tr>
 					<tr align="center" height="40px">
 						<td colspan="2">
-							<a class="nui-button"onclick="noPay()">保存待支付</a>
+							<a class="nui-button"onclick="noPay()">保存</a>
 							<a class="nui-button"onclick="pay()">确认支付</a>
 						</td>
 					</tr>          

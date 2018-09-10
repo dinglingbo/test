@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.3"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -132,7 +132,8 @@
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印派工单</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(3)" id="type11">打印领料单</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印小票</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印领料单</li>
                 </ul>
 
 

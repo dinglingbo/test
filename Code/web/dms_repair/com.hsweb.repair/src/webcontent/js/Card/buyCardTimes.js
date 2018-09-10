@@ -14,12 +14,15 @@ function giveData(data)
     sellAmt.setValue(rpbCardTimes.sellAmt);
 	contactorName = mini.get("contactorName");	
     var  main = form2.getData();
-     main.guestId = data.xyguest.guestId;
-     main.contactorName = data.xyguest.guestFullName;
-     main.carNo = data.xyguest.carNo;
-     main.carId = data.xyguest.carId;
-     contactorName.setText(data.xyguest.guestFullName);
-     form2.setData(main);
+    if(data.xyguest!=null){
+        main.guestId = data.xyguest.guestId;
+        main.contactorName = data.xyguest.guestFullName;
+        main.carNo = data.xyguest.carNo;
+        main.carId = data.xyguest.carId;
+        contactorName.setText(data.xyguest.guestFullName);
+        form2.setData(main);
+    }
+
 }
 
 
@@ -112,7 +115,9 @@ function payOk(){
 			            nui.unmask(document.body);
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
-				            nui.alert("结算成功", "系统提示");
+				        	showMsg("支付成功!","S");
+				        	//nui.alert("结算成功", "系统提示");
+				        	CloseWindow("saveSuccess");
 				        }
 				        else {
 				            nui.alert("结算失败:"+returnJson.errMsg, "系统提示");
@@ -131,4 +136,81 @@ function payOk(){
 	
 }
 
+
+
+var noPayMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preSettleCardTimes.biz.ext";
+function noPayOk(){	
+	var data = form2.getData();
+	var rpbCard = rpbCardTimes;
+    var payAmt = null;
+	if(data.contactorName){
+		var cardTimes ={
+			guestId:data.guestId,
+			guestName:data.contactorName,
+			cardId:rpbCard.id,
+			cardName:rpbCard.name,
+			periodValidity:rpbCard.periodValidity,
+			salesDeductType:rpbCard.salesDeductType,
+			remark:rpbCard.remark,
+			salesDeductValue:rpbCard.salesDeductValue,
+			sellAmt:rpbCard.sellAmt,
+			totalAmt:rpbCard.totalAmt,
+			useRemark:rpbCard.useRemark,
+			carId:data.carId,
+			carNo:data.carNo
+	    };
+	//整理数据
+	    payAmt = rpbCard.sellAmt;
+	    var json = nui.encode({
+		    "cardTimes":cardTimes,
+		    token:token
+	  });
+		//提示框 
+		//判断客户有没有选择
+	    nui.confirm("结算金额【"+payAmt+"】元,确定保存进入待结算吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+		        nui.ajax({
+				    url : noPayMeth,
+				    type : 'POST',
+			        data : json,
+			        cache : false,
+			        contentType : 'text/json',
+			        success : function(text) {		
+			            nui.unmask(document.body);
+				        var returnJson = nui.decode(text);
+				        if (returnJson.errCode == "S") {
+				        	showMsg("转待结算成功!","S");
+				        	//nui.alert("转待结算成功", "系统提示");
+				        	CloseWindow("saveSuccess");
+				        }
+				        else {
+				            nui.alert("转结算失败:"+returnJson.errMsg, "系统提示");
+				        }
+				   }				        	  
+			  });		
+	     }else {
+				return;
+		 }
+		 });
+
+	}else{
+		nui.alert("请选择客户", "提示");
+		
+	}	
+	
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
+}
 

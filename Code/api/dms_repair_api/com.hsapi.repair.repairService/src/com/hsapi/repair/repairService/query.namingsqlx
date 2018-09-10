@@ -282,7 +282,12 @@
 	            <isNotEmpty prepend="and" property="guestId"> 
                    (a.guest_id = #guestId#)
                 </isNotEmpty>
-	            
+	            <isNotEmpty prepend="and" property="rid"> 
+                   (a.id = #rid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carId"> 
+                   (a.car_id = #carId#)
+                </isNotEmpty>
         </dynamic>  
         order by a.id desc
 	</select>

@@ -2194,37 +2194,52 @@ function addcardTime(){
 
 function onPrint(e){
 	var main = billForm.getData();
+	var openUrl = null;
 	if(main.id){
 		var params = {
 				serviceId : main.id,
 				comp : currOrgName
 		};
 		if(e == 1){
-			nui.open({
-	            url: "com.hsweb.print.repairOrder.flow",
-	            width: "100%",
-	            height: "100%",
-	            showMaxButton: false,
-				allowResize: false,
-	            showHeader: true,
-	            onload: function() {
-	                var iframe = this.getIFrameEl();
-	                iframe.contentWindow.SetData(params);
-	            },
-	        });
+			openUrl = "com.hsweb.print.repairOrder.flow";
 		}else if(e == 2){
-			nui.open({
-	            url: "com.hsweb.print.settlement.flow",
-	            width: "100%",
-	            height: "100%",
-	            showMaxButton: false,
-				allowResize: false,
-	            showHeader: true,
-	            onload: function() {
-	                var iframe = this.getIFrameEl();
-	                iframe.contentWindow.SetData(params);
-	            },
-	        });
+			openUrl = "com.hsweb.print.settlement.flow";
+		}else if(e == 3){
+			openUrl = "com.hsweb.print.smallSettlement.flow";
 		}
+		nui.open({
+            url: openUrl,
+            width: "100%",
+            height: "100%",
+            showMaxButton: false,
+			allowResize: false,
+            showHeader: true,
+            onload: function() {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.SetData(params);
+            },
+        });
+	}
+}
+
+function showHealth(){
+	var main = billForm.getData();
+	var params = {
+			carId : main.carId,
+			guestId : main.guestId
+	};
+	if(main.id){
+		nui.open({
+            url: "com.hsweb.RepairBusiness.carDetails.flow",
+            width: "100%",
+            height: "100%",
+            showMaxButton: false,
+			allowResize: false,
+            showHeader: true,
+            onload: function() {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.SetData(params);
+            },
+        });
 	}
 }

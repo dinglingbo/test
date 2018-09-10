@@ -30,6 +30,7 @@ var mainTabs = null;
 var gpartId = 0;
 var detail=null;
 var serviceId=null;
+var FGuestId=null;
 
 $(document).ready(function(v)
 {
@@ -51,7 +52,7 @@ $(document).ready(function(v)
     partInfoTab = morePartTabs.getTab("partInfoTab");
     priceGrid = nui.get("priceGrid");
     priceGrid.setUrl(priceGridUrl);
-    
+    getGuestId();
 	
 
     optTabs.on("activechanged",function(e){
@@ -131,10 +132,6 @@ $(document).ready(function(v)
                 break;
         }
     });
-
-//    mainTabs.on("activechanged",function(e){
-//        showBottomTabInfo(gpartId);
-//    });
 
     $("#morePartCode").bind("keydown", function (e) {
 
@@ -399,67 +396,41 @@ function onAdvancedAddCancel(){
     morePartCodeEl.focus();
 }
 var requiredField = {
-    storeId:"仓库",
-    qty:"数量",
-    price:"单价",
-    amt:"金额"
+
+    orderQty:"出库数量",
+    orderMan:"领料人",
+
 };
 function onAdvancedAddOk(){
-
+	
+	var data=enterGrid.getSelected();
     for(var key in requiredField)
     {
         if(!data[key] || data[key].toString().trim().length==0)
         {
             showMsg(requiredField[key]+"不能为空!","W");
-            if(key == "qty") {
-                var qty = nui.get("qty");
+            if(key == "orderQty") {
+                var qty = nui.get("orderQty");
                 qty.focus();
             }
-            if(key == "price") {
-                var price = nui.get("price");
+            if(key == "orderMan") {
+                var price = nui.get("orderMan");
                 price.focus();
             }
-            if(key == "amt") {
-                var amt = nui.get("amt");
-                amt.focus();
-            }
+            
             return;
         }
     }
-    resultData.storeId = data.storeId;
-    resultData.qty = data.qty;
-    resultData.price = data.price;
-    resultData.amt = data.amt;
-    resultData.remark = data.remark;
-    
-    var tab = morePartTabs.getActiveTab();
-
-    if(tab.name == "enterTab"){
-        var row = enterGrid.getSelected();
-        var stockQty = row.stockQty;
-        var preOutQty = row.preOutQty||0;
-        var price = row.enterPrice;
-        if(data.qty > stockQty - preOutQty){
-            showMsg("出库数量超出此批次可出库数量","W");
-            return;
-        }
-        if(data.price < price){
-            nui.confirm("单价低于成本，是否继续？", "友情提示",
-                function (action) { 
-                    if (action == "ok") {
-                        doAdd();
-                    }else {
-                        return;
-                    }
-                }
-            );
-        }else{
-            doAdd();
-        }
-    }else{
-        doAdd();
-
-    }
+    resultData.orderQty = data.orderQty;
+    resultData.orderMan = data.orderMan;
+   
+    var row = enterGrid.getSelected();
+    var stockQty = row.stockQty;
+    var preOutQty = row.preOutQty||0;
+    if(data.orderQty > stockQty - preOutQty){
+    	showMsg("出库数量超出此批次可出库数量","W");
+    	return;
+    } 
 }
 function doAdd(){
     if(!resultData) return;
@@ -613,9 +584,33 @@ function showTabInfo(){
 //    }
 }
 
+var guestUrl = partApiUrl + "com.hsapi.part.common.svr.getGuestByInternalId.biz.ext";
+function getGuestId() {
+
+    nui.ajax({
+        url : guestUrl,
+        type : "post",
+        data : JSON.stringify({}),
+        success : function(data) {
+            data = data || {};
+            if (data.guest) {
+                var guest = data.guest;
+                FGuestId = guest.id;
+
+            } else {
+                console.log(data.errMsg);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
 function getMainData()
 {
- 
+	
+
     //汇总明细数据到主表
     var isFinished = 0;
     var auditSign = 0;
@@ -626,7 +621,7 @@ function getMainData()
     var date=new Date();
     var operateDate = format(date, 'yyyy-MM-dd HH:mm:ss') + '.0';
     var data = {
-    	guestId		: 5,
+    	guestId		: FGuestId,
     	isFinished	: isFinished,
     	auditSign	: auditSign,
     	billStatusId: billStatusId,
@@ -949,9 +944,11 @@ function onOut(){
 					var row=enterGrid.getSelected();
 					var newRow={orderMan:orderMan,remark:remark,orderQty:orderQty};
 					enterGrid.updateRow(row,newRow);
-					getSellOrderBillNO();
-					saveDetail();
-					save();
+					onAdvancedAddOk();
+					getMainData();
+//					getSellOrderBillNO();
+//					saveDetail();
+//					save();
 //					saveAndOut();
 //					enterGrid.setData(data);
 //					enterGrid.reload();

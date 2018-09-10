@@ -139,8 +139,16 @@
     	nui.parse();
 		
 		$(document).ready(function (){
+    		
+    	}); 
+    	
+    	function SetData(params){
     		nui.ajax({
-                url: "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id=1",
+                url: "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",
+                type : "post",
+                data : {
+                	id : params.serviceId
+                },
                 async: false,
                 success: function (text) {
                    var maintain = nui.decode(text.maintain);
@@ -153,8 +161,6 @@
                    		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML+ guestId;
                    		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML+ carNo;
                    		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML+ formatDate(new Date(enterDate));
-                   }else{
-                   		
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -164,7 +170,11 @@
             });
             var guestId = document.getElementById("guestId").innerHTML;
             nui.ajax({
-                url: "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,""),
+                url: "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
+                type : "post",
+                data : {
+                	guestId : params.guestId
+                },
                 async: false,
                 success: function (text) {
                 	var guest = nui.decode(text.guest);
@@ -184,7 +194,11 @@
             });
             	//document.getElementById("name").innerHTML = "&nbsp;套餐";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=381",
+	                url: "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
+	                type : "post",
+	                data : {
+	                	serviceId : params.serviceId
+	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
 	                	var tBody = $("#tbodyId");
@@ -210,7 +224,11 @@
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;工时";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext?serviceId=381",
+	                url: "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext",
+	                type : "post",
+	                data : {
+	                	serviceId : params.serviceId
+	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
 	                	var tBody = $("#tbodyId");
@@ -236,7 +254,11 @@
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;配件";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext?serviceId=381",
+	                url: "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",
+	                type : "post",
+	                data : {
+	                	serviceId : params.serviceId
+	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
 	                	var tBody = $("#tbodyId");
@@ -260,7 +282,7 @@
 	                    showMsg("网络出错", "W");
 	                }
             	});
-    	}); 
+    	}
     </script>
 </body>
 </html>

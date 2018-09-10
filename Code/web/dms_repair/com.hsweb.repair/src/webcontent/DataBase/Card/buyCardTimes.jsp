@@ -12,7 +12,7 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.0.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.1.5"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -70,8 +70,8 @@
 				<td style="text-align:center;" colspan="1"  >
 					<!-- <a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
 					<spand>&nbsp;&nbsp;&nbsp;</spand> -->
+					<a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a> 
 					<a class="nui-button"  onclick="payOk()" id = "payOk" >结算收款</a> 
-					<a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >结算收款</a> 
 				</td>
 				</tr>
 			</table>

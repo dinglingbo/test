@@ -11,9 +11,11 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=5" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=7" type="text/javascript"></script>
 </head>
 <body>
+<input class="nui-hidden" id="carId"name="carId"/>
+<input class="nui-hidden" id="guestId"name="guestId"/>
 <div id="editForm1">
 <div class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" id="tabs">
     <div title="车辆信息">

@@ -161,7 +161,7 @@
                     <td width="65" height="50px">
                             <div style="float: right; text-align: center;">
                                 <div id="qrcode">
-                                    	<img src="https://photo.harsonserver.com/20180907191028539.jpg">
+                                    	<img src="https://photo.harsonserver.com/20180910115313857.jpg">
                             </div>
                                 扫码支付
                             </div>

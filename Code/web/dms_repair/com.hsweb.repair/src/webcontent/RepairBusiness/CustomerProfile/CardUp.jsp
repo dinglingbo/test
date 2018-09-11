@@ -50,7 +50,7 @@
                              <input class="nui-textbox" id="mobile" name="mobile" allowInput="false" valueField=""  />
                         </td> 
                         </tr>
-                    <tr >
+                    <tr>
                         <td  colspan="2" style=" text-align:center;">
                         	储值卡类型选择:       
                         </td>

@@ -13,6 +13,7 @@
     <title>开票管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
     body {
@@ -42,23 +43,24 @@
 		    </table>
 		</div>
         <div class="nui-fit">
-            <div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;">
+        	<div id="grid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
+            totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="com.hsapi.frm.invoiceManagement.selectInvoiceMain.biz.ext">
                 <div property="columns">
                     <div field="" name="" headeralign="center" align="center" width="40">开票单号</div>
-                    <div field="" name="" headeralign="center" align="center"width="40">源单号</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="30">客户姓名</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">车牌号</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">手机号</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">发票类型</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="20">税率</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">开票金额</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">税额</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">发票号</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">发票抬头</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">开票日期</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">源单日期</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="30">开票人</div>
-                    <div field="" id="" name="" headeralign="center" align="center"width="40">开票备注</div>
+                    <div field="serviceCode" name="serviceCode" headeralign="center" align="center"width="55">源单号</div>
+                    <div field="guestFullName"  name="guestFullName" headeralign="center" align="center"width="30">客户姓名</div>
+                    <div field="carNo"  name="carNo" headeralign="center" align="center"width="40">车牌号</div>
+                    <div field="guestMobile"  name="guestMobile" headeralign="center" align="center"width="40">手机号</div>
+                    <div field="invoiceType"  name="invoiceType" headeralign="center" align="center"width="40">发票类型</div>
+                    <div field="rate"  name="rate" headeralign="center" align="center"width="20">税率</div>
+                    <div field="invoiceAmt"  name="invoiceAmt" headeralign="center" align="center"width="40">开票金额</div>
+                    <div field="rateAmt"  name="rateAmt" headeralign="center" align="center"width="40">税额</div>
+                    <div field="invoiceNo"  name="invoiceNo" headeralign="center" align="center"width="40">发票号</div>
+                    <div field="invoiceName"  name="invoiceName" headeralign="center" align="center"width="40">发票抬头</div>
+                    <div field="recordDate"  name="recordDate" headeralign="center" align="center"width="35">开票日期</div>
+                    <div field="recordDateMain"  name="recordDateMain" headeralign="center" align="center"width="35">源单日期</div>
+                    <div field="recorder"  name="recorder" headeralign="center" align="center"width="30">开票人</div>
+                    <div field="remark"  name="remark" headeralign="center" align="center"width="40">开票备注</div>
                 </div>
             </div>
         </div>
@@ -69,7 +71,8 @@
             text: "更多筛选"
         }];
         nui.parse();
-
+		var grid = nui.get("grid");
+		grid.load();
         function newBill() {
             var item={};
             item.id = "TicketOpeningMgr";
@@ -78,6 +81,16 @@
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
         }
+        
+        grid.on("drawcell",function(e){
+        	var field = e.field,
+        	value = e.value;
+        	if(field == "recordDate" || field == "recordDateMain"){
+        		if(value){
+        			e.cellHtml = format(value,"yyyy-MM-dd");
+        		}
+        	}
+        });
     </script>
 </body>
 

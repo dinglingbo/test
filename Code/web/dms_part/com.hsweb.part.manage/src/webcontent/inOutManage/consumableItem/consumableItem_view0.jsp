@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.15"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.25"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -28,7 +28,16 @@ html,body {
 </style>
 </head>
 <body>
-   
+
+<div  class="nui-splitter" vertical="true" style="width:100%;height:100%;" allowResize="true">
+<!-- 上 -->
+	<div size="50%" showCollapseButton="false">
+    <div  class="nui-fit" id="" name="fastPartForConsumable_view0" url="" >
+       <iframe id="fastPartForConsumable_view0" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+    </div>  
+</div>
+<!-- 下 -->
+ <div showCollapseButton="false">
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table">
@@ -51,8 +60,8 @@ html,body {
                 </td>
 
                 <td><a class="nui-button"  plain="true" onclick="onSearch()"> <span class="fa fa-search fa-lg"></span> 查询</a>
-                	<a class="nui-button"  plain="true" onclick="getPart()"> <span class="fa fa-search fa-lg"></span> 领料</a>
-                	<a class="nui-button"  plain="true" onclick="orderToEnter()"> <span class="fa fa-search fa-lg"></span> 归库</a>
+                	<a class="nui-button"  plain="true" onclick="getPart()"> <span class="fa fa-cubes fa-lg"></span> 领料</a>
+                	<a class="nui-button"  plain="true" onclick="orderToEnter()"> <span class="fa fa-check fa-lg"></span> 归库</a>
                 
                 </td>
             
@@ -81,8 +90,8 @@ html,body {
         </div>
     </div>
 </div>
+</div>
 
- 
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@include file="/common/sysCommon.jsp"%>	
+<%@include file="/common/commonRepair.jsp"%>	
 <html>
 <!-- 
   - Author(s): localhost
@@ -12,6 +12,7 @@
 <head>
 	<title>开票单</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=1" type="text/javascript"></script>
 </head>
 <style type="text/css">
 	body {
@@ -36,12 +37,14 @@
 
 <body>
 	<div class="nui-fit">
-		<div style="width: 100%; height: 30%;">
+		<div style="width: 100%; height: 40%;" id="form">
+			<input class="nui-hidden"id="state" value='<b:write property="state"/>'  name="state"/>  
+			<input class="nui-hidden"id="mainId" name="mainId"/>  
 			<div>
 				<h2>
 					<span id="left">开票单</span>
 				</h2>
-				<span id="right">2018.07.02</span>
+				<span id="right"></span>
 			</div>
 			<br>
 			<div>
@@ -54,27 +57,37 @@
 					<tr>
 						<td>
 							发票类型
-							<input class="nui-combobox" style="width:100%">
+							<input name="invoiceType"
+	                        id="invoiceType"
+	                        class="nui-combobox width1"
+	                        textField="name"
+	                        valueField="id"
+	                        emptyText="请选择..."
+	                        url=""
+	                        allowInput="true"
+	                        showNullItem="false"
+	                        valueFromSelect="true"
+	                        nullItemText="请选择..."/>
 						</td>
 						<td>
 							税率
-							<input class="nui-textbox" style="width:100%">
+							<input type="text" style="width:80%" name="rate" id="rate" oninput="checkValue()">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							发票号
-							<input class="nui-textbox" style="width:100%">
+							<input class="nui-textbox" style="width:80%"name="invoiceNo">
 						</td>
 						<td>
 							发票抬头
-							<input class="nui-textbox" style="width:100%">
+							<input class="nui-textbox" style="width:70%"name="invoiceName">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							开票备注：
-							<input class="nui-textarea" style="width:100%">
+							<input class="nui-textarea" style="width:70%" name="remark">
 						</td>
 					</tr>
 				</table>
@@ -82,20 +95,45 @@
 
 		</div>
 		<div class="nui-fit">
-
+			<div class="mini-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
+                    dataField="list" loadingText="数据加载中...">     
+                    <div property="columns">
+                        <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
+                        <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
+                        <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
+                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
+                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
+                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                    </div>
+                </div>
 			<span>
 				<h2>单据信息</h2>
 			</span>
-			<div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:50%;">
+			<div id="grid" class="nui-datagrid " datafield="ticketDetail"  allowHeaderWrap="true"allowCellSelect="true" allowcelledit="true" url="com.hsapi.frm.invoiceManagement.searchTicketDetail.biz.ext" allowcellwrap="true" style="width:100%;height:50%;" allowcellselect="true">
 				<div property="columns">
-					<div field="" name="" headeralign="center" align="center">单号</div>
-					<div field="" name="" headeralign="center">客户名称</div>
-					<div field="" id="" name="" headeralign="center" align="center">车牌号</div>
-					<div field="" id="" name="" headeralign="center" align="center">发票类型</div>
-					<div field="" id="" name="" headeralign="center" align="center">税率</div>
-					<div field="" id="" name="" headeralign="center" align="center">发票金额</div>
-					<div field="" id="" name="" headeralign="center" align="center">税额</div>
-					<div field="" id="" name="" headeralign="center" align="center">删除</div>
+					<div field="serviceCode" name="serviceCode" headeralign="center" align="center">单号
+						<input class="nui-textbox" property="editor">
+					</div>
+					<div field="guestId" name="guestId" headeralign="center">客户名称
+						<input class="nui-textbox" property="editor">
+					</div>
+					<div field="carNo" name="carNo" headeralign="center" align="center">车牌号
+						<input class="nui-textbox" property="editor">
+					</div>
+					<div field="invoiceType" name="invoiceType" headeralign="center" align="center">发票类型
+						<input class="nui-textbox" property="editor">
+					</div>
+					<div field="rate" name="rate" headeralign="center" align="center">税率
+						<input class="nui-textbox" property="editor">
+					</div>
+					<div field="invoiceAmt" name="invoiceAmt" headeralign="center" align="center">发票金额
+						<input class="nui-textbox" property="editor">
+					</div>
+					<div field="rateAmt" name="rateAmt" headeralign="center" align="center">税额
+						<input class="nui-textbox" property="editor">
+					</div>
+					<div field="action" name="action" headeralign="center" align="center">操作</div>
 				</div>
 			</div>
 			<div style="height: 20px;"></div>
@@ -109,17 +147,13 @@
 				<span>税额</span>
 			</div>
 			<div align="right">
-				<a class="nui-button" iconcls="" id="" name="" onclick="">开票</a>
-				<a class="nui-button" iconcls="icon-blueReturn" id="" name="" onclick="">退出</a>
+				<a class="nui-button" iconcls="" id="" name="" onclick="saveData()">开票</a>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
 		nui.parse();
 
-		function newBill() {
-			
-		}
 	</script>
 </body>
 

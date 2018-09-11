@@ -23,9 +23,9 @@ var storehouse = null;
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
-var mainTabs = null;
-var billmainTab = null;
-var partInfoTab = null;
+
+
+
 var fastPartEntryEl = null;
 var dataList = null;
 var morePartGrid = null;
@@ -87,50 +87,21 @@ $(document).ready(function(v) {
 	sOrderDate = nui.get("sOrderDate");
 	eOrderDate = nui.get("eOrderDate");
 
-	mainTabs = nui.get("mainTabs");
-	billmainTab = mainTabs.getTab("billmain");
-	partInfoTab = mainTabs.getTab("partInfoTab");
+
+
 
 	advancedTipWin = nui.get("advancedTipWin");
 
-	//setTimeout(function(){ 
-	document.getElementById("formIframe").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottom.jsp";
-	document.getElementById("formIframePart").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartInfo.jsp";
-		//document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
-		//document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
-	//}, 3000);
 
-
-	//document.getElementById("formIframePart").contentWindow.setInitTab('purchase');
-
-	$("#guestId").bind("keydown", function (e) {
-        /*if (e.keyCode == 13) {
-            var orderMan = nui.get("orderMan");
-            orderMan.focus();
-        }*/
-        if (e.keyCode == 13) {
-			//addNewRow(true);
-        }
-    });
     $("#orderMan").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var remark = nui.get("remark");
             remark.focus();
         }
     });
-    /*$("#planArriveDate").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            var remark = nui.get("remark");
-            remark.focus();
-        }
-    });*/
+
     $("#remark").bind("keydown", function (e) {
-    	//新增一条明细
-    	/*var event=e||window.e;
-    	var keyCode=event.keyCode||event.which;
-    	if(keyCode==13){
-    		addInsertRow();
-    	}*/
+
     	if (e.keyCode == 13) {
             addNewRow(true);
         }
@@ -285,39 +256,7 @@ function addNewRow(check){
 	}
 }
 
-function ontopTabChanged(e){
-	var tab = e.tab;
-	var name = tab.name;
-	var url = tab.url;
-	if(!url){
-		if(name == "partInfoTab"){
-			//mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containPartInfo.jsp", tab);
-		}else if(name == "partStockInfoTab"){
-			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containStock.jsp", tab);
-		}else if(name == "purchaseAdvanceTab"){
-			mainTabs.loadTab(webPath + contextPath + "/manage/inOutManage/common/embedJsp/containOrderCart.jsp", tab);
-			
-		}else if(name == "billmain"){
-			var data = rightGrid.getChanges();
-			if(data && data.length > 0){
-				addNewRow(true);
-			}else{
-				add();
-			}
-		}
-	}else{
-		if(name == "billmain"){
-			var data = rightGrid.getChanges();
-			if(data && data.length > 0) {
-				addNewRow(true);
-			}else{
-				add();
-			}
-			
-		}
-	}
-	
-}
+
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
 	return "pchs";
@@ -402,13 +341,12 @@ function loadRightGridData(mainId, auditSign) {
 		token : token
 	},function(){
 
-		var tab = mainTabs.getActiveTab();
-		if(tab.name == "billmain"){
-			var data = rightGrid.getData();
-			if(data && data.length <= 0){
-				addNewRow(false);
-			}	
-		}
+
+	var data = rightGrid.getData();
+	if(data && data.length <= 0){
+		addNewRow(false);
+	}	
+		
 
 	});
 
@@ -753,7 +691,7 @@ function add() {
 		showMsg("请先到仓库定义功能设置仓库!","W");
 		return;
 	}
-	mainTabs.activeTab(billmainTab);
+//	mainTabs.activeTab(billmainTab);
 	if (checkNew() > 0) {
 		showMsg("请先保存数据!","W");
 		return;
@@ -891,7 +829,7 @@ function save() {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");
 			//如果检测到有必填字段未填写，切换到主表界面
-			mainTabs.activeTab(billmainTab);
+//			mainTabs.activeTab(billmainTab);
 
 			return;
 		}
@@ -1204,39 +1142,16 @@ function getPartInfo(params){
 					advancedMorePartWin.show();
 					morePartGrid.setData(partlist);
 					partShow = 1;
-					//mainTabs.activeTab(partInfoTab);
-					//var partCode = params.partCode;
-					//var partName = params.partName;
-					//var param = {code:partCode, name:partName};
-					//document.getElementById("formIframePart").contentWindow.initData(params.partCode);
-					//mainTabs.getTabIFrameEl(partInfoTab).contentWindow.initData(params.partCode);
+					
 				}
 				
 			}else{
-				//清空行数据
-				// nui.confirm("没有搜索到配件信息，是否需要新增?", "友情提示", function(action) {
-				// 	if (action == "ok") {
 
-				// 		var row = rightGrid.getSelected();
-				// 		rightGrid.removeRow(row);
-				// 		addNewRow(false);
-				// 	} else {
-				// 		var row = rightGrid.getSelected();
-				// 		rightGrid.removeRow(row);
-				// 		addNewRow(false);
-				// 		return;
-				// 	}
-				// });
 				showMsg("没有搜索到配件信息!","W");
 				var row = rightGrid.getSelected();
 				rightGrid.removeRow(row);
 				addNewRow(false);
-				/*var row = rightGrid.getSelected();
-				var newRow = {comPartCode: ""};
 
-				rightGrid.cancelEdit();
-				rightGrid.updateRow(row, newRow);
-				rightGrid.beginEditCell(row,"comPartCode");*/
 			}
 
 		},
@@ -1271,7 +1186,7 @@ function addDetail(part) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");
 			//如果检测到有必填字段未填写，切换到主表界面
-			mainTabs.activeTab(billmainTab);
+//			mainTabs.activeTab(billmainTab);
 
 			return;
 		}
@@ -1602,7 +1517,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");
 
-			mainTabs.activeTab(billmainTab);
+//			mainTabs.activeTab(billmainTab);
 			return;
 		}
 	}
@@ -1680,7 +1595,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								rightGrid.setData([]);
 								add();
 	
-								mainTabs.activeTab(billmainTab);
+//								mainTabs.activeTab(billmainTab);
 							}
 						} else {
 							showMsg(data.errMsg || (str+"失败!"),"W");
@@ -1745,7 +1660,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								rightGrid.setData([]);
 								add();
 	
-								mainTabs.activeTab(billmainTab);
+//								mainTabs.activeTab(billmainTab);
 							}
 						} else {
 							showMsg(data.errMsg || (str+"失败!"),"W");

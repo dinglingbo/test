@@ -21,13 +21,13 @@
 <body>
 	<div class="nui-form" id="form" style="width:100%; height:100%;">
 	
-		<div align="center" style="width:100%;">			
+		<div align="center" style="width:100%; padding-left:7px;">			
 			领料人:<input id="orderMan" name="orderMan" class="nui-textbox" />
 		</div>
-		<div  align="center" style="width:100%;">			
+		<div  align="center" style="width:100%;padding-left:12px">			
 			备注:<input id="remark" name="remark" class="nui-textbox" />
 		</div>
-		<div  align="center" style="width:100%;">			
+		<div  align="center" style="width:100%; ">			
 			出库数量:<input id="orderQty" name="orderQty" class="nui-textbox" />
 		</div>
 		<div align="center" style="width:100%;">			

@@ -2198,14 +2198,16 @@ function onPrint(e){
 	if(main.id){
 		var params = {
 				serviceId : main.id,
-				comp : currOrgName
+				comp : currOrgName,
+				baseUrl : baseUrl,
+				token : token
 		};
 		if(e == 1){
-			openUrl = "com.hsweb.print.repairOrder.flow";
+			openUrl = webBaseUrl+"com.hsweb.print.repairOrder.flow";
 		}else if(e == 2){
-			openUrl = "com.hsweb.print.settlement.flow";
+			openUrl = webBaseUrl+"com.hsweb.print.settlement.flow";
 		}else if(e == 3){
-			openUrl = "com.hsweb.print.smallSettlement.flow";
+			openUrl = webBaseUrl+"com.hsweb.print.smallSettlement.flow";
 		}
 		nui.open({
             url: openUrl,
@@ -2222,7 +2224,7 @@ function onPrint(e){
 	}
 }
 
-function showHealth(){
+function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
 			carId : main.carId,
@@ -2230,7 +2232,7 @@ function showHealth(){
 	};
 	if(main.id){
 		nui.open({
-            url: "com.hsweb.RepairBusiness.carDetails.flow",
+            url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
             width: "800",
             height: "1000",
             showMaxButton: false,
@@ -2242,4 +2244,42 @@ function showHealth(){
             },
         });
 	}
+}
+
+function showHealth(){
+	window.open(webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp")
+	/*nui.open({
+        url: webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp",
+        width: "800",
+        height: "1000",
+        showMaxButton: false,
+		allowResize: false,
+        showHeader: true,
+        onload: function() {
+            var iframe = this.getIFrameEl();
+        },
+    });*/
+}
+
+function pay(){
+	nui.open({
+		url:webBaseUrl+"repair/RepairBusiness/Reception/carWashBillUp.jsp",
+		width:"100%",
+		height:"100%",
+		//加载完之后
+		onload: function(){	
+		},
+	ondestroy : function(action) {
+		if (action == 'ok') {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getData();
+			supplier = data.supplier;
+			var value = supplier.id;
+			var text = supplier.fullName;
+			var el = nui.get(elId);
+			el.setValue(value);
+			el.setText(text);
+		}
+	}
+	})
 }

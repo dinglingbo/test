@@ -173,10 +173,11 @@
     	
     	function SetData(params){
     		nui.ajax({
-                url: "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",
+                url: params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",
                 type : "post",
                 data : {
-                	id : params.serviceId
+                	id : params.serviceId,
+	                	token : params.token
                 },
                 async: false,
                 success: function (text) {
@@ -199,10 +200,11 @@
             });
             var guestId = document.getElementById("guestId").innerHTML;
             nui.ajax({
-                url: "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
+                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                 type : "post",
                 data : {
-                	guestId : params.guestId
+                	guestId : params.guestId,
+	                	token : params.token
                 },
                 async: false,
                 success: function (text) {
@@ -221,10 +223,11 @@
             });
             	//document.getElementById("name").innerHTML = "&nbsp;套餐";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
+	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
 	                type : "post",
 	                data : {
-	                	serviceId : params.serviceId
+	                	serviceId : params.serviceId,
+	                	token : params.token
 	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
@@ -255,7 +258,7 @@
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;工时";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext",
+	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext",
 	                type : "post",
 	                data : {
 	                	serviceId : params.serviceId
@@ -284,10 +287,11 @@
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;配件";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",
+	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",
 	                type : "post",
 	                data : {
-	                	serviceId : params.serviceId
+	                	serviceId : params.serviceId,
+	                	token : params.token
 	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);

@@ -1069,6 +1069,7 @@ function addToBillPart(row, callback, unmaskcall){
         interType:'part',
         data:data
     };
+    /*params = {};
     svrCRUD(params,function(text){
         var errCode = text.errCode||"";
         var errMsg = text.errMsg||"";
@@ -1083,7 +1084,7 @@ function addToBillPart(row, callback, unmaskcall){
         }
     },function(){
         unmaskcall && unmaskcall();
-    });
+    });*/
 }
 function delFromBillPart(data, callback){
     var part = {
@@ -1098,7 +1099,7 @@ function delFromBillPart(data, callback){
         	part: part
         }
     };
-    svrCRUD(params,function(text){
+    /*svrCRUD(params,function(text){
         var errCode = text.errCode||"";
         var errMsg = text.errMsg||"";
         if(errCode == 'S'){   
@@ -1107,7 +1108,7 @@ function delFromBillPart(data, callback){
             showMsg(errMsg||"删除配件信息失败!","W");
             return;
         }
-    });
+    });*/
 }
 
 
@@ -1230,4 +1231,17 @@ function onValueChangedUnitPrice(e){
 		 };
 	rpsPartGrid.updateRow(row,data);
 	
+}
+
+/*
+ * 修改维修主表的信息
+ * var SaveMaintainUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";*/
+function saveBatch(){
+	
+	var sellPartAdd = rpsPartGrid.getChanges("added");
+	var sellPartUpdate = rpsPartGrid.getChanges("modified");
+	var sellPartDelete = rpsPartGrid.getChanges("removed");
+	
+    
+
 }

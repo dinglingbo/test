@@ -8,7 +8,7 @@
 -->
 <head>
 <title>领料</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.38"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.61"></script>
 <style type="text/css">                
 .table-label {
 	text-align: right;
@@ -61,7 +61,6 @@ body .mini-grid-row-selected{
                                 <input class="nui-checkbox" id="showStock" trueValue="1" falseValue="0" text="库存数量>0"/>
                                 <span class="separator"></span>
                                 <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
                                 <a class="nui-button" iconCls="" plain="true" onclick="onOut" id="out"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                                 <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
                             
@@ -71,14 +70,7 @@ body .mini-grid-row-selected{
                         </tr>
                     </table>
                 </div>
-                <div class="nui-fit">
-                    <div id="morePartTabs" class="nui-tabs" name="morePartTabs"
-                            activeIndex="0" 
-                            style="width:100%; height:100%;" 
-                            plain="false" 
-                            >
-   
-                        <div title="批次选择" id="enterTab" name="enterTab" >
+                <div class="nui-fit">             
                             <div id="enterGrid" class="nui-datagrid" style="width:100%;height:100%;"
                                     borderStyle="border:1;"
                                     selectOnLoad="true"
@@ -109,7 +101,7 @@ body .mini-grid-row-selected{
                                     </div>
                                     <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
                                     <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-                                    <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+                                    <div field="storeId" name="storeId"  id="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
                                     <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
                                     <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                                     <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
@@ -128,122 +120,12 @@ body .mini-grid-row-selected{
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                    </div>
-                        
                 </div>
             </div>
         </div>
         
     </div>
 </div>
-
-
-
-<div id="advancedAddWin" class="nui-window"
-     title="数量单价录入" style="width:400px;height:200px;"
-     showModal="true" showHeader="false"
-     allowResize="false"
-     allowDrag="true">
-     <div id="optTabs" class="nui-tabs" name="optTabs"
-        activeIndex="0" 
-        style="width:100%; height:100%;" 
-        plain="false" >
-        <div title="数量单价" id="qpTab" name="qpTab" >
-                <div id="advancedAddForm" class="form">
-                    <table style="width:100%;padding-top: 20px">
-                        <tr>
-                            <td class="title required">
-                                <label>仓库：</label>
-                            </td>
-                            <td>
-                                <input id="storeId"
-                                        name="storeId"
-                                        class="nui-combobox"
-                                        textField="name"
-                                        valueField="id"
-                                        emptyText="请选择..."
-                                        url=""
-                                        allowInput="false"
-                                        showNullItem="false"
-                                        width="100%"
-                                        nullItemText="请选择..."/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="title required">
-                                <label>数量：</label>
-                            </td>
-                            <td>
-                                <input id="qty" name="qty" class="nui-textbox" onvaluechanged="calc('qty')" vtype="float" selectOnFocus="true" width="100%" value="1"/>
-                            </td>
-                            <td class="title required">
-                                <label>单价：</label>
-                            </td>
-                            <td>
-                                <input id="price" name="price" class="nui-textbox width1" onvaluechanged="calc('price')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="title required">
-                                <label>金额：</label>
-                            </td>
-                            <td>
-                                <input id="amt" name="amt" class="nui-textbox" onvaluechanged="calc('amt')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
-                            </td>
-                            <td class="title">
-                                <label>备注：</label>
-                            </td>
-                            <td>
-                                <input id="remark" name="remark" class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    <div style="text-align:center;padding:10px;">
-                        <a class="nui-button" id="chooseBtn" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
-                        <a class="nui-button" onclick="onAdvancedAddCancel" style="width:60px;">取消</a>
-                    </div>
-                </div>
-        </div>
-        <div title="销价参数" id="priceTab" name="priceTab" >
-            <div class="nui-fit">
-                <div id="priceGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                    showPager="false"
-                    dataField="price"
-                    allowCellSelect="true"
-                    allowCellEdit="true"
-                    sortMode="client"
-                    pageSize="10000"
-                    sizeList="[1000,5000,10000]"
-                    showSummaryRow="false">
-                   <div property="columns">
-                       <div allowSort="true" field="name" width="100" headerAlign="center" header="价格类型"></div>
-                       <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="售价">
-                            <input property="editor" vtype="float" class="nui-textbox"/>
-                       </div>
-                       <div allowSort="true" datatype="float" field="operator" width="60" headerAlign="center" header="创建人"></div>
-                       <div allowSort="true" field="operateDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                   </div>
-               </div>
-            </div>
-            <div class="nui-toolbar" style="padding:0px;border-bottom:1;">
-                    <table style="width:100%;">
-                        <tr>
-                            <td style="width:100%;text-align:center;">
-                                <a class="nui-button" iconCls="" plain="true" onclick="savePrice" id="savePriceBtn">
-                                    <span class="fa fa-save fa-lg"></span>&nbsp;保存设置
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-            </div>
-
-        </div> 
-
-    </div>
-    
 </div>
 
 </body>

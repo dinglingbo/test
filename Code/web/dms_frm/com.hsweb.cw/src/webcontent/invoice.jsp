@@ -95,18 +95,19 @@
 
 		</div>
 		<div class="nui-fit">
-			<div class="mini-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
-                    dataField="list" loadingText="数据加载中...">     
+			<div class="mini-autocomplete" style="width:200px;"  popupWidth="650" 
+                     url="" value="" placeholder="来源单号" dataField="list" loadingText="数据加载中...">     
                     <div property="columns">
-                        <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
-                        <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
-                        <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
-                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                        <div field="serviceCode" name="serviceCode" headeralign="center" align="center">单号</div>
+						<div field="guestId" name="guestId" headeralign="center">客户名称</div>
+						<div field="carNo" name="carNo" headeralign="center" align="center">车牌号</div>
+						<div field="invoiceType" name="invoiceType" headeralign="center" align="center">发票类型</div>
+						<div field="rate" name="rate" headeralign="center" align="center">税率</div>
+						<div field="invoiceAmt" name="invoiceAmt" headeralign="center" align="center">发票金额</div>
+						<div field="rateAmt" name="rateAmt" headeralign="center" align="center">税额</div>
                     </div>
                 </div>
+                
 			<span>
 				<h2>单据信息</h2>
 			</span>

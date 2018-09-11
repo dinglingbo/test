@@ -205,7 +205,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(包含工时和配件)</b></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含工时/配件)</b></td>
                     <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
                     <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
@@ -314,7 +314,7 @@
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");; 
 	        $.ajaxSettings.async = false;//设置为同步执行
-	        $.post("com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
+	        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId+"&token="+params.token,{},function(text){
 	        	if(text.list.length > 0){
 	        		var list = text.list[0];
 	        		var carNo = list.carNO;
@@ -355,7 +355,7 @@
 	        		document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
 	        	}
         	});	
-        	$.post("com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId,{},function(text){//套餐
+        	$.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){//套餐
 	        	if(text.errCode == "S"){
 	        		var tBody = $("#tbodyId");
     				tBody.empty();
@@ -413,7 +413,7 @@
     				}
 	        	}
         	});
-        	 $.post("com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext?serviceId="+params.serviceId,{},function(text){//工时
+        	 $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){//工时
 	        	if(text.errCode == "S"){
 	        		var tBody = $("#tbodyId2");
     				tBody.empty();
@@ -441,7 +441,7 @@
     				}
 	        	}
         	});
-	        $.post("com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext?serviceId="+params.serviceId,{},function(text){//配件
+	        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){//配件
 	        	if(text.errCode == "S"){
 	        		var tBody = $("#tbodyId3");
     				tBody.empty();

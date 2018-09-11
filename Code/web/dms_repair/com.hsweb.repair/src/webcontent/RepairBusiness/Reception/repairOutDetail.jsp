@@ -197,7 +197,7 @@
 
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
     dataField="data"   multiSelect="false" 
-    url="com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext"  showModified="false"
+    url=""  showModified="false"
     allowCellEdit="true" >
     <div property="columns">
      <div headerAlign="center" type="indexcolumn" width="20">序号</div>
@@ -225,7 +225,7 @@
 
 <div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="list"  allowCellSelect="true" multiSelect="true" 
-url="com.hsapi.part.invoice.query.queryRepairOutByServiceId.biz.ext"  showModified="false"
+url=""  showModified="false"
 allowCellEdit="true"  >
 <div property="columns">
  <div headerAlign="center" type="indexcolumn" width="20">序号</div>

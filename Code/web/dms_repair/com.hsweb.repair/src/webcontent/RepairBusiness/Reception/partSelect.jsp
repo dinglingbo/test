@@ -81,7 +81,7 @@ allowCellSelect="true" allowCellEdit="true"> -->
 
 
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
-url="com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext"
+url=""
 dataField="partlist"
 idField="id" 
 showModified="false"
@@ -122,7 +122,11 @@ editNextOnEnterKey="true"  editNextRowCell="true"
 
 <script type="text/javascript">
     nui.parse();
+    var webBaseUrl = webPath + contextPath + "/";
+    var baseUrl = apiPath + repairApi + "/";
+    var gridUrl = baseUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
     var mainGrid = nui.get("mainGrid"); 
+    mainGrid.setUrl(gridUrl);
 
     function SetData(par,type){
         //id= 9522; 
@@ -146,7 +150,7 @@ editNextOnEnterKey="true"  editNextRowCell="true"
     }
 
     function onOk(){
-                var data = mainGrid.getData();
+        var data = mainGrid.getData();
         if(data.length > 0){
 
             for (var i = 0; i < data.length; i++) {
@@ -155,17 +159,17 @@ editNextOnEnterKey="true"  editNextRowCell="true"
                     return;
                 }
             }
-        nui.open({
-            url:"com.hsweb.RepairBusiness.partSelectMember.flow",
-            title:"选择领料人",
-            height:"300px",
-            width:"600px", 
-            onload:function(){ 
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData("ll");
-        },
-        ondestroy:function(action){
-            if (action == "ok") {  
+            nui.open({
+                url:webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
+                title:"选择领料人",
+                height:"300px",
+                width:"600px", 
+                onload:function(){ 
+                    var iframe = this.getIFrameEl();
+                    iframe.contentWindow.SetData("ll");
+                },
+                ondestroy:function(action){
+                    if (action == "ok") {  
                     savePartOut();     //如果点击“确定”
                     //CloseWindow("close");
                 }
@@ -174,10 +178,10 @@ editNextOnEnterKey="true"  editNextRowCell="true"
 
         });
 
-    }else{
-        showMsg('没有需要出库的配件!','W');
+        }else{
+            showMsg('没有需要出库的配件!','W');
+        }
     }
-}
 
 
     function  savePartOut(){
@@ -193,10 +197,11 @@ editNextOnEnterKey="true"  editNextRowCell="true"
                 paramsData[i].unit = data[i].systemUnitId;
             }
             nui.ajax({
-                url:"com.hsapi.part.invoice.partInterface.partToOut.biz.ext",
+                url:baseUrl + "com.hsapi.part.invoice.partInterface.partToOut.biz.ext",
                 type:"post",
                 data:{ 
-                    list:paramsData   
+                    list:paramsData,
+                    token:token   
                 }, 
                 success:function(text){ 
                     showMsg('成功!','S');
@@ -206,7 +211,7 @@ editNextOnEnterKey="true"  editNextRowCell="true"
             showMsg('没有需要出库的配件!','W');
         }
     }
- 
+
 
 
 

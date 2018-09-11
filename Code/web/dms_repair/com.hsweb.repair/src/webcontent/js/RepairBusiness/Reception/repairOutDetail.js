@@ -12,6 +12,8 @@ var servieIdEl = null;
 var searchNameEl = null;
 var billForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
+var repairOutGridUrl =  baseUrl + "com.hsapi.part.invoice.query.queryRepairOutByServiceId.biz.ext";
 var fserviceId = 0;
 var actionType = null;
 
@@ -21,6 +23,8 @@ $(document).ready(function(){
 	mid = nui.get("mid").value;
 	mainGrid = nui.get("mainGrid");
 	repairOutGrid = nui.get("repairOutGrid");
+	mainGrid.setUrl(mainGridUrl);
+	repairOutGrid.setUrl(repairOutGridUrl);
 	actionType = nui.get("actionType").value;
 	billForm = new nui.Form("#billForm");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
@@ -201,7 +205,7 @@ function LLSave(argument) {
 
 function openPartSelect(par,type){
 	nui.open({
-		url:"com.hsweb.RepairBusiness.partSelect.flow",
+		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow",
 		title:"选择配件",
 		height:"400px",
 		width:"900px",
@@ -244,16 +248,16 @@ function partOutRtn(){
 
 function memberSelect(){
 	nui.open({
-		url:"com.hsweb.RepairBusiness.partSelectMember.flow",
+		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
 		title:"选择归库人",
 		height:"300px",
 		width:"600px",
 		onload:function(){ 
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData("th");
-        },
-        ondestroy:function(action){
-        	if (action == "ok") {  
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.SetData("th");
+		},
+		ondestroy:function(action){
+			if (action == "ok") {  
                     //savePartOut();     //如果点击“确定”
                     //CloseWindow("close");
                 }

@@ -12,6 +12,7 @@ var searchNameEl = null;
 var billForm = null;
 var topForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var mainGridUrl = webBaseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext"
 var fserviceId = 0;
 var actionType = null;
 
@@ -24,6 +25,7 @@ $(document).ready(function ()
     var nowDate = yy + "-" + mm + "-" + dd; //本月月
     nui.get("enterDate").setValue(nowDate);
     mainGrid = nui.get("mainGrid");
+    mainGrid.setUrl(mainGridUrl);
     actionType = nui.get("actionType").value;
     tid = nui.get("tid").value;
     mid = nui.get("mid").value;
@@ -445,7 +447,7 @@ function saveDetail(maintain,unmaskcall){
         gridData.push(tem);
     }
     nui.ajax({
-        url : "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext",
+        url : baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext",
         type : "post",
         data : JSON.stringify({
             listall:gridData,
@@ -468,7 +470,7 @@ function saveDetail(maintain,unmaskcall){
 function setAllData(){
 
     nui.ajax({
-        url:"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
+        url: baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
         type:"post",
         data:{ 
             id:mid   

@@ -84,8 +84,6 @@
 </head>
 <body>
 
-
-
 <div class="nui-toolbar" style="padding:2px;height:30px">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            

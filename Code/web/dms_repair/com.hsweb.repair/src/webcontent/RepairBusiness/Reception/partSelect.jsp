@@ -116,7 +116,7 @@ editNextOnEnterKey="true"  editNextRowCell="true"
     <div field="partId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件id"></div> 
     <div field="partNameId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件nameid"></div>         
     <div field="partFullName" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件fullname"></div>         
-</div>
+</div> 
 </div>
 </div>
 
@@ -146,14 +146,23 @@ editNextOnEnterKey="true"  editNextRowCell="true"
     }
 
     function onOk(){
+                var data = mainGrid.getData();
+        if(data.length > 0){
+
+            for (var i = 0; i < data.length; i++) {
+                if(!data[i].outQty){
+                    showMsg('请先填写领料数量!','W');
+                    return;
+                }
+            }
         nui.open({
             url:"com.hsweb.RepairBusiness.partSelectMember.flow",
             title:"选择领料人",
             height:"300px",
-            width:"600px",
+            width:"600px", 
             onload:function(){ 
-            //var iframe = this.getIFrameEl();
-            //iframe.contentWindow.SetData(ids);
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData("ll");
         },
         ondestroy:function(action){
             if (action == "ok") {  
@@ -165,25 +174,31 @@ editNextOnEnterKey="true"  editNextRowCell="true"
 
         });
 
+    }else{
+        showMsg('没有需要出库的配件!','W');
     }
+}
 
 
     function  savePartOut(){
         var data = mainGrid.getData();
         alert("1");
         if(data){
-            var paramsData = {};
+            var paramsData = [];
             paramsData = data;
-            paramsData.serviceId = '';
-            paramsData.id = '';
-            paramsData.unit = data.systemUnitId;
+            for (var i = 0; i < data.length; i++) {
+                paramsData[i]= data[i];
+                paramsData[i].serviceId = '';
+                paramsData[i].id = '';
+                paramsData[i].unit = data[i].systemUnitId;
+            }
             nui.ajax({
                 url:"com.hsapi.part.invoice.partInterface.partToOut.biz.ext",
                 type:"post",
-                data:{
-                    list:data
-                },
-                success:function(text){
+                data:{ 
+                    list:paramsData   
+                }, 
+                success:function(text){ 
                     showMsg('成功!','S');
                 }
             });
@@ -191,6 +206,8 @@ editNextOnEnterKey="true"  editNextRowCell="true"
             showMsg('没有需要出库的配件!','W');
         }
     }
+ 
+
 
 
     mainGrid.on("cellcommitedit",function(e){

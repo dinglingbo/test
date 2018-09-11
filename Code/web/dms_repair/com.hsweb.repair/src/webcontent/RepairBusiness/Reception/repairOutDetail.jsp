@@ -8,7 +8,7 @@
   - Date: 2018-07-02 20:50:20 
   - Description:
 -->          
-
+ 
 <head> 
     <title>出库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -223,9 +223,9 @@
 </div>
 
 
-<div id="mainGrid2" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
+<div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="list"  allowCellSelect="true" multiSelect="true" 
-url="com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext"  showModified="false"
+url="com.hsapi.part.invoice.query.queryRepairOutByServiceId.biz.ext"  showModified="false"
 allowCellEdit="true"  >
 <div property="columns">
  <div headerAlign="center" type="indexcolumn" width="20">序号</div>

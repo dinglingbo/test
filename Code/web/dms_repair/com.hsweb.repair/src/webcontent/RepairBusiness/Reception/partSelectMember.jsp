@@ -8,7 +8,7 @@
   - Date: 2018-01-25 14:17:08
   - Description:  
 -->
- 
+
 <head> 
   <title>选择领料人</title>  
   <style type="text/css">
@@ -25,7 +25,8 @@
 
 <body>
     <div style="height: 10px;"></div>
-    <table  style=" left:0;right:0;margin: 0 auto;"> 
+    <input class="nui-textbox" name="ftype" id="ftype" value='<b:write property="ftype"/>'  visible="false"/>
+    <table id="table1"  style=" left:0;right:0;margin: 0 auto;"> 
 
         <tr>
             <td class="tbtext">领料人：</td>
@@ -37,6 +38,7 @@
                 textField="empName"
                 valueField="empId"
                 emptyText="请选择..."
+                required="true"
                 url=""
                 allowInput="true"
                 showNullItem="false"
@@ -47,7 +49,7 @@
         </tr> 
         <tr>
             <td style="height: 10px;"></td>
-            </tr> 
+        </tr> 
         <tr>
             <td class="tbtext">备注:</td>
             <td class="tbCtrl">
@@ -66,7 +68,7 @@
     </div>
     <script type="text/javascript">
         nui.parse();
-
+        var form = new nui.Form("#table1");
         var mtAdvisorIdEl = null;
         mtAdvisorIdEl = nui.get("mtAdvisorId");
 
@@ -79,15 +81,23 @@
             nui.get("mtAdvisor").setValue(text);
         });
 
+        function SetData(ftype){
+            nui.get("ftype").setValue(ftype);
+        }
 
-function onOk(){ 
-        closeWindow("ok");
-}
+        function onOk(){ 
+            form.validate();
+            if (form.isValid() == false) {
+                showMsg("请先选择领料人！","W");
+                return;
+            }
+            closeWindow("ok");
+        }
 
 
-    function onCancel() {
-       closeWindow("cancel");
-    }
+        function onCancel() {
+            closeWindow("cancel");
+        }
 
         function CloseWindow(action) {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);

@@ -2,7 +2,8 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 
 var mainGrid = null; 
-var mid = null;
+var repairOutGrid = null; 
+var mid = null;//主表ID
 var tid = null;
 
 var mtAdvisorIdEl = null;   
@@ -19,6 +20,7 @@ $(document).ready(function(){
 	tid = nui.get("tid").value;
 	mid = nui.get("mid").value;
 	mainGrid = nui.get("mainGrid");
+	repairOutGrid = nui.get("repairOutGrid");
 	actionType = nui.get("actionType").value;
 	billForm = new nui.Form("#billForm");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
@@ -158,6 +160,7 @@ function setInitData(params){
                         //mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                         //mainGrid.load({mainId:params.id});
                         mainGrid.load({serviceId:params.id});
+                        repairOutGrid.load({serviceId:params.id});
 
                     }else{ 
                     	showMsg("数据加载失败,请重新打开工单!","W");
@@ -195,6 +198,7 @@ function LLSave(argument) {
 	}
 }
 
+
 function openPartSelect(par,type){
 	nui.open({
 		url:"com.hsweb.RepairBusiness.partSelect.flow",
@@ -207,9 +211,57 @@ function openPartSelect(par,type){
 		},
 		ondestroy:function(action){
 
-               }
+		}
 
-           });
+	});
+}
+
+
+
+
+function partOutRtn(){
+	var rows = repairOutGrid.getSelecteds();
+	if (rows.length > 0) {
+		for (var i = 0, l = rows.length; i < l; i++) {
+			var r = rows[i].partId;
+			var c = rows[i].partCode;
+			if(r){
+				openPartSelect(r,"Id");
+			}else if(c){
+				openPartSelect(c,"Code");
+			}else{
+				showMsg('部分配件需单独领取!','W');
+				return;
+			}
+		}
+		
+	}else{
+		showMsg('请先选择需要归库的配件!','W');
+	}
+
+}
+
+
+function memberSelect(){
+	nui.open({
+		url:"com.hsweb.RepairBusiness.partSelectMember.flow",
+		title:"选择归库人",
+		height:"300px",
+		width:"600px",
+		onload:function(){ 
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData("th");
+        },
+        ondestroy:function(action){
+        	if (action == "ok") {  
+                    //savePartOut();     //如果点击“确定”
+                    //CloseWindow("close");
+                }
+
+            }
+
+        });
+
 }
 
 

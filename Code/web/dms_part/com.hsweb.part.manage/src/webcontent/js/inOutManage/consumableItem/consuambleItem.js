@@ -85,11 +85,11 @@ function getPart() {
 function getMainData() {
     var data = grid.getSelected();
     // 汇总明细数据到主表
-    data.isFinished = 0;
-    data.auditSign = 0;
-    data.billStatusId = 0;
-    data.printTimes = 0;
-    data.orderTypeId = 5;
+//    data.isFinished = 0;
+//    data.auditSign = 0;
+//    data.billStatusId = 0;
+//    data.printTimes = 0;
+//    data.orderTypeId = 5;
 
     if (data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
@@ -98,7 +98,7 @@ function getMainData() {
     }
 
     if(!data.billTypeId){
-        data.billTypeId = "010103";
+        data.billTypeId = "050207";
     }
 
     grid.findRow(function(row){
@@ -111,31 +111,31 @@ function getMainData() {
 
     return data;
 }
-function getModifyData(data, addList, delList){
-    var arr = [];
-    if(data==addList) return arr;
-    for(var i=0; i<addList.length; i++) {
-    
-       var val = addList[i];
-       for(var j=0; j<data.length; j++) {
-        
-           if(data[j] == val)
-           data.splice(j, 1);
-        }
-    }
-            
-    for(var i=0; i<delList.length; i++) {
-    
-       var val = delList[i];
-       for(var j=0; j<data.length; j++) {
-        
-           if(data[j] == val)
-           data.splice(j, 1);
-        }
-    }
-
-    return data;
-}
+//function getModifyData(data, addList, delList){
+//    var arr = [];
+//    if(data==addList) return arr;
+//    for(var i=0; i<addList.length; i++) {
+//    
+//       var val = addList[i];
+//       for(var j=0; j<data.length; j++) {
+//        
+//           if(data[j] == val)
+//           data.splice(j, 1);
+//        }
+//    }
+//            
+//    for(var i=0; i<delList.length; i++) {
+//    
+//       var val = delList[i];
+//       for(var j=0; j<data.length; j++) {
+//        
+//           if(data[j] == val)
+//           data.splice(j, 1);
+//        }
+//    }
+//
+//    return data;
+//}
 function order(){
     var data = grid.getData();
     var flagSign = 0; 
@@ -195,7 +195,7 @@ function checkRightData() {
 }
 //归库
 var enterUrl = baseUrl
-+ "com.hsapi.part.invoice.crud.auditPjSellOrderRtn.biz.ext";
++ "com.hsapi.part.invoice.partInterface.partOutRtn.biz.ext";
 function orderEnter(flagSign, flagStr, flagRtn) {
 
     var row = grid.getSelected();
@@ -226,12 +226,12 @@ function orderEnter(flagSign, flagStr, flagRtn) {
             data = getMainData();
 
             //由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
-            var detailData = grid.getData();
-
-            var pchsOrderDetailAdd = grid.getChanges("added");
-            var pchsOrderDetailUpdate = grid.getChanges("modified");
-            var pchsOrderDetailDelete = grid.getChanges("removed");
-            var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
+//            var detailData = grid.getData();
+//
+//            var pchsOrderDetailAdd = grid.getChanges("added");
+//            var pchsOrderDetailUpdate = grid.getChanges("modified");
+//            var pchsOrderDetailDelete = grid.getChanges("removed");
+//            var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
             nui.mask({
                 el : document.body,
                 cls : 'mini-mask-loading',
@@ -242,11 +242,11 @@ function orderEnter(flagSign, flagStr, flagRtn) {
                 url : enterUrl,
                 type : "post",
                 data : JSON.stringify({
-                    pchsOrderMain : data,
-                    pchsOrderDetailAdd : pchsOrderDetailAdd,
-                    pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-                    pchsOrderDetailDelete : pchsOrderDetailDelete,
-                    operateFlag : flagSign,
+                    list : data,
+//                    pchsOrderDetailAdd : pchsOrderDetailAdd,
+//                    pchsOrderDetailUpdate : pchsOrderDetailUpdate,
+//                    pchsOrderDetailDelete : pchsOrderDetailDelete,
+//                    operateFlag : flagSign,
                     token: token
                 }),
                 success : function(data) {

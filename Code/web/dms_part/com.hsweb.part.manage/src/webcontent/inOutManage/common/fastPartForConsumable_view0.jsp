@@ -8,7 +8,7 @@
 -->
 <head>
 <title>领料</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.56"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.61"></script>
 <style type="text/css">                
 .table-label {
 	text-align: right;
@@ -101,7 +101,7 @@ body .mini-grid-row-selected{
                                     </div>
                                     <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
                                     <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-                                    <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+                                    <div field="storeId" name="storeId"  id="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
                                     <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
                                     <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                                     <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
@@ -126,11 +126,7 @@ body .mini-grid-row-selected{
         
     </div>
 </div>
-    
 </div>
 
 </body>
 </html>
-
-
-

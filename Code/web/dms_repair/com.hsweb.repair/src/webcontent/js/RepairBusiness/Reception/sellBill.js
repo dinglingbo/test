@@ -1069,6 +1069,7 @@ function addToBillPart(row, callback, unmaskcall){
         interType:'part',
         data:data
     };
+    /*params = {};
     svrCRUD(params,function(text){
         var errCode = text.errCode||"";
         var errMsg = text.errMsg||"";
@@ -1083,7 +1084,7 @@ function addToBillPart(row, callback, unmaskcall){
         }
     },function(){
         unmaskcall && unmaskcall();
-    });
+    });*/
 }
 function delFromBillPart(data, callback){
     var part = {

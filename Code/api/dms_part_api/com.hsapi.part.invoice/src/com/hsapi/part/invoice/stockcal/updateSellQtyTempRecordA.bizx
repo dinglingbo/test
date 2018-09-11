@@ -351,7 +351,7 @@
       <targetNode>assign13</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
+          <process:leftOperand type="query"></process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -452,9 +452,15 @@
     <node>invokePojo4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="取订单数量和可出库数量1" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="link24" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link27" name="link27" displayName="link24" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <targetConnections>link28</targetConnections>

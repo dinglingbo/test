@@ -8,7 +8,7 @@
 -->
 <head>
 <title>领料</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.61"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.64"></script>
 <style type="text/css">                
 .table-label {
 	text-align: right;
@@ -31,10 +31,6 @@ body .mini-grid-row-selected{
 </head>
 <body>
 
-<div class="nui-fit">
-    <div  class="nui-splitter" vertical="true" style="width:100%;height:100%;" allowResize="true">
-        <!--上：库存信息-->
-        <div size="100%" showCollapseButton="false">
             <div class="nui-fit">
                 <div class="nui-toolbar" style="padding:2px;border-bottom:1;">
                     <table style="width:100%;">
@@ -108,7 +104,7 @@ body .mini-grid-row-selected{
                                     <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
                                     <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
                                     <div field="guestName" width="120px" headerAlign="center" allowSort="true" header="供应商"></div>  
-                                    <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
+
                                     <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称">
                                     	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                                     </div> 
@@ -118,15 +114,16 @@ body .mini-grid-row-selected{
                                     <div field="remark" name="remark" width="50" headerAlign="center" header="备注">
                                     	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                                     </div>
+                                    <div field="sourceId" name="sourceId" width="50" headerAlign="center" header="" visible="flase">明细Id</div>
+                                    <div field="partNameId" name="partNameId" width="50" headerAlign="center" header="" visible="flase">配件名称ID</div>
+                                    <div field="pickType" name="pickType" width="50" headerAlign="center" header="" visible="flase">配件名称ID</div>
                                 </div>
                             </div>
                 </div>
             </div>
         </div>
         
-    </div>
-</div>
-</div>
+
 
 </body>
 </html>

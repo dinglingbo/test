@@ -7,6 +7,11 @@ $(document).ready(function(){
 function onOk()
 {
     var node = form.getData();
+    var req=/^\d*$/;
+    
+    if (!req.test(node.orderQty)){
+	   showMsg("请输入整数");
+    }
     if(node)
     {
         console.log(node);
@@ -27,3 +32,4 @@ function CloseWindow(action)
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
+

@@ -2,7 +2,8 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 
 var mainGrid = null; 
-var mid = null;
+var repairOutGrid = null; 
+var mid = null;//主表ID
 var tid = null;
 
 var mtAdvisorIdEl = null;   
@@ -19,6 +20,7 @@ $(document).ready(function(){
 	tid = nui.get("tid").value;
 	mid = nui.get("mid").value;
 	mainGrid = nui.get("mainGrid");
+	repairOutGrid = nui.get("repairOutGrid");
 	actionType = nui.get("actionType").value;
 	billForm = new nui.Form("#billForm");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
@@ -152,14 +154,15 @@ function setInitData(params){
                         //fcarId = data.carId||0; 
 
                        // doSearchCardTimes(fguestId); 
-                        //doSearchMemCard(fguestId);
+                        //doSearchMemCard(fguestId); 
 
                         billForm.setData(data);
                         //mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                         //mainGrid.load({mainId:params.id});
                         mainGrid.load({serviceId:params.id});
+                        repairOutGrid.load({serviceId:params.id});
 
-                    }else{
+                    }else{ 
                     	showMsg("数据加载失败,请重新打开工单!","W");
                     }
 
@@ -177,26 +180,26 @@ function setInitData(params){
 function LLSave(argument) {
 	var rows = mainGrid.getSelecteds();
 	if (rows.length > 0) {
-		var ids = [];
 		for (var i = 0, l = rows.length; i < l; i++) {
-			var r = rows[i].id;
+			var r = rows[i].partId;
 			var c = rows[i].partCode;
 			if(r){
-				ids.push(r);
+				openPartSelect(r,"Id");
 			}else if(c){
-				ids.push(c);
+				openPartSelect(c,"Code");
 			}else{
 				showMsg('部分配件需单独领取!','W');
 				return;
 			}
 		}
-		openPartSelect(ids);
+		
 	}else{
 		showMsg('请先选择配件!','W');
 	}
 }
 
-function openPartSelect(ids){
+
+function openPartSelect(par,type){
 	nui.open({
 		url:"com.hsweb.RepairBusiness.partSelect.flow",
 		title:"选择配件",
@@ -204,7 +207,7 @@ function openPartSelect(ids){
 		width:"900px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.SetData(ids);
+			iframe.contentWindow.SetData(par,type);
 		},
 		ondestroy:function(action){
 
@@ -212,3 +215,53 @@ function openPartSelect(ids){
 
 	});
 }
+
+
+
+
+function partOutRtn(){
+	var rows = repairOutGrid.getSelecteds();
+	if (rows.length > 0) {
+		for (var i = 0, l = rows.length; i < l; i++) {
+			var r = rows[i].partId;
+			var c = rows[i].partCode;
+			if(r){
+				openPartSelect(r,"Id");
+			}else if(c){
+				openPartSelect(c,"Code");
+			}else{
+				showMsg('部分配件需单独领取!','W');
+				return;
+			}
+		}
+		
+	}else{
+		showMsg('请先选择需要归库的配件!','W');
+	}
+
+}
+
+
+function memberSelect(){
+	nui.open({
+		url:"com.hsweb.RepairBusiness.partSelectMember.flow",
+		title:"选择归库人",
+		height:"300px",
+		width:"600px",
+		onload:function(){ 
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData("th");
+        },
+        ondestroy:function(action){
+        	if (action == "ok") {  
+                    //savePartOut();     //如果点击“确定”
+                    //CloseWindow("close");
+                }
+
+            }
+
+        });
+
+}
+
+

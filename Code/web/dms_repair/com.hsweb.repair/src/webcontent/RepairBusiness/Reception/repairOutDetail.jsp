@@ -8,7 +8,7 @@
   - Date: 2018-07-02 20:50:20 
   - Description:
 -->          
-    
+ 
 <head> 
     <title>出库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -24,7 +24,7 @@
     }
     .tbtext {
         float: right;
-}
+    }
 
     .vpanel {
         border: 1px solid #d9dee9;
@@ -62,39 +62,39 @@
 <body>
 
     <div class="nui-toolbar" id="toolbar1" style="padding:2px;height:30px">
-    <input class="nui-hidden" id="mid" name="mid" value='<b:write property="mid"/>'/>
-    <input class="nui-hidden" id="tid" name="tid" value='<b:write property="tid"/>'/>
-    <input class="nui-hidden" id="actionType" name="actionType" value='<b:write property="actionType"/>'/>
-    <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
-        <tr>            
-            <td>
-                <div class="nui-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
-                id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
-                dataField="list" loadingText="数据加载中...">     
-                <div property="columns">
-                    <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
-                    <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
-                    <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                    <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
-                    <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
-                    <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+        <input class="nui-hidden" id="mid" name="mid" value='<b:write property="mid"/>'/>
+        <input class="nui-hidden" id="tid" name="tid" value='<b:write property="tid"/>'/>
+        <input class="nui-hidden" id="actionType" name="actionType" value='<b:write property="actionType"/>'/>
+        <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
+            <tr>            
+                <td>
+                    <div class="nui-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
+                    dataField="list" loadingText="数据加载中...">     
+                    <div property="columns">
+                        <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
+                        <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
+                        <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
+                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
+                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
+                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                    </div>
                 </div>
-            </div>
-            <input id="search_name"
-            name="search_name"
-            class="nui-textbox"
-            emptyText="车牌号/客户名称/手机号/VIN码"
-            onbuttonclick="onSearchClick()"
-            width="200px"
-            visible="false"
-            enabled="false"
-            showClose="false"
-            allowInput="true"/>
-            <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
-            <label style="font-family:Verdana;">工单号:</label>
-            <label id="servieIdEl" style="font-family:Verdana;"></label>
-        </td>     
-        <td style="text-align:left;">
+                <input id="search_name"
+                name="search_name"
+                class="nui-textbox"
+                emptyText="车牌号/客户名称/手机号/VIN码"
+                onbuttonclick="onSearchClick()"
+                width="200px"
+                visible="false"
+                enabled="false"
+                showClose="false"
+                allowInput="true"/>
+                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
+                <label style="font-family:Verdana;">工单号:</label>
+                <label id="servieIdEl" style="font-family:Verdana;"></label>
+            </td>     
+            <td style="text-align:left;">
 <!-- 
           进场日期:<input class="nui-datepicker tabwidth" name="enterDate" id="enterDate" />
 
@@ -161,121 +161,106 @@
             </tr>
             <tr>
 
-            <td class="tbtext">服务顾问:</td>
-            <td class="tbCtrl">
+                <td class="tbtext">服务顾问:</td>
+                <td class="tbCtrl">
 
-                <input name="mtAdvisorId"
-                id="mtAdvisorId"
-                class="nui-combobox width1"
-                textField="empName" 
-                valueField="empId"
-                emptyText="请选择..."
-                url=""
-                allowInput="true"
-                showNullItem="false"
-                valueFromSelect="true"
-                nullItemText="请选择..."/>
-                
-            </td>
-            <td class="tbtext">服务技师:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
-            </td>
-            <td class="tbtext">送修人:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
-            </td>
-            <td class="tbtext">联系方式:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
-            </td>
+                    <input name="mtAdvisorId"
+                    id="mtAdvisorId"
+                    class="nui-combobox width1"
+                    textField="empName" 
+                    valueField="empId"
+                    emptyText="请选择..."
+                    url=""
+                    allowInput="true"
+                    showNullItem="false"
+                    valueFromSelect="true"
+                    nullItemText="请选择..."/>
 
-        </tr>
+                </td>
+                <td class="tbtext">服务技师:</td>
+                <td class="tbCtrl">
+                    <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
+                </td>
+                <td class="tbtext">送修人:</td>
+                <td class="tbCtrl">
+                    <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
+                </td>
+                <td class="tbtext">联系方式:</td>
+                <td class="tbCtrl">
+                    <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
+                </td>
 
-    </table>
+            </tr>
+
+        </table>
+    </div>
+
+    <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
+    dataField="data"   multiSelect="false" 
+    url="com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext"  showModified="false"
+    allowCellEdit="true" >
+    <div property="columns">
+     <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+     <div type="checkcolumn"></div> 
+     <div header="配件信息">  
+        <div property="columns">
+            <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
+            <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
+            <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
+            <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
+            <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
+            <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
+            <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
+            <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
+
+            <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
+            <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
+        </div>   
+
+    </div>
 </div>
-
-<div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-dataField="data"   multiSelect="false" 
-url="com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext"  showModified="false"
-allowCellEdit="true" >
-<div property="columns">
-       <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-       <div type="checkcolumn"></div> 
-        <div header="配件信息">  
-            <div property="columns">
-                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
-
-                </div>
-                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center">
-        
-                </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量">
-
-                </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-
-                </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率">
-
-                </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
-
-                </div>
-                <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-                <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">
-                </div>           
-                <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center">
-
-                </div>
-                <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center">
-                </div>   
-               
-            </div>
-        </div>
 </div>
 </div>
 
 
-<div id="mainGrid2" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
+<div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="list"  allowCellSelect="true" multiSelect="true" 
-url="com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext"  showModified="false"
+url="com.hsapi.part.invoice.query.queryRepairOutByServiceId.biz.ext"  showModified="false"
 allowCellEdit="true"  >
 <div property="columns">
-       <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-       <div type="checkcolumn"></div>
-        <div header="配件信息">
-            <div property="columns">
-                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
+ <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+ <div type="checkcolumn"></div>
+ <div header="配件信息">
+    <div property="columns">
+        <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
 
-                </div>
-                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center">
- 
-                </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量">
-
-                </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-
-                </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率">
-
-                </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
-
-                </div>
-                <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-                <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">
-                </div>           
-                <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center">
- 
-                </div>
-                <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
-                </div>   
-               
-            </div>
         </div>
+        <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center">
+
+        </div>
+        <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量">
+
+        </div>
+        <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
+
+        </div>
+        <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率">
+
+        </div>
+        <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
+
+        </div>
+        <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
+        <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">
+        </div>           
+        <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center">
+
+        </div>
+        <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
+        </div>   
+
+    </div>
+</div>
 </div>
 </div>
 

@@ -93,9 +93,9 @@ $(document).ready(function(v) {
 
 	advancedTipWin = nui.get("advancedTipWin");
 
-	//setTimeout(function(){ 
-	document.getElementById("formIframe").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottom.jsp";
-	document.getElementById("formIframePart").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartInfo.jsp";
+	//setTimeout(function(){  
+//	document.getElementById("formIframe").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containBottom.jsp";
+//	document.getElementById("formIframePart").src=webPath + contextPath + "/manage/inOutManage/common/embedJsp/containPartInfo.jsp";
 		//document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
 		//document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
 	//}, 3000);

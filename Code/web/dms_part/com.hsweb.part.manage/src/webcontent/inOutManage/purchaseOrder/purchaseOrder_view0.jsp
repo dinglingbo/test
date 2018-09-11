@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -36,6 +36,12 @@
 body .mini-grid-row-selected{
     background:#89c3d6 !important; 
 }
+.mini-tabs-scrollCt{
+	display:none;
+}
+.mini-tabs-body-top{
+	padding:0px;
+}
 </style>
 </head>
 <body>
@@ -47,24 +53,24 @@ body .mini-grid-row-selected{
            plain="false" 
            onactivechanged="ontopTabChanged" >
 
-         <div title="配件信息" id="partInfoTab" name="partInfoTab" url="" >
-            <!--配件基本信息-->
-            <%@include file="/purchase/purchaseOrder/pchsPartInfo.jsp" %>
-          <!-- <div class="nui-fit">
-              <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-          </div> -->
-        </div>  
+<!--          <div title="配件信息" id="partInfoTab" name="partInfoTab" url="" > -->
+<!--             配件基本信息 -->
+<%--             <%@include file="/purchase/purchaseOrder/pchsPartInfo.jsp" %> --%>
+<!--           <div class="nui-fit">
+<!--               <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe> -->
+<!--           </div> --> -->
+<!--         </div>   -->
         
          <div title="采购订单" id="billmain" name="billmain" >
             <!--采购订单信息-->
             <%@include file="/purchase/purchaseOrder/purchaseOrderDetail.jsp" %>
           </div>
         
-       <div title="采购车" name="purchaseAdvanceTab" url="" >
-          <div class="nui-fit">
-                <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
-          </div>
-        </div>  
+<!--        <div title="采购车" name="purchaseAdvanceTab" url="" > -->
+<!--           <div class="nui-fit"> -->
+<!--                 <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe> -->
+<!--           </div> -->
+<!--         </div>   -->
     </div>  
 </div>
 

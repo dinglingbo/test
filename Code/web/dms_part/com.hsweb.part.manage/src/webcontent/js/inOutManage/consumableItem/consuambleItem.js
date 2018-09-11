@@ -9,15 +9,19 @@ var gridUrl = baseUrl
 var queryInfoForm = null;
 var periodValidity = null;
 $(document).ready(function(v) {
-
+	
 	queryInfoForm = new nui.Form("#queryInfoForm").getData(false, false);
 
 	grid = nui.get("grid");
+	
 	grid.load(queryInfoForm);
 	grid.setUrl(gridUrl);
 	grid.on("drawcell", onDrawCell);
 	getNowFormatDate();
+	
 	onSearch();
+	document.getElementById("fastPartForConsumable_view0").src=webPath + contextPath + "/manage/inOutManage/common/fastPartForConsumable_view0.jsp";
+	 
 });
 
 function getSearchParams() {

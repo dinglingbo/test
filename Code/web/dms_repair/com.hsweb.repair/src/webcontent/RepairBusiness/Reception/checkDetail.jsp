@@ -209,7 +209,7 @@
 
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="list"  allowCellSelect="true" 
-url="com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext"  showModified="false"
+url=""  showModified="false"
 allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
 <div property="columns">
     <div type="indexcolumn" align="center" headerAlign="center" width="10px"><strong>序号</strong></div>

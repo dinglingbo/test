@@ -73,7 +73,7 @@
         }
     </style>
 <body>
-<table width="240" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td align="center">
                 <div style="font-family: '宋体'; font-size: 30px;">结账单</div>
@@ -103,29 +103,59 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <thead>
                             <tr>
-                                <th height="30" align="left" id="name">&nbsp;项目</th>
-                                <th width="55" id="sal">费用</th>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐项目(包含工时和配件)</b></td>
+			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                             </tr>
                         </thead>
                         <tbody id="tbodyId">
 						</tbody>
                     </table>
                 </div>
+                <div class="peijian">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>工时项目</b></td>
+			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyId1">
+						</tbody>
+                    </table>
+                </div>
+                <div class="peijian">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>配件项目</b></td>
+			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyId2">
+						</tbody>
+                    </table>
+                </div>
                 <div class="shishou">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    	<tr>
+                    		<td>
+                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;配件：<span id="part">0</span>
+                    		</td>
+                    	</tr>
                         <tr>
                             <td height="40" style="font-size: 18px; border-bottom: 2px #999 dashed;">应收：<span id="money">0</span></td>
                         </tr>
+                        
                     </table>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px;">
 
-                                                                        <tr>
+                        <tr>
                             <td height="40">签名：</td>
                         </tr>
                             <tr>
-                                <td height="200" align="center" style="border-top: 1px #999 dashed;" width="200px">
+                                <td height="200" align="center" style="border-top: 1px #999 dashed;" width="200">
                                     <div id="qrcode">
-                                    	<img src="https://photo.harsonserver.com/20180907191028539.jpg">
+                                    	<img src="https://photo.harsonserver.com/20180910115313857.jpg">
                                     </div>
                                     <p>扫码支付</p>
                                 </td>
@@ -139,15 +169,15 @@
     	nui.parse();
 		
 		$(document).ready(function (){
-    		
     	}); 
     	
     	function SetData(params){
     		nui.ajax({
-                url: "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",
+                url: params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",
                 type : "post",
                 data : {
-                	id : params.serviceId
+                	id : params.serviceId,
+	                	token : params.token
                 },
                 async: false,
                 success: function (text) {
@@ -170,21 +200,20 @@
             });
             var guestId = document.getElementById("guestId").innerHTML;
             nui.ajax({
-                url: "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
+                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                 type : "post",
                 data : {
-                	guestId : params.guestId
+                	guestId : params.guestId,
+	                	token : params.token
                 },
                 async: false,
                 success: function (text) {
                 	var guest = nui.decode(text.guest);
                    if(text.errCode == "S"){
-                   		var fullName = guest.fullName;
-                   		var tel = guest.tel;
+                   		var fullName = guest.fullName || "";
+                   		var tel = guest.tel || "";
                    		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
                    		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
-                   }else{
-                   		
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -194,10 +223,11 @@
             });
             	//document.getElementById("name").innerHTML = "&nbsp;套餐";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
+	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
 	                type : "post",
 	                data : {
-	                	serviceId : params.serviceId
+	                	serviceId : params.serviceId,
+	                	token : params.token
 	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
@@ -206,15 +236,19 @@
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
 	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
+	                   			var prdtName = data[i].prdtName;
+	                   			if(data[i].billPackageId == 0){
+	                   				document.getElementById("money").innerHTML = parseInt(document.getElementById("money").innerHTML) + parseInt(data[i].subtotal);
+	                   				document.getElementById("prdt").innerHTML = parseInt(document.getElementById("prdt").innerHTML) + parseInt(data[i].subtotal);
+	                   			}else{
+	                   				prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
+	                   			}
 	                   			var tr = $("<tr></tr>");
 				    			tr.append(
-				    				tds.replace("[name]",data[i].prdtName)
+				    				tds.replace("[name]",prdtName)
 				    				.replace("[sal]",data[i].subtotal));
 				    			tBody.append(tr);
-				    			document.getElementById("money").innerHTML = parseInt(document.getElementById("money").innerHTML) + parseInt(data[i].subtotal);
 	                   		}
-	                   }else{
-	                   		
 	                   }
 	                },
 	                error: function (jqXHR, textStatus, errorThrown) {
@@ -224,18 +258,19 @@
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;工时";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext",
+	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext",
 	                type : "post",
 	                data : {
 	                	serviceId : params.serviceId
 	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
-	                	var tBody = $("#tbodyId");
+	                	var tBody = $("#tbodyId1");
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
 	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
+	                   			document.getElementById("item").innerHTML = parseInt(document.getElementById("item").innerHTML) + parseInt(data[i].subtotal);
 	                   			var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[name]",data[i].itemName)
@@ -243,8 +278,6 @@
 				    			tBody.append(tr);
 				    			document.getElementById("money").innerHTML = parseInt(document.getElementById("money").innerHTML) + parseInt(data[i].amt);
 	                   		}
-	                   }else{
-	                   		
 	                   }
 	                },
 	                error: function (jqXHR, textStatus, errorThrown) {
@@ -254,18 +287,20 @@
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;配件";
             	nui.ajax({
-	                url: "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",
+	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",
 	                type : "post",
 	                data : {
-	                	serviceId : params.serviceId
+	                	serviceId : params.serviceId,
+	                	token : params.token
 	                },
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
-	                	var tBody = $("#tbodyId");
+	                	var tBody = $("#tbodyId2");
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
 	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
+	                   			document.getElementById("part").innerHTML = parseInt(document.getElementById("part").innerHTML) + parseInt(data[i].subtotal);
 	                   			var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[name]",data[i].partName)
@@ -273,8 +308,6 @@
 				    			tBody.append(tr);
 				    			document.getElementById("money").innerHTML = parseInt(document.getElementById("money").innerHTML) + parseInt(data[i].amt);
 	                   		}
-	                   }else{
-	                   		
 	                   }
 	                },
 	                error: function (jqXHR, textStatus, errorThrown) {

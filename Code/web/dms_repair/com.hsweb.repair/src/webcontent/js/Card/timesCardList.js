@@ -151,10 +151,7 @@ function onDrawCell(e) {
 
 function setStely(){
 	
-	/*nui.get("update").disable();
-	nui.get("add").disable();*/
-	/*$("#update").remove();
-	$("#add").remove();*/
+	
 	mini.get("updateBtn").setVisible(false);
 	mini.get("addBtn").setVisible(false);
 	mini.get("onBuy").setVisible(true);

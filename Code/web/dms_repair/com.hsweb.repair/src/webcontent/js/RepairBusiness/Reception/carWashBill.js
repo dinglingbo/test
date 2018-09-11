@@ -2243,3 +2243,26 @@ function showHealth(){
         });
 	}
 }
+
+function pay(){
+	nui.open({
+		url:"repair/RepairBusiness/Reception/carWashBillUp.jsp",
+		width:"100%",
+		height:"100%",
+		//加载完之后
+		onload: function(){	
+		},
+	ondestroy : function(action) {
+		if (action == 'ok') {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getData();
+			supplier = data.supplier;
+			var value = supplier.id;
+			var text = supplier.fullName;
+			var el = nui.get(elId);
+			el.setValue(value);
+			el.setText(text);
+		}
+	}
+	})
+}

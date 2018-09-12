@@ -11,14 +11,14 @@
 <head>
 <title>领料出库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.9"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.10"></script>
     <style type="text/css">
 
    	#remark.mini-textbox{
-   		width: 306px;
+   		width: 310px;
    	}
    	#remark.mini-textbox-border{
-   		width:300px;
+   		width:303px;
    	}
    	table{
    		margin-left:15px;
@@ -26,7 +26,9 @@
    	td{
    		padding-top:3px;
    	}
-
+	.mini-listbox-view{
+		height:115px !important;
+	}
     </style>
 </head>
 <body>
@@ -59,13 +61,13 @@
                              required="true"
                             allowInput="true"
                             valueFromSelect="true"
-                            showNullItem="true" nullItemText="请选择..."
+                            popupHeight="85%"
                           />
 				</td>
-				<td>出库数量:<input class="nui-textbox" id="orderQty" name="orderQty" type="text"></td>
+				<td>出库数量:<input required="true" valid="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
 			<tr>
-				<td style="padding-left: 27px" colspan="2">备注:<input  class="nui-textbox" id="remark" name="remark" type="text" ></td>
+				<td style="" colspan="2">出库原因:<input required="true"  class="nui-textarea" id="remark" name="remark" type="text" ></td>
 			</tr>
 			<tr align="center">
 				<td colspan="2">

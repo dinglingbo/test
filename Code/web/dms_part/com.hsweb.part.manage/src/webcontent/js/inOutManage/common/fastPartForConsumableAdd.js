@@ -21,7 +21,7 @@ function onOk()
     var node = form.getData();
     var req=/^\d*$/;
     
-    if (!req.test(node.orderQty)){
+    if (!req.test(node.outQty)){
 	   showMsg("请输入整数");
     }
     if(node)

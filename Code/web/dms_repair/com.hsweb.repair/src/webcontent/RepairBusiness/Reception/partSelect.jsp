@@ -95,6 +95,7 @@ editNextOnEnterKey="true"  editNextRowCell="true"
 >
 <div property="columns">
     <div type="indexcolumn">序号</div>
+    <div field="id" name="id" width="100" headerAlign="center" header="id" visible="false"></div>
     <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
     <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
     <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
@@ -124,7 +125,7 @@ editNextOnEnterKey="true"  editNextRowCell="true"
     nui.parse();
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = apiPath + repairApi + "/";
-    var gridUrl = baseUrl + "com.hsapi.part.invoice.stockcal.queryOutableEnterGridWithPage.biz.ext";
+    var gridUrl = apiPath + partApi + "/com.hsapi.part.invoice.stockcal.queryOutableEnterGridWithPage.biz.ext";
     var mainGrid = nui.get("mainGrid"); 
     mainGrid.setUrl(gridUrl);
 
@@ -188,36 +189,41 @@ editNextOnEnterKey="true"  editNextRowCell="true"
 
     function  savePartOut(childdata){
         var data = mainGrid.getData();
+            console.log(data);
         alert("1");
         if(data){
             var paramsData = [];
-            paramsData = data;
+            paramsData = nui.clone(data);
             for (var i = 0; i < data.length; i++) {
                 paramsData[i]= data[i];
                 paramsData[i].serviceId = '';
                 paramsData[i].id = '';
+                paramsData[i].sourceId = data[i].id;
                 paramsData[i].unit = data[i].systemUnitId;
-                paramsData[i].pickMan = childdata;
+                paramsData[i].pickMan = childdata.mtAdvisor;
+                paramsData[i].remark = childdata.remark;
                 paramsData[i].pickType = "维修出库-领料";
                 if(!paramsData[i].partNameId){ 
                     paramsData[i].partNameId = "0"; 
                 }
             } 
-            //console.log(paramsData);
+            console.log(paramsData);
+            console.log(data);
             //console.log(tdata);
-            //return;  
+            return;  
             nui.ajax({
                 url:baseUrl + "com.hsapi.repair.repairService.work.repairOut.biz.ext",
                 type:"post",
                 data:{ 
-                    list:paramsData,
+                    data:paramsData,
+                    billTypeId:"050206",
                     token:token   
-                }, 
-                success:function(text){ 
-                    showMsg('成功!','S');
-                }
-            });
-        }else{
+                },   
+                success:function(text){   
+                    showMsg('成功!','S'); 
+                }  
+            }); 
+        }else{  
             showMsg('没有需要出库的配件!','W');
         }
     }

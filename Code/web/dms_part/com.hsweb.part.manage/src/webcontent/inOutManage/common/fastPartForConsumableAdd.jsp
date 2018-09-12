@@ -13,9 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.9"></script>
     <style type="text/css">
-    div{
-   		margin-bottom:8px; 	
-   	}
+
    	#remark.mini-textbox{
    		width: 306px;
    	}
@@ -32,8 +30,9 @@
     </style>
 </head>
 <body>
-	<div class="nui-form" id="form" style="width:100%; height:100%;">
-		<div class="nui-fit">
+<div class="nui-fit">
+	<div style="margin-bottom:8px;" class="nui-form" id="form" style="width:100%; height:100%;">
+		
 		<table>
 			<tr>
 				<td>配件编号:<input enabled="false" class="nui-textbox" id="partCode" name="partCode" type="text"></td>
@@ -69,7 +68,7 @@
 				<td style="padding-left: 27px" colspan="2">备注:<input  class="nui-textbox" id="remark" name="remark" type="text" ></td>
 			</tr>
 			<tr align="center">
-				<td colspan="2">
+				<td style="" colspan="2">
 				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">出库</a>
 				</td>
 			</tr>

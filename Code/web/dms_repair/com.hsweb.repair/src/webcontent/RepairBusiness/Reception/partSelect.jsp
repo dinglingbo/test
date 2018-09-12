@@ -124,7 +124,7 @@ editNextOnEnterKey="true"  editNextRowCell="true"
     nui.parse();
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = apiPath + repairApi + "/";
-    var gridUrl = baseUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
+    var gridUrl = baseUrl + "com.hsapi.part.invoice.stockcal.queryOutableEnterGridWithPage.biz.ext";
     var mainGrid = nui.get("mainGrid"); 
     mainGrid.setUrl(gridUrl);
 
@@ -170,7 +170,9 @@ editNextOnEnterKey="true"  editNextRowCell="true"
                 },
                 ondestroy:function(action){
                     if (action == "ok") {  
-                    savePartOut();     //如果点击“确定”
+                        var iframe = this.getIFrameEl();
+                        var childdata = iframe.contentWindow.GetFormData();
+                    savePartOut(childdata);     //如果点击“确定”
                     //CloseWindow("close");
                 }
 
@@ -184,7 +186,7 @@ editNextOnEnterKey="true"  editNextRowCell="true"
     }
 
 
-    function  savePartOut(){
+    function  savePartOut(childdata){
         var data = mainGrid.getData();
         alert("1");
         if(data){
@@ -195,9 +197,17 @@ editNextOnEnterKey="true"  editNextRowCell="true"
                 paramsData[i].serviceId = '';
                 paramsData[i].id = '';
                 paramsData[i].unit = data[i].systemUnitId;
-            }
+                paramsData[i].pickMan = childdata;
+                paramsData[i].pickType = "维修出库-领料";
+                if(!paramsData[i].partNameId){ 
+                    paramsData[i].partNameId = "0"; 
+                }
+            } 
+            //console.log(paramsData);
+            //console.log(tdata);
+            //return;  
             nui.ajax({
-                url:baseUrl + "com.hsapi.part.invoice.partInterface.partToOut.biz.ext",
+                url:baseUrl + "com.hsapi.repair.repairService.work.repairOut.biz.ext",
                 type:"post",
                 data:{ 
                     list:paramsData,
@@ -211,9 +221,6 @@ editNextOnEnterKey="true"  editNextRowCell="true"
             showMsg('没有需要出库的配件!','W');
         }
     }
-
-
-
 
     mainGrid.on("cellcommitedit",function(e){
         var record = e.record;

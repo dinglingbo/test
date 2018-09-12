@@ -423,20 +423,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/auditDate</process:from>
-      <process:to type="query">tempHash/auditDate</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">temp/auditSign</process:from>
       <process:to type="query">tempHash/auditSign</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">temp/auditor</process:from>
       <process:to type="query">tempHash/auditor</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/balaDate</process:from>
-      <process:to type="query">tempHash/balaDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">temp/balaSign</process:from>
@@ -519,10 +511,6 @@
       <process:to type="query">tempHash/partNameId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/pickDate</process:from>
-      <process:to type="query">tempHash/pickDate</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">temp/pickMan</process:from>
       <process:to type="query">tempHash/pickMan</process:to>
     </process:copy>
@@ -537,10 +525,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">temp/remark</process:from>
       <process:to type="query">tempHash/remark</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/returnDate</process:from>
-      <process:to type="query">tempHash/returnDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">temp/returnMan</process:from>

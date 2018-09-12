@@ -529,6 +529,10 @@
       <process:from type="query" pattern="reference">enterDetail/partId</process:from>
       <process:to type="query">temp/partId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">temp/pickDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="493" y="335"/>

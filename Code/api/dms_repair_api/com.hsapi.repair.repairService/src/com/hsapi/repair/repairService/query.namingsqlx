@@ -288,6 +288,9 @@
                 <isNotEmpty prepend="and" property="carId"> 
                    (a.car_id = #carId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceCode"> 
+                   (a.service_code like '%$serviceCode$%')
+                </isNotEmpty>
         </dynamic>  
         order by a.id desc
 	</select>

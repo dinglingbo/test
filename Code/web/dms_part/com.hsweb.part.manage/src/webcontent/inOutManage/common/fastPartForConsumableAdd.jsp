@@ -68,7 +68,7 @@
 				<td style="padding-left: 27px" colspan="2">备注:<input  class="nui-textbox" id="remark" name="remark" type="text" ></td>
 			</tr>
 			<tr align="center">
-				<td style="" colspan="2">
+				<td colspan="2">
 				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">出库</a>
 				</td>
 			</tr>

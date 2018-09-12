@@ -681,6 +681,8 @@ function partToOut()
     data = enterGrid.getSelected();
     data.guestId=FGuestId;
     data.billTypeId="050207";
+    data.partNameId='0';
+    data.pickType='0';
     var date=new Date();
     var operateDate = format(date, 'yyyy-MM-dd HH:mm:ss') + '.0';
     data.operateDate=operateDate;

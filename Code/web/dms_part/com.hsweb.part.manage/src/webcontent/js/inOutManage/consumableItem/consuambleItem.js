@@ -115,7 +115,7 @@ $(document).ready(function(v) {
 	                break;
 	        }
 	    });
-
+	    
 	    $("#morePartCode").bind("keydown", function (e) {
 
 	        if (e.keyCode == 13) {
@@ -228,15 +228,15 @@ $(document).ready(function(v) {
 	        });
 	    });
 
-	 
+//	    morePartSearch();
 });
 
 function getSearchParams() {
 	var params = {};
 	params.sCreateDate = nui.get("sCreateDate").getValue().substr(0, 10);
 	params.eCreateDate = nui.get("eCreateDate").getValue().substr(0, 10);
-	params.orderMan = nui.get('orderMan').getValue();
-	return params;
+	params.pickMan = nui.get('pickMan').getValue();
+	return params; 
 }
 function onSearch() {
 	var params = getSearchParams();
@@ -343,34 +343,34 @@ function getMainData() {
 //
 //    return data;
 //}
-function order(){
-    var data = grid.getData();
-    var flagSign = 0; 
-    var flagStr = "提交中...";
-    var flagRtn = "提交成功!";
-    orderEnter(flagSign, flagStr, flagRtn);
-}
-
-function orderToEnter(){
-    //如果是内部订单，直接入库时需要判断 bill_status_id = 2（待收货）
-    var data = grid.getData();
-    var isInner = data.isInner||0;
-    var billStatusId = data.billStatusId||0;
-    //if(isInner == 0 && billStatusId == 0){
-        var flagSign = 1; 
-        var flagStr = "入库中...";
-        var flagRtn = "入库成功!";
-        orderEnter(flagSign, flagStr, flagRtn);     
-
-}
+//function order(){
+//    var data = grid.getData();
+//    var flagSign = 0; 
+//    var flagStr = "提交中...";
+//    var flagRtn = "提交成功!";
+//    orderEnter(flagSign, flagStr, flagRtn);
+//}
+//
+//function orderToEnter(){
+//    //如果是内部订单，直接入库时需要判断 bill_status_id = 2（待收货）
+//    var data = grid.getData();
+//    var isInner = data.isInner||0;
+//    var billStatusId = data.billStatusId||0;
+//    //if(isInner == 0 && billStatusId == 0){
+//        var flagSign = 1; 
+//        var flagStr = "入库中...";
+//        var flagRtn = "入库成功!";
+//        orderEnter(flagSign, flagStr, flagRtn);     
+//
+//}
 
 function checkRightData() {
 	var row=grid.getSelected();
     var msg = '';
     var rows = grid.findRows(function(row) {
         if(row.partId){  
-            if (row.orderQty) {
-                if (row.orderQty <= 0)
+            if (row.outQty) {
+                if (row.outQty <= 0)
                     return true;
             } else {
                 return true;
@@ -403,7 +403,7 @@ function checkRightData() {
 //归库
 var backUrl = baseUrl
 + "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext";
-function orderEnter(flagSign, flagStr, flagRtn) {
+function orderEnter() {
 
     var row = grid.getSelected();
     if (row) {
@@ -422,12 +422,7 @@ function orderEnter(flagSign, flagStr, flagRtn) {
 //        return;
 //    }
 
-    var str = "提交";
-    if(flagSign == 1){
-        str = "入库";
-    }
-
-    nui.confirm("是否确定"+str+"?", "友情提示", function(action) {
+    nui.confirm("是否确定归库?", "友情提示", function(action) {
         if (action == "ok") {
 
             data = getMainData();
@@ -446,7 +441,7 @@ function orderEnter(flagSign, flagStr, flagRtn) {
             nui.mask({
                 el : document.body,
                 cls : 'mini-mask-loading',
-                html : flagStr
+                html : "归库中..."
             });
 
             nui.ajax({
@@ -465,12 +460,12 @@ function orderEnter(flagSign, flagStr, flagRtn) {
                     nui.unmask(document.body);
                     data = data || {};
                     if (data.errCode == "S") {
-                        showMsg(str+"成功!","S");
+                        showMsg("归库成功!","S");
                         // onLeftGridRowDblClick({});
                         var pjPchsOrderMainList = data.pjPchsOrderMainList;
          
                     } else {
-                        showMsg(data.errMsg || (str+"失败!"),"W");
+                        showMsg(data.errMsg || ("归库失败!"),"W");
                     }
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
@@ -579,8 +574,9 @@ function getRtnData(){
 
 var requiredField = {
 
-    orderQty:"出库数量",
-    orderMan:"领料人",
+	outQty	:"出库数量",
+	pickMan	:"领料人",
+	remark	:"出库原因"
 
 };
 function onAdvancedAddOk(){
@@ -591,75 +587,79 @@ function onAdvancedAddOk(){
         if(!data[key] || data[key].toString().trim().length==0)
         {
             showMsg(requiredField[key]+"不能为空!","W");
-            if(key == "orderQty") {
-                var qty = nui.get("orderQty");
+            if(key == "outQty") {
+                var qty = nui.get("outQty");
                 qty.focus();
             }
-            if(key == "orderMan") {
-                var price = nui.get("orderMan");
+            if(key == "pickMan") {
+                var price = nui.get("pickMan");
+                price.focus();
+            }
+            if(key == "remark") {
+                var price = nui.get("remark");
                 price.focus();
             }
             
             return;
         }
     }
-    resultData.orderQty = data.orderQty;
-    resultData.orderMan = data.orderMan;
+    resultData.outQty = data.outQty;
+    resultData.pickMan = data.pickMan;
    
     var row = enterGrid.getSelected();
     var stockQty = row.stockQty;
     var preOutQty = row.preOutQty||0;
-    if(data.orderQty > stockQty - preOutQty){
+    if(data.outQty > stockQty - preOutQty){
     	showMsg("出库数量超出此批次可出库数量","W");
     	return;
     } 
 }
 
-function calc(type){
-    var qty = nui.get("qty").getValue();
-    var price = nui.get("price").getValue();
-    var amt = nui.get("amt").getValue();
-    
-    if(qty == null || qty == '') {
-        nui.get("qty").setValue(0);
-    }else if(qty < 0) {
-        nui.get("qty").setValue(0);
-    }
-    
-    if(price == null || price == '') {
-        nui.get("price").setValue(0);
-    }else if(price < 0) {
-        nui.get("price").setValue(0);
-    }
-    
-    if(amt == null || amt == '') {
-        nui.get("amt").setValue(0);
-    }else if(amt < 0) {
-        nui.get("amt").setValue(0);
-    }
-    
-    qty = nui.get("qty").getValue();
-    price = nui.get("price").getValue();
-    amt = nui.get("amt").getValue();
-    
-    if(type == 'qty'){
-        nui.get("amt").setValue(qty * price);
-    }
-    
-    if(type == 'price'){
-        nui.get("amt").setValue(qty * price);
-    }
-    
-    if(type == 'amt'){
-        if(qty > 0) {
-            price = (amt / qty).toFixed(4);
-            nui.get("price").setValue(price);
-        }else {
-            nui.get("qty").setValue(0);
-            nui.get("amt").setValue(0);
-        }
-    }
-}
+//function calc(type){
+//    var qty = nui.get("qty").getValue();
+//    var price = nui.get("price").getValue();
+//    var amt = nui.get("amt").getValue();
+//    
+//    if(qty == null || qty == '') {
+//        nui.get("qty").setValue(0);
+//    }else if(qty < 0) {
+//        nui.get("qty").setValue(0);
+//    }
+//    
+//    if(price == null || price == '') {
+//        nui.get("price").setValue(0);
+//    }else if(price < 0) {
+//        nui.get("price").setValue(0);
+//    }
+//    
+//    if(amt == null || amt == '') {
+//        nui.get("amt").setValue(0);
+//    }else if(amt < 0) {
+//        nui.get("amt").setValue(0);
+//    }
+//    
+//    qty = nui.get("qty").getValue();
+//    price = nui.get("price").getValue();
+//    amt = nui.get("amt").getValue();
+//    
+//    if(type == 'qty'){
+//        nui.get("amt").setValue(qty * price);
+//    }
+//    
+//    if(type == 'price'){
+//        nui.get("amt").setValue(qty * price);
+//    }
+//    
+//    if(type == 'amt'){
+//        if(qty > 0) {
+//            price = (amt / qty).toFixed(4);
+//            nui.get("price").setValue(price);
+//        }else {
+//            nui.get("qty").setValue(0);
+//            nui.get("amt").setValue(0);
+//        }
+//    }
+//}
 var partPriceUrl = partApiUrl + "com.hsapi.part.invoice.pricemanage.getSellDefaultPrice.biz.ext";
 function getPartPrice(params){
     var price = 0;
@@ -1010,11 +1010,13 @@ function partToOut()
 }
 function onOut(){
 	var row=enterGrid.getSelected();
-	
+	if(!row || row==undefined){
+		showMsg("请在上方先选择一条记录");
+	}
 	if(row){
 		nui.open({
 			url:webPath + partDomain +"/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+token,
-			title: "出库", width: 400, height: 260,
+			title: "出库", width: 410, height: 250,
 			allowDrag : true,
 	        allowResize : true,
 			onload: function(){
@@ -1032,9 +1034,9 @@ function onOut(){
 					var	part=data.data;
 					var pickMan=part.pickMan;
 					var remark=part.remark;
-					var orderQty=part.orderQty;
+					var outQty=part.outQty;
 					var row=enterGrid.getSelected();
-					var newRow={pickMan:pickMan,remark:remark,orderQty:orderQty};
+					var newRow={pickMan:pickMan,remark:remark,outQty:outQty};
 					enterGrid.updateRow(row,newRow);
 					onAdvancedAddOk();
 					partToOut();

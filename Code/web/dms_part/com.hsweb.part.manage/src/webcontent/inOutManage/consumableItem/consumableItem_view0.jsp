@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.51"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.74"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -93,8 +93,8 @@ html,body {
                             <div field="oemCode" name="oemCode" width="80" headerAlign="center" header="OEM码"></div>
                             <div field="partName" partName="name" width="80" headerAlign="center" header="配件名称"></div>
                             <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
-                            <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
-                            <div allowSort="true" datatype="float" width="60" field="orderQty" headerAlign="center" header="出库数量">
+                            <div allowSort="true" visible="false"  datatype="int" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
+                            <div allowSort="true" visible="false"  datatype="float" width="60" field="outQty" headerAlign="center" header="出库数量">
                             	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                                     </div>
                                     <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
@@ -108,12 +108,12 @@ html,body {
                                     <div field="guestName" width="120px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
                                     <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称">
-                                    	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
+<!--                                     	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" /> -->
                             </div> 
-                            <div field="pickMan" name="pickMan" width="50" headerAlign="center" header="领料人">
+                            <div field="pickMan" visible="false"  name="pickMan" width="50" headerAlign="center" header="领料人">
                             	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                             </div>
-                            <div field="remark" name="remark" width="50" headerAlign="center" header="备注">
+                            <div field="remark" visible="false"  name="remark" width="50" headerAlign="center" header="备注">
                             	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                             </div>
                             <div field="sourceId" name="sourceId" width="50" headerAlign="center" header="" visible="flase">明细Id</div>
@@ -145,7 +145,7 @@ html,body {
                 <td>
                 	<td class="form_label">领料人: </td>
                      <td>
-                     <input class="nui-textbox" name="orderMan"id="orderMan" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" />
+                     <input class="nui-textbox" name="pickMan"id="pickMan" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" />
                     </td>
                 </td>
 
@@ -168,7 +168,7 @@ html,body {
             <div type="indexcolumn" headerAlign="center" width="30">序号</div>
   
                     <div field="partName" headerAlign="center" allowSort="true" visible="true" width="">配件名称</div>
-                    <div field="orderQty" headerAlign="center" allowSort="true" visible="true" width="">出库数量</div>
+                    <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="">出库数量</div>
 
                     <div field="orderPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
                     <div field="orderAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>

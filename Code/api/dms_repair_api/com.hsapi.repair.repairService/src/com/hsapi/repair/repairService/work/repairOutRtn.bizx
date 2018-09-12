@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="repairOutRtn" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维修出库领料&#xD;&#xA;销售出库领料&#xD;&#xA;耗材出库领料&#xD;&#xA;&#xD;&#xA;只区别是维修领料  还是耗材出库&#xD;&#xA;050206 维修出库， 工单领料    050106 维修归库&#xD;&#xA;050207 耗材出库                    050107 耗材归库&#xD;&#xA;&#xD;&#xA;耗材出库需要生成单号；判断数量有没有超数，更新已领料数量" title="Administrator&#x9;18-9-12 上午9:27">
-    <location x="65" y="-180"/>
+    <location x="555" y="-165"/>
     <size height="181" width="496"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="63" y="158"/>
+    <location x="738" y="157"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -25,7 +25,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="65" y="194"/>
+    <location x="740" y="193"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -70,18 +70,12 @@
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>assign3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
+      <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="150" y="158"/>
+    <location x="825" y="157"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -89,52 +83,16 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">出库成功</process:from>
+      <process:from type="literal" pattern="reference">归库成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="152" y="194"/>
+    <location x="827" y="193"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign3</sourceNode>
-      <targetNode>assign5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">billTypeId</process:leftOperand>
-          <process:rightOperand type="literal">050206</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link5</targetConnections>
-    <location x="285" y="158"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign3label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="283" y="194"/>
-    <figSize height="17" width="32"/>
-    <node>assign3</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign5</sourceNode>
-      <targetNode>transactionbegin0</targetNode>
-    </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <location x="841" y="158"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign5label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="839" y="194"/>
-    <figSize height="17" width="32"/>
-    <node>assign5</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="updateRpsPartOutQty" displayName="updateRpsPartOutQty" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="updateRpsPartOutQty" displayName="updateRpsPartRtnQty" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>subprocess0</targetNode>
@@ -154,7 +112,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.updateRpsPartOutQty</process:partner>
+      <process:partner type="literal">this.updateRpsPartRtnQty</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.common.PjRepairOut[]" valueType="DataObject" pattern="reference">data</process:inputVariable>
       </process:inputVariables>
@@ -165,8 +123,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="1025" y="193"/>
-    <figSize height="17" width="107"/>
+    <location x="1014" y="193"/>
+    <figSize height="17" width="128"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
@@ -174,7 +132,7 @@
       <sourceNode>transactionbegin0</sourceNode>
       <targetNode>subprocess2</targetNode>
     </sourceConnections>
-    <targetConnections>link12</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="945" y="158"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>

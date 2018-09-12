@@ -402,7 +402,7 @@ function checkRightData() {
 }
 //归库
 var backUrl = baseUrl
-+ "com.hsapi.part.invoice.partInterface.partOutRtn.biz.ext";
++ "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext";
 function orderEnter(flagSign, flagStr, flagRtn) {
 
     var row = grid.getSelected();
@@ -936,7 +936,7 @@ function checkRightData()
     return msg;
 }
 //出库
-var partToOutUrl = partApiUrl+"com.hsapi.part.invoice.partInterface.partToOut.biz.ext";
+var partToOutUrl = partApiUrl+"com.hsapi.repair.repairService.work.repairOut.biz.ext";
 function partToOut()
 {
 
@@ -1011,21 +1011,27 @@ function onOut(){
 	if(row){
 		nui.open({
 			url:webPath + partDomain +"/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+token,
-			title: "出库", width: 250, height: 150,
+			title: "出库", width: 400, height: 215,
 			allowDrag : true,
 	        allowResize : true,
 			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :row
+				};
+				
+				iframe.contentWindow.SetData(params);
 			},
 			ondestroy: function(action){
 				if(action == 'ok'){
 					var iframe = this.getIFrameEl();
 					var data=iframe.contentWindow.getData();
 					var	part=data.data;
-					var orderMan=part.orderMan;
+					var pickMan=part.pickMan;
 					var remark=part.remark;
 					var orderQty=part.orderQty;
 					var row=enterGrid.getSelected();
-					var newRow={orderMan:orderMan,remark:remark,orderQty:orderQty};
+					var newRow={pickMan:pickMan,remark:remark,orderQty:orderQty};
 					enterGrid.updateRow(row,newRow);
 					onAdvancedAddOk();
 					partToOut();

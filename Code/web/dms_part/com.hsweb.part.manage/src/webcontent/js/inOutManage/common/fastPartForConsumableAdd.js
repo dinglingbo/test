@@ -1,7 +1,19 @@
 var form=null;
 var resultData = {};
+var mtAdvisorIdEl = null;
 $(document).ready(function(){
 	form=new nui.Form('#form');
+
+    mtAdvisorIdEl = nui.get("mtAdvisorId");
+    
+    initMember("mtAdvisorId",function(){
+        memList = mtAdvisorIdEl.getData();
+    });
+    
+    mtAdvisorIdEl.on("valueChanged",function(e){
+        var text = mtAdvisorIdEl.getText();
+//        nui.get("mtAdvisor").setValue(text);
+    });
 });
 
 function onOk()
@@ -25,6 +37,14 @@ function onOk()
 }
 function getData(){
     return resultData;
+}
+
+function SetData(params) {
+    var params = nui.clone(params);
+    if(params.data!=null){
+        form.setData(params.data);
+    }
+
 }
 
 function CloseWindow(action)

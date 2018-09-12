@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.34"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.42"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -110,7 +110,7 @@ html,body {
                                     <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称">
                                     	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                             </div> 
-                            <div field="orderMan" name="orderMan" width="50" headerAlign="center" header="领料人">
+                            <div field="pickMan" name="pickMan" width="50" headerAlign="center" header="领料人">
                             	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                             </div>
                             <div field="remark" name="remark" width="50" headerAlign="center" header="备注">
@@ -174,7 +174,7 @@ html,body {
                     <div field="orderAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
                     <div field="mainRemark" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
                 	 <div field="auditDate" headerAlign="center" allowSort="true" visible="true" width="" dateFormat="yyyy-MM-dd">出库日期</div>  
-                    <div field="orderMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+                    <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
                     
             </div>
         </div>

@@ -9,12 +9,12 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="-292" y="226"/>
+    <location x="-292" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="-290" y="262"/>
+    <location x="-290" y="261"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -41,7 +41,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="-210" y="226"/>
+    <location x="-210" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -54,7 +54,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="-208" y="262"/>
+    <location x="-208" y="261"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>

@@ -432,6 +432,7 @@ function orderEnter(flagSign, flagStr, flagRtn) {
 
             data = getMainData();
             data.serviceId=null;
+            var billTypeId='050107';
             var list=[];
             list.push(data);
 
@@ -452,7 +453,8 @@ function orderEnter(flagSign, flagStr, flagRtn) {
                 url : backUrl,
                 type : "post",
                 data : JSON.stringify({
-                    list : data,
+                    data : list,
+                    billTypeId :billTypeId,
 //                    pchsOrderDetailAdd : pchsOrderDetailAdd,
 //                    pchsOrderDetailUpdate : pchsOrderDetailUpdate,
 //                    pchsOrderDetailDelete : pchsOrderDetailDelete,
@@ -985,7 +987,8 @@ function partToOut()
         url : partToOutUrl,
         type : "post",
         data : JSON.stringify({
-            list : list,
+            data : list,
+            billTypeId :data.billTypeId,
             token : token
         }),
         success : function(data) {
@@ -1011,7 +1014,7 @@ function onOut(){
 	if(row){
 		nui.open({
 			url:webPath + partDomain +"/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+token,
-			title: "出库", width: 400, height: 215,
+			title: "出库", width: 400, height: 260,
 			allowDrag : true,
 	        allowResize : true,
 			onload: function(){

@@ -263,6 +263,10 @@
       <process:from type="query" pattern="reference">temp/id</process:from>
       <process:to type="query">repairTemp/id</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/outQty</process:from>
+      <process:to type="query">rtnQty</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="163" y="267"/>
@@ -661,6 +665,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjRepairOut" name="outTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjRepairOut" name="repairTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="str" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rtnQty" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjRepairOut" name="list"/>

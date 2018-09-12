@@ -88,7 +88,10 @@
 				<!--a.service_id as serviceId,-->
 				'' as outSignQty,
 				A.order_man as orderMan,
-				A.service_id as serviceCode
+				B.id as sourceId,
+				'' as partNameId,
+				'' as pickType,
+				a.service_id as serviceCode
 				
 		FROM
 			PJ_ENTER_MAIN_CHK A

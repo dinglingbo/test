@@ -17,6 +17,8 @@ var chooseType = null;
 var codeEl = null;
 var tempGrid=null;
 
+var isChooseClose = 1;//默认选择后就关闭窗体
+
 var queryForm = null;
 $(document).ready(function(v)
 {
@@ -297,6 +299,12 @@ function setViewData(ck, delck, cck){
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";
 }
+
+function setCkcallback(ck){
+	isChooseClose = 1;
+	ckcallback = ck;
+}
+
 function onOk()
 {
 	var row = partGrid.getSelected();

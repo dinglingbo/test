@@ -73,7 +73,6 @@
     <location x="120" y="232"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="list" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -255,10 +254,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/sourceId</process:from>
-      <process:to type="query">enterTemp/id</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">temp/id</process:from>
       <process:to type="query">outTemp/id</process:to>
     </process:copy>
@@ -395,7 +390,7 @@
       <process:to type="query">outableQty</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/qty</process:from>
+      <process:from type="query" pattern="reference">temp/outQty</process:from>
       <process:to type="query">qty</process:to>
     </process:copy>
     <process:copy>
@@ -607,6 +602,10 @@
     <location x="262" y="230"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">outTemp/sourceId</process:from>
+      <process:to type="query">enterTemp/id</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="256" y="266"/>

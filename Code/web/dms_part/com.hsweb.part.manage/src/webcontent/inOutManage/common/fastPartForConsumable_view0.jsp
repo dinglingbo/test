@@ -23,10 +23,11 @@ body .mini-grid-row-selected{
 
 .title.required {
 	color: red;
-}
+}Rfa
 .mini-textbox-border{
 	width:55px;
 }
+
 </style>
 </head>
 <body>

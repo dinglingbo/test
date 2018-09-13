@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.78"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.91"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -145,7 +145,7 @@ html,body {
                 <td>
                 	<td class="form_label">领料人: </td>
                      <td>
-                     <input class="nui-textbox" name="pickMan"id="pickMan" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" />
+                     <input class="nui-textbox" name="pickMan1"id="pickMan1" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" />
                     </td>
                 </td>
 
@@ -173,8 +173,8 @@ html,body {
                     <div field="sellUnitPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
                     <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
                     <div field="remark" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
-                	 <div field="returnDate" headerAlign="center" allowSort="true" visible="true" width="" dateFormat="yyyy-MM-dd">出库日期</div>  
-                    <div field="returnMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+                	 <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd">出库日期</div>  
+                    <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
                     
             </div>
         </div>

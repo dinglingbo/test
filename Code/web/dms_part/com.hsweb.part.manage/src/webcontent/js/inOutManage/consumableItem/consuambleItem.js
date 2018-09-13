@@ -6,7 +6,7 @@ var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var partApiUrl = apiPath +  partApi + "/";
 var grid = null;
 var gridUrl = baseUrl
-		+ "com.hsapi.part.purchase.repair.queryRepairOut.biz.ext";
+		+ "com.hsapi.repair.repairService.query.queryRepairOut.biz.ext";
 var queryInfoForm = null;
 var periodValidity = null;
 var partInfoUrl = partApiUrl + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";                             
@@ -235,7 +235,7 @@ function getSearchParams() {
 	var params = {};
 	params.sCreateDate = nui.get("sCreateDate").getValue().substr(0, 10);
 	params.eCreateDate = nui.get("eCreateDate").getValue().substr(0, 10);
-	params.pickMan = nui.get('pickMan').getValue();
+	params.pickMan = nui.get('pickMan1').getValue();
 	return params; 
 }
 function onSearch() {
@@ -244,7 +244,6 @@ function onSearch() {
 	doSearch(params);
 }
 function doSearch(params) {
-	params.orderTypeId = 5;
 	grid.load({
 		token : token,
 		params : params
@@ -406,14 +405,14 @@ var backUrl = baseUrl
 function orderEnter() {
 
     var row = grid.getSelected();
-    if (row) {
-        if (row.auditSign == 1) {
-            showMsg("此单已入库!","W");
-            return;
-        }
-    } else {
-        return;
-    }
+//    if (row) {
+//        if (row.auditSign == 1) {
+//            showMsg("此单已入库!","W");
+//            return;
+//        }
+//    } else {
+//        return;
+//    }
 
     // 审核时，数量，单价，金额，仓库不能为空
 //    var msg = checkRightData();
@@ -424,12 +423,14 @@ function orderEnter() {
 
     nui.confirm("是否确定归库?", "友情提示", function(action) {
         if (action == "ok") {
-
-            data = getMainData();
-            data.serviceId=null;
-            var billTypeId='050107';
+//
+//            data = getMainData();
+//            data.serviceId=null;
+        	data=grid.getSelected();
             data.partNameId='0';
             data.pickType='0';
+            data.outReturnQty=1;
+            data.returnMan="123";
             var list=[];
             list.push(data);
 
@@ -451,7 +452,7 @@ function orderEnter() {
                 type : "post",
                 data : JSON.stringify({
                     data : list,
-                    billTypeId :billTypeId,
+                    billTypeId :data.billTypeId,
 //                    pchsOrderDetailAdd : pchsOrderDetailAdd,
 //                    pchsOrderDetailUpdate : pchsOrderDetailUpdate,
 //                    pchsOrderDetailDelete : pchsOrderDetailDelete,
@@ -958,15 +959,38 @@ function partToOut()
 //    }
 
     data = enterGrid.getSelected();
-    data.guestId=FGuestId;
-    data.billTypeId="050207";
-    data.partNameId='0';
-    data.pickType='0';
-    var date=new Date();
-    var operateDate = format(date, 'yyyy-MM-dd HH:mm:ss') + '.0';
-    data.operateDate=operateDate;
+    var billTypeId="050207";
+    var partNameId='0';
+    var pickType='0';
+    var sellUnitPrice=data.enterPrice;
+    var sellAmt=data.outQty*sellUnitPrice;
+    data.id=null;
+    var data1={
+    	enterPrice	: data.enterPrice,
+    	unit		: data.enterUnitId,
+    	partId		: data.partId,
+    	partCode	: data.partCode,
+    	partName 	: data.partName,
+    	billTypeId	: billTypeId,
+    	partNameId 	: partNameId,
+    	partFullName: data.fullName,
+    	pickType	: pickType,
+    	preOutQty	: data.preOutQty,
+    	sourceId  	: data.sourceId,
+    	stockAmt	: data.stockAmt,
+    	stockQty	: data.stockQty,
+    	storeId		: data.storeId,
+    	sellUnitPrice : sellUnitPrice,
+    	sellAmt		: sellAmt,
+    	remark		: data.remark,
+    	outQty		: data.outQty, 
+    	pickMan		: data.pickMan
+    };
+//    var date=new Date();
+//    var operateDate = format(date, 'yyyy-MM-dd HH:mm:ss') + '.0';
+//    data.operateDate=operateDate;
     var list=[];
-    list.push(data);
+    list.push(data1);
 
 //    var sellOrderDetailAdd = enterGrid.getChanges("added");
 //    var sellOrderDetailUpdate = enterGrid.getChanges("modified");
@@ -990,7 +1014,7 @@ function partToOut()
         type : "post",
         data : JSON.stringify({
             data : list,
-            billTypeId :data.billTypeId,
+            billTypeId :billTypeId,
             token : token
         }),
         success : function(data) {
@@ -1012,13 +1036,57 @@ function partToOut()
 }
 function onOut(){
 	var row=enterGrid.getSelected();
-	if(!row || row==undefined){
-		showMsg("请在上方先选择一条记录");
-	}
+	
 	if(row){
 		nui.open({
 			url:webPath + partDomain +"/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+token,
 			title: "出库", width: 410, height: 250,
+			allowDrag : true,
+	        allowResize : true,
+			onload: function(){
+				var iframe=this.getIFrameEl();
+				var params={
+						data :row
+				};
+				
+				iframe.contentWindow.SetData(params);
+			},
+			ondestroy: function(action){
+				if(action == 'ok'){
+					var iframe = this.getIFrameEl();
+					var data=iframe.contentWindow.getData();
+					var	part=data.data;
+					var pickMan=part.pickMan;
+					var remark=part.remark;
+					var outQty=part.outQty;
+					var row=enterGrid.getSelected();
+					var newRow={pickMan:pickMan,remark:remark,outQty:outQty};
+					enterGrid.updateRow(row,newRow);
+					onAdvancedAddOk();
+					partToOut();
+//					getSellOrderBillNO();
+//					saveDetail();
+//					save();
+//					saveAndOut();
+//					enterGrid.setData(data);
+//					enterGrid.reload();
+//					nui.alert("确定出库？");
+//					CloseWindow("ok");
+				}
+			}
+		});
+	}else{
+		showMsg("请选择一条记录","W");
+	}
+}
+
+function onBlack(){
+	var row=enterGrid.getSelected();
+	
+	if(row){
+		nui.open({
+			url:webPath + partDomain +"/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+token,
+			title: "归库", width: 410, height: 250,
 			allowDrag : true,
 	        allowResize : true,
 			onload: function(){

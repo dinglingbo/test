@@ -1,20 +1,25 @@
 var form=null;
 var resultData = {};
 var mtAdvisorIdEl = null;
+var mtAdvisorIdEl2=null;
 $(document).ready(function(){
 	form=new nui.Form('#form');
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
+    mtAdvisorIdE2 = nui.get("mtAdvisorId2");
     
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
     });
-    
+
+
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
 //        nui.get("mtAdvisor").setValue(text);
     });
+   
 });
+
 
 function onOk()
 {

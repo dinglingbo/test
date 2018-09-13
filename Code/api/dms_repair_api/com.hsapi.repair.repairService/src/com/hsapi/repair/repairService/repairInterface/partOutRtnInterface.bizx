@@ -423,6 +423,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">temp/id</process:from>
+      <process:to type="query">tempHash/id</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">temp/auditSign</process:from>
       <process:to type="query">tempHash/auditSign</process:to>
     </process:copy>

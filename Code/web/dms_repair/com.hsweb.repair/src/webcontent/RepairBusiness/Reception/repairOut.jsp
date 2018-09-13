@@ -126,11 +126,11 @@ a {
         }
         return "";
     }
-    function newrepairOut(mid,type) {
+    function newrepairOut(mid,type,serviceCode) {
         var item={};
         item.id = "checkDetail";
         item.text = "出库单";
-        item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp?mid="+mid+"&actionType="+type;
+        item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp?mid="+mid+"&actionType="+type+"&serviceCode="+serviceCode;
         item.iconCls = "fa fa-cog";
         window.parent.activeTab(item);
     } 
@@ -159,7 +159,7 @@ mainGrid.on("drawcell",function(e){
 function edit() {
     var row = mainGrid.getSelected();
     if(row){ 
-      newrepairOut(row.id,'edit');
+      newrepairOut(row.id,'edit',row.serviceCode);
   }else{
       nui.alert("请先选择一条记录！");
   }

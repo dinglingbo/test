@@ -8,7 +8,7 @@
   - Date: 2018-07-02 20:50:20 
   - Description:
 -->          
- 
+
 <head> 
     <title>出库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -63,7 +63,7 @@
 
     <div class="nui-toolbar" id="toolbar1" style="padding:2px;height:30px">
         <input class="nui-hidden" id="mid" name="mid" value='<b:write property="mid"/>'/>
-        <input class="nui-hidden" id="tid" name="tid" value='<b:write property="tid"/>'/>
+        <input class="nui-hidden" id="serviceCode" name="serviceCode" value='<b:write property="serviceCode"/>'/>
         <input class="nui-hidden" id="actionType" name="actionType" value='<b:write property="actionType"/>'/>
         <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
             <tr>            
@@ -108,7 +108,7 @@
 
 <div class="nui-fit">
     <div id="billForm" class="form">
-        <input class="nui-hidden" name="id" id="id" value='<b:write property="actionType"/>'/>
+        <input class="nui-hidden" name="id" id="id" />
         <input class="nui-hidden" name="guestId"/>
         <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
         <input class="nui-hidden" name="contactorId"/>
@@ -200,9 +200,10 @@
     url=""  showModified="false"
     allowCellEdit="true" >
     <div property="columns">
-     <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-     <div type="checkcolumn"></div> 
-     <div header="配件信息">  
+       <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+       <div type="checkcolumn"></div> 
+       <div field="id" name="id" visible="false"  header="recordId"></div>
+       <div header="配件信息">  
         <div property="columns">
             <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
             <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
@@ -215,10 +216,10 @@
 
             <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
             <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
-        </div>   
+            </div>   
 
+        </div>
     </div>
-</div>
 </div>
 </div>
 
@@ -228,9 +229,9 @@ dataField="list"  allowCellSelect="true" multiSelect="true"
 url=""  showModified="false"
 allowCellEdit="true"  >
 <div property="columns">
- <div headerAlign="center" type="indexcolumn" width="20">序号</div>
- <div type="checkcolumn"></div>
- <div header="配件信息">
+   <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+   <div type="checkcolumn"></div>
+   <div header="配件信息">
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
 

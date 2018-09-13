@@ -17,13 +17,13 @@
             <div class="vpanel_body">
                 <table class="tmargin">
                     <tr id="rcTr">
-                        <td style="text-align:center" width="60px">套餐金额:</td>
+                        <td style="text-align:center" width="60px" height="40px">套餐金额:</td>
                         <td id="rRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
                         <td style="text-align:center" width="60px">工时金额:</td>
                         <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
-                        <td style="text-align:center" width="60px" width="60px">配件金额:</td>
+                        <td style="text-align:center" width="60px" >配件金额:</td>
                         <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
                         <td style="text-align:center" width="60px">应收:</td>
@@ -39,13 +39,13 @@
             <div class="vpanel_body">
                 <table class="tmargin">
                     <tr >
-                        <td style="text-align:center" style="width:30%" >储值抵扣:
-                        	<input class="nui-textbox" id="dk" style="width: 60px" onvaluechanged="onChanged"/>
+                        <td style="text-align:center" style="width:40%; heigth " >储值抵扣:
+                        	<input class="nui-textbox" id="dk" style="width: 70px" onvaluechanged="onChanged"/>
                         </td>    
                     </tr>
                     <tr >
-                        <td style="text-align:center" style="width:30%" >实收:
-                        	<input class="nui-textbox" id="dk" style="width: 60px" onvaluechanged="onChanged"/>
+                        <td style="text-align:center" style="width:40%" >实收:
+                        	<input class="nui-textbox" id="dk" style="width: 70px" onvaluechanged="onChanged"/>
                         </td>    
                     </tr>
                      <tr>

@@ -944,7 +944,7 @@ function doSettle() {
 			document.getElementById('ptTr').style.display = "";
 			document.getElementById('pcTr').style.display = "";
 		}
-		if(rows.billTypeCode==105||rows.billTypeCode==104){
+		if(rows[0].billTypeCode==105||rows[0].billTypeCode==104){
 			document.getElementById('ctTr').style.display = "none";
 			document.getElementById('ccTr').style.display = "none";
 		}
@@ -1321,7 +1321,7 @@ function settleOK() {
 			nui-alert("抵扣金额超出储值卡金额！","提示");
 			return;
 		}
-		var list={balaTypeCode:"020107",charOffAmt:dk,settAccountId:"249"};
+		var list={balaTypeCode:"020107",charOffAmt:dk,settAccountId:"274"};
 		accountTypeList.push(list);
 		nui.mask({
 			el : document.body,
@@ -1444,10 +1444,9 @@ function checkSettleAccountAmt(charOffAmt) {
 		if (charOffAmt) {
 			charOffAmt = parseFloat(charOffAmt);
 		}
-		var dk = nui.get("dk").getValue();
-		dk= parseFloat(dk);
+
 		tAmt += charOffAmt;
-		tAmt += dk;
+
 		if (!row.settAccountId) {
 			return true;
 		}
@@ -1456,6 +1455,14 @@ function checkSettleAccountAmt(charOffAmt) {
 	if (rows && rows.length > 0) {
 		showMsg("请选择结算账户!", "W");
 		return false;
+	}
+	var dk = nui.get("dk").getValue();
+	if(dk==""||dk==null){
+		
+	}else{
+		
+		dk= parseFloat(dk);
+		tAmt += dk;
 	}
 	if (tAmt != charOffAmt) {
 		showMsg("请确定结算金额与合计金额一致!", "W");

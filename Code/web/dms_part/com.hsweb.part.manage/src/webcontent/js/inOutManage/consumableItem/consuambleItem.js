@@ -4,8 +4,9 @@
 
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var partApiUrl = apiPath +  partApi + "/";
+var repairApiUrl=apiPath +repairApi+"/";
 var grid = null;
-var gridUrl = baseUrl
+var gridUrl = repairApiUrl
 		+ "com.hsapi.repair.repairService.query.queryRepairOut.biz.ext";
 var queryInfoForm = null;
 var periodValidity = null;
@@ -400,7 +401,7 @@ function checkRightData() {
     return msg;
 }
 //归库
-var backUrl = baseUrl
+var backUrl = repairApiUrl
 + "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext";
 function orderEnter() {
 
@@ -939,7 +940,7 @@ function checkRightData()
     return msg;
 }
 //出库
-var partToOutUrl = partApiUrl+"com.hsapi.repair.repairService.work.repairOut.biz.ext";
+var partToOutUrl = repairApiUrl+"com.hsapi.repair.repairService.work.repairOut.biz.ext";
 function partToOut()
 {
 

@@ -131,6 +131,7 @@ table {
                 <div title="车辆信息" showCloseButton="false">
                     <div class="form" id="carInfoFrom">
                         <input class="nui-hidden" name="id"/>
+                        <input class="nui-hidden" name="guestId"/>
                         <input class="nui-hidden" name="carBrandId" id="carBrandId"/>
                         <input class="nui-hidden" name="insureCompName" id="insureCompName"/>
                         <table class="nui-form-table" style="width:100%;">
@@ -269,6 +270,7 @@ table {
                 <div title="联系人信息" showCloseButton="false">
                     <div class="form" id="contactInfoForm">
                         <input class="nui-hidden" name="id"/>
+                        <input class="nui-hidden" name="guestId"/>
                         <table class="nui-form-table" style="width:100%;">
                             <tr>
                                 <td class="form_label required">

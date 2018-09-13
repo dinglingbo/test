@@ -113,14 +113,13 @@
     var mainGrid = nui.get("mainGrid"); 
     mainGrid.setUrl(gridUrl);
     var mrecordId = null;//
-    var mid = null;//主表id
-    var mserviceCode= null;
-    function SetData(par,type,id,tmid,serviceCode){
+    var mainRow = null;
+    function SetData(par,type,id,mRow){
         //id= 9522; 
         onSearch(par,type);
         mrecordId = id;
-        mid = tmid;
-        mserviceCode = serviceCode;
+        mainRow = mRow;
+
     } 
 
     function onSearch(par,type) {  
@@ -128,16 +127,13 @@
             var params = {
                 partId:par
             };
-
         }
         if(type == "Code"){
             var params = {
                 partCode:par
             };
-
         }
-
-        mainGrid.load({params:params});
+        mainGrid.load({params:params,token:token});
     }
 
     function onOk(){
@@ -181,15 +177,17 @@
         var data = mainGrid.getData();
         if(data){
             var paramsDataArr = [];
-            //var paramsData = nui.clone(data);
+            //var paramsData = nui.clone(data); 
             for (var i = 0; i < data.length; i++) { 
                 var paramsData = {};
                 paramsData.serviceId = '';
                 paramsData.id = '';
                 paramsData.mainId = mrecordId;
                 paramsData.sourceId = data[i].id;
-                paramsData.serviceId = mid;
-                paramsData.serviceCode = mserviceCode;
+                paramsData.serviceId = mainRow.id;
+                paramsData.serviceCode = mainRow.serviceCode;
+                paramsData.carNo = mainRow.carNO;
+                paramsData.vin = mainRow.carVin;
                 paramsData.partId = data[i].partId;
                 paramsData.partCode = data[i].partCode;
                 paramsData.oemCode = data[i].oemCode;
@@ -228,7 +226,7 @@
                 data:{ 
                     data:paramsDataArr,
                     billTypeId:"050206",
-                    serviceId:mid,
+                    serviceId:mainRow.id,
                     token:token   
                 },   
                 success:function(text){   
@@ -272,29 +270,7 @@
         }
     });
 
-/*
-    mainGrid.on("cellendedit",function(e){
-        var record = e.record;
-        var column = e.column;
-        var field = e.field;
-        var sumData = gridData();
 
-
-
-
-        if(column.field == "outQty"){
-            if(record.stockQty < record.outQty){
-                e.cellHtml = "0";
-                showMsg("该配件领料数量不能大于库存数量！","W");
-            } 
-            if(sumData.sum_stock < sumData.sum_outQty){
-                e.cellHtml = "0";
-                showMsg("总领料数量不能大于库存数量！","W");
-            } 
-        }
-
-    });
-    */
 function gridData(){//获取汇总的数据
     var sum_stock = 0;
     var sum_outQty = 0;

@@ -62,9 +62,6 @@
 <body>
 
     <div class="nui-toolbar" id="toolbar1" style="padding:2px;height:30px">
-        <input class="nui-hidden" id="mid" name="mid" value='<b:write property="mid"/>'/>
-        <input class="nui-hidden" id="serviceCode" name="serviceCode" value='<b:write property="serviceCode"/>'/>
-        <input class="nui-hidden" id="actionType" name="actionType" value='<b:write property="actionType"/>'/>
         <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
             <tr>            
                 <td>
@@ -200,10 +197,10 @@
     url=""  showModified="false"
     allowCellEdit="true" >
     <div property="columns">
-       <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-       <div type="checkcolumn"></div> 
-       <div field="id" name="id" visible="false"  header="recordId"></div>
-       <div header="配件信息">  
+     <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+     <div type="checkcolumn"></div> 
+     <div field="id" name="id" visible="false"  header="recordId"></div>
+     <div header="配件信息">  
         <div property="columns">
             <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
             <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
@@ -212,53 +209,45 @@
             <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
             <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
             <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
+            <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="80px" header="已领数量"></div>           
             <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
-
             <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
             <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
             </div>   
 
         </div>
-    </div>
+    </div> 
 </div>
-</div>
-
+</div>  
+  
 
 <div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-dataField="list"  allowCellSelect="true" multiSelect="true" 
+dataField="data"  allowCellSelect="true" multiSelect="false" 
 url=""  showModified="false"
 allowCellEdit="true"  >
 <div property="columns">
-   <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-   <div type="checkcolumn"></div>
-   <div header="配件信息">
+ <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+ <div type="checkcolumn" width="30" ></div>
+ <div header="配件信息">
     <div property="columns">
-        <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
+        <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
+        <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
+        <div field="outQty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
+        <div field="unit" headerAlign="center" allowSort="false" visible="false" width="80px" header="单位"></div>           
+        <div field="sellUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售单价"></div>
+        <div field="sellAmt" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售金额"></div>
+        <div field="trueUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本单价"></div>
+        <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额"></div>
 
-        </div>
-        <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center">
+        <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库"></div>
+        <div field="pickMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料人"></div>
+        <div field="pickDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料日期" dateFormat="yyyy-MM-dd"></div>
+        <div field="remark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料备注"></div>
 
-        </div>
-        <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量">
+        <div field="returnMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库人"></div>
+        <div field="returnDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库日期" dateFormat="yyyy-MM-dd"></div>
+        <div field="returnRemark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库备注"></div>
 
-        </div>
-        <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-
-        </div>
-        <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率">
-
-        </div>
-        <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
-
-        </div>
-        <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-        <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">
-        </div>           
-        <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center">
-
-        </div>
-        <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
-        </div>   
 
     </div>
 </div>
@@ -267,7 +256,7 @@ allowCellEdit="true"  >
 
 <div style="width:100%;margin-top: 10px;">
     <a class="nui-button" onclick="LLSave()" plain="false">领料</a>
-    <a class="nui-button" onclick="" plain="false">退货</a>
+    <a class="nui-button" onclick="THSave()" plain="false">退货</a>
 </div>
 </div>
 

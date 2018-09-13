@@ -21518,8 +21518,8 @@
   <nodes xsi:type="model:PEntityNode" id="node30" name="RpsPackageBill" nodeType="table" displayName="RpsPackageBill" author="Administrator" open="true" allUseViewModel="true" instanceClass="" table="rps_package_bill" genStrategy="assigned">
     <location x="60" y="7224"/>
     <size height="408" width="150"/>
-    <figSize height="20" width="170"/>
-    <columnProperty id="property124" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+    <figSize height="20" width="150"/>
+    <columnProperty id="property0" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21585,7 +21585,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property125" name="serviceId" displayName="serviceId" columnName="service_id" nullAble="false" PK="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+    <columnProperty id="property1" name="serviceId" displayName="serviceId" columnName="service_id" nullAble="false" PK="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>工单号</comment>
       <viewField dict="false" dictTypeId="" displayName="serviceId" entityField="serviceId" id="serviceId" label="serviceId" name="serviceId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21651,7 +21651,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property126" name="packageCarmtId" displayName="packageCarmtId" columnName="package_carmt_id" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property2" name="packageCarmtId" displayName="packageCarmtId" columnName="package_carmt_id" nullAble="false" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>车型套餐ID</comment>
       <viewField dict="false" dictTypeId="" displayName="packageCarmtId" entityField="packageCarmtId" id="packageCarmtId" label="packageCarmtId" name="packageCarmtId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21717,7 +21717,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property127" name="packageId" displayName="packageId" columnName="package_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property3" name="packageId" displayName="packageId" columnName="package_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>套餐ID</comment>
       <viewField dict="false" dictTypeId="" displayName="packageId" entityField="packageId" id="packageId" label="packageId" name="packageId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21783,7 +21783,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property128" name="packageName" displayName="packageName" columnName="package_name" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="256" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property4" name="packageName" displayName="packageName" columnName="package_name" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="256" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>套餐名称</comment>
       <viewField dict="false" dictTypeId="" displayName="packageName" entityField="packageName" id="packageName" label="packageName" name="packageName" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21849,7 +21849,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property129" name="packageTypeId" displayName="packageTypeId" columnName="package_type_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property5" name="packageTypeId" displayName="packageTypeId" columnName="package_type_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>套餐分类ID</comment>
       <viewField dict="false" dictTypeId="" displayName="packageTypeId" entityField="packageTypeId" id="packageTypeId" label="packageTypeId" name="packageTypeId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21915,7 +21915,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property130" name="receTypeId" displayName="receTypeId" columnName="rece_type_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property6" name="receTypeId" displayName="receTypeId" columnName="rece_type_id" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>收费类型</comment>
       <viewField dict="false" dictTypeId="" displayName="receTypeId" entityField="receTypeId" id="receTypeId" label="receTypeId" name="receTypeId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -21981,7 +21981,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property131" name="amt" displayName="amt" columnName="amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property7" name="amt" displayName="amt" columnName="amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>金额</comment>
       <viewField dict="false" dictTypeId="" displayName="amt" entityField="amt" id="amt" label="amt" name="amt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22047,7 +22047,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property132" name="rate" displayName="rate" columnName="rate" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property8" name="rate" displayName="rate" columnName="rate" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>优惠率</comment>
       <viewField dict="false" dictTypeId="" displayName="rate" entityField="rate" id="rate" label="rate" name="rate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22113,7 +22113,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property133" name="discountAmt" displayName="discountAmt" columnName="discount_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property9" name="discountAmt" displayName="discountAmt" columnName="discount_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>优惠金额</comment>
       <viewField dict="false" dictTypeId="" displayName="discountAmt" entityField="discountAmt" id="discountAmt" label="discountAmt" name="discountAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22179,7 +22179,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property134" name="subtotal" displayName="subtotal" columnName="subtotal" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property10" name="subtotal" displayName="subtotal" columnName="subtotal" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>小计金额</comment>
       <viewField dict="false" dictTypeId="" displayName="subtotal" entityField="subtotal" id="subtotal" label="subtotal" name="subtotal" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22245,7 +22245,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property738" name="detailAmt" displayName="detailAmt" columnName="detail_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property11" name="detailAmt" displayName="detailAmt" columnName="detail_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>明细合计金额</comment>
       <viewField dict="false" dictTypeId="" displayName="detailAmt" entityField="detailAmt" id="detailAmt" label="detailAmt" name="detailAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22311,7 +22311,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property739" name="differAmt" displayName="differAmt" columnName="differ_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property12" name="differAmt" displayName="differAmt" columnName="differ_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>差异金额</comment>
       <viewField dict="false" dictTypeId="" displayName="differAmt" entityField="differAmt" id="differAmt" label="differAmt" name="differAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22377,7 +22377,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property740" name="costAmt" displayName="costAmt" columnName="cost_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property13" name="costAmt" displayName="costAmt" columnName="cost_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>成本金额</comment>
       <viewField dict="false" dictTypeId="" displayName="costAmt" entityField="costAmt" id="costAmt" label="costAmt" name="costAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22443,7 +22443,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property741" name="status" displayName="status" columnName="status" nullAble="true" PK="false" defaultValue="'0'" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="0">
+    <columnProperty id="property14" name="status" displayName="status" columnName="status" nullAble="true" PK="false" defaultValue="'0'" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="0">
       <comment>状态</comment>
       <viewField dict="false" dictTypeId="" displayName="status" entityField="status" id="status" label="status" name="status" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22509,7 +22509,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property742" name="remark" displayName="remark" columnName="remark" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="256" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property15" name="remark" displayName="remark" columnName="remark" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="256" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>备注</comment>
       <viewField dict="false" dictTypeId="" displayName="remark" entityField="remark" id="remark" label="remark" name="remark" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22575,7 +22575,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property743" name="isDisabled" displayName="isDisabled" columnName="is_disabled" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property17" name="isDisabled" displayName="isDisabled" columnName="is_disabled" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否禁用</comment>
       <viewField dict="false" dictTypeId="" displayName="isDisabled" entityField="isDisabled" id="isDisabled" label="isDisabled" name="isDisabled" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22641,7 +22641,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property744" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property18" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>建档人</comment>
       <viewField dict="false" dictTypeId="" displayName="recorder" entityField="recorder" id="recorder" label="recorder" name="recorder" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22707,7 +22707,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property745" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property19" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>建档日期</comment>
       <viewField dict="false" dictTypeId="" displayName="recordDate" entityField="recordDate" id="recordDate" label="recordDate" name="recordDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22778,7 +22778,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property746" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property20" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>操作人</comment>
       <viewField dict="false" dictTypeId="" displayName="modifier" entityField="modifier" id="modifier" label="modifier" name="modifier" userDefined="true">
         <fieldView showAllAttr="false">
@@ -22844,7 +22844,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property747" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property21" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>操作日期</comment>
       <viewField dict="false" dictTypeId="" displayName="modifyDate" entityField="modifyDate" id="modifyDate" label="modifyDate" name="modifyDate" userDefined="true">
         <fieldView showAllAttr="false">

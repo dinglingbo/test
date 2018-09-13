@@ -428,6 +428,8 @@ function orderEnter() {
             data = getMainData();
             data.serviceId=null;
             var billTypeId='050107';
+            data.partNameId='0';
+            data.pickType='0';
             var list=[];
             list.push(data);
 

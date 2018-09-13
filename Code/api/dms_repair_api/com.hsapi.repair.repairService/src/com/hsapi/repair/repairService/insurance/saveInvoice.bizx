@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveInvoice.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveInvoice" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -41,10 +41,10 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="生成主键" displayName="Generate sequence for primary key  of persistent entity" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="195" y="240"/>
+    <location x="155" y="240"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -57,7 +57,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="176" y="276"/>
+    <location x="136" y="276"/>
     <figSize height="20" width="61"/>
     <node>invokePojo0</node>
   </nodes>
@@ -67,8 +67,8 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <location x="300" y="240"/>
+    <targetConnections>link20</targetConnections>
+    <location x="345" y="240"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -99,9 +99,13 @@
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">ticketMain/recorder</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceNo</process:from>
+      <process:to type="query">ticketMain/code</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="299" y="276"/>
+    <location x="344" y="276"/>
     <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
@@ -134,8 +138,8 @@
       <sourceNode>loopstart0</sourceNode>
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
-    <targetConnections>link17</targetConnections>
     <targetConnections>link18</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="522" y="73"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -411,17 +415,17 @@
     <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="运算逻辑4" displayName="Insert a record" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="运算逻辑4" displayName="Update a record" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
-      <targetNode>loopstart0</targetNode>
+      <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <location x="270" y="71"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo6label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -454,18 +458,64 @@
     <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="416" y="71"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">main</process:from>
+      <process:to type="query">mainId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="410" y="107"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getCompBillNO" displayName="getCompBillNO" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="255" y="240"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uniq.getCompBillNO</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">KPD</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceNo</process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="211" y="275"/>
+    <figSize height="20" width="115"/>
+    <node>subprocess0</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="localhost" createTime="2018-09-10 17:29:00" date="2018-09-10Z" description="" name="saveInvoice" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.arap.RpsTicketMain" name="ticketMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.arap.RpsTicketDetail" name="ticketDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.repairService.newdataset.RpsTicketMain" name="ticketMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.repairService.newdataset.RpsTicketDetail" name="ticketDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeCode" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="data"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.frm.arap.RpsTicketDetail" name="i"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.frm.arap.RpsTicketDetail" name="u"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.frm.arap.RpsTicketDetail" name="d"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.repairService.newdataset.RpsTicketDetail" name="i"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.repairService.newdataset.RpsTicketDetail" name="u"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.repairService.newdataset.RpsTicketDetail" name="d"/>
     <process:input description="" isArray="false" name="main" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>

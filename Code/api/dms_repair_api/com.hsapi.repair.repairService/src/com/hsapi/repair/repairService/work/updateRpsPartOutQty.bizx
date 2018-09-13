@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateRpsPartOutQty" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断 rpsPart的已领料数量&#xD;&#xA;更新rpsPart的已领料数量，更新状态" title="Administrator&#x9;18-9-12 下午1:41">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断 rpsPart的已领料数量&#xD;&#xA;更新rpsPart的已领料数量，更新状态&#xD;&#xA;&#xD;&#xA;如果是销售开单领料，完成后直接更新status = 2" title="Administrator&#x9;18-9-12 下午1:41">
     <location x="75" y="-15"/>
     <size height="100" width="421"/>
   </nodes>

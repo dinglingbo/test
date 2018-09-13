@@ -695,9 +695,15 @@
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="updateSellQtyTempRecordA" displayName="updateSellQtyTempRecordA" grouped="true" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
       <sourceNode>subprocess0</sourceNode>
@@ -800,6 +806,7 @@
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign10</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="200" y="335"/>

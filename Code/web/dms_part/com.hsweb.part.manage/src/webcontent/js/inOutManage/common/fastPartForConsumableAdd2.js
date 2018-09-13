@@ -6,7 +6,7 @@ $(document).ready(function(){
 	form=new nui.Form('#form');
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
-    mtAdvisorIdE2 = nui.get("mtAdvisorId2");
+ 
     
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
@@ -24,11 +24,6 @@ $(document).ready(function(){
 function onOk()
 {
     var node = form.getData();
-    var req=/^\d*$/;
-    
-    if (!req.test(node.outReturnQty)){
-	   showMsg("请输入整数");
-    }
     if(node)
     {
         console.log(node);

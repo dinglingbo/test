@@ -4,8 +4,9 @@
 
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var partApiUrl = apiPath +  partApi + "/";
+var repairApiUrl=apiPath +repairApi+"/";
 var grid = null;
-var gridUrl = baseUrl
+var gridUrl = repairApiUrl
 		+ "com.hsapi.repair.repairService.query.queryRepairOut.biz.ext";
 var queryInfoForm = null;
 var periodValidity = null;
@@ -400,7 +401,7 @@ function checkRightData() {
     return msg;
 }
 //归库
-var backUrl = baseUrl
+var backUrl = repairApiUrl
 + "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext";
 function orderEnter() {
 
@@ -429,8 +430,6 @@ function orderEnter() {
         	data=grid.getSelected();
             data.partNameId='0';
             data.pickType='0';
-            data.outReturnQty=1;
-            data.returnMan="123";
             var list=[];
             list.push(data);
 
@@ -941,7 +940,7 @@ function checkRightData()
     return msg;
 }
 //出库
-var partToOutUrl = partApiUrl+"com.hsapi.repair.repairService.work.repairOut.biz.ext";
+var partToOutUrl = repairApiUrl+"com.hsapi.repair.repairService.work.repairOut.biz.ext";
 function partToOut()
 {
 
@@ -1081,12 +1080,12 @@ function onOut(){
 }
 
 function onBlack(){
-	var row=enterGrid.getSelected();
+	var row=grid.getSelected();
 	
 	if(row){
 		nui.open({
 			url:webPath + partDomain +"/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+token,
-			title: "归库", width: 410, height: 250,
+			title: "归库", width: 430, height: 230,
 			allowDrag : true,
 	        allowResize : true,
 			onload: function(){
@@ -1102,14 +1101,13 @@ function onBlack(){
 					var iframe = this.getIFrameEl();
 					var data=iframe.contentWindow.getData();
 					var	part=data.data;
-					var pickMan=part.pickMan;
-					var remark=part.remark;
-					var outQty=part.outQty;
-					var row=enterGrid.getSelected();
-					var newRow={pickMan:pickMan,remark:remark,outQty:outQty};
-					enterGrid.updateRow(row,newRow);
-					onAdvancedAddOk();
-					partToOut();
+					var returnMan=part.returnMan;
+					var returnRemark=part.returnRemark;
+					var row=grid.getSelected();
+					var newRow={returnMan:returnMan,returnRemark:returnRemark};
+					grid.updateRow(row,newRow);
+//					onAdvancedAddOk();
+					orderEnter();
 //					getSellOrderBillNO();
 //					saveDetail();
 //					save();

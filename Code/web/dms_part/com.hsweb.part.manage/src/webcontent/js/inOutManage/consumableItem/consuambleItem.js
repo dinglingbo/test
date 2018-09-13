@@ -6,7 +6,7 @@ var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var partApiUrl = apiPath +  partApi + "/";
 var grid = null;
 var gridUrl = baseUrl
-		+ "com.hsapi.part.invoice.query.queryPjSellOrderMainDetailList.biz.ext";
+		+ "com.hsapi.part.purchase.repair.queryRepairOut.biz.ext";
 var queryInfoForm = null;
 var periodValidity = null;
 var partInfoUrl = partApiUrl + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";                             

@@ -451,7 +451,7 @@
 	function SetData(params){
 		document.getElementById("comp").innerHTML = params.comp;
 		$.ajaxSettings.async = false;//设置为同步执行
-        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId,{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.maintain;
         		var carNo = maintain.carNo;
@@ -488,7 +488,7 @@
         });
         $.ajaxSettings.async = true;//设置为异步执行
         var guestId = document.getElementById("guestId").innerHTML;
-        $.post("com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,""),{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,"")+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         		var guest = text.guest;
         		var fullName = guest.fullName;
@@ -497,7 +497,7 @@
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}
         });
-        $.post("com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId,{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
             	var tBody = $("#tbodyId");
 				tBody.empty();

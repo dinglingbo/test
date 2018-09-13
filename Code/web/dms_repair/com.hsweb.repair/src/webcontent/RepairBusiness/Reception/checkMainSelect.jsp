@@ -64,7 +64,7 @@
 <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"  showPager="true" pageSize="50"
     totalField="page.count" sizeList=[20,50,100,200] dataField="list" allowCellSelect="true" 
-    url="com.hsapi.repair.baseData.query.queryCheckModel.biz.ext">
+    url="">
     <div property="columns">
         <div type="indexcolumn" width="10" headerAlign="center" align="center">序号</div>
         <div field="id" name="id" headerAlign="center" align="center" visible="false">模板名称ID</div>
@@ -77,7 +77,13 @@
 
 <script type="text/javascript">
     nui.parse();
-    var mainGrid = nui.get("mainGrid");
+
+    var webBaseUrl = webPath + contextPath + "/";
+    var baseUrl = apiPath + repairApi + "/";
+    var gridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCheckModel.biz.ext";
+    var mainGrid = nui.get("mainGrid"); 
+    mainGrid.setUrl(gridUrl);
+
     mainGrid.load();
     
     mainGrid.on("rowdblclick",function(e){

@@ -85,9 +85,14 @@
 				B.REMARK as remark, F.CODE AS code, F.NAME as name, F.OEM_CODE as oemCode,
 				F.PART_BRAND_ID as partBrandId, F.APPLY_CAR_MODEL as applyCarModel,
 				F.SPEC as spec, F.DIRECTION as direction, a.audit_date as auditDate, 
-				a.service_id as serviceId,
+				<!--a.service_id as serviceId,-->
 				'' as outSignQty,
-				A.order_man as orderMan
+				A.order_man as orderMan,
+				B.id as sourceId,
+				'' as partNameId,
+				'' as pickType,
+				a.service_id as serviceCode
+				
 		FROM
 			PJ_ENTER_MAIN_CHK A
 		INNER JOIN PJ_ENTER_DETAIL_CHK B ON A.ID = B.MAIN_ID

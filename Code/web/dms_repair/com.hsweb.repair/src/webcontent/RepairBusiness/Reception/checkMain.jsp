@@ -71,7 +71,7 @@
   <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
     totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-    onshowrowdetail="onShowRowDetail" url="com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext">
+    onshowrowdetail="onShowRowDetail" url="">
     <div property="columns">
       <div field="id" name="id" visible="false">id</div>
       <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
@@ -86,7 +86,11 @@
 
 <script type="text/javascript">
   nui.parse();
-  var mainGrid = nui.get("mainGrid");
+    var webBaseUrl = webPath + contextPath + "/";
+    var baseUrl = apiPath + repairApi + "/";
+    var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+    var mainGrid = nui.get("mainGrid"); 
+    mainGrid.setUrl(gridUrl);
 
   mainGrid.load({billTypeId:1});
 

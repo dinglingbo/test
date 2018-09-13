@@ -245,7 +245,7 @@
                 <td>
                     <div id="guestInfo">
                         <label style="font-family:Verdana;">车牌号:</label>
-                        <label id="guestCarEl" style="font-family:Verdana;"><a id="showCarInfoEl" href="javascript:showHealth()"></a></label>&nbsp;
+                        <label id="guestCarEl" style="font-family:Verdana;"><a id="showCarInfoEl" href="javascript:showBillInfo()"></a></label>&nbsp;
                         <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
                         <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
                         <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label>

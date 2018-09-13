@@ -41,6 +41,9 @@
 		WHERE
 			b.guest_type = '01020103'
 		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (b.tenant_id = #tenantId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
             </isNotEmpty>         
@@ -116,6 +119,7 @@
             
             
         </dynamic>
+        order by b.modify_date desc
 	</select>
 	<select id="queryCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
@@ -161,7 +165,8 @@
 			left join rpb_guest f on b.id = f.id
 			left join wb_common.com_join_member e on b.id = e.guest_id
 			left join rpb_car_extend g on g.car_id=a.id
-		WHERE 1=1
+		WHERE
+			b.guest_type = '01020103'
 		<dynamic>
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
@@ -217,6 +222,6 @@
             </isNotEmpty>
              
         </dynamic>
-        order by a.id
+        order by b.modify_date desc
 	</select>
 </sqlMap>

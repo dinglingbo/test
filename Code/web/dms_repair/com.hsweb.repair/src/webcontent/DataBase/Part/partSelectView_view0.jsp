@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件选择</title>
-<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.1"></script>
+<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.3"></script>
 <style type="text/css">
 .table-label {
     text-align: right;

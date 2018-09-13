@@ -385,7 +385,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">已出库的单不能修改</process:from>
+      <process:from type="literal" pattern="reference">草稿状态下的单才能修改</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -423,7 +423,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
           <process:leftOperand type="query">main/status</process:leftOperand>
-          <process:rightOperand type="literal">2</process:rightOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -555,6 +555,7 @@
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign12</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link27" name="link27" displayName="连接线" type="transition">
       <sourceNode>assign8</sourceNode>
@@ -1029,7 +1030,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign25label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">UPD</process:from>
+      <process:from type="literal" pattern="reference">UPD</process:from>
       <process:to type="query">flage</process:to>
     </process:copy>
   </nodes>
@@ -1048,7 +1049,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign26label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">APP</process:from>
+      <process:from type="literal" pattern="reference">ADD</process:from>
       <process:to type="query">flage</process:to>
     </process:copy>
   </nodes>

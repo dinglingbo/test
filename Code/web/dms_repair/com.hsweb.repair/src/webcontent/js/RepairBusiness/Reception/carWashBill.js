@@ -2198,16 +2198,14 @@ function onPrint(e){
 	if(main.id){
 		var params = {
 				serviceId : main.id,
-				comp : currOrgName,
-				baseUrl : baseUrl,
-				token : token
+				comp : currOrgName
 		};
 		if(e == 1){
-			openUrl = webBaseUrl+"com.hsweb.print.repairOrder.flow";
+			openUrl = "com.hsweb.print.repairOrder.flow";
 		}else if(e == 2){
-			openUrl = webBaseUrl+"com.hsweb.print.settlement.flow";
+			openUrl = "com.hsweb.print.settlement.flow";
 		}else if(e == 3){
-			openUrl = webBaseUrl+"com.hsweb.print.smallSettlement.flow";
+			openUrl = "com.hsweb.print.smallSettlement.flow";
 		}
 		nui.open({
             url: openUrl,
@@ -2224,7 +2222,7 @@ function onPrint(e){
 	}
 }
 
-function showBillInfo(){
+function showHealth(){
 	var main = billForm.getData();
 	var params = {
 			carId : main.carId,
@@ -2232,9 +2230,9 @@ function showBillInfo(){
 	};
 	if(main.id){
 		nui.open({
-            url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
-            width: "800",
-            height: "1000",
+            url: "com.hsweb.RepairBusiness.carDetails.flow",
+            width: "100%",
+            height: "100%",
             showMaxButton: false,
 			allowResize: false,
             showHeader: true,
@@ -2246,26 +2244,11 @@ function showBillInfo(){
 	}
 }
 
-function showHealth(){
-	window.open(webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp")
-	/*nui.open({
-        url: webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp",
-        width: "800",
-        height: "1000",
-        showMaxButton: false,
-		allowResize: false,
-        showHeader: true,
-        onload: function() {
-            var iframe = this.getIFrameEl();
-        },
-    });*/
-}
-
 function pay(){
 	nui.open({
-		url:webBaseUrl+"repair/RepairBusiness/Reception/carWashBillUp.jsp",
-		width:"100%",
-		height:"100%",
+		url:"com.hsweb.print.carWashBillUp.flow",
+		width:"40%",
+		height:"50%",
 		//加载完之后
 		onload: function(){	
 		},

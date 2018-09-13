@@ -1,14 +1,14 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 
-var mainGrid = null; 
+var mainGrid = null;  
 var repairOutGrid = null; 
 var mid = null;//主表ID
-var tid = null;
+var serviceCode = null;
 
 var mtAdvisorIdEl = null;   
-var searchKeyEl = null;  
-var servieIdEl = null;   
+var searchKeyEl = null;   
+var servieIdEl = null;    
 var searchNameEl = null;
 var billForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
@@ -19,8 +19,8 @@ var actionType = null;
 
 $(document).ready(function(){ 
 
-	tid = nui.get("tid").value;
 	mid = nui.get("mid").value;
+	serviceCode = nui.get("serviceCode").value;
 	mainGrid = nui.get("mainGrid");
 	repairOutGrid = nui.get("repairOutGrid");
 	mainGrid.setUrl(mainGridUrl);
@@ -187,10 +187,11 @@ function LLSave(argument) {
 		for (var i = 0, l = rows.length; i < l; i++) {
 			var r = rows[i].partId;
 			var c = rows[i].partCode;
+			var recordId = rows[i].id;
 			if(r){
-				openPartSelect(r,"Id");
+				openPartSelect(r,"Id",recordId,mid);
 			}else if(c){
-				openPartSelect(c,"Code");
+				openPartSelect(c,"Code",recordId,mid); 
 			}else{
 				showMsg('部分配件需单独领取!','W');
 				return;
@@ -203,15 +204,15 @@ function LLSave(argument) {
 }
 
 
-function openPartSelect(par,type){
+function openPartSelect(par,type,id,mid){
 	nui.open({
-		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow",
+		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
 		title:"选择配件",
 		height:"400px",
 		width:"900px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.SetData(par,type);
+			iframe.contentWindow.SetData(par,type,id,mid,serviceCode);
 		},
 		ondestroy:function(action){
 

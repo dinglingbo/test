@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.74"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.78"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -160,7 +160,7 @@ html,body {
     </div>
 </div>
 <div class="nui-fit">
-    <div  id="grid" dataField="detailList" class="nui-datagrid" style="width: 100%; height: 100%;"
+    <div  id="grid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
          pageSize="50"
          totalField="page.count" allowSortColumn="true"
          frozenStartColumn="0" frozenEndColumn="0">
@@ -170,11 +170,11 @@ html,body {
                     <div field="partName" headerAlign="center" allowSort="true" visible="true" width="">配件名称</div>
                     <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="">出库数量</div>
 
-                    <div field="orderPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
-                    <div field="orderAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
-                    <div field="mainRemark" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
-                	 <div field="auditDate" headerAlign="center" allowSort="true" visible="true" width="" dateFormat="yyyy-MM-dd">出库日期</div>  
-                    <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+                    <div field="sellUnitPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
+                    <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
+                    <div field="remark" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
+                	 <div field="returnDate" headerAlign="center" allowSort="true" visible="true" width="" dateFormat="yyyy-MM-dd">出库日期</div>  
+                    <div field="returnMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
                     
             </div>
         </div>

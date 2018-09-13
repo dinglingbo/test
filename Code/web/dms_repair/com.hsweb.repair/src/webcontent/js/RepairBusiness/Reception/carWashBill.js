@@ -2246,9 +2246,9 @@ function showHealth(){
 
 function pay(){
 	nui.open({
-		url:"repair/RepairBusiness/Reception/carWashBillUp.jsp",
-		width:"100%",
-		height:"100%",
+		url:"com.hsweb.print.carWashBillUp.flow",
+		width:"40%",
+		height:"50%",
 		//加载完之后
 		onload: function(){	
 		},

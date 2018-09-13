@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.1.1"></script>
 <style type="text/css">
 
 .title {
@@ -97,8 +97,11 @@
                   <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
                   <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
                   <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌"></div>           
-                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
+                  <div field="carModel" name="carModel" width="180" headerAlign="center" header="车型"></div>
+                  <div field="partAmt" name="partAmt" width="50" headerAlign="center" header="金额"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
+                  <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算金额"></div>              
+                  <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
 	              <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>

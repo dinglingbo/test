@@ -19,6 +19,7 @@
 <body>
 	<div id="queryform" class="nui-form">
 		<div class="nui-toolbar">
+			<input class="nui-textbox" id="expense" visible="false"/>
 			<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
 										   valueField="id" allowInput="true" valueFromSelect="true"
 										   textField="name"/>
@@ -50,7 +51,7 @@
 		<div id="datagrid1" dataField="package1" class="nui-datagrid"
 			pageSize="20" onDrawCell="onDrawCell"
 			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
-			style="width: 100%; height: 100%;float:left;">
+			style="width: 100%; height: 100%;float:left;"multiSelect="true" >
 			<div property="columns">
 				<div type="indexcolumn"></div>
 				<div type="checkcolumn"></div>

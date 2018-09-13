@@ -17,6 +17,8 @@ var chooseType = null;
 var codeEl = null;
 var tempGrid=null;
 
+var isChooseClose = 1;//默认选择后就关闭窗体
+
 var queryForm = null;
 $(document).ready(function(v)
 {
@@ -297,51 +299,66 @@ function setViewData(ck, delck, cck){
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";
 }
+
+function setCkcallback(ck){
+	isChooseClose = 1;
+	ckcallback = ck;
+}
+
+function getDataAll(){
+	var row = partGrid.getSelecteds();
+	return row;
+}
+
 function onOk()
 {
-	var row = partGrid.getSelected();
-	if(row)
-	{
-		if(ckcallback){
-			var rs = ckcallback(row);
-			if(rs){
-				showMsg("此配件已添加,请返回查看!","W");
-				return;
+	if(nui.get("state").value){
+		CloseWindow("ok");
+	}else{
+		var row = partGrid.getSelected();
+		if(row)
+		{
+			if(ckcallback){
+				var rs = ckcallback(row);
+				if(rs){
+					showMsg("此配件已添加,请返回查看!","W");
+					return;
+				}else{
+					if(callback){
+						nui.mask({
+							el: document.body,
+							cls: 'mini-mask-loading',
+							html: '处理中...'
+						});
+
+						callback(row,function(data){
+							if(data){
+								data.check = 1;
+								tempGrid.addRow(data);
+							}
+						},function(){
+							nui.unmask(document.body);
+						})
+					}
+				}
 			}else{
 				if(callback){
-					nui.mask({
-						el: document.body,
-						cls: 'mini-mask-loading',
-						html: '处理中...'
-					});
-
 					callback(row,function(data){
 						if(data){
 							data.check = 1;
 							tempGrid.addRow(data);
 						}
-					},function(){
-						nui.unmask(document.body);
 					})
 				}
 			}
-		}else{
-			if(callback){
-				callback(row,function(data){
-					if(data){
-						data.check = 1;
-						tempGrid.addRow(data);
-					}
-				})
+			resultData.part = row;
+			if(isChooseClose == 1){
+				CloseWindow("ok");
 			}
 		}
-		resultData.part = row;
-		if(isChooseClose == 1){
-			CloseWindow("ok");
+		else{
+			showMsg("请选择一个配件", "W");
 		}
-	}
-	else{
-		showMsg("请选择一个配件", "W");
 	}
 }
 
@@ -373,3 +390,8 @@ function onCancel(e) {
 //{
 //    onOk();
 //}
+
+function setValueData(){
+	nui.get("state").setValue(6);
+	partGrid.showColumn("checkcolumn");
+}

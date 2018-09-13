@@ -25,23 +25,25 @@
 
 <body>
     <div style="height: 10px;"></div>
-    <input class="nui-textbox" name="ftype" id="ftype" value='<b:write property="ftype"/>'  visible="false"/>
+
     <table id="table1"  style=" left:0;right:0;margin: 0 auto;"> 
 
         <tr>
             <td class="tbtext">领料人：</td>
             <td class="tbCtrl" >
+                <input class="nui-textbox" name="ftype" id="ftype" value='<b:write property="ftype"/>'  visible="false"/>
+                <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
                 <input name="mtAdvisorId"
                 id="mtAdvisorId"
                 style="width:100%"
                 class="nui-combobox width1"
                 textField="empName"
-                valueField="empId"
+                valueField="empId" 
                 emptyText="请选择..."
                 required="true"
                 url=""
                 allowInput="true"
-                showNullItem="false"
+                showNullItem="false" 
                 valueFromSelect="true"
                 nullItemText="请选择..."/>
 
@@ -53,7 +55,7 @@
         <tr>
             <td class="tbtext">备注:</td>
             <td class="tbCtrl">
-                <input class="nui-textarea tabwidth" name="" id="" style="width:100%;height: 100px;"/>
+                <input class="nui-textarea tabwidth" name="remark" id="remark" style="width:100%;height: 100px;"/>
             </td>
 
         </tr> 
@@ -65,7 +67,7 @@
         <a class="nui-button" iconCls="" plain="false" onclick="onCancel" style="margin-left: 20px;">
             <span class="fa fa-remove fa-lg"></span>&nbsp;取消
         </a>
-    </div>
+    </div> 
     <script type="text/javascript">
         nui.parse();
         var form = new nui.Form("#table1");
@@ -94,6 +96,10 @@
             closeWindow("ok");
         }
 
+        function GetFormData(){
+            var data = form.getData();
+            return data;
+        }
 
         function onCancel() {
             closeWindow("cancel");

@@ -51,6 +51,7 @@
     <chidren>assign8</chidren>
     <chidren>assign9</chidren>
     <chidren>assign10</chidren>
+    <chidren>invokePojo3</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
     <location x="116" y="264"/>
@@ -87,10 +88,10 @@
     <targetConnections>link1</targetConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link8</targetConnections>
-    <targetConnections>link15</targetConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link26</targetConnections>
     <targetConnections>link29</targetConnections>
+    <targetConnections>link30</targetConnections>
     <location x="816" y="232"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
@@ -119,21 +120,21 @@
       <process:partner type="literal">com.hsapi.part.invoice.stockcal.insertInvocing</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
-        <process:inputVariable id="1" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/storeId</process:inputVariable>
-        <process:inputVariable id="2" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">temp/serviceCode</process:inputVariable>
-        <process:inputVariable id="3" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/mainId</process:inputVariable>
-        <process:inputVariable id="4" name="billDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/id</process:inputVariable>
-        <process:inputVariable id="5" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">temp/billTypeId</process:inputVariable>
-        <process:inputVariable id="6" name="guestId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/guestId</process:inputVariable>
-        <process:inputVariable id="7" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">temp/guestName</process:inputVariable>
-        <process:inputVariable id="8" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/partId</process:inputVariable>
-        <process:inputVariable id="9" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">temp/partCode</process:inputVariable>
-        <process:inputVariable id="10" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">temp/partName</process:inputVariable>
-        <process:inputVariable id="11" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">temp/qty</process:inputVariable>
-        <process:inputVariable id="12" name="billPrice" type="query" value="Float" valueType="Primitive" pattern="reference">temp/sellPrice</process:inputVariable>
-        <process:inputVariable id="13" name="billAmt" type="query" value="Float" valueType="Primitive" pattern="reference">temp/sellAmt</process:inputVariable>
-        <process:inputVariable id="14" name="costPrice" type="query" value="Float" valueType="Primitive" pattern="reference">temp/enterPrice</process:inputVariable>
-        <process:inputVariable id="15" name="costAmt" type="query" value="Float" valueType="Primitive" pattern="reference">temp/enterAmt</process:inputVariable>
+        <process:inputVariable id="1" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/storeId</process:inputVariable>
+        <process:inputVariable id="2" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/serviceCode</process:inputVariable>
+        <process:inputVariable id="3" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/mainId</process:inputVariable>
+        <process:inputVariable id="4" name="billDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/id</process:inputVariable>
+        <process:inputVariable id="5" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/billTypeId</process:inputVariable>
+        <process:inputVariable id="6" name="guestId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/guestId</process:inputVariable>
+        <process:inputVariable id="7" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/guestName</process:inputVariable>
+        <process:inputVariable id="8" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/partId</process:inputVariable>
+        <process:inputVariable id="9" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/partCode</process:inputVariable>
+        <process:inputVariable id="10" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/partName</process:inputVariable>
+        <process:inputVariable id="11" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">outTemp/outQty</process:inputVariable>
+        <process:inputVariable id="12" name="billPrice" type="query" value="Float" valueType="Primitive" pattern="reference">outTemp/sellUnitPrice</process:inputVariable>
+        <process:inputVariable id="13" name="billAmt" type="query" value="Float" valueType="Primitive" pattern="reference">outTemp/sellAmt</process:inputVariable>
+        <process:inputVariable id="14" name="costPrice" type="query" value="Float" valueType="Primitive" pattern="reference">outTemp/trueUnitPrice</process:inputVariable>
+        <process:inputVariable id="15" name="costAmt" type="query" value="Float" valueType="Primitive" pattern="reference">outTemp/trueCost</process:inputVariable>
         <process:inputVariable id="16" name="operateDate" type="query" value="Date" valueType="Primitive" pattern="reference">operateDate</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -208,6 +209,7 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>transactionbegin0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -347,7 +349,7 @@
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>end1</targetNode>
@@ -423,7 +425,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="updateEntity" displayName="updateEntity" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>loopend1</targetNode>
+      <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo1</sourceNode>
@@ -569,7 +571,7 @@
     <figSize height="17" width="49"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign8</sourceNode>
       <targetNode>loopend1</targetNode>
@@ -584,7 +586,7 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -648,6 +650,30 @@
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="updateEntity1" displayName="updateEntity" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>loopend1</targetNode>
+    </sourceConnections>
+    <targetConnections>link15</targetConnections>
+    <location x="690" y="231"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">repairTemp</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="661" y="267"/>
+    <figSize height="17" width="80"/>
+    <node>invokePojo3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-08 19:34:09" date="2018-09-08Z" description="" name="partOutRtn" version="7.0.0.0"/>
@@ -666,6 +692,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjRepairOut" name="repairTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="str" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rtnQty" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjRepairOut" name="repairList"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.part.data.pts.PjRepairOut" name="list"/>

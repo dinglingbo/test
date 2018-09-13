@@ -50,6 +50,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="1200" y="158"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
@@ -132,6 +133,16 @@
       <sourceNode>transactionbegin0</sourceNode>
       <targetNode>subprocess2</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" type="transition">
+      <sourceNode>transactionbegin0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050207</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="945" y="158"/>
     <size height="28" width="28"/>
@@ -187,6 +198,21 @@
     <location x="1190" y="276"/>
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="1065" y="78"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="1063" y="114"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

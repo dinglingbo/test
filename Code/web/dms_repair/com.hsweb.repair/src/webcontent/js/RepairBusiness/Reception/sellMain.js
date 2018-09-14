@@ -24,6 +24,9 @@ var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var innerPartGrid = null;
+var mainTabs = null;
+var settleWin = null;
+
 $(document).ready(function ()
 {
     mainGrid = nui.get("mainGrid");
@@ -38,9 +41,13 @@ $(document).ready(function ()
    // advancedSearchForm = new nui.Form("#advancedSearchForm");
    editFormDetail = document.getElementById("editFormDetail");
    // innerItemGrid = nui.get("innerItemGrid");
-   // innerPartGrid = nui.get("innerPartGrid");
+    innerPartGrid = nui.get("innerPartGrid");
   //  innerItemGrid.setUrl(itemGridUrl);
-   // innerPartGrid.setUrl(partGridUrl);
+    innerPartGrid.setUrl(partGridUrl);
+    
+    mainTabs = nui.get("mainTabs");
+	settleAccountGrid = nui.get("settleAccountGrid");
+	settleWin = nui.get("settleWin");
 
     //时间设置值
    // beginDateEl.setValue(getMonthStartDate());
@@ -83,11 +90,11 @@ $(document).ready(function ()
             //e.cellHtml = receTypeIdHash[e.value].name;
         }
     });*/
-    /*innerPartGrid.on("drawcell", function (e) {
+    innerPartGrid.on("drawcell", function (e) {
         if (e.field == "receTypeId") {
-            //e.cellHtml = receTypeIdHash[e.value].name;
+            e.cellHtml = receTypeIdHash[e.value].name;
         }
-    });*/
+    });
 
     var statusList = "0,1,2,3";
     var p = {statusList:statusList};
@@ -123,16 +130,16 @@ function onShowRowDetail(e) {
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
 
-    innerItemGrid.setData([]);
+   // innerItemGrid.setData([]);
     innerPartGrid.setData([]);
 
     var params = {};
     params.serviceId = row.id;
-    innerItemGrid.load({
+   /* innerItemGrid.load({
         params:params,
         token: token
     });
-
+    */
     innerPartGrid.load({
         params:params,
         token: token
@@ -189,9 +196,10 @@ function doSearch(params) {
     gsparams.status = params.status;
     gsparams.statusList = params.statusList;
     gsparams.isSettle = params.isSettle;
+   
     //洗美
-    gsparams.billTypeId = 2;
-
+    //gsparams.billTypeId = 2;
+    
     mainGrid.load({
         token:token,
         params: gsparams
@@ -298,8 +306,11 @@ function out(){
 				if (returnJson.errCode == "S") {
 					b = 1;
 					showMsg("出库成功");
-					 mainGrid.load();
 					
+					 mainGrid.load({
+					        token:token
+				   });
+					 
 				} else {
 					showMsg("出库失败");
 				}
@@ -313,6 +324,87 @@ function out(){
 	}
 }
 //转结算
-function sell(){
-	
+payUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/partBillPay.jsp?token="+token;
+function pay(){	
+	var row = mainGrid.getSelected();
+	if(row)
+	{
+		if(row.isSettle == 1){
+	        showMsg("此单已结算!","S");
+	        return;
+	    }
+		if(row.status != 2){
+			 showMsg("此单未出库，不能结算!","S");
+		     return;
+		}
+		nui.open({
+			url:payUrl,
+			width:"40%",
+			height:"50%",
+			//加载完之后
+			onload: function(){	
+			//把值传递到支付页面
+		    var iframe = this.getIFrameEl();
+		    iframe.contentWindow.getData(row);			
+			},
+		   ondestroy : function(action) {
+			if (action == 'ok') {
+				var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getData();
+				supplier = data.supplier;
+				var value = supplier.id;
+				var text = supplier.fullName;
+				var el = nui.get(elId);
+				el.setValue(value);
+				el.setText(text);
+			}
+		}
+		});		
+	}
+	else{
+		showMsg("请选择单据", "W");
+	}
 }
+
+
+
+var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateMainStatus.biz.ext";
+function finish(){
+
+	var main = mainGrid.getSelected();
+	var isSettle = main.isSettle||0;
+    
+    if(isSettle == 1){
+        showMsg("此单已结算,不能审核!","S");
+        return;
+    }
+	if(main.status==1){
+		showMsg("此单已审核,不能重复审核!","S");
+        return;
+	} 
+	
+	var json = nui.encode({
+		"main" : main,
+		token : token
+	});
+	
+	nui.ajax({
+		url : updUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.errCode == "S") {
+				showMsg("审核成功");
+				
+			} else {
+				showMsg(returnJson.errMsg);
+			}
+				
+		}
+	});
+}
+
+

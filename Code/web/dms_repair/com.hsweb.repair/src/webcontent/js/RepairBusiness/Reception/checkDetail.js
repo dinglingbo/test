@@ -12,7 +12,7 @@ var searchNameEl = null;
 var billForm = null;
 var topForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-var mainGridUrl = webBaseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext"
+var mainGridUrl = webBaseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext";
 var fserviceId = 0;
 var actionType = null;
 
@@ -42,13 +42,13 @@ $(document).ready(function ()
         id:mid
     };
     if(actionType == "new"){
-        mainGrid.load({mainid:tid});
+        mainGrid.load({mainid:tid,token:token});
     }
     if(actionType == "edit"){
-        setInitData(par);
+        SetData(par);
     }
     if(actionType == "view"){
-        setInitData(par);
+        SetData(par);
 
     }
     searchKeyEl.on("beforeload",function(e){
@@ -155,7 +155,7 @@ $(document).ready(function ()
             }
 
             
-            var url = "com.hsapi.repair.baseData.query.queryCheckModelDetailContent.biz.ext?checkId=" + id;
+            var url = baseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetailContent.biz.ext?checkId=" + id;
             editor.setUrl(url);
         } 
 
@@ -412,8 +412,8 @@ function saveMaintain(callback,unmaskcall){
                 var rid = data.data.id; 
                 nui.get("id").setValue(rid);
                  $("#servieIdEl").html(data.data.serviceCode);
-                mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
-                mainGrid.load({mainId:rid});
+                mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+                mainGrid.load({mainId:rid,token:token});
                 nui.unmask(document.body);
             });
             showMsg("保存成功！","S");
@@ -487,14 +487,14 @@ function setAllData(){
         }
     });
 
-    mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
-    mainGrid.load({mainId:mid});
+    mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+    mainGrid.load({mainId:mid,token:token});
 }
 
-
-
-
-function setInitData(params){
+ 
+ 
+ 
+function SetData(params){
     if(!params.id){
         //add(); 
     }else{
@@ -565,8 +565,8 @@ function setInitData(params){
                         billForm.setData(data);
                         nui.get("enterDate").setValue(data.enterDate);
                         nui.get("planFinishDate").setValue(data.planFinishDate);
-                        mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
-                        mainGrid.load({mainId:params.id});
+                        mainGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+                        mainGrid.load({mainId:params.id,token:token});
 
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","W");

@@ -228,6 +228,7 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="rtnQty>pickQty" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -468,6 +469,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="restQty" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPart" name="rpsPartTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPart" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rtnQty" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.PjRepairOut" name="data"/>

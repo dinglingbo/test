@@ -236,8 +236,23 @@
           <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="">零件编码</div>
       </div>
   </div>
+  
+   <div id="innerpackGrid"
+       dataField="list"
+       class="nui-datagrid"
+       style="width: 100%; height: 100px;"
+       showPager="false"
+       allowSortColumn="true">
+      <div property="columns">
+          <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+          <div field="prdtName" headerAlign="center" allowSort="true" visible="true" width="100">套餐名称</div>
+          <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" width="80">业务类型</div>
+          <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">套餐金额</div>
+          <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">原价</div>
+          <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
+          <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
+      </div>
+  </div>
 </div>
-
-
 </body>
 </html>

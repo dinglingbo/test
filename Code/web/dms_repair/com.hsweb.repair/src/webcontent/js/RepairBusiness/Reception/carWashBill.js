@@ -128,9 +128,12 @@ $(document).ready(function ()
             var carVin = item.vin||"";
 
             var params = {
-                carNo: carNo,
-                isSettle: 0,
-                orgid: currOrgId
+            		params:{
+                        carNo: carNo,
+                        isSettle: 0,
+                        orgid: currOrgId
+            		}
+
             }
             checkRpsMaintain(params, function(text){
                 var data = text.data||[];

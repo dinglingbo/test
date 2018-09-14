@@ -61,7 +61,7 @@ a {
         </td>
     </tr>
 </table>
-
+ 
 </div>
 
 <div class="nui-fit">
@@ -93,7 +93,7 @@ a {
     var baseUrl = apiPath + repairApi + "/";
     var gridUrl = baseUrl + "com.hsapi.repair.baseData.query.qyeryMaintainList.biz.ext";
     mainGrid.setUrl(gridUrl);
-  
+
     var yy = (new Date()).getFullYear();
     var mm = ((new Date()).getMonth() + 1);
     var dd = (new Date()).getDate();
@@ -126,13 +126,23 @@ a {
         }
         return "";
     }
-    function newrepairOut(mid,type,serviceCode) {
-        var item={};
-        item.id = "checkDetail";
-        item.text = "出库单";
-        item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp?mid="+mid+"&actionType="+type+"&serviceCode="+serviceCode;
-        item.iconCls = "fa fa-cog";
-        window.parent.activeTab(item);
+    function newrepairOut(type) {
+        var row = mainGrid.getSelected();
+        if(row){ 
+            var item={};
+            item.id = "checkDetail";
+            item.text = "出库单";
+            item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp";
+            item.iconCls = "fa fa-cog";
+            //window.parent.activeTab(item);
+            var params = {
+                id:row.id,
+                row: row
+            };
+            window.parent.activeTabAndInit(item,params);
+        }else{
+            nui.alert("请先选择一条记录！");
+        }
     } 
 
 
@@ -149,21 +159,21 @@ mainGrid.on("drawcell",function(e){
     var record = e.record;
     var column = e.column;
     var id = record.id;
-    var ll = '<a  href="javascript:newrepairOut('+id+','+"'ll'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;领料</a>';//class="icon-collapse"
-    var th = '<a  href="javascript:newrepairOut('+id+','+"'th'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;退货</a>';//class="icon-addnew"
+    var ll = '<a  href="javascript:newrepairOut('+"'ll'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;领料</a>';//class="icon-collapse"
+    var th = '<a  href="javascript:newrepairOut('+"'th'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;退货</a>';//class="icon-addnew"
     if(column.field == "action"){
         e.cellHtml = ll +"&nbsp;&nbsp;&nbsp;" + th;
     }
 });
 
-function edit() {
+/*function edit() {
     var row = mainGrid.getSelected();
     if(row){ 
-      newrepairOut(row.id,'edit',row.serviceCode);
+      newrepairOut(row,'edit');
   }else{
       nui.alert("请先选择一条记录！");
   }
-}
+}*/
 </script>
 
 </body>

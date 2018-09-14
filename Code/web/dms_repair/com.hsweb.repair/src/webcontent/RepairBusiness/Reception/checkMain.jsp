@@ -92,7 +92,15 @@
     var mainGrid = nui.get("mainGrid"); 
     mainGrid.setUrl(gridUrl);
 
-  mainGrid.load({billTypeId:1});
+
+onSearch();
+
+function onSearch(){
+  mainGrid.load({
+    billTypeId:1,  
+    token:token
+  });
+}
 
   function newCheckBill(mid,type) {
     var item={};

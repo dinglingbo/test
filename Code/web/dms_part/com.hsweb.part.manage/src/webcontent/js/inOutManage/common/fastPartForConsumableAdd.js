@@ -1,23 +1,32 @@
 var form=null;
 var resultData = {};
 var mtAdvisorIdEl = null;
+var brandHash = {};
+var brandList = [];
 $(document).ready(function(){
 	form=new nui.Form('#form');
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
-    
+
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
     });
-    
+
+
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
 //        nui.get("mtAdvisor").setValue(text);
     });
+
+
+
 });
+
 
 function onOk()
 {
+	form.validate();
+    if (form.isValid() == false) return;
     var node = form.getData();
     var req=/^\d*$/;
     
@@ -26,7 +35,6 @@ function onOk()
     }
     if(node)
     {
-        console.log(node);
         resultData = {
         	data:node
         };
@@ -42,7 +50,7 @@ function getData(){
 function SetData(params) {
     var params = nui.clone(params);
     if(params.data!=null){
-        form.setData(params.data);
+        form.setData(params.data);        
     }
 
 }

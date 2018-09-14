@@ -183,6 +183,10 @@
       <process:to type="query">insPart/rate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">insPart/sourceId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">insPart/qty</process:from>
       <process:to type="query">qty</process:to>
     </process:copy>

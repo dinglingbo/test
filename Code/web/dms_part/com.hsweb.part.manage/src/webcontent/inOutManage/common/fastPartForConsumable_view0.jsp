@@ -8,7 +8,7 @@
 -->
 <head>
 <title>领料</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.66"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.67"></script>
 <style type="text/css">                
 .table-label {
 	text-align: right;
@@ -23,10 +23,11 @@ body .mini-grid-row-selected{
 
 .title.required {
 	color: red;
-}
+}Rfa
 .mini-textbox-border{
 	width:55px;
 }
+
 </style>
 </head>
 <body>

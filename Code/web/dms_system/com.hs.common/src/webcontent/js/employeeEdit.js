@@ -81,7 +81,7 @@ function save(action) {
             showMsg(requiredField[key] + "不能为空!","W");
         }
     }
-
+    form.validate();
     if (form.isValid() == false) return;
   
     nui.mask({

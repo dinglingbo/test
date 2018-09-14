@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.78"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.117"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -145,13 +145,13 @@ html,body {
                 <td>
                 	<td class="form_label">领料人: </td>
                      <td>
-                     <input class="nui-textbox" name="pickMan"id="pickMan" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" />
+                     <input class="nui-textbox" name="pickMan1"id="pickMan1" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" />
                     </td>
                 </td>
 
                 <td><a class="nui-button"  plain="true" onclick="onSearch()"> <span class="fa fa-search fa-lg"></span> 查询</a>
                 	<a class="nui-button"  plain="true" onclick="onOut()"> <span class="fa fa-cubes fa-lg"></span> 领料</a>
-                	<a class="nui-button"  plain="true" onclick="orderEnter()"> <span class="fa fa-check fa-lg"></span> 归库</a>
+                	<a class="nui-button"  plain="true" onclick="onBlack()"> <span class="fa fa-check fa-lg"></span> 归库</a>
                 
                 </td>
             
@@ -162,19 +162,30 @@ html,body {
 <div class="nui-fit">
     <div  id="grid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
          pageSize="50"
-         totalField="page.count" allowSortColumn="true"
+         totalField="page.count" allowSortColumn="true"   allowCellSelect="true" 
+         allowCellEdit="true"  multiSelect="false" 
          frozenStartColumn="0" frozenEndColumn="0">
         <div property="columns">
             <div type="indexcolumn" headerAlign="center" width="30">序号</div>
-  
+  					
+  					<div field="partCode" name="partCode" width="80" headerAlign="center" header="配件编码"></div>
                     <div field="partName" headerAlign="center" allowSort="true" visible="true" width="">配件名称</div>
                     <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="">出库数量</div>
 
                     <div field="sellUnitPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
                     <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
-                    <div field="remark" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
-                	 <div field="returnDate" headerAlign="center" allowSort="true" visible="true" width="" dateFormat="yyyy-MM-dd">出库日期</div>  
-                    <div field="returnMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+                    <div field="remark" id="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
+                	 <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd">出库日期</div>  
+                    <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+                    <div field="returnReasonId" id="returnReasonId" headerAlign="center" allowSort="true" visible="false" width="">归库原因ID
+                    	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
+                    </div>
+                    <div field="returnRemark" id="returnRemark" headerAlign="center" allowSort="true" visible="false" width="">归库原因
+                    	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
+                    </div>
+                    <div field="returnMan" id="returnMan" headerAlign="center" allowSort="true" visible="false" width=""  align="right">归库人
+                    	<input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
+                    </div> 
                     
             </div>
         </div>

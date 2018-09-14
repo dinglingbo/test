@@ -263,6 +263,8 @@ function initMember(id,callback){//dictDefs{id1: dictid1, id2: dictid2}
 	    callAjax(url, params, processAjax, processMember, null);
     }
 }
+
+
 function processMember(data){
 	_initDmsObj["getMember"].setData(data);
     _initDmsCallback["initCompMember"]  && _initDmsCallback["initCompMember"]() && (_initDmsCallback["initCompMember"] = null);

@@ -160,7 +160,7 @@
                         var iframe = this.getIFrameEl();
                         var childdata = iframe.contentWindow.GetFormData();
                     savePartOut(childdata);     //如果点击“确定”
-                    //CloseWindow("close");
+                    CloseWindow("ok");
                 }
 
             }

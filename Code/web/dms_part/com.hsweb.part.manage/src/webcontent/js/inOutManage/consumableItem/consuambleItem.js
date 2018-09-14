@@ -560,6 +560,12 @@ function partToOut() {
 }
 function onOut() {
 	var row = enterGrid.getSelected();
+	var partBrandId=row.partBrandId;
+	for(var i=0;i<brandList.length;i++){
+		if(partBrandId==brandList[i].id){
+			row.partBrandId=brandList[i].name;
+		}
+	}
 
 	if (row) {
 		nui.open({

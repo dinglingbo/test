@@ -17,15 +17,8 @@ $(document).ready(function(){
         var text = mtAdvisorIdEl.getText();
 //        nui.get("mtAdvisor").setValue(text);
     });
-    getData();
-    
 
-	
-//	if (brandHash[e.value]) {
-//		e.cellHtml = brandHash[e.value].name || "";
-//	} else {
-//		e.cellHtml = "";
-//	}
+
 
 });
 
@@ -50,20 +43,6 @@ function onOk()
     }
 
 }
-//getAllPartBrand(function(data) {
-//	brandList = data.brand;
-//	var partBrand=nui.get('partBrandId').getValue();
-//	for(var i=0;i<brandList.length;i++){
-//		if(partBrand==brandList[i].id){
-//			nui.get('partBrandId').setText(brandList[i].name);
-//		}
-//	}
-////	nui.get('partBrandId').setData(brandList);
-////	brandList.forEach(function(v) {
-////		brandHash[v.id] = v;
-////		
-////	});
-//});
 function getData(){
     return resultData;
 }
@@ -71,7 +50,7 @@ function getData(){
 function SetData(params) {
     var params = nui.clone(params);
     if(params.data!=null){
-        form.setData(params.data);
+        form.setData(params.data);        
     }
 
 }

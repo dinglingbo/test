@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.100"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.115"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -167,7 +167,8 @@ html,body {
          frozenStartColumn="0" frozenEndColumn="0">
         <div property="columns">
             <div type="indexcolumn" headerAlign="center" width="30">序号</div>
-  
+  					
+  					<div field="partCode" name="partCode" width="80" headerAlign="center" header="配件编码"></div>
                     <div field="partName" headerAlign="center" allowSort="true" visible="true" width="">配件名称</div>
                     <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="">出库数量</div>
 

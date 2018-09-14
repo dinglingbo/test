@@ -22,6 +22,8 @@ $(document).ready(function(){
 
 function onOk()
 {
+	form.validate();
+    if (form.isValid() == false) return;
     var node = form.getData();
     var req=/^\d*$/;
     
@@ -30,7 +32,6 @@ function onOk()
     }
     if(node)
     {
-        console.log(node);
         resultData = {
         	data:node
         };

@@ -438,10 +438,10 @@ function onAdvancedAddOk() {
 	for ( var key in requiredField) {
 		if (!data[key] || data[key].toString().trim().length == 0) {
 			showMsg(requiredField[key] + "不能为空!", "W");
-			var msg=showMsg(requiredField[key] + "不能为空!", "W");
 			if (key == "outQty") {
 				var outQty = nui.get("outQty");
 				outQty.focus();
+			
 			}
 			if (key == "pickMan") {
 				var pickMan = nui.get("pickMan");
@@ -560,6 +560,12 @@ function partToOut() {
 }
 function onOut() {
 	var row = enterGrid.getSelected();
+	var partBrandId=row.partBrandId;
+	for(var i=0;i<brandList.length;i++){
+		if(partBrandId==brandList[i].id){
+			row.partBrandId=brandList[i].name;
+		}
+	}
 
 	if (row) {
 		nui.open({

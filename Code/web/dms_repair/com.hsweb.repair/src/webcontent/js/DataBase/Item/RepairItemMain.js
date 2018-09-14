@@ -177,51 +177,60 @@ function setViewData(ck, delck, cck){
 	document.getElementById("splitDiv").style.display="";
 }
 
+function getDataAll(){
+	var row = rightGrid.getSelecteds();
+	return row;
+}
+
 function onOk()
 {
-	var row = rightGrid.getSelected();
-	if(row)
-	{
-		if(ckcallback){
-			var rs = ckcallback(row);
-			if(rs){
-				showMsg("此工时已添加,请返回查看!","W");
-				return;
+	if(nui.get("state").value){
+		CloseWindow("ok");
+	}else{
+		var row = rightGrid.getSelected();
+		if(row)
+		{
+			if(ckcallback){
+				var rs = ckcallback(row);
+				if(rs){
+					showMsg("此工时已添加,请返回查看!","W");
+					return;
+				}else{
+					if(callback){
+						nui.mask({
+							el: document.body,
+							cls: 'mini-mask-loading',
+							html: '处理中...'
+						});
+
+						callback(row,function(data){
+							if(data){
+								data.check = 1;
+								tempGrid.addRow(data);
+							}
+						},function(){
+							nui.unmask(document.body);
+						})
+					}
+				}
 			}else{
 				if(callback){
-					nui.mask({
-						el: document.body,
-						cls: 'mini-mask-loading',
-						html: '处理中...'
-					});
-
 					callback(row,function(data){
 						if(data){
 							data.check = 1;
 							tempGrid.addRow(data);
 						}
-					},function(){
-						nui.unmask(document.body);
 					})
 				}
 			}
-		}else{
-			if(callback){
-				callback(row,function(data){
-					if(data){
-						data.check = 1;
-						tempGrid.addRow(data);
-					}
-				})
+			resultData.item = row;
+			if(isChooseClose == 1){
+				CloseWindow("ok");
 			}
 		}
-		resultData.item = row;
-		if(isChooseClose == 1){
-			CloseWindow("ok");
+		else{
+			showMsg("请选择一个工时", "W");
 		}
-	}
-	else{
-		showMsg("请选择一个工时", "W");
 	}
 }
 function CloseWindow(action)
@@ -337,4 +346,10 @@ function onDrawCell(e) {
 		break;
 	}
 
+}
+
+function showCheckcolumn(){
+	rightGrid.showColumn("checkcolumn");
+	nui.get("state").setValue(6);
+	nui.get("selectBtn").show();
 }

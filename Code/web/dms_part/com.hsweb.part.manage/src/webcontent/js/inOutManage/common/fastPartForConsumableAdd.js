@@ -20,7 +20,7 @@ $(document).ready(function(){
     
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
-		nui.get('partBrandId').setData(brandList);
+//		nui.get('partBrandId').setData(brandList);
 		brandList.forEach(function(v) {
 			brandHash[v.id] = v;
 			

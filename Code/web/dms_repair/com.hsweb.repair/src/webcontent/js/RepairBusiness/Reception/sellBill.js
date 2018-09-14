@@ -12,7 +12,7 @@ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuest
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 
 var billForm = null;
-
+var editFormDetail = null;
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -45,7 +45,7 @@ var mitemRate = 0;
 var mpartRate = 0;
 var x = 0;
 var y = 0;
-
+//var innerPartGrid = null;
 var prdtTypeHash = {
     "1":"套餐",
     "2":"工时",
@@ -56,10 +56,12 @@ $(document).ready(function ()
 {
     billForm = new nui.Form("#billForm");
     rpsPartGrid = nui.get("rpsPartGrid");
-    
+   // innerPartGrid = nui.get("innerPartGrid");
+    //innerPartGrid.setUrl(partGridUrl);
     serviceTypeIdEl = nui.get("serviceTypeId");
     currEmpIdEl = nui.get("mtAdvisorId");
     currEmpIdEl.setText(currUserName);
+   // editFormDetail = document.getElementById("editFormDetail");
     initMember("mtAdvisorId",function(){
         memList = currEmpIdEl.getData();
         
@@ -111,7 +113,6 @@ $(document).ready(function ()
                 e.data =data;
                 return;
             }
-
             //包含中文
             var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
             if(reg.test(value)){
@@ -287,20 +288,17 @@ function clear(){
 }
 function onShowRowDetail(e) {
     var row = e.record;
-    
     //将editForm元素，加入行详细单元格内
     var td = mainGrid.getRowDetailCellEl(row);
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
 
-    innerPartGrid.setData([]);
-
+  /*  innerPartGrid.setData([]);
     var params = {};
-
     innerPartGrid.load({
         params:params,
         token: token
-    });
+    });*/
 }
 function onApplyClick(){
     doApplyCustomer({},function(action){
@@ -1252,9 +1250,7 @@ function onCellCommitEdit(e) {
 }
 
 
-
-
-function onValueChangedQty(e){
+/*function onValueChangedQty(e){
 	var row = rpsPartGrid.getSelected();
     var data ={};
     if(e.value == null ||e.value == '') {
@@ -1287,7 +1283,7 @@ function onValueChangedUnitPrice(e){
 	rpsPartGrid.updateRow(row,data);
 	
 }
-
+*/
 /*
  * 修改维修主表的信息
  * */
@@ -1390,7 +1386,8 @@ function saveBatch(){
 		var sellPartAdd = rpsPartGrid.getChanges("added");
 		var sellPartUpdate = rpsPartGrid.getChanges("modified");
 		var sellPartDelete = rpsPartGrid.getChanges("removed");
-		maintain.partAmt = sumSell;
+		maintain.partAmt = total;
+		total = null;
 		var json = nui.encode({
 			"maintain" : maintain,
 			"addSellPart" : addSellPart,
@@ -1468,14 +1465,16 @@ function finish(){
 	});
 }
 
-var sumSell = null;
+var total = null;
 function onDrawSummaryCell(e){	
 	  var rows = e.data;
+	  var sum = null;
 	  if(e.field == "amt") 
 	  {   
 		  for (var i = 0; i < rows.length; i++)
 		  {
-			  sumSell += parseFloat(rows[i].amt);
+			  sum += parseFloat(rows[i].amt);
+			  total = sum;
 		  }
 	  } 
 }

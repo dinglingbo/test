@@ -47,7 +47,8 @@
 			b.annual_verification_due_date as annualVerificationDueDate,
 			b.insure_due_date as insureDueDate,
 			b.annual_inspection_date as annualInspectionDate,
-			b.annual_inspection_no as annualInspectionNo
+			b.annual_inspection_no as annualInspectionNo,
+			a.part_amt as partAmt
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )

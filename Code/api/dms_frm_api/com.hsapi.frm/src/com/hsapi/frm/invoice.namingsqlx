@@ -25,10 +25,10 @@ select
 			c.recorder as recorder,
 			c.remark as remark,
 			a.record_date as recordDateMain
-from rps_maintain a
-left join rps_ticket_detail b
+from wb_repair.rps_maintain a
+left join wb_repair.rps_ticket_detail b
 on a.id = b.servcie_id
-left join rps_ticket_main c
+left join wb_repair.rps_ticket_main c
 on b.main_id = c.id
 inner join wb_common.com_guest d
 on a.guest_id = d.id

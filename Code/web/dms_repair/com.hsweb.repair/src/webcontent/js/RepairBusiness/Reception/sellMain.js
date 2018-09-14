@@ -36,7 +36,7 @@ $(document).ready(function ()
     //serviceTypeIdEl = nui.get("serviceTypeId");
    // advancedMore = nui.get("advancedMore");
    // advancedSearchForm = new nui.Form("#advancedSearchForm");
-   // editFormDetail = document.getElementById("editFormDetail");
+   editFormDetail = document.getElementById("editFormDetail");
    // innerItemGrid = nui.get("innerItemGrid");
    // innerPartGrid = nui.get("innerPartGrid");
   //  innerItemGrid.setUrl(itemGridUrl);
@@ -95,8 +95,8 @@ $(document).ready(function ()
 });
 var statusHash = {
     "0" : "草稿",
-    "1" : "未审核",
-    "2" : "已审核",
+    "1" : "待出库",
+    "2" : "已出库",
     "3" : "待结算",
     "4" : "已结算",
     "5" : "全部"
@@ -262,4 +262,57 @@ function setInitData(params){
     }else{
         showMsg("加载");
     }
+}
+//转出库
+var updOutUrl = baseUrl + "com.hsapi.repair.repairService.crud.UpdateMainStatusOut.biz.ext";
+function out(){
+	
+	var row = mainGrid.getSelected();
+	if(row)
+	{
+		if(row.isSettle == 1){
+	        showMsg("此单已结算!","S");
+	        return;
+	    }
+		if(row.status==0){
+			showMsg("此单需审核才能出库!","S");
+	        return;
+		}
+		if(row.status==2){
+			showMsg("此单已出库!","S");
+	        return;
+		}
+		var json = nui.encode({
+			"main" : row,
+			token : token
+		});
+		
+		nui.ajax({
+			url : updOutUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+				if (returnJson.errCode == "S") {
+					b = 1;
+					showMsg("出库成功");
+					 mainGrid.load();
+					
+				} else {
+					showMsg("出库失败");
+				}
+					
+			}
+		});
+		
+	}
+	else{
+		showMsg("请选择工单", "W");
+	}
+}
+//转结算
+function sell(){
+	
 }

@@ -11,7 +11,7 @@
 <head>
 <title>领料出库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.10"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.20"></script>
     <style type="text/css">
 
    	#remark.mini-textbox{
@@ -28,6 +28,11 @@
    	}
 	.mini-listbox-view{
 		height:115px !important;
+	}
+/* 	#return{ */
+/* 		display:none; */
+/* 	} */
+	#mtAdvisorId2{
 	}
     </style>
 </head>
@@ -48,8 +53,8 @@
 				<td style="padding-left: 26px;">数量:<input enabled="false" class="nui-textbox" id="stockQty" name="stockQty" type="text"></td>
 	<!-- 			<td><input class="nui-textbox" id="" name="" type="text"></td> -->
 			</tr>
-			<tr><td>请输入数量及领料人:</td></tr>
-			<tr>
+			<tr id="out"><td>请输入数量及领料人:</td></tr>
+			<tr id="out">
 				<td style="padding-left: 14px;">领料人:
 					<input  name="pickMan"
                             id="mtAdvisorId"
@@ -66,14 +71,15 @@
 				</td>
 				<td>出库数量:<input required="true" valid="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
-			<tr>
+			<tr id="out">
 				<td style="" colspan="2">出库原因:<input required="true"  class="nui-textarea" id="remark" name="remark" type="text" ></td>
 			</tr>
-			<tr align="center">
+			<tr id="out" align="center">
 				<td colspan="2">
 				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">出库</a>
 				</td>
 			</tr>
+			
 		</table>
 	</div>
 	</div>

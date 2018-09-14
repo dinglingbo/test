@@ -37,7 +37,7 @@
                 <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">
                 </div>           
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center">
+                     allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan">
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 

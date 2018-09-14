@@ -73,7 +73,6 @@
     <location x="120" y="232"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="list" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -152,9 +151,15 @@
     <node>subprocess4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="updateCompStock" displayName="updateCompStock" collapsed="false" grouped="true" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link46" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="link46" isDefault="true" type="transition">
       <sourceNode>subprocess5</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="link47" lineType="inheritance" type="break">
       <bendPoint heightToEnd="-64" heightToStart="-13" widthToEnd="-59" widthToStart="111"/>
@@ -178,7 +183,7 @@
         <process:inputVariable id="1" name="balaQty" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaQty</process:inputVariable>
         <process:inputVariable id="2" name="balaPrice" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaPrice</process:inputVariable>
         <process:inputVariable id="3" name="balaAmt" type="query" value="Float" valueType="Primitive" pattern="reference">dInvocing/balaAmt</process:inputVariable>
-        <process:inputVariable id="4" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">temp/qty</process:inputVariable>
+        <process:inputVariable id="4" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">temp/outQty</process:inputVariable>
         <process:inputVariable id="5" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/storeId</process:inputVariable>
         <process:inputVariable id="6" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/partId</process:inputVariable>
         <process:inputVariable id="7" name="operateDate" type="query" value="Date" valueType="Primitive" pattern="reference">operateDate</process:inputVariable>
@@ -254,10 +259,6 @@
     <location x="165" y="231"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/sourceId</process:from>
-      <process:to type="query">enterTemp/id</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">temp/id</process:from>
       <process:to type="query">outTemp/id</process:to>
@@ -395,7 +396,7 @@
       <process:to type="query">outableQty</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/qty</process:from>
+      <process:from type="query" pattern="reference">temp/outQty</process:from>
       <process:to type="query">qty</process:to>
     </process:copy>
     <process:copy>
@@ -541,6 +542,7 @@
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" type="transition">
       <sourceNode>invokePojo2</sourceNode>
@@ -607,6 +609,10 @@
     <location x="262" y="230"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">outTemp/sourceId</process:from>
+      <process:to type="query">enterTemp/id</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="256" y="266"/>

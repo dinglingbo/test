@@ -27,22 +27,23 @@
     <div style="height: 10px;"></div>
 
     <table id="table1"  style=" left:0;right:0;margin: 0 auto;"> 
-    <input class="nui-textbox" name="ftype" id="ftype" value='<b:write property="ftype"/>'  visible="false"/>
-    <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
+
         <tr>
             <td class="tbtext">领料人：</td>
             <td class="tbCtrl" >
+                <input class="nui-textbox" name="ftype" id="ftype" value='<b:write property="ftype"/>'  visible="false"/>
+                <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
                 <input name="mtAdvisorId"
                 id="mtAdvisorId"
                 style="width:100%"
                 class="nui-combobox width1"
                 textField="empName"
-                valueField="empId"
+                valueField="empId" 
                 emptyText="请选择..."
                 required="true"
                 url=""
                 allowInput="true"
-                showNullItem="false"
+                showNullItem="false" 
                 valueFromSelect="true"
                 nullItemText="请选择..."/>
 

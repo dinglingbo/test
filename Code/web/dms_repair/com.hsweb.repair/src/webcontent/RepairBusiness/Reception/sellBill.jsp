@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.3.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.5.7"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -118,7 +118,7 @@
                 <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>
                 <a class="nui-button" iconCls="" plain="false" onclick="" id="addBtn">查看详情</a>
                 <span class="separator"></span> -->
-                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="saveBatch()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finishBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 <span class="separator"></span>
 
@@ -219,10 +219,11 @@
      allowCellSelect="true"
      allowCellEdit="true"
      oncellcommitedit="onCellCommitEdit"
+     ondrawsummarycell="onDrawSummaryCell"
      >
     <div property="columns" >
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-        <div header="配件信息">
+        <div header="配件信息" headerAlign="center">
             <div property="columns">
                 <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
                 </div>
@@ -238,8 +239,8 @@
                 
                 <div field="amt" headerAlign="center" allowSort="false"  width="70" datatype="float" align="center" header="金额"></div>
                  -->
-                <div field="qty" name="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量">
-                   <input property="editor" vtype="float" class="nui-textbox"/>
+                <div field="qty" name="qty" summaryType="sum"  numberFormat="1" width="60" headerAlign="center" header="数量">
+                   <input property="editor" vtype="int" class="nui-textbox"/>
                 </div>
                 <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
                    <input property="editor" vtype="float" class="nui-textbox"/>

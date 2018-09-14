@@ -32,8 +32,9 @@
 		    <table style="width:100%;">
 		        <tr>
 		        <td style="width:100%;">
-		           <input class="nui-textbox" style="width:40%" emptytext="请输入发票号/开票单号/源单号/客户姓名/手机号码/车牌号查询">
-                	<input class="nui-combobox" style="width:10%" data="data" value="1">
+		                   单据日期:<input class="nui-datepicker" id="start"onblur="valueChane()"/>-<input class="nui-datepicker" id="end"onblur="valueChane()"/>
+		            <input class="nui-combobox" data="data" textfield="text" valuefield="id" value="1" id="type"onvaluechanged="valueChane()"/>
+		           <input id="message"name="message" class="nui-textbox" style="width:18%"  onblur="valueChane()">
 		        </td>
 		        <td style="white-space:nowrap;"><label style="font-family:Verdana;"></label>
 		           		<a class="nui-button" iconCls="icon-search" onclick="newBill()">新建</a>
@@ -44,9 +45,9 @@
 		</div>
         <div class="nui-fit">
         	<div id="grid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="com.hsapi.frm.invoiceManagement.selectInvoiceMain.biz.ext">
+            totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="">
                 <div property="columns">
-                    <div field="" name="" headeralign="center" align="center" width="40">开票单号</div>
+                    <div field="code" name="code" headeralign="center" align="center" width="40">开票单号</div>
                     <div field="serviceCode" name="serviceCode" headeralign="center" align="center"width="55">源单号</div>
                     <div field="guestFullName"  name="guestFullName" headeralign="center" align="center"width="30">客户姓名</div>
                     <div field="carNo"  name="carNo" headeralign="center" align="center"width="40">车牌号</div>
@@ -66,13 +67,10 @@
         </div>
     </div>
     <script type="text/javascript">
-        var data = [{
-            id: "1",
-            text: "更多筛选"
-        }];
+    	 var data = [{ id: 1, text: '发票号查询' }, { id: 2, text: '开票单号查询' }, { id: 3, text: '源单号查询' },
+    	  { id: 4, text: '客户姓名查询' }, { id: 5, text: '手机号码查询' }, { id: 2, text: '车牌号查询' }];
         nui.parse();
-		var grid = nui.get("grid");
-		grid.load();
+		
         function newBill() {
             var item={};
             item.id = "TicketOpeningMgr";
@@ -82,15 +80,6 @@
             window.parent.activeTab(item);
         }
         
-        grid.on("drawcell",function(e){
-        	var field = e.field,
-        	value = e.value;
-        	if(field == "recordDate" || field == "recordDateMain"){
-        		if(value){
-        			e.cellHtml = format(value,"yyyy-MM-dd");
-        		}
-        	}
-        });
     </script>
 </body>
 

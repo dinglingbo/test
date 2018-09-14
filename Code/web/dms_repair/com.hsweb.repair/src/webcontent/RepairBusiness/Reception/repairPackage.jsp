@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8" session="false" %>
-    
-
 <div id="rpsPackageGrid" class="nui-datagrid"
      style="width:100%;height:auto;"
      dataField="list"
@@ -33,7 +31,7 @@
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
                 <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="施工员" align="center">
+                     allowSort="false" visible="true" width="60" header="施工员" align="center" name="workers">
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
                     url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
                     <!-- <div property="columns">
@@ -46,7 +44,7 @@
                      allowSort="false" visible="false" width="80" header="施工员" align="center">
                 </div>                
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center">
+                     allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan">
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onsalemanChanged" emptyText=""  vtype="required"/> 

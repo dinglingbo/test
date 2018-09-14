@@ -32,7 +32,7 @@
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="80" header="施工员">
+                     allowSort="false" visible="true" width="80" header="施工员" name="workers">
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
                     url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onitemworkerChanged" >     
                     <!-- <div property="columns">
@@ -45,7 +45,7 @@
                      allowSort="false" visible="false" width="80" header="施工员" align="center">
                 </div>                
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center">
+                     allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan">
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onitemsalemanChanged" emptyText=""  vtype="required"/> 

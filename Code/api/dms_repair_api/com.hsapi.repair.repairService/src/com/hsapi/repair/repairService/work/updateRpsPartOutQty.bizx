@@ -410,6 +410,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>

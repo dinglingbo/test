@@ -252,7 +252,5 @@ function setInitData(params){
             token:token,
             params: p
         });
-    }else{
-        showMsg("加载");
     }
 }

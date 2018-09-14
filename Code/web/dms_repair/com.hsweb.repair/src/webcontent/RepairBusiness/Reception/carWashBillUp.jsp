@@ -11,7 +11,7 @@
 -->
 <head>
 <title>洗车工单结算</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.5"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.6"></script>
 	        <div id="rtTr" class="vpanel panelwidth" style="height:auto;">
             <div id="rtTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应收</span></div>
             <div class="vpanel_body">

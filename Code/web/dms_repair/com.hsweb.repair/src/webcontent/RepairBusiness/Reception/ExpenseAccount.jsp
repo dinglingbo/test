@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.3"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -113,7 +113,6 @@
                 showClose="false"
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
-                <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     
             <td style="text-align:right;">
@@ -134,22 +133,6 @@
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印结算单</li>
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印小票</li>
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印领料单</li>
-                </ul>
-
-
-                <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>
-
-                <ul id="popupMenuQT" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="addcardTime()" id="type10">计次卡销售</li>
-                    <li iconCls="" onclick="addcard()" id="type11">储值卡充值</li>
-                </ul>
-
-                <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-gift fa-lg"></span>&nbsp;更多</a>
-
-                <ul id="popupMenuMore" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="addcardTime()" id="type10">新增报销单</li>
-                    <li iconCls="" onclick="addcardTime()" id="type10">车牌替换/修改</li>
-                    <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li>
                 </ul>
             </td>
         </tr>
@@ -233,49 +216,7 @@
         </table>
     </div>
 
-    <div style="text-align:center;" >
-        <table border="0" align="center" cellpadding="0" cellspacing="0" >
-            <tr>
-                <td>
-                    <div >
-                        <span id="carHealthEl" >
-                            <a href="javascript:showHealth()" class="healthview" >车况:100</a>&nbsp;
-                        </span>
-                    </div>
-                </td>
-                <td>
-                    <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
-                    <label style="font-family:Verdana;">客户名称:</label>
-                    <label id="guestNameEl" style="font-family:Verdana;"></label>&nbsp;
-                    <label style="font-family:Verdana;">客户手机:</label>
-                    <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
-                </td>
-                <td>
-                    <div id="guestInfo">
-                        <label style="font-family:Verdana;">车牌号:</label>
-                        <label id="guestCarEl" style="font-family:Verdana;"><a id="showCarInfoEl" href="javascript:showBillInfo()"></a></label>&nbsp;
-                        <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
-                        <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
-                        <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-
     <div class="nui-fit">
-        <div class="nui-splitter"
-                id="splitter"
-                allowResize="true"
-                handlerSize="6"
-                style="width:100%;height:100%;">
-            <div size="300" showCollapseButton="true">
-                <div class="nui-fit">
-                    <iframe id="formIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-                </div>
-            </div>
-            <div showCollapseButton="false">
-                
                     <div class="nui-fit">
                         <div class="" style="width:100%;height:auto;" >
                             <div style="width:100%;height:5px;"></div>
@@ -343,9 +284,6 @@
                 
                         </div>
                     </div>
-                    
-            </div>
-        </div>
     </div>
 
 

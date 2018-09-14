@@ -341,3 +341,31 @@ function doAddcard(params,callback){
 		});
 
 }
+function doSelectBasicData(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
+        title: "标准化产品查询", width: 900, height: 600,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            //var carVin = maintain.carVin;
+            //var data = {
+            //    vin:carVin
+            //};
+            iframe.contentWindow.setData(params,function(data,callback)
+            {
+                if(data.item)
+                {
+                    var tmpItem = data.item;
+                    addItem(tmpItem);
+                }
+                else{
+                    addPackage(data,callback);
+                }
+
+            });
+        },
+        ondestroy: function (action)
+        {
+        }
+    });
+}

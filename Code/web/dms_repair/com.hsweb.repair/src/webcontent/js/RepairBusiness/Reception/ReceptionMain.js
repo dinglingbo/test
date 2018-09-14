@@ -224,3 +224,32 @@ function add(){
     window.parent.activeTabAndInit(item,params)
 
 }
+function edit(){
+    var row = mainGrid.getSelected();
+    if(!row) return;
+    var item={};
+    item.id = "2000";
+    item.text = "综合开单详情";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {
+        id: row.id
+    };
+    window.parent.activeTabAndInit(item,params);
+}
+//根据开单界面传递的车牌号查询未结算的工单
+function setInitData(params){
+    var carNo = params.carNo||"";
+    var type = params.type||""
+    if(type=='view' && carNo != ""){
+        var p = {
+            carNoEqual: carNo,
+            isSettle: 0
+        };
+        mainGrid.load({
+            token:token,
+            params: p
+        });
+    }
+}

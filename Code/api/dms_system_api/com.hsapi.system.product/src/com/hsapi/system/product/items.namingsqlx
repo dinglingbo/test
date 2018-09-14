@@ -159,7 +159,7 @@
     		package4sAmt, carbrandName, carLevelName, carLineName, carModelName, carEngineName, 
     		makeTime, fileId, fileName, paintQty, useCount 
 		FROM vw_carmt_pkg_amt 
-		WHERE IsDisabled = 0 AND id = #id# 
+		WHERE id = #id# 
     </select>
     <!--getPart-->
     <select id="getPart" parameterClass="HashMap" resultClass="HashMap">

@@ -490,7 +490,7 @@
                 (a.pick_date &gt;= #sCreateDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eCreateDate">  
-                (a.pick_date &lt; #eCreateDate#)
+                (DATE_FORMAT(a.pick_date,'%Y-%m-%d') &lt;= #eCreateDate#)
             </isNotEmpty>    
             <isNotEmpty prepend="and" property="pickMan">  
                 (a.pick_man like '%$pickMan$%')

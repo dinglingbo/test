@@ -11,7 +11,7 @@
 <head>
 <title>领料出库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.20"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.27"></script>
     <style type="text/css">
 
    	#remark.mini-textbox{
@@ -27,13 +27,10 @@
    		padding-top:3px;
    	}
 	.mini-listbox-view{
-		height:115px !important;
+		height:105px !important;
 	}
-/* 	#return{ */
-/* 		display:none; */
-/* 	} */
-	#mtAdvisorId2{
-	}
+
+
     </style>
 </head>
 <body>
@@ -60,13 +57,13 @@
                             id="mtAdvisorId"
                             class="nui-combobox"
                             textField="empName"
-                            valueField="empId"
+                            valueField="empName"
                             emptyText="请选择..."
                             url=""
                              required="true"
                             allowInput="true"
                             valueFromSelect="true"
-                            popupHeight="85%"
+                            popupHeight="90%"
                           />
 				</td>
 				<td>出库数量:<input required="true" valid="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>

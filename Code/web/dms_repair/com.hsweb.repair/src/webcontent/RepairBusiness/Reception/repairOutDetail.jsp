@@ -6,7 +6,7 @@
 <!-- 
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20 
-  - Description:
+  - Description: 
 -->          
 
 <head> 
@@ -209,7 +209,7 @@
             <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
             <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
             <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-            <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="80px" header="已领数量"></div>           
+            <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>           
             <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
             <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
             <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
@@ -239,7 +239,7 @@ allowCellEdit="true"  >
         <div field="trueUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本单价"></div>
         <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额"></div>
 
-        <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库"></div>
+        <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库" renderer="onGenderRenderer"></div>
         <div field="pickMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料人"></div>
         <div field="pickDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料日期" dateFormat="yyyy-MM-dd"></div>
         <div field="remark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料备注"></div>

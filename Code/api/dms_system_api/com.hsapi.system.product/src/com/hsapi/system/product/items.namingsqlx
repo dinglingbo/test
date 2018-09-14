@@ -104,6 +104,9 @@
     		makeTime, fileId, fileName, paintQty, useCount 
 		FROM vw_carmt_pkg_amt 
 		WHERE IsDisabled = 0 and carModelId = '00000000'
+			<isNotNull property="id">
+				AND id = #id# 
+			</isNotNull>
 			<isNotNull property="packageTypeId">
 				AND packageTypeId = #packageTypeId#
 			</isNotNull>
@@ -128,6 +131,9 @@
 			AND carLevelId = #carLevelId#			
 			AND carLineId = #carLineId#
 
+			<isNotNull property="id">
+				AND id = #id# 
+			</isNotNull>
 			<isNotNull property="carModelId">
 				AND carModelId = #carModelId#
 			</isNotNull>
@@ -146,6 +152,14 @@
 				AND pyCode like '%$pyCode$%'
 			</isNotNull>
 	    Order by UseCount DESC
+    </select>
+     <select id="getPackageById" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT TOP 99.999 PERCENT id, packageId, packageTypeId, carBrandId, carLevelId, 
+    		carLineId, carModelId, packageName, itemAmt, partAmt, packageTotal, packageAmt, 
+    		package4sAmt, carbrandName, carLevelName, carLineName, carModelName, carEngineName, 
+    		makeTime, fileId, fileName, paintQty, useCount 
+		FROM vw_carmt_pkg_amt 
+		WHERE IsDisabled = 0 AND id = #id# 
     </select>
     <!--getPart-->
     <select id="getPart" parameterClass="HashMap" resultClass="HashMap">
@@ -166,6 +180,15 @@
 			<isNotNull property="name">
 				AND ISNULL(c.Name, '') + ISNULL(d.Name, '') like '%$name$%'
 			</isNotNull>
+    </select>
+    <select id="getPartById" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT DISTINCT c.id, c.code, c.name, d.Name stdName, c.parentGroupCode, 
+    		c.groupCode, c.parentGroupId, c.groupId, c.remark, c.sellPrice4s, c.sellPriceStd 
+        FROM ST_PartFamilyCarModel a 
+		INNER JOIN ST_PartFamilyDetail b ON b.CatID = a.CatID 
+		INNER JOIN ST_PartFactory c ON c.id = b.PartID 
+		LEFT JOIN ST_PartName d ON D.ID = C.PartNameID 
+		WHERE c.id = #id#
     </select>
     <!--getItem-->
     <select id="getItem" parameterClass="HashMap" resultClass="HashMap">
@@ -224,6 +247,13 @@
 				AND pyCode like '%$pyCode$%'
 			</isNotNull>
 		ORDER BY useCount DESC
+    </select>
+    <select id="getItemById" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT itemId, 'KM' + ItemCode hsItemCode, carBrandId, carLevelId, carLineId, carModelId, carBrandName, 
+    		carLevelName, carLineName, carModelName, itemNameId, ItemTypeID itemSort, itemKind, itemName, itemCode, 
+    		ItemPrice price, ItemTime astandTime, Amt astandSum, Amt4S [4sSum], factoryName, typeId, makeTime, useCount 
+        FROM vw_carmt_item 
+		WHERE itemId = #id#
     </select>
     
     

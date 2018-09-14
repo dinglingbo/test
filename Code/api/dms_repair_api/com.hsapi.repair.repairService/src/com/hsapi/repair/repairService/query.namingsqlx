@@ -478,7 +478,7 @@ where a.is_settle = 1
 		WHERE 1=1
 			and a.bill_type_id = '050207'
 		<dynamic>
-            <!--¹é¿âÈÕÆÚ -->
+            <!--\ -->
             <isNotEmpty prepend="and" property="orgid">
   				 a.orgid = #orgid#
              </isNotEmpty>

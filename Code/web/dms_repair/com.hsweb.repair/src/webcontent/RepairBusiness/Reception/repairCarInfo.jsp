@@ -6,35 +6,26 @@
     <div title="工单信息" name="mainTab">
 
         <div id="billForm" class="form">
-          <table style="width: 100%;">
-              <input class="nui-hidden" name="id"/>
-              <input class="nui-hidden" name="guestId"/>
-              <input class="nui-hidden" name="contactorId"/>
-              <input class="nui-hidden" name="carId"/>
-              <input class="nui-hidden" name="status"/>
-              <input class="nui-hidden" name="carVin"/>
-              <input class="nui-hidden" name="drawOutReport"/>
-              <input class="nui-hidden" name="contactorName"/>
-              <input class="nui-hidden" name="guestFullName"/>
-              <input class="nui-hidden" name="carModel"/>
-              <input class="nui-hidden" name="identity"/>
-              <input class="nui-hidden" name="mobile"/>
+          <table style="width: 100%;border-spacing: 0px 5px;">
+                <input name="id" class="nui-hidden"/>
+                <input name="guestId" class="nui-hidden"/>
+                <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
+                <input class="nui-hidden" name="contactorId"/>
+                <input class="nui-hidden" name="carId"/>
+                <input class="nui-hidden" name="status"/>
+                <input class="nui-hidden" name="carVin"/>
+                <input class="nui-hidden" name="drawOutReport"/>
+                <input class="nui-hidden" name="contactorName"/>
+                <input class="nui-hidden" name="carModel"/>
+                <input class="nui-hidden" name="identity"/>
+                <input class="nui-hidden" name="billTypeId"/>
+                <input class="nui-hidden" name="status"/>
+                <input class="nui-hidden" name="isSettle"/>
               <tr>
                   <td class="title required">
                       <label>车牌号：</label>
                   </td>
-                  <td >
-                      <input id="carNo"
-                             name="carNo"
-                             class="nui-buttonedit searchbox"
-                             emptyText="请选择车牌号"
-                             onbuttonclick="onApplyClick()"
-                             oncloseclick="onSearchClick()"
-                             width="100%"
-                             showClose="true"
-                             allowInput="false"
-                      />
-                  </td>
+                  <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                   <td class="title required">
                       <label>业务类型：</label>
                   </td>
@@ -119,20 +110,14 @@
     </div>
     <div title="送修人信息" name="contactorTab">
           <div id="sendGuestForm" class="form">
-              <table style="width: 100%;">
+              <table style="width: 100%;    border-spacing: 0px 5px;">
                   <input class="nui-hidden" name="id"/>
                   <input class="nui-hidden" name="guestId"/>
                   <tr>
                       <td class="title required">
                           <label>姓名：</label>
                       </td>
-                      <td >
-                          <input class="nui-combobox" id="contactName" name="name" width="100%" textField="name"
-                            valueField="name" 
-                            onvaluechanged="onContactorChanged"
-                            allowInput="false" selectOnFocus="true">
-                                                      <input class="nui-hidden"id="id" name="id" width="100%" textField="id">
-                      </td>
+                      <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false"/></td>
                       <td class="title">
                           <label>性别：</label>
                       </td>
@@ -155,7 +140,7 @@
                           <label>联系方式：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" enabled="false" width="100%" id="contactMobile" name="mobile"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="mobile" name="mobile"/>
                       </td>
                       <td class="title">
                           <label>证件号：</label>

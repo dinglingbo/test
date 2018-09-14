@@ -2222,7 +2222,7 @@ function onPrint(e){
 	}
 }
 
-function showHealth(){
+function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
 			carId : main.carId,
@@ -2230,9 +2230,9 @@ function showHealth(){
 	};
 	if(main.id){
 		nui.open({
-            url: "com.hsweb.RepairBusiness.carDetails.flow",
-            width: "100%",
-            height: "100%",
+            url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
+            width: "800",
+            height: "1000",
             showMaxButton: false,
 			allowResize: false,
             showHeader: true,
@@ -2242,6 +2242,21 @@ function showHealth(){
             },
         });
 	}
+}
+
+function showHealth(){
+	window.open(webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp")
+	/*nui.open({
+        url: webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp",
+        width: "800",
+        height: "1000",
+        showMaxButton: false,
+		allowResize: false,
+        showHeader: true,
+        onload: function() {
+            var iframe = this.getIFrameEl();
+        },
+    });*/
 }
 
 function pay(){

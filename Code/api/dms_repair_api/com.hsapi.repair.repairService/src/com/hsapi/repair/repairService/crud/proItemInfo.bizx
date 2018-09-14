@@ -557,9 +557,15 @@
     <node>assign26</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign27" name="赋值27" displayName="赋值" grouped="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link76" name="link76" displayName="link53" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link76" name="link76" displayName="link53" isDefault="true" type="transition">
       <sourceNode>assign27</sourceNode>
       <targetNode>assign29</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link77" name="link77" displayName="link54" type="transition">
       <sourceNode>assign27</sourceNode>

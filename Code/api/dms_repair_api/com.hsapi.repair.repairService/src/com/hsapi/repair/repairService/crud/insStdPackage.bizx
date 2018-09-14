@@ -475,16 +475,6 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link39" name="link39" displayName="连接线" type="transition">
-      <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign10</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">card/id</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="911" y="151"/>
     <size height="28" width="22"/>
@@ -571,7 +561,6 @@
     <targetConnections>link15</targetConnections>
     <targetConnections>link16</targetConnections>
     <targetConnections>link17</targetConnections>
-    <targetConnections>link42</targetConnections>
     <targetConnections>link25</targetConnections>
     <location x="827" y="316"/>
     <size height="28" width="28"/>
@@ -612,7 +601,6 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <targetConnections>link41</targetConnections>
     <location x="1026" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
@@ -702,50 +690,6 @@
     <location x="-573" y="187"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign10</sourceNode>
-      <targetNode>invokePojo6</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link39</targetConnections>
-    <location x="908" y="60"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign10label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="903" y="96"/>
-    <figSize height="17" width="39"/>
-    <node>assign10</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="更新次卡的可使用次数" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo6</sourceNode>
-      <targetNode>assign7</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo6</sourceNode>
-      <targetNode>transactionrollback0</targetNode>
-    </sourceConnections>
-    <targetConnections>link40</targetConnections>
-    <location x="1030" y="60"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo6label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">card</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
-    <location x="981" y="96"/>
-    <figSize height="17" width="121"/>
-    <node>invokePojo6</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="insItemWorkers" displayName="insItemWorkers" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
@@ -1022,8 +966,8 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">pkg/packageId</process:from>
-      <process:to type="query">cond/_expr[2]/packageId</process:to>
+      <process:from type="query" pattern="reference">pkg/packageCarmtId</process:from>
+      <process:to type="query">cond/_expr[2]/packageCarmtId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -1344,7 +1288,7 @@
       <targetNode>assign27</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">pkg/packageId</process:leftOperand>
+          <process:leftOperand type="query">pkg/packageCarmtId</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1410,7 +1354,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.repairInterface.queryStdPackage</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">pkg/packageId</process:inputVariable>
+        <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">pkg/packageCarmtId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap" valueType="Java">pkgHash</process:outputVariable>

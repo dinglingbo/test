@@ -7,7 +7,8 @@
      showModified="false"
      allowSortColumn="false">
     <div property="columns">
-        <div headerAlign="center" field="orderIndex" width="25" align="right">序号</div>
+    	<div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+        <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
         <div header="套餐信息">
             <div property="columns">
                 <div field="prdtName" headerAlign="center" allowSort="false"

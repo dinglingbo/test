@@ -70,7 +70,7 @@
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                   <!-- <a class="nui-button" iconCls="" plain="true" onclick="out()" id="outBtn"><span class="fa fa-check fa-lg"></span>&nbsp;转出库</a>-->
+                    <!-- <a class="nui-button" iconCls="" plain="true" onclick="out()" id="outBtn"><span class="fa fa-check fa-lg"></span>&nbsp;转出库</a> -->
                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;转结算</a>
                 </td>
@@ -99,7 +99,7 @@
                   <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
                   <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="车型"></div>
-                  <div field="partAmt" name="partAmt" width="50" headerAlign="center" header="金额"></div>
+                  <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
                   <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>

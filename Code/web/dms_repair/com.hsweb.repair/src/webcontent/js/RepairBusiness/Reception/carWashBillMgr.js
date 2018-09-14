@@ -222,7 +222,7 @@ function add(){
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
-    window.parent.activeTabAndInit(item,params)
+    window.parent.activeTabAndInit(item,params);
 
 }
 function edit(){

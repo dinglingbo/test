@@ -1,7 +1,8 @@
 var form=null;
 var resultData = {};
 var mtAdvisorIdEl = null;
-var mtAdvisorIdEl2=null;
+var brandHash = {};
+var brandList = [];
 $(document).ready(function(){
 	form=new nui.Form('#form');
 
@@ -16,7 +17,22 @@ $(document).ready(function(){
         var text = mtAdvisorIdEl.getText();
 //        nui.get("mtAdvisor").setValue(text);
     });
-   
+    
+	getAllPartBrand(function(data) {
+		brandList = data.brand;
+		nui.get('partBrandId').setData(brandList);
+		brandList.forEach(function(v) {
+			brandHash[v.id] = v;
+			
+		});
+	});
+	
+//	if (brandHash[e.value]) {
+//		e.cellHtml = brandHash[e.value].name || "";
+//	} else {
+//		e.cellHtml = "";
+//	}
+
 });
 
 

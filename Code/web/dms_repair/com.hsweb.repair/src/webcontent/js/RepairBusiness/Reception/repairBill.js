@@ -2289,9 +2289,31 @@ function pay(){
 }
 
 function showBasicData(){
+    var maintain = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能录入!","S");
+        return;
+    }
     var carVin = billForm.carVin;
     var params = {
-        vin:carVin
+        vin:carVin,
+        serviceId:maintain.id
     };
-    doSelectBasicData(params,null);
+    //添加回调函数，进行显示
+    doSelectBasicData(params,function(p1,p2,p3){
+       /* var p1 = { }
+        var p2 = {
+            interType: "item",
+            data:{
+                serviceId: main.id||0
+            }
+        };
+        var p3 = {};*/
+        loadDetail(p1, p2, p3);
+    });
 }

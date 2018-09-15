@@ -50,8 +50,8 @@ $(document).ready(function () {
 	grid.on("cellendedit",function(e){
 		var field = e.field;
 		if(field == "invoiceAmt"){
-			document.getElementById("rateMoney").innerHTML = 0;
-			document.getElementById("money").innerHTML = 0;
+			/*document.getElementById("rateMoney").innerHTML = 0;
+			document.getElementById("money").innerHTML = 0;*/
 			var data = grid.getData();
 			for(var i = 0 , l = data.length ; i < l ; i ++){
 				var row = grid.getRow(i);
@@ -59,8 +59,8 @@ $(document).ready(function () {
 					var rateAmt = data[i].rate * data[i].invoiceAmt / 100;
 					var newRow = {rateAmt : rateAmt};
 					grid.updateRow(row,newRow);
-					document.getElementById("rateMoney").innerHTML = parseFloat(document.getElementById("rateMoney").innerHTML)+parseFloat(rateAmt);
-					document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML)+parseFloat(row.invoiceAmt);
+					/*document.getElementById("rateMoney").innerHTML = parseFloat(document.getElementById("rateMoney").innerHTML)+parseFloat(rateAmt);
+					document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML)+parseFloat(row.invoiceAmt);*/
 				}
 			}
 		}
@@ -120,17 +120,17 @@ function checkValue(){//实时监听税率输出的值
 		}
 	}
 	var data = grid.getData();
-	document.getElementById("rateMoney").innerHTML = 0;
+	//document.getElementById("rateMoney").innerHTML = 0;
 	for(var i = 0, l = data.length ; i < l ; i++){
 		var row = grid.getRow(i);
 		var newRow = {rate : document.getElementById("rate").value};
 		grid.updateRow(row,newRow);
-		if(document.getElementById("rate").value && row.invoiceAmt){
+		/*if(document.getElementById("rate").value && row.invoiceAmt){
 			var rateAmt = parseFloat(document.getElementById("rate").value) * row.invoiceAmt / 100;
 			var newRow = {rateAmt : rateAmt};
 			grid.updateRow(row,newRow);
 			document.getElementById("rateMoney").innerHTML = parseFloat(document.getElementById("rateMoney").innerHTML)+parseFloat(rateAmt);
-		}
+		}*/
 	}
 }
 
@@ -167,26 +167,22 @@ function oncellbeginedit(e){
 	}
 }
 
-function addSelect(){
-	var row = moreGrid.getSelected();
-	if(row){
-		var newRow = {
-				serviceCode : row.serviceCode,
-				carNo : row.carNo,
-				guestId : row.guestId,
-				guestName : row.guestFullName
-		};
-		row = grid.getSelected();
-		grid.updateRow(row,newRow);
-		advancedMorePartWin.hide();
-	}else{
-		showMsg("请选择一条数据","W");
-	}
-}
-
 function onClose(){
 	advancedMorePartWin.hide();
 	var newRow = {serviceCode: oldValue};
 	grid.updateRow(oldRow, newRow);
 	grid.beginEditCell(oldRow, "serviceCode");
+}
+
+function onDrawSummaryCell(e) { //汇总
+	//客户端汇总计算
+	if (e.field == "rate") {
+		e.cellHtml = '<div align="center" >合计：' + e.cellHtml + '</div>';
+	}
+	if (e.field == "invoiceAmt") {
+		e.cellHtml = '<div align="center" >合计：' + e.cellHtml + '</div>';
+	}
+	if (e.field == "rateAmt") {
+		e.cellHtml = '<div align="center" >合计：' + e.cellHtml + '</div>';
+	}
 }

@@ -220,7 +220,11 @@
             font-weight: 800;
             text-align: center;
         }
-
+		#title1 {
+            font-size: 24px;
+            margin: 15px 0 10px;
+            font-weight: 800;
+        }
         .table {
             width: 100%;
             max-width: 100%;
@@ -376,41 +380,36 @@
         <div class="company-info">
             <h3><span id="comp"></span></h3>
         </div>
-        <h1 id="title">派工单</h1>
+        <h1 id="title">车辆检测报告</h1>
         <div class="content">
-            <h5>单据编号：<span id="serviceCode"></span></h5>
-            <hr />
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>
-                        <td class="left" width="33.3%" id="guestId">客户名称：</td>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
+                        <td class="left" width="33.3%" id="carNo">车型：</td>
+                            <td class="left" id="carVin">VIN：</td>
+                    </tr>
+                    <tr>
+                        <td class="left"id="enterKilometers">当前里程：</td>
+                        <td class="left" width="33.3%" id="guestId">客户名称：</td>
                         <td class="left" id="tel">联系电话：</td>
-                    </tr>
-                    <tr>
-                        <td class="left">车型：</td>
-                        <td class="left"id="enterKilometers">公里数：</td>
-                        <td class="left"id="mtAdvisor">服务顾问：</td>
-                    </tr>
-                    <tr>
-                        <td class="left" id ="carVin">VIN：</td>
-                        <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
-                        <td class="left" id="planFinishDate">预计完工时间：</td>
                     </tr>
                 </tbody>
             </table>
             <hr />
-            <h5 style="padding-top: 20px;">施工项目</h5>
+            <h1 id="title1">检测建议</h1>
+            <hr/>
+            <h5 style="padding-top: 20px;">检测部位</h5>
             <div style="padding: 10px 0">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
-                            <td width="200" align="center">工时名称</td>
-                            <td align="center" width="150">业务类型</td>
-                            <td align="center">施工员</td>
-                            <td align="center">备注</td>
-                            <td align="center">签字</td>
+                            <td width="300" align="center">检查部位</td>
+                            <td align="center" >状态良好</td>
+                            <td align="center" >下次保养</td>
+                            <td align="center">急需处理</td>
+                            <td align="center">本次保养</td>
                         </tr>
                         <tbody id="tbodyId">
 						</tbody>
@@ -420,19 +419,9 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
                 <tbody>
                     <tr>
-                        <td width="50%" height="30" class="left" style="font-size: 14px;">质检员：</td>
-                        <td class="left" width="50%" style="font-size: 14px;">质检员签字：</td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
-            <table class="table theader" style="margin-top: 5px">
-                <tbody>
-                    <tr>
-                        <td height="40" id="faultPhen">故障描述：</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 25%" id="remark">备注：</td>
+                        <td width="50%" height="30" class="left" style="font-size: 14px;">检查人：</td>
+                        <td class="left" width="30%" style="font-size: 14px;">检查时间：</td>
+                        <td class="left" width="30%" style="font-size: 14px;">客户签字：</td>
                     </tr>
                 </tbody>
             </table>
@@ -446,24 +435,21 @@
             $(".print_btn").hide();
             window.print();
         });
-	});	
-	
-	function SetData(params){
-		document.getElementById("comp").innerHTML = params.comp;
-		$.ajaxSettings.async = false;//设置为同步执行
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
+        // params.baseUrl params.serviceId params.token 
+        $.ajaxSettings.async = false;//设置为同步执行
+        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id=941",{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.maintain;
         		var carNo = maintain.carNo;
         		var carVin = maintain.carVin;
-        		var enterDate = maintain.enterDate || "";
+        		var enterKilometers = maintain.enterKilometers;
+        		var guestId = maintain.guestId;
+        		/* var enterDate = maintain.enterDate || "";
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
         			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
         		}
-        		var guestId = maintain.guestId;
-        		var enterKilometers = maintain.enterKilometers;
         		var mtAdvisor = maintain.mtAdvisor;
         		var planFinishDate = maintain.planFinishDate || "";
         		if(planFinishDate){
@@ -473,22 +459,21 @@
         		}
         		var faultPhen = maintain.faultPhen;
         		var serviceCode = maintain.serviceCode;
-        		var remark = maintain.remark || "";
-        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
+        		var remark = maintain.remark || "";  */
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
-        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+        		//document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
         		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + guestId;
         		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
-        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
-        		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate;
-        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
-        		document.getElementById("remark").innerHTML = document.getElementById("remark").innerHTML + remark; 
+        		//document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
+        		//document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate;
+        		//document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
+        		//document.getElementById("remark").innerHTML = document.getElementById("remark").innerHTML + remark; 
         	}
         });
         $.ajaxSettings.async = true;//设置为异步执行
         var guestId = document.getElementById("guestId").innerHTML;
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,"")+"&token="+params.token,{},function(text){
+        $.post("com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,""),{},function(text){
         	if(text.errCode == "S"){
         		var guest = text.guest;
         		var fullName = guest.fullName;
@@ -497,29 +482,33 @@
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}
         });
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
-        	if(text.errCode == "S"){
+        $.post("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext?mainId=941",{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
-    			"<td align='center'>[prdtName]</td>"+
-    			"<td align='center'>[serviceTypeId]</td>"+ 
-    			"<td align='center'>[workers]</td>"+
+    			"<td align='center'>[checkName]</td>"+
+    			"<td align='center'>[status]</td>"+ 
+    			"<td align='center'></td>"+
     			"<td align='center'></td>"+
     			"<td align='center'></td>";
-        		var data = text.data;
-        		for(var i = 0 , l = data.length ; i < l ; i++){
+        		var list = text.list;
+        		for(var i = 0 , l = list.length ; i < l ; i++){
+        			var status = list[i].status;
+        			if(status == 0){
+        				status = "✘";
+        			}else{
+        				status = "✔";
+        			}
         			var tr = $("<tr></tr>");
         			tr.append(
 				    				tds.replace("[id]",i +1)
-				    				.replace("[prdtName]",data[i].prdtName)
-				    				.replace("[serviceTypeId]",data[i].serviceTypeId)
-				    				.replace("[workers]",data[i].workers || ""));
+				    				.replace("[checkName]",list[i].checkName)
+				    				.replace("[status]",status));
 				    			tBody.append(tr);
         		}
-        	}
         });
-	}
+	});	
+	
     </script>
 </body>
 </html>

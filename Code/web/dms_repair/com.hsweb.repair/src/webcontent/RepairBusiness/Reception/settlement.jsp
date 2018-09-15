@@ -13,7 +13,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>     
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
+    <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" /> 
 </head>
 <style>
         table, td {
@@ -138,10 +139,38 @@
                 margin: 4px 5px 0 0;
             }
     </style>
-<body oncontextmenu = "return false">
+<body ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
+ <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
+        <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
+        <div style="padding-top:15px; margin:0 15px;">
+            <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="color999" width="76" height="46">单据编号</td>
+                        <td><input type="text" id="txtno" class="peijianss" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">门店名称</td>
+                        <td><input type="text" id="txtstorename" class="peijianss" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">地址</td>
+                        <td><input type="text" id="txtaddress" class="peijianss" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">电话</td>
+                        <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="boxbtn"><ul><a href="javascript:box_setup_close()" class="qc">取消</a><a href="javascript:save()" id="btn_save">保存</a></ul></div>
+</div>
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
+        <a href="javascript:box_setup_open()">修改</a>
     </div>
     <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
@@ -176,7 +205,7 @@
                 <td align="right" id="enterDate">进厂时间：</td>
             </tr>
             <tr>
-                <td>电话：<span id="spphoneno"></span></td>
+                <td>电话：<span id="phone"></span></td>
                     <td align="right" id="date">打印时间：</td>
 
             </tr>
@@ -294,13 +323,16 @@
         </table>
     </div>
 	<script type="text/javascript">
+		var url_one = null;
+		var url_two = null;
+		var url_three = null;
 		$(document).ready(function (){
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            window.print();
 	        }); 
         });
-        
+        //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(){//更新套餐工时配件合计金额
         	var money = parseInt(document.getElementById("prdt").innerHTML) + parseInt(document.getElementById("item").innerHTML) + parseInt(document.getElementById("part").innerHTML);
         	document.getElementById("cash").innerHTML = money;
@@ -354,8 +386,13 @@
 	        		document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
 	        		document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
 	        	}
-        	});	
-        	$.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){//套餐
+        	});
+        	if(params.type){
+        		url_one = "com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPPart.biz.ext?serviceId=";
+        	}else{
+        		url_one = "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=";
+        	}
+        	$.post(params.baseUrl+url_one+params.serviceId+"&token="+params.token,{},function(text){//套餐
 	        	if(text.errCode == "S"){
 	        		var tBody = $("#tbodyId");
     				tBody.empty();
@@ -413,7 +450,12 @@
     				}
 	        	}
         	});
-        	 $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){//工时
+        	if(params.type){
+        		url_two = "com.hsapi.repair.repairService.svr.billgetRpsMainItem.biz.ext?serviceId=";
+        	}else{
+        		url_two = "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext?serviceId=";
+        	}
+        	 $.post(params.baseUrl+url_two+params.serviceId+"&token="+params.token,{},function(text){//工时
 	        	if(text.errCode == "S"){
 	        		var tBody = $("#tbodyId2");
     				tBody.empty();
@@ -441,7 +483,12 @@
     				}
 	        	}
         	});
-	        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){//配件
+        	if(params.type){
+        		url_three = "com.hsapi.repair.repairService.svr.billgetRpsMainPart.biz.ext?serviceId=";
+        	}else{
+        		url_three = "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext?serviceId=";
+        	}
+	        $.post(params.baseUrl+url_three+params.serviceId+"&token="+params.token,{},function(text){//配件
 	        	if(text.errCode == "S"){
 	        		var tBody = $("#tbodyId3");
     				tBody.empty();
@@ -470,6 +517,28 @@
 	        	}
 	        });
         }
+        
+        function box_setup_open() {
+	        $(".boxbg").show();
+	        $(".popbox").show();
+	        document.getElementById("txtno").value = document.getElementById("serviceCode").innerHTML;
+    		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
+    		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
+    		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
+    	}
+    	
+    	function save(){
+    		box_setup_close();
+    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
+    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
+    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
+    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+    	}
+    	
+    	function box_setup_close(){
+    		$(".boxbg").hide();
+        	$(".popbox").hide();
+    	}
     </script>
 </body>
 </html>

@@ -16,6 +16,7 @@
 </head>
 <body>
 <div class="nui-toolbar" style="padding: 2px; border-bottom: 0;">
+	<input class="nui-textbox" id="state" visible="false"/>
 	<div class="form" id="queryForm">
 		<table class="table" id="table1">
 			<tr>
@@ -113,9 +114,11 @@
 					 selectOnLoad="true"
 					 allowCellSelect="true"
 					 onDrawCell="onDrawCell"
-					 showFilterRow="false">
+					 showFilterRow="false"
+					 multiSelect="true" >
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
+						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
 						<div header="工时基本信息" headerAlign="center">
 							<div property="columns">
 								<div field="code" headerAlign="center" width="60px">工时编号</div>

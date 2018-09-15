@@ -438,10 +438,10 @@ function onAdvancedAddOk() {
 	for ( var key in requiredField) {
 		if (!data[key] || data[key].toString().trim().length == 0) {
 			showMsg(requiredField[key] + "不能为空!", "W");
-			var msg=showMsg(requiredField[key] + "不能为空!", "W");
 			if (key == "outQty") {
 				var outQty = nui.get("outQty");
 				outQty.focus();
+			
 			}
 			if (key == "pickMan") {
 				var pickMan = nui.get("pickMan");
@@ -456,36 +456,6 @@ function onAdvancedAddOk() {
 		}
 	}
 	
-//	for ( var key in requiredField2) {
-//		if (!data[key] || data[key].toString().trim().length == 0) {
-//			showMsg(requiredField[key] + "不能为空!", "W");
-//			var msg=showMsg(requiredField[key] + "不能为空!", "W");
-//			if (key == "outQty") {
-//				var qty = nui.get("outQty");
-//				qty.focus();
-//			}
-//			if (key == "returnMan") {
-//				var returnMan = nui.get("returnMan");
-//				returnMan.focus();
-//			}
-//			if (key == "returnRemark") {
-//				var returnRemark = nui.get("returnRemark");
-//				returnRemark.focus();
-//			}
-//
-//			return false;
-//		}
-//	}
-	resultData.outQty = data.outQty;
-	resultData.pickMan = data.pickMan;
-
-	var row = enterGrid.getSelected();
-	var stockQty = row.stockQty;
-	var preOutQty = row.preOutQty || 0;
-	if (data.outQty > stockQty - preOutQty) {
-		showMsg("出库数量超出此批次可出库数量", "W");
-		return false;
-	}
 
 }
 
@@ -497,6 +467,15 @@ function partToOut() {
 		return;
 	}
 	data = enterGrid.getSelected();
+	resultData.outQty = data.outQty;
+	resultData.pickMan = data.pickMan;
+
+	var row = enterGrid.getSelected();
+	var stockQty = row.stockQty;
+	var preOutQty = row.preOutQty || 0;
+	if (data.outQty > stockQty - preOutQty) {
+		showMsg("出库数量超出此批次可出库数量", "W");
+	}
 	var billTypeId = "050207";
 	var partNameId = '0';
 	var pickType = '0';
@@ -560,6 +539,12 @@ function partToOut() {
 }
 function onOut() {
 	var row = enterGrid.getSelected();
+	var partBrandId=row.partBrandId;
+	for(var i=0;i<brandList.length;i++){
+		if(partBrandId==brandList[i].id){
+			row.partBrandId=brandList[i].name;
+		}
+	}
 
 	if (row) {
 		nui.open({

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.5.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.6.4"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -221,6 +221,16 @@
      oncellcommitedit="onCellCommitEdit"
      ondrawsummarycell="onDrawSummaryCell"
      >
+   <!--   <div id="rpsPackageGrid" class="nui-datagrid"
+     style="width:100%;height:auto;"
+     dataField="list"
+     showPager="false"
+     showModified="false"
+     allowSortColumn="false"
+     oncellcommitedit="onCellCommitEdit"
+
+     > -->
+     
     <div property="columns" >
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="配件信息" headerAlign="center">
@@ -239,7 +249,7 @@
                 
                 <div field="amt" headerAlign="center" allowSort="false"  width="70" datatype="float" align="center" header="金额"></div>
                  -->
-                <div field="qty" name="qty" summaryType="sum"  numberFormat="1" width="60" headerAlign="center" header="数量">
+                <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="数量">
                    <input property="editor" vtype="int" class="nui-textbox"/>
                 </div>
                 <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">

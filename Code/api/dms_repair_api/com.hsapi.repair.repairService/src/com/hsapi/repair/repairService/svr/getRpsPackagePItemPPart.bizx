@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getRpsPackagePItemPPart" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据工单ID查询套餐&#xD;&#xA;&#xD;&#xA;查询所有套餐的工时，配件&#xD;&#xA;id&#xD;&#xA;prdtId&#xD;&#xA;prdtName&#xD;&#xA;pid&#xD;&#xA;type 1套餐，2套餐下的工时，3套餐下的配件&#xD;&#xA;qty&#xD;&#xA;uintPrice&#xD;&#xA;rate&#xD;&#xA;discountAmt&#xD;&#xA;subtotal&#xD;&#xA;amt&#xD;&#xA;saleManId&#xD;&#xA;saleMan&#xD;&#xA;workersId&#xD;&#xA;worders&#xD;&#xA;cardDetailId&#xD;&#xA;remark&#xD;&#xA;serviceTypeId&#xD;&#xA;orderIndex" title="Administrator&#x9;18-8-11 上午11:23">
-    <location x="182" y="-306"/>
-    <size height="412" width="346"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据工单ID查询套餐&#xD;&#xA;&#xD;&#xA;查询所有套餐的工时，配件&#xD;&#xA;id&#xD;&#xA;prdtId&#xD;&#xA;prdtName&#xD;&#xA;pid&#xD;&#xA;type 1套餐，2套餐下的工时，3套餐下的配件&#xD;&#xA;qty&#xD;&#xA;uintPrice&#xD;&#xA;rate&#xD;&#xA;discountAmt&#xD;&#xA;subtotal&#xD;&#xA;amt&#xD;&#xA;saleManId&#xD;&#xA;saleMan&#xD;&#xA;workersId&#xD;&#xA;worders&#xD;&#xA;cardDetailId&#xD;&#xA;remark&#xD;&#xA;serviceTypeId&#xD;&#xA;orderIndex&#xD;&#xA;&#xD;&#xA;rate*100.0" title="Administrator&#x9;18-8-11 上午11:23">
+    <location x="165" y="-351"/>
+    <size height="457" width="346"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
@@ -119,6 +119,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>

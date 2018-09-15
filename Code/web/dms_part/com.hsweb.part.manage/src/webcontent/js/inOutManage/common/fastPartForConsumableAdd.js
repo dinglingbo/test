@@ -17,21 +17,8 @@ $(document).ready(function(){
         var text = mtAdvisorIdEl.getText();
 //        nui.get("mtAdvisor").setValue(text);
     });
-    
-	getAllPartBrand(function(data) {
-		brandList = data.brand;
-//		nui.get('partBrandId').setData(brandList);
-		brandList.forEach(function(v) {
-			brandHash[v.id] = v;
-			
-		});
-	});
-	
-//	if (brandHash[e.value]) {
-//		e.cellHtml = brandHash[e.value].name || "";
-//	} else {
-//		e.cellHtml = "";
-//	}
+
+
 
 });
 
@@ -63,7 +50,7 @@ function getData(){
 function SetData(params) {
     var params = nui.clone(params);
     if(params.data!=null){
-        form.setData(params.data);
+        form.setData(params.data);        
     }
 
 }

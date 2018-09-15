@@ -221,6 +221,16 @@
      oncellcommitedit="onCellCommitEdit"
      ondrawsummarycell="onDrawSummaryCell"
      >
+   <!--   <div id="rpsPackageGrid" class="nui-datagrid"
+     style="width:100%;height:auto;"
+     dataField="list"
+     showPager="false"
+     showModified="false"
+     allowSortColumn="false"
+     oncellcommitedit="onCellCommitEdit"
+
+     > -->
+     
     <div property="columns" >
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="配件信息" headerAlign="center">

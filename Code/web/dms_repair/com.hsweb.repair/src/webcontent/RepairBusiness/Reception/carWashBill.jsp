@@ -5,92 +5,98 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 19:02:07 
-  - Description:  
--->   
+  - Date: 2018-07-02 19:02:07  
+  - Description:   
+-->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.1"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
-        body { 
-            margin: 0;
-            padding: 0;
-            border: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .btnType{
-            font-family:Verdana;
-            font-size: 14px;
-            text-align: center;
-            height: 40px;
-            width: 120px;
-            line-height:40px;
-        }
-        .title {
-            width: 80px;
-            text-align: right;
-        }
-        .required {
-            color: red;
-        }
+    body {  
+        margin: 0; 
+        padding: 0;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .btnType{
+        font-family:Verdana;
+        font-size: 14px;
+        text-align: center;
+        height: 40px;
+        width: 120px;
+        line-height:40px;
+    }
+    .title {
+        width: 80px;
+        text-align: right; 
+    }
+    .textStyle{
+        text-align: center; 
+        font-size:14px;
+        font-weight:bold; 
+        color:#32b400;
+    }  
+    .required {
+        color: red;
+    }
 
-        #guestInfo a:link { 
+    #guestInfo a:link { 
         font-size: 12px; 
         color: #578ccd; 
         text-decoration: none; 
-        }  
-        #guestInfo a:visited { 
+    }  
+    #guestInfo a:visited { 
         font-size: 12px; 
         color: #578ccd; 
         text-decoration: none; 
-        } 
-        #guestInfo a:hover { 
+    } 
+    #guestInfo a:hover { 
         font-size: 12px; 
         color: #578ccd; 
         text-decoration: underline; 
-        }  
+    }  
 
-        #wechatTag{
-            color:#62b900;
-        }
+    #wechatTag{
+        color:#62b900;
+    }
 
 
-        /* font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px; display:block;  padding:4px 15px;*/
-        a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
-        a.healthview:hover{ background:#f00000;color:#fff;text-decoration:none;}
+    /* font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px; display:block;  padding:4px 15px;*/
+    a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
+    a.healthview:hover{ background:#f00000;color:#fff;text-decoration:none;}
 
-        a.chooseClass{ background:#578ccd; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
-        a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
-        
-        a.optbtn {
-            width: 44px;
-            /* height: 26px; */
-            border: 1px #d2d2d2 solid;
-            background: #f2f6f9;
-            text-align: center;
-            display: inline-block;
-            /* line-height: 26px; */
-            margin: 0 4px;
-            color: #000000;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+    a.chooseClass{ background:#578ccd; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
+    a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 
-    </style>
+    a.optbtn {
+        width: 44px;
+        /* height: 26px; */
+        border: 1px #d2d2d2 solid;
+        background: #f2f6f9;
+        text-align: center;
+        display: inline-block;
+        /* line-height: 26px; */
+        margin: 0 4px;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+</style>
 </head>
 <body>
 
 
 
-<div class="nui-toolbar" style="padding:2px;height:30px">
-    <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
-        <tr>            
-            <td>
-                <div class="mini-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+    <div class="nui-toolbar" style="padding:2px;height:30px">
+        <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
+            <tr>            
+                <td>
+                    <div class="mini-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
                     dataField="list" loadingText="数据加载中...">     
                     <div property="columns">
@@ -181,32 +187,32 @@
                 </td>
                 <td class="">
                     <input name="serviceTypeId"
-                        id="serviceTypeId"
-                        class="nui-combobox width1"
-                        textField="name"
-                        valueField="id"
-                        emptyText="请选择..."
-                        url=""
-                        allowInput="true"
-                        showNullItem="false"
-                        valueFromSelect="true"
-                        nullItemText="请选择..."/>
+                    id="serviceTypeId"
+                    class="nui-combobox width1"
+                    textField="name"
+                    valueField="id"
+                    emptyText="请选择..."
+                    url=""
+                    allowInput="true"
+                    showNullItem="false"
+                    valueFromSelect="true"
+                    nullItemText="请选择..."/>
                 </td>
                 <td class="title required">
                     <label>服务顾问：</label>
                 </td>
                 <td>
                     <input name="mtAdvisorId"
-                            id="mtAdvisorId"
-                            class="nui-combobox width1"
-                            textField="empName"
-                            valueField="empId"
-                            emptyText="请选择..."
-                            url=""
-                            allowInput="true"
-                            showNullItem="false"
-                            valueFromSelect="true"
-                            nullItemText="请选择..."/>
+                    id="mtAdvisorId"
+                    class="nui-combobox width1"
+                    textField="empName"
+                    valueField="empId"
+                    emptyText="请选择..."
+                    url=""
+                    allowInput="true"
+                    showNullItem="false"
+                    valueFromSelect="true"
+                    nullItemText="请选择..."/>
                 </td>
                 <td class="title">进厂里程:</td> 
                 <td class=""><input  class="nui-textbox" name="enterKilometers"/></td>
@@ -265,101 +271,101 @@
 
     <div class="nui-fit">
         <div class="nui-splitter"
-                id="splitter"
-                allowResize="true"
-                handlerSize="6"
-                style="width:100%;height:100%;">
-            <div size="300" showCollapseButton="true">
-                <div class="nui-fit">
-                    <iframe id="formIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-                </div>
-            </div>
-            <div showCollapseButton="false">
-                
-                    <div class="nui-fit">
-                        <div class="" style="width:100%;height:auto;" >
-                            <div style="width:100%;height:5px;"></div>
-                            <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
-                            <div style="width:100%;height:5px;"></div>
-                            <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-                            <div style="width:100%;height:5px;"></div>
-                            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
-                        </div>
-                
-                        <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
-                            showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
-                        >
-                            <div id="billForm" class="form">
-                                    <table style="width: 100%;">
-                                        <tr>
-                                            <td class="title">
-                                                <label>套餐金额：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>套餐优惠：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>工时金额：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>工时优惠：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>零件金额：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>零件优惠：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title required">
-                                                <label>应收总计：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                
-                
-                        </div>
-                    </div>
-                    
+        id="splitter"
+        allowResize="true"
+        handlerSize="6"
+        style="width:100%;height:100%;">
+        <div size="300" showCollapseButton="true">
+            <div class="nui-fit">
+                <iframe id="formIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             </div>
         </div>
+        <div showCollapseButton="false">
+
+            <div class="nui-fit">
+                <div class="" style="width:100%;height:auto;" >
+                    <div style="width:100%;height:5px;"></div>
+                    <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
+                    <div style="width:100%;height:5px;"></div>
+                    <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
+                    <div style="width:100%;height:5px;"></div>
+                    <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
+                </div>
+                
+                <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
+                showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
+                >
+                <div id="billForm" class="form">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td class="title">
+                                <label>套餐金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>套餐优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>工时金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>工时优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>零件金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                            <td class="title">
+                                <label>零件优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title required">
+                                <label>应收总计：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+            </div>
+        </div>
+
     </div>
+</div>
+</div>
 
 
-    
+
 
 </div>
 
 
 <div id="advancedCardTimesWin" class="nui-window"
-     title="" style="width:450px;height:200px;"
-     showModal="false"
-     showHeader="false"
-     allowResize="false"
-     allowDrag="false">
+title="" style="width:450px;height:200px;"
+showModal="false"
+showHeader="false"
+allowResize="false"
+allowDrag="false">
      <!-- <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
         <table style="width:100%;">
             <tr>
@@ -371,51 +377,132 @@
         </table>
     </div> -->
     <div class="nui-fit">
-          <div id="cardTimesGrid" class="nui-datagrid" style="width:100%;height:95%;"
-               selectOnLoad="true"
-               showPager="false"
-               dataField="data"
-               idField="id"
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               url="">
-              <div property="columns">
-                  <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
-                  <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
-                  <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
-                  <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
-                  <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
-                  <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作"></div>
-              </div>
-          </div>
-    </div>
+      <div id="cardTimesGrid" class="nui-datagrid" style="width:100%;height:95%;"
+      selectOnLoad="true"
+      showPager="false"
+      dataField="data"
+      idField="id"
+      allowCellSelect="true"
+      editNextOnEnterKey="true"
+      url="">
+      <div property="columns">
+          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
+          <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
+          <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
+          <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
+          <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
+          <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作"></div>
+      </div>
+  </div>
+</div>
 </div> 
 
 <div id="advancedMemCardWin" class="nui-window"
-     title="" style="width:500px;height:200px;"
-     showModal="false"
-     showHeader="false"
-     allowResize="false"
-     allowDrag="false">
-    <div class="nui-fit">
-          <div id="memCardGrid" class="nui-datagrid" style="width:100%;height:95%;"
-               selectOnLoad="true"
-               showPager="false"
-               dataField="data"
-               onrowdblclick="addSelectPart"
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               url="">
-              <div property="columns">
-                  <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
-                  <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
-                  <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="储值日期" dateFormat="yyyy-MM-dd"></div>
-                  <div field="periodValidity" name="periodValidity" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
-              </div>
-          </div>
-    </div>
+title="" style="width:500px;height:200px;"
+showModal="false"
+showHeader="false"
+allowResize="false"
+allowDrag="false">
+<div class="nui-fit">
+  <div id="memCardGrid" class="nui-datagrid" style="width:100%;height:95%;"
+  selectOnLoad="true"
+  showPager="false"
+  dataField="data"
+  onrowdblclick="addSelectPart"
+  allowCellSelect="true"
+  editNextOnEnterKey="true"
+  url="">
+  <div property="columns">
+      <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
+      <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
+      <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="储值日期" dateFormat="yyyy-MM-dd"></div>
+      <div field="periodValidity" name="periodValidity" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
+  </div>
+</div>
+</div>
 </div> 
 
+
+<div id="carCheckInfo" class="nui-window"
+title="" style="width:400px;height:200px;"
+showModal="false"
+showHeader="false"
+allowResize="false"
+allowDrag="false">
+<div class="nui-fit" id="show1" style="display: ;">
+    <table style="width: 100%;background-color: #eef1f4">
+        <tr style="height: 40px;">
+            <td class="">
+                <label>上次检查</label>
+            </td>
+
+            <td class="">
+                <label>90分</label>
+            </td>
+
+            <td class="">
+                <label>（2018-9-8）</label>
+            </td>
+
+            <td class="">
+                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="" id="">查看</a>
+            </td>
+        </tr>
+    </table>
+    <table style="width: 100%;margin-top:20px; "  border="1 solid #ccc" cellpadding="0" cellspacing="0" >
+        <tr>
+            <td class="textStyle"> 
+                <label>未派工</label>
+            </td>
+
+            <td class="textStyle">
+                <label>已派工</label>
+            </td>
+
+            <td class="textStyle">
+                <label>施工中</label>
+            </td>
+
+            <td class="textStyle">
+                <label>已完工</label>
+            </td>
+        </tr>
+    </table>
+    <div align="center" style="margin-top:20px; ">
+        <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="MemSelectCancel(2)" id="">
+            <span style="line-height: 30px;">车况派工</span>
+        </a>
+    </div>
+</div>
+
+
+<div class="nui-fit" id="show2" style="display: none;">
+
+    <table style="width: 100%;margin-top:20px; " >
+        <tr>
+            <td class="" style="float: right;"> 
+                <label>选择检查人</label>
+            </td>
+
+            <td class="">
+                 <input class="nui-combobox " allowInput="true" style="width:150px;" />
+            </td>
+        </tr>
+    </table>
+    <div align="center" style="margin-top:20px; ">
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="newCheckMain" id="">
+            确定
+        </a>
+
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
+            取消
+        </a>
+    </div>
+</div>
+
+
+
+</div> 
 
 <script type="text/javascript">
  nui.parse();

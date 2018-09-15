@@ -3,10 +3,10 @@
 <%@include file="/common/sysCommon.jsp"%>
 
 <html>
-<!-- 
+<!--  
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08
-  - Description: 
+  - Description:    
 -->
 
 <head>
@@ -16,11 +16,11 @@
     width: 60px;
     text-align: right;
 }
-a {
+a { 
     text-decoration: none;
 }
 .form_label {
-    width: 72px;
+    width: 72px; 
     text-align: right;
 }
 
@@ -40,6 +40,7 @@ a {
     margin-left: 20px;
     margin-top: 20px;
     background-size: 50%;
+
 }
 </style>
 
@@ -91,7 +92,7 @@ a {
     var status = nui.get("status");
     var isSettle = nui.get("isSettle");
     var baseUrl = apiPath + repairApi + "/";
-    var gridUrl = baseUrl + "com.hsapi.repair.baseData.query.qyeryMaintainList.biz.ext";
+    var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
     mainGrid.setUrl(gridUrl);
 
     var yy = (new Date()).getFullYear();

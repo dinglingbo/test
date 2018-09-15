@@ -423,7 +423,7 @@
                     <tr>
                         <td width="30%" height="30" class="left" style="font-size: 14px;">领料仓库：</td>
                         <td class="left" width="30%" style="font-size: 14px;">领料人：</td>
-                        <td class="right" width="30%" style="font-size: 14px;">费用合计：<span id="money">0</span></td>
+                        <td class="right" width="30%" style="font-size: 14px;">费用合计：<span id="money">0</span>元</td>
                     </tr>
                     <tr>
                         <td width="30%" height="30" class="left" style="font-size: 14px;">出库人：</td>
@@ -442,7 +442,10 @@
             $(".print_btn").hide();
             window.print();
         });
-        $.post("com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=941",{},function(text){
+	});	
+	
+	function SetData(params){
+		$.post("com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
         		var list = text.list[0];
         		var serviceCode = list.serviceCode;
         		var guestFullName = list.guestFullName;
@@ -476,7 +479,7 @@
         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
         });
         
-        $.post("com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext.biz.ext?serviceId=577",{},function(text){
+        $.post("com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext.biz.ext?serviceId="+params.serviceId,{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
@@ -500,7 +503,7 @@
 				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
         		}
         });
-	});	
+	}
 	</script>
 </body>
 </html>

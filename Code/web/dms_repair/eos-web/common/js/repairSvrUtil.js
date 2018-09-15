@@ -296,6 +296,11 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 	});
 }
 
+
+
+
+
+
 var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
 function doAddcardTime(params,callback){	
 	
@@ -342,6 +347,13 @@ function doAddcard(params,callback){
 
 }
 //产品录入
+
+
+function addPackage(data,callback){
+	//获取到套餐的数据
+	var pkg = data.pkg;
+}
+
 function doSelectBasicData(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
@@ -376,11 +388,3 @@ function doSelectBasicData(params,callback){
         }
     });
 }
-
-function addPackage(data,callback){
-	//获取到套餐的数据
-	var pkg = data.pkg;
-	
-	
-}
-

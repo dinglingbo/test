@@ -29,6 +29,8 @@ $(document).ready(function ()
     //查询套餐
     packageGrid.load({
     });
+    /*brandPartGrid.load({
+    });*/
     
 });
 function init()
@@ -304,23 +306,41 @@ function getItemKind(item_kind)
     return item_kind;
 }
 var stdPkgUrl = baseUrl + "com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
+var stdItemUrl = baseUrl +"com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
+var stdPartUrl = baseUrl +"com.hsapi.repair.repairService.crud.insStdPart.biz.ext";
 function doSelect(idx)
 {
     var result = {};
     var row = null;
+    
     if(idx == 0)
     {
         result.pkg = packageGrid.getSelected();
         row = result.pkg;
-        pkg = {
-        	packageCarmtId:id,
-        	serviceId:serviceId
+        if(row.id){
         	
+        	 nui.mask({
+                 el: document.body,
+                 cls: 'mini-mask-loading',
+                 html: '数据加载中...'
+             });
+        }
+        pkg = {
+        	packageCarmtId:row.id,
+        	serviceId:serviceId
         }
     	var json = nui.encode({
     		"pkg":pkg,
     		token:token
     	});
+        var p1 = {
+                interType: "package",
+                data:{
+                    serviceId: serviceId||0
+                }
+            };
+		var p2 = {};
+		var p3 = {};
     	nui.ajax({
     		url : stdPkgUrl,
     		type : 'POST',
@@ -329,21 +349,14 @@ function doSelect(idx)
     		contentType : 'text/json',
     		success : function(text) {
     			var returnJson = nui.decode(text);
-    			if (returnJson.exception == null) {
+    			if (returnJson.errCode == "S") {
     				showMsg("套餐添加成功","S");
     				//执行回调函数，传参数，套餐参数,不知道可不可行
-    				var p1 = {
-                            interType: "package",
-                            data:{
-                                serviceId: serviceId||0
-                            }
-                        };
-    				var p2 = {};
-    				var p3 = {};
-    				callback && callback(p1,p2,p3);
     				CloseWindow("ok");
+    				callback && callback(p1,p2,p3);
     			} else {
-    				showMsg("套餐添加失败","W");
+    				showMsg(returnJson.errMsg,"W");
+    				nui.unmask(document.body);
     				}
     		    }
     	 });
@@ -351,10 +364,59 @@ function doSelect(idx)
     else if(idx == 1){
         result.item = itemGrid.getSelected();
         row = result.item;
-        var item_kind = getItemKind(row.itemKind);
-        row.itemKind = item_kind;
+      /*  var item_kind = getItemKind(row.itemKind);
+        row.itemKind = item_kind;*/
+        if(row.itemId){
+        	
+       	 nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '数据加载中...'
+            });
+       }
+        insItem = {
+        		itemId:row.itemId,
+            }
+        	var json = nui.encode({
+        		"insItem":insItem,
+        		"serviceId":serviceId,
+        		token:token
+        	});
+            var p1 = { };
+    		var p2 = {
+                    interType: "item",
+                    data:{
+                        serviceId: serviceId || 0
+                    }
+                }
+    		var p3 = {};
+        	nui.ajax({
+        		url : stdItemUrl,
+        		type : 'POST',
+        		data : json,
+        		cache : false,
+        		contentType : 'text/json',
+        		success : function(text) {
+        			var returnJson = nui.decode(text);
+        			if (returnJson.errCode == "S") {
+        				showMsg("工时添加成功","S");
+        				//执行回调函数，传参数，套餐参数,不知道可不可行
+        				CloseWindow("ok");
+        				callback && callback(p1,p2,p3);
+        			} else {
+        				showMsg(returnJson.errMsg,"W");
+        				nui.unmask(document.body);
+        				}
+        		    }
+        	 });
+    }else if(idx == 2){
+    	
+    	
+    	
+    	
+    	
     }
-    if(!row)
+   /* if(!row)
     {
         return;
     }
@@ -404,7 +466,7 @@ function doSelect(idx)
     }
     else{
         callback && callback(result);
-    }
+    }*/
 }
 //选择
 function onOk()

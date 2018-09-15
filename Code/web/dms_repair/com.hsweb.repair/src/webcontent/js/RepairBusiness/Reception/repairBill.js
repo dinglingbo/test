@@ -2290,8 +2290,8 @@ function pay(){
 
 function showBasicData(){
     var maintain = billForm.getData();
-    var isSettle = main.isSettle||0;
-    if(!main.id){
+    var isSettle = maintain.isSettle||0;
+    if(!maintain.id){
         showMsg("请选择保存工单!","S");
         return;
     }

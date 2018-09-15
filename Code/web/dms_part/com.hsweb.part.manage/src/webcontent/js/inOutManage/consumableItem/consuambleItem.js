@@ -475,6 +475,7 @@ function partToOut() {
 	var preOutQty = row.preOutQty || 0;
 	if (data.outQty > stockQty - preOutQty) {
 		showMsg("出库数量超出此批次可出库数量", "W");
+		return;
 	}
 	var billTypeId = "050207";
 	var partNameId = '0';

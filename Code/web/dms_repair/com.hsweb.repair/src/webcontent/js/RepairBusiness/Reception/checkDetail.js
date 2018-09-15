@@ -19,11 +19,7 @@ var actionType = null;
 $(document).ready(function ()   
 {
 
-    var yy = (new Date()).getFullYear();
-    var mm = ((new Date()).getMonth() + 1);
-    var dd = (new Date()).getDate();
-    var nowDate = yy + "-" + mm + "-" + dd; //本月月
-    nui.get("enterDate").setValue(nowDate);
+
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     actionType = nui.get("actionType").value;
@@ -504,7 +500,7 @@ function SetData(params){
             html: '数据加载中...'
         });
 
-        var mparams = {  
+        var mparams = {   
             data: {
                 id: params.id
             }

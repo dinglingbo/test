@@ -46,6 +46,13 @@ $(document).ready(function(v) {
 	            contentGrid.setData(resList);
 	        }
 	    });
+		if(currIsMaster=="1"){
+			$("#isSharex").show();
+			$("#isSharey").show();
+		}else{
+			$("#isSharex").hide();
+			$("#isSharey").hide();
+		}
 
 });
 var requiredField = {
@@ -106,10 +113,10 @@ function setGridData(datagrid, dataid) {
 
 
 function saveData() {
-	if(currIsMaster != "1"){
+/*	if(currIsMaster != "1"){
 		showMsg("请向总部申请储值卡定义!","W");
 		return;
-	}
+	}*/
 	form.validate();
 	if (form.isValid() == false)
 		return;

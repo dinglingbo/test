@@ -6,9 +6,9 @@
 <!-- 
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20 
-  - Description:
--->        
-    
+  - Description: 
+-->         
+ 
 <head> 
     <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -24,7 +24,7 @@
     }
     .tbtext {
         float: right;
-}
+    }
 
     .vpanel {
         border: 1px solid #d9dee9;
@@ -62,51 +62,49 @@
 <body>
 
     <div class="nui-toolbar" id="toolbar1" style="padding:2px;height:30px">
-    <input class="nui-hidden" id="mid" name="mid" value='<b:write property="mid"/>'/>
-    <input class="nui-hidden" id="tid" name="tid" value='<b:write property="tid"/>'/>
-    <input class="nui-hidden" id="actionType" name="actionType" value='<b:write property="actionType"/>'/>
-    <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
-        <tr>            
-            <td>
-                <div class="nui-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
-                id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
-                dataField="list" loadingText="数据加载中...">     
-                <div property="columns">
-                    <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
-                    <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
-                    <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                    <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
-                    <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
-                    <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+        <input class="nui-hidden" id="mid" name="mid" value='<b:write property="mid"/>'/>
+        <input class="nui-hidden" id="tid" name="tid" value='<b:write property="tid"/>'/>
+        <input class="nui-hidden" id="actionType" name="actionType" value='<b:write property="actionType"/>'/>
+        <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
+            <tr>            
+                <td style="width: 500px;">
+                    <div class="nui-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
+                    dataField="list" loadingText="数据加载中...">     
+                    <div property="columns">
+                        <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
+                        <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
+                        <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
+                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
+                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
+                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                    </div>
                 </div>
-            </div>
-            <input id="search_name"
-            name="search_name"
-            class="nui-textbox"
-            emptyText="车牌号/客户名称/手机号/VIN码"
-            onbuttonclick="onSearchClick()"
-            width="200px"
-            visible="false"
-            enabled="false"
-            showClose="false"
-            allowInput="true"/>
-            <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
-            <label style="font-family:Verdana;">工单号:</label>
-            <label id="servieIdEl" style="font-family:Verdana;"></label>
-        </td>     
-        <td style="text-align:left;">
+                <input id="search_name"
+                name="search_name"
+                class="nui-textbox"
+                emptyText="车牌号/客户名称/手机号/VIN码"
+                onbuttonclick="onSearchClick()"
+                width="200px"
+                visible="false"
+                enabled="false"
+                showClose="false"
+                allowInput="true"/>
+                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
+                <label style="font-family:Verdana;">工单号:</label>
+                <label id="servieIdEl" style="font-family:Verdana;"></label>
+            </td>     
+            <td style="text-align:left;">
+                <a class="nui-button" iconCls="" plain="true" onclick="">
+                  <span class="fa fa-search fa-lg"></span>&nbsp;查看历史记录</a>
+              </td>     
+          </tr>
+      </table>
 
-          进场日期:<input class="nui-datepicker tabwidth" name="enterDate" id="enterDate" />
-
-          预计交车日期:<input class="nui-datepicker tabwidth" name="planFinishDate" id="planFinishDate"/>
-      </td>     
-  </tr>
-</table>
-
-</div>
+  </div>
 
 
-<div class="nui-fit">
+  <div class="nui-fit">
     <div id="billForm" class="form">
         <input class="nui-hidden" name="id" id="id"/>
         <input class="nui-hidden" name="guestId"/>
@@ -132,46 +130,47 @@
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" />
                 </td>
-                <td class="tbtext">级别:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">会员卡:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth"  name="cardType" id ="cardType"/>
-                </td>
-                <td class="tbtext">车型:</td>
+
+                <td class="tbtext">车牌:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
                 </td>
+
+                <td class="tbtext">检查模板:</td>
+                <td class="tbCtrl">
+                    <input class="nui-combobox tabwidth" />
+                </td>
+
             </tr> 
             <tr>
-                <td class="tbtext">车牌:</td>
+                <td class="tbtext">上次检查时间:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
                 </td>
+               <td class="tbtext">上次检查里程:</td>
+               <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" />
+            </td>
 
-                <td class="tbtext">VIN码:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
-                </td>
-                <td class="tbtext">油量:</td>
+                <td class="tbtext">上次检查项目:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="enterOilMass" id="enterOilMass"/>
                 </td>
-                <td class="tbtext">当前里程:</td>
+                <td class="tbtext">上次检查得分:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth"  name="enterKilometers" id="enterKilometers"/>
                 </td>
-                <td class="tbtext">下次保养:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
+       
             </tr>
             <tr>
-             <td class="tbtext">下次保养日期:</td>
-             <td class="tbCtrl">
-                <input class="nui-datepicker tabwidth" />
+                <td class="tbtext">检查人:</td>
+                <td class="tbCtrl">
+                    <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
+                </td>
+
+                        <td class="tbtext">本次里程:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
             </td>
             <td class="tbtext">服务顾问:</td>
             <td class="tbCtrl">
@@ -189,17 +188,10 @@
                 nullItemText="请选择..."/>
                 
             </td>
-            <td class="tbtext">服务技师:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
-            </td>
-            <td class="tbtext">送修人:</td>
+
+            <td class="tbtext">本次检查得分:</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
-            </td>
-            <td class="tbtext">联系方式:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
             </td>
 
         </tr>
@@ -234,23 +226,23 @@ allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
     </div>
     <div class="nui-fit">
         <input class="nui-textarea " style="width:100%;height:100%;border:0px;" />
-</div>
+    </div>
 </div>
 <div style="clear: both;">
-<div class="vpanel" style="width:calc(100% - 2px);height:100px;margin-left: auto;margin-right: auto;margin-top: 20px;">
-    <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;">
-        <span>检测照片</span>
-    </div>
-    <div class="vpanel_body"> 
+    <div class="vpanel" style="width:calc(100% - 2px);height:100px;margin-left: auto;margin-right: auto;margin-top: 20px;">
+        <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;">
+            <span>检测照片</span>
+        </div>
+        <div class="vpanel_body"> 
 
 
+        </div> 
     </div> 
-</div> 
 
-<div style="width:100%;margin-top: 10px;">
-    <a class="nui-button" onclick="save()" plain="false">保存</a>
-    <a class="nui-button" onclick="" plain="false">退出</a>
-</div>
+    <div style="width:100%;margin-top: 10px;">
+        <a class="nui-button" onclick="save()" plain="false">保存</a>
+        <a class="nui-button" onclick="" plain="false">退出</a>
+    </div>
 </div>
 
 <script type="text/javascript">

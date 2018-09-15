@@ -376,25 +376,25 @@
         <div class="company-info">
             <h3><span id="comp"></span></h3>
         </div>
-        <h1 id="title">派工单</h1>
+        <h1 id="title">领料单</h1>
         <div class="content">
             <h5>单据编号：<span id="serviceCode"></span></h5>
             <hr />
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>
-                        <td class="left" width="33.3%" id="guestId">客户名称：</td>
+                        <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                        <td class="left" id="tel">联系电话：</td>
+                        <td class="left" id="guestTel">联系电话：</td>
                     </tr>
                     <tr>
-                        <td class="left">车型：</td>
-                        <td class="left"id="enterKilometers">公里数：</td>
-                        <td class="left"id="mtAdvisor">服务顾问：</td>
+                    	<td class="left"id="mtAdvisor">服务顾问：</td>
+                        <td class="left"id="carModel">车型：</td>
+                        <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
                     </tr>
                     <tr>
                         <td class="left" id ="carVin">VIN：</td>
-                        <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
+                        <td class="left" id ="engineNo">发动机号：</td>
                         <td class="left" id="planFinishDate">预计完工时间：</td>
                     </tr>
                 </tbody>
@@ -406,11 +406,12 @@
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
-                            <td width="200" align="center">工时名称</td>
-                            <td align="center" width="150">业务类型</td>
-                            <td align="center">施工员</td>
-                            <td align="center">备注</td>
-                            <td align="center">签字</td>
+                            <td align="center">编号</td>
+                            <td align="center">名称</td>
+                            <td align="center"width="40">数量</td>
+                            <td align="center"width="40">单位</td>
+                            <td align="center"width="40">仓位</td>
+                            <td align="center">金额</td>
                         </tr>
                         <tbody id="tbodyId">
 						</tbody>
@@ -420,19 +421,14 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
                 <tbody>
                     <tr>
-                        <td width="50%" height="30" class="left" style="font-size: 14px;">质检员：</td>
-                        <td class="left" width="50%" style="font-size: 14px;">质检员签字：</td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
-            <table class="table theader" style="margin-top: 5px">
-                <tbody>
-                    <tr>
-                        <td height="40" id="faultPhen">故障描述：</td>
+                        <td width="30%" height="30" class="left" style="font-size: 14px;">领料仓库：</td>
+                        <td class="left" width="30%" style="font-size: 14px;">领料人：</td>
+                        <td class="right" width="30%" style="font-size: 14px;">费用合计：<span id="money">0</span></td>
                     </tr>
                     <tr>
-                        <td style="width: 25%" id="remark">备注：</td>
+                        <td width="30%" height="30" class="left" style="font-size: 14px;">出库人：</td>
+                        <td class="left" width="30%" style="font-size: 14px;">复核：</td>
+                        <td class="left" width="30%" style="font-size: 14px;">领料人签字：</td>
                     </tr>
                 </tbody>
             </table>
@@ -446,80 +442,65 @@
             $(".print_btn").hide();
             window.print();
         });
-	});	
-	
-	function SetData(params){
-		document.getElementById("comp").innerHTML = params.comp;
-		$.ajaxSettings.async = false;//设置为同步执行
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
-        	if(text.errCode == "S"){
-        		var maintain = text.maintain;
-        		var carNo = maintain.carNo;
-        		var carVin = maintain.carVin;
-        		var enterDate = maintain.enterDate || "";
+        $.post("com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=941",{},function(text){
+        		var list = text.list[0];
+        		var serviceCode = list.serviceCode;
+        		var guestFullName = list.guestFullName;
+        		var carNo = list.carNO;
+        		var guestTel = list.guestTel;
+        		var mtAdvisor = list.mtAdvisor;
+        		var carModel = list.carModel;
+        		var enterDate = list.enterDate || "";
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
         			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
         		}
-        		var guestId = maintain.guestId;
-        		var enterKilometers = maintain.enterKilometers;
-        		var mtAdvisor = maintain.mtAdvisor;
-        		var planFinishDate = maintain.planFinishDate || "";
+        		var carVin = list.carVin;
+        		var engineNo = list.engineNo;
+        		var planFinishDate = list.planFinishDate || "";
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
         			planFinishDate = new Date(planFinishDate);
         			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
         		}
-        		var faultPhen = maintain.faultPhen;
-        		var serviceCode = maintain.serviceCode;
-        		var remark = maintain.remark || "";
-        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
+        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML+ serviceCode;
+        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
-        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
-        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
-        		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + guestId;
-        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
+        		document.getElementById("guestTel").innerHTML = document.getElementById("guestTel").innerHTML + guestTel;
         		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
-        		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate;
-        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
-        		document.getElementById("remark").innerHTML = document.getElementById("remark").innerHTML + remark; 
-        	}
+        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel;
+        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
+        		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo;
+        		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
         });
-        $.ajaxSettings.async = true;//设置为异步执行
-        var guestId = document.getElementById("guestId").innerHTML;
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,"")+"&token="+params.token,{},function(text){
-        	if(text.errCode == "S"){
-        		var guest = text.guest;
-        		var fullName = guest.fullName;
-           		var tel = guest.tel;
-           		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
-           		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
-        	}
-        });
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
-        	if(text.errCode == "S"){
+        
+        $.post("com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext.biz.ext?serviceId=577",{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
-    			"<td align='center'>[prdtName]</td>"+
-    			"<td align='center'>[serviceTypeId]</td>"+ 
-    			"<td align='center'>[workers]</td>"+
+    			"<td align='center'>[partCode]</td>"+
+    			"<td align='center'>[partName]</td>"+ 
+    			"<td align='center'>[qty]</td>"+
+    			"<td align='center'>[unit]</td>"+
     			"<td align='center'></td>"+
-    			"<td align='center'></td>";
+    			"<td align='center'>[subtotal]</td>";
         		var data = text.data;
         		for(var i = 0 , l = data.length ; i < l ; i++){
         			var tr = $("<tr></tr>");
         			tr.append(
 				    				tds.replace("[id]",i +1)
-				    				.replace("[prdtName]",data[i].prdtName)
-				    				.replace("[serviceTypeId]",data[i].serviceTypeId)
-				    				.replace("[workers]",data[i].workers || ""));
+				    				.replace("[partCode]",data[i].partCode)
+				    				.replace("[partName]",data[i].partName)
+				    				.replace("[qty]",data[i].qty)
+				    				.replace("[unit]",data[i].unit || "")
+				    				.replace("[subtotal]",data[i].subtotal));
 				    			tBody.append(tr);
+				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
         		}
-        	}
         });
-	}
-    </script>
+	});	
+	</script>
 </body>
 </html>

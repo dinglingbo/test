@@ -557,6 +557,117 @@
 			a.service_id = #serviceId#
 			AND ifnull( a.package_id, '' ) = ''
 	</select>
-	    
+    <select id="billqueryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			a.guest_id as guestId,
+			a.service_code as serviceCode,
+			a.enter_date as enterDate,
+			c.full_name as guestFullName,
+			c.short_name as guestShortName,
+			b.car_model as carModel,
+			a.car_vin as carVin,
+			a.car_no as carNO,
+			c.tel as guestTel,
+			c.mobile as guestMobile,
+			b.car_brand_id as carBrandId,
+			a.mt_advisor as mtAdvisor,
+			a.status as status,
+			a.service_type_id as serviceTypeId,
+			a.is_settle as isSettle,
+			a.is_judge as isJudge,
+			a.remark as remark,
+			a.bill_type_id as billTypeId,
+			d.name as contactName,
+			d.mobile as contactMobile,
+			a.modifier as modifier, 
+			a.modify_date as modifyDate, 
+			a.recorder as recorder, 
+			a.record_date as recordDate,
+			a.plan_finish_date as planFinishDate,
+			b.insure_comp_name as insureCompName,
+			a.package_amt as packageAmt,
+			b.insure_no as insureNo,
+			b.color as color,
+			a.enter_oil_mass as enterOilMass,
+			a.enter_kilometers as enterKilometers,
+			c.addr as guestAddr,
+			b.engine_no as engineNo,
+			b.first_reg_date as firstRegDate,
+			b.annual_verification_due_date as annualVerificationDueDate,
+			b.insure_due_date as insureDueDate,
+			b.annual_inspection_date as annualInspectionDate,
+			b.annual_inspection_no as annualInspectionNo,
+			a.part_amt as partAmt
+		FROM
+			rps_maintain a
+			inner JOIN rpb_car b ON ( a.car_id = b.id )
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+			inner join rpb_contactor d on (a.contactor_id = d.id and b.guest_id = d.guest_id)
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+			<isNotEmpty prepend="and" property="rid">
+                (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">
+                (a.car_id = #carId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">
+                (a.mt_advisor = #mtAuditor#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">  
+                (a.status = #status#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">  
+                (a.is_settle = #isSettle#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">  
+                (a.status in ($statusList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">  
+                (a.car_no = #carNoEqual#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">  
+                (a.service_code like '%$serviceCode$%')
+            </isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (a.enter_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (a.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">  
+                (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">  
+                (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">  
+                (a.service_type_id in ($serviceTypeIdList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">  
+                (a.car_vin like '%$vin$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">  
+                (c.tel like '%$tel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (c.full_name like '%$name$%')
+            </isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>	    
 	
 </sqlMap>

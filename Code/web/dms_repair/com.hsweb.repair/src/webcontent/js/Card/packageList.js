@@ -56,51 +56,58 @@ $(document).ready(function(v) {
 
 });
 
-
+function getDataAll(){
+	var row = grid.getSelecteds();
+	return row;
+}
 // 选择
 function edit() {
-	var row = grid.getSelected();
-	if (row){	
-		if(ckcallback){
-			var rs = ckcallback(row);
-			if(rs){
-				showMsg("此套餐已添加,请返回查看!","W");
-				return;
+	if(nui.get("expense").value){
+		CloseWindow("ok");
+	}else{
+		var row = grid.getSelected();
+		if (row){	
+			if(ckcallback){
+				var rs = ckcallback(row);
+				if(rs){
+					showMsg("此套餐已添加,请返回查看!","W");
+					return;
+				}else{
+					if(callback){
+						nui.mask({
+							el: document.body,
+							cls: 'mini-mask-loading',
+							html: '处理中...'
+						});
+			
+						callback(row,function(data){
+							if(data){
+								data.check = 1;
+								tempGrid.addRow(data);
+							}
+						},function(){
+							nui.unmask(document.body);
+						})
+					}
+				}
 			}else{
 				if(callback){
-					nui.mask({
-						el: document.body,
-						cls: 'mini-mask-loading',
-						html: '处理中...'
-					});
-		
 					callback(row,function(data){
 						if(data){
 							data.check = 1;
 							tempGrid.addRow(data);
 						}
-					},function(){
-						nui.unmask(document.body);
-					})
+					});
 				}
 			}
-		}else{
-			if(callback){
-				callback(row,function(data){
-					if(data){
-						data.check = 1;
-						tempGrid.addRow(data);
-					}
-				});
+			resultData.package1 = row;
+			if(isChooseClose == 1){
+				CloseWindow("ok");
 			}
+			
+		} else {
+			nui.alert("请选择一个套餐", "W");
 		}
-		resultData.package1 = row;
-		if(isChooseClose == 1){
-			CloseWindow("ok");
-		}
-		
-	} else {
-		nui.alert("请选择一个套餐", "W");
 	}
 }
 
@@ -221,3 +228,6 @@ function look() {
 	}
 }
 
+function setValueData(){
+	nui.get("expense").setValue(6);
+}

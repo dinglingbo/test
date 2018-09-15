@@ -19,6 +19,7 @@
 <body>
 
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+	<input class="nui-textbox" id="state"visible="false"/>
     <div class="form" id="queryForm">
         <table style="width:100%;">
             <tr>
@@ -82,11 +83,12 @@
                      idField="id"
                      totalField="page.count"
                      pageSize="50"
-                     showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
+                     showFilterRow="false"multiSelect="true" >
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
+                                <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                                 <div field="isDisabled" width="50" headerAlign="center">状态</div>
                                 <div field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div field="partBrandId" width="70" headerAlign="center">品牌</div>

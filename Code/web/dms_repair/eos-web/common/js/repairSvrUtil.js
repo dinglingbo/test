@@ -296,6 +296,11 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 	});
 }
 
+
+
+
+
+
 var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
 function doAddcardTime(params,callback){	
 	
@@ -341,6 +346,14 @@ function doAddcard(params,callback){
 		});
 
 }
+//产品录入
+
+
+function addPackage(data,callback){
+	//获取到套餐的数据
+	var pkg = data.pkg;
+}
+
 function doSelectBasicData(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
@@ -351,9 +364,11 @@ function doSelectBasicData(params,callback){
             //var data = {
             //    vin:carVin
             //};
-            iframe.contentWindow.setData(params,function(data,callback)
+            
+           /* iframe.contentWindow.setData(params,function(data,callback)
             {
-                if(data.item)
+            	//如果选择的是套餐，没有item属性
+               if(data.item)
                 {
                     var tmpItem = data.item;
                     addItem(tmpItem);
@@ -362,10 +377,14 @@ function doSelectBasicData(params,callback){
                     addPackage(data,callback);
                 }
 
-            });
+            });*/ 
+           iframe.contentWindow.setData(params,callback);
         },
         ondestroy: function (action)
         {
+        	
+        	
+        	
         }
     });
 }

@@ -4,11 +4,11 @@
 <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- 
+<!--
   - Author(s): Administrator
   - Date: 2018-09-14 19:31:35
   - Description:
--->
+  -->
 <head>
 <title>车间调度</title>
 <style type="text/css">
@@ -23,9 +23,9 @@ table {
 	margin-top: 10px;
 	color: red;
 }
-.mini-tabs-firstSpace{
-	padding-top:20px !important;
-}
+/* .mini-tabs-firstSpace{ */
+/*  padding-top:20px !important; */
+/* } */
 .form_label {
 	width: 84px;
 }
@@ -84,13 +84,11 @@ a {
 	transition: all .4s ease;
 }
 </style>
-
 </head>
 <body>
 	<div class="nui-fit">
 		<div class="nui-splitter" vertical="true"
 			style="width: 100%; height: 100%;" allowResize="true">
-
 			<!--上 -->
 			<div id="top" size="30%" showCollapseButton="false">
 				<div class="nui-fit">
@@ -99,39 +97,422 @@ a {
 				</div>
 			</div>
 			<!-- 下 -->
-			<div id="med" size="" showCollapseButton="false">
+			<div id="bottom" size="" showCollapseButton="false">
 				<div class="nui-fit">
-					<div class="nui-toolbar" style="padding: 6px; border-bottom: 1;" ;>
+					<div class="nui-toolbar" style="padding: 6px; border-bottom: 1;">
 						<table>
 							<tr>
-								<td>全部</td>
+								<td style="font-size: 18px;">已派工车辆</td>
 							</tr>
 						</table>
 					</div>
 					<div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0"
 						style="width: 100%; height: 100%;" tabPosition="left"
 						plain="false">
-						<div title="钣金组" name="outRecordTab" url=""></div>
-						<div title="前台收银" name="priceTab" url=""></div>
-						<div title="维修部" name="partCommonTab" url=""></div>
-					</div>
-				</div>
+						<div title="全部">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div title="钣金组">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div title="前台收银">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div title="维修部">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 
+						<div title="机电组">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div title="特殊组">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div title="前台一组">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div title="前台三组">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div title="全能组">
+							<div class="nui-fit">
+								<div class="nui-datagrid" name="" url="" id="carGrid"
+									dataField="data" idField="id" showPager="false"
+									allowSortColumn="true" sortMode="client">
+									<div property="columns">
+										<div field="" width="100" headerAlign="center"
+											allowSort="true" header="序号"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="车牌"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="接待人"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="进厂时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="项目"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="班组"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="派工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工员"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="预计完工时间"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="开始施工"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="施工耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="中断耗时"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="状态"></div>
+										<div field="" width="60" headerAlign="center" allowSort="true"
+											header="操作"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="nui-toolbar" style="padding: 6px; border-bottom: 1;">
+						<table>
+							<tr>
+								<td style="font-size: 18px;">已完成车辆</td>
+							</tr>
+						</table>
+					</div>
+					<div class="nui-datagrid" height="50%" name="" url="" id="carGrid"
+						dataField="data" idField="id" showPager="false"
+						allowSortColumn="true" sortMode="client">
+						<div property="columns">
+							<div field="" width="50" headerAlign="center" allowSort="true"
+								header="序号"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="车牌"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="接待人"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="进厂时间"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="项目"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="班组"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="派工时间"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="施工员"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="预计完工时间"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="开始施工"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="施工耗时"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="中断耗时"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="状态"></div>
+							<div field="" width="60" headerAlign="center" allowSort="true"
+								header="操作"></div>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
 			nui.parse();
 			$(document).ready(function() {
 				init();
-
 			});
 			var carList = [];
-
 			function init() {
 				for (var i = 0; i < 100; i++) {
 					var data = {
 						id : i,
-						name : i
+						name : "粤B643" + i
 					};
 					carList.push(data);
 				}

@@ -8,7 +8,7 @@
   - Date: 2018-01-25 14:17:08 
   - Description:  
 -->
-
+ 
 <head> 
   <title>选择配件数量</title>  
   <style type="text/css">
@@ -160,6 +160,7 @@
                         var iframe = this.getIFrameEl();
                         var childdata = iframe.contentWindow.GetFormData();
                     savePartOut(childdata);     //如果点击“确定”
+                    window.parent.tt(333);
                     CloseWindow("ok");
                 }
 
@@ -223,6 +224,7 @@
             nui.ajax({
                 url:baseUrl + "com.hsapi.repair.repairService.work.repairOut.biz.ext",
                 type:"post",
+                async: false,
                 data:{ 
                     data:paramsDataArr,
                     billTypeId:"050206",

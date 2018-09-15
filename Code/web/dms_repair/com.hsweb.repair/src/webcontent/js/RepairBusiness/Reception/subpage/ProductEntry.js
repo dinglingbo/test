@@ -26,6 +26,10 @@ var itemKindHash = {
 $(document).ready(function ()
 {
     init();
+    //查询套餐
+    packageGrid.load({
+    });
+    
 });
 function init()
 {
@@ -283,11 +287,13 @@ function doSearchPart(params)
     });
 }
 var callback = null;
+var serviceId = null;
 function setData(data,ck)
 {
     data = data||{};
     callback = ck;
     var vin = data.vin||"";
+    serviceId = data.serviceId;
     init();
     vinEl.setValue(vin);
     vinEl.doValueChanged();
@@ -297,6 +303,7 @@ function getItemKind(item_kind)
     item_kind = item_kind == 'JD' ? '040701' : item_kind == 'BJ' ? '040702' : item_kind == 'PQ' ? '040703' : item_kind == 'MR' ? '040705' : '040701';
     return item_kind;
 }
+var stdPkgUrl = baseUrl + "com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
 function doSelect(idx)
 {
     var result = {};
@@ -305,12 +312,47 @@ function doSelect(idx)
     {
         result.pkg = packageGrid.getSelected();
         row = result.pkg;
+        pkg = {
+        	packageCarmtId:id,
+        	serviceId:serviceId
+        	
+        }
+    	var json = nui.encode({
+    		"pkg":pkg,
+    		token:token
+    	});
+    	nui.ajax({
+    		url : stdPkgUrl,
+    		type : 'POST',
+    		data : json,
+    		cache : false,
+    		contentType : 'text/json',
+    		success : function(text) {
+    			var returnJson = nui.decode(text);
+    			if (returnJson.exception == null) {
+    				showMsg("套餐添加成功","S");
+    				//执行回调函数，传参数，套餐参数,不知道可不可行
+    				var p1 = {
+                            interType: "package",
+                            data:{
+                                serviceId: serviceId||0
+                            }
+                        };
+    				var p2 = {};
+    				var p3 = {};
+    				callback && callback(p1,p2,p3);
+    				CloseWindow("ok");
+    			} else {
+    				showMsg("套餐添加失败","W");
+    				}
+    		    }
+    	 });
     }
     else if(idx == 1){
         result.item = itemGrid.getSelected();
         row = result.item;
         var item_kind = getItemKind(row.itemKind);
-        row.itemKind = item_kind
+        row.itemKind = item_kind;
     }
     if(!row)
     {
@@ -364,8 +406,10 @@ function doSelect(idx)
         callback && callback(result);
     }
 }
+//选择
 function onOk()
 {
+	//获取选中的tap对象
     var getActiveTab = mainTabEl.getActiveTab();
     console.log(getActiveTab);
     var _id = getActiveTab._id;

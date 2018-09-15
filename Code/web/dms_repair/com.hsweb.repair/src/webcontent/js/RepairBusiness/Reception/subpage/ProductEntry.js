@@ -413,8 +413,7 @@ function doSelect(idx)
     	
     	
     	
-    	
-    	
+  
     }
    /* if(!row)
     {

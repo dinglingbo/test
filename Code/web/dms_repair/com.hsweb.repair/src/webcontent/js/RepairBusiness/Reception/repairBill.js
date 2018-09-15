@@ -2317,3 +2317,81 @@ function showBasicData(){
         loadDetail(p1, p2, p3);
     });
 }
+
+//提交单元格编辑数据前激发
+function onCellCommitEdit(e) {
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!","W");
+		e.cancel = true;
+	} else {
+		var newRow = {};
+		if (e.field == "qty") {
+			var qty = e.value;
+			var unitPrice = record.unitPrice;
+
+			if (e.value == null || e.value == '') {
+				e.value = 1;
+				qty = 1;
+			} else if (e.value < 0) {
+				e.value = 1;
+				qty = 1;
+			}
+
+			var amt = qty * unitPrice;
+
+			newRow = {
+				amt : amt
+			};
+			rpsPartGrid.updateRow(e.row, newRow);
+
+			// record.enteramt.cellHtml = enterqty * enterprice;
+		} else if (e.field == "unitPrice") {
+			var qty = record.qty;
+			var unitPrice = e.value;
+			
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				unitPrice = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				unitPrice = 0;
+			}
+
+			var amt = qty * unitPrice;
+
+			newRow = {
+				amt : amt
+			};
+			rpsPartGrid.updateRow(e.row, newRow);		
+
+		} else if (e.field == "amt") {
+			var qty = record.qty;
+			var amt = e.value;
+
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				amt = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				amt = 0;
+			}
+
+			// e.cellHtml = enterqty * enterprice;
+			var unitPrice = amt * 1.0 / qty;
+
+
+			if (qty) {
+				newRow = {
+					unitPrice : unitPrice
+				};
+				rpsPartGrid.updateRow(e.row, newRow);
+			}
+		} 		
+	}
+}
+

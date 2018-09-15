@@ -186,7 +186,7 @@ function LLSave(argument) {
 			var recordId = rows[i].id;
 			if(r){
 				openPartSelect(r,"Id",recordId,mainRow);
-			}else if(c){
+			}else if(c){ 
 				openPartSelect(c,"Code",recordId,mainRow);
 			}else{
 				showMsg('部分配件需单独领取!','W');
@@ -340,4 +340,9 @@ function  savepartOutRtn(data,childdata){
     		if (g.id == e.value) return g.text;
     	}
     	return "";
+    }
+
+
+    function tt(t){
+    	nui.alert(t);
     }

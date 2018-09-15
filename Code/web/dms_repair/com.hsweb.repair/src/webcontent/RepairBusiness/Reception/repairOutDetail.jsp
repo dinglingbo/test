@@ -8,7 +8,7 @@
   - Date: 2018-07-02 20:50:20 
   - Description: 
 -->          
-
+  
 <head> 
     <title>出库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -129,6 +129,7 @@
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" />
                 </td>
+                <!-- 
                 <td class="tbtext">级别:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" />
@@ -137,6 +138,7 @@
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth"  name="cardType" id ="cardType"/>
                 </td>
+                 -->
                 <td class="tbtext">车型:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
@@ -231,7 +233,7 @@ allowCellEdit="true"  >
  <div header="配件信息">
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
-        <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
+        <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div>           
         <div field="outQty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
         <div field="unit" headerAlign="center" allowSort="false" visible="false" width="80px" header="单位"></div>           
         <div field="sellUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售单价"></div>

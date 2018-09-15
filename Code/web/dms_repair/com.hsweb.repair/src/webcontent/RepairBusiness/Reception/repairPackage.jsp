@@ -5,7 +5,9 @@
      dataField="list"
      showPager="false"
      showModified="false"
-     allowSortColumn="false">
+     allowSortColumn="false"
+     oncellcommitedit="onCellCommitEdit"
+     >
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
         <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
@@ -21,12 +23,12 @@
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
                 </div>
                 <div field="subtotal" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="套餐金额" align="center">
+                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" numberFormat="0.0000">
                      <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="rate" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="优惠率" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox"/>
+                     <input property="editor" vtype="float" class="nui-textbox" numberFormat="0.0000"/>
                 </div>
                 <div field="amt" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="原价" align="center">

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.2.0"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -79,7 +79,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="printBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
            
             </td>
         </tr>
@@ -125,7 +125,7 @@
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:90px;">
+                  <fieldset id="fd1" style="width:95%;height:120px;">
                       <legend><span>对账单信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

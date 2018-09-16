@@ -15,7 +15,7 @@ var innerPchsGridUrl = baseUrl
 var innerSellGridUrl = baseUrl
 		+ "com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = baseUrl
-		+ "com.hsapi.frm.frmService.crud.getPJStatementDetailById.biz.ext";
+		+ "com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
 var rechargeBalaAmt = null;
 var advancedSearchWin = null;
 var advancedSearchForm = null;

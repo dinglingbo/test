@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryPJStatementList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.getPJStatementDetailById.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.settle.queryPJStatementList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
 var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var advancedSearchWin = null;
@@ -489,7 +489,7 @@ function onRightGridDraw(e)
             break;
     }
 }
-var auditUrl = baseUrl+"com.hsapi.frm.frmService.crud.auditPjStatement.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.settle.auditPjStatement.biz.ext";
 function audit()
 {
     basicInfoForm.validate();
@@ -757,7 +757,7 @@ var requiredField = {
     stateMan : "对账员",
     createDate : "对账日期"
 };
-var saveUrl = baseUrl + "com.hsapi.frm.frmService.crud.savePjStatement.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.settle.savePjStatement.biz.ext";
 function save() {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {

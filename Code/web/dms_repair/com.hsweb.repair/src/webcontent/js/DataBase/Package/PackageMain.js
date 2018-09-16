@@ -96,12 +96,18 @@ $(document).ready(function (v)
 
 	});
 	
-	if(currIsMaster!="1"){
+/*	if(currIsMaster!="1"){
 		document.getElementById( "isShareLab").style.display= "none"; 
 		nui.get("isShare").setVisible(false);
-	}
+	}*/
 
-	
+	if(currIsMaster=="1"){
+		$("#isShareTd").show();
+		$("#isShare").show();
+	}else{
+		$("#isShareTd").hide();
+		$("#isShare").hide();
+	}
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	basicInfoForm1 = new nui.Form("#basicInfoForm1");
 	queryForm = new nui.Form("#queryForm");

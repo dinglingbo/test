@@ -12,7 +12,7 @@
 <head>
 <title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.2.4">
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.2.9">
 	</script>
 </head>
 <body>
@@ -49,7 +49,7 @@
 		</div>
 	</div>
 	<div class="nui-fit">
-		<div id="datagrid1" dataField="timesCard" class="nui-datagrid"
+		<div id="datagrid1" dataField="timesCard" class="nui-datagrid" 
 			style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
 			onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
 			allowSortColumn="false">
@@ -65,7 +65,8 @@
 					销售价格</div>
 				<div field="totalAmt" headerAlign="center" allowSort="true" width="50px">
 					总价值</div>
-
+				<div field="isShare" headerAlign="center" allowSort="true" width="50px">
+					修改权限</div>
 				<!-- <div field="salesDeductType" headerAlign="center" allowSort="true">销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true">
 					销售提成值</div> -->

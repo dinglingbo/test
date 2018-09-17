@@ -6,7 +6,6 @@
      showPager="false"
      showModified="false"
      allowSortColumn="false"
-     oncellcommitedit="onCellCommitEdit"
      >
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
@@ -16,21 +15,21 @@
                 <div field="prdtName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
                 </div>
-                <div field="serviceTypeId" headerAlign="center"
+                <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId"
                      allowSort="false" visible="true" width="50" header="业务类型" align="center">
                      <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="" emptyText=""  vtype="required"/> 
+                             url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
                 </div>
-                <div field="subtotal" headerAlign="center"
+                <div field="subtotal" headerAlign="center" name="pkgSubtotal"
                      allowSort="false" visible="true" width="60" header="套餐金额" align="center" numberFormat="0.0000">
-                     <input property="editor" vtype="float" class="nui-textbox"/>
+                     <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
-                <div field="rate" headerAlign="center"
+                <div field="rate" headerAlign="center" name="pkgRate"
                      allowSort="false" visible="true" width="60" header="优惠率" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox" numberFormat="0.0000"/>
+                     <input property="editor" vtype="float" class="nui-textbox" numberFormat="0.0000" onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
-                <div field="amt" headerAlign="center"
+                <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
                 <div field="workers" headerAlign="center"

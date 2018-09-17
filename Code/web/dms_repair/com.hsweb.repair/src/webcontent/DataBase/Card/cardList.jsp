@@ -12,7 +12,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.6"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.7"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -40,7 +40,7 @@
 	</div>
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="card" class="nui-datagrid"
-			pageSize="50" onDrawCell="onDrawCell"
+			pageSize="50" onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
 			onrowclick="" allowSortColumn="true"
 			style="width: 100%; height: 100%;">
 			<div property="columns">
@@ -62,7 +62,8 @@
 					赠送金额</div>
 				<div field="totalAmt" headerAlign="center" allowSort="true" width="40px">
 					总金额</div>
-
+				<div field="isShare" headerAlign="center" allowSort="true" width="50px">
+					修改权限</div>
 				<div field="salesDeductType" headerAlign="center" allowSort="true" width="50px">
 					销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true" width="40px">

@@ -385,7 +385,7 @@
                     <tr>
                         <td class="left" width="33.3%" id="guestId">客户名称：</td>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                            <td class="left" id="tel">联系电话：</td>
+                        <td class="left" id="tel">联系电话：</td>
                     </tr>
                     <tr>
                         <td class="left">车型：</td>

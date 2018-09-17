@@ -42,7 +42,7 @@ body .mini-grid-row-selected{
 
 <div class="nui-fit">
     <!--采购入库信息-->
-    <%@include file="/purchase/purchaseOrderEnter/purchaseEnterDetail.jsp" %>
+    <%@include file="/manage/inOutManage/purchaseOrderEnter/purchaseEnterDetail.jsp" %>
 </div>
 
 

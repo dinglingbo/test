@@ -13,11 +13,19 @@ var requiredField = {
 	//carModelId: "车型"
 };
 $(document).ready(function(){
-	if(currIsMaster!="1"){
+	
+	if(currIsMaster=="1"){
+		$("#isShareTd").show();
+		$("#isShare").show();
+	}else{
+		$("#isShareTd").hide();
+		$("#isShare").hide();
+	}
+/*	if(currIsMaster!="1"){
 		document.getElementById("isShareTd").innerHTML= "是否禁用："; 
 		document.getElementById("isDisabledTd").style.display= "none"; 
 		nui.get("isShare").setVisible(false);
-	}
+	}*/
 });
 function onInputFocus(e)
 {

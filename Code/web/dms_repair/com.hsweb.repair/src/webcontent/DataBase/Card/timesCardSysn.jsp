@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.0.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.0"></script>
 </head>
 <body>
    <div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
@@ -68,7 +68,7 @@
 				</tr>
 				<tr>
 					<td class="form_label" align="right">状态:</td>
-					<td colspan="2">
+					<td colspan="1">
 
 						<div class="mini-radiobuttonlist" repeatItems="1"
 							repeatLayout="table" repeatDirection="vertical" name="status"
@@ -76,6 +76,19 @@
 							data="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 						</div>
 					</td>	
+					
+				
+					<td class="form_label" id="isSharex" align="right">是否共享:</td>
+					<td colspan="1" id="isSharey">
+
+						<div class="mini-radiobuttonlist" repeatItems="1"
+							repeatLayout="table" repeatDirection="vertical" name="isShare"
+							textField="text" valueField="value"
+							data="[{value:'0',text:'不共享',},{value:'1',text:'共享'}]" value="0">
+						</div>
+					</td>
+				
+				
 				</tr>
 				<tr>
 					<td class="form_label" align="right">使用条款:</td>

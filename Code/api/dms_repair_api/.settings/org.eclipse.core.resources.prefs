@@ -11,6 +11,7 @@ encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/save
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveCheckDetail.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveCustomerInfo.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveRpsMaintain.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/updRpsPackage.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/query/querySettleList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/report/queryStoreConsume.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/preSettleRecharge.bizx.eosdebug=UTF-8

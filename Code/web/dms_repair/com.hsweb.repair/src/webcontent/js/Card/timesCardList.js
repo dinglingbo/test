@@ -3,6 +3,7 @@ var gridUrl = apiPath + repairApi
 var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/timesCardSysn.jsp?token"+token;
 var grid = null;
 var xyguest = null;
+var xs = 0;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -12,22 +13,22 @@ $(document).ready(function(v) {
 		token:token
 	});
 	
-	if(currIsMaster=="1"){
+/*	if(currIsMaster=="1"){
 		nui.get('addBtn').setVisible(true);
 		nui.get('updateBtn').setVisible(true);
 	}else{
 		nui.get('addBtn').setVisible(false);
 		nui.get('updateBtn').setVisible(false);
-	}
+	}*/
 	
 });
 
 // 新增
 function add() {
-	if(currIsMaster != "1"){
+/*	if(currIsMaster != "1"){
 		showMsg("请向总部申请计次卡定义!","W");
 		return;
-	}
+	}*/
 	nui.open({
 		url : sysnUrl,
 		title : "新增计次卡",
@@ -51,10 +52,10 @@ function add() {
 
 // 编辑
 function edit() {
-	if(currIsMaster != "1"){
+/*	if(currIsMaster != "1"){
 		showMsg("请向总部申请计次卡定义!","W");
 		return;
-	}
+	}*/
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({
@@ -111,17 +112,31 @@ function onKeyEnter(e) {
 // 当选择列时
 function selectionChanged() {
 	var rows = grid.getSelecteds();
-	if (rows.length > 1) {
-		nui.get("updateBtn").disable();
-	} else {
-		nui.get("updateBtn").enable();
+	if(currIsMaster!="1"){
+		if(rows[0].isShare=="1"){
+			nui.get('updateBtn').setVisible(false);
+		}else{
+			nui.get('updateBtn').setVisible(true);
+		}
+		
+	}else{
+		if(rows[0].isShare=="1"){
+			nui.get('updateBtn').setVisible(true);
+		}else{
+			nui.get('updateBtn').setVisible(false);
+		}
+	}
+	if(xs==1){
+		mini.get("updateBtn").setVisible(false);
+		mini.get("addBtn").setVisible(false);
+		mini.get("onBuy").setVisible(true);
 	}
 }
 function onDrawCell(e) {
 	var hash = new Array("按原价比例", "按折后价比例", "按产值比例", "固定金额");
 	switch (e.field) {
-	case "useRange":
-		e.cellHtml = e.value == 1 ? "连锁" : "本店";
+	case "isShare":
+		e.cellHtml = e.value == 1 ? "总部" : "分店";
 		break;
 	case "canModify":
 		e.cellHtml = e.value == 1 ? "是" : "否";
@@ -150,8 +165,7 @@ function onDrawCell(e) {
 }
 
 function setStely(){
-	
-	
+	 xs = 1;
 	mini.get("updateBtn").setVisible(false);
 	mini.get("addBtn").setVisible(false);
 	mini.get("onBuy").setVisible(true);
@@ -224,3 +238,4 @@ function setData(data)
 	xyguest= data;
 
 }
+

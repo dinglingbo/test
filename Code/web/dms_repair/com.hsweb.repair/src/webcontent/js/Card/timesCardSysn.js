@@ -8,6 +8,7 @@ var timesCardDetail = null;
 var g = null;
 var set = null;
 var input = null;
+var isSharex = null;
 //页面标签加载完之后执行，但是修改的数据还没有设置
 $(document).ready(function(v) {
 	tab = nui.get("tab");
@@ -17,6 +18,15 @@ $(document).ready(function(v) {
     set = mini.get("setMonth");
     input = mini.get("inputMonth");
     timesCardDetail = nui.get("timesCardDetail");
+    
+	if(currIsMaster=="1"){
+		$("#isSharex").show();
+		$("#isSharey").show();
+	}else{
+		$("#isSharex").hide();
+		$("#isSharey").hide();
+	}
+
     //编辑开始前发生
    timesCardDetail.on("cellbeginedit",function(e){
     	if(type =="VIEW")
@@ -347,10 +357,10 @@ function setGridData(datagrid, dataid) {
 }
 
 function saveData() {
-	if(currIsMaster != "1"){
+/*	if(currIsMaster != "1"){
 		showMsg("请向总部申请计次卡定义!","W");
 		return;
-	}
+	}*/
 	g = nui.get("#timesCardDetail");
 	form.validate();
 	if (form.isValid() == false)
@@ -593,10 +603,12 @@ function selectItem(callback) {
 
 function onDrawCell(e) {
 	var hash = new Array("套餐", "工时", "配件");
+	
 	switch (e.field) {
 	case "prdtType":
 		e.cellHtml = hash[e.value - 1];
 		break;
+
 	}
 }
 

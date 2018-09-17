@@ -489,7 +489,7 @@
   <nodes xsi:type="process:tAssign" description="取subtotal,重新计算优惠率，优惠金额;&#xD;&#xA;需要判断当前套餐是否可以修改金额；&#xD;&#xA;需要判断当前登录人是否有优惠权限，或者是否超出优惠权限；这个下一版本处理" id="assign2" name="取subtotal,重新计算优惠率，优惠金额" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link53" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link45</targetConnections>
     <location x="-7" y="295"/>
@@ -510,14 +510,6 @@
     <process:copy>
       <process:from type="expression" pattern="reference">amt==0?0:((discountAmt*1.0)/amt)</process:from>
       <process:to type="query">uPkgDiscountRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">amt</process:from>
-      <process:to type="query">pkgUpdate/amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">uPkgDiscountRate</process:from>
-      <process:to type="query">pkgUpdate/rate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -615,8 +607,8 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link11</targetConnections>
     <targetConnections>link34</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="-7" y="200"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -839,6 +831,54 @@
     <figSize height="17" width="32"/>
     <node>end2</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="dfFormat" displayName="dfFormat" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign25</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="160" y="295"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uitls.dfFormat</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="s" type="query" value="Double" valueType="Primitive" pattern="reference">uPkgDiscountRate</process:inputVariable>
+        <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">4</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="s" type="query" value="Double" valueType="Primitive">t</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="146" y="330"/>
+    <figSize height="17" width="54"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign25" name="赋值24" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign25</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="62" y="240"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign25label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">amt</process:from>
+      <process:to type="query">pkgUpdate/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">t</process:from>
+      <process:to type="query">pkgUpdate/rate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign25label" name="label" nodeType="label">
+    <location x="57" y="276"/>
+    <figSize height="17" width="39"/>
+    <node>assign25</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-05 09:44:58" date="2018-09-05Z" description="处理套餐更新数据" name="proPackageIn" version="7.0.0.0"/>
@@ -856,6 +896,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="discountAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPackage" name="pkgTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="t" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="pkg"/>

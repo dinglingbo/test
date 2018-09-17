@@ -4,17 +4,19 @@ var baseUrl = apiPath + repairApi + "/";
 
 var mainGrid = null; 
 var mid = null;
-var tid = null;
-var mtAdvisorIdEl = null;
+var mtAdvisorIdEl = null; 
 var searchKeyEl = null;  
 var servieIdEl = null;  
 var searchNameEl = null;
 var billForm = null;
-var topForm = null;
+
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var mainGridUrl = webBaseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext";
+var checkMainIdUrl = webBaseUrl + "com.hsapi.repair.baseData.query.queryCheckModel.biz.ext";
 var fserviceId = 0;
 var actionType = null;
+var checkMainId = null;
+var checkMainName = null;
 
 $(document).ready(function ()   
 {
@@ -23,30 +25,17 @@ $(document).ready(function ()
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     actionType = nui.get("actionType").value;
-    tid = nui.get("tid").value;
     mid = nui.get("mid").value;
-
     billForm = new nui.Form("#billForm");
-    topForm = new nui.Form("#toolbar1");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     servieIdEl = nui.get("servieIdEl");
     searchKeyEl = nui.get("search_key");
     searchNameEl = nui.get("search_name");
+    checkMainId = nui.get("checkMainId");
+    checkMainId.setUrl(checkMainIdUrl);
+    checkMainName = nui.get("checkMainName");
     searchKeyEl.setUrl(guestInfoUrl);
 
-    var par = {
-        id:mid
-    };
-    if(actionType == "new"){
-        mainGrid.load({mainid:tid,token:token});
-    }
-    if(actionType == "edit"){
-        SetData(par);
-    }
-    if(actionType == "view"){
-        SetData(par);
-
-    }
     searchKeyEl.on("beforeload",function(e){
 /*        if(fserviceId){
             e.cancel = true;
@@ -124,9 +113,9 @@ $(document).ready(function ()
             }
             var t = carNo + tel + guestName + carVin;
 
-                    var sk = document.getElementById("search_key");
-                    sk.style.display = "none";
-                    searchNameEl.setVisible(true);
+            var sk = document.getElementById("search_key");
+            sk.style.display = "none";
+            searchNameEl.setVisible(true);
 
 
             searchNameEl.setValue(t);
@@ -376,7 +365,7 @@ var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMain
 //var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
-    var tdata = topForm.getData();
+
 /*    for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
             unmaskcall && unmaskcall();
@@ -385,8 +374,7 @@ function saveMaintain(callback,unmaskcall){
         }
     }*/
     data.billTypeId = 1;
-    data.enterDate = tdata.enterDate;
-    data.planFinishDate = tdata.planFinishDate;
+
     data.status = 0;
 
     var params = {
@@ -407,7 +395,7 @@ function saveMaintain(callback,unmaskcall){
                 actionType = 'edit';
                 var rid = data.data.id; 
                 nui.get("id").setValue(rid);
-                 $("#servieIdEl").html(data.data.serviceCode);
+                $("#servieIdEl").html(data.data.serviceCode);
                 mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                 mainGrid.load({mainId:rid,token:token});
                 nui.unmask(document.body);
@@ -435,7 +423,7 @@ function saveDetail(maintain,unmaskcall){
     for(var i=0;i<grid_all.length;i++){
         var tem = grid_all[i];
         tem.serviceId = maintain.id;
-        tem.mainId = tid;
+        tem.mainId = checkMainId;
         if(actionType == "new"){
             tem.checkId = grid_all[i].id;
             tem.id = null;
@@ -462,7 +450,7 @@ function saveDetail(maintain,unmaskcall){
 }
 
 
-
+/*
 function setAllData(){
 
     nui.ajax({
@@ -476,7 +464,7 @@ function setAllData(){
             if(text.list){ 
                 var list = text.list[0];
                 billForm.setData(list);
-                topForm.setData(list);
+
             }else{
                 showMsg("数据加载失败,请重新打开工单!","W");
             }
@@ -486,11 +474,9 @@ function setAllData(){
     mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
     mainGrid.load({mainId:mid,token:token});
 }
+*/
 
- 
- 
- 
-function SetData(params){
+function setInitData(params){
     if(!params.id){
         //add(); 
     }else{
@@ -504,7 +490,7 @@ function SetData(params){
             data: {
                 id: params.id
             }
-        }
+        };
         getMaintain(mparams, function(text){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
@@ -571,9 +557,17 @@ function SetData(params){
                 }, function(){});
             }else{
                 showMsg('数据加载失败!','W');
-            }
+            } 
         }, function(){
             nui.unmask(document.body);
         });
     }
+}
+
+
+
+function ValueChanged(e) {
+    var sdata = e.selected;
+    checkMainName.setValue(sdata.name);
+     mainGrid.load({mainid:sdata.id,token:token});
 }

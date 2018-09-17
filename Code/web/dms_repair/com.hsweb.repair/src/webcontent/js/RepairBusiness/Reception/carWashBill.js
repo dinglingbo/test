@@ -37,6 +37,7 @@
  var advancedMemCardWin = null;
  var memCardGrid = null;
  var carCheckInfo = null;
+ var checkMainData = null;
 
  var fserviceId = 0;
  var fguestId = 0;
@@ -74,6 +75,7 @@ $(document).ready(function ()
     servieIdEl = nui.get("servieIdEl");
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
+    SearchCheckMain();
     searchKeyEl.on("beforeload",function(e){
         if(fserviceId){
             e.cancel = true;
@@ -480,16 +482,16 @@ $(document).ready(function ()
     //     var i = 0;
     // };
     document.onkeyup=function(event){
-     var e=event||window.event;
-     var keyCode=e.keyCode||e.which;
+       var e=event||window.event;
+       var keyCode=e.keyCode||e.which;
 
 	    if((keyCode==78)&&(event.altKey))  {  //新建
-           add();	
-       } 
+         add();	
+     } 
 
 	    if((keyCode==83)&&(event.altKey))  {   //保存
-           save();
-       } 
+         save();
+     } 
 
 	    // if((keyCode==80)&&(event.altKey))  {   //打印
 		// 	onPrint();
@@ -1375,6 +1377,7 @@ function showCarCheckInfo(){
     advancedCardTimesWin.hide();
     advancedMemCardWin.hide();
     MemSelectCancel(1);
+    changeCheckInfoTab();
     //cardTimesGrid.clearRows();
     //doSearchMemCard(fguestId);
 }
@@ -2225,16 +2228,19 @@ function onPrint(e){
 	if(main.id){
 		var params = {
             serviceId : main.id,
-            comp : currOrgName
+            comp : currOrgName,
+            baseUrl : baseUrl
         };
-        if(e == 1){
-           openUrl = "com.hsweb.print.repairOrder.flow";
-       }else if(e == 2){
-           openUrl = "com.hsweb.print.settlement.flow";
-       }else if(e == 3){
-           openUrl = "com.hsweb.print.smallSettlement.flow";
-       }
-       nui.open({
+	 if(e == 1){
+         openUrl = "com.hsweb.print.repairOrder.flow";
+     }else if(e == 2){
+         openUrl = "com.hsweb.print.settlement.flow";
+     }else if(e == 3){
+         openUrl = "com.hsweb.print.smallSettlement.flow";
+     }else{
+    	   openUrl = "com.hsweb.print.materialRequisition.flow";
+     }
+     nui.open({
         url: openUrl,
         width: "100%",
         height: "100%",
@@ -2246,29 +2252,29 @@ function onPrint(e){
             iframe.contentWindow.SetData(params);
         },
     });
-   }
+ }
 }
 
 function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
-       carId : main.carId,
-       guestId : main.guestId
-   };
-   if(main.id){
-      nui.open({
-        url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
-        width: "800",
-        height: "1000",
-        showMaxButton: false,
-        allowResize: false,
-        showHeader: true,
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(params);
-        },
-    });
-  }
+     carId : main.carId,
+     guestId : main.guestId
+ };
+ if(main.id){
+  nui.open({
+    url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
+    width: "800",
+    height: "1000",
+    showMaxButton: false,
+    allowResize: false,
+    showHeader: true,
+    onload: function() {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.SetData(params);
+    },
+});
+}
 }
 
 function showHealth(){
@@ -2295,19 +2301,19 @@ function pay(){
 		//加载完之后
 		onload: function(){	
 		},
-     ondestroy : function(action) {
-      if (action == 'ok') {
-       var iframe = this.getIFrameEl();
-       var data = iframe.contentWindow.getData();
-       supplier = data.supplier;
-       var value = supplier.id;
-       var text = supplier.fullName;
-       var el = nui.get(elId);
-       el.setValue(value);
-       el.setText(text);
-   }
-}
-})
+       ondestroy : function(action) {
+          if (action == 'ok') {
+             var iframe = this.getIFrameEl();
+             var data = iframe.contentWindow.getData();
+             supplier = data.supplier;
+             var value = supplier.id;
+             var text = supplier.fullName;
+             var el = nui.get(elId);
+             el.setValue(value);
+             el.setText(text);
+         }
+     }
+ })
 }
 
 
@@ -2318,43 +2324,111 @@ function newCheckMain() {
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);
-    var params = {
-        //carNo:cNo
+    var params = { 
+        id:resultdata.list[0].id,
+        row: resultdata.list[0]
     };
     window.parent.activeTabAndInit(item,params);
 }  
 
-function MemSelectOk(){
 
+function MemSelectOk(){ 
+
+    SaveCheckMain();
+}
+
+
+
+function SearchCheckMain() {
+    var data = billForm.getData();
+    var  t = null;
+    nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
+        type:"post",
+        //async: false,
+        data:{ 
+            serviceId:data.id
+        },
+        cache: false,
+        success: function (text) {  
+            checkMainData = text;
+        }
+    });
 
 }
 
 
+function changeCheckInfoTab() {
+    $("#checkStatus1").css("color","black");
+    $("#checkStatus2").css("color","black");
+    $("#checkStatus3").css("color","black");
+    $("#checkStatus4").css("color","black");
+    var resultdata= checkMainData;
+    if(resultdata.list.length > 0){
+        var detailList =  resultdata.list[0];
+    }
+
+    //detailList.checkMan  =1;
+    //detailList.checkStatus = 0;
+
+    if(resultdata.list.length < 1){
+        $("#checkStatus1").css("color","#32b400");
+        $("#checkStatusButton1").show();
+        $("#checkStatusButton2").hide();
+    }else{
+        if(detailList.checkMan && detailList.checkStatus == 0){
+            $("#checkStatus2").css("color","#32b400");
+            $("#checkStatusButton1").hide();
+            $("#checkStatusButton2").show();
+
+        }
+        if(detailList.checkMan && detailList.checkStatus == 1){
+            $("#checkStatus3").css("color","#32b400");
+            $("#checkStatusButton1").hide();
+            $("#checkStatusButton2").show();
+        }
+        if(detailList.checkMan && detailList.checkStatus == 2){
+            $("#checkStatus4").css("color","#32b400");
+            $("#checkStatusButton1").hide();
+            $("#checkStatusButton2").show();
+        }
+    }
+}
+
 function SaveCheckMain() {
     var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","E");
+        return;
+    }
+    var temp ={
+        serviceId:data.id,
+        carId:data.carId,
+        carNo:data.carNo,
+        checkStatus:0,
+        enterKilometers:data.enterKilometers,
+        mtAdvisorId:data.mtAdvisorId,
+        mtAdvisor:data.mtAdvisor
+    };
 
-
-
-               nui.ajax({
-                url:baseUrl + "com.hsapi.repair.repairService.work.repairOut.biz.ext",
-                type:"post",
-                async: false,
-                data:{ 
-                    data:paramsDataArr,
-                    billTypeId:"050206",
-                    serviceId:mainRow.id,
-                    token:token   
-                },   
-                success:function(text){   
-                    var errCode = text.errCode;
-                    if(errCode == "S"){
-
-                        showMsg('领料成功!','S'); 
-                    }else{
-                        showMsg('领料失败!','E'); 
-                    }
-                }  
-            }); 
+    nui.ajax({
+        url:baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMain.biz.ext",
+        type:"post",
+        async: false,
+        data:{ 
+            data:data,
+            token:token   
+        },   
+        success:function(text){   
+            var errCode = text.errCode;
+            if(errCode == "S"){
+                newCheckMain();
+                //showMsg('保存成功!','S'); 
+            }else{
+                //showMsg('保存失败!','E'); 
+            }
+        }  
+    }); 
 }
 
 
@@ -2371,3 +2445,5 @@ function MemSelectCancel(e) {
         $("#show2").show();
     }
 }
+
+

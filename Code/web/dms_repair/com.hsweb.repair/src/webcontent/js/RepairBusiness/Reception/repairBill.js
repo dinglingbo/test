@@ -48,7 +48,6 @@ var mitemRate = 0;
 var mpartRate = 0;
 var x = 0;
 var y = 0;
-
 var prdtTypeHash = {
     "1":"套餐",
     "2":"工时",
@@ -57,6 +56,7 @@ var prdtTypeHash = {
 
 $(document).ready(function ()
 {
+	
     rpsPackageGrid = nui.get("rpsPackageGrid");
     rpsItemGrid = nui.get("rpsItemGrid");
     rpsPartGrid = nui.get("rpsPartGrid");
@@ -1799,6 +1799,7 @@ function updateRpsItem(row_uid){
                 item.id = row.id;
                 item.serviceId = row.serviceId;
                 item.itemTime = row.itemTime;
+                item.amt = row.amt;
                 item.subtotal = row.subtotal;
                 item.serviceTypeId = row.serviceTypeId;
                 if(__workerIds){
@@ -1870,6 +1871,8 @@ function updateRpsPart(row_uid){
                 part.qty = row.qty;
                 part.subtotal = row.subtotal;
                 part.serviceTypeId = row.serviceTypeId;
+                part.unitPrice = row.unitPrice;
+                part.amt = row.amt;
                 if(__saleManId){
                     part.saleMan = row.saleMan;
                     part.saleManId = __saleManId;
@@ -2372,13 +2375,13 @@ function onPkgRateValuechanged(e){
 
 var scTyIdUrl = baseUrl + "com.hsapi.repair.repairService.query.getCardDiscount.biz.ext";
 function onPkgTypeIdValuechanged(e){
-	 var maintain = billForm.getData();
-	var el = e.sender;
-	var row = rpsPackageGrid.getEditorOwnerRow(el);
+   var maintain = billForm.getData();
+   var el = e.sender;
+   var row = rpsPackageGrid.getEditorOwnerRow(el);
     //获取指定列和行的编辑器控件对象
    var editor1 = rpsPackageGrid.getCellEditor("pkgSubtotal", row);
    var editor2 = rpsPackageGrid.getCellEditor("pkgRate", row);
-	var json = nui.encode({
+   var json = nui.encode({
 		"serviceTypeId" : el.getValue(),
 		"guestId":maintain.guestId,
 		token : token
@@ -2419,26 +2422,30 @@ function onValueChangedItemTime(e){
 		showMsg("请输入数字!","W");
 		e.cancel = true; 
 	} else{
-		var row = rpsItemGrid.getEditorOwnerRow(el);
+		var rowtime = rpsItemGrid.getEditorOwnerRow(el);
 		//获取指定列和行的编辑器控件对象
-		var setSubtotal = rpsItemGrid.getCellEditor("subtotal", row);	
+		var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", rowtime);
+		var setItemTime = rpsItemGrid.getCellEditor("itemItemTime", rowtime);
+		var setRate = rpsItemGrid.getCellEditor("itemRate", rowtime);
+		var setUnitPrice = rpsItemGrid.getCellEditor("itemUnitPrice", rowtime);
 		var itemTime = el.getValue()||0;
-		var unitPrice = row.unitPrice||0;
+		var unitPrice = setUnitPrice.getValue()||0;
 		var itamt = 0;
 		var subtotal = 0;
 		//设置工时总金额
 		if(unitPrice>0 && itemTime>0){
 		   itamt = itemTime*unitPrice;
-		   row.amt = itamt;
+		   rowtime.amt = itamt;
 		   subtotal = itamt;
 		}
 		//设置小计金额
-		var rate = row.rate||0;
-		if(rate>0){
+		var rate = setRate.getValue()||0;
+		if(rate>0 && itamt>0){
 			subtotal = itamt - rate*1.0/100*itamt;
 		}
 		subtotal = subtotal.toFixed(2);
 		setSubtotal.setValue(subtotal);
+		setItemTime.setValue(itemTime);
   }
 }
 
@@ -2451,9 +2458,12 @@ function onValueChangedItemUnitPrice(e){
 	} else{
 		var row = rpsItemGrid.getEditorOwnerRow(el);
 		//获取指定列和行的编辑器控件对象
-		var setSubtotal = rpsItemGrid.getCellEditor("subtotal", row);	
+		var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
+		var setUnitPrice = rpsItemGrid.getCellEditor("itemUnitPrice", row);
+		var setItemTime = rpsItemGrid.getCellEditor("itemItemTime", row);
+		var setRate = rpsItemGrid.getCellEditor("itemRate", row);
 		var unitPrice = el.getValue()||0;
-		var itemTime = row.itemTime||0;
+		var itemTime = setItemTime.getValue()||0;
 		var itamt = 0;
 		var subtotal = 0;
 		//设置工时总金额
@@ -2463,46 +2473,17 @@ function onValueChangedItemUnitPrice(e){
 		   subtotal = itamt;
 		}
 		//设置小计金额
-		var rate = row.rate||0;
+		var rate = setRate.getValue()||0;
 		if(rate>0){
 			subtotal = itamt - rate*1.0/100*itamt;
 		}
 		subtotal = subtotal.toFixed(2);
 		setSubtotal.setValue(subtotal);
+		setUnitPrice.setValue(unitPrice);
+
   }
 	
 }
-
-/*function onValueChangedunitPrice(e){
-	var el = e.sender;
-	var flag = isNaN(e.value);
-	if (flag) {
-		showMsg("请输入数字!","W");
-		e.cancel = true; 
-	} else{
-		var row = rpsItemGrid.getEditorOwnerRow(el);
-		//获取指定列和行的编辑器控件对象
-		var setSubtotal = rpsItemGrid.getCellEditor("subtotal", row);	
-		var unitPrice = el.unitPrice()||0;
-		var itemTime = row.itemTime||0;
-		var itamt = 0;
-		var subtotal = 0;
-		//设置工时总金额
-		if(unitPrice>0 && itemTime>0){
-		   itamt = itemTime*unitPrice;
-		   row.amt = itamt;
-		   subtotal = itamt;
-		}
-		//设置小计金额
-		var rate = row.rate||0;
-		if(rate>0){
-			subtotal = itamt - rate*1.0/100*itamt;
-		}
-		subtotal = subtotal.toFixed(2);
-		setSubtotal.setValue(subtotal);
-  }
-	
-}*/
 
 function onValueChangedItemRate(e){
 	var el = e.sender;
@@ -2513,9 +2494,15 @@ function onValueChangedItemRate(e){
 	} else{
 		var row = rpsItemGrid.getEditorOwnerRow(el);
 		//获取指定列和行的编辑器控件对象
-		var setSubtotal = rpsItemGrid.getCellEditor("subtotal", row);	
-		var unitPrice = row.unitPrice()||0;
-		var itemTime = row.itemTime||0;
+		var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);	
+		var setRate = rpsItemGrid.getCellEditor("itemRate", row);
+		var setUnitPrice = rpsItemGrid.getCellEditor("itemUnitPrice", row);	
+		var setItemTime = rpsItemGrid.getCellEditor("itemItemTime", row);	
+
+
+		var unitPrice = setUnitPrice.getValue()||0;
+		var itemTime = setItemTime.getValue()||0;
+
 		var itamt = 0;
 		var subtotal = 0;
 		//设置工时总金额
@@ -2531,6 +2518,8 @@ function onValueChangedItemRate(e){
 		}
 		subtotal = subtotal.toFixed(2);
 		setSubtotal.setValue(subtotal);
+		setRate.setValue(rate);
+		
   }
 	
 }
@@ -2546,9 +2535,13 @@ function onValueChangedItemSubtotal(e){
 	} else{
 		var row = rpsItemGrid.getEditorOwnerRow(el);
 		//获取指定列和行的编辑器控件对象
-		var setRate = rpsItemGrid.getCellEditor("rate", row);	
-		var unitPrice = row.unitPrice()||0;
-		var itemTime = row.itemTime||0;
+		var setRate = rpsItemGrid.getCellEditor("itemRate", row);
+		var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);	
+		var setUnitPrice = rpsItemGrid.getCellEditor("itemUnitPrice", row);	
+		var setItemTime = rpsItemGrid.getCellEditor("itemItemTime", row);	
+
+		var unitPrice = setUnitPrice.getValue()||0;
+		var itemTime = setItemTime.getValue()||0;
 		var itamt = 0;
 		//设置工时总金额
 		if(unitPrice>0 && itemTime>0){
@@ -2564,6 +2557,277 @@ function onValueChangedItemSubtotal(e){
 	    rate = rate * 100;
 	    rate = rate.toFixed(2);
 	    setRate.setValue(rate);
+	    setSubtotal.setValue(subtotal);
 	}	
 }
 
+//选择配件业务，修改优惠率和小计金额
+function onValueChangedItemTypeId(e){
+   var maintain = billForm.getData();
+   var el = e.sender;
+   var row = rpsItemGrid.getEditorOwnerRow(el);
+	//获取指定列和行的编辑器控件对象
+	var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
+	var setUnitPrice = rpsItemGrid.getCellEditor("itemUnitPrice", row);
+	var setItemTime = rpsItemGrid.getCellEditor("itemItemTime", row);
+	var setRate = rpsItemGrid.getCellEditor("itemRate", row);	  
+	var json = nui.encode({
+		"serviceTypeId" : el.getValue(),
+		"guestId":maintain.guestId,
+		token : token
+	});
+	//item_discount_rate
+	nui.ajax({
+		url : scTyIdUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.errCode == "S") {
+				var cardRate = returnJson.cardRate;
+				var itemDiscountRate = cardRate.itemDiscountRate;
+				setRate.setValue(itemDiscountRate);
+				var unitPrice = setUnitPrice.getValue()||0;
+				var itemTime = setItemTime.getValue()||0;
+				var amt = 0;
+				if(unitPrice>0 && itemTime>0){
+					amt = unitPrice*itemTime;
+				}	
+				var subtotal = 0;
+			    if(amt>0){
+			    	subtotal = amt - itemDiscountRate*1.0*amt;
+			    }
+			    subtotal = subtotal.toFixed(2);
+			    setSubtotal.setValue(subtotal);
+				
+			} else {
+				//showMsg("出库失败");
+			}
+				
+		}
+	});
+}
+
+function onValueChangedPartQty(e){	
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		e.cancel = true; 
+	} else{
+		var row = rpsPartGrid.getEditorOwnerRow(el);
+		//获取指定列和行的编辑器控件对象
+		var setQty = rpsPartGrid.getCellEditor("partQty", row);
+		var setSubtotal = rpsPartGrid.getCellEditor("partSubtotal", row);	
+		var setUnitPrice = rpsPartGrid.getCellEditor("partUnitPrice", row);	
+		var setRate = rpsPartGrid.getCellEditor("partRate", row);	
+
+		var unitPrice = setUnitPrice.getValue()||0;
+		var qty = el.getValue();
+		var partAmt = 0;
+		//设置小计金额
+		var subtotal = 0;
+		//设置配件总金额
+		if(unitPrice>0 && qty>0){
+			partAmt = qty*unitPrice;
+		   row.amt = partAmt;
+		   subtotal = partAmt;
+		}	
+		var rate = setRate.getValue();
+	    if(partAmt>0 && rate>0){
+	    	subtotal = partAmt - rate*1.0/100*partAmt;
+	    }
+	    setSubtotal.setValue(subtotal);
+	    setQty.setValue(qty);
+	}	
+	
+	
+}
+
+function onValueChangedpartUnitPrice(e){	
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		e.cancel = true; 
+	} else{
+		var row = rpsPartGrid.getEditorOwnerRow(el);
+		//获取指定列和行的编辑器控件对象
+		var setQty = rpsPartGrid.getCellEditor("partQty", row);
+		var setSubtotal = rpsPartGrid.getCellEditor("partSubtotal", row);	
+		var setUnitPrice = rpsPartGrid.getCellEditor("partUnitPrice", row);	
+		var setRate = rpsPartGrid.getCellEditor("partRate", row);	
+
+		var qty = setQty.getValue()||0;
+		var unitPrice = el.getValue();
+		var partAmt = 0;
+		//设置小计金额
+		var subtotal = 0;
+		//设置配件总金额
+		if(unitPrice>0 && qty>0){
+			partAmt = qty*unitPrice;
+		   row.amt = partAmt;
+		   subtotal = partAmt;
+		}	
+		var rate = setRate.getValue();
+	    if(partAmt>0 && rate>0){
+	    	subtotal = partAmt - rate*1.0/100*partAmt;
+	    }
+	    setSubtotal.setValue(subtotal);
+	    setUnitPrice.setValue(unitPrice);
+	}		
+}
+
+
+function onValueChangedpartRate(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		e.cancel = true; 
+	} else{
+		var row = rpsPartGrid.getEditorOwnerRow(el);
+		//获取指定列和行的编辑器控件对象
+		var setQty = rpsPartGrid.getCellEditor("partQty", row);
+		var setSubtotal = rpsPartGrid.getCellEditor("partSubtotal", row);	
+		var setUnitPrice = rpsPartGrid.getCellEditor("partUnitPrice", row);	
+		var setRate = rpsPartGrid.getCellEditor("partRate", row);	
+
+		var qty = setQty.getValue()||0;
+		var unitPrice = setUnitPrice.getValue();
+		var partAmt = 0;
+		//设置小计金额
+		var subtotal = 0;
+		//设置配件总金额
+		if(unitPrice>0 && qty>0){
+		   partAmt = qty*unitPrice;
+		   row.amt = partAmt;
+		   subtotal = partAmt;
+		}	
+		var rate = el.getValue();
+	    if(partAmt>0 && rate>0){
+	    	subtotal = partAmt - rate*1.0/100*partAmt;
+	    }
+	    setSubtotal.setValue(subtotal);
+	    setRate.setValue(rate);
+	}
+}
+function onValueChangedpartSubtotal(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		e.cancel = true; 
+	} else{
+		var row = rpsPartGrid.getEditorOwnerRow(el);
+		//获取指定列和行的编辑器控件对象
+		var setQty = rpsPartGrid.getCellEditor("partQty", row);
+		var setSubtotal = rpsPartGrid.getCellEditor("partSubtotal", row);	
+		var setUnitPrice = rpsPartGrid.getCellEditor("partUnitPrice", row);	
+		var setRate = rpsPartGrid.getCellEditor("partRate", row);	
+
+		var qty = setQty.getValue()||0;
+		var unitPrice = setUnitPrice.getValue();
+		var partAmt = 0;
+		//设置小计金额
+		var subtotal = el.getValue();
+		//设置配件总金额
+		if(unitPrice>0 && qty>0){
+		   partAmt = qty*unitPrice;
+		   row.amt = partAmt;
+		}	
+		var rate = setRate.getValue();
+	    if(partAmt>0 && rate>0){
+	    	rate = (partAmt - subtotal)*1.0/partAmt;
+	    }
+	    rate = rate * 100;
+	    rate = rate.toFixed(2);
+	    setRate.setValue(rate);
+	    setSubtotal.setValue(subtotal);
+	}
+}
+
+function onValueChangedItemTypeId(e){
+	   var maintain = billForm.getData();
+	   var el = e.sender;
+	   var row = rpsPartGrid.getEditorOwnerRow(el);
+	   //获取指定列和行的编辑器控件对象
+	   var setQty = rpsPartGrid.getCellEditor("partQty", row);
+	   var setSubtotal = rpsPartGrid.getCellEditor("partSubtotal", row);	
+	   var setUnitPrice = rpsPartGrid.getCellEditor("partUnitPrice", row);	
+	   var setRate = rpsPartGrid.getCellEditor("partRate", row);	
+  	   var json = nui.encode({
+			"serviceTypeId" : el.getValue(),
+			"guestId":maintain.guestId,
+			token : token
+		});
+		//part_discount_rate
+		nui.ajax({
+			url : scTyIdUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+				if (returnJson.errCode == "S") {
+					var cardRate = returnJson.cardRate;
+					var partDiscountRate = cardRate.partDiscountRate;
+					setRate.setValue(partDiscountRate);
+					var unitPrice = setUnitPrice.getValue()||0;
+					var qty = setQty.getValue()||0;
+					var partAmt = 0;
+					if(unitPrice>0 && qty>0){
+						partAmt = unitPrice*itemTime;
+					}	
+					var subtotal = 0;
+				    if(partAmt>0){
+				    	subtotal = amt - partDiscountRate*1.0*partAmt;
+				    }
+				    subtotal = subtotal.toFixed(2);
+				    setSubtotal.setValue(subtotal);
+					
+				} else {
+					//showMsg("出库失败");
+				}
+					
+			}
+		});
+}
+
+var sumSubtotal = 0
+var sumAmt = 0;
+function onDrawSummaryCellPack(e){ 
+	  
+	  var data = billForm.getData();
+	  var rows = e.data;
+	  var sumSubtotal = 0;
+	  var sumAmt = 0;
+	  if(e.field == "subtotal" || e.field == "amt") 
+	  {   
+		  for (var i = 0; i < rows.length; i++)
+		  {
+			  if(rows[i].billPackageId=="0"){
+				  sumSubtotal += parseFloat(rows[i].subtotal);
+				  sumAmt  += parseFloat(rows[i].amt);
+			  }
+			  
+		  }
+	  } 
+	  if(sumSell && sumSell>=0)
+	  {   
+		  sumSell = sumSell.toFixed(2);
+		  nui.get("sellAmt").setValue(sumSell); 
+	  }else{
+		  nui.get("sellAmt").setValue("0");
+	  }
+	  if(sumOld && sumOld>=0)
+	  {
+		  sumOld = sumOld.toFixed(2);
+		  nui.get("totalAmt").setValue(sumOld); 
+	  }else{
+		  nui.get("totalAmt").setValue("0");
+	  } 
+}

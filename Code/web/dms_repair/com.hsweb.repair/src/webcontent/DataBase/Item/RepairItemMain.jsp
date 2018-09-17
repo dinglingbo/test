@@ -131,7 +131,6 @@
 						</div>
 						<div header="其他" headerAlign="center">
 							<div property="columns">
-								<div field="isShare" headerAlign="center" allowSort="true" width="70px">是否共享</div>
 								<div field="isDisabled" headerAlign="center" allowSort="true" width="70px">是否禁用</div>
 												<div field="isShare" headerAlign="center" allowSort="true" width="50px">修改权限</div>
 							</div>

@@ -21,17 +21,17 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" >
-                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged ="onValueChangedQty"/>
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" name="partQty">
+                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged ="onValueChangedPartQty"/>
                 </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
+                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价" name="partUnitPrice">
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged ="onValueChangedpartUnitPrice" />
                 </div>
-                <div  field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" >
-                    <input property="editor" vtype="float" class="nui-textbox" id="MML"/>
+                <div  field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" name="partRate">
+                    <input property="editor" vtype="float" class="nui-textbox" id="MML" onvaluechanged ="onValueChangedpartRate"/>
                 </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
+                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额" name="partSubtotal">
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged ="onValueChangedpartSubtotal"/>
                 </div>
                 <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
                 <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">

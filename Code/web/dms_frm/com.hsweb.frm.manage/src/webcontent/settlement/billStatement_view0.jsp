@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -377,6 +377,33 @@
     </div>
 </div>
 
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>
+            <td colspan="1" align="left">单号：</td>
+            <td colspan="1" align="left"><span id="eServiceId"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">往来单位：</td>
+            <td colspan="1" align="left"><span id="eGuestName"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">备注：</td>
+            <td colspan="1" align="left"><span id="eRemark"></span></td>
+        </tr>
+        <tr>  
+            <td colspan="1" align="center">业务类型</td>
+            <td colspan="1" align="center">金额</td>
+            <td colspan="1" align="center">业务员</td>
+            <td colspan="1" align="center">审核日期</td>
+            <td colspan="1" align="center">备注</td>
+            <td colspan="1" align="center">业务单号</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div> 
 
 <div id="editFormPchsEnterDetail" style="display:none;">
       <div id="innerPchsEnterGrid" class="nui-datagrid" style="width:100%;height:150px;"

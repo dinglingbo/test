@@ -12,10 +12,31 @@ $(document).ready(function () {
 	advancedMorePartWin = nui.get("advancedMorePartWin");
 	moreGrid = nui.get("moreGrid");
 	form = new nui.Form("#form");
-	newRow = {name : ""};
-	grid.addRow(newRow , 0);
-	var date = new Date();
-	document.getElementById("right").value = format(date, "yyyy-MM-dd HH:ss:mm");
+	if(nui.get("main").value){
+		grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.searchTicketDetail.biz.ext");
+    	grid.load({mainId : nui.get("main").value,token : token});
+    	nui.ajax({
+            url: baseUrl+"com.hsapi.repair.repairService.query.selectInvoiceMain.biz.ext",
+            type : "post",
+            data : {
+            	rid : nui.get("main").value
+            },
+            success: function (text) {
+            	if(text.errCode == "S"){
+            		var list = nui.decode(text.list);
+            		document.getElementById("rate").value = list[0].rate;
+            		form.setData(list[0]);
+            	}
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+                showMsg("网络出错", "W");
+            }
+    	});
+	}else{
+		newRow = {serviceCode : nui.get("serviceCode").value};
+		grid.addRow(newRow , 0);
+	}
 	grid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value;
@@ -71,8 +92,8 @@ function addRow(){//新增
 	var row = grid.getSelected();
 	var index = grid.indexOf(row);
 	newRow = {
-			name : "",
-			rate:document.getElementById("rate").value
+			rate:document.getElementById("rate").value,
+			serviceCode :  nui.get("serviceCode").value
 			};
 	grid.addRow(newRow,index+1);
 }
@@ -164,6 +185,22 @@ function oncellbeginedit(e){
 	if(e.field == "serviceCode"){
 		oldValue = e.value;
 		oldRow = e.row;
+	}
+}
+
+function addSelect(){
+	var row = moreGrid.getSelected();
+	if(row){
+		var newRow = {
+				servcieId : row.id,
+				serviceCode : row.serviceCode,
+				carNo : row.carNo,
+				guestId : row.guestId,
+				guestName : row.guestName
+		};
+		row = grid.getSelected();
+		grid.updateRow(row,newRow);
+		advancedMorePartWin.hide();
 	}
 }
 

@@ -13,6 +13,11 @@ $(document).ready(function () {
      			e.cellHtml = format(value,"yyyy-MM-dd");
      		}
      	}
+     	if(field == "rate"){
+     		if(value){
+     			e.cellHtml = value + "%";
+     		}
+     	}
      });
 });
 

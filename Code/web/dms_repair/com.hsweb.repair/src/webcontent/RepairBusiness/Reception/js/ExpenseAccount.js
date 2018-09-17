@@ -255,6 +255,10 @@ function save(){
         	nui.get("rid").setValue(text.mainId);
         	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
         	rpsPackageGrid.load({serviceId : text.mainId,token : token});
+        	rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
+        	rpsItemGrid.load({serviceId : text.mainId,token : token});
+        	rpsPartGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
+        	rpsPartGrid.load({serviceId : text.mainId,token : token});
         }
     });
 }

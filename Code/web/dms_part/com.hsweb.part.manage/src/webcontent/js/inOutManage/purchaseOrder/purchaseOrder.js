@@ -1919,6 +1919,7 @@ function onPrint() {
 	// 	});
 	// }
 
+
 }
 function addSelectPart(){
 	var row = morePartGrid.getSelected();

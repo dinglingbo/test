@@ -37,7 +37,8 @@
 		           <input id="message"name="message" class="nui-textbox" style="width:18%"  onblur="valueChane()">
 		        </td>
 		        <td style="white-space:nowrap;"><label style="font-family:Verdana;"></label>
-		           		<a class="nui-button" iconCls="icon-search" onclick="newBill()">新建</a>
+		           		<a class="nui-button" iconCls="icon-search" onclick="newBill(1)">新建</a>
+		           		<a class="nui-button" iconCls="icon-search" onclick="newBill(2)">编辑</a>
                         <a class="nui-button" iconCls="icon-search" onclick="">导出到XLS</a>
 	            </td>
 		        </tr>
@@ -71,11 +72,17 @@
     	  { id: 4, text: '客户姓名查询' }, { id: 5, text: '手机号码查询' }, { id: 2, text: '车牌号查询' }];
         nui.parse();
 		
-        function newBill() {
+        function newBill(e) {
             var item={};
             item.id = "TicketOpeningMgr";
             item.text = "开票单";
-            item.url = webPath + contextPath + "/cw/invoice.jsp";
+            var url = null;
+            if(e == 1){
+            	url = "/cw/invoice.jsp";
+            }else{
+            	url = "/cw/invoice.jsp?state=1";
+            }
+            item.url = webPath + contextPath + url;
             item.iconCls = "fa fa-cog";
             window.parent.activeTab(item);
         }

@@ -12,9 +12,9 @@
 <head> 
     <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.91"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.93"></script>
     <style type="text/css">
-    body {
+    body { 
         margin: 0;
         padding: 0;
         border: 0;
@@ -138,7 +138,9 @@
 
                 <td class="tbtext">检查模板:</td>
                 <td class="tbCtrl">
-                    <input class="nui-combobox tabwidth" />
+                    <input class="nui-combobox tabwidth"  id="checkMainId" name="checkMainId" 
+                    dataField="list" valueField="id" textField="name" onvaluechanged="ValueChanged"/>
+                    <input class="nui-combobox tabwidth"  id="checkMainName" name="checkMainName" visible="false"/>
                 </td>
 
             </tr> 

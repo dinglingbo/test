@@ -398,16 +398,20 @@
     //切换角色
     function changeOrgs(orgid) {
         if (orgid != currOrgId) {
-            nui.confirm('切换公司后将重新加载页面，是否继续?','温馨提示',function(action){
-                if (action == "ok") {
-                    $("#toggleRole")[0].action = "com.hsapi.system.auth.login.wlogin.flow";
-                    $("#operatorId").val(currUserId);
-                    $("#orgid").val(orgid);
-                    $("#toggleRole")[0].submit();
-                } else {
+        	$("#toggleRole")[0].action = "com.hsapi.system.auth.login.wlogin.flow";
+            $("#operatorId").val(currUserId);
+            $("#orgid").val(orgid);
+            $("#toggleRole")[0].submit();
+            //nui.confirm('切换公司后将重新加载页面，是否继续?','温馨提示',function(action){
+            //    if (action == "ok") {
+            //        $("#toggleRole")[0].action = "com.hsapi.system.auth.login.wlogin.flow";
+            //        $("#operatorId").val(currUserId);
+            //        $("#orgid").val(orgid);
+           //         $("#toggleRole")[0].submit();
+           //     } else {
                     //mini.get("changeRole").setValue(vGrid);
-                }
-            });
+           //     }
+           // });
         }
     }
     

@@ -17,18 +17,18 @@
                 <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="" emptyText=""  vtype="required"/> 
+                             url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemTime">工时
+                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemTime"/>
                 </div>
-                <div field="unitPrice" name="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
+                <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice"/>
                 </div>
-                <div field="rate" name="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
+                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate"/>
                 </div>
-                <div field="subtotal"  name="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额
+                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal"/>
                 </div>
                 <div field="workers" headerAlign="center"

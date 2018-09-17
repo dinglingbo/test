@@ -13,21 +13,21 @@ $(document).ready(function(v) {
 		formData:formData,
 		token:token
 	});
-	if(currIsMaster=="1"){
+/*	if(currIsMaster=="1"){
 		nui.get('addBtn').setVisible(true);
 		nui.get('updateBtn').setVisible(true);
 	}else{
 		nui.get('addBtn').setVisible(false);
 		nui.get('updateBtn').setVisible(false);
-	}
+	}*/
 });
 
 // 新增
 function add() {
-	if(currIsMaster != "1"){
+/*	if(currIsMaster != "1"){
 		showMsg("请向总部申请储值卡定义!","W");
 		return;
-	}
+	}*/
 	nui.open({
 		url : sysnUrl,
 		title : "新增储值卡",
@@ -51,10 +51,10 @@ function add() {
 
 // 编辑
 function edit() {
-	if(currIsMaster != "1"){
+/*	if(currIsMaster != "1"){
 		showMsg("请向总部申请储值卡定义!","W");
 		return;
-	}
+	}*/
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({
@@ -151,5 +151,28 @@ function onDrawCell(e) {
 		if( e.value == -1){
 			e.cellHtml="永久有效";
 		}
+	}
+}
+//当选择列时
+function selectionChanged() {
+	var rows = grid.getSelecteds();
+	if(currIsMaster!="1"){
+		if(rows[0].isShare=="1"){
+			nui.get('updateBtn').setVisible(false);
+		}else{
+			nui.get('updateBtn').setVisible(true);
+		}
+		
+	}else{
+		if(rows[0].isShare=="1"){
+			nui.get('updateBtn').setVisible(true);
+		}else{
+			nui.get('updateBtn').setVisible(false);
+		}
+	}
+	if(xs==1){
+		mini.get("updateBtn").setVisible(false);
+		mini.get("addBtn").setVisible(false);
+		mini.get("onBuy").setVisible(true);
 	}
 }

@@ -207,8 +207,8 @@ var StatusHash = {
 	"2" : "待收货",
 	//"3" : "部分入库",
 	"4" : "已入库",
-	"5" : "已退回",
-	"6" : "已关闭"
+	//"5" : "已退回",
+	//"6" : "已关闭"
 };
 function addNewRow(check){
 	var data = basicInfoForm.getData();
@@ -473,18 +473,18 @@ function quickSearch(type) {
 		gsparams.auditSign = 1;
 		querysign = 3;
 		break;
-	case 15:
-		querystatusname = "已退回";
-		gsparams.billStatusId = 5;
-		gsparams.auditSign = 1;
-		querysign = 3;
-		break;
-	case 16:
-		querystatusname = "已关闭";
-		gsparams.billStatusId = 6;
-		gsparams.auditSign = 1;
-		querysign = 3;
-		break;
+//	case 15:
+//		querystatusname = "已退回";
+//		gsparams.billStatusId = 5;
+//		gsparams.auditSign = 1;
+//		querysign = 3;
+//		break;
+//	case 16:
+//		querystatusname = "已关闭";
+//		gsparams.billStatusId = 6;
+//		gsparams.auditSign = 1;
+//		querysign = 3;
+//		break;
 	/*case 17:
 		querystatusname = "全部";
 		gsparams.billStatusId = null;
@@ -1918,6 +1918,7 @@ function onPrint() {
 	// 		}
 	// 	});
 	// }
+
 
 }
 function addSelectPart(){

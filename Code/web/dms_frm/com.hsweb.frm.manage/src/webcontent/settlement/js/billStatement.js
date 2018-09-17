@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/2/23.
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryPJStatementList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.getPJStatementDetailById.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.part.invoice.settle.queryPJStatementList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
 var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var advancedSearchWin = null;
@@ -489,7 +489,7 @@ function onRightGridDraw(e)
             break;
     }
 }
-var auditUrl = baseUrl+"com.hsapi.frm.frmService.crud.auditPjStatement.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.part.invoice.settle.auditPjStatement.biz.ext";
 function audit()
 {
     basicInfoForm.validate();
@@ -757,7 +757,7 @@ var requiredField = {
     stateMan : "对账员",
     createDate : "对账日期"
 };
-var saveUrl = baseUrl + "com.hsapi.frm.frmService.crud.savePjStatement.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.invoice.settle.savePjStatement.biz.ext";
 function save() {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
@@ -1045,3 +1045,58 @@ function onLeftGridBeforeDeselect(e)
         leftGrid.removeRow(row);
     }
 }
+//导出
+function onExport(){
+	if (checkNew() > 0) {
+		showMsg("请先保存数据!","W");
+		return;
+	}
+	var changes = rightGrid.getChanges();
+	if(changes.length>0){
+        var len = changes.length;
+        var row = changes[0];
+        if(len == 1 && !row.partId){
+        }else{
+		  showMsg("请先保存数据!","W");
+            return;  
+        }
+	}
+
+	var main = leftGrid.getSelected();
+	if(!main) return;
+
+	var detail = rightGrid.getData();
+	if(detail && detail.length > 0){
+		setInitExportData(main, detail);
+	}
+}
+function setInitExportData(main, detail){
+	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
+	document.getElementById("eGuestName").innerHTML = main.guestName?main.guestName:"";
+	document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
+    var tds = '<td  colspan="1" align="left">[typeCode]</td>' +
+        "<td  colspan='1' align='left'>[billAmt]</td>" +
+        "<td  colspan='1' align='left'>[orderMan]</td>" +
+        "<td  colspan='1' align='left'>[billDate]</td>" +
+        "<td  colspan='1' align='left'>[remark]</td>" +
+        "<td  colspan='1' align='left'>[billServiceId]</td>" ;
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.id){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[typeCode]", detail[i].typeCode?detail[i].typeCode:"")
+                         .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
+                         .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
+                         .replace("[billDate]", detail[i].billDate?detail[i].billDate:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                         .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
+            tableExportContent.append(tr);
+        }
+    }
+
+    var serviceId = main.serviceId?main.serviceId:"";
+    method5('tableExcel',"月结对账"+serviceId,'tableExportA');
+} 
+

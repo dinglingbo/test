@@ -12,7 +12,7 @@
 <head>
 <title>会员卡录入</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.2"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.3"></script>
 </head>
 <body>
 	<div class="nui-fit">
@@ -85,6 +85,18 @@
 							data="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 						</div>
 				</tr>
+				<tr>
+					<td class="form_label" id="isSharex" align="right">是否共享:</td>
+					<td colspan="1" id="isSharey">
+
+						<div class="mini-radiobuttonlist" repeatItems="1"
+							repeatLayout="table" repeatDirection="vertical" name="isShare"
+							textField="text" valueField="value"
+							data="[{value:'0',text:'不共享',},{value:'1',text:'共享'}]" value="0">
+						</div>
+					</td>
+				</tr>
+				
 				</table>
 				<div style="height: 180px;margin-bottom: 15px">              
                 <div id="contentGrid" class="nui-datagrid" style="width: 80%; height: 100%; margin-left: 10%; "

@@ -57,13 +57,16 @@
 
                 <span class="separator"></span>
 
-                <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入单据</a>
+               <!--   <a style="display:none;" class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入单据</a>-->
+               
 
-                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="addPchsOrder('order')" id="addImp1"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入采购订单</li>
-                    <li iconCls="" onclick="addPchsOrder('sell')" id="addImp2"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入销售单</li>
-                </ul>
-
+<!--                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;"> -->
+<!--                     <li iconCls="" onclick="addPchsOrder('order')" id="addImp1"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入采购订单</li> -->
+<!--                     <li iconCls="" onclick="addPchsOrder('sell')" id="addImp2"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入销售单</li> -->
+<!--                 </ul> -->
+				
+				 <a  class="nui-menubutton " onclick="addPchsOrder('order')" menu="#popupMenuPrint" id="addImp1"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入采购订单</a>
+				 
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="addPchsOrder()" id="auditBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入单据</a> -->
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
@@ -113,7 +116,7 @@
       <div showCollapseButton="false">
           
           <div class="nui-fit">
-              <fieldset id="fd1" style="width:95%;min-width:800px;height:70px;">
+              <fieldset id="fd1" style="width:95%;min-width:800px;height:100px;">
                   <legend><span>采购入库信息</span></legend>
                   <div class="fieldset-body">
                   

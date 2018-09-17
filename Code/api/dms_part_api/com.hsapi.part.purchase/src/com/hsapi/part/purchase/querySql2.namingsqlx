@@ -872,7 +872,7 @@
 			a.check_id = #checkId#
     </select>
     
-    <select id="genPtsEnterByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterDetail">
+    <!--<select id="genPtsEnterByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsEnterDetail">
     	SELECT
 			a.part_id partId,
 			a.part_name partName,
@@ -889,8 +889,8 @@
 		WHERE
 			a.check_id = #checkId#
 			AND a.invt_loss_qty &gt; 0
-    </select>
-    <select id="genPtsOutByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutDetail">
+    </select>-->
+<!-- <select id="genPtsOutByCheckId" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.PtsOutDetail">
     	SELECT
 			a.part_id partId,
 			a.part_name partName,
@@ -907,5 +907,5 @@
 		WHERE
 			a.check_id = #checkId#
 			AND a.invt_loss_qty &lt; 0
-    </select>
+    </select>-->
 </sqlMap>

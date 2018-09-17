@@ -183,12 +183,12 @@ function getLastWeekEndDate() {
 
 //获得下周的开始日期
 function getNextWeekStartDate() {
-    var weekStartDate = new Date(nowYear, nowMonth, nowDay + nowDayOfWeek + 7);
+    var weekStartDate = new Date(nowYear, nowMonth, nowDay + nowDayOfWeek + 6);
     return formatDate(weekStartDate);
 }
 //获得下周的结束日期
 function getNextWeekEndDate() {
-    var weekEndDate = new Date(nowYear, nowMonth, nowDay + nowDayOfWeek + 1);
+    var weekEndDate = new Date(nowYear, nowMonth, nowDay + nowDayOfWeek + 12);
     return formatDate(weekEndDate);
 }
 

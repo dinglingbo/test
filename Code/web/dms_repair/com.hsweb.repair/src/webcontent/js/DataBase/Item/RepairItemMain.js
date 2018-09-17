@@ -8,6 +8,7 @@ var advancedAddWin = null;
 var advancedAddForm = null;
 var isOpenWin = 0;
 var tempGrid = null;
+var xs = 0;
 var isChooseClose = 1;//默认选择后就关闭窗体
 
 $(document).ready(function()
@@ -334,7 +335,7 @@ function onAdvancedAddOk(){
 function onDrawCell(e) {
 	switch (e.field) {
 	case "isShare":
-		e.cellHtml = e.value == 1 ? "是" : "否";
+		e.cellHtml = e.value == 1 ? "总部" : "分店";
 		break;
 	case "isDisabled":
 		e.cellHtml = e.value == 1 ? "是" : "否";
@@ -352,4 +353,27 @@ function showCheckcolumn(){
 	rightGrid.showColumn("checkcolumn");
 	nui.get("state").setValue(6);
 	nui.get("selectBtn").show();
+}
+
+//当选择列时
+function selectionChanged() {
+	var rows = rightGrid.getSelecteds();
+	if(currIsMaster!="1"){
+		if(rows[0].isShare=="1"){
+			nui.get('update').setVisible(false);
+		}else{
+			nui.get('update').setVisible(true);
+		}
+		
+	}else{
+		if(rows[0].isShare=="1"){
+			nui.get('update').setVisible(true);
+		}else{
+			nui.get('update').setVisible(false);
+		}
+	}
+	if(xs==1){
+		mini.get("update").setVisible(false);
+		mini.get("add").setVisible(false);
+	}
 }

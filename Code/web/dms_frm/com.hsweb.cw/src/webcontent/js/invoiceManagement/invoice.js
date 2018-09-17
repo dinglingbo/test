@@ -37,7 +37,7 @@ $(document).ready(function () {
         });
     });*/
 	
-	/*advancedMorePartWin.on("load",function(e){
+	advancedMorePartWin.on("load",function(e){
 		var data = advancedMorePartWin.getData();
 		if(data.length == 0){
 			showMsg("该源单号暂没数据","W");
@@ -46,7 +46,7 @@ $(document).ready(function () {
 			advancedMorePartWin.hide();
 			var newRow = {};
 		}
-	});*/
+	});
 	grid.on("cellendedit",function(e){
 		var field = e.field;
 		if(field == "invoiceAmt"){

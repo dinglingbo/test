@@ -39,10 +39,6 @@
     <location x="135" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain</process:from>
-      <process:to type="query">data</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="137" y="186"/>
@@ -230,7 +226,6 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCheckDetail" name="listall"/>
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="maintain"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -2228,9 +2228,10 @@ function onPrint(e){
 	if(main.id){
 		var params = {
             serviceId : main.id,
-            comp : currOrgName
+            comp : currOrgName,
+            baseUrl : baseUrl
         };
-        if(e == 1){
+	 if(e == 1){
          openUrl = "com.hsweb.print.repairOrder.flow";
      }else if(e == 2){
          openUrl = "com.hsweb.print.settlement.flow";

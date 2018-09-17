@@ -6,6 +6,7 @@
      showPager="false"
      showModified="false"
      allowSortColumn="false"
+     ondrawsummarycell="onDrawSummaryCellPack"
      >
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>

@@ -83,6 +83,10 @@
 	    #_sys_tip_msg_ span.small {
 	        height: auto;
 	    }
+	    
+	    a.mini-button.mini-state-default.mini-corner-all{
+	    	width:70px;
+	    }
 	</style>
     
 </head>
@@ -136,8 +140,12 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle userinfo">
+            <!--<a class="dropdown-toggle userinfo">
                 <img class="user-img" src="res/images/user.jpg" /><span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
+            </a>-->
+            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
+                <!--<img class="user-img" src="res/images/user.jpg" />-->
+                <span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
                 <li id="orgName"><a href="#">所属：</a></li>
@@ -463,16 +471,20 @@
     //切换角色
     function changeOrgs(orgid) {
         if (orgid != currOrgId) {
-            nui.confirm('切换公司后将重新加载页面，是否继续?','温馨提示',function(action){
-                if (action == "ok") {
-                    $("#toggleRole")[0].action = "com.hsapi.system.auth.login.login.flow";
-                    $("#operatorId").val(currUserId);
-                    $("#orgid").val(orgid);
-                    $("#toggleRole")[0].submit();
-                } else {
+        	$("#toggleRole")[0].action = "com.hsapi.system.auth.login.login.flow";
+            $("#operatorId").val(currUserId);
+            $("#orgid").val(orgid);
+            $("#toggleRole")[0].submit();
+            //nui.confirm('切换公司后将重新加载页面，是否继续?','温馨提示',function(action){
+            //    if (action == "ok") {
+            //        $("#toggleRole")[0].action = "com.hsapi.system.auth.login.login.flow";
+            //        $("#operatorId").val(currUserId);
+            //        $("#orgid").val(orgid);
+            //        $("#toggleRole")[0].submit();
+            //    } else {
                     //mini.get("changeRole").setValue(vGrid);
-                }
-            });
+           //     }
+            //});
         }
     }
     

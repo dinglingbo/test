@@ -22,7 +22,6 @@ function giveData(data)
         contactorName.setText(data.xyguest.guestFullName);
         form2.setData(main);
     }
-
 }
 
 

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -63,7 +63,7 @@ body .mini-grid-row-selected{
         
          <div  id="billmain" name="billmain" >
             <!--采购订单信息-->
-            <%@include file="/purchase/purchaseOrder/purchaseOrderDetail.jsp" %>
+            <%@include file="/manage/inOutManage/purchaseOrder/purchaseOrderDetail.jsp" %>
           </div>
         
 <!--        <div title="采购车" name="purchaseAdvanceTab" url="" > -->

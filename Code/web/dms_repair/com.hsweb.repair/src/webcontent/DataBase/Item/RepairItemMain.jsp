@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.7" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.1.9" type="text/javascript"></script>
 
 </head>
 <body>
@@ -109,7 +109,7 @@
 					 totalField="page.count"
 					 sortMode="client"
 					 multiSelect="true"
-					 showPageSize="true"
+					 showPageSize="true"  onselectionchanged="selectionChanged"
 					 allowSortColumn="true"
 					 selectOnLoad="true"
 					 allowCellSelect="true"
@@ -133,7 +133,7 @@
 							<div property="columns">
 								<div field="isShare" headerAlign="center" allowSort="true" width="70px">是否共享</div>
 								<div field="isDisabled" headerAlign="center" allowSort="true" width="70px">是否禁用</div>
-								<div field="orgid" headerAlign="center" allowSort="true" width="50px">所属</div>
+												<div field="isShare" headerAlign="center" allowSort="true" width="50px">修改权限</div>
 							</div>
 						</div>
 					</div>

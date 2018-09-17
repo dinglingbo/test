@@ -1177,7 +1177,6 @@ function onCellCommitEdit(e) {
 	var editor = e.editor;
 	var record = e.record;
 	var row = e.row;
-
 	editor.validate();
 	if (editor.isValid() == false) {
 		showMsg("请输入数字!","W");

@@ -10,10 +10,10 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.26"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
-    <style type="text/css">
+    <style type="text/css"> 
     body {  
         margin: 0; 
         padding: 0;
@@ -38,7 +38,7 @@
         text-align: center; 
         font-size:14px;
         font-weight:bold; 
-        color:#32b400;
+        /* color:#32b400; */
     }  
     .required {
         color: red;
@@ -452,25 +452,31 @@ allowDrag="false">
     <table style="width: 100%;margin-top:20px; "  border="1 solid #ccc" cellpadding="0" cellspacing="0" >
         <tr>
             <td class="textStyle"> 
-                <label>未派工</label>
+                <label id="checkStatus1">未派工</label>
             </td>
 
             <td class="textStyle">
-                <label>已派工</label>
+                <label id="checkStatus2">已派工</label>
             </td>
 
             <td class="textStyle">
-                <label>施工中</label>
+                <label id="checkStatus3">施工中</label>
             </td>
 
             <td class="textStyle">
-                <label>已完工</label>
+                <label id="checkStatus4">已完工</label>
             </td>
         </tr>
     </table>
-    <div align="center" style="margin-top:20px; ">
+    <div align="center" style="margin-top:20px; " id="checkStatusButton1">
         <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="MemSelectCancel(2)" id="">
             <span style="line-height: 30px;">车况派工</span>
+        </a>
+    </div>
+
+    <div align="center" style="margin-top:20px;display: none; " id="checkStatusButton2">
+        <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="newCheckMain()" id="">
+            <span style="line-height: 30px;">车况查看</span>
         </a>
     </div>
 </div>
@@ -485,19 +491,19 @@ allowDrag="false">
             </td>
 
             <td class="">
-                 <input class="nui-combobox " allowInput="true" style="width:150px;" />
-            </td>
-        </tr>
-    </table>
-    <div align="center" style="margin-top:20px; ">
-        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="newCheckMain" id="">
-            确定
-        </a>
+               <input class="nui-combobox " allowInput="true" style="width:150px;" />
+           </td>
+       </tr>
+   </table>
+   <div align="center" style="margin-top:20px; ">
+    <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectOk" id="">
+        确定
+    </a>
 
-        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
-            取消
-        </a>
-    </div>
+    <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
+        取消
+    </a>
+</div>
 </div>
 
 
@@ -505,7 +511,7 @@ allowDrag="false">
 </div> 
 
 <script type="text/javascript">
- nui.parse();
+   nui.parse();
 </script>
 </body>
 </html>

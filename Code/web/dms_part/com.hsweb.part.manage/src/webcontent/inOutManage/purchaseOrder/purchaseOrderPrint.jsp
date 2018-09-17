@@ -35,7 +35,7 @@ table{
 				  <tr>
 				    <td id="">电话073186205120</td>
 				    <td id="">订单日期 2018/09/07/13:49:45</td>
-				    <td id="">打印日期 2018/09/07/13:49:45</td>
+				    <td id="nowDate">打印日期 2018/09/07/13:49:45</td>
 				  </tr>
 				  <tr>
 				    <td id="">供应商：杭州申令</td>
@@ -93,8 +93,10 @@ table{
         </div>
        </div>
 	<script type="text/javascript">
+		var date=new Date();
     	$(document).ready(function(){
     		$('#currOrgName').text(currOrgName);
+    		$('#nowDate').text("打印日期"+format(date,"yyyy/MM/dd/HH:mm:ss"));
     	});
     </script>
 </body>

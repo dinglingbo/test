@@ -119,14 +119,13 @@ function saveData(){//保存
              d: grid.getChanges("removed"),
              u: grid.getChanges("modified"),
              data : data,
-             main : nui.get("mainId").value,
+             main : nui.get("main").value,
              token : token
         },
         success: function(text) {
-        	nui.get("mainId").setValue(text.mainId);
+        	nui.get("main").setValue(text.mainId);
         	grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.searchTicketDetail.biz.ext");
         	grid.load({mainId : text.mainId,token : token});
-        	nui.get("state").setValue("1");
         }
     });
 }

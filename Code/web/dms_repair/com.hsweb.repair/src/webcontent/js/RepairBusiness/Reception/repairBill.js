@@ -631,6 +631,8 @@ function doSetMainInfo(car){
 }
 
 function setInitData(params){
+	var data = {};
+	sellForm.setData(data);
     if(!params.id){
         add();
     }else{
@@ -2342,6 +2344,8 @@ function onPkgSubtotalValuechanged(e) {
     var row = rpsPackageGrid.getEditorOwnerRow(el);
     //获取指定列和行的编辑器控件对象
     var editor = rpsPackageGrid.getCellEditor("pkgRate", row);
+    var setPKgSubtotal = rpsPackageGrid.getCellEditor("pkgSubtotal", row);
+
 
     var subtotal = el.getValue()||0;
     var amt = row.amt||0;
@@ -2352,6 +2356,7 @@ function onPkgSubtotalValuechanged(e) {
     rate = rate * 100;
     rate = rate.toFixed(2);
     editor.setValue(rate);
+    setPKgSubtotal.setValue(subtotal);
 	}
 }
 
@@ -2367,11 +2372,12 @@ function onPkgRateValuechanged(e){
 		
 		showMsg("请输入0到100之间的数!","W");
 		e.cancel = true; 
-		return;
+		return;rate
 	} else{
     var row = rpsPackageGrid.getEditorOwnerRow(el);
     //获取指定列和行的编辑器控件对象
     var editor = rpsPackageGrid.getCellEditor("pkgSubtotal", row);
+    var setPkgRate = rpsPackageGrid.getCellEditor("pkgRate", row);
     var amt = row.amt||0;
     var subtotal = 0;
     if(amt>0){
@@ -2379,6 +2385,7 @@ function onPkgRateValuechanged(e){
     }
     subtotal = subtotal.toFixed(2);
     editor.setValue(subtotal);
+    setPkgRate.setValue(rate);
 	}
 }
 
@@ -2460,6 +2467,7 @@ function onValueChangedItemTime(e){
 
 function onValueChangedItemUnitPrice(e){
 	var el = e.sender;
+	var unitPrice = el.getValue()||0;
 	var flag = isNaN(e.value);
 	if (flag) {
 		showMsg("请输入数字!","W");
@@ -2471,7 +2479,6 @@ function onValueChangedItemUnitPrice(e){
 		var setUnitPrice = rpsItemGrid.getCellEditor("itemUnitPrice", row);
 		var setItemTime = rpsItemGrid.getCellEditor("itemItemTime", row);
 		var setRate = rpsItemGrid.getCellEditor("itemRate", row);
-		var unitPrice = el.getValue()||0;
 		var itemTime = setItemTime.getValue()||0;
 		var itamt = 0;
 		var subtotal = 0;
@@ -2543,6 +2550,7 @@ function onValueChangedItemSubtotal(e){
 	
 	var el = e.sender;
 	var flag = isNaN(e.value);
+	var subtotal = el.getValue();
 	if (flag) {
 		showMsg("请输入数字!","W");
 		e.cancel = true; 
@@ -2563,7 +2571,6 @@ function onValueChangedItemSubtotal(e){
 		   row.amt = itamt;
 		}
 		//设置小计金额
-		var subtotal = el.getValue();
 		var rate = 0;
 	    if(itamt>0){
 	    	rate = (itamt - subtotal)*1.0/itamt;
@@ -2852,7 +2859,14 @@ function onDrawSummaryCellPack(e){
 		  data.itemPrefAmt = sumItemPrefAmt;
 		  data.partSubtotal = sumPartSubtotal;
 		  data.partPrefAmt = sumPartPrefAmt;*/
-		  data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  
+		  if(data.itemSubtotal != null &&  data.itemSubtotal != ""){
+			  data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal);
+		  }
+		  if(data.partSubtotal != null &&  data.partSubtotal != ""){
+			  data.mtAmt = parseFloat(data.mtAmt)+parseFloat(data.partSubtotal);
+		  }
+		 // data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 		  sellForm.setData(data);
 	  }
 	 
@@ -2881,13 +2895,15 @@ function onDrawSummaryCellItem(e){
 		  sumItemPrefAmt = sumItemAmt - sumItemSubtotal;
 		  sumItemSubtotal = sumItemSubtotal.toFixed(2);
 		  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
-		  /* data.packageSubtotal = sumPkgSubtotal;
-		  data.packagePrefAmt = sumPkgPrefAmt;*/
 		  data.itemSubtotal = sumItemSubtotal;
 		  data.itemPrefAmt = sumItemPrefAmt;
-		 /* data.partSubtotal = sumPartSubtotal;
-		  data.partPrefAmt = sumPartPrefAmt;*/
-		  data.mtAmt = parseFloat(data.packageSubtotal)+parseFloat(sumItemSubtotal)+parseFloat(data.partSubtotal);
+		  
+		  if(data.packageSubtotal != null &&  data.packageSubtotal != ""){
+			  data.mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal);
+		  }
+		  if(data.partSubtotal != null &&  data.partSubtotal != ""){
+			  data.mtAmt = parseFloat(data.mtAmt)+parseFloat(data.partSubtotal);
+		  }
 		  sellForm.setData(data);
 	  }
 	
@@ -2916,13 +2932,14 @@ function onDrawSummaryCellPart(e){
 		  sumPartSubtotal = sumPartSubtotal.toFixed(2);
 		  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 		  
-		  /* data.packageSubtotal = sumPkgSubtotal;
-		  data.packagePrefAmt = sumPkgPrefAmt;
-		  data.itemSubtotal = sumItemSubtotal;
-		  data.itemPrefAmt = sumItemPrefAmt;*/
 		  data.partSubtotal = sumPartSubtotal;
 		  data.partPrefAmt = sumPartPrefAmt;
-		  data.mtAmt = parseFloat(data.packageSubtotal )+parseFloat(data.itemSubtotal )+parseFloat(sumPartSubtotal);
+		  if(data.packageSubtotal != null &&  data.packageSubtotal != ""){
+			  data.mtAmt = parseFloat(sumPartSubtotal)+parseFloat(data.packageSubtotal);
+		  }
+		  if(data.itemSubtotal != null &&  data.itemSubtotal != ""){
+			  data.mtAmt = parseFloat(data.mtAmt)+parseFloat(data.itemSubtotal);
+		  }
 		  sellForm.setData(data);
 	  }
 	

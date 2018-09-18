@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.37"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.41"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -491,7 +491,19 @@ allowDrag="false">
             </td>
 
             <td class="">
-               <input class="nui-combobox " allowInput="true" style="width:150px;" />
+                <input name="checkManId"
+                id="checkManId"
+                style="width:150px;" 
+                class="nui-combobox "
+                textField="empName"
+                valueField="empId"
+                emptyText="请选择..."
+                url=""
+                allowInput="true"
+                required="true"
+                showNullItem="false"
+                valueFromSelect="true"
+                nullItemText="请选择..."/>
            </td>
        </tr>
    </table>

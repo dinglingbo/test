@@ -912,25 +912,38 @@ function doDelete() {
 	json = {
 			id:rows[0].id
 	}
-	nui.ajax({
-		url : baseUrl
-		+ "com.hsapi.frm.frmService.rpsettle.delFisRpBillForRepair.biz.ext" ,
-		type : "post",
-		data : json,
-		success : function(data) {
-			if(data.errCode=="S"){
-				nui.alert(data.errMsg,"提示");
-				rRightGrid.load;
-			}else{
-				nui.alert(data.errMsg,"提示");
-				rRightGrid.load;
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
+    nui.confirm("确定作废此条记录吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url : baseUrl
+					+ "com.hsapi.frm.frmService.rpsettle.delFisRpBillForRepair.biz.ext" ,
+					type : "post",
+					data : json,
+					success : function(data) {
+						 nui.unmask(document.body);
+						if(data.errCode=="S"){
+							nui.alert(data.errMsg,"提示");
+							rRightGrid.load;
+						}else{
+							nui.alert(data.errMsg,"提示");
+							rRightGrid.load;
+						}
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						// nui.alert(jqXHR.responseText);
+						console.log(jqXHR.responseText);
+					}
+				});
+	     }else {
+				return;
+		 }
+		 });
+
 	
 }
 

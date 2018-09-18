@@ -262,3 +262,21 @@ function save(){
         }
     });
 }
+
+
+function setData(){
+	nui.ajax({
+        url: baseUrl+"com.hsapi.repair.repairService.query.searchRpsMaintainBill.biz.ext",
+        type: "post",
+        cache: false,
+        data: {
+        	sourceServiceId : 294
+        },
+        success: function(text) {
+        	var list = nui.decode(text.list);
+        	if(list.length > 0){
+        		billForm.setData(list[0]);
+        	}
+        }
+    });
+}

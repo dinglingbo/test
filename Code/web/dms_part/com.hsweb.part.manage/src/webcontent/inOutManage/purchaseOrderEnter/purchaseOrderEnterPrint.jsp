@@ -72,7 +72,7 @@ table{
     color: yellow;
 }
 </style>
-<title>采购订单打印</title>
+<title>采购入库打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
     
@@ -87,7 +87,7 @@ table{
         		<table id="" width="100%">
 				  <tr style="font-size:25px;">
 				    <td id="currOrgName"></td>
-				    <td id="type" colspan="2" style="text-align: right;" id="">采购订单</td>
+				    <td id="type" colspan="2" style="text-align: right;" id="">入库订单</td>
 				  </tr>
 				  <tr>
 				    <td id="address">地址:</td>
@@ -176,7 +176,7 @@ table{
     	
     	function SetData(mainParams,detailParms,formParms){
        		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
-       		$('#createDate').text("订单日期："+format(mainParams.createDate,"yyyy/MM/dd/HH:mm:ss"));
+       		$('#createDate').text("入库日期："+format(mainParams.createDate,"yyyy/MM/dd/HH:mm:ss"));
        		$('#serviceId').text("No:"+mainParams.serviceId);
      
     		$('#billTypeId').text("票据类型:"+formParms.billTypeId);

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.16"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -42,6 +42,7 @@ body .mini-grid-row-selected{
 .mini-tabs-body-top{
 	padding:0px;
 }
+
 </style>
 </head>
 <body>
@@ -49,7 +50,7 @@ body .mini-grid-row-selected{
 <div class="nui-fit">    
       <div id="mainTabs" class="nui-tabs" name="mainTabs"
            activeIndex="0" 
-           style="width:100%; height:100%;" 
+           style="width:100%; height:104%;" 
            plain="false" 
            >
 
@@ -61,7 +62,7 @@ body .mini-grid-row-selected{
 <!--           </div> --> 
 <!--         </div>   -->
         
-         <div  id="billmain" name="billmain" >
+         <div id="billmain" name="billmain" >
             <!--采购订单信息-->
             <%@include file="/manage/inOutManage/purchaseOrder/purchaseOrderDetail.jsp" %>
           </div>

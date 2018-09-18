@@ -134,11 +134,14 @@ $(document).ready(function ()
             var guestName = item.guestFullName||"";
             var carVin = item.vin||"";
 
-            var params = {
+            var data = {
                 carNo: carNo,
                 isSettle: 0,
                 orgid: currOrgId
-            }
+            };
+            var params = {	
+            	"params":data
+            };
             checkRpsMaintain(params, function(text){
                 var data = text.data||[];
                 if(data && data.length>0){

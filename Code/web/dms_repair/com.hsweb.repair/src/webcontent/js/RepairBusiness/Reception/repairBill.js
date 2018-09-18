@@ -2963,4 +2963,16 @@ function onDrawSummaryCellPart(e){
 	
 }
 
+function addExpenseAccount(){
+	var data = billForm.getData();
+	if(data.id){
+		var item={};
+	    item.text = " 报销单";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.ExpenseAccount.flow";
+		item.iconCls = "fa fa-cog";
+		window.parent.activeTab(item);
+	}else{
+		showMsg("请先保存后再进行操作。","W");
+	}
+}
 

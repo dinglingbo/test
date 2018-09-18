@@ -38,6 +38,7 @@
  var memCardGrid = null;
  var carCheckInfo = null;
  var checkMainData = null;
+ var rdata = null;
 
  var fserviceId = 0;
  var fguestId = 0;
@@ -75,7 +76,6 @@ $(document).ready(function ()
     servieIdEl = nui.get("servieIdEl");
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
-    SearchCheckMain();
     searchKeyEl.on("beforeload",function(e){
         if(fserviceId){
             e.cancel = true;
@@ -1360,6 +1360,7 @@ function showCard(){
     advancedCardTimesWin.hide();
     carCheckInfo.hide();
     cardTimesGrid.clearRows();
+
     doSearchMemCard(fguestId);
 }
 
@@ -1377,7 +1378,8 @@ function showCarCheckInfo(){
     advancedCardTimesWin.hide();
     advancedMemCardWin.hide();
     MemSelectCancel(1);
-    changeCheckInfoTab();
+    SearchCheckMain(changeCheckInfoTab);
+    //changeCheckInfoTab();
     //cardTimesGrid.clearRows();
     //doSearchMemCard(fguestId);
 }
@@ -2296,14 +2298,14 @@ function showHealth(){
 function pay(){
 	nui.open({
 		url:"com.hsweb.print.carWashBillUp.flow",
-		width:"40%",
-		height:"50%",
-		//加载完之后
+		width:"40%", 
+		height:"50%",  
+		//加载完之后  
 		onload: function(){	
 		},
        ondestroy : function(action) {
           if (action == 'ok') {
-             var iframe = this.getIFrameEl();
+             var iframe = this.getIFrameEl(); 
              var data = iframe.contentWindow.getData();
              supplier = data.supplier;
              var value = supplier.id;
@@ -2317,17 +2319,20 @@ function pay(){
 }
 
 
-function newCheckMain() {
+function newCheckMain() { 
+    var data = billForm.getData();
     var item={};
     item.id = "checkPrecheckDetail";
     item.text = "查车单";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);
-    var params = { 
-        id:resultdata.list[0].id,
-        row: resultdata.list[0]
+    var params = {};
+    params = { 
+        id:data.id,
+        row: rdata
     };
+
     window.parent.activeTabAndInit(item,params);
 }  
 
@@ -2339,7 +2344,7 @@ function MemSelectOk(){
 
 
 
-function SearchCheckMain() {
+function SearchCheckMain(callback) {
     var data = billForm.getData();
     var  t = null;
     nui.ajax({
@@ -2351,6 +2356,7 @@ function SearchCheckMain() {
         },
         cache: false,
         success: function (text) {  
+            callback && callback(text);
             checkMainData = text;
         }
     });
@@ -2358,14 +2364,15 @@ function SearchCheckMain() {
 }
 
 
-function changeCheckInfoTab() {
+function changeCheckInfoTab(resultdata) {
     $("#checkStatus1").css("color","black");
     $("#checkStatus2").css("color","black");
     $("#checkStatus3").css("color","black");
     $("#checkStatus4").css("color","black");
-    var resultdata= checkMainData;
+    
     if(resultdata.list.length > 0){
         var detailList =  resultdata.list[0];
+        rdata= detailList;
     }
 
     //detailList.checkMan  =1;
@@ -2376,21 +2383,21 @@ function changeCheckInfoTab() {
         $("#checkStatusButton1").show();
         $("#checkStatusButton2").hide();
     }else{
-        if(detailList.checkMan && detailList.checkStatus == 0){
+        if(!detailList.checkMan && detailList.checkStatus == 0){
             $("#checkStatus2").css("color","#32b400");
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show();
 
         }
-        if(detailList.checkMan && detailList.checkStatus == 1){
+        if(!detailList.checkMan && detailList.checkStatus == 1){
             $("#checkStatus3").css("color","#32b400");
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show();
         }
-        if(detailList.checkMan && detailList.checkStatus == 2){
-            $("#checkStatus4").css("color","#32b400");
+        if(!detailList.checkMan && detailList.checkStatus == 2){ 
+            $("#checkStatus4").css("color","#32b400");   
             $("#checkStatusButton1").hide();
-            $("#checkStatusButton2").show();
+            $("#checkStatusButton2").show(); 
         }
     }
 }
@@ -2402,7 +2409,7 @@ function SaveCheckMain() {
         return;
     }
     var temp ={
-        serviceId:data.id,
+        serviceId:data.id, 
         carId:data.carId,
         carNo:data.carNo,
         checkStatus:0,
@@ -2410,19 +2417,25 @@ function SaveCheckMain() {
         mtAdvisorId:data.mtAdvisorId,
         mtAdvisor:data.mtAdvisor
     };
+    var mtemp = {
+        id:data.id
+    } 
 
     nui.ajax({
         url:baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMain.biz.ext",
         type:"post",
         async: false,
         data:{ 
-            data:data,
+            data:temp,
+            rpsMain:mtemp,
             token:token   
         },   
         success:function(text){   
             var errCode = text.errCode;
             if(errCode == "S"){
+                rdata  = text.mainData;
                 newCheckMain();
+                //CloseWindow('close');
                 //showMsg('保存成功!','S'); 
             }else{
                 //showMsg('保存失败!','E'); 
@@ -2447,3 +2460,7 @@ function MemSelectCancel(e) {
 }
 
 
+    function CloseWindow(action) {
+        if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+        else window.close();
+    }

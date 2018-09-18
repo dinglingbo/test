@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.26"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.37"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -63,7 +63,7 @@
     #wechatTag{
         color:#62b900;
     }
-
+ 
 
     /* font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px; display:block;  padding:4px 15px;*/
     a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
@@ -73,17 +73,17 @@
     a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 
     a.optbtn {
-        width: 44px;
+        width: 44px; 
         /* height: 26px; */
         border: 1px #d2d2d2 solid;
         background: #f2f6f9;
         text-align: center;
-        display: inline-block;
+        display: inline-block;    
         /* line-height: 26px; */
         margin: 0 4px;
         color: #000000;
         text-decoration: none;
-        border-radius: 5px;
+        border-radius: 5px; 
     }
 
 </style>

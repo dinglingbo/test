@@ -282,7 +282,7 @@ function doSetMainInfo(car){
 
 
 
-
+/*
 function save(){
     nui.mask({
         el: document.body,
@@ -350,29 +350,63 @@ function save(){
         nui.unmask(document.body);
     });
 }
+*/
 
 
+
+function save(){
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+
+var rpsMain={
+
+};
+        nui.ajax({
+        url : baseUrl + "com.hsapi.repair.repairService.repairInterface.updateCheckMainStatus.biz.ext",
+        type : "post",
+        data : JSON.stringify({
+            rpsMain:rpsMain,
+            token : token
+        }),
+        success : function(data) {
+
+            saveDetail(mtain,function(data){
+                actionType = 'edit';
+                var rid = data.data.id; 
+                nui.get("id").setValue(rid);
+                $("#servieIdEl").html(data.data.serviceCode);
+                mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+                mainGrid.load({mainId:rid,token:token});
+                nui.unmask(document.body);
+            });
+
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+        }
+    });
+
+
+}
+/*
 var requiredField = {
     carNo : "车牌号",
     guestId : "客户",
     serviceTypeId : "业务类型",
     mtAdvisorId : "服务顾问"
 };
+*/
 
-
-
+/*
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 //var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
 
-/*    for ( var key in requiredField) {
-        if (!data[key] || $.trim(data[key]).length == 0) {
-            unmaskcall && unmaskcall();
-            showMsg(requiredField[key] + "不能为空!","W");
-            return;
-        }
-    }*/
+
     data.billTypeId = 1;
 
     data.status = 0;
@@ -412,9 +446,9 @@ function saveMaintain(callback,unmaskcall){
 
 }
 
+*/
 
-
-function saveDetail(maintain,unmaskcall){
+function saveDetail(mmid,unmaskcall){
     //var mainGrid = nui.get("mainGrid");
     mainGrid.commitEdit();
     var grid_all = mainGrid.getData(); //保存
@@ -422,7 +456,7 @@ function saveDetail(maintain,unmaskcall){
     var detailid = null;
     for(var i=0;i<grid_all.length;i++){
         var tem = grid_all[i];
-        tem.serviceId = maintain.id;
+        tem.serviceId = mmid;
         tem.mainId = checkMainId;
         if(actionType == "new"){
             tem.checkId = grid_all[i].id;
@@ -435,7 +469,6 @@ function saveDetail(maintain,unmaskcall){
         type : "post",
         data : JSON.stringify({
             listall:gridData,
-            maintain : maintain,
             token : token
         }),
         success : function(data) {

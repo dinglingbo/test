@@ -23,12 +23,12 @@
                              url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
                 </div>
                 <div field="subtotal" headerAlign="center" name="pkgSubtotal"
-                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" numberFormat="0.0000">
+                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" >
                      <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
                 <div field="rate" headerAlign="center" name="pkgRate"
                      allowSort="false" visible="true" width="60" header="优惠率" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox" numberFormat="0.0000" onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
+                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">

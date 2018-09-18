@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/3/21.
  */
  var webBaseUrl = webPath + contextPath + "/";
- var baseUrl = apiPath + repairApi + "/";
+ var baseUrl = apiPath + repairApi + "/"; 
  var mainGrid = null;
  var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
@@ -39,6 +39,7 @@
  var carCheckInfo = null;
  var checkMainData = null;
  var rdata = null;
+ var isRecord = null;
 
  var fserviceId = 0;
  var fguestId = 0;
@@ -2320,16 +2321,19 @@ function pay(){
 
 
 function newCheckMain() { 
+    var data = billForm.getData();
     var item={};
     item.id = "checkPrecheckDetail";
     item.text = "查车单";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);
-    var params = { 
-        id:rdata.list[0].id,
-        row: rdata.list[0]
+    var params = {};
+    params = { 
+        id:data.id,
+        row: rdata
     };
+
     window.parent.activeTabAndInit(item,params);
 }  
 
@@ -2355,6 +2359,7 @@ function SearchCheckMain(callback) {
         success: function (text) {  
             callback && callback(text);
             checkMainData = text;
+            isRecord = text.isRecord;
         }
     });
 
@@ -2366,9 +2371,10 @@ function changeCheckInfoTab(resultdata) {
     $("#checkStatus2").css("color","black");
     $("#checkStatus3").css("color","black");
     $("#checkStatus4").css("color","black");
-    rdata= resultdata;
+    
     if(resultdata.list.length > 0){
         var detailList =  resultdata.list[0];
+        rdata= detailList;
     }
 
     //detailList.checkMan  =1;
@@ -2391,9 +2397,9 @@ function changeCheckInfoTab(resultdata) {
             $("#checkStatusButton2").show();
         }
         if(!detailList.checkMan && detailList.checkStatus == 2){ 
-            $("#checkStatus4").css("color","#32b400"); 
+            $("#checkStatus4").css("color","#32b400");   
             $("#checkStatusButton1").hide();
-            $("#checkStatusButton2").show();
+            $("#checkStatusButton2").show(); 
         }
     }
 }
@@ -2404,8 +2410,13 @@ function SaveCheckMain() {
         showMsg("请先保存工单!","E");
         return;
     }
+    if(isRecord == "1"){
+
+
+
+
     var temp ={
-        serviceId:data.id,
+        serviceId:data.id, 
         carId:data.carId,
         carNo:data.carNo,
         checkStatus:0,
@@ -2415,28 +2426,32 @@ function SaveCheckMain() {
     };
     var mtemp = {
         id:data.id
-    }
+    } ;
 
     nui.ajax({
         url:baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMain.biz.ext",
         type:"post",
         async: false,
         data:{ 
-            data:data,
+            data:temp,
             rpsMain:mtemp,
             token:token   
         },   
         success:function(text){   
             var errCode = text.errCode;
             if(errCode == "S"){
+                rdata  = text.mainData;
                 newCheckMain();
-                CloseWindow('close');
+                //CloseWindow('close');
                 //showMsg('保存成功!','S'); 
             }else{
                 //showMsg('保存失败!','E'); 
             }
         }  
     }); 
+    }else{
+        newCheckMain();
+}
 }
 
 

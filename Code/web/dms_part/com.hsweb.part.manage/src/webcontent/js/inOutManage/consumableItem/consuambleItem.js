@@ -170,12 +170,12 @@ $(document).ready(function(v) {
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
-
-		if ((keyCode == 27)) { // ESC
-
-			onPartClose();
-
-		}
+//
+//		if ((keyCode == 27)) { // ESC
+//
+//			onPartClose();
+//
+//		}
 
 		if ((keyCode == 120)) { // F9
 			morePartCodeEl.focus();
@@ -406,12 +406,12 @@ function morePartSearch() {
 function onPartClose() {
 	CloseWindow("cancel");
 }
-function CloseWindow(action) {
-	if (window.CloseOwnerWindow)
-		return window.CloseOwnerWindow(action);
-	else
-		window.close();
-}
+//function CloseWindow(action) {
+//	if (window.CloseOwnerWindow)
+//		return window.CloseOwnerWindow(action);
+//	else
+//		window.close();
+//}
 
 function getRtnData() {
 	return resultData;

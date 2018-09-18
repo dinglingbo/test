@@ -8,7 +8,9 @@
      showPager="false"
      showModified="false"
      editNextOnEnterKey="true"
-     allowSortColumn="true">
+     allowSortColumn="true"
+     ondrawsummarycell="onDrawSummaryCellPart"
+     >
     <div property="columns" >
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="配件信息">
@@ -22,16 +24,16 @@
                              url="" onvaluechanged="" emptyText=""  vtype="required"/> 
                 </div>
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" name="partQty">
-                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged ="onValueChangedPartQty"/>
+                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged ="onValueChangedPartQty" selectOnFocus="true"/>
                 </div>
                 <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价" name="partUnitPrice">
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged ="onValueChangedpartUnitPrice" />
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged ="onValueChangedpartUnitPrice"  selectOnFocus="true"/>
                 </div>
                 <div  field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" name="partRate">
-                    <input property="editor" vtype="float" class="nui-textbox" id="MML" onvaluechanged ="onValueChangedpartRate"/>
+                    <input property="editor" vtype="float" class="nui-textbox" id="MML" onvaluechanged ="onValueChangedpartRate" selectOnFocus="true"/>
                 </div>
                 <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额" name="partSubtotal">
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged ="onValueChangedpartSubtotal"/>
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged ="onValueChangedpartSubtotal" selectOnFocus="true"/>
                 </div>
                 <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
                 <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">

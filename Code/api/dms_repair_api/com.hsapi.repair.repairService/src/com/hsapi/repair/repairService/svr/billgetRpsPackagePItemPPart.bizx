@@ -50,7 +50,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsItem</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsItemBill</process:from>
       <process:to type="query">cond1/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -70,7 +70,7 @@
       <process:to type="query">cond1/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsPart</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsPartBill</process:from>
       <process:to type="query">cond2/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -193,7 +193,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsPackage</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsPackageBill</process:from>
       <process:to type="query">condP/_entity</process:to>
     </process:copy>
     <process:copy>

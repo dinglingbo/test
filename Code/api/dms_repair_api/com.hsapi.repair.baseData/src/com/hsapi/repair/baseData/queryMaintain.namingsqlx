@@ -20,6 +20,7 @@
 			c.mobile as guestTel,
 			b.car_brand_id as carBrandId,
 			a.guest_id as guestId,
+			a.mt_advisor_id as mtAdvisorId,
 			a.mt_advisor as mtAdvisor,
 			a.status as status,
 			a.service_type_id as serviceTypeId,
@@ -37,6 +38,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">
+                (a.mt_advisor_id = #mtAdvisorId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)

@@ -125,6 +125,7 @@
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()"><span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="doDelete()"><span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-check fa-lg"></span>&nbsp;结算</a>
             </td>
         </tr>

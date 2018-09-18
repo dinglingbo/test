@@ -670,4 +670,19 @@
         order by a.modify_date desc
 	</select>	    
 	
+	
+	   <select id="queryLastCheckMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	   
+	   select * from rps_check_main
+where 1=1
+
+<isNotEmpty prepend="and" property="carNo">  
+ car_no = #carNo#
+</isNotEmpty>
+<isNotEmpty prepend="and" property="endDate">  
+record_date &lt;  #endDate#
+</isNotEmpty>
+ORDER BY record_date DESC
+limit 1
+	   	</select>
 </sqlMap>

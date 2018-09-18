@@ -31,6 +31,10 @@ $(document).ready(function () {
 	        	var list = nui.decode(text.list);
 	        	if(list.length > 0){
 	        		billForm.setData(list[0]);
+	        	}
+	        	if(list.length  == 0){
+	        		showGridMsg(0);
+	        	}else{
 	        		showGridMsg(list[0].id);
 	        	}
 	        }
@@ -382,6 +386,31 @@ function save(){
         	showGridMsg(text.mainId);
         }
     });
+}
+
+function onPrint(e){
+	var main = billForm.getData();
+	if(main.id){
+		var params = {
+            serviceId : main.id,
+            comp : currOrgName,
+            baseUrl : baseUrl,
+            type : 1,
+            token : token
+        };
+		nui.open({
+	        url: "com.hsweb.print.settlement.flow",
+	        width: "100%",
+	        height: "100%",
+	        showMaxButton: false,
+	        allowResize: false,
+	        showHeader: true,
+	        onload: function() {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(params);
+	        },
+	    });
+	}
 }
 
 function showGridMsg(serviceId){

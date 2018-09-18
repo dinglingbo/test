@@ -8,7 +8,7 @@
   - Date: 2018-01-25 14:17:08
   - Description: 
 -->
-
+ 
 <head>
   <title>检查开单</title>  
   <style type="text/css">
@@ -60,7 +60,7 @@
             <span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单
           </a>
           <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="">
-            <span class="fa fa-edit fa-lg"></span>&nbsp;修改
+            <span class="fa fa-edit fa-lg"></span>&nbsp;查看
           </a>
         </td>
       </tr>
@@ -77,8 +77,9 @@
       <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
       <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
       <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
-      <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
+      <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
       <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
+      <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
       <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
     </div>
   </div>
@@ -88,7 +89,7 @@
   nui.parse();
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = apiPath + repairApi + "/";
-    var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+    var gridUrl = baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext";
     var mainGrid = nui.get("mainGrid"); 
     mainGrid.setUrl(gridUrl);
 
@@ -97,23 +98,15 @@ onSearch();
 
 function onSearch(){
   mainGrid.load({
-    billTypeId:1,  
+    
     token:token
   });
 }
 
-  function newCheckBill(mid,type) {
-    var item={};
-    item.id = "checkDetail";
-    item.text = "查车单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp?mid="+mid+"&actionType="+type;
-    item.iconCls = "fa fa-cog";
-    window.parent.activeTab(item);
-  }
-
+  
 
   function selectModel(){
-    nui.open({
+ /*   nui.open({
       url:"com.hsweb.repair.DataBase.checkMainSelect.flow",
       title:"选择模板",
       height:"300px",
@@ -125,7 +118,7 @@ function onSearch(){
 
       }
 
-    });
+    });*/
   }
 
 
@@ -144,18 +137,36 @@ function onSearch(){
     var record = e.record;
     var column = e.column;
     var sid = record.id;
-    newCheckBill(sid,'view');
+    newCheckMain(record);
   });
 
 
   function edit() {
     var row = mainGrid.getSelected();
     if(row){ 
-        newCheckBill(row.id,'edit');
+        newCheckMain(row);
     }else{
       nui.alert("请先选择一条记录！");
     }
   }
+
+
+
+  function newCheckMain(data) {  
+
+    var item={};
+    item.id = "checkPrecheckDetail";
+    item.text = "查车单";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
+    item.iconCls = "fa fa-cog";
+    //window.parent.activeTab(item);
+    var params = {};
+    params = { 
+        id:data.serviceId,
+    };
+    window.parent.activeTabAndInit(item,params);
+}  
+
 </script>
 
 </body>

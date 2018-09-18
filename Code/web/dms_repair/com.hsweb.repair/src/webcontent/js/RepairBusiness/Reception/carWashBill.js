@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/3/21.
  */ 
  var webBaseUrl = webPath + contextPath + "/";   
- var baseUrl = apiPath + repairApi + "/";    
- var mainGrid = null;
+ var baseUrl = apiPath + repairApi + "/";      
+ var mainGrid = null;  
  var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
@@ -2236,7 +2236,8 @@ function onPrint(e){
 		var params = {
             serviceId : main.id,
             comp : currOrgName,
-            baseUrl : baseUrl
+            baseUrl : baseUrl,
+            token : token
         };
 	 if(e == 1){
          openUrl = "com.hsweb.print.repairOrder.flow";
@@ -2339,6 +2340,7 @@ function newCheckMain() {
     };
 
     window.parent.activeTabAndInit(item,params);
+    carCheckInfo.hide();
 }  
 
 
@@ -2376,6 +2378,15 @@ function SearchCheckMain(callback) {
 
 
 function changeCheckInfoTab(resultdata) {
+
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","E");
+        return;
+    }
+
+SearchLastCheckMain();
+
     $("#checkStatus1").css("color","black");
     $("#checkStatus2").css("color","black");
     $("#checkStatus3").css("color","black");
@@ -2476,11 +2487,7 @@ function MemSelectCancel(e) {
     }
 
     if(e == 2){
-    var data = billForm.getData();
-    if(!data.id){
-        showMsg("请先保存工单!","E");
-        return;
-    }
+
         $("#show1").hide();
         $("#show2").show();
     }
@@ -2491,3 +2498,46 @@ function MemSelectCancel(e) {
         if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
         else window.close();
     }
+
+
+
+function SearchLastCheckMain() { 
+
+    $("#lastCheckInfo1").html('');
+    $("#lastCheckInfo2").html('');
+    $("#lastCheckInfo3").html("");
+    $("#lastCheckInfo4").hide();
+
+    var  tempParams = {
+        carNo:nui.get("carNo").value,
+        endDate:nui.get("recordDate").text
+    };
+    nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",
+        type:"post",
+        //async: false,
+        data:{ 
+            params:tempParams
+        },
+        cache: false,
+        success: function (text) {  
+            
+            var isRec = text.isRecord;
+            if(isRec == "1"){
+                var ldata = text.list[0];
+                var score = ldata.check_point || 0;
+                var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
+
+                $("#lastCheckInfo1").html('上次检查');
+                $("#lastCheckInfo2").html(score+"分");
+                $("#lastCheckInfo3").html(rdate);
+                $("#lastCheckInfo4").show();
+            }else{
+                $("#lastCheckInfo1").html('暂无相关历史检查数据！');
+            }
+
+        }
+    });
+ 
+}
+

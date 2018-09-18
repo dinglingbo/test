@@ -11,7 +11,7 @@
 <head>
 <title>领料出库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.39"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.0.7"></script>
     <style type="text/css">
 
    	#remark.mini-textbox{
@@ -66,7 +66,7 @@
                             popupHeight="90%"
                           />
 				</td>
-				<td>出库数量:<input required="true" valid="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
+				<td>出库数量:<input required="true"  valid="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
 			<tr id="out">
 				<td style="" colspan="2">出库原因:<input required="true"  class="nui-textarea" id="remark" name="remark" type="text" ></td>

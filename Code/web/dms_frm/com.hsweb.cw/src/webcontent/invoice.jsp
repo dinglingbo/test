@@ -12,7 +12,7 @@
 <head>
 	<title>开票单</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=1" type="text/javascript"></script>
+	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=3" type="text/javascript"></script>
 </head>
 <style type="text/css">
 	body {
@@ -39,17 +39,10 @@
 	<div class="nui-fit">
 		<div style="width: 100%; height: 30%;" id="form">
 			<input class="nui-hidden"id="state" value='<b:write property="state"/>'  name="state"/>  
-			<input class="nui-hidden"id="mainId" name="mainId"/>  
-			<div>
-				<h2>
-					<span id="left">开票单</span>
-				</h2>
-				<span id="right"></span>
-			</div>
-			<div>
-				<span>
-					<h2>发票信息</h2>
-				</span>
+			<input class="nui-hidden"id="serviceCode" value='<b:write property="serviceCode"/>'  name="serviceCode"/> 
+			<input class="nui-hidden"id="main" value='<b:write property="main"/>'  name="main"/> 
+			<div align="right">
+				<a class="nui-button" iconcls="" id="" name="" onclick="saveData()">开票</a>
 			</div>
 			<form id="form">
 				<table> 
@@ -91,11 +84,10 @@
 
 		</div>
 		<div class="nui-fit">
-			<span>
-				<h2>单据信息</h2>
-			</span>
-			<div id="grid" class="nui-datagrid " datafield="ticketDetail"  showsummaryrow="true" ondrawsummarycell="onDrawSummaryCell"editNextOnEnterKey="true" onCellEditEnter="onCellEditEnter"oncellbeginedit="oncellbeginedit" allowCellEdit="true"allowHeaderWrap="true"allowCellSelect="true" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:50%;" allowcellselect="true">
+			<div id="grid" class="nui-datagrid " datafield="ticketDetail"  showsummaryrow="true" ondrawsummarycell="onDrawSummaryCell"editNextOnEnterKey="true" onCellEditEnter="onCellEditEnter"oncellbeginedit="oncellbeginedit" allowCellEdit="true"allowHeaderWrap="true"allowCellSelect="true" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;" allowcellselect="true">
 				<div property="columns">
+					<div field="servcieId" name="servcieId" headeralign="center" align="center"visible="false">
+					</div>
 					<div field="serviceCode" name="serviceCode" headeralign="center" align="center">单号
 						<input class="nui-textbox" property="editor">
 					</div>
@@ -111,11 +103,45 @@
 					<div field="action" name="action" headeralign="center" align="center">操作</div>
 				</div>
 			</div>
-			<div style="height: 20px;"></div>
-			<div align="right">
-				<a class="nui-button" iconcls="" id="" name="" onclick="saveData()">开票</a>
-			</div>
 		</div>
+	<div id="advancedMorePartWin" class="nui-window"
+      style="width:700px;height:350px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     style="padding:2px;border-bottom:0;"
+     allowDrag="true">
+     <div class="nui-toolbar" >
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelect()" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onClose()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="moreGrid" class="nui-datagrid" style="width:100%;height:95%;"
+               dataField="data"               
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               totalField="page.count" sizeList=[20,50,100,200] pageSize="20"
+               url="">
+              <div property="columns">
+                <div type="indexcolumn">序号</div>
+                <div field="serviceId" name="serviceId" headeralign="center" align="center"visible="false">源单号</div>
+                <div field="serviceCode" name="serviceCode" headeralign="center" align="center">源单号</div>
+				<div field="guestFullName" name="guestFullName" headeralign="center">客户名称</div>
+				<div field="carNo" name="carNo" headeralign="center" align="center">车牌号</div>
+				<div field="contactMobile" name="contactMobile" headeralign="center" align="center">手机号</div>
+				<div field="recordDate" name="recordDate" headeralign="center" align="center">源单日期</div>
+				<div field="carId" name="carId" headeralign="center" align="center" visible="false"></div>
+				<div field="guestId" name="guestId" headeralign="center" align="center" visible="false"></div>
+              </div>
+          </div>
+    </div>
+</div>
 	</div>
 	<script type="text/javascript">
 		nui.parse();

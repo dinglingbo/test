@@ -12,7 +12,7 @@
 <head>
     <title>开票管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
@@ -48,6 +48,7 @@
         	<div id="grid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="">
                 <div property="columns">
+                	<div field="main" name="main" headeralign="center" align="center" width="40"visible="false"></div>
                     <div field="code" name="code" headeralign="center" align="center" width="40">开票单号</div>
                     <div field="serviceCode" name="serviceCode" headeralign="center" align="center"width="55">源单号</div>
                     <div field="guestFullName"  name="guestFullName" headeralign="center" align="center"width="30">客户姓名</div>
@@ -80,7 +81,10 @@
             if(e == 1){
             	url = "/cw/invoice.jsp";
             }else{
-            	url = "/cw/invoice.jsp?state=1";
+            	row = grid.getSelected();
+            	if(row){
+            		url = "/cw/invoice.jsp?state=1&serviceCode="+row.serviceCode+"&main="+row.main;
+            	}
             }
             item.url = webPath + contextPath + url;
             item.iconCls = "fa fa-cog";

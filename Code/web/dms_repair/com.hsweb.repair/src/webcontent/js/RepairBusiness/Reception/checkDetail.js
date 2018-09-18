@@ -442,6 +442,7 @@ function saveMaintain(callback,unmaskcall){
 
 function saveDetail(){
     //var mainGrid = nui.get("mainGrid");
+    var mdata = billForm.getData();
     mainGrid.commitEdit();
     var grid_all = mainGrid.getData(); //保存
     var gridData = [];
@@ -471,14 +472,17 @@ function saveDetail(){
 
         mainData = {
             id:mainParams.row.id,
-            enterKilometers:billForm.enterKilometers,
-            lastKilometers:billForm.lastKilometers,
-            lastPoint:billForm.lastPoint,
-            checkMan:billForm.checkMan,
-            checkPoint:billForm.checkPoint,
-            checkMainId:checkMainId.value,
-            checkMainName:checkMainName.value
+            enterKilometers:mdata.enterKilometers,
+            lastKilometers:mdata.lastKilometers,
+            lastPoint:mdata.lastPoint,
+            checkMan:mdata.checkMan,
+            checkPoint:mdata.checkPoint,
+
         };
+        if(actionType == "new"){
+            mainData.checkMainId = checkMainId.value;
+            mainData.checkMainName = checkMainName.value;
+        }
     }
     nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext",
@@ -518,7 +522,12 @@ function updateCheckMain(mData){
             token : token
         },
         success : function(data) {
+            if(data.errCode == "S"){
 
+            showMsg("数据保存成功!","S");
+            }else{
+            showMsg("数据保存成失败!","E");
+            }
         }
     });
 }
@@ -553,13 +562,13 @@ function setInitData(params){
     mainParams = nui.clone(params);
     
     if(!params.id){
-        //add(); 
+        //add();  
     }else{
         nui.mask({
-            el: document.body, 
+            el: document.body,  
             cls: 'mini-mask-loading',
             html: '数据加载中...'
-        });
+        }); 
 
         var mparams = {   
             data: {
@@ -620,13 +629,20 @@ function setInitData(params){
                         //doSearchMemCard(fguestId);
                         var temp = SearchCheckMain(params.id);
                         //data.checkMainId = temp.checkMainId;
-                        
+                        data.enterKilometers = temp.enterKilometers;
+                        data.lastKilometers = temp.lastKilometers;
+                        data.lastPoint = temp.lastPoint;
+                        data.checkMan = temp.checkMan;
+                        data.checkPoint = temp.checkPoint;
                         billForm.setData(data);
                         if(temp.checkMainName){
                             actionType = 'edit';
                             nui.get("checkMainId").setText(temp.checkMainName);
                             checkMainId.setEnabled(false);
                         }
+                        nui.get("guestFullName").setEnabled(false);
+                        nui.get("guestMobile").setEnabled(false);
+                        nui.get("carNo").setEnabled(false);
                         mainGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                         mainGrid.load({mainId:params.id,token:token});
 
@@ -643,7 +659,7 @@ function setInitData(params){
         });
     }
 }  
- 
+
 
 
 function ValueChanged(e) {
@@ -674,3 +690,5 @@ function SearchCheckMain(serviceId) {
     });
     return t;
 }
+
+

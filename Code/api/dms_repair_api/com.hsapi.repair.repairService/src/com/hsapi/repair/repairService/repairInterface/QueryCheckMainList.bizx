@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCheckMainbyServiceId.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="QueryCheckMainList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -55,28 +55,12 @@
       <process:to type="query">ct/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/serviceId</process:from>
+      <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">ct/_expr[1]/serviceId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">isRecord</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/carNo</process:from>
-      <process:to type="query">ct/_expr[2]/carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/mtAdvisor</process:from>
-      <process:to type="query">ct/_expr[3]/mtAdvisor</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">recordDate</process:from>
-      <process:to type="query">ct/_orderby[1]/_property</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">desc</process:from>
-      <process:to type="query">ct/_orderby[1]/_sort</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -187,7 +171,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="ct"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+    <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>

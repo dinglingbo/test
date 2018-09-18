@@ -37,6 +37,45 @@
         </dynamic>
  
 	</select>
+	
+	   <select id="queryCardStoredList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
+         a.id id,
+         c.full_name fullName,
+         c.mobile mobile,
+         a.card_name cardName,
+         a.record_date recordDate,
+         a.recharge_amt rechargeAmt,
+         a.give_amt giveAmt,
+         a.total_amt totalAmt,
+         a.use_amt useAmt,
+         a.package_rate packageRate,
+         a.item_rate itemRate,
+         a.part_rate partRate,
+         a.recorder recorder
+         FROM rps_card_stored a 
+         INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+         WHERE  a.orgid = #orgid#
+         <dynamic>
+         <isNotEmpty prepend="and" property="guestName">  
+	            (c.full_name like '%$guestName$%')
+	     </isNotEmpty>
+	      <isNotEmpty prepend="and" property="guestTelephone">  
+	            (c.mobile like '%$guestTelephone$%')
+	     </isNotEmpty>
+	     <isNotEmpty prepend="and" property="cardName">  
+	            (a.card_name like '%$cardName$%')
+	    </isNotEmpty>
+    	<isNotEmpty prepend="and" property="startDate"> 
+                (date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
+         </isNotEmpty>
+         <isNotEmpty prepend="and" property="endDate">
+                (date_format(a.record_date,'%Y-%m-%d') &lt;= #endDate#)
+         </isNotEmpty>
+        </dynamic>
+ 
+	</select>
+	
 <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">
 	
 	select 

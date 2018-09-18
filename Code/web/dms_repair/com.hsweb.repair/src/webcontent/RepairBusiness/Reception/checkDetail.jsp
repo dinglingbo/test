@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
 
-<html>
+<html> 
 <!-- 
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20 
@@ -12,7 +12,7 @@
 <head> 
     <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.954"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.956"></script>
     <style type="text/css">
     body { 
         margin: 0;

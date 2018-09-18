@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.37"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.6.42"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -433,19 +433,19 @@ allowDrag="false">
     <table style="width: 100%;background-color: #eef1f4">
         <tr style="height: 40px;">
             <td class="">
-                <label>上次检查</label>
+                <label id="lastCheckInfo1"></label>
             </td>
 
             <td class="">
-                <label>90分</label>
+                <label id="lastCheckInfo2"></label>
             </td>
 
             <td class="">
-                <label>（2018-9-8）</label>
+                <label id="lastCheckInfo3"></label>
             </td>
 
             <td class="">
-                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="" id="">查看</a>
+                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="" id="lastCheckInfo4" style="display: none">查看</a>
             </td>
         </tr>
     </table>
@@ -491,7 +491,19 @@ allowDrag="false">
             </td>
 
             <td class="">
-               <input class="nui-combobox " allowInput="true" style="width:150px;" />
+                <input name="checkManId"
+                id="checkManId"
+                style="width:150px;" 
+                class="nui-combobox "
+                textField="empName"
+                valueField="empId"
+                emptyText="请选择..."
+                url=""
+                allowInput="true"
+                required="true"
+                showNullItem="false"
+                valueFromSelect="true"
+                nullItemText="请选择..."/>
            </td>
        </tr>
    </table>

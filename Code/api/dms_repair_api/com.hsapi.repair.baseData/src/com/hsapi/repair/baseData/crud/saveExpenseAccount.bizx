@@ -20,7 +20,7 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link64</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="1220" y="542"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -170,7 +170,7 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="235" y="256"/>
+    <location x="228" y="256"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -184,17 +184,17 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="211" y="292"/>
+    <location x="204" y="292"/>
     <figSize height="20" width="70"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
-    <location x="342" y="256"/>
+    <location x="330" y="256"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -203,7 +203,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="336" y="292"/>
+    <location x="324" y="292"/>
     <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
@@ -213,7 +213,7 @@
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
-    <location x="133" y="256"/>
+    <location x="127" y="256"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -262,7 +262,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="127" y="292"/>
+    <location x="121" y="292"/>
     <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>
@@ -448,7 +448,7 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <targetConnections>link25</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="540" y="46"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -603,12 +603,12 @@
     <node>invokePojo10</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="运算逻辑11" displayName="Batch delete recoreds according to the primary key" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo11</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign8</targetNode>
     </sourceConnections>
     <targetConnections>link62</targetConnections>
-    <location x="1061" y="542"/>
+    <location x="1005" y="542"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo11label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -622,7 +622,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo11label" name="label" nodeType="label">
-    <location x="1033" y="578"/>
+    <location x="977" y="578"/>
     <figSize height="20" width="79"/>
     <node>invokePojo11</node>
   </nodes>
@@ -867,6 +867,53 @@
     <figSize height="20" width="40"/>
     <node>assign6</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo12" name="运算逻辑12" displayName="Update a record" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo12</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="1144" y="542"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo12label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">main</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo12label" name="label" nodeType="label">
+    <location x="1116" y="578"/>
+    <figSize height="20" width="79"/>
+    <node>invokePojo12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>invokePojo12</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="1072" y="542"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">sourceServiceId</process:from>
+      <process:to type="query">main/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">main/isOutBill</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="1066" y="578"/>
+    <figSize height="20" width="40"/>
+    <node>assign8</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="localhost" createTime="2018-09-14 14:31:37" date="2018-09-14Z" description="" name="saveExpenseAccount" version="7.0.0.0"/>
@@ -875,6 +922,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPackageBill" name="f"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItemBill" name="ff"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPartBill" name="fff"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="maintainBill"/>
@@ -887,6 +935,7 @@
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPartBill" name="partInsert"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPartBill" name="partRemoved"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPartBill" name="partModifiy"/>
+    <process:input description="" isArray="false" name="sourceServiceId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="mainId" primitiveType="Int"/>

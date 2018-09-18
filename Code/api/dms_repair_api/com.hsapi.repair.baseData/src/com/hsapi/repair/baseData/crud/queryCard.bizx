@@ -215,7 +215,9 @@
   <topRuler>
     <guides position="330" horizontal="true"/>
   </topRuler>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="370" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2018-08-03 10:30:39" date="2018-08-03Z" description="" name="queryCard" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="temp" primitiveType="String"/>

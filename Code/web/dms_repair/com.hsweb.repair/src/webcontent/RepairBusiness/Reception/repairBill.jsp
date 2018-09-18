@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.2.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.2.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -147,8 +147,9 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-gift fa-lg"></span>&nbsp;更多</a>
 
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="addcardTime()" id="type10">新增报销单</li>
-                    <li iconCls="" onclick="addcardTime()" id="type10">车牌替换/修改</li>
+                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
+                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                    <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
                     <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li>
                 </ul>
             </td>

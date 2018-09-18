@@ -1,16 +1,16 @@
 /**
  * Created by Administrator on 2018/3/21.
- */
- var webBaseUrl = webPath + contextPath + "/";
- var baseUrl = apiPath + repairApi + "/"; 
- var mainGrid = null;
+ */ 
+ var webBaseUrl = webPath + contextPath + "/";   
+ var baseUrl = apiPath + repairApi + "/";      
+ var mainGrid = null;  
  var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
  var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
- var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-
+ var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
+  
  var billForm = null;
  var xyguest = null; 
  var brandList = [];
@@ -229,6 +229,10 @@ $(document).ready(function ()
             servieTypeHash[v.id] = v;
         });
     });
+    initMember("checkManId",function(){
+       
+    });
+    
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
@@ -1374,8 +1378,8 @@ function showCarCheckInfo(){
         return;
     }
 
-    var atEl = document.getElementById("clubCardEl");  
-    carCheckInfo.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    var atEl = document.getElementById("carHealthEl");  
+    carCheckInfo.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
     advancedCardTimesWin.hide();
     advancedMemCardWin.hide();
     MemSelectCancel(1);
@@ -2320,7 +2324,7 @@ function pay(){
 }
 
 
-function newCheckMain() { 
+function newCheckMain() {  
     var data = billForm.getData();
     var item={};
     item.id = "checkPrecheckDetail";
@@ -2335,11 +2339,17 @@ function newCheckMain() {
     };
 
     window.parent.activeTabAndInit(item,params);
+    carCheckInfo.hide();
 }  
 
 
 function MemSelectOk(){ 
-
+    var form = new nui.Form("#show2");
+            form.validate();
+            if (form.isValid() == false) {
+                showMsg("请先选择被派工人！","W");
+                return;
+            }
     SaveCheckMain();
 }
 
@@ -2351,7 +2361,7 @@ function SearchCheckMain(callback) {
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
-        //async: false,
+        async: false,
         data:{ 
             serviceId:data.id
         },
@@ -2367,6 +2377,15 @@ function SearchCheckMain(callback) {
 
 
 function changeCheckInfoTab(resultdata) {
+
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","E");
+        return;
+    }
+
+SearchLastCheckMain();
+
     $("#checkStatus1").css("color","black");
     $("#checkStatus2").css("color","black");
     $("#checkStatus3").css("color","black");
@@ -2385,18 +2404,18 @@ function changeCheckInfoTab(resultdata) {
         $("#checkStatusButton1").show();
         $("#checkStatusButton2").hide();
     }else{
-        if(!detailList.checkMan && detailList.checkStatus == 0){
+        if(detailList.checkMan && detailList.checkStatus == 0){
             $("#checkStatus2").css("color","#32b400");
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show();
 
         }
-        if(!detailList.checkMan && detailList.checkStatus == 1){
+        if(detailList.checkMan && detailList.checkStatus == 1){
             $("#checkStatus3").css("color","#32b400");
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show();
         }
-        if(!detailList.checkMan && detailList.checkStatus == 2){ 
+        if(detailList.checkMan && detailList.checkStatus == 2){ 
             $("#checkStatus4").css("color","#32b400");   
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show(); 
@@ -2410,7 +2429,7 @@ function SaveCheckMain() {
         showMsg("请先保存工单!","E");
         return;
     }
-    if(isRecord == "1"){
+    if(isRecord == "0"){
 
 
 
@@ -2422,7 +2441,9 @@ function SaveCheckMain() {
         checkStatus:0,
         enterKilometers:data.enterKilometers,
         mtAdvisorId:data.mtAdvisorId,
-        mtAdvisor:data.mtAdvisor
+        mtAdvisor:data.mtAdvisor,
+        checkManId:nui.get("checkManId").value,
+        checkMan:nui.get("checkManId").text
     };
     var mtemp = {
         id:data.id
@@ -2441,9 +2462,10 @@ function SaveCheckMain() {
             var errCode = text.errCode;
             if(errCode == "S"){
                 rdata  = text.mainData;
-                newCheckMain();
+                //newCheckMain();
                 //CloseWindow('close');
-                //showMsg('保存成功!','S'); 
+                carCheckInfo.hide();
+                showMsg('派工成功!','S'); 
             }else{
                 //showMsg('保存失败!','E'); 
             }
@@ -2451,6 +2473,7 @@ function SaveCheckMain() {
     }); 
     }else{
         newCheckMain();
+        carCheckInfo.hide();
 }
 }
 
@@ -2474,3 +2497,46 @@ function MemSelectCancel(e) {
         if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
         else window.close();
     }
+
+
+
+function SearchLastCheckMain() { 
+
+    $("#lastCheckInfo1").html('');
+    $("#lastCheckInfo2").html('');
+    $("#lastCheckInfo3").html("");
+    $("#lastCheckInfo4").hide();
+
+    var  tempParams = {
+        carNo:nui.get("carNo").value,
+        endDate:nui.get("recordDate").text
+    };
+    nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",
+        type:"post",
+        //async: false,
+        data:{ 
+            params:tempParams
+        },
+        cache: false,
+        success: function (text) {  
+            
+            var isRec = text.isRecord;
+            if(isRec == "1"){
+                var ldata = text.list[0];
+                var score = ldata.check_point || 0;
+                var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
+
+                $("#lastCheckInfo1").html('上次检查');
+                $("#lastCheckInfo2").html(score+"分");
+                $("#lastCheckInfo3").html(rdate);
+                $("#lastCheckInfo4").show();
+            }else{
+                $("#lastCheckInfo1").html('暂无相关历史检查数据！');
+            }
+
+        }
+    });
+ 
+}
+

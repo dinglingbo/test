@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
 
-<html>
+<html> 
 <!-- 
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20 
@@ -12,7 +12,7 @@
 <head> 
     <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.953"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.956"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -133,7 +133,7 @@
 
                 <td class="tbtext">车牌:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
+                    <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
                 </td>
 
                 <td class="tbtext">检查模板:</td>
@@ -147,32 +147,32 @@
             <tr>
                 <td class="tbtext">上次检查时间:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
+                    <input class="nui-datepicker tabwidth" name="" id="" format="yyyy-MM-dd"/>
                 </td>
                <td class="tbtext">上次检查里程:</td>
                <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" />
+                <input class="nui-textbox tabwidth" name="lastKilometers" id="lastKilometers"/>
             </td>
 
                 <td class="tbtext">上次检查项目:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="enterOilMass" id="enterOilMass"/>
+                    <input class="nui-textbox tabwidth" name="" id=""/>
                 </td>
                 <td class="tbtext">上次检查得分:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth"  name="enterKilometers" id="enterKilometers"/>
+                    <input class="nui-textbox tabwidth"  name="lastPoint" id="lastPoint"/>
                 </td>
        
             </tr>
             <tr>
                 <td class="tbtext">检查人:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
+                    <input class="nui-textbox tabwidth" id="checkMan" name="checkMan"/>
                 </td>
 
                         <td class="tbtext">本次里程:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
+                <input class="nui-textbox tabwidth" name="enterKilometers" id="enterKilometers"/>
             </td>
             <td class="tbtext">服务顾问:</td>
             <td class="tbCtrl">
@@ -193,7 +193,7 @@
 
             <td class="tbtext">本次检查得分:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
+                <input class="nui-textbox tabwidth" name="checkPoint" id="checkPoint"/>
             </td>
 
         </tr>

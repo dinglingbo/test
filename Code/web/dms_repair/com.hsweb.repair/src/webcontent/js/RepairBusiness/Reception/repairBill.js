@@ -702,8 +702,15 @@ function setInitData(params){
 
                         doSearchCardTimes(fguestId);
                         doSearchMemCard(fguestId);
-    
+                        
                         billForm.setData(data);
+                        if(data.isOutBill){
+                        	nui.get("ExpenseAccount").setVisible(false);
+                        	nui.get("ExpenseAccount1").setVisible(true);
+                        }else{
+                        	nui.get("ExpenseAccount").setVisible(true);
+                        	nui.get("ExpenseAccount1").setVisible(false);
+                        }
                         sendGuestForm.setData(data);
 
                         var p1 = {
@@ -2963,4 +2970,16 @@ function onDrawSummaryCellPart(e){
 	
 }
 
+function addExpenseAccount(){
+	var data = billForm.getData();
+	if(data.id){
+		var item={};
+	    item.text = " 报销单";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.ExpenseAccount.flow?sourceServiceId="+data.id;
+		item.iconCls = "fa fa-cog";
+		window.parent.activeTab(item);
+	}else{
+		showMsg("请先保存后再进行操作。","W");
+	}
+}
 

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.6"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -88,6 +88,7 @@
 
 
 <div class="nui-toolbar" style="padding:2px;height:30px">
+	<input class="nui-hidden"id="sourceServiceId" value='<b:write property="sourceServiceId"/>'  name="sourceServiceId"/> 
 	<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
 										   valueField="id" allowInput="true" valueFromSelect="true"
 										   textField="name"/>
@@ -233,14 +234,12 @@
     </span>
 </div>
                             <div style="width:100%;height:5px;"></div>
-                            <div id="rpsItemGrid"
-     borderStyle="border-bottom:1;"
-     class="nui-datagrid"
-     dataField="bb"
-     style="width: 100%; height:auto;"
-     showPager="false"
-     showModified="false"
-     allowSortColumn="true" allowCellEdit="true" allowCellSelect="true">
+                            <div id="rpsItemGrid" class="nui-datagrid"
+		     style="width:100%;height:auto;"
+		     dataField="bb"
+		     showPager="false"
+		     showModified="false"
+		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
     <div property="columns">
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="工时信息">

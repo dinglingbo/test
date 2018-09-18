@@ -205,6 +205,7 @@ function selectCustomer() {
         main.contactorName = v.guestFullName;
         main.carId = v.carId;
         main.carNo = v.carNo;
+        main.carVin = v.vin;
         main.carBrandId = v.carBrandId;
         main.carSeriesId = v.carSeriesId;
         main.contactorId = v.contactorId;

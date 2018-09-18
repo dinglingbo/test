@@ -19,6 +19,131 @@ $(document).ready(function () {
 	    });
 	 });
 	
+	if(nui.get("sourceServiceId").value){
+		nui.ajax({
+	        url: baseUrl+"com.hsapi.repair.repairService.query.searchRpsMaintainBill.biz.ext",
+	        type: "post",
+	        cache: false,
+	        data: {
+	        	sourceServiceId : nui.get("sourceServiceId").value
+	        },
+	        success: function(text) {
+	        	var list = nui.decode(text.list);
+	        	if(list.length > 0){
+	        		billForm.setData(list[0]);
+	        		showGridMsg(list[0].id);
+	        	}
+	        }
+	    });
+	}
+	
+	rpsPackageGrid.on("load",function(e){
+		var data = rpsPackageGrid.getData();
+		if(data.length == 0){
+			rpsPackageGrid.setData([]);
+			nui.ajax({
+		        url: baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
+		        type: "post",
+		        cache: false,
+		        data: {
+		        	serviceId : nui.get("sourceServiceId").value
+		        },
+		        success: function(text) {
+		        	var data = nui.decode(text.data);
+		        	if(data.length > 0){
+		        		for(var i = 0 , l = data.length ; i < l ; i ++){
+		        			var packageId = data[i].id;
+		        			var packageName = data[i].prdtName || "";
+		        			var subtotal = data[i].subtotal || "";
+		        			var rate = data[i].rate || "";
+		        			var amt = data[i].amt || "";
+		        			var newRow = {
+		        					packageId : packageId,
+		        					packageName : packageName,
+		        					subtotal : subtotal,
+		        					rate : rate,
+		        					amt : amt
+		        			};
+		        			var dataAll = rpsPackageGrid.getData();
+		        			rpsPackageGrid.addRow(newRow,dataAll.length);
+		        		}
+		        	}
+		        }
+		    });
+		}
+	});
+	
+	rpsItemGrid.on("load",function(e){
+		var data = rpsItemGrid.getData();
+		if(data.length == 0){
+			rpsItemGrid.setData([]);
+			nui.ajax({
+		        url: baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext",
+		        type: "post",
+		        cache: false,
+		        data: {
+		        	serviceId : nui.get("sourceServiceId").value
+		        },
+		        success: function(text) {
+		        	var data = nui.decode(text.data);
+		        	if(data.length > 0){
+		        		for(var i = 0 , l = data.length ; i < l ; i ++){
+		        			var itemName = data[i].itemName || "";
+		        			var itemTime = data[i].itemTime || "";
+		        			var unitPrice = data[i].unitPrice || "";
+		        			var rate = data[i].rate || "";
+		        			var newRow = {
+		        					itemName : itemName,
+		        					itemTime : itemTime,
+		        					unitPrice : unitPrice,
+		        					rate : rate
+		        			};
+		        			var dataAll = rpsItemGrid.getData();
+		        			rpsItemGrid.addRow(newRow,dataAll.length);
+		        		}
+		        	}
+		        }
+		    });
+		}
+	});
+	
+	rpsPartGrid.on("load",function(e){
+		var data = rpsPartGrid.getData();
+		if(data.length == 0){
+			rpsPartGrid.setData([]);
+			nui.ajax({
+		        url: baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",
+		        type: "post",
+		        cache: false,
+		        data: {
+		        	serviceId : nui.get("sourceServiceId").value
+		        },
+		        success: function(text) {
+		        	var data = nui.decode(text.data);
+		        	if(data.length > 0){
+		        		for(var i = 0 , l = data.length ; i < l ; i ++){
+		        			var partName = data[i].partName || "";
+		        			var qty = data[i].qty || "";
+		        			var unitPrice = data[i].unitPrice || "";
+		        			var rate = data[i].rate || "";
+		        			var subtotal = data[i].subtotal || "";
+		        			var newRow = {
+		        					partName : partName,
+		        					qty : qty,
+		        					unitPrice : unitPrice,
+		        					rate : rate,
+		        					subtotal : subtotal
+		        			};
+		        			var dataAll = rpsPartGrid.getData();
+		        			rpsPartGrid.addRow(newRow,dataAll.length);
+		        		}
+		        	}
+		        }
+		    });
+		}
+	});
+	
+	
 	initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
     });
@@ -249,34 +374,21 @@ function save(){
         	 partInsert : partInsert,
         	 partRemoved : partRemoved,
         	 partModifiy : partModifiy,
-             token : token
+             token : token,
+             sourceServiceId : nui.get("sourceServiceId").value
         },
         success: function(text) {
         	nui.get("rid").setValue(text.mainId);
-        	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
-        	rpsPackageGrid.load({serviceId : text.mainId,token : token});
-        	rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
-        	rpsItemGrid.load({serviceId : text.mainId,token : token});
-        	rpsPartGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
-        	rpsPartGrid.load({serviceId : text.mainId,token : token});
+        	showGridMsg(text.mainId);
         }
     });
 }
 
-
-function setData(){
-	nui.ajax({
-        url: baseUrl+"com.hsapi.repair.repairService.query.searchRpsMaintainBill.biz.ext",
-        type: "post",
-        cache: false,
-        data: {
-        	sourceServiceId : 294
-        },
-        success: function(text) {
-        	var list = nui.decode(text.list);
-        	if(list.length > 0){
-        		billForm.setData(list[0]);
-        	}
-        }
-    });
+function showGridMsg(serviceId){
+	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
+	rpsPackageGrid.load({serviceId : serviceId,token : token});
+	rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
+	rpsItemGrid.load({serviceId : serviceId,token : token});
+	rpsPartGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
+	rpsPartGrid.load({serviceId : serviceId,token : token});
 }

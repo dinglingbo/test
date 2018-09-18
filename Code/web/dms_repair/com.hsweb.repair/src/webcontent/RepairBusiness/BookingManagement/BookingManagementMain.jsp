@@ -11,7 +11,7 @@
 -->
 <head>
 <title>预约管理</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementMain.js?v=1.0.21"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/BookingManagement/BookingManagementMain.js?v=1.0.22"></script>
 <style type="text/css">
 table {
 	font-size: 12px;

@@ -2344,6 +2344,8 @@ function onPkgSubtotalValuechanged(e) {
     var row = rpsPackageGrid.getEditorOwnerRow(el);
     //获取指定列和行的编辑器控件对象
     var editor = rpsPackageGrid.getCellEditor("pkgRate", row);
+    var setPKgSubtotal = rpsPackageGrid.getCellEditor("pkgSubtotal", row);
+
 
     var subtotal = el.getValue()||0;
     var amt = row.amt||0;
@@ -2354,6 +2356,7 @@ function onPkgSubtotalValuechanged(e) {
     rate = rate * 100;
     rate = rate.toFixed(2);
     editor.setValue(rate);
+    setPKgSubtotal.setValue(subtotal);
 	}
 }
 
@@ -2369,11 +2372,12 @@ function onPkgRateValuechanged(e){
 		
 		showMsg("请输入0到100之间的数!","W");
 		e.cancel = true; 
-		return;
+		return;rate
 	} else{
     var row = rpsPackageGrid.getEditorOwnerRow(el);
     //获取指定列和行的编辑器控件对象
     var editor = rpsPackageGrid.getCellEditor("pkgSubtotal", row);
+    var setPkgRate = rpsPackageGrid.getCellEditor("pkgRate", row);
     var amt = row.amt||0;
     var subtotal = 0;
     if(amt>0){
@@ -2381,6 +2385,7 @@ function onPkgRateValuechanged(e){
     }
     subtotal = subtotal.toFixed(2);
     editor.setValue(subtotal);
+    setPkgRate.setValue(rate);
 	}
 }
 

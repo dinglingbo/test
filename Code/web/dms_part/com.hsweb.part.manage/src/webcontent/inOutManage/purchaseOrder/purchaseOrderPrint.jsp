@@ -51,8 +51,8 @@ table{
         	</div> 
             <div>
 				<table id="" width="100%" border="1">
-					<thead>
-						<tr>
+					<tbody>
+                        <tr>
 							<td id="comPartCode">配件编码</td>
 							<td id="comPartName">配件名称</td>
 							<td id="comPartBrandId">品牌</td>
@@ -67,9 +67,9 @@ table{
 							<td id="comOemCode">OEM码</td>
 							<td id="comSpec">规格/方向/颜色</td>
 						</tr>
-					</thead>
-					 <tbody id="tbodyId">
-					 </tbody>
+                        <tbody id="tbodyId">
+						</tbody>
+                    </tbody>
 				</table>
 			</div>
             <div>
@@ -115,9 +115,9 @@ table{
     			},
     			async :false,
     			success : function(text){
-    				var data=text.pjPchsOrderDetailList;
-    				var tBody=$("tbodyId");
-    				tBody.empty();
+    				var data= nui.decode(text.pjPchsOrderDetailList);
+    				var tBody = $("#tbodyId");
+					tBody.empty();
     				var tds='<td align="center">[comPartCode]</td>'+
     						'<td align="center">[comPartName]</td>'+
     						'<td align="center">[comPartBrindId]</td>'+
@@ -131,7 +131,7 @@ table{
     						'<td align="center">[storeShelf]</td>'+
     						'<td align="center">[comOemCode]</td>'+
     						'<td align="center">[comSepc]</td>';			  			
-    					for(var i=0;i<data.length;i++){ 
+    					for(var i = 0; i < data.length; i++ ){ 
     						var tr=$("<tr></tr>");
     						tr.append(
     							tds.replace("[comPartCode]",data[i].comPartCode)

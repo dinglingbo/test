@@ -266,8 +266,8 @@
                                     <div field="comPartName" headerAlign="center" header="配件名称">
                                         <!-- <input property="editor" class="nui-textbox" data="codeList" valueField="code" textField="code"/> -->
                                     </div>
-                                    <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                    <div field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                    <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                    <div field="comApplyCarModel" id="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
                                     <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
                                 </div>
                             </div>

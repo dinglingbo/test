@@ -1750,42 +1750,49 @@ function addGuest(){
 	});
 }
 function onPrint() {
-	var row = leftGrid.getSelected();
-
-	var data = rightGrid.getData();
-	if(data && data.length<=0) return;
-
-	if (row) {
-
-		if(!row.id) return;
-
-		var auditSign = row.auditSign||0;
-
-		nui.open({                                    
-			url : webPath + contextPath + "/com.hsweb.part.manage.pchsOrderEnterPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
-			title : "采购入库打印",
-			width : 900,
-			height : 600,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				// iframe.contentWindow.setInitData(storeId, 'XSD');
-			}
-		});
-
-		// nui.open({
-
-		// 	url : webPath + contextPath + "/com.hsweb.part.purchase.purchaseOrderPrint.flow?ID="
-		// 			+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
-		// 	title : "采购入库打印",
-		// 	width : 900,
-		// 	height : 600,
-		// 	onload : function() {
-		// 		var iframe = this.getIFrameEl();
-		// 		// iframe.contentWindow.setInitData(storeId, 'XSD');
-		// 	}
-		// });
+	
+	
+	var main = leftGrid.getSelected();
+	if(!main){
+		showMsg("请选择一条记录");
 	}
+	var detail=rightGrid.getData();
+	var mainParams=main;
+	var billTypeId=nui.get('billTypeId').text;
+	var settleTypeId=nui.get('settleTypeId').text;
+	var formParms={
+			billTypeId :billTypeId,
+			settleTypeId:settleTypeId
+	};
+	var detailParms=detail;
+
+	for(var i=0;i<detailParms.length;i++){
+		for(var j=0;j<storehouse.length;j++){
+			if(detailParms[i].storeId==storehouse[j].id){
+				detailParms[i].storehouse=storehouse[j].name;
+			}
+		}
+	}
+	
+	for(var i=0;i<detailParms.length;i++){	
+		var comPartBrindId=detailParms[i].comPartBrandId;
+		detailParms[i].comPartBrindId=brandList[comPartBrindId-1].name;
+	}
+	
+	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
+
+     nui.open({
+        url: openUrl,
+        width: "100%",
+        height: "100%",
+        showMaxButton: false,
+        allowResize: false,
+        showHeader: true,
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(mainParams,detailParms,formParms);
+        },
+    });
 
 }
 function addSelectPart(){

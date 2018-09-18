@@ -11,6 +11,7 @@
 <head>
     <title>报销单</title>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -181,7 +182,7 @@
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"
-                    allowInput="false" format="yyyy-MM-dd H:mm:ss"
+                    allowInput="false" format="yyyy-MM-dd"
                     class="nui-datepicker" />
                 </td>
             </tr>
@@ -309,10 +310,7 @@
 </div>
                         </div>
                 
-                        <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
-                            showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
-                        >
-                        </div>
+                        
                     </div>
     </div>
 

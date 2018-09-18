@@ -784,26 +784,47 @@ function auditToOut()
     });
 }
 function onPrint() {
-    var row = leftGrid.getSelected();
-    if (row) {
+	var main = leftGrid.getSelected();
+	if(!main){
+		showMsg("请选择一条记录");
+	}
+	var detail=rightGrid.getData();
+	var mainParams=main;
+	var settleTypeId=nui.get('settleTypeId').text;
+	var rtnReasonId= nui.get('rtnReasonId').text;
+	var formParms={
+			settleTypeId :settleTypeId,
+			rtnReasonId:rtnReasonId
+	};
+	var detailParms=detail;
 
-        if(!row.id) return;
+	for(var i=0;i<detailParms.length;i++){
+		for(var j=0;j<storehouse.length;j++){
+			if(detailParms[i].storeId==storehouse[j].id){
+				detailParms[i].storehouse=storehouse[j].name;
+			}
+		}
+	}
+	
+	for(var i=0;i<detailParms.length-1;i++){	
+		var comPartBrindId=detailParms[i].comPartBrandId;
+		detailParms[i].comPartBrindId=brandList[comPartBrindId-1].name;
+	}
+	
+	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderRtn/PurchaseOrderRtnPrint.jsp";
 
-		var auditSign = row.auditSign||0;
-
-        nui.open({
-
-            url : webPath + contextPath + "/com.hsweb.part.manage.pchsOrderRtnPrint.flow?ID="
-                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
-            title : "采购退货打印",
-            width : 900,
-            height : 600,
-            onload : function() {
-                var iframe = this.getIFrameEl();
-                // iframe.contentWindow.setInitData(storeId, 'XSD');
-            }
-        });
-    }
+     nui.open({
+        url: openUrl,
+        width: "100%",
+        height: "100%",
+        showMaxButton: false,
+        allowResize: false,
+        showHeader: true,
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(mainParams,detailParms,formParms);
+        },
+    });
 
 }
 function add()

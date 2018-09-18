@@ -255,6 +255,28 @@ function save(){
         	nui.get("rid").setValue(text.mainId);
         	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
         	rpsPackageGrid.load({serviceId : text.mainId,token : token});
+        	rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
+        	rpsItemGrid.load({serviceId : text.mainId,token : token});
+        	rpsPartGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
+        	rpsPartGrid.load({serviceId : text.mainId,token : token});
+        }
+    });
+}
+
+
+function setData(){
+	nui.ajax({
+        url: baseUrl+"com.hsapi.repair.repairService.query.searchRpsMaintainBill.biz.ext",
+        type: "post",
+        cache: false,
+        data: {
+        	sourceServiceId : 294
+        },
+        success: function(text) {
+        	var list = nui.decode(text.list);
+        	if(list.length > 0){
+        		billForm.setData(list[0]);
+        	}
         }
     });
 }

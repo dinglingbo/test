@@ -11,7 +11,7 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=7" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=8" type="text/javascript"></script>
 </head>
 <style type="text/css">
         body { 
@@ -80,11 +80,11 @@
                     <tr>
                         <td style="width:80px;"align="right">注册时间：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="firstRegDate" width="100%" allowInput="false"/>
+                            <input class="nui-datepicker" name="firstRegDate" width="100%" allowInput="false" id="firstRegDate"/>
                         </td>
                         <td style="width:80px;"align="right">年审到期：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="annualVerificationDueDate" width="100%" allowInput="false"/>
+                            <input class="nui-datepicker" name="annualVerificationDueDate" width="100%" allowInput="false"/>
                         </td>
                     </tr>
                 </table>
@@ -106,7 +106,7 @@
                         </td>
                         <td style="width:80px;"align="right">建议保养时间：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
+                            <input class="nui-datepicker" name="" width="100%" allowInput="false"/>
                         </td>
                     </tr>
                 </table>
@@ -120,11 +120,11 @@
                     <tr>
                         <td style="width:80px;"align="right">交强险到期时间：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="insureDueDate" width="100%" allowInput="false"/>
+                            <input class="nui-datepicker" name="insureDueDate" width="100%" allowInput="false"/>
                         </td>
                         <td style="width:80px;"align="right">商业险到期时间：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="annualInspectionDate" width="100%" allowInput="false"/>
+                            <input class="nui-datepicker" name="annualInspectionDate" width="100%" allowInput="false"/>
                         </td>
                     </tr>
                     <tr>

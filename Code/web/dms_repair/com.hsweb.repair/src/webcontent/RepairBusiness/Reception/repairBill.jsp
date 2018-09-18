@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.1.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.2.5"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -205,44 +205,44 @@
         <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
             showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
         >
-            <div id="billForm" class="form">
+            <div id="sellForm" class="form">
                     <table style="width: 100%;">
                         <tr>
                             <td class="title">
                                 <label>套餐金额：</label>
                             </td>
                             <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                                <input class="nui-textbox" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
                             </td>
                             <td class="title">
                                 <label>套餐优惠：</label>
                             </td>
                             <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                                <input class="nui-textbox" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
                             </td>
                             <td class="title">
                                 <label>工时金额：</label>
                             </td>
                             <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                                <input class="nui-textbox" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
                             </td>
                             <td class="title">
                                 <label>工时优惠：</label>
                             </td>
                             <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                                <input class="nui-textbox" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
                             </td>
                             <td class="title">
                                 <label>零件金额：</label>
                             </td>
                             <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                                <input class="nui-textbox" enabled="false" width="100%" id="partSubtotal" name="partSubtotal"/>
                             </td>
                             <td class="title">
                                 <label>零件优惠：</label>
                             </td>
                             <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                                <input class="nui-textbox" enabled="false" width="100%" id="partPrefAmt" name="partPrefAmt"/>
                             </td>
                         </tr>
                         <tr>
@@ -250,13 +250,11 @@
                                 <label>应收总计：</label>
                             </td>
                             <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
+                                <input class="nui-textbox" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
                             </td>
                         </tr>
                     </table>
                 </div>
-
-
         </div>
     </div>
    

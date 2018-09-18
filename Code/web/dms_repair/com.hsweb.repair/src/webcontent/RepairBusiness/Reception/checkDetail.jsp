@@ -12,7 +12,7 @@
 <head> 
     <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.93"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.953"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -236,13 +236,13 @@ allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
             <span>检测照片</span>
         </div>
         <div class="vpanel_body"> 
-
+ 
 
         </div> 
     </div> 
 
     <div style="width:100%;margin-top: 10px;">
-        <a class="nui-button" onclick="save()" plain="false">保存</a>
+        <a class="nui-button" onclick="saveb()" plain="false">保存</a>
         <a class="nui-button" onclick="" plain="false">退出</a>
     </div>
 </div>

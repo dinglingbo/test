@@ -2,7 +2,8 @@
  * Created by Administrator on 2018/3/27.
  */
 
-var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
+//var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + repairApi + '/';
 var tree = null;
 var carBrandIdEl = null;
 var carModelIdEL = null;

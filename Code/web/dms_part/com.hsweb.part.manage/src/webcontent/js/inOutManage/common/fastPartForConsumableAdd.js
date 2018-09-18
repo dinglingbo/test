@@ -52,7 +52,9 @@ function SetData(params) {
     if(params.data!=null){
         form.setData(params.data);        
     }
-
+    nui.get('outQty').setValue(1);
+    nui.get('mtAdvisorId').setValue(currEmpId);
+    nui.get('mtAdvisorId').setText(currUserName);
 }
 
 function CloseWindow(action)

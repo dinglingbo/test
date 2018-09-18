@@ -902,6 +902,39 @@ function checkSettleRow() {
 
 	return msg;
 }
+
+function doDelete() {
+	var rows = rRightGrid.getSelecteds();
+	if (!rows) {
+		nui.alert("请选择一条记录","提示");
+		return;
+	}
+	json = {
+			id:rows[0].id
+	}
+	nui.ajax({
+		url : baseUrl
+		+ "com.hsapi.frm.frmService.rpsettle.delFisRpBillForRepair.biz.ext" ,
+		type : "post",
+		data : json,
+		success : function(data) {
+			if(data.errCode=="S"){
+				nui.alert(data.errMsg,"提示");
+				rRightGrid.load;
+			}else{
+				nui.alert(data.errMsg,"提示");
+				rRightGrid.load;
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+	
+}
+
+
 function doSettle() {
 	var msg = checkSettleRow();
 	if (msg) {

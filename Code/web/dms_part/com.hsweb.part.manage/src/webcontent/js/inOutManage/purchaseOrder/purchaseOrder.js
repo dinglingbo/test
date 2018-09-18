@@ -1872,55 +1872,72 @@ function addGuest(){
 		}
 	});
 }
-function onPrint() {
-	var row = leftGrid.getSelected();
-
-	var data = rightGrid.getData();
-	if(data && data.length<=0) return;
-
-	if (row) {
-
-		if(!row.id) return;
-
-		var auditSign = row.auditSign||0;
-
-		nui.open({
-
-			url : webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
-			title : "采购订单打印",
-			width : 900,
-			height : 600,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				// iframe.contentWindow.setInitData(storeId, 'XSD');
-			}
-		});
+function onPrint(e){
+	var main = leftGrid.getSelected();
+	var startDate=null;
+	var endDate=null;
+	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrder/purchaseOrderPrint.jsp";
+//	switch (currType)
+//	{
+//	 //今日
+//	case 0:
+//		startDate = getNowStartDate();
+//		endDate = addDate(getNowEndDate(), 1);
+//		break;
+//	//昨日
+//	case 1:
+//		startDate = getPrevStartDate();
+//		endDate = addDate(getPrevEndDate(), 1);
+//		break;
+//	//本周
+//	case 2:
+//		startDate = getWeekStartDate();
+//		endDate = addDate(getWeekEndDate(), 1);
+//		break;
+//	//上周
+//	case 3:
+//		startDate = getLastWeekStartDate();
+//		endDate = addDate(getLastWeekEndDate(), 1);
+//		break; 		
+//	//本月
+//	case 4:
+//		startDate = getMonthStartDate();
+//		endDate = addDate(getMonthEndDate(), 1);
+//		break;
+//	//上月
+// 	case 5:
+// 		startDate = getLastMonthStartDate();
+// 		endDate = addDate(getLastMonthEndDate(), 1);
+// 		break;
+// 	default:
+//        break;
+//     }
+	if(main.id){
+		var mainParams={
+			guestFullName 	: main.guestFullName,
+			createDate	: main.createDate,
+			serviceId	: main.serviceId,
+		};
+		var params={
+			baseUrl:baseUrl,
+			mainId :main.id,
+			auditSign:main.auditSign
+		}
 	}
-	// }else if(row && type == 1){
-	// 	if(!row.id) return;
+     nui.open({
+        url: openUrl,
+        width: "100%",
+        height: "100%",
+        showMaxButton: false,
+        allowResize: false,
+        showHeader: true,
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(mainParams,params);
+        },
+    });
+ }
 
-	// 	if(row.isFinished != 1) {
-	// 		showMsg("全部入库后才能打印进货单!","W");
-	// 		return;
-	// 	}
-
-	// 	nui.open({
-
-	// 		url : webPath + contextPath + "/com.hsweb.part.purchase.pchsOrderEnterPrint.flow?ID="
-	// 				+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
-	// 		title : "进货单打印",
-	// 		width : 900,
-	// 		height : 600,
-	// 		onload : function() {
-	// 			var iframe = this.getIFrameEl();
-	// 			// iframe.contentWindow.setInitData(storeId, 'XSD');
-	// 		}
-	// 	});
-	// }
-
-
-}
 function addSelectPart(){
 	var row = morePartGrid.getSelected();
 	if(row){

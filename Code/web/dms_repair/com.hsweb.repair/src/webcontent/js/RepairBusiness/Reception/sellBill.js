@@ -4,21 +4,21 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
-var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
-var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
-var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
-var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
+//var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+//var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
+//var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
+//var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
+//var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 
 var billForm = null;
-var editFormDetail = null;
-var brandList = [];
-var brandHash = {};
+var editFormDetail = null;//
+//var brandList = [];
+//var brandHash = {};
 var servieTypeList = [];
 var servieTypeHash = {};
-var receTypeIdList = [];
-var receTypeIdHash = {};
+//var receTypeIdList = [];
+//var receTypeIdHash = {};
 var memList = [];
 var serviceTypeIdEl = null;
 var currEmpIdEl = null;
@@ -26,16 +26,16 @@ var searchNameEl = null;
 var servieIdEl = null;
 var searchKeyEl = null;
 
-var rpsPackageGrid = null;
-var rpsItemGrid = null;
+var rpsPackageGrid = null;//
+//var rpsItemGrid = null;
 var rpsPartGrid = null;
-var packageDetailGrid = null;
-var packageDetailGridForm = null;
+//var packageDetailGrid = null;
+//var packageDetailGridForm = null;
 
-var advancedCardTimesWin = null;
-var cardTimesGrid = null;
-var advancedMemCardWin = null;
-var memCardGrid = null;
+//var advancedCardTimesWin = null;
+//var cardTimesGrid = null;
+//var advancedMemCardWin = null;
+//var memCardGrid = null;
 
 var fserviceId = 0;
 var fguestId = 0;
@@ -135,12 +135,14 @@ $(document).ready(function ()
             var tel = item.guestMobile||"";
             var guestName = item.guestFullName||"";
             var carVin = item.vin||"";
-
-            var params = {
-                carNo: carNo,
-                isSettle: 0,
-                orgid: currOrgId
-            }
+            var data = {
+                    carNo: carNo,
+                    isSettle: 0,
+                    orgid: currOrgId
+                };
+                var params = {	
+                	"params":data
+                };
             checkRpsMaintain(params, function(text){
                 var data = text.data||[];
                 if(data && data.length>0){
@@ -273,14 +275,7 @@ var statusHash = {
     "3" : "待结算",
     "4" : "已结算"
 };
-/*function advancedSearch(){
-    if(document.getElementById("advancedMore").style.display=='block'){
-        document.getElementById("advancedMore").style.display='none';
-    }else{
-        document.getElementById("advancedMore").style.display='block';
-    }
-    
-}*/
+
 function clear(){
     //advancedSearchForm.setData([]); 
     beginDateEl.setValue(getMonthStartDate());
@@ -491,14 +486,9 @@ function add(){
     searchKeyEl.focus();
 
 
-    //rpsPackageGrid.clearRows();
-   // rpsItemGrid.clearRows();
     rpsPartGrid.clearRows();
     billForm.setData([]);
-    //sendGuestForm.setData([]);
-    //insuranceForm.setData([]);
-    //describeForm.setData([]);
-
+ 
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
     nui.get("serviceTypeId").setValue(3);
@@ -507,14 +497,7 @@ function add(){
     fguestId = 0;
     fcarId = 0;
     $("#servieIdEl").html("");
-   /* document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
-    $("#servieIdEl").html("");
-    $("#showCardTimesEl").html("次卡套餐(0)");
-    $("#showCardEl").html("储值卡(0)");
-    $("#showCarInfoEl").html("");
-    $("#guestNameEl").html("");
-    $("#guestTelEl").html("");*/
-
+  
 }
 function save(){
     nui.mask({
@@ -591,7 +574,7 @@ var requiredField = {
     /*serviceTypeId : "业务类型",
     mtAdvisorId : "服务顾问"*/
 };
-//?????????????
+
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
@@ -605,7 +588,7 @@ function saveMaintain(callback,unmaskcall){
     data.billTypeId = 2;
     data.serviceTypeId = 1 ;
     data.mtAdvisorId = currUserId;
-    maintain.mtAdvisor = currUserName;
+    data.mtAdvisor = currUserName;
     var params = {
         data:{
             maintain:data
@@ -797,14 +780,7 @@ function checkPrdt(data){
         }
     }
 }
-/*function addPackNewRow(){
-    var newRow = {};
-    rpsPackageGrid.addRow(newRow);
-}*/
-/*function addItemNewRow(){
-    var newRow = {};
-    rpsItemGrid.addRow(newRow);
-}*/
+
 function addPartNewRow(){
     var newRow = {};
     rpsPartGrid.addRow(newRow);
@@ -844,7 +820,17 @@ function deletePartRow(row_uid){
             return;
         }
     });*/
+	var main = billForm.getData();
 	
+    var isSettle = main.isSettle||0;
+    if(isSettle == 1){
+        showMsg("此单已结算,不能修改!","S");
+        return;
+    }
+	if(main.status==2){
+		showMsg("此单已出库,不能修改!","S");
+        return;
+	} 
     var row = rpsPartGrid.getRowByUID(row_uid);
     rpsPartGrid.removeRow(row);
 
@@ -1373,6 +1359,8 @@ function saveBatch(){
 			            }, function(){});
 								
 				} else {
+					//数据改回原本来的数据
+					rpsPartGrid.reject();
 					showMsg(returnJson.errMsg);
 				}
 			}
@@ -1407,6 +1395,7 @@ function saveBatch(){
 					showMsg("保存成功");
 													
 				} else {
+					rpsPartGrid.reject();
 					showMsg(returnJson.errMsg);
 				}
 			}
@@ -1422,9 +1411,9 @@ var b = null;
 function finish(){
 	
 	var main = billForm.getData();
-	if(b == 1){
+	/*if(b == 1){
 		main.status = 1;
-	}
+	}*/
     var isSettle = main.isSettle||0;
      if(!main.id){
         showMsg("请选择保存工单!","S");
@@ -1434,7 +1423,7 @@ function finish(){
         showMsg("此单已结算,不能审核!","S");
         return;
     }
-	if(main.status==1){
+	if(main.status==1 || b == 1){
 		showMsg("此单已审核,不能重复审核!","S");
         return;
 	} 

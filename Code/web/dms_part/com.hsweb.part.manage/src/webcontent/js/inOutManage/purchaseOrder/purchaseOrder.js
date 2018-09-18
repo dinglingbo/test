@@ -1877,52 +1877,52 @@ function onPrint(e){
 	var startDate=null;
 	var endDate=null;
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrder/purchaseOrderPrint.jsp";
-	switch (currType)
-	{
-	 //今日
-	case 0:
-		startDate = getNowStartDate();
-		endDate = addDate(getNowEndDate(), 1);
-		break;
-	//昨日
-	case 1:
-		startDate = getPrevStartDate();
-		endDate = addDate(getPrevEndDate(), 1);
-		break;
-	//本周
-	case 2:
-		startDate = getWeekStartDate();
-		endDate = addDate(getWeekEndDate(), 1);
-		break;
-	//上周
-	case 3:
-		startDate = getLastWeekStartDate();
-		endDate = addDate(getLastWeekEndDate(), 1);
-		break; 		
-	//本月
-	case 4:
-		startDate = getMonthStartDate();
-		endDate = addDate(getMonthEndDate(), 1);
-		break;
-	//上月
- 	case 5:
- 		startDate = getLastMonthStartDate();
- 		endDate = addDate(getLastMonthEndDate(), 1);
- 		break;
- 	default:
-        break;
-     }
+//	switch (currType)
+//	{
+//	 //今日
+//	case 0:
+//		startDate = getNowStartDate();
+//		endDate = addDate(getNowEndDate(), 1);
+//		break;
+//	//昨日
+//	case 1:
+//		startDate = getPrevStartDate();
+//		endDate = addDate(getPrevEndDate(), 1);
+//		break;
+//	//本周
+//	case 2:
+//		startDate = getWeekStartDate();
+//		endDate = addDate(getWeekEndDate(), 1);
+//		break;
+//	//上周
+//	case 3:
+//		startDate = getLastWeekStartDate();
+//		endDate = addDate(getLastWeekEndDate(), 1);
+//		break; 		
+//	//本月
+//	case 4:
+//		startDate = getMonthStartDate();
+//		endDate = addDate(getMonthEndDate(), 1);
+//		break;
+//	//上月
+// 	case 5:
+// 		startDate = getLastMonthStartDate();
+// 		endDate = addDate(getLastMonthEndDate(), 1);
+// 		break;
+// 	default:
+//        break;
+//     }
 	if(main.id){
-		var params={
-			baseUrl 	: baseUrl,
-			auditSign	: main.auditSign,
-			billStatusId: main.billStatusId,
-			endDate		: endDate,
-			isDiffOrder	: main.isDiffOrder,
-			orderTypeId : main.orderTypeId,
-			startDate	: startDate,
-			mainId		: main.id
+		var mainParams={
+			guestFullName 	: main.guestFullName,
+			createDate	: main.createDate,
+			serviceId	: main.serviceId,
 		};
+		var params={
+			baseUrl:baseUrl,
+			mainId :main.id,
+			auditSign:main.auditSign
+		}
 	}
      nui.open({
         url: openUrl,
@@ -1933,7 +1933,7 @@ function onPrint(e){
         showHeader: true,
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(params);
+            iframe.contentWindow.SetData(mainParams,params);
         },
     });
  }

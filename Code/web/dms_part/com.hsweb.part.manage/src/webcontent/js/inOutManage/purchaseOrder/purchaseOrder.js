@@ -1874,56 +1874,34 @@ function addGuest(){
 }
 function onPrint(e){
 	var main = leftGrid.getSelected();
-	var startDate=null;
-	var endDate=null;
-	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrder/purchaseOrderPrint.jsp";
-	switch (currType)
-	{
-	 //今日
-	case 0:
-		startDate = getNowStartDate();
-		endDate = addDate(getNowEndDate(), 1);
-		break;
-	//昨日
-	case 1:
-		startDate = getPrevStartDate();
-		endDate = addDate(getPrevEndDate(), 1);
-		break;
-	//本周
-	case 2:
-		startDate = getWeekStartDate();
-		endDate = addDate(getWeekEndDate(), 1);
-		break;
-	//上周
-	case 3:
-		startDate = getLastWeekStartDate();
-		endDate = addDate(getLastWeekEndDate(), 1);
-		break; 		
-	//本月
-	case 4:
-		startDate = getMonthStartDate();
-		endDate = addDate(getMonthEndDate(), 1);
-		break;
-	//上月
- 	case 5:
- 		startDate = getLastMonthStartDate();
- 		endDate = addDate(getLastMonthEndDate(), 1);
- 		break;
- 	default:
-        break;
-     }
-	if(main.id){
-		var params={
-			baseUrl 	: baseUrl,
-			auditSign	: main.auditSign,
-			billStatusId: main.billStatusId,
-			endDate		: endDate,
-			isDiffOrder	: main.isDiffOrder,
-			orderTypeId : main.orderTypeId,
-			startDate	: startDate,
-			mainId		: main.id
-		};
+	if(!main){
+		showMsg("请选择一条记录");
 	}
+	var detail=rightGrid.getData();
+	var mainParams=main;
+	var billTypeId=nui.get('billTypeId').text;
+	var settleTypeId=nui.get('settleTypeId').text;
+	var formParms={
+			billTypeId :billTypeId,
+			settleTypeId:settleTypeId
+	};
+	var detailParms=detail;
+
+	for(var i=0;i<detailParms.length;i++){
+		for(var j=0;j<storehouse.length;j++){
+			if(detailParms[i].storeId==storehouse[j].id){
+				detailParms[i].storehouse=storehouse[j].name;
+			}
+		}
+	}
+	
+	for(var i=0;i<detailParms.length;i++){	
+		var comPartBrindId=detailParms[i].comPartBrandId;
+		detailParms[i].comPartBrindId=brandList[comPartBrindId-1].name;
+	}
+	
+	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrder/purchaseOrderPrint.jsp";
+
      nui.open({
         url: openUrl,
         width: "100%",
@@ -1933,7 +1911,7 @@ function onPrint(e){
         showHeader: true,
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(params);
+            iframe.contentWindow.SetData(mainParams,detailParms,formParms);
         },
     });
  }

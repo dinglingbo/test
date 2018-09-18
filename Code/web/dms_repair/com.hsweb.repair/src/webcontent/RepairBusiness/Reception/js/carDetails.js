@@ -12,6 +12,7 @@ $(document).ready(function () {
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
     mainGrid2 = nui.get("mainGrid2");
+    form.setReadOnly(true);
     tabs.on("activechanged",function(e){
     	if(nui.get("carId").value != ""){
     		params = {

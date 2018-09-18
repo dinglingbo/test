@@ -1,16 +1,16 @@
 /**
  * Created by Administrator on 2018/3/21.
- */
- var webBaseUrl = webPath + contextPath + "/";
- var baseUrl = apiPath + repairApi + "/";
+ */ 
+ var webBaseUrl = webPath + contextPath + "/";   
+ var baseUrl = apiPath + repairApi + "/";    
  var mainGrid = null;
  var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
  var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
- var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-
+ var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
+  
  var billForm = null;
  var xyguest = null; 
  var brandList = [];
@@ -39,6 +39,7 @@
  var carCheckInfo = null;
  var checkMainData = null;
  var rdata = null;
+ var isRecord = null;
 
  var fserviceId = 0;
  var fguestId = 0;
@@ -228,6 +229,10 @@ $(document).ready(function ()
             servieTypeHash[v.id] = v;
         });
     });
+    initMember("checkManId",function(){
+       
+    });
+    
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
@@ -1373,8 +1378,8 @@ function showCarCheckInfo(){
         return;
     }
 
-    var atEl = document.getElementById("clubCardEl");  
-    carCheckInfo.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    var atEl = document.getElementById("carHealthEl");  
+    carCheckInfo.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
     advancedCardTimesWin.hide();
     advancedMemCardWin.hide();
     MemSelectCancel(1);
@@ -2319,7 +2324,7 @@ function pay(){
 }
 
 
-function newCheckMain() { 
+function newCheckMain() {  
     var data = billForm.getData();
     var item={};
     item.id = "checkPrecheckDetail";
@@ -2338,7 +2343,12 @@ function newCheckMain() {
 
 
 function MemSelectOk(){ 
-
+    var form = new nui.Form("#show2");
+            form.validate();
+            if (form.isValid() == false) {
+                showMsg("请先选择被派工人！","W");
+                return;
+            }
     SaveCheckMain();
 }
 
@@ -2350,7 +2360,7 @@ function SearchCheckMain(callback) {
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
-        //async: false,
+        async: false,
         data:{ 
             serviceId:data.id
         },
@@ -2358,6 +2368,7 @@ function SearchCheckMain(callback) {
         success: function (text) {  
             callback && callback(text);
             checkMainData = text;
+            isRecord = text.isRecord;
         }
     });
 
@@ -2383,18 +2394,18 @@ function changeCheckInfoTab(resultdata) {
         $("#checkStatusButton1").show();
         $("#checkStatusButton2").hide();
     }else{
-        if(!detailList.checkMan && detailList.checkStatus == 0){
+        if(detailList.checkMan && detailList.checkStatus == 0){
             $("#checkStatus2").css("color","#32b400");
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show();
 
         }
-        if(!detailList.checkMan && detailList.checkStatus == 1){
+        if(detailList.checkMan && detailList.checkStatus == 1){
             $("#checkStatus3").css("color","#32b400");
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show();
         }
-        if(!detailList.checkMan && detailList.checkStatus == 2){ 
+        if(detailList.checkMan && detailList.checkStatus == 2){ 
             $("#checkStatus4").css("color","#32b400");   
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show(); 
@@ -2408,6 +2419,11 @@ function SaveCheckMain() {
         showMsg("请先保存工单!","E");
         return;
     }
+    if(isRecord == "0"){
+
+
+
+
     var temp ={
         serviceId:data.id, 
         carId:data.carId,
@@ -2415,11 +2431,13 @@ function SaveCheckMain() {
         checkStatus:0,
         enterKilometers:data.enterKilometers,
         mtAdvisorId:data.mtAdvisorId,
-        mtAdvisor:data.mtAdvisor
+        mtAdvisor:data.mtAdvisor,
+        checkManId:nui.get("checkManId").value,
+        checkMan:nui.get("checkManId").text
     };
     var mtemp = {
         id:data.id
-    } 
+    } ;
 
     nui.ajax({
         url:baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMain.biz.ext",
@@ -2434,14 +2452,19 @@ function SaveCheckMain() {
             var errCode = text.errCode;
             if(errCode == "S"){
                 rdata  = text.mainData;
-                newCheckMain();
+                //newCheckMain();
                 //CloseWindow('close');
-                //showMsg('保存成功!','S'); 
+                carCheckInfo.hide();
+                showMsg('派工成功!','S'); 
             }else{
                 //showMsg('保存失败!','E'); 
             }
         }  
     }); 
+    }else{
+        newCheckMain();
+        carCheckInfo.hide();
+}
 }
 
 
@@ -2453,7 +2476,11 @@ function MemSelectCancel(e) {
     }
 
     if(e == 2){
-
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","E");
+        return;
+    }
         $("#show1").hide();
         $("#show2").show();
     }

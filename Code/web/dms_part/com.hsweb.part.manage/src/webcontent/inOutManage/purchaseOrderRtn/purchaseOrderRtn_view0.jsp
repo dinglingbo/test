@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.3"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -127,7 +127,7 @@ body .mini-grid-row-selected{
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:70px;">
+                  <fieldset id="fd1" style="width:95%;height:85px;">
                       <legend><span>采购退货信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

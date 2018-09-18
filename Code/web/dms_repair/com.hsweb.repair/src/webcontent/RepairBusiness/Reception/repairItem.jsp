@@ -8,7 +8,10 @@
      style="width: 100%; height:auto;"
      showPager="false"
      showModified="false"
-     allowSortColumn="true">
+     allowSortColumn="true"
+     ondrawsummarycell="onDrawSummaryCellItem"
+     
+     >
     <div property="columns">
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="工时信息">
@@ -20,16 +23,18 @@
                              url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
                 </div>
                 <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemTime"/>
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemTime" selectOnFocus="true"/>
                 </div>
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
-                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice"/>
+                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
                 </div>
                 <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate"/>
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
                 </div>
                 <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal"/>
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true"/>
+                </div>
+                <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">工时总金额
                 </div>
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="80" header="施工员" name="workers">

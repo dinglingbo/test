@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/3/21.
  */
  var webBaseUrl = webPath + contextPath + "/";
- var baseUrl = apiPath + repairApi + "/";
+ var baseUrl = apiPath + repairApi + "/"; 
  var mainGrid = null;
  var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
@@ -39,6 +39,7 @@
  var carCheckInfo = null;
  var checkMainData = null;
  var rdata = null;
+ var isRecord = null;
 
  var fserviceId = 0;
  var fguestId = 0;
@@ -2358,6 +2359,7 @@ function SearchCheckMain(callback) {
         success: function (text) {  
             callback && callback(text);
             checkMainData = text;
+            isRecord = text.isRecord;
         }
     });
 
@@ -2408,6 +2410,11 @@ function SaveCheckMain() {
         showMsg("请先保存工单!","E");
         return;
     }
+    if(isRecord == "1"){
+
+
+
+
     var temp ={
         serviceId:data.id, 
         carId:data.carId,
@@ -2419,7 +2426,7 @@ function SaveCheckMain() {
     };
     var mtemp = {
         id:data.id
-    } 
+    } ;
 
     nui.ajax({
         url:baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMain.biz.ext",
@@ -2442,6 +2449,9 @@ function SaveCheckMain() {
             }
         }  
     }); 
+    }else{
+        newCheckMain();
+}
 }
 
 

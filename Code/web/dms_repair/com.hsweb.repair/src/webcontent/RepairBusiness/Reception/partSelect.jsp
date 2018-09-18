@@ -137,15 +137,20 @@
     }
 
     function onOk(){
+        var sum_out = 0;
         var data = mainGrid.getData();
         if(data.length > 0){
 
             for (var i = 0; i < data.length; i++) {
                 if(!data[i].outQty){
+                    sum_out +=data[i].outQty;
+                }
+            }
+
+                            if(!sum_out){
                     showMsg('请先填写领料数量!','W');
                     return;
                 }
-            }
             nui.open({
                 url:webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
                 title:"选择领料人",

@@ -406,12 +406,12 @@ function morePartSearch() {
 function onPartClose() {
 	CloseWindow("cancel");
 }
-//function CloseWindow(action) {
-//	if (window.CloseOwnerWindow)
-//		return window.CloseOwnerWindow(action);
-//	else
-//		window.close();
-//}
+function CloseWindow(action) {
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		window.close();
+}
 
 function getRtnData() {
 	return resultData;
@@ -460,84 +460,84 @@ function onAdvancedAddOk() {
 }
 
 // 出库
-var partToOutUrl = repairApiUrl+ "com.hsapi.repair.repairService.work.repairOut.biz.ext";
-function partToOut() {
-	
-	if(onAdvancedAddOk()==false){
-		return;
-	}
-	data = enterGrid.getSelected();
-	resultData.outQty = data.outQty;
-	resultData.pickMan = data.pickMan;
-
-	var row = enterGrid.getSelected();
-	var stockQty = row.stockQty;
-	var preOutQty = row.preOutQty || 0;
-	if (data.outQty > stockQty - preOutQty) {
-		showMsg("出库数量超出此批次可出库数量", "W");
-		return;
-	}
-	var billTypeId = "050207";
-	var partNameId = '0';
-	var pickType = '0';
-	var sellUnitPrice = data.enterPrice;
-	var sellAmt = data.outQty * sellUnitPrice;
-	var data1 = {
-		enterPrice : data.enterPrice,
-		unit : data.enterUnitId,
-		partId : data.partId,
-		partCode : data.partCode,
-		partName : data.partName,
-		billTypeId : billTypeId,
-		partNameId : partNameId,
-		partFullName : data.fullName,
-		pickType : pickType,
-		preOutQty : data.preOutQty,
-		sourceId : data.sourceId,
-		stockAmt : data.stockAmt,
-		stockQty : data.stockQty,
-		storeId : data.storeId,
-		sellUnitPrice : sellUnitPrice,
-		sellAmt : sellAmt,
-		remark : data.remark,
-		outQty : data.outQty,
-		pickMan : data.pickMan
-	};
-
-	var list = [];
-	list.push(data1);
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '出库中...'
-	});
-
-	nui.ajax({
-		url : partToOutUrl,
-		type : "post",
-		data : JSON.stringify({
-			data : list,
-			billTypeId : billTypeId,
-			token : token
-		}),
-		success : function(data) {
-			nui.unmask(document.body);
-			data = data || {};
-			if (data.errCode == "S") {
-				showMsg("出库成功!", "S");
-				onSearch();
-				morePartSearch();
-
-			} else {
-				showMsg(data.errMsg || "出库失败!", "W");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-
-			console.log(jqXHR.responseText);
-		}
-	});
-}
+//var partToOutUrl = repairApiUrl+ "com.hsapi.repair.repairService.work.repairOut.biz.ext";
+//function partToOut() {
+//	
+//	if(onAdvancedAddOk()==false){
+//		return;
+//	}
+//	data = enterGrid.getSelected();
+//	resultData.outQty = data.outQty;
+//	resultData.pickMan = data.pickMan;
+//
+//	var row = enterGrid.getSelected();
+//	var stockQty = row.stockQty;
+//	var preOutQty = row.preOutQty || 0;
+//	if (data.outQty > stockQty - preOutQty) {
+//		showMsg("出库数量超出此批次可出库数量", "W");
+//		return;
+//	}
+//	var billTypeId = "050207";
+//	var partNameId = '0';
+//	var pickType = '0';
+//	var sellUnitPrice = data.enterPrice;
+//	var sellAmt = data.outQty * sellUnitPrice;
+//	var data1 = {
+//		enterPrice : data.enterPrice,
+//		unit : data.enterUnitId,
+//		partId : data.partId,
+//		partCode : data.partCode,
+//		partName : data.partName,
+//		billTypeId : billTypeId,
+//		partNameId : partNameId,
+//		partFullName : data.fullName,
+//		pickType : pickType,
+//		preOutQty : data.preOutQty,
+//		sourceId : data.sourceId,
+//		stockAmt : data.stockAmt,
+//		stockQty : data.stockQty,
+//		storeId : data.storeId,
+//		sellUnitPrice : sellUnitPrice,
+//		sellAmt : sellAmt,
+//		remark : data.remark,
+//		outQty : data.outQty,
+//		pickMan : data.pickMan
+//	};
+//
+//	var list = [];
+//	list.push(data1);
+//	nui.mask({
+//		el : document.body,
+//		cls : 'mini-mask-loading',
+//		html : '出库中...'
+//	});
+//
+//	nui.ajax({
+//		url : partToOutUrl,
+//		type : "post",
+//		data : JSON.stringify({
+//			data : list,
+//			billTypeId : billTypeId,
+//			token : token
+//		}),
+//		success : function(data) {
+//			nui.unmask(document.body);
+//			data = data || {};
+//			if (data.errCode == "S") {
+//				showMsg("出库成功!", "S");
+//				onSearch();
+//				morePartSearch();
+//
+//			} else {
+//				showMsg(data.errMsg || "出库失败!", "W");
+//			}
+//		},
+//		error : function(jqXHR, textStatus, errorThrown) {
+//
+//			console.log(jqXHR.responseText);
+//		}
+//	});
+//}
 function onOut() {
 	var row = enterGrid.getSelected();
 	var partBrandId=row.partBrandId;
@@ -565,20 +565,22 @@ function onOut() {
 			},
 			ondestroy : function(action) {
 				if (action == 'ok') {
-					var iframe = this.getIFrameEl();
-					var data = iframe.contentWindow.getData();
-					var part = data.data;
-					var pickMan = part.pickMan;
-					var remark = part.remark;
-					var outQty = part.outQty;
-					var row = enterGrid.getSelected();
-					var newRow = {
-						pickMan : pickMan,
-						remark : remark,
-						outQty : outQty
-					};
-					enterGrid.updateRow(row, newRow);
-					partToOut();
+//					var iframe = this.getIFrameEl();
+//					var data = iframe.contentWindow.getData();
+//					var part = data.data;
+//					var pickMan = part.pickMan;
+//					var remark = part.remark;
+//					var outQty = part.outQty;
+//					var row = enterGrid.getSelected();
+//					var newRow = {
+//						pickMan : pickMan,
+//						remark : remark,
+//						outQty : outQty
+//					};
+//					enterGrid.updateRow(row, newRow);
+//					partToOut();
+					onSearch();
+					morePartSearch();
 				}
 			}
 		});
@@ -608,19 +610,21 @@ function onBlack() {
 			},
 			ondestroy : function(action) {
 				if (action == 'ok') {
-					var iframe = this.getIFrameEl();
-					var data = iframe.contentWindow.getData();
-					var part = data.data;
-					var returnMan = part.returnMan;
-					var returnRemark = part.returnRemark;
-					var row = grid.getSelected();
-					var newRow = {
-						returnMan : returnMan,
-						returnRemark : returnRemark
-					};
-					grid.updateRow(row, newRow);
-					// onAdvancedAddOk();
-					orderEnter();
+//					var iframe = this.getIFrameEl();
+//					var data = iframe.contentWindow.getData();
+//					var part = data.data;
+//					var returnMan = part.returnMan;
+//					var returnRemark = part.returnRemark;
+//					var row = grid.getSelected();
+//					var newRow = {
+//						returnMan : returnMan,
+//						returnRemark : returnRemark
+//					};
+//					grid.updateRow(row, newRow);
+//					// onAdvancedAddOk();
+//					orderEnter();
+					onSearch();
+					morePartSearch();
 
 				}
 			}

@@ -89,6 +89,7 @@
 				'' as outSignQty,
 				A.order_man as orderMan,
 				B.id as sourceId,
+				B.root_id as rootId,
 				'' as partNameId,
 				'' as pickType,
 				a.service_id as serviceCode

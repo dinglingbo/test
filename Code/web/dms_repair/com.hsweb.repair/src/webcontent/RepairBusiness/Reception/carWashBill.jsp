@@ -63,7 +63,7 @@
     #wechatTag{
         color:#62b900;
     }
- 
+
 
     /* font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px; display:block;  padding:4px 15px;*/
     a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
@@ -504,18 +504,18 @@ allowDrag="false">
                 showNullItem="false"
                 valueFromSelect="true"
                 nullItemText="请选择..."/>
-           </td>
-       </tr>
-   </table>
-   <div align="center" style="margin-top:20px; ">
-    <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectOk" id="">
-        确定
-    </a>
+            </td>
+        </tr>
+    </table>
+    <div align="center" style="margin-top:20px; ">
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectOk" id="">
+            确定
+        </a>
 
-    <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
-        取消
-    </a>
-</div>
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
+            取消
+        </a>
+    </div>
 </div>
 
 
@@ -523,7 +523,7 @@ allowDrag="false">
 </div> 
 
 <script type="text/javascript">
-   nui.parse();
+ nui.parse();
 </script>
 </body>
 </html>

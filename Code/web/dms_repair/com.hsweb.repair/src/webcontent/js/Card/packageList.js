@@ -229,5 +229,6 @@ function look() {
 }
 
 function setValueData(){
+	grid.showColumn("checkcolumn");
 	nui.get("expense").setValue(6);
 }

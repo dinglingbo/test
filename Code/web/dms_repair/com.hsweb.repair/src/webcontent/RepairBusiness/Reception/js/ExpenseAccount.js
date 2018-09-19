@@ -29,8 +29,9 @@ $(document).ready(function () {
 	        },
 	        success: function(text) {
 	        	var list = nui.decode(text.list);
-	        	if(list.length > 0){
-	        		billForm.setData(list[0]);
+	        	if(list.length  == 0){
+	        		showGridMsg(0);
+	        	}else{
 	        		showGridMsg(list[0].id);
 	        	}
 	        }
@@ -384,6 +385,31 @@ function save(){
     });
 }
 
+function onPrint(e){
+	var main = billForm.getData();
+	if(main.id){
+		var params = {
+            serviceId : main.id,
+            comp : currOrgName,
+            baseUrl : baseUrl,
+            type : 1,
+            token : token
+        };
+		nui.open({
+	        url: "com.hsweb.print.settlement.flow",
+	        width: "100%",
+	        height: "100%",
+	        showMaxButton: false,
+	        allowResize: false,
+	        showHeader: true,
+	        onload: function() {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(params);
+	        },
+	    });
+	}
+}
+
 function showGridMsg(serviceId){
 	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
 	rpsPackageGrid.load({serviceId : serviceId,token : token});
@@ -391,4 +417,25 @@ function showGridMsg(serviceId){
 	rpsItemGrid.load({serviceId : serviceId,token : token});
 	rpsPartGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
 	rpsPartGrid.load({serviceId : serviceId,token : token});
+}
+
+
+function setInitData(params){
+	if(!params.isOutBill){//未保存过一次报销单
+		params.id = "";
+		billForm.setData(params);
+	}else{
+		nui.ajax({
+	        url: baseUrl+"com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext",
+	        type: "post",
+	        cache: false,
+	        data: {
+	        	sourceServiceId : params.id
+	        },
+	        success: function(text) {
+	        	var list = nui.decode(text.list);
+	        	billForm.setData(list[0]);
+	        }
+	    });
+	}
 }

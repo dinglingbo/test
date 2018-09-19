@@ -54,7 +54,7 @@
 			style="width: 100%; height: 100%;float:left;"multiSelect="true" >
 			<div property="columns">
 				<div type="indexcolumn"></div>
-				<div type="checkcolumn"></div>
+				<div type="checkcolumn" visible="false" id="checkcolumn" name="checkcolumn"></div>
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">套餐ID</div>
 				<div field="name" headerAlign="center" allowSort="true">套餐名称</div>

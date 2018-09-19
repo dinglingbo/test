@@ -344,9 +344,15 @@
         function SetData(params){
 	        var date = new Date();
 	        document.getElementById("comp").innerHTML = params.comp;
-	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");; 
+	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");
 	        $.ajaxSettings.async = false;//设置为同步执行
-	        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId+"&token="+params.token,{},function(text){
+	        var url = null;
+	        if(params.type){
+	        	url = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
+	        }else{
+	        	url = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
+	        }
+	        $.post(params.baseUrl+url+params.serviceId+"&token="+params.token,{},function(text){
 	        	if(text.list.length > 0){
 	        		var list = text.list[0];
 	        		var carNo = list.carNO;
@@ -372,6 +378,11 @@
 	        		var contactMobile = list.contactMobile;
 	        		var contactName = list.contactName;
 	        		var guestAddr = list.guestAddr;
+	        		if(params.type){
+	        			guestFullName = list.guestName || "";
+	        			guestMobile = list.guestTel || "";
+	        			contactMobile = list.contactorTel || "";
+	        		}
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNO").innerHTML = document.getElementById("carNO").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;

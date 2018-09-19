@@ -1,26 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
+
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 19:02:07
-  - Description: 
--->
-
+  - Date: 2018-07-02 19:02:07 
+  - Description:  
+-->   
 <head>
-    <title>理赔工单</title>
+    <title>理赔开单详情</title>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.0.0"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/claimDetail.js" type="text/javascript"></script>
-	<script src="<%= request.getContextPath() %>/default/common/nui/locale/zh_CN.js" type="text/javascript"></script>
-	<script src="<%= request.getContextPath() %>/common/js/repairSvrUtil.js" type="text/javascript"></script>
-	<script src="<%= request.getContextPath() %>/common/js/repairUtil.js?v=1.0.9" type="text/javascript"></script>
-	<script src="<%= request.getContextPath() %>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
-	<script src="<%= request.getContextPath() %>/common/js/init.js?v=1.8" type="text/javascript"></script>
-	<script src="<%= request.getContextPath() %>/common/js/date.js?v=1.2" type="text/javascript"></script>
-	<link href="<%= request.getContextPath() %>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
-	<link href="<%= request.getContextPath() %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
     <style type="text/css">
         body { 
             margin: 0;
@@ -90,10 +82,11 @@
 
     </style>
 </head>
-
 <body>
-    <div class="nui-fit">
-        <div class="nui-toolbar" style="padding:2px;height:30px">
+
+
+
+<div class="nui-toolbar" style="padding:2px;height:30px">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
             <td>
@@ -123,312 +116,165 @@
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     
+            <td style="text-align:right;">
+                <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>
+                <a class="nui-button" iconCls="" plain="false" onclick="" id="addBtn">查看详情</a>
+                <span class="separator"></span> -->
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定维修</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返工</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+                <!-- <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
+                <span class="separator"></span>
+
+                <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+
+                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="onPrint(1)" id="type11">打印派工单</li>
+                    <li iconCls="" onclick="onPrint(2)" id="type11">打印结算单</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印小票</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印领料单</li>
+                </ul>
+
+
+                <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>
+
+                <ul id="popupMenuQT" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="addcardTime()" id="type10">计次卡销售</li>
+                    <li iconCls="" onclick="addcard()" id="type11">储值卡充值</li>
+                </ul>
+
+                <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+
+                <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
+                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                    <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
+                    <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li> -->
+                </ul>
+            </td>
         </tr>
     </table>
 
 </div>
 <div class="nui-fit">
-    <div id="billForm" class="form">
-        <input name="id" class="nui-hidden"/>
-        <input name="guestId" class="nui-hidden"/>
-        <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
-        <input class="nui-hidden" name="contactorId"/>
-        <input class="nui-hidden" name="carId"/>
-        <input class="nui-hidden" name="status"/>
-        <input class="nui-hidden" name="carVin"/>
-        <input class="nui-hidden" name="drawOutReport"/>
-        <input class="nui-hidden" name="contactorName"/>
-        <input class="nui-hidden" name="carModel"/>
-        <input class="nui-hidden" name="identity"/>
-        <input class="nui-hidden" name="billTypeId"/>
-        <input class="nui-hidden" name="status"/>
-        <input class="nui-hidden" name="isSettle"/>
-        <table  style=" left:0;right:0;margin: 0 auto;"> 
-            <tr>   
-                <td class="title required">车牌号:</td> 
-                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false"/></td>
-                <td class="title required">
-                    <label>业务类型:</label>
-                </td>
-                <td class="">
-                    <input name="serviceTypeId"
-                        id="serviceTypeId"
-                        class="nui-combobox width1"
-                        textField="name"
-                        valueField="id"
-                        emptyText="请选择..."
-                        url=""
-                        allowInput="true"
-                        showNullItem="false"
-                        valueFromSelect="true"
-                        nullItemText="请选择..."/>
-                </td>
-                <td class="title required">
-                    <label>服务顾问：</label>
+    <div class="" style="width:100%; height:110px" >
+    <%@include file="/repair/RepairBusiness/Reception/repairCarInfo.jsp" %>
+    </div>
+
+    <div style="text-align:center;" >
+        <table border="0" align="center" cellpadding="0" cellspacing="0" >
+            <tr>
+                <td>
+                    <div >
+                        <span id="carHealthEl" >
+                            <a href="javascript:showHealth()" class="healthview" >车况:100</a>&nbsp;
+                        </span>
+                    </div>
                 </td>
                 <td>
-                    <input name="mtAdvisorId"
-                            id="mtAdvisorId"
-                            class="nui-combobox width1"
-                            textField="empName"
-                            valueField="empId"
-                            emptyText="请选择..."
-                            url=""
-                            allowInput="true"
-                            showNullItem="false"
-                            valueFromSelect="true"
-                            nullItemText="请选择..."/>
+                    <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
+                    <label style="font-family:Verdana;">客户名称:</label>
+                    <label id="guestNameEl" style="font-family:Verdana;"></label>&nbsp;
+                    <label style="font-family:Verdana;">客户手机:</label>
+                    <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
                 </td>
-                <td class="title">进厂里程:</td> 
-                <td class=""><input  class="nui-textbox" name="enterKilometers"/></td>
-                <td class="title">备注:</td> 
-                <td class="" colspan=""><input  class="nui-textbox" name="remark"/></td>
-            </tr>
-            <tr>   
-                <td class="title required">客户名称:</td> 
-                <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false"/></td>
-                <td class="title required">客户手机:</td> 
-                <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false"/></td>
-                <td class="title required">送修人名称:</td> 
-                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false"/></td>
-                <td class="title required">送修人手机:</td> 
-                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false"/></td>
-                <td class="title">开单时间:</td> 
-                <td class="">
-                    <input id="recordDate"
-                    name="recordDate"
-                    allowInput="false" format="yyyy-MM-dd H:mm:ss"
-                    class="nui-datepicker" enabled="false"/>
+                <td>
+                    <div id="guestInfo">
+                        <label style="font-family:Verdana;">车牌号:</label>
+                        <label id="guestCarEl" style="font-family:Verdana;"><a id="showCarInfoEl" href="javascript:showBillInfo()"></a></label>&nbsp;
+                        <label id="basicDataEl" style="font-family:Verdana;color:blue;"><a id="showBasicDataEl" href="javascript:showBasicData()">产品录入</a></label>
+                        <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
+                        <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
+                        <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label>
+                    </div>
                 </td>
             </tr>
         </table>
     </div>
 
     <div class="nui-fit">
-                    <div class="nui-fit">
-                        <div class="" style="width:100%;height:auto;" >
-                            <div style="width:100%;height:5px;"></div>
-                            
-    
+        <div class="" style="width:100%;height:auto;" >
+            <div style="width:100%;height:5px;"></div>
+            <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
+            <div style="width:100%;height:5px;"></div>
+            <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
+            <div style="width:100%;height:5px;"></div>
+            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
+        </div>
 
-<div id="rpsPackageGrid" class="nui-datagrid"
-     style="width:100%;height:auto;"
-     dataField="list"
-     showPager="false"
-     showModified="false"
-     allowSortColumn="false">
-    <div property="columns">
-        <div headerAlign="center" field="orderIndex" width="25" align="right">序号</div>
-        <div header="套餐信息">
-            <div property="columns">
-                <div field="prdtName" headerAlign="center" allowSort="false"
-                     visible="true" width="100" header="套餐名称">
+        <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
+            showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
+        >
+            <div id="sellForm" class="form">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td class="title">
+                                <label>套餐金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
+                            </td>
+                            <td class="title">
+                                <label>套餐优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
+                            </td>
+                            <td class="title">
+                                <label>工时金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
+                            </td>
+                            <td class="title">
+                                <label>工时优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
+                            </td>
+                            <td class="title">
+                                <label>零件金额：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="partSubtotal" name="partSubtotal"/>
+                            </td>
+                            <td class="title">
+                                <label>零件优惠：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="partPrefAmt" name="partPrefAmt"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title required">
+                                <label>应收总计：</label>
+                            </td>
+                            <td >
+                                <input class="nui-textbox" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div field="serviceTypeId" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="业务类型" align="center">
-                     <input  property="editor" enabled="true" dataField="servieTypeList" 
-                             class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="" emptyText=""  vtype="required"/> 
-                </div>
-                <div field="subtotal" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="套餐金额" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="rate" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="优惠率" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="amt" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="原价" align="center">
-                </div>
-                <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="施工员">
-                    <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
-                </div>
-                </div>
-                <div field="workerIds" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="施工员" align="center">
-                </div>                
-                <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center">
-                     <input  property="editor" enabled="true" dataField="memList" 
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onsalemanChanged" emptyText=""  vtype="required"/> 
-                </div>
-                <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center">
-                </div>   
-                <div field="packageOptBtn" name="packageOptBtn" width="100" headerAlign="center" header="操作" align="center"></div>
-            </div>
         </div>
     </div>
-</div>
-<div style="text-align:center;">
-    <span id="carHealthEl" >
-        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
-    </span>
-</div>
-<div id="packageDetailGridForm" style="display:none;">
-    <div id="packageDetailGrid" class="nui-datagrid"
-         style="width: 100%; "
-         dataField="list"
-         showPager="false"
-         selectOnLoad="true"
-         allowSortColumn="true">
-        <div property="columns">
-            <div field="typeName" headerAlign="center" allowSort="false"
-                 visible="true" width="60">类型
-            </div>
-            <div field="name" headerAlign="center"
-                 allowSort="false" visible="true" width="">名称
-            </div>
-            <div field="qty" headerAlign="center"
-                 allowSort="false" visible="true" width="80">工时/数量
-            </div>
-            <div field="remark" headerAlign="center"
-                 allowSort="false" visible="true" width="80">备注
-            </div>
-        </div>
-    </div>
-</div>
+   
+
+
     
 
-
-
-                            <div style="width:100%;height:5px;"></div>
-                            
-    
-<div id="rpsItemGrid"
-     borderStyle="border-bottom:1;"
-     class="nui-datagrid"
-     dataField="list"
-     style="width: 100%; height:auto;"
-     showPager="false"
-     showModified="false"
-     allowSortColumn="true">
-    <div property="columns">
-        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-        <div header="工时信息">
-            <div property="columns">
-                <div field="itemName" headerAlign="center" allowSort="false" visible="true" width="100">工时名称</div>
-                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
-                    <input  property="editor" enabled="true" dataField="servieTypeList" 
-                             class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="" emptyText=""  vtype="required"/> 
-                </div>
-                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" numberFormat="p">优惠率
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="80" header="施工员">
-                    <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onitemworkerChanged" >     
-                    <!-- <div property="columns">
-                        <div header="ID" field="id"></div>
-                        <div header="名称" field="empName"></div>
-                    </div> -->
-                </div>
-                </div>
-                <div field="workerIds" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="施工员" align="center">
-                </div>                
-                <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center">
-                     <input  property="editor" enabled="true" dataField="memList" 
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onitemsalemanChanged" emptyText=""  vtype="required"/> 
-                </div>
-                <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center">
-                </div> 
-                <div field="itemOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
-            </div>
-        </div>
-    </div>
 </div>
-<div style="text-align:center;">
-    <span id="carHealthEl" >
-        <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择工时</a>
-    </span>
-</div>
-    
 
 
-
-                            <div style="width:100%;height:5px;"></div>
-                            
-    
-<div id="rpsPartGrid"
-     dataField="list"
-     class="nui-datagrid"
-     style="width: 100%; height:auto;"
-     showPager="false"
-     showModified="false"
-     editNextOnEnterKey="true"
-     allowSortColumn="true">
-    <div property="columns" >
-        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-        <div header="配件信息">
-            <div property="columns">
-                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
-                    <!-- <input property="editor" class="nui-textbox" emptyText="配件编码、名称、拼音" /> -->
-                </div>
-                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center">
-                    <input  property="editor" enabled="true" dataField="servieTypeList" 
-                             class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="" emptyText=""  vtype="required"/> 
-                </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" numberFormat="p" header="优惠率">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="金额">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-                <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码">
-                </div>           
-                <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center">
-                     <input  property="editor" enabled="true" dataField="memList" 
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
-                </div>
-                <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center">
-                </div>   
-                <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center" align="center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="text-align:center;">
-    <span id="carHealthEl" >
-        <a href="javascript:showHealth()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
-    </span>
-</div>
-<div id="advancedMorePartWin" class="nui-window"
+<div id="advancedCardTimesWin" class="nui-window"
      title="" style="width:450px;height:200px;"
      showModal="false"
      showHeader="false"
      allowResize="false"
-     allowDrag="true">
-     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+     allowDrag="false">
+     <!-- <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
@@ -437,98 +283,7 @@
                 </td>
             </tr>
         </table>
-    </div>
-    <div class="nui-fit">
-          <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:95%;"
-               selectOnLoad="true"
-               showPager="false"
-               dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
-               onrowdblclick="addSelectPart"
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               url="">
-              <div property="columns">
-                  <div type="indexcolumn">序号</div>
-                  <div field="code" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                  <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OEM码"></div>
-                  <div field="fullName" name="comPartCode" width="200" headerAlign="center" header="配件全称"></div>
-              </div>
-          </div>
-    </div>
-</div> 
-
-
-
-                        </div>
-                
-                        <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
-                            showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
-                        >
-                            <div id="billForm" class="form">
-                                    <table style="width: 100%;">
-                                        <tr>
-                                            <td class="title">
-                                                <label>套餐金额：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>套餐优惠：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>工时金额：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>工时优惠：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>零件金额：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                            <td class="title">
-                                                <label>零件优惠：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title required">
-                                                <label>应收总计：</label>
-                                            </td>
-                                            <td >
-                                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                
-                
-                        </div>
-                    </div>
-                    
-    </div>
-</div>
-<div id="advancedCardTimesWin" class="nui-window"
-     title="" style="width:450px;height:200px;"
-     showModal="false"
-     showHeader="false"
-     allowResize="false"
-     allowDrag="false">
+    </div> -->
     <div class="nui-fit">
           <div id="cardTimesGrid" class="nui-datagrid" style="width:100%;height:95%;"
                selectOnLoad="true"
@@ -549,6 +304,7 @@
           </div>
     </div>
 </div> 
+
 <div id="advancedMemCardWin" class="nui-window"
      title="" style="width:500px;height:200px;"
      showModal="false"
@@ -573,15 +329,10 @@
           </div>
     </div>
 </div> 
-        <div style="width:100%;margin-top: 10px;text-align: center;">
-            <a class="nui-button" onclick="save()" plain="false">保存</a>
 
-            <a class="nui-button" onclick="" plain="false">价参</a>
-        </div>
-    </div>
-    <script type="text/javascript">
-        nui.parse();
-    </script>
+
+<script type="text/javascript">
+ nui.parse();
+</script>
 </body>
-
 </html>

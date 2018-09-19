@@ -685,4 +685,35 @@ record_date &lt;  #endDate#
 ORDER BY record_date DESC
 limit 1
 	   	</select>
+	   	
+	   	
+	   		   <select id="queryCheckMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	   		   select 
+A.*,
+B.service_code serviceCode,
+C.mobile guestMobile ,
+C.full_name  guestFullName,
+D.car_model carModel
+
+from rps_check_main A
+LEFT JOIN rps_maintain B on B.id = A.service_id
+inner join wb_common.com_guest C on C.id = B.guest_id
+inner join rpb_car D on D.id = B.car_id
+where 1=1
+<isNotEmpty prepend="and" property="carNo">  
+A. car_no = #carNo#
+</isNotEmpty>
+
+<isNotEmpty prepend="and" property="guestName">  
+C.full_name = #guestName#
+</isNotEmpty>
+
+<isNotEmpty prepend="and" property="serviceCode">  
+B.service_code = #serviceCode#
+</isNotEmpty>
+
+ORDER BY A.record_date DESC
+	   		   
+	   		   
+	   		     	</select>
 </sqlMap>

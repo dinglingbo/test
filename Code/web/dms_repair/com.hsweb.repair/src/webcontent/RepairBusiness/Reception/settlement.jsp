@@ -380,7 +380,8 @@
 	        		var guestAddr = list.guestAddr;
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
-	        			guestMobile = list.guestTel;
+	        			guestMobile = list.guestTel || "";
+	        			contactMobile = list.contactorTel || "";
 	        		}
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNO").innerHTML = document.getElementById("carNO").innerHTML + carNo;

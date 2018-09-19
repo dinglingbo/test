@@ -2974,8 +2974,9 @@ function addExpenseAccount(){
 	var data = billForm.getData();
 	if(data.id){
 		var item={};
-	    item.text = " 报销单";
-		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.ExpenseAccount.flow?sourceServiceId="+data.id;
+		item.id = "123321";
+	    item.text = "报销单";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.ExpenseAccount.flow?sourceServiceId="+data.id+"&data="+data;
 		item.iconCls = "fa fa-cog";
 		window.parent.activeTab(item);
 	}else{

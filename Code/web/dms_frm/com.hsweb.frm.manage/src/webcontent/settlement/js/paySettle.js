@@ -1548,7 +1548,7 @@ function onAccountValueChanged(e) {
 
 
 function doDelete() {
-	var rows = rRightGrid.getSelecteds();
+	var rows = pRightGrid.getSelecteds();
 	if (!rows) {
 		nui.alert("请选择一条记录","提示");
 		return;
@@ -1572,10 +1572,10 @@ function doDelete() {
 						 nui.unmask(document.body);
 						if(data.errCode=="S"){
 							nui.alert(data.errMsg,"提示");
-							rRightGrid.load;
+							pRightGrid.load;
 						}else{
 							nui.alert(data.errMsg,"提示");
-							rRightGrid.load;
+							pRightGrid.load;
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {

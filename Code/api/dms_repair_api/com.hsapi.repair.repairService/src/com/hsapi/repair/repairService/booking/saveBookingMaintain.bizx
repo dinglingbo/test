@@ -238,7 +238,7 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">开单成功</process:from>
-      <process:to type="query">errCode</process:to>
+      <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

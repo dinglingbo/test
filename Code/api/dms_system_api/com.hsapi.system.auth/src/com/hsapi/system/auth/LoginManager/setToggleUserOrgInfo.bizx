@@ -233,6 +233,7 @@
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link13" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="667" y="180"/>

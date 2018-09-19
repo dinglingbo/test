@@ -52,7 +52,7 @@ function init() {
         });
     });
 
-    //这种写法不懂？？？
+    
     initCarSeries("carSeriesList", "", function () {
         var data = nui.get("carSeriesList").getData();
         data.forEach(function (v) {
@@ -295,9 +295,68 @@ function cancelBill() {
 }
 
 //已开单
+var BookinUrl = baseUrl + "com.hsapi.repair.repairService.booking.saveBookingMaintain.biz.ext";
 function newBill() {
 	//把表单中的内容修改
-    updateRpspreBookStatus('newBill');
+    //updateRpspreBookStatus('newBill');
+	var row = upGrid.getSelected();
+    if (!row || row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    
+    var newRow = {};
+    newRow.id = row.id;
+    //保存的工单
+
+    
+    var maintain = {
+    		"billTypeId":"0",
+    		"guestId":row.guestId,
+    		"carId":row.carId,
+    		"carNo":row.carNo,
+    		"mtAdvisorId":row.mtAdvisorId,
+    		"serviceTypeId":row.serviceTypeId,
+    		"mtAdvisor":row.mtAdvisor
+    		
+    };
+    
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+    var action = "newBill";
+    var json = nui.encode({
+    	 rpsPrebook: newRow,
+         action: action,
+         maintain:maintain,
+         token: token	
+	});	
+    
+    nui.ajax({
+        url: BookinUrl,
+        type: 'post',
+        data:json,
+        cache : false,
+		contentType : 'text/json',
+        success: function(data) {
+            if (data.errCode == "S") {
+                nui.unmask();
+                showMsg("开单成功","S");     
+                upGrid.reload();
+            } else {
+                nui.unmask();
+                showMsg(data.errMsg || "开单失败","W"); 
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            nui.unmask();
+            console.log(jqXHR.responseText);
+            showMsg("网络出错，保存失败","W");           
+        }
+    });
+     
 }
 
 //修改状态时执行的函数
@@ -311,7 +370,7 @@ function updateRpspreBookStatus(action) {
     var newRow = {};
     newRow.id = row.id;
 
-      //不懂
+      
        newRow.status = action == "confirm" ? 1 : 
                  action ==  "cancel" ? 2 :
                  action == "newBill" ? 3 : 1;

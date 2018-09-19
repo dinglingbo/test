@@ -11,7 +11,7 @@
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
   
- var billForm = null;
+ var billForm = null; 
  var xyguest = null; 
  var brandList = [];
  var brandHash = {};

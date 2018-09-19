@@ -7,7 +7,7 @@
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08
   - Description: 
--->
+--> 
   
 <head>
   <title>检查开单</title>  
@@ -126,6 +126,15 @@ function onSearch(){
     });*/
   }
 
+
+function setInitData(params){
+  mainGrid.load({
+    params:params,
+    
+    token:token
+  });
+  
+}
 
 
   function newCheckPrecheck() {

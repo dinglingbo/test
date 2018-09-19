@@ -676,7 +676,8 @@ function SearchCheckMain(serviceId) {
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
-        async: false,
+       
+       
         data:{ 
             serviceId:serviceId
         },
@@ -692,3 +693,17 @@ function SearchCheckMain(serviceId) {
 }
 
 
+  function newCheckMainMore() {  
+
+    var item={};
+    item.id = "checkPrecheckDetail";
+    item.text = "查车单";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
+    item.iconCls = "fa fa-cog";
+    //window.parent.activeTab(item);
+    var params = {};
+    params = { 
+        carNo: nui.get("carNo").value,
+    };
+    window.parent.activeTabAndInit(item,params);
+}  

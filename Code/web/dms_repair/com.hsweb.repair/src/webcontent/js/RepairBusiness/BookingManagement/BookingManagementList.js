@@ -317,8 +317,8 @@ function newBill() {
     		"carNo":row.carNo,
     		"mtAdvisorId":row.mtAdvisorId,
     		"serviceTypeId":row.serviceTypeId,
-    		"mtAdvisor":row.mtAdvisor
-    		
+    		"mtAdvisor":row.mtAdvisor,
+    		"contactorId":row.contactorId	
     };
     
     nui.mask({

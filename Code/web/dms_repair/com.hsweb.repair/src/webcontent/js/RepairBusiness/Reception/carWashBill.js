@@ -11,7 +11,7 @@
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
   
- var billForm = null;
+ var billForm = null; 
  var xyguest = null; 
  var brandList = [];
  var brandHash = {};
@@ -2236,7 +2236,8 @@ function onPrint(e){
 		var params = {
             serviceId : main.id,
             comp : currOrgName,
-            baseUrl : baseUrl
+            baseUrl : baseUrl,
+            token : token
         };
 	 if(e == 1){
          openUrl = "com.hsweb.print.repairOrder.flow";

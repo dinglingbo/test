@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.2.8"></script>
+	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.2.9"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -55,7 +55,7 @@ table {
 		<table>
 			<tr>
 				<td><a class="nui-button" iconCls="" onclick="add()"plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
-					<a class="nui-button" iconCls=""	onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+					<a class="nui-button" iconCls="" id="updateBtn"	onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 					<a class="nui-button" iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
 					class="nui-button" iconCls="icon-date" onclick="split()"
 					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
@@ -67,7 +67,7 @@ table {
 	</div>
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid"
-			style="width: 100%; height: 100%;" pageSize="20"
+			style="width: 100%; height: 100%;" pageSize="20" onselectionchanged="selectionChanged"
 			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="7" totalCount="page.count" virtualScroll="true" virtualColumns="true">
 			<div property="columns">
 				<div width="30" type="indexcolumn">序号</div>

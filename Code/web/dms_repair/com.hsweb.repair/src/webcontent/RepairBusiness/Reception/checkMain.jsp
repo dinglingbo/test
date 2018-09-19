@@ -7,8 +7,8 @@
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08
   - Description: 
--->
- 
+--> 
+  
 <head>
   <title>检查开单</title>  
   <style type="text/css">
@@ -26,7 +26,7 @@
     color: red;
   }
 
-  .rmenu {
+  .rmenu { 
     font-size: 14px;
     /* font-weight: bold; */
     text-align: left;
@@ -48,25 +48,27 @@
     <table class="table" id="table1">
       <tr>
         <td>
-          <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" />
+          <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" />
+          <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
+          <input class="nui-textbox" id="guestName" id="guestName" emptyText="输入客户姓名" width="120" />
           <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
             <span class="fa fa-search fa-lg"></span>&nbsp;查询
           </a>
           <span class="separator"></span>
-          <a class="nui-button" iconCls="" plain="true" onclick="newCheckPrecheck" id="">
-            <span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检
-          </a>
-          <a class="nui-button" iconCls="" plain="true" onclick="selectModel" id="">
-            <span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单
-          </a>
+   <!--        <a class="nui-button" iconCls="" plain="true" onclick="newCheckPrecheck" id="">
+     <span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检
+   </a>
+   <a class="nui-button" iconCls="" plain="true" onclick="selectModel" id="">
+     <span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单
+   </a> -->
           <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="">
             <span class="fa fa-edit fa-lg"></span>&nbsp;查看
           </a>
         </td>
       </tr>
-    </table>
+    </table> 
 
-  </div>
+  </div> 
 
   <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
@@ -77,19 +79,20 @@
       <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
       <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
       <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
-      <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
+      <div field="car_no" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
       <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
-      <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
-      <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
+      <div field="mt_advisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
+      <div field="record_date" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
   nui.parse();
+    var form = new nui.Form("#table1");
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = apiPath + repairApi + "/";
-    var gridUrl = baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext";
+    var gridUrl = baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryCheckMainList.biz.ext";
     var mainGrid = nui.get("mainGrid"); 
     mainGrid.setUrl(gridUrl);
 
@@ -97,7 +100,9 @@
 onSearch();
 
 function onSearch(){
+  var data = form.getData();
   mainGrid.load({
+    params:data,
     
     token:token
   });
@@ -121,6 +126,15 @@ function onSearch(){
     });*/
   }
 
+
+function setInitData(params){
+  mainGrid.load({
+    params:params,
+    
+    token:token
+  });
+  
+}
 
 
   function newCheckPrecheck() {
@@ -162,7 +176,7 @@ function onSearch(){
     //window.parent.activeTab(item);
     var params = {};
     params = { 
-        id:data.serviceId,
+        id:data.service_id,
     };
     window.parent.activeTabAndInit(item,params);
 }  

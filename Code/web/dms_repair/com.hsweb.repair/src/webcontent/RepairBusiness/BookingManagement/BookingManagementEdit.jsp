@@ -68,7 +68,7 @@
                             <input class="nui-buttonedit" id="carNo" name="carNo" textname="carNo" emptyText="请输入或选择..." onbuttonclick="selectCustomer" selectOnFocus="true" required="true"/>
                             <input class="nui-textbox" id="carId" name="carId" visible="false" />
                             <input class="nui-textbox" id="guestId" name="guestId" visible="false" /> 
-                            <input class="nui-textbox" id="carVin" name="carVin" visible="false" />                          
+                            <input class="nui-textbox" id="contactorId" name="contactorId" visible="false" />                          
                         </td>
                         <td class="form_label">
                             <label>品牌：</label>

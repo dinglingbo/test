@@ -44,28 +44,30 @@ body .mini-grid-row-selected{
 }
 
 </style>
-</head>
+
 <body>
+    <%@include file="/manage/inOutManage/purchaseOrder/purchaseOrderDetail.jsp" %>
+   
+<!--       <div id="mainTabs" class="nui-tabs" name="mainTabs" -->
+<!--            activeIndex="0"  -->
+<!--            style="width:100%; height:100%"  -->
+<!--            plain="false"  -->
+<!--            > -->
 
-<div class="nui-fit">    
-      <div id="mainTabs" class="nui-tabs" name="mainTabs"
-           activeIndex="0" 
-           style="width:100%; height:104%;" 
-           plain="false" 
-           >
-
-<!--          <div title="配件信息" id="partInfoTab" name="partInfoTab" url="" > -->
-<!--             配件基本信息 -->
-<%--             <%@include file="/purchase/purchaseOrder/pchsPartInfo.jsp" %> --%>
-<!--           <div class="nui-fit">
-<!--               <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe> -->
-<!--           </div> --> 
-<!--         </div>   -->
+<!-- <!--          <div title="配件信息" id="partInfoTab" name="partInfoTab" url="" > --> -->
+<!-- <!--             配件基本信息 --> -->
+<%-- <%--             <%@include file="/purchase/purchaseOrder/pchsPartInfo.jsp" %> --%> --%>
+<!-- <!--           <div class="nui-fit"> -->
+<!-- <!--               <iframe id="formIframePart" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe> --> -->
+<!-- <!--           </div> -->  -->
+<!-- <!--         </div>   --> -->
         
-         <div id="billmain" name="billmain" >
-            <!--采购订单信息-->
-            <%@include file="/manage/inOutManage/purchaseOrder/purchaseOrderDetail.jsp" %>
-          </div>
+<!--          <div id="billmain" name="billmain"  style="width:100%; height:100%" > -->
+<!--             采购订单信息 -->
+<!--             <div class="nui-fit">  -->
+<%--             <%@include file="/manage/inOutManage/purchaseOrder/purchaseOrderDetail.jsp" %> --%>
+<!--             </div> -->
+<!--           </div> -->
         
 <!--        <div title="采购车" name="purchaseAdvanceTab" url="" > -->
 <!--           <div class="nui-fit"> -->
@@ -73,7 +75,7 @@ body .mini-grid-row-selected{
 <!--           </div> -->
 <!--         </div>   -->
     </div>  
-</div>
+
 
 
 <div id="advancedSearchWin" class="nui-window"

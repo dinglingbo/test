@@ -14,7 +14,7 @@ var carBrandHash = [];
 var carSeriesHash = [];
 var mtAdvisorHash = [];
 var carModelIdHash = {};
-
+var xs = 0;
 
 $(document).ready(function(v){
 
@@ -355,4 +355,43 @@ function selectCustomer(guestId)
             }
         }
     });
+}
+
+//当选择列时
+/*function selectionChanged() {
+	var rows = grid.getSelecteds();
+	if(currIsMaster!="1"){
+		if(rows[0].isShare=="1"){
+			nui.get('updateBtn').setVisible(false);
+		}else{
+			nui.get('updateBtn').setVisible(true);
+		}
+		
+	}else{
+		if(rows[0].isShare=="1"){
+			nui.get('updateBtn').setVisible(true);
+		}else{
+			nui.get('updateBtn').setVisible(false);
+		}
+	}
+	if(xs==1){
+		mini.get("updateBtn").setVisible(false);
+		mini.get("addBtn").setVisible(false);
+		mini.get("onBuy").setVisible(true);
+	}
+}*/
+
+
+function selectionChanged() {
+	var rows = grid.getSelecteds();
+	if(currOrgId==rows[0].orgid){
+			nui.get('updateBtn').setVisible(true);	
+	}else{
+			nui.get('updateBtn').setVisible(false);
+	}
+	if(xs==1){
+		mini.get("updateBtn").setVisible(false);
+		mini.get("addBtn").setVisible(false);
+		mini.get("onBuy").setVisible(true);
+	}
 }

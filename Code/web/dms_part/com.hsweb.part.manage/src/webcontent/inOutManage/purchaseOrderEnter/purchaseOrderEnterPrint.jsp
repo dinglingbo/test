@@ -20,11 +20,16 @@ table{
 	text-align:center;
 }
 #sum{
-	padding-left: 210px;
-	width:430px;
+	padding-left: 80px;
+	width:350px;
+	text-align:left;
 }
 #sumOrderQty{
-	width:95px;
+	width:290px;
+	text-align:right;
+}
+#sumOrderAmt{
+	padding-left:45px;
 }
 #currOrgName{
 	padding-left:80px;
@@ -70,6 +75,9 @@ table{
     padding-top: 8px;
     font-size: 18px;
     color: yellow;
+}
+#getMan{
+	text-align:left;
 }
 </style>
 <title>采购入库打印</title>

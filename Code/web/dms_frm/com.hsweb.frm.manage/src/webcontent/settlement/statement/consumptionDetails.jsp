@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>储值卡</title>
+<title>储值卡消费记录</title>
 <script
 	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.0.4"></script>
 <style type="text/css">

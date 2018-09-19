@@ -20,11 +20,16 @@ table{
 	text-align:center;
 }
 #sum{
-	padding-left: 210px;
-	width:430px;
+	padding-left: 80px;
+	width:350px;
+	text-align:left;
 }
 #sumOrderQty{
-	width:95px;
+	width:290px;
+	text-align:right;
+}
+#sumOrderAmt{
+	padding-left:45px;
 }
 #currOrgName{
 	padding-left:80px;
@@ -70,6 +75,9 @@ table{
     padding-top: 8px;
     font-size: 18px;
     color: yellow;
+}
+#getMan{
+	text-align:left;
 }
 </style>
 <title>采购订单打印</title>
@@ -143,8 +151,8 @@ table{
 				  </tr>
 				  <tr id="border2">
 				    <td id="currUserName">打印人：系统管理员</td>
-				    <td id="">送货人：</td>
-				    <td id="">收货人：</td>
+				    <td id="giveMan">送货人：</td>
+				    <td id="getMan">收货人：</td>
 				  </tr>
 				  <tr colspan="3" id="border3">
 				    <td id="remark">备注</td>

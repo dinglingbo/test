@@ -2432,10 +2432,6 @@ function SaveCheckMain() {
         return;
     }
     if(isRecord == "0"){
-
-
-
-
     var temp ={
         serviceId:data.id, 
         carId:data.carId,
@@ -2482,13 +2478,11 @@ function SaveCheckMain() {
 
 function MemSelectCancel(e) {
     if(e == 1){
-
         $("#show1").show();
         $("#show2").hide();
     }
 
     if(e == 2){
-
         $("#show1").hide();
         $("#show2").show();
     }
@@ -2499,7 +2493,6 @@ function MemSelectCancel(e) {
         if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
         else window.close();
     }
-
 
 
 function SearchLastCheckMain() { 

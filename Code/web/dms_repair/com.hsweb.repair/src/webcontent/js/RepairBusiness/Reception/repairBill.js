@@ -986,7 +986,7 @@ function loadMaintain(callback,unmaskcall){
     });
 }
 function addPrdt(data){
-    //var main = billForm.();
+    var main = billForm.getData();
     if(!main.id){
         showMsg("请先保存工单!","E");
         return;

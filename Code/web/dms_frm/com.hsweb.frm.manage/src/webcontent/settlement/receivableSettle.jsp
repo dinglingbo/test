@@ -11,7 +11,7 @@
 -->
 <head>
 <title>应收账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/receivableSettle.js?v=1.2.8"></script>
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/receivableSettle.js?v=1.2.9"></script>
   <style type="text/css">
 .title {
     width: 90px;

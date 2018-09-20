@@ -54,7 +54,7 @@
 
 			<tr>
 				<td>储值余额:<input class="nui-textbox" enabled="false" id="dk" width="50%" onvaluechanged="onChanged" /></td>
-				<td >储值抵扣:<input class="nui-textbox" id="dk" width="50%" onvaluechanged="onChanged" /></td>
+				<td ><font  style=" color: red;">储值抵扣:</font><input class="nui-textbox" id="dk" width="50%" onvaluechanged="onChanged" /></td>
 			</tr>
 
 			<tr>
@@ -65,7 +65,7 @@
 				<td colspan="3" align="center" ><font size=4 style=" color: red;">应收:</font><input class="nui-textbox" enabled="false" width="" id="mtAmt" name="mtAmt"/></td>
 			</tr>
 			<tr >
-				<td colspan="3" align="center"  ><font size=4 style=" color: red;">实收:</font><input class="nui-textbox" enabled="false" width="" id="mtAmt" name="mtAmt"/></td>
+				<td colspan="3" align="center"  ><font size=4 style=" color: red;">实收:</font><input class="nui-textbox" enabled="false" width="" id="" name=""/></td>
 			</tr>
 			<tr>
 				<td align="right">结算方式:</td>

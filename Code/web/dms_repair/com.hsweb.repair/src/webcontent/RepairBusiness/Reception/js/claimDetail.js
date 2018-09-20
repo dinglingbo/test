@@ -853,19 +853,20 @@ function save(){
 
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
-                    if(isSettle == 1){
-                        $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-                        $("#settleStatus").attr("class", "statusview");
-                    }else{
-                        $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-                        if(status==0){
-                            $("#addStatus").attr("class", "statusview");
-                        }else if(status==1){
-                            $("#repairStatus").attr("class", "statusview");
-                        }else if(status==2){
-                            $("#finishStatus").attr("class", "statusview");
-                        }
-                    }
+                    doSetStyle(status, isSettle);
+                    // if(isSettle == 1){
+                    //     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                    //     $("#settleStatus").attr("class", "statusview");
+                    // }else{
+                    //     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                    //     if(status==0){
+                    //         $("#addStatus").attr("class", "statusview");
+                    //     }else if(status==1){
+                    //         $("#repairStatus").attr("class", "statusview");
+                    //     }else if(status==2){
+                    //         $("#finishStatus").attr("class", "statusview");
+                    //     }
+                    // }
 
                     var p1 = {
                         interType: "package",
@@ -3166,28 +3167,21 @@ function MemSelectOk(){
 function SearchCheckMain(callback) {
     var data = billForm.getData();
     var  t = null;
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '数据加载中...'
-    });
+    var ydata = {
+        serviceId:data.id
+    }
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
         async: false,
         data:{ 
-            serviceId:data.id
+            params:ydata
         },
         cache: false,
         success: function (text) {  
             callback && callback(text);
             checkMainData = text;
             isRecord = text.isRecord;
-
-            nui.unmask(document.body);
-        },
-        error: function(){
-            nui.unmask(document.body);
         }
     });
 

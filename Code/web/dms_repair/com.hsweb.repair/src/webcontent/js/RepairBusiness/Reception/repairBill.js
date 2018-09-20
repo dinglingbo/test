@@ -634,7 +634,15 @@ function doSetMainInfo(car){
 }
 
 function setInitData(params){
-	var data = {};
+	var data = {
+			packageSubtotal:0,
+			packagePrefAmt:0,
+			itemSubtotal:0,
+			itemPrefAmt:0,
+			partSubtotal:0,
+			partPrefAmt:0,
+			mtAmt:0
+	};
 	sellForm.setData(data);
     if(!params.id){
         add();
@@ -654,6 +662,7 @@ function setInitData(params){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
             if(errCode == 'S'){
+            	xyguest = data;
                 var p = {
                     data:{
                         guestId: data.guestId||0,
@@ -693,7 +702,7 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
 
-                        $("#guestNameEl").html(guest.guestFullName);
+                        $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
                         $("#guestTelEl").html(guest.mobile);
 
@@ -974,7 +983,7 @@ function loadMaintain(callback,unmaskcall){
     });
 }
 function addPrdt(data){
-    var main = billForm.getData();
+    var main = billForm.();
     if(!main.id){
         showMsg("请先保存工单!","E");
         return;
@@ -2211,17 +2220,14 @@ function delFromBillPart(data, callback){
         }
     });
 }
+
 function addcardTime(){	
 	doAddcardTime(xyguest);
-	
 }
 
-
-
-	function addcard(){
-
+function addcard(){
 		doAddcard(xyguest);
-	}
+}
 
 function onPrint(e){
 	var main = billForm.getData();
@@ -2291,12 +2297,20 @@ function showHealth(){
 }
 
 function pay(){
+	
+	var data = sellForm.getData();
+	var json = {
+			data:data,
+			xyguest:xyguest,
+	}
 	nui.open({
 		url:"com.hsweb.print.carWashBillUp.flow",
 		width:"40%",
 		height:"50%",
 		//加载完之后
 		onload: function(){	
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.getData(json);
 		},
 	ondestroy : function(action) {
 		if (action == 'ok') {
@@ -2885,13 +2899,26 @@ function onDrawSummaryCellPack(e){
 		  data.partSubtotal = sumPartSubtotal;
 		  data.partPrefAmt = sumPartPrefAmt;*/
 		  
-		  if(data.itemSubtotal != null &&  data.itemSubtotal != ""){
+/*		  if(data.itemSubtotal != null || data.itemSubtotal != ""){
 			  data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal);
+		  }else{
+			  data.itemSubtotal=0;
+			  data.itemPrefAmt=0;
 		  }
-		  if(data.partSubtotal != null &&  data.partSubtotal != ""){
+		  if(data.partSubtotal != null  || data.partSubtotal != ""){
 			  data.mtAmt = parseFloat(data.mtAmt)+parseFloat(data.partSubtotal);
+		  }else{
+			  data.partSubtotal=0;
+			  data.partPrefAmt=0;
 		  }
-		 // data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  
+		  if((data.itemSubtotal == null  || data.itemSubtotal == "")  && (data.partSubtotal == null  || data.partSubtotal == "") ){
+			  data.mtAmt = sumPkgSubtotal;
+		  }else{
+			  data.sumPkgSubtotal=0;
+			  data.sumPkgPrefAmt=0;
+		  }*/
+		  data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 		  sellForm.setData(data);
 	  }
 	 
@@ -2923,12 +2950,17 @@ function onDrawSummaryCellItem(e){
 		  data.itemSubtotal = sumItemSubtotal;
 		  data.itemPrefAmt = sumItemPrefAmt;
 		  
-		  if(data.packageSubtotal != null &&  data.packageSubtotal != ""){
+		 /* if(data.packageSubtotal != null  ||  data.packageSubtotal != ""){
 			  data.mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal);
 		  }
-		  if(data.partSubtotal != null &&  data.partSubtotal != ""){
+		  if(data.partSubtotal != null  ||  data.partSubtotal != ""){
 			  data.mtAmt = parseFloat(data.mtAmt)+parseFloat(data.partSubtotal);
 		  }
+		  
+		  if((data.packageSubtotal == null  ||  data.packageSubtotal == "")  && (data.partSubtotal == null  ||  data.partSubtotal == "") ){
+			  data.mtAmt = sumItemSubtotal;
+		  }*/
+		  data.mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
 		  sellForm.setData(data);
 	  }
 	
@@ -2959,12 +2991,19 @@ function onDrawSummaryCellPart(e){
 		  
 		  data.partSubtotal = sumPartSubtotal;
 		  data.partPrefAmt = sumPartPrefAmt;
-		  if(data.packageSubtotal != null &&  data.packageSubtotal != ""){
+		 /* if(data.packageSubtotal != null  ||  data.packageSubtotal != ""){
 			  data.mtAmt = parseFloat(sumPartSubtotal)+parseFloat(data.packageSubtotal);
 		  }
-		  if(data.itemSubtotal != null &&  data.itemSubtotal != ""){
+		  if(data.itemSubtotal != null  ||  data.itemSubtotal != ""){
 			  data.mtAmt = parseFloat(data.mtAmt)+parseFloat(data.itemSubtotal);
 		  }
+		  
+		  if((data.packageSubtotal == null  ||  data.packageSubtotal == "")  && (data.itemSubtotal == null  ||  data.itemSubtotal == "") ){
+			  data.mtAmt = sumPartSubtotal;
+		  }
+		  */
+		  data.mtAmt = parseFloat(sumPartSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal);
+
 		  sellForm.setData(data);
 	  }
 	

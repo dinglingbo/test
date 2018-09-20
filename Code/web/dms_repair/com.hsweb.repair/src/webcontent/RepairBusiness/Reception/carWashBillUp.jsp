@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
-	<%@include file="/common/common.jsp"%>
-	<%@include file="/common/commonRepair.jsp"%>	
+	pageEncoding="UTF-8" session="false"%>
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,78 +11,92 @@
 -->
 <head>
 <title>洗车工单结算</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.6"></script>
-	        <div id="rtTr" class="vpanel panelwidth" style="height:auto;">
-            <div id="rtTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>应收</span></div>
-            <div class="vpanel_body">
-                <table class="tmargin">
-                    <tr id="rcTr">
-                        <td style="text-align:center" width="60px" height="40px">套餐金额:</td>
-                        <td id="rRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+<script src
+	="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/carWashBillUp.js?v=1.0.1">
+</script>
+<style type="text/css">
+.vpanel_heading {
+	border-bottom: 1px solid #d9dee9;
+	width: 100%;
+	height: 28px;
+	line-height: 28px;
+}
 
-                        <td style="text-align:center" width="60px">工时金额:</td>
-                        <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+.vpanel_heading span {
+	margin: 0 0 0 20px;
+	font-size: 16px;
+	font-weight: normal;
+}
+</style>
+<div id="rtTr" class="vpanel panelwidth" style="height: auto;">
+	<div id="rtTr" class="vpanel_heading"
+		style="background-color: #f3f4f6; color: #2d95ff;">
+		<span>明细</span>
+	</div>
+	<div id="sellForm" class="form">
+		<table >
+			<tr >
+				<td>套餐金额:<input class="nui-textbox" enabled="false" width="50%" id="packageSubtotal" name="packageSubtotal"/></td>
 
-                        <td style="text-align:center" width="60px" >配件金额:</td>
-                        <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+				<td>工时金额:<input class="nui-textbox" enabled="false" width="50%" id="itemSubtotal" name="itemSubtotal"/></td>
 
-                        <td style="text-align:center" width="60px">应收:</td>
-                        <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
-                    </tr>
-                </table>
+				<td>配件金额:<input class="nui-textbox" enabled="false" width="50%" id="partSubtotal" name="partSubtotal"/></td>
+			</tr>
+			
+ 			<tr >
+				<td>套餐优惠:<input class="nui-textbox" enabled="false" width="50%" id="packagePrefAmt" name="packagePrefAmt"/></td>
 
-            </div>
-        </div>
+				<td>工时优惠:<input class="nui-textbox" enabled="false" width="50%" id="itemPrefAmt" name="itemPrefAmt"/></td>
 
-	        <div id="ctTr" class="vpanel panelwidth" style="height:auto;">
-            <div id="ctTr" class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span >预存套餐 (余额: </span><span id="rechargeBalaAmt"></span><span >) </span></div>
-            <div class="vpanel_body">
-                <table class="tmargin">
-                    <tr >
-                        <td style="text-align:center" style="width:40%; heigth " >储值抵扣:
-                        	<input class="nui-textbox" id="dk" style="width: 70px" onvaluechanged="onChanged"/>
-                        </td>    
-                    </tr>
-                    <tr >
-                        <td style="text-align:center" style="width:40%" >实收:
-                        	<input class="nui-textbox" id="dk" style="width: 70px" onvaluechanged="onChanged"/>
-                        </td>    
-                    </tr>
-                     <tr>
-	                    <td class="form_label" align="right">结算方式:</td>
-						<td colspan="1">
-							<div class="mini-radiobuttonlist" repeatItems="1"
-								repeatLayout="table" repeatDirection="vertical" name="payType"
-								textField="text" valueField="value"
-								data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]" value="020101" >
-							</div> 
-						</td>	
-                 </tr>
-                 <tr>
-                 		<td>
-                 			
-                 		</td>
-                 </tr>
-                </table>
+				<td>配件优惠:<input class="nui-textbox" enabled="false" width="50%" id="partPrefAmt" name="partPrefAmt"/></td>
+			</tr>
 
-            </div>
-        </div>
 
-     
-		<div style="padding: 0px;" borderStyle="border:0;">
-			<table width="100%">
-				<tr >
-				<td style="text-align:center;" colspan="1"  >
-					<!-- <a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
-					<spand>&nbsp;&nbsp;&nbsp;</spand> -->
-					<a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a> 
-					<a class="nui-button"  onclick="payOk()" id = "payOk" >结算收款</a> 
+			<tr>
+				<td>储值余额:<input class="nui-textbox" enabled="false" id="rechargeBalaAmt" name="rechargeBalaAmt" width="50%"  /></td>
+				<td ><font  style=" color: red;">储值抵扣:</font><input class="mini-spinner" id="dk" name="dk" width="50%" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="3"><div id="rtTr" class="vpanel_heading" style="background-color: #f3f4f6; color: #2d95ff;"><span>收款</span></div></td>
+			</tr>
+
+			<tr >
+				<td colspan="3" align="center" ><font size=4 style=" color: red;">应收:</font><input class="nui-textbox" enabled="false" width="" id="mtAmt" name="mtAmt"/></td>
+			</tr>
+			<tr >
+				<td colspan="3" align="center"  ><font size=4 style=" color: red;">实收:</font><input class="nui-textbox" enabled="false" width="" id="amount" name="amount"/></td>
+			</tr>
+			<tr>
+				<td align="right">结算方式:</td>
+				<td colspan="2">
+					<div class="mini-radiobuttonlist" repeatItems="1"
+						repeatLayout="table" repeatDirection="vertical" id="payType" name="payType"
+						textField="text" valueField="value"
+						data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]"
+						value="020101" ></div>
 				</td>
-				</tr>
-			</table>
-		</div>
-</body>
-	<script type="text/javascript">
+			</tr>
+		</table>
+	</div>
+</div>
 
-	</script>
+
+
+<div style="padding: 0px;" borderStyle="border:0;">
+	<table width="100%">
+		<tr>
+			<td style="text-align: center;" colspan="1">
+				<!-- <a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
+					<spand>&nbsp;&nbsp;&nbsp;</spand> --> <a class="nui-button"
+				onclick="noPayOk()" id="noPayOk">保存</a> <a class="nui-button"
+				onclick="payOk()" id="payOk">结算收款</a>
+			</td>
+		</tr>
+	</table>
+</div>
+</body>
+<script type="text/javascript">
+	
+</script>
 </html>

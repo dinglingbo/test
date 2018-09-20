@@ -16,7 +16,21 @@
 
     11、车况查询
 
-    12、充值，办卡
+	12、充值，办卡
+	
+	13、确定维修
+
+	14、质检&完工     完工
+
+	15、返工
+
+	16、结算
+
+	17、打印报价单，派工单，结算单，小票，领料单
+
+	18、购买计次卡，充值
+
+	19、报销单
 
 */
 
@@ -167,6 +181,61 @@ function svrSaveMaintain(params, callback, unmaskcall){
 		data : data,
 		success : function(data) {
 			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//确定维修
+var svrSureMTUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.sureMt.repairSureMt.biz.ext";
+function svrSureMT(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSureMTUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//质检&完工
+var svrRepairAuditUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.work.repairAudit.biz.ext";
+function svrRepairAudit(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrRepairAuditUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//返单
+var svrUnRepairAuditUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.work.unRepairAudit.biz.ext";
+function svrUnRepairAudit(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrUnRepairAuditUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
@@ -306,7 +375,7 @@ function doAddcardTime(params,callback){
 	
 	nui.open({
 		url : addcardTimeUrl,
-		title : "新增记录",
+		title : "计次卡选择",
 		width : 965,
 		height : 573,
 		onload : function() {
@@ -387,4 +456,40 @@ function doSelectBasicData(params,callback){
         	
         }
     });
+}
+
+function doFinishWork(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
+        title: "质检&完工", width: 800, height: 270, allowDrag:false, allowResize:false,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getRtnData();
+			data = data || {};
+			data.action = action;
+			callback && callback(data);
+        }
+    });
+}
+
+function doSetStyle(status, isSettle){
+	status = status||0;
+    isSettle = isSettle||0;
+	if(isSettle == 1){
+		$("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+		$("#settleStatus").attr("class", "statusview");
+	}else{
+		$("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+		if(status==0){
+			$("#addStatus").attr("class", "statusview");
+		}else if(status==1){
+			$("#repairStatus").attr("class", "statusview");
+		}else if(status==2){
+			$("#finishStatus").attr("class", "statusview");
+		}
+	}
 }

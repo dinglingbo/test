@@ -104,6 +104,15 @@ $(document).ready(function(v)
                 //onSearch();
             });
         });
+        
+        initCarBrand("applyCarBrandId",function(){
+            initDicts({
+                unit:UNIT,// --单位
+                abcType:ABC_TYPE // --ABC分类
+            },function(){
+                //onSearch();
+            });
+        });
     });
 
     codeEl.focus();

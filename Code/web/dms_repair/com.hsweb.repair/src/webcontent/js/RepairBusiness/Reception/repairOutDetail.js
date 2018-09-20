@@ -4,7 +4,7 @@ var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
 var repairOutGrid = null;
 var mid = null;//主表ID
-var mainRow = null;
+var mainRow = null; 
 
 var mtAdvisorIdEl = null; 
 var searchKeyEl = null; 
@@ -79,6 +79,22 @@ $(document).ready(function(){
 
         }
     });
+
+
+    mainGrid.on("celldblclick",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        LLSave();
+    });
+
+    repairOutGrid.on("celldblclick",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        THSave();
+    });
+
 });
 
 

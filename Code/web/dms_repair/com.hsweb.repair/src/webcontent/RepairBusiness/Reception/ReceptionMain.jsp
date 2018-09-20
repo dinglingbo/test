@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.2.8"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.0"></script>
 <style type="text/css">
 
 .title {
@@ -178,9 +178,9 @@
                   <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
                   <div field="carVin" name="carVin" width="120" headerAlign="center" header="VIN码"></div>
                   <div field="guestFullName" name="guestFullName" width="50" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestTel" name="guestTel" width="80" headerAlign="center" header="客户手机"></div>
-                  <div field="guestFullName" name="guestFullName" width="50" headerAlign="center" header="送修人姓名"></div>
-                  <div field="guestTel" name="guestTel" width="80" headerAlign="center" header="送修人手机"></div>
+                  <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
+                  <div field="contactName" name="contactName" width="50" headerAlign="center" header="送修人姓名"></div>
+                  <div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="送修人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
                   <div field="serviceTypeId" name="serviceTypeId" width="50" headerAlign="center" header="业务类型"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>

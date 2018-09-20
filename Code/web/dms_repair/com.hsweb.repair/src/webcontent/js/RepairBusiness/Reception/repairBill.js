@@ -41,6 +41,7 @@ var advancedMemCardWin = null;
 var memCardGrid = null;
 var sellForm = null;
 var fserviceId = 0;
+var xserviceId = 0;
 var fguestId = 0;
 var fcarId = 0;
 var mpackageRate = 0;
@@ -634,6 +635,7 @@ function doSetMainInfo(car){
 }
 
 function setInitData(params){
+	xserviceId = params.id;
 	var data = {
 			packageSubtotal:0,
 			packagePrefAmt:0,
@@ -808,6 +810,7 @@ function save(){
     saveMaintain(function(data){
  
         if(data.id){
+        	xserviceId = data.id;
             showMsg("保存成功!","S");
 
             var params = {
@@ -983,7 +986,7 @@ function loadMaintain(callback,unmaskcall){
     });
 }
 function addPrdt(data){
-    var main = billForm.();
+    var main = billForm.getData();
     if(!main.id){
         showMsg("请先保存工单!","E");
         return;
@@ -2299,7 +2302,12 @@ function showHealth(){
 function pay(){
 	
 	var data = sellForm.getData();
+	if(xserviceId==0||xserviceId==null){
+		nui.alert("请添加客户","提示");
+		return;
+	}
 	var json = {
+			fserviceId:xserviceId,
 			data:data,
 			xyguest:xyguest,
 	}

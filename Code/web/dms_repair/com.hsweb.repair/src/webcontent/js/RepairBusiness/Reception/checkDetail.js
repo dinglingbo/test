@@ -703,3 +703,29 @@ function newCheckMainMore() {
     window.parent.activeTab(item);
 
 }  
+
+
+
+function print() {
+
+    var turl = "repair/RepairBusiness/Reception/checkCar.jsp";
+    var pa={
+        baseUrl:baseUrl,
+        serviceId:mainParams.id,
+        token:token
+    };
+
+    nui.open({
+    url: webBaseUrl + turl,
+    title:"打印查车单",
+    height:"100%",
+    width:"100%",
+    onload:function(){
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.SetData(pa);
+    },
+    ondestroy:function(action){
+    }
+
+});
+}

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>洗车-工单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/carWashBillMgr.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/carWashBillMgr.js?v=1.0.3"></script>
 <style type="text/css">
 
 .title {
@@ -64,9 +64,9 @@
                     <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" ><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="finish()" ><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="del()" ><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                 </td>
             </tr>
         </table>

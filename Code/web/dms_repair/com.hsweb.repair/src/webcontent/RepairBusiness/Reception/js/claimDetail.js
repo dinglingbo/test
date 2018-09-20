@@ -2373,13 +2373,10 @@ function addcardTime(){
 	doAddcardTime(xyguest);
 	
 }
+function addcard(){
 
-
-
-	function addcard(){
-
-		doAddcard(xyguest);
-	}
+    doAddcard(xyguest);
+}
 
 function onPrint(e){
 	var main = billForm.getData();
@@ -2434,7 +2431,7 @@ function showBillInfo(){
 }
 
 function showHealth(){
-	showCarCheckInfo();
+    showCarCheckInfo();
 }
 
 function showCarCheckInfo(){
@@ -3180,25 +3177,35 @@ function MemSelectOk(){
     SaveCheckMain();
 }
 
-// function SearchCheckMain(callback) {
-//     var data = billForm.getData();
-//     var  t = null;
-//     nui.ajax({
-//         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
-//         type:"post",
-//         async: false,
-//         data:{ 
-//             serviceId:data.id
-//         },
-//         cache: false,
-//         success: function (text) {  
-//             callback && callback(text);
-//             checkMainData = text;
-//             isRecord = text.isRecord;
-//         }
-//     });
+function SearchCheckMain(callback) {
+    var data = billForm.getData();
+    var  t = null;
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
+    nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
+        type:"post",
+        async: false,
+        data:{ 
+            serviceId:data.id
+        },
+        cache: false,
+        success: function (text) {  
+            callback && callback(text);
+            checkMainData = text;
+            isRecord = text.isRecord;
 
-// }
+            nui.unmask(document.body);
+        },
+        error: function(){
+            nui.unmask(document.body);
+        }
+    });
+
+}
 
 
 function changeCheckInfoTab(resultdata) {
@@ -3246,6 +3253,8 @@ function changeCheckInfoTab(resultdata) {
             $("#checkStatusButton2").show(); 
         }
     }
+
+    
 }
 
 function SaveCheckMain() {

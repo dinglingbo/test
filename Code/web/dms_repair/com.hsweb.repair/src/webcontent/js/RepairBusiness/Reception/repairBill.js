@@ -615,7 +615,7 @@ function doSetMainInfo(car){
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
     maintain.recordDate = now;
-
+    maintain.sex = car.sex;
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
@@ -702,6 +702,7 @@ function setInitData(params){
                         data.guestFullName = guest.fullName;
                         data.guestMobile = guest.mobile;
                         data.contactorName = contactor.name;
+                        data.sex = contactor.sex;
                         data.mobile = contactor.mobile;
 
                         $("#guestNameEl").html(guest.fullName);
@@ -810,6 +811,7 @@ function save(){
     saveMaintain(function(data){
  
         if(data.id){
+        	xserviceId = data.id;
             showMsg("保存成功!","S");
 
             var params = {
@@ -2301,6 +2303,10 @@ function showHealth(){
 function pay(){
 	
 	var data = sellForm.getData();
+	if(xserviceId==0||xserviceId==null){
+		nui.alert("请添加客户","提示");
+		return;
+	}
 	var json = {
 			fserviceId:xserviceId,
 			data:data,
@@ -2802,18 +2808,24 @@ function onValueChangedpartSubtotal(e){
 		var partAmt = 0;
 		//设置小计金额
 		var subtotal = el.getValue();
-		//设置配件总金额
-		if(unitPrice>0 && qty>0){
-		   partAmt = qty*unitPrice;
-		   row.amt = partAmt;
-		}	
 		var rate = setRate.getValue();
-	    if(partAmt>0 && rate>0){
-	    	rate = (partAmt - subtotal)*1.0/partAmt;
-	    }
-	    rate = rate * 100;
-	    rate = rate.toFixed(2);
-	    setRate.setValue(rate);
+		//设置配件总金额
+		if(rate>0){
+			var rate2 = 1-rate*1.0/100;
+			partAmt = subtotal*1.0/rate2;
+			partAmt = partAmt.toFixed(2);
+			row.amt = partAmt;
+		}else{
+			partAmt = subtotal;
+			row.amt = partAmt;
+		}
+		//设置配件单价
+		if(qty>0){
+			unitPrice = partAmt*1.0/qty;
+		}	
+		
+	    unitPrice = unitPrice.toFixed(2);
+	    setUnitPrice.setValue(unitPrice);
 	    setSubtotal.setValue(subtotal);
 	}
 }
@@ -2921,7 +2933,8 @@ function onDrawSummaryCellPack(e){
 			  data.sumPkgSubtotal=0;
 			  data.sumPkgPrefAmt=0;
 		  }*/
-		  data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  var mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
 		  sellForm.setData(data);
 	  }
 	 
@@ -2963,7 +2976,8 @@ function onDrawSummaryCellItem(e){
 		  if((data.packageSubtotal == null  ||  data.packageSubtotal == "")  && (data.partSubtotal == null  ||  data.partSubtotal == "") ){
 			  data.mtAmt = sumItemSubtotal;
 		  }*/
-		  data.mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+		  var mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
 		  sellForm.setData(data);
 	  }
 	
@@ -3005,8 +3019,8 @@ function onDrawSummaryCellPart(e){
 			  data.mtAmt = sumPartSubtotal;
 		  }
 		  */
-		  data.mtAmt = parseFloat(sumPartSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal);
-
+		  var mtAmt = parseFloat(sumPartSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
 		  sellForm.setData(data);
 	  }
 	
@@ -3019,7 +3033,7 @@ function addExpenseAccount(){
 		var item={};
 		item.id = "123321";
 	    item.text = "报销单";
-		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.ExpenseAccount.flow?sourceServiceId="+data.id;
+		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
 		item.iconCls = "fa fa-cog";
 		window.parent.activeTabAndInit(item,data);
 		data.guestTel = $("#guestTelEl").text();

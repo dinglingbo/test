@@ -22,6 +22,7 @@ var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rRightGrid = null;
+var rechargeBalaAmt = 0;
 
 var searchBeginDate = null;
 var searchEndDate = null;
@@ -1015,7 +1016,11 @@ function doSettle() {
 			type : "post",
 			data : json,
 			success : function(data) {
-				rechargeBalaAmt = data.member[0].rechargeBalaAmt;
+				if(data.member.length==0){
+					rechargeBalaAmt=0;
+				}else{	
+					rechargeBalaAmt = data.member[0].rechargeBalaAmt;
+				}
 				document.getElementById('settleGuestName').innerHTML = "结算单位："
 					+ guestName;
 			document.getElementById('settleBillCount').innerHTML = "结算单据数：" + s;
@@ -1553,6 +1558,11 @@ function onChanged() {
 	var rows = rRightGrid.getSelecteds();
 	var rtn = getSettleAmount(rows);
 	var dk = nui.get("dk").getValue();
+	if(dk>rechargeBalaAmt){
+		nui.alert("抵扣金额不能大于储值卡余额","提示");
+		nui.get("dk").setValue(0);
+		return;
+	}
 	document.getElementById('rpAmt').innerHTML = rtn.rpAmt-dk;
 
 }

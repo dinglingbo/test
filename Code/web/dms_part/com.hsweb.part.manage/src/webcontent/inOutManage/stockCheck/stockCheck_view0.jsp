@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.1.3"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.1.0"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -179,6 +179,10 @@
                       </div>
                   </fieldset>
                   <div class="nui-fit">
+                  
+<!-- 	                  <div class="nui-toolbar" style="padding:2px;border-bottom:0;"> -->
+<!-- 		               		<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a> -->
+<!-- 		              </div>                		 -->
                       <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                            showPager="false"
                            dataField="detailList"

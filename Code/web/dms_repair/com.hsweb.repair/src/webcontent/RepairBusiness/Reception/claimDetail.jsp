@@ -80,6 +80,12 @@
             border-radius: 5px;
         }
 
+        .statusview{background:#78c800; color:#fff; padding:3px 20px; border-radius:20px;}
+
+        .nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
+
+        .bottomfont{font-size: 20px;}
+    
     </style>
 </head>
 <body>
@@ -122,7 +128,7 @@
                 <span class="separator"></span> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定维修</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定维修</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返工</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
@@ -195,7 +201,7 @@
         </table>
     </div>
 
-    <div class="nui-fit">
+    <div class="nui-fit" >
         <div class="" style="width:100%;height:auto;" >
             <div style="width:100%;height:5px;"></div>
             <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
@@ -205,7 +211,9 @@
             <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
         </div>
 
-        <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
+    </div>
+    <div style="height: 10%;"></div>
+        <!-- <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
             showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
         >
             <div id="sellForm" class="form">
@@ -258,13 +266,96 @@
                         </tr>
                     </table>
                 </div>
-        </div>
+        </div> -->
     </div>
    
 
 
     
 
+
+<div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:9999;">
+    
+    <div style="float: left;height: 100%;">
+        <table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
+            <tr>
+                <td >
+                    <label style="font-family:Verdana;">服务进度:</label>
+                </td>
+                <td >
+                    <label style="font-family:Verdana;"><span id="addStatus" name="statusvi" class="nvstatusview">报价</span></label>
+                </td>
+                <td >
+                    <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+                </td>
+                <td >
+                    <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview">施工</span></label>
+                </td>
+                <td >
+                    <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+                </td>
+                <td >
+                    <label style="font-family:Verdana;"><span id="finishStatus" name="statusvi" class="nvstatusview">完工</span></label>
+                </td>
+                <td >
+                    <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+                </td>
+                <td >
+                    <label style="font-family:Verdana;"><span id="settleStatus" name="statusvi" class="nvstatusview">结算</span></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="sellForm" class="form">
+        <table style="width: 50%;float: right;">
+            <tr>
+                <td class="title">
+                    <label>套餐金额：</label>
+                </td>
+                <td style="width:50px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
+                </td>
+                <td class="title">
+                    <label>套餐优惠：</label>
+                </td>
+                <td style="width:50px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
+                </td>
+                <td class="title">
+                    <label>工时金额：</label>
+                </td>
+                <td style="width:50px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
+                </td>
+                <td class="title">
+                    <label>工时优惠：</label>
+                </td>
+                <td style="width:50px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    <label>配件金额：</label>
+                </td>
+                <td style="width:50px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="partSubtotal" name="partSubtotal"/>
+                </td>
+                <td class="title">
+                    <label>配件优惠：</label>
+                </td>
+                <td style="width:50px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="partPrefAmt" name="partPrefAmt"/>
+                </td>
+                <td class="title required">
+                    <label>应收总计：</label>
+                </td>
+                <td colspan="3" style="width:50px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" inputStyle="" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 

@@ -704,6 +704,23 @@ function setInitData(params){
                         doSearchMemCard(fguestId);
                         
                         billForm.setData(data);
+
+                        var status = data.status||0;
+                        var isSettle = data.isSettle||0;
+                        if(isSettle == 1){
+                            $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                            $("#settleStatus").attr("class", "statusview");
+                        }else{
+                            $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                            if(status==0){
+                                $("#addStatus").attr("class", "statusview");
+                            }else if(status==1){
+                                $("#repairStatus").attr("class", "statusview");
+                            }else if(status==2){
+                                $("#finishStatus").attr("class", "statusview");
+                            }
+                        }
+
                         if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
@@ -768,6 +785,7 @@ function add(){
     rpsItemGrid.clearRows();
     rpsPartGrid.clearRows();
     billForm.setData([]);
+    sellForm.setData([]);
     sendGuestForm.setData([]);
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);
@@ -788,7 +806,7 @@ function add(){
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
-
+    $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
 }
 function save(){
     nui.mask({
@@ -837,6 +855,22 @@ function save(){
                     data.mobile = contactor.mobile;
 
                     billForm.setData(data);
+
+                    var status = data.status||0;
+                    var isSettle = data.isSettle||0;
+                    if(isSettle == 1){
+                        $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                        $("#settleStatus").attr("class", "statusview");
+                    }else{
+                        $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                        if(status==0){
+                            $("#addStatus").attr("class", "statusview");
+                        }else if(status==1){
+                            $("#repairStatus").attr("class", "statusview");
+                        }else if(status==2){
+                            $("#finishStatus").attr("class", "statusview");
+                        }
+                    }
 
                     var p1 = {
                         interType: "package",
@@ -888,7 +922,7 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    data.billTypeId = 2;
+    data.billTypeId = 4;
 
     var params = {
         data:{
@@ -934,6 +968,9 @@ function saveMaintain(callback,unmaskcall){
     //         console.log(jqXHR.responseText);
     //     }
     // });
+}
+function sureMT(){
+
 }
 var loadMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function loadMaintain(callback,unmaskcall){

@@ -16,7 +16,21 @@
 
     11、车况查询
 
-    12、充值，办卡
+	12、充值，办卡
+	
+	13、确定维修
+
+	14、质检&完工     完工
+
+	15、返工
+
+	16、结算
+
+	17、打印报价单，派工单，结算单，小票，领料单
+
+	18、购买计次卡，充值
+
+	19、报销单
 
 */
 
@@ -175,6 +189,23 @@ function svrSaveMaintain(params, callback, unmaskcall){
 	});
 }
 
+//确定维修
+var svrSureMTUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.sureMt.repairSureMt.biz.ext";
+function svrSureMT(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSaveMaintainUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
 //新增客户
 function doApplyCustomer(params,callback){
     nui.open({
@@ -306,7 +337,7 @@ function doAddcardTime(params,callback){
 	
 	nui.open({
 		url : addcardTimeUrl,
-		title : "新增记录",
+		title : "计次卡选择",
 		width : 965,
 		height : 573,
 		onload : function() {

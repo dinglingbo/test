@@ -98,22 +98,23 @@
                        nullItemText="请选择..."/>
             </td>
         </tr>
-        <tr>
+        <tr id="hidden2">
             <td class="title required">
                 <label>数量：</label>
             </td>
             <td>
                 <input id="qty" name="qty" class="nui-textbox" onvaluechanged="calc('qty')" vtype="float" selectOnFocus="true" width="100%" value="1"/>
             </td>
-            <td class="title required">
+            <td id="price1" class="title required">
                 <label>单价：</label>
             </td>
             <td>
                 <input id="price" name="price" class="nui-textbox width1" onvaluechanged="calc('price')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
             </td>
         </tr>
-        <tr>
-            <td class="title required">
+        
+        <tr id="hidden">
+            <td id="amt1" class="title required">
                 <label>金额：</label>
             </td>
             <td>
@@ -124,6 +125,24 @@
             </td>
             <td>
                 <input id="remark" name="remark" class="nui-textbox" selectOnFocus="true" enabled="true" width="100%"/>
+            </td>
+        </tr>
+        
+
+    </table>
+    <table width="100%">
+    	<tr id="forStock" style="display:none;">
+            <td class="title required">
+                <label>实盘数量：</label>
+            </td>
+            <td>
+                <input id="trueQty" name="trueQty" class="nui-textbox" onvaluechanged="calc('qty')" vtype="float" selectOnFocus="true" width="100%" value="1"/>
+            </td>
+            <td id="" class="title required">
+                <label>成本单价：</label>
+            </td>
+            <td>
+                <input id="truePrice" name="truePrice" class="nui-textbox width1" onvaluechanged="calc('price')" vtype="float" selectOnFocus="true" enabled="true" width="100%"/>
             </td>
         </tr>
     </table>

@@ -543,3 +543,26 @@ function doNoPay(serviceId,allowanceAmt){
 	});
 
 }
+
+function doPrint(params,callback){
+	var source = params.source||0;
+	var sourceUrl = "";
+	if(source == 1){
+
+	}
+	var p = {};
+	nui.open({
+        url: webPath + contextPath + "/" + sourceUrl + "?token="+token,
+        title: "打印", width: 900, height: 600,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.setData(params,callback);
+        },
+        ondestroy: function (action)
+        {
+        	
+        	
+        	
+        }
+    });
+}

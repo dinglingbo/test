@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.13"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -33,6 +33,16 @@
                     <label style="font-family:Verdana;">拼音：</label>
                     <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
                     <label style="font-family:Verdana;">品牌：</label>
+                     <input id="partBrandId"
+                           name="partBrandId"
+                           class="nui-combobox width1"
+                           textField="name"
+                           valueField="id"
+                           emptyText="请选择品牌"
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择品牌"/>
                     <input id="applyCarBrandId"
                            name="applyCarBrandId"
                            class="nui-combobox width1"
@@ -40,6 +50,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
+                           style="display:none;"
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择..."/>
@@ -78,7 +89,7 @@
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
                      frozenStartColumn="0"
-                     frozenEndColumn="5"
+                     frozenEndColumn="6"
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""
@@ -99,6 +110,7 @@
                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
                                 <div allowSort="true" field="code" width="80" headerAlign="center" allowSort="true">编码</div>
                                 <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
+                                 <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
                                 <div allowSort="true" field="fullName" width="200" headerAlign="center" allowSort="true">全称</div>
                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                             </div>
@@ -109,7 +121,7 @@
 
                                 <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+                               
                                 <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                 <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                                 <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>

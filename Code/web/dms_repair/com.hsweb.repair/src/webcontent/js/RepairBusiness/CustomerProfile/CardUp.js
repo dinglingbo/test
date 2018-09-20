@@ -220,7 +220,8 @@ function noPay(){
 //			partRate	: partRate,
 			rechargeAmt	: rechargeAmt,
 			totalAmt 	: totalAmt,
-			periodValidity : periodValidity
+			periodValidity : periodValidity,
+			balaAmt : totalAmt
 	};
 	stored.push(form);
     nui.confirm("结算金额【"+payAmt+"】元,确定保存进入待结算吗？", "友情提示",function(action){

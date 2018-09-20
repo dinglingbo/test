@@ -348,7 +348,7 @@
         function SetData(params){
 	        var date = new Date();
 	        if(params.name){
-	        	document.getElementById("spstorename").innerHTML = "维修结算单";
+	        	document.getElementById("spstorename").innerHTML = name;
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");

@@ -4,21 +4,12 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-//var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
-//var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
-//var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
-//var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
-//var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 
 var billForm = null;
 var editFormDetail = null;//
-//var brandList = [];
-//var brandHash = {};
 var servieTypeList = [];
 var servieTypeHash = {};
-//var receTypeIdList = [];
-//var receTypeIdHash = {};
 var memList = [];
 var serviceTypeIdEl = null;
 var currEmpIdEl = null;
@@ -27,15 +18,7 @@ var servieIdEl = null;
 var searchKeyEl = null;
 
 var rpsPackageGrid = null;//
-//var rpsItemGrid = null;
 var rpsPartGrid = null;
-//var packageDetailGrid = null;
-//var packageDetailGridForm = null;
-
-//var advancedCardTimesWin = null;
-//var cardTimesGrid = null;
-//var advancedMemCardWin = null;
-//var memCardGrid = null;
 
 var fserviceId = 0;
 var fguestId = 0;
@@ -45,7 +28,6 @@ var mitemRate = 0;
 var mpartRate = 0;
 var x = 0;
 var y = 0;
-//var innerPartGrid = null;
 var prdtTypeHash = {
     "1":"套餐",
     "2":"工时",
@@ -56,12 +38,9 @@ $(document).ready(function ()
 {
     billForm = new nui.Form("#billForm");
     rpsPartGrid = nui.get("rpsPartGrid");
-   // innerPartGrid = nui.get("innerPartGrid");
-    //innerPartGrid.setUrl(partGridUrl);
     serviceTypeIdEl = nui.get("serviceTypeId");
     currEmpIdEl = nui.get("mtAdvisorId");
     currEmpIdEl.setText(currUserName);
-   // editFormDetail = document.getElementById("editFormDetail");
     initMember("mtAdvisorId",function(){
         memList = currEmpIdEl.getData();
         
@@ -170,8 +149,6 @@ $(document).ready(function ()
                                 }
                                 var t = carNo + tel + guestName + carVin;
                                 searchNameEl.setValue(t);
-                                //searchNameEl.setEnabled(false);
-                    
                                 doSetMainInfo(item);
                             }else if(action == "查看"){
                                 var opt={};
@@ -204,9 +181,7 @@ $(document).ready(function ()
                     }
                     var t = carNo + tel + guestName + carVin;
                     searchNameEl.setValue(t);
-                    //searchNameEl.setEnabled(false);
-        
-                    doSetMainInfo(item);
+                     doSetMainInfo(item);
                 }
             });
             
@@ -469,15 +444,6 @@ function setInitData(params){
     }
 }
 function add(){
-    // $("#servieIdEl").html("综合开单详情");
-    // $("#carNoEl").html("");
-    // //$("#wechatTag").css("color","#62b900");
-    // $("#guestNameEl").html("");
-    // $("#guestTelEl").html("");
-    // $("#cardPackageEl").html("次卡套餐(0)");
-    // $("#clubCardEl").html("会员卡(0)");
-    // $("#creditEl").html("挂账:0");
-    // $("#carHealthEl").html("车况:0");
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
@@ -558,10 +524,7 @@ function save(){
                     showMsg("数据加载失败,请重新打开工单!","W");
                 }
 
-            }, function(){});
-
-            
-            
+            }, function(){});           
         }
         
     },function(){ 
@@ -787,41 +750,7 @@ function addPartNewRow(){
 }
 
 function deletePartRow(row_uid){
-   /* var data = rpsPartGrid.getData();
-    var row = rpsPartGrid.getRowByUID(row_uid);
-    if(data && data.length==1){
-        row = data[0];
-    }
-    var part = {
-        serviceId:row.serviceId,
-        id:row.id,
-        cardDetailId:row.cardDetailId||0
-    };
-    var params = {
-        type:"delete",
-        interType:"part",
-        data:{
-            part: part
-        }
-    };
-    svrCRUD(params,function(text){
-        var errCode = text.errCode||"";
-        var errMsg = text.errMsg||"";
-        if(errCode == 'S'){   
-            if(data && data.length==1){
-                rpsPartGrid.removeRow(data[0]);
-                //var newRow = {};
-                //rpsPartGrid.addRow(newRow);
-            }else{
-                rpsPartGrid.removeRow(row);
-            }
-        }else{
-            showMsg(errMsg||"删除配件信息失败!","W");
-            return;
-        }
-    });*/
-	var main = billForm.getData();
-	
+	var main = billForm.getData();	
     var isSettle = main.isSettle||0;
     if(isSettle == 1){
         showMsg("此单已结算,不能修改!","S");
@@ -1234,41 +1163,6 @@ function onCellCommitEdit(e) {
 	}
 }
 
-
-/*function onValueChangedQty(e){
-	var row = rpsPartGrid.getSelected();
-    var data ={};
-    if(e.value == null ||e.value == '') {
-       data.qty = 0;
-    }
-	var amt = null;
-	if(row.unitPrice){
-		amt = row.unitPrice * e.value;
-		amt = parseFloat(amt).toFixed(2);
-	}else{
-		amt = 0;
-	}	
-	data.amt = amt;
-	rpsPartGrid.updateRow(row,data);
-	
-}
-
-function onValueChangedUnitPrice(e){
-	var row = rpsPartGrid.getSelected();
-	var amt = null;
-	if(row.qty){
-		amt = row.qty * e.value;
-		amt = parseFloat(amt).toFixed(2);
-	}else{
-		amt = 0;
-	}	
-	data = {
-			amt:amt
-		 };
-	rpsPartGrid.updateRow(row,data);
-	
-}
-*/
 /*
  * 修改维修主表的信息
  * */

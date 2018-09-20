@@ -810,6 +810,7 @@ function save(){
     saveMaintain(function(data){
  
         if(data.id){
+        	xserviceId = data.id;
             showMsg("保存成功!","S");
 
             var params = {
@@ -2301,6 +2302,10 @@ function showHealth(){
 function pay(){
 	
 	var data = sellForm.getData();
+	if(xserviceId==0||xserviceId==null){
+		nui.alert("请添加客户","提示");
+		return;
+	}
 	var json = {
 			fserviceId:xserviceId,
 			data:data,

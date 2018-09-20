@@ -913,7 +913,7 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    data.billTypeId = 2;
+    data.billTypeId = 0;
 
     var params = {
         data:{
@@ -1066,7 +1066,7 @@ function unfinish(){
             var errCode = data.errCode||"";
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
-                var maintain = data.maintain||{};
+                var maintain = data.main||{};
                 billForm.setData([]);
                 billForm.setData(maintain);
                 var status = maintain.status||0;

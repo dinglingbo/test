@@ -168,6 +168,7 @@
                totalField="page.count"
                sizeList=[20,50,100,200]
                dataField="list"
+               showModified="false"
                onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"

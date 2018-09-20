@@ -633,6 +633,7 @@ function doSetMainInfo(car){
 }
 
 function setInitData(params){
+	
     if(!params.id){
         add();
     }else{
@@ -699,7 +700,7 @@ function setInitData(params){
 
                         doSearchCardTimes(fguestId);
                         doSearchMemCard(fguestId);
-
+                        xyguest = data;
                         billForm.setData(data);
 
                         var p1 = {

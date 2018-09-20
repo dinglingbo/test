@@ -21,7 +21,7 @@ var serviceTypeIdEl = null;
 var advancedMore = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
-var editFormDetail = null;
+var FormDetail = null;
 var innerItemGrid = null;
 var innerPartGrid = null;
 $(document).ready(function ()

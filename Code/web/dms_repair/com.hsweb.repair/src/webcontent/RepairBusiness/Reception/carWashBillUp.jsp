@@ -12,7 +12,7 @@
 <head>
 <title>洗车工单结算</title>
 <script src
-	="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/carWashBillUp.js?v=1.0.1">
+	="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/carWashBillUp.js?v=1.0.2">
 </script>
 <style type="text/css">
 .vpanel_heading {
@@ -54,7 +54,8 @@
 
 			<tr>
 				<td>储值余额:<input class="nui-textbox" enabled="false" id="rechargeBalaAmt" name="rechargeBalaAmt" width="50%"  /></td>
-				<td ><font  style=" color: red;">储值抵扣:</font><input class="mini-spinner" id="dk" name="dk" width="50%" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" /></td>
+				<td ><font  style=" color: red;">储值抵扣:</font><input class="mini-spinner" id="deductible" name="deductible" width="50%" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" /></td>
+				<td ><font  style=" color: red;">优惠金额:</font><input class="mini-spinner" id="PrefAmt" name="PrefAmt" width="50%" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" /></td>
 			</tr>
 
 			<tr>
@@ -89,8 +90,8 @@
 			<td style="text-align: center;" colspan="1">
 				<!-- <a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
 					<spand>&nbsp;&nbsp;&nbsp;</spand> --> <a class="nui-button"
-				onclick="noPayOk()" id="noPayOk">保存</a> <a class="nui-button"
-				onclick="payOk()" id="payOk">结算收款</a>
+				onclick="noPay()" id="noPay">保存</a> <a class="nui-button"
+				onclick="pay()" id="pay">结算收款</a>
 			</td>
 		</tr>
 	</table>

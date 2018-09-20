@@ -27,6 +27,7 @@ var mtAdvisorIdEl = null;
 var searchNameEl = null;
 var servieIdEl = null;
 var searchKeyEl = null;
+var carCheckInfo = null;
 
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
@@ -66,6 +67,7 @@ $(document).ready(function ()
     insuranceForm = new nui.Form("#insuranceForm");
     describeForm = new nui.Form("#describeForm");
     advancedCardTimesWin = nui.get("advancedCardTimesWin");
+    carCheckInfo = nui.get("carCheckInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
     advancedMemCardWin = nui.get("advancedMemCardWin");
@@ -219,6 +221,7 @@ $(document).ready(function ()
 
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        nui.get("checkManId").setData(memList);
     });
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -631,7 +634,8 @@ function doSetMainInfo(car){
 }
 
 function setInitData(params){
-	var data = {};
+    var data = {};
+    xyguest = {};
 	sellForm.setData(data);
     if(!params.id){
         add();
@@ -690,7 +694,13 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
 
-                        $("#guestNameEl").html(guest.guestFullName);
+                        xyguest.guestId = data.guestId;
+                        xyguest.guestFullName = guest.fullName;
+                        xyguest.carId = data.carId;
+                        xyguest.carNo = data.carNo;
+                        xyguest.guestMobile = guest.mobile;
+
+                        $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
                         $("#guestTelEl").html(guest.mobile);
 
@@ -1500,6 +1510,7 @@ function showCardTimes(){
     var atEl = document.getElementById("cardPackageEl");  
     advancedCardTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
     advancedMemCardWin.hide();
+    carCheckInfo.hide();
     memCardGrid.clearRows();
 
     doSearchCardTimes(fguestId);
@@ -1514,6 +1525,7 @@ function showCard(){
     var atEl = document.getElementById("clubCardEl");  
     advancedMemCardWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
     advancedCardTimesWin.hide();
+    carCheckInfo.hide();
     cardTimesGrid.clearRows();
     doSearchMemCard(fguestId);
 }
@@ -1534,6 +1546,10 @@ function doSearchCardTimes(guestId)
     cardTimesGrid.load({
     	token:token,
         p:p
+    },function(){
+        var data = cardTimesGrid.getData();
+        var len = data.length||0;
+        $("#showCardTimesEl").html("次卡套餐("+len+")");
     });
 }
 function doSearchMemCard(guestId)
@@ -2418,18 +2434,23 @@ function showBillInfo(){
 }
 
 function showHealth(){
-	window.open(webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp")
-	/*nui.open({
-        url: webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp",
-        width: "800",
-        height: "1000",
-        showMaxButton: false,
-		allowResize: false,
-        showHeader: true,
-        onload: function() {
-            var iframe = this.getIFrameEl();
-        },
-    });*/
+	showCarCheckInfo();
+}
+
+function showCarCheckInfo(){
+    if(!fguestId || carCheckInfo.visible) {
+        advancedMemCardWin.hide();
+        carCheckInfo.hide();
+        advancedCardTimesWin.hide();
+        return;
+    }
+
+    var atEl = document.getElementById("carHealthEl");  
+    carCheckInfo.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
+    advancedCardTimesWin.hide();
+    advancedMemCardWin.hide();
+    MemSelectCancel(1);
+    SearchCheckMain(changeCheckInfoTab);
 }
 
 function pay(){
@@ -3130,3 +3151,209 @@ function addExpenseAccount(){
 	}
 }
 
+function newCheckMain() {  
+    var data = billForm.getData();
+    var item={};
+    item.id = "checkPrecheckDetail";
+    item.text = "查车单";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
+    item.iconCls = "fa fa-cog";
+    //window.parent.activeTab(item);
+    var params = {};
+    params = { 
+        id:data.id,
+        row: rdata
+    };
+
+    window.parent.activeTabAndInit(item,params);
+    carCheckInfo.hide();
+}  
+
+
+function MemSelectOk(){ 
+    var form = new nui.Form("#show2");
+    form.validate();
+    if (form.isValid() == false) {
+        showMsg("请先选择派工人！","W");
+        return;
+    }
+    SaveCheckMain();
+}
+
+// function SearchCheckMain(callback) {
+//     var data = billForm.getData();
+//     var  t = null;
+//     nui.ajax({
+//         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
+//         type:"post",
+//         async: false,
+//         data:{ 
+//             serviceId:data.id
+//         },
+//         cache: false,
+//         success: function (text) {  
+//             callback && callback(text);
+//             checkMainData = text;
+//             isRecord = text.isRecord;
+//         }
+//     });
+
+// }
+
+
+function changeCheckInfoTab(resultdata) {
+
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","E");
+        return;
+    }
+
+    SearchLastCheckMain();
+
+    $("#checkStatus1").css("color","#9e9e9e");
+    $("#checkStatus2").css("color","#9e9e9e");
+    $("#checkStatus3").css("color","#9e9e9e");
+    $("#checkStatus4").css("color","#9e9e9e");
+    
+    if(resultdata.list.length > 0){
+        var detailList =  resultdata.list[0];
+        rdata= detailList;
+    }
+
+    //detailList.checkMan  =1;
+    //detailList.checkStatus = 0;
+
+    if(resultdata.list.length < 1){
+        $("#checkStatus1").css("color","#32b400");
+        $("#checkStatusButton1").show();
+        $("#checkStatusButton2").hide();
+    }else{
+        if(detailList.checkMan && detailList.checkStatus == 0){
+            $("#checkStatus2").css("color","#32b400");
+            $("#checkStatusButton1").hide();
+            $("#checkStatusButton2").show();
+
+        }
+        if(detailList.checkMan && detailList.checkStatus == 1){
+            $("#checkStatus3").css("color","#32b400");
+            $("#checkStatusButton1").hide();
+            $("#checkStatusButton2").show();
+        }
+        if(detailList.checkMan && detailList.checkStatus == 2){ 
+            $("#checkStatus4").css("color","#32b400");   
+            $("#checkStatusButton1").hide();
+            $("#checkStatusButton2").show(); 
+        }
+    }
+}
+
+function SaveCheckMain() {
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","E");
+        return;
+    }
+    if(isRecord == "0"){
+        var temp ={
+            serviceId:data.id, 
+            carId:data.carId,
+            carNo:data.carNo,
+            checkStatus:0,
+            enterKilometers:data.enterKilometers,
+            mtAdvisorId:data.mtAdvisorId,
+            mtAdvisor:data.mtAdvisor,
+            checkManId:nui.get("checkManId").value,
+            checkMan:nui.get("checkManId").text
+        };
+        var mtemp = {
+            id:data.id
+        } ;
+
+        nui.ajax({
+            url:baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMain.biz.ext",
+            type:"post",
+            async: false,
+            data:{ 
+                data:temp,
+                rpsMain:mtemp,
+                token:token   
+            },   
+            success:function(text){   
+                var errCode = text.errCode;
+                if(errCode == "S"){
+                    rdata  = text.mainData;
+                    //newCheckMain();
+                    //CloseWindow('close');
+                    carCheckInfo.hide();
+                    showMsg('派工成功!','S'); 
+                }else{
+                    //showMsg('保存失败!','E'); 
+                }
+            }  
+        }); 
+    }else{
+        newCheckMain();
+        carCheckInfo.hide();
+    }
+}
+
+
+function MemSelectCancel(e) {
+    if(e == 1){
+
+        $("#show1").show();
+        $("#show2").hide();
+    }
+
+    if(e == 2){
+
+        $("#show1").hide();
+        $("#show2").show();
+    }
+}
+
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
+}
+
+function SearchLastCheckMain() { 
+
+    $("#lastCheckInfo1").html('');
+    $("#lastCheckInfo2").html('');
+    $("#lastCheckInfo3").html("");
+    $("#lastCheckInfo4").hide();
+
+    var  tempParams = {
+        carNo:nui.get("carNo").value,
+        endDate:nui.get("recordDate").text
+    };
+    nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",
+        type:"post",
+        //async: false,
+        data:{ 
+            params:tempParams
+        },
+        cache: false,
+        success: function (text) {  
+            
+            var isRec = text.isRecord;
+            if(isRec == "1"){
+                var ldata = text.list[0];
+                var score = ldata.check_point || 0;
+                var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
+
+                $("#lastCheckInfo1").html('上次检查');
+                $("#lastCheckInfo2").html(score+"分");
+                $("#lastCheckInfo3").html(rdate);
+                $("#lastCheckInfo4").show();
+            }else{
+                $("#lastCheckInfo1").html('暂无相关历史检查数据！');
+            }
+
+        }
+    });
+ 
+}

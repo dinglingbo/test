@@ -90,7 +90,8 @@
                 </table>
             </div>
         </fieldset>
-        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <div class="nui-fit">
+        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:20%;">
             <legend>保养</legend>
             <div id="editForm2" style="padding:5px;">
                 
@@ -112,7 +113,7 @@
                 </table>
             </div>
         </fieldset>
-        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:70%;">
             <legend>保险</legend>
             <div id="editForm3" style="padding:5px;">
                 
@@ -166,6 +167,7 @@
                 </table>
             </div>
         </fieldset>
+        </div>
     </div>
     <div title="客户信息">
         <div id="editForm4" style="padding:5px;">
@@ -254,9 +256,10 @@
                     </div>
                 </div>
         </fieldset>
-        <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <div class="nui-fit">
+        <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;height:90%;">
             <legend>储值卡</legend>
-            <div id="grid2" class="nui-datagrid" style="width:100%;height:220px;" selectOnLoad="true" showPager="true" pageSize="50"
+            <div id="grid2" class="nui-datagrid" style="width:100%;height:90%;" selectOnLoad="true" showPager="true" pageSize="50"
                 totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext">
                 <div property="columns">
                     <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
@@ -266,6 +269,7 @@
                 </div>
             </div>
         </fieldset>
+        </div>
         <!-- <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>VIP卡</legend>
             <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"

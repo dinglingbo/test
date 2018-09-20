@@ -43,7 +43,7 @@
                    <td  style="display:none;"> 客户姓名：
 						 <input class="nui-textbox" id="guestId" name="guestId" visible="true"  allowInput="false"/>         
                         </td>
-                        <td  style=" width:55%;padding-left:90px;">客户姓名：
+                        <td  style=" width:50%;padding-left:90px;">客户姓名：
 						 <input class="nui-textbox" id="guestFullName" name="guestFullName" visible="true"  allowInput="false"/> 
                         </td>
                         <td > 客户电话：

@@ -538,7 +538,7 @@
                 (manager like '%$manager$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
-                (full_name like '%$name$%' or short_name like '%$name$%')
+                (a.full_name like '%$name$%' or a.short_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$

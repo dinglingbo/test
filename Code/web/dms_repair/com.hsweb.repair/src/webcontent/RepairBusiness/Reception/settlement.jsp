@@ -164,7 +164,7 @@
                     </tr>
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
-                        <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
+                        <td><input id="meeting" type="date" value="2014-01-13"/></td>
                     </tr>
                 </tbody>
             </table>

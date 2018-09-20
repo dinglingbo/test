@@ -662,6 +662,7 @@ function setInitData(params){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
             if(errCode == 'S'){
+            	xyguest = data;
                 var p = {
                     data:{
                         guestId: data.guestId||0,
@@ -2219,17 +2220,14 @@ function delFromBillPart(data, callback){
         }
     });
 }
+
 function addcardTime(){	
 	doAddcardTime(xyguest);
-	
 }
 
-
-
-	function addcard(){
-
+function addcard(){
 		doAddcard(xyguest);
-	}
+}
 
 function onPrint(e){
 	var main = billForm.getData();
@@ -2301,6 +2299,10 @@ function showHealth(){
 function pay(){
 	
 	var data = sellForm.getData();
+	var json = {
+			data:data,
+			xyguest:xyguest,
+	}
 	nui.open({
 		url:"com.hsweb.print.carWashBillUp.flow",
 		width:"40%",
@@ -2308,7 +2310,7 @@ function pay(){
 		//加载完之后
 		onload: function(){	
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.getData(data);
+			iframe.contentWindow.getData(json);
 		},
 	ondestroy : function(action) {
 		if (action == 'ok') {

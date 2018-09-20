@@ -64,7 +64,7 @@
      <span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单
    </a> -->
    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="">
-    <span class="fa fa-edit fa-lg"></span>&nbsp;查看
+    <span class="fa fa-file-text-o fa-lg"></span>&nbsp;查看
   </a>
 </td>
 </tr>
@@ -130,8 +130,11 @@
 
 
   function setInitData(params){
+  var pa={
+    carNo:nui.get("cNo").value
+  }; 
     mainGrid.load({
-      params:params,
+      params:pa, 
 
       token:token 
     });
@@ -179,6 +182,7 @@
     var params = {};
     params = { 
       id:data.service_id,
+      actionType:"view"
     };
     window.parent.activeTabAndInit(item,params);
   }  

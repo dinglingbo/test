@@ -51,6 +51,8 @@ a {
     <table class="table" id="table1">
       <tr>
         <td>
+            <input class="nui-textbox" id="name" name="name" emptyText="输入客户姓名" width="120" />
+            <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
             <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" />
             <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" />
             进场日期 从<input id="date1" name="" class="nui-datepicker" value=""/>
@@ -89,7 +91,7 @@ a {
     var con_data_isSettle = [{id:"",text:"全部"},{id:1,text:"已结算"},{id:0,text:"未结算"}];
     nui.parse();
     var mainGrid = nui.get("mainGrid");
-    var status = nui.get("status");
+    var tstatus = nui.get("status");
     var isSettle = nui.get("isSettle");
     var baseUrl = apiPath + repairApi + "/";
     var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
@@ -112,13 +114,25 @@ a {
         var edate = nui.formatDate (fdate2,"yyyy-MM-dd");
         var params ={
            // part :1,
+           carNo:nui.get("carNo").value,
+           name:nui.get("name").value,
             //sdate:sdate,
             //eEnterDate:edate,
-            //status:status.value,
+            status:tstatus.value
             //isSettle:isSettle.value
         };
         mainGrid.load({params:params});
     }
+
+
+      mainGrid.on("celldblclick",function(e){
+    var field = e.field;
+    var record = e.record;
+    var column = e.column;
+    var sid = record.id;
+    newrepairOut("ll");
+  });
+
 
     function onGenderRenderer(e) {
         for (var i = 0, l = con_data_status.length; i < l; i++) {

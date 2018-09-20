@@ -86,7 +86,9 @@
     <figSize height="17" width="164"/>
     <node>invokePojo1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="324" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-21 14:17:46" date="2018-03-21Z" description="" name="qyeryMaintainList" version="7.0.0.0"/>
   <process:variables/>

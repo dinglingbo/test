@@ -95,7 +95,7 @@
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     
             <td style="text-align:left;">
-                <a class="nui-button" iconCls="" plain="true" onclick="">
+                <a class="nui-button" iconCls="" plain="true" onclick="newCheckMainMore()">
                   <span class="fa fa-search fa-lg"></span>&nbsp;查看历史记录</a>
               </td>     
           </tr>

@@ -6,7 +6,7 @@
 <!-- 
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20 
-  - Description: 
+  - Description:  
 -->         
  
 <head> 
@@ -94,13 +94,14 @@
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     
-            <td style="text-align:left;">
+            <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="newCheckMainMore()">
-                  <span class="fa fa-search fa-lg"></span>&nbsp;查看历史记录</a>
+                    <span class="fa fa-search fa-lg"></span>&nbsp;查看历史记录</a>
+                  <a class="nui-button" onclick="saveb()" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                  <a class="nui-button" onclick="print()" plain="true"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
               </td>     
           </tr>
       </table>
-
   </div>
 
 
@@ -240,11 +241,11 @@ allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
 
         </div> 
     </div> 
-
+<!-- 
     <div style="width:100%;margin-top: 10px;">
         <a class="nui-button" onclick="saveb()" plain="false">保存</a>
         <a class="nui-button" onclick="" plain="false">退出</a>
-    </div>
+    </div> -->
 </div>
 
 <script type="text/javascript">

@@ -5,14 +5,14 @@
 <html> 
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 20:50:20 
+  - Date: 2018-07-02 20:50:20  
   - Description:  
 -->         
  
 <head> 
     <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.956"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.957"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -96,9 +96,9 @@
             </td>     
             <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="newCheckMainMore()">
-                    <span class="fa fa-search fa-lg"></span>&nbsp;查看历史记录</a>
-                  <a class="nui-button" onclick="saveb()" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                  <a class="nui-button" onclick="print()" plain="true"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                    <span class="fa fa-list fa-lg"></span>&nbsp;查看历史记录</a>
+                  <a class="nui-button" onclick="saveb()" plain="true" id="saveData"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                  <a class="nui-button" onclick="tprint()" plain="true"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
               </td>     
           </tr>
       </table>

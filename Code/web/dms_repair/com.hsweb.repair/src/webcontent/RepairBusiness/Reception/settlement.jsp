@@ -164,7 +164,7 @@
                     </tr>
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
-                        <td><input id="meeting" type="date" value="2014-01-13"/></td>
+                        <td><input id="meeting" type="date" value=""/></td>
                     </tr>
                 </tbody>
             </table>
@@ -210,7 +210,7 @@
             </tr>
             <tr>
                 <td>电话：<span id="phone"></span></td>
-                    <td align="right" id="date">打印时间：</td>
+                    <td align="right" >打印时间：<span id="date"></span></td>
 
             </tr>
         </table>
@@ -409,7 +409,7 @@
 	        	}
         	});
         	if(params.type){
-        		url_one = "com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPPart.biz.ext?serviceId=";
+        		url_one = "com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPParts.biz.ext?serviceId=";
         	}else{
         		url_one = "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=";
         	}
@@ -424,8 +424,12 @@
 					    			"<td align='center'>[rate]</td>"+
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
+    				var j = 0;
     				for(var i = 0 , l = data.length ; i < l ; i++){
     					var prdtName = data[i].prdtName;
+    					if(params.type){
+    						prdtName = data[i].packageName || "";
+    					}
     					var orderIndex = data[i].orderIndex;
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
@@ -433,6 +437,10 @@
     						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
     						orderIndex = "";
     					}else{
+    						if(params.type){
+    							j++;
+    							orderIndex = j;
+    						}
     						document.getElementById("prdt").innerHTML = parseInt(document.getElementById("prdt").innerHTML) + parseInt(data[i].subtotal);
     					}
     					if(data[i].billPackageId == 0){
@@ -546,14 +554,16 @@
     		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
     		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
     		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
+    		document.getElementById("meeting").value = document.getElementById("date").innerHTML;
     	}
     	
     	function save(){
-    		box_setup_close();
+    		box_setup_close();date
     		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
     		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
     		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
     		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+    		document.getElementById("date").innerHTML =  document.getElementById("meeting").value;
     	}
     	
     	function box_setup_close(){

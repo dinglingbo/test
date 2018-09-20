@@ -18,7 +18,7 @@ $(document).ready(function(){
 
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
-//        nui.get("mtAdvisor").setValue(text);
+
     });
 
 
@@ -36,14 +36,7 @@ function onOk()
     if (!req.test(node.outQty)){
 	   showMsg("请输入整数");
     }
-//    if(node)
-//    {
-//        resultData = {
-//        	data:node
-//        };
-//        //  return;
-//        CloseWindow("ok");
-//    }
+
     partToOut();
 
 
@@ -61,10 +54,6 @@ function SetData(params) {
     
     data=params.data;
     
- 
-
-//    nui.get('mtAdvisorId').setValue(currEmpId);
-//    nui.get('mtAdvisorId').setText(currUserName);
 }
 
 function CloseWindow(action)

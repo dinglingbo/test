@@ -366,6 +366,14 @@
       <process:from type="query" pattern="reference">settleMent/balaAmt</process:from>
       <process:to type="query">data/balaAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain</process:from>
+      <process:to type="query">data/maintain</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settleMent</process:from>
+      <process:to type="query">data/settleMent</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="676" y="141"/>

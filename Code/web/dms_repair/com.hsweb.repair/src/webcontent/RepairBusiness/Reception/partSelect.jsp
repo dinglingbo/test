@@ -7,8 +7,8 @@
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08 
   - Description:  
--->
- 
+--> 
+  
 <head> 
   <title>选择配件数量</title>  
   <style type="text/css">
@@ -142,7 +142,7 @@
         if(data.length > 0){
 
             for (var i = 0; i < data.length; i++) {
-                if(!data[i].outQty){
+                if(data[i].outQty){
                     sum_out +=data[i].outQty;
                 }
             }
@@ -238,11 +238,12 @@
                 },   
                 success:function(text){   
                     var errCode = text.errCode;
+                    var errMsg = text.errMsg;
                     if(errCode == "S"){
 
                         showMsg('领料成功!','S'); 
-                    }else{
-                        showMsg('领料失败!','E'); 
+                    }else{ 
+                        showMsg(errMsg,'E'); 
                     }
                 }  
             }); 

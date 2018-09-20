@@ -29,8 +29,9 @@ $(document).ready(function () {
 	        },
 	        success: function(text) {
 	        	var list = nui.decode(text.list);
-	        	if(list.length > 0){
-	        		billForm.setData(list[0]);
+	        	if(list.length  == 0){
+	        		showGridMsg(0);
+	        	}else{
 	        		showGridMsg(list[0].id);
 	        	}
 	        }
@@ -151,20 +152,30 @@ $(document).ready(function () {
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
     });
-	/*rpsPackageGrid.on("cellendedit",function(e){
+	rpsPackageGrid.on("cellendedit",function(e){
 		var row = e.row,
 		field = e.field;
-		if(field == "subtotal" || field == "rate"){
-			var amt = 0;
-			if(row.rate){
-				amt = parseFloat(row.subtotal)/ parseFloat(row.rate  * 0.01);
+		if(field == "subtotal"){
+			var rate = null;
+			if(row.amt){
+				rate = 1 - (parseFloat(row.subtotal)/parseFloat(row.amt/100));
 			}else{
-				amt = 0;
+				rate = 1;
 			}
-			var newRow = {amt : amt};
+			var newRow = {rate : rate};
 			rpsPackageGrid.updateRow(row,newRow);
 		}
-	});*/
+		if(field == "rate"){
+			var subtotal = null;
+			if(row.rate){
+				subtotal = parseFloat(row.amt) * parseFloat(100-row.rate)/100;
+			}else{
+				subtotal = 0;
+			}
+			var newRow = {subtotal : subtotal};
+			rpsPackageGrid.updateRow(row,newRow);
+		}
+	});
 	rpsPackageGrid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value;
@@ -188,7 +199,7 @@ $(document).ready(function () {
 		var row = e.row,
 		field = e.field;
 		if(field == "qty" || field == "unitPrice" || field == "rate"){
-			var subtotal = parseFloat(row.qty) * parseFloat(row.unitPrice) * parseFloat(row.rate) * 0.01;
+			var subtotal = parseFloat(row.qty) * parseFloat(row.unitPrice) * parseFloat(100-row.rate) * 0.01;
 			var newRow = {subtotal : subtotal};
 			rpsPartGrid.updateRow(row,newRow);
 		}
@@ -216,7 +227,7 @@ $(document).ready(function () {
 		var row = e.row,
 		field = e.field;
 		if(field == "itemTime" || field == "unitPrice" || field == "rate"){
-			var subtotal = parseFloat(row.itemTime) * parseFloat(row.unitPrice) * parseFloat(row.rate) * 0.01;
+			var subtotal = parseFloat(row.itemTime) * parseFloat(row.unitPrice) * parseFloat(100-row.rate) * 0.01;
 			var newRow = {subtotal : subtotal};
 			rpsItemGrid.updateRow(row,newRow);
 		}
@@ -350,6 +361,9 @@ function choosePart(){
 
 function save(){
 	var maintainBill = billForm.getData();
+	if(nui.get("mtAdvisorId").text){
+		maintainBill.mtAdvisor = nui.get("mtAdvisorId").text;
+	}
 	var packageInsert = rpsPackageGrid.getChanges("added");
 	var packageRemoved = rpsPackageGrid.getChanges("removed");
 	var packageModifiy = rpsPackageGrid.getChanges("modified");
@@ -384,6 +398,31 @@ function save(){
     });
 }
 
+function onPrint(e){
+	var main = billForm.getData();
+	if(main.id){
+		var params = {
+            serviceId : main.id,
+            comp : currOrgName,
+            baseUrl : baseUrl,
+            type : 1,
+            token : token
+        };
+		nui.open({
+	        url: "com.hsweb.print.settlement.flow",
+	        width: "100%",
+	        height: "100%",
+	        showMaxButton: false,
+	        allowResize: false,
+	        showHeader: true,
+	        onload: function() {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(params);
+	        },
+	    });
+	}
+}
+
 function showGridMsg(serviceId){
 	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
 	rpsPackageGrid.load({serviceId : serviceId,token : token});
@@ -391,4 +430,25 @@ function showGridMsg(serviceId){
 	rpsItemGrid.load({serviceId : serviceId,token : token});
 	rpsPartGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
 	rpsPartGrid.load({serviceId : serviceId,token : token});
+}
+
+
+function setInitData(params){
+	if(!params.isOutBill){//未保存过一次报销单
+		params.id = "";
+		billForm.setData(params);
+	}else{
+		nui.ajax({
+	        url: baseUrl+"com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext",
+	        type: "post",
+	        cache: false,
+	        data: {
+	        	sourceServiceId : params.id
+	        },
+	        success: function(text) {
+	        	var list = nui.decode(text.list);
+	        	billForm.setData(list[0]);
+	        }
+	    });
+	}
 }

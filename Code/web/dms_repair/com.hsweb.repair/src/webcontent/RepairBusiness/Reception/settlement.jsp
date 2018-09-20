@@ -147,19 +147,23 @@
             <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
-                        <td class="color999" width="76" height="46">单据编号</td>
+                        <td class="color999" width="76" height="46">单据编号：</td>
                         <td><input type="text" id="txtno" class="peijianss" value="" /></td>
                     </tr>
                     <tr>
-                        <td class="color999" height="46">门店名称</td>
+                        <td class="color999" height="46">门店名称：</td>
                         <td><input type="text" id="txtstorename" class="peijianss" value="" /></td>
                     </tr>
                     <tr>
-                        <td class="color999" height="46">地址</td>
+                        <td class="color999" height="46">地址：</td>
                         <td><input type="text" id="txtaddress" class="peijianss" value="" /></td>
                     </tr>
                     <tr>
-                        <td class="color999" height="46">电话</td>
+                        <td class="color999" height="46">电话：</td>
+                        <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">打印时间：</td>
                         <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
                     </tr>
                 </tbody>
@@ -344,34 +348,48 @@
         function SetData(params){
 	        var date = new Date();
 	        document.getElementById("comp").innerHTML = params.comp;
-	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");; 
+	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");
 	        $.ajaxSettings.async = false;//设置为同步执行
-	        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId+"&token="+params.token,{},function(text){
+	        var url = null;
+	        if(params.type){
+	        	url = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
+	        }else{
+	        	url = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
+	        }
+	        $.post(params.baseUrl+url+params.serviceId+"&token="+params.token,{},function(text){
 	        	if(text.list.length > 0){
 	        		var list = text.list[0];
-	        		var carNo = list.carNO;
-	        		var carVin = list.carVin;
+	        		var carNo = list.carNO || "";
+	        		var carVin = list.carVin || "";
 	        		var enterDate = list.enterDate || "";
 	        		if(enterDate){
 	        			enterDate = enterDate.replace(/-/g,"/");
 	        			enterDate = new Date(enterDate);
 	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
 	        		}
-	        		var guestFullName = list.guestFullName;
-	        		var enterKilometers = list.enterKilometers;
-	        		var mtAdvisor = list.mtAdvisor;
+	        		var guestFullName = list.guestFullName || "";
+	        		var enterKilometers = list.enterKilometers || "";
+	        		var mtAdvisor = list.mtAdvisor || "";
 	        		var planFinishDate = list.planFinishDate || "";
 	        		if(planFinishDate){
 	        			planFinishDate = planFinishDate.replace(/-/g,"/");
 	        			planFinishDate = new Date(planFinishDate);
 	        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
 	        		}
-	        		var serviceCode = list.serviceCode;
-	        		var guestMobile = list.guestMobile;
-	        		var carModel = list.carModel;
-	        		var contactMobile = list.contactMobile;
-	        		var contactName = list.contactName;
-	        		var guestAddr = list.guestAddr;
+	        		var serviceCode = list.serviceCode || "";
+	        		var guestMobile = list.guestMobile || "";
+	        		var carModel = list.carModel || "";
+	        		var contactMobile = list.contactMobile || "";
+	        		var contactName = list.contactName || "";
+	        		var guestAddr = list.guestAddr || "";
+	        		if(params.type){
+	        			guestFullName = list.guestName || "";
+	        			guestMobile = list.guestTel || "";
+	        			contactMobile = list.contactorTel || "";
+	        			carNo = list.carNo || "";
+	        			contactName = list.contactorName || "";
+	        			mtAdvisor = list.mtAdvisor || "";
+	        		}
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNO").innerHTML = document.getElementById("carNO").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;

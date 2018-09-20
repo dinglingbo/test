@@ -2236,7 +2236,8 @@ function onPrint(e){
 		var params = {
             serviceId : main.id,
             comp : currOrgName,
-            baseUrl : baseUrl
+            baseUrl : baseUrl,
+            token : token
         };
 	 if(e == 1){
          openUrl = "com.hsweb.print.repairOrder.flow";

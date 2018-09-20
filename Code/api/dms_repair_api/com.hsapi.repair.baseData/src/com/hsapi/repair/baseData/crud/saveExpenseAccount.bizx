@@ -42,6 +42,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
     <location x="316" y="46"/>
@@ -53,7 +54,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">RpsMaintainBill</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">maintainBill</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -85,6 +86,7 @@
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="225" y="46"/>
@@ -92,47 +94,23 @@
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">RpsMaintainBill/recordDate</process:to>
+      <process:to type="query">maintainBill/recordDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">RpsMaintainBill/recorder</process:to>
+      <process:to type="query">maintainBill/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/carNo</process:from>
-      <process:to type="query">RpsMaintainBill/carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/contactorName</process:from>
-      <process:to type="query">RpsMaintainBill/contactorName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/guestName</process:from>
-      <process:to type="query">RpsMaintainBill/guestName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/guestTel</process:from>
-      <process:to type="query">RpsMaintainBill/guestTel</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/enterKilometers</process:from>
-      <process:to type="query">RpsMaintainBill/enterKilometers</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/contactorTel</process:from>
-      <process:to type="query">RpsMaintainBill/contactorTel</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/serviceTypeId</process:from>
-      <process:to type="query">RpsMaintainBill/serviceTypeId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/mtAdvisorId</process:from>
-      <process:to type="query">RpsMaintainBill/mtAdvisorId</process:to>
+      <process:from type="query" pattern="reference">sourceServiceId</process:from>
+      <process:to type="query">maintainBill/sourceServiceId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">RpsMaintainBill/orgid</process:to>
+      <process:to type="query">maintainBill/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">RpsMaintainBill/id</process:from>
+      <process:to type="query">maintainBill/id</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -168,6 +146,7 @@
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
     <location x="228" y="256"/>
@@ -179,7 +158,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">RpsMaintainBill</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">maintainBill</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -218,47 +197,15 @@
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">RpsMaintainBill/modifyDate</process:to>
+      <process:to type="query">maintainBill/modifyDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">RpsMaintainBill/modifier</process:to>
+      <process:to type="query">maintainBill/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/carNo</process:from>
-      <process:to type="query">RpsMaintainBill/carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/contactorName</process:from>
-      <process:to type="query">RpsMaintainBill/contactorName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/guestName</process:from>
-      <process:to type="query">RpsMaintainBill/guestName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/guestTel</process:from>
-      <process:to type="query">RpsMaintainBill/guestTel</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/enterKilometers</process:from>
-      <process:to type="query">RpsMaintainBill/enterKilometers</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/contactorTel</process:from>
-      <process:to type="query">RpsMaintainBill/contactorTel</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/serviceTypeId</process:from>
-      <process:to type="query">RpsMaintainBill/serviceTypeId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/mtAdvisorId</process:from>
-      <process:to type="query">RpsMaintainBill/mtAdvisorId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/id</process:from>
-      <process:to type="query">RpsMaintainBill/id</process:to>
+      <process:from type="query" pattern="reference">sourceServiceId</process:from>
+      <process:to type="query">maintainBill/sourceServiceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -925,7 +872,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="maintainBill"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintainBill" name="maintainBill"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPackageBill" name="packageModifiy"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPackageBill" name="packageInsert"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPackageBill" name="packageRemoved"/>

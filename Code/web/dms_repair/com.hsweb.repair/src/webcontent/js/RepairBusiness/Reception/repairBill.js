@@ -2807,18 +2807,24 @@ function onValueChangedpartSubtotal(e){
 		var partAmt = 0;
 		//设置小计金额
 		var subtotal = el.getValue();
-		//设置配件总金额
-		if(unitPrice>0 && qty>0){
-		   partAmt = qty*unitPrice;
-		   row.amt = partAmt;
-		}	
 		var rate = setRate.getValue();
-	    if(partAmt>0 && rate>0){
-	    	rate = (partAmt - subtotal)*1.0/partAmt;
-	    }
-	    rate = rate * 100;
-	    rate = rate.toFixed(2);
-	    setRate.setValue(rate);
+		//设置配件总金额
+		if(rate>0){
+			var rate2 = 1-rate*1.0/100;
+			partAmt = total*1.0/rate2;
+			partAmt = partAmt.toFixed(2);
+			row.amt = partAmt;
+		}else{
+			partAmt = subtotal;
+			row.amt = partAmt;
+		}
+		//设置配件单价
+		if(qty>0){
+			unitPrice = partAmt*1.0/qty;
+		}	
+		
+	    unitPrice = unitPrice.toFixed(2);
+	    setUnitPrice.setValue(unitPrice);
 	    setSubtotal.setValue(subtotal);
 	}
 }
@@ -2926,7 +2932,8 @@ function onDrawSummaryCellPack(e){
 			  data.sumPkgSubtotal=0;
 			  data.sumPkgPrefAmt=0;
 		  }*/
-		  data.mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  var mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
 		  sellForm.setData(data);
 	  }
 	 
@@ -2968,7 +2975,8 @@ function onDrawSummaryCellItem(e){
 		  if((data.packageSubtotal == null  ||  data.packageSubtotal == "")  && (data.partSubtotal == null  ||  data.partSubtotal == "") ){
 			  data.mtAmt = sumItemSubtotal;
 		  }*/
-		  data.mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+		  var mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
 		  sellForm.setData(data);
 	  }
 	
@@ -3010,8 +3018,8 @@ function onDrawSummaryCellPart(e){
 			  data.mtAmt = sumPartSubtotal;
 		  }
 		  */
-		  data.mtAmt = parseFloat(sumPartSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal);
-
+		  var mtAmt = parseFloat(sumPartSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
 		  sellForm.setData(data);
 	  }
 	

@@ -960,6 +960,10 @@ function sureMT(){
         showMsg("请先保存工单!","W");
         return;
     }else{
+        if(data.status != 0){
+            showMsg("本工单已经确定维修!","W");
+            return;
+        }
         var params = {
             data:{
                 id:data.id||0
@@ -973,6 +977,7 @@ function sureMT(){
         svrSureMT(params, function(data){
             data = data||{};
             var errCode = data.errCode||"";
+            var errMsg = data.errMsg||"";
             if(errCode == 'S'){
                 var main = data.maintain||{};
                 billForm.setData([]);
@@ -982,8 +987,8 @@ function sureMT(){
                 doSetStyle(status, isSettle);
                 showMsg("确定维修成功!","S");
             }else{
-                showMsg("确定维修失败!","W");
-                return;
+                showMsg(errMsg||"确定维修失败!","W");
+                nui.unmask(document.body);
             }
         }, function(){
             nui.unmask(document.body);
@@ -996,29 +1001,80 @@ function finish(){
         showMsg("请先保存工单!","W");
         return;
     }else{
+        if(data.status == 2){
+            showMsg("本工单已经完工!","W");
+            return;
+        }
         var params = {
             serviceId:data.id||0
         };
+        doFinishWork(params, function(data){
+            data = data||{};data = data||{};
+            if(data.action){
+                var action = data.action||"";
+                if(action == 'ok'){
+                    billForm.setData([]);
+                    billForm.setData(data);
+                    var status = data.status||0;
+                    var isSettle = data.isSettle||0;
+                    doSetStyle(status, isSettle);
+                    showMsg("完工成功!","S");
+                }else{
+                    if(data.errCode){
+                        showMsg("完工失败!","W");
+                        return;
+                    }
+                }
+            }
+        });
+    }
+}
+function unfinish(){
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+        var isSettle = data.isSettle||0;
+        if(isSettle == 1){
+            showMsg("本工单已经结算,不能返工!","W");
+            return;
+        }
+        if(data.status != 2){
+            showMsg("本工单未未完工,不能返工!!","W");
+            return;
+        }
+        
         nui.mask({
             el: document.body,
             cls: 'mini-mask-loading',
             html: '处理中...'
         });
-        doFinishWork(params, function(data){
-            data = data||{};data = data||{};
-            var action = data.action||"";
-            if(action == 'ok'){
-                billForm.setData([]);
-                billForm.setData(data);
-                var status = data.status||0;
-                var isSettle = data.isSettle||0;
-                doSetStyle(status, isSettle);
-                showMsg("完工成功!","S");
-            }else{
-                showMsg("完工失败!","W");
-                return;
+        var params = {
+            data:{
+                id:data.id||0
             }
+        };
+        svrUnRepairAudit(params, function(data){
+            data = data||{};
+            var errCode = data.errCode||"";
+            var errMsg = data.errMsg||"";
+            if(errCode == 'S'){
+                var maintain = data.maintain||{};
+                billForm.setData([]);
+                billForm.setData(maintain);
+                var status = maintain.status||0;
+                var isSettle = maintain.isSettle||0;
+                doSetStyle(status, isSettle);
+                showMsg("返工成功!","S");
+            }else{
+                showMsg(errMsg||"返工失败!","W");
+            }
+            nui.unmask(document.body);
+        }, function(){
+            nui.unmask(document.body);
         });
+
     }
 }
 var loadMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";

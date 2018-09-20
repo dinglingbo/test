@@ -52,9 +52,9 @@ function setData(params){
             }
         });
         if(rows && rows.length>0){
-            $("checkDescribe").text("本工单有配件未出库");
+            document.getElementById("checkDescribe").innerHTML = "本工单有配件未出库";
         }else{
-            $("checkDescribe").text("");
+            document.getElementById("checkDescribe").innerHTML = "";
         }
     });
 }
@@ -82,6 +82,7 @@ function finish(){
             resultData.action = 'cancel';
             CloseWindow("cancel");
         }
+        nui.unmask(document.body);
     }, function(){
         nui.unmask(document.body);
     })

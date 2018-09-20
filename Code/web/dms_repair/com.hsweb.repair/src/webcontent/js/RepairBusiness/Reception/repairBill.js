@@ -3019,7 +3019,7 @@ function addExpenseAccount(){
 		var item={};
 		item.id = "123321";
 	    item.text = "报销单";
-		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.ExpenseAccount.flow?sourceServiceId="+data.id;
+		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
 		item.iconCls = "fa fa-cog";
 		window.parent.activeTabAndInit(item,data);
 		data.guestTel = $("#guestTelEl").text();

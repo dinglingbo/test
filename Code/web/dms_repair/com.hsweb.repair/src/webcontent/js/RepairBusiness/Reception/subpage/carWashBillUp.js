@@ -74,7 +74,7 @@ function onChanged() {
 
 }
 
-function nopay(){
+function noPay(){
 	var data = sellForm.getData();
 	doNoPay(fserviceId,data.PrefAmt);
 }

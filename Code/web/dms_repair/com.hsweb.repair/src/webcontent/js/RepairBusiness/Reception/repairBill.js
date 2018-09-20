@@ -615,7 +615,7 @@ function doSetMainInfo(car){
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
     maintain.recordDate = now;
-
+    maintain.sex = car.sex;
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
@@ -702,6 +702,7 @@ function setInitData(params){
                         data.guestFullName = guest.fullName;
                         data.guestMobile = guest.mobile;
                         data.contactorName = contactor.name;
+                        data.sex = contactor.sex;
                         data.mobile = contactor.mobile;
 
                         $("#guestNameEl").html(guest.fullName);

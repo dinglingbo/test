@@ -238,8 +238,8 @@
 	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
 	                   			var prdtName = data[i].prdtName;
 	                   			if(data[i].billPackageId == 0){
-	                   				document.getElementById("money").innerHTML = parseInt(document.getElementById("money").innerHTML) + parseInt(data[i].subtotal);
-	                   				document.getElementById("prdt").innerHTML = parseInt(document.getElementById("prdt").innerHTML) + parseInt(data[i].subtotal);
+	                   				document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
+	                   				document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
 	                   			}else{
 	                   				prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
 	                   			}
@@ -270,13 +270,13 @@
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
 	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
-	                   			document.getElementById("item").innerHTML = parseInt(document.getElementById("item").innerHTML) + parseInt(data[i].subtotal);
+	                   			document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
 	                   			var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[name]",data[i].itemName)
 				    				.replace("[sal]",data[i].amt));
 				    			tBody.append(tr);
-				    			document.getElementById("money").innerHTML = parseInt(document.getElementById("money").innerHTML) + parseInt(data[i].amt);
+				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].amt);
 	                   		}
 	                   }
 	                },
@@ -300,13 +300,13 @@
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
 	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
-	                   			document.getElementById("part").innerHTML = parseInt(document.getElementById("part").innerHTML) + parseInt(data[i].subtotal);
+	                   			document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
 	                   			var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[name]",data[i].partName)
 				    				.replace("[sal]",data[i].amt));
 				    			tBody.append(tr);
-				    			document.getElementById("money").innerHTML = parseInt(document.getElementById("money").innerHTML) + parseInt(data[i].amt);
+				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].amt);
 	                   		}
 	                   }
 	                },

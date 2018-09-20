@@ -428,7 +428,7 @@ function onPrint(e){
 	        },
 	    });
 	}else{
-		showMsg("");
+		showMsg("请先保存数据","W");
 	}
 }
 

@@ -12,7 +12,7 @@
 <head>
 <title>洗车工单结算</title>
 <script src
-	="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/carWashBillUp.js?v=1.0.0">
+	="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/carWashBillUp.js?v=1.0.1">
 </script>
 <style type="text/css">
 .vpanel_heading {
@@ -53,8 +53,8 @@
 
 
 			<tr>
-				<td>储值余额:<input class="nui-textbox" enabled="false" id="dk" width="50%" onvaluechanged="onChanged" /></td>
-				<td ><font  style=" color: red;">储值抵扣:</font><input class="nui-textbox" id="dk" width="50%" onvaluechanged="onChanged" /></td>
+				<td>储值余额:<input class="nui-textbox" enabled="false" id="rechargeBalaAmt" name="rechargeBalaAmt" width="50%"  /></td>
+				<td ><font  style=" color: red;">储值抵扣:</font><input class="mini-spinner" id="dk" name="dk" width="50%" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" /></td>
 			</tr>
 
 			<tr>
@@ -65,16 +65,16 @@
 				<td colspan="3" align="center" ><font size=4 style=" color: red;">应收:</font><input class="nui-textbox" enabled="false" width="" id="mtAmt" name="mtAmt"/></td>
 			</tr>
 			<tr >
-				<td colspan="3" align="center"  ><font size=4 style=" color: red;">实收:</font><input class="nui-textbox" enabled="false" width="" id="" name=""/></td>
+				<td colspan="3" align="center"  ><font size=4 style=" color: red;">实收:</font><input class="nui-textbox" enabled="false" width="" id="amount" name="amount"/></td>
 			</tr>
 			<tr>
 				<td align="right">结算方式:</td>
 				<td colspan="2">
 					<div class="mini-radiobuttonlist" repeatItems="1"
-						repeatLayout="table" repeatDirection="vertical" name="payType"
+						repeatLayout="table" repeatDirection="vertical" id="payType" name="payType"
 						textField="text" valueField="value"
 						data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]"
-						value="020101"></div>
+						value="020101" ></div>
 				</td>
 			</tr>
 		</table>

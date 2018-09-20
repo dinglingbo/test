@@ -305,6 +305,7 @@
       <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="1035" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -365,6 +366,15 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="840" y="150"/>
     <size height="28" width="22"/>
@@ -394,7 +404,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link30</targetConnections>
-    <location x="934" y="150"/>
+    <location x="924" y="105"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -409,7 +419,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
-    <location x="891" y="185"/>
+    <location x="881" y="140"/>
     <figSize height="17" width="112"/>
     <node>subprocess6</node>
   </nodes>

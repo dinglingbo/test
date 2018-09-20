@@ -11,7 +11,7 @@
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
   
- var billForm = null; 
+ var billForm = null;  
  var xyguest = null; 
  var brandList = [];
  var brandHash = {};
@@ -2337,6 +2337,7 @@ function newCheckMain() {
     var params = {};
     params = { 
         id:data.id,
+        actionType:"",
         row: rdata
     };
 
@@ -2360,12 +2361,15 @@ function MemSelectOk(){
 function SearchCheckMain(callback) {
     var data = billForm.getData();
     var  t = null;
+    var ydata = {
+        serviceId:data.id
+    }
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
         async: false,
         data:{ 
-            serviceId:data.id
+            params:ydata
         },
         cache: false,
         success: function (text) {  
@@ -2406,18 +2410,18 @@ SearchLastCheckMain();
         $("#checkStatusButton1").show();
         $("#checkStatusButton2").hide();
     }else{
-        if(detailList.checkMan && detailList.checkStatus == 0){
+        if((detailList.checkMan || detailList.checkManId)&& detailList.checkStatus == 0){
             $("#checkStatus2").css("color","#32b400");
-            $("#checkStatusButton1").hide();
+            $("#checkStatusButton1").hide(); 
             $("#checkStatusButton2").show();
 
         }
-        if(detailList.checkMan && detailList.checkStatus == 1){
+        if((detailList.checkMan || detailList.checkManId) && detailList.checkStatus == 1){
             $("#checkStatus3").css("color","#32b400");
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show();
         }
-        if(detailList.checkMan && detailList.checkStatus == 2){ 
+        if((detailList.checkMan || detailList.checkManId) && detailList.checkStatus == 2){ 
             $("#checkStatus4").css("color","#32b400");   
             $("#checkStatusButton1").hide();
             $("#checkStatusButton2").show(); 

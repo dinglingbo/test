@@ -53,13 +53,13 @@ $(document).ready(function () {
 		        	var data = nui.decode(text.data);
 		        	if(data.length > 0){
 		        		for(var i = 0 , l = data.length ; i < l ; i ++){
-		        			var packageId = data[i].id;
+		        			var billPackageId = data[i].billPackageId;
 		        			var packageName = data[i].prdtName || "";
 		        			var subtotal = data[i].subtotal || "";
 		        			var rate = data[i].rate || "";
 		        			var amt = data[i].amt || "";
 		        			var newRow = {
-		        					packageId : packageId,
+		        					billPackageId : billPackageId,
 		        					packageName : packageName,
 		        					subtotal : subtotal,
 		        					rate : rate,

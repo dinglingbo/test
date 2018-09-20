@@ -543,3 +543,50 @@ function doNoPay(serviceId,allowanceAmt){
 	});
 
 }
+
+function doPrint(params){
+	var source = params.source||0;
+	var serviceId = params.serviceId||0;
+	var sourceUrl = "";
+	var p = {
+		serviceId : serviceId,
+		comp : currOrgName,
+		baseUrl: apiPath + repairApi + "/",
+		token : token
+	};
+	if(source == 1){  //打印报价单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		p.name = "报价单";
+	}else if(source == 2){  //打印派工单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.repairOrder.flow?token="+token;
+		p.name = "派工单";
+	}else if(source == 3){  //打印结算单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		p.name = "维修结算单";
+	}else if(source == 4){  //打印小票
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.smallSettlement.flow?token="+token;
+		p.name = "维修结算单";
+	}else if(source == 5){  //打印领料单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.materialRequisition.flow?token="+token;
+		p.name = "领料单";
+	}else if(source == 6){  //打印报销单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		p.name = "报销单";
+	}else if(source == 7){  //打印查车单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.checkCar.flow?token="+token;
+		p.name = "查车单";
+	}
+	
+	nui.open({
+        url: sourceUrl,
+        title: p.name||"" + "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(p);
+        },
+        ondestroy: function (action){
+        }
+    });
+}

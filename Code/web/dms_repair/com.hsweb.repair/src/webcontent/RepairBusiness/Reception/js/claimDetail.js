@@ -2383,36 +2383,22 @@ function onPrint(e){
 	var openUrl = null;
 	if(main.id){
 		var params = {
-				serviceId : main.id,
-				comp : currOrgName
+            source : e,
+            serviceId : main.id
 		};
-		if(e == 1){
-			openUrl = "com.hsweb.print.repairOrder.flow";
-		}else if(e == 2){
-			openUrl = "com.hsweb.print.settlement.flow";
-		}else if(e == 3){
-			openUrl = "com.hsweb.print.smallSettlement.flow";
-		}
-		nui.open({
-            url: openUrl,
-            width: "100%",
-            height: "100%",
-            showMaxButton: false,
-			allowResize: false,
-            showHeader: true,
-            onload: function() {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.SetData(params);
-            },
-        });
-	}
+        
+        doPrint(params);
+	}else{
+        showMsg("请先保存工单,再打印!","W");
+        return;
+    }
 }
 
 function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
-			carId : main.carId,
-			guestId : main.guestId
+        carId : main.carId,
+        guestId : main.guestId
 	};
 	if(main.id){
 		nui.open({
@@ -2458,7 +2444,7 @@ function pay(){
 		//加载完之后
 		onload: function(){	
 		},
-	ondestroy : function(action) {
+	    ondestroy : function(action) {
 		if (action == 'ok') {
 			var iframe = this.getIFrameEl();
 			var data = iframe.contentWindow.getData();

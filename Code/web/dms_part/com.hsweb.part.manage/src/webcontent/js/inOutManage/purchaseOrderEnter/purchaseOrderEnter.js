@@ -660,6 +660,7 @@ function add() {
 
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
+	var orderMan=basicInfoForm.getData().orderMan;
 
 	if (formJson != formJsonThis && len > 0) {// 
 		nui.confirm("您正在编辑数据,是否要继续?", "友情提示", function(action) {
@@ -667,7 +668,7 @@ function add() {
 
 				setBtnable(true);
 				setEditable(true);
-
+				
 				basicInfoForm.reset();
 				rightGrid.clearRows();
 
@@ -684,7 +685,7 @@ function add() {
 				nui.get("serviceId").setValue("新采购入库");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 				nui.get("createDate").setValue(new Date());
-				nui.get("orderMan").setValue(currUserName);
+				nui.get("orderMan").setValue(orderMan);
 				nui.get("sourceType").setValue(0);
 
 				addNewRow();
@@ -716,7 +717,7 @@ function add() {
 		nui.get("serviceId").setValue("新采购入库");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
-		nui.get("orderMan").setValue(currUserName);
+		nui.get("orderMan").setValue(orderMan);
 
 		addNewRow();
 
@@ -1129,7 +1130,7 @@ function getPartInfo(params){
 function selectPart(callback, checkcallback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath+contextPath+"/com.hsweb.part.manage.partSelectView.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
 		title : "配件选择",
 		width : 930,
 		height : 560,

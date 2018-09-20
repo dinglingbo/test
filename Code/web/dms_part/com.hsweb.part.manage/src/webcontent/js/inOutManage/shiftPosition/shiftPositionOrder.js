@@ -1260,3 +1260,125 @@ function setInitExportData(main, detail){
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"移仓单"+serviceId,'tableExportA');
 }
+
+function addPart() {
+	var row = leftGrid.getSelected();
+	if (row) {
+		if (row.auditSign == 1) {
+			return;
+		}
+	}
+
+	selectPart(function(data) {
+		var part = data.part;
+		addDetail(part);
+	}, function(data) {
+		var part = data.part;
+		var partid = part.id;
+		var rtn = checkPartIDExists(partid);
+		return rtn;
+	});
+}
+
+function selectPart(callback, checkcallback) {
+	nui.open({
+		targetWindow : window,
+		url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
+		title : "配件选择",
+		width : 930,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setData({}, callback, checkcallback);
+		},
+		ondestroy : function(action) {
+		}
+	});
+}
+function checkPartIDExists(partid) {
+	var row = rightGrid.findRow(function(row) {
+		if (row.partId == partid) {
+			return true;
+		}
+		return false;
+	});
+
+	if (row) {
+		return "配件编码：" + row.comPartCode + "在移仓列表中已经存在，是否继续？";
+	}
+
+	return null;
+
+}
+
+function addDetail(part) {
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+
+			return;
+		}
+	}
+
+	var row = leftGrid.getSelected();
+	if (row) {
+		if (row.auditSign == 1) {
+			showMsg("此单已入库!","W");
+			return;
+		}
+	} else {
+		return;
+	}
+	
+	nui.open({
+				targetWindow : window,
+				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
+				title : "移仓数量",
+				width : 430,
+				height : 210,
+				allowDrag : true,
+				allowResize : false,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					part.storeId = FStoreId;//nui.get("storeId").getValue();
+					iframe.contentWindow.setData({
+						part : part,
+						priceType : "pchsIn"
+					});
+					iframe.contentWindow.$('#price').css("display","none");
+					iframe.contentWindow.$('#price1').css("display","none");
+					iframe.contentWindow.$('#hidden').css("display","none");
+					
+				},
+				ondestroy : function(action) {
+					if (action == "ok") {
+						var iframe = this.getIFrameEl();
+						var data = iframe.contentWindow.getData();
+						var enterDetail = {};
+						enterDetail.partId = data.id;
+						enterDetail.comPartCode = data.code;
+						enterDetail.comPartName = data.name;
+						enterDetail.comPartBrandId = data.partBrandId;
+						enterDetail.comApplyCarModel = data.applyCarModel;
+						enterDetail.comUnit = data.unit;
+						enterDetail.orderQty = data.qty;
+						enterDetail.orderPrice = data.price;
+						enterDetail.orderAmt = data.amt;
+						enterDetail.remark = data.remark;
+						enterDetail.storeId = data.storeId;
+						enterDetail.comOemCode = data.oemCode;
+						enterDetail.comSpec = data.spec;
+						enterDetail.partCode = data.code;
+						enterDetail.partName = data.name;
+						enterDetail.fullName = data.fullName;
+						enterDetail.systemUnitId = data.unit;
+						enterDetail.enterUnitId = data.unit;
+
+						rightGrid.addRow(enterDetail);
+					}
+				}
+			});
+}

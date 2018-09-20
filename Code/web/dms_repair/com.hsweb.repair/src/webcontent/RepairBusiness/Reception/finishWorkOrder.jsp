@@ -85,17 +85,17 @@
       </div>
   </div>
 
-     <div style="padding: 0px;" borderStyle="border:0;">
-			<table width="100%">
-				<tr >
-				<td style="text-align:center;" colspan="1"  >
-					<a	class="nui-button"  onclick="readyPay()" id = "readyPay"> 完工</a> 
-					<a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a> 
-					<a class="nui-button"  onclick="payOk()" id = "payOk" >返单</a> 
-				</td>
-				</tr>
-			</table>
-		</div>
+   <div style="padding: 0px;" borderStyle="border:0;">
+		<table width="100%">
+			<tr >
+			<td style="text-align:center;" colspan="1"  >
+				<a	class="nui-button"  onclick="readyPay()" id = "readyPay"> 完工</a> 
+				<a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a> 
+				<a class="nui-button"  onclick="payOk()" id = "payOk" >返单</a> 
+			</td>
+			</tr>
+		</table>
+	</div>
    </div>
 </div>
 </body>

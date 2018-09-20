@@ -78,3 +78,41 @@ function noPay(){
 	var data = sellForm.getData();
 	doNoPay(fserviceId,data.PrefAmt);
 }
+
+function pay(){
+    nui.mask({
+        el : document.body,
+	    cls : 'mini-mask-loading',
+	    html : '处理中...'
+    });
+	var data = sellForm.getData();
+	var json = {
+			allowanceAmt:data.PrefAmt,
+			cardPayAmt:"020107",
+			serviceId:fserviceId,
+			payType:data.payType,
+			payAmt:data.amount
+	}
+	
+	nui.ajax({
+		url : baseUrl
+		+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ,
+		type : "post",
+		data : json,
+		async: false,
+		success : function(data) {
+			if(data.errCode=="S"){
+				nui.unmask(document.body);
+				nui.alert("结算成功","提示");
+			}else{
+				nui.unmask(document.body);
+				nui.alert("结算失败","提示");
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}

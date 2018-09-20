@@ -383,11 +383,6 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 	});
 }
 
-
-
-
-
-
 var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
 function doAddcardTime(params,callback){	
 	

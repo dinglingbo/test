@@ -1206,7 +1206,7 @@ function addDetail(part) {
 				targetWindow : window,
 				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
 
-				title : "入库数量金额",
+				title : "采购订单数量金额",
 				width : 430,
 				height : 210,
 				allowDrag : true,
@@ -2341,3 +2341,4 @@ function setInitExportData(main, detail){
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"采购订单"+serviceId,'tableExportA');
 }
+

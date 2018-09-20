@@ -92,6 +92,14 @@ $(document).ready(function(v)
             brandHash[v.id] = v;
         });
         
+        
+        initPartBrand("partBrandId",function(){
+            initDicts({
+
+            },function(){
+
+            });
+        });
         initCarBrand("applyCarBrandId",function(){
             initDicts({
                 unit:UNIT,// --单位
@@ -175,6 +183,12 @@ function onNodeDblClick(e)
         carTypeIdS:cartypes,
         carTypeIdT:cartypet
     };
+    
+    var params = getSearchParams();
+    for(var key in params){
+    	partName[key]=params[key];
+    }
+    
     doSearch(partName);
 }
 var partTypeHash = null;

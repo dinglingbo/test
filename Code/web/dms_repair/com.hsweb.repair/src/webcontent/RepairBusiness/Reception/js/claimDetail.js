@@ -5,7 +5,6 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
-var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
 var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
 var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
@@ -214,8 +213,6 @@ $(document).ready(function ()
     searchKeyEl.focus();
     // innerItemGrid = nui.get("innerItemGrid");
     // innerPartGrid = nui.get("innerPartGrid");
-    // innerItemGrid.setUrl(itemGridUrl);
-    // innerPartGrid.setUrl(partGridUrl);
 
     // beginDateEl.setValue(getMonthStartDate());
     // endDateEl.setValue(addDate(getMonthEndDate(), 1));
@@ -707,19 +704,7 @@ function setInitData(params){
 
                         var status = data.status||0;
                         var isSettle = data.isSettle||0;
-                        if(isSettle == 1){
-                            $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-                            $("#settleStatus").attr("class", "statusview");
-                        }else{
-                            $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-                            if(status==0){
-                                $("#addStatus").attr("class", "statusview");
-                            }else if(status==1){
-                                $("#repairStatus").attr("class", "statusview");
-                            }else if(status==2){
-                                $("#finishStatus").attr("class", "statusview");
-                            }
-                        }
+                        doSetStyle(status, isSettle);
 
                         if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
@@ -970,7 +955,71 @@ function saveMaintain(callback,unmaskcall){
     // });
 }
 function sureMT(){
-
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+        var params = {
+            data:{
+                id:data.id||0
+            }
+        };
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '处理中...'
+        });
+        svrSureMT(params, function(data){
+            data = data||{};
+            var errCode = data.errCode||"";
+            if(errCode == 'S'){
+                var main = data.maintain||{};
+                billForm.setData([]);
+                billForm.setData(main);
+                var status = main.status||0;
+                var isSettle = main.isSettle||0;
+                doSetStyle(status, isSettle);
+                showMsg("确定维修成功!","S");
+            }else{
+                showMsg("确定维修失败!","W");
+                return;
+            }
+        }, function(){
+            nui.unmask(document.body);
+        });
+    }
+}
+function finish(){
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+        var params = {
+            serviceId:data.id||0
+        };
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '处理中...'
+        });
+        doFinishWork(params, function(data){
+            data = data||{};data = data||{};
+            var action = data.action||"";
+            if(action == 'ok'){
+                billForm.setData([]);
+                billForm.setData(data);
+                var status = data.status||0;
+                var isSettle = data.isSettle||0;
+                doSetStyle(status, isSettle);
+                showMsg("完工成功!","S");
+            }else{
+                showMsg("完工失败!","W");
+                return;
+            }
+        });
+    }
 }
 var loadMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function loadMaintain(callback,unmaskcall){

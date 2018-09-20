@@ -162,10 +162,6 @@
                         <td class="color999" height="46">电话：</td>
                         <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
                     </tr>
-                    <tr>
-                        <td class="color999" height="46">打印时间：</td>
-                        <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
-                    </tr>
                 </tbody>
             </table>
 

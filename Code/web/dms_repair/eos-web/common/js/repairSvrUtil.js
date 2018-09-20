@@ -244,6 +244,24 @@ function svrUnRepairAudit(params, callback, unmaskcall){
 	});
 }
 
+//删除工单
+var svrDelBillUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateRpsDisabled.biz.ext";
+function svrDelBill(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrDelBillUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
 //新增客户
 function doApplyCustomer(params,callback){
     nui.open({
@@ -400,7 +418,7 @@ function doAddcard(params,callback){
 		}
 		nui.open({
 			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 600, height: 460,
+			title: "储值卡充值", width: 600, height: 460,
 			onload: function(){
 				var iframe=this.getIFrameEl();	
 				iframe.contentWindow.SetData(params);		

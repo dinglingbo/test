@@ -93,11 +93,13 @@ $(document).ready(function () {
 		        			var itemTime = data[i].itemTime || "";
 		        			var unitPrice = data[i].unitPrice || "";
 		        			var rate = data[i].rate || "";
+		        			var subtotal = data[i].subtotal || "";
 		        			var newRow = {
 		        					itemName : itemName,
 		        					itemTime : itemTime,
 		        					unitPrice : unitPrice,
-		        					rate : rate
+		        					rate : rate,
+		        					subtotal : subtotal
 		        			};
 		        			var dataAll = rpsItemGrid.getData();
 		        			rpsItemGrid.addRow(newRow,dataAll.length);
@@ -124,13 +126,12 @@ $(document).ready(function () {
 		        	if(data.length > 0){
 		        		for(var i = 0 , l = data.length ; i < l ; i ++){
 		        			var partName = data[i].partName || "";
-		        			var qty = data[i].qty || "";
 		        			var unitPrice = data[i].unitPrice || "";
 		        			var rate = data[i].rate || "";
 		        			var subtotal = data[i].subtotal || "";
 		        			var newRow = {
 		        					partName : partName,
-		        					qty : qty,
+		        					qty : 1,
 		        					unitPrice : unitPrice,
 		        					rate : rate,
 		        					subtotal : subtotal
@@ -360,6 +361,11 @@ function choosePart(){
 }
 
 function save(){
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
 	var maintainBill = billForm.getData();
 	if(nui.get("mtAdvisorId").text){
 		maintainBill.mtAdvisor = nui.get("mtAdvisorId").text;
@@ -392,6 +398,7 @@ function save(){
              sourceServiceId : nui.get("sourceServiceId").value
         },
         success: function(text) {
+        	nui.unmask(document.body);
         	nui.get("rid").setValue(text.mainId);
         	showGridMsg(text.mainId);
         }
@@ -420,6 +427,8 @@ function onPrint(e){
 	            iframe.contentWindow.SetData(params);
 	        },
 	    });
+	}else{
+		showMsg("");
 	}
 }
 

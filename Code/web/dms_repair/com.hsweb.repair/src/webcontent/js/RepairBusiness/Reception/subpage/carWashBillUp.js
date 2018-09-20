@@ -2,6 +2,8 @@ var packageGrid = null;
 var itemGrid = null;
 var partGrid = null;
 var sellForm = null;
+var webBaseUrl = webPath + contextPath + "/";
+var baseUrl = apiPath + repairApi + "/";
 $(document).ready(function(v) {
 	sellForm = new nui.Form("#sellForm");
 	
@@ -12,11 +14,11 @@ $(document).ready(function(v) {
 function getData(data){
 		// 跨页面传递的数据对象，克隆后才可以安全使用
 		data = data||{};
-		var json = nui.clone(data);
-		
-/*		var guestName = rows[0].guestName;
+		var data1 = nui.clone(data);
+		data1.data.amount=data1.data.mtAmt;
+		data1.data.payType = "020101";
 		var json = {
-				guestId:rows[0].guestId,
+				guestId:data1.xyguest.guestId,
 				token : token
 		}
 		
@@ -25,38 +27,42 @@ function getData(data){
 			+ "com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
 			type : "post",
 			data : json,
-			cache : false,
+			async: false,
 			success : function(data) {
-				rechargeBalaAmt = data.member[0].rechargeBalaAmt;
-				document.getElementById('settleGuestName').innerHTML = "结算单位："
-					+ guestName;
-			document.getElementById('settleBillCount').innerHTML = "结算单据数：" + s;
-			document.getElementById('rRPAmt').innerHTML = rtn.rRPAmt;
-			document.getElementById('rTrueAmt').innerHTML = rtn.rTrueAmt;
-			document.getElementById('rVoidAmt').innerHTML = rtn.rVoidAmt;
-			document.getElementById('rNoCharOffAmt').innerHTML = rtn.rNoCharOffAmt;
-			document.getElementById('pRPAmt').innerHTML = rtn.pRPAmt;
-			document.getElementById('pTrueAmt').innerHTML = rtn.pTrueAmt;
-			document.getElementById('pVoidAmt').innerHTML = rtn.pVoidAmt;
-			document.getElementById('pNoCharOffAmt').innerHTML = rtn.pNoCharOffAmt;
-			document.getElementById('rpAmt').innerHTML = rtn.rpAmt;
-			//document.getElementById('rechargeBalaAmt').innerHTML =rechargeBalaAmt;
-			$("#rechargeBalaAmt").html(rechargeBalaAmt+"元");
-			
-			settleAccountGrid.setData([]);
-			addSettleAccountRow();
+				if(data.member.length==0){
+					data1.data.rechargeBalaAmt=0;
+				}else{
+					data1.data.rechargeBalaAmt = data.member[0].rechargeBalaAmt;
+				}
+
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				// nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
 			}
-		});*/
+		});
 
-		sellForm.setData(json);
+		sellForm.setData(data1.data);
 }
 function onPayOk(){
 	packageGrid.getData();
 	itemGrid.getData();
 	partGrid.getData();
 	
+}
+
+function onChanged() {
+	var data = sellForm.getData();
+	var dk = nui.get("dk").getValue();
+	if(dk>data.rechargeBalaAmt){
+		nui.alert("储值抵扣不能大于储值余额","提示");
+		nui.get("dk").setValue(0);
+		return;
+	}
+	if(dk==""){
+		dk=0;
+	}
+	var amount = data.mtAmt-dk;
+	nui.get("amount").setValue(amount);
+
 }

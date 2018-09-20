@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.8"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -202,9 +202,6 @@
     	<div type="indexcolumn" headerAlign="center" align="center">序号</div>
         <div header="套餐信息">
             <div property="columns">
-            	<div field="packageId" headerAlign="center" allowSort="false"
-                     visible="true" width="100" visible="false">
-                </div>
                 <div field="packageName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
                      <input property="editor" vtype="float" class="nui-textbox"/>

@@ -79,6 +79,22 @@ $(document).ready(function(){
 
         }
     });
+
+
+    mainGrid.on("celldblclick",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        LLSave();
+    });
+
+    repairOutGrid.on("celldblclick",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        THSave();
+    });
+
 });
 
 

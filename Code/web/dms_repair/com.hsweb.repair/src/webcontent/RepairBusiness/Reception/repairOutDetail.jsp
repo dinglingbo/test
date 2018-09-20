@@ -24,7 +24,7 @@
     }
     .tbtext {
         float: right;
-    }
+    } 
 
     .vpanel {
         border: 1px solid #d9dee9;
@@ -202,7 +202,7 @@
      <div headerAlign="center" type="indexcolumn" width="20">序号</div>
      <div type="checkcolumn"></div> 
      <div field="id" name="id" visible="false"  header="recordId"></div>
-     <div header="配件信息">  
+     <div header="领料-配件信息">  
         <div property="columns">
             <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
             <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
@@ -230,7 +230,7 @@ allowCellEdit="true"  >
 <div property="columns">
  <div headerAlign="center" type="indexcolumn" width="30">序号</div>
  <div type="checkcolumn" width="30" ></div>
- <div header="配件信息">
+ <div header="退货-配件信息">
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
         <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div>           

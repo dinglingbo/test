@@ -524,9 +524,9 @@ function updateCheckMain(mData){
         success : function(data) {
             if(data.errCode == "S"){
 
-            showMsg("数据保存成功!","S");
+                showMsg("数据保存成功!","S");
             }else{
-            showMsg("数据保存成失败!","E");
+                showMsg("数据保存成失败!","E");
             }
         }
     });
@@ -586,37 +586,37 @@ function setInitData(params){
                     }
                 };
                 getGuestContactorCar(p, function(text){
-                 var errCode = text.errCode||"";
-                 var guest = text.guest||{};
-                 var contactor = text.contactor||{};
-                 if(errCode == 'S'){
-                  $("#servieIdEl").html(data.serviceCode);
-                  var carNo = data.carNo||"";
-                  var tel = guest.mobile||"";
-                  var guestName = guest.fullName||"";
-                  var carVin = data.carVin||"";
-                  if(tel){
-                    tel = "/"+tel;
-                }
-                if(guestName){
-                    guestName = "/"+guestName;
-                }
-                if(carVin){
-                    carVin = "/"+carVin;
-                }
-                var t = carNo + tel + guestName + carVin;
+                   var errCode = text.errCode||"";
+                   var guest = text.guest||{};
+                   var contactor = text.contactor||{};
+                   if(errCode == 'S'){
+                      $("#servieIdEl").html(data.serviceCode);
+                      var carNo = data.carNo||"";
+                      var tel = guest.mobile||"";
+                      var guestName = guest.fullName||"";
+                      var carVin = data.carVin||"";
+                      if(tel){
+                        tel = "/"+tel;
+                    }
+                    if(guestName){
+                        guestName = "/"+guestName;
+                    }
+                    if(carVin){
+                        carVin = "/"+carVin;
+                    }
+                    var t = carNo + tel + guestName + carVin;
 
-                var sk = document.getElementById("search_key");
-                sk.style.display = "none";
-                searchNameEl.setVisible(true);
+                    var sk = document.getElementById("search_key");
+                    sk.style.display = "none";
+                    searchNameEl.setVisible(true);
 
-                searchNameEl.setValue(t);
-                searchNameEl.setEnabled(false);
+                    searchNameEl.setValue(t);
+                    searchNameEl.setEnabled(false);
 
-                data.guestFullName = guest.fullName;
-                data.guestMobile = guest.mobile;
-                data.contactorName = contactor.name;
-                data.mobile = contactor.mobile;
+                    data.guestFullName = guest.fullName;
+                    data.guestMobile = guest.mobile;
+                    data.contactorName = contactor.name;
+                    data.mobile = contactor.mobile;
 
                         //$("#guestNameEl").html(guest.guestFullName);
                         //$("#showCarInfoEl").html(data.carNo);
@@ -676,8 +676,8 @@ function SearchCheckMain(serviceId) {
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
-       
-       
+
+
         data:{ 
             serviceId:serviceId
         },
@@ -693,17 +693,13 @@ function SearchCheckMain(serviceId) {
 }
 
 
-  function newCheckMainMore() {  
-
+function newCheckMainMore() {  
+    var cNo = nui.get("carNo").value;
     var item={};
     item.id = "checkPrecheckDetail";
     item.text = "查车单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp?cNo="+cNo;
     item.iconCls = "fa fa-cog";
-    //window.parent.activeTab(item);
-    var params = {};
-    params = { 
-        carNo: nui.get("carNo").value,
-    };
-    window.parent.activeTabAndInit(item,params);
+    window.parent.activeTab(item);
+
 }  

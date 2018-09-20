@@ -4,7 +4,7 @@ var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
 var repairOutGrid = null;
 var mid = null;//主表ID
-var mainRow = null;
+var mainRow = null; 
 
 var mtAdvisorIdEl = null; 
 var searchKeyEl = null; 

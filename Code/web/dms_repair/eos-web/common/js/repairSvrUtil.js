@@ -244,6 +244,24 @@ function svrUnRepairAudit(params, callback, unmaskcall){
 	});
 }
 
+//删除工单
+var svrDelBillUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateRpsDisabled.biz.ext";
+function svrDelBill(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrDelBillUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
 //新增客户
 function doApplyCustomer(params,callback){
     nui.open({
@@ -365,11 +383,6 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 	});
 }
 
-
-
-
-
-
 var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
 function doAddcardTime(params,callback){	
 	
@@ -400,7 +413,7 @@ function doAddcard(params,callback){
 		}
 		nui.open({
 			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 600, height: 460,
+			title: "储值卡充值", width: 600, height: 460,
 			onload: function(){
 				var iframe=this.getIFrameEl();	
 				iframe.contentWindow.SetData(params);		
@@ -492,4 +505,64 @@ function doSetStyle(status, isSettle){
 			$("#finishStatus").attr("class", "statusview");
 		}
 	}
+}
+
+function doNoPay(serviceId,allowanceAmt){
+    nui.mask({
+        el : document.body,
+	    cls : 'mini-mask-loading',
+	    html : '处理中...'
+    });
+	// 跨页面传递的数据对象，克隆后才可以安全使用
+	
+	var json = {
+			serviceId:serviceId,
+			allowanceAmt:allowanceAmt
+	}
+	
+	nui.ajax({
+		url : baseUrl
+		+ "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+		type : "post",
+		data : json,
+		async: false,
+		success : function(data) {
+			if(data.errCode=="S"){
+				nui.unmask(document.body);
+				nui.alert("保存转待结算成功","提示");
+			}else{
+				nui.unmask(document.body);
+				nui.alert("保存转待结算失败","提示");
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+
+}
+
+function doPrint(params,callback){
+	var source = params.source||0;
+	var sourceUrl = "";
+	if(source == 1){
+
+	}
+	var p = {};
+	nui.open({
+        url: webPath + contextPath + "/" + sourceUrl + "?token="+token,
+        title: "打印", width: 900, height: 600,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.setData(params,callback);
+        },
+        ondestroy: function (action)
+        {
+        	
+        	
+        	
+        }
+    });
 }

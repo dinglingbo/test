@@ -435,9 +435,14 @@
             $(".print_btn").hide();
             window.print();
         });
-        // params.baseUrl params.serviceId params.token 
+        
+	});	
+	
+	
+	function SetData(params){
+		// params.baseUrl params.serviceId params.token 
         $.ajaxSettings.async = false;//设置为同步执行
-        $.post("com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id=941",{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.maintain;
         		var carNo = maintain.carNo;
@@ -473,7 +478,7 @@
         });
         $.ajaxSettings.async = true;//设置为异步执行
         var guestId = document.getElementById("guestId").innerHTML;
-        $.post("com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,""),{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,"")+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         		var guest = text.guest;
         		var fullName = guest.fullName;
@@ -482,7 +487,7 @@
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}
         });
-        $.post("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext?mainId=941",{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext?mainId="+params.serviceId+"&token="+params.token,{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
@@ -507,8 +512,7 @@
 				    			tBody.append(tr);
         		}
         });
-	});	
-	
+	}
     </script>
 </body>
 </html>

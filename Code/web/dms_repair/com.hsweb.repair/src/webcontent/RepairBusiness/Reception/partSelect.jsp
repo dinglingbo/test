@@ -143,7 +143,7 @@
 
             for (var i = 0; i < data.length; i++) {
                 if(data[i].outQty){
-                    sum_out +=data[i].outQty;
+                    sum_out +=parseFloat(data[i].outQty);
                 }
             }
 
@@ -248,7 +248,7 @@
                 }  
             }); 
         }else{  
-            showMsg('没有需要出库的配件!','W');
+            showMsg('没有需要出库的配件!','W'); 
         } 
     } 
 
@@ -256,7 +256,7 @@
         var record = e.record;
         var value = e.value;
         var column = e.column;
-        var field = e.field; 
+        var field = e.field;  
         var editor = e.editor;
         var sumData = gridData();
         if(column.field == "outQty"){  

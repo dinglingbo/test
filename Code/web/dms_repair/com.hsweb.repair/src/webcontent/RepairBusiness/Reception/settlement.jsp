@@ -162,6 +162,10 @@
                         <td class="color999" height="46">电话：</td>
                         <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
                     </tr>
+                    <tr>
+                        <td class="color999" height="46">打印时间：</td>
+                        <td><input id="meeting" type="date" value="2014-01-13"/></td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -180,7 +184,7 @@
             <tbody>
                 <tr>
                     <td>
-                            <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span>维修结算单</b></div>
+                            <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename">维修结算单</span></b></div>
                         
                         <div style="padding-top: 2px; font-size: 16px;">
                             单号：<span id="serviceCode"></span>
@@ -343,6 +347,9 @@
         
         function SetData(params){
 	        var date = new Date();
+	        if(params.name){
+	        	document.getElementById("spstorename").innerHTML = "维修结算单";
+	        }
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");
 	        $.ajaxSettings.async = false;//设置为同步执行

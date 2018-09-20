@@ -2811,7 +2811,7 @@ function onValueChangedpartSubtotal(e){
 		//设置配件总金额
 		if(rate>0){
 			var rate2 = 1-rate*1.0/100;
-			partAmt = total*1.0/rate2;
+			partAmt = subtotal*1.0/rate2;
 			partAmt = partAmt.toFixed(2);
 			row.amt = partAmt;
 		}else{

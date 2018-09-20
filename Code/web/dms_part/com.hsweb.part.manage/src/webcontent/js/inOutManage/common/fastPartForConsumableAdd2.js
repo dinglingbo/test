@@ -33,8 +33,7 @@ function onOk()
         resultData = {
         	data:node
         };
-        //  return;
-//        CloseWindow("ok");
+
     }
     orderEnter();
 

@@ -70,7 +70,7 @@ function onChanged() {
 		PrefAmt=0;
 	}
 	var amount = data.mtAmt-deductible-PrefAmt;
-	nui.get("amount").setValue(amount);
+	nui.get("amount").setValue(amount.toFixed(2));
 
 }
 

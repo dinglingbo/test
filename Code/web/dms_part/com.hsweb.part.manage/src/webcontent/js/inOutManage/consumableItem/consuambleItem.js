@@ -257,56 +257,56 @@ function getNowFormatDate() {
 
 
 // 归库
-var backUrl = repairApiUrl
-		+ "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext";
-function orderEnter() {
-
-	var row = grid.getSelected();
-	nui.confirm("是否确定归库?", "友情提示", function(action) {
-		if (action == "ok") {
-
-			data = grid.getSelected();
-			data.partNameId = '0';
-			data.pickType = '0';
-			var list = [];
-			list.push(data);
-
-			nui.mask({
-				el : document.body,
-				cls : 'mini-mask-loading',
-				html : "归库中..."
-			});
-
-			nui.ajax({
-				url : backUrl,
-				type : "post",
-				data : JSON.stringify({
-					data : list,
-					billTypeId : data.billTypeId,
-					token : token
-				}),
-				success : function(data) {
-					nui.unmask(document.body);
-					data = data || {};
-					if (data.errCode == "S") {
-						showMsg("归库成功!", "S");
-						onSearch();
-						morePartSearch();
-					} else {
-						showMsg(data.errMsg || ("归库失败!"), "W");
-					}
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR.responseText);
-				}
-			});
-
-		} else {
-			return;
-		}
-	});
-
-}
+//var backUrl = repairApiUrl
+//		+ "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext";
+//function orderEnter() {
+//
+//	var row = grid.getSelected();
+//	nui.confirm("是否确定归库?", "友情提示", function(action) {
+//		if (action == "ok") {
+//
+//			data = grid.getSelected();
+//			data.partNameId = '0';
+//			data.pickType = '0';
+//			var list = [];
+//			list.push(data);
+//
+//			nui.mask({
+//				el : document.body,
+//				cls : 'mini-mask-loading',
+//				html : "归库中..."
+//			});
+//
+//			nui.ajax({
+//				url : backUrl,
+//				type : "post",
+//				data : JSON.stringify({
+//					data : list,
+//					billTypeId : data.billTypeId,
+//					token : token
+//				}),
+//				success : function(data) {
+//					nui.unmask(document.body);
+//					data = data || {};
+//					if (data.errCode == "S") {
+//						showMsg("归库成功!", "S");
+//						onSearch();
+//						morePartSearch();
+//					} else {
+//						showMsg(data.errMsg || ("归库失败!"), "W");
+//					}
+//				},
+//				error : function(jqXHR, textStatus, errorThrown) {
+//					console.log(jqXHR.responseText);
+//				}
+//			});
+//
+//		} else {
+//			return;
+//		}
+//	});
+//
+//}
 
 // 库存数量↑，库存数量↓；入库日期↑，入库日期↓；成本↑，成本↓
 var sortTypeList = [ {

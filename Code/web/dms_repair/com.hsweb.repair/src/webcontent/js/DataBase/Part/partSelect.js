@@ -96,10 +96,10 @@ $(document).ready(function(v)
             brandHash[v.id] = v;
         });
         
-        initCarBrand("applyCarBrandId",function(){
+        initPartBrand("partBrandId",function(){
             initDicts({
-                unit:UNIT,// --单位
-                abcType:ABC_TYPE // --ABC分类
+//                unit:UNIT,// --单位
+//                abcType:ABC_TYPE // --ABC分类
             },function(){
                 //onSearch();
             });

@@ -152,20 +152,30 @@ $(document).ready(function () {
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
     });
-	/*rpsPackageGrid.on("cellendedit",function(e){
+	rpsPackageGrid.on("cellendedit",function(e){
 		var row = e.row,
 		field = e.field;
-		if(field == "subtotal" || field == "rate"){
-			var amt = 0;
-			if(row.rate){
-				amt = parseFloat(row.subtotal)/ parseFloat(row.rate  * 0.01);
+		if(field == "subtotal"){
+			var rate = null;
+			if(row.amt){
+				rate = 1 - (parseFloat(row.subtotal)/parseFloat(row.amt/100));
 			}else{
-				amt = 0;
+				rate = 1;
 			}
-			var newRow = {amt : amt};
+			var newRow = {rate : rate};
 			rpsPackageGrid.updateRow(row,newRow);
 		}
-	});*/
+		if(field == "rate"){
+			var subtotal = null;
+			if(row.rate){
+				subtotal = parseFloat(row.amt) * parseFloat(100-row.rate)/100;
+			}else{
+				subtotal = 0;
+			}
+			var newRow = {subtotal : subtotal};
+			rpsPackageGrid.updateRow(row,newRow);
+		}
+	});
 	rpsPackageGrid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value;
@@ -189,7 +199,7 @@ $(document).ready(function () {
 		var row = e.row,
 		field = e.field;
 		if(field == "qty" || field == "unitPrice" || field == "rate"){
-			var subtotal = parseFloat(row.qty) * parseFloat(row.unitPrice) * parseFloat(row.rate) * 0.01;
+			var subtotal = parseFloat(row.qty) * parseFloat(row.unitPrice) * parseFloat(100-row.rate) * 0.01;
 			var newRow = {subtotal : subtotal};
 			rpsPartGrid.updateRow(row,newRow);
 		}
@@ -217,7 +227,7 @@ $(document).ready(function () {
 		var row = e.row,
 		field = e.field;
 		if(field == "itemTime" || field == "unitPrice" || field == "rate"){
-			var subtotal = parseFloat(row.itemTime) * parseFloat(row.unitPrice) * parseFloat(row.rate) * 0.01;
+			var subtotal = parseFloat(row.itemTime) * parseFloat(row.unitPrice) * parseFloat(100-row.rate) * 0.01;
 			var newRow = {subtotal : subtotal};
 			rpsItemGrid.updateRow(row,newRow);
 		}
@@ -351,6 +361,9 @@ function choosePart(){
 
 function save(){
 	var maintainBill = billForm.getData();
+	if(nui.get("mtAdvisorId").text){
+		maintainBill.mtAdvisor = nui.get("mtAdvisorId").text;
+	}
 	var packageInsert = rpsPackageGrid.getChanges("added");
 	var packageRemoved = rpsPackageGrid.getChanges("removed");
 	var packageModifiy = rpsPackageGrid.getChanges("modified");

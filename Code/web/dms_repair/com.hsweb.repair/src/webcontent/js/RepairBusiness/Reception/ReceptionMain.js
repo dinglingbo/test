@@ -168,6 +168,35 @@ function quickSearch(type) {
 
     doSearch(params);
 }
+//完工
+var finishUrl = webBaseUrl + "repair/RepairBusiness/Reception/finishWorkOrder.jsp";
+function finish(){
+	var row = mainGrid.getSelected();
+	if(row){
+		 nui.open({
+		        url:finishUrl,
+		        title: "质检&完工", width: 800, height: 270,
+		        onload: function () {
+		        },
+		        ondestroy: function (action) {
+		            if ("ok" == action) {
+		                var iframe = this.getIFrameEl();
+		                //调用子界面的方法，返回子界面的数据
+		                var data = iframe.contentWindow.getData();
+		                var guest = data.guest;
+		                callback && callback(guest);
+		            }
+		        }
+		    });
+		
+	}else{
+		alert("请选择一个工单");
+	}
+}
+
+
+
+
 function onSearch()
 {
     var params = {};

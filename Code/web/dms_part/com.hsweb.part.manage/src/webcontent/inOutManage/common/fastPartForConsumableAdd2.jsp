@@ -11,7 +11,7 @@
 <head>
 <title>领料出库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.1.22"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.1.28"></script>
     <style type="text/css">
 
    	#returnRemark.mini-textbox{
@@ -61,11 +61,11 @@
                             url=""
                              required="true"
                             allowInput="true"
-                            valueFromSelect="true"
+                            valueFromSelect="false"
                             popupHeight="90%"
                           />
 				</td>
-				<td>归库数量:<input enabled="false"  required="true" valid="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
+				<td>归库数量:<input enabled="false"  required="true" vtype="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
 			<tr id="return">
 				<td style="" >归库原因ID:<input  class="nui-combobox" id="returnReasonId" name="returnReasonId" type="text"  popupHeight="85%"></td>

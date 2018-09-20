@@ -74,33 +74,7 @@ function onChanged() {
 
 }
 
-function noPay(){
-	// 跨页面传递的数据对象，克隆后才可以安全使用
+function nopay(){
 	var data = sellForm.getData();
-	var json = {
-			serviceId:fserviceId,
-			allowanceAmt:data.PrefAmt
-	}
-	
-	nui.ajax({
-		url : baseUrl
-		+ "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
-		type : "post",
-		data : json,
-		async: false,
-		success : function(data) {
-			if(data.errCode=="S"){
-				nui.alert(data.errMsg,"提示");
-			}else{
-				nui.alert(data.errMsg,"提示");
-			}
-
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
-
-	sellForm.setData(data1.data);
+	doNoPay(fserviceId,data.PrefAmt);
 }

@@ -338,7 +338,7 @@
         });
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(){//更新套餐工时配件合计金额
-        	var money = parseInt(document.getElementById("prdt").innerHTML) + parseInt(document.getElementById("item").innerHTML) + parseInt(document.getElementById("part").innerHTML);
+        	var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
         	document.getElementById("cash").innerHTML = money;
         	document.getElementById("cash1").innerHTML = money;
     		money = transform(money+"");
@@ -348,7 +348,7 @@
         function SetData(params){
 	        var date = new Date();
 	        if(params.name){
-	        	document.getElementById("spstorename").innerHTML = name;
+	        	document.getElementById("spstorename").innerHTML = params.name;
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");
@@ -441,7 +441,7 @@
     							j++;
     							orderIndex = j;
     						}
-    						document.getElementById("prdt").innerHTML = parseInt(document.getElementById("prdt").innerHTML) + parseInt(data[i].subtotal);
+    						document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
     					}
     					if(data[i].billPackageId == 0){
     						if(i != 0){
@@ -496,7 +496,7 @@
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
     				for(var i = 0 , l = data.length ; i < l ; i++){
-    					document.getElementById("item").innerHTML = parseInt(document.getElementById("item").innerHTML) + parseInt(data[i].subtotal);
+    					document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
     					var tr = $("<tr></tr>");
@@ -529,7 +529,7 @@
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
     				for(var i = 0 , l = data.length ; i < l ; i++){
-    					document.getElementById("part").innerHTML = parseInt(document.getElementById("part").innerHTML) + parseInt(data[i].subtotal);
+    					document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
     					var tr = $("<tr></tr>");

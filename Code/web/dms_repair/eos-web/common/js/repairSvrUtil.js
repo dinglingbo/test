@@ -579,7 +579,7 @@ function doPrint(params){
 	
 	nui.open({
         url: sourceUrl,
-        title: p.name||"" + "打印",
+        title: p.name + "打印",
 		width: "100%",
 		height: "100%",
         onload: function () {

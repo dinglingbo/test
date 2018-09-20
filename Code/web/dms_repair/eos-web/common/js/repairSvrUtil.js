@@ -508,41 +508,45 @@ function doSetStyle(status, isSettle){
 }
 
 function doNoPay(serviceId,allowanceAmt){
-    nui.mask({
-        el : document.body,
-	    cls : 'mini-mask-loading',
-	    html : '处理中...'
-    });
-	// 跨页面传递的数据对象，克隆后才可以安全使用
-	
 	var json = {
 			serviceId:serviceId,
 			allowanceAmt:allowanceAmt
 	}
 	
-	nui.ajax({
-		url : baseUrl
-		+ "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
-		type : "post",
-		data : json,
-		async: false,
-		success : function(data) {
-			if(data.errCode=="S"){
-				nui.unmask(document.body);
-				nui.alert("保存转待结算成功","提示");
-			}else{
-				nui.unmask(document.body);
-				nui.alert("保存转待结算失败","提示");
-			}
+    nui.confirm("确定将此单加入待结算", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url : baseUrl
+					+ "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+					type : "post",
+					data : json,
+					async: false,
+					success : function(data) {
+						if(data.errCode=="S"){
+							nui.unmask(document.body);
+							nui.alert("待结算成功","提示");
+						}else{
+							nui.unmask(document.body);
+							nui.alert(data.errMsg,"提示");
+						}
 
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						// nui.alert(jqXHR.responseText);
+						console.log(jqXHR.responseText);
+					}
+				});		
+	     }else {
+				return;
+		 }
 	});
-
 }
+
 
 function doPrint(params){
 	var source = params.source||0;

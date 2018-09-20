@@ -128,6 +128,7 @@ html,body {
 
 <!-- 下 -->
  <div showCollapseButton="false">
+<div class="nui-fit">
 <div class="nui-toolbar" style="border-bottom: 0;">
     <div class="nui-form1" id="queryInfoForm">
         <table class="table">
@@ -191,7 +192,7 @@ html,body {
         </div>
     </div>
 </div>
-
+</div>
 
 </div>
 

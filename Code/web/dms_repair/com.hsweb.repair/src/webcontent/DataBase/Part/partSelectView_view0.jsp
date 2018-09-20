@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件选择</title>
-<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.6"></script>
+<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.7"></script>
 <style type="text/css">
 .table-label {
     text-align: right;
@@ -17,7 +17,8 @@
 </style>
 </head>
 <body>
-
+	<input class="nui-combobox" visible="false" id="unit"/>
+    <input class="nui-combobox" visible="false" id="abcType"/>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	<input class="nui-textbox" id="state"visible="false"/>
     <div class="form" id="queryForm">
@@ -43,6 +44,17 @@
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择品牌"/>
+                      <input id="applyCarBrandId"
+                           name="applyCarBrandId"
+                           class="nui-combobox width1"
+                           textField="nameCn"
+                           valueField="id"
+                           emptyText="请选择..."
+                           style="display:none;"
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
@@ -56,13 +68,16 @@
     <div class="nui-splitter"
          allowResize="false"
          style="width:100%;height:100%;">
-        <div size="240" showCollapseButton="true">
+        <div size="210" showCollapseButton="false">
+            <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;text-align: center;">
+                <span>系统分类</span>
+            </div>
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
                     dataField="partTypes"
                     ondrawnode="onDrawNode"
                     onnodedblclick="onNodeDblClick"
-                    showTreeIcon="true" textField="name" idField="id" parentField="parentid" resultAsTree="false">
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
                 </ul>
             </div>
         </div>

@@ -2487,6 +2487,7 @@ function onValueChangedItemTime(e){
 		//设置工时总金额
 		if(unitPrice>0 && itemTime>0){
 		   itamt = itemTime*unitPrice;
+		   itamt = itamt.toFixed(2);
 		   rowtime.amt = itamt;
 		   subtotal = itamt;
 		}
@@ -2523,6 +2524,7 @@ function onValueChangedItemUnitPrice(e){
 		//设置工时总金额
 		if(unitPrice>0 && itemTime>0){
 		   itamt = itemTime*unitPrice;
+		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
 		   subtotal = itamt;
 		}
@@ -2571,6 +2573,7 @@ function onValueChangedItemRate(e){
 		//设置工时总金额
 		if(unitPrice>0 && itemTime>0){
 		   itamt = itemTime*unitPrice;
+		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
 		   subtotal = itamt;
 		}
@@ -2610,6 +2613,7 @@ function onValueChangedItemSubtotal(e){
 		//设置工时总金额
 		if(unitPrice>0 && itemTime>0){
 		   itamt = itemTime*unitPrice;
+		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
 		}
 		//设置小计金额
@@ -2657,6 +2661,8 @@ function onValueChangedItemTypeId(e){
 				var amt = 0;
 				if(unitPrice>0 && itemTime>0){
 					amt = unitPrice*itemTime;
+					amt = amt.toFixed(2);
+
 				}	
 				var subtotal = 0;
 			    if(amt>0){
@@ -2695,13 +2701,15 @@ function onValueChangedPartQty(e){
 		var subtotal = 0;
 		//设置配件总金额
 		if(unitPrice>0 && qty>0){
-			partAmt = qty*unitPrice;
+		   partAmt = qty*unitPrice;
+	       partAmt = partAmt.toFixed(2);
 		   row.amt = partAmt;
 		   subtotal = partAmt;
 		}	
 		var rate = setRate.getValue();
 	    if(partAmt>0 && rate>0){
 	    	subtotal = partAmt - rate*1.0/100*partAmt;
+	    	subtotal = subtotal.toFixed(2);
 	    }
 	    setSubtotal.setValue(subtotal);
 	    setQty.setValue(qty);
@@ -2732,13 +2740,15 @@ function onValueChangedpartUnitPrice(e){
 		var subtotal = 0;
 		//设置配件总金额
 		if(unitPrice>0 && qty>0){
-			partAmt = qty*unitPrice;
+		   partAmt = qty*unitPrice;
+		   partAmt = partAmt.toFixed(2);
 		   row.amt = partAmt;
 		   subtotal = partAmt;
 		}	
 		var rate = setRate.getValue();
 	    if(partAmt>0 && rate>0){
 	    	subtotal = partAmt - rate*1.0/100*partAmt;
+	    	subtotal = subtotal.toFixed(2);
 	    }
 	    setSubtotal.setValue(subtotal);
 	    setUnitPrice.setValue(unitPrice);
@@ -2778,11 +2788,13 @@ function onValueChangedpartRate(e){
 		//设置配件总金额
 		if(unitPrice>0 && qty>0){
 		   partAmt = qty*unitPrice;
+		   partAmt = partAmt.toFixed(2);
 		   row.amt = partAmt;
 		   subtotal = partAmt;
 		}	
 	    if(partAmt>0 && rate>0){
 	    	subtotal = partAmt - rate*1.0/100*partAmt;
+	    	subtotal = subtotal.toFixed(2);
 	    }
 	    setSubtotal.setValue(subtotal);
 	    setRate.setValue(rate);

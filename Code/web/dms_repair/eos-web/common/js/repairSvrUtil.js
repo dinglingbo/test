@@ -400,7 +400,7 @@ function doAddcard(params,callback){
 		}
 		nui.open({
 			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "充值会员卡", width: 600, height: 460,
+			title: "储值卡充值", width: 600, height: 460,
 			onload: function(){
 				var iframe=this.getIFrameEl();	
 				iframe.contentWindow.SetData(params);		

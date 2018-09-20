@@ -690,7 +690,7 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
 
-                        $("#guestNameEl").html(guest.guestFullName);
+                        $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
                         $("#guestTelEl").html(guest.mobile);
 
@@ -1534,6 +1534,10 @@ function doSearchCardTimes(guestId)
     cardTimesGrid.load({
     	token:token,
         p:p
+    },function(){
+        var data = cardTimesGrid.getData();
+        var len = data.length||0;
+        $("#showCardTimesEl").html("次卡套餐("+len+")");
     });
 }
 function doSearchMemCard(guestId)

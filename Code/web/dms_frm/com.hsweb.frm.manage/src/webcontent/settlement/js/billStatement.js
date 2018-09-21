@@ -1,11 +1,12 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var leftGridUrl = baseUrl+"com.hsapi.part.invoice.settle.queryPJStatementList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
+var baseUrl = apiPath + frmApi + "/"; 
+var partBaseUrl = apiPath + partApi + "/";
+var leftGridUrl = partBaseUrl+"com.hsapi.part.invoice.settle.queryPJStatementList.biz.ext";
+var rightGridUrl = partBaseUrl+"com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
+var innerPchsGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+var innerSellGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -489,7 +490,7 @@ function onRightGridDraw(e)
             break;
     }
 }
-var auditUrl = baseUrl+"com.hsapi.part.invoice.settle.auditPjStatement.biz.ext";
+var auditUrl = partBaseUrl+"com.hsapi.part.invoice.settle.auditPjStatement.biz.ext";
 function audit()
 {
     basicInfoForm.validate();
@@ -757,7 +758,7 @@ var requiredField = {
     stateMan : "对账员",
     createDate : "对账日期"
 };
-var saveUrl = baseUrl + "com.hsapi.part.invoice.settle.savePjStatement.biz.ext";
+var saveUrl = partBaseUrl + "com.hsapi.part.invoice.settle.savePjStatement.biz.ext";
 function save() {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
@@ -846,7 +847,7 @@ function onGuestValueChanged(e)
     var data = rightGrid.getData();
     rightGrid.removeRows(data);
 }
-var getGuestInfo = baseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
+var getGuestInfo = partBaseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {
     nui.ajax({

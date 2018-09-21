@@ -41,7 +41,7 @@ function SetData(params) {
     if(params.data!=null){
         guestId=params.data.guestId;
         guestName=params.data.guestFullName;
-        params.data.mobile=params.data.guestMobile
+        params.data.mobile=params.data.guestMobile;
         basicInfoForm.setData(params.data);
     }
 
@@ -171,7 +171,7 @@ function pay(){
 			periodValidity : periodValidity
 	};
 	stored.push(form);
-    nui.confirm("结算金额【"+payAmt+"】元,确定保存进入待结算吗？", "友情提示",function(action){
+    nui.confirm("结算金额【"+payAmt+"】元,确定结算吗？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,

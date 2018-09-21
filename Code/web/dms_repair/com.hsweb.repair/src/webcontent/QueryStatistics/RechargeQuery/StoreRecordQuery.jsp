@@ -69,10 +69,10 @@ html,body {
                     <div field="mobile" headerAlign="center" allowSort="true" visible="true" width="">客户电话</div>
                 </div>
             </div>
-            <div header="会员卡信息" headerAlign="center">
+            <div header="储值卡信息" headerAlign="center">
                 <div property="columns">
-                    <div field="cardId" headerAlign="center" allowSort="true" visible="true" width="">会员卡号</div>
-                    <div field="cardName" headerAlign="center" allowSort="true" visible="true" width="">会员卡名称</div>
+                    <div field="cardId" headerAlign="center" allowSort="true" visible="true" width="">储值卡号</div>
+                    <div field="cardName" headerAlign="center" allowSort="true" visible="true" width="">储值卡名称</div>
                     <div field="periodValidity" id="periodValidity" headerAlign="center" allowSort="true" visible="true" width="">有效期</div>
                 </div>
             </div>

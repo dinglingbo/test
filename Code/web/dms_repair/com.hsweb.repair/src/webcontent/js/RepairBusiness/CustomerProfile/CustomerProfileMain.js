@@ -225,6 +225,7 @@ function addOrEditCustomer(guest)
 //打开会员卡充值页面
 function toUp(callback){
 	var row=grid.getSelected();
+	row.guestMobile = row.mobile;
 	if(row){
 		nui.open({
 			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,

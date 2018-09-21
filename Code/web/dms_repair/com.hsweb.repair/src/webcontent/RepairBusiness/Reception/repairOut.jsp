@@ -4,11 +4,11 @@
 
 <html>
 <!--  
-  - Author(s): Administrator
+  - Author(s): Administrator 
   - Date: 2018-01-25 14:17:08
-  - Description:    
+  - Description:     
 -->
-
+ 
 <head>
   <title>维修出库</title>  
   <style type="text/css">
@@ -55,6 +55,19 @@ a {
             <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
             <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" />
             <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" />
+            <input name="serviceTypeId"
+            id="serviceTypeId"
+            class="nui-combobox width1"
+            textField="name"
+            valueField="id"
+            emptyText="请选择业务类型"
+            url=""
+            allowInput="true"
+            showNullItem="false"
+            width="120"
+            valueFromSelect="true"
+            onvaluechanged=""
+            nullItemText="请选择..."/>
             进场日期 从<input id="date1" name="" class="nui-datepicker" value=""/>
             至 <input id="date2" name="" class="nui-datepicker" value=""/>
             <a class="nui-button" iconCls="" plain="false" onclick="onSearch">
@@ -64,7 +77,7 @@ a {
         </td>
     </tr>
 </table>
- 
+
 </div>
 
 <div class="nui-fit">
@@ -75,11 +88,11 @@ a {
         <div field="id" name="id" visible="false">id</div>
         <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
-        <div field="guestTel" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
+        <div field="guestTel" name="guestTel" width="40" headerAlign="center" align="center">手机号码</div>
         <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
         <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
         <div field="status" name="status" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">维修进程</div>
-        <div field="serviceTypeId" name="serviceTypeId" width="40" headerAlign="center" align="center">serviceTypeId</div>
+        <div field="serviceTypeId" name="serviceTypeId" width="40" headerAlign="center" align="center">业务类型</div>
         <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">进厂日期</div>
         <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
@@ -90,12 +103,23 @@ a {
     var con_data_status = [{id:"",text:"全部"},{id:0,text:"草稿"},{id:1,text:"施工中"},{id:2,text:"已完工"}];
     var con_data_isSettle = [{id:"",text:"全部"},{id:1,text:"已结算"},{id:0,text:"未结算"}];
     nui.parse();
+    var servieTypeList = [];
+    var servieTypeHash = {};
     var mainGrid = nui.get("mainGrid");
     var tstatus = nui.get("status");
     var isSettle = nui.get("isSettle");
     var baseUrl = apiPath + repairApi + "/";
     var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
     mainGrid.setUrl(gridUrl);
+
+
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+          servieTypeHash[v.id] = v;
+      });
+    });
+
 
     var yy = (new Date()).getFullYear();
     var mm = ((new Date()).getMonth() + 1);
@@ -125,14 +149,34 @@ a {
     }
 
 
-      mainGrid.on("celldblclick",function(e){
-    var field = e.field;
-    var record = e.record;
-    var column = e.column;
-    var sid = record.id;
-    newrepairOut("ll");
-  });
+    mainGrid.on("celldblclick",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        var sid = record.id;
+        newrepairOut("ll");
+    });
 
+
+    mainGrid.on("drawcell", function (e) {
+        if (e.field == "status") {
+            //e.cellHtml = statusHash[e.value];
+        }else if (e.field == "carBrandId") {
+            //if (brandHash && brandHash[e.value]) {
+            //    e.cellHtml = brandHash[e.value].name;
+            //}
+        }else if (e.field == "serviceTypeId") {
+            if (servieTypeHash && servieTypeHash[e.value]) {
+              e.cellHtml = servieTypeHash[e.value].name;
+          }
+      }else if(e.field == "isSettle"){
+            //if(e.value == 1){
+            //  e.cellHtml = "已结算";
+            //}else{
+            //  e.cellHtml = "未结算";
+            //}
+        }
+    });
 
     function onGenderRenderer(e) {
         for (var i = 0, l = con_data_status.length; i < l; i++) {
@@ -161,19 +205,19 @@ a {
     } 
 
 
-/*mainGrid.on("celldblclick",function(e){
-    var field = e.field;
-    var record = e.record;
-    var column = e.column; 
-    var sid = record.id;
-    newrepairOut(sid,'view');
-});
-*/
-mainGrid.on("drawcell",function(e){
-    var field = e.field;
-    var record = e.record;
-    var column = e.column;
-    var id = record.id;
+    /*mainGrid.on("celldblclick",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column; 
+        var sid = record.id;
+        newrepairOut(sid,'view');
+    });
+    */
+    mainGrid.on("drawcell",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        var id = record.id;
     var ll = '<a  href="javascript:newrepairOut('+"'ll'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;领料</a>';//class="icon-collapse"
     var th = '<a  href="javascript:newrepairOut('+"'th'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;退货</a>';//class="icon-addnew"
     if(column.field == "action"){

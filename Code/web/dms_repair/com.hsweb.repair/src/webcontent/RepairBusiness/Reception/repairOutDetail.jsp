@@ -5,7 +5,7 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 20:50:20 
+  - Date: 2018-07-02 20:50:20  
   - Description: 
 -->          
   
@@ -65,7 +65,7 @@
         <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
             <tr>            
                 <td>
-                    <div class="nui-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    <div class="nui-autocomplete" style="width:300px;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
                     dataField="list" loadingText="数据加载中...">     
                     <div property="columns">
@@ -82,12 +82,12 @@
                 class="nui-textbox"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
-                width="200px"
+                width="300px"
                 visible="false"
                 enabled="false"
                 showClose="false"
                 allowInput="true"/>
-                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
+                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn" style="display: none;">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     

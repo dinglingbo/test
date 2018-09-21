@@ -634,8 +634,16 @@ function doSetMainInfo(car){
 }
 
 function setInitData(params){
-    var data = {};
-    xyguest = {};
+    fserviceId = params.id;
+	var data = {
+			packageSubtotal:0,
+			packagePrefAmt:0,
+			itemSubtotal:0,
+			itemPrefAmt:0,
+			partSubtotal:0,
+			partPrefAmt:0,
+			mtAmt:0
+	};
 	sellForm.setData(data);
     if(!params.id){
         add();
@@ -794,6 +802,7 @@ function add(){
 
     fguestId = 0;
     fcarId = 0;
+    fserviceId = 0;
 
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
@@ -802,6 +811,9 @@ function add(){
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+
+    nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);
 }
 function save(){
     nui.mask({
@@ -2438,26 +2450,38 @@ function showCarCheckInfo(){
 }
 
 function pay(){
+	var data = sellForm.getData();
+	if(fserviceId==0||fserviceId==null){
+		nui.alert("请添加客户","提示");
+		return;
+	}
+	var json = {
+			fserviceId:fserviceId,
+			data:data,
+			xyguest:xyguest,
+	}
 	nui.open({
 		url:"com.hsweb.print.carWashBillUp.flow",
 		width:"40%",
 		height:"50%",
 		//加载完之后
 		onload: function(){	
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.getData(json);
 		},
 	    ondestroy : function(action) {
-		if (action == 'ok') {
-			var iframe = this.getIFrameEl();
-			var data = iframe.contentWindow.getData();
-			supplier = data.supplier;
-			var value = supplier.id;
-			var text = supplier.fullName;
-			var el = nui.get(elId);
-			el.setValue(value);
-			el.setText(text);
-		}
-	}
-	})
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+            }
+        }
+	});
 }
 
 function showBasicData(){
@@ -3131,7 +3155,7 @@ function addExpenseAccount(){
 		data.guestName = $("#guestNameEl").text();
 		data.contactorTel = data1.mobile;
 	}else{
-		showMsg("请先保存后再进行操作。","W");
+		showMsg("请先保存后再进行操作!","W");
 	}
 }
 

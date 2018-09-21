@@ -242,7 +242,7 @@ function edit(){
 //根据开单界面传递的车牌号查询未结算的工单
 function setInitData(params){
     var carNo = params.carNo||"";
-    var type = params.type||""
+    var type = params.type||"";
     if(type=='view' && carNo != ""){
         var p = {
             carNoEqual: carNo,
@@ -253,4 +253,124 @@ function setInitData(params){
             params: p
         });
     }
+}
+
+//完工
+function finish(){
+    var row = mainGrid.getSelected();
+    if(!row) {
+        showMsg("请选择一条记录!","W");
+        return;
+    }
+
+    if(row.status == 2){
+        showMsg("本工单已经完工!","W");
+        return;
+    }
+    var params = {
+        serviceId:row.id||0
+    };
+    doFinishWork(params, function(data){
+        data = data||{};data = data||{};
+        if(data.action){
+            var action = data.action||"";
+            if(action == 'ok'){
+                var newRow = {status: 2};
+                mainGrid.updateRow(row, newRow);
+                showMsg("完工成功!","S");
+            }else{
+                if(data.errCode){
+                    showMsg("完工失败!","W");
+                    return;
+                }
+            }
+        }
+    });
+}
+function unfinish(){
+    var row = mainGrid.getSelected();
+    if(!row) {
+        showMsg("请选择一条记录!","W");
+        return;
+    }
+
+    var isSettle = row.isSettle||0;
+    if(isSettle == 1){
+        showMsg("本工单已经结算,不能返工!","W");
+        return;
+    }
+    if(row.status != 2){
+        showMsg("本工单未未完工,不能返工!!","W");
+        return;
+    }
+    
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+    var params = {
+        data:{
+            id:row.id||0
+        }
+    };
+    svrUnRepairAudit(params, function(data){
+        data = data||{};
+        var errCode = data.errCode||"";
+        var errMsg = data.errMsg||"";
+        if(errCode == 'S'){
+            var newRow = {status: 1};
+            mainGrid.updateRow(row, newRow);
+            showMsg("返工成功!","S");
+        }else{
+            showMsg(errMsg||"返工失败!","W");
+        }
+        nui.unmask(document.body);
+    }, function(){
+        nui.unmask(document.body);
+    });
+}
+function pay(){
+    var row = mainGrid.getSelected();
+    if(!row) {
+        showMsg("请选择一条记录!","W");
+        return;
+    }
+}
+function del(){
+    var row = mainGrid.getSelected();
+    if(!row) {
+        showMsg("请选择一条记录!","W");
+        return;
+    }
+
+    if(row.status != 0){
+        showMsg("本工单不能删除!","W");
+        return;
+    }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+    var params = {
+        data:{
+            id:row.id||0,
+            isDisabled:0
+        }
+    };
+    svrDelBill(params, function(data){
+        data = data||{};
+        var errCode = data.errCode||"";
+        var errMsg = data.errMsg||"";
+        if(errCode == 'S'){
+            mainGrid.removeRow(row);
+            showMsg("删除成功!","S");
+        }else{
+            showMsg(errMsg||"删除失败!","W");
+        }
+        nui.unmask(document.body);
+    }, function(){
+        nui.unmask(document.body);
+    });
 }

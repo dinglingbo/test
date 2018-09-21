@@ -50,9 +50,9 @@
           <table class="table" id="table1">
             <tr>
               <td>
-                <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" />
+                <!-- <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" />
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
-                  <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                  <span class="fa fa-search fa-lg"></span>&nbsp;查询</a> -->
 
                   <a class="nui-button" iconCls="" plain="true" onclick="onOk">
                       <span class="fa fa-check fa-lg"></span>&nbsp;确定</a>

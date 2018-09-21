@@ -106,8 +106,6 @@ $(document).ready(function(v)
 				var row = morePartGrid.getSelected();
 				if(row){
 					addSelectPart();
-					var orderQty = nui.get("orderQty");
-					orderQty.focus();
 				}
 			}
         } 
@@ -1119,6 +1117,8 @@ function addSelectPart(){
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
         partShow = 0;
+        var orderQty = nui.get("orderQty");
+		orderQty.focus();
     }else{
         showMsg("请选择配件!","W");
         return;
@@ -1129,6 +1129,8 @@ function onPartClose(){
     advancedMorePartWin.hide();
     morePartGrid.setData([]);
     partShow = 0;
+    var orderQty = nui.get("orderQty");
+	orderQty.focus();
 
     var newRow = {comPartCode: oldValue};
     rightGrid.updateRow(oldRow, newRow);

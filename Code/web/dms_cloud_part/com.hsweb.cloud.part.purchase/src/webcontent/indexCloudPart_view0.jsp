@@ -127,7 +127,7 @@
         <div  id=""  class="main_child">
             <div class="vpanel" >
                 <div class="vpanel_heading" >
-                    <i class="fa fa-th-list fa-lg-custom fa-fw"></i> <span >待办事项版块</span>
+                    <i class="fa fa-th-list fa-lg-custom fa-fw"></i> <span >待办事项</span>
                     <div class="refresh_button">
                         <a onclick="queryBusinessRemindData(setGridWaitDoData)">
                            <i class="fa fa-refresh fa-lg"></i> 
@@ -169,7 +169,7 @@
                 <div class="nui-fit">
                     <div class="nui-fit" > 
                         <div style="padding:10px 10px 10px 10px;" id="targetDataMindForm">
-                            <table id="table1" style="margin-left:20px;">
+                            <table id="table1" style="margin-left:0px;">
                                 <tr>  
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日收入：</td>
                                     <td class="tablenum" name="todayReceive"><span id="todayReceive">0</span></td>

@@ -7,6 +7,7 @@ var mainGrid = null;
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
 var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
+var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"VIN码"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
@@ -39,11 +40,9 @@ $(document).ready(function ()
     //serviceTypeIdEl = nui.get("serviceTypeId");
    // advancedMore = nui.get("advancedMore");
    // advancedSearchForm = new nui.Form("#advancedSearchForm");
-   editFormDetail = document.getElementById("editFormDetail");
-   // innerItemGrid = nui.get("innerItemGrid");
+    editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
-  //  innerItemGrid.setUrl(itemGridUrl);
-    innerPartGrid.setUrl(partGridUrl);
+    innerPartGrid.setUrl(getRpsPartUrl);
     
     mainTabs = nui.get("mainTabs");
 	settleAccountGrid = nui.get("settleAccountGrid");
@@ -53,7 +52,7 @@ $(document).ready(function ()
    // beginDateEl.setValue(getMonthStartDate());
     //endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
-   /* initMember("mtAdvisorId",null);
+  /* initMember("mtAdvisorId",null);
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -66,12 +65,12 @@ $(document).ready(function ()
             brandHash[v.id] = v;
         });
     });*/
-    // initCustomDicts("receTypeId", "0415",function(data) {
-    //     receTypeIdList = nui.get("receTypeId").getData();
-    //     receTypeIdList.forEach(function(v) {
-    //         receTypeIdHash[v.customid] = v;
-    //     });
-    // });
+    /* initCustomDicts("receTypeId", "0415",function(data) {
+         receTypeIdList = nui.get("receTypeId").getData();
+         receTypeIdList.forEach(function(v) {
+             receTypeIdHash[v.customid] = v;
+         });
+     });*/
 
     mainGrid.on("drawcell", function (e) {
         if (e.field == "status") {
@@ -85,17 +84,25 @@ $(document).ready(function ()
         }
     });
 
-   /* innerItemGrid.on("drawcell", function (e) {
-        if (e.field == "receTypeId") {
-            //e.cellHtml = receTypeIdHash[e.value].name;
-        }
-    });*/
     innerPartGrid.on("drawcell", function (e) {
-        if (e.field == "receTypeId") {
-            e.cellHtml = receTypeIdHash[e.value].name;
+        var record = e.record;
+        switch (e.field) {
+            case "partName":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId>0){
+                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+                }
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
+            default:
+                break;
         }
-    });
-
+    });  
     var statusList = "0,1,2,3";
     var p = {statusList:statusList};
     doSearch(p);
@@ -130,18 +137,9 @@ function onShowRowDetail(e) {
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
 
-   // innerItemGrid.setData([]);
-    innerPartGrid.setData([]);
-
-    var params = {};
-    params.serviceId = row.id;
-   /* innerItemGrid.load({
-        params:params,
-        token: token
-    });
-    */
+    var serviceId = row.id;
     innerPartGrid.load({
-        params:params,
+    	serviceId:serviceId,
         token: token
     });
 }

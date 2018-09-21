@@ -12,6 +12,10 @@ var abcType = null;
 var partBrandId = null;
 var qualityTypeId = null;
 var unit = null;
+var qualityList = [];
+var qualityHash = {};
+var brandHash = {};
+var brandList = [];
 
 
 var abcTypeList = [
@@ -66,6 +70,15 @@ $(document).ready(function(v)
     initComboBox();
     initForm();
 
+    initPartBrand("partBrandId",function(){
+        initDicts({
+
+        },function(){
+
+        });
+    });
+    
+    
     var dictDefs ={"unit":"DDT20130703000016"};
     initDicts(dictDefs, null);
 

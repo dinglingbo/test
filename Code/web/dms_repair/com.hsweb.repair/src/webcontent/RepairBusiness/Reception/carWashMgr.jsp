@@ -196,7 +196,7 @@
 </div>
 
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
-   <div  id="innerpackGrid" class="nui-datagrid"
+  <div  id="innerpackGrid" class="nui-datagrid"
 	    style="width:100%;height:100px;"
 	    dataField="data"
 	    showPager="false"
@@ -214,8 +214,8 @@
            <div field="workerIds" headerAlign="center" allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
            <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
            <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
-   </div>
- </div>
+      </div>
+  </div>
 
   <div id="innerItemGrid"
        borderStyle="border-bottom:0;"
@@ -238,8 +238,7 @@
 	       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
 	       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
       </div>
-  </div>
-  
+  </div> 
   <div id="innerPartGrid"
        dataField="data"
        class="nui-datagrid"

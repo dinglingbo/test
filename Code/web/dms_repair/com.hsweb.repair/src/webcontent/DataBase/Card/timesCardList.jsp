@@ -66,7 +66,7 @@
 				<div field="totalAmt" headerAlign="center" allowSort="true" width="50px">
 					总价值</div>
 				<div field="isShare" headerAlign="center" allowSort="true" width="50px">
-					修改权限</div>
+					是否可修改</div>
 				<!-- <div field="salesDeductType" headerAlign="center" allowSort="true">销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true">
 					销售提成值</div> -->

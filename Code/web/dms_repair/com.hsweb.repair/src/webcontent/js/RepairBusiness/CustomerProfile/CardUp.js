@@ -40,7 +40,7 @@ function SetData(params) {
     if(params.data!=null){
         guestId=params.data.guestId;
         guestName=params.data.guestFullName;
-        params.data.mobile=params.data.guestMobile
+        params.data.mobile=params.data.guestMobile;
         basicInfoForm.setData(params.data);
     }
 

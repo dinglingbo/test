@@ -270,6 +270,21 @@ function onShowRowDetail(e) {
         token: token
     });*/
 }
+function onPrint(e){
+	var main = billForm.getData();
+	var openUrl = null;
+	if(main.id){
+		var params = {
+            source : e,
+            serviceId : main.id
+		};
+        
+        doPrint(params);
+	}else{
+        showMsg("请先保存工单,再打印!","W");
+        return;
+    }
+}
 function onApplyClick(){
     doApplyCustomer({},function(action){
         if(action == 'ok'){

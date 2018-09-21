@@ -378,6 +378,12 @@ $(document).ready(function ()
                 case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
                 break;
+                case "rate":
+                    var value = e.value||"";
+                    if(value){
+                        e.cellHtml = e.value + '%';
+                    }
+                    break;
                 default:
                 break;
             }
@@ -429,6 +435,12 @@ $(document).ready(function ()
                             case "serviceTypeId":
                             e.cellHtml = servieTypeHash[e.value].name;
                             break;
+                            case "rate":
+                                var value = e.value||"";
+                                if(value){
+                                    e.cellHtml = e.value + '%';
+                                }
+                                break;
                             default:
                             break;
                         }
@@ -1876,8 +1888,12 @@ function updateRpsPackage(row_uid){
             }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
+            var rate = row.rate/100;
+            rate = rate.toFixed(4);
             var pkg = {
-                serviceId:row.serviceId
+                serviceId:row.serviceId,
+                //优惠率除以100
+                rate:rate
             };
             var itemList = [];
             if(row.type == 1){
@@ -1928,9 +1944,11 @@ function updateRpsPackage(row_uid){
                                 serviceId: serviceId
                             }
                         }
+                        rpsPackageGrid.reject();
                         loadDetail(p1, {}, {});
                     }
                 }else{
+                	rpsPackageGrid.reject();
                     rpsPackageGrid.accept();
                     showMsg(errMsg||"修改数据失败!","W");
                     return;
@@ -2004,6 +2022,7 @@ function updateRpsItem(row_uid){
                     __saleManId = "";
                     rpsItemGrid.accept();
                 }else{
+                	rpsItemGrid.reject();
                     rpsItemGrid.accept();
                     showMsg(errMsg||"修改数据失败!","W");
                     return;
@@ -2069,6 +2088,7 @@ function updateRpsPart(row_uid){
                     __saleManId = "";
                     rpsPartGrid.accept();
                 }else{
+                	rpsPartGrid.reject();
                     rpsPartGrid.accept();
                     showMsg(errMsg||"修改数据失败!","W");
                     return;
@@ -3227,10 +3247,10 @@ function changeCheckInfoTab(resultdata) {
     carCheckInfo.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
     SearchLastCheckMain();
 
-    $("#checkStatus1").css("color","black");
-    $("#checkStatus2").css("color","black");
-    $("#checkStatus3").css("color","black");
-    $("#checkStatus4").css("color","black");
+    $("#checkStatus1").css("color","#9e9e9e");
+    $("#checkStatus2").css("color","#9e9e9e");
+    $("#checkStatus3").css("color","#9e9e9e");
+    $("#checkStatus4").css("color","#9e9e9e");
     
     if(resultdata.list.length > 0){
         var detailList =  resultdata.list[0];

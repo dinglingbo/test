@@ -243,13 +243,6 @@ function unfinish(){
         nui.unmask(document.body);
     });
 }
-function pay(){
-    var row = mainGrid.getSelected();
-    if(!row) {
-        showMsg("请选择一条记录!","W");
-        return;
-    }
-}
 function del(){
     var row = mainGrid.getSelected();
     if(!row) {

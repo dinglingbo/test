@@ -155,9 +155,9 @@ function getData()
 function setData(data)
 {
 	list = data.list||[];
-	nui.get("add").hide();
+	//nui.get("add").hide();
 	nui.get("update").hide();
-	nui.get("addItemType").hide();
+	//nui.get("addItemType").hide();
 	nui.get("editItemType").hide();
 	document.getElementById('sep').style.display = "none";  
 	nui.get("selectBtn").show();

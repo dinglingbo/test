@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.2.0"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.2.1"></script>
 <style type="text/css">
 
 .title {
@@ -69,7 +69,7 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>
 <!--                <a class="nui-button" iconCls="" plain="true" onclick="out()" id="outBtn"><span class="fa fa-check fa-lg"></span>&nbsp;转出库</a>  -->
                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;转结算</a>
@@ -116,14 +116,14 @@
            allowSortColumn="true">
         <div property="columns">
           <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-          <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
+          <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">配件名称</div>
           <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
           <div field="qty" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">数量</div>
           <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">单价</div>
           <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
           <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
           <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
-          <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="">零件编码</div>
+          <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="">配件编码</div>
        </div>
     </div>
    </div>

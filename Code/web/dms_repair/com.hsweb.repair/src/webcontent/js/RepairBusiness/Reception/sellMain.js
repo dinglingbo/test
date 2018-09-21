@@ -267,8 +267,6 @@ function setInitData(params){
             token:token,
             params: p
         });
-    }else{
-        showMsg("加载");
     }
 }
 //转出库
@@ -279,15 +277,15 @@ function out(){
 	if(row)
 	{
 		if(row.isSettle == 1){
-	        showMsg("此单已结算!","S");
+	        showMsg("此单已结算!","W");
 	        return;
 	    }
 		if(row.status==0){
-			showMsg("此单需审核才能出库!","S");
+			showMsg("此单需审核才能出库!","W");
 	        return;
 		}
 		if(row.status==2){
-			showMsg("此单已出库!","S");
+			showMsg("此单已出库!","W");
 	        return;
 		}
 		var json = nui.encode({
@@ -312,7 +310,7 @@ function out(){
 				   });
 					 
 				} else {
-					showMsg("出库失败");
+					showMsg("出库失败","W");
 				}
 					
 			}
@@ -330,11 +328,11 @@ function pay(){
 	if(row)
 	{
 		if(row.isSettle == 1){
-	        showMsg("此单已结算!","S");
+	        showMsg("此单已结算!","W");
 	        return;
 	    }
 		if(row.status != 2){
-			 showMsg("此单未出库，不能结算!","S");
+			 showMsg("此单未出库，不能结算!","W");
 		     return;
 		}
 		nui.open({
@@ -375,11 +373,11 @@ function finish(){
 	var isSettle = main.isSettle||0;
     
     if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","S");
+        showMsg("此单已结算,不能审核!","W");
         return;
     }
 	if(main.status==1){
-		showMsg("此单已审核,不能重复审核!","S");
+		showMsg("此单已审核,不能重复审核!","W");
         return;
 	} 
 	
@@ -404,7 +402,7 @@ function finish(){
 				    });
 				
 			} else {
-				showMsg(returnJson.errMsg);
+				showMsg(returnJson.errMsg,"W");
 			}
 				
 		}

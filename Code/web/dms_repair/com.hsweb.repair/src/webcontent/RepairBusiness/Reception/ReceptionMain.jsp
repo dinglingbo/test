@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.1"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.2"></script>
 <style type="text/css">
 
 .title {
@@ -199,46 +199,69 @@
 </div>
 
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+
+  <div  id="innerpackGrid" class="nui-datagrid"
+	    style="width:100%;height:100px;"
+	    dataField="data"
+	    showPager="false"
+	    showModified="false"
+	    allowSortColumn="false" >
+      <div property="columns">
+    	   <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+           <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+           <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100" header="套餐名称"></div>     
+           <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId" allowSort="false" visible="true" width="50" header="业务类型" align="center"> </div>
+           <div field="subtotal" headerAlign="center" name="pkgSubtotal" allowSort="false" visible="true" width="60" header="套餐金额" align="center" ></div>
+           <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="优惠率" align="center"></div>
+           <div field="amt" headerAlign="center" name="pkgAmt"  allowSort="false" visible="true" width="60" header="原价" align="center"></div>
+           <div field="workers" headerAlign="center"  allowSort="false" visible="true" width="60" header="施工员" align="center" name="workers"></div>
+           <div field="workerIds" headerAlign="center" allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
+           <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
+           <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
+     </div>
+   </div>
   <div id="innerItemGrid"
        borderStyle="border-bottom:0;"
        class="nui-datagrid"
-       dataField="list"
-       style="width: 100%; height:100px;"
+       dataField="data"
+       style="width: 100%;height:100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
-          <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-          <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">项目名称</div>
-          <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
-          <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
-          <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
-          <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
-          <div field="subtotal" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">小计</div>
-          <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">工时</div>
-          <div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
-          <div field="className" headerAlign="center" allowSort="true" visible="true" width="80">班组</div>
-          <div field="worker" headerAlign="center" allowSort="true" visible="true" width="80">承修人</div>
-          <div field="itemCode" headerAlign="center" allowSort="true" visible="true" width="">项目编码</div>
+           <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+           <div field="itemName" headerAlign="center" allowSort="false" visible="true" width="100">工时名称</div>
+	       <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型 </div>
+	       <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时 </div>
+	       <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价 </div>
+	       <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率</div>            
+	       <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额</div>          
+	       <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">工时总金额 </div>           
+           <div field="workers" headerAlign="center" allowSort="false" visible="true" width="80" header="施工员" name="workers"></div>
+	       <div field="workerIds" headerAlign="center"  allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
+	       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
+	       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
       </div>
   </div>
-  <div id="innerPartGrid"
-       dataField="list"
+   <div id="innerPartGrid"
+       dataField="data"
        class="nui-datagrid"
        style="width: 100%; height: 100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
-          <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-          <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">零件名称</div>
-          <div field="receTypeId" headerAlign="center" allowSort="true" visible="true" width="80">收费类型</div>
-          <div field="qty" headerAlign="center" allowSort="true" visible="true" width="80" datatype="int" align="right">数量</div>
-          <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">单价</div>
-          <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">金额</div>
-          <div field="rate" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right" numberFormat="p">优惠率</div>
-          <div field="discountAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">优惠金额</div>
-          <div field="partCode" headerAlign="center" allowSort="true" visible="true" width="">零件编码</div>
+           <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+           <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>    
+           <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"> </div>
+           <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" name="partQty"> </div>
+           <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价" name="partUnitPrice"> </div>
+	       <div  field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" name="partRate"></div>
+	       <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额" name="partSubtotal"> </div>
+	       <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
+	       <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div> 
+	       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
+	       <div field="saleManId" headerAlign="center"  allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
       </div>
-  </div>
+   </div>
 </div>
 
 

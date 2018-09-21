@@ -5,8 +5,11 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
-var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
-var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
+//var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
+//var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
+var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
+var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext";
+var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"VIN码"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
@@ -24,6 +27,7 @@ var advancedSearchFormData = null;
 var FormDetail = null;
 var innerItemGrid = null;
 var innerPartGrid = null;
+var innerpackGrid = null;
 $(document).ready(function ()
 {
     mainGrid = nui.get("mainGrid");
@@ -37,9 +41,10 @@ $(document).ready(function ()
     editFormDetail = document.getElementById("editFormDetail");
     innerItemGrid = nui.get("innerItemGrid");
     innerPartGrid = nui.get("innerPartGrid");
-    innerItemGrid.setUrl(itemGridUrl);
-    innerPartGrid.setUrl(partGridUrl);
-
+    innerpackGrid = nui.get("innerpackGrid");
+    innerItemGrid.setUrl(getRpsItemUrl);
+    innerPartGrid.setUrl(getRpsPartUrl);
+    innerpackGrid.setUrl(getdRpsPackageUrl);
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
@@ -82,18 +87,114 @@ $(document).ready(function ()
             }
         }
     });
-
-    innerItemGrid.on("drawcell", function (e) {
-        if (e.field == "receTypeId") {
-            //e.cellHtml = receTypeIdHash[e.value].name;
-        }
-    });
+    
     innerPartGrid.on("drawcell", function (e) {
-        if (e.field == "receTypeId") {
-            //e.cellHtml = receTypeIdHash[e.value].name;
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+
+        switch (e.field) {
+            case "partName":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId>0){
+                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+                }
+                break;
+            case "serviceTypeId":
+                e.cellHtml = servieTypeHash[e.value].name;
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
+            default:
+                break;
+        }
+    });   
+    
+    innerItemGrid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+
+        switch (e.field) {
+            case "itemName":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId>0){
+                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+                }
+                break;
+            case "serviceTypeId":
+                e.cellHtml = servieTypeHash[e.value].name;
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
+            default:
+                break;
         }
     });
-
+    
+    innerpackGrid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        switch (e.field) {
+		   case "prdtName":
+		        var cardDetailId = record.cardDetailId||0;
+		        if(cardDetailId>0){
+		            e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+		        }
+            break;
+	        case "serviceTypeId":
+	            var type = record.type||0;
+	            if(type>1){
+	                e.cellHtml = "--";
+	            }else{
+	                e.cellHtml = servieTypeHash[e.value].name;
+	            }
+            break;
+            case "saleMan":
+                var type = record.type||0;
+                var cardDetailId = record.cardDetailId||0;
+                if(type>1 || cardDetailId> 0){
+                    e.cellHtml = "--";
+                }
+                break;
+            case "workers":
+                var type = record.type||0;
+                var cardDetailId = record.cardDetailId||0;
+                if(type != 2){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = e.value;
+                }
+                break;
+            case "serviceTypeId":
+                if(servieTypeHash[e.value])
+                {
+                    e.cellHtml = servieTypeHash[e.value].name;
+                }
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
+            default:
+                break;
+        }
+    });
+    
     var statusList = "0,1,2,3";
     var p = {statusList:statusList};
     doSearch(p);
@@ -118,6 +219,7 @@ function clear(){
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
 }
+
 function onShowRowDetail(e) {
     var row = e.record;
     
@@ -128,18 +230,25 @@ function onShowRowDetail(e) {
 
     innerItemGrid.setData([]);
     innerPartGrid.setData([]);
-
-    var params = {};
-    params.serviceId = row.id;
+    innerpackGrid.setData([]);
+    //var params = {};
+   // params.serviceId = row.id;
+    var serviceId = row.id;
     innerItemGrid.load({
-        params:params,
+    	serviceId:serviceId,
         token: token
     });
 
     innerPartGrid.load({
-        params:params,
+    	serviceId:serviceId,
         token: token
     });
+    
+    innerpackGrid.load({
+    	serviceId:serviceId,
+        token: token
+    });
+
 }
 function quickSearch(type) {
     var params = {};

@@ -182,7 +182,7 @@ $(document).ready(function () {
 		value = e.value;
 		if(field == "rate"){
 			if(value){
-				e.cellHtml = value + "%";
+				e.cellHtml = value.toFixed(2) + "%";
 			}else{
 				e.cellHtml = 0 + "%";
 			}
@@ -210,7 +210,7 @@ $(document).ready(function () {
 		value = e.value;
 		if(field == "rate"){
 			if(value){
-				e.cellHtml = value + "%";
+				e.cellHtml = value.toFixed(2) + "%";
 			}else{
 				e.cellHtml = 0 + "%";
 			}
@@ -238,7 +238,7 @@ $(document).ready(function () {
 		value = e.value;
 		if(field == "rate"){
 			if(value){
-				e.cellHtml = value + "%";
+				e.cellHtml = value.toFixed(2) + "%";
 			}else{
 				e.cellHtml = 0 + "%";
 			}

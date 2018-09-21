@@ -6,6 +6,8 @@ var repairOutGrid = null;
 var mid = null;//主表ID
 var mainRow = null; 
 
+var servieTypeList = [];
+var servieTypeHash = {};
 var mtAdvisorIdEl = null; 
 var searchKeyEl = null; 
 var servieIdEl = null; 
@@ -43,6 +45,21 @@ $(document).ready(function(){
 		var text = mtAdvisorIdEl.getText();
 		nui.get("mtAdvisor").setValue(text);
 	});
+
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+          servieTypeHash[v.id] = v;
+      });
+    });
+
+    mainGrid.on("drawcell", function (e) {
+        if (e.field == "serviceTypeId") {
+            if (servieTypeHash && servieTypeHash[e.value]) {
+                e.cellHtml = servieTypeHash[e.value].name;
+            }
+        }
+    });
 
 	searchKeyEl.on("valuechanged",function(e){
 		var item = e.selected;

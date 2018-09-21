@@ -12,7 +12,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.7"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.9"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -21,7 +21,7 @@
 				value="com.hsapi.repair.data.rpb.RpbCardStored">
 			<table id="table1">
 				<tr>
-					<td>会员卡名称: <input class="nui-textbox"
+					<td>储值卡名称: <input class="nui-textbox"
 						name="criteria/_expr[1]/name" /> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
@@ -47,8 +47,8 @@
 				<div type="indexcolumn" width="20px" header="序号"></div>
 				<div type="checkcolumn" >选择</div>
 				<div field="id" headerAlign="center" allowSort="true"
-					visible="false">会员卡ID</div>
-				<div field="name" headerAlign="center" allowSort="true" width="100px">会员卡名称</div>
+					visible="false">储值卡ID</div>
+				<div field="name" headerAlign="center" allowSort="true" width="100px">储值卡名称</div>
 
 <!-- 				<div field="useRange" headerAlign="center" allowSort="true"> -->
 <!-- 					适用范围</div> -->

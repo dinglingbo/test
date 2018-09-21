@@ -29,6 +29,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var FGuestId = null;
+var partShow = 0;
 
 var storeIdEl = null;
 var receiveStoreIdEl = null;
@@ -105,6 +106,8 @@ $(document).ready(function(v)
 				var row = morePartGrid.getSelected();
 				if(row){
 					addSelectPart();
+					var orderQty = nui.get("orderQty");
+					orderQty.focus();
 				}
 			}
         } 
@@ -131,7 +134,12 @@ $(document).ready(function(v)
             addNewRow(true);
         }
     });
-
+    
+    $("#orderQty").bind("keydown", function (e) {
+    	if (e.keyCode == 13) {
+            addNewRow(true);
+        }
+    });
 });
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
@@ -905,6 +913,8 @@ function getPartInfo(params){
                 }else{
                     advancedMorePartWin.show();
                     morePartGrid.setData(partlist);
+					partShow = 1;
+					event.keyCode = null;
                 }
                 
             }else{
@@ -1108,6 +1118,7 @@ function addSelectPart(){
 
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
+        partShow = 0;
     }else{
         showMsg("请选择配件!","W");
         return;
@@ -1117,6 +1128,7 @@ function addSelectPart(){
 function onPartClose(){
     advancedMorePartWin.hide();
     morePartGrid.setData([]);
+    partShow = 0;
 
     var newRow = {comPartCode: oldValue};
     rightGrid.updateRow(oldRow, newRow);
@@ -1168,6 +1180,7 @@ function addMorePart(){
     }
     advancedAddForm.setData([]);
     advancedAddWin.show();
+    partShow = 1;
 }
 function addNewKeyRow(){
     var data = basicInfoForm.getData();

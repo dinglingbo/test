@@ -8,7 +8,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
 	width: 60px;

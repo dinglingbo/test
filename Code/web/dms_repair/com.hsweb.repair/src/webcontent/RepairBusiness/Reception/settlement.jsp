@@ -164,7 +164,7 @@
                     </tr>
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
-                        <td><input id="meeting" type="date" value="2014-01-13"/></td>
+                        <td><input id="meeting" type="datetime-local" value=""/></td>
                     </tr>
                 </tbody>
             </table>
@@ -210,7 +210,7 @@
             </tr>
             <tr>
                 <td>电话：<span id="phone"></span></td>
-                    <td align="right" id="date">打印时间：</td>
+                    <td align="right" >打印时间：<span id="date"></span></td>
 
             </tr>
         </table>
@@ -338,7 +338,7 @@
         });
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(){//更新套餐工时配件合计金额
-        	var money = parseInt(document.getElementById("prdt").innerHTML) + parseInt(document.getElementById("item").innerHTML) + parseInt(document.getElementById("part").innerHTML);
+        	var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
         	document.getElementById("cash").innerHTML = money;
         	document.getElementById("cash1").innerHTML = money;
     		money = transform(money+"");
@@ -348,7 +348,7 @@
         function SetData(params){
 	        var date = new Date();
 	        if(params.name){
-	        	document.getElementById("spstorename").innerHTML = "维修结算单";
+	        	document.getElementById("spstorename").innerHTML = params.name;
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");
@@ -409,7 +409,7 @@
 	        	}
         	});
         	if(params.type){
-        		url_one = "com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPPart.biz.ext?serviceId=";
+        		url_one = "com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPParts.biz.ext?serviceId=";
         	}else{
         		url_one = "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=";
         	}
@@ -424,8 +424,12 @@
 					    			"<td align='center'>[rate]</td>"+
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
+    				var j = 0;
     				for(var i = 0 , l = data.length ; i < l ; i++){
     					var prdtName = data[i].prdtName;
+    					if(params.type){
+    						prdtName = data[i].packageName || "";
+    					}
     					var orderIndex = data[i].orderIndex;
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
@@ -433,7 +437,11 @@
     						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
     						orderIndex = "";
     					}else{
-    						document.getElementById("prdt").innerHTML = parseInt(document.getElementById("prdt").innerHTML) + parseInt(data[i].subtotal);
+    						if(params.type){
+    							j++;
+    							orderIndex = j;
+    						}
+    						document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
     					}
     					if(data[i].billPackageId == 0){
     						if(i != 0){
@@ -488,7 +496,7 @@
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
     				for(var i = 0 , l = data.length ; i < l ; i++){
-    					document.getElementById("item").innerHTML = parseInt(document.getElementById("item").innerHTML) + parseInt(data[i].subtotal);
+    					document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
     					var tr = $("<tr></tr>");
@@ -521,7 +529,7 @@
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
     				for(var i = 0 , l = data.length ; i < l ; i++){
-    					document.getElementById("part").innerHTML = parseInt(document.getElementById("part").innerHTML) + parseInt(data[i].subtotal);
+    					document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
     					var tr = $("<tr></tr>");
@@ -546,18 +554,29 @@
     		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
     		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
     		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
+    		if(document.getElementById("date").innerHTML.length > 16){
+    			var value = document.getElementById("date").innerHTML.substring(0, document.getElementById("date").innerHTML.length-3);
+    			document.getElementById("meeting").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("meeting").value = document.getElementById("date").innerHTML.replace(" ","T");
+    		}
     	}
     	
     	function save(){
-    		box_setup_close();
-    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
-    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
-    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
-    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+    		if(!document.getElementById("meeting").value){
+    			alert("请将打印时间填写完整。");
+    		}else{
+    			box_setup_close();
+	    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
+	    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
+	    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
+	    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+				document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
+    		}
     	}
     	
     	function box_setup_close(){
-    		$(".boxbg").hide();
+    		$(".boxbg").hide();2
         	$(".popbox").hide();
     	}
     </script>

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.2.9"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -126,6 +126,7 @@
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
+        <input class="nui-hidden" name="serviceCode"/>
         <input id="enterDate" name="enterDate" class="nui-datepicker"visible="false"nullValue="null" format="yyyy-MM-dd  HH:mm:ss" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
         <table  style=" left:0;right:0;margin: 0 auto;"> 
             <tr>   
@@ -202,6 +203,7 @@
     	<div type="indexcolumn" headerAlign="center" align="center">序号</div>
         <div header="套餐信息">
             <div property="columns">
+            <div field="billPackageId" width="120" headerAlign="center" allowSort="true" visible="false">员工帐号</div>  
                 <div field="packageName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
                      <input property="editor" vtype="float" class="nui-textbox"/>

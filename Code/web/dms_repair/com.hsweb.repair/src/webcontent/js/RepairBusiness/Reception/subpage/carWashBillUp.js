@@ -70,11 +70,58 @@ function onChanged() {
 		PrefAmt=0;
 	}
 	var amount = data.mtAmt-deductible-PrefAmt;
-	nui.get("amount").setValue(amount);
+	nui.get("amount").setValue(amount.toFixed(2));
 
 }
 
 function noPay(){
 	var data = sellForm.getData();
 	doNoPay(fserviceId,data.PrefAmt);
+}
+
+function pay(){
+	var data = sellForm.getData();
+	var json = {
+			allowanceAmt:data.PrefAmt,
+			cardPayAmt:data.deductible,
+			serviceId:fserviceId,
+			payType:data.payType,
+			payAmt:data.amount
+	}
+    nui.confirm("结算金额:"+data.amount+"元,确定结算吗?", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+	    		nui.ajax({
+	    			url : baseUrl
+	    			+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ,
+	    			type : "post",
+	    			data : json,
+	    			async: false,
+	    			success : function(data) {
+	    				nui.unmask(document.body);
+	    				if(data.errCode=="S"){
+	    					nui.alert(data.errMsg,"提示");
+	    				}else{
+	    					nui.alert(data.errMsg,"提示");
+	    				}
+
+	    			},
+	    			error : function(jqXHR, textStatus, errorThrown) {
+	    				// nui.alert(jqXHR.responseText);
+	    				console.log(jqXHR.responseText);
+	    			}
+	    		});	
+	     }else {
+				return;
+		 }
+	});
+    
+    
+
+	
+
 }

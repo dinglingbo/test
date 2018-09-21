@@ -58,7 +58,7 @@
         <div property="columns">
             <div headerAlign="center" type="indexcolumn" width="10">序号</div>
             <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">工时名称</div>
-            <div field="workers" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="right">施工员</div>
+            <div field="workers" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">施工员</div>
             <!-- <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">是否合格</div>
             <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">备注</div> -->
         </div>
@@ -74,9 +74,9 @@
         <div property="columns">
             <div headerAlign="center" type="indexcolumn" width="10">序号</div>
             <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">配件名称</div>
-            <div field="qty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="right">数量</div>
-            <div field="pickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="right">已领取</div>
-            <div field="notPickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="right">未领取</div>
+            <div field="qty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">数量</div>
+            <div field="pickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">已领取</div>
+            <div field="notPickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">未领取</div>
             
         </div>
     </div>

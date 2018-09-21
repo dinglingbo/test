@@ -853,19 +853,20 @@ function save(){
 
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
-                    if(isSettle == 1){
-                        $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-                        $("#settleStatus").attr("class", "statusview");
-                    }else{
-                        $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-                        if(status==0){
-                            $("#addStatus").attr("class", "statusview");
-                        }else if(status==1){
-                            $("#repairStatus").attr("class", "statusview");
-                        }else if(status==2){
-                            $("#finishStatus").attr("class", "statusview");
-                        }
-                    }
+                    doSetStyle(status, isSettle);
+                    // if(isSettle == 1){
+                    //     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                    //     $("#settleStatus").attr("class", "statusview");
+                    // }else{
+                    //     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+                    //     if(status==0){
+                    //         $("#addStatus").attr("class", "statusview");
+                    //     }else if(status==1){
+                    //         $("#repairStatus").attr("class", "statusview");
+                    //     }else if(status==2){
+                    //         $("#finishStatus").attr("class", "statusview");
+                    //     }
+                    // }
 
                     var p1 = {
                         interType: "package",
@@ -1070,7 +1071,7 @@ function unfinish(){
             var errCode = data.errCode||"";
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
-                var maintain = data.maintain||{};
+                var maintain = data.main||{};
                 billForm.setData([]);
                 billForm.setData(maintain);
                 var status = maintain.status||0;
@@ -2383,36 +2384,22 @@ function onPrint(e){
 	var openUrl = null;
 	if(main.id){
 		var params = {
-				serviceId : main.id,
-				comp : currOrgName
+            source : e,
+            serviceId : main.id
 		};
-		if(e == 1){
-			openUrl = "com.hsweb.print.repairOrder.flow";
-		}else if(e == 2){
-			openUrl = "com.hsweb.print.settlement.flow";
-		}else if(e == 3){
-			openUrl = "com.hsweb.print.smallSettlement.flow";
-		}
-		nui.open({
-            url: openUrl,
-            width: "100%",
-            height: "100%",
-            showMaxButton: false,
-			allowResize: false,
-            showHeader: true,
-            onload: function() {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.SetData(params);
-            },
-        });
-	}
+        
+        doPrint(params);
+	}else{
+        showMsg("请先保存工单,再打印!","W");
+        return;
+    }
 }
 
 function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
-			carId : main.carId,
-			guestId : main.guestId
+        carId : main.carId,
+        guestId : main.guestId
 	};
 	if(main.id){
 		nui.open({
@@ -2458,7 +2445,7 @@ function pay(){
 		//加载完之后
 		onload: function(){	
 		},
-	ondestroy : function(action) {
+	    ondestroy : function(action) {
 		if (action == 'ok') {
 			var iframe = this.getIFrameEl();
 			var data = iframe.contentWindow.getData();
@@ -3180,28 +3167,21 @@ function MemSelectOk(){
 function SearchCheckMain(callback) {
     var data = billForm.getData();
     var  t = null;
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '数据加载中...'
-    });
+    var ydata = {
+        serviceId:data.id
+    }
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
         async: false,
         data:{ 
-            serviceId:data.id
+            params:ydata
         },
         cache: false,
         success: function (text) {  
             callback && callback(text);
             checkMainData = text;
             isRecord = text.isRecord;
-
-            nui.unmask(document.body);
-        },
-        error: function(){
-            nui.unmask(document.body);
         }
     });
 

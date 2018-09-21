@@ -407,7 +407,6 @@
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
                             <td width="200" align="center">工时名称</td>
-                            <td align="center" width="150">业务类型</td>
                             <td align="center">施工员</td>
                             <td align="center">备注</td>
                             <td align="center">签字</td>
@@ -497,24 +496,23 @@
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}
         });
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
-    			"<td align='center'>[prdtName]</td>"+
-    			"<td align='center'>[serviceTypeId]</td>"+ 
+    			"<td align='center'>[itemName]</td>"+
     			"<td align='center'>[workers]</td>"+
-    			"<td align='center'></td>"+
+    			"<td align='center'>[remark]</td>"+
     			"<td align='center'></td>";
         		var data = text.data;
         		for(var i = 0 , l = data.length ; i < l ; i++){
         			var tr = $("<tr></tr>");
         			tr.append(
 				    				tds.replace("[id]",i +1)
-				    				.replace("[prdtName]",data[i].prdtName)
-				    				.replace("[serviceTypeId]",data[i].serviceTypeId)
-				    				.replace("[workers]",data[i].workers || ""));
+				    				.replace("[itemName]",data[i].itemName)
+				    				.replace("[workers]",data[i].workers || "")
+				    				.replace("[remark]",data[i].remark || ""));
 				    			tBody.append(tr);
         		}
         	}

@@ -3188,10 +3188,11 @@ function addExpenseAccount(){
 	    item.text = "报销单";
 		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
 		item.iconCls = "fa fa-cog";
-		window.parent.activeTabAndInit(item,data);
 		data.guestTel = $("#guestTelEl").text();
 		data.guestName = $("#guestNameEl").text();
 		data.contactorTel = data1.mobile;
+		data.serviceCode = $("#servieIdEl").text();
+		window.parent.activeTabAndInit(item,data);
 	}else{
 		showMsg("请先保存后再进行操作!","W");
 	}

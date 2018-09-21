@@ -6,7 +6,7 @@
 <!-- 
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08 
-  - Description:  
+  - Description:   
 --> 
   
 <head> 
@@ -134,6 +134,10 @@
             };
         }
         mainGrid.load({params:params,token:token});
+        var tdata = mainGrid.getData();
+        if(tdata.length < 1){
+            showMsg('该配件没有剩余库存!','W');
+        }
     }
 
     function onOk(){

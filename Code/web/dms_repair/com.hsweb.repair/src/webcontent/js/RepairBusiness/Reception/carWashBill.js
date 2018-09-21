@@ -11,9 +11,9 @@
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
   
- var billForm = null;  
+ var billForm = null;   
  var xyguest = null; 
- var brandList = [];
+ var brandList = []; 
  var brandHash = {};
  var servieTypeList = [];
  var servieTypeHash = {};
@@ -1534,12 +1534,10 @@ function showCarCheckInfo(){
         return;
     }
 
-    var atEl = document.getElementById("carHealthEl");  
-    carCheckInfo.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
-    advancedCardTimesWin.hide();
-    advancedMemCardWin.hide();
     MemSelectCancel(1);
     SearchCheckMain(changeCheckInfoTab);
+    advancedCardTimesWin.hide();
+    advancedMemCardWin.hide();
 }
 
 /*function showHealth(){
@@ -3225,8 +3223,9 @@ function changeCheckInfoTab(resultdata) {
         showMsg("请先保存工单!","E");
         return;
     }
-
-SearchLastCheckMain();
+    var atEl = document.getElementById("carHealthEl");  
+    carCheckInfo.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
+    SearchLastCheckMain();
 
     $("#checkStatus1").css("color","black");
     $("#checkStatus2").css("color","black");

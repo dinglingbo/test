@@ -378,6 +378,12 @@ $(document).ready(function ()
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
                 break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
             default:
                 break;
         }
@@ -428,6 +434,12 @@ $(document).ready(function ()
                 }
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
                 break;
             default:
                 break;
@@ -1858,8 +1870,8 @@ function updateRpsPackage(row_uid){
             }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
-           var rate = row.rate/100;
-           rate = rate.toFixed(4);
+            var rate = row.rate/100;
+            rate = rate.toFixed(4);
             var pkg = {
                 serviceId:row.serviceId,
                 //优惠率除以100
@@ -3176,10 +3188,11 @@ function addExpenseAccount(){
 	    item.text = "报销单";
 		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
 		item.iconCls = "fa fa-cog";
-		window.parent.activeTabAndInit(item,data);
 		data.guestTel = $("#guestTelEl").text();
 		data.guestName = $("#guestNameEl").text();
 		data.contactorTel = data1.mobile;
+		data.serviceCode = $("#servieIdEl").text();
+		window.parent.activeTabAndInit(item,data);
 	}else{
 		showMsg("请先保存后再进行操作!","W");
 	}

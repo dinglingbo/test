@@ -9,8 +9,8 @@
   - Description:  
 -->   
 <head>
-    <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.6.7"></script>
+    <title>工单-销售单</title>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.6.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -125,9 +125,7 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印派工单</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印领料单</li>
+                    <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
             </td>
         </tr>

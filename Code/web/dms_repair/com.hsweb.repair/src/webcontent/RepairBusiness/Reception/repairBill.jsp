@@ -427,7 +427,7 @@
     showHeader="false"
     allowResize="false"
     allowDrag="false">
-<div class="nui-fit" id="show1" style="display: ;">
+<div class="nui-fit" id="show1" >
     <table style="width: 100%;background-color: #eef1f4">
         <tr style="height: 40px;">
             <td class="">

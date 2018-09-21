@@ -1168,7 +1168,15 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.auditSign == 1){
         e.cancel = true;
     }
-
+    
+    if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus();
+		//var row = morePartGrid.getRow(0);   默认不能选中，回车事件会有影响
+        //if(row){
+        //    morePartGrid.select(row,true);
+        //}
+	}
 }
 function addMorePart(){
     var row = leftGrid.getSelected();

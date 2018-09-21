@@ -234,7 +234,7 @@
 	                	<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
 	                </div> 
                     <div id="rightGrid" class="nui-datagrid" 
-                         style="width:100%;height:94%;"
+                         style="width:100%;height:93%;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"

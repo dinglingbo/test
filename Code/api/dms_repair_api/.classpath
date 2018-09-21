@@ -11,5 +11,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsapi.repair.data/bin" path="com.hsapi.repair.data/src"/>
+	<classpathentry kind="lib" path="C:/primeton/platform/apache-tomcat-7.0.54/lib/gson-2.7.jar"/>
+	<classpathentry kind="lib" path="C:/primeton/platform/apache-tomcat-7.0.54/lib/jiguang-common-1.0.8.jar"/>
+	<classpathentry kind="lib" path="C:/primeton/platform/apache-tomcat-7.0.54/lib/jpush-client-3.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/primeton/platform/apache-tomcat-7.0.54/lib/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

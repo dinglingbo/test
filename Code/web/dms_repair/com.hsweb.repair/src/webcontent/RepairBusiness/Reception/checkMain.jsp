@@ -50,9 +50,9 @@
       <tr>
         <td>
           <input class="nui-hidden" id="cNo" name="cNo" value='<b:write property="cNo"/>'/>
+          <input class="nui-textbox" id="guestName" id="guestName" emptyText="输入客户姓名" width="120" />
           <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" />
           <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
-          <input class="nui-textbox" id="guestName" id="guestName" emptyText="输入客户姓名" width="120" />
           <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
             <span class="fa fa-search fa-lg"></span>&nbsp;查询
           </a>
@@ -69,7 +69,6 @@
 </td>
 </tr>
 </table> 
-
 </div> 
 
 <div class="nui-fit">
@@ -98,7 +97,6 @@
   var mainGrid = nui.get("mainGrid"); 
   mainGrid.setUrl(gridUrl);
 
-
   onSearch();
 
   function onSearch(){
@@ -118,7 +116,7 @@
       title:"选择模板",
       height:"300px",
       width:"400px",
-      onload:function(){
+      onload:function(){ 
 
       },
       ondestroy:function(action){
@@ -129,16 +127,17 @@
   }
 
 
+
+
   function setInitData(params){
-  var pa={
-    carNo:nui.get("cNo").value
-  }; 
-    mainGrid.load({
+    var pa={
+      carNo:nui.get("cNo").value
+    }; 
+    mainGrid.load({ 
       params:pa, 
 
       token:token 
     });
-
   }
 
 
@@ -158,6 +157,7 @@
     var sid = record.id;
     newCheckMain(record);
   });
+
 
 
   function edit() {

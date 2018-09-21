@@ -508,61 +508,89 @@ function doSetStyle(status, isSettle){
 }
 
 function doNoPay(serviceId,allowanceAmt){
-    nui.mask({
-        el : document.body,
-	    cls : 'mini-mask-loading',
-	    html : '处理中...'
-    });
-	// 跨页面传递的数据对象，克隆后才可以安全使用
-	
 	var json = {
 			serviceId:serviceId,
 			allowanceAmt:allowanceAmt
 	}
 	
-	nui.ajax({
-		url : baseUrl
-		+ "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
-		type : "post",
-		data : json,
-		async: false,
-		success : function(data) {
-			if(data.errCode=="S"){
-				nui.unmask(document.body);
-				nui.alert("保存转待结算成功","提示");
-			}else{
-				nui.unmask(document.body);
-				nui.alert("保存转待结算失败","提示");
-			}
+    nui.confirm("确定将此单加入待结算", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url : baseUrl
+					+ "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+					type : "post",
+					data : json,
+					async: false,
+					success : function(data) {
+						if(data.errCode=="S"){
+							nui.unmask(document.body);
+							nui.alert("待结算成功","提示");
+						}else{
+							nui.unmask(document.body);
+							nui.alert(data.errMsg,"提示");
+						}
 
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						// nui.alert(jqXHR.responseText);
+						console.log(jqXHR.responseText);
+					}
+				});		
+	     }else {
+				return;
+		 }
 	});
-
 }
 
-function doPrint(params,callback){
-	var source = params.source||0;
-	var sourceUrl = "";
-	if(source == 1){
 
+function doPrint(params){
+	var source = params.source||0;
+	var serviceId = params.serviceId||0;
+	var sourceUrl = "";
+	var p = {
+		serviceId : serviceId,
+		comp : currOrgName,
+		baseUrl: apiPath + repairApi + "/",
+		token : token
+	};
+	if(source == 1){  //打印报价单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		p.name = "报价单";
+	}else if(source == 2){  //打印派工单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.repairOrder.flow?token="+token;
+		p.name = "派工单";
+	}else if(source == 3){  //打印结算单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		p.name = "维修结算单";
+	}else if(source == 4){  //打印小票
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.smallSettlement.flow?token="+token;
+		p.name = "维修结算单";
+	}else if(source == 5){  //打印领料单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.materialRequisition.flow?token="+token;
+		p.name = "领料单";
+	}else if(source == 6){  //打印报销单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		p.name = "报销单";
+	}else if(source == 7){  //打印查车单
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.checkCar.flow?token="+token;
+		p.name = "查车单";
 	}
-	var p = {};
+	
 	nui.open({
-        url: webPath + contextPath + "/" + sourceUrl + "?token="+token,
-        title: "打印", width: 900, height: 600,
+        url: sourceUrl,
+        title: p.name + "打印",
+		width: "100%",
+		height: "100%",
         onload: function () {
             var iframe = this.getIFrameEl();
-           iframe.contentWindow.setData(params,callback);
+           iframe.contentWindow.SetData(p);
         },
-        ondestroy: function (action)
-        {
-        	
-        	
-        	
+        ondestroy: function (action){
         }
     });
 }

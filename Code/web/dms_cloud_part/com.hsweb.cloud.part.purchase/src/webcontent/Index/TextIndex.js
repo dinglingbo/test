@@ -43,7 +43,7 @@ $(document).ready(function(v) {
 function toReceptionMain(){
     var item={};
     item.id = "1036";
-    item.text = "工单新建";
+    item.text = "综合开单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.ReceptionMain.flow";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -51,7 +51,7 @@ function toReceptionMain(){
 function toSellBill(){//1
     var item={};
     item.id = "4000";
-    item.text = "零售新建";
+    item.text = "销售-工单";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/sellBill.jsp";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -59,7 +59,7 @@ function toSellBill(){//1
 function toCarWashMgr(){
     var item={};
     item.id = "1104";
-    item.text = "洗车新建";
+    item.text = "洗车开单";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/carWashMgr.jsp";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -67,7 +67,7 @@ function toCarWashMgr(){
 function toPurchaseOrder(){
     var item={};
     item.id = "1184";
-    item.text = "采购新建";
+    item.text = "采购订单";
     item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrder.flow";
     item.iconCls = "fa fa-car";
     window.parent.activeTab(item);
@@ -96,7 +96,7 @@ function addCustomer(){
 function toReceivableSettle(){
     var item={};
     item.id = "1481";
-    item.text = "应收处理";
+    item.text = "应收款管理";
     item.url = webPath + contextPath + "/manage/settlement/receivableSettle.jsp";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -104,7 +104,7 @@ function toReceivableSettle(){
 function toPaySettle(){
     var item={};
     item.id = "1482";
-    item.text = "应付处理";
+    item.text = "应付款管理";
     item.url = webPath + contextPath + "/manage/settlement/paySettle.jsp";
     item.iconCls = "fa fa-exchange";
     window.parent.activeTab(item);
@@ -121,7 +121,7 @@ function toOthersReceive(){
 function toStockCheck(){
     var item={};
     item.id = "1985";
-    item.text = "盘点";
+    item.text = "盘点单";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -129,7 +129,7 @@ function toStockCheck(){
 function toCardList(){
     var item={};
     item.id = "1861";
-    item.text = "卡发行";
+    item.text = "储值卡定义";
     item.url = webPath + contextPath + "/repair/DataBase/Card/cardList.jsp";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);

@@ -593,7 +593,11 @@
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">detailTemp/billTypeId</process:from>
-      <process:to type="query">billTyepId</process:to>
+      <process:to type="query">billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detailTemp/billMainId</process:from>
+      <process:to type="query">billMainId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
@@ -900,9 +904,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAccountDetail" name="detailTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="billTyepId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardPayAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAccountDType" name="dtype"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billMainId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAccount" name="account"/>

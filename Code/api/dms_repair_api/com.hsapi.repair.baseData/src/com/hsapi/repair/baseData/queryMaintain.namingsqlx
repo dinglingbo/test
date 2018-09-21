@@ -23,9 +23,13 @@
 			a.mt_advisor_id as mtAdvisorId,
 			a.mt_advisor as mtAdvisor,
 			a.status as status,
+			a.is_settle as isSettle,
 			a.service_type_id as serviceTypeId,
 			d.name as contactName,
-			d.mobile as contactMobile
+			d.mobile as contactMobile,
+			a.bala_audit_sign as balaAuditSign,
+			a.bala_auditor as balaAuditor,
+			a.bala_audit_date as balaAuditDate
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -110,7 +114,10 @@
 			d.mt_advisor AS mtAdvisor,
 	        d.recorder AS recorder,
 		    d.record_date AS recordDate,
-		    d.come_date as comeDate
+		    d.come_date as comeDate,
+			a.bala_audit_sign as balaAuditSign,
+			a.bala_auditor as balaAuditor,
+			a.bala_audit_date as balaAuditDate
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )

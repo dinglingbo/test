@@ -2462,18 +2462,18 @@ function pay(){
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.getData(json);
 		},
-	ondestroy : function(action) {
-		if (action == 'ok') {
-			var iframe = this.getIFrameEl();
-			var data = iframe.contentWindow.getData();
-			supplier = data.supplier;
-			var value = supplier.id;
-			var text = supplier.fullName;
-			var el = nui.get(elId);
-			el.setValue(value);
-			el.setText(text);
-		}
-	}
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+            }
+        }
 	})
 }
 

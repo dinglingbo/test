@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.2.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.3.0"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -60,7 +60,7 @@ table {
 					class="nui-button" iconCls="icon-date" onclick="split()"
 					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
 					onclick="history()" plain="true">维修历史</a>
-					<a class="nui-button" iconCls="" onclick="toUp()" plain="true"><span class="fa fa-credit-card-alt"></span>会员卡充值</a>
+					<a class="nui-button" iconCls="" onclick="toUp()" plain="true"><span class="fa fa-credit-card-alt"></span>储值卡充值</a>
 					</td>
 			</tr>
 		</table>

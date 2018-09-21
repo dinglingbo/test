@@ -155,9 +155,9 @@ function getData()
 function setData(data)
 {
 	list = data.list||[];
-	nui.get("add").hide();
+	//nui.get("add").hide();
 	nui.get("update").hide();
-	nui.get("addItemType").hide();
+	//nui.get("addItemType").hide();
 	nui.get("editItemType").hide();
 	document.getElementById('sep').style.display = "none";  
 	nui.get("selectBtn").show();
@@ -335,7 +335,7 @@ function onAdvancedAddOk(){
 function onDrawCell(e) {
 	switch (e.field) {
 	case "isShare":
-		e.cellHtml = e.value == 1 ? "总部" : "分店";
+		e.cellHtml = e.value == 1 ? "否" : "可修改";
 		break;
 	case "isDisabled":
 		e.cellHtml = e.value == 1 ? "是" : "否";
@@ -355,22 +355,16 @@ function showCheckcolumn(){
 	nui.get("selectBtn").show();
 }
 
+
 //当选择列时
 function selectionChanged() {
-	var rows = rightGrid.getSelecteds();
-	if(currIsMaster!="1"){
-		if(rows[0].isShare=="1"){
-			nui.get('update').setVisible(false);
-		}else{
-			nui.get('update').setVisible(true);
-		}
-		
+	var row = rightGrid.getSelected();
+	if(!row) return;
+	var orgid = row.orgid||0
+	if(currOrgId == orgid){
+		nui.get('update').setVisible(true);
 	}else{
-		if(rows[0].isShare=="1"){
-			nui.get('update').setVisible(true);
-		}else{
-			nui.get('update').setVisible(false);
-		}
+		nui.get('update').setVisible(false);
 	}
 	if(xs==1){
 		mini.get("update").setVisible(false);

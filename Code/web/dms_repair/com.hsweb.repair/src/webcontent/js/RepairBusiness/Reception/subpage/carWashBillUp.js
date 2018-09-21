@@ -50,9 +50,14 @@ function getData(data){
 
 function onChanged() {
 	var data = sellForm.getData();
-	var deductible = nui.get("deductible").getValue();
-	var PrefAmt = nui.get("PrefAmt").getValue();
+
 	
+	if(deductible==""){
+		deductible=0;
+	}
+	if(PrefAmt==""){
+		PrefAmt=0;
+	}
 	if(deductible>data.rechargeBalaAmt){
 		nui.alert("储值抵扣不能大于储值余额","提示");
 		nui.get("deductible").setValue(0);
@@ -63,14 +68,12 @@ function onChanged() {
 		nui.get("PrefAmt").setValue(0);
 		return;
 	}
-	if(deductible==""){
-		deductible=0;
-	}
-	if(PrefAmt==""){
-		PrefAmt=0;
-	}
-	var amount = data.mtAmt-deductible-PrefAmt;
-	nui.get("amount").setValue(amount.toFixed(2));
+	var deductible = nui.get("deductible").getValue();
+	var PrefAmt = nui.get("PrefAmt").getValue();
+		var amount = data.mtAmt-deductible-PrefAmt;
+		nui.get("amount").setValue(amount.toFixed(2));
+	
+
 
 }
 

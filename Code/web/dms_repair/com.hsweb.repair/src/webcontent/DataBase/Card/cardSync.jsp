@@ -10,9 +10,8 @@
 - Description:
   --%>
 <head>
-<title>会员卡录入</title>
-<script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.3"></script>
+<title>储值卡录入</title>
+<script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.4"></script>
 </head>
 <body>
 	<div class="nui-fit">
@@ -33,7 +32,7 @@
 				class="nui-form-table">
 				<tr>
 					<td class="form_label" style="width: 25%" align="right">
-						会员卡名称:</td>
+						储值卡名称:</td>
 					<td colspan="1" style="width: 25%"><input class="nui-textbox"
 						name="name" /> <input class="nui-hidden" name="id"
 						readonly="readonly" /></td>
@@ -62,7 +61,7 @@
 						value="0" onvalidation="updateError()" id="x" /></td>
 					<td class="form_label" align="right" colspan="1">销售提成值:</td>
 					<td colspan="1" style="width: 40%"><input class="nui-textbox" style="width: 60%"
-						name="salesDeductValue" requiredErrorText="元" vtype="range:0,1000 style="width: 40%" /> <span id="y">&nbsp;%</span></td>
+						name="salesDeductValue" requiredErrorText="元" vtype="range:0,1000" style="width: 40%" /> <span id="y">&nbsp;%</span></td>
 				</tr>
 				<tr>
 					</td>

@@ -62,7 +62,7 @@
                             url=""
                              required="true"
                             allowInput="true"
-                            valueFromSelect="true"
+                            valueFromSelect="false"
                             popupHeight="90%"
                           />
 				</td>

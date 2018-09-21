@@ -374,3 +374,15 @@ function del(){
         nui.unmask(document.body);
     });
 }
+
+
+function newCheckMainMore() {  
+    var cNo = nui.get("carNo").value;
+    var item={};
+    item.id = "checkPrecheckMain";
+    item.text = "查车单";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
+    item.iconCls = "fa fa-cog";
+    window.parent.activeTab(item);
+
+}  

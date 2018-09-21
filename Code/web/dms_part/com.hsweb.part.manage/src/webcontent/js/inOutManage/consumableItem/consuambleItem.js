@@ -417,8 +417,8 @@ function onOut() {
 			title : "出库",
 			width : 410,
 			height : 250,
-			allowDrag : true,
-			allowResize : true,
+			allowDrag : false,
+			allowResize : false,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var params = {
@@ -448,8 +448,8 @@ function onBlack() {
 			title : "归库",
 			width : 430,
 			height : 230,
-			allowDrag : true,
-			allowResize : true,
+			allowDrag : false,
+			allowResize : false,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var params = {

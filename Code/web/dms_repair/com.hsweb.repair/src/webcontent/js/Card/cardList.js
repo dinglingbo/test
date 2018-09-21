@@ -5,6 +5,7 @@ var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryCard.biz.ext";
 var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/cardSync.jsp?token="+token;
 var grid = null;
+var xs = 0;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -155,21 +156,29 @@ function onDrawCell(e) {
 }
 //当选择列时
 function selectionChanged() {
-	var rows = grid.getSelecteds();
-	if(currIsMaster!="1"){
-		if(rows[0].isShare=="1"){
-			nui.get('updateBtn').setVisible(false);
-		}else{
-			nui.get('updateBtn').setVisible(true);
-		}
-		
+	var row = grid.getSelected();
+	if(row) return;
+
+	var orgid = row.orgid||0;
+	if(currOrgId == orgid){
+		nui.get('updateBtn').setVisible(false);
 	}else{
-		if(rows[0].isShare=="1"){
-			nui.get('updateBtn').setVisible(true);
-		}else{
-			nui.get('updateBtn').setVisible(false);
-		}
+		nui.get('updateBtn').setVisible(true);
 	}
+	// if(currIsMaster!="1"){
+	// 	if(row.isShare=="1"){
+	// 		nui.get('updateBtn').setVisible(false);
+	// 	}else{
+	// 		nui.get('updateBtn').setVisible(true);
+	// 	}
+		
+	// }else{
+	// 	if(rows[0].isShare=="1"){
+	// 		nui.get('updateBtn').setVisible(true);
+	// 	}else{
+	// 		nui.get('updateBtn').setVisible(false);
+	// 	}
+	// }
 	if(xs==1){
 		mini.get("updateBtn").setVisible(false);
 		mini.get("addBtn").setVisible(false);

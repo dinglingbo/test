@@ -7,7 +7,7 @@
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20  
   - Description: 
--->          
+-->           
   
 <head> 
     <title>出库单</title> 
@@ -117,7 +117,20 @@
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
-        <input class="nui-hidden" name="serviceTypeId"/>
+                    <input name="serviceTypeId"
+            id="serviceTypeId"
+            style="display: none" 
+            class="nui-combobox width1"
+            textField="name"
+            valueField="id"
+            emptyText="请选择业务类型"
+            url=""
+            allowInput="true"
+            showNullItem="false"
+            width="120"
+            valueFromSelect="true"
+            onvaluechanged=""
+            nullItemText="请选择..."/>
         <table  style=" left:0;right:0;margin: 0 auto;"> 
 
             <tr>
@@ -154,15 +167,10 @@
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
                 </td>
-
-
-
             </tr>
             <tr>
-
                 <td class="tbtext">服务顾问:</td>
                 <td class="tbCtrl">
-
                     <input name="mtAdvisorId"
                     id="mtAdvisorId"
                     class="nui-combobox width1"
@@ -205,7 +213,7 @@
      <div header="领料-配件信息">  
         <div property="columns">
             <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
-            <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
+            <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
             <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
             <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
             <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>

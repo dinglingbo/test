@@ -164,7 +164,7 @@
                     </tr>
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
-                        <td><input id="meeting" type="date" value=""/></td>
+                        <td><input id="meeting" type="datetime-local" value=""/></td>
                     </tr>
                 </tbody>
             </table>
@@ -554,20 +554,29 @@
     		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
     		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
     		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
-    		document.getElementById("meeting").value = document.getElementById("date").innerHTML;
+    		if(document.getElementById("date").innerHTML.length > 16){
+    			var value = document.getElementById("date").innerHTML.substring(0, document.getElementById("date").innerHTML.length-3);
+    			document.getElementById("meeting").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("meeting").value = document.getElementById("date").innerHTML.replace(" ","T");
+    		}
     	}
     	
     	function save(){
-    		box_setup_close();date
-    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
-    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
-    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
-    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
-    		document.getElementById("date").innerHTML =  document.getElementById("meeting").value;
+    		if(!document.getElementById("meeting").value){
+    			alert("请将打印时间填写完整。");
+    		}else{
+    			box_setup_close();
+	    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
+	    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
+	    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
+	    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+				document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
+    		}
     	}
     	
     	function box_setup_close(){
-    		$(".boxbg").hide();
+    		$(".boxbg").hide();2
         	$(".popbox").hide();
     	}
     </script>

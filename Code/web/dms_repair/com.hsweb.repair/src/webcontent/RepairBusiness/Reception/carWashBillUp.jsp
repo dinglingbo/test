@@ -12,7 +12,7 @@
 <head>
 <title>洗车工单结算</title>
 <script src
-	="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/carWashBillUp.js?v=1.0.8">
+	="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/carWashBillUp.js?v=1.1.0">
 </script>
 <style type="text/css">
 .vpanel_heading {

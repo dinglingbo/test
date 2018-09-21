@@ -34,7 +34,7 @@ function onOk()
     var req=/^\d*$/;
     
     if (!req.test(node.outQty)){
-	   showMsg("请输入整数");
+	   showMsg("请输入整数","W");
     }
 
     partToOut();

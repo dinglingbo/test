@@ -4,15 +4,17 @@ var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
 var repairOutGrid = null;
 var mid = null;//主表ID
-var mainRow = null; 
+var mainRow = null;  
 
+var servieTypeList = [];
+var servieTypeHash = {};
 var mtAdvisorIdEl = null; 
 var searchKeyEl = null; 
 var servieIdEl = null; 
 var searchNameEl = null;
 var billForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
+var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext";
 var repairOutGridUrl =  baseUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var fserviceId = 0;
 var returnSignData = [{id:0,text:"未归库"},{id:1,text:"已归库"}];
@@ -43,6 +45,21 @@ $(document).ready(function(){
 		var text = mtAdvisorIdEl.getText();
 		nui.get("mtAdvisor").setValue(text);
 	});
+
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+          servieTypeHash[v.id] = v;
+      });
+    });
+
+    mainGrid.on("drawcell", function (e) {
+        if (e.field == "serviceTypeId") {
+            if (servieTypeHash && servieTypeHash[e.value]) {
+                e.cellHtml = servieTypeHash[e.value].name;
+            }
+        }
+    });
 
 	searchKeyEl.on("valuechanged",function(e){
 		var item = e.selected;

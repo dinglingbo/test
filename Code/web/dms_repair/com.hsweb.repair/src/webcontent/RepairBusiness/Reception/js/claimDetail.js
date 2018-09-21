@@ -375,6 +375,12 @@ $(document).ready(function ()
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
                 break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
             default:
                 break;
         }
@@ -425,6 +431,12 @@ $(document).ready(function ()
                 }
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
                 break;
             default:
                 break;
@@ -1878,8 +1890,8 @@ function updateRpsPackage(row_uid){
             }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
-           var rate = row.rate/100;
-           rate = rate.toFixed(4);
+            var rate = row.rate/100;
+            rate = rate.toFixed(4);
             var pkg = {
                 serviceId:row.serviceId,
                 //优惠率除以100

@@ -18,6 +18,7 @@ var canModify=null;
 var rechargeAmt=null;
 var radio=null;
 var text=null;
+var id=null;
 var periodValidity = -1;
 
 $(document).ready(function(){
@@ -40,13 +41,13 @@ function SetData(params) {
     if(params.data!=null){
         guestId=params.data.guestId;
         guestName=params.data.guestFullName;
-        params.data.mobile=params.data.guestMobile
+        params.data.mobile=params.data.guestMobile;
         basicInfoForm.setData(params.data);
     }
 
 
 }
-var url=baseUrl+"com.hsapi.repair.baseData.query.queryCardstored.biz.ext";
+var url=baseUrl+"com.hsapi.repair.baseData.query.queryCardstoredList.biz.ext";
 function getCard(){
 	nui.ajax({
 		url:url,
@@ -57,12 +58,12 @@ function getCard(){
 		type:'post',
 		success: function(data){
 			var cardList=data.cardStoreds;
-			if(cardList && cardList.length>0){
+			if(cardList && cardList.length>0){ 
 				var htmlStr="";
 				for(var i=0;i<cardList.length;i++){
 					var cardObj=cardList[i];
 					var name=cardObj.name;
-					s="<a href='javascript:;' name='card'id='card'>"+name+"</a>";
+					s="<a href='javascript:;' name='card'id='"+cardObj.id+"' >"+name+"</a>";
 					htmlStr +=s;
 				}
 				$(".addyytime").html(htmlStr);
@@ -82,6 +83,7 @@ function selectclick() {
         $(this).siblings().removeClass("xz");
         $(this).toggleClass("xz");
         text=$(this).text();
+        id=$(this).attr("id");
         onCard(text);
     });
 }
@@ -103,8 +105,9 @@ function onCard(text){
 			
 				for(var i=0;i<cardList.length;i++){
 					cardObj=cardList[i];		
-					name=cardObj.name;			
-					if(name==text){
+					name=cardObj.name;
+					var cardId1=cardObj.id;
+					if(id==cardId1){
 						name=text;
 						cardId=cardObj.id;
 //						itemRate=cardObj.itemRate;
@@ -164,6 +167,7 @@ function pay(){
 //			partRate	: partRate,
 			rechargeAmt	: rechargeAmt,
 			totalAmt 	: totalAmt,
+			balaAmt		: totalAmt,
 			periodValidity : periodValidity
 	};
 	stored.push(form);

@@ -100,7 +100,8 @@ function pay(){
 	    			+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ,
 	    			type : "post",
 	    			data : json,
-	    			async: false,
+			        cache : false,
+			        contentType : 'text/json',
 	    			success : function(data) {
 	    				nui.unmask(document.body);
 	    				if(data.errCode=="S"){

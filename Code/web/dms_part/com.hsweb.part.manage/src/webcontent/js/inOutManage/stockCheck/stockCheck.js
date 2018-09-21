@@ -29,6 +29,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var FGuestId = null;
+var partShow = 0;
 
 var storeIdEl = null;
 
@@ -77,6 +78,41 @@ $(document).ready(function(v)
         });
     });
 
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+	  
+	    if((keyCode==78)&&(event.altKey))  {  //新建
+			add();	
+	    } 
+	  
+	    if((keyCode==83)&&(event.altKey))  {   //保存
+			save();
+	    } 
+	  
+	    if((keyCode==80)&&(event.altKey))  {   //打印
+			onPrint();
+	    } 
+	    if((keyCode==113))  {  
+			addMorePart();
+		} 
+		
+		if((keyCode==13))  {  //新建
+            if(partShow == 1) {
+				var row = morePartGrid.getSelected();
+				if(row){
+					addSelectPart();
+				}
+			}
+        } 
+
+        if((keyCode==27))  {  //ESC
+            if(partShow == 1){
+                onPartClose();
+            }
+        }
+	 
+	};
 
 
     gsparams.auditSign = 0;
@@ -929,6 +965,7 @@ function getPartInfo(params){
                 }else{
                     advancedMorePartWin.show();
                     morePartGrid.setData(partlist);
+                    partShow = 1;
                 }
                 
             }else{
@@ -1142,6 +1179,7 @@ function addSelectPart(){
 
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
+        partShow = 0;
     }else{
         showMsg("请选择配件!","W");
         return;
@@ -1151,6 +1189,7 @@ function addSelectPart(){
 function onPartClose(){
     advancedMorePartWin.hide();
     morePartGrid.setData([]);
+    partShow = 0;
 
     var newRow = {comPartCode: oldValue};
     rightGrid.updateRow(oldRow, newRow);
@@ -1168,7 +1207,15 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.auditSign == 1){
         e.cancel = true;
     }
-
+    
+    if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus(); 
+		//var row = morePartGrid.getRow(0);   默认不能选中，回车事件会有影响
+        //if(row){
+        //    morePartGrid.select(row,true);
+        //}
+	}
 }
 function addMorePart(){
     var row = leftGrid.getSelected();
@@ -1189,6 +1236,7 @@ function addMorePart(){
     }
     advancedAddForm.setData([]);
     advancedAddWin.show();
+    partShow = 1;
 }
 function addNewKeyRow(){
     var data = basicInfoForm.getData();

@@ -42,7 +42,6 @@ var advancedMemCardWin = null;
 var memCardGrid = null;
 var sellForm = null;
 var fserviceId = 0;
-var xserviceId = 0;
 var fguestId = 0;
 var fcarId = 0;
 var mpackageRate = 0;
@@ -379,6 +378,12 @@ $(document).ready(function ()
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
                 break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
             default:
                 break;
         }
@@ -429,6 +434,12 @@ $(document).ready(function ()
                 }
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
+                break;
+            case "rate":
+                var value = e.value||"";
+                if(value){
+                    e.cellHtml = e.value + '%';
+                }
                 break;
             default:
                 break;
@@ -638,7 +649,7 @@ function doSetMainInfo(car){
 }
 
 function setInitData(params){
-	xserviceId = params.id;
+    fserviceId = params.id;
 	var data = {
 			packageSubtotal:0,
 			packagePrefAmt:0,
@@ -800,6 +811,7 @@ function add(){
 
     fguestId = 0;
     fcarId = 0;
+    fserviceId = 0;
 
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
@@ -808,6 +820,9 @@ function add(){
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+
+    nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);
 
 }
 function save(){
@@ -819,7 +834,7 @@ function save(){
     saveMaintain(function(data){
  
         if(data.id){
-        	xserviceId = data.id;
+            fserviceId = data.id;
             showMsg("保存成功!","S");
 
             var params = {
@@ -1855,8 +1870,8 @@ function updateRpsPackage(row_uid){
             }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
-           var rate = row.rate/100;
-           rate = rate.toFixed(4);
+            var rate = row.rate/100;
+            rate = rate.toFixed(4);
             var pkg = {
                 serviceId:row.serviceId,
                 //优惠率除以100
@@ -2429,12 +2444,12 @@ function showCarCheckInfo(){
 function pay(){
 	
 	var data = sellForm.getData();
-	if(xserviceId==0||xserviceId==null){
+	if(fserviceId==0||fserviceId==null){
 		nui.alert("请添加客户","提示");
 		return;
 	}
 	var json = {
-			fserviceId:xserviceId,
+			fserviceId:fserviceId,
 			data:data,
 			xyguest:xyguest,
 	}
@@ -3179,7 +3194,7 @@ function addExpenseAccount(){
 		data.serviceCode = $("#servieIdEl").text();
 		window.parent.activeTabAndInit(item,data);
 	}else{
-		showMsg("请先保存后再进行操作。","W");
+		showMsg("请先保存后再进行操作!","W");
 	}
 }
 

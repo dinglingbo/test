@@ -81,7 +81,41 @@ $(document).ready(function(v)
         });
     });
 
-    
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+	  
+	    if((keyCode==78)&&(event.altKey))  {  //新建
+			add();	
+	    } 
+	  
+	    if((keyCode==83)&&(event.altKey))  {   //保存
+			save();
+	    } 
+	  
+	    if((keyCode==80)&&(event.altKey))  {   //打印
+			onPrint();
+	    } 
+	    if((keyCode==113))  {  
+			addMorePart();
+		} 
+		
+		if((keyCode==13))  {  //新建
+            if(partShow == 1) {
+				var row = morePartGrid.getSelected();
+				if(row){
+					addSelectPart();
+				}
+			}
+        } 
+
+        if((keyCode==27))  {  //ESC
+            if(partShow == 1){
+                onPartClose();
+            }
+        }
+	 
+	};
 
     gsparams.auditSign = 0;
     quickSearch(0);
@@ -1104,6 +1138,15 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.codeId && data.codeId>0){
         e.cancel = true;
     }
+    if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus();
+		//var row = morePartGrid.getRow(0);   默认不能选中，回车事件会有影响
+        //if(row){
+        //    morePartGrid.select(row,true);
+        //}
+	}
+
 
 }
 function addMorePart(){

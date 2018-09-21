@@ -525,7 +525,6 @@ function doNoPay(serviceId,allowanceAmt){
 					+ "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
 					type : "post",
 					data : json,
-					async: false,
 					success : function(data) {
 						if(data.errCode=="S"){
 							nui.unmask(document.body);

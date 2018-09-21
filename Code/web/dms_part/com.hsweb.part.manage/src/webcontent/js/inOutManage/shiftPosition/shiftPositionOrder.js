@@ -29,6 +29,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var FGuestId = null;
+var partShow = 0;
 
 var storeIdEl = null;
 var receiveStoreIdEl = null;
@@ -81,7 +82,41 @@ $(document).ready(function(v)
         });
     });
 
-    
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+	  
+	    if((keyCode==78)&&(event.altKey))  {  //新建
+			add();	
+	    } 
+	  
+	    if((keyCode==83)&&(event.altKey))  {   //保存
+			save();
+	    } 
+	  
+	    if((keyCode==80)&&(event.altKey))  {   //打印
+			onPrint();
+	    } 
+	    if((keyCode==113))  {  
+			addMorePart();
+		} 
+		
+		if((keyCode==13))  {  //新建
+            if(partShow == 1) {
+				var row = morePartGrid.getSelected();
+				if(row){
+					addSelectPart();
+				}
+			}
+        } 
+
+        if((keyCode==27))  {  //ESC
+            if(partShow == 1){
+                onPartClose();
+            }
+        }
+	 
+	};
 
     gsparams.auditSign = 0;
     quickSearch(0);
@@ -97,7 +132,12 @@ $(document).ready(function(v)
             addNewRow(true);
         }
     });
-
+    
+    $("#orderQty").bind("keydown", function (e) {
+    	if (e.keyCode == 13) {
+            addNewRow(true);
+        }
+    });
 });
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
@@ -871,6 +911,8 @@ function getPartInfo(params){
                 }else{
                     advancedMorePartWin.show();
                     morePartGrid.setData(partlist);
+					partShow = 1;
+					event.keyCode = null;
                 }
                 
             }else{
@@ -1074,6 +1116,9 @@ function addSelectPart(){
 
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
+        partShow = 0;
+        var orderQty = nui.get("orderQty");
+		orderQty.focus();
     }else{
         showMsg("请选择配件!","W");
         return;
@@ -1083,6 +1128,9 @@ function addSelectPart(){
 function onPartClose(){
     advancedMorePartWin.hide();
     morePartGrid.setData([]);
+    partShow = 0;
+    var orderQty = nui.get("orderQty");
+	orderQty.focus();
 
     var newRow = {comPartCode: oldValue};
     rightGrid.updateRow(oldRow, newRow);
@@ -1104,6 +1152,15 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.codeId && data.codeId>0){
         e.cancel = true;
     }
+    if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus();
+		//var row = morePartGrid.getRow(0);   默认不能选中，回车事件会有影响
+        //if(row){
+        //    morePartGrid.select(row,true);
+        //}
+	}
+
 
 }
 function addMorePart(){
@@ -1125,6 +1182,7 @@ function addMorePart(){
     }
     advancedAddForm.setData([]);
     advancedAddWin.show();
+    partShow = 1;
 }
 function addNewKeyRow(){
     var data = basicInfoForm.getData();

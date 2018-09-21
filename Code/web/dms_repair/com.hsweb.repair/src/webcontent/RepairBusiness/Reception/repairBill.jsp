@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.3.5"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.3.6"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -312,46 +312,46 @@
                 <td class="title">
                     <label>套餐金额：</label>
                 </td>
-                <td style="width:50px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
+                <td style="width:80px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
                 </td>
                 <td class="title">
                     <label>套餐优惠：</label>
                 </td>
-                <td style="width:50px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
+                <td style="width:80px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
                 </td>
                 <td class="title">
                     <label>工时金额：</label>
                 </td>
-                <td style="width:50px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
+                <td style="width:80px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
                 </td>
                 <td class="title">
                     <label>工时优惠：</label>
                 </td>
-                <td style="width:50px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
+                <td style="width:80px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
                 </td>
             </tr>
             <tr>
                 <td class="title">
                     <label>配件金额：</label>
                 </td>
-                <td style="width:50px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="partSubtotal" name="partSubtotal"/>
+                <td style="width:80px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="partSubtotal" name="partSubtotal"/>
                 </td>
                 <td class="title">
                     <label>配件优惠：</label>
                 </td>
-                <td style="width:50px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" enabled="false" width="100%" id="partPrefAmt" name="partPrefAmt"/>
+                <td style="width:80px;">
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="partPrefAmt" name="partPrefAmt"/>
                 </td>
                 <td class="title required">
                     <label>应收总计：</label>
                 </td>
                 <td colspan="3" style="width:50px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:16px;" inputStyle="" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" inputStyle="" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
                 </td>
             </tr>
         </table>
@@ -427,7 +427,7 @@
     showHeader="false"
     allowResize="false"
     allowDrag="false">
-<div class="nui-fit" id="show1" style="display: ;">
+<div class="nui-fit" id="show1" >
     <table style="width: 100%;background-color: #eef1f4">
         <tr style="height: 40px;">
             <td class="">

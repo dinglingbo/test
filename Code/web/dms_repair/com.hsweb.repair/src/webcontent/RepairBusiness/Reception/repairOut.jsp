@@ -8,7 +8,7 @@
   - Date: 2018-01-25 14:17:08
   - Description:     
 -->
- 
+
 <head>
   <title>维修出库</title>  
   <style type="text/css">
@@ -159,22 +159,10 @@ a {
 
 
     mainGrid.on("drawcell", function (e) {
-        if (e.field == "status") {
-            //e.cellHtml = statusHash[e.value];
-        }else if (e.field == "carBrandId") {
-            //if (brandHash && brandHash[e.value]) {
-            //    e.cellHtml = brandHash[e.value].name;
-            //}
-        }else if (e.field == "serviceTypeId") {
+        if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
-              e.cellHtml = servieTypeHash[e.value].name;
-          }
-      }else if(e.field == "isSettle"){
-            //if(e.value == 1){
-            //  e.cellHtml = "已结算";
-            //}else{
-            //  e.cellHtml = "未结算";
-            //}
+                e.cellHtml = servieTypeHash[e.value].name;
+            }
         }
     });
 

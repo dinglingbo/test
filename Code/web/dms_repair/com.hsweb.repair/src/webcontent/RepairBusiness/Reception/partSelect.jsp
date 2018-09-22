@@ -134,12 +134,15 @@
             };
         }
         mainGrid.load({params:params,token:token});
+
+    }
+
+    mainGrid.on("load",function(e){
         var tdata = mainGrid.getData();
         if(tdata.length < 1){
             showMsg('该配件没有剩余库存!','W');
         }
-    }
-
+    });
     function onOk(){
         var sum_out = 0;
         var data = mainGrid.getData();
@@ -151,10 +154,10 @@
                 }
             }
 
-                            if(!sum_out){
-                    showMsg('请先填写领料数量!','W');
-                    return;
-                }
+            if(!sum_out){
+                showMsg('请先填写领料数量!','W');
+                return;
+            }
             nui.open({
                 url:webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
                 title:"选择领料人",

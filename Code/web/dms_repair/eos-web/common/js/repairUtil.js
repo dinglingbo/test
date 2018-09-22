@@ -417,7 +417,7 @@ function SelectCustomer(params)
     });
 }
 
-var getAllPartBrandUrl = window._rootUrl
+var getAllPartBrandUrl = window._rootPartUrl
 + "com.hsapi.part.common.svr.getAllPartBrand.biz.ext";
 function getAllPartBrand(callback)
 {

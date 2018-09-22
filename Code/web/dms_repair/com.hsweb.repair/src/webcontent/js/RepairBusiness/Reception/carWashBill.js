@@ -1077,9 +1077,11 @@ function unfinish(){
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
                 var maintain = data.main||{};
+                var olddata = billForm.getData();
+                olddata.status = 1;
                 billForm.setData([]);
-                billForm.setData(maintain);
-                var status = maintain.status||0;
+                billForm.setData(olddata);
+                var status = 1;
                 var isSettle = maintain.isSettle||0;
                 doSetStyle(status, isSettle);
                 showMsg("返工成功!","S");

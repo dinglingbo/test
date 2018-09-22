@@ -1,4 +1,4 @@
-var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + repairApi + "/";
 var payType=0;
 
 var basicInfoForm=null;
@@ -126,11 +126,11 @@ function onCard(text){
 						nui.get('totalAmt').setValue(totalAmt);
 						if(canModify==0){
 							$('table#table input').attr("disabled",true);
-							showMsg("此卡不可修改");
+							showMsg("此卡不可修改",W);
 						}
 						else{
 							$('table#table input').attr("disabled",false);
-							showMsg("此卡可修改");
+							showMsg("此卡可修改",S);
 						}
 					}
 					
@@ -150,7 +150,7 @@ function onCard(text){
 var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";
 function pay(){
 	if(payType==0){
-		showMsg("请选择支付方式");
+		showMsg("请选择支付方式",W);
 		return;
 	}
 	var stored=[];

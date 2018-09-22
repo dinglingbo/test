@@ -129,7 +129,8 @@
 
   function setInitData(params){
     var pa={
-      carNo:nui.get("cNo").value
+      carNo:nui.get("cNo").value,
+      orgid:currOrgId
     }; 
     mainGrid.load({ 
       params:pa, 
@@ -179,7 +180,7 @@
     //window.parent.activeTab(item);
     var params = {};
     params = { 
-      id:data.service_id,
+      id:data.serviceId,
       actionType:"view"
     };
     window.parent.activeTabAndInit(item,params);

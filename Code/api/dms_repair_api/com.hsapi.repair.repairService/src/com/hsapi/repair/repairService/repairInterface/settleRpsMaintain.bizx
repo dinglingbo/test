@@ -93,6 +93,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link30" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="284" y="339"/>
@@ -105,10 +106,6 @@
     <process:copy>
       <process:from type="expression" pattern="reference">cardPkgAmt+cardItemAmt+cardPartAmt</process:from>
       <process:to type="query">cardTimesPayAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">allowanceAmt+cardPayAmt+payAmt</process:from>
-      <process:to type="query">balaAmtC</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">

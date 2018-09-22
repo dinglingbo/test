@@ -5,7 +5,7 @@ var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;  
 var mid = null; 
 var mtAdvisorIdEl = null;        
-var searchKeyEl = null;           
+var searchKeyEl = null;            
 var servieIdEl = null;        
 var searchNameEl = null;  
 var billForm = null; 
@@ -682,14 +682,17 @@ function ValueChanged(e) {
 
 
 
-function SearchCheckMain(serviceId) { 
+function SearchCheckMain(sId) { 
     var  t = {};
+    var pa ={
+        serviceId:sId
+    };
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
         type:"post",
         async: false,
         data:{ 
-            serviceId:serviceId
+            params:pa
         },
         cache: false,
         success: function (text) {  
@@ -706,7 +709,7 @@ function SearchCheckMain(serviceId) {
 function newCheckMainMore() {  
     var cNo = nui.get("carNo").value;
     var item={};
-    item.id = "checkPrecheckMain";
+    item.id = "1103";
     item.text = "查车单";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
     item.iconCls = "fa fa-cog";

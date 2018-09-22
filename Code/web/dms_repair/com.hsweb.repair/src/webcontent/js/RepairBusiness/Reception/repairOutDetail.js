@@ -1,5 +1,6 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
+var partUrl = apiPath + partApi + "/";
 
 var mainGrid = null;
 var repairOutGrid = null;
@@ -15,7 +16,7 @@ var searchNameEl = null;
 var billForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext";
-var repairOutGridUrl =  baseUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
+var repairOutGridUrl =  partUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var fserviceId = 0;
 var returnSignData = [{id:0,text:"未归库"},{id:1,text:"已归库"}];
 $(document).ready(function(){

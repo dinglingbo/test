@@ -1,8 +1,9 @@
 
-var baseUrl = apiPath + repairApi + "/"; 
-var notStatementUrl = baseUrl + "com.hsapi.part.invoice.settle.queryOrderBill.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
+var baseUrl = apiPath + frmApi + "/"; 
+var partBaseUrl = apiPath + partApi + "/";
+var notStatementUrl = partBaseUrl + "com.hsapi.part.invoice.settle.queryOrderBill.biz.ext";
+var innerPchsGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+var innerSellGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var notStatementGrid = null;
 var leftGrid = null;
 var rightGrid = null;

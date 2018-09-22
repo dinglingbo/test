@@ -2428,7 +2428,7 @@ function showBillInfo(){
   nui.open({
     url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
     width: "800",
-    height: "1000",
+    height: "100%",
     showMaxButton: false,
     allowResize: false,
     showHeader: true,

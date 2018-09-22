@@ -122,7 +122,6 @@ function getSearchParam() {
 
     if (d == 0) {
         params.today = 1;
-   //这种写法不懂，特便是方法不知道
         params.startDate = getNowStartDate();
         params.endDate = addDate(getNowEndDate(), 1);
     } else if (d == 1) {

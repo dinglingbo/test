@@ -87,7 +87,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
             </div>
             <div class="nui-fit" >
-                <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                <div id="partGrid" class="nui-datagrid" style="float:left;width:100%;height:100%;"
                      frozenStartColumn="0"
                      frozenEndColumn="6"
                      borderStyle="border:0;"
@@ -149,9 +149,35 @@
                         </div>
                     </div>
                 </div>
+            	
+            	<div id="splitDiv" style="float:left;width:1%;height:100%;display:none"></div>
+                <div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
+                  showPager="false"
+                  pageSize="1000"
+                  selectOnLoad="true"
+                  showModified="false"
+                  onrowdblclick=""
+                  multiSelect="true"
+                  dataField="parts"
+                  url="">
+                  <div property="columns" >
+                    <div type="indexcolumn" width="20px" headerAlign="center">序号</div>
+                    <div header="已添加配件" headerAlign="left">
+                      <div property="columns">
+                        <div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
+                          width="20" headerAlign="center" header="">操作
+                        </div>
+                        <div field="partName" headerAlign="center" allowSort="true" width="80px">配件名称</div>
+                        <div field="unitPrice" headerAlign="center" allowSort="true" width="20px">金额</div>                
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+            	
 </body>
 </html>

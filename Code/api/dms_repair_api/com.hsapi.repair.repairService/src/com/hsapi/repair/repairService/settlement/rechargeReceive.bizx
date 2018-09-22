@@ -1606,7 +1606,7 @@
     <figSize height="17" width="49"/>
     <node>subprocess5</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign16" name="赋值16" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link60" name="link60" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
       <targetNode>assign13</targetNode>

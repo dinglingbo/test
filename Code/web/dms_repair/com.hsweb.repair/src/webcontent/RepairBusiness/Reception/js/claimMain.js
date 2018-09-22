@@ -306,7 +306,7 @@ function getSearchParam() {
     if(document.getElementById("advancedMore").style.display=='block'){
         params.sEnterDate = beginDateEl.getValue();
         params.eEnterDate = endDateEl.getValue();
-        params.mtAuditor = mtAdvisorIdEl.getValue();
+        params.mtAuditorId = mtAdvisorIdEl.getValue();
         params.serviceTypeId = serviceTypeIdEl.getValue();
     }
     var type = nui.get("search-type").getValue();

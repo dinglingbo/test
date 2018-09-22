@@ -8,7 +8,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.23"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -115,6 +115,7 @@
                        width="100%"
                        allowInput="true"
                        showNullItem="false"
+                       popupHeight="100%"
                        nullItemText="请选择..."/>
                     </td>
                     <td class=" right fwidthb required">编码:</td>
@@ -139,6 +140,7 @@
                         url=""
                         width="100%"
                         allowInput="true"
+                        popupHeight="100%"
                         showNullItem="false"
                         nullItemText="请选择..."/>
                     </td><!-- 
@@ -177,6 +179,7 @@
                        width="100%"
                        allowInput="true"
                        showNullItem="false"
+                       popupHeight="100%"
                        nullItemText="请选择..."/>
                      </td>
                      <td colspan="6">

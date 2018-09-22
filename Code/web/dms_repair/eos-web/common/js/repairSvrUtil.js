@@ -297,6 +297,23 @@ function doSelectCustomer(callback) {
     });
 }
 
+function doShowCarInfo(params) {
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
+        width: 800, height: 500,
+		allowResize: false,
+		showHeader: true,
+        onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+            }
+        }
+    });
+}
+
 function doSelectItem(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,

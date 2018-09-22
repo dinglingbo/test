@@ -674,53 +674,99 @@
 	</select>	    
 	
 	
-	   <select id="queryLastCheckMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-	   
-	   select * from rps_check_main
-where 1=1
-
-<isNotEmpty prepend="and" property="carNo">  
- car_no = #carNo#
-</isNotEmpty>
-<isNotEmpty prepend="and" property="endDate">  
-record_date &lt;  #endDate#
-</isNotEmpty>
-ORDER BY record_date DESC
-limit 1
-	   	</select>
+    <select id="queryLastCheckMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   
+	    select a.id as id,
+				a.service_id as serviceId,
+				a.car_id as carId,
+				a.car_no as carNo,
+				a.check_main_id  as checkMainId,
+				a.check_main_name as checkMainName,
+				a.check_status as checkStatus,
+				a.enter_kilometers as enterKilometers,
+				a.last_kilometers as lastKilometers,
+				a.mt_advisor_id as mtAdvisorId,
+				a.mt_advisor as mtAdvisor,
+				a.check_man_id as checkManId,
+				a.check_man AS checkMan,
+				a.check_date AS checkDate,
+				a.is_finish AS isFinish,
+				a.finish_date AS finishDate,
+				a.check_point AS checkPoint,
+				a.last_point AS lastPoint,
+				a.repair_advice AS repairAdvice,
+				a.part_advice AS partAdvice,
+				a.remark AS remark,
+				a.recorder AS recorder,
+				a.record_date AS recordDate,
+				a.modifier AS modifier,
+				a.modify_date AS modifyDate
+	    from rps_check_main A
+		where 1=1
+		
+		<isNotEmpty prepend="and" property="carNo">  
+		 A.car_no = #carNo#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endDate">  
+		A.record_date &lt;  #endDate#
+		</isNotEmpty>
+		ORDER BY record_date DESC
+		limit 1
+   	 </select>
 	   	
 	   	
-	   		   <select id="queryCheckMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-	   		   select 
-A.*,
-B.service_code serviceCode,
-C.mobile guestMobile ,
-C.full_name  guestFullName,
-D.car_model carModel
-
-from rps_check_main A
-LEFT JOIN rps_maintain B on B.id = A.service_id
-inner join wb_common.com_guest C on C.id = B.guest_id
-inner join rpb_car D on D.id = B.car_id
-where 1=1
-<isNotEmpty prepend="and" property="orgid">  
-B.orgid = #orgid#
-</isNotEmpty>
-
-<isNotEmpty prepend="and" property="carNo">  
-A. car_no = #carNo#
-</isNotEmpty>
-
-<isNotEmpty prepend="and" property="guestName">  
-C.full_name = #guestName#
-</isNotEmpty>
-
-<isNotEmpty prepend="and" property="serviceCode">  
-B.service_code = #serviceCode#
-</isNotEmpty>
-
-ORDER BY A.record_date DESC
-	   		   
-	   		   
-	   		     	</select>
+   	 <select id="queryCheckMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   		   	select 
+				a.id as id,
+				a.service_id as serviceId,
+				a.car_id as carId,
+				a.car_no as carNo,
+				a.check_main_id  as checkMainId,
+				a.check_main_name as checkMainName,
+				a.check_status as checkStatus,
+				a.enter_kilometers as enterKilometers,
+				a.last_kilometers as lastKilometers,
+				a.mt_advisor_id as mtAdvisorId,
+				a.mt_advisor as mtAdvisor,
+				a.check_man_id as checkManId,
+				a.check_man AS checkMan,
+				a.check_date AS checkDate,
+				a.is_finish AS isFinish,
+				a.finish_date AS finishDate,
+				a.check_point AS checkPoint,
+				a.last_point AS lastPoint,
+				a.repair_advice AS repairAdvice,
+				a.part_advice AS partAdvice,
+				a.remark AS remark,
+				a.recorder AS recorder,
+				a.record_date AS recordDate,
+				a.modifier AS modifier,
+				a.modify_date AS modifyDate,
+				B.service_code serviceCode,
+				C.mobile guestMobile ,
+				C.full_name  guestFullName,
+				D.car_model carModel
+			from rps_check_main A
+			LEFT JOIN rps_maintain B on B.id = A.service_id
+			inner join wb_common.com_guest C on C.id = B.guest_id
+			inner join rpb_car D on D.id = B.car_id
+			where 1=1
+			<isNotEmpty prepend="and" property="orgid">  
+			B.orgid = #orgid#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="carNo">  
+			A. car_no like '%$carNo$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="guestName">  
+			C.full_name like '%$guestName$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="serviceCode">  
+			B.service_code like '%$serviceCode$%'
+			</isNotEmpty>
+			
+			ORDER BY A.modify_date DESC
+      </select>
 </sqlMap>

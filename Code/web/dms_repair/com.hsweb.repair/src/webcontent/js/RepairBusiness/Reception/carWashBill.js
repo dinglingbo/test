@@ -224,16 +224,18 @@ $(document).ready(function ()
 
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        nui.get("checkManId").setData(memList); 
     });
+
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
             servieTypeHash[v.id] = v;
         });
     });
-    initMember("checkManId",function(){
+/*    initMember("checkManId",function(){
        
-    });
+    });*/
     
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
@@ -3394,3 +3396,15 @@ function SearchLastCheckMain() {
  
 }
 
+
+
+function newCheckMainMore() {  
+    var cNo = nui.get("carNo").value;
+    var item={};
+    item.id = "checkPrecheckMain";
+    item.text = "查车单";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
+    item.iconCls = "fa fa-cog";
+    window.parent.activeTab(item);
+
+}  

@@ -703,6 +703,10 @@ LEFT JOIN rps_maintain B on B.id = A.service_id
 inner join wb_common.com_guest C on C.id = B.guest_id
 inner join rpb_car D on D.id = B.car_id
 where 1=1
+<isNotEmpty prepend="and" property="orgid">  
+B.orgid = #orgid#
+</isNotEmpty>
+
 <isNotEmpty prepend="and" property="carNo">  
 A. car_no = #carNo#
 </isNotEmpty>

@@ -103,12 +103,10 @@
     var data = form.getData();
     mainGrid.load({
       params:data,
-
+      orgid: currOrgId,
       token:token
     });
   }
-
-  
 
   function selectModel(){
  /*   nui.open({

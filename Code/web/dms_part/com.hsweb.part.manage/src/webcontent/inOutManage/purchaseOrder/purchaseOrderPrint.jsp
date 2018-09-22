@@ -61,15 +61,7 @@ table{
 	height :35px;
 
 }
-.print_btn{
-	margin-top:15px;
-	margin-bottom:15px;
-	font-color:yellow;
-}
-#print{
-	width:60px;
-	height:30px;
-}
+
 .mini-button{
 	text-align: center;
     padding-top: 8px;
@@ -78,6 +70,28 @@ table{
 }
 #getMan{
 	text-align:left;
+}
+.print_btn {
+    text-align: center;
+    width: 100%;
+    padding: 30px 0 20px 0;
+}
+
+.print_btn a {
+    width: 160px;
+    height: 42px;
+    display: inline-block;
+    background: #578ccd;
+    line-height: 42px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.print_btn a:active, .print_btn a:hover {
+    background: #df0024;
 }
 </style>
 <title>采购订单打印</title>
@@ -90,7 +104,7 @@ table{
         <div class="nui-fit" height="100%">
         	<div>
         		<div align="center" class="print_btn">
-			      <a class="nui-button"  id="print" href="javascript:void(0)" style=" background: red;">打印</a>
+			      <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
 			    </div>
         		<table id="" width="100%">
 				  <tr style="font-size:25px;">

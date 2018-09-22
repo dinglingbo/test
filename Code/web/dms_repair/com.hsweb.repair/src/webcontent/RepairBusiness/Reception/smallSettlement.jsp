@@ -73,6 +73,10 @@
         }
     </style>
 <body>
+<div class="print_btn">
+        <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
+</div>
+<div style="height:5px"></div>
 <table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td align="center">
@@ -169,7 +173,11 @@
     	nui.parse();
 		
 		$(document).ready(function (){
-    	}); 
+			$("#print").click(function () {
+	            $(".print_btn").hide();
+	            window.print();
+	        }); 
+        });; 
     	
     	function SetData(params){
     		nui.ajax({
@@ -304,9 +312,9 @@
 	                   			var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[name]",data[i].partName)
-				    				.replace("[sal]",data[i].amt));
+				    				.replace("[sal]",data[i].subtotal));
 				    			tBody.append(tr);
-				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].amt);
+				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
 	                   		}
 	                   }
 	                },

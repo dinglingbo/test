@@ -142,8 +142,9 @@ a {
            name:nui.get("name").value,
             //sdate:sdate,
             //eEnterDate:edate,
-            status:tstatus.value
+            status:tstatus.value,
             //isSettle:isSettle.value
+            token:token
         };
         mainGrid.load({params:params});
     }

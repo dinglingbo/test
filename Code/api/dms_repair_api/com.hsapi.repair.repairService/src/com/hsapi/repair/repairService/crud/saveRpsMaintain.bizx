@@ -989,7 +989,7 @@
     <figSize height="17" width="39"/>
     <node>assign24</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>transactionbegin0</targetNode>

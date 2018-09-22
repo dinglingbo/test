@@ -399,8 +399,12 @@ function save(){
         },
         success: function(text) {
         	nui.unmask(document.body);
-        	nui.get("rid").setValue(text.mainId);
-        	showGridMsg(text.mainId);
+        	if(text.errMsg){
+        		showMsg(text.errMsg,"W");
+        	}else{
+        		nui.get("rid").setValue(text.mainId);
+            	showGridMsg(text.mainId);
+        	}
         }
     });
 }

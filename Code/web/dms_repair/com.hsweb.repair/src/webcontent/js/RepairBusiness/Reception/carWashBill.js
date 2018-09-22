@@ -224,16 +224,18 @@ $(document).ready(function ()
 
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        nui.get("checkManId").setData(memList); 
     });
+
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
             servieTypeHash[v.id] = v;
         });
     });
-    initMember("checkManId",function(){
+/*    initMember("checkManId",function(){
        
-    });
+    });*/
     
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
@@ -2104,6 +2106,11 @@ function chooseItem(){
         showMsg("请选择保存工单!","S");
         return;
     }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能添加工时!","W");
+        return;
+    }
     if(isSettle == 1){
         showMsg("此单已结算,不能添加工时!","S");
         return;
@@ -2127,6 +2134,11 @@ function choosePackage(){
     var isSettle = main.isSettle||0;
     if(!main.id){
         showMsg("请选择保存套餐!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能添加套餐!","W");
         return;
     }
     if(isSettle == 1){
@@ -2315,6 +2327,11 @@ function choosePart(){
         showMsg("请选择保存工单!","S");
         return;
     }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能添加配件!","W");
+        return;
+    }
     if(isSettle == 1){
         showMsg("此单已结算,不能添加配件!","S");
         return;
@@ -2419,23 +2436,12 @@ function onPrint(e){
 function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
-     carId : main.carId,
-     guestId : main.guestId
- };
- if(main.id){
-  nui.open({
-    url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
-    width: "800",
-    height: "1000",
-    showMaxButton: false,
-    allowResize: false,
-    showHeader: true,
-    onload: function() {
-        var iframe = this.getIFrameEl();
-        iframe.contentWindow.SetData(params);
-    },
-});
-}
+        carId : main.carId,
+        guestId : main.guestId
+    };
+    if(main.id){
+        doShowCarInfo(params);
+    }
 }
 
 
@@ -3394,3 +3400,15 @@ function SearchLastCheckMain() {
  
 }
 
+
+
+function newCheckMainMore() {  
+    var cNo = nui.get("carNo").value;
+    var item={};
+    item.id = "checkPrecheckMain";
+    item.text = "查车单";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
+    item.iconCls = "fa fa-cog";
+    window.parent.activeTab(item);
+
+}  

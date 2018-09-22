@@ -117,11 +117,11 @@
     <chidren>invokePojo1</chidren>
     <chidren>invokePojo3</chidren>
     <chidren>assign8</chidren>
-    <chidren>subprocess3</chidren>
     <chidren>assign13</chidren>
     <chidren>assign14</chidren>
     <chidren>assign15</chidren>
-    <chidren>subprocess2</chidren>
+    <chidren>subprocess0</chidren>
+    <chidren>subprocess1</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
@@ -361,7 +361,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
-      <targetNode>subprocess3</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="459" y="97"/>
@@ -376,7 +376,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <location x="459" y="240"/>
@@ -604,32 +604,6 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="生成应收单号" displayName="getCompBillNO" collapsed="false" grouped="true" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess3</sourceNode>
-      <targetNode>assign15</targetNode>
-    </sourceConnections>
-    <targetConnections>link19</targetConnections>
-    <location x="525" y="97"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.frm.com.uniq.getCompBillNO</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">RPR</process:inputVariable>
-        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="502" y="132"/>
-    <figSize height="17" width="73"/>
-    <node>subprocess3</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
@@ -829,32 +803,6 @@
     <figSize height="17" width="39"/>
     <node>assign15</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="生成应付单号" displayName="getCompBillNO" collapsed="false" grouped="true" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess2</sourceNode>
-      <targetNode>assign14</targetNode>
-    </sourceConnections>
-    <targetConnections>link33</targetConnections>
-    <location x="525" y="240"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.frm.com.uniq.getCompBillNO</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">RPP</process:inputVariable>
-        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="502" y="275"/>
-    <figSize height="17" width="73"/>
-    <node>subprocess2</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getNowMonth" displayName="getNowMonth" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
@@ -926,6 +874,58 @@
     <location x="-26" y="209"/>
     <figSize height="17" width="73"/>
     <node>invokePojo6</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="生成应付单号" displayName="getCompBillNO" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign14</targetNode>
+    </sourceConnections>
+    <targetConnections>link33</targetConnections>
+    <location x="535" y="240"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uniq.getCompBillNO</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">RPP</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="512" y="275"/>
+    <figSize height="17" width="73"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="生成应收单号" displayName="getCompBillNO" collapsed="false" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign15</targetNode>
+    </sourceConnections>
+    <targetConnections>link19</targetConnections>
+    <location x="525" y="97"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uniq.getCompBillNO</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">RPR</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="502" y="132"/>
+    <figSize height="17" width="73"/>
+    <node>subprocess1</node>
   </nodes>
   <topRuler/>
   <leftRuler>

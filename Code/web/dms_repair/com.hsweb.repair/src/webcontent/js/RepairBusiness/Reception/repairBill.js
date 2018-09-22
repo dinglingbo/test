@@ -2090,6 +2090,11 @@ function chooseItem(){
         showMsg("请选择保存工单!","S");
         return;
     }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能添加工时!","W");
+        return;
+    }
     if(isSettle == 1){
         showMsg("此单已结算,不能添加工时!","S");
         return;
@@ -2113,6 +2118,11 @@ function choosePackage(){
     var isSettle = main.isSettle||0;
     if(!main.id){
         showMsg("请选择保存套餐!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能添加套餐!","W");
         return;
     }
     if(isSettle == 1){
@@ -2301,6 +2311,11 @@ function choosePart(){
         showMsg("请选择保存工单!","S");
         return;
     }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能添加配件!","W");
+        return;
+    }
     if(isSettle == 1){
         showMsg("此单已结算,不能添加配件!","S");
         return;
@@ -2406,18 +2421,7 @@ function showBillInfo(){
 			guestId : main.guestId
 	};
 	if(main.id){
-		nui.open({
-            url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
-            width: "800",
-            height: "1000",
-            showMaxButton: false,
-			allowResize: false,
-            showHeader: true,
-            onload: function() {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.SetData(params);
-            },
-        });
+		doShowCarInfo(params);
 	}
 }
 
@@ -2855,8 +2859,6 @@ function onValueChangedPartQty(e){
 	    setSubtotal.setValue(subtotal);
 	    setQty.setValue(qty);
 	}	
-	
-	
 }
 
 function onValueChangedpartUnitPrice(e){	

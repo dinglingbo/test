@@ -563,20 +563,16 @@
     	}
     	
     	function save(){
-    		if(!document.getElementById("meeting").value){
-    			alert("请将打印时间填写完整。");
-    		}else{
-    			box_setup_close();
-	    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
-	    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
-	    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
-	    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
-				document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
-    		}
+			box_setup_close();
+    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
+    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
+    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
+    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
     	}
     	
     	function box_setup_close(){
-    		$(".boxbg").hide();2
+    		$(".boxbg").hide();
         	$(".popbox").hide();
     	}
     </script>

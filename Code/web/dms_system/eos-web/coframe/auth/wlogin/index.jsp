@@ -75,7 +75,7 @@
 
 <div class="container">
     <div class="navbar">
-        <div class="navbar-brand">洗美工坊</div>
+        <div class="navbar-brand">管理系统</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
@@ -114,7 +114,7 @@
         <div id="mainTabs" class="mini-tabs indexTabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
                 buttons="#tabsButtons" arrowPosition="side" ontabload="ontabload">
             <div name="index" iconCls="fa-home" title="首页">
-                    <iframe id="formIframe" src="<%=request.getContextPath()%>/purchase/Index/TextIndex.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+                    <iframe id="formIframe" src="<%=request.getContextPath()%>/common/Index/TextIndex.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             </div>
         </div>
         <div id="tabsButtons">
@@ -205,7 +205,7 @@
         var tab = tabs.getActiveTab();
          
         if(tab.name == "index") {
-        	tab.url = "/default/purchase/Index/TextIndex.jsp";
+        	tab.url = defDomin + "/common/Index/TextIndex.jsp";
         }
         tabs.loadTab(tab.url, tab);
     }

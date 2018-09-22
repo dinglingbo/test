@@ -225,8 +225,8 @@ $(document).ready(function ()
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
         nui.get("checkManId").setData(memList); 
-    });
-
+    }); 
+  
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -1077,9 +1077,11 @@ function unfinish(){
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
                 var maintain = data.main||{};
+                var olddata = billForm.getData();
+                olddata.status = 1;
                 billForm.setData([]);
-                billForm.setData(maintain);
-                var status = maintain.status||0;
+                billForm.setData(olddata);
+                var status = 1;
                 var isSettle = maintain.isSettle||0;
                 doSetStyle(status, isSettle);
                 showMsg("返工成功!","S");
@@ -2067,6 +2069,8 @@ function updateRpsPart(row_uid){
                 part.qty = row.qty;
                 part.subtotal = row.subtotal;
                 part.serviceTypeId = row.serviceTypeId;
+                part.rate = parseFloat(row.rate)/100;
+                part.unitPrice = row.unitPrice;
                 if(__saleManId){
                     part.saleMan = row.saleMan;
                     part.saleManId = __saleManId;
@@ -3405,7 +3409,7 @@ function SearchLastCheckMain() {
 function newCheckMainMore() {  
     var cNo = nui.get("carNo").value;
     var item={};
-    item.id = "checkPrecheckMain";
+    item.id = "1103";
     item.text = "查车单";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
     item.iconCls = "fa fa-cog";

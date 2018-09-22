@@ -58,8 +58,8 @@
 	window._webRepairUrl = webPath + contextPath + "/";
 	//console.log(window._rootUrl);
 </script>
-<script src="<%=webPath + contextPath%>/common/js/repairUtil.js?v=1.0.11" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/repairSvrUtil.js?v=1.0.6" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/repairUtil.js?v=1.1.0" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/repairSvrUtil.js?v=1.0.2" type="text/javascript"></script>
 <style type="text/css">
 	html,
 	body {

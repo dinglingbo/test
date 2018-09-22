@@ -399,24 +399,28 @@ function save(){
         },
         success: function(text) {
         	nui.unmask(document.body);
-        	nui.get("rid").setValue(text.mainId);
-        	showGridMsg(text.mainId);
+        	if(text.errMsg){
+        		showMsg(text.errMsg,"W");
+        	}else{
+        		nui.get("rid").setValue(text.mainId);
+            	showGridMsg(text.mainId);
+        	}
         }
     });
 }
 
 function onPrint(e){
 	var main = billForm.getData();
-	if(main.id){
-		var params = {
+	var params = {
             serviceId : main.id,
             comp : currOrgName,
             baseUrl : baseUrl,
             type : 1,
             token : token
         };
+	if(main.id){
 		nui.open({
-	        url: "com.hsweb.print.settlement.flow",
+	        url: baseUrl+"com.hsweb.print.settlement.flow",
 	        width: "100%",
 	        height: "100%",
 	        showMaxButton: false,
@@ -428,7 +432,23 @@ function onPrint(e){
 	        },
 	    });
 	}else{
-		showMsg("请先保存数据","W");
+		if(main.isSettle){//已结算
+			params.serviceId = main.sourceServiceId;
+			nui.open({
+		        url: baseUrl+"com.hsweb.print.settlement.flow",
+		        width: "100%",
+		        height: "100%",
+		        showMaxButton: false,
+		        allowResize: false,
+		        showHeader: true,
+		        onload: function() {
+		            var iframe = this.getIFrameEl();
+		            iframe.contentWindow.SetData(params);
+		        },
+		    });
+		}else{
+			showMsg("请先保存数据","W");
+		}
 	}
 }
 
@@ -444,6 +464,7 @@ function showGridMsg(serviceId){
 
 function setInitData(params){
 	if(!params.isOutBill){//未保存过一次报销单
+		params.sourceServiceId = params.id;
 		params.id = "";
 		billForm.setData(params);
 	}else{

@@ -156,8 +156,8 @@
 									<label id="isShareTd" >是否共享：</label>
 									<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 									<label>是否禁用：</label>
-									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
-									<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/><br/>
+									
 									<label>是否允许优惠：</label>
 									<input name="isCanRate" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 								</td>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
   width: 60px;

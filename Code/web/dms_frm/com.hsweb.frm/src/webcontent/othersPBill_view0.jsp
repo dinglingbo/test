@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他应付单</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/othersPBill.js?v=1.6.3"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/othersPBill.js?v=1.6.4"></script>
 
 <style type="text/css">
 .title {

@@ -37,6 +37,7 @@ var partShow = 0;
 var provinceList = [];
 var cityList = [];
 var advancedTipWin = null;
+var autoNew = 0;
 
 
 // 单据状态
@@ -87,7 +88,7 @@ $(document).ready(function(v) {
 	sOrderDate = nui.get("sOrderDate");
 	eOrderDate = nui.get("eOrderDate");
 
-
+	
 
 
 	advancedTipWin = nui.get("advancedTipWin");
@@ -125,6 +126,7 @@ $(document).ready(function(v) {
             default:
                 break;
         }
+
     });
 
     document.onkeyup=function(event){
@@ -197,8 +199,7 @@ $(document).ready(function(v) {
 			
 		});
 	});
-	
-
+	add();
 });
 
 var StatusHash = {
@@ -574,6 +575,10 @@ function doSearch(params) {
 
 			setBtnable(false);
 			setEditable(false);
+			if(autoNew == 0){
+				add();
+				autoNew = 1;
+			}
 
 		} else {
 			var row = leftGrid.getSelected();

@@ -7,7 +7,7 @@
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20  
   - Description: 
--->           
+-->            
   
 <head> 
     <title>出库单</title> 
@@ -51,7 +51,6 @@
         padding: 10 10 10 10px !important
     }
 
-
     .function-item {
         margin-left: 5px;
         margin-right: 5px;
@@ -92,10 +91,9 @@
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     
             <td style="text-align:left;">
-<!-- 
-          进场日期:<input class="nui-datepicker tabwidth" name="enterDate" id="enterDate" />
-
-          预计交车日期:<input class="nui-datepicker tabwidth" name="planFinishDate" id="planFinishDate"/> -->
+            <!-- 
+            进场日期:<input class="nui-datepicker tabwidth" name="enterDate" id="enterDate" />
+            预计交车日期:<input class="nui-datepicker tabwidth" name="planFinishDate" id="planFinishDate"/> -->
       </td>     
   </tr>
 </table>
@@ -117,7 +115,7 @@
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
-                    <input name="serviceTypeId"
+        <input name="serviceTypeId"
             id="serviceTypeId"
             style="display: none" 
             class="nui-combobox width1"

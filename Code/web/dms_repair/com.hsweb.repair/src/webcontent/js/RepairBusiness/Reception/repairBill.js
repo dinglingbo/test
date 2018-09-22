@@ -2855,8 +2855,6 @@ function onValueChangedPartQty(e){
 	    setSubtotal.setValue(subtotal);
 	    setQty.setValue(qty);
 	}	
-	
-	
 }
 
 function onValueChangedpartUnitPrice(e){	

@@ -552,7 +552,6 @@
     <location x="1237" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="addList" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -824,7 +823,7 @@
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

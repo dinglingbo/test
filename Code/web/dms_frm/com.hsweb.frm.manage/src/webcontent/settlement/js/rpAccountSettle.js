@@ -1,14 +1,15 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + frmApi + "/"; 
+var partBaseUrl = apiPath + partApi + "/";
 var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryRPAccountList.biz.ext";
 /*var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
 */
-var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
-var innerStateGridUrl = baseUrl+"com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
+var innerPchsGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+var innerSellGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
+var innerStateGridUrl = partBaseUrl+"com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -875,7 +876,7 @@ function checkAuditRow(flag){
 
     return msg;
 }
-var balanceAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.balanceRPAccount.biz.ext";
+var balanceAuditUrl = partBaseUrl+"com.hsapi.cloud.part.settle.rpsettle.balanceRPAccount.biz.ext";
 function balanceOK(){
     var rightGrid = null;
     var tab = mainTabs.getActiveTab();
@@ -939,7 +940,7 @@ function balanceOK(){
         return;
     }
 }
-var billUnAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.unBalanceRPAccount.biz.ext";
+var billUnAuditUrl = partBaseUrl+"com.hsapi.cloud.part.settle.rpsettle.unBalanceRPAccount.biz.ext";
 function doUnBalance(){
 
     var msg = checkAuditRow(0);

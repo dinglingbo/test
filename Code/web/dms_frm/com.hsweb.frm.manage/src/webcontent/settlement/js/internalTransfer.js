@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + frmApi + "/"; 
+var partBaseUrl = apiPath + partApi + "/";
 var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryInternalTransfer.biz.ext";
 
 var searchBeginDate = null;

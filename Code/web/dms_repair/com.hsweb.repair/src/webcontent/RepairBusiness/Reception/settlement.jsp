@@ -274,9 +274,10 @@
 				</tbody>
             </table>
             <div style="height: 12px;"></div>
-                <div style="color:#000;height:32px; margin-top:-8px;">
+        <div style="color:#000;height:32px; margin-top:-8px;">
             <span style="font-size: 16px; float:right; font-weight: bold;">价格合计：&yen;<span id="cash"></span>元</span>
             套餐：<span id="prdt">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;配件：<span id="part">0</span>
+            <span style="margin-left: 300px;">优惠金额：<span id="yh">0</span>元</span>
         </div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
             <tr>
@@ -426,6 +427,7 @@
     				var data = text.data;
     				var j = 0;
     				for(var i = 0 , l = data.length ; i < l ; i++){
+    					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     					var prdtName = data[i].prdtName;
     					if(params.type){
     						prdtName = data[i].packageName || "";
@@ -496,6 +498,7 @@
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
     				for(var i = 0 , l = data.length ; i < l ; i++){
+    					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     					document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
@@ -529,6 +532,7 @@
 					    			"<td align='center'>[subtotal]</td>";
     				var data = text.data;
     				for(var i = 0 , l = data.length ; i < l ; i++){
+    					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     					document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
     					rate = rate.toFixed(1) + "%";
@@ -563,20 +567,16 @@
     	}
     	
     	function save(){
-    		if(!document.getElementById("meeting").value){
-    			alert("请将打印时间填写完整。");
-    		}else{
-    			box_setup_close();
-	    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
-	    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
-	    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
-	    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
-				document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
-    		}
+			box_setup_close();
+    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
+    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
+    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
+    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
     	}
     	
     	function box_setup_close(){
-    		$(".boxbg").hide();2
+    		$(".boxbg").hide();
         	$(".popbox").hide();
     	}
     </script>

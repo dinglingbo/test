@@ -243,10 +243,10 @@
                 </tr>
             </table>
         </div>
-        <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>计次卡</legend>
-                 <div id="grid1" class="nui-datagrid" style="width:100%;height:215px;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext">
+                 <div id="grid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
+            totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
                     <div property="columns">
                           <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
 		                  <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
@@ -257,10 +257,10 @@
                 </div>
         </fieldset>
         <div class="nui-fit">
-        <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;height:90%;">
+        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:88%;">
             <legend>储值卡</legend>
-            <div id="grid2" class="nui-datagrid" style="width:100%;height:90%;" selectOnLoad="true" showPager="true" pageSize="50"
-                totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext">
+            <div id="grid2" class="nui-datagrid" style="width:100%;height:92%;" selectOnLoad="true" showPager="true" pageSize="50"
+                totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
                 <div property="columns">
                     <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
                     <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
@@ -287,7 +287,7 @@
     </div>
     <div title="服务记录" >
         <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.repairService.query.querySettleList.biz.ext">
+            totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
             <div property="columns">
                 	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
 	                <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>

@@ -404,7 +404,7 @@
 			on a.guest_id = d.id
 			inner join rpb_car e
 			on a.car_id = e.id
-			where a.is_settle = 1 
+			where a.is_settle = 1 and a.orgid = #orgid#
 		<isNotEmpty prepend="and" property="carNo">  
 		                (a.car_no like '%$carNo$%')
 		</isNotEmpty>

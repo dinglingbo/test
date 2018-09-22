@@ -4,6 +4,7 @@ var params = {};
 var form = null;
 var grid1 = null;
 var grid2 = null;
+var baseUrl = apiPath + repairApi + "/";
 var mainGrid2 = null;
 $(document).ready(function () {
     tabs = nui.get("tabs");
@@ -11,8 +12,11 @@ $(document).ready(function () {
     form = new nui.Form("#editForm1");
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
+    grid1.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext");
+    grid2.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext");
+    mainGrid1.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
     mainGrid2 = nui.get("mainGrid2");
-    form.setReadOnly(true);
+    //form.setReadOnly(true);
     tabs.on("activechanged",function(e){
     	if(nui.get("carId").value != ""){
     		params = {

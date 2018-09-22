@@ -16,7 +16,7 @@ $(document).ready(function () {
     grid2.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext");
     mainGrid1.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
     mainGrid2 = nui.get("mainGrid2");
-    form.setReadOnly(true);
+    //form.setReadOnly(true);
     tabs.on("activechanged",function(e){
     	if(nui.get("carId").value != ""){
     		params = {

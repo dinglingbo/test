@@ -14,8 +14,8 @@ var qualityTypeId = null;
 var unit = null;
 var qualityList = [];
 var qualityHash = {};
-var brandHash = {};
-var brandList = [];
+var partBrandIdHash = {};
+var partBrandIdList = [];
 
 
 var abcTypeList = [
@@ -70,17 +70,43 @@ $(document).ready(function(v)
     initComboBox();
     initForm();
 
-    initPartBrand("partBrandId",function(){
-        initDicts({
-
-        },function(){
-
-        });
-    });
-    
-    
     var dictDefs ={"unit":"DDT20130703000016"};
     initDicts(dictDefs, null);
+    
+    getAllPartBrand(function(data)
+    {
+        data = data||{};
+        qualityList = data.quality;
+        qualityList.forEach(function(v)
+        {
+            qualityHash[v.id] = v;
+        });
+        nui.get('qualityTypeId').setData(qualityList);
+        partBrandIdList = data.brand;
+        partBrandIdList.forEach(function(v)
+        {
+        	partBrandIdHash[v.id] = v; 
+        });
+        
+        
+        initPartBrand("partBrandId",function(){
+            initDicts({
+
+            },function(){
+
+            });
+        });
+        initCarBrand("applyCarbrandId",function(){
+            initDicts({
+                unit:UNIT,// --单位
+//    	                abcType:ABC_TYPE // --ABC分类
+            },function(){
+                //onSearch();
+            });
+        });
+    });
+
+    
 
     document.onkeyup=function(event){
         var e=event||window.event;

@@ -114,7 +114,7 @@
         <div id="mainTabs" class="mini-tabs indexTabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
                 buttons="#tabsButtons" arrowPosition="side" ontabload="ontabload">
             <div name="index" iconCls="fa-home" title="首页">
-                    <iframe id="formIframe" src="<%=request.getContextPath()%>/purchase/Index/TextIndex.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+                    <iframe id="formIframe" src="<%=request.getContextPath()%>/common/Index/TextIndex.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             </div>
         </div>
         <div id="tabsButtons">
@@ -205,7 +205,7 @@
         var tab = tabs.getActiveTab();
          
         if(tab.name == "index") {
-        	tab.url = "/default/purchase/Index/TextIndex.jsp";
+        	tab.url = defDomin + "/common/Index/TextIndex.jsp";
         }
         tabs.loadTab(tab.url, tab);
     }

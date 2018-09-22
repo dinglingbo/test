@@ -11,7 +11,7 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=8" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=1.0.0" type="text/javascript"></script>
 </head>
 <style type="text/css">
         body { 
@@ -97,15 +97,15 @@
                 
                 <table style="width:100%;" border="0" cellspacing="0" cellpadding="2px">
                     <tr>
-                        <td style="width:80px;" align="right">当前里程(KM)：</td>
-                        <td style="width:150px;">
+                        <td style="width:120px;" align="right">当前里程(KM)：</td>
+                        <td style="width:100px;">
                             <input class="nui-textbox" name="enterKilometers" width="100%" allowInput="false"/>
                         </td>
-                        <td style="width:80px;"align="right">建议保养里程(KM)：</td>
-                        <td style="width:150px;">
+                        <td style="width:150px;"align="right">建议保养里程(KM)：</td>
+                        <td style="width:100px;">
                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
                         </td>
-                        <td style="width:80px;"align="right">建议保养时间：</td>
+                        <td style="width:120px;"align="right">建议保养时间：</td>
                         <td style="width:150px;">
                             <input class="nui-datepicker" name="" width="100%" allowInput="false"/>
                         </td>
@@ -113,7 +113,7 @@
                 </table>
             </div>
         </fieldset>
-        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:70%;">
+        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
             <legend>保险</legend>
             <div id="editForm3" style="padding:5px;">
                 
@@ -243,9 +243,10 @@
                 </tr>
             </table>
         </div>
-        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;">
+        <div class="nui-fit">
+        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
             <legend>计次卡</legend>
-                 <div id="grid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
+                 <div id="grid1" class="nui-datagrid" style="width:100%;height:90%;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext">
                     <div property="columns">
                           <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
@@ -256,10 +257,9 @@
                     </div>
                 </div>
         </fieldset>
-        <div class="nui-fit">
-        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:88%;">
+        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
             <legend>储值卡</legend>
-            <div id="grid2" class="nui-datagrid" style="width:100%;height:92%;" selectOnLoad="true" showPager="true" pageSize="50"
+            <div id="grid2" class="nui-datagrid" style="width:100%;height:90%;" selectOnLoad="true" showPager="true" pageSize="50"
                 totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext">
                 <div property="columns">
                     <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>

@@ -2436,23 +2436,12 @@ function onPrint(e){
 function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
-     carId : main.carId,
-     guestId : main.guestId
- };
- if(main.id){
-  nui.open({
-    url: webBaseUrl+"com.hsweb.RepairBusiness.carDetails.flow",
-    width: "800",
-    height: "100%",
-    showMaxButton: false,
-    allowResize: false,
-    showHeader: true,
-    onload: function() {
-        var iframe = this.getIFrameEl();
-        iframe.contentWindow.SetData(params);
-    },
-});
-}
+        carId : main.carId,
+        guestId : main.guestId
+    };
+    if(main.id){
+        doShowCarInfo(params);
+    }
 }
 
 

@@ -44,13 +44,13 @@
 </head>
 
 <body>
-  <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+  <div class="nui-toolbar" id="toolbar1" style="padding:2px;border-bottom:0;">
 
-    <table class="table" id="table1">
+    <table class="table" id="table1"> 
       <tr>
         <td>
           <input class="nui-hidden" id="cNo" name="cNo" value='<b:write property="cNo"/>'/>
-          <input class="nui-textbox" id="guestName" id="guestName" emptyText="输入客户姓名" width="120" />
+          <input class="nui-textbox" id="guestName" name="guestName" emptyText="输入客户姓名" width="120" />
           <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" />
           <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
           <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
@@ -101,9 +101,9 @@
 
   function onSearch(){
     var data = form.getData();
-    mainGrid.load({
+    data.orgid = currOrgId;
+    mainGrid.load({ 
       params:data,
-      orgid: currOrgId,
       token:token
     });
   }
@@ -129,7 +129,8 @@
 
   function setInitData(params){
     var pa={
-      carNo:nui.get("cNo").value
+      carNo:nui.get("cNo").value,
+      orgid:currOrgId
     }; 
     mainGrid.load({ 
       params:pa, 
@@ -179,7 +180,7 @@
     //window.parent.activeTab(item);
     var params = {};
     params = { 
-      id:data.service_id,
+      id:data.serviceId,
       actionType:"view"
     };
     window.parent.activeTabAndInit(item,params);

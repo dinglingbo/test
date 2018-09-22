@@ -75,7 +75,7 @@
 
 <div class="container">
     <div class="navbar">
-        <div class="navbar-brand">洗美工坊</div>
+        <div class="navbar-brand">管理系统</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->

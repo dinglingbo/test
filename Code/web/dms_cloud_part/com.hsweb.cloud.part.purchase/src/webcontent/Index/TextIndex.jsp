@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/Index/TextIndex.js?v=1.5.1"></script>
+    <script src="<%=webPath + contextPath%>/purchase/Index/TextIndex.js?v=1.5.2"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/purchase/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -180,24 +180,24 @@ pageEncoding="UTF-8" session="false" %>
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日收入：</td>
                                     <td class="tablenum"><span>453,232</span></td>
                                     <td style="width:0.05%;"></td>
-                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日支出：</td>
-                                    <td class="tablenum"><span>753,542</span></td>
+                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日进厂：</td>
+                                   <td class="tablenum"><span>523,254</span></td>
                                 </tr>
 
                                 <tr>
-                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>库存总成本：</td>
-                                   <td class="tablenum"><span>523,254</span></td>
+                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日支出：</td>
+                                    <td class="tablenum"><span>753,542</span></td>
                                    <td ></td>
-                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>库存SKU种类：</td>
+                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日出厂：</td>
                                    <td class="tablenum"><span>9,443</span></td>
                                </tr>
 
 
                                <tr>
-                                  <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>客户欠款：</td>
-                                  <td class="tablenum"><span>0</span></td>
                                   <td ></td>
-                                  <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>供应商欠款：</td>
+                                  <td ></td>
+                                  <td ></td>
+                                  <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日在厂：</td>
                                   <td class="tablenum"><span>0</span></td>
                               </tr>
 

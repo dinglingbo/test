@@ -12,11 +12,10 @@ $(document).ready(function(v) {
     var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
     {business:"配件订单",custom:"李莉莉",address:"广东广州",date:"10:50",status:"已完成"}];
 
-    var grid2_data =[{business:"未入库采购订单",num:"2",cost:"5454342"},
-    {business:"未出库销售订单",num:"0",cost:"0"},
-    {business:"未付款对账单",num:"1",cost:"72145"},
-    {business:"未收款对账单",num:"2",cost:"931455"},
-    {business:"本月月结未对账",num:"2",cost:"42467"}];
+    var grid2_data =[{business:"报价的工单",num:"2",cost:"5454342"},
+    {business:"施工的工单",num:"0",cost:"0"},
+    {business:"完工未转预结算的工单",num:"1",cost:"72145"},
+    {business:"完工待结算的工单",num:"2",cost:"931455"}];
     grid1.setData(grid1_data);
     grid1.setShowVGridLines(false);
     grid1.setShowHGridLines(false);

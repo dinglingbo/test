@@ -225,8 +225,8 @@ $(document).ready(function ()
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
         nui.get("checkManId").setData(memList); 
-    });
-
+    }); 
+  
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -2067,6 +2067,8 @@ function updateRpsPart(row_uid){
                 part.qty = row.qty;
                 part.subtotal = row.subtotal;
                 part.serviceTypeId = row.serviceTypeId;
+                part.rate = parseFloat(row.rate)/100;
+                part.unitPrice = row.unitPrice;
                 if(__saleManId){
                     part.saleMan = row.saleMan;
                     part.saleManId = __saleManId;

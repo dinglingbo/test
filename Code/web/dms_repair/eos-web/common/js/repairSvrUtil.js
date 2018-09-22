@@ -297,6 +297,23 @@ function doSelectCustomer(callback) {
     });
 }
 
+function doShowCarInfo(params) {
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
+        width: 800, height: 500,
+		allowResize: false,
+		showHeader: true,
+        onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+            }
+        }
+    });
+}
+
 function doSelectItem(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
@@ -329,9 +346,9 @@ function doSelectItem(dock, dodelck, docck, callback) {
 function doSelectPart(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
+		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 		title : "配件管理",
-		width : 1300,
+		width : 1000, 
 		height : 560,
 		allowDrag : true,
 		allowResize : true,

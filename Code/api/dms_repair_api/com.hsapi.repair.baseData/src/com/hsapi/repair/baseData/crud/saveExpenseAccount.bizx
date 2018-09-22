@@ -867,8 +867,8 @@
       <process:to type="query">ct/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">maintainBill/serviceCode</process:from>
-      <process:to type="query">ct/_expr[1]/serviceCode</process:to>
+      <process:from type="query" pattern="reference">maintainBill/sourceServiceId</process:from>
+      <process:to type="query">ct/_expr[1]/id</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -896,7 +896,7 @@
       <targetNode>assign12</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

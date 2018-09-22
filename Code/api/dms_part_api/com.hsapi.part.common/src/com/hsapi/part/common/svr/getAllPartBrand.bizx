@@ -33,6 +33,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link1" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="228" y="80"/>
@@ -47,8 +48,12 @@
       <process:to type="query">cond/_expr[1]/_property</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">null</process:from>
+      <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond/_expr[1]/_value</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -60,6 +65,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link5" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="376" y="80"/>
@@ -112,13 +118,14 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link6" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="518" y="80"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">notnull</process:from>
+      <process:from type="literal" pattern="reference">&lt;></process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
   </nodes>

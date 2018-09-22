@@ -260,7 +260,7 @@ function addOrEditPart(row)
                 abcTypeList:abcTypeList,
                 applyCarModelList:carBrandList
             };
-            if(row)F
+            if(row)
             {
                 params.partData = row;
             }

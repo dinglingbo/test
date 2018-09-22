@@ -1,10 +1,11 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + frmApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var partBaseUrl = apiPath + partApi + "/";
 var rightGridUrl = baseUrl+"com.hsapi.frm.frmService.crud.queryRPBill.biz.ext";
-var innerPchsGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjEnterDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjSellOutDetailList.biz.ext";
+var innerPchsGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjEnterDetailList.biz.ext";
+var innerSellGridUrl = partBaseUrl+"com.hsapi.part.invoice.svr.queryPjSellOutDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -591,7 +592,7 @@ function checkAuditRow(flag){
 
     return msg;
 }
-var billAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.auditBill.biz.ext";
+var billAuditUrl = partBaseUrl+"com.hsapi.cloud.part.settle.rpsettle.auditBill.biz.ext";
 function auditOK(){
     var rows = rightGrid.getSelecteds();
     var remark = null;
@@ -640,7 +641,7 @@ function auditOK(){
         return;
     }
 }
-var billUnAuditUrl = baseUrl+"com.hsapi.cloud.part.settle.rpsettle.unAuditBill.biz.ext";
+var billUnAuditUrl = partBaseUrl+"com.hsapi.cloud.part.settle.rpsettle.unAuditBill.biz.ext";
 function unAudit(){
 
     var msg = checkAuditRow(0);

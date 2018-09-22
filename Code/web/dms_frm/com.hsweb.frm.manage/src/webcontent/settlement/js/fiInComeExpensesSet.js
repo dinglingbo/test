@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + frmApi + "/"; 
+var partBaseUrl = apiPath + partApi + "/";
 var queryUrl = baseUrl
 		+ "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 var mainGrid = null;

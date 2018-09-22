@@ -29,7 +29,9 @@
 	.mini-listbox-view{
 		height:105px !important;
 	}
-
+	#out1{
+		border-top:#FF0000 solid 1px;
+	}
 
     </style>
 </head>
@@ -39,8 +41,8 @@
 		
 		<table>
 			<tr>
-				<td>配件编号:<input enabled="false" class="nui-textbox" id="partCode" name="partCode" type="text"></td>
-				<td>配件名称:<input enabled="false" class="nui-textbox" id="partName" name="partName" type="text"></td>
+				<td>配件编码:<input enabled="false" class="nui-textbox" id="partCode" name="partCode" type="text"></td>
+				<td>配件全称:<input enabled="false" class="nui-textbox" id="fullName" name="fullName" type="text"></td>
 			</tr>
 			<tr>
 				<td>配件品牌:<input enabled="false" class="nui-textbox" id="partBrandId" name="partBrandId" type="text"></td>
@@ -50,7 +52,7 @@
 				<td style="padding-left: 26px;">数量:<input enabled="false" class="nui-textbox" id="stockQty" name="stockQty" type="text"></td>
 	<!-- 			<td><input class="nui-textbox" id="" name="" type="text"></td> -->
 			</tr>
-			<tr id="out"><td>请输入数量及领料人:</td></tr>
+			<tr id="out1"><td>请输入数量及领料人:</td></tr>
 			<tr id="out">
 				<td style="padding-left: 14px;">领料人:
 					<input  name="pickMan"

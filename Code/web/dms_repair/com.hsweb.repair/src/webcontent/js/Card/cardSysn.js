@@ -75,6 +75,8 @@ function changed(e){
 	
 }
 function onOk() {
+	form.validate();
+    if (form.isValid() == false) return;
 	var data = form.getData();
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {

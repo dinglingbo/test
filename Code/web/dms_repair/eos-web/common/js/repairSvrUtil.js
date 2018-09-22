@@ -346,9 +346,9 @@ function doSelectItem(dock, dodelck, docck, callback) {
 function doSelectPart(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
 		title : "配件管理",
-		width : 1000, 
+		width : 1300, 
 		height : 560,
 		allowDrag : true,
 		allowResize : true,

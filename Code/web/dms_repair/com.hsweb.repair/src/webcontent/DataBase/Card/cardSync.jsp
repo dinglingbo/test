@@ -11,7 +11,7 @@
   --%>
 <head>
 <title>储值卡录入</title>
-<script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.5"></script>
 </head>
 <body>
 	<div class="nui-fit">
@@ -109,14 +109,14 @@
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div allowSort="true" field="serviceTypeName" width="80" headerAlign="center" align="center" header="业务类型"></div>
-                        <div allowSort="true" field="packageDiscountRate" headerAlign="center" header="套餐优惠(0.1-1.00)">
-                                <input property="editor" class="nui-spinner" format="0.00"  value="0" maxValue="1.00" showButton="false"/>
+                        <div allowSort="true" field="packageDiscountRate" headerAlign="center" header="套餐优惠(0-100)">
+                                <input property="editor" decimalPlaces="0" class="nui-spinner" format="0"  value="0" maxValue="100" showButton="false"/>
                         </div>
-                        <div allowSort="true" field="itemDiscountRate" headerAlign="center" header="工时优惠(0.1-1.00)">
-                                <input property="editor" class="nui-spinner" format="0.00"  value="0" maxValue="1.00" showButton="false"/>
+                        <div allowSort="true" field="itemDiscountRate" headerAlign="center" header="工时优惠(0-100)">
+                                <input property="editor" decimalPlaces="0"  class="nui-spinner" format="0"  value="0" maxValue="100" showButton="false"/>
                         </div>
-                        <div allowSort="true" field="partDiscountRate" headerAlign="center" header="配件优惠(0.1-1.00)">
-                                <input property="editor" class="nui-spinner" format="0.00"  value="0" maxValue="1.00" showButton="false"/>
+                        <div allowSort="true" field="partDiscountRate" headerAlign="center" header="配件优惠(0-100)">
+                                <input property="editor" decimalPlaces="0"  class="nui-spinner" format="0"  value="0" maxValue="100" showButton="false"/>
                         </div>
                     </div>
                 </div>

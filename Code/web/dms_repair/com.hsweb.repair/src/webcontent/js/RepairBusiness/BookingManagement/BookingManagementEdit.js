@@ -142,6 +142,10 @@ function onOk() {
         showMsg('请选择预计来厂时间',"W");
         return;
     }
+    if(main.mtAdvisorId == "" || main.mtAdvisorId == undefined || main.mtAdvisorId == null){
+    	 showMsg('请选择服务顾问',"W");
+         return;
+    }
 
     main.predictComeDate = timeStartEl.getValue() + ' ' + time + ":00";
 
@@ -162,6 +166,7 @@ function onOk() {
         showMsg("客户名称不能为空!");
         return;
     }
+    
 
     nui.mask({
         el: document.body,

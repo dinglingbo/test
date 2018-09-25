@@ -95,6 +95,12 @@ table{
 #comPartCode{
 	width:15%;
 }
+#comOemCode{
+	width:10%;
+}
+#comPartName{
+	width:15%;
+}
 #comPartBrandId{
 	width:6%;
 }
@@ -102,7 +108,7 @@ table{
 	width:10%;
 }
 #comSpec{
-	width:14%;
+	width:10%;
 }
 </style>
 <title>采购退货打印</title>

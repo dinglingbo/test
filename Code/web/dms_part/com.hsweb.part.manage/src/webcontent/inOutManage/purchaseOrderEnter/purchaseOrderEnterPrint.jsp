@@ -93,6 +93,24 @@ table{
 .print_btn a:active, .print_btn a:hover {
     background: #df0024;
 }
+#comPartCode{
+	width:15%;
+}
+#comOemCode{
+	width:10%;
+}
+#comPartName{
+	width:15%;
+}
+#comPartBrandId{
+	width:6%;
+}
+#comApplyCarModel{
+	width: 10%;
+}
+#comSpec{
+	width:10%;
+}
 </style>
 <title>采购入库打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />

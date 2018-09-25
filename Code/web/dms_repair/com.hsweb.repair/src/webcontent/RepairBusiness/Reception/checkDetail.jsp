@@ -212,8 +212,8 @@ allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
     <div field="checkName" name="checkName" width="30" headerAlign="center" align="center"><strong>检查项目</strong></div>
     <div field="checkCode" name="checkCode" width="30" headerAlign="center" align="center" visible="false"><strong>检查项目</strong></div>
     <div field="checkId" name="checkId" width="30" headerAlign="center" align="center" visible="false"><strong>配件名称id</strong></div>
-    <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>正常状态</strong></div>
-    <div type="checkboxcolumn" field="nostatus" name="nostatus" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>异常状态</strong></div>
+    <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>正常</strong></div>
+    <div type="checkboxcolumn" field="nostatus" name="nostatus" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>异常</strong></div>
     <div field="remark" name="remark" width="90" headerAlign="center" align="center"><strong>备注</strong>
         <input property="editor" class="nui-combobox" style="width:100%;" 
         textfield="content" valuefield="content"  dataField="list" allowInput="true"/>  

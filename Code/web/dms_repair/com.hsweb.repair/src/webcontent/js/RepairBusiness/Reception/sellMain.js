@@ -89,6 +89,8 @@ function onShowRowDetail(e) {
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
 
+    innerPartGrid.setData([]);
+    
     var serviceId = row.id;
     innerPartGrid.load({
     	serviceId:serviceId,

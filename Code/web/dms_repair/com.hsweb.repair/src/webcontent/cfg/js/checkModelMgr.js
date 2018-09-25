@@ -153,7 +153,7 @@ function saveCheckModel(){
 
         var cv = checkLeftGrid();
         if(!cv){
-            showMsg("存在模板名称为空的数据!","W");
+            parent.showMsg("存在模板名称为空的数据!","W");
             return;
         }
 
@@ -175,10 +175,10 @@ function saveCheckModel(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    showMsg("保存成功!","S");
+                    parent.showMsg("保存成功!","S");
                     onSearch();
                 } else {
-                    showMsg(data.errMsg || "保存失败!","W");
+                    parent.showMsg(data.errMsg || "保存失败!","W");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -187,14 +187,14 @@ function saveCheckModel(){
             }
         });
     }else{
-        showMsg("数据没有修改!","W");
+        parent.showMsg("数据没有修改!","W");
     }
 }
-function checkLeftGrid(){
+function checkLeftGrid(){ 
     var rows = leftGrid.findRows(function(row){
         var name = row.name;
         if(!name) return true;
-    });
+    }); 
 
     if(rows && rows.length>0){
         return false;
@@ -249,7 +249,11 @@ function addOrEdit(row){
 function addCheckDetail(){
     var mainRow = leftGrid.getSelected();
     if(!mainRow){
-        showMsg("请先选择模板再添加检查项目!","W");
+        parent.showMsg("请先选择模板再添加检查项目!","W");
+        return;
+    } 
+    if(!mainRow.id){
+        parent.showMsg("请先保存模板!","W");
         return;
     }
     var row = {mainId:mainRow.id};
@@ -260,6 +264,6 @@ function editCheckDetail(){
     if(row){
         addOrEdit(row);
     }else{
-        showMsg("请选择一条记录!","W");
+        parent.showMsg("请选择一条记录!","W");
     }
 }

@@ -8,7 +8,7 @@
   - Date: 2018-07-02 20:50:20  
   - Description: 
 -->            
-  
+
 <head> 
     <title>出库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -94,8 +94,8 @@
             <!-- 
             进场日期:<input class="nui-datepicker tabwidth" name="enterDate" id="enterDate" />
             预计交车日期:<input class="nui-datepicker tabwidth" name="planFinishDate" id="planFinishDate"/> -->
-      </td>     
-  </tr>
+        </td>     
+    </tr>
 </table>
 
 </div>
@@ -116,19 +116,19 @@
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
         <input name="serviceTypeId"
-            id="serviceTypeId"
-            style="display: none" 
-            class="nui-combobox width1"
-            textField="name"
-            valueField="id"
-            emptyText="请选择业务类型"
-            url=""
-            allowInput="true"
-            showNullItem="false"
-            width="120"
-            valueFromSelect="true"
-            onvaluechanged=""
-            nullItemText="请选择..."/>
+        id="serviceTypeId"
+        style="display: none" 
+        class="nui-combobox width1"
+        textField="name"
+        valueField="id"
+        emptyText="请选择业务类型"
+        url=""
+        allowInput="true"
+        showNullItem="false"
+        width="120"
+        valueFromSelect="true"
+        onvaluechanged=""
+        nullItemText="请选择..."/>
         <table  style=" left:0;right:0;margin: 0 auto;"> 
 
             <tr>
@@ -149,94 +149,94 @@
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth"  name="cardType" id ="cardType"/>
                 </td>
-                 -->
-                <td class="tbtext">车型:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
-                </td>
-            </tr> 
-            <tr>
-                <td class="tbtext">车牌:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
-                </td>
+            -->
+            <td class="tbtext">车型:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
+            </td>
+        </tr> 
+        <tr>
+            <td class="tbtext">车牌:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
+            </td>
 
-                <td class="tbtext">VIN码:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="tbtext">服务顾问:</td>
-                <td class="tbCtrl">
-                    <input name="mtAdvisorId"
-                    id="mtAdvisorId"
-                    class="nui-combobox width1"
-                    textField="empName" 
-                    valueField="empId"
-                    emptyText="请选择..."
-                    url=""
-                    allowInput="true"
-                    showNullItem="false"
-                    valueFromSelect="true"
-                    nullItemText="请选择..."/>
+            <td class="tbtext">VIN码:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tbtext">服务顾问:</td>
+            <td class="tbCtrl">
+                <input name="mtAdvisorId"
+                id="mtAdvisorId"
+                class="nui-combobox width1"
+                textField="empName" 
+                valueField="empId"
+                emptyText="请选择..."
+                url=""
+                allowInput="true"
+                showNullItem="false"
+                valueFromSelect="true"
+                nullItemText="请选择..."/>
 
-                </td>
-                <td class="tbtext">服务技师:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
-                </td>
-                <td class="tbtext">送修人:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
-                </td>
-                <td class="tbtext">联系方式:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
-                </td>
+            </td>
+            <td class="tbtext">服务技师:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
+            </td>
+            <td class="tbtext">送修人:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
+            </td>
+            <td class="tbtext">联系方式:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
+            </td>
 
-            </tr>
+        </tr>
 
-        </table>
-    </div>
+    </table>
+</div>
 
-    <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-    dataField="data"   multiSelect="false" 
-    url=""  showModified="false"
-    allowCellEdit="true" >
+<div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
+dataField="data"   multiSelect="false" 
+url=""  showModified="false"
+allowCellEdit="true" >
+<div property="columns">
+   <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+   <div type="checkcolumn"></div> 
+   <div field="id" name="id" visible="false"  header="recordId"></div>
+   <div header="领料-配件信息">  
     <div property="columns">
-     <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-     <div type="checkcolumn"></div> 
-     <div field="id" name="id" visible="false"  header="recordId"></div>
-     <div header="领料-配件信息">  
-        <div property="columns">
-            <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
-            <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
-            <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
-            <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
-            <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
-            <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
-            <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-            <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>           
-            <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
-            <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
-            <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
-            </div>   
+        <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
+        <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
+        <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
+        <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
+        <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
+        <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
+        <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
+        <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>           
+        <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
+        <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
+        <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
+        </div>   
 
-        </div>
-    </div> 
+    </div>
+</div> 
 </div>
 </div>  
-  
+
 
 <div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="data"  allowCellSelect="true" multiSelect="false" 
 url=""  showModified="false"
 allowCellEdit="true"  >
 <div property="columns">
- <div headerAlign="center" type="indexcolumn" width="30">序号</div>
- <div type="checkcolumn" width="30" ></div>
- <div header="退货-配件信息">
+   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+   <div type="checkcolumn" width="30" ></div>
+   <div header="退货-配件信息">
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
         <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div>           
@@ -265,6 +265,7 @@ allowCellEdit="true"  >
 <div style="width:100%;margin-top: 10px;">
     <a class="nui-button" onclick="LLSave()" plain="false">领料</a>
     <a class="nui-button" onclick="THSave()" plain="false">退货</a>
+    <a class="nui-button" onclick="" plain="false">打印领料单</a>
 </div>
 </div>
 

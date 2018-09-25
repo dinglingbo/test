@@ -463,7 +463,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo11label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -620,7 +620,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -647,7 +647,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToStringArr</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.propertyToStringArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -673,7 +673,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -699,7 +699,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

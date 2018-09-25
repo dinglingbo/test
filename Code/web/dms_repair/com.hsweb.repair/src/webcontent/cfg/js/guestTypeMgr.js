@@ -81,6 +81,6 @@ function editGuestType(){
     if(row){
         addOrEdit(row);
     }else{
-        showMsg("请选择一条记录!","W");
+        parent.showMsg("请选择一条记录!","W");
     }
 }

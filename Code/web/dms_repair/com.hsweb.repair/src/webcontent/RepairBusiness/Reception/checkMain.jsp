@@ -80,10 +80,10 @@
     <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
     <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
     <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
-    <div field="car_no" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
+    <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
     <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
-    <div field="mt_advisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
-    <div field="record_date" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
+    <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
+    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
   </div>
 </div>
 </div>
@@ -119,7 +119,7 @@
       },
       ondestroy:function(action){
 
-      }
+      } 
 
     });*/
   }

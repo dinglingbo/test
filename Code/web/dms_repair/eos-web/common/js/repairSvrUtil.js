@@ -346,9 +346,9 @@ function doSelectItem(dock, dodelck, docck, callback) {
 function doSelectPart(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
-		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
 		title : "配件管理",
-		width : 1000, 
+		width : 1300, 
 		height : 560,
 		allowDrag : true,
 		allowResize : true,
@@ -596,17 +596,21 @@ function doPrint(params){
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.checkCar.flow?token="+token;
 		p.name = "查车单";
 	}
-	
-	nui.open({
-        url: sourceUrl,
-        title: p.name + "打印",
-		width: "100%",
-		height: "100%",
-        onload: function () {
-            var iframe = this.getIFrameEl();
-           iframe.contentWindow.SetData(p);
-        },
-        ondestroy: function (action){
-        }
-    });
+	if(source == 3 && params.isSettle == 0){
+		showMsg("订单尚未结算，不能打印结算单","W");
+		return;
+	}else{
+		nui.open({
+	        url: sourceUrl,
+	        title: p.name + "打印",
+			width: "100%",
+			height: "100%",
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	           iframe.contentWindow.SetData(p);
+	        },
+	        ondestroy: function (action){
+	        }
+	    });
+	}
 }

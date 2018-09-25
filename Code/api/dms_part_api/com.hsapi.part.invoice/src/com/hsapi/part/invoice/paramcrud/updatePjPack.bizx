@@ -501,9 +501,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPackDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FYear" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FMonth" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="outTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="out"/>
-    <process:variable description="删除的记录需要更新isCheckSend=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="dout"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="outTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="out"/>
+    <process:variable description="删除的记录需要更新isCheckSend=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="dout"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="alength" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dlength" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="olength" primitiveType="Int"/>

@@ -679,7 +679,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partMsg" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetail" name="enterDetailAdd"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjEnterDetail" name="enterDetailAdd"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterPrice" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="taxSign" primitiveType="Int"/>

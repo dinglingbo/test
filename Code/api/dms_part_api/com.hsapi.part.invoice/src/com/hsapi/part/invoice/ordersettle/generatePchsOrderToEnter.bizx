@@ -1627,7 +1627,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="sell"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="codeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStatementMain" name="stateMain"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjStatementDetail" name="stateDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStatementDetail" name="stateDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjStatementDetail" name="mainTemp"/>
     <process:variable anyType="commonj.sdo.DataObject" description="已审对象转换" historyStateLocation="client" isArray="false" name="auditMainObj"/>
     <process:variable anyType="commonj.sdo.DataObject" description="已审对象转换" historyStateLocation="client" isArray="true" name="auditDetailsObj"/>

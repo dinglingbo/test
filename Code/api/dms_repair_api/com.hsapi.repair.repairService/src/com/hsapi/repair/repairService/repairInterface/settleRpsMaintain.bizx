@@ -200,7 +200,7 @@
       <process:to type="query">totalPrefAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">settlement/balaAmt</process:from>
+      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
       <process:to type="query">balaAmt</process:to>
     </process:copy>
     <process:copy>
@@ -240,16 +240,16 @@
       <process:to type="query">maintain/isSettle</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">dateKey</process:from>
-      <process:to type="query">maintain/datekey</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">maintain/modifier</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">maintain/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">dateKey</process:from>
+      <process:to type="query">maintain/datekey</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
@@ -480,6 +480,7 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <location x="60" y="250"/>

@@ -52,7 +52,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-		showMsg("请输入0到100的数!","W");
+		parent.showMsg("请输入0到100的数!","W");
         e.cancel = true;
     } 
 }

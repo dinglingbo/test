@@ -6,6 +6,7 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var mtAdvisorIdEl = null;
 var baseUrl = apiPath + repairApi + "/";
+var webBaseUrl = webPath + contextPath + "/";  
 $(document).ready(function () {
 	rpsPackageGrid = nui.get("rpsPackageGrid");
 	rpsItemGrid = nui.get("rpsItemGrid");
@@ -420,7 +421,7 @@ function onPrint(e){
         };
 	if(main.id){
 		nui.open({
-	        url: baseUrl+"com.hsweb.print.settlement.flow",
+	        url: webBaseUrl +"com.hsweb.print.settlement.flow",
 	        width: "100%",
 	        height: "100%",
 	        showMaxButton: false,
@@ -435,7 +436,7 @@ function onPrint(e){
 		if(main.isSettle){//已结算
 			params.serviceId = main.sourceServiceId;
 			nui.open({
-		        url: baseUrl+"com.hsweb.print.settlement.flow",
+		        url: webBaseUrl +"com.hsweb.print.settlement.flow",
 		        width: "100%",
 		        height: "100%",
 		        showMaxButton: false,

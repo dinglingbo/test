@@ -182,7 +182,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -392,7 +392,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.add2Array</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -501,9 +501,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjPackDetail" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FYear" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="FMonth" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="outTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="out"/>
-    <process:variable description="删除的记录需要更新isCheckSend=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjSellOrderMainChk" name="dout"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="outTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="out"/>
+    <process:variable description="删除的记录需要更新isCheckSend=0" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="dout"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="alength" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dlength" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="olength" primitiveType="Int"/>

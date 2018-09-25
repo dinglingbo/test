@@ -12,7 +12,7 @@
 <title>导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/purchase/js/getPartInfoImoprt.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/getPartInfoImoprt.js?v=1.0.1"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -109,6 +109,8 @@
 					数量</div>
 				<div field="单价" width="80px" headerAlign="center" allowSort="true">
 					单价</div>
+                <div field="品牌" width="80px" headerAlign="center" allowSort="true">
+                    品牌</div>
                 <div field="仓位" width="150px" headerAlign="center" allowSort="true">
                     仓位</div>
 				<div field="备注" width="150px" headerAlign="center" allowSort="true">

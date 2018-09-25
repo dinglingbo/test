@@ -26,6 +26,14 @@ $(document).ready(function(v)
 	advancedTipWin = nui.get("advancedTipWin");
 	advancedTipForm  = new nui.Form("#advancedTipForm");
 
+	getAllPartBrand(function(data) {
+        brandList = data.brand;
+        brandList.forEach(function(v) {
+            brandHash[v.name] = v;
+        });
+
+    });
+
 });
 
 var callback = null;
@@ -87,8 +95,16 @@ function sure() {
 				orderQty : (data[i].数量||"").replace(/\s+/g, ""),
 				orderPrice : (data[i].单价||"").replace(/\s+/g, ""),
 				shelf : (data[i].仓位||"").replace(/\s+/g, ""),
-				remark : (data[i].备注||"").replace(/\s+/g, "")
+				remark : (data[i].备注||"").replace(/\s+/g, ""),
+				partBrandId: (data[i].品牌||"").replace(/\s+/g, "")
 			};
+
+			if(brandHash && brandHash[newRow.partBrandId]){
+				newRow.partBrandId = brandHash[newRow.partBrandId].id;
+			}else{
+				newRow.partBrandId = "";
+			}
+
 			partList.push(newRow);
 		}
 		//btnEdit.setValue(data.id);

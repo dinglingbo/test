@@ -77,10 +77,10 @@ function save(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				showMsg("保存成功!","S");
+				parent.showMsg("保存成功!","S");
 				
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				parent.showMsg(data.errMsg || "保存失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

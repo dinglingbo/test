@@ -30,7 +30,10 @@
 		height:105px !important;
 	}
 	#out1{
-		border-top:#FF0000 solid 1px;
+		
+	}
+	#qty{
+		padding-bottom:5px;
 	}
 
     </style>
@@ -49,10 +52,10 @@
 				<td>适用车型:<input enabled="false" class="nui-textbox" id="applyCarModel" name="applyCarModel" type="text"></td>
 			</tr>
 			<tr>
-				<td style="padding-left: 26px;">数量:<input enabled="false" class="nui-textbox" id="stockQty" name="stockQty" type="text"></td>
+				<td id="qty" style="">库存数量:<input enabled="false" class="nui-textbox" id="stockQty" name="stockQty" type="text"></td>
 	<!-- 			<td><input class="nui-textbox" id="" name="" type="text"></td> -->
 			</tr>
-			<tr id="out1"><td>请输入数量及领料人:</td></tr>
+			<tr><td  colspan="2" id="out1">请输入数量及领料人:</td></tr>
 			<tr id="out">
 				<td style="padding-left: 14px;">领料人:
 					<input  name="pickMan"

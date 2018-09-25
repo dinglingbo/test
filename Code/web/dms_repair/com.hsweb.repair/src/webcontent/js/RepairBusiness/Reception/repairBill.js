@@ -1855,6 +1855,7 @@ function editRpsPackage(row_uid){
         __saleManId = "";
         rpsPackageGrid.cancelEdit();
         rpsPackageGrid.beginEditRow(row);
+        
     }
 }
 function updateRpsPackage(row_uid){
@@ -2053,6 +2054,9 @@ function updateRpsPart(row_uid){
                 part.serviceTypeId = row.serviceTypeId;
                 part.unitPrice = row.unitPrice;
                 part.amt = row.amt;
+                var rate = row.rate/100;
+                rate = rate.toFixed(4);
+                part.rate = rate;
                 if(__saleManId){
                     part.saleMan = row.saleMan;
                     part.saleManId = __saleManId;

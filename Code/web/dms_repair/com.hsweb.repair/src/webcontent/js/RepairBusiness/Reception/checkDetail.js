@@ -3,7 +3,7 @@ var baseUrl = apiPath + repairApi + "/";
 
 
 var mainGrid = null;  
-var mid = null; 
+var mid = null;  
 var mtAdvisorIdEl = null;        
 var searchKeyEl = null;            
 var servieIdEl = null;        
@@ -560,6 +560,7 @@ function setAllData(){
 */
 
 function setInitData(params){
+    $("#saveData").hide();
     mainParams = nui.clone(params);
     if(mainParams.actionType && mainParams.actionType == "view"){
 
@@ -646,6 +647,7 @@ function setInitData(params){
                             $("#saveData").hide();
                         }
                         if(temp.checkMainName){
+
                             actionType = 'edit';
                             nui.get("checkMainId").setText(temp.checkMainName);
                             checkMainId.setEnabled(false);

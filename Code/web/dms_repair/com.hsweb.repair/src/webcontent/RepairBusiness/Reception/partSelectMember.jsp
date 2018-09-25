@@ -7,7 +7,7 @@
   - Author(s): Administrator 
   - Date: 2018-01-25 14:17:08
   - Description:  
--->
+--> 
 
 <head> 
   <title>选择领料人</title>  
@@ -102,7 +102,7 @@
         }
 
         function onCancel() {
-            closeWindow("cancel");
+            closeWindow("no");
         }
 
         function CloseWindow(action) {

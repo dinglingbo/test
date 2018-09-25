@@ -53,11 +53,11 @@ function deleteR(){
 	var row = dgGrid.getSelected();
 	if(row){
 		if(row.orgid == 0){
-			showMsg("此来源不能删除!","W");
+			parent.showMsg("此来源不能删除!","W");
 			return;
 		}
 		if(row.id){
-			showMsg("此来源不能删除,可修改为禁用!","W");
+			parent.showMsg("此来源不能删除,可修改为禁用!","W");
 			return;
 		}
 	}
@@ -66,7 +66,7 @@ var saveUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDictList.bi
 function save(){
 	var value = checkName();
 	if(!value){
-		showMsg("客户来源不能为空!","W");
+		parent.showMsg("客户来源不能为空!","W");
 		return;
 	}
     var addList = dgGrid.getChanges("added");
@@ -91,10 +91,10 @@ function save(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				showMsg("保存成功!","S");
+				parent.showMsg("保存成功!","S");
 				doSearch();
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				parent.showMsg(data.errMsg || "保存失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

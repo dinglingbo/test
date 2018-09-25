@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
 
-<html> 
+<html>  
 <!-- 
   - Author(s): Administrator
   - Date: 2018-07-02 20:50:20  
@@ -97,7 +97,7 @@
             <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="newCheckMainMore()">
                     <span class="fa fa-list fa-lg"></span>&nbsp;查看历史记录</a>
-                  <a class="nui-button" onclick="saveb()" plain="true" id="saveData"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                  <a class="nui-button" onclick="saveb()" plain="true" id="saveData" name="saveData"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                   <a class="nui-button" onclick="tprint()" plain="true"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
               </td>     
           </tr>

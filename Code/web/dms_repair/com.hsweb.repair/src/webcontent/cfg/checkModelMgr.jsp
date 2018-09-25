@@ -71,6 +71,7 @@
                         showSummaryRow="false">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
+                        <div field="id" name="id" visible="false">id</div>
                         <div allowSort="true" field="name" width="150" headerAlign="center" header="模板名称">
                                 <input property="editor" class="nui-textbox" />
                         </div>
@@ -109,6 +110,7 @@
                    <div property="columns">
                        <div type="indexcolumn">序号</div>
                        <div type="expandcolumn" width="20" >#</div>
+                       <div field="id" name="id" visible="false">id</div>
                        <div field="checkName" name="checkName" width="120" headerAlign="center" allowSort="true">项目名称</div>
                        <div field="checkType" width="120" headerAlign="center" allowSort="true">检查类型</div>
                        <div field="orderIndex" width="50" headerAlign="center" allowSort="true">排序值</div>

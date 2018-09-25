@@ -30,7 +30,7 @@
 		height:105px !important;
 	}
 	#out1{
-		
+		border-top:black solid 1px;
 	}
 	#qty{
 		padding-bottom:5px;

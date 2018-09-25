@@ -281,6 +281,45 @@ var callback = null;
 
 function onOk()
 {
+	if($('#splitDiv').css('display')=='none'){
+		onCommon();
+	}
+	else if($('#splitDiv').css('display')=='block'){
+		onOrder();
+	}
+
+}
+function getData(){
+    return resultData;
+}
+function setData(data,ck)
+{
+	data = data||{};
+	list = data.list||[];
+    callback = ck;
+}
+var checkcallback = null;
+function setCloudPartData(type,ck,cck){
+    chooseType = type;
+    callback = ck;
+    checkcallback = cck;
+}
+function CloseWindow(action)
+{
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
+}
+function onCancel(e) {
+    CloseWindow("cancel");
+}
+function onRowDblClick()
+{
+    onOk();
+}
+
+//用作常用
+function onCommon()
+{
     var node = partGrid.getSelected();
     var nodec = nui.clone(node);
 
@@ -341,30 +380,85 @@ function onOk()
     
 
 }
-function getData(){
-    return resultData;
-}
-function setData(data,ck)
+//用作工单
+function onOrder()
 {
-	data = data||{};
-	list = data.list||[];
-    callback = ck;
+	if(nui.get("state").value){
+		CloseWindow("ok");
+	}else{
+		var row = partGrid.getSelected();
+		if(row)
+		{
+			if(ckcallback){
+				var rs = ckcallback(row);
+				if(rs){
+					showMsg("此配件已添加,请返回查看!","W");
+					return;
+				}else{
+					if(callback){
+						nui.mask({
+							el: document.body,
+							cls: 'mini-mask-loading',
+							html: '处理中...'
+						});
+
+						callback(row,function(data){
+							if(data){
+								data.check = 1;
+								tempGrid.addRow(data);
+							}
+						},function(){
+							nui.unmask(document.body);
+						})
+					}
+				}
+			}else{
+				if(callback){
+					callback(row,function(data){
+						if(data){
+							data.check = 1;
+							tempGrid.addRow(data);
+						}
+					})
+				}
+			}
+			resultData.part = row;
+			if(isChooseClose == 1){
+				CloseWindow("ok");
+			}
+		}
+		else{
+			showMsg("请选择一个配件", "W");
+		}
+	}
 }
-var checkcallback = null;
-function setCloudPartData(type,ck,cck){
-    chooseType = type;
-    callback = ck;
-    checkcallback = cck;
+
+var callback = null;
+var delcallback = null;
+var ckcallback = null;
+//用于工单添加配件时
+function setViewData(ck, delck, cck){
+	//ck 保存数据 delck 删除数据 cck 判断数据
+	isChooseClose = 0;
+	callback = ck;
+	delcallback = delck;
+	ckcallback = cck;
+	partGrid.setWidth("70%");
+	tempGrid.setStyle("display:inline");
+	document.getElementById("splitDiv").style.display="";
 }
-function CloseWindow(action)
-{
-    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
-    else window.close();
+
+function setCkcallback(ck){
+	isChooseClose = 1;
+	ckcallback = ck;
 }
-function onCancel(e) {
-    CloseWindow("cancel");
+
+function getDataAll(){
+	var row = partGrid.getSelecteds();
+	return row;
 }
-function onRowDblClick()
-{
-    onOk();
+
+function setValueData(){
+	nui.get("state").setValue(6);
+	partGrid.showColumn("checkcolumn");
 }

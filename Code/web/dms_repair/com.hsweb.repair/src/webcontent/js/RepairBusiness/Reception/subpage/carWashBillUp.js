@@ -63,6 +63,11 @@ function onChanged() {
 		nui.get("deductible").setValue(0);
 		return;
 	}
+	if(deductible>data.mtAmt){
+		nui.alert("储值抵扣不能大于应收金额","提示");
+		nui.get("deductible").setValue(0);
+		return;
+	}
 	if(PrefAmt>data.mtAmt){
 		nui.alert("优惠金额不能大于应收金额","提示");
 		nui.get("PrefAmt").setValue(0);

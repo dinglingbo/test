@@ -78,13 +78,13 @@
     <node>transactioncommit0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getPrimaryKey" displayName="getPrimaryKey" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="link3" isDefault="true" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>subprocess1</targetNode>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link51" name="link51" displayName="link11" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>subprocess4</targetNode>
     </sourceConnections>
     <targetConnections>link54</targetConnections>
     <location x="45" y="168"/>
@@ -105,21 +105,6 @@
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="getCompBillNO" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="link4" isDefault="true" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign15</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link30" name="link30" displayName="link12" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">orderNO</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link50</targetConnections>
     <location x="128" y="169"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
@@ -194,7 +179,7 @@
       <targetNode>transactionrollback0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link30</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="277" y="275"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
@@ -989,7 +974,7 @@
       <sourceNode>assign15</sourceNode>
       <targetNode>loopstart1</targetNode>
     </sourceConnections>
-    <targetConnections>link29</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="227" y="168"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
@@ -1344,6 +1329,42 @@
     <location x="218" y="59"/>
     <figSize height="20" width="49"/>
     <node>assign19</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="getCompBillNO1" displayName="getCompBillNO" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>assign15</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">orderNO</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="128" y="200"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess4label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uniq.getCompBillNO</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">CGD</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
+    <location x="79" y="235"/>
+    <figSize height="20" width="124"/>
+    <node>subprocess4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

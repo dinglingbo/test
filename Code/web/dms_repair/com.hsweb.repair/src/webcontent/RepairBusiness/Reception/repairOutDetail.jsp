@@ -86,7 +86,7 @@
                 enabled="false"
                 showClose="false"
                 allowInput="true"/>
-                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn" style="display: none;">新增客户</a>
+                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn" name="addBtn" style="display: none;">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     

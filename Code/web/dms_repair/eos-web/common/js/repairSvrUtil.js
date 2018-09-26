@@ -452,42 +452,6 @@ function addPackage(data,callback){
 	//获取到套餐的数据
 	var pkg = data.pkg;
 }
-
-function doSelectBasicData(params,callback){
-	nui.open({
-        url: webPath + contextPath +"/com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
-        title: "标准化产品查询", width: 900, height: 600,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            //var carVin = maintain.carVin;
-            //var data = {
-            //    vin:carVin
-            //};
-            
-           /* iframe.contentWindow.setData(params,function(data,callback)
-            {
-            	//如果选择的是套餐，没有item属性
-               if(data.item)
-                {
-                    var tmpItem = data.item;
-                    addItem(tmpItem);
-                }
-                else{
-                    addPackage(data,callback);
-                }
-
-            });*/ 
-           iframe.contentWindow.setData(params,callback);
-        },
-        ondestroy: function (action)
-        {
-        	
-        	
-        	
-        }
-    });
-}
-
 function doFinishWork(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
@@ -506,6 +470,38 @@ function doFinishWork(params,callback){
     });
 }
 
+function doSelectBasicData(BasicDataUrl,params,callback){
+	nui.open({
+        url: webPath + contextPath +BasicDataUrl+token,
+        title: "标准化产品查询", width: 900, height: 600,
+        onload: function () {
+        	var iframe = this.getIFrameEl();
+            //var carVin = maintain.carVin;
+            //var data = {
+            //    vin:carVin
+            //};
+            
+           /* iframe.contentWindow.setData(params,function(data,callback)
+            {
+            	//如果选择的是套餐，没有item属性
+               if(data.item)
+                {
+                    var tmpItem = data.item;
+                    addItem(tmpItem);
+                }
+                else{
+                    addPackage(data,callback);
+                }
+
+            });*/ 
+           iframe.contentWindow.setData(params,callback); 
+        },
+        ondestroy: function (action)
+        {
+        	        	
+        }
+    });
+}
 function doSetStyle(status, isSettle){
 	status = status||0;
     isSettle = isSettle||0;

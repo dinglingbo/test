@@ -65,22 +65,22 @@ function init()
         };
         if(customId.indexOf("01") == 0)
         {
-            queryTabIdEl.setValue(0);
-            queryTabIdEl.doValueChanged();
+            //queryTabIdEl.setValue(0);
+           // queryTabIdEl.doValueChanged();
             params.packageTypeId = node.id;
             doSearchPackage(params);
         }
         if(customId.indexOf("02") == 0 || customId.indexOf("03") == 0)
         {
-            queryTabIdEl.setValue(1);
-            queryTabIdEl.doValueChanged();
+           // queryTabIdEl.setValue(1);
+           // queryTabIdEl.doValueChanged();
             params.typeId = node.id;
             doSearchItem(params);
         }
         if(customId.indexOf("04") == 0)
         {
-            queryTabIdEl.setValue(2);
-            queryTabIdEl.doValueChanged();
+           // queryTabIdEl.setValue(2);
+           // queryTabIdEl.doValueChanged();
             params.groupId = node.id;
             doSearchPart(params);
         }
@@ -95,10 +95,10 @@ function init()
     });
     packageGrid.on("drawcell",function(e)
     {
-        if(e.field == "packageTypeId" && treeHash[e.value])
+       /* if(e.field == "packageTypeId" && treeHash[e.value])
         {
             e.cellHtml = treeHash[e.value].name.split(" ")[1];
-        }
+        }*/
     });
     var packageDetailUrl = baseUrl+"com.hsapi.system.product.items.getPkgDetail.biz.ext";
     packageDetail = nui.get("packageDetail");
@@ -108,7 +108,6 @@ function init()
     {
         var grid = e.sender;
         var row = e.record;
-
         var td = grid.getRowDetailCellEl(row);
         td.appendChild(detailGrid_Form);
         detailGrid_Form.style.display = "block";
@@ -125,10 +124,10 @@ function init()
     });
     itemGrid.on("drawcell",function(e)
     {
-        if(e.field == "typeId" && treeHash[e.value])
+        /*if(e.field == "typeId" && treeHash[e.value])
         {
             e.cellHtml = treeHash[e.value].name.split(" ")[1];
-        }
+        }*/
         if(e.field == "itemKind")
         {
             e.cellHtml = itemKindHash[e.value];
@@ -207,13 +206,13 @@ function init()
 
     });
     queryTabIdEl = nui.get("queryTabId");
-    mainTabEl = nui.get("mainTab");
+   /* mainTabEl = nui.get("mainTab");
     queryTabIdEl.on("valuechanged",function()
     {
         var tabIdx = queryTabIdEl.getValue();
         var tab = mainTabEl.getTab(parseInt(tabIdx));
         mainTabEl.activeTab(tab);
-    });
+    });*/
 }
 function loadPackageDetailByPkgId(pkgId,callback)
 {
@@ -246,10 +245,28 @@ function getSearchParams()
     }
     return params;
 }
-function onSearch()
+/*function onSearch()
 {
     var params = getSearchParams();
     var tabIdx = queryTabIdEl.getValue();
+    if(tabIdx == 0)
+    {
+        doSearchPackage(params);
+    }
+    else if(tabIdx == 1)
+    {
+        doSearchItem(params);
+    }
+    else if(tabIdx == 2)
+    {
+        doSearchPart(params);
+    }
+}*/
+
+function onSearch(tabIdx)
+{
+    var params = getSearchParams();
+   // var tabIdx = queryTabIdEl.getValue();
     if(tabIdx == 0)
     {
         doSearchPackage(params);
@@ -469,13 +486,13 @@ function doSelect(idx)
     }*/
 }
 //选择
-function onOk()
+function onOk(id)
 {
 	//获取选中的tap对象
-    var getActiveTab = mainTabEl.getActiveTab();
+    /*var getActiveTab = mainTabEl.getActiveTab();
     console.log(getActiveTab);
-    var _id = getActiveTab._id;
-    doSelect(_id-1);
+    var _id = getActiveTab._id;*/
+    doSelect(id);
 }
 //关闭窗口
 function CloseWindow(action) {

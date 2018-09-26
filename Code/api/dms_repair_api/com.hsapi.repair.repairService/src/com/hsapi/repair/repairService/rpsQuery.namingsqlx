@@ -767,6 +767,6 @@
 			B.service_code like '%$serviceCode$%'
 			</isNotEmpty>
 			
-			ORDER BY A.modify_date DESC
+			ORDER BY A.record_date desc
       </select>
 </sqlMap>

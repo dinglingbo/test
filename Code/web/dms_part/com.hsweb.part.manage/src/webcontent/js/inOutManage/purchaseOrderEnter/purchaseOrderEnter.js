@@ -2316,14 +2316,12 @@ function addOrEditPart(row)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            var carBrandList = null;
-            var params = {
-                qualityTypeIdList:qualityList,
-                partBrandIdList:brandList,
-                unitList:unitList,
-                abcTypeList:abcTypeList,
-               applyCarModelList:carBrandList
-            };
+            var params={};
+            params.qualityTypeIdList=null;
+            params.partBrandIdList=null;
+            params.unitList=null;
+            params.abcTypeList=null;
+            params.applyCarModelList=null;
             if(row)
             {
                 params.partData = row;
@@ -2334,7 +2332,7 @@ function addOrEditPart(row)
         {
             if(action == "ok")
             {
-                partGrid.reload();
+            	rightGrid.addRow();
             }
         }
     });

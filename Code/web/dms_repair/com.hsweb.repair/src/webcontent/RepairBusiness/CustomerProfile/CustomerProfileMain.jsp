@@ -55,6 +55,7 @@ table {
 		<table>
 			<tr>
 				<td><a class="nui-button" iconCls="" onclick="add()"plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
+				 <a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 					<a class="nui-button" iconCls="" id="updateBtn"	onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 					<a class="nui-button" iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
 					class="nui-button" iconCls="icon-date" onclick="split()"

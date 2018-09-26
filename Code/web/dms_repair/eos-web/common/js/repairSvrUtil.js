@@ -453,12 +453,29 @@ function addPackage(data,callback){
 	var pkg = data.pkg;
 }
 
-function doSelectBasicData(params,callback){
+function doFinishWork(params,callback){
 	nui.open({
-        url: webPath + contextPath +"/com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
-        title: "标准化产品查询", width: 900, height: 600,
+        url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
+        title: "质检&完工", width: 800, height: 270, allowDrag:false, allowResize:false,
         onload: function () {
             var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getRtnData();
+			data = data || {};
+			data.action = action;
+			callback && callback(data);
+        }
+    });
+}
+function doSelectBasicData(BasicDataUrl,title,params,callback){
+	nui.open({
+        url: webPath + contextPath +BasicDataUrl+token,
+        title: title,width: 900, height: 600,
+        onload: function () {
+        	var iframe = this.getIFrameEl();
             //var carVin = maintain.carVin;
             //var data = {
             //    vin:carVin
@@ -477,35 +494,14 @@ function doSelectBasicData(params,callback){
                 }
 
             });*/ 
-           iframe.contentWindow.setData(params,callback);
+           iframe.contentWindow.setData(params,callback); 
         },
         ondestroy: function (action)
         {
-        	
-        	
-        	
+        	        	
         }
     });
 }
-
-function doFinishWork(params,callback){
-	nui.open({
-        url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
-        title: "质检&完工", width: 800, height: 270, allowDrag:false, allowResize:false,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action) {
-			var iframe = this.getIFrameEl();
-			var data = iframe.contentWindow.getRtnData();
-			data = data || {};
-			data.action = action;
-			callback && callback(data);
-        }
-    });
-}
-
 function doSetStyle(status, isSettle){
 	status = status||0;
     isSettle = isSettle||0;
@@ -596,21 +592,17 @@ function doPrint(params){
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.checkCar.flow?token="+token;
 		p.name = "查车单";
 	}
-	if(source == 3 && params.isSettle == 0){
-		showMsg("订单尚未结算，不能打印结算单","W");
-		return;
-	}else{
-		nui.open({
-	        url: sourceUrl,
-	        title: p.name + "打印",
-			width: "100%",
-			height: "100%",
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	           iframe.contentWindow.SetData(p);
-	        },
-	        ondestroy: function (action){
-	        }
-	    });
-	}
+	
+	nui.open({
+        url: sourceUrl,
+        title: p.name + "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(p);
+        },
+        ondestroy: function (action){
+        }
+    });
 }

@@ -15,6 +15,9 @@ var abcTypeList = [];
 var carBrandList = [];
 var chooseType = null;
 var codeEl = null;
+var tempGrid=null;
+
+var isChooseClose = 1;//默认选择后就关闭窗体
 
 var queryForm = null;
 $(document).ready(function(v)
@@ -22,6 +25,7 @@ $(document).ready(function(v)
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
+    tempGrid=nui.get("tempGrid");
     codeEl = nui.get("search-code");
     partGrid.on("beforeload",function(e){
         e.data.token = token;
@@ -135,7 +139,24 @@ $(document).ready(function(v)
             onSearch();
         }
     });
-
+    
+    partGrid.on("rowdblclick",function(e){
+		onOk();
+	});
+	tempGrid.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="check" ){
+            //if(e.row.check==1){
+			//}else{}
+			//删除所选记录
+			delcallback && delcallback(row,function(){
+				tempGrid.removeRow(row);
+			});
+			tempGrid.removeRow(row);
+        }
+    });
+	
     document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;
@@ -312,10 +333,10 @@ function CloseWindow(action)
 function onCancel(e) {
     CloseWindow("cancel");
 }
-function onRowDblClick()
-{
-    onOk();
-}
+//function onRowDblClick()
+//{
+//    onOk();
+//}
 
 //用作常用
 function onCommon()

@@ -56,6 +56,10 @@
     <span id="carHealthEl" >
         <a href="javascript:choosePart()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
     </span>
+    <span>&nbsp;</span>
+    <span id="carHealthEl" >
+        <a href="javascript:showBasicData('part')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准配件</a>
+    </span>
 </div>
 <div id="advancedMorePartWin" class="nui-window"
      title="" style="width:450px;height:200px;"

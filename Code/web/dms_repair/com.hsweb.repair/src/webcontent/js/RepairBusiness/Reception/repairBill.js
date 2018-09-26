@@ -2489,6 +2489,7 @@ function showBasicData(type){
     var maintain = billForm.getData();
     var isSettle = maintain.isSettle||0;
     var BasicDataUrl = null;
+    var title = null;
     if(!maintain.id){
         showMsg("请选择保存工单!","S");
         return;
@@ -2504,16 +2505,19 @@ function showBasicData(type){
     };
     if(type=="pkg"){
     	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
+    	title = "标准套餐查询";
     }
     if(type=="item"){
-    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow.flow?token=";
+    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
+    	title = "标准工时查询";
     }
     if(type=="part"){
     	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
+    	title = "标准配件查询";
     }
     
     //添加回调函数，进行显示
-    doSelectBasicData(BasicDataUrl,params,function(p1,p2,p3){
+    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
        /* var p1 = { }
         var p2 = {
             interType: "item",

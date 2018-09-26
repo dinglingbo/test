@@ -452,6 +452,7 @@ function addPackage(data,callback){
 	//获取到套餐的数据
 	var pkg = data.pkg;
 }
+
 function doFinishWork(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
@@ -469,11 +470,10 @@ function doFinishWork(params,callback){
         }
     });
 }
-
-function doSelectBasicData(BasicDataUrl,params,callback){
+function doSelectBasicData(BasicDataUrl,title,params,callback){
 	nui.open({
         url: webPath + contextPath +BasicDataUrl+token,
-        title: "标准化产品查询", width: 900, height: 600,
+        title: title,width: 900, height: 600,
         onload: function () {
         	var iframe = this.getIFrameEl();
             //var carVin = maintain.carVin;

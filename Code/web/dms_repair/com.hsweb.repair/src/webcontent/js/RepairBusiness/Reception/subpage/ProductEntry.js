@@ -87,6 +87,7 @@ function init()
         }
     });
     var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
+    packageDetail = nui.get("packageDetail");
     packageGrid = nui.get("packageGrid");
     packageGrid.setUrl(packageGridUrl);
     packageGrid.on("beforeload",function(e)
@@ -102,7 +103,7 @@ function init()
         }*/
     });
     var packageDetailUrl = baseUrl+"com.hsapi.system.product.items.getPkgDetail.biz.ext";
-    packageDetail = nui.get("packageDetail");
+    
     packageDetail.setUrl(packageDetailUrl);
     detailGrid_Form = document.getElementById("detailGrid_Form");
     packageGrid.on("showrowdetail",function(e)

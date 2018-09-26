@@ -97,10 +97,10 @@ function init()
     });
     packageGrid.on("drawcell",function(e)
     {
-       /* if(e.field == "packageTypeId" && treeHash[e.value])
+        if(e.field == "packageTypeId" && treeHash[e.value])
         {
             e.cellHtml = treeHash[e.value].name.split(" ")[1];
-        }*/
+        }
     });
     var packageDetailUrl = baseUrl+"com.hsapi.system.product.items.getPkgDetail.biz.ext";
     

@@ -64,6 +64,10 @@
     <span id="carHealthEl" >
         <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
     </span>
+    <span>&nbsp;</span>
+    <span id="carHealthEl" >
+        <a href="javascript:showBasicData('pkg')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准套餐</a>
+    </span>
 </div>
 <div id="packageDetailGridForm" style="display:none;">
     <div id="packageDetailGrid" class="nui-datagrid"

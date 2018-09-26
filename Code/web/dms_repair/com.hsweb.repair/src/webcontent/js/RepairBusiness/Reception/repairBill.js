@@ -2485,9 +2485,10 @@ function pay(){
 	})
 }
 
-function showBasicData(){
+function showBasicData(type){
     var maintain = billForm.getData();
     var isSettle = maintain.isSettle||0;
+    var BasicDataUrl = null;
     if(!maintain.id){
         showMsg("请选择保存工单!","S");
         return;
@@ -2501,8 +2502,18 @@ function showBasicData(){
         vin:carVin,
         serviceId:maintain.id
     };
+    if(type=="pkg"){
+    	BasicDataUrl = "com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
+    }
+    if(type=="item"){
+    	BasicDataUrl = "com.hsweb.RepairBusiness.ProductEntryItem.flow.flow?token=";
+    }
+    if(type=="part"){
+    	BasicDataUrl = "com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
+    }
+    
     //添加回调函数，进行显示
-    doSelectBasicData(params,function(p1,p2,p3){
+    doSelectBasicData(BasicDataUrl,params,function(p1,p2,p3){
        /* var p1 = { }
         var p2 = {
             interType: "item",

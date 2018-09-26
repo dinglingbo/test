@@ -133,18 +133,21 @@ $(document).ready(function ()
         var field = e.field;
         var value = e.value;
         var editor = e.editor;
-        if (field == "remark") {
+        if(actionType == "view"){
+            e.cancel = true;
+        }else{
 
-            if(checkMainId.enabled){
-                var id = record.id;
-            }else{
-                var id = record.checkId;
-            }
-
-            var url = baseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetailContent.biz.ext?checkId=" + id;
-            editor.setUrl(url);
-        } 
-
+            if (field == "remark") {
+                var id = null;
+                if(checkMainId.enabled){
+                    id = record.id;
+                }else{
+                    id = record.checkId;
+                }
+                var url = baseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetailContent.biz.ext?checkId=" + id;
+                editor.setUrl(url);
+            } 
+        }
     });
 
     mainGrid.on("cellendedit",function(e){
@@ -560,7 +563,7 @@ function setAllData(){
 */
 
 function setInitData(params){
-    $("#saveData").hide();
+    //s$("#saveData").hide();
     mainParams = nui.clone(params);
     if(mainParams.actionType && mainParams.actionType == "view"){
 
@@ -647,8 +650,9 @@ function setInitData(params){
                             $("#saveData").hide();
                         }
                         if(temp.checkMainName){
-
-                            actionType = 'edit';
+                            if(actionType != "view"){
+                                actionType = 'edit';
+                            }
                             nui.get("checkMainId").setText(temp.checkMainName);
                             checkMainId.setEnabled(false);
                             mainGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");

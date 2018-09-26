@@ -2503,13 +2503,13 @@ function showBasicData(type){
         serviceId:maintain.id
     };
     if(type=="pkg"){
-    	BasicDataUrl = "com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
+    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
     }
     if(type=="item"){
-    	BasicDataUrl = "com.hsweb.RepairBusiness.ProductEntryItem.flow.flow?token=";
+    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow.flow?token=";
     }
     if(type=="part"){
-    	BasicDataUrl = "com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
+    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
     }
     
     //添加回调函数，进行显示

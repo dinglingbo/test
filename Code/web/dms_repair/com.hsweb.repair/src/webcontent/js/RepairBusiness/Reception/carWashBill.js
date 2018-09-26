@@ -184,6 +184,8 @@ $(document).ready(function ()
                                     carNo: carNo
                                 };
                                 window.parent.activeTabAndInit(opt,params);
+                            }else{
+                            	return;
                             }
                         }
                     });
@@ -808,6 +810,7 @@ function add(){
     fguestId = 0;
     fcarId = 0;
     fserviceId = 0;
+
 
     document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
     $("#servieIdEl").html("");

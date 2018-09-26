@@ -297,10 +297,12 @@ var resultData = {};
 var callback = null;
 var delcallback = null;
 var ckcallback = null;
+var itemId = null;
 //用于工单添加配件时
-function setViewData(ck, delck, cck){
+function setViewData(tId,ck, delck, cck){
 	//ck 保存数据 delck 删除数据 cck 判断数据
 	isChooseClose = 0;
+	itemId = tId;
 	callback = ck;
 	delcallback = delck;
 	ckcallback = cck;
@@ -339,7 +341,8 @@ function onOk()
 							cls: 'mini-mask-loading',
 							html: '处理中...'
 						});
-
+                        //把工时的ID绑定上
+						row.itemId = itemId;
 						callback(row,function(data){
 							if(data){
 								data.check = 1;

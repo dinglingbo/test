@@ -246,10 +246,28 @@ function getSearchParams()
     }
     return params;
 }
-function onSearch()
+/*function onSearch()
 {
     var params = getSearchParams();
     var tabIdx = queryTabIdEl.getValue();
+    if(tabIdx == 0)
+    {
+        doSearchPackage(params);
+    }
+    else if(tabIdx == 1)
+    {
+        doSearchItem(params);
+    }
+    else if(tabIdx == 2)
+    {
+        doSearchPart(params);
+    }
+}*/
+
+function onSearch(tabIdx)
+{
+    var params = getSearchParams();
+   // var tabIdx = queryTabIdEl.getValue();
     if(tabIdx == 0)
     {
         doSearchPackage(params);
@@ -469,13 +487,13 @@ function doSelect(idx)
     }*/
 }
 //选择
-function onOk()
+function onOk(id)
 {
 	//获取选中的tap对象
     var getActiveTab = mainTabEl.getActiveTab();
     console.log(getActiveTab);
     var _id = getActiveTab._id;
-    doSelect(_id-1);
+    doSelect(id);
 }
 //关闭窗口
 function CloseWindow(action) {

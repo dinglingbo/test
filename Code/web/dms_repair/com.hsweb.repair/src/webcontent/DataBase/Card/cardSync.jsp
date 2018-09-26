@@ -11,7 +11,7 @@
   --%>
 <head>
 <title>储值卡录入</title>
-<script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.5"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.15"></script>
 </head>
 <body>
 	<div class="nui-fit">

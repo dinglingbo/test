@@ -434,7 +434,7 @@
     					}
     					var orderIndex = data[i].orderIndex;
     					var rate = data[i].rate;
-    					rate = rate.toFixed(1) + "%";
+    					rate = (rate/100).toFixed(1) + "%";
     					if(data[i].billPackageId != 0){
     						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
     						orderIndex = "";
@@ -501,7 +501,7 @@
     					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     					document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
-    					rate = rate.toFixed(1) + "%";
+    					rate = (rate/100).toFixed(1) + "%";
     					var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[id]",i + 1)
@@ -535,7 +535,7 @@
     					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     					document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
-    					rate = rate.toFixed(1) + "%";
+    					rate = (rate/100).toFixed(1) + "%";
     					var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[id]",i + 1)

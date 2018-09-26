@@ -762,7 +762,6 @@ function setInitData(params){
                             }
                         }
                         loadDetail(p1, p2, p3);
-
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","W");
                     }
@@ -1844,7 +1843,6 @@ function loadDetail(p1, p2, p3){
             }
         }, function(){});
     }
-
 }
 var __workerIds="";
 var __saleManId="";
@@ -2410,9 +2408,9 @@ function onPrint(e){
 	if(main.id){
 		var params = {
             source : e,
-            serviceId : main.id
+            serviceId : main.id,
+            isSettle : main.isSettle
 		};
-        
         doPrint(params);
 	}else{
         showMsg("请先保存工单,再打印!","W");

@@ -592,17 +592,21 @@ function doPrint(params){
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.checkCar.flow?token="+token;
 		p.name = "查车单";
 	}
-	
-	nui.open({
-        url: sourceUrl,
-        title: p.name + "打印",
-		width: "100%",
-		height: "100%",
-        onload: function () {
-            var iframe = this.getIFrameEl();
-           iframe.contentWindow.SetData(p);
-        },
-        ondestroy: function (action){
-        }
-    });
+	if(source == 3 && params.isSettle == 0){
+		showMsg("订单尚未结算，不能打印结算单","W");
+		return;
+	}else{
+		nui.open({
+	        url: sourceUrl,
+	        title: p.name + "打印",
+			width: "100%",
+			height: "100%",
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	           iframe.contentWindow.SetData(p);
+	        },
+	        ondestroy: function (action){
+	        }
+	    });
+	}
 }

@@ -12,7 +12,7 @@
 <head> 
     <title>查车单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.957"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.958"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -68,7 +68,7 @@
         <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
             <tr>            
                 <td style="width: 500px;">
-                    <div class="nui-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    <div class="nui-autocomplete" style="width:300px;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
                     dataField="list" loadingText="数据加载中...">     
                     <div property="columns">
@@ -85,12 +85,12 @@
                 class="nui-textbox"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
-                width="200px"
+                width="300px"
                 visible="false"
                 enabled="false"
                 showClose="false"
                 allowInput="true"/>
-                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
+                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn" style="display: none;">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     

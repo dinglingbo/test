@@ -41,7 +41,7 @@
 		
 		<table>
 			<tr>
-				<td style="padding-left: 13px;">配件编码:<input enabled="false" class="nui-textbox" id="partCode" name="partCode" type="text"></td>
+				<td style="padding-left: 13px; padding-bottom:5px;">配件编码:<input enabled="false" class="nui-textbox" id="partCode" name="partCode" type="text"></td>
 				<td >配件名称:<input enabled="false" class="nui-textbox" id="partName" name="partName" type="text"></td>
 			</tr>
 <!-- 			<tr> -->
@@ -52,7 +52,7 @@
 <!-- 				<td style="padding-left: 26px;">数量:<input enabled="false" class="nui-textbox" id="stockQty" name="stockQty" type="text"></td> -->
 <!-- 	<!-- 			<td><input class="nui-textbox" id="" name="" type="text"></td> --> 
 <!-- 			</tr> -->
-			<tr id="return"><td id="return1">请输入数量及归库人:</td></tr>
+			<tr id="return"><td  colspan="2"  id="return1">请输入数量及归库人:</td></tr>
 			<tr id="return">
 				<td style="padding-left: 23px;">归库人:
 					<input  name="returnMan"

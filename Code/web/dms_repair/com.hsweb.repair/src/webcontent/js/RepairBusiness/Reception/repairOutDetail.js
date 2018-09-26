@@ -243,12 +243,12 @@ function openPartSelect(par,type,id,row){
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.SetData(par,type,id,row);
 		},
-		ondestroy:function(action){
-			if(action == "ok"){
-				
+		ondestroy:function(action){ 
+
+				alert(123);
 				mainGrid.load({serviceId:mid,token:token});
 				repairOutGrid.load({serviceId:mid,token:token});
-			}
+
 		}
 
 	});

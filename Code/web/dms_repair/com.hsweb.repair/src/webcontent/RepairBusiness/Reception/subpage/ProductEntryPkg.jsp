@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.0.2"></script>
 <style type="text/css">
 
 table {
@@ -154,78 +154,70 @@ table {
 						</td>
 					</tr>
 				</table>
-			</div>
-			<div  class="nui-fit">
-				<div class="nui-tabs"
-					 id="mainTab"
-					 activeIndex="0" style="width: 100%; height: 100%;" plain="false" borderStyle="border:0;">
-					<div title="标准套餐" borderStyle="border:0;">
-						<div class="nui-datagrid" style="width:100%;height:100%;"
-							 id="packageGrid"
-							 dataField="rs"
-							 idField="id"
-							 showPager="true"
-							 totalField="page.count"
-							 pageSize="20"
-							 allowSortColumn="true"
-							 sortMode="client"
-							 frozenStartColumn="0"
-							 frozenEndColumn="0">
-							<div property="columns">
-								<div type="indexcolumn">序号</div>
-								<div type="expandcolumn" >#</div>
-								<div header="基本信息" headerAlign="center">
-									<div property="columns" >
-										<div field="packageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
-									</div>
-								</div>
-								<div header="价格信息" headerAlign="center">
-									<div property="columns">
-										<div field="packageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
-										<div field="package4sAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
-									</div>
-								</div>
-								<div header="其他信息" headerAlign="center">
-									<div property="columns">
-										<div field="carbrandName" headerAlign="center" allowSort="true" header="品牌"></div>
-										<div field="carLineName" headerAlign="center" allowSort="true" header="车系"></div>
-										<div field="carLevelName" width="80" headerAlign="center" allowSort="true" header="车型等级"></div>
-										<div field="carModelName" width="80" headerAlign="center" allowSort="true" header="车型"></div>
-										<div field="" width="80" headerAlign="center" allowSort="true" header="技术工艺"></div>
-										<div field="" width="150" headerAlign="center" allowSort="true" header="备注"></div>
-										<div field="packageTypeId" headerAlign="center" allowSort="true" header="类型"></div>
-										<div field="packageId" width="80" headerAlign="center" allowSort="true" header="套餐编码"></div>
-										<div field="paintQty" headerAlign="center" allowSort="true" header="幅数"></div>
-										<div field="useCount" width="80" headerAlign="center" allowSort="true" header="使用频率"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="detailGrid_Form" style="display:none;">
-							<div id="packageDetail" class="nui-datagrid" style="width:100%;"
-								dataField="rs" showPager="false">
-								<div property="columns">
-									<div field="type" width="60" headerAlign="center" allowSort="true" header="类型"></div>
-									<div field="itemCode" width="120" headerAlign="center" allowSort="true" header="工时/配件名称编码"></div>
-									<div field="itemName" width="120" headerAlign="center" allowSort="true" header="名称"></div>
-									<div field="itemKind" width="120" headerAlign="center" allowSort="true" header="工种"></div>
-									<div field="qty" width="120" headerAlign="center" allowSort="true" header="工时/数量"></div>
-									<div field="price" width="120" headerAlign="center" allowSort="true" header="工时/配件单价"></div>
-									<div field="amt" width="120" headerAlign="center" allowSort="true" header="工时/配件金额"></div>
-									<div field="partBrandId" width="120" headerAlign="center" allowSort="true" header="配件品牌"></div>
-								</div>
-							</div>
-						</div>
+		</div>
+	  <div  class="nui-fit">		
+		<div class="nui-datagrid" style="width:100%;height:100%;"
+			 id="packageGrid"
+			 dataField="rs"
+			 idField="id"
+			 showPager="true"
+			 totalField="page.count"
+			 pageSize="20"
+			 allowSortColumn="true"
+			 sortMode="client"
+			 frozenStartColumn="0"
+			 frozenEndColumn="0">
+			<div property="columns">
+				<div type="indexcolumn">序号</div>
+				<div type="expandcolumn" >#</div>
+				<div header="基本信息" headerAlign="center">
+					<div property="columns" >
+						<div field="packageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
 					</div>
 				</div>
-			</div>
+				<div header="价格信息" headerAlign="center">
+					<div property="columns">
+						<div field="packageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
+						<div field="package4sAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
+					</div>
+				</div>
+				<div header="其他信息" headerAlign="center">
+					<div property="columns">
+						<div field="carbrandName" headerAlign="center" allowSort="true" header="品牌"></div>
+						<div field="carLineName" headerAlign="center" allowSort="true" header="车系"></div>
+						<div field="carLevelName" width="80" headerAlign="center" allowSort="true" header="车型等级"></div>
+						<div field="carModelName" width="80" headerAlign="center" allowSort="true" header="车型"></div>
+						<div field="" width="80" headerAlign="center" allowSort="true" header="技术工艺"></div>
+						<div field="" width="150" headerAlign="center" allowSort="true" header="备注"></div>
+						<div field="packageTypeId" headerAlign="center" allowSort="true" header="类型"></div>
+						<div field="packageId" width="80" headerAlign="center" allowSort="true" header="套餐编码"></div>
+						<div field="paintQty" headerAlign="center" allowSort="true" header="幅数"></div>
+						<div field="useCount" width="80" headerAlign="center" allowSort="true" header="使用频率"></div>
+					</div>
+				</div>
+		  </div>
 		</div>
-	</div>
-	<div class="nui-datagrid" style="width:100%;height:100%"  id="itemGrid" visible="false"></div>
+		  <div id="detailGrid_Form" style="display:none;">
+					<div id="packageDetail" class="nui-datagrid" style="width:100%;"
+						dataField="rs" showPager="false">
+						<div property="columns">
+							<div field="type" width="60" headerAlign="center" allowSort="true" header="类型"></div>
+							<div field="itemCode" width="120" headerAlign="center" allowSort="true" header="工时/配件名称编码"></div>
+							<div field="itemName" width="120" headerAlign="center" allowSort="true" header="名称"></div>
+							<div field="itemKind" width="120" headerAlign="center" allowSort="true" header="工种"></div>
+							<div field="qty" width="120" headerAlign="center" allowSort="true" header="工时/数量"></div>
+							<div field="price" width="120" headerAlign="center" allowSort="true" header="工时/配件单价"></div>
+							<div field="amt" width="120" headerAlign="center" allowSort="true" header="工时/配件金额"></div>
+							<div field="partBrandId" width="120" headerAlign="center" allowSort="true" header="配件品牌"></div>
+						</div>
+					</div>
+		         </div>				
+            </div>
+		 </div>
+  </div>
+    <div class="nui-datagrid" style="width:100%;height:100%"  id="itemGrid" visible="false"></div>
 	<div class="nui-datagrid" style="width:100%;height:100%"  id="partGrid" visible="false"></div>
 	<div class="nui-datagrid" style="width:100%;height:100%"  id="brandPartGrid" visible="false"></div>
-	
-	
 </div>
 </body>
 </html>

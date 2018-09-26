@@ -3,7 +3,8 @@
  */
 
 //var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-var baseUrl = apiPath + repairApi + '/';
+var baseUrlRe = apiPath + repairApi + '/';
+var baseUrl = apiPath + sysApi + '/';
 var tree = null;
 var carBrandIdEl = null;
 var carModelIdEL = null;
@@ -86,6 +87,7 @@ function init()
         }
     });
     var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
+    packageDetail = nui.get("packageDetail");
     packageGrid = nui.get("packageGrid");
     packageGrid.setUrl(packageGridUrl);
     packageGrid.on("beforeload",function(e)
@@ -101,7 +103,7 @@ function init()
         }*/
     });
     var packageDetailUrl = baseUrl+"com.hsapi.system.product.items.getPkgDetail.biz.ext";
-    packageDetail = nui.get("packageDetail");
+    
     packageDetail.setUrl(packageDetailUrl);
     detailGrid_Form = document.getElementById("detailGrid_Form");
     packageGrid.on("showrowdetail",function(e)
@@ -323,9 +325,9 @@ function getItemKind(item_kind)
     item_kind = item_kind == 'JD' ? '040701' : item_kind == 'BJ' ? '040702' : item_kind == 'PQ' ? '040703' : item_kind == 'MR' ? '040705' : '040701';
     return item_kind;
 }
-var stdPkgUrl = baseUrl + "com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
-var stdItemUrl = baseUrl +"com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
-var stdPartUrl = baseUrl +"com.hsapi.repair.repairService.crud.insStdPart.biz.ext";
+var stdPkgUrl = baseUrlRe + "com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
+var stdItemUrl = baseUrlRe +"com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
+var stdPartUrl = baseUrlRe +"com.hsapi.repair.repairService.crud.insStdPart.biz.ext";
 function doSelect(idx)
 {
     var result = {};

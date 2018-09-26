@@ -139,6 +139,10 @@ table {
 							<label>查询项：</label>
 						</td>
 						<td>
+							<input class="nui-combobox" id="queryItem"
+								   data="[{id:0,text:'编码'},{id:1,text:'名称'},{id:2,text:'拼音'}]" value="1"/>
+						</td>
+						<td>
 							<label>查询值：</label>
 						</td>
 						<td>
@@ -152,55 +156,49 @@ table {
 				</table>
 			</div>
 			<div  class="nui-fit">
-				<div class="nui-tabs"
-					 id="mainTab"
-					 activeIndex="0" style="width: 100%; height: 100%;" plain="false" borderStyle="border:0;">
-					<div title="标准配件">
-						<div class="nui-splitter" style="width:100%;height:100%;" borderStyle="0" allowResize="false">
-							<div size="60%" showCollapseButton="false" style="border:0;">
-								<div>
-									<label>原厂配件编码：</label>
-								</div>
-								<div class="nui-fit">
-									<div class="nui-datagrid" style="width:100%;height:100%"
-										 id="partGrid" dataField="rs"
-										 pageSize="20"
-										 totalField="page.count"
-										 allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="0">
-										<div property="columns">
-											<div type="indexcolumn">序号</div>
-											<div field="code" width="100" headerAlign="center" allowSort="true" header="配件编码"></div>
-											<div field="name" width="180" headerAlign="center" allowSort="true" header="原厂名称"></div>
-											<div field="stdName" width="100" headerAlign="center" allowSort="true" header="标准名称"></div>
-											<div field="sellPrice4s" width="180" headerAlign="center" allowSort="true" header="市场金额"></div>
-											<div field="sellPriceStd" width="80" headerAlign="center" allowSort="true" header="建议销价"></div>
-											<div field="remark" width="80" headerAlign="center" allowSort="true" header="备注"></div>
-											<div field="parentGroupCode" width="180" headerAlign="center" allowSort="true" header="主组别编码"></div>
-											<!--<div field="parentGroupId" headerAlign="center" allowSort="true" header="主组别"></div>-->
-											<div field="groupCode" width="100" headerAlign="center" allowSort="true" header="子组别编码"></div>
-											<!--<div field="groupId" width="100" headerAlign="center" allowSort="true" header="子组别"></div>-->
-											<div field="id" headerAlign="center" allowSort="true" header="内码"></div>
-										</div>
-									</div>
+				<div class="nui-splitter" style="width:100%;height:100%;" borderStyle="0" allowResize="false">
+					<div size="60%" showCollapseButton="false" style="border:0;">
+						<div>
+							<label>原厂配件编码：</label>
+						</div>
+						<div class="nui-fit">
+							<div class="nui-datagrid" style="width:100%;height:100%"
+								 id="partGrid" dataField="rs"
+								 pageSize="20"
+								 totalField="page.count"
+								 allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="0">
+								<div property="columns">
+									<div type="indexcolumn">序号</div>
+									<div field="code" width="100" headerAlign="center" allowSort="true" header="配件编码"></div>
+									<div field="name" width="180" headerAlign="center" allowSort="true" header="原厂名称"></div>
+									<div field="stdName" width="100" headerAlign="center" allowSort="true" header="标准名称"></div>
+									<div field="sellPrice4s" width="180" headerAlign="center" allowSort="true" header="市场金额"></div>
+									<div field="sellPriceStd" width="80" headerAlign="center" allowSort="true" header="建议销价"></div>
+									<div field="remark" width="80" headerAlign="center" allowSort="true" header="备注"></div>
+									<div field="parentGroupCode" width="180" headerAlign="center" allowSort="true" header="主组别编码"></div>
+									<!--<div field="parentGroupId" headerAlign="center" allowSort="true" header="主组别"></div>-->
+									<div field="groupCode" width="100" headerAlign="center" allowSort="true" header="子组别编码"></div>
+									<!--<div field="groupId" width="100" headerAlign="center" allowSort="true" header="子组别"></div>-->
+									<div field="id" headerAlign="center" allowSort="true" header="内码"></div>
 								</div>
 							</div>
-							<div showCollapseButton="false" style="border:0;">
-								<div>
-									<label>互换配件编码：</label>
-								</div>
-								<div class="nui-fit">
-									<div class="nui-datagrid" style="width:100%;height:100%"
-										 id="brandPartGrid" dataField="rs"
-										 pageSize="20"
-										 totalField="page.count"
-										 allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="0">
-										<div property="columns">
-											<div type="indexcolumn">序号</div>
-											<div field="name" width="80" headerAlign="center" allowSort="true" header="品牌"></div>
-											<div field="code" width="100" headerAlign="center" allowSort="true" header="配件编码"></div>
-											<div field="hotIndex" width="100" headerAlign="center" allowSort="true" header="热度"></div>
-										</div>
-									</div>
+						</div>
+					</div>
+					<div showCollapseButton="false" style="border:0;">
+						<div>
+							<label>互换配件编码：</label>
+						</div>
+						<div class="nui-fit">
+							<div class="nui-datagrid" style="width:100%;height:100%"
+								 id="brandPartGrid" dataField="rs"
+								 pageSize="20"
+								 totalField="page.count"
+								 allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="0">
+								<div property="columns">
+									<div type="indexcolumn">序号</div>
+									<div field="name" width="80" headerAlign="center" allowSort="true" header="品牌"></div>
+									<div field="code" width="100" headerAlign="center" allowSort="true" header="配件编码"></div>
+									<div field="hotIndex" width="100" headerAlign="center" allowSort="true" header="热度"></div>
 								</div>
 							</div>
 						</div>
@@ -210,6 +208,8 @@ table {
 		</div>
 	</div>
 </div>
-
+    <div class="nui-datagrid" style="width:100%;height:100%"  id="packageGrid" visible="false"></div>
+    <div class="nui-datagrid" style="width:100%;height:100%"  id="packageDetail" visible="false"></div>
+	<div class="nui-datagrid" style="width:100%;height:100%"  id="itemGrid" visible="false"></div>
 </body>
 </html>

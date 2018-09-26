@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.15"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.19"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -20,6 +20,7 @@
     <input class="nui-combobox" visible="false" id="unit"/>
     <input class="nui-combobox" visible="false" id="abcType"/>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+	<input class="nui-textbox" id="state"visible="false"/>
     <div class="form" id="queryForm">
         <table style="width:100%;">
             <tr>
@@ -95,7 +96,7 @@
                      url=""
                      idField="id"
                      totalField="page.count"
-                     onrowdblclick="onRowDblClick"
+                     onrowdblclick=""
                      selectOnLoad="true"
                      pageSize="50"
                      sortMode="client"

@@ -333,10 +333,10 @@ function CloseWindow(action)
 function onCancel(e) {
     CloseWindow("cancel");
 }
-function onRowDblClick()
-{
-    onOk();
-}
+//function onRowDblClick()
+//{
+//    onOk();
+//}
 
 //用作常用
 function onCommon()

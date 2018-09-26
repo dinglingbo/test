@@ -89,13 +89,14 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo11</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="255" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo11label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToFloatArr</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.propertyToFloatArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -146,7 +147,7 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.part.common.ArrayUtils.propertyToStringArr</process:partner>
+      <process:partner type="literal">com.hs.common.ArrayUtils.propertyToStringArr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

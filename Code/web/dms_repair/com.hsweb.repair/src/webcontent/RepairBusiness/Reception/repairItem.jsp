@@ -67,6 +67,10 @@
     <span id="carHealthEl" >
         <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择工时</a>
     </span>
+    <span>&nbsp;</span>
+    <span id="carHealthEl" >
+        <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准工时</a>
+    </span>
 </div>
     
 

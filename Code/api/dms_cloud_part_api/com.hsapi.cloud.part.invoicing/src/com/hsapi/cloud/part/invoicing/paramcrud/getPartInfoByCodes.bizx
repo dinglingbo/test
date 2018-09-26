@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getPartInfoByCodes" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据配件编码，查询配件基本信息&#xD;&#xA;2、用于采购订单，采购入库，销售订单，销售出库的快速录入&#xD;&#xA;3、需要单价和金额" title="Administrator&#x9;18-5-6 下午6:06">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据配件编码，查询配件基本信息；如果有品牌，根据 品牌 + 编码 查询数据&#xD;&#xA;2、用于采购订单，采购入库，销售订单，销售出库的快速录入&#xD;&#xA;3、需要单价和金额" title="Administrator&#x9;18-5-6 下午6:06">
     <location x="-1" y="-15"/>
-    <size height="100" width="271"/>
+    <size height="76" width="497"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -244,6 +244,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/partBrandId</process:from>
+      <process:to type="query">cond/_expr[3]/partBrandId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

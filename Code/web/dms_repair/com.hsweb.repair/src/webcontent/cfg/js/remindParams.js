@@ -43,7 +43,7 @@ function doSearch()
 				setInitData(list);
 			} else {
                 nui.unmask(document.body);
-				showMsg(data.errMsg || "加载数据失败!","W");
+				parent.showMsg(data.errMsg || "加载数据失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -74,18 +74,18 @@ function onOk(){
 			data = data||{};
 			if(data.errCode == "S")
 			{
-                showMsg("保存成功","S");
+                parent.showMsg("保存成功","S");
 				
 			}
 			else{
-				showMsg(data.errMsg||"保存失败","W");
+				parent.showMsg(data.errMsg||"保存失败","W");
 			}
 		},
 		error:function(jqXHR, textStatus, errorThrown)
 		{
 			console.log(jqXHR.responseText);
 			nui.unmask();
-			showMsg("网络出错", "E");
+			parent.showMsg("网络出错", "E");
 		}
 	});
 }

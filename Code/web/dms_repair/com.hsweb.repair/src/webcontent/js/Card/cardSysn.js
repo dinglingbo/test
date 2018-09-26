@@ -25,7 +25,7 @@ $(document).ready(function(v) {
 	        contentGrid.setData([]);
 	        if(resList && resList.length>0){
 
-	            listSrv.forEach(function(v) {
+	            listSrv.forEach(function(v) { 
 	            	discountHash[v.serviceTypeId] = v;
 	            });
 
@@ -37,9 +37,10 @@ $(document).ready(function(v) {
 	                if(discountHash && discountHash[id]){
 	                    var disVal = discountHash[id];
 	                    resList[i].id = disVal.id;
-	                    resList[i].packageDiscountRate = disVal.packageDiscountRate;
-	                    resList[i].itemDiscountRate = disVal.itemDiscountRate;
-	                    resList[i].partDiscountRate = disVal.partDiscountRate;
+	                    //由于js浮点数运算精度，先转换为整数
+	                    resList[i].packageDiscountRate = (disVal.packageDiscountRate*10000*100/10000);
+	                    resList[i].itemDiscountRate = (disVal.itemDiscountRate*10000*100/10000);
+	                    resList[i].partDiscountRate = (disVal.partDiscountRate*10000*100/10000);
 	                } 
 	            }
 
@@ -125,6 +126,13 @@ function saveData() {
 	var data = form.getData(false, true);
 	// var json = nui.encode(data);//变成json格式
 	var list = contentGrid.getChanges("modified");
+	for (var i=0;i<list.length;i++){
+		
+		list[i].packageDiscountRate = (list[i].packageDiscountRate*10000/100/10000);
+		list[i].itemDiscountRate = (list[i].itemDiscountRate*10000/100/10000);
+		list[i].partDiscountRate = (list[i].partDiscountRate*10000/100/10000);
+
+	}
     var addList = [];
     var updateList = [];
     for(var i=0; i<list.length; i++){

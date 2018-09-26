@@ -76,7 +76,7 @@ function getServiceTypeList(callback){
                     callback && callback(serviceTypeList);
                 }
 			} else {
-				showMsg("工单设置信息读取失败,请联系管理员!","W");
+				parent.showMsg("工单设置信息读取失败,请联系管理员!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -126,7 +126,7 @@ var saveUrl = apiPath + sysApi + "/com.hsapi.system.config.paramSet.saveBillPara
 function save(){
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
-        showMsg("税率:请输入0~100的整数!","W");
+        parent.showMsg("税率:请输入0~100的整数!","W");
         return;
     }
 
@@ -157,10 +157,10 @@ function save(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				showMsg("保存成功!","S");
+				parent.showMsg("保存成功!","S");
 				
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				parent.showMsg(data.errMsg || "保存失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

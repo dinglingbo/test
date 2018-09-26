@@ -2316,13 +2316,13 @@ function addOrEditPart(row)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            var carBrandList = nui.get("applyCarBrandId").getData();
+            var carBrandList = null;
             var params = {
                 qualityTypeIdList:qualityList,
                 partBrandIdList:brandList,
                 unitList:unitList,
                 abcTypeList:abcTypeList,
-                applyCarModelList:carBrandList
+               applyCarModelList:carBrandList
             };
             if(row)
             {

@@ -2430,7 +2430,8 @@ function onPrint(e){
 	if(main.id){
 		var params = {
             source : e,
-            serviceId : main.id
+            serviceId : main.id,
+            isSettle : main.isSettle
 		};
         
         doPrint(params);

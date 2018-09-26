@@ -762,7 +762,6 @@ function setInitData(params){
                             }
                         }
                         loadDetail(p1, p2, p3);
-
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","W");
                     }
@@ -1844,7 +1843,6 @@ function loadDetail(p1, p2, p3){
             }
         }, function(){});
     }
-
 }
 var __workerIds="";
 var __saleManId="";
@@ -1855,6 +1853,7 @@ function editRpsPackage(row_uid){
         __saleManId = "";
         rpsPackageGrid.cancelEdit();
         rpsPackageGrid.beginEditRow(row);
+        
     }
 }
 function updateRpsPackage(row_uid){
@@ -2053,6 +2052,9 @@ function updateRpsPart(row_uid){
                 part.serviceTypeId = row.serviceTypeId;
                 part.unitPrice = row.unitPrice;
                 part.amt = row.amt;
+                var rate = row.rate/100;
+                rate = rate.toFixed(4);
+                part.rate = rate;
                 if(__saleManId){
                     part.saleMan = row.saleMan;
                     part.saleManId = __saleManId;
@@ -2406,9 +2408,9 @@ function onPrint(e){
 	if(main.id){
 		var params = {
             source : e,
-            serviceId : main.id
+            serviceId : main.id,
+            isSettle : main.isSettle
 		};
-        
         doPrint(params);
 	}else{
         showMsg("请先保存工单,再打印!","W");

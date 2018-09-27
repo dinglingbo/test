@@ -81,6 +81,7 @@
 			a.create_date as createDate,
 			a.remark as mainRemark,
 			a.orgid as orgid,
+			a.bill_status_id as billStatusId,
 			b.id as detailId,
 			b.main_id as mainId,
 			b.store_id as storeId,

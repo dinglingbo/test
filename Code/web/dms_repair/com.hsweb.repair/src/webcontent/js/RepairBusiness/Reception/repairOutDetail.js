@@ -62,37 +62,37 @@ $(document).ready(function(){
         }
     });
 
-	searchKeyEl.on("valuechanged",function(e){
-		var item = e.selected;
+    searchKeyEl.on("valuechanged",function(e){
+      var item = e.selected;
 
-		if(fserviceId){
-			return;
-		}
-		if (item) {
-			var carNo = item.carNo||"";
-			var tel = item.guestMobile||"";
-			var guestName = item.guestFullName||"";
-			var carVin = item.vin||"";
-
-
-
-			if(tel){
-				tel = "/"+tel;
-			}
-			if(guestName){
-				guestName = "/"+guestName;
-			}
-			if(carVin){
-				carVin = "/"+carVin;
-			}
-			var t = carNo + tel + guestName + carVin;
-
-			var sk = document.getElementById("search_key");
-			sk.style.display = "none";
-			searchNameEl.setVisible(true);
+      if(fserviceId){
+         return;
+     }
+     if (item) {
+         var carNo = item.carNo||"";
+         var tel = item.guestMobile||"";
+         var guestName = item.guestFullName||"";
+         var carVin = item.vin||"";
 
 
-			searchNameEl.setValue(t);
+
+         if(tel){
+            tel = "/"+tel;
+        }
+        if(guestName){
+            guestName = "/"+guestName;
+        }
+        if(carVin){
+            carVin = "/"+carVin;
+        }
+        var t = carNo + tel + guestName + carVin;
+
+        var sk = document.getElementById("search_key");
+        sk.style.display = "none";
+        searchNameEl.setVisible(true);
+
+
+        searchNameEl.setValue(t);
             //searchNameEl.setEnabled(false);
 
         }
@@ -116,9 +116,6 @@ $(document).ready(function(){
 });
 
 
-
-
-
 function setInitData(params){
 	mid = params.id;
 	//serviceCode = params.row.serviceCode;
@@ -126,7 +123,7 @@ function setInitData(params){
 	if(!params.id){
         //add();
     }else{
-    	nui.mask({
+    	nui.mask({ 
     		el: document.body,
     		cls: 'mini-mask-loading',
     		html: '数据加载中...'
@@ -244,14 +241,11 @@ function openPartSelect(par,type,id,row){
 			iframe.contentWindow.SetData(par,type,id,row);
 		},
 		ondestroy:function(action){ 
+            mainGrid.load({serviceId:mid,token:token});
+            repairOutGrid.load({serviceId:mid,token:token});
+        }
 
-				alert(123);
-				mainGrid.load({serviceId:mid,token:token});
-				repairOutGrid.load({serviceId:mid,token:token});
-
-		}
-
-	});
+    });
 }
 
 
@@ -271,8 +265,6 @@ function THSave(){
 		showMsg('请先选择需要归库的配件!','W');
 	}
 }
-
-
 
 function  savepartOutRtn(data,childdata){
 	if(data){
@@ -324,12 +316,13 @@ function  savepartOutRtn(data,childdata){
             	type:"post",
             	data:{
             		data:paramsDataArr,
-            		billTypeId:"050206",
+            		billTypeId:"050206", 
             		token:token
             	},
             	success:function(text){
-            		var errCode = text.errCode;
+            		var errCode = text.errCode; 
             		if(errCode == "S"){
+            			mainGrid.load({serviceId:mid,token:token});
             			repairOutGrid.load({serviceId:mid,token:token});
             			showMsg('归库成功!','S');
             		}else{
@@ -360,7 +353,7 @@ function  savepartOutRtn(data,childdata){
                     //savePartOut();     //如果点击“确定”
                     //CloseWindow("close");
                 }
-
+                
             }
 
         });
@@ -379,4 +372,22 @@ function  savepartOutRtn(data,childdata){
 
     function tt(t){
     	nui.alert(t);
+    }
+
+
+    function onPrint(e){
+        var main = billForm.getData();
+        var openUrl = null;
+        if(main.id){
+            var params = {
+                source : e,
+                serviceId : mainRow.id,
+                isSettle : mainRow.isSettle
+            };
+            
+            doPrint(params);
+        }else{
+            showMsg("请先保存工单,再打印!","W");
+            return;
+        }
     }

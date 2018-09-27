@@ -24175,10 +24175,10 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node7" name="RpbCar" nodeType="table" displayName="RpbCar" author="chenziming" allUseViewModel="true" table="rpb_car" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node7" name="RpbCar" nodeType="table" displayName="RpbCar" author="chenziming" allUseViewModel="true" instanceClass="" table="rpb_car" genStrategy="native">
     <location x="60" y="8916"/>
     <size height="534" width="150"/>
-    <figSize height="20" width="256"/>
+    <figSize height="20" width="150"/>
     <columnProperty id="property89" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>车辆内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -24245,7 +24245,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property90" name="tenantId" displayName="tenantId" columnName="tenant_id" nullAble="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property90" name="tenantId" displayName="tenantId" columnName="tenant_id" nullAble="false" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>租户id</comment>
       <viewField dict="false" dictTypeId="" displayName="tenantId" entityField="tenantId" id="tenantId" label="tenantId" name="tenantId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24311,7 +24311,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property91" name="orgid" displayName="orgid" columnName="orgid" nullAble="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property91" name="orgid" displayName="orgid" columnName="orgid" nullAble="false" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>组织id</comment>
       <viewField dict="false" dictTypeId="" displayName="orgid" entityField="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24377,7 +24377,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property92" name="carNo" displayName="carNo" columnName="car_no" nullAble="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="15" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property92" name="carNo" displayName="carNo" columnName="car_no" nullAble="false" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="15" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>车牌号</comment>
       <viewField dict="false" dictTypeId="" displayName="carNo" entityField="carNo" id="carNo" label="carNo" name="carNo" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24443,7 +24443,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property93" name="isWash" displayName="isWash" columnName="is_wash" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property93" name="isWash" displayName="isWash" columnName="is_wash" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否洗车车辆</comment>
       <viewField dict="false" dictTypeId="" displayName="isWash" entityField="isWash" id="isWash" label="isWash" name="isWash" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24509,7 +24509,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property94" name="guestId" displayName="guestId" columnName="guest_id" nullAble="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property94" name="guestId" displayName="guestId" columnName="guest_id" nullAble="false" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>客户ID</comment>
       <viewField dict="false" dictTypeId="" displayName="guestId" entityField="guestId" id="guestId" label="guestId" name="guestId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24575,7 +24575,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property95" name="carModelId" displayName="carModelId" columnName="car_model_id" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property95" name="carModelId" displayName="carModelId" columnName="car_model_id" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>车型ID</comment>
       <viewField dict="false" dictTypeId="" displayName="carModelId" entityField="carModelId" id="carModelId" label="carModelId" name="carModelId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24641,7 +24641,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property96" name="carModelIdLy" displayName="carModelIdLy" columnName="car_model_id_ly" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property96" name="carModelIdLy" displayName="carModelIdLy" columnName="car_model_id_ly" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>力洋车型ID</comment>
       <viewField dict="false" dictTypeId="" displayName="carModelIdLy" entityField="carModelIdLy" id="carModelIdLy" label="carModelIdLy" name="carModelIdLy" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24707,7 +24707,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property97" name="carBrandId" displayName="carBrandId" columnName="car_brand_id" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property97" name="carBrandId" displayName="carBrandId" columnName="car_brand_id" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>车辆品牌</comment>
       <viewField dict="false" dictTypeId="" displayName="carBrandId" entityField="carBrandId" id="carBrandId" label="carBrandId" name="carBrandId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24773,7 +24773,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property98" name="carModel" displayName="carModel" columnName="car_model" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property98" name="carModel" displayName="carModel" columnName="car_model" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>车型</comment>
       <viewField dict="false" dictTypeId="" displayName="carModel" entityField="carModel" id="carModel" label="carModel" name="carModel" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24839,7 +24839,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property99" name="produceDate" displayName="produceDate" columnName="produce_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property99" name="produceDate" displayName="produceDate" columnName="produce_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>生产日期</comment>
       <viewField dict="false" dictTypeId="" displayName="produceDate" entityField="produceDate" id="produceDate" label="produceDate" name="produceDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24910,7 +24910,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property100" name="engineNo" displayName="engineNo" columnName="engine_no" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property100" name="engineNo" displayName="engineNo" columnName="engine_no" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>发动机号</comment>
       <viewField dict="false" dictTypeId="" displayName="engineNo" entityField="engineNo" id="engineNo" label="engineNo" name="engineNo" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24976,7 +24976,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property101" name="vin" displayName="vin" columnName="vin" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property101" name="vin" displayName="vin" columnName="vin" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>VIN车架号</comment>
       <viewField dict="false" dictTypeId="" displayName="vin" entityField="vin" id="vin" label="vin" name="vin" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25042,7 +25042,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property102" name="color" displayName="color" columnName="color" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="10" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property102" name="color" displayName="color" columnName="color" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="10" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>颜色</comment>
       <viewField dict="false" dictTypeId="" displayName="color" entityField="color" id="color" label="color" name="color" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25108,7 +25108,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property103" name="firstRegDate" displayName="firstRegDate" columnName="first_reg_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property103" name="firstRegDate" displayName="firstRegDate" columnName="first_reg_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>上牌日期</comment>
       <viewField dict="false" dictTypeId="" displayName="firstRegDate" entityField="firstRegDate" id="firstRegDate" label="firstRegDate" name="firstRegDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25179,7 +25179,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property104" name="issuingDate" displayName="issuingDate" columnName="issuing_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property104" name="issuingDate" displayName="issuingDate" columnName="issuing_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>发证日期</comment>
       <viewField dict="false" dictTypeId="" displayName="issuingDate" entityField="issuingDate" id="issuingDate" label="issuingDate" name="issuingDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25250,7 +25250,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property105" name="insureCompCode" displayName="insureCompCode" columnName="insure_comp_code" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property105" name="insureCompCode" displayName="insureCompCode" columnName="insure_comp_code" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>投保公司</comment>
       <viewField dict="false" dictTypeId="" displayName="insureCompCode" entityField="insureCompCode" id="insureCompCode" label="insureCompCode" name="insureCompCode" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25316,37 +25316,72 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property106" name="insureCompName" displayName="insureCompName" columnName="insure_comp_name" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="50" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
-      <viewField dict="false" displayName="insureCompName" id="insureCompName" label="insureCompName" name="insureCompName" userDefined="true">
-        <fieldView>
+    <columnProperty id="property106" name="insureCompName" displayName="insureCompName" columnName="insure_comp_name" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="50" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+      <viewField dict="false" dictTypeId="" displayName="insureCompName" entityField="insureCompName" id="insureCompName" label="insureCompName" name="insureCompName" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property107" name="annualVerificationDueDate" displayName="annualVerificationDueDate" columnName="annual_verification_due_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property107" name="annualVerificationDueDate" displayName="annualVerificationDueDate" columnName="annual_verification_due_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>年审到期</comment>
       <viewField dict="false" dictTypeId="" displayName="annualVerificationDueDate" entityField="annualVerificationDueDate" id="annualVerificationDueDate" label="annualVerificationDueDate" name="annualVerificationDueDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25417,7 +25452,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property108" name="insureBuyDate" displayName="insureBuyDate" columnName="insure_buy_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property108" name="insureBuyDate" displayName="insureBuyDate" columnName="insure_buy_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>保险购买日期</comment>
       <viewField dict="false" dictTypeId="" displayName="insureBuyDate" entityField="insureBuyDate" id="insureBuyDate" label="insureBuyDate" name="insureBuyDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25488,7 +25523,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property109" name="annualInspectionNo" displayName="annualInspectionNo" columnName="annual_inspection_no" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="30" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property109" name="annualInspectionNo" displayName="annualInspectionNo" columnName="annual_inspection_no" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="30" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>商业险单号</comment>
       <viewField dict="false" dictTypeId="" displayName="annualInspectionNo" entityField="annualInspectionNo" id="annualInspectionNo" label="annualInspectionNo" name="annualInspectionNo" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25554,7 +25589,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property110" name="annualInspectionDate" displayName="annualInspectionDate" columnName="annual_inspection_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property110" name="annualInspectionDate" displayName="annualInspectionDate" columnName="annual_inspection_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>商业险到期日期</comment>
       <viewField dict="false" dictTypeId="" displayName="annualInspectionDate" entityField="annualInspectionDate" id="annualInspectionDate" label="annualInspectionDate" name="annualInspectionDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25625,7 +25660,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property111" name="insureNo" displayName="insureNo" columnName="insure_no" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="30" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property111" name="insureNo" displayName="insureNo" columnName="insure_no" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="30" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>交强险单号</comment>
       <viewField dict="false" dictTypeId="" displayName="insureNo" entityField="insureNo" id="insureNo" label="insureNo" name="insureNo" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25691,7 +25726,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property112" name="insureDueDate" displayName="insureDueDate" columnName="insure_due_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property112" name="insureDueDate" displayName="insureDueDate" columnName="insure_due_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>交强险到期日期</comment>
       <viewField dict="false" dictTypeId="" displayName="insureDueDate" entityField="insureDueDate" id="insureDueDate" label="insureDueDate" name="insureDueDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25762,7 +25797,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property113" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property113" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>建档人</comment>
       <viewField dict="false" dictTypeId="" displayName="recorder" entityField="recorder" id="recorder" label="recorder" name="recorder" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25828,7 +25863,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property114" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true" default="">
+    <columnProperty id="property114" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true" default="">
       <comment>建档日期</comment>
       <viewField dict="false" dictTypeId="" displayName="recordDate" entityField="recordDate" id="recordDate" label="recordDate" name="recordDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25899,7 +25934,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property115" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property115" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>修改人</comment>
       <viewField dict="false" dictTypeId="" displayName="modifier" entityField="modifier" id="modifier" label="modifier" name="modifier" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25965,7 +26000,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property490" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true" default="">
+    <columnProperty id="property490" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true" default="">
       <comment>修改日期</comment>
       <viewField dict="false" dictTypeId="" displayName="modifyDate" entityField="modifyDate" id="modifyDate" label="modifyDate" name="modifyDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -27984,7 +28019,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2" name="RpbCardStored" nodeType="table" displayName="RpbCardStored" author="Administrator" instanceClass="" table="rpb_card_stored" genStrategy="native">
     <location x="60" y="10212"/>
     <size height="444" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="186"/>
     <columnProperty id="property21" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">

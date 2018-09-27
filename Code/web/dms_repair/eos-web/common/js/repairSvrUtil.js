@@ -48,14 +48,14 @@ function checkRpsMaintain(params, callback){
 		}
 	});
 }
-
 var addRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsPackage.biz.ext";
 var updRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updRpsPackage.biz.ext";
 var delRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsPackage.biz.ext";
 
 var addRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsItem.biz.ext";
 var updRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsItem.biz.ext";
-var delRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsItem.biz.ext";
+//var delRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsItem.biz.ext";
+var delRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsItemAndPart.biz.ext";
 
 var addRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsPart.biz.ext";
 var updRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsPart.biz.ext";
@@ -521,6 +521,7 @@ function doSetStyle(status, isSettle){
 	}
 }
 
+
 function doNoPay(serviceId,allowanceAmt){
 	var json = {
 			serviceId:serviceId,
@@ -559,7 +560,6 @@ function doNoPay(serviceId,allowanceAmt){
 		 }
 	});
 }
-
 
 function doPrint(params){
 	var source = params.source||0;
@@ -607,3 +607,5 @@ function doPrint(params){
         }
     });
 }
+
+

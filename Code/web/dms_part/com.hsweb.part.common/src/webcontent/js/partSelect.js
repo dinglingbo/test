@@ -408,6 +408,7 @@ function onOrder()
 		CloseWindow("ok");
 	}else{
 		var row = partGrid.getSelected();
+		row.billItemId = itemId;
 		if(row)
 		{
 			if(ckcallback){
@@ -457,10 +458,12 @@ function onOrder()
 var callback = null;
 var delcallback = null;
 var ckcallback = null;
+var itemId = null;
 //用于工单添加配件时
-function setViewData(ck, delck, cck){
+function setViewData(tId,ck, delck, cck){
 	//ck 保存数据 delck 删除数据 cck 判断数据
 	isChooseClose = 0;
+	itemId = tId;
 	callback = ck;
 	delcallback = delck;
 	ckcallback = cck;

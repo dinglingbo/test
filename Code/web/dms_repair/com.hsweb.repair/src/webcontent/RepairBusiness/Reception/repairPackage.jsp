@@ -16,6 +16,9 @@
                 <div field="prdtName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
                 </div>
+                 <div field="type" headerAlign="center" allowSort="false"
+                     visible="true" width="60" header="项目类型" align="center">
+                </div>
                 <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId"
                      allowSort="false" visible="true" width="50" header="业务类型" align="center">
                      <input  property="editor" enabled="true" dataField="servieTypeList" 

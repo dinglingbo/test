@@ -5,7 +5,7 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 20:50:20  
+  - Date: 2018-07-02 20:50:20   
   - Description: 
 -->            
 
@@ -265,7 +265,7 @@ allowCellEdit="true"  >
 <div style="width:100%;margin-top: 10px;">
     <a class="nui-button" onclick="LLSave()" plain="false">领料</a>
     <a class="nui-button" onclick="THSave()" plain="false">退货</a>
-    <a class="nui-button" onclick="" plain="false">打印领料单</a>
+    <a class="nui-button" onclick="onPrint(5)" plain="false">打印领料单</a>
 </div>
 </div>
 

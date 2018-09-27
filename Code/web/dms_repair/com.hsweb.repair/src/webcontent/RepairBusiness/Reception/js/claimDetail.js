@@ -358,7 +358,7 @@ $(document).ready(function ()
                     e.cellHtml = e.value + "<font color='red'>(预存)</font>";
                 }
 
-                e.cellHtml = '<a href="javascript:choosePart()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value;
+                e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value;
 
                 break;
             case "itemOptBtn":

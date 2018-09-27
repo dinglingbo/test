@@ -268,7 +268,28 @@
 <!--         </div> -->
 <!--     </div> -->
 <!-- </div> -->
+<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
+   <div id="innerPartGrid"
+       dataField="data"
+       class="nui-datagrid"
+       style="width: 100%; height: 100px;"
+       showPager="false"
+       allowSortColumn="true">
+      <div property="columns">
+           <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+           <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+	       <div field="comPartName" headerAlign="center" header="配件名称"></div>
+	       <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+	       <div field="comApplyCarModel" id="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
+	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
+	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
+		   <div field="remark" width="100" headerAlign="center" allowSort="true"></div>
+      </div>
+   </div>
+</div>
 
 
 </body>

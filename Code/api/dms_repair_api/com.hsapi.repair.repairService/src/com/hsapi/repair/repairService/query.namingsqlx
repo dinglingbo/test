@@ -483,12 +483,16 @@
 		FROM
 			pj_repair_out a
 		WHERE 1=1
-			and a.bill_type_id = '050207'
-			and a.return_sign = 0 
 		<dynamic>
 
             <isNotEmpty prepend="and" property="orgid">
   				 a.orgid = #orgid#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="billTypeId">
+  				a.bill_type_id = #billTypeId#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="returnSign">
+  				a.return_sign = #returnSign#
              </isNotEmpty>
             <isNotEmpty prepend="and" property="sCreateDate">  
                 (a.pick_date &gt;= #sCreateDate#)

@@ -10,34 +10,34 @@
      showModified="false"
      allowSortColumn="true"
      ondrawsummarycell="onDrawSummaryCellItem"
-     
      >
     <div property="columns">
-        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-        <div header="工时信息">
+        <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+        <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+        <div header="项目信息">
             <div property="columns">
-                <div field="itemName" headerAlign="center" allowSort="false" visible="true" width="100">工时名称</div>
+                <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
                 <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemTime" selectOnFocus="true"/>
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
                 </div>
-                <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
+                <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
                 </div>
                 <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
                 </div>
-                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额
+                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true"/>
                 </div>
                 <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">工时总金额
                 </div>
                 <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="80" header="施工员" name="workers">
+                     allowSort="false" visible="true" width="80" header="施工员" name="workers" align="center">
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
                     url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onitemworkerChanged" >     
                     <!-- <div property="columns">

@@ -99,6 +99,7 @@ function init()
     {
         if(e.field == "packageTypeId" && treeHash[e.value])
         {
+        	
             e.cellHtml = treeHash[e.value].name.split(" ")[1];
         }
     });
@@ -327,6 +328,7 @@ function getItemKind(item_kind)
 }
 var stdPkgUrl = baseUrlRe + "com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
 var stdItemUrl = baseUrlRe +"com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
+//添加配件时注意传工时Id，这个功能还没做
 var stdPartUrl = baseUrlRe +"com.hsapi.repair.repairService.crud.insStdPart.biz.ext";
 function doSelect(idx)
 {

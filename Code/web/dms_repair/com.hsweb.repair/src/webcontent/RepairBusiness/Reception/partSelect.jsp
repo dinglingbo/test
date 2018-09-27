@@ -87,6 +87,7 @@
         allowResize="true" 
         showSummaryRow="true"
         pageSize="20"
+        totalField="page.count"
         sizeList=[20,50,100,200]
         allowCellEdit="true" allowCellSelect="true" 
         editNextOnEnterKey="true"  editNextRowCell="true"
@@ -188,7 +189,7 @@
     }
 
 
-    mainGrid.on("drawcell", function(e) {
+    mainGrid.on("drawcell", function(e) { 
         switch (e.field) {
             case "partBrandId":
             if (brandHash[e.value]) {

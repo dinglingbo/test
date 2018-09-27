@@ -394,15 +394,16 @@
     	SELECT
 			a.orgid orgid,
 			a.mt_advisor_id mtAdvisorId,
+			a.mt_advisor as mtAdvisor,
 			a.id id
 		FROM
 			rps_maintain a
 		WHERE
-			a.car_no = #carNo#
-			AND a.sure_mt_date = ( SELECT MAX( sure_mt_date ) FROM rps_maintain WHERE sure_mt_date &lt; now() AND car_no = #carNo# )
+			a.car_id = #carId#
+			AND a.sure_mt_date = ( SELECT MAX( sure_mt_date ) FROM rps_maintain WHERE sure_mt_date &lt; now() AND car_id = #carId# )
 	</select>
 	<select id="getMaintainCountByCarNo" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItem">
-    	SELECT count(1) count FROM rps_maintain WHERE sure_mt_date &lt; now() AND orgid = #orgid# AND car_no = #carNo#
+    	SELECT count(1) count FROM rps_maintain WHERE sure_mt_date &lt; now() AND orgid = #orgid# AND car_id = #carId#
 	</select>
 	
 	

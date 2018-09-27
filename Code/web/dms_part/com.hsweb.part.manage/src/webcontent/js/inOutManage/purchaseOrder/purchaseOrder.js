@@ -721,7 +721,8 @@ function add() {
 //				leftGrid.clearSelect(false);
 //				leftGrid.select(newRow, false);
 
-				nui.get("serviceId").setValue("新采购订单");
+//				nui.get("serviceId").setValue("新采购订单");
+				$('#bServiceId').text("订单号: 新采购订单");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 				nui.get("createDate").setValue(new Date());
 				nui.get("orderMan").setValue(currUserName);
@@ -751,7 +752,8 @@ function add() {
 //		leftGrid.clearSelect(false);
 //		leftGrid.select(newRow, false);
 
-		nui.get("serviceId").setValue("新采购订单");
+//		nui.get("serviceId").setValue("新采购订单");
+		$('#bServiceId').text("订单号: 新采购订单");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
 		nui.get("orderMan").setValue(currUserName);
@@ -889,6 +891,7 @@ function save() {
 					row.billStatusId=0;
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(row);
+					$('#bServiceId').text("订单号："+row.serviceId);
 			
 				}
 			} else {
@@ -1597,6 +1600,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								// 保存成功后重新加载数据
 								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
+								$('#bServiceId').text("订单号："+leftRow.serviceId);
 						
 //								rightGrid.setData([]);
 //								add();
@@ -1665,6 +1669,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								// 保存成功后重新加载数据
 								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
+								$('#bServiceId').text("订单号："+leftRow.serviceId);
 //								rightGrid.setData([]);
 //								add();
 	
@@ -1735,13 +1740,14 @@ function orderEnter(mainId) {
 						//basicInfoForm.setData(newRow);
 //						rightGrid.setData([]);
 //						add();
-					var pjPchsOrderMainList = data.pjPchsOrderMainList;
-					if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
-						var leftRow = pjPchsOrderMainList[0];
+					var orderMainAudit = data.orderMainAudit;
+					if (orderMainAudit) { 
+						var leftRow = orderMainAudit;
 //						
 						// 入库成功后重新加载数据
 						leftRow.billStatusId=4;
 						loadMainAndDetailInfo(leftRow);
+						$('#bServiceId').text("订单号："+leftRow.serviceId);
 					}
 
 					} else {

@@ -144,7 +144,8 @@ function getMaintain(params, callback, unmaskcall){
 }
 
 var getdRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
-var getRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext";
+//var getRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext";
+var getRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 var getRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 function getBillDetail(params, callback, unmaskcall){
     var interType = params.interType||"";// package item part
@@ -343,7 +344,7 @@ function doSelectItem(dock, dodelck, docck, callback) {
 }
 
 
-function doSelectPart(dock, dodelck, docck, callback) {
+function doSelectPart(itemId,dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
@@ -359,7 +360,7 @@ function doSelectPart(dock, dodelck, docck, callback) {
 				list : list
 			};
             iframe.contentWindow.setData(params);
-            iframe.contentWindow.setViewData(dock, dodelck, docck);
+            iframe.contentWindow.setViewData(itemId,dock, dodelck, docck);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();

@@ -74,6 +74,7 @@
             M.orderManId,
             M.orderMan,
             M.billTypeId,
+            M.settleTypeId,
             M.payModeId,
             M.taxSign,
             M.taxRate,
@@ -125,6 +126,7 @@
                 A.ORDER_MAN as orderMan,
                 A.BILL_TYPE_ID as billTypeId,
                 A.PAY_MODE_ID as payModeId,
+                a.settle_type_id as settelTypeId,
                 A.TAX_SIGN as taxSign,
                 A.TAX_RATE as taxRate,
                 A.TAX_AMT as taxAmt,
@@ -237,6 +239,7 @@
                 A.ORDER_MAN_ID as orderManId,
                 A.ORDER_MAN as orderMan,
                 A.BILL_TYPE_ID as billTypeId,
+                a.settle_type_id as settelTypeId,
                 A.PAY_MODE_ID as payModeId,
                 A.TAX_SIGN as taxSign,
                 A.TAX_RATE as taxRate,
@@ -1325,7 +1328,7 @@
                 A.ORGID as orgid,
                 A.GUEST_ID as guestId,
                 a.order_type_id as orderTypeId,
-                A.STORE_ID as storeId,
+                c.STORE_ID as storeId,
                 A.CODE_ID AS codeId,
                 A.CODE as code,
                 A.ORDER_DATE as orderDate,
@@ -1366,11 +1369,15 @@
                 a.state_man as stateMan,
                 a.state_sign as stateSign,
                 a.state_date as stateDate,
+                a.settle_type_id as settelTypeId,
                 a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo,
-                a.is_diff_order as isDiffOrder
+                a.is_diff_order as isDiffOrder,
+               <!-- c.store_id as storeId,-->
+                c.order_price as orderPrice,
+                c.store_shelf as storeShelf
                 FROM
                 Wb_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1460,7 +1467,7 @@
                 A.ORGID as orgid,
                 A.GUEST_ID as guestId,
                 a.order_type_id as orderTypeId,
-                A.STORE_ID as storeId,
+                c.STORE_ID as storeId,
                 A.CODE_ID AS codeId,
                 A.CODE as code,
                 A.ORDER_DATE as orderDate,
@@ -1502,10 +1509,14 @@
                 a.state_sign as stateSign,
                 a.state_date as stateDate,
                 a.rtn_reason_id as rtnReasonId,
+                a.settle_type_id as settelTypeId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo,
-                a.is_diff_order as isDiffOrder
+                a.is_diff_order as isDiffOrder,
+               <!-- c.store_id as storeId,-->
+ 				c.order_price as orderPrice,
+ 				c.store_shelf as storeShelf
                 FROM
                 Wb_PART.PJ_PCHS_ORDER_MAIN_chk A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

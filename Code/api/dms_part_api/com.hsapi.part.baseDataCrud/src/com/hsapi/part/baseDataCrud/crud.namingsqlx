@@ -540,6 +540,7 @@
             <isNotEmpty prepend="and" property="name">  
                 (a.full_name like '%$name$%' or a.short_name like '%$name$%')
             </isNotEmpty>
+      
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  

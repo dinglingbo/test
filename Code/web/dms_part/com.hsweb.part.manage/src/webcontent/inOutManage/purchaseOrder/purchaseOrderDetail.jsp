@@ -53,6 +53,7 @@
 <!--             </td> -->
             <td style="width:100%;">
 <!--                 <span class="separator"></span> -->
+				<span  id="bServiceId" style="">订单号：新采购订单</span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -211,17 +212,23 @@
                                              onvalidation="onComboValidation"/>
                                   </td>
                                   <td class="title">
-                                      <label>备注：</label>
-                                  </td>
-                                  <td colspan="3">
-                                      <input class="nui-textbox" width="100%" id="remark" name="remark"/>
-                                  </td>
-                                  <td class="title" width="120">
-                                      <label>订单号：</label>
+                                      <label>状态：</label>
                                   </td>
                                   <td>
-                                      <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/>
+                                      <input class="nui-textbox" width="100%" id="billStatusId" name="billStatusId"/>
                                   </td>
+                                  <td class="title">
+                                      <label>备注：</label>
+                                  </td>
+                                  <td colspan="2">
+                                      <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                                  </td>
+<!--                                   <td class="title" width="120"> -->
+<!--                                       <label>订单号：</label> -->
+<!--                                   </td> -->
+<!--                                   <td> -->
+<!--                                       <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/> -->
+<!--                                   </td> -->
                               </tr>
                           </table>
                       </div>

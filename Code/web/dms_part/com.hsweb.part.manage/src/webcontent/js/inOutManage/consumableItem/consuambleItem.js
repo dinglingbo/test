@@ -212,6 +212,8 @@ $(document).ready(function(v) {
 
 function getSearchParams() {
 	var params = {};
+	params.returnSign=0;
+	params.billTypeId='050207';
 	params.sCreateDate = nui.get("sCreateDate").getValue().substr(0, 10);
 	params.eCreateDate = nui.get("eCreateDate").getValue().substr(0, 10);
 	params.pickMan = nui.get('pickMan1').getValue();

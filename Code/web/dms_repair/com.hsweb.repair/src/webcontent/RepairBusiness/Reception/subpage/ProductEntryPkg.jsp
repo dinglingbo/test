@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntryPkg.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.0.2"></script>
 <style type="text/css">
 
 table {
@@ -195,7 +195,8 @@ table {
 						<div field="useCount" width="80" headerAlign="center" allowSort="true" header="使用频率"></div>
 					</div>
 				</div>
-		  </div>	
+		  </div>
+		</div>
 		  <div id="detailGrid_Form" style="display:none;">
 					<div id="packageDetail" class="nui-datagrid" style="width:100%;"
 						dataField="rs" showPager="false">
@@ -213,7 +214,6 @@ table {
 		         </div>				
             </div>
 		 </div>
-	 </div>
   </div>
     <div class="nui-datagrid" style="width:100%;height:100%"  id="itemGrid" visible="false"></div>
 	<div class="nui-datagrid" style="width:100%;height:100%"  id="partGrid" visible="false"></div>

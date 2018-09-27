@@ -353,27 +353,60 @@ $(document).ready(function ()
         var record = e.record;
         var uid = record._uid;
         var rowIndex = e.rowIndex;
-
+        //获取到配件ID
+    	var pid = record.pid||0;
         switch (e.field) {
             case "itemName":
                 var cardDetailId = record.cardDetailId||0;
                 if(cardDetailId>0){
                     e.cellHtml = e.value + "<font color='red'>(预存)</font>";
                 }
+                if(pid == 0){
+                    e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value;
+                }
                 break;
             case "itemOptBtn":
-                var s = '<a class="optbtn" href="javascript:editRpsItem(\'' + uid + '\')">修改</a>'
-                        + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
-
-                if (grid.isEditingRow(record)) {
+            	if(pid == 0){
+            	    var s = '<a class="optbtn" href="javascript:editRpsItem(\'' + uid + '\')">修改</a>'
+                     + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
+                  if (grid.isEditingRow(record)) {
                     s = '<a class="optbtn" href="javascript:updateRpsItem(\'' + uid + '\')">确定</a>'
-                        + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
-                }
-
+                     + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
+                   }
+                 }else{
+                	 var s = '<a class="optbtn" href="javascript:editRpsPackage(\'' + uid + '\')">修改</a>';
+                     if (grid.isEditingRow(record)) {
+                         s = '<a class="optbtn" href="javascript:updateRpsPackage(\'' + uid + '\')">确定</a>';
+                     }
+                  }
                 //e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
                 //            '<span class="fa fa-plus" onClick="javascript:addItemNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
                 //            ' <span class="fa fa-close" onClick="javascript:deleteItemRow()" title="删除行"></span>';
                 e.cellHtml = s
+                break;
+            case "packageOptBtn":
+                var pid = record.pid||0;
+
+                if(pid == 0){
+                    var s = '<a class="optbtn" href="javascript:editRpsPackage(\'' + uid + '\')">修改</a>'
+                    + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
+
+                    if (grid.isEditingRow(record)) {
+                        s = '<a class="optbtn" href="javascript:updateRpsPackage(\'' + uid + '\')">确定</a>'
+                            + ' <a class="optbtn" href="javascript:deletePackRow(\'' + uid + '\')">删除</a>';
+                    }
+                }else{
+                    var s = '<a class="optbtn" href="javascript:editRpsPackage(\'' + uid + '\')">修改</a>';
+
+                    if (grid.isEditingRow(record)) {
+                        s = '<a class="optbtn" href="javascript:updateRpsPackage(\'' + uid + '\')">确定</a>';
+                    }
+                }
+                
+                e.cellHtml = s;
+                 //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+                           // '<span class="fa fa-plus" onClick="javascript:addPackNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
+                            //' <span class="fa fa-close" onClick="javascript:deletePackRow()" title="删除行"></span>';
                 break;
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
@@ -2308,7 +2341,13 @@ function checkFromBillPart(data){
     return false;
 }
 //配件
-function choosePart(){
+function choosePart(row_uid){
+    var row = rpsPartGrid.getRowByUID(row_uid);
+    //获取到工时中的ID,不确定是否是这个字段,把工时ID传到添加配件的页面中,考虑能不能直接在本页面把ID传到addToBillPart函数中
+    var itemId = null;
+    if(row){
+    	itemId = row.id;
+    }
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -2325,7 +2364,7 @@ function choosePart(){
         return;
     }
 
-    doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
+    doSelectPart(itemId,addToBillPart, delFromBillPart, checkFromBillPart, function(text){
         var p1 = { };
         var p2 = { };
         var p3 = {
@@ -2337,6 +2376,7 @@ function choosePart(){
         loadDetail(p1, p2, p3);
     });
 }
+//保存时逻辑流还没处理
 function addToBillPart(row, callback, unmaskcall){
     var main = billForm.getData();
     var data = {};
@@ -2489,6 +2529,7 @@ function showBasicData(type){
     var maintain = billForm.getData();
     var isSettle = maintain.isSettle||0;
     var BasicDataUrl = null;
+    var title = null;
     if(!maintain.id){
         showMsg("请选择保存工单!","S");
         return;
@@ -2504,16 +2545,19 @@ function showBasicData(type){
     };
     if(type=="pkg"){
     	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
+    	title = "标准套餐查询";
     }
     if(type=="item"){
-    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow.flow?token=";
+    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
+    	title = "标准工时查询";
     }
     if(type=="part"){
     	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
+    	title = "标准配件查询";
     }
     
     //添加回调函数，进行显示
-    doSelectBasicData(BasicDataUrl,params,function(p1,p2,p3){
+    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
        /* var p1 = { }
         var p2 = {
             interType: "item",

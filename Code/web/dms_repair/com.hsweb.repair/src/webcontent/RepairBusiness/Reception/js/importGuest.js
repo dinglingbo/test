@@ -87,10 +87,10 @@ function fixdata(data) { //文件流转BinaryString
 	return o;
 }
 var requiredField = {
-	partBrandId : "品牌",
-	code : "编码",
-	name : "名称",
-	unit : "单位"
+	fullName : "客户名称",
+	mobile : "手机号码",
+	carNo: "车牌号",
+	vin : "车架号(VIN)"
 };
 function sure() {
 	var data = mainGrid.getData();
@@ -99,71 +99,33 @@ function sure() {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
 			var newRow = {};
-			newRow.partBrandId = data[i].品牌||"";
-			newRow.code = data[i].编码||"";
-			newRow.name = data[i].名称||"";
-			newRow.unit = data[i].单位||"";
-			newRow.spec = data[i].规格||"";
-			newRow.applyCarbrandId = data[i].厂牌||"";
-			newRow.model = data[i].型号||"";
-			newRow.goodsCode = data[i].实物码||"";
-			newRow.oemCode = data[i].OEM码||"";
-			newRow.applyCarModel = data[i].适用车型||"";
-			newRow.produceFactory = data[i].生产厂家||"";
-			newRow.commonCode = data[i].通用编码||"";
+			newRow.fullName = data[i].客户名称||"";
+			newRow.mobile = data[i].手机号码||"";
+			newRow.carNo = data[i].车牌号||"";
+			newRow.vin = data[i].车架号||"";
+			newRow.addr = data[i].地址||"";
+			newRow.carModel = data[i].厂牌车型信息||"";
+			newRow.engineNo = data[i].发动机号||"";
+			newRow.annualVerificationDueDate = data[i].年审到期||"";
+			newRow.insureCompName = data[i].保险公司||"";
+			newRow.annualInspectionNo = data[i].商业险单号||"";
+			newRow.annualInspectionDate = data[i].商业险到期||"";
+			newRow.insureDueDate = data[i].交强险到期||"";
 			newRow.remark = data[i].备注||"";
 
-			newRow.code = newRow.code.replace(/\s+/g, "");
-			newRow.name = newRow.name.replace(/\s+/g, "");
-			newRow.oemCode = newRow.oemCode.replace(/\s+/g, "");
-			newRow.commonCode = newRow.commonCode.replace(/\s+/g, "");
 
-			for ( var key in requiredField) {
+		for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
 					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
 
-			newRow.fullName = newRow.name;
-		    newRow.fullName = newRow.fullName + " " + newRow.partBrandId;
-		    if(newRow.spec)
-		    {
-		        newRow.fullName = newRow.fullName + " " + newRow.spec;
-		    }
-		    
-	        var matches = newRow.code.match(/([\w]*)/ig);
-	        newRow.queryCode = "";
-	        for(var j=0;j<matches.length;j++)
-	        {
-	            newRow.queryCode+=matches[j];
-	        }		  
-
-			if(partBrandIdHash && partBrandIdHash[newRow.partBrandId]){
-				newRow.qualityTypeId = partBrandIdHash[newRow.partBrandId].parentId;
-				newRow.partBrandId = partBrandIdHash[newRow.partBrandId].id;
-			}else{
-				showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
-				return;
-			}
-
-			var carBrand = newRow.applyCarbrandId.replace(/\s+/g, "");
-			if(carBrand){
-				if(carBrandHash && carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")]){
-					newRow.applyCarbrandId = carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")].id;
-				}else{
-					showMsg("第"+(i+1)+"行记录的厂牌信息有误!","W");
-					return;
-				}
-			}
-
 			partList.push(newRow);
 		}
-		//btnEdit.setValue(data.id);
-		//btnEdit.setText(data.guestname);
+
 	}
 
-	//faddPart(partList);
 	saveEnterPart(partList);
 }
 
@@ -176,7 +138,7 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.getImportPart.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.getImportGuest.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
 		nui.mask({

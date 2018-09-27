@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.cloud.part.common,com.hsapi.part.common,com.
- hsapi.part.data,com.eos.foundation,com.hsweb.system.llqv2,com.hsweb.s
- ystem.llq,com.hs.common
-Bundle-Vendor: chenziming
+Require-Bundle: com.hsapi.part.common,com.hsapi.cloud.part.common,com.
+ hsapi.repair.repairService,com.hs.common,com.hsweb.system.llqv2,com.e
+ os.foundation,com.hsweb.system.llq,com.hsapi.part.data
 eos-webCtxPath: baseDataCrud
+Bundle-Vendor: chenziming
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.part.baseDataCrud
 Bundle-Description: 基础数据

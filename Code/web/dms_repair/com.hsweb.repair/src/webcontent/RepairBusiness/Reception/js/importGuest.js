@@ -6,7 +6,7 @@ FileReader共有4种读取方法：
 3.readAsDataURL(file)：将文件读取为Data URL
 4.readAsText(file, [encoding])：将文件读取为文本，encoding缺省值为'UTF-8'
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var wb;//读取完成的数据
 var rABS = false; //是否将文件读取为二进制字符串
 var mainGrid = null;
@@ -138,7 +138,7 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.getImportGuest.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.getImportGuest.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
 		nui.mask({

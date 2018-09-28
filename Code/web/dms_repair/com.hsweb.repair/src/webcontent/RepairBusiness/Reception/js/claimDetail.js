@@ -263,9 +263,15 @@ $(document).ready(function ()
                     e.cellHtml = "--";
                 }
                 break;
+            case "type":
+                if(e.value == 1){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = prdtTypeHash[e.value];
+                }
+                break;
             case "workers":
                 var type = record.type||0;
-                var cardDetailId = record.cardDetailId||0;
                 if(type != 2){
                     e.cellHtml = "--";
                 }else{
@@ -292,19 +298,10 @@ $(document).ready(function ()
                 }
                 
                 e.cellHtml = s;
-                 //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                           // '<span class="fa fa-plus" onClick="javascript:addPackNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
-                            //' <span class="fa fa-close" onClick="javascript:deletePackRow()" title="删除行"></span>';
-                break;
-            case "serviceTypeId":
-                if(servieTypeHash[e.value])
-                {
-                    e.cellHtml = servieTypeHash[e.value].name;
-                }
-                break;
+                 break;
             case "rate":
                 var value = e.value||"";
-                if(value){
+                if(value&&value!="0"){
                     e.cellHtml = e.value + '%';
                 }
                 break;
@@ -1457,22 +1454,6 @@ function deleteItemRow(row_uid){
             }else{
                 rpsItemGrid.removeRow(row);
             }*/
-        	var rows = rpsItemGrid.findRows(function(row){
-                if(row.id == id || row.billItemId == id){
-                    return true;
-                }
-            });
-        	rpsItemGrid.removeRows(rows);
-        }else{
-            showMsg(errMsg||"删除工时信息失败!","W");
-            return;
-        }
-    });
-}
-    svrCRUD(params,function(text){
-        var errCode = text.errCode||"";
-        var errMsg = text.errMsg||"";
-        if(errCode == 'S'){   
         	var rows = rpsItemGrid.findRows(function(row){
                 if(row.id == id || row.billItemId == id){
                     return true;

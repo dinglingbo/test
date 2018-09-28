@@ -31,7 +31,7 @@
                 </div>
                 <div field="rate" headerAlign="center" name="pkgRate"
                      allowSort="false" visible="true" width="60" header="优惠率" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
+                     <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">

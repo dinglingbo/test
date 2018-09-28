@@ -281,12 +281,10 @@
 			a.is_need_pack AS isNeedPack,
 			a.default_logistics_id AS defaultLogisticsId,
 			a.default_logistics AS defaultLogistics,
-			d.birthday,
 			f.chain_consume_amt AS chainConsumeAmt
 		FROM
 			wb_common.com_guest a
-		LEFT JOIN wb_repair.rpb_contactor d ON (a.id = d.guest_id)
-		LEFT JOIN wb_repair.rpb_guest f ON a.id = f.id
+		    LEFT JOIN wb_repair.rpb_guest f ON a.id = f.id
 		WHERE
 			a.guest_type = '01020103'
 		<dynamic>

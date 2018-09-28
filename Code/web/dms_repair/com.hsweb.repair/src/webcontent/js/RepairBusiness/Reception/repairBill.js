@@ -55,6 +55,13 @@ var prdtTypeHash = {
     "3":"配件"
 };
 
+$(".chooseClass").click(function () {
+	$(this).next("ul").show();
+});
+$(".chooseClass").hover(function () {
+	$(this).next("ul").show();
+});
+
 $(document).ready(function ()
 {
 	
@@ -305,12 +312,6 @@ $(document).ready(function ()
                            // '<span class="fa fa-plus" onClick="javascript:addPackNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
                             //' <span class="fa fa-close" onClick="javascript:deletePackRow()" title="删除行"></span>';
                 break;
-            case "serviceTypeId":
-                if(servieTypeHash[e.value])
-                {
-                    e.cellHtml = servieTypeHash[e.value].name;
-                }
-                break;
             case "rate":
                 var value = e.value||"";
                 if(value&&value!="0"){
@@ -352,7 +353,7 @@ $(document).ready(function ()
                 e.cancel = true;
             }
         }
-    });
+    });    
     rpsItemGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -368,6 +369,15 @@ $(document).ready(function ()
                 }
                 if(pid == 0){
                     e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
+                
+                    e.cellHtml = '<a id="add_peijian" href=" " class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value	+	
+                    			 '<ul class="add_ul" style="z-index: 99; display: none;">' +
+			            		 '<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
+			            		 '<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
+			            		 '</ul>';
+
+                    		
+                
                 }else{
                 	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
                 }
@@ -1385,7 +1395,7 @@ function deletePackRow(row_uid){
 function deleteItemRow(row_uid){
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
-    var prdtId = row.prdtId;
+    var id = row.id;
     if(data && data.length==1){
         row = data[0];
     }
@@ -1413,7 +1423,7 @@ function deleteItemRow(row_uid){
                 rpsItemGrid.removeRow(row);
             }*/
         	var rows = rpsItemGrid.findRows(function(row){
-                if(row.prdtId == prdtId || row.pid == prdtId){
+                if(row.id == id || row.billItemId == id){
                     return true;
                 }
             });
@@ -1803,16 +1813,6 @@ function updateRpsPackage(row_uid){
         var isSubtotalModify = 0;
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsPackageGrid.reject();
-            	return;
-            }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsPackageGrid.reject();
-            	return;
-            }
             if(row.type == 3){
                 rpsPackageGrid.accept();
                 return;
@@ -1905,26 +1905,6 @@ function updateRpsItem(row_uid){
         var rows = rpsItemGrid.getChanges();
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.qty=="" || row.qty==null){
-            	showMsg("工时/数量不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.unitPrice=="" || row.unitPrice==null){
-            	showMsg("单价不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
             
@@ -2001,26 +1981,6 @@ function updateItemRpsPart(row_uid){
 
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.qty=="" || row.qty==null){
-            	showMsg("工时/数量不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.unitPrice=="" || row.unitPrice==null){
-            	showMsg("单价不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
             

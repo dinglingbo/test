@@ -417,38 +417,57 @@ function importGuest(){
         },
         ondestroy: function (action)
         {
-            onSearch();
+        	grid.load();
         }
     });
 }
 
-function onSearch()
-{
-    var params = getSearchParams();
-    doSearch(params);
+function importCard(){
+    nui.open({
+        targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCard.flow?token="+token,importTimesCard
+        title: "客户储值卡导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var carBrandList = nui.get("applyCarBrandId").getData();
+            iframe.contentWindow.initData({
+                    partBrandIdList:brandList,
+                    carBrandList: carBrandList
+                });
+        },
+        ondestroy: function (action)
+        {
+        	grid.load();
+        }
+    });
 }
-function doSearch(params)
-{
-    params.sortOrder = "ASC";
-    params.sortField = "id";
-    if(params.namePy)
-    {
-        params.namePy = params.namePy.toUpperCase();
-    }
-    var tab = mainTabs.getActiveTab();
-    if(tab.name == "main"){
-        params.orgid = 0;
-        partGrid.load({
-            params:params
-        });  
-    }else if(tab.name == "local"){
-        params.orgid = currOrgId;
-        partLoalGrid.load({
-            params:params,
-            token:token
-        });  
-    }
 
-
-
+function importTimesCard(){
+    nui.open({
+        targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCard.flow?token="+token,
+        title: "客户储值卡导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var carBrandList = nui.get("applyCarBrandId").getData();
+            iframe.contentWindow.initData({
+                    partBrandIdList:brandList,
+                    carBrandList: carBrandList
+                });
+        },
+        ondestroy: function (action)
+        {
+        	grid.load();
+        }
+    });
 }

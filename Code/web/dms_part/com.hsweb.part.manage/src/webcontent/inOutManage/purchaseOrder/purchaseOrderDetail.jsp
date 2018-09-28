@@ -128,7 +128,7 @@
                           <input class="nui-hidden" name="taxSign" id="taxSign"/>
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
-                          <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+                      	  <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>
@@ -215,7 +215,7 @@
                                       <label>状态：</label>
                                   </td>
                                   <td>
-                                      <input class="nui-textbox" width="100%" id="billStatusId" name="billStatusId"/>
+                                      <input class="nui-textbox" width="100%" id="AbillStatusId" name="AbillStatusId"/>
                                   </td>
                                   <td class="title">
                                       <label>备注：</label>

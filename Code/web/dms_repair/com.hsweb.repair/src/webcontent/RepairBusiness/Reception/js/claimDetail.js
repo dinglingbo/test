@@ -263,9 +263,15 @@ $(document).ready(function ()
                     e.cellHtml = "--";
                 }
                 break;
+            case "type":
+                if(e.value == 1){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = prdtTypeHash[e.value];
+                }
+                break;
             case "workers":
                 var type = record.type||0;
-                var cardDetailId = record.cardDetailId||0;
                 if(type != 2){
                     e.cellHtml = "--";
                 }else{
@@ -292,19 +298,10 @@ $(document).ready(function ()
                 }
                 
                 e.cellHtml = s;
-                 //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-                           // '<span class="fa fa-plus" onClick="javascript:addPackNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
-                            //' <span class="fa fa-close" onClick="javascript:deletePackRow()" title="删除行"></span>';
-                break;
-            case "serviceTypeId":
-                if(servieTypeHash[e.value])
-                {
-                    e.cellHtml = servieTypeHash[e.value].name;
-                }
-                break;
+                 break;
             case "rate":
                 var value = e.value||"";
-                if(value){
+                if(value&&value!="0"){
                     e.cellHtml = e.value + '%';
                 }
                 break;
@@ -1469,6 +1466,26 @@ function deleteItemRow(row_uid){
         }
     });
 }
+
+function deleteItemRow(row_uid){
+    var data = rpsItemGrid.getData();
+    var row = rpsItemGrid.getRowByUID(row_uid);
+    var id = row.id;
+    if(data && data.length==1){
+        row = data[0];
+    }
+    var item = {
+        serviceId:row.serviceId,
+        id:row.id,
+        cardDetailId:row.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"item",
+        data:{
+            item: item
+        }
+    };
     svrCRUD(params,function(text){
         var errCode = text.errCode||"";
         var errMsg = text.errMsg||"";
@@ -1485,6 +1502,7 @@ function deleteItemRow(row_uid){
         }
     });
 }
+
 
 function showCardTimes(){
     if(!fguestId || advancedCardTimesWin.visible) {
@@ -1834,20 +1852,6 @@ function updateRpsPackage(row_uid){
         var isSubtotalModify = 0;
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsPackageGrid.reject();
-            	return;
-            }
-	        if(row.rate=="" || row.rate==null){
-	        	showMsg("优惠率不能为空","w");
-	        	rpsPackageGrid.reject();
-	        	return;
-	        }
-            if(row.type == 3){
-                rpsPackageGrid.accept();
-                return;
-            }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
             var rate = row.rate/100;
@@ -1946,26 +1950,6 @@ function updateRpsItem(row_uid){
 
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.qty=="" || row.qty==null){
-            	showMsg("工时/数量不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.unitPrice=="" || row.unitPrice==null){
-            	showMsg("单价不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
             
@@ -2033,26 +2017,6 @@ function updateItemRpsPart(row_uid){
 
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.qty=="" || row.qty==null){
-            	showMsg("工时/数量不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.unitPrice=="" || row.unitPrice==null){
-            	showMsg("单价不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
             

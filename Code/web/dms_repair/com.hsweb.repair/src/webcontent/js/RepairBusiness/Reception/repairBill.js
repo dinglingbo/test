@@ -1385,7 +1385,7 @@ function deletePackRow(row_uid){
 function deleteItemRow(row_uid){
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
-    var prdtId = row.prdtId;
+    var id = row.id;
     if(data && data.length==1){
         row = data[0];
     }
@@ -1413,7 +1413,7 @@ function deleteItemRow(row_uid){
                 rpsItemGrid.removeRow(row);
             }*/
         	var rows = rpsItemGrid.findRows(function(row){
-                if(row.prdtId == prdtId || row.pid == prdtId){
+                if(row.id == id || row.billItemId == id){
                     return true;
                 }
             });
@@ -1808,11 +1808,11 @@ function updateRpsPackage(row_uid){
             	rpsPackageGrid.reject();
             	return;
             }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsPackageGrid.reject();
-            	return;
-            }
+	        if(row.rate=="" || row.rate==null){
+	        	showMsg("优惠率不能为空","w");
+	        	rpsPackageGrid.reject();
+	        	return;
+	        }
             if(row.type == 3){
                 rpsPackageGrid.accept();
                 return;

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.3.31"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.3.33"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -211,8 +211,9 @@
             <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
             <div style="width:100%;height:5px;"></div>
             <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-            <%-- <div style="width:100%;height:5px;" ></div>
-            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp"  %> --%> 
+            <%--  <div style="width:100%;height:5px;" ></div>
+            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp"  %> --%>
+         </div>
 
         <!-- <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
             showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"

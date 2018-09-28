@@ -323,7 +323,7 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 		title : "配件管理",
-		width : 1300, 
+		width : 1000, 
 		height : 560,
 		allowDrag : true,
 		allowResize : true,

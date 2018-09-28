@@ -357,50 +357,86 @@ $(document).ready(function ()
         var record = e.record;
         var uid = record._uid;
         var rowIndex = e.rowIndex;
-
+        //获取到配件ID
+    	var pid = record.pid||0;
         switch (e.field) {
-            case "itemName":
-            var cardDetailId = record.cardDetailId||0;
-            if(cardDetailId>0){
-                e.cellHtml = e.value + "<font color='red'>(预存)</font>";
-            }
-            break;
+            case "prdtName":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId>0){
+                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+                }
+                if(pid == 0){
+                    e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
+                }else{
+                	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+                }
+                break;
             case "itemOptBtn":
-            var s = '<a class="optbtn" href="javascript:editRpsItem(\'' + uid + '\')">修改</a>'
-            + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
-
-            if (grid.isEditingRow(record)) {
-                s = '<a class="optbtn" href="javascript:updateRpsItem(\'' + uid + '\')">确定</a>'
-                + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
-            }
-
+            	if(pid == 0){
+            	    var s = '<a class="optbtn" href="javascript:editRpsItem(\'' + uid + '\')">修改</a>'
+                     + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
+                  if (grid.isEditingRow(record)) {
+                    s = '<a class="optbtn" href="javascript:updateRpsItem(\'' + uid + '\')">确定</a>'
+                     + ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
+                   }
+                 }else{
+                	 //修改配件信息
+                	 var s = '<a class="optbtn" href="javascript:editItemRpsPart(\'' + uid + '\')">修改</a>';
+                     if (grid.isEditingRow(record)) {
+                         s = '<a class="optbtn" href="javascript:updateItemRpsPart(\'' + uid + '\')">确定</a>';
+                     }
+                  }
                 //e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
                 //            '<span class="fa fa-plus" onClick="javascript:addItemNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
                 //            ' <span class="fa fa-close" onClick="javascript:deleteItemRow()" title="删除行"></span>';
                 e.cellHtml = s
                 break;
-                case "serviceTypeId":
-                e.cellHtml = servieTypeHash[e.value].name;
+            case "serviceTypeId":
+                var type = record.type||0;
+                if(type>2){
+                    e.cellHtml = "--";
+                    e.cancel = false;
+                }else{
+                    e.cellHtml = servieTypeHash[e.value].name;
+                }
                 break;
-                case "rate":
-                    var value = e.value||"";
-                    if(value){
-                        e.cellHtml = e.value + '%';
-                    }
-                    break;
-                default:
+            case "workers":
+                var type = record.type||0;
+                if(type != 2){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = e.value;
+                }
                 break;
-            }
-
-        });
+            case "rate":
+                var value = e.value||"";
+                if(value&&value!="0"){
+                    e.cellHtml = e.value + '%';
+                }
+                break;
+            default:
+                break;
+        }
+        
+    });
     rpsItemGrid.on("cellbeginedit",function(e){
         var field=e.field; 
         var editor = e.editor;
         var row = e.row;
         var column = e.column;
         var editor = e.editor;
-
-        if(field == 'itemTime' || field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
+        //配件type=3
+        if(field == 'serviceTypeId'){
+            if(row.type > 2) {
+                e.cancel = true;
+            }
+        }
+        if(field == 'workers'){
+            if(row.type == 3){
+                e.cancel = true;
+            }
+        }
+        if(field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
             if(row.cardDetailId > 0){
                 e.cancel = true;
             }

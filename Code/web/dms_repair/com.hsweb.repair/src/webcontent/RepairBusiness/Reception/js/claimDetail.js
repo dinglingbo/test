@@ -1450,6 +1450,29 @@ function deleteItemRow(row_uid){
         var errCode = text.errCode||"";
         var errMsg = text.errMsg||"";
         if(errCode == 'S'){   
+            /*if(data && data.length==1){
+                rpsItemGrid.removeRow(data[0]);
+                var newRow = {};
+                rpsPartGrid.addRow(newRow);
+            }else{
+                rpsItemGrid.removeRow(row);
+            }*/
+        	var rows = rpsItemGrid.findRows(function(row){
+                if(row.id == id || row.billItemId == id){
+                    return true;
+                }
+            });
+        	rpsItemGrid.removeRows(rows);
+        }else{
+            showMsg(errMsg||"删除工时信息失败!","W");
+            return;
+        }
+    });
+}
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
         	var rows = rpsItemGrid.findRows(function(row){
                 if(row.id == id || row.billItemId == id){
                     return true;
@@ -2344,6 +2367,7 @@ function addToBillPart(row, callback, unmaskcall){
     var insPart = {
         serviceId:main.id||0,
         partId:row.id,
+        billItemId:row.billItemId,     
         cardDetailId:0
     };
     data.insPart = insPart;

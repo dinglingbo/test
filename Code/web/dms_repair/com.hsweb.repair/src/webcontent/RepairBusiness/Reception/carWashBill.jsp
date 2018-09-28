@@ -300,8 +300,8 @@
                     <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
                     <div style="width:100%;height:5px;"></div>
                     <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-                    <div style="width:100%;height:5px;"></div>
-                    <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
+                    <%-- <div style="width:100%;height:5px;"></div>
+                    <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %> --%>
                 </div>
                 
                 <!-- <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 

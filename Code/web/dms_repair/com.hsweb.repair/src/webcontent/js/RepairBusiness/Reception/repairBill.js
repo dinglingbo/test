@@ -55,6 +55,13 @@ var prdtTypeHash = {
     "3":"配件"
 };
 
+$(".chooseClass").click(function () {
+	$(this).next("ul").show();
+});
+$(".chooseClass").hover(function () {
+	$(this).next("ul").show();
+});
+
 $(document).ready(function ()
 {
 	
@@ -352,7 +359,7 @@ $(document).ready(function ()
                 e.cancel = true;
             }
         }
-    });
+    });    
     rpsItemGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -368,6 +375,15 @@ $(document).ready(function ()
                 }
                 if(pid == 0){
                     e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
+                
+                    e.cellHtml = '<a id="add_peijian" href=" " class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value	+	
+                    			 '<ul class="add_ul" style="z-index: 99; display: none;">' +
+			            		 '<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
+			            		 '<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
+			            		 '</ul>';
+
+                    		
+                
                 }else{
                 	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
                 }

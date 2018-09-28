@@ -1814,16 +1814,6 @@ function updateRpsPackage(row_uid){
         var isSubtotalModify = 0;
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsPackageGrid.reject();
-            	return;
-            }
-	        if(row.rate=="" || row.rate==null){
-	        	showMsg("优惠率不能为空","w");
-	        	rpsPackageGrid.reject();
-	        	return;
-	        }
             if(row.type == 3){
                 rpsPackageGrid.accept();
                 return;
@@ -1916,26 +1906,6 @@ function updateRpsItem(row_uid){
 
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.qty=="" || row.qty==null){
-            	showMsg("工时/数量不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.unitPrice=="" || row.unitPrice==null){
-            	showMsg("单价不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
             
@@ -2011,26 +1981,6 @@ function updateItemRpsPart(row_uid){
 
         if(rows && rows.length>0){
             var row = rows[0];
-            if(row.qty=="" || row.qty==null){
-            	showMsg("工时/数量不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.unitPrice=="" || row.unitPrice==null){
-            	showMsg("单价不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.rate=="" || row.rate==null){
-            	showMsg("优惠率不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
-            if(row.subtotal=="" || row.subtotal==null){
-            	showMsg("金额不能为空","w");
-            	rpsItemGrid.reject();
-            	return;
-            }
             var serviceId = row.serviceId||0;
             var cardDetailId = row.cardDetailId||0;
             

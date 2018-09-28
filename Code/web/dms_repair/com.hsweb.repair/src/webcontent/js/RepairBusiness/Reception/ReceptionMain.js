@@ -27,7 +27,6 @@ var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
-var innerPartGrid = null;
 $(document).ready(function ()
 {
     mainGrid = nui.get("mainGrid");
@@ -40,10 +39,8 @@ $(document).ready(function ()
     advancedSearchForm = new nui.Form("#advancedSearchForm");
     editFormDetail = document.getElementById("editFormDetail");
     innerItemGrid = nui.get("innerItemGrid");
-    innerPartGrid = nui.get("innerPartGrid");
     innerpackGrid = nui.get("innerpackGrid");
     innerItemGrid.setUrl(getRpsItemUrl);
-    innerPartGrid.setUrl(getRpsPartUrl);
     innerpackGrid.setUrl(getdRpsPackageUrl);
 
     beginDateEl.setValue(getMonthStartDate());
@@ -88,59 +85,45 @@ $(document).ready(function ()
             }
         }
     });
-
-    innerPartGrid.on("drawcell", function (e) {
-        var grid = e.sender;
-        var record = e.record;
-        var uid = record._uid;
-        var rowIndex = e.rowIndex;
-
-        switch (e.field) {
-            case "partName":
-                var cardDetailId = record.cardDetailId||0;
-                if(cardDetailId>0){
-                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
-                }
-                break;
-            case "serviceTypeId":
-                e.cellHtml = servieTypeHash[e.value].name;
-                break;
-            case "rate":
-                var value = e.value||"";
-                if(value){
-                    e.cellHtml = e.value + '%';
-                }
-                break;
-            default:
-                break;
-        }
-    });   
-    
     innerItemGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
         var uid = record._uid;
         var rowIndex = e.rowIndex;
-
         switch (e.field) {
-            case "itemName":
+            case "prdtName":
                 var cardDetailId = record.cardDetailId||0;
                 if(cardDetailId>0){
                     e.cellHtml = e.value + "<font color='red'>(预存)</font>";
                 }
                 break;
             case "serviceTypeId":
-                e.cellHtml = servieTypeHash[e.value].name;
+                var type = record.type||0;
+                if(type>2){
+                    e.cellHtml = "--";
+                    e.cancel = false;
+                }else{
+                    e.cellHtml = servieTypeHash[e.value].name;
+                }
+                break;
+            case "workers":
+                var type = record.type||0;
+                if(type != 2){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = e.value;
+                }
                 break;
             case "rate":
                 var value = e.value||"";
-                if(value){
+                if(value&&value!="0"){
                     e.cellHtml = e.value + '%';
                 }
                 break;
             default:
                 break;
         }
+        
     });
     
     innerpackGrid.on("drawcell", function (e) {
@@ -229,7 +212,6 @@ function onShowRowDetail(e) {
     editFormDetail.style.display = "";
 
     innerItemGrid.setData([]);
-    innerPartGrid.setData([]);
     innerpackGrid.setData([]);
     var serviceId = row.id;
     innerItemGrid.load({
@@ -237,11 +219,6 @@ function onShowRowDetail(e) {
         token: token
     });
 
-    innerPartGrid.load({
-    	serviceId:serviceId,
-        token: token
-    });
-    
     innerpackGrid.load({
     	serviceId:serviceId,
         token: token

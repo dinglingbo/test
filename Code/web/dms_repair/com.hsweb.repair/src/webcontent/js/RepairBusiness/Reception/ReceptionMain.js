@@ -27,6 +27,11 @@ var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
+var prdtTypeHash = {
+	    "1":"套餐",
+	    "2":"工时",
+	    "3":"配件"
+};
 $(document).ready(function ()
 {
     mainGrid = nui.get("mainGrid");
@@ -170,8 +175,15 @@ $(document).ready(function ()
                 break;
             case "rate":
                 var value = e.value||"";
-                if(value){
+                if(value&&value!="0"){
                     e.cellHtml = e.value + '%';
+                }
+                break;
+            case "type":
+                if(e.value == 1){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = prdtTypeHash[e.value];
                 }
                 break;
             default:

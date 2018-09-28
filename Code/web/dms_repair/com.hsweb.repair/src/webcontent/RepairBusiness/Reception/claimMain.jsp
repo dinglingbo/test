@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔-工单</title>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.0.8"></script>
 <style type="text/css">
 
 .title {
@@ -208,7 +208,8 @@
       <div property="columns">
     	   <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
            <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
-           <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100" header="套餐名称"></div>     
+           <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100" header="套餐名称"></div> 
+           <div field="type" headerAlign="center" allowSort="false" visible="true" width="60" header="项目类型" align="center"></div>    
            <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId" allowSort="false" visible="true" width="50" header="业务类型" align="center"> </div>
            <div field="subtotal" headerAlign="center" name="pkgSubtotal" allowSort="false" visible="true" width="60" header="套餐金额" align="center" ></div>
            <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="优惠率" align="center"></div>

@@ -204,7 +204,7 @@ $(document).ready(function(v) {
 
 var StatusHash = {
 	"0" : "草稿",
-	"1" : "待发货",
+//	"1" : "待发货",
 	"2" : "待收货",
 	//"3" : "部分入库",
 	"4" : "已入库",
@@ -270,20 +270,27 @@ function loadMainAndDetailInfo(row) {
 		basicInfoForm.setData(row);
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
+		
+		var data = basicInfoForm.getData();
 
-//		var row = leftGrid.getSelected();
-//		if (row.auditSign == 1) {
-//			document.getElementById("basicInfoForm").disabled = true;
-//			setBtnable(false);
-//			setEditable(false);
-//		} else {
-//			document.getElementById("basicInfoForm").disabled = false;
-//			setBtnable(true);
-//			setEditable(true);
-//		}
+		var text=StatusHash[row.billStatusId];
+		nui.get('AbillStatusId').setValue(text);
+		if(StatusHash){
+			
+			nui.get('AbillStatusId').setValue(text);
+	    }
+
+		if (data.auditSign == 1) {
+			document.getElementById("basicInfoForm").disabled = true;
+			setBtnable(false);
+			setEditable(false);
+		} else {
+			document.getElementById("basicInfoForm").disabled = false;
+			setBtnable(true);
+			setEditable(true);
+		}
 
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
-		var data = basicInfoForm.getData();
 		data.orderAmt = data.orderAmt||0;
 		formJson = nui.encode(data);
 
@@ -839,15 +846,14 @@ function save() {
 		}
 	}
 
-//	var row = leftGrid.getSelected();
-//	if (row) {
-//		if (row.auditSign == 1) {
-//			showMsg("此单已审核!","W");
-//			return;
-//		}
-//	} else {
-//		return;
-//	}
+	if (data) {
+		if (data.auditSign == 1) {
+			showMsg("此单已审核!","W");
+			return;
+		}
+	} else {
+		return;
+	}
 
 	data = getMainData();
 
@@ -1199,16 +1205,15 @@ function addDetail(part) {
 		}
 	}
 
-//	var row = leftGrid.getSelected();
-//	if (row) {
-//		if (row.auditSign == 1) {
-//			showMsg("此单已审核!","W");
-//			return;
-//		}
-//	} else {
-//		return;
-//	}
-//	
+	if (data) {
+		if (data.auditSign == 1) {
+			showMsg("此单已审核!","W");
+			return;
+		}
+	} else {
+		return;
+	}
+	
 	nui.open({
 				targetWindow : window,
 				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
@@ -1359,12 +1364,13 @@ function addInsertRow(value,row) {
 	return false;
 }
 function addPart() {
-//	var row = leftGrid.getSelected();
-//	if (row) {
-//		if (row.auditSign == 1) {
-//			return;
-//		}
-//	}
+	
+	var data = basicInfoForm.getData();
+	if (data) {
+		if (data.auditSign == 1) {
+			return;
+		}
+	}
 
 	selectPart(function(data) {
 		var part = data.part;
@@ -1401,12 +1407,13 @@ function checkPartIDExists(partid) {
 }
 var editPartHash = {};
 function deletePart() {
-//	var row = leftGrid.getSelected();
-//	if (row) {
-//		if (row.auditSign == 1) {
-//			return;
-//		}
-//	}
+	
+	var data = basicInfoForm.getData();
+	if (data) {
+		if (data.auditSign == 1) {
+			return;
+		}
+	}
 
 	var part = rightGrid.getSelected();
 	if (!part) {
@@ -1529,15 +1536,14 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		}
 	}
 
-//	var row = leftGrid.getSelected();
-//	if (row) {
-//		if (row.auditSign == 1) {
-//			showMsg("此单已审核!","W");
-//			return;
-//		}
-//	} else {
-//		return;
-//	}
+	if (data) {
+		if (data.auditSign == 1) {
+			showMsg("此单已审核!","W");
+			return;
+		}
+	} else {
+		return;
+	}
 
 	// 审核时，数量，单价，金额，仓库不能为空,单价可以为0，只需要提示
 	var p = checkRightData();
@@ -1697,19 +1703,20 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 var enterUrl = baseUrl
 		+ "com.hsapi.part.invoice.ordersettle.generateNewPchsOrderEnter.biz.ext";
 function orderEnter(mainId) {
-//	var row = leftGrid.getSelected();
-//	if(row.auditSign!=1){
-//		showMsg("请先提交再入库!","W");
-//		return;
-//	}
-//	if (row) {
-//		if (row.auditSign == 1 && row.billStatusId == 4) {
-//			showMsg("此单已入库!","W");
-//			return;
-//		}
-//	} else {
-//		return;
-//	}
+	
+	var data = basicInfoForm.getData();
+	if(data.auditSign!=1){
+		showMsg("请先提交再入库!","W");
+		return;
+	}
+	if (data) {
+		if (data.auditSign == 1 && data.billStatusId == 4) {
+			showMsg("此单已入库!","W");
+			return;
+		}
+	} else {
+		return;
+	}
 
 	nui.confirm("是否确定入库?", "友情提示", function(action) {
 		if (action == "ok") {
@@ -1746,7 +1753,13 @@ function orderEnter(mainId) {
 //						
 						// 入库成功后重新加载数据
 						leftRow.billStatusId=4;
+						
+						if(!leftRow.guestFullName){
+							var guestFullName = nui.get("guestId").getText();
+							leftRow.guestFullName = guestFullName;
+						}
 						loadMainAndDetailInfo(leftRow);
+					
 						$('#bServiceId').text("订单号："+leftRow.serviceId);
 					}
 
@@ -1901,12 +1914,18 @@ function onPrint(e){
 //		showMsg("请选择一条记录");
 //	}
 	var detail=rightGrid.getData();
+	var from = basicInfoForm.getData();
 	var mainParams=null;
 	var billTypeId=nui.get('billTypeId').text;
 	var settleTypeId=nui.get('settleTypeId').text;
+	var guestFullName=nui.get('guestId').text;
+	var serviceId =$('#bServiceId').text().substr(4);
 	var formParms={
 			billTypeId :billTypeId,
-			settleTypeId:settleTypeId
+			settleTypeId:settleTypeId,
+			guestFullName : guestFullName,
+			serviceId : serviceId,
+			createDate :from.createDate
 	};
 	var detailParms=detail;
 
@@ -2014,13 +2033,14 @@ function OnrpMainGridCellBeginEdit(e){
 
 }
 function addMorePart(){
-//	var row = leftGrid.getSelected();
-//	if(row.auditSign == 1){
-//		showMsg("此单已审核!","W");
-//		return;
-//	}
-
+	
 	var main = basicInfoForm.getData();
+
+	if(main.auditSign == 1){
+		showMsg("此单已审核!","W");
+		return;
+	}
+
 	if(!main.id){
 		showMsg("请先保存单据!","W");
 		return;
@@ -2230,13 +2250,14 @@ function unAudit()
     });
 }
 function importPart(){
-//    var row = leftGrid.getSelected();
-//	if(row.auditSign == 1){
-//		showMsg("此单已审核!","W");
-//		return;
-//	}
-
+	
 	var main = basicInfoForm.getData();
+
+	if(main.auditSign == 1){
+		showMsg("此单已审核!","W");
+		return;
+	}
+
 	if(!main.id){
 		showMsg("请先保存单据!","W");
 		return;
@@ -2365,3 +2386,26 @@ function setInitExportData(main, detail){
     method5('tableExcel',"采购订单"+serviceId,'tableExportA');
 }
 
+function setInitData(params){
+	if(params.id){
+		basicInfoForm.setData(params);
+		$('#bServiceId').text("订单号："+params.serviceId);
+		nui.get("guestId").setText(params.guestFullName);
+	
+		if(StatusHash)
+	       {
+				var text=StatusHash[params.billStatusId];
+				nui.get('AbillStatusId').setValue(text);
+	       }
+		
+		var mainId=params.id;
+		var auditSign=params.auditSign;
+		if(params.id){		
+			loadRightGridData(mainId, auditSign);	
+		}
+		if(params.billStatusId != 0){
+			
+			document.getElementById("fd1").disabled = true;
+		}
+	}
+}

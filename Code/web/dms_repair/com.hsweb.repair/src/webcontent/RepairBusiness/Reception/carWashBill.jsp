@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.78"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.2.80"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -300,8 +300,8 @@
                     <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
                     <div style="width:100%;height:5px;"></div>
                     <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-                    <div style="width:100%;height:5px;"></div>
-                    <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
+                    <%-- <div style="width:100%;height:5px;"></div>
+                    <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %> --%>
                 </div>
                 
                 <!-- <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 

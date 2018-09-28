@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.32"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -38,7 +38,9 @@
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
 
-
+				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(12)">草稿</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">待收货</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)">已入库</a>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -68,7 +70,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
                 <span class="separator"></span> -->
-				<label style="font-family:Verdana;">审核日期 从：</label>
+				<label style="font-family:Verdana;">创建日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -90,6 +92,8 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>
 
             </td>
         </tr>
@@ -105,6 +109,8 @@
          url=""
          pageSize="10000"
          sizeList="[1000,5000,10000]"
+         selectOnLoad="true"
+         onshowrowdetail="onShowRowDetail"
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
@@ -116,7 +122,7 @@
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="settelTypeId" width="60" headerAlign="center" header="结算方式"></div>
+                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
@@ -271,7 +277,7 @@
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
    <div id="innerPartGrid"
-       dataField="data"
+       dataField="pjPchsOrderDetailList"
        class="nui-datagrid"
        style="width: 100%; height: 100px;"
        showPager="false"
@@ -285,8 +291,12 @@
 	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
 	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
-	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
-		   <div field="remark" width="100" headerAlign="center" allowSort="true"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center"header="金额" ></div>
+		   <div field="remark" width="100" headerAlign="center" allowSort="true" header="备注"></div>
+		   <div field="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
+		   <div field="storeShelf" width="100" headerAlign="center" allowSort="true" header="仓位"></div>
+		   <div field="comOemCode" width="100" headerAlign="center" allowSort="true" header="OEM码"></div>
+		   <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
       </div>
    </div>
 </div>

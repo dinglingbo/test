@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.1.6"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -216,8 +216,8 @@
             <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
             <div style="width:100%;height:5px;"></div>
             <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-            <div style="width:100%;height:5px;"></div>
-            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
+            <%-- <div style="width:100%;height:5px;"></div>
+            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %> --%>
         </div>
 
     </div>

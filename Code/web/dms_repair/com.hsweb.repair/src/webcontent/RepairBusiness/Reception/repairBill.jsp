@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.3.35"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.3.36"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -274,7 +274,7 @@
 
 </div>
 
-<div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:9999;">
+<div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
     
     <div style="float: left;height: 100%;">
         <table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">

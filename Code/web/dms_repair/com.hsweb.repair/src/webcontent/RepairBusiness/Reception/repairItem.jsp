@@ -16,7 +16,7 @@
         <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
         <div header="项目信息">
             <div property="columns">
-                <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
+                <div field="prdtName" name="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
                 <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
@@ -72,6 +72,25 @@
         <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准工时</a>
     </span>
 </div>
-    
+
+<div id="advancedMorePartWin" class="nui-window"
+     title="" style="height:70px;width:100px;"
+     showModal="false"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <table style="text-align:left;width: 100%; height: 100%;padding-left:6px;">
+        <tr>
+            <td>
+            <a class="nui-button" iconCls="" plain="true" onclick="choosePart()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择配件</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <a class="nui-button" iconCls="" plain="true" onclick="showBasicDataPart()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择标准配件</a>
+            </td>
+        </tr>
+    </table>
+</div>    
 
 

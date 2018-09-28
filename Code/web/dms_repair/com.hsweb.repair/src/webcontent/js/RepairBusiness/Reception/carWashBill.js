@@ -30,7 +30,9 @@
  var rpsItemGrid = null;
  var packageDetailGrid = null;
  var packageDetailGridForm = null;
+ var FItemRow = {};
 
+ var advancedMorePartWin = null;
  var advancedCardTimesWin = null;
  var cardTimesGrid = null;
  var advancedMemCardWin = null;
@@ -55,13 +57,34 @@
     "2":"工时",
     "3":"配件"
 };
+document.onmousemove = function(e){
 
+    if(advancedMorePartWin.visible){
+        var mx = e.pageX;
+        var my = e.pageY;
+        var loc = "当前位置 x:"+e.pageX+",y:"+e.pageY
+        var x = advancedMorePartWin.x;
+        var y = advancedMorePartWin.y;
+        if(x - mx > 10 || mx - x > 180){
+            advancedMorePartWin.hide();
+            FItemRow = {};
+            return;
+        }
+        if(y - my > 10 || my - y > 130){
+            advancedMorePartWin.hide();
+            FItemRow = {};
+            return;
+        }
+    }
+   
+}
 $(document).ready(function ()
 {
     rpsPackageGrid = nui.get("rpsPackageGrid");
     rpsItemGrid = nui.get("rpsItemGrid");
     billForm = new nui.Form("#billForm");
     sellForm = new nui.Form("#sellForm");
+    advancedMorePartWin = nui.get("advancedMorePartWin");
     advancedCardTimesWin = nui.get("advancedCardTimesWin");
     carCheckInfo = nui.get("carCheckInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
@@ -363,7 +386,14 @@ $(document).ready(function ()
                     e.cellHtml = e.value + "<font color='red'>(预存)</font>";
                 }
                 if(pid == 0){
-                    e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
+                    //e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
+                
+                    e.cellHtml = '<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value;	
+                    			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
+			            		 //'<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
+			            		 //'<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
+			            		 //'</ul>';
+                
                 }else{
                 	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
                 }
@@ -378,9 +408,11 @@ $(document).ready(function ()
                    }
                  }else{
                 	 //修改配件信息
-                	 var s = '<a class="optbtn" href="javascript:editItemRpsPart(\'' + uid + '\')">修改</a>';
+                	 var s = '<a class="optbtn" href="javascript:editItemRpsPart(\'' + uid + '\')">修改</a>'
+                            + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
                      if (grid.isEditingRow(record)) {
-                         s = '<a class="optbtn" href="javascript:updateItemRpsPart(\'' + uid + '\')">确定</a>';
+                         s = '<a class="optbtn" href="javascript:updateItemRpsPart(\'' + uid + '\')">确定</a>'
+                            + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
                      }
                   }
                 //e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
@@ -1365,6 +1397,42 @@ function checkPrdt(data){
         }
     }
 }
+function deletePartRow(row_uid){
+    var data = rpsItemGrid.getData();
+    var row = rpsItemGrid.getRowByUID(row_uid);
+    if(data && data.length==1){
+        row = data[0];
+    }
+    var part = {
+        serviceId:row.serviceId,
+        id:row.id,
+        cardDetailId:row.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"part",
+        data:{
+            part: part
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            if(data && data.length==1){
+                rpsItemGrid.removeRow(data[0]);
+                //var newRow = {};
+                //rpsPartGrid.addRow(newRow);
+            }else{
+                rpsItemGrid.removeRow(row);
+            }
+        }else{
+            showMsg(errMsg||"删除配件信息失败!","W");
+            return;
+        }
+    });
+
+}
 function addPackNewRow(){
     var newRow = {};
     rpsPackageGrid.addRow(newRow);
@@ -2255,9 +2323,27 @@ function checkFromBillPart(data){
     }
     return false;
 }
+function showMorePart(row_uid){
+    if(!fguestId) {
+        advancedMorePartWin.hide();
+        FItemRow = {};
+        return;
+    }
+
+    var row = rpsItemGrid.getRowByUID(row_uid); 
+    if(FItemRow == row) {
+        advancedMorePartWin.hide();
+        FItemRow = {};
+        return;
+    }      
+    FItemRow = row;    
+    var atEl = rpsItemGrid._getCellEl(row,"prdtName");
+    advancedMorePartWin.showAtEl(atEl, {xAlign:"right",yAlign:"above"});
+   	
+}
 //配件
-function choosePart(row_uid){
-    var row = rpsItemGrid.getRowByUID(row_uid);
+function choosePart(){
+    var row = FItemRow||{};//rpsItemGrid.getRowByUID(row_uid);
     //获取到工时中的ID,不确定是否是这个字段,把工时ID传到添加配件的页面中,考虑能不能直接在本页面把ID传到addToBillPart函数中
     var itemId = null;
     if(row){

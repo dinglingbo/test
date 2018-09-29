@@ -2,15 +2,43 @@ var packageGrid = null;
 var itemGrid = null;
 var partGrid = null;
 var sellForm = null;
+var receiveGrid = null;
+var payGrid = null;
 var fserviceId = 0;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 $(document).ready(function(v) {
 	sellForm = new nui.Form("#sellForm");
-	
+	receiveGrid = nui.get("receiveGrid");
+	payGrid = nui.get("payGrid");
 
+	receiveGrid.on("drawcell",function(e)
+    {
+		var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        if(e.field == "optBtn")
+        {
+			var s = '<a class="optbtn" href="javascript:addReceiveRow(\'' + uid + '\')">新增</a>'
+				  + ' <a class="optbtn" href="javascript:deleteReceiveRow(\'' + uid + '\')">删除</a>';
+			
+			e.cellHtml = s;
+        }
+	});
+	payGrid.on("drawcell",function(e)
+    {
+		var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        if(e.field == "optBtn")
+        {
+			var s = '<a class="optbtn" href="javascript:addReceiveRow(\'' + uid + '\')">新增</a>'
+				  + ' <a class="optbtn" href="javascript:deleteReceiveRow(\'' + uid + '\')">删除</a>';
+			
+			e.cellHtml = s;
+        }
+    });
 });
-
 
 function getData(data){
 		// 跨页面传递的数据对象，克隆后才可以安全使用
@@ -49,29 +77,29 @@ function getData(data){
 function setData(params){
     var serviceId = params.serviceId||0;
     fserviceId = serviceId;
-    itemGrid.load({
-        token:token,
-        serviceId:serviceId
-    });
+    // itemGrid.load({
+    //     token:token,
+    //     serviceId:serviceId
+    // });
 
-    partGrid.load({
-        token:token,
-        serviceId:serviceId
-    },function(){
-        var rows = partGrid.findRows(function(row){
-            var qty = row.qty||0;
-            var pickQty = row.pickQty||0;
-            var notPickQty = qty - pickQty;
-            if(notPickQty>0){
-                return true;
-            }
-        });
-        if(rows && rows.length>0){
-            document.getElementById("checkDescribe").innerHTML = "本工单有配件未出库";
-        }else{
-            document.getElementById("checkDescribe").innerHTML = "";
-        }
-    });
+    // partGrid.load({
+    //     token:token,
+    //     serviceId:serviceId
+    // },function(){
+    //     var rows = partGrid.findRows(function(row){
+    //         var qty = row.qty||0;
+    //         var pickQty = row.pickQty||0;
+    //         var notPickQty = qty - pickQty;
+    //         if(notPickQty>0){
+    //             return true;
+    //         }
+    //     });
+    //     if(rows && rows.length>0){
+    //         document.getElementById("checkDescribe").innerHTML = "本工单有配件未出库";
+    //     }else{
+    //         document.getElementById("checkDescribe").innerHTML = "";
+    //     }
+    // });
 }
 var resultData = {};
 

@@ -292,7 +292,7 @@
 			a.guest_type = '01020103'
 		<dynamic>
             <isNotEmpty prepend="and" property="tenantId">  
-                (b.tenant_id = #tenantId#)
+                (a.tenant_id = #tenantId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)

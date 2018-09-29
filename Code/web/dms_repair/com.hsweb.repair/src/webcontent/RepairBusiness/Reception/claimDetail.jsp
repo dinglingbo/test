@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.0.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.2.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -216,8 +216,8 @@
             <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
             <div style="width:100%;height:5px;"></div>
             <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-            <div style="width:100%;height:5px;"></div>
-            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %>
+            <%-- <div style="width:100%;height:5px;"></div>
+            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %> --%>
         </div>
 
     </div>
@@ -283,7 +283,7 @@
     
 
 
-<div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:9999;">
+<div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
     
     <div style="float: left;height: 100%;">
         <table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">

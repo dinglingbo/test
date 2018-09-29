@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insRpsPart" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="不能添加相同的配件；&#xD;&#xA;不能添加相同的预存信息，因为“不能添加相同的配件”已经判断，所以不需要单独判断" title="Administrator&#x9;18-8-10 下午2:27">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="不能添加相同的配件；&#xD;&#xA;不能添加相同的预存信息，因为“不能添加相同的配件”已经判断，所以不需要单独判断&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-8-10 下午2:27">
     <location x="-615" y="-27"/>
-    <size height="100" width="449"/>
+    <size height="118" width="449"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -88,6 +88,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
+    <targetConnections>link44</targetConnections>
     <location x="-245" y="142"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -560,6 +561,15 @@
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="link47" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>invokePojo5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link44" name="不判断是否存在相同" displayName="连接线" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link33</targetConnections>
     <location x="-343" y="227"/>

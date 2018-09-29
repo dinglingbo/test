@@ -69,8 +69,9 @@ table {
     <div class="nui-splitter" style="width: 100%; height: 100%;"
          borderStyle="border:0;"
          allowResize="false">
-        <div size="500" showCollapseButton="false" style="border:0;">
+        <div size="400" showCollapseButton="false" style="border:0;">
             <div class="nui-fit">
+            <div id="leftGrid" dataField="list" class="nui-datagrid"
                      style="width: 100%; height: 100%;"
                      pageSize="50"
                      totalField="page.count"

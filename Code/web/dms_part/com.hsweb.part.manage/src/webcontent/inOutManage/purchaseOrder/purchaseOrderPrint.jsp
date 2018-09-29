@@ -215,9 +215,9 @@ table{
     	});
     	
     	function SetData(mainParams,detailParms,formParms){
-       		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
-       		$('#createDate').text("订单日期："+format(mainParams.createDate,"yyyy/MM/dd/HH:mm:ss"));
-       		$('#serviceId').text("No:"+mainParams.serviceId);
+       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
+       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy/MM/dd/HH:mm:ss"));
+       		$('#serviceId').text("No:"+formParms.serviceId);
      
     		$('#billTypeId').text("票据类型:"+formParms.billTypeId);
     		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);

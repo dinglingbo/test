@@ -44,8 +44,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="237" y="226"/>
-    <figSize height="17" width="25"/>
+    <location x="234" y="226"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
@@ -58,8 +58,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="142" y="226"/>
-    <figSize height="17" width="25"/>
+    <location x="139" y="226"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="查询配件" displayName="查询配件" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -88,8 +88,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="327" y="226"/>
-    <figSize height="17" width="49"/>
+    <location x="321" y="226"/>
+    <figSize height="20" width="61"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
@@ -105,8 +105,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="464" y="226"/>
-    <figSize height="17" width="32"/>
+    <location x="460" y="226"/>
+    <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
@@ -128,8 +128,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="336" y="136"/>
-    <figSize height="17" width="32"/>
+    <location x="332" y="136"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <topRuler/>

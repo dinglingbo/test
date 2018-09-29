@@ -16,6 +16,9 @@
                 <div field="prdtName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
                 </div>
+                 <div field="type" headerAlign="center" allowSort="false"
+                     visible="true" width="60" header="项目类型" align="center">
+                </div>
                 <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId"
                      allowSort="false" visible="true" width="50" header="业务类型" align="center">
                      <input  property="editor" enabled="true" dataField="servieTypeList" 
@@ -27,8 +30,9 @@
                      <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
                 <div field="rate" headerAlign="center" name="pkgRate"
-                     allowSort="false" visible="true" width="60" header="优惠率" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
+                     allowSort="false" visible="true" width="60" header="" align="center">
+                     优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                     <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
@@ -64,6 +68,10 @@
     <span id="carHealthEl" >
         <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
     </span>
+    <span>&nbsp;</span>
+    <span id="carHealthEl" >
+        <a href="javascript:showBasicData('pkg')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准套餐</a>
+    </span>
 </div>
 <div id="packageDetailGridForm" style="display:none;">
     <div id="packageDetailGrid" class="nui-datagrid"
@@ -88,6 +96,35 @@
         </div>
     </div>
 </div>
-    	
+<div id="advancedPkgRateSetWin" class="nui-window"
+     title="批量设置套餐优惠率" style="width:300px;height:120px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">批量设置套餐优惠率</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    套餐优惠率：
+                </td>
+                <td >
+                    <input property="editor" id="pkgRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true"/>%
+                </td>
+            </tr>
+            <tr >
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="closePkgRateSetWin()">取消</a>
+                    <a class="nui-button"  plain="false" onclick="surePkgRateSetWin()">确定</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>   	
 
 

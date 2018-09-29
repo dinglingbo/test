@@ -1051,6 +1051,15 @@
       <sourceNode>assign19</sourceNode>
       <targetNode>invokePojo7</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link71" name="不判断是否存在相同" displayName="连接线" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>subprocess5</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link50</targetConnections>
     <location x="-927" y="152"/>
     <size height="28" width="28"/>
@@ -1105,7 +1114,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link49</targetConnections>
-    <location x="-843" y="151"/>
+    <location x="-843" y="176"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo7label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1121,7 +1130,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
-    <location x="-892" y="187"/>
+    <location x="-892" y="212"/>
     <figSize height="17" width="121"/>
     <node>invokePojo7</node>
   </nodes>
@@ -1460,6 +1469,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link51</targetConnections>
+    <targetConnections>link71</targetConnections>
     <location x="-720" y="151"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>

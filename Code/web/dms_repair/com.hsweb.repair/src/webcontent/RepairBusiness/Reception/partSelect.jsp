@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
+
 
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-01-25 14:17:08 
+  - Date: 2018-01-25 14:17:08  
   - Description:   
 --> 
-  
+
 <head> 
   <title>选择配件数量</title>  
   <style type="text/css">
@@ -48,11 +49,25 @@
     <div class="nui-fit">
         <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
           <table class="table" id="table1">
-            <tr>
+            <tr> 
               <td>
-                <!-- <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" />
+                  <input id="partBrandId"
+                           name="partBrandId"
+                           class="nui-combobox"
+                           style="display:none;"
+                           width="100px"
+                           textField="name"
+                           valueField="id"
+                           valueFromSelect="true"
+                           emptyText="品牌"
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="品牌"/>
+              	<input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
+                <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120" />
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
-                  <span class="fa fa-search fa-lg"></span>&nbsp;查询</a> -->
+                  <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
                   <a class="nui-button" iconCls="" plain="true" onclick="onOk">
                       <span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
@@ -72,6 +87,7 @@
         allowResize="true" 
         showSummaryRow="true"
         pageSize="20"
+        totalField="page.count"
         sizeList=[20,50,100,200]
         allowCellEdit="true" allowCellSelect="true" 
         editNextOnEnterKey="true"  editNextRowCell="true"
@@ -80,23 +96,23 @@
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="id" name="id" width="100" headerAlign="center" header="id" visible="false"></div>
-            <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="partCode" name="partCode" width="100" headerAlign="center"align="center"  header="配件编码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" align="center" header="OEM码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
-            <div field="stockQty" name="stockQty" allowSort="true"  width="60" headerAlign="center" header="库存数量" datatype="float" summaryType="sum"></div>
-            <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
-            <div field="outQty" name="outQty" width="100" headerAlign="center" header="领料数量" datatype="float" summaryType="sum">
+            <div field="stockQty" name="stockQty" allowSort="true"  width="60" headerAlign="center" align="center" header="库存数量" datatype="float" summaryType="sum"></div>
+            <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" align="center" header="库存单价"></div>
+            <div field="outQty" name="outQty" width="100" headerAlign="center" align="center" header="领料数量" datatype="float" summaryType="sum">
                 <input property="editor" class="nui-textbox" vtype="float"/> 
             </div> 
-            <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
-            <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
+            <div field="billTypeId" width="55px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
+            <div field="storeId" width="60" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
+            <div field="storeShelf" align="left" width="55px" headerAlign="center" align="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
-            <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
+            <div field="serviceId" align="left" width="100px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
             <div field="partId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件id"></div> 
             <div field="partNameId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件nameid"></div>         
@@ -114,6 +130,13 @@
     mainGrid.setUrl(gridUrl);
     var mrecordId = null;//
     var mainRow = null;
+
+    var storehouse = null;
+    var storeHash = {};
+    var brandHash = {};
+    var brandList = [];
+    var billTypeHash = {};
+
     function SetData(par,type,id,mRow){
         //id= 9522; 
         onSearch(par,type);
@@ -122,20 +145,78 @@
 
     } 
 
+	var dictDefs = {
+		"billTypeId" : "DDT20130703000008"
+	};
+	initDicts(dictDefs, function(e) {
+		var billTypeList = nui.get("billTypeId").getData();
+		billTypeList.forEach(function(v) {
+			billTypeHash[v.customid] = v;
+		});
+	});
+    
+
+     getStorehouse(function(data) {
+        storehouse = data.storehouse || [];
+        if (storehouse && storehouse.length > 0) {
+            FStoreId = storehouse[0].id;
+            storehouse.forEach(function(v) {
+                storeHash[v.id] = v;
+            });
+        }
+    }); 
+
+
+    getAllPartBrand(function(data) {
+        brandList = data.brand;
+        nui.get('partBrandId').setData(brandList);
+        brandList.forEach(function(v) {
+            brandHash[v.id] = v;
+        });
+    });
+ 
     function onSearch(par,type) {  
+        var params = {};
+        params.partNameAndPY = nui.get("partNameAndPY").value;
         if(type == "Id"){
-            var params = {
-                partId:par
-            };
+            params .partId = par;
         }
         if(type == "Code"){
-            var params = {
-                partCode:par
-            };
-        }
+            params.partCode = par;
+        } 
+        //nui.alert(nui.encode(params));
         mainGrid.load({params:params,token:token});
-
     }
+
+
+    mainGrid.on("drawcell", function(e) { 
+        switch (e.field) {
+            case "partBrandId":
+            if (brandHash[e.value]) {
+                e.cellHtml = brandHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
+            case "storeId":
+            if (storeHash[e.value]) { 
+                e.cellHtml = storeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
+            case "billTypeId":
+            if (billTypeHash[e.value]) {
+                e.cellHtml = billTypeHash[e.value].name || "";
+            } else {
+                e.cellHtml = "";
+            }
+            break;
+            default:
+            break;
+        }
+
+    });
 
     mainGrid.on("load",function(e){
         var tdata = mainGrid.getData();
@@ -172,7 +253,7 @@
                         var iframe = this.getIFrameEl();
                         var childdata = iframe.contentWindow.GetFormData();
                     savePartOut(childdata);     //如果点击“确定”
-                    window.parent.tt(333);
+                    //window.parent.tt(333);
                     CloseWindow("ok");
                 }
 

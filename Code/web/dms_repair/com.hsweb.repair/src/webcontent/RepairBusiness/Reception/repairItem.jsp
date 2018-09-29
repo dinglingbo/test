@@ -28,7 +28,8 @@
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
                 </div>
-                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
+                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >
+                    优惠率<a href="javascript:setItemPartRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
                 </div>
                 <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
@@ -94,3 +95,41 @@
 </div>    
 
 
+<div id="advancedItemPartRateSetWin" class="nui-window"
+     title="批量设置优惠率" style="width:300px;height:150px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">批量设置优惠率</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    工时优惠率：
+                </td>
+                <td >
+                    <input property="editor" id="itemRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true"/>%
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    配件优惠率：
+                </td>
+                <td >
+                    <input property="editor" id="partRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true"/>%
+                </td>
+            </tr>
+            <tr >
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="closeItemPartRateSetWin()">取消</a>
+                    <a class="nui-button"  plain="false" onclick="sureItemPartRateSetWin()">确定</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>   

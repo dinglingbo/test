@@ -1037,7 +1037,9 @@
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="1523" horizontal="true"/>
+  </topRuler>
   <leftRuler>
     <guides position="49" horizontal="true"/>
   </leftRuler>

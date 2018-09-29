@@ -30,7 +30,8 @@
                      <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
                 <div field="rate" headerAlign="center" name="pkgRate"
-                     allowSort="false" visible="true" width="60" header="优惠率" align="center">
+                     allowSort="false" visible="true" width="60" header="" align="center">
+                     优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
@@ -95,6 +96,35 @@
         </div>
     </div>
 </div>
-    	
+<div id="advancedPkgRateSetWin" class="nui-window"
+     title="批量设置套餐优惠率" style="width:300px;height:120px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">批量设置套餐优惠率</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    套餐优惠率：
+                </td>
+                <td >
+                    <input property="editor" id="pkgRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true"/>%
+                </td>
+            </tr>
+            <tr >
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="closePkgRateSetWin()">取消</a>
+                    <a class="nui-button"  plain="false" onclick="surePkgRateSetWin()">确定</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>   	
 
 

@@ -563,7 +563,7 @@
       <sourceNode>assign10</sourceNode>
       <targetNode>assign12</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link30" name="link30" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link30" name="未确定维修" displayName="连接线" type="transition">
       <sourceNode>assign10</sourceNode>
       <targetNode>assign11</targetNode>
       <process:transitionCondition>
@@ -611,7 +611,7 @@
       <sourceNode>assign12</sourceNode>
       <targetNode>assign5</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="link32" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="已完工" displayName="连接线" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>assign13</targetNode>
       <process:transitionCondition>
@@ -674,7 +674,7 @@
       <sourceNode>assign15</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link37" name="销售开单" displayName="连接线" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>assign16</targetNode>
       <process:transitionCondition>
@@ -746,7 +746,7 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign17</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">partList</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>

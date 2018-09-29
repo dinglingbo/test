@@ -505,6 +505,12 @@
             <isNotEmpty prepend="and" property="pickMan">  
                 (a.pick_man like '%$pickMan$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">  
+                (a.service_code like '%$serviceCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
         </dynamic>  
 	</select>
 	

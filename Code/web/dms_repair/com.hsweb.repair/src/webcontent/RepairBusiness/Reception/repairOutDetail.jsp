@@ -5,7 +5,7 @@
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-07-02 20:50:20  
+  - Date: 2018-07-02 20:50:20   
   - Description: 
 -->            
 
@@ -86,7 +86,7 @@
                 enabled="false"
                 showClose="false"
                 allowInput="true"/>
-                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn" style="display: none;">新增客户</a>
+                <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn" name="addBtn" style="display: none;">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     
@@ -265,7 +265,7 @@ allowCellEdit="true"  >
 <div style="width:100%;margin-top: 10px;">
     <a class="nui-button" onclick="LLSave()" plain="false">领料</a>
     <a class="nui-button" onclick="THSave()" plain="false">退货</a>
-    <a class="nui-button" onclick="" plain="false">打印领料单</a>
+    <a class="nui-button" onclick="onPrint(5)" plain="false">打印领料单</a>
 </div>
 </div>
 

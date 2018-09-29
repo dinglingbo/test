@@ -170,7 +170,7 @@ function getSearchParam() {
 
 function addSell(){
     var part={};
-    part.id = "4000";
+    part.id = "5000";
     part.text = "销售-工单";
     part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/sellBill.jsp?token="+token;
     part.iconCls = "fa fa-file-text";
@@ -182,7 +182,7 @@ function editSell(){
     var row = mainGrid.getSelected();
     if(!row) return;
     var part={};
-    part.id = "4000";
+    part.id = "5000";
     part.text = "销售-工单";
     part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/sellBill.jsp?token="+token;
     part.iconCls = "fa fa-file-text";

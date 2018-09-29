@@ -49,17 +49,87 @@ function checkRpsMaintain(params, callback){
 	});
 }
 
+var getGuestContactorCarUrl =  window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext";
+function getGuestContactorCar(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : getGuestContactorCarUrl,
+		data : data,
+		success : function(data) {
+            unmaskcall && unmaskcall();
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+			console.log(jqXHR.responseText);
+			callback && callback(null);
+		}
+	});
+}
+
+var getdRpsMaintainUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext";
+function getMaintain(params, callback, unmaskcall){
+    var data = params.data||{};
+
+    doPost({
+		url : getdRpsMaintainUrl,
+		data : data,
+		success : function(data) {
+            unmaskcall && unmaskcall();
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+			console.log(jqXHR.responseText);
+			callback && callback(null);
+		}
+	});
+}
+
+var getdRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
+//var getRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext";
+var getRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
+var getRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
+function getBillDetail(params, callback, unmaskcall){
+    var interType = params.interType||"";// package item part
+    var data = params.data||{};
+    var url = "";
+    if(interType == "package"){
+        url = getdRpsPackageUrl;
+    }else if(interType == "item"){
+        url = getRpsItemUrl;
+    }else if(interType == "part"){
+        url = getRpsPartUrl;
+    }
+
+    doPost({
+		url : url,
+		data : data,
+		success : function(data) {
+            unmaskcall && unmaskcall();
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+            unmaskcall && unmaskcall();
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+
 var addRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsPackage.biz.ext";
 var updRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updRpsPackage.biz.ext";
 var delRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsPackage.biz.ext";
 
-var addRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsItem.biz.ext";
-var updRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsItem.biz.ext";
-var delRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsItem.biz.ext";
-
 var addRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsPart.biz.ext";
 var updRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsPart.biz.ext";
 var delRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsPart.biz.ext";
+
+
+var addRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpsItem.biz.ext";
+var updRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsItem.biz.ext";
+var delRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsItemAndPart.biz.ext";
+
 function svrCRUD(params, callback, unmaskcall){
     var type = params.type||""; // insert update delete
     var interType = params.interType||"";// package item part
@@ -102,72 +172,6 @@ function svrCRUD(params, callback, unmaskcall){
             unmaskcall && unmaskcall();
 			console.log(jqXHR.responseText);
 			callback && callback(null);
-		}
-	});
-}
-
-var getGuestContactorCarUrl =  window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext";
-function getGuestContactorCar(params, callback, unmaskcall){
-    var data = params.data||{};
-    doPost({
-		url : getGuestContactorCarUrl,
-		data : data,
-		success : function(data) {
-            unmaskcall && unmaskcall();
-			callback && callback(data);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-            unmaskcall && unmaskcall();
-			console.log(jqXHR.responseText);
-			callback && callback(null);
-		}
-	});
-}
-
-var getdRpsMaintainUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext";
-function getMaintain(params, callback, unmaskcall){
-    var data = params.data||{};
-
-    doPost({
-		url : getdRpsMaintainUrl,
-		data : data,
-		success : function(data) {
-            unmaskcall && unmaskcall();
-			callback && callback(data);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-            unmaskcall && unmaskcall();
-			console.log(jqXHR.responseText);
-			callback && callback(null);
-		}
-	});
-}
-
-var getdRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
-var getRpsItemUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext";
-var getRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
-function getBillDetail(params, callback, unmaskcall){
-    var interType = params.interType||"";// package item part
-    var data = params.data||{};
-    var url = "";
-    if(interType == "package"){
-        url = getdRpsPackageUrl;
-    }else if(interType == "item"){
-        url = getRpsItemUrl;
-    }else if(interType == "part"){
-        url = getRpsPartUrl;
-    }
-
-    doPost({
-		url : url,
-		data : data,
-		success : function(data) {
-            unmaskcall && unmaskcall();
-			callback && callback(data);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-            unmaskcall && unmaskcall();
-			console.log(jqXHR.responseText);
 		}
 	});
 }
@@ -262,6 +266,42 @@ function svrDelBill(params, callback, unmaskcall){
 	});
 }
 
+//批量设置套餐优惠率
+var svrSetPkgRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setPkgRateBatch.biz.ext";
+function svrSetPkgRateBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetPkgRateBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//批量设置工时或是配件优惠率
+var svrSetItemPartRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemPartRateBatch.biz.ext";
+function svrSetItemPartRateBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetItemPartRateBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
 //新增客户
 function doApplyCustomer(params,callback){
     nui.open({
@@ -314,6 +354,36 @@ function doShowCarInfo(params) {
     });
 }
 
+function doSelectPart(itemId,dock, dodelck, docck, callback) {
+	nui.open({
+		targetWindow : window,
+		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
+		title : "配件管理",
+		width : 1000, 
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var list = [];
+			var params = {
+				list : list
+			};
+            iframe.contentWindow.setData(params);
+            iframe.contentWindow.setViewData(itemId,dock, dodelck, docck);
+		},
+		ondestroy : function(action) {
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            data = data || {};
+            data.action = action;
+            callback && callback(data);
+		}
+	});
+}
+
+
+
 function doSelectItem(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
@@ -341,36 +411,6 @@ function doSelectItem(dock, dodelck, docck, callback) {
 		}
 	});
 }
-
-
-function doSelectPart(dock, dodelck, docck, callback) {
-	nui.open({
-		targetWindow : window,
-		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
-		title : "配件管理",
-		width : 1300, 
-		height : 560,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			var iframe = this.getIFrameEl();
-			var list = [];
-			var params = {
-				list : list
-			};
-            iframe.contentWindow.setData(params);
-            iframe.contentWindow.setViewData(dock, dodelck, docck);
-		},
-		ondestroy : function(action) {
-            var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getData();
-            data = data || {};
-            data.action = action;
-            callback && callback(data);
-		}
-	});
-}
-
 
 function doSelectPackage(dock, dodelck, docck, callback) {
 	nui.open({
@@ -425,15 +465,15 @@ function doAddcardTime(params,callback){
 }
 
 function doAddcard(params,callback){
-		params={
+		var p={
 				data:params
-		}
+		};
 		nui.open({
 			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
 			title: "储值卡充值", width: 600, height: 460,
 			onload: function(){
 				var iframe=this.getIFrameEl();	
-				iframe.contentWindow.SetData(params);		
+				iframe.contentWindow.SetData(p);		
 			},
 			onedestroy: function(action){
 	            var iframe = this.getIFrameEl();
@@ -446,46 +486,9 @@ function doAddcard(params,callback){
 
 }
 //产品录入
-
-
 function addPackage(data,callback){
 	//获取到套餐的数据
 	var pkg = data.pkg;
-}
-
-function doSelectBasicData(params,callback){
-	nui.open({
-        url: webPath + contextPath +"/com.hsweb.RepairBusiness.ProductEntry.flow?token="+token,
-        title: "标准化产品查询", width: 900, height: 600,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            //var carVin = maintain.carVin;
-            //var data = {
-            //    vin:carVin
-            //};
-            
-           /* iframe.contentWindow.setData(params,function(data,callback)
-            {
-            	//如果选择的是套餐，没有item属性
-               if(data.item)
-                {
-                    var tmpItem = data.item;
-                    addItem(tmpItem);
-                }
-                else{
-                    addPackage(data,callback);
-                }
-
-            });*/ 
-           iframe.contentWindow.setData(params,callback);
-        },
-        ondestroy: function (action)
-        {
-        	
-        	
-        	
-        }
-    });
 }
 
 function doFinishWork(params,callback){
@@ -505,7 +508,55 @@ function doFinishWork(params,callback){
         }
     });
 }
+function doSelectBasicData(BasicDataUrl,title,params,callback){
+	nui.open({
+        url: webPath + contextPath +BasicDataUrl+token,
+        title: title,width: 900, height: 600,
+        onload: function () {
+        	var iframe = this.getIFrameEl();
+            //var carVin = maintain.carVin;
+            //var data = {
+            //    vin:carVin
+            //};
+            
+           /* iframe.contentWindow.setData(params,function(data,callback)
+            {
+            	//如果选择的是套餐，没有item属性
+               if(data.item)
+                {
+                    var tmpItem = data.item;
+                    addItem(tmpItem);
+                }
+                else{
+                    addPackage(data,callback);
+                }
 
+            });*/ 
+           iframe.contentWindow.setData(params,callback); 
+        },
+        ondestroy: function (action)
+        {
+        	        	
+        }
+    });
+}
+function doBillPay(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
+        title: "工单结算", width: "60%", height: "50%", allowDrag:true, allowResize:true,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getRtnData();
+			data = data || {};
+			data.action = action;
+			callback && callback(data);
+        }
+    });
+}
 function doSetStyle(status, isSettle){
 	status = status||0;
     isSettle = isSettle||0;
@@ -524,12 +575,13 @@ function doSetStyle(status, isSettle){
 	}
 }
 
+
 function doNoPay(serviceId,allowanceAmt){
 	var json = {
 			serviceId:serviceId,
 			allowanceAmt:allowanceAmt,
 			token:token
-	}
+	};
 	
     nui.confirm("确定将此单加入待结算", "友情提示",function(action){
 	       if(action == "ok"){
@@ -563,7 +615,6 @@ function doNoPay(serviceId,allowanceAmt){
 	});
 }
 
-
 function doPrint(params){
 	var source = params.source||0;
 	var serviceId = params.serviceId||0;
@@ -596,21 +647,19 @@ function doPrint(params){
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.checkCar.flow?token="+token;
 		p.name = "查车单";
 	}
-	if(source == 3 && params.isSettle == 0){
-		showMsg("订单尚未结算，不能打印结算单","W");
-		return;
-	}else{
-		nui.open({
-	        url: sourceUrl,
-	        title: p.name + "打印",
-			width: "100%",
-			height: "100%",
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	           iframe.contentWindow.SetData(p);
-	        },
-	        ondestroy: function (action){
-	        }
-	    });
-	}
+	
+	nui.open({
+        url: sourceUrl,
+        title: p.name + "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(p);
+        },
+        ondestroy: function (action){
+        }
+    });
 }
+
+

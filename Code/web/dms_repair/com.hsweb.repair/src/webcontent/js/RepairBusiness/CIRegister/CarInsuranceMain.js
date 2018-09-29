@@ -31,7 +31,7 @@ $(document).ready(function ()
         var row = e.record;
         getMaintainById(row.id);
         loadDetailGridData(row.id);
-    });
+    });  
     leftGrid.on("load", function () {
         var row = leftGrid.getSelected();
         if (row) {
@@ -111,7 +111,8 @@ function getMaintainById(id)
         url : url,
         data : {
             params:{
-                id:id
+                id:id,
+                token:token
             }
         },
         success : function(data)
@@ -124,7 +125,7 @@ function getMaintainById(id)
         error : function(jqXHR, textStatus, errorThrown) {
             // nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
-            nui.alert("网络出错，获取数据失败")
+            nui.alert("网络出错，获取数据失败");
         }
     });
 }
@@ -296,7 +297,8 @@ function doSave(main)
             main:main,
             insList:insList,
             updList:updList,
-            delList:delList
+            delList:delList,
+            token:token
         },
         success : function(data)
         {
@@ -387,7 +389,8 @@ function settlement()
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {
-                main:main
+                main:main,
+                token:token
             };
             console.log(main);
             iframe.contentWindow.setData(data);

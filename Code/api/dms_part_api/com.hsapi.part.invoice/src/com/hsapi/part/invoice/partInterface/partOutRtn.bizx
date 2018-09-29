@@ -76,6 +76,7 @@
     <location x="-45" y="232"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="list" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -323,6 +324,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign2</sourceNode>
       <targetNode>loopend1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="216" y="161"/>
@@ -423,6 +425,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">repairTemp/returnSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/returnRemark</process:from>
+      <process:to type="query">repairTemp/returnRemark</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">

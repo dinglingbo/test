@@ -37,6 +37,15 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="取领料数据" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>subprocess2</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="245" y="170"/>
     <size height="28" width="22"/>
@@ -95,15 +104,6 @@
       <sourceNode>subprocess0</sourceNode>
       <targetNode>subprocess2</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="暂不取领料数据" displayName="连接线" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign4</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="242" y="80"/>
     <size height="27" width="27"/>
@@ -131,6 +131,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link0</targetConnections>
     <location x="335" y="80"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
@@ -158,7 +159,6 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <targetConnections>link0</targetConnections>
     <location x="335" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
@@ -287,7 +287,7 @@
       <process:to type="query">settleMent/allowanceRemark</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">pkgSubAmt+itemSubAmt+partSubAmt</process:from>
+      <process:from type="expression" pattern="reference">pkgAmt+itemAmt+partAmt</process:from>
       <process:to type="query">settleMent/mtAmt</process:to>
     </process:copy>
     <process:copy>

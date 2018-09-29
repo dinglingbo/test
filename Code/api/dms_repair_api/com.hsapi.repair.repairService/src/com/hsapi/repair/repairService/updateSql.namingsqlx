@@ -101,4 +101,29 @@
 	<update id="resetRpsPart" parameterClass="java.util.HashMap">
 		Update rps_part set rate = 0, discount_amt = 0, subtotal = amt where service_id = #serviceId#
 	</update>
+	
+	
+	<update id="setPkgRateBatch" parameterClass="java.util.HashMap">
+		update rps_package set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		where service_id = #serviceId# and card_detail_id = 0
+	</update>
+	<update id="setPkgItemRateBatch" parameterClass="java.util.HashMap">
+		update rps_item set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		where service_id = #serviceId# and bill_package_id > 0 and card_detail_id = 0
+	</update>
+	<update id="setPkgPartRateBatch" parameterClass="java.util.HashMap">
+		update rps_part set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		where service_id = #serviceId# and bill_package_id > 0 and card_detail_id = 0
+	</update>
+	
+	<update id="setItemRateBatch" parameterClass="java.util.HashMap">
+		update rps_item set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		where service_id = #serviceId# and bill_package_id = 0 and card_detail_id = 0
+	</update>
+	
+	<update id="setPartRateBatch" parameterClass="java.util.HashMap">
+		update rps_part set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		where service_id = #serviceId# and bill_package_id = 0 and card_detail_id = 0
+	</update>
+	
 </sqlMap>

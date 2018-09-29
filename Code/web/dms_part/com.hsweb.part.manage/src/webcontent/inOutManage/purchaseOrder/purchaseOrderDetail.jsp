@@ -2,57 +2,15 @@
 	pageEncoding="UTF-8" session="false" %>
     
 
+<style type="text/css">
 
+</style>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
-            <td style="white-space:nowrap;">
-                <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
-
-                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                </ul>
-
-                <a class="nui-menubutton " visible="false" menu="#popupMenuType" id="menunametype">未审</a>
-
-                <ul id="popupMenuType" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(6)" id="type6">未审</li>
-                    <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li>
-                    <!-- <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(9)" id="type9">全部</li> -->
-                </ul>
-
-                <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">待收货</a>
-
-                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(10)" id="type10">草稿</li>
-<!--                     <li iconCls="" onclick="quickSearch(11)" id="type11">待发货</li> -->
-                    <li iconCls="" onclick="quickSearch(12)" id="type12">待收货</li>
-                    <!-- <li iconCls="" onclick="quickSearch(13)" id="type13">部分入库</li> -->
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
-<!--                     <li iconCls="" onclick="quickSearch(15)" id="type15">已退回</li> -->
-<!--                     <li iconCls="" onclick="quickSearch(16)" id="type16">已关闭</li> -->
-                    <!-- <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(17)" id="type17">全部</li> -->
-                </ul>
-
-                <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..." visible="false"
-                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <a class="nui-button" visible="false" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <span class="separator"></span>
-                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
-            </td>
             <td style="width:100%;">
-                <span class="separator"></span>
+<!--                 <span class="separator"></span> -->
+				<span  id="bServiceId" style="">订单号：新采购订单</span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -78,48 +36,11 @@
     </table>
 </div>
 <div class="nui-fit">
-  <div class="nui-splitter"
-       id="splitter"
-       allowResize="true"
-       handlerSize="6"
-       style="width:100%;height:100%;">
-      <div size="220" showCollapseButton="true">
-        <div title="采购订单列表" class="nui-panel"
-               showFooter="true"
-               style="width:100%;height:100%;border: 0;">
-              <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                   showPager="true"
-                 pageSize="50"
-                 sizeList=[20,50,100,200]
-                   selectOnLoad="true"
-                   showModified="false"
-                   ondrawcell="onLeftGridDrawCell"
-                   onrowdblclick=""
-                   onselectionchanged="onLeftGridSelectionChanged"
-                   onbeforedeselect="onLeftGridBeforeDeselect"
-                   dataField="pjPchsOrderMainList"
-                   url="">
-                  <div property="columns">
-                    <div type="indexcolumn">序号</div>
-                      <div field="guestFullName" width="80" headerAlign="center" header="供应商"></div>
-                      <div field="createDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="订单日期"></div>
-                      <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
-                      <div field="auditSign" visible="false" width="35" headerAlign="center" header="状态"></div>
-                      <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
-                      <div field="serviceId" headerAlign="center" width="150" header="订单号"></div>
-                      <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->
-                      <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
-                      <div field="creator" width="60" headerAlign="center" header="建单人"></div>
-                      <div field="auditor" width="60" headerAlign="center" header="提交人"></div>
-                      <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="提交日期"></div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div showCollapseButton="false">
+
+
           
-          <div class="nui-fit">
-              <fieldset id="fd1" style="width:95%;min-width:800px;height:90px;">
+<!--           <div class="nui-fit"> -->
+              <fieldset id="fd1" style="width:98%;">
                   <legend><span>采购订单信息</span></legend>
                   <div class="fieldset-body">
                   
@@ -132,14 +53,14 @@
                           <input class="nui-hidden" name="taxSign" id="taxSign"/>
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
-                          <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+                      	  <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>
                                   <td class="title required">
                                       <label>供应商：</label>
                                   </td>
-                                  <td colspan="3">
+                                  <td colspan="3" style="width:35%">
                                       <input id="guestId"
                                              name="guestId"
                                              class="nui-buttonedit"
@@ -153,7 +74,7 @@
                                   <td class="title required">
                                       <label>采购员：</label>
                                   </td>
-                                  <td colspan="1">
+                                  <td colspan="1" style="width:15%">
                                       <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
                                   </td>
                                   <td class="title required">
@@ -216,29 +137,35 @@
                                              onvalidation="onComboValidation"/>
                                   </td>
                                   <td class="title">
+                                      <label>状态：</label>
+                                  </td>
+                                  <td>
+                                      <input class="nui-textbox" width="100%" id="AbillStatusId" name="AbillStatusId"/>
+                                  </td>
+                                  <td class="title">
                                       <label>备注：</label>
                                   </td>
                                   <td colspan="3">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                   </td>
-                                  <td class="title" width="120">
-                                      <label>订单号：</label>
-                                  </td>
-                                  <td>
-                                      <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/>
-                                  </td>
+<!--                                   <td class="title" width="120"> -->
+<!--                                       <label>订单号：</label> -->
+<!--                                   </td> -->
+<!--                                   <td> -->
+<!--                                       <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/> -->
+<!--                                   </td> -->
                               </tr>
                           </table>
                       </div>
                      
                   </div>
                 </fieldset>
-                <div class="nui-fit"> 
+<!--                 <div class="nui-fit">  -->
 	                <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	                	<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
 	                </div>
                     <div id="rightGrid" class="nui-datagrid" 
-                         style="width:100%;height:93%;"
+                         style="width:100%;height:79%;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"
@@ -307,12 +234,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-          </div>
-              
-      </div>
-  </div>
-
+<!--                 </div> -->
+<!--           </div> -->
 
 </div>
 

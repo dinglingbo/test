@@ -56,7 +56,12 @@
  var mpartRate = 0;
  var x = 0;
  var y = 0;
-
+ var lastItemSubtotal = null;
+ var lastItemQty = null;
+ var lastItemRate = null;
+ var lastItemUnitPrice = null;
+ var lastPkgSubtotal = null;
+ var lastPkgRate = null;
  var prdtTypeHash = {
     "1":"套餐",
     "2":"工时",
@@ -2058,6 +2063,8 @@ var __workerIds="";
 var __saleManId="";
 function editRpsPackage(row_uid){
     var row = rpsPackageGrid.getRowByUID(row_uid);
+    lastPkgSubtotal = row.subtotal;
+    lastPkgRate = row.rate;
     if (row) {
         __workerIds = "";
         __saleManId = "";
@@ -2151,6 +2158,23 @@ function updateRpsPackage(row_uid){
 }
 function editRpsItem(row_uid){
     var row = rpsItemGrid.getRowByUID(row_uid);
+    lastItemQty = row.qty;
+    lastItemRate = row.rate;
+    lastItemSubtotal = row.subtotal;
+    lastItemUnitPrice = row.unitPrice;
+    if (row) {
+        __workerIds = "";
+        __saleManId = "";
+        rpsItemGrid.cancelEdit();
+        rpsItemGrid.beginEditRow(row);
+    }
+}
+function editItemRpsPart(row_uid){
+    var row = rpsItemGrid.getRowByUID(row_uid);
+    lastItemQty = row.qty;
+    lastItemRate = row.rate;
+    lastItemSubtotal = row.subtotal;
+    lastItemUnitPrice = row.unitPrice;
     if (row) {
         __workerIds = "";
         __saleManId = "";
@@ -2221,15 +2245,6 @@ function updateRpsItem(row_uid){
                 }
             });
         }
-    }
-}
-function editItemRpsPart(row_uid){
-    var row = rpsItemGrid.getRowByUID(row_uid);
-    if (row) {
-        __workerIds = "";
-        __saleManId = "";
-        rpsItemGrid.cancelEdit();
-        rpsItemGrid.beginEditRow(row);
     }
 }
 
@@ -3045,6 +3060,63 @@ function onValueChangedItemTypeId(e){
 	});
 }
 
+function onPkgRateValuechangedBath(){
+	var rate = pkgRateEl.getValue();
+	var pkgOk = nui.get("pkgOk");
+	var flag = isNaN(rate);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		pkgRateEl.setValue(0);
+		pkgOk.disable();
+		return;
+	} else if(rate<0 || rate>100){	
+		showMsg("请输入0到100之间的数!","W");
+		pkgRateEl.setValue(0);
+		pkgOk.disable();
+		return;
+	}else{
+		pkgOk.enable();
+	}
+}
+function onPartRateValuechangedBath(){
+	var partRate = partRateEl.getValue();
+	var itemOk = nui.get("itemOk");
+	var flag = isNaN(partRate);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		partRateEl.setValue(0);
+		itemOk.disable();
+		return;
+	} else if(partRate<0 || partRate>100){	
+		showMsg("请输入0到100之间的数!","W");
+		partRateEl.setValue(0);
+		itemOk.disable();
+		return;
+	}else{
+		itemOk.enable();
+	}
+}
+
+function onItemRateValuechangedBath(){
+	var itemRate = itemRateEl.getValue();
+	var itemOk = nui.get("itemOk");
+	var flag = isNaN(itemRate);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		itemRateEl.setValue(0);
+		itemOk.disable();
+		return;
+	} else if(itemRate<0 || itemRate>100){	
+		showMsg("请输入0到100之间的数!","W");
+		itemRateEl.setValue(0);
+		itemOk.disable();
+		return;
+	}else{
+		itemOk.enable();
+	}
+}
+
+
 var sumPkgSubtotal = 0;
 var sumPkgPrefAmt = 0;
 var sumItemSubtotal = 0;
@@ -3075,7 +3147,7 @@ function onDrawSummaryCellPack(e){
 		  
 		  data.packageSubtotal = sumPkgSubtotal;
 		  data.packagePrefAmt = sumPkgPrefAmt;
-		  var mtAmt = parseFloat(sumPkgSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 		  data.mtAmt = mtAmt.toFixed(2);
 		  sellForm.setData(data);
 	  }
@@ -3107,14 +3179,16 @@ function onDrawSummaryCellItem(e){
 			   
 		  }
 	  } 
-	  if(sumItemSubtotal>0 && sumItemAmt>=0)
+	  if( sumItemSubtotal>0 && sumItemAmt>=0  )
 	  {   
 		  sumItemPrefAmt = sumItemAmt - sumItemSubtotal;
 		  sumItemSubtotal = sumItemSubtotal.toFixed(2);
 		  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
 		  data.itemSubtotal = sumItemSubtotal;
 		  data.itemPrefAmt = sumItemPrefAmt;
-		 
+		  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
+		  sellForm.setData(data);
 	  }
 	  if(sumPartSubtotal>0 && sumPartAmt>=0)
 	  {   
@@ -3123,10 +3197,10 @@ function onDrawSummaryCellItem(e){
 		  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 		  data.partSubtotal = sumPartSubtotal;
 		  data.partPrefAmt = sumPartPrefAmt;
-	  }
-	  var mtAmt = parseFloat(sumItemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(sumPartSubtotal);
-	  data.mtAmt = mtAmt.toFixed(2);
-	  sellForm.setData(data);
+		  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+		  data.mtAmt = mtAmt.toFixed(2);
+		  sellForm.setData(data);
+	  }  
 }
 
 function addExpenseAccount(){

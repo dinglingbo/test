@@ -266,6 +266,42 @@ function svrDelBill(params, callback, unmaskcall){
 	});
 }
 
+//批量设置套餐优惠率
+var svrSetPkgRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setPkgRateBatch.biz.ext";
+function svrSetPkgRateBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetPkgRateBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//批量设置工时或是配件优惠率
+var svrSetItemPartRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemPartRateBatch.biz.ext";
+function svrSetItemPartRateBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetItemPartRateBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
 //新增客户
 function doApplyCustomer(params,callback){
     nui.open({

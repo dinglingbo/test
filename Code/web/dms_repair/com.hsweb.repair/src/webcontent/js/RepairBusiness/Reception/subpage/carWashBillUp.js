@@ -84,7 +84,7 @@ function onChanged() {
 
 function noPay(){
 	var data = sellForm.getData();
-	doNoPay(fserviceId,data.PrefAmt);
+	doNoPay(fserviceId,data.mtAmt);
 }
 
 function pay(){

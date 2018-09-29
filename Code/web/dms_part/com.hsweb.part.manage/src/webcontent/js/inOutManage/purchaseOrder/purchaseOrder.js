@@ -1931,7 +1931,8 @@ function addImportRtnList(partList,msg){
 }
 
 function onExport(){
-
+	
+	var main=basicInfoForm.getData();
 	var changes = rightGrid.getChanges();
 	if(changes.length>0){
         var len = changes.length;

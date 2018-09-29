@@ -274,7 +274,17 @@ $(document).ready(function ()
         if(!e.isValid){
             pkgRateEl.setValue(0);
         }
-    })
+    });
+    itemRateEl.on("validation",function(e){
+        if(!e.isValid){
+            itemRateEl.setValue(0);
+        }
+    });
+    partRateEl.on("validation",function(e){
+        if(!e.isValid){
+            partRateEl.setValue(0);
+        }
+    });
     rpsPackageGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;

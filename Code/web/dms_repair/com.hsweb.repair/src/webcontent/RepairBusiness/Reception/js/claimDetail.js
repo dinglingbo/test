@@ -34,9 +34,14 @@ var rpsItemGrid = null;
 var packageDetailGrid = null;
 var packageDetailGridForm = null;
 var FItemRow = {};
+var pkgRateEl = null;
+var itemRateEl = null;
+var partRateEl = null;
 
 var advancedMorePartWin = null;
 var advancedCardTimesWin = null;
+var advancedPkgRateSetWin = null;
+var advancedItemPartRateSetWin = null;
 var cardTimesGrid = null;
 var advancedMemCardWin = null;
 var memCardGrid = null;
@@ -95,6 +100,8 @@ $(document).ready(function ()
     describeForm = new nui.Form("#describeForm");
     advancedMorePartWin = nui.get("advancedMorePartWin");
     advancedCardTimesWin = nui.get("advancedCardTimesWin");
+    advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
+    advancedItemPartRateSetWin = nui.get("advancedItemPartRateSetWin");
     carCheckInfo = nui.get("carCheckInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
@@ -102,6 +109,9 @@ $(document).ready(function ()
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
 
+    pkgRateEl = nui.get("pkgRateEl");
+    itemRateEl = nui.get("itemRateEl");
+    partRateEl = nui.get("partRateEl");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     serviceTypeIdEl = nui.get("serviceTypeId");
     searchNameEl = nui.get("search_name");
@@ -263,6 +273,21 @@ $(document).ready(function ()
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
+    });
+    pkgRateEl.on("validation",function(e){
+        if(!e.isValid){
+            pkgRateEl.setValue(0);
+        }
+    });
+    itemRateEl.on("validation",function(e){
+        if(!e.isValid){
+            itemRateEl.setValue(0);
+        }
+    });
+    partRateEl.on("validation",function(e){
+        if(!e.isValid){
+            partRateEl.setValue(0);
+        }
     });
     rpsPackageGrid.on("drawcell", function (e) {
         var grid = e.sender;
@@ -1688,6 +1713,173 @@ function addGuest(){
             
     //     }
     // });
+}
+function setPkgRate(){
+    var main =  billForm.getData();
+    if(!main.id){
+        return;
+    }else{
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("本单已完工,不能修改!","W");
+            return;
+        }else{
+            advancedPkgRateSetWin.show();
+        }
+    }
+}
+function closePkgRateSetWin(){
+    advancedPkgRateSetWin.hide();
+}
+function surePkgRateSetWin(){
+    var data =  billForm.getData();
+    var serviceId = 0;
+    if(!data.id){
+        return;
+    }else{
+        var status = data.status||0;
+        if(status == 2){
+            showMsg("本单已完工,不能修改!","W");
+            advancedPkgRateSetWin.hide();
+            return;
+        }else{
+            var isSettle = data.isSettle||0;
+            if(isSettle == 1){
+                showMsg("本工单已经结算,不能修改!","W");
+                return;
+            }
+            serviceId = data.id||0;
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
+            var rate = pkgRateEl.getValue()||0;
+            rate = rate/100;
+            rate = rate.toFixed(4);
+            var params = {
+                data:{
+                    serviceId:data.id||0,
+                    rate: rate
+                }
+            };
+            svrSetPkgRateBatch(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                    
+                    var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p2 = {
+                    }
+                    var p3 = {
+                    }
+                    loadDetail(p1, p2, p3);
+
+                    advancedPkgRateSetWin.hide();
+                }else{
+                    showMsg(errMsg||"批量修改优惠率失败!!","W");
+                }
+                nui.unmask(document.body);
+            }, function(){
+                nui.unmask(document.body);
+            });
+        }
+    } 
+}
+function setItemPartRate(){
+    var main =  billForm.getData();
+    if(!main.id){
+        return;
+    }else{
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("本单已完工,不能修改!","W");
+            return;
+        }else{
+            advancedItemPartRateSetWin.show();
+        }
+    }
+}
+function closeItemPartRateSetWin(){
+    advancedItemPartRateSetWin.hide();
+}
+function sureItemPartRateSetWin(){
+    var data =  billForm.getData();
+    var serviceId = 0;
+    if(!data.id){
+        return;
+    }else{
+        var status = data.status||0;
+        if(status == 2){
+            showMsg("本单已完工,不能修改!","W");
+            advancedItemPartRateSetWin.hide();
+            return;
+        }else{
+            var isSettle = data.isSettle||0;
+            if(isSettle == 1){
+                showMsg("本工单已经结算,不能修改!","W");
+                return;
+            }
+            serviceId = data.id||0;
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
+            var rate1 = itemRateEl.getValue()||0;
+            rate1 = rate1/100;
+            rate1 = rate1.toFixed(4);
+            var rate2 = partRateEl.getValue()||0;
+            rate2 = rate2/100;
+            rate2 = rate2.toFixed(4);
+            var p = {
+                irate: rate1,
+                prate: rate2
+            };
+            var params = {
+                data:{
+                    serviceId:data.id||0,
+                    params: p
+                }
+            };
+            svrSetItemPartRateBatch(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                    
+                    var p1 = {
+                    }
+                    var p2 = {
+                        interType: "item",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    loadDetail(p1, p2, p3);
+
+                    advancedItemPartRateSetWin.hide();
+                }else{
+                    showMsg(errMsg||"批量修改优惠率失败!!","W");
+                }
+                nui.unmask(document.body);
+            }, function(){
+                nui.unmask(document.body);
+            });
+        }
+    } 
 }
 function onCloseClick(e){
     var obj = e.sender;

@@ -40,6 +40,7 @@
 			a.bala_audit_date as balaAuditDate,
 			b.insure_comp_name as insureCompName,
 			a.package_amt as packageAmt,
+			a.is_check as isCheck,
 			b.insure_no as insureNo,
 			b.color as color,
 			a.enter_oil_mass as enterOilMass,
@@ -106,6 +107,10 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+              <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">  
+                (a.is_check= #isCheck#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeIdList">  
                 (a.service_type_id in ($serviceTypeIdList$))

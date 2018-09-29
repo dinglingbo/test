@@ -452,6 +452,8 @@
 			a.part_id AS partId,
 			a.part_code AS partCode,
 			a.part_name AS partName,
+			a.part_name_id as partNameId,
+			a.part_full_name as partFullName,
 			a.unit AS unit,
 			a.out_qty AS outQty,
 			a.tax_unit_price AS taxUnitPrice,
@@ -493,6 +495,86 @@
              </isNotEmpty>
              <isNotEmpty prepend="and" property="returnSign">
   				a.return_sign = #returnSign#
+             </isNotEmpty>
+            <isNotEmpty prepend="and" property="sCreateDate">  
+                (a.pick_date &gt;= #sCreateDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eCreateDate">  
+                (DATE_FORMAT(a.pick_date,'%Y-%m-%d') &lt;= #eCreateDate#)
+            </isNotEmpty>    
+            <isNotEmpty prepend="and" property="pickMan">  
+                (a.pick_man like '%$pickMan$%')
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<select id="queryRepairOutWithMaintain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		    SELECT
+		    a.id as id,
+			a.orgid AS orgid,
+			a.store_id AS storeId,
+			a.root_id AS rootId,
+			a.source_id as sourceId,
+			a.main_id AS mainId,
+			a.service_id AS serviceId,
+			a.service_code AS serviceCode,
+			a.bill_type_id AS billTypeId,
+			a.package_id AS packageId,
+			a.car_id AS carId,
+			a.car_no AS carNo,
+			a.vin AS vin,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.unit AS unit,
+			a.out_qty AS outQty,
+			a.tax_unit_price AS taxUnitPrice,
+			a.tax_amt AS taxAmt,
+			a.no_tax_unit_price AS noTaxUnilPrice,
+			a.no_tax_amt AS noTaxAmt,
+			a.true_unit_price AS trueUnitPrice,
+			a.true_cost AS trueCost,
+			a.sell_unit_price AS sellUnitPrice,
+			a.sell_amt AS sellAmt,
+			a.auditor AS auditor,
+			a.audit_sign AS auditSign,
+			a.audit_date AS auditDate,
+			a.bala_date AS balaDate,
+			a.pick_man AS pickMan,
+			a.pick_date AS pickDate,
+			a.remark AS remark,
+			a.return_man as returnMan,
+			a.return_sign AS returnSign,
+			a.return_date AS returnDate,
+			a.return_reason_id AS returnReasonId,
+			a.return_remark AS returnRemark,
+			a.out_return_sign AS outReturnSign,
+			a.out_return_qty AS outReturnQty,
+			a.out_no AS outNo,
+			a.print_num AS printNum,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			b.is_check as isCheck
+		FROM
+			wb_part.pj_repair_out a
+		INNER JOIN wb_repair.rps_maintain b on a.service_code=b.service_code
+		WHERE 1=1
+		<dynamic>
+
+            <isNotEmpty prepend="and" property="orgid">
+  				 a.orgid = #orgid#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="carNo">
+  				a.car_no = #carNo#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="billTypeId">
+  				a.bill_type_id = #billTypeId#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="returnSign">
+  				a.return_sign = #returnSign#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="isCheck">
+  				b.is_check = #isCheck#
              </isNotEmpty>
             <isNotEmpty prepend="and" property="sCreateDate">  
                 (a.pick_date &gt;= #sCreateDate#)

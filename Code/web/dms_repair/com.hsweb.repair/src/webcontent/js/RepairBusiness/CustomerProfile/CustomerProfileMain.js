@@ -408,12 +408,7 @@ function importGuest(){
         allowResize:true,
         onload: function ()
         {
-            var iframe = this.getIFrameEl();
-            var carBrandList = nui.get("applyCarBrandId").getData();
-            iframe.contentWindow.initData({
-                    partBrandIdList:brandList,
-                    carBrandList: carBrandList
-                });
+
         },
         ondestroy: function (action)
         {
@@ -425,7 +420,7 @@ function importGuest(){
 function importCard(){
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCard.flow?token="+token,importTimesCard
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCard.flow?token="+token,
         title: "客户储值卡导入", 
         width: 930, 
         height: 560,
@@ -433,12 +428,7 @@ function importCard(){
         allowResize:true,
         onload: function ()
         {
-            var iframe = this.getIFrameEl();
-            var carBrandList = nui.get("applyCarBrandId").getData();
-            iframe.contentWindow.initData({
-                    partBrandIdList:brandList,
-                    carBrandList: carBrandList
-                });
+
         },
         ondestroy: function (action)
         {
@@ -450,20 +440,15 @@ function importCard(){
 function importTimesCard(){
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCard.flow?token="+token,
-        title: "客户储值卡导入", 
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importTimesCard.flow?token="+token,
+        title: "客户计次卡导入", 
         width: 930, 
         height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
         {
-            var iframe = this.getIFrameEl();
-            var carBrandList = nui.get("applyCarBrandId").getData();
-            iframe.contentWindow.initData({
-                    partBrandIdList:brandList,
-                    carBrandList: carBrandList
-                });
+
         },
         ondestroy: function (action)
         {

@@ -389,7 +389,7 @@ $(document).ready(function ()
                     			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
 			            		 //'<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
 			            		 //'<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
-			            		 //'</ul>';
+                                 //'</ul>';
                 
                 }else{
                 	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
@@ -2448,38 +2448,39 @@ function showCarCheckInfo(){
 
 function pay(){
 	
-	var data = sellForm.getData();
-	if(fserviceId==0||fserviceId==null){
-		nui.alert("请添加客户","提示");
-		return;
-	}
-	var json = {
-			fserviceId:fserviceId,
-			data:data,
-			xyguest:xyguest,
-	}
-	nui.open({
-		url:"com.hsweb.print.carWashBillUp.flow",
-		width:"40%",
-		height:"50%",
-		//加载完之后
-		onload: function(){	
-			var iframe = this.getIFrameEl();
-			iframe.contentWindow.getData(json);
-		},
-        ondestroy : function(action) {
-            if (action == 'ok') {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                supplier = data.supplier;
-                var value = supplier.id;
-                var text = supplier.fullName;
-                var el = nui.get(elId);
-                el.setValue(value);
-                el.setText(text);
-            }
+	var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+        if(data.status != 2){
+            showMsg("本工单未完工,不能结算!","W");
+            return;
         }
-	})
+        var params = {
+            serviceId:data.id||0,
+            data:data
+        };
+        doBillPay(params, function(data){
+            data = data||{};
+            if(data.action){
+                var action = data.action||"";
+                if(action == 'ok'){
+                    billForm.setData([]);
+                    billForm.setData(data);
+                    var status = data.status||0;
+                    var isSettle = data.isSettle||0;
+                    doSetStyle(status, isSettle);
+                    showMsg("完工成功!","S");
+                }else{
+                    if(data.errCode){
+                        showMsg("完工失败!","W");
+                        return;
+                    }
+                }
+            }
+        });
+    }
 }
 
 function showBasicData(type){

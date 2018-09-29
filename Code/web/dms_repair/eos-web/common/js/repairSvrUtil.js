@@ -450,8 +450,6 @@ function doAddcard(params,callback){
 
 }
 //产品录入
-
-
 function addPackage(data,callback){
 	//获取到套餐的数据
 	var pkg = data.pkg;
@@ -503,6 +501,23 @@ function doSelectBasicData(BasicDataUrl,title,params,callback){
         ondestroy: function (action)
         {
         	        	
+        }
+    });
+}
+function doBillPay(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
+        title: "工单结算", width: "60%", height: "50%", allowDrag:true, allowResize:true,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getRtnData();
+			data = data || {};
+			data.action = action;
+			callback && callback(data);
         }
     });
 }

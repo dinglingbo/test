@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.32"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.33"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -58,18 +58,6 @@
                 </ul>
 
 
-                <!-- <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
-                <span class="separator"></span> -->
 				<label style="font-family:Verdana;">创建日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
@@ -91,7 +79,7 @@
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
-                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+<!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>
 
@@ -176,104 +164,7 @@
     </div> 
 </div>
 
-<!-- <div id="advancedSearchWin" class="nui-window" -->
-<!--      title="高级查询" style="width:416px;height:360px;" -->
-<!--      showModal="true" -->
-<!--      allowResize="false" -->
-<!--      allowDrag="false"> -->
-<!--     <div id="advancedSearchForm" class="form"> -->
-<!--         <table style="width:100%;"> -->
-<!--         	<tr> -->
-<!--                 <td class="title">订货日期:</td> -->
-<!--                 <td> -->
-<!--                     <input name="sOrderDate" -->
-<!--                            width="100%" -->
-<!--                            class="nui-datepicker"/> -->
-<!--                 </td> -->
-<!--                 <td class="">至:</td> -->
-<!--                 <td> -->
-<!--                     <input name="eOrderDate" -->
-<!--                            class="nui-datepicker" -->
-<!--                            format="yyyy-MM-dd" -->
-<!--                            timeFormat="H:mm:ss" -->
-<!--                            showTime="false" -->
-<!--                            showOkButton="false" -->
-<!--                            width="100%" -->
-<!--                            showClearButton="false"/> -->
-<!--                 </td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td class="title">审核日期:</td> -->
-<!--                 <td> -->
-<!--                     <input id="sAuditDate" -->
-<!--                            name="sAuditDate" -->
-<!--                            width="100%" -->
-<!--                            class="nui-datepicker"/> -->
-<!--                 </td> -->
-<!--                 <td class="">至:</td> -->
-<!--                 <td> -->
-<!--                     <input id="eAuditDate" -->
-<!--                            name="eAuditDate" -->
-<!--                            class="nui-datepicker" -->
-<!--                            format="yyyy-MM-dd" -->
-<!--                            timeFormat="H:mm:ss" -->
-<!--                            showTime="false" -->
-<!--                            showOkButton="false" -->
-<!--                            width="100%" -->
-<!--                            showClearButton="false"/> -->
-<!--                 </td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td class="title"> -->
-<!--                     <span style="letter-spacing: 6px;">供应</span>商: -->
-<!--                 </td> -->
-<!--                 <td colspan="3"> -->
-<!--                     <input id="btnEdit2" -->
-<!--                            name="guestId" -->
-<!--                            class="nui-buttonedit" -->
-<!--                            emptyText="请选择供应商..." -->
-<!--                            onbuttonclick="selectSupplier('btnEdit2')" -->
-<!--                            width="100%" -->
-<!--                            selectOnFocus="true" /> -->
-<!--                 </td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td class="title">订单单号:</td> -->
-<!--                 <td colspan="3"> -->
-<!--                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea> -->
-<!--                 </td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td class="title">配件编码:</td> -->
-<!--                 <td colspan="3"> -->
-<!--                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="partCodeList" name="partCodeList"></textarea> -->
-<!--                 </td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td class="title">配件名称:</td> -->
-<!--                 <td colspan="3"> -->
-<!--                     <input id="partName" -->
-<!--                            name="partName" -->
-<!--                            class="nui-textbox"  -->
-<!--                            width="100%"/> -->
-<!--                 </td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--                 <td class="title">采购员:</td> -->
-<!--                 <td colspan="3"> -->
-<!--                     <input id="orderMan" -->
-<!--                            name="orderMan" -->
-<!--                            class="nui-textbox"  -->
-<!--                            width="100%"/> -->
-<!--                 </td> -->
-<!--             </tr> -->
-<!--         </table> -->
-<!--         <div style="text-align:center;padding:10px;"> -->
-<!--             <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a> -->
-<!--             <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a> -->
-<!--         </div> -->
-<!--     </div> -->
-<!-- </div> -->
+
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
    <div id="innerPartGrid"

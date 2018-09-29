@@ -75,7 +75,6 @@ document.onmousemove = function(e){
             return;
         }
     }
-   
 }
 $(document).ready(function ()
 {
@@ -1484,7 +1483,6 @@ function deletePartRow(row_uid){
             return;
         }
     });
-
 }
 function showCardTimes(){
     if(!fguestId || advancedCardTimesWin.visible) {
@@ -2290,7 +2288,7 @@ function showMorePart(row_uid){
 //配件
 function choosePart(){
     //var row = rpsItemGrid.getRowByUID(row_uid);
-    //获取到工时中的ID,不确定是否是这个字段,把工时ID传到添加配件的页面中,考虑能不能直接在本页面把ID传到addToBillPart函数中
+    //获取到工时中的ID
     var row = FItemRow||{};
     var itemId = null;
     if(row){

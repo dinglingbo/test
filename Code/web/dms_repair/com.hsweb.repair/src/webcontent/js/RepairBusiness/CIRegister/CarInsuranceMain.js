@@ -153,7 +153,7 @@ function selectCustomer()
 }
 function reload()
 {
-
+	leftGrid.reload();
 }
 function addDetail(customid)
 {
@@ -233,6 +233,7 @@ function save()
             if(!serviceCode)
             {
                 nui.alert("获取单号失败");
+                nui.unmask();
                 return;
             }
             main.serviceCode = serviceCode;
@@ -279,6 +280,7 @@ function calculateAmt(main,list)
 }
 function doSave(main)
 {
+	var fdata = basicInfoForm.getData();
     var list = detailGrid.getData();
     calculateAmt(main,list);
     var insList = list.filter(function(v){
@@ -295,6 +297,7 @@ function doSave(main)
         url : url,
         data : {
             main:main,
+            formData:fdata,
             insList:insList,
             updList:updList,
             delList:delList,
@@ -311,6 +314,7 @@ function doSave(main)
             }
             else{
                 nui.alert(data.errMsg||"保存失败");
+                nui.unmask();
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -370,7 +374,7 @@ function onSearch()
 function doSearch(params) {
     params.orgid = currOrgid;
     leftGrid.load({
-        token:token,
+        token:token, 
         params: params
     });
 }
@@ -380,6 +384,7 @@ function settlement()
     var main = basicInfoForm.getData();
     if(!main.id || main.status != 0)
     {
+    	showMsg("该工单已提交！","W");
         return;
     }
     nui.open({

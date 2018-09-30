@@ -812,7 +812,7 @@ function setInitData(params){
             }
         }, function(){
             nui.unmask(document.body);
-        })
+        });
     }
 }
 function add(){

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>车险登记</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.61"></script>
 <style type="text/css">
 
 table {

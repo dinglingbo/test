@@ -281,15 +281,18 @@
 			a.is_need_pack AS isNeedPack,
 			a.default_logistics_id AS defaultLogisticsId,
 			a.default_logistics AS defaultLogistics,
-			f.chain_consume_amt AS chainConsumeAmt
+			f.chain_consume_amt AS chainConsumeAmt,
+      		g.card_type as cardType,
+			g.recharge_bala_amt as rechargeBalaAmt
 		FROM
 			wb_common.com_guest a
 		    LEFT JOIN wb_repair.rpb_guest f ON a.id = f.id
+		    left join wb_common.com_join_member g on a.id = g.guest_id
 		WHERE
 			a.guest_type = '01020103'
 		<dynamic>
             <isNotEmpty prepend="and" property="tenantId">  
-                (b.tenant_id = #tenantId#)
+                (a.tenant_id = #tenantId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)

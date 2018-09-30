@@ -266,6 +266,42 @@ function svrDelBill(params, callback, unmaskcall){
 	});
 }
 
+//批量设置套餐优惠率
+var svrSetPkgRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setPkgRateBatch.biz.ext";
+function svrSetPkgRateBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetPkgRateBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//批量设置工时或是配件优惠率
+var svrSetItemPartRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemPartRateBatch.biz.ext";
+function svrSetItemPartRateBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetItemPartRateBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
 //新增客户
 function doApplyCustomer(params,callback){
     nui.open({
@@ -323,7 +359,7 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 		title : "配件管理",
-		width : 1300, 
+		width : 1000, 
 		height : 560,
 		allowDrag : true,
 		allowResize : true,
@@ -450,8 +486,6 @@ function doAddcard(params,callback){
 
 }
 //产品录入
-
-
 function addPackage(data,callback){
 	//获取到套餐的数据
 	var pkg = data.pkg;
@@ -503,6 +537,23 @@ function doSelectBasicData(BasicDataUrl,title,params,callback){
         ondestroy: function (action)
         {
         	        	
+        }
+    });
+}
+function doBillPay(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
+        title: "工单结算", width: "60%", height: "80%", allowDrag:true, allowResize:false,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getRtnData();
+			data = data || {};
+			data.action = action;
+			callback && callback(data);
         }
     });
 }

@@ -109,6 +109,10 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">inx</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new DecimalFormat(&quot;#.00&quot;)</process:from>
+      <process:to type="query">df</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="257" y="176"/>
@@ -323,7 +327,7 @@
       <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">itemTemp/cardDetailId</process:from>
       <process:to type="query">tempHash/cardDetailId</process:to>
     </process:copy>
     <process:copy>
@@ -668,7 +672,7 @@
       <process:to type="query">tempHash/workers</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">partTemp/cardDetailId</process:from>
       <process:to type="query">tempHash/cardDetailId</process:to>
     </process:copy>
     <process:copy>
@@ -758,7 +762,7 @@
       <process:partner type="literal">com.hs.common.uitls.dfFormat</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="s" type="query" value="Double" valueType="Primitive" pattern="reference">t1</process:inputVariable>
-        <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">4</process:inputVariable>
+        <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="s" type="query" value="Double" valueType="Primitive">t2</process:outputVariable>
@@ -774,6 +778,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="770" y="142"/>
@@ -821,7 +826,7 @@
       <process:partner type="literal">com.hs.common.uitls.dfFormat</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="s" type="query" value="Double" valueType="Primitive" pattern="reference">t3</process:inputVariable>
-        <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">4</process:inputVariable>
+        <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="s" type="query" value="Double" valueType="Primitive">t4</process:outputVariable>
@@ -862,6 +867,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="t2" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="t3" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="t4" primitiveType="Float"/>
+    <process:variable anyType="java.text.DecimalFormat" description="" historyStateLocation="client" isArray="false" name="df"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

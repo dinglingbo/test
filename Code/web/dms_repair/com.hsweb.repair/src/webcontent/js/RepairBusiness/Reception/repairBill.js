@@ -829,6 +829,8 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
+	
+	sellForm.setData(data);
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
@@ -844,7 +846,16 @@ function add(){
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);
     //describeForm.setData([]);
-
+    var data = {
+			packageSubtotal:0,
+			packagePrefAmt:0,
+			itemSubtotal:0,
+			itemPrefAmt:0,
+			partSubtotal:0,
+			partPrefAmt:0,
+			mtAmt:0
+	};  
+    sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
     nui.get("serviceTypeId").setValue(3);

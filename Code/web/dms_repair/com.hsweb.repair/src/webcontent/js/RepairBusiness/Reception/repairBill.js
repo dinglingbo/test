@@ -217,6 +217,8 @@ $(document).ready(function ()
                                     carNo: carNo
                                 };
                                 window.parent.activeTabAndInit(opt,params);
+                            }else{
+                            	return;
                             }
                         }
                     });

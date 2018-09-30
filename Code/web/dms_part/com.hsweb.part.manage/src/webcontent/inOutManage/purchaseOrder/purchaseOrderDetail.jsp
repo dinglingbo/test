@@ -77,7 +77,17 @@
                                       <label>采购员：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
-                                      <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
+                                      <input class="nui-combobox" 
+		                                      id="orderMan" 
+		                                      name="orderMan" 
+		                                      textField="empName"
+				                              valueField="empName"
+				                              emptyText="请选择..."
+				                              url=""
+				                              required="true"
+				                              allowInput="true"
+				                              valueFromSelect="false"
+		                                      width="100%">
                                   </td>
                                   <td class="title required">
                                       <label>订货日期：</label>

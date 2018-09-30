@@ -511,6 +511,7 @@
             <isNotEmpty prepend="and" property="partCode">  
                 (a.part_code like '%$partCode$%')
             </isNotEmpty>
+            order by a.pick_date desc
         </dynamic>  
 	</select>
 	
@@ -591,6 +592,7 @@
             <isNotEmpty prepend="and" property="pickMan">  
                 (a.pick_man like '%$pickMan$%')
             </isNotEmpty>
+            	 order by a.pick_date desc
         </dynamic>  
 	</select>
 	

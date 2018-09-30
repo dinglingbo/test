@@ -827,7 +827,7 @@
       <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="330" y="105"/>
+    <location x="396" y="114"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -836,11 +836,11 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="328" y="141"/>
+    <location x="394" y="150"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值14" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
       <targetNode>transactionbegin0</targetNode>
@@ -891,8 +891,8 @@
     <nodeLabel>assign10label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="391" y="241"/>
-    <figSize height="17" width="39"/>
+    <location x="404" y="241"/>
+    <figSize height="17" width="13"/>
     <node>assign10</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" collapsed="false" type="assign">
@@ -901,7 +901,7 @@
       <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="396" y="130"/>
+    <location x="452" y="114"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
     <process:copy>
@@ -910,7 +910,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
-    <location x="391" y="166"/>
+    <location x="447" y="150"/>
     <figSize height="17" width="39"/>
     <node>assign15</node>
   </nodes>
@@ -920,7 +920,7 @@
       <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
-    <location x="397" y="270"/>
+    <location x="398" y="301"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
@@ -929,7 +929,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
-    <location x="392" y="306"/>
+    <location x="393" y="337"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>

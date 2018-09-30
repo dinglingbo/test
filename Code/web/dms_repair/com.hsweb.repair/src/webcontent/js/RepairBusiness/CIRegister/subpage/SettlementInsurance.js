@@ -71,7 +71,7 @@ function getMaintainById(id)
             basicInfoForm.setData(main);
             if(main.status != 0)
             {
-                nui.alert("改单据已提交，不能重复提交","提示",function(){
+                nui.alert("该单据已提交，不能重复提交","提示",function(){
                     CloseWindow("ok");
                 });
             }
@@ -96,7 +96,8 @@ function onSave()
     doPost({
         url : url,
         data : {
-            main:main
+            main:main,
+            isPresettle:1
         },
         success : function(data)
         {
@@ -130,6 +131,7 @@ function onOk()
         serviceCode:main.serviceCode,
         serviceTypeId:"02020112",
         rpAmt:main.insuranceAmt,
+        rpAccountId:0,
         billAmt:0,
         remark:"",
         isPrimaryBusiness:1,

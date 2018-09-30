@@ -7,8 +7,6 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 $(document).ready(function(v) {
 	sellForm = new nui.Form("#sellForm");
-	
-
 });
 
 
@@ -80,7 +78,7 @@ function onChanged() {
 	
 
 
-}
+} 
 
 function noPay(){
 	var data = sellForm.getData();
@@ -95,7 +93,7 @@ function pay(){
 			serviceId:fserviceId,
 			payType:data.payType,
 			payAmt:data.amount
-	}
+	};
     nui.confirm("结算金额:"+data.amount+"元,确定结算吗?", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({

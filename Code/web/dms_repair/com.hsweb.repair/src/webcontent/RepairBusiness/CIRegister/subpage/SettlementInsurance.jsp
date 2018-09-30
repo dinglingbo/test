@@ -157,8 +157,10 @@ table {
             </td>
             <td>
                 <input class="nui-textbox"
-                       style="width: 100%;"/>
-            </td>
+                inputStyle="text-align:right"
+                       style="width: 100%;"
+                       id="remark" name="remark"/>
+            </td> 
         </tr>
         <tr>
             <td class="form_label">

@@ -5,8 +5,8 @@
 <html>
 <!--  
   - Author(s): Administrator 
-  - Date: 2018-01-25 14:17:08
-  - Description:     
+  - Date: 2018-01-25 14:17:08 
+  - Description:      
 -->
 
 <head>
@@ -53,8 +53,8 @@ a {
         <td>
             <input class="nui-textbox" id="name" name="name" emptyText="输入客户姓名" width="120" />
             <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
-            <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" />
-            <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" />
+            <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" showNullItem="true" nullItemText="全部"/>
+            <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" showNullItem="true" nullItemText="全部"/>
             <input name="serviceTypeId"
             id="serviceTypeId"
             class="nui-combobox width1"
@@ -63,7 +63,7 @@ a {
             emptyText="请选择业务类型"
             url=""
             allowInput="true"
-            showNullItem="false"
+            showNullItem="true"
             width="120"
             valueFromSelect="true"
             onvaluechanged=""
@@ -93,6 +93,7 @@ a {
         <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
         <div field="status" name="status" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">维修进程</div>
         <div field="serviceTypeId" name="serviceTypeId" width="40" headerAlign="center" align="center">业务类型</div>
+        <div field="isSettle" name="isSettle" width="40" headerAlign="center" align="center" renderer="onIsSettleRenderer">结算状态</div>
         <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">进厂日期</div>
         <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
@@ -100,8 +101,8 @@ a {
 </div>
 
 <script type="text/javascript">
-    var con_data_status = [{id:"",text:"全部"},{id:0,text:"草稿"},{id:1,text:"施工中"},{id:2,text:"已完工"}];
-    var con_data_isSettle = [{id:"",text:"全部"},{id:1,text:"已结算"},{id:0,text:"未结算"}];
+    var con_data_status = [{id:0,text:"草稿"},{id:1,text:"施工中"},{id:2,text:"已完工"}];
+    var con_data_isSettle = [{id:1,text:"已结算"},{id:0,text:"未结算"}];
     nui.parse();
     var servieTypeList = [];
     var servieTypeHash = {};
@@ -140,10 +141,11 @@ a {
            // part :1,
            carNo:nui.get("carNo").value,
            name:nui.get("name").value,
-            //sdate:sdate,
-            //eEnterDate:edate,
+            sdate:sdate,
+            eEnterDate:edate,
             status:tstatus.value,
-            //isSettle:isSettle.value
+            serviceTypeId:nui.get("serviceTypeId").value,
+            isSettle:isSettle.value,
             token:token
         };
         mainGrid.load({params:params});
@@ -153,9 +155,9 @@ a {
     mainGrid.on("celldblclick",function(e){
         var field = e.field;
         var record = e.record;
-        var column = e.column;
+        var column = e.column;  
         var sid = record.id;
-        newrepairOut("ll");
+        newrepairOut("ll"); 
     });
 
 
@@ -174,6 +176,16 @@ a {
         }
         return "";
     }
+
+
+    function onIsSettleRenderer(e) {
+        for (var i = 0, l = con_data_isSettle.length; i < l; i++) {
+            var g = con_data_isSettle[i];
+            if (g.id == e.value) return g.text;
+        }
+        return "";
+    }
+
     function newrepairOut(type) {
         var row = mainGrid.getSelected();
         if(row){ 

@@ -31,7 +31,7 @@
                 </div>
                 <div field="rate" headerAlign="center" name="pkgRate"
                      allowSort="false" visible="true" width="60" header="" align="center">
-                     优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                           优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
@@ -114,13 +114,13 @@
                     套餐优惠率：
                 </td>
                 <td >
-                    <input property="editor" id="pkgRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true"/>%
+                    <input property="editor" id="pkgRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true" onvaluechanged="onPkgRateValuechangedBath"/>%
                 </td>
             </tr>
             <tr >
                 <td colspan="2" style="text-align: center;">
                     <a class="nui-button"  plain="false" onclick="closePkgRateSetWin()">取消</a>
-                    <a class="nui-button"  plain="false" onclick="surePkgRateSetWin()">确定</a>
+                    <a class="nui-button"  plain="false" onclick="surePkgRateSetWin()" id="pkgOk">确定</a>
                 </td>
             </tr>
         </table>

@@ -113,21 +113,21 @@
                     工时优惠率：
                 </td>
                 <td >
-                    <input property="editor" id="itemRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true"/>%
+                    <input property="editor" id="itemRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true" onvaluechanged="onItemRateValuechangedBath"/>%
                 </td>
-            </tr>
+            </tr> 
             <tr >
                 <td style="text-align: right;">
                     配件优惠率：
                 </td>
                 <td >
-                    <input property="editor" id="partRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true"/>%
+                    <input property="editor" id="partRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true" onvaluechanged="onPartRateValuechangedBath()"/>%
                 </td>
             </tr>
             <tr >
                 <td colspan="2" style="text-align: center;">
                     <a class="nui-button"  plain="false" onclick="closeItemPartRateSetWin()">取消</a>
-                    <a class="nui-button"  plain="false" onclick="sureItemPartRateSetWin()">确定</a>
+                    <a class="nui-button"  plain="false" onclick="sureItemPartRateSetWin()" id="itemOk">确定</a>
                 </td>
             </tr>
         </table>

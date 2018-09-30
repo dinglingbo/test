@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.0" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.1" type="text/javascript"></script>
 
 </head>
 <body>
@@ -132,7 +132,7 @@
 						<div header="其他" headerAlign="center">
 							<div property="columns">
 								<div field="isDisabled" headerAlign="center" allowSort="true" width="70px">是否禁用</div>
-								<div field="isShare" headerAlign="center" allowSort="true" width="50px">是否可修改</div>
+								<div field="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
 							</div>
 						</div>
 					</div>

@@ -335,7 +335,7 @@ function onAdvancedAddOk(){
 function onDrawCell(e) {
 	switch (e.field) {
 	case "isShare":
-		e.cellHtml = e.value == 1 ? "否" : "可修改";
+		e.cellHtml = e.value == 1 ? "是" : "否";
 		break;
 	case "isDisabled":
 		e.cellHtml = e.value == 1 ? "是" : "否";

@@ -1805,7 +1805,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="settlement" type="query" value="com.hsapi.repair.data.rps.RpsSettlement" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="2" name="settlement" type="query" value="com.hsapi.repair.data.rps.RpsSettlement" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

@@ -79,6 +79,7 @@
 			<tr id="out" align="center">
 				<td colspan="2">
 				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">出库</a>
+				<a class="nui-button" iconCls="" plain="false" onclick="CloseWindow('cancle')">关闭</a>
 				</td>
 			</tr>
 			

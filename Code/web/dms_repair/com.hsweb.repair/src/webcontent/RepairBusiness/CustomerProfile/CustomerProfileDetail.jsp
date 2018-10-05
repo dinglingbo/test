@@ -11,7 +11,7 @@
 <head>
 <title>新增和修改</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+    <script src="<%=webPath + repairDomain%>/common/nui/nui.js" type="text/javascript"></script>
     
 </head>
 <body style="margin:0;height:100%;width:100%;overflow:hidden">

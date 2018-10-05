@@ -126,9 +126,4 @@ function pay(){
 				return;
 		 }
 	});
-    
-    
-
-	
-
 }

@@ -116,11 +116,11 @@
       <process:to type="query">temp/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">temp/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">temp/modifyDate</process:to>
     </process:copy>
   </nodes>

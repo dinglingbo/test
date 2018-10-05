@@ -3,6 +3,7 @@ var itemGrid = null;
 var partGrid = null;
 var sellForm = null;
 var fserviceId = 0;
+
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 $(document).ready(function(v) {
@@ -48,7 +49,8 @@ function getData(data){
 
 function onChanged() {
 	var data = sellForm.getData();
-
+	var deductible = nui.get("deductible").getValue();
+	var PrefAmt = nui.get("PrefAmt").getValue();
 	
 	if(deductible==""){
 		deductible=0;
@@ -59,20 +61,32 @@ function onChanged() {
 	if(deductible>data.rechargeBalaAmt){
 		nui.alert("储值抵扣不能大于储值余额","提示");
 		nui.get("deductible").setValue(0);
+		var deductible = nui.get("deductible").getValue();
+		var PrefAmt = nui.get("PrefAmt").getValue();
+		var amount = data.mtAmt-deductible-PrefAmt;
+		nui.get("amount").setValue(amount.toFixed(2));
 		return;
 	}
 	if(deductible>data.mtAmt){
 		nui.alert("储值抵扣不能大于应收金额","提示");
 		nui.get("deductible").setValue(0);
+		var deductible = nui.get("deductible").getValue();
+		var PrefAmt = nui.get("PrefAmt").getValue();
+		var amount = data.mtAmt-deductible-PrefAmt;
+		nui.get("amount").setValue(amount.toFixed(2));
 		return;
 	}
 	if(PrefAmt>data.mtAmt){
 		nui.alert("优惠金额不能大于应收金额","提示");
 		nui.get("PrefAmt").setValue(0);
+		var deductible = nui.get("deductible").getValue();
+		var PrefAmt = nui.get("PrefAmt").getValue();
+		var amount = data.mtAmt-deductible-PrefAmt;
+		nui.get("amount").setValue(amount.toFixed(2));
 		return;
 	}
-	var deductible = nui.get("deductible").getValue();
-	var PrefAmt = nui.get("PrefAmt").getValue();
+		var deductible = nui.get("deductible").getValue();
+		var PrefAmt = nui.get("PrefAmt").getValue();
 		var amount = data.mtAmt-deductible-PrefAmt;
 		nui.get("amount").setValue(amount.toFixed(2));
 	

@@ -86,7 +86,9 @@ $(document).ready(function(v) {
 	sOrderDate = nui.get("sOrderDate");
 	eOrderDate = nui.get("eOrderDate");
 
-	
+	initMember("orderMan",function(){
+//        memList = mtAdvisorIdEl.getData();
+    });
 
 
 	advancedTipWin = nui.get("advancedTipWin");
@@ -197,6 +199,7 @@ $(document).ready(function(v) {
 		});
 	});
 	add();
+	
 });
 
 var StatusHash = {
@@ -266,6 +269,7 @@ function loadMainAndDetailInfo(row) {
 		basicInfoForm.setData(row);
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
+		nui.get("orderMan").setText(row.orderMan);
 		
 		var data = basicInfoForm.getData();
 
@@ -275,11 +279,23 @@ function loadMainAndDetailInfo(row) {
 			
 			nui.get('AbillStatusId').setValue(text);
 	    }
-
-		if (data.auditSign == 1) {
-			document.getElementById("basicInfoForm").disabled = true;
+		if(data.billStatusId && data.billStatusId !=0){
+			document.getElementById("fd1").disabled = true;
+			nui.get("guestId").disable();
+			nui.get('orderMan').disable();
+			nui.get("billTypeId").disable();
+			nui.get('settleTypeId').disable(); 
 			setBtnable(false);
-			setEditable(false);
+//			setEditable(false);
+		}
+		if (data.auditSign == 1) {
+			document.getElementById("fd1").disabled = true;
+			nui.get("guestId").disable();
+			nui.get('orderMan').disable();
+			nui.get("billTypeId").disable();
+			nui.get('settleTypeId').disable(); 
+			setBtnable(false);
+//			setEditable(false);
 		} else {
 			document.getElementById("basicInfoForm").disabled = false;
 			setBtnable(true);
@@ -583,6 +599,7 @@ function save() {
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(row);
 					$('#bServiceId').text("订单号："+row.serviceId);
+		
 			
 				}
 			} else {
@@ -1985,9 +2002,11 @@ function setInitExportData(main, detail){
     method5('tableExcel',"采购订单"+serviceId,'tableExportA');
 }
 
+
 function setInitData(params){
 	if(params.id){
 		basicInfoForm.setData(params);
+		nui.get('orderMan').setText(params.orderMan);
 		$('#bServiceId').text("订单号："+params.serviceId);
 		nui.get("guestId").setText(params.guestFullName);
 	
@@ -2005,6 +2024,7 @@ function setInitData(params){
 		if(params.billStatusId != 0){
 			
 			document.getElementById("fd1").disabled = true;
+			nui.get("guestId").disable();
 		}
 	}
 }

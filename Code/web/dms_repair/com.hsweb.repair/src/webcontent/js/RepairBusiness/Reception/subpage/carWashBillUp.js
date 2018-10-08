@@ -140,9 +140,4 @@ function pay(){
 				return;
 		 }
 	});
-    
-    
-
-	
-
 }

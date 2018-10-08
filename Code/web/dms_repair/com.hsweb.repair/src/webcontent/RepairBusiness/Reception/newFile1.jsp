@@ -11,6 +11,7 @@
 <head>
 <title>查询营业明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
 </head>
 <body>
@@ -52,7 +53,7 @@
                showPager="true"
                pageSize="80"
                totalField="page.count"
-               sizeList=[20,80,80,200]
+               sizeList=[20,50,100,200]
                dataField="list"
                onrowdblclick=""
                showModified="false"
@@ -76,18 +77,18 @@
         		  <div header="业务类型" headerAlign="center" >
                 	<div property="columns">
                 		<div field="" width="80" headerAlign="center" align="center" header="系统判断"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="业务类型"></div>
+                		<div field="serviceTypeId" width="80" headerAlign="center" align="center" header="业务类型"></div>
                 	</div>
         		  </div>
         		  <div header="维修数据" headerAlign="center" >
                 	<div property="columns">
-                		<div field="" width="80" headerAlign="center" align="center" header="项目金额"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="项目小计"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="配件金额"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="配件小计"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="配件管理费"></div>
+                		<div field="packageAmt" width="80" headerAlign="center" align="center" header="项目金额"></div>
+                		<div field="packageSubtotal" width="80" headerAlign="center" align="center" header="项目小计"></div>
+                		<div field="partTotalAmt" width="80" headerAlign="center" align="center" header="配件金额"></div>
+                		<div field="partSubtotal" width="80" headerAlign="center" align="center" header="配件小计"></div>
+                		<div field="partManageExpAmt" width="80" headerAlign="center" align="center" header="配件管理费"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="维修金额"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="折让金额"></div>
+                		<div field="allowanceAmt" width="80" headerAlign="center" align="center" header="折让金额"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="活动冲减金额"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="结算金额"></div>
                 	</div>
@@ -108,7 +109,7 @@
         		  </div>
         		  <div header="整单优惠" headerAlign="center" >
                 	<div property="columns">
-                		<div field="" width="80" headerAlign="center" align="center" header="整单优惠率"></div>
+                		<div field="totalPrefRate" width="80" headerAlign="center" align="center" header="整单优惠率"></div>
                 	</div>
         		  </div>
         		  <div header="税费金额" headerAlign="center" >
@@ -119,7 +120,7 @@
         		  </div>
         		  <div header="实营金额" headerAlign="center" >
                 	<div property="columns">
-                		<div field="" width="80" headerAlign="center" align="center" header="实营金额"></div>
+                		<div field="netinAmt" width="80" headerAlign="center" align="center" header="实营金额"></div>
                 	</div>
         		  </div>
         		  <div header="模拟提成数据" headerAlign="center" >
@@ -153,8 +154,8 @@
         		  </div>
         		  <div header="毛利数据" headerAlign="center" >
                 	<div property="columns">
-                		<div field="" width="80" headerAlign="center" align="center" header="毛利"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="毛利率"></div>
+                		<div field="grossProfit" width="80" headerAlign="center" align="center" header="毛利"></div>
+                		<div field="grossProfitRate" width="80" headerAlign="center" align="center" header="毛利率"></div>
                 	</div>
         		  </div>
         		  <div header="运营毛利" headerAlign="center" >
@@ -169,9 +170,13 @@
 	<script type="text/javascript">
     	nui.parse();
     	var toolbar = null;
+    	var mainGrid = nui.get("mainGrid");
     	var date = new Date();
     	nui.get("start").setValue(date);
     	nui.get("end").setValue(date);
+    	
+    	mainGrid.setUrl("com.hsapi.repair.baseData.report.yingyemingxi.biz.ext");
+    	mainGrid.load();
     	function getDate(e){//获取时间段
     		var params = {};
     		switch (e) {
@@ -212,14 +217,31 @@
     		toolbar = new nui.Form("#toolbar");
     		console.log(toolbar.getData());
     	}
-    	/* var servieTypeList = [];
+    	var servieTypeList = [];
     	var servieTypeHash = {};
     	initServiceType("serviceTypeId",function(data) {
 	        servieTypeList = nui.get("serviceTypeId").getData();
 	        servieTypeList.forEach(function(v) {
 	            servieTypeHash[v.id] = v;
 	        });
-	    }); */
+	    });
+	    
+	    mainGrid.on("drawcell",function(e){
+	    	var field = e.field,
+	    	value = e.value;
+	    	if(field == "serviceTypeId"){
+	    		if(value){
+	    			e.cellHtml = servieTypeHash[e.value].name;
+	    		}
+	    	}
+	    	if(field == "totalPrefRate" || field == "grossProfitRate"){
+	    		if(value){
+	    			e.cellHtml = (value * 100).toFixed(2);
+	    		}
+	    	}
+	    });
+	    
+	    
     </script>
 </body>
 </html>

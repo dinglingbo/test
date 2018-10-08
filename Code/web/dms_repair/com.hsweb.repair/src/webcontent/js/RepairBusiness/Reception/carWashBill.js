@@ -832,14 +832,22 @@ function add(){
     sk.style.display = "";
     searchKeyEl.focus();
 
-
     rpsPackageGrid.clearRows();
     rpsItemGrid.clearRows();
     billForm.setData([]);
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);
     //describeForm.setData([]);
-
+    var data = {
+			packageSubtotal:0,
+			packagePrefAmt:0,
+			itemSubtotal:0,
+			itemPrefAmt:0,
+			partSubtotal:0,
+			partPrefAmt:0,
+			mtAmt:0
+	};
+    sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
     nui.get("serviceTypeId").setValue(3);

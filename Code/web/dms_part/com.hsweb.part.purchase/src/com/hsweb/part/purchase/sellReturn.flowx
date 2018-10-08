@@ -16,16 +16,16 @@
     <nodeLabel>end0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="62" y="96"/>
-    <figSize height="17" width="25"/>
+    <location x="56" y="96"/>
+    <figSize height="24" width="37"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="352" y="96"/>
-    <figSize height="17" width="25"/>
+    <location x="346" y="96"/>
+    <figSize height="24" width="37"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.part.purchase" uri="/purchasePart/sellReturn_view0.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="returnMain.jsp" type="view" contextPath="" contributionName="com.hsweb.part.purchase" method="forward" uri="/repair/RepairBusiness/Reception/returnMain.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
@@ -34,10 +34,12 @@
     <location x="208" y="60"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="207" y="96"/>
-    <figSize height="17" width="25"/>
+    <location x="201" y="96"/>
+    <figSize height="24" width="37"/>
     <node>view0</node>
   </nodes>
   <topRuler/>

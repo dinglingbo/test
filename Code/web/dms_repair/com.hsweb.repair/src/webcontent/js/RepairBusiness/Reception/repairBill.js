@@ -2666,9 +2666,11 @@ function pay(){
             showMsg("本工单未完工,不能结算!","W");
             return;
         }
+        var sellData = sellForm.getData();
         var params = {
             serviceId:data.id||0,
-            data:data
+            guestId:data.guestId||0,
+            data:sellData
         };
         doBillPay(params, function(data){
             data = data||{};

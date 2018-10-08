@@ -103,6 +103,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link7" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="242" y="80"/>
@@ -325,6 +326,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">settleMent/totalDeductAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">pkgSubAmt+itemSubAmt+partSubAmt</process:from>
+      <process:to type="query">settleMent/netinAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">

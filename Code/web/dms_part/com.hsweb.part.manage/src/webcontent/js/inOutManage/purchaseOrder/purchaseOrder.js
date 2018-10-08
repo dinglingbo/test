@@ -281,19 +281,13 @@ function loadMainAndDetailInfo(row) {
 	    }
 		if(data.billStatusId && data.billStatusId !=0){
 			document.getElementById("fd1").disabled = true;
-			nui.get("guestId").disable();
-			nui.get('orderMan').disable();
-			nui.get("billTypeId").disable();
-			nui.get('settleTypeId').disable(); 
+
 			setBtnable(false);
 //			setEditable(false);
 		}
 		if (data.auditSign == 1) {
 			document.getElementById("fd1").disabled = true;
-			nui.get("guestId").disable();
-			nui.get('orderMan').disable();
-			nui.get("billTypeId").disable();
-			nui.get('settleTypeId').disable(); 
+
 			setBtnable(false);
 //			setEditable(false);
 		} else {
@@ -409,7 +403,7 @@ function add() {
 		return;
 	}
 
-
+	var orderMan=basicInfoForm.getData().orderMan;
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
 
@@ -419,6 +413,7 @@ function add() {
 
 				setBtnable(true);
 				setEditable(true);
+				nui.get('guestId').enable();
 
 				basicInfoForm.reset();
 				rightGrid.clearRows();
@@ -436,8 +431,15 @@ function add() {
 				$('#bServiceId').text("订单号: 新采购订单");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 				nui.get("createDate").setValue(new Date());
-				nui.get("orderMan").setValue(currUserName);
-
+				
+				if(!orderMan || orderMan==""){
+					nui.get("orderMan").setValue(currUserName);
+					nui.get("orderMan").setText(currUserName);
+				}else{
+					nui.get("orderMan").setValue(orderMan);
+					nui.get("orderMan").setText(orderMan);
+				}
+				
 				addNewRow();
 
 				var guestId = nui.get("guestId");
@@ -465,6 +467,7 @@ function add() {
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
 		nui.get("orderMan").setValue(currUserName);
+		nui.get("orderMan").setText(currUserName);
 
 		addNewRow();
 

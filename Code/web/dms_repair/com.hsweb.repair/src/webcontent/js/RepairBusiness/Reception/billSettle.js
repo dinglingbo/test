@@ -106,7 +106,6 @@ var resultData = {};
 function onChanged() {
 	var data = sellForm.getData();
 
-	
 	if(deductible==""){
 		deductible=0;
 	}
@@ -132,8 +131,6 @@ function onChanged() {
 	var PrefAmt = nui.get("PrefAmt").getValue();
 		var amount = data.mtAmt-deductible-PrefAmt;
 		nui.get("amount").setValue(amount.toFixed(2));
-	
-
 
 }
 

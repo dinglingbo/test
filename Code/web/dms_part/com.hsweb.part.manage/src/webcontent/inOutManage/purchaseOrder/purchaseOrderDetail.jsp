@@ -54,6 +54,8 @@
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
                       	  <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+                      	  <input class="nui-hidden" name="guestFullName" id="guestFullName"/>
+                      	  <input class="nui-hidden" name="serviceId" id="serviceId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>
@@ -75,7 +77,17 @@
                                       <label>采购员：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
-                                      <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
+                                      <input class="nui-combobox" 
+		                                      id="orderMan" 
+		                                      name="orderMan" 
+		                                      textField="empName"
+				                              valueField="empName"
+				                              emptyText="请选择..."
+				                              url=""
+				                              required="true"
+				                              allowInput="true"
+				                              valueFromSelect="false"
+		                                      width="100%">
                                   </td>
                                   <td class="title required">
                                       <label>订货日期：</label>

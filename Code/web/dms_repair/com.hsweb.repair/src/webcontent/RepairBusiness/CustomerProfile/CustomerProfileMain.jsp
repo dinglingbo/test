@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.3.1"></script>
+	src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.3.4"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -56,8 +56,8 @@ table {
 			<tr>
 				<td><a class="nui-button" iconCls="" onclick="add()"plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
 				 <a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户导入</a>
-				 <a class="nui-button" plain="true" iconCls="" onclick="importCard()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户储值卡导入</a>
-				 <a class="nui-button" plain="true" iconCls="" onclick="importTimesCard()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户计次卡导入</a>
+				 <a class="nui-button" plain="true" iconCls="" onclick="importCard()" id="importCardBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户储值卡导入</a>
+				 <a class="nui-button" plain="true" iconCls="" onclick="importTimesCard()" id="importTimesCardBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户计次卡导入</a>
 					<a class="nui-button" iconCls="" id="updateBtn"	onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 					<a class="nui-button" iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
 					class="nui-button" iconCls="icon-date" onclick="split()"

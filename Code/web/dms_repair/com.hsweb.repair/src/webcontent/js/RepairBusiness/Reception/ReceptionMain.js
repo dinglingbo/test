@@ -8,7 +8,7 @@ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainLis
 //var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
 //var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
 var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
-var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext";
+var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 
 var beginDateEl = null;

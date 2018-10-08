@@ -11,7 +11,6 @@
 <head>
 <title>查询营业明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
 </head>
 <body>
@@ -211,6 +210,7 @@
 				default:
 					break;
 				}
+				mainGrid.load({params : params});
     	}
     	
     	function onSearch(){
@@ -226,7 +226,7 @@
 	        });
 	    });
 	    
-	    mainGrid.on("drawcell",function(e){
+	     mainGrid.on("drawcell",function(e){
 	    	var field = e.field,
 	    	value = e.value;
 	    	if(field == "serviceTypeId"){
@@ -239,7 +239,7 @@
 	    			e.cellHtml = (value * 100).toFixed(2);
 	    		}
 	    	}
-	    });
+	    }); 
 	    
 	    
     </script>

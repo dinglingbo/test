@@ -25,6 +25,9 @@
 			inner join rpb_car b on (a.car_id = b.id)
 		where a.orgid = #orgid#
 		<dynamic>
+					<isNotEmpty prepend="and" property="guestFullName">  
+	            (a.insurance_man like '%$guestFullName$%')
+	        </isNotEmpty>
 			<isNotEmpty prepend="and" property="insuranceSaliNo">  
 	            (a.insurance_sali_no like '%$insuranceSaliNo$%')
 	        </isNotEmpty>
@@ -62,6 +65,7 @@
 			a.commission_amt commissionAmt,
 			a.order_type orderType,
 			a.mobile mobile,
+			a.remark remark,
 			b.car_no carNo,
 			a.insurance_man insuranceMan,
 			b.car_brand_id carBrandId,

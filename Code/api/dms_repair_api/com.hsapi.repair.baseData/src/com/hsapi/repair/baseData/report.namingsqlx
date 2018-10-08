@@ -32,5 +32,9 @@
 		INNER JOIN rpb_car b ON ( a.car_id = b.id )
 		INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		INNER JOIN rps_settlement d on (a.id = d.service_id ) 
+		WHERE 1=1
+		<isNotEmpty prepend="and" property="sCreateDate">  
+                (a.recorder &gt;= #sCreateDate#)
+        </isNotEmpty>
     </select>
 </sqlMap>

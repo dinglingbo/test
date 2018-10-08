@@ -173,8 +173,8 @@ table {
     </table>
 </div>
 <div style="text-align:center;padding:10px;">
-    <a class="nui-button" onclick="onSave" style="width:60px;margin-right:20px;">保存</a>
-    <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;" id="okBtn" enabled="false">提交</a>
+    <a class="nui-button" onclick="onSave" id="onSave" style="width:60px;margin-right:20px;">转入预结算</a>
+    <a class="nui-button" onclick="pay" style="width:60px;margin-right:20px;" id="okBtn" >结算</a>
     <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
 </div>
 </body>

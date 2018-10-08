@@ -64,11 +64,14 @@ function getSearchParams()
 }
 function onSearch()
 {
+
     var params = getSearchParams();
     params.carNo=document.getElementsByName('carNo')[0].value;
     params.mobile=document.getElementsByName('mobile')[0].value;
     doSearch(params);
 }
+
+
 var currType = 0;
 function quickSearch(type)
 {

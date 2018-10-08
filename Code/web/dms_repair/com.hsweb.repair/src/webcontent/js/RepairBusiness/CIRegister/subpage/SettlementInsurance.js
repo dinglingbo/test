@@ -69,11 +69,14 @@ function getMaintainById(id)
             data = data||{};
             var main = data.main;
             basicInfoForm.setData(main);
-            if(main.status != 0)
+            if(main.status == 1)
             {
-                nui.alert("改单据已提交，不能重复提交","提示",function(){
+            	$("#onSave").hide();
+            
+/*                nui.alert("该单据已提交，不能重复提交","提示",function(){
                     CloseWindow("ok");
-                });
+                });*/
+            	CloseWindow("ok");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -96,7 +99,8 @@ function onSave()
     doPost({
         url : url,
         data : {
-            main:main
+            main:main,
+            isPresettle:1
         },
         success : function(data)
         {
@@ -104,7 +108,7 @@ function onSave()
             data = data||{};
             if(data.errCode == "S")
             {
-                nui.get("okBtn").enable();
+            	$("#onSave").hide();
                 nui.alert("保存成功");
             }
             else{
@@ -119,9 +123,13 @@ function onSave()
         }
     });
 }
-function onOk()
+/*function onOk()
 {
     var main = basicInfoForm.getData();
+    if(main.status != 1){
+    	showMsg("请先保存结算单！","W");
+    	return;
+    }
     var params = {
         rpType:1,
         guestId:main.guestId,
@@ -130,6 +138,7 @@ function onOk()
         serviceCode:main.serviceCode,
         serviceTypeId:"02020112",
         rpAmt:main.insuranceAmt,
+        rpAccountId:0,
         billAmt:0,
         remark:"",
         isPrimaryBusiness:1,
@@ -165,7 +174,7 @@ function onOk()
             }
         });
     });
-}
+}*/
 function spRpAccountPost(params,callback)
 {
     var url = window._rootFrmUrl+"com.hsapi.frm.arap.createArapService.biz.ext";
@@ -203,4 +212,48 @@ function CloseWindow(action)
 
 function onCancel() {
     CloseWindow("cancel");
+}
+
+
+function pay(){
+	var data = basicInfoForm.getData();
+	var json = {
+			allowanceAmt:0,
+			cardPayAmt:0,
+			serviceId:data.id,
+			payType:"20000",
+			payAmt:0
+	};
+    nui.confirm("结算金额:"+"0"+"元,确定结算吗?", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+	    		nui.ajax({
+	    			url : baseUrl
+	    			+ "com.hsapi.repair.repairService.settlement.ReceiveSettleInsurance.biz.ext" ,
+	    			type : "post",
+	    			data : json, 
+			        cache : false,
+			        contentType : 'text/json',
+	    			success : function(data) {
+	    				nui.unmask(document.body);
+	    				if(data.errCode=="S"){
+	    					nui.alert(data.errMsg,"提示");
+	    				}else{
+	    					nui.alert(data.errMsg,"提示");
+	    				}
+
+	    			},
+	    			error : function(jqXHR, textStatus, errorThrown) {
+	    				// nui.alert(jqXHR.responseText);
+	    				console.log(jqXHR.responseText);
+	    			}
+	    		});	
+	     }else {
+				return;
+		 }
+	});
 }

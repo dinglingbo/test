@@ -75,7 +75,6 @@
     <chidren>assign0</chidren>
     <chidren>end1</chidren>
     <chidren>transactionrollback0</chidren>
-    <chidren>invokePojo3</chidren>
     <chidren>invokePojo4</chidren>
     <chidren>assign4</chidren>
   </nodes>
@@ -109,7 +108,7 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link16</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="479" y="311"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -281,33 +280,10 @@
     <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="getPrimaryKey" displayName="getPrimaryKey" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign0</targetNode>
-    </sourceConnections>
-    <targetConnections>link4</targetConnections>
-    <location x="405" y="311"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">f</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="362" y="347"/>
-    <figSize height="20" width="108"/>
-    <node>invokePojo3</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getJVMDate" displayName="getJVMDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
-      <targetNode>invokePojo3</targetNode>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="314" y="311"/>

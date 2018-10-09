@@ -41,9 +41,10 @@ function doSearch()
             var list = data.list;
 			if (list && list.length>0) {
 				setInitData(list);
-			} else {
+			} 
+			else {
                 nui.unmask(document.body);
-				parent.showMsg(data.errMsg || "加载数据失败!","W");
+//				parent.showMsg(data.errMsg || "加载数据失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

@@ -16,7 +16,9 @@ $(document).ready(function(v)
 		params:params,
 		token:token
 	});*/
-	
+	rpsPartGrid.on("rowdblclick",function(e){
+		onOk();
+	});
   rpsPartGrid.on("drawcell",function(e)
     {
 	  var grid = e.sender;

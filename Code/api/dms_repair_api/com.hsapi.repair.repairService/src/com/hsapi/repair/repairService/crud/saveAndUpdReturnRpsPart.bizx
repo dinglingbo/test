@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveAndUpdRpsPart" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveAndUpdReturnRpsPart" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link15</targetConnections>
     <location x="1354" y="134"/>
@@ -122,31 +122,32 @@
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
-    <location x="507" y="178"/>
-    <size height="121" width="241"/>
+    <location x="507" y="186"/>
+    <size height="190" width="241"/>
     <chidren>loopstart0</chidren>
     <chidren>loopend0</chidren>
     <chidren>assign8</chidren>
+    <chidren>assign0</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
-    <location x="507" y="250"/>
+    <location x="507" y="293"/>
     <figSize height="17" width="25"/>
     <node>loopstart0</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
-    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link44</targetConnections>
-    <location x="507" y="218"/>
+    <location x="507" y="261"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
     <process:condition/>
     <process:iterate iterable="addSellPart" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="711" y="250"/>
+    <location x="711" y="293"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
@@ -156,7 +157,7 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link45</targetConnections>
-    <location x="723" y="218"/>
+    <location x="723" y="261"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
@@ -165,8 +166,8 @@
       <sourceNode>assign8</sourceNode>
       <targetNode>loopend0</targetNode>
     </sourceConnections>
-    <targetConnections>link20</targetConnections>
-    <location x="614" y="216"/>
+    <targetConnections>link5</targetConnections>
+    <location x="635" y="256"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
@@ -223,7 +224,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="612" y="252"/>
+    <location x="633" y="292"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -256,31 +257,32 @@
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
-    <location x="328" y="435"/>
-    <size height="139" width="233"/>
+    <location x="328" y="417"/>
+    <size height="184" width="233"/>
     <chidren>loopstart1</chidren>
     <chidren>loopend1</chidren>
     <chidren>assign9</chidren>
+    <chidren>assign4</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
-    <location x="324" y="524"/>
+    <location x="324" y="521"/>
     <figSize height="17" width="32"/>
     <node>loopstart1</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
-    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
-      <targetNode>assign9</targetNode>
+      <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="328" y="492"/>
+    <location x="328" y="489"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
     <process:condition/>
     <process:iterate iterable="sellPartAdd" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
-    <location x="520" y="516"/>
+    <location x="520" y="521"/>
     <figSize height="17" width="56"/>
     <node>loopend1</node>
   </nodes>
@@ -291,7 +293,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link48</targetConnections>
-    <location x="536" y="484"/>
+    <location x="536" y="489"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
   </nodes>
@@ -301,6 +303,7 @@
     <chidren>loopstart2</chidren>
     <chidren>loopend2</chidren>
     <chidren>assign10</chidren>
+    <chidren>assign15</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart2label" name="label" nodeType="label">
     <location x="641" y="521"/>
@@ -308,9 +311,9 @@
     <node>loopstart2</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart2" name="循环2" displayName="循环" grouped="true" type="loopstart" matchedName="loopend2" loopType="iterate">
-    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart2</sourceNode>
-      <targetNode>assign10</targetNode>
+      <targetNode>assign15</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
     <location x="645" y="489"/>
@@ -685,8 +688,8 @@
       <sourceNode>assign9</sourceNode>
       <targetNode>loopend1</targetNode>
     </sourceConnections>
-    <targetConnections>link22</targetConnections>
-    <location x="432" y="487"/>
+    <targetConnections>link13</targetConnections>
+    <location x="466" y="487"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -743,7 +746,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="427" y="523"/>
+    <location x="461" y="523"/>
     <figSize height="17" width="39"/>
     <node>assign9</node>
   </nodes>
@@ -752,8 +755,8 @@
       <sourceNode>assign10</sourceNode>
       <targetNode>loopend2</targetNode>
     </sourceConnections>
-    <targetConnections>link26</targetConnections>
-    <location x="739" y="487"/>
+    <targetConnections>link19</targetConnections>
+    <location x="780" y="487"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
@@ -810,9 +813,66 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="734" y="523"/>
+    <location x="775" y="523"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign8</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="570" y="254"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">0</process:from>
+      <process:to type="query">temp/outReturnQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="572" y="290"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" collapsed="false" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="401" y="487"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">0</process:from>
+      <process:to type="query">temp/outReturnQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="399" y="523"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值10" displayName="赋值" collapsed="false" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>assign10</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="711" y="487"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">0</process:from>
+      <process:to type="query">temp/outReturnQty</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="706" y="523"/>
+    <figSize height="17" width="39"/>
+    <node>assign15</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

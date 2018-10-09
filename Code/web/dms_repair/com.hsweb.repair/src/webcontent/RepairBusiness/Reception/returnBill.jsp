@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.0.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.1.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -115,11 +115,9 @@
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>     
             <td style="text-align:right;">
-                <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>
-                <a class="nui-button" iconCls="" plain="false" onclick="" id="addBtn">查看详情</a>
-                <span class="separator"></span> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="saveBatch()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-               <!--  <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finishBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
+                <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;转结算</a>
                 <span class="separator"></span>
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -238,42 +236,30 @@
                 
                 <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码">
                 </div>           
-                <!-- <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center"   header="数量">
-                    <input id="qty" property="editor"  class="nui-textbox"  minValue="0"  decimalPlaces="0" dataType="int" maxValue="100000000" onvaluechanged ="onValueChangedQty"/>
-                </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-                    <input id="unitPrice" property="editor" vtype="float" class="nui-spinner"  minValue="0" showbutton="false" onvaluechanged ="onValueChangedUnitPrice"/>
-                </div>
-                
-                <div field="amt" headerAlign="center" allowSort="false"  width="70" datatype="float" align="center" header="金额"></div>
-                 -->
-                <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="数量">
-                   <input property="editor" vtype="int" class="nui-textbox"/>
-                </div>
                 <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
-                   <input property="editor" vtype="float" class="nui-textbox"/>
+                   <!-- <input property="editor" vtype="float" class="nui-textbox"/> -->
                 </div>
-                <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
-                   <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
+                <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="销售员" align="center">
-                     <input  property="editor" enabled="true" dataField="memList" 
+                     <input  enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">
-                </div>   
+                </div>  
+                 <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="退货数量" >
+                   <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
                 <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center" align="center"></div>
             </div>
         </div>
     </div>
-  </div>
-
+ </div>
  <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:choosePart()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
+        <a href="javascript:chooseReturnPart()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
     </span>
 </div>
 <div id="advancedMorePartWin" class="nui-window"

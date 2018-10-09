@@ -729,14 +729,18 @@ function addPartNewRow(){
 function deletePartRow(row_uid){
 	var main = billForm.getData();	
     var isSettle = main.isSettle||0;
-    if(isSettle == 1){
+    if(main.status==1){
+		showMsg("此单已审核,不能修改!","S");
+        return;
+	} 
+	if(main.status==2){
+		showMsg("此单已归库,不能修改!","S");
+        return;
+	} 
+	if(isSettle == 1){
         showMsg("此单已结算,不能修改!","S");
         return;
     }
-	if(main.status==2){
-		showMsg("此单已出库,不能修改!","S");
-        return;
-	} 
     var row = rpsPartGrid.getRowByUID(row_uid);
     rpsPartGrid.removeRow(row);
 
@@ -978,18 +982,6 @@ function chooseReturnPart(){
 		        loadDetail(p3);*/
 		}
 	});
-    
-    
-    /*doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
-       
-        var p3 = {
-			 interType: "part",
-	         data:{
-	             serviceId: main.id||0
-	         }
-        };
-        loadDetail(p3);
-    });*/
 }
 function addToBillPart(row, callback, unmaskcall){
     var main = billForm.getData();
@@ -1012,23 +1004,6 @@ function addToBillPart(row, callback, unmaskcall){
     unmaskcall && unmaskcall();
     //生成一行信息，
     callback && callback(row);
-    
-    /*params = {};
-    svrCRUD(params,function(text){
-        var errCode = text.errCode||"";
-        var errMsg = text.errMsg||"";
-        var res = text.data||{};
-        if(errCode == 'S'){
-            unmaskcall && unmaskcall();
-            callback && callback(res);
-        }else{
-            unmaskcall && unmaskcall();
-            showMsg(errMsg||"添加配件失败!","W");
-            return;
-        }
-    },function(){
-        unmaskcall && unmaskcall();
-    });*/
 }
 function delFromBillPart(data, callback){
     var part = {
@@ -1043,16 +1018,6 @@ function delFromBillPart(data, callback){
         	part: part
         }
     };
-    /*svrCRUD(params,function(text){
-        var errCode = text.errCode||"";
-        var errMsg = text.errMsg||"";
-        if(errCode == 'S'){   
-            callback && callback();
-        }else{
-            showMsg(errMsg||"删除配件信息失败!","W");
-            return;
-        }
-    });*/
 }
 
 
@@ -1065,12 +1030,28 @@ function setyouhuilu(){
 
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
+	var main = billForm.getData();
 	var editor = e.editor;
 	var record = e.record;
 	var row = e.row;
 	var unitPrice = record.unitPrice||0;
 	var qty = record.qty||0;
 	editor.validate();
+	if(main.status==1){
+		showMsg("此单已审核,不能修改!","S");
+		e.cancel = true;
+		return;
+	} 
+	if(main.status==2){
+		showMsg("此单已归库,不能修改!","S");
+		e.cancel = true;
+		return;
+    } 
+	if(isSettle == 1){
+	    showMsg("此单已结算,不能修改!","S");
+	    e.cancel = true;
+	    return;
+	}
 	if (editor.isValid() == false) {
 		showMsg("请输入数字!","W");
 		e.cancel = true;
@@ -1190,7 +1171,6 @@ function saveBatch(){
 		});
 	    
 	   	}else{
-		
 		var maintain = billForm.getData();
 		var addSellPart = nui.get("rpsPartGrid").getData();
 		var sellPartAdd = rpsPartGrid.getChanges("added");
@@ -1276,6 +1256,43 @@ function finish(){
 	});
 }
 
+
+//转结算(可能有问题)
+payUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/partBillPay.jsp?token="+token;
+function pay(){	
+	var row = billForm.getData();
+	if(row.isSettle == 1){
+        showMsg("此单已结算!","W");
+        return;
+    }
+	if(row.status != 2){
+		 showMsg("此单未归库，不能结算!","W");
+	     return;
+	}
+	nui.open({
+		url:payUrl,
+		width:"40%",
+		height:"50%",
+		//加载完之后
+		onload: function(){	
+		//把值传递到支付页面
+	    var iframe = this.getIFrameEl();
+	    iframe.contentWindow.getData(row);			
+		},
+	   ondestroy : function(action) {
+		if (action == 'ok') {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getData();
+			supplier = data.supplier;
+			var value = supplier.id;
+			var text = supplier.fullName;
+			var el = nui.get(elId);
+			el.setValue(value);
+			el.setText(text);
+		}
+	}
+	});
+}
 var total = null;
 function onDrawSummaryCell(e){	
 	  var rows = e.data;

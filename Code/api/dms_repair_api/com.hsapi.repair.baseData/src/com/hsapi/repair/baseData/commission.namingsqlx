@@ -11,7 +11,7 @@
 		select 
 			b.id id,
 			a.name name,
-			a.orgid orgid,
+			b.orgid orgid,
 			a.is_disabled is_disabled,
 			b.sales_deduct_type salesDeductType,
 			b.sales_deduct_value salesDeductValue,
@@ -20,11 +20,12 @@
 			b.advisor_deduct_type advisorDeductType,
 			b.advisor_deduct_value advisorDeductValue,
 			b.type type
-		from wb_repair.rpb_business_type a,wb_repair.rpb_business_deduct b
-		 where a.id = b.service_type_id
+		from wb_repair.rpb_business_deduct b
+		inner join wb_repair.rpb_business_type a
+		 on a.id = b.service_type_id
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">  
-                (a.orgid = 0 or a.orgid = #orgid#)
+                (b.orgid = 0 or b.orgid = #orgid#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="type">  
                 (b.type = #type#)

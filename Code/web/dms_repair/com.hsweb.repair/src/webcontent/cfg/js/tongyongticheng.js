@@ -69,7 +69,7 @@ function doSearch(){
 	var params={
 		type:2,
 		token: token
-	}
+	};
 	grid.load({params:params});
 	partGrid = nui.get('partGrid');
 	partGrid.setUrl(gridUrl);
@@ -77,7 +77,7 @@ function doSearch(){
 		var params={
 			type:3,
 			token:token
-		}
+		};
 		partGrid.load({params:params});		
 	}
 }

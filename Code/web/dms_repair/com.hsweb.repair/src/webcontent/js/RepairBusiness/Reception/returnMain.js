@@ -68,8 +68,8 @@ $(document).ready(function ()
 });
 var statusHash = {
     "0" : "草稿",
-    "1" : "待出库",
-    "2" : "已出库",
+    "1" : "待归库",
+    "2" : "已归库",
     "3" : "待结算",
     "4" : "已结算",
     "5" : "全部"
@@ -168,9 +168,9 @@ function getSearchParam() {
 
 function addSell(){
     var part={};
-    part.id = "5000";
-    part.text = "销售-工单";
-    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/sellBill.jsp?token="+token;
+    part.id = "5200";
+    part.text = "退货-工单";
+    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
     part.iconCls = "fa fa-file-text";
     var params = {};
     window.parent.activeTabAndInit(part,params);
@@ -180,7 +180,7 @@ function editSell(){
     var row = mainGrid.getSelected();
     if(!row) return;
     var part={};
-    part.id = "5100";
+    part.id = "5200";
     part.text = "退货-工单";
     part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
     part.iconCls = "fa fa-file-text";
@@ -239,11 +239,12 @@ function out(){
 				if (returnJson.errCode == "S") {
 					b = 1;
 					showMsg("出库成功");
-					
-					 mainGrid.load({
-					        token:token
-				   });
-					 
+					//表示退货单
+				    gsparams.billTypeId = 5;
+				    mainGrid.load({
+				        token:token,
+				        params: gsparams
+				    });
 				} else {
 					showMsg("出库失败","W");
 				}
@@ -267,7 +268,7 @@ function pay(){
 	        return;
 	    }
 		if(row.status != 2){
-			 showMsg("此单未出库，不能结算!","W");
+			 showMsg("此单未归库，不能结算!","W");
 		     return;
 		}
 		nui.open({
@@ -301,7 +302,7 @@ function pay(){
 
 
 
-var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateMainStatus.biz.ext";
+var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.UpdateMainStatusAndRpsPart.biz.ext";
 function finish(){
 
 	var main = mainGrid.getSelected();

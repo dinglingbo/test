@@ -398,10 +398,15 @@
     <node>assign13</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值12" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>invokePojo1</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="-34" y="205"/>
@@ -494,6 +499,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">totalPrefAmt+allowanceAmt</process:from>
       <process:to type="query">totalPrefAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:to type="query">balaAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">balaAmt-allowanceAmt</process:from>
@@ -737,12 +746,24 @@
       <process:to type="query">params/dc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">maintain/carNo</process:from>
+      <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">params/remark</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">billTypeId</process:from>
       <process:to type="query">params/BillTypeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carId</process:from>
+      <process:to type="query">params/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carNo</process:from>
+      <process:to type="query">params/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carVin</process:from>
+      <process:to type="query">params/carVin</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">

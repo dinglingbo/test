@@ -287,6 +287,17 @@ function setNetInAmt(){
 	mtAmtEl.setValue(netInAmt);
 	amountEl.setValue(amount.toFixed(2));
 }
+function adjustData(data){
+	var rlist = [];
+	for(var i=0; i<data.length; i++){
+		var obj = data[i];
+		if(obj.typeId && obj.amt){
+			rlist.push(obj);
+		}
+	}
+
+	return rlist;
+}
 function noPay(){
 	var rs = checkGrid();
 	if(rs.rmsg || rs.pmsg){
@@ -300,8 +311,14 @@ function noPay(){
 		}
 	}
 
+	var receiveData = receiveGrid.getData();
+	var payData = payGrid.getData();
+
+	receiveData = adjustData(receiveData);
+	payData = adjustData(payData);
+
 	var data = sellForm.getData();
-	doNoPay(fserviceId,data.PrefAmt);
+	doNoPay(fserviceId,data.PrefAmt,receiveData,payData);
 }
 
 function pay(){
@@ -387,4 +404,6 @@ function checkGrid(){
 		rs.pmsg = "请选择费用科目!";
 		return rs;
 	}
+
+	return rs;
 }

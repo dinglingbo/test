@@ -600,11 +600,13 @@ function doSetStyle(status, isSettle){
 }
 
 
-function doNoPay(serviceId,allowanceAmt){
+function doNoPay(serviceId,allowanceAmt,receiveData,payData){
 	var json = {
-			serviceId:serviceId,
-			allowanceAmt:allowanceAmt,
-			token:token
+		serviceId:serviceId,
+		allowanceAmt:allowanceAmt,
+		receiveData:receiveData,
+		payData:payData,
+		token:token
 	};
 	
     nui.confirm("确定将此单加入待结算", "友情提示",function(action){

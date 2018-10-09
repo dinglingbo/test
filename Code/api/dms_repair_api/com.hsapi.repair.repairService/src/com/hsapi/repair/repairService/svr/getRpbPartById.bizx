@@ -79,14 +79,6 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">serviceTypeId</process:from>
-      <process:to type="query">cond/_expr[3]/serviceTypeId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[3]/_op</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="203" y="186"/>

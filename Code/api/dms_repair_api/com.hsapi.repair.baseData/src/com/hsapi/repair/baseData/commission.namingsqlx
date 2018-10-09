@@ -25,7 +25,7 @@
 		 on a.id = b.service_type_id
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">  
-                (b.orgid = 0 or b.orgid = #orgid#)
+                (b.orgid = #orgid#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="type">  
                 (b.type = #type#)

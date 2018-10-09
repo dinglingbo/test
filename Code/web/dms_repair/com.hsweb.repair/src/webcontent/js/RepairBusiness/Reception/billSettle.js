@@ -205,6 +205,10 @@ function setData(params){
 		}
 	});
 
+	// var row = {};
+	// receiveGrid.addRow(row);
+	// payGrid.addRow(row);
+
 	getData(data);
 }
 function addReceiveRow(row_uid){
@@ -284,7 +288,7 @@ function setNetInAmt(){
 		nui.get("PrefAmt").setValue(0);
 		amount = netInAmt;
 	}
-	mtAmtEl.setValue(netInAmt);
+	mtAmtEl.setValue(netInAmt.toFixed(2));
 	amountEl.setValue(amount.toFixed(2));
 }
 function adjustData(data){
@@ -335,14 +339,23 @@ function pay(){
 	}
 	
 	var data = sellForm.getData();
+	var amt = amountEl.getValue()||0;
+	var receiveData = receiveGrid.getData();
+	var payData = payGrid.getData();
+
+	receiveData = adjustData(receiveData);
+	payData = adjustData(payData);
+
 	var json = {
-			allowanceAmt:data.PrefAmt,
-			cardPayAmt:data.deductible,
-			serviceId:fserviceId,
-			payType:data.payType,
-			payAmt:data.amount
+		allowanceAmt:data.PrefAmt,
+		cardPayAmt:data.deductible,
+		serviceId:fserviceId,
+		payType:data.payType,
+		payAmt:amt,
+		receiveData:receiveData,
+		payData:payData
 	}
-    nui.confirm("结算金额:"+data.amount+"元,确定结算吗?", "友情提示",function(action){
+    nui.confirm("结算金额:"+amt+"元,确定结算吗?", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,

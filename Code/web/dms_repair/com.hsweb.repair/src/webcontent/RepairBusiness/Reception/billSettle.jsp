@@ -11,7 +11,7 @@
 -->
 <head>
 <title>工单结算</title>
-<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.6">
+<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.8">
 </script>
 <style type="text/css">
 .vpanel_heading {

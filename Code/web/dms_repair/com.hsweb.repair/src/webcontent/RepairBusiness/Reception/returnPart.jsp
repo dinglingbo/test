@@ -11,7 +11,7 @@
 <head>
 <title>可退配件</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnPart.js?v=1.0.4"></script> 
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnPart.js?v=1.0.5"></script> 
 </head>
 <body>
   

@@ -331,11 +331,13 @@ function finish(){
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
-				
 				showMsg("审核成功");
-				 mainGrid.load({
-				        token:token
-				    });
+				var gsparams = {};
+				gsparams.billTypeId = 5;
+			    mainGrid.load({
+			        token:token,
+			        params: gsparams
+			    });
 				
 			} else {
 				showMsg(returnJson.errMsg,"W");

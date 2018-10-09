@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增和编辑</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.9"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.10"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -234,7 +234,7 @@
 							<label>提成金额:</label>
 						</td>
 						<td>
-							<input class="nui-textbox" name="salesDeductValue" id="salesDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
+							<input class="nui-textbox" name="salesDeductValue" id="salesDeductValue" value="" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
 					</tr>
 					<tr style="height:5px;">
@@ -261,7 +261,7 @@
 							<label>提成金额:</label>
 						</td>
 						<td>
-							<input class="nui-textbox" name="techDeductValue" id="techDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
+							<input class="nui-textbox" name="techDeductValue" id="techDeductValue" value="" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
 					</tr>
 					<tr style="height:5px;">
@@ -288,7 +288,7 @@
 							<label>提成金额:</label>
 						</td>
 						<td>
-							<input class="nui-textbox" name="advisorDeductValue" id="advisorDeductValue" value="0" onvalidation="onRateValidation" width="50px"/><span>%</span>
+							<input class="nui-textbox" name="advisorDeductValue" id="advisorDeductValue" value="" onvalidation="onRateValidation" width="50px"/><span>%</span>
 						</td>
 					</tr>
 				</table>

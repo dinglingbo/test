@@ -54,7 +54,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="225" y="33"/>
+    <location x="210" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -63,7 +63,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="227" y="69"/>
+    <location x="212" y="96"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveBusinessDeduct" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
-    <location x="738" y="314"/>
+    <location x="738" y="269"/>
     <size height="132" width="313"/>
     <chidren>invokePojo0</chidren>
     <chidren>loopstart1</chidren>
@@ -11,7 +11,7 @@
     <chidren>assign3</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
-    <location x="730" y="392"/>
+    <location x="730" y="347"/>
     <figSize height="20" width="40"/>
     <node>loopstart1</node>
   </nodes>
@@ -21,14 +21,14 @@
       <targetNode>invokePojo5</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="738" y="360"/>
+    <location x="738" y="315"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
     <process:condition/>
     <process:iterate iterable="u" iterableElement="f"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
-    <location x="1003" y="392"/>
+    <location x="1003" y="347"/>
     <figSize height="20" width="70"/>
     <node>loopend1</node>
   </nodes>
@@ -38,7 +38,7 @@
       <targetNode>loopstart2</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="1026" y="360"/>
+    <location x="1026" y="315"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
   </nodes>
@@ -48,7 +48,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="905" y="358"/>
+    <location x="905" y="313"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -62,7 +62,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="881" y="394"/>
+    <location x="881" y="349"/>
     <figSize height="20" width="70"/>
     <node>invokePojo0</node>
   </nodes>
@@ -333,7 +333,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="801" y="358"/>
+    <location x="801" y="313"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -346,7 +346,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="762" y="394"/>
+    <location x="762" y="349"/>
     <figSize height="20" width="100"/>
     <node>invokePojo5</node>
   </nodes>
@@ -356,7 +356,7 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="854" y="358"/>
+    <location x="854" y="313"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -369,7 +369,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="848" y="394"/>
+    <location x="848" y="349"/>
     <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
@@ -379,7 +379,7 @@
       <targetNode>loopend1</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="967" y="358"/>
+    <location x="967" y="313"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -392,7 +392,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="961" y="394"/>
+    <location x="961" y="349"/>
     <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>

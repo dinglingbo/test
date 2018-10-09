@@ -25,7 +25,7 @@ __CreateJSPath = function (js) {
 var bootPATH = __CreateJSPath("nui.js");
 
 //debugger,此变量用来区别ajax请求是否弹出alert来提示交互错误
-mini_debugger = true;   
+mini_debugger = false;   
 
 window['nui_model']=window['nui_model']||'min';
 

@@ -10,7 +10,7 @@
 <head>
 	<title>通用提成</title>
 	
-	<script src="<%=webPath + contextPath%>/repair/cfg/js/tongyongticheng.js?v=1.0.14" ></script>
+	<script src="<%=webPath + contextPath%>/repair/cfg/js/tongyongticheng.js?v=1.0.60" ></script>
 </head>
 <style type="text/css">
 body {
@@ -29,6 +29,7 @@ body {
 				<strong><span>工时提成：</span></strong>
 				<span style="color: red">如果一个工时提成没有设置，则会使用通用提成。若需关闭通用提成，请清空设置即可。</span>
 				<a class="nui-button" iconcls="icon-save" onclick="saveAll()">保存</a>
+				<input style="display :none;" id="serviceTypeId" name="serviceTypeId" class="nui-combobox" valueField="id" textFiled="name" required="true"allowInput="true">
 			</div>
 			<div id="form">
 				<table style="width:100%">
@@ -51,7 +52,7 @@ body {
 			<div class="nui-fit">
 				<div id="grid" class="nui-datagrid"oncellcommitedit="onCellCommitEdit" datafield="list" showModified="false" allowcelledit="true" showVGridLines="false" allowcellselect="true" showColumns = "false"multiselect="false" showpager="false" url="" allowcellwrap="true" style="width:100%;height:90%;">
 					<div property="columns">
-						<div field="name" name="name" headeralign="center" align="center"></div>
+						<div field="serviceTypeId"  headeralign="center" align="center" ></div>
 						<div field="salesDeductType" id="salesDeductType" name="salesDeductType" headeralign="center" align="right" renderer="ontypeRenderer">
 							<input class="nui-combobox" property="editor" data="type">
 						</div>
@@ -102,7 +103,7 @@ body {
 			<div class="nui-fit">
 				<div id="partGrid" class="nui-datagrid"oncellcommitedit="onCellCommitEdit" datafield="list" showModified="false" allowcelledit="true" showVGridLines="false" allowcellselect="true" showColumns = "false"multiselect="false" showpager="false" url="" allowcellwrap="true" style="width:100%;height:90%;">
 					<div property="columns">
-						<div field="name" name="name" headeralign="center" align="center"></div>
+						<div field="serviceTypeId"  headeralign="center" align="center" ></div>
 						<div field="salesDeductType" id="salesDeductType" name="salesDeductType" headeralign="center" align="right" renderer="ontypeRenderer">
 							<input class="nui-combobox" property="editor" data="type">
 						</div>

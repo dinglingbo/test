@@ -10,12 +10,13 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 	<title>配件提成设置</title>
-	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.10"></script>
 
 	<style type="text/css">
 	.table-label {
 		text-align: right;
-	}    
+	}  
+	a{ text-decoration:none}   
 </style>
 </head>
 <body>
@@ -24,9 +25,9 @@ pageEncoding="UTF-8" session="false" %>
 		<table style="width:100%;">
 			<tr>
 				<td style="white-space:nowrap;">
-					<input id="queryCodeSearch" name="queryCodeSearch" width="120px" emptyText="编码" class="nui-textbox"/>
+					<input id="partCodeSearch" name="queryCodeSearch" width="120px" emptyText="编码" class="nui-textbox"/>
 					<input id="namePySearch" name="namePySearch" width="120px" emptyText="拼音" class="nui-textbox"/>
-					<input id="fullNameSearch" name="fullNameSearch" width="120px" emptyText="名称" class="nui-textbox"/>
+					<input id="partNameSearch" name="fullNameSearch" width="120px" emptyText="名称" class="nui-textbox"/>
 					<a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<span class="separator"></span>
 					<a class="nui-button" plain="true" iconCls="" onclick="addUnifyPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
@@ -53,17 +54,25 @@ pageEncoding="UTF-8" session="false" %>
 		multiSelect="true"
 		selectOnLoad="true"
 		sortMode="client"
+		totalField="page.count"
 		url="">
 		<div property="columns">
 			<div type="indexcolumn" width="20">序号</div>
 			<div type="checkcolumn" width="25"></div>
 			<div field="partCode" name="partCode" headerAlign="center" allowSort="true">配件编码</div>
-			<div field="fullName" name="fullName" headerAlign="center" allowSort="true">配件全称</div>
-			<div field="sellPrice" name="sellPrice" headerAlign="center" allowSort="true" header="销售单价">
+			<div field="partName" name="partName" headerAlign="center" allowSort="true">配件名称</div>
+			<div field="sellPrice" name="sellPrice" headerAlign="center" allowSort="true" header="参考售价">
 				<input property="editor" vtype="float" class="nui-textbox"/>
 			</div>
-			<div field="operator" width="60" headerAlign="center" allowSort="true">操作人</div>
-			<div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>
+			<div field="salesDeductValue" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成">
+				<input property="editor" vtype="float" class="nui-textbox"/>
+			</div>
+			<div field="salesDeductType" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成类型">
+				<input property="editor" vtype="float" class="nui-textbox"/>
+			</div>
+			<div field="modifier" width="60" headerAlign="center" allowSort="true">创建人</div>
+			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">创建日期</div>
+			<div field="" renderer="onActionRenderer" width="100" headerAlign="center" allowSort="true"  header="操作"></div>
 		</div>
 	</div>
 </div>

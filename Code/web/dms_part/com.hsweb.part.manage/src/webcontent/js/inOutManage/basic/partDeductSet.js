@@ -3,11 +3,11 @@
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightUnifyGrid = null;
-//var mainTabs = null;
+
 var rightUnifyGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryRpbPart.biz.ext";
 $(document).ready(function(v)
 {
-//    mainTabs = nui.get("mainTabs");
+
 
     rightUnifyGrid = nui.get("rightUnifyGrid");
     rightUnifyGrid.setUrl(rightUnifyGridUrl);
@@ -26,14 +26,14 @@ $(document).ready(function(v)
 //        }
 //        
 //    });
-    $("#fullName").bind("keydown", function (e) {
+    $("#partName").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
             onPartSearch();
         }
         
     });
-    $("#queryCodeSearch").bind("keydown", function (e) {
+    $("#partCodeSearch").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
             onUnifySearch();
@@ -47,25 +47,36 @@ $(document).ready(function(v)
         }
         
     });
-    $("#fullNameSearch").bind("keydown", function (e) {
+    $("#partNameSearch").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
             onUnifySearch();
         }
         
     });
-
+    
+    onUnifySearch();
 });
 
 function onUnifySearch() {
     var params = {};
-    params.queryCode = nui.get("queryCodeSearch").getValue();
+    params.partCode = nui.get("partCodeSearch").getValue();
     params.namePy = nui.get("namePySearch").getValue();
-    params.fullName = nui.get("fullNameSearch").getValue();
+    params.partName = nui.get("partNameSearch").getValue();
     rightUnifyGrid.load({params:params,token:token});
  
 }
 
+function onActionRenderer(e) {
+    var grid = e.sender;
+    var record = e.record;
+    var uid = record._uid;
+    var rowIndex = e.rowIndex;
+
+    var s =  '<a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')">修改提成</a> ';
+           
+    return s;
+}
 function selectPart(callback, checkcallback) {
     nui.open({
         targetWindow : window,
@@ -129,12 +140,12 @@ function addUnifyDetail(row){
     var newRow = {
         partId: row.id,
         partCode: row.code,
-        fullName: row.fullName
+        partName: row.name
     };
     rightUnifyGrid.addRow(newRow);
 }
 
-var saveUnifyUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePartPrice.biz.ext";
+var saveUnifyUrl = baseUrl + "com.hsapi.repair.baseData.crud.saveRpbPart.biz.ext";
 function saveUnifyPart(){
 
     var data = rightUnifyGrid.getChanges();
@@ -162,7 +173,7 @@ function saveUnifyPart(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("保存成功!","S");
+//                showMsg("保存成功!","S");
                 rightUnifyGrid.reload();
                 
             } else {

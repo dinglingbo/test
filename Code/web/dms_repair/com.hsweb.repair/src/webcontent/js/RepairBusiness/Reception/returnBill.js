@@ -1230,7 +1230,21 @@ function finish(){
 		showMsg("此单已审核,不能重复审核!","S");
         return;
 	} 
-	
+	/*var maintain = billForm.getData();
+	var addSellPart = nui.get("rpsPartGrid").getData();
+	var sellPartAdd = rpsPartGrid.getChanges("added");
+	var sellPartUpdate = rpsPartGrid.getChanges("modified");
+	var sellPartDelete = rpsPartGrid.getChanges("removed");
+	maintain.partAmt = total;
+	total = null;
+	var json = nui.encode({
+		"maintain" : maintain,
+		"addSellPart" : addSellPart,
+		"sellPartAdd" : sellPartAdd,
+		"sellPartUpdate" : sellPartUpdate,
+		"sellPartDelete" : sellPartDelete,
+		token : token
+	});	*/
 	var json = nui.encode({
 		"main" : main,
 		token : token

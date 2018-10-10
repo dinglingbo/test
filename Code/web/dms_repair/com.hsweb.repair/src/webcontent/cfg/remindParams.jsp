@@ -9,7 +9,7 @@
 -->
 <head>
 <title>提醒设置</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/remindParams.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/remindParams.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -101,7 +101,7 @@
                             <td class="tbtext ">车辆保养周期</td>
                             <td >
                                 <input name="param2" class="nui-spinner" width="50px" format="0" 
-                                    id="param2" maxValue="999999" showButton="false"/>月提醒
+                                    id="param2" maxValue="999999" showButton="false"/>天提醒
                             </td>
                         </tr>
                         <tr class="htr">
@@ -129,7 +129,7 @@
                             <td class="tbtext ">距离卡到期日期</td>
                             <td >
                                 <input name="param6" class="nui-spinner" width="50px" format="0" 
-                                    id="param6" maxValue="999999" showButton="false"/>月提醒
+                                    id="param6" maxValue="999999" showButton="false"/>天提醒
                             </td>
                         </tr>
                         <tr class="htr">
@@ -150,7 +150,7 @@
                             <td class="tbtext ">当客户连续</td>
                             <td >
                                 <input name="param9" class="nui-spinner" width="50px" format="0" 
-                                    id="param9" maxValue="999999" showButton="false"/>月未到店服务则视为流失客户
+                                    id="param9" maxValue="999999" showButton="false"/>天未到店服务则视为流失客户
                             </td>
                         </tr>
                         <tr class="htr">

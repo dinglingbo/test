@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnMain.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnMain.js?v=1.0.5"></script>
 <style type="text/css">
 
 .title {
@@ -102,6 +102,7 @@
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
+	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
 	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>
                  </div>
@@ -118,7 +119,7 @@
            <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div> 
            <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center"></div>   
 <!--            <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"> </div> --> 
-           <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" name="partQty"> </div>
+           <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="退货数量" name="partQty"> </div>
            <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价" name="partUnitPrice"> </div>
 	       <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"> </div>
 	       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>

@@ -150,6 +150,7 @@ function getSearchParam(){
 	params.guestName=comSearchGuestId.getValue();
 	params.endDate = searchEndDate.getValue();
 	params.startDate = searchBeginDate.getValue();
+	params.isDiffOrder = 0;
     return params;
 }
 var currType = 2;

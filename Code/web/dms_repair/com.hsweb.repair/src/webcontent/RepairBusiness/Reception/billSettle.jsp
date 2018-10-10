@@ -11,7 +11,7 @@
 -->
 <head>
 <title>工单结算</title>
-<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.5">
+<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.8">
 </script>
 <style type="text/css">
 .vpanel_heading {
@@ -134,7 +134,7 @@ a.optbtn {
 	</div>
 	<table style="width:100%; height:auto;">
 		<tr>
-			<td colspan="3"><div id="rtTr" class="vpanel_heading" style="background-color: #f3f4f6; color: #2d95ff;"><span>收款(如果有费用支出，请到其它应付单进行付款!)</span></div></td>
+			<td colspan="3"><div id="rtTr" class="vpanel_heading" style="background-color: #f3f4f6; color: #2d95ff;"><span>收款(如果有费用支出，请到应付账款管理进行付款!)</span></div></td>
 		</tr>
 
 		<tr >

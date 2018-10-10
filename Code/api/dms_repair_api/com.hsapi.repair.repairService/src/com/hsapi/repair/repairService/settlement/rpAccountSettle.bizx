@@ -85,6 +85,18 @@
       <process:to type="query">rpAccountHash/billTypeCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/carId</process:from>
+      <process:to type="query">rpAccountHash/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/carNo</process:from>
+      <process:to type="query">rpAccountHash/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/carVin</process:from>
+      <process:to type="query">rpAccountHash/carVin</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">rpAccount/rpAmt</process:from>
       <process:to type="query">rpAccountHash/rpAmt</process:to>
     </process:copy>

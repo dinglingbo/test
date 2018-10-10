@@ -472,7 +472,7 @@
 	</update>
 	
 	
-	<select id="queryGuestEnterRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
+	<select id="queryGuestEnterRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.RtnRecord"> 
 		SELECT a.id AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,
 		       b.id as mainId, b.service_id AS serviceId, b.guest_id AS guestId, a.part_id AS partId,
 		       a.part_code AS partCode, a.part_name AS partName, a.full_name as fullName, a.enter_unit_id AS unitId,
@@ -515,7 +515,7 @@
 
     </select>
     
-    <select id="queryGuestOutRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.RtnRecord"> 
+    <select id="queryGuestOutRtnableRecord" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.pts.RtnRecord"> 
 		SELECT a.ID AS sourceId, CASE WHEN IFNULL(a.root_id,0) = 0 THEN a.id ELSE a.root_id END AS rootId,
 		       b.id as mainId, b.service_id AS serviceId, b.guest_id AS guestId, a.part_id AS partId,
 		       a.part_code AS partCode, a.part_name AS partName, a.out_unit_id AS unitId,

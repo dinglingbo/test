@@ -2678,15 +2678,15 @@ function pay(){
             return;
         }
         var sellData = sellForm.getData();
-/*        var params = {
-            serviceId:data.id||0,
-            guestId:data.guestId||0,
-            data:sellData
-        };*/
         var params = {
-        		billData:billData,
-        		sellData:sellData
-        };
+            serviceId:billData.id||0,
+            guestId:billData.guestId||0,
+            data:sellData
+        }
+        // var params = {
+        // 		billData:billData,
+        // 		sellData:sellData
+        // };
         doBillPay(params, function(data){
             data = data||{};
             if(data.action){

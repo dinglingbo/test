@@ -1566,3 +1566,22 @@ function onChanged() {
 	document.getElementById('rpAmt').innerHTML = rtn.rpAmt-dk;
 
 }
+
+function doPay(){
+	var rows = rRightGrid.getSelecteds();
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.frm.manage.receivable.flow?token="+token,
+        title: "工单结算", width: "60%", height: "80%", 
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getRtnData();
+			data = data || {};
+			data.action = action;
+			callback && callback(data);
+        }
+    });
+}

@@ -24,7 +24,7 @@
                     <input class="nui-textbox" emptyText="输入查询条件" width="120"/>
                     <span>状态:</span>
                     <input class="nui-combobox"  width="80" allowInput="false"/>
-                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch">查询</a>
+                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="">查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="icon-add" plain="true" onclick="addComplain()">投诉登记</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="">维修档案</a>

@@ -119,9 +119,10 @@ $(document).ready(function() {
     });
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
-    tree.on("beforeload",function(e){
-        e.data.token = token;
-    });
+    tree.load({token:token});
+//    tree.on("beforeload",function(e){
+//        e.data.token = token;
+//    });
     // console.log("xxx");
 
     getAllPartBrand(function(data) {

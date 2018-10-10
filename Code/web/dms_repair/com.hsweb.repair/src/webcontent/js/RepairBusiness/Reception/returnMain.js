@@ -302,7 +302,7 @@ function pay(){
 
 
 
-var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.UpdateMainStatusAndRpsPart.biz.ext";
+var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateReturnMainAndPart.biz.ext";
 function finish(){
 
 	var main = mainGrid.getSelected();

@@ -1031,6 +1031,7 @@ function setyouhuilu(){
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
 	var main = billForm.getData();
+	var isSettle = main.isSettle||0;
 	var editor = e.editor;
 	var record = e.record;
 	var row = e.row;
@@ -1209,7 +1210,7 @@ function saveBatch(){
 }
 
 //审核
-var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.UpdateMainStatusAndRpsPart.biz.ext";
+var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateReturnMainAndPart.biz.ext";
 var b = null;
 function finish(){
 	

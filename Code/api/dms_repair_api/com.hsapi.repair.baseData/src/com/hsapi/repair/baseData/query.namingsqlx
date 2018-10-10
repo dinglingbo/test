@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <select id="queryRpbPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id AS id,
+			a.tenant_id AS tenantId,
+			a.orgid AS orgid,
+			a.part_id AS partId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.sales_deduct_type AS salesDeductType,
+			a.sales_deduct_value AS salesDeductValue,
+			a.sell_price AS sellPrice,
+			a.remark AS remark,
+			a.is_disabled AS isDisabled,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate
+		FROM
+			wb_repair.rpb_part a 
+			INNER JOIN  wb_common.com_attribute b
+			on a.part_id =b.id
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code = #partCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (b.name_py like '%$namePy$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+	</select>
+</sqlMap>

@@ -458,6 +458,7 @@
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="link15" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="608" y="146"/>
@@ -542,6 +543,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">105</process:from>
       <process:to type="query">params/BillTypeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/carId</process:from>
+      <process:to type="query">params/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/carNo</process:from>
+      <process:to type="query">params/carNo</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">

@@ -448,7 +448,7 @@ $(document).ready(function ()
                 //e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
                 //            '<span class="fa fa-plus" onClick="javascript:addItemNewRow()" title="添加行">&nbsp;&nbsp;</span>' +
                 //            ' <span class="fa fa-close" onClick="javascript:deleteItemRow()" title="删除行"></span>';
-                e.cellHtml = s
+                e.cellHtml = s;
                 break;
             case "serviceTypeId":
                 var type = record.type||0;

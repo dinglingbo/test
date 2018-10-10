@@ -1014,7 +1014,6 @@
     <targetConnections>link44</targetConnections>
     <targetConnections>link45</targetConnections>
     <targetConnections>link46</targetConnections>
-    <targetConnections>link53</targetConnections>
     <targetConnections>link64</targetConnections>
     <targetConnections>link68</targetConnections>
     <location x="-1075" y="325"/>
@@ -1047,11 +1046,7 @@
     <node>assign17</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="link47" isDefault="true" type="transition">
-      <sourceNode>assign19</sourceNode>
-      <targetNode>invokePojo7</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link71" name="不判断是否存在相同" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link71" name="不判断是否存在相同" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
       <targetNode>subprocess5</targetNode>
       <process:transitionCondition>
@@ -1097,65 +1092,6 @@
     <location x="-932" y="188"/>
     <figSize height="17" width="39"/>
     <node>assign19</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="查询是否存在相同套餐" displayName="查询是否存在相同工时" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link51" name="link51" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo7</sourceNode>
-      <targetNode>subprocess5</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link52" name="link52" displayName="连接线" type="transition">
-      <sourceNode>invokePojo7</sourceNode>
-      <targetNode>assign18</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">pkgList</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link49</targetConnections>
-    <location x="-843" y="176"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo7label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.queryEntitiesByCriteriaEntity</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">pkgList</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
-    <location x="-892" y="212"/>
-    <figSize height="17" width="121"/>
-    <node>invokePojo7</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign18</sourceNode>
-      <targetNode>end3</targetNode>
-    </sourceConnections>
-    <targetConnections>link52</targetConnections>
-    <location x="-846" y="236"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign18label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">此单已存在相同套餐,不能再添加</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="-851" y="272"/>
-    <figSize height="17" width="39"/>
-    <node>assign18</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insPackageDetailById" displayName="insPackageDetailById" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" isDefault="true" type="transition">
@@ -1468,7 +1404,6 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link51</targetConnections>
     <targetConnections>link71</targetConnections>
     <location x="-720" y="151"/>
     <size height="27" width="27"/>
@@ -1530,7 +1465,7 @@
     <figSize height="17" width="39"/>
     <node>assign25</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign26" name="赋值26" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign26" name="赋值26" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link66" name="link66" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign26</sourceNode>
       <targetNode>assign15</targetNode>

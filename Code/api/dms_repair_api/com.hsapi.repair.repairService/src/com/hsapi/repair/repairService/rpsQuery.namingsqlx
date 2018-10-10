@@ -775,4 +775,35 @@
 			
 			ORDER BY A.record_date desc
       </select>
+      <select id="getRpsPartByMaintainGuestId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+    	    a.id id,
+			a.service_id serviceId,
+			a.part_id partId,
+			a.part_name partName,
+			a.part_name_id partNameId,
+			a.part_brand_id partBrandId,
+			a.unit unit,
+			a.part_code partCode,
+			a.amt amt,
+			a.qty qty,
+			a.status status,
+			a.unit_price unitPrice,
+			a.rate*100.0 rate,
+			a.subtotal subtotal,
+			a.discount_amt discountAmt,
+			a.sale_man_id saleManId,
+			a.sale_man saleMan,
+			a.record_date recordDate,
+			a.out_return_qty outReturnQty,
+			a.detail_id detailId
+		FROM
+			rps_part a
+			inner JOIN rps_maintain b ON (a.service_id = b.id )
+		WHERE
+			b.orgid = #orgid#
+			AND b.is_settle = 1
+			AND b.guest_id = #guestId#	
+			AND a.qty != 0
+	</select>
 </sqlMap>

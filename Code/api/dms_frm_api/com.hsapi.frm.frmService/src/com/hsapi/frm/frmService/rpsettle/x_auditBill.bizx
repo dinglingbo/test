@@ -137,7 +137,7 @@
     <chidren>assign13</chidren>
     <chidren>assign14</chidren>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="rpAccountNT" displayName="x_updateBillAccountSign" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="rpAccountNT" displayName="rpAccountNT" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>subprocess1</targetNode>
@@ -184,6 +184,9 @@
         <process:inputVariable id="6" name="dc" type="expression" value="Int" valueType="Primitive" pattern="reference">dc*-1</process:inputVariable>
         <process:inputVariable id="7" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">billRemark</process:inputVariable>
         <process:inputVariable id="8" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billTypeCode</process:inputVariable>
+        <process:inputVariable id="9" name="carId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="10" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="11" name="carVin" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -462,8 +465,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="878" y="186"/>
-    <figSize height="17" width="130"/>
+    <location x="873" y="186"/>
+    <figSize height="17" width="141"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" grouped="true" type="assign">

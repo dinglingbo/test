@@ -12,7 +12,6 @@ var abcType = null;
 var partBrandId = null;
 var qualityTypeId = null;
 var unit = null;
-var qualityList = [];
 var qualityHash = {};
 var partBrandIdHash = {};
 var partBrandIdList = [];
@@ -76,16 +75,16 @@ $(document).ready(function(v)
     getAllPartBrand(function(data)
     {
         data = data||{};
-        qualityList = data.quality;
-        qualityList.forEach(function(v)
+        qualityTypeIdList = data.quality;
+        qualityTypeIdList.forEach(function(v)
         {
             qualityHash[v.id] = v;
         });
-        nui.get('qualityTypeId').setData(qualityList);
+        nui.get('qualityTypeId').setData(qualityTypeIdList);
         partBrandIdList = data.brand;
         partBrandIdList.forEach(function(v)
         {
-        	partBrandIdHash[v.id] = v; 
+        	partBrandIdHash[v.id] = v;
         });
         
         
@@ -97,11 +96,12 @@ $(document).ready(function(v)
             });
         });
         initCarBrand("applyCarbrandId",function(){
+        	applyCarModelList=data.data;
             initDicts({
                 unit:UNIT,// --单位
 //    	                abcType:ABC_TYPE // --ABC分类
             },function(){
-                //onSearch();
+                //onSearch();          	
             });
         });
     });
@@ -267,15 +267,28 @@ function setData(data)
     {
         initComboBox();
     }
+    
+    if(data.applyCarModelList){
     applyCarModelList = data.applyCarModelList||[];
+    }
+    
+    if(data.partBrandIdList){
     partBrandIdList = data.partBrandIdList||[];
+    
     partBrandIdList.forEach(function(v)
     {
         partBrandIdHash[v.id] = v;
     });
+    }
+    
+    if(data.unitList){
     unitList = data.unitList||[];
+    }
+    
+    if(data.qualityTypeIdList){
     qualityTypeIdList = data.qualityTypeIdList||[];
-
+    }
+    
     applyCarModel.setData(applyCarModelList);
     applyCarModel.on("valuechanged",function()
     {
@@ -284,7 +297,10 @@ function setData(data)
     });
     qualityTypeId.setData(qualityTypeIdList);
     //unit.setData(unitList);
-
+    
+    if(data.comPartCode){
+    	nui.get("code").setValue(data.comPartCode);
+    }
     if(data.partData)
     {
         if(!basicInfoForm)
@@ -351,4 +367,9 @@ function onQualityTypeIdChanged(){
         return v.parentId == qId;
     });
     partBrandId.setData(list);
+}
+
+function getData(){
+	var data=basicInfoForm.getData();
+	return data;
 }

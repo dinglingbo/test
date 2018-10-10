@@ -823,6 +823,15 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
+	var data = {
+			packageSubtotal:0,
+			packagePrefAmt:0,
+			itemSubtotal:0,
+			itemPrefAmt:0,
+			partSubtotal:0,
+			partPrefAmt:0,
+			mtAmt:0
+	};
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
@@ -834,7 +843,7 @@ function add(){
     rpsPackageGrid.clearRows();
     rpsItemGrid.clearRows();
     billForm.setData([]);
-    sellForm.setData([]);
+    sellForm.setData(data);
     sendGuestForm.setData([]);
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);

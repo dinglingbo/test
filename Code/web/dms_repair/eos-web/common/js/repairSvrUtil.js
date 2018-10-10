@@ -31,6 +31,8 @@
 	18、购买计次卡，充值
 
 	19、报销单
+	
+	20、获取收支项目
 
 */
 
@@ -300,6 +302,28 @@ function svrSetItemPartRateBatch(params, callback, unmaskcall){
 			unmaskcall && unmaskcall(null);
 		}
 	});
+}
+
+var inComeExpensesUrl = window._rootFrmUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+function svrInComeExpenses(params, callback) {
+    //var params = {itemTypeId : 1, isMain: 0};
+    nui.ajax({
+        url : inComeExpensesUrl,
+        data : {
+            params: params,
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 
 //新增客户
@@ -576,11 +600,13 @@ function doSetStyle(status, isSettle){
 }
 
 
-function doNoPay(serviceId,allowanceAmt){
+function doNoPay(serviceId,allowanceAmt,receiveData,payData){
 	var json = {
-			serviceId:serviceId,
-			allowanceAmt:allowanceAmt,
-			token:token
+		serviceId:serviceId,
+		allowanceAmt:allowanceAmt,
+		receiveData:receiveData,
+		payData:payData,
+		token:token
 	};
 	
     nui.confirm("确定将此单加入待结算", "友情提示",function(action){

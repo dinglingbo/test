@@ -8,8 +8,7 @@ var rightUnifyGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryRpbPart.bi
 var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
 var salesDeductTypeList=[{id:"1",text:"原价"},{id:"2",text:"折后价"},{id:"3",text:"产值"}];
 var salesDeductTypeEl= null;
-//var advancedDecuetSetWin = null;
-//var basicInfoForm=null;
+
 var requiredField = {
 		sellPrice 		: "售价",
 		salesDeductType: "提成类型",
@@ -20,22 +19,7 @@ $(document).ready(function(v)
     rightUnifyGrid = nui.get("rightUnifyGrid");
     rightUnifyGrid.setUrl(rightUnifyGridUrl);
     advancedDecuetSetWin=nui.get('advancedDecuetSetWin');
-//    salesDeductTypeEl = nui.get("salesDeductType");
-//    basicInfoForm=new nui.Form("#basicInfoForm"); 
-//    $("#queryCode").bind("keydown", function (e) {
-//
-//        if (e.keyCode == 13) {
-//            onPartSearch();
-//        }
-//        
-//    });
-//    $("#namePy").bind("keydown", function (e) {
-//
-//        if (e.keyCode == 13) {
-//            onPartSearch();
-//        }
-//        
-//    });
+
     $("#partName").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
@@ -104,51 +88,7 @@ function onUnifySearch() {
  
 }
 
-//function onActionRenderer(e) {
-//    var grid = e.sender;
-//    var record = e.record;
-//    var uid = record._uid;
-//    var rowIndex = e.rowIndex;
-//
-//    var s =  '<a class="Edit_Button" href="javascript:editRow(\'' + uid + '\')">修改提成</a> ';
-//           
-//    return s;
-//}
 
-//function editRow(row_uid){
-//	advancedDecuetSetWin.show();
-//	var row= rightUnifyGrid.getSelected();
-//	if(row.salesDeductType || row.salesDeductValue){
-//		nui.get('salesDeductType').setValue(row.salesDeductType);
-//		nui.get('salesDeductValue').setValue(row.salesDeductValue);
-//	}
-//
-//}
-
-//function onAdvancedAddCancel(){
-//	advancedDecuetSetWin.hide();
-//}
-//function onAdvancedAddOk(){
-//	var data=basicInfoForm.getData();
-//	for(var key in requiredField){
-//		if(!data[key] || data[key].trim().length==0)
-//        {
-//            showMsg(requiredField[key]+"不能为空", "W");
-//            return;
-//        }
-//	}
-//	var row = rightUnifyGrid.getSelecteds();
-//	var salesDeductType= nui.get('salesDeductType').getValue();
-//	var salesDeductValue=nui.get('salesDeductValue').getValue();
-//	var newRow={
-//			salesDeductType : salesDeductType,
-//			salesDeductValue :salesDeductValue
-//	};
-//	for(var i=0;i<row.length;i++){
-//		rightUnifyGrid.updateRow(row[i],newRow);
-//	}
-//	advancedDecuetSetWin.hide();
-//}
 function selectPart(callback, checkcallback) {
     nui.open({
         targetWindow : window,
@@ -242,13 +182,7 @@ function saveUnifyPart(){
         }
 		
 	}
-//	for(var key in requiredField){
-//		if(!data[key] || data[key].trim().length==0)
-//        {
-//            showMsg(requiredField[key]+"不能为空", "W");
-//            return;
-//        }
-//	}
+
     var data = rightUnifyGrid.getChanges();
     if(data.length<=0) return;
     var addList = rightUnifyGrid.getChanges("added");
@@ -322,48 +256,3 @@ function importUnifyPart(){
     });
 }
 
-//function onRateValidation(e){
-//	var el = e.sender.id;
-//	var value = 0;
-//	if(el == "salesDeductValue"){
-//		value = salesDeductTypeEl.getValue();
-//		if(value == 4){
-//			if(e.value == "" || e.value == null){
-//
-//			}else{
-//				var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$|0$)/;
-//				if (!reg.test(e.value)) {
-//					e.errorText = "请输入大于等于0的整数或者保留两位小数";
-//					e.isValid = false;
-//					showMsg("请输入大于0的整数或者保留两位小数","W");
-//				}
-//			}
-//		}else {
-//			if (e.isValid) {
-//				//var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
-//				if(e.value == "" || e.value == null){
-//
-//				}else{
-//					var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
-//					if (!reg.test(e.value)) {
-//						e.errorText = "请输入0~100的数,最多可保留两位小数";
-//						e.isValid = false;
-//						showMsg("请输入0~100的数,最多可保留两位小数","W");
-//					}
-//				}
-//			}
-//		}
-//	}
-//}
-//
-//function hidePercent(e){
-//	var value = e.value;
-//	var el = e.sender.id;
-//	if(el == "salesDeductType"){
-//		if(value == 4){
-//			$("#salesDeductValue").next().hide();
-//		}else {
-//			$("#salesDeductValue").next().show();
-//		}
-//	}
-//}

@@ -567,7 +567,7 @@ function doSelectBasicData(BasicDataUrl,title,params,callback){
 function doBillPay(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
-        title: "工单结算", width: "60%", height: "80%", allowDrag:true, allowResize:false,
+        title: "工单结算", width: "80%", height: "90%", 
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);

@@ -2668,24 +2668,20 @@ function showCarCheckInfo(){
 
 function pay(){
 	
-	var billData = billForm.getData();
-    if(!billData.id){
+	var data = billForm.getData();
+    if(!data.id){
         showMsg("请先保存工单!","W");
         return;
     }else{
-        if(billData.status != 2){
+        if(data.status != 2){
             showMsg("本工单未完工,不能结算!","W");
             return;
         }
         var sellData = sellForm.getData();
-/*        var params = {
+        var params = {
             serviceId:data.id||0,
             guestId:data.guestId||0,
             data:sellData
-        };*/
-        var params = {
-        		billData:billData,
-        		sellData:sellData
         };
         doBillPay(params, function(data){
             data = data||{};

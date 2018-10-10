@@ -277,7 +277,6 @@ function onPrint(e){
             source : e,
             serviceId : main.id
 		};
-        
         doPrint(params);
 	}else{
         showMsg("请先保存工单,再打印!","W");
@@ -1199,8 +1198,8 @@ function saveBatch(){
 					showMsg("保存成功");
 													
 				} else {
-					rpsPartGrid.reject();
-					showMsg(returnJson.errMsg);
+					//rpsPartGrid.reject();
+					showMsg(returnJson.errMsg,"w");
 				}
 			}
 		});

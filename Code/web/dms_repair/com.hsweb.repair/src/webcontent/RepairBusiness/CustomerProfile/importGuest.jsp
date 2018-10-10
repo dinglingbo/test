@@ -133,7 +133,7 @@
 	</div>
 
     <div id="advancedTipWin" class="nui-window"
-        title="未成功导入配件" style="width:400px;height:200px;"
+        title="未成功导入客户" style="width:400px;height:200px;"
         showModal="true"
         allowResize="false"
         allowDrag="true">

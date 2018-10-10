@@ -6,15 +6,16 @@
  var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext";
 
  var statusHash = ["草稿","提交","完成"];
- var advancedSearchWin = null;
+ var advancedSearchWin = null; 
  var advancedSearchForm = null;
- var advancedSearchFormData = null;
+ var advancedSearchFormData = null; 
  $(document).ready(function ()
  {
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
+    leftGrid.load();
     leftGrid.on("drawcell", function (e) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
@@ -111,22 +112,34 @@ function onAdvancedSearchOk()
 function view() {
     var row = leftGrid.getSelected();
     if(row){ 
-        newInsuranceDetail(row);
+        editInsuranceDetail(row);
     }else{
         nui.alert("请先选择一条记录！");
     }
 }
 
-function newInsuranceDetail(row) {
+function editInsuranceDetail(row) {
     var item={};
-    item.id = "checkPrecheckDetail";
+    item.id = "InsuranceDetail";
     item.text = "车险详情";
     item.url = webPath + contextPath + "/repair/RepairBusiness/CIRegister/CarInsuranceDetail.jsp";
     item.iconCls = "fa fa-cog";
     var params = {};
     params = { 
+        id:row.id,
         data:row,
         actionType:"edit"
     };
     window.parent.activeTabAndInit(item,params);
+}
+
+function newInsuranceDetail() {
+    var item={};
+    item.id = "InsuranceDetail";
+    item.text = "车险详情";
+    item.url = webPath + contextPath + "/repair/RepairBusiness/CIRegister/CarInsuranceDetail.jsp";
+    item.iconCls = "fa fa-cog";
+    window.parent.activeTab(item);
+    //var params = {};
+    //window.parent.activeTabAndInit(item,params);
 }

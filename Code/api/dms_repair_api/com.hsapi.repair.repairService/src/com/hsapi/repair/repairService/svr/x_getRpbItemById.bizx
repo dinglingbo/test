@@ -332,7 +332,7 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign13</targetNode>

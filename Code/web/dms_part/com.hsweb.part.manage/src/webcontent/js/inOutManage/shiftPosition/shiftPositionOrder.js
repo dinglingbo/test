@@ -1112,13 +1112,12 @@ function addSelectPart(){
         }else{
             rightGrid.addRow(newRow);
         }
-        rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
-
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
         partShow = 0;
-        var orderQty = nui.get("orderQty");
-		orderQty.focus();
+        rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
+        //var orderQty = nui.get("orderQty");
+	   	//orderQty.focus();
     }else{
         showMsg("请选择配件!","W");
         return;
@@ -1129,8 +1128,8 @@ function onPartClose(){
     advancedMorePartWin.hide();
     morePartGrid.setData([]);
     partShow = 0;
-    var orderQty = nui.get("orderQty");
-	orderQty.focus();
+    /*var orderQty = nui.get("orderQty");
+	orderQty.focus();*/
 
     var newRow = {comPartCode: oldValue};
     rightGrid.updateRow(oldRow, newRow);

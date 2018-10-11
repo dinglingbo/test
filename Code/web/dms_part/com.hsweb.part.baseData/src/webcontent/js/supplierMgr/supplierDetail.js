@@ -259,7 +259,7 @@ function setData(data)
         otherForm.setData(supplier);
 
         onProvinceSelected("cityId");
-        contactInfoForm.setData(supplier);
+        //contactInfoForm.setData(supplier);
         nui.get("isClient").setValue(supplier.isClient);
         nui.get("isSupplier").setValue(supplier.isSupplier);
         nui.get("isDisabled").setValue(supplier.isDisabled);

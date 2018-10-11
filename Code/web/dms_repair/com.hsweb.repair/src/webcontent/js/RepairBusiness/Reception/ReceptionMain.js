@@ -27,6 +27,7 @@ var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
+var advancedSearchWin = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"工时",
@@ -45,6 +46,7 @@ $(document).ready(function ()
     editFormDetail = document.getElementById("editFormDetail");
     innerItemGrid = nui.get("innerItemGrid");
     innerpackGrid = nui.get("innerpackGrid");
+	advancedSearchWin = nui.get("advancedSearchWin");
     innerItemGrid.setUrl(getRpsItemUrl);
     innerpackGrid.setUrl(getdRpsPackageUrl);
 
@@ -203,12 +205,19 @@ var statusHash = {
     "4" : "已结算"
 };
 function advancedSearch(){
-    if(document.getElementById("advancedMore").style.display=='block'){
-        document.getElementById("advancedMore").style.display='none';
-    }else{
-        document.getElementById("advancedMore").style.display='block';
-    }
-    
+    // if(document.getElementById("advancedMore").style.display=='block'){
+    //     document.getElementById("advancedMore").style.display='none';
+    // }else{
+    //     document.getElementById("advancedMore").style.display='block';
+    // }
+    advancedSearchWin.show();
+	// advancedSearchForm.clear();
+	// if (advancedSearchFormData) {
+	// 	advancedSearchForm.setData(advancedSearchFormData);
+	// }else{
+	// 	sOrderDate.setValue(getWeekStartDate());
+	// 	eOrderDate.setValue(addDate(getWeekEndDate(), 1));
+	// }
 }
 function clear(){
     advancedSearchForm.setData([]); 

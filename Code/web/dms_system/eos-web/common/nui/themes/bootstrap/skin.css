@@ -309,14 +309,14 @@ body .mini-error .mini-textboxlist-border
 {
     background:url(images/buttonedit/date.gif) no-repeat  50% 50%;
 }
-.mini-buttonedit-up span, .mini-buttonedit-down span
+/* .mini-buttonedit-up span, .mini-buttonedit-down span
 {
     background:url(images/buttonedit/spinner_arrows.png) no-repeat 0px 50%; 
 }
 .mini-buttonedit-down span
 {
     background-position:-16px 50%;
-}
+} */
 
 /* textboxlist
 ==========================================*/

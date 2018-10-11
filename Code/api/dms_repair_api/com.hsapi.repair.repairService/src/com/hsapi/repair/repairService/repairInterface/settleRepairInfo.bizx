@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="settleRepairInfo.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维修工单要更新维修表的状态，结算数据，更新计次卡的可使用数量，更新客户储值卡余额&#xD;&#xA;储值卡要更新结算状态，生成客户储值卡&#xD;&#xA;计次卡要更新结算状态" title="Administrator&#x9;18-9-9 下午7:31">
-    <location x="92" y="-30"/>
+    <location x="92" y="-105"/>
     <size height="106" width="631"/>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">

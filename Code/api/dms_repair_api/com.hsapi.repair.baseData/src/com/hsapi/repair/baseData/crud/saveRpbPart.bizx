@@ -184,8 +184,8 @@
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
-    <location x="545" y="85"/>
-    <size height="217" width="264"/>
+    <location x="545" y="105"/>
+    <size height="197" width="264"/>
     <chidren>assign2</chidren>
     <chidren>assign4</chidren>
     <chidren>assign5</chidren>
@@ -196,7 +196,7 @@
     <chidren>invokePojo7</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
-    <location x="537" y="213"/>
+    <location x="537" y="215"/>
     <figSize height="20" width="40"/>
     <node>loopstart1</node>
   </nodes>
@@ -212,13 +212,13 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
-    <location x="545" y="181"/>
+    <location x="545" y="183"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
     <process:iterate iterable="addList" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
-    <location x="762" y="213"/>
+    <location x="761" y="215"/>
     <figSize height="20" width="70"/>
     <node>loopend1</node>
   </nodes>
@@ -229,7 +229,7 @@
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <targetConnections>link8</targetConnections>
-    <location x="785" y="181"/>
+    <location x="784" y="183"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
   </nodes>
@@ -519,7 +519,7 @@
     <figSize height="20" width="61"/>
     <node>transactionrollback0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="运算逻辑" displayName=" Query according to  criteria Entity" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="queryEntitiesByCriteriaEntity" displayName=" Query according to  criteria Entity" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo7</sourceNode>
       <targetNode>assign2</targetNode>
@@ -551,8 +551,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
-    <location x="611" y="217"/>
-    <figSize height="20" width="61"/>
+    <location x="538" y="217"/>
+    <figSize height="20" width="207"/>
     <node>invokePojo7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">

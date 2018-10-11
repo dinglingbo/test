@@ -32,7 +32,7 @@
      <div id="rpsPartGrid"
      dataField="list"
      class="nui-datagrid"
-     
+     style="width: 100%; height:100%;"
      showPager="false"
      showModified="false"
      editNextOnEnterKey="true"

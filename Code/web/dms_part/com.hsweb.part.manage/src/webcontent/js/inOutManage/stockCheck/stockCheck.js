@@ -1175,11 +1175,10 @@ function addSelectPart(){
         }else{
             rightGrid.addRow(newRow);
         }
-        rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
-
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
         partShow = 0;
+        rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
     }else{
         showMsg("请选择配件!","W");
         return;

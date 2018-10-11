@@ -27,8 +27,8 @@
 			a.modify_date AS modifyDate
 		FROM
 			wb_repair.rpb_part a 
-			INNER JOIN  wb_common.com_attribute b
-			on a.part_id =b.id
+			INNER JOIN  wb_common.com_attribute b on a.part_id =b.id
+		<!--	LEFT JOIN  wb_part.pj_part_price c on a.part_id= c.part_id -->
 		where 1=1
 		<dynamic>
     		<isNotEmpty prepend="and" property="partName">  

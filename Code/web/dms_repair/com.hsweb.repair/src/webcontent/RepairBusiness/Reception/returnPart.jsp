@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnPart.js?v=1.0.5"></script> 
 </head>
-<body>
+<body style="width: 100%; height:100%;">
   
  <div class="nui-fit">
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -28,11 +28,11 @@
      </div>
      <!-- oncellcommitedit="onCellCommitEdit"
      ondrawsummarycell="onDrawSummaryCell" -->
-   <div class="nui-fit">
+<div class="nui-fit">
      <div id="rpsPartGrid"
      dataField="list"
      class="nui-datagrid"
-     style="width: 100%; height:auto;"
+     
      showPager="false"
      showModified="false"
      editNextOnEnterKey="true"
@@ -63,8 +63,7 @@
        </div>
       </div>
     </div>
-  </div> 
-</div>
+ </div>
 	<script type="text/javascript">
     	nui.parse();
     </script>

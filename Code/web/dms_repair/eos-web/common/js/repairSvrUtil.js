@@ -567,7 +567,7 @@ function doSelectBasicData(BasicDataUrl,title,params,callback){
 function doBillPay(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
-        title: "工单结算", width: "60%", height: "80%", allowDrag:true, allowResize:false,
+        title: "工单结算", width: "70%", height: "80%", 
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);
@@ -600,13 +600,11 @@ function doSetStyle(status, isSettle){
 }
 
 
-function doNoPay(serviceId,allowanceAmt,receiveData,payData){
+function doNoPay(serviceId,allowanceAmt){
 	var json = {
-		serviceId:serviceId,
-		allowanceAmt:allowanceAmt,
-		receiveData:receiveData,
-		payData:payData,
-		token:token
+			serviceId:serviceId,
+			allowanceAmt:allowanceAmt,
+			token:token
 	};
 	
     nui.confirm("确定将此单加入待结算", "友情提示",function(action){

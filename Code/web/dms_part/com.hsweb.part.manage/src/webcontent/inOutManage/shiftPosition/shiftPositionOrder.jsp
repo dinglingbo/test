@@ -8,7 +8,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.15"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -233,7 +233,7 @@
                               </div>
                               <div header="数量金额信息" headerAlign="center">
                                   <div property="columns">
-                                      <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量">
+                                      <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="数量" >
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
                                       <div field="remark" visible="false" width="80" headerAlign="center" allowSort="true" header="备注">

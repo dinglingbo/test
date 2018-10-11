@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.7"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.8"></script>
 <style type="text/css">
 
 .title {
@@ -52,14 +52,20 @@
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">报价</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">施工</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">完工</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">待结算</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">已结算</a>
+                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有在厂</a>
+                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch(0)" id="type0">所有在厂</li>
+                        <li iconCls="" onclick="quickSearch(0)" id="type0">报价</li>
+                        <li iconCls="" onclick="quickSearch(1)" id="type1">施工</li>
+                        <li iconCls="" onclick="quickSearch(2)" id="type2">完工</li>
+                        <li iconCls="" onclick="quickSearch(3)" id="type0">待结算</li>
+                    </ul>
+
                     <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
+                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                     <span class="separator"></span>
@@ -100,24 +106,6 @@
                                    width="100%"
                                    allowInput="false"
                                    showClearButton="false"/>
-                        </td>
-                        <td class="title">
-                            <label>服务顾问：</label>
-                        </td>
-                        <td style="width:100">
-                            <input name="mtAdvisorId"
-                                 id="mtAdvisorId"
-                                 class="nui-combobox width1"
-                                 textField="empName"
-                                 valueField="empId"
-                                 emptyText="请选择..."
-                                 url=""
-                                 allowInput="true"
-                                 showNullItem="false"
-                                 width="100%"
-                                 valueFromSelect="true"
-                                 onvaluechanged=""
-                                 nullItemText="请选择..."/>
                         </td>
                         <td class="title">
                             <label>业务类型：</label>
@@ -178,18 +166,21 @@
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="40" headerAlign="center" header="进程"></div>
-                  <div field="carNO" name="carNO" width="60" headerAlign="center" header="车牌"></div>
+                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌"></div>
                   <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
                   <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
                   <div field="carVin" name="carVin" width="120" headerAlign="center" header="VIN码"></div>
-                  <div field="guestFullName" name="guestFullName" width="50" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
-                  <div field="contactName" name="contactName" width="50" headerAlign="center" header="送修人姓名"></div>
-                  <div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="送修人手机"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
-                  <div field="serviceTypeId" name="serviceTypeId" width="50" headerAlign="center" header="业务类型"></div>
-                  <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
+                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
+                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
+                  <div field="contactName" name="contactName" width="60" headerAlign="center" header="送修人姓名"></div>
+                  <div field="contactMobile" name="contactMobile" width="90" headerAlign="center" header="送修人手机"></div>
+                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
+                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div>
+                  <div field="isSettle" name="isSettle" width="60" headerAlign="center" header="结算状态"></div>
                   <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
+                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="维修日期"></div>
+                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="完工日期"></div>
+                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="结算日期"></div>
               </div>
           </div>
     </div>
@@ -246,6 +237,65 @@
    </div>
 </div>
 
+
+<div id="advancedSearchWin" class="nui-window"
+     title="高级查询" style="width:416px;height:200px;"
+     showModal="true"
+     allowResize="false"
+     allowDrag="true">
+    <div id="advancedSearchForm" class="form">
+        <table style="width:100%;">
+            <tr>
+                <td class="title">创建日期:</td>
+                <td>
+                    <input name="sCreateDate"
+                           width="100%"
+                           class="nui-datepicker"/>
+                </td>
+                <td class="">至:</td>
+                <td>
+                    <input name="eCreateDate"
+                           class="nui-datepicker"
+                           format="yyyy-MM-dd"
+                           timeFormat="H:mm:ss"
+                           showTime="false"
+                           showOkButton="false"
+                           width="100%"
+                           showClearButton="false"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">结算日期:</td>
+                <td>
+                    <input name="sAuditDate"
+                           width="100%"
+                           class="nui-datepicker"/>
+                </td>
+                <td class="">至:</td>
+                <td>
+                    <input name="eAuditDate"
+                           class="nui-datepicker"
+                           format="yyyy-MM-dd"
+                           timeFormat="H:mm:ss"
+                           showTime="false"
+                           showOkButton="false"
+                           width="100%"
+                           showClearButton="false"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">配件编码:</td>
+                <td colspan="3">
+                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="partCodeList" name="partCodeList"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align:center;padding:10px;">
+            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
+            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

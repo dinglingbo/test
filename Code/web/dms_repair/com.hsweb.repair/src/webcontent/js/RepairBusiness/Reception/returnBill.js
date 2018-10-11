@@ -277,7 +277,6 @@ function onPrint(e){
             source : e,
             serviceId : main.id
 		};
-        
         doPrint(params);
 	}else{
         showMsg("请先保存工单,再打印!","W");
@@ -945,8 +944,8 @@ function chooseReturnPart(){
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
 		title : "配件选择",
-		width : 1100,
-		height : 500,
+		width : "80%",
+		height : "50%",
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {
@@ -1031,6 +1030,7 @@ function setyouhuilu(){
 //提交单元格编辑数据前激发
 function onCellCommitEdit(e) {
 	var main = billForm.getData();
+	var isSettle = main.isSettle||0;
 	var editor = e.editor;
 	var record = e.record;
 	var row = e.row;
@@ -1198,8 +1198,8 @@ function saveBatch(){
 					showMsg("保存成功");
 													
 				} else {
-					rpsPartGrid.reject();
-					showMsg(returnJson.errMsg);
+					//rpsPartGrid.reject();
+					showMsg(returnJson.errMsg,"w");
 				}
 			}
 		});
@@ -1209,7 +1209,7 @@ function saveBatch(){
 }
 
 //审核
-var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.UpdateMainStatusAndRpsPart.biz.ext";
+var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateReturnMainAndPart.biz.ext";
 var b = null;
 function finish(){
 	
@@ -1230,11 +1230,23 @@ function finish(){
 		showMsg("此单已审核,不能重复审核!","S");
         return;
 	} 
-	
+	var maintain = billForm.getData();
+	var sellPartAdd = rpsPartGrid.getChanges("added");
+	var sellPartUpdate = rpsPartGrid.getChanges("modified");
+	var sellPartDelete = rpsPartGrid.getChanges("removed");
+	maintain.partAmt = total;
+	total = null;
 	var json = nui.encode({
+		"main" : maintain,
+		"sellPartAdd" : sellPartAdd,
+		"sellPartUpdate" : sellPartUpdate,
+		"sellPartDelete" : sellPartDelete,
+		token : token
+	});	
+	/*var json = nui.encode({
 		"main" : main,
 		token : token
-	});
+	});*/
 	
 	nui.ajax({
 		url : updUrl,

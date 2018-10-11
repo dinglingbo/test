@@ -3,37 +3,31 @@
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightUnifyGrid = null;
-//var mainTabs = null;
+
 var rightUnifyGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryRpbPart.biz.ext";
+var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
+var salesDeductTypeList=[{id:"1",text:"原价"},{id:"2",text:"折后价"},{id:"3",text:"产值"}];
+var salesDeductTypeEl= null;
+
+//var requiredField = {
+//		sellPrice 		: "售价",
+//		salesDeductType: "提成类型",
+//		salesDeductValue: "提成金额"
+//	};
 $(document).ready(function(v)
 {
-//    mainTabs = nui.get("mainTabs");
-
     rightUnifyGrid = nui.get("rightUnifyGrid");
     rightUnifyGrid.setUrl(rightUnifyGridUrl);
+    advancedDecuetSetWin=nui.get('advancedDecuetSetWin');
 
-//    $("#queryCode").bind("keydown", function (e) {
-//
-//        if (e.keyCode == 13) {
-//            onPartSearch();
-//        }
-//        
-//    });
-//    $("#namePy").bind("keydown", function (e) {
-//
-//        if (e.keyCode == 13) {
-//            onPartSearch();
-//        }
-//        
-//    });
-    $("#fullName").bind("keydown", function (e) {
+    $("#partName").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
             onPartSearch();
         }
         
     });
-    $("#queryCodeSearch").bind("keydown", function (e) {
+    $("#partCodeSearch").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
             onUnifySearch();
@@ -47,24 +41,53 @@ $(document).ready(function(v)
         }
         
     });
-    $("#fullNameSearch").bind("keydown", function (e) {
+    $("#partNameSearch").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
             onUnifySearch();
         }
         
     });
-
+    
+    onUnifySearch();
+    
+    rightUnifyGrid.on("drawcell",function(e){
+    	switch(e.field){
+    		case "salesDeductValue":
+    			if(e.row.salesDeductType && e.row.salesDeductValue){
+    				for(var i=0;i<salesDeductTypeList.length;i++){
+    					if(e.row.salesDeductType==salesDeductTypeList[i].id){    						
+    						e.cellHtml = e.row.salesDeductValue+"%";
+    					}else if(e.row.salesDeductType==4){
+    						e.cellHtml = e.row.salesDeductValue+"元";
+    					}
+    				}
+    			}
+    			break;
+    		case "salesDeductType":
+    			if(e.row.salesDeductType){
+    				for(var i=0;i<typeList.length;i++){
+    					if(e.row.salesDeductType==typeList[i].id){    						
+    						e.cellHtml = typeList[i].text || "";
+    					}
+    				}
+    			}
+    			break;
+    		default:
+    			break;
+    	}
+    });
 });
 
 function onUnifySearch() {
     var params = {};
-    params.queryCode = nui.get("queryCodeSearch").getValue();
+    params.partCode = nui.get("partCodeSearch").getValue();
     params.namePy = nui.get("namePySearch").getValue();
-    params.fullName = nui.get("fullNameSearch").getValue();
+    params.partName = nui.get("partNameSearch").getValue();
     rightUnifyGrid.load({params:params,token:token});
  
 }
+
 
 function selectPart(callback, checkcallback) {
     nui.open({
@@ -129,13 +152,36 @@ function addUnifyDetail(row){
     var newRow = {
         partId: row.id,
         partCode: row.code,
-        fullName: row.fullName
+        partName: row.name
     };
     rightUnifyGrid.addRow(newRow);
 }
 
-var saveUnifyUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePartPrice.biz.ext";
+var saveUnifyUrl = baseUrl + "com.hsapi.repair.baseData.crud.saveRpbPart.biz.ext";
 function saveUnifyPart(){
+	
+	rightUnifyGrid.validate();
+    if (rightUnifyGrid.isValid() == false) return;
+    
+	var data=rightUnifyGrid.getData();
+	for(var i=0;i<data.length;i++){
+		if(!data[i].sellPrice )
+        {
+            showMsg("售价不能为空", "W");
+            return;
+        }
+		if(!data[i].salesDeductType )
+        {
+            showMsg("提成类型不能为空", "W");
+            return;
+        }
+		if(!data[i].salesDeductValue )
+        {
+            showMsg("提成金额不能为空", "W");
+            return;
+        }
+		
+	}
 
     var data = rightUnifyGrid.getChanges();
     if(data.length<=0) return;
@@ -162,7 +208,7 @@ function saveUnifyPart(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("保存成功!","S");
+//                showMsg("保存成功!","S");
                 rightUnifyGrid.reload();
                 
             } else {
@@ -209,3 +255,4 @@ function importUnifyPart(){
         }
     });
 }
+

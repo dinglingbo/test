@@ -336,7 +336,7 @@
       <process:to type="query">serviceTemp/serviceId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">serviceTypeId</process:from>
+      <process:from type="query" pattern="reference">t/serviceTypeId</process:from>
       <process:to type="query">serviceTemp/serviceTypeId</process:to>
     </process:copy>
     <process:copy>

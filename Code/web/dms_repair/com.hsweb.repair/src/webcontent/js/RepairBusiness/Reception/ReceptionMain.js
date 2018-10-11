@@ -22,12 +22,14 @@ var receTypeIdList = [];
 var receTypeIdHash = {};
 var mtAdvisorIdEl = null;
 var serviceTypeIdEl = null;
+var serviceTypeIds = null;
 var advancedMore = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
+var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"工时",
@@ -37,11 +39,11 @@ $(document).ready(function ()
 {
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
-    beginDateEl = nui.get("sEnterDate");
-    endDateEl = nui.get("eEnterDate");
+    beginDateEl = nui.get("sRecordDate");
+    endDateEl = nui.get("eRecordDate");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     serviceTypeIdEl = nui.get("serviceTypeId");
-    advancedMore = nui.get("advancedMore");
+    serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
     editFormDetail = document.getElementById("editFormDetail");
     innerItemGrid = nui.get("innerItemGrid");
@@ -59,6 +61,7 @@ $(document).ready(function ()
         servieTypeList.forEach(function(v) {
             servieTypeHash[v.id] = v;
         });
+        serviceTypeIds.setData(servieTypeList);
     });
     initCarBrand("carBrandId",function(data) {
         brandList = nui.get("carBrandId").getData();
@@ -193,9 +196,7 @@ $(document).ready(function ()
         }
     });
 
-    var statusList = "0,1,2,3";
-    var p = {statusList:statusList};
-    doSearch(p);
+    quickSearch(0);
 });
 var statusHash = {
     "0" : "报价",
@@ -249,22 +250,24 @@ function quickSearch(type) {
     var params = {};
     switch (type) {
         case 0:
-            params.status = 0;  //制单
+            params.isSettle = 0;
+            params.isDisabled = 0;
             break;
         case 1:
-            params.status = 1;  //施工
+            params.status = 0;  //报价
             break;
         case 2:
-            params.status = 2;  //完工
-            document.getElementById("advancedMore").style.display='block';
+            params.status = 1;  //施工
+            //document.getElementById("advancedMore").style.display='block';
             break;
         case 3:
-            params.status = 2;  //待结算  is_settle
-            params.isSettle = 0;
+            params.status = 2;  //完工
+            params.balaAuditSign = 0;
             break;
         case 4:
-            params.isSettle = 1;
-            document.getElementById("advancedMore").style.display='block';
+            params.status = 2;//待结算
+            params.balaAuditSign = 1;
+            //document.getElementById("advancedMore").style.display='block';
             break;
         default:
             break;
@@ -390,7 +393,7 @@ function del(){
 function onSearch()
 {
     var params = {};
-    if(document.getElementById("advancedMore").style.display!='block'){
+    if(!advancedSearchWin.visible){
         var value = nui.get("carNo-search").getValue()||"";
         value = value.replace(/\s+/g, "");
         if(!value){
@@ -404,6 +407,7 @@ function doSearch(params) {
     var gsparams = getSearchParam();
     gsparams.status = params.status;
     gsparams.statusList = params.statusList;
+    gsparams.balaAuditSign = params.balaAuditSign;
     gsparams.isSettle = params.isSettle;
     gsparams.billTypeId = 0;
 
@@ -414,12 +418,15 @@ function doSearch(params) {
 }
 function getSearchParam() {
     var params = {};
-    if(document.getElementById("advancedMore").style.display=='block'){
-        params.sEnterDate = beginDateEl.getValue();
-        params.eEnterDate = endDateEl.getValue();
-        params.mtAuditorId = mtAdvisorIdEl.getValue();
-        params.serviceTypeId = serviceTypeIdEl.getValue();
+    if(advancedSearchWin.visible){//document.getElementById("advancedMore").style.display=='block'
+        params.sRecordDate = beginDateEl.getValue();
+        params.eRecordDate = endDateEl.getValue();
+        params.sOutDate = nui.get("sOutDate").getValue();
+        params.eOutDate = nui.get("eOutDate").getValue();
+        params.serviceTypeIdList = serviceTypeIds.getValue();
     }
+    
+    params.mtAuditorId = mtAdvisorIdEl.getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -432,6 +439,14 @@ function getSearchParam() {
         params.tel = typeValue;
     }
     return params;
+}
+function onAdvancedSearchCancel(){
+    advancedSearchWin.hide();
+}
+function onAdvancedSearchOk(){
+    var params = {};
+    doSearch(params);
+    advancedSearchWin.hide();
 }
 function add(){
     var item={};

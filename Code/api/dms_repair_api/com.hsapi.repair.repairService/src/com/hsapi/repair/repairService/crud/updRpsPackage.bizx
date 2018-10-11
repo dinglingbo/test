@@ -184,6 +184,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
+    <targetConnections>link25</targetConnections>
     <location x="1122" y="154"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -686,7 +687,7 @@
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.saveRpsServiceType</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">pkgUpdate/serviceId</process:inputVariable>
+        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">pkg/serviceId</process:inputVariable>
         <process:inputVariable id="1" name="type" type="literal" value="String" valueType="Primitive" pattern="reference">edit</process:inputVariable>
         <process:inputVariable id="2" name="serviceTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
@@ -702,9 +703,25 @@
     <node>subprocess6</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>subprocess6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">pkg/serviceTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link30</targetConnections>
     <targetConnections>link27</targetConnections>

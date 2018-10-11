@@ -27,7 +27,7 @@
                 </div>
                 <div field="subtotal" headerAlign="center" name="pkgSubtotal"
                      allowSort="false" visible="true" width="60" header="套餐金额" align="center" >
-                     <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
+                     <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
                 <div field="rate" headerAlign="center" name="pkgRate"
                      allowSort="false" visible="true" width="60" header="" align="center">

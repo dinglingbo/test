@@ -55,7 +55,10 @@ $(document).ready(function ()
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
-    initMember("mtAdvisorId",null);
+    initMember("mtAdvisorId",function(){
+        mtAdvisorIdEl.setValue(currEmpId);
+        mtAdvisorIdEl.setText(currUserName);
+    });
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -248,31 +251,38 @@ function onShowRowDetail(e) {
 }
 function quickSearch(type) {
     var params = {};
+    var queryname = "所有在厂";
     switch (type) {
         case 0:
             params.isSettle = 0;
             params.isDisabled = 0;
+            queryname = "所有在厂"
             break;
         case 1:
             params.status = 0;  //报价
+            queryname = "报价"
             break;
         case 2:
             params.status = 1;  //施工
+            queryname = "施工"
             //document.getElementById("advancedMore").style.display='block';
             break;
         case 3:
             params.status = 2;  //完工
+            queryname = "完工"
             params.balaAuditSign = 0;
             break;
         case 4:
             params.status = 2;//待结算
             params.balaAuditSign = 1;
+            queryname = "待结算"
             //document.getElementById("advancedMore").style.display='block';
             break;
         default:
             break;
     }
-
+    var menunamestatus = nui.get("menunamestatus");
+    menunamestatus.setText(queryname);
     doSearch(params);
 }
 //完工
@@ -393,14 +403,15 @@ function del(){
 function onSearch()
 {
     var params = {};
-    if(!advancedSearchWin.visible){
-        var value = nui.get("carNo-search").getValue()||"";
-        value = value.replace(/\s+/g, "");
-        if(!value){
-            showMsg("请输入查询条件!","W");
-            return;
-        }
-    }
+    
+    // if(!advancedSearchWin.visible){
+    //     var value = nui.get("carNo-search").getValue()||"";
+    //     value = value.replace(/\s+/g, "");
+    //     if(!value){
+    //         showMsg("请输入查询条件!","W");
+    //         return;
+    //     }
+    // }
     doSearch(params);
 }
 function doSearch(params) {

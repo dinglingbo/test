@@ -229,4 +229,13 @@
 	</select>
 	
 	
+	<select id="getRpsServiceType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		select DISTINCT m.serviceId as serviceId, m.serviceTypeId as serviceTypeId from 
+		(SELECT DISTINCT service_id as serviceId, service_type_id as serviceTypeId from rps_package 
+		where service_id = #serviceId# 
+		UNION
+		SELECT DISTINCT service_id as serviceId, service_type_id as serviceTypeId from rps_item
+		where service_id = #serviceId# and bill_package_id = 0) m
+	</select>
+	
 </sqlMap>

@@ -127,12 +127,12 @@ function quickSearch(type) {
 function onSearch()
 {
     var params = {};
-   // var value = nui.get("carNo-search").getValue()||"";
-    //value = value.replace(/\s+/g, "");
-   /* if(!value){
+    var value = nui.get("carNo-search").getValue()||"";
+    value = value.replace(/\s+/g, "");
+    if(!value){
         showMsg("请输入查询条件!","W");
         return;
-    }*/
+    }
     doSearch(params);
 }
 function doSearch(params) {

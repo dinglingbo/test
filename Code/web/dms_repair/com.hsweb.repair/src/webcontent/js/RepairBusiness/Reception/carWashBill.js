@@ -2078,7 +2078,7 @@ function editRpsPackage(row_uid){
         __saleManId = "";
         rpsPackageGrid.cancelEdit();
         rpsPackageGrid.beginEditRow(row);
-        rpsPackageGrid.beginEditCell(row, "pkgSubtotal");
+        rpsPackageGrid.beginEditCell(row, "subtotal");
     }
 }
 function updateRpsPackage(row_uid){

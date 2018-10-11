@@ -818,6 +818,6 @@
 			b.orgid = #orgid#
 			AND b.is_settle = 1
 			AND b.guest_id = #guestId#	
-			AND a.qty != 0
+			AND a.qty &gt; 0
 	</select>
 </sqlMap>

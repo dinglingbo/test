@@ -9,11 +9,11 @@ var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例
 var salesDeductTypeList=[{id:"1",text:"原价"},{id:"2",text:"折后价"},{id:"3",text:"产值"}];
 var salesDeductTypeEl= null;
 
-var requiredField = {
-		sellPrice 		: "售价",
-		salesDeductType: "提成类型",
-		salesDeductValue: "提成金额"
-	};
+//var requiredField = {
+//		sellPrice 		: "售价",
+//		salesDeductType: "提成类型",
+//		salesDeductValue: "提成金额"
+//	};
 $(document).ready(function(v)
 {
     rightUnifyGrid = nui.get("rightUnifyGrid");
@@ -57,9 +57,9 @@ $(document).ready(function(v)
     			if(e.row.salesDeductType && e.row.salesDeductValue){
     				for(var i=0;i<salesDeductTypeList.length;i++){
     					if(e.row.salesDeductType==salesDeductTypeList[i].id){    						
-    						e.cellHtml = e.row.salesDeductValue+"%"+salesDeductTypeList[i].text;
+    						e.cellHtml = e.row.salesDeductValue+"%";
     					}else if(e.row.salesDeductType==4){
-    						e.cellHtml = e.row.salesDeductValue+"元"+"固定金额";
+    						e.cellHtml = e.row.salesDeductValue+"元";
     					}
     				}
     			}

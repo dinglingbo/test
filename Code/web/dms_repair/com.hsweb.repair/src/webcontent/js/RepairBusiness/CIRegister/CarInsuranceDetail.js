@@ -7,11 +7,11 @@ var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsIn
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgid+"&params/isDisabled=0"; 
 var servieIdEl = null;        
-var searchNameEl = null;         
-var searchKeyEl = null; 
+var searchNameEl = null;            
+var searchKeyEl = null;  
 var mtAdvisorIdEl = null;
 var insuranceComp = null;
-var insuranceForm = null;
+var insuranceForm = null; 
 var saleManIds = null;
 var fserviceId = 0;
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
@@ -48,7 +48,7 @@ $(document).ready(function ()
             var reg = /^[0-9]*$/;//纯数字
             if(reg.test(value)){
                 params.nums = value;
- 
+
                 data.params = params;
                 e.data =data; 
                 return; 
@@ -250,7 +250,7 @@ function setInitData(params){
         html: '数据加载中...'
     });
 
-    var p = {
+       var p = {
         data:{
             guestId: params.data.guestId||0,
             contactorId: params.data.contactorId||0
@@ -309,6 +309,11 @@ function setInitData(params){
             insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
 
+            if(params.data.status != 0 ){
+                $("#addBtn").hide();
+                $("#save").hide();
+                searchNameEl.setWidth("200px");
+            }
             if(params.data.settleTypeId == 1){
                 $("#radio1").attr("checked", "checked"); 
             }
@@ -504,6 +509,9 @@ function saveData(){
             detailData:gridData
         },
         success:function(text){
+            var mainData = text.mainData;
+            nui.get("id").setValue(mainData.id);
+            detailGrid.load({serviceId:mainData.id,token:token});
             showMsg("保存成功！","S");
 
         }
@@ -523,3 +531,69 @@ function getData2() {
     return data2;
 }
 
+
+function pay() {
+    if(!nui.get("id").value){
+        showMsg("请先保存工单！","W");
+        return;
+    }
+    var msg = null;
+    var moneyCost = 0;
+    var sTypeId = null;
+
+    var b1= document.getElementsByName('settleTypeId');
+    for (var i = 0; i < b1.length; i++) {
+        if (b1[i].checked == true) {//如果选中，
+            sTypeId = b1[i].value;
+        }
+    }
+    t_amt= detailGrid.getSummaryCellEl("amt").textContent;
+    t_rtnCompRate= detailGrid.getSummaryCellEl("rtnCompRate").textContent;
+    t_rtnGuestRate= detailGrid.getSummaryCellEl("rtnGuestRate").textContent;
+    if (sTypeId == 3){
+        moneyCost = t_amt - t_rtnGuestRate;
+    }else{
+        moneyCost = t_amt;
+    }
+
+    msg="结算金额:"+
+    "<span style='color:green;font-size:18px;'>"+moneyCost+
+    "</span>元，是否结算？";
+
+    nui.showMessageBox({
+        showHeader: true,
+        width: "auto",
+        title: "结算",
+        buttons: ["保存", "结算", "取消"],
+        message: msg,
+        iconCls: "mini-messagebox-question",
+        callback: function (action) {
+            if(action == "保存"){
+
+    //nui.mask({
+    //    html:'数据加载中..'
+    //});
+    var url = baseUrl+"com.hsapi.repair.repairService.settlement.PreInsuranceReceiveSettle.biz.ext";
+    doPost({
+        url : url,
+        data : {
+            serviceId:nui.get("id").value,
+            allowanceAmt:moneyCost
+        },
+        success : function(data)
+        {
+            $("#addBtn").hide();
+            $("#save").hide();
+            showMsg(data.errMsg,data.errCode);
+        }
+    });
+
+
+}else if(action == "结算"){
+
+}else{
+    return;
+}
+}
+});
+}

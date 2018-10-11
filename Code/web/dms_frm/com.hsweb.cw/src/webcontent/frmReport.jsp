@@ -16,7 +16,8 @@ pageEncoding="UTF-8" session="false" %>
   <link href="<%=request.getContextPath()%>/cw/TextIndex.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <%@include file="/common/common.jsp"%>
+  <%@include file="/common/sysCommon.jsp"%>
+  <%@include file="/common/commonCloudPart.jsp"%>
   <style type="text/css">          
 
 </style>
@@ -118,37 +119,37 @@ pageEncoding="UTF-8" session="false" %>
     var turlb = null;
 function danju(){
     titb = "收款流水明细（收款单据）";
-    turlb = "cw/report/IncomeExpenditureDetail.jsp";
+    turlb = webPath+contextPath+"/cw/report/IncomeExpenditureDetail.jsp";
     openPaper(titb, turlb);
 }
 
 function jingying(){
     titb = "经营收支统计汇总表";
-    turlb = "cw/report/jingyingshouzhitongjibaobiao.jsp";
+    turlb = webPath+contextPath+"/cw/report/jingyingshouzhitongjibaobiao.jsp";
     openPaper(titb, turlb);
 }
 
 function yingshoumingxi(){
 	titb = "应收账款明细";
-    turlb = "cw/yingshou.jsp";
+    turlb = webPath+contextPath+"/cw/yingshou.jsp";
     openPaper(titb, turlb);
 }
 
 function yushou(){
 	titb = "预收处理汇总表";
-    turlb = "cw/yushouchuli.jsp";
+    turlb = webPath+contextPath+"/cw/yushouchuli.jsp";
     openPaper(titb, turlb);
 }
 
 function other(){
 	titb = "其他收支费用明细";
-    turlb = "cw/report/jingyingshouzhitongjibaobiao.jsp";
+    turlb = webPath+contextPath+"/cw/report/jingyingshouzhitongjibaobiao.jsp";
     openPaper(titb, turlb);
 }
 
 function zhuying(){
 	titb = "主营收款明细";
-    turlb = "cw/report/zhuyingshourumingxi.jsp";
+    turlb = webPath+contextPath+"/cw/report/zhuyingshourumingxi.jsp";
     openPaper(titb, turlb);
 }
 function openPaper(tit, url) {

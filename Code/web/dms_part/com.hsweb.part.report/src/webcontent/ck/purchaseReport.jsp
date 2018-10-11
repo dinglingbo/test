@@ -16,7 +16,8 @@ pageEncoding="UTF-8" session="false" %>
   <link href="<%=request.getContextPath()%>/cw/TextIndex.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <%@include file="/common/common.jsp"%>
+  <%@include file="/common/sysCommon.jsp"%>
+  <%@include file="/common/commonCloudPart.jsp"%>
   <style type="text/css">          
 
 </style>
@@ -40,7 +41,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="gongyingshangrank()">
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>供应商采购排行榜</p> 
+                            <p>采购排行榜</p> 
                         </a> 
 
                     </div>
@@ -95,31 +96,32 @@ pageEncoding="UTF-8" session="false" %>
 
 function cailiaocaigou(){
 	titb = "材料采购统计表";
-    turlb = "report/partPurchaseSummary.jsp";
+    turlb = webPath+contextPath+"/report/partPurchaseSummary.jsp";
     openPaper(titb, turlb);
 }
 
 function gongyingshangrank(){
-	titb = "供应商采购排行榜";
-    turlb = "report/supplierPurcheseRanking.jsp";
+	titb = "采购排行榜";
+    //turlb = webPath+contextPath+"/report/supplierPurcheseRanking.jsp";
+    turlb = webPath+contextPath+"/com.hsweb.part.manage.purcharseRank.flow";
     openPaper(titb, turlb);
 }
 
 function caigousum(){
 	titb = "采购统计表";
-    turlb = "report/partSum.jsp";
+    turlb = webPath+contextPath+"/report/partSum.jsp";
     openPaper(titb, turlb);
 }
 
 function gongyingshangsum(){
 	titb = "供应商材料采购统计表";
-    turlb = "report/gongyingshangcailiaocaigousun.jsp";
+    turlb = webPath+contextPath+"/report/gongyingshangcailiaocaigousun.jsp";
     openPaper(titb, turlb);
 }
 
 function mingxisum(){
 	titb = "采购明细统计表";
-    turlb = "report/partmingxitongji.jsp";
+    turlb = webPath+contextPath+"/report/partmingxitongji.jsp";
     openPaper(titb, turlb);
 }
 function openPaper(tit, url) {

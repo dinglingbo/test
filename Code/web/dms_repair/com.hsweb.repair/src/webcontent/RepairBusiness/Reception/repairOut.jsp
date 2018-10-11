@@ -141,7 +141,7 @@ a {
            // part :1,
            carNo:nui.get("carNo").value,
            name:nui.get("name").value,
-            sdate:sdate,
+            sEnterDate:sdate,
             eEnterDate:edate,
             status:tstatus.value,
             serviceTypeId:nui.get("serviceTypeId").value,

@@ -31,6 +31,9 @@
 		<!--	LEFT JOIN  wb_part.pj_part_price c on a.part_id= c.part_id -->
 		where 1=1
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid=0 or a.orgid =#orgid#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="partName">  
                 (a.part_name like '%$partName$%')
             </isNotEmpty>

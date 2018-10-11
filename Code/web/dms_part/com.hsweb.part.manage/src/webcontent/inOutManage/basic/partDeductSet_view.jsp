@@ -92,8 +92,8 @@ pageEncoding="UTF-8" session="false" %>
                             popupHeight="90%"
                           />
 			</div>
-			<div field="modifier" width="60" headerAlign="center" allowSort="true">创建人</div>
-			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">创建日期</div>
+			<div field="modifier" width="60" headerAlign="center" allowSort="true">操作人</div>
+			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>
 		</div>
 	</div>
 </div>

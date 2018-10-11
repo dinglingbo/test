@@ -944,8 +944,8 @@ function chooseReturnPart(){
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
 		title : "配件选择",
-		width : 1100,
-		height : 500,
+		width : "80%",
+		height : "50%",
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {

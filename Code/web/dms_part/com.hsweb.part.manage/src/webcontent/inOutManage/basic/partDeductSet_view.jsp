@@ -10,11 +10,20 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 	<title>配件提成设置</title>
-	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.10"></script>
+	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.0"></script>
 
 	<style type="text/css">
 	.table-label {
-		text-align: right;
+		text-align: center;
+	}
+	table{
+		font-size:15px;
+	}
+	
+
+	td.d_label{
+		padding-top:12px;
+		
 	}  
 	a{ text-decoration:none}   
 </style>
@@ -33,7 +42,7 @@ pageEncoding="UTF-8" session="false" %>
 					<a class="nui-button" plain="true" iconCls="" onclick="addUnifyPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="delUnifyPart()"><span class="fa fa-close fa-lg"></span>&nbsp;删除配件</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="saveUnifyPart()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="importUnifyPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+<!-- 					<a class="nui-button" plain="true" iconCls="" onclick="importUnifyPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a> -->
 				</td>
 			</tr>
 		</table>
@@ -62,17 +71,29 @@ pageEncoding="UTF-8" session="false" %>
 			<div field="partCode" name="partCode" headerAlign="center" allowSort="true">配件编码</div>
 			<div field="partName" name="partName" headerAlign="center" allowSort="true">配件名称</div>
 			<div field="sellPrice" name="sellPrice" headerAlign="center" allowSort="true" header="参考售价">
-				<input property="editor" vtype="float" class="nui-textbox"/>
+				<input property="editor" required="true" vtype="float" class="nui-textbox"/>
 			</div>
 			<div field="salesDeductValue" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成">
-				<input property="editor" vtype="float" class="nui-textbox"/>
+				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
 			</div>
-			<div field="salesDeductType" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成类型">
-				<input property="editor" vtype="float" class="nui-textbox"/>
+			<div  field="salesDeductType"  name="salesDeductType" headerAlign="center" allowSort="true" header="销售提成类型">
+<!-- 				<input  property="editor" vtype="float" class="nui-textbox"/> -->
+				<input required="true" property="editor" name="salesDeductType"
+                            id="salesDeductType"
+                            class="nui-combobox"
+                            textField="text"
+                            valueField="id"
+                            data="typeList"
+                            emptyText="请选择..."
+                            url=""
+                             required="true"
+                            allowInput="false"
+                            valueFromSelect="true"
+                            popupHeight="90%"
+                          />
 			</div>
-			<div field="modifier" width="60" headerAlign="center" allowSort="true">创建人</div>
-			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">创建日期</div>
-			<div field="" renderer="onActionRenderer" width="100" headerAlign="center" allowSort="true"  header="操作"></div>
+			<div field="modifier" width="60" headerAlign="center" allowSort="true">操作人</div>
+			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>
 		</div>
 	</div>
 </div>

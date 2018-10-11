@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: 
-eos-webCtxPath: svr
+Require-Bundle: com.hsapi.crm.data,com.eos.foundation,com.primeton.eos
+ .richweb
 Bundle-Vendor: Administrator
+eos-webCtxPath: svr
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.crm.svr
 Bundle-Description: 

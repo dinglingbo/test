@@ -22,17 +22,17 @@
            <td>
            <a class="nui-button" iconCls="" plain="true" onclick="onOk">
                   <span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
-              </td>
+            </td>
          </tr>
        </table>
      </div>
      <!-- oncellcommitedit="onCellCommitEdit"
      ondrawsummarycell="onDrawSummaryCell" -->
-   <div class="nui-fit">
+<div class="nui-fit">
      <div id="rpsPartGrid"
      dataField="list"
      class="nui-datagrid"
-     style="width: 100%; height:auto;"
+     style="width: 100%; height:100%;"
      showPager="false"
      showModified="false"
      editNextOnEnterKey="true"
@@ -63,7 +63,7 @@
        </div>
       </div>
     </div>
-  </div> 
+ </div>
 </div>
 	<script type="text/javascript">
     	nui.parse();

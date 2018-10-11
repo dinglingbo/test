@@ -6,12 +6,12 @@ pageEncoding="UTF-8" session="false"%>
 <html>
 <!-- 
   - Author(s): Administrator
-  - Date: 2018-01-27 09:33:59
+  - Date: 2018-01-27 09:33:59 
   - Description:
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.622"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.55"></script>
     <style type="text/css">
 
     table {
@@ -49,10 +49,10 @@ pageEncoding="UTF-8" session="false"%>
                 class="nui-textbox"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
-                width="200px" 
-                visible="false" 
-                enabled="false"   
-                showClose="false" 
+                width="200px"
+                visible="false"
+                enabled="false"
+                showClose="false"
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
@@ -60,16 +60,16 @@ pageEncoding="UTF-8" session="false"%>
             </td>     
             <td style="text-align:right;">
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
-                <a class="nui-button" iconCls="" plain="true" onclick="saveData()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="saveData()" id="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="pay"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
                 <a class="nui-button" plain="true" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
             </td>
         </tr> 
-    </table>  
+    </table>   
 </div> 
-
+ 
 <div id="basicInfoForm" class="form">
-    <input name="id" class="nui-hidden"/>
+    <input class="nui-hidden" name="id" id="id"/>
     <input name="guestId" class="nui-hidden"/>
     <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
     <input class="nui-hidden" name="contactorId"/>
@@ -83,7 +83,7 @@ pageEncoding="UTF-8" session="false"%>
     <input class="nui-hidden" name="status"/>
     <input class="nui-hidden" name="isSettle"/>
     <table  style=" left:0;right:0;margin: 0 auto;"> 
-        <tr>   
+        <tr>
             <td class="title required">车牌号:</td> 
             <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false"/></td>
 

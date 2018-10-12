@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.6.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.7.3"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -148,6 +148,8 @@
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
+        <input class="nui-hidden" name="addr" />
+        <input class="nui-hidden" name="serviceCode" />
         <table  style=" left:0;right:0;margin: 0 auto;"> 
             <tr>   
                 <td class="title required">客户名称:</td> 
@@ -158,6 +160,7 @@
                 <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false"/></td>
                   <td class="title">备注:</td> 
                 <td class="" colspan=""><input  class="nui-textbox" name="remark"/></td>
+                
             </tr>
             <tr> 
                  <td class="title required">

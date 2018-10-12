@@ -125,7 +125,7 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
+                    <li iconCls="" onclick="onPrint(5)" id="type11">打印销售单</li>
                 </ul>
             </td>
         </tr>

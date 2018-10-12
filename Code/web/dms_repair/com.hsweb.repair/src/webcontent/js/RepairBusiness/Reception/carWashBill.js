@@ -2553,7 +2553,7 @@ function showMorePart(row_uid){
     }      
     FItemRow = row;    
     var atEl = rpsItemGrid._getCellEl(row,"prdtName");
-    advancedMorePartWin.showAtEl(atEl, {xAlign:"right",yAlign:"above"});
+    advancedMorePartWin.showAtEl(atEl, {xAlign:"left",yAlign:"above"});
    	
 }
 //配件

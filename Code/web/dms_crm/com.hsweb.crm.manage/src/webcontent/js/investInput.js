@@ -1,10 +1,13 @@
 var investGrid = null;
 var gAuditSign=[{
 	"id":0,
-	"text":"否"
+	"text":"未审核"
 },{
 	"id":1,
-	"text":"是"
+	"text":"通过"
+},{
+	"id":2,
+	"text":"不通过"
 }];
 
 $(document).ready(function(){
@@ -16,6 +19,7 @@ function search(){
 	investGrid.load({
 		serviceCode:nui.get("serviceCode").getValue(),
 		carNo:nui.get("carNo").getValue(),
+		auditSign:nui.get("auditSign").getValue(),
 		"page/isCount":true
 	});
 }
@@ -49,7 +53,7 @@ function onEditClick(){
 		url: "com.hsweb.crm.manage.investDetail.flow",
 		title: "业绩修改",
 		allowResize:false,
-		width: 400, 
+		width: 400,
 		height: 300,
 		onload: function () {
 			var iframe = this.getIFrameEl();

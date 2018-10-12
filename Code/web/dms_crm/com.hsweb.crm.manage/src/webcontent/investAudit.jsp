@@ -29,6 +29,8 @@
             </tr>
         </table>
     </div>
+    
+    <div id="carBrandId" class="nui-combobox" style="display:none;"></div>
 
     <div class="nui-fit">
         <div class="nui-splitter" allowResize="false" style="width:100%;height:100%;">
@@ -109,7 +111,7 @@
                 				<td style="width:60px;text-align:right;"><span>车牌号:</span></td>
 								<td><input name="carNo" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>品牌:</span></td>
-								<td><input name="carBrandId" style="width:130px;" class="nui-textbox"/></td>
+								<td><input id="carBrandIdEl" name="carBrandId" style="width:130px;" textField="name" valueField="id" class="nui-combobox" /></td>
             				</tr>
             				<tr>
                 				<td style="width:60px;text-align:right;"><span>车型:</span></td>
@@ -128,7 +130,7 @@
             				</tr>
             				<tr>
                 				<td style="width:60px;text-align:right;"><span>业务类型:</span></td>
-								<td><input name="serviceTypeId" style="width:130px;" class="nui-textbox"/></td>
+								<td><input id="serviceTypeIdEl" name="serviceTypeId" style="width:130px;" textField="name" valueField="id" class="nui-combobox" /></td>
 								<td style="width:60px;text-align:right;"><span>维修类型:</span></td>
 								<td><input name="billTypeId" style="width:130px;" class="nui-textbox"/></td>
             				</tr>

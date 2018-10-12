@@ -18,11 +18,16 @@ var gIsOutBill=[{
 	"id":1,
 	"text":"是"
 }];
+var brandList=[];
+var brandHash={};
 
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
 	basicForm = new nui.Form("#basicInfo");
-	
+	initCarBrand("carBrandId",function(data) {
+		brandList = nui.get("carBrandId").getData();
+		brandList.forEach(function(v) {brandHash[v.id] = v;});
+	});
 	search();
 	basicForm.setEnabled(false);
 });
@@ -86,9 +91,16 @@ function onDrawcell(e) {
             }
         }
     }
+    if (e.field == "carBrandId") {
+        if (brandHash && brandHash[e.value]) {
+            e.cellHtml = brandHash[e.value].name;
+        }
+    }
 }
 
 function onRowclick(e){
+	initServiceType("serviceTypeIdEl",null);
+	initCarBrand("carBrandIdEl",null);
 	basicForm.setData(e.record);
 }
 

@@ -4,7 +4,7 @@
     <location x="255" y="291"/>
     <size height="100" width="451"/>
   </nodes>
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="返单如果存在就收记录，需要删除应收记录&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-8-7 下午7:47">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="返单如果存在应收记录，需要删除应收记录&#xD;&#xA;com.hsapi.frm.frmService.rpinterface.delFisRpBillByServiceId.biz.ext&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-8-7 下午7:47">
     <location x="72" y="-135"/>
     <size height="121" width="509"/>
   </nodes>

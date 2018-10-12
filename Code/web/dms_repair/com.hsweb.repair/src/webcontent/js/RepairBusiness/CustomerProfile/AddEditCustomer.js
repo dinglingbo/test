@@ -311,8 +311,13 @@ function getSaveData(){
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
 function setData(data)
 {
-	var carNo =data.guest.carNo;
-	var guestFullName =data.guest.guestFullName;
+	
+	var carNo = null;
+	var guestFullName = null;
+	if(data.guest){
+		carNo =data.guest.carNo;
+	    guestFullName =data.guest.guestFullName;
+	}
 	var count = 0;
     init(function()
     {

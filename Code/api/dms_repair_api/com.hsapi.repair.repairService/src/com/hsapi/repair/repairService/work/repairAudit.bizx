@@ -281,6 +281,7 @@
     <targetConnections>link9</targetConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link24</targetConnections>
+    <targetConnections>link26</targetConnections>
     <location x="429" y="206"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
@@ -551,6 +552,16 @@
     <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="连接线" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <location x="746" y="105"/>

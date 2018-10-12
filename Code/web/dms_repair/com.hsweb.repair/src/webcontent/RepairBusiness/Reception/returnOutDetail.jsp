@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.1"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -217,7 +217,7 @@ allowCellEdit="true" >
         <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
         <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
         <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-        <div field="outReturnQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已归库数量"></div>           
+        <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已归库数量"></div>           
         <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
         <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
         <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
@@ -263,9 +263,9 @@ allowCellEdit="true"  >
 </div>
 
 <div style="width:100%;margin-top: 10px;">
-    <a class="nui-button" onclick="LLSave()" plain="false">领料</a>
+<!--     <a class="nui-button" onclick="LLSave()" plain="false">领料</a> -->
     <a class="nui-button" onclick="THSave()" plain="false">退货</a>
-    <a class="nui-button" onclick="onPrint(5)" plain="false">打印领料单</a>
+<!--     <a class="nui-button" onclick="onPrint(5)" plain="false">打印领料单</a> -->
 </div>
 </div>
 

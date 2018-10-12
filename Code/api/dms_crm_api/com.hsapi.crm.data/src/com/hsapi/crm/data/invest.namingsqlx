@@ -50,5 +50,8 @@
         <isNotEmpty prepend="and" property="serviceCode">
         	(a.service_code = #serviceCode#)
         </isNotEmpty>
+        <isNotEmpty prepend="and" property="auditSign">
+        	(a.audit_sign = #auditSign#)
+        </isNotEmpty>
 	</select>
 </sqlMap>

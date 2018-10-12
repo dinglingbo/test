@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>领料出库</title>
+<title>领料归库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.1.28"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.1.34"></script>
     <style type="text/css">
 
    	#returnRemark.mini-textbox{
@@ -38,7 +38,7 @@
 <body>
 <div class="nui-fit">
 	<div style="margin-bottom:8px;" class="nui-form" id="form" style="width:100%; height:100%;">
-		
+		<input id="mId" name="mId" class="nui-hidden" >
 		<table>
 			<tr>
 				<td style="padding-left: 13px; padding-bottom:5px;">配件编码:<input enabled="false" class="nui-textbox" id="partCode" name="partCode" type="text"></td>
@@ -68,7 +68,7 @@
                             popupHeight="90%"
                           />
 				</td>
-				<td>归库数量:<input enabled="false"  required="true" vtype="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
+				<td>归库数量:<input   required="true" vtype="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
 			<tr id="return">
 				<td style="" >归库原因ID:<input  class="nui-combobox" id="returnReasonId" name="returnReasonId" type="text"  popupHeight="85%"></td>

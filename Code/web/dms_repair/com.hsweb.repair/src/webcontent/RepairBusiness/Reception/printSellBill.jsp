@@ -402,7 +402,6 @@
 </div>
 <div id="print-container">
     <h1 id="title">
-        易维天下<br />
     配件销售单
 </h1>
 <div class="content">
@@ -410,53 +409,30 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
         <tbody>
             <tr>
-                <td width="25%" height="20" class="left">客户：</td>
-                <td><input type="text" id="txtno" class="peijianss" value="" /></td>
-                <td class="left">客户单位：</td>
-                <td width="25%" class="left">日期：2018年10月12日</td>
+                <td width="25%" height="20" class="left">客户：<span id="guestName"></span></td>
+                <td class="left">客户单位：<span id="guestAdd"></span></td>
+                <td width="25%" class="left">日期：<span id="date"></span></td>
             </tr>
             <tr>
-                <td height="20" class="left">联系电话：13776258488</td>
-                <td class="left">收货地址：</td>
-                <td class="left">单号：1810120036</td>
+                <td height="20" class="left">联系电话：<span id="phone"></span></td>
+                <td class="left">收货地址：<span id="shippingAdd"></td>
+                <td class="left">单号：<span id="shippingAdd"></td>
             </tr>
         </tbody>
     </table>
     <div style="padding: 8px 0 5px 0">
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
-            <tbody>
-                <tr>
-                    <td width="30" height="30" align="center" bgcolor="#f5f5f5">序号</td>
-                    <td align="center" bgcolor="#f5f5f5">配件编号</td>
-                    <td width="50%" align="center" bgcolor="#f5f5f5">名称及规格</td>
-                    <td width="40" align="center" bgcolor="#f5f5f5">单位</td>
-                    <td width="40" align="center" bgcolor="#f5f5f5">数量</td>
-                    <td width="60" align="center" bgcolor="#f5f5f5">单价</td>
-                    <td width="60" align="center" bgcolor="#f5f5f5">金额</td>
-                    
-                </tr>
-
-                    <tr>
-                        <td height="24" align="center">1</td>
-                        <td align="center">PJ000000073</td>
-                        <td>索尼镜头高清行车记录仪</td>
-                        <td align="center">个</td>
-                        <td align="center">1</td>
-                        <td align="center">0</td>
-                        <td align="center">0</td>
-                        
-                    </tr>
-                    <tr>
-                        <td height="24" align="center">2</td>
-                        <td align="center">PJ000000074</td>
-                        <td>索尼镜头高清行车记录仪</td>
-                        <td align="center">个</td>
-                        <td align="center">1</td>
-                        <td align="center">0</td>
-                        <td align="center">0</td>
-                        
-                    </tr>
-            </tbody>
+            <tr>
+                <td width="30" height="30" align="center" bgcolor="#f5f5f5">序号</td>
+                <td align="center" bgcolor="#f5f5f5">配件编号</td>
+                <td width="50%" align="center" bgcolor="#f5f5f5">配件名称</td>
+                <td width="40" align="center" bgcolor="#f5f5f5">单位</td>
+                <td width="40" align="center" bgcolor="#f5f5f5">数量</td>
+                <td width="60" align="center" bgcolor="#f5f5f5">单价</td>
+                <td width="60" align="center" bgcolor="#f5f5f5">金额</td>   
+            </tr>
+            <tbody id="tbodyId">
+		   </tbody>
         </table>
     </div>
     <div>
@@ -501,13 +477,19 @@
 </div>
 </div>
 <script type="text/javascript">
-    var LODOP;
-    $("#print").click(function () {
+    /* $("#print").click(function () {
         settype();
         $(".print_btn").hide();
         window.print();
     });
-    function settype() {
+     */
+   /*  $("#").each(function () {
+        if($(this).text()=="客户"){
+           $(this).text("hhhh")
+        }
+    }); */
+    
+    /* function settype() {
         $.ajax({
             type: "POST",
             data: { type: "A4" },
@@ -519,5 +501,42 @@
 
             }
         });
-    }
+    } */
+    $(document).ready(function (){
+		$("#print").click(function () {
+            $(".print_btn").hide();
+            window.print();
+        });
+	});	
+    function SetData(params){
+       var date = new Date();
+       $("#guestName").html(params.name);
+       $("#guestAdd").html(params.add);
+       $("#date").html(format(date, "yyyy-MM-dd HH:mm:ss"));
+       $("#phone").html(params.phone); 
+       $("#shippingAdd").html(params.shippingAdd); 
+       $("#serviceCode").html(params.serviceCode);
+       $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+        	if(text.errCode == "S"){
+            	for(var i = 0 , l = rpsPart.length ; i < l ; i++){
+                   var tBody = $("#tbodyId");
+		           tBody.empty();
+	               var tds =  '<td align="center">[id]</td>' +
+				    		   "<td>[partCode]</td>"+
+				    			"<td align='center'>[partName]</td>"+ 
+				    			"<td align='center'>[unit]</td>"+
+				    			"<td align='center'>[num]</td>"+
+				    			"<td align='center'>[nuitPrice]</td>"+
+				    			"<td align='center'>[subtotal]</td>";
+				  tr.append(
+		    				tds.replace("[id]",i +1)
+				    			.replace("[partCode]",data[i].partCode)
+				    			.replace("[partName]",data[i].workers || "")
+				    			.replace("[partName]",data[i].workers || "")
+				    			.replace("[partName]",data[i].workers || "")
+				    			.replace("[remark]",data[i].remark || ""));
+		         tBody.append(tr);
+           }
+      }); 
+ }
 </script>

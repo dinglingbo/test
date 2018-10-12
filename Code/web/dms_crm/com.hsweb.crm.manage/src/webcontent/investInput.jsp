@@ -18,6 +18,8 @@
                     <input id="carNo" class="nui-textbox" emptyText="输入查询条件" width="120"/>
                     <span>工单号:</span>
                     <input id="serviceCode" class="nui-textbox" emptyText="输入查询条件" width="120"/>
+                    <span>审核状态:</span>
+                    <input id="auditSign" class="nui-combobox" data="gAuditSign" emptyText="输入查询条件" width="120"/>
                     <a class="nui-button" iconCls="icon-search" plain="true" onclick="search()">查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="onAddClick()">新增</a>
@@ -48,7 +50,7 @@
                   		<div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="工单号"></div>
                   		<div field="visitMan" name="visitMan" width="80" headerAlign="center" header="营销员"></div>
                   		<div field="carType" name="carType" width="80" headerAlign="center" header="来厂类型"></div>
-                  		<div field="auditSign" name="auditSign" width="80" headerAlign="center" header="是否审核"></div>
+                  		<div field="auditSign" name="auditSign" width="80" headerAlign="center" header="审核状态"></div>
                   		<div field="auditDate" name="auditDate" width="80" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd"></div>
                   		<div field="auditOpinion" name="auditOpinion" width="80" headerAlign="center" header="审核备注"></div>
                   		<div field="remark" name="remark" width="80" headerAlign="center" header="业绩备注"></div>

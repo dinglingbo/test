@@ -17,8 +17,10 @@
                 <td style="width:70px;text-align:right;" class="title-tab"><span>车牌号:</span></td>
 				<td>
 					<input id="id" name="id" style="width:300px;" class="nui-hidden"/>
-					<input id="carNo" name="carNo" style="width:300px;" class="nui-textbox" onvaluechanged="carNoChange" required="true">
 					<input id="carId" name="carId" style="width:300px;" class="nui-hidden"/>
+					<input id="guestId" name="guestId" style="width:300px;" class="nui-hidden"/>
+					<input id="carNo" name="carNo" style="width:300px;" class="nui-textbox" onvaluechanged="carNoChange" required="true">
+					
 				</td>
             </tr>
             <tr>

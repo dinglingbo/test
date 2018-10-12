@@ -15,7 +15,6 @@ var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerPartGrid = null;
-var mainTabs = null;
 var settleWin = null;
 
 $(document).ready(function ()
@@ -28,19 +27,24 @@ $(document).ready(function ()
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getRpsPartUrl);
     
-    mainTabs = nui.get("mainTabs");
 	settleAccountGrid = nui.get("settleAccountGrid");
 	settleWin = nui.get("settleWin");
     mainGrid.on("drawcell", function (e) {
+	    var out = '<a  href="javascript:repairOut()">&nbsp;&nbsp;&nbsp;&nbsp;归库</a>';//class="icon-collapse"
+	    if(e.field == "action"){
+	        e.cellHtml = out +"&nbsp;&nbsp;&nbsp;";
+	    }
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
-        }else if(e.field == "isSettle"){
+        }
+        if(e.field == "isSettle"){
             if(e.value == 1){
                 e.cellHtml = "已结算";
             }else{
                 e.cellHtml = "未结算";
             }
         }
+        
     });
 
     innerPartGrid.on("drawcell", function (e) {
@@ -62,7 +66,7 @@ $(document).ready(function ()
                 break;
         }
     });  
-    var statusList = "0,1,2,3";
+    var statusList = "1,2";
     var p = {statusList:statusList};
     doSearch(p);
 });
@@ -127,12 +131,15 @@ function quickSearch(type) {
 function onSearch()
 {
     var params = {};
-    var value = nui.get("carNo-search").getValue()||"";
-    value = value.replace(/\s+/g, "");
-    if(!value){
+    var statusList = "1,2";
+    var p = {statusList:statusList};
+    params = p;
+   // var value = nui.get("carNo-search").getValue()||"";
+    //value = value.replace(/\s+/g, "");
+   /* if(!value){
         showMsg("请输入查询条件!","W");
         return;
-    }
+    }*/
     doSearch(params);
 }
 function doSearch(params) {
@@ -166,185 +173,223 @@ function getSearchParam() {
     return params;
 }
 
-function addSell(){
-    var part={};
-    part.id = "5200";
-    part.text = "退货-工单";
-    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
-    part.iconCls = "fa fa-file-text";
-    var params = {};
-    window.parent.activeTabAndInit(part,params);
 
-}
-function editSell(){
+function repairOut() {
     var row = mainGrid.getSelected();
-    if(!row) return;
-    var part={};
-    part.id = "5200";
-    part.text = "退货-工单";
-    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
-    part.iconCls = "fa fa-file-text";
-    //window.parent.activeTab(item);
-    var params = {
-        id: row.id
-    };
-    window.parent.activeTabAndInit(part,params);
-}
-//根据开单界面传递的车牌号查询未结算的工单
-function setInitData(params){
-    var carNo = params.carNo||"";
-    var type = params.type||""
-    if(type=='view' && carNo != ""){
-        var p = {
-            carNoEqual: carNo,
-            isSettle: 0
+    var mainIdList="";
+    innerPartGrid.load({
+    	serviceId:row.id,
+        token: token
+    },function(){
+    	if(innerPartGrid.data.length>0){
+    		var data=innerPartGrid.getData();
+    		for(var i=0;i<data.length;i++){
+    			mainIdList +=data[i].detailId+",";
+    		}
+    		mainIdList=mainIdList.substring(0, mainIdList.length-1);
+    		row.mainIdList=mainIdList;
+    	}
+    });
+
+//    var partDetail=repairOutGrid.get
+    if(row){ 
+        var item={};
+        item.id = "checkDetail";
+        item.text = "归库单";
+        item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnOutDetail.jsp";
+        item.iconCls = "fa fa-cog";
+        //window.parent.activeTab(item);
+        var params = {
+            id:row.id,
+            row: row
         };
-        mainGrid.load({
-            token:token,
-            params: p
-        });
+        window.parent.activeTabAndInit(item,params);
+    }else{
+        nui.alert("请先选择一条记录！");
     }
-}
+} 
+
+//function addSell(){
+//    var part={};
+//    part.id = "5200";
+//    part.text = "退货-工单";
+//    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
+//    part.iconCls = "fa fa-file-text";
+//    var params = {};
+//    window.parent.activeTabAndInit(part,params);
+//
+//}
+//function editSell(){
+//    var row = mainGrid.getSelected();
+//    if(!row) return;
+//    var part={};
+//    part.id = "5200";
+//    part.text = "退货-工单";
+//    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
+//    part.iconCls = "fa fa-file-text";
+//    //window.parent.activeTab(item);
+//    var params = {
+//        id: row.id
+//    };
+//    window.parent.activeTabAndInit(part,params);
+//}
+
+
+//根据开单界面传递的车牌号查询未结算的工单
+//function setInitData(params){
+//    var carNo = params.carNo||"";
+//    var type = params.type||""
+//    if(type=='view' && carNo != ""){
+//        var p = {
+//            carNoEqual: carNo,
+//            isSettle: 0
+//        };
+//        mainGrid.load({
+//            token:token,
+//            params: p
+//        });
+//    }
+//}
 //转出库
-var updOutUrl = baseUrl + "com.hsapi.repair.repairService.crud.UpdateMainStatusOut.biz.ext";
-function out(){	
-	var row = mainGrid.getSelected();
-	if(row)
-	{
-		if(row.isSettle == 1){
-	        showMsg("此单已结算!","W");
-	        return;
-	    }
-		if(row.status==0){
-			showMsg("此单需审核才能出库!","W");
-	        return;
-		}
-		if(row.status==2){
-			showMsg("此单已出库!","W");
-	        return;
-		}
-		var json = nui.encode({
-			"main" : row,
-			token : token
-		});
-		
-		nui.ajax({
-			url : updOutUrl,
-			type : 'POST',
-			data : json,
-			cache : false,
-			contentType : 'text/json',
-			success : function(text) {
-				var returnJson = nui.decode(text);
-				if (returnJson.errCode == "S") {
-					b = 1;
-					showMsg("出库成功");
-					//表示退货单
-				    gsparams.billTypeId = 5;
-				    mainGrid.load({
-				        token:token,
-				        params: gsparams
-				    });
-				} else {
-					showMsg("出库失败","W");
-				}
-					
-			}
-		});
-		
-	}
-	else{
-		showMsg("请选择工单", "W");
-	}
-}
-//转结算
-payUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/partBillPay.jsp?token="+token;
-function pay(){	
-	var row = mainGrid.getSelected();
-	if(row)
-	{
-		if(row.isSettle == 1){
-	        showMsg("此单已结算!","W");
-	        return;
-	    }
-		if(row.status != 2){
-			 showMsg("此单未归库，不能结算!","W");
-		     return;
-		}
-		nui.open({
-			url:payUrl,
-			width:"40%",
-			height:"50%",
-			//加载完之后
-			onload: function(){	
-			//把值传递到支付页面
-		    var iframe = this.getIFrameEl();
-		    iframe.contentWindow.getData(row);			
-			},
-		   ondestroy : function(action) {
-			if (action == 'ok') {
-				var iframe = this.getIFrameEl();
-				var data = iframe.contentWindow.getData();
-				supplier = data.supplier;
-				var value = supplier.id;
-				var text = supplier.fullName;
-				var el = nui.get(elId);
-				el.setValue(value);
-				el.setText(text);
-			}
-		}
-		});		
-	}
-	else{
-		showMsg("请选择单据", "W");
-	}
-}
-
-
-
-var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateReturnMainAndPart.biz.ext";
-function finish(){
-
-	var main = mainGrid.getSelected();
-	var isSettle = main.isSettle||0;
-    
-    if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","W");
-        return;
-    }
-	if(main.status==1){
-		showMsg("此单已审核,不能重复审核!","W");
-        return;
-	} 
-	
-	var json = nui.encode({
-		"main" : main,
-		token : token
-	});
-	
-	nui.ajax({
-		url : updUrl,
-		type : 'POST',
-		data : json,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			var returnJson = nui.decode(text);
-			if (returnJson.errCode == "S") {
-				showMsg("审核成功");
-				var gsparams = {};
-				gsparams.billTypeId = 5;
-			    mainGrid.load({
-			        token:token,
-			        params: gsparams
-			    });
-				
-			} else {
-				showMsg(returnJson.errMsg,"W");
-			}
-				
-		}
-	});
-}
+//var updOutUrl = baseUrl + "com.hsapi.repair.repairService.crud.UpdateMainStatusOut.biz.ext";
+//function out(){	
+//	var row = mainGrid.getSelected();
+//	if(row)
+//	{
+//		if(row.isSettle == 1){
+//	        showMsg("此单已结算!","W");
+//	        return;
+//	    }
+//		if(row.status==0){
+//			showMsg("此单需审核才能出库!","W");
+//	        return;
+//		}
+//		if(row.status==2){
+//			showMsg("此单已出库!","W");
+//	        return;
+//		}
+//		var json = nui.encode({
+//			"main" : row,
+//			token : token
+//		});
+//		
+//		nui.ajax({
+//			url : updOutUrl,
+//			type : 'POST',
+//			data : json,
+//			cache : false,
+//			contentType : 'text/json',
+//			success : function(text) {
+//				var returnJson = nui.decode(text);
+//				if (returnJson.errCode == "S") {
+//					b = 1;
+//					showMsg("出库成功");
+//					//表示退货单
+//				    gsparams.billTypeId = 5;
+//				    mainGrid.load({
+//				        token:token,
+//				        params: gsparams
+//				    });
+//				} else {
+//					showMsg("出库失败","W");
+//				}
+//					
+//			}
+//		});
+//		
+//	}
+//	else{
+//		showMsg("请选择工单", "W");
+//	}
+//}
+////转结算
+//payUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/partBillPay.jsp?token="+token;
+//function pay(){	
+//	var row = mainGrid.getSelected();
+//	if(row)
+//	{
+//		if(row.isSettle == 1){
+//	        showMsg("此单已结算!","W");
+//	        return;
+//	    }
+//		if(row.status != 2){
+//			 showMsg("此单未归库，不能结算!","W");
+//		     return;
+//		}
+//		nui.open({
+//			url:payUrl,
+//			width:"40%",
+//			height:"50%",
+//			//加载完之后
+//			onload: function(){	
+//			//把值传递到支付页面
+//		    var iframe = this.getIFrameEl();
+//		    iframe.contentWindow.getData(row);			
+//			},
+//		   ondestroy : function(action) {
+//			if (action == 'ok') {
+//				var iframe = this.getIFrameEl();
+//				var data = iframe.contentWindow.getData();
+//				supplier = data.supplier;
+//				var value = supplier.id;
+//				var text = supplier.fullName;
+//				var el = nui.get(elId);
+//				el.setValue(value);
+//				el.setText(text);
+//			}
+//		}
+//		});		
+//	}
+//	else{
+//		showMsg("请选择单据", "W");
+//	}
+//}
+//
+//
+//
+//var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateReturnMainAndPart.biz.ext";
+//function finish(){
+//
+//	var main = mainGrid.getSelected();
+//	var isSettle = main.isSettle||0;
+//    
+//    if(isSettle == 1){
+//        showMsg("此单已结算,不能审核!","W");
+//        return;
+//    }
+//	if(main.status==1){
+//		showMsg("此单已审核,不能重复审核!","W");
+//        return;
+//	} 
+//	
+//	var json = nui.encode({
+//		"main" : main,
+//		token : token
+//	});
+//	
+//	nui.ajax({
+//		url : updUrl,
+//		type : 'POST',
+//		data : json,
+//		cache : false,
+//		contentType : 'text/json',
+//		success : function(text) {
+//			var returnJson = nui.decode(text);
+//			if (returnJson.errCode == "S") {
+//				showMsg("审核成功");
+//				var gsparams = {};
+//				gsparams.billTypeId = 5;
+//			    mainGrid.load({
+//			        token:token,
+//			        params: gsparams
+//			    });
+//				
+//			} else {
+//				showMsg(returnJson.errMsg,"W");
+//			}
+//				
+//		}
+//	});
+//}
 
 

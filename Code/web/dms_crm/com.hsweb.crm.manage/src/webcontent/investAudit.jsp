@@ -29,8 +29,6 @@
             </tr>
         </table>
     </div>
-    
-    <div id="carBrandId" class="nui-combobox" style="display:none;"></div>
 
     <div class="nui-fit">
         <div class="nui-splitter" allowResize="false" style="width:100%;height:100%;">

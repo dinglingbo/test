@@ -24,10 +24,11 @@ var brandHash={};
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
 	basicForm = new nui.Form("#basicInfo");
-	initCarBrand("carBrandId",function(data) {
-		brandList = nui.get("carBrandId").getData();
+	initCarBrand("carBrandIdEl",function(data) {
+		brandList = nui.get("carBrandIdEl").getData();
 		brandList.forEach(function(v) {brandHash[v.id] = v;});
 	});
+	initServiceType("serviceTypeIdEl",null);
 	search();
 	basicForm.setEnabled(false);
 });
@@ -99,8 +100,6 @@ function onDrawcell(e) {
 }
 
 function onRowclick(e){
-	initServiceType("serviceTypeIdEl",null);
-	initCarBrand("carBrandIdEl",null);
 	basicForm.setData(e.record);
 }
 

@@ -63,7 +63,10 @@
 			a.out_date as outDate,
 			a.is_out_bill as isOutBill,
 			a.mt_advisor_id as mtAdvisorId,
-			a.is_disabled as isDisabled
+			a.is_disabled as isDisabled,
+			(select GROUP_CONCAT(name) from rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -81,6 +84,9 @@
             <isNotEmpty prepend="and" property="carId">
                 (a.car_id = #carId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditorId">
+                (a.mt_advisor_id = #mtAuditorId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>
@@ -89,6 +95,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isSettle">  
                 (a.is_settle = #isSettle#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">  
+                (a.bala_audit_sign = #balaAuditSign#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="statusList">  
                 (a.status in ($statusList$))
@@ -116,6 +125,13 @@
             <isNotEmpty prepend="and" property="eRecordDate">  
                 (a.record_date &lt; #eRecordDate#)
             </isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">  
+                (a.out_date &gt;= #sOutDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">  
+                (a.out_date &lt; #eOutDate#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
             </isNotEmpty>
@@ -127,7 +143,10 @@
                 (a.is_check= #isCheck#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeIdList">  
-                (a.service_type_id in ($serviceTypeIdList$))
+                exists(
+					select 1 from rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="vin">  
                 (a.car_vin like '%$vin$%')
@@ -818,6 +837,6 @@
 			b.orgid = #orgid#
 			AND b.is_settle = 1
 			AND b.guest_id = #guestId#	
-			AND a.qty != 0
+			AND a.qty &gt; 0
 	</select>
 </sqlMap>

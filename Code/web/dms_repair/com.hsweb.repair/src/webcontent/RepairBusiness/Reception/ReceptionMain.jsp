@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.8"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.10"></script>
 <style type="text/css">
 
 .title {
@@ -55,10 +55,10 @@
                     <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有在厂</a>
                     <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                         <li iconCls="" onclick="quickSearch(0)" id="type0">所有在厂</li>
-                        <li iconCls="" onclick="quickSearch(0)" id="type0">报价</li>
-                        <li iconCls="" onclick="quickSearch(1)" id="type1">施工</li>
-                        <li iconCls="" onclick="quickSearch(2)" id="type2">完工</li>
-                        <li iconCls="" onclick="quickSearch(3)" id="type0">待结算</li>
+                        <li iconCls="" onclick="quickSearch(1)" id="type0">报价</li>
+                        <li iconCls="" onclick="quickSearch(2)" id="type1">施工</li>
+                        <li iconCls="" onclick="quickSearch(3)" id="type2">完工</li>
+                        <li iconCls="" onclick="quickSearch(4)" id="type0">待结算</li>
                     </ul>
 
                     <span class="separator"></span>
@@ -80,71 +80,6 @@
                 </td>
             </tr>
         </table>
-
-        <div id="advancedMore" style="width:80%;height:40px;display:none;">
-
-            <div id="advancedSearchForm" class="form">
-                <table style="width:100%;">
-                  <tr>
-                        <td class="title">进厂日期:</td>
-                        <td style="width:100">
-                            <input id="sEnterDate"
-                                   name="sEnterDate"
-                                   width="100%"
-                                   allowInput="false"
-                                   class="nui-datepicker"/>
-                        </td>
-                        <td style="width:15">至</td>
-                        <td style="width:100">
-                            <input id="eEnterDate"
-                                   name="eEnterDate"
-                                   class="nui-datepicker"
-                                   format="yyyy-MM-dd"
-                                   timeFormat="H:mm:ss"
-                                   showTime="false"
-                                   showOkButton="false"
-                                   width="100%"
-                                   allowInput="false"
-                                   showClearButton="false"/>
-                        </td>
-                        <td class="title">
-                            <label>业务类型：</label>
-                        </td>
-                        <td style="width:100">
-                            <input name="serviceTypeId"
-                                 id="serviceTypeId"
-                                 class="nui-combobox width1"
-                                 textField="name"
-                                 valueField="id"
-                                 emptyText="请选择..."
-                                 url=""
-                                 allowInput="true"
-                                 showNullItem="false"
-                                 width="100%"
-                                 valueFromSelect="true"
-                                 onvaluechanged=""
-                                 nullItemText="请选择..."/>
-                        </td>
-                        <td>
-                            <a class="nui-button" onclick="clear()" style="width:60px;" plain="true">清空</a>
-                        </td>
-                        <td style="display:none;">
-                            <input name="carBrandId"
-                                 id="carBrandId"
-                                 class="nui-combobox"
-                                 textField="name"
-                                 valueField="id"/>
-                            <input name="receTypeId"
-                                 id="receTypeId"
-                                 class="nui-combobox"
-                                 textField="name"
-                                 valueField="customid"/>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-        </div>
     </div>
 
 
@@ -175,7 +110,7 @@
                   <div field="contactName" name="contactName" width="60" headerAlign="center" header="送修人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="90" headerAlign="center" header="送修人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
-                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div>
+                  <div field="serviceTypeName" name="serviceTypeName" width="100" headerAlign="center" header="业务类型"></div>
                   <div field="isSettle" name="isSettle" width="60" headerAlign="center" header="结算状态"></div>
                   <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
                   <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="维修日期"></div>
@@ -184,9 +119,6 @@
               </div>
           </div>
     </div>
-
-
-
 </div>
 
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
@@ -239,22 +171,35 @@
 
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:200px;"
+     title="高级查询" style="width:416px;height:220px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
+            
+            <input name="carBrandId"
+                id="carBrandId" visible="false"
+                class="nui-combobox"
+                textField="name"
+                valueField="id"/>
+           <input name="serviceTypeId"
+                id="serviceTypeId" visible="false"
+                class="nui-combobox"
+                textField="name"
+                valueField="id"/>
             <tr>
                 <td class="title">创建日期:</td>
                 <td>
-                    <input name="sCreateDate"
+                    <input id="sRecordDate"
+                           name="sRecordDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input name="eCreateDate"
+                    <input id="eRecordDate"
+                           name="eRecordDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
@@ -267,13 +212,15 @@
             <tr>
                 <td class="title">结算日期:</td>
                 <td>
-                    <input name="sAuditDate"
+                    <input id="sOutDate"
+                           name="sOutDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input name="eAuditDate"
+                    <input id="eOutDate"
+                           name="eOutDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
@@ -284,15 +231,17 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">配件编码:</td>
+                <td class="title">业务类型:</td>
                 <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="partCodeList" name="partCodeList"></textarea>
+                    <div id="serviceTypeIds" name="serviceTypeIds" class="nui-checkboxlist" repeatItems="5" 
+                    repeatLayout="flow"  value="" 
+                    textField="name" valueField="id" ></div>
                 </td>
             </tr>
         </table>
         <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
             <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
+            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
         </div>
     </div>
 </div>

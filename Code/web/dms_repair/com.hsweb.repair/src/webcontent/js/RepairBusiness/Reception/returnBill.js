@@ -969,6 +969,7 @@ function chooseReturnPart(){
             	saleMan:data.saleMan,
             	saleManId:data.saleManId,
             	detailId:data.id,
+            	partId:data.partId,
             	outReturnQty:0,
             	qty:1,
             	amt:data.unitPrice*1,

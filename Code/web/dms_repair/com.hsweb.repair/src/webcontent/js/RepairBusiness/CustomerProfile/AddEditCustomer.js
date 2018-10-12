@@ -311,6 +311,14 @@ function getSaveData(){
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
 function setData(data)
 {
+	
+	var carNo = null;
+	var guestFullName = null;
+	if(data.guest){
+		carNo =data.guest.carNo;
+	    guestFullName =data.guest.guestFullName;
+	}
+	var count = 0;
     init(function()
     {
         if(data.guest)
@@ -332,22 +340,31 @@ function setData(data)
                         var i;
                         for(i=0;i<carList.length;i++)
                         {
-                            carInfoFrom.setData(carList[i]);
+                        	if(carNo==carList[i].carNo){
+                        		
+                        		carInfoFrom.setData(carList[i]);
+                        	}
                             //nui.get("carModelId").setText(carList[0].carModel);
                             carList[i] = carInfoFrom.getData();
                             //carList[i].carModel = nui.get("carModelId").getText();
                             carHash[carList[i].id] = JSON.stringify(carList[i]);
                         }
-                        carInfoFrom.setData(carList[0]);
                         //nui.get("carModelId").setText(carList[0].carModel);
                         contactInfoForm.setData(contactList[0]);
                         for(i=0;i<contactList.length;i++)
                         {
-                            contactInfoForm.setData(contactList[i]);
+                        	if(guestFullName==contactList[i].name){
+                        		contactInfoForm.setData(contactList[i]);
+                        		count = 1;
+                        	}
+                        	
                             contactList[i] = contactInfoForm.getData();
                             contactHash[contactList[i].id] = JSON.stringify(contactList[i]);
                         }
-                        contactInfoForm.setData(contactList[0]);
+                        if(count==0){
+                        	
+                        	contactInfoForm.setData(contactList[0]);
+                        }
                         setCarByIdx(0);
                         setContactByIdx(0);
                         

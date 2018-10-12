@@ -22,12 +22,14 @@ var receTypeIdList = [];
 var receTypeIdHash = {};
 var mtAdvisorIdEl = null;
 var serviceTypeIdEl = null;
+var serviceTypeIds = null;
 var advancedMore = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
+//var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"工时",
@@ -37,11 +39,11 @@ $(document).ready(function ()
 {
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
-    beginDateEl = nui.get("sEnterDate");
-    endDateEl = nui.get("eEnterDate");
+    beginDateEl = nui.get("sRecordDate");
+    endDateEl = nui.get("eRecordDate");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     serviceTypeIdEl = nui.get("serviceTypeId");
-    advancedMore = nui.get("advancedMore");
+    serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
     editFormDetail = document.getElementById("editFormDetail");
     innerItemGrid = nui.get("innerItemGrid");
@@ -53,19 +55,32 @@ $(document).ready(function ()
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
-    initMember("mtAdvisorId",null);
-    initServiceType("serviceTypeId",function(data) {
-        servieTypeList = nui.get("serviceTypeId").getData();
-        servieTypeList.forEach(function(v) {
-            servieTypeHash[v.id] = v;
+    initMember("mtAdvisorId",function(){
+        mtAdvisorIdEl.setValue(currEmpId);
+        mtAdvisorIdEl.setText(currUserName);
+
+        
+        initServiceType("serviceTypeId",function(data) {
+            servieTypeList = nui.get("serviceTypeId").getData();
+            servieTypeList.forEach(function(v) {
+                servieTypeHash[v.id] = v;
+            });
+            serviceTypeIds.setData(servieTypeList);
+
+            initCarBrand("carBrandId",function(data) {
+                brandList = nui.get("carBrandId").getData();
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
+
+                quickSearch(0);
+            });
+
+
         });
+
     });
-    initCarBrand("carBrandId",function(data) {
-        brandList = nui.get("carBrandId").getData();
-        brandList.forEach(function(v) {
-            brandHash[v.id] = v;
-        });
-    });
+
     // initCustomDicts("receTypeId", "0415",function(data) {
     //     receTypeIdList = nui.get("receTypeId").getData();
     //     receTypeIdList.forEach(function(v) {
@@ -193,9 +208,7 @@ $(document).ready(function ()
         }
     });
 
-    var statusList = "0,1,2,3";
-    var p = {statusList:statusList};
-    doSearch(p);
+    
 });
 var statusHash = {
     "0" : "报价",
@@ -247,29 +260,38 @@ function onShowRowDetail(e) {
 }
 function quickSearch(type) {
     var params = {};
+    var queryname = "所有在厂";
     switch (type) {
         case 0:
-            params.status = 0;  //制单
+            params.isSettle = 0;
+            queryname = "所有在厂";
             break;
         case 1:
-            params.status = 1;  //施工
+            params.status = 0;  //报价
+            queryname = "报价";
             break;
         case 2:
-            params.status = 2;  //完工
-            document.getElementById("advancedMore").style.display='block';
+            params.status = 1;  //施工
+            queryname = "施工";
+            //document.getElementById("advancedMore").style.display='block';
             break;
         case 3:
-            params.status = 2;  //待结算  is_settle
-            params.isSettle = 0;
+            params.status = 2;  //完工
+            queryname = "完工";
+            params.balaAuditSign = 0;
             break;
         case 4:
-            params.isSettle = 1;
-            document.getElementById("advancedMore").style.display='block';
+            params.status = 2;//待结算
+            params.balaAuditSign = 1;
+            params.isSettle = 0;
+            queryname = "待结算";
+            //document.getElementById("advancedMore").style.display='block';
             break;
         default:
             break;
     }
-
+    var menunamestatus = nui.get("menunamestatus");
+    menunamestatus.setText(queryname);
     doSearch(params);
 }
 //完工
@@ -317,7 +339,7 @@ function unfinish(){
         return;
     }
     if(row.status != 2){
-        showMsg("本工单未未完工,不能返工!!","W");
+        showMsg("本工单未完工,不能返工!!","W");
         return;
     }
     
@@ -390,22 +412,48 @@ function del(){
 function onSearch()
 {
     var params = {};
-    if(document.getElementById("advancedMore").style.display!='block'){
-        var value = nui.get("carNo-search").getValue()||"";
-        value = value.replace(/\s+/g, "");
-        if(!value){
-            showMsg("请输入查询条件!","W");
-            return;
-        }
+    var menunamestatus = nui.get("menunamestatus");
+    var title = menunamestatus.getText();
+    switch (title) {
+        case "所有在厂":
+            params.isSettle = 0;
+            break;
+        case "报价":
+            params.status = 0;  //报价
+            break;
+        case "施工":
+            params.status = 1;  //施工
+            break;
+        case "完工":
+            params.status = 2;  //完工
+            params.balaAuditSign = 0;
+            break;
+        case "待结算":
+            params.status = 2;//待结算
+            params.balaAuditSign = 1;
+            params.isSettle = 0;
+            break;
+        default:
+            break;
     }
+    // if(!advancedSearchWin.visible){
+    //     var value = nui.get("carNo-search").getValue()||"";
+    //     value = value.replace(/\s+/g, "");
+    //     if(!value){
+    //         showMsg("请输入查询条件!","W");
+    //         return;
+    //     }
+    // }
     doSearch(params);
 }
 function doSearch(params) {
     var gsparams = getSearchParam();
     gsparams.status = params.status;
     gsparams.statusList = params.statusList;
+    gsparams.balaAuditSign = params.balaAuditSign;
     gsparams.isSettle = params.isSettle;
     gsparams.billTypeId = 0;
+    gsparams.isDisabled = 0;
 
     mainGrid.load({
         token:token,
@@ -414,12 +462,15 @@ function doSearch(params) {
 }
 function getSearchParam() {
     var params = {};
-    if(document.getElementById("advancedMore").style.display=='block'){
-        params.sEnterDate = beginDateEl.getValue();
-        params.eEnterDate = endDateEl.getValue();
-        params.mtAuditorId = mtAdvisorIdEl.getValue();
-        params.serviceTypeId = serviceTypeIdEl.getValue();
+    if(advancedSearchWin.visible){//document.getElementById("advancedMore").style.display=='block'
+        params.sRecordDate = beginDateEl.getValue();
+        params.eRecordDate = endDateEl.getValue();
+        params.sOutDate = nui.get("sOutDate").getValue();
+        params.eOutDate = nui.get("eOutDate").getValue();
+        params.serviceTypeIdList = serviceTypeIds.getValue();
     }
+    
+    params.mtAuditorId = mtAdvisorIdEl.getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -432,6 +483,14 @@ function getSearchParam() {
         params.tel = typeValue;
     }
     return params;
+}
+function onAdvancedSearchCancel(){
+    advancedSearchWin.hide();
+}
+function onAdvancedSearchOk(){
+    var params = {};
+    doSearch(params);
+    advancedSearchWin.hide();
 }
 function add(){
     var item={};

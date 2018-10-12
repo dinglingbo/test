@@ -282,10 +282,10 @@ function setInitData(params, ck, cck) {
 	callback = ck;
 	checkcallback = cck;
 
-	var type = judgeConditionType(value);// 1代表编码，2代表名称，3代表拼音，-1输入信息有误
+	//var type = judgeConditionType(value);// 1代表编码，2代表名称，3代表拼音，-1输入信息有误
 	var params = {};
 
-	if (type == 1) {
+	/*if (type == 1) {
 		morePartCodeEl.setValue(value);
 		params.partCode = value.replace(/\s+/g, "");
 	} else if (type == 2) {
@@ -293,7 +293,7 @@ function setInitData(params, ck, cck) {
 		params.partName = value;
 	} else if (type == 3) {
 		params.namePy = value.replace(/\s+/g, "");
-	}
+	}*/
 
 	params.sortField = "B.ENTER_DATE";
 	params.sortOrder = "asc";

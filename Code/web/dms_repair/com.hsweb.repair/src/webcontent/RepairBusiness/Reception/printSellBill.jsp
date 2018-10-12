@@ -522,7 +522,7 @@ function SetData(params){
        $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId="+params.id+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         	    data =  text.data;
-            	for(var i = 0 , l = data.lenth ; i < l ; i++){
+            	for(var i = 0 , l = data.length ; i < l ; i++){
                    var tBody = $("#tbodyId");
 		           tBody.empty();
 	               var tds =  '<td align="center">[id]</td>' +

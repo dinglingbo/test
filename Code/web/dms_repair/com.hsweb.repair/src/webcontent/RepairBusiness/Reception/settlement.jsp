@@ -17,11 +17,11 @@
     <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" /> 
 </head>
 <style>
-        table, td {
-            font-family: Tahoma,Geneva,sans-serif;
-            font-size: 13px;
-            color: #000;
-        }
+	        table, td {
+	            font-family: Tahoma,Geneva,sans-serif;
+	            font-size: 13px;
+	            color: #000;
+	        }
 
             table.ybk {
                 width: 100%;
@@ -45,11 +45,11 @@
                 border: 1px solid #000;
             }
 
-        .print_btn {
-            text-align: center;
-            width: 100%;
-            padding: 30px 0 20px 0;
-        }
+	        .print_btn {
+	            text-align: center;
+	            width: 100%;
+	            padding: 30px 0 20px 0;
+	        }
 
             .print_btn a {
                 width: 160px;
@@ -64,9 +64,9 @@
                 margin: 0 10px;
             }
 
-                .print_btn a:active, .print_btn a:hover {
-                    background: #df0024;
-                }
+            .print_btn a:active, .print_btn a:hover {
+                background: #df0024;
+            }
 
         .sminput {
             width: 640px;

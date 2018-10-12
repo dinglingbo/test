@@ -528,13 +528,14 @@
     <location x="105" y="262"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.QueryRpsInsuranceListById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="id" type="query" value="Int" valueType="Primitive" pattern="reference">data1/id</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="list" type="query" value="commonj.sdo.DataObject[]" valueType="Java">temp_list</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

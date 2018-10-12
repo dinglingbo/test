@@ -69,6 +69,10 @@ function onDeleteClick(){
 		nui.alert("请先选择一条数据");
 		return;
 	}
+	if(data.auditSign == 1){
+		nui.alert("已审核通过，无法删除");
+		return;
+	}
 	nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',

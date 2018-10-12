@@ -80,6 +80,8 @@
     String token="";
     String tenantId = "default";
     String compType = "";
+    String compAddress = "";
+    String compTel = ""; 
     String isMaster = "";
     String empId = "";
 	Map attr=new HashMap();
@@ -104,6 +106,8 @@
                 isMaster = attr.get("isMaster").toString();
                 empId = attr.get("empId").toString();
                 compType = attr.get("compType").toString();
+                compAddress  = attr.get("compAddress").toString();
+                compTel = attr.get("compTel").toString();
 			} catch (Exception e) {
 			}
             
@@ -137,6 +141,8 @@
     var currIsMaster = "<%=isMaster %>";
     var currEmpId = "<%=empId %>";
     var token = "<%=token %>";
+    var currCompAddress = "<%=compAddress %>";
+    var currCompTel = "<%=compTel %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

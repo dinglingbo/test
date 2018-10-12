@@ -214,9 +214,9 @@ $(document).ready(function ()
                             }else if(action == "查看"){
                                 var opt={};
                                 opt.iconCls="fa fa-desktop";
-                                opt.id="1104";
-                                opt.text="洗车开单";
-                                opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/carWashMgr.jsp";
+                                opt.id="1108";
+                                opt.text="综合开单";
+                                opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/ReceptionMain.jsp";
                                 
                                 var params = {
                                     type: 'view',

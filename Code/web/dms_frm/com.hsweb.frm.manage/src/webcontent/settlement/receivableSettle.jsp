@@ -10,7 +10,7 @@
   - Description:
 -->
 <head>
-<title>应收账款管理</title>
+<title >应收账款管理</title>
 <script
 	src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.3.7"></script>
 <style type="text/css">

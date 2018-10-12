@@ -1006,7 +1006,7 @@ function doSettle() {
 		var guestName = rows[0].guestName;*/
 		nui.open({
 	        url: webPath + contextPath +"/com.hsweb.frm.manage.receivable.flow?token="+token,
-	        title: "应收结算", width: "50%", height: "80%", 
+	         width: "80%", height: "90%", 
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(rows);

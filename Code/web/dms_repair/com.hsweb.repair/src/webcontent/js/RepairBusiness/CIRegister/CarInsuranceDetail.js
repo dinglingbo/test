@@ -1,6 +1,7 @@
 /**
 * Created by Administrator on 2018/4/25.
 */
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
 var detailGrid = null;
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
@@ -37,14 +38,14 @@ $(document).ready(function ()
             e.cancel = true;  
             return;
         } 
-        var data = {}; 
+        var data = {};  
         var params = {}; 
         var value = e.data.key; 
         value = value.replace(/\s+/g, "");
-        if(value.length<3){  
-            e.cancel = true;
+        if(value.length<3){   
+            e.cancel = true; 
             return; 
-        }else{ 
+        }else{  
             var reg = /^[0-9]*$/;//纯数字
             if(reg.test(value)){
                 params.nums = value;
@@ -185,12 +186,12 @@ function drawSummaryCell(e){
     }
 
     if(column.field == "rtnCompRate" ){  
-        e.cellHtml = rtn_comp_amt_sum.toFixed(2);
+        e.cellHtml = rtn_comp_amt_sum.toFixed(4);
         e.cellStyle = "text-align:center";
     }
 
     if(column.field == "rtnGuestRate" ){  
-        e.cellHtml = rtn_guest_amt_sum.toFixed(2);
+        e.cellHtml = rtn_guest_amt_sum.toFixed(4);
         e.cellStyle = "text-align:center";
     }
 }
@@ -312,6 +313,7 @@ function setInitData(params){
             if(params.data.status != 0 ){
                 $("#addBtn").hide();
                 $("#save").hide();
+                $("#pay").hide();
                 searchNameEl.setWidth("200px");
             }
             if(params.data.settleTypeId == 1){
@@ -331,10 +333,7 @@ function setInitData(params){
     }, function(){
         nui.unmask(document.body);
     });
-
-
 }
-
 }
 
 
@@ -494,7 +493,7 @@ function doSearchMemCard(guestId)
     });
 }
 
-function saveData(){
+function saveData(e){
     var data1 = basicInfoForm.getData();
     var data2 = getData2();
     var gridData = detailGrid.getData();
@@ -512,7 +511,9 @@ function saveData(){
             var mainData = text.mainData;
             nui.get("id").setValue(mainData.id);
             detailGrid.load({serviceId:mainData.id,token:token});
-            showMsg("保存成功！","S");
+            if(e == 1){
+                showMsg("保存成功！","S");
+            }
 
         }
 
@@ -541,6 +542,9 @@ function pay() {
     var moneyCost = 0;
     var sTypeId = null;
 
+    var data1 = basicInfoForm.getData();
+    var data2 = getData2();
+    var gridData = detailGrid.getData();
     var b1= document.getElementsByName('settleTypeId');
     for (var i = 0; i < b1.length; i++) {
         if (b1[i].checked == true) {//如果选中，
@@ -555,45 +559,62 @@ function pay() {
     }else{
         moneyCost = t_amt;
     }
+    var params ={
+        data1:data1,
+        data2:data2,
+        gridData:gridData,
+        t_amt:t_amt,
+        t_rtnCompRate:t_rtnCompRate,
+        t_rtnGuestRate:t_rtnGuestRate,
+        moneyCost:moneyCost,
+        sTypeId:sTypeId
+    };
+    saveData(2);//转入结算和预结算都要保存
+nui.open({
+    url: webBaseUrl + "repair/RepairBusiness/CIRegister/insuranceBillUp.jsp?token="+token,
+    title:"结算",
+    height:"300px",
+    width:"600px",
+    allowResize:false,
+    onload:function(){
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.SetData(params);
+    },
+    ondestroy:function(action){ 
+     if(action == "ok"){
+        $("#addBtn").hide();
+        $("#save").hide();
+        $("#pay").hide();
+    }
 
-    msg="结算金额:"+
-    "<span style='color:green;font-size:18px;'>"+moneyCost+
-    "</span>元，是否结算？";
-
-    nui.showMessageBox({
-        showHeader: true,
-        width: "auto",
-        title: "结算",
-        buttons: ["保存", "结算", "取消"],
-        message: msg,
-        iconCls: "mini-messagebox-question",
-        callback: function (action) {
-            if(action == "保存"){
-
-    //nui.mask({
-    //    html:'数据加载中..'
-    //});
-    var url = baseUrl+"com.hsapi.repair.repairService.settlement.PreInsuranceReceiveSettle.biz.ext";
-    doPost({
-        url : url,
-        data : {
-            serviceId:nui.get("id").value,
-            allowanceAmt:moneyCost
-        },
-        success : function(data)
-        {
-            $("#addBtn").hide();
-            $("#save").hide();
-            showMsg(data.errMsg,data.errCode);
-        }
-    });
-
-
-}else if(action == "结算"){
-
-}else{
-    return;
 }
+
+});
+
 }
+
+
+
+function onPrint(argument) {
+    var params={
+        comp:"",
+        baseUrl:baseUrl,
+        serviceId:nui.get("id").value,
+        token:token
+    };
+    nui.open({
+    url: webBaseUrl + "repair/RepairBusiness/Reception/insurnacePrint.jsp?token="+token,
+    title:"打印",
+    height:"100%",
+    width:"100%",
+    allowResize:false,
+    onload:function(){
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.SetData(params);
+    },
+    ondestroy:function(action){ 
+
+}
+
 });
 }

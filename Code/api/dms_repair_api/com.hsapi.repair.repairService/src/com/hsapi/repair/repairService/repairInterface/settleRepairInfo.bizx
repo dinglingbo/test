@@ -38,6 +38,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">109</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="155" y="201"/>
     <size height="28" width="28"/>
@@ -62,7 +72,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="414" y="201"/>
+    <location x="413" y="270"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -77,7 +87,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="360" y="236"/>
+    <location x="359" y="305"/>
     <figSize height="17" width="135"/>
     <node>subprocess1</node>
   </nodes>
@@ -93,7 +103,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="414" y="104"/>
+    <location x="413" y="201"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -109,7 +119,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="375" y="139"/>
+    <location x="374" y="236"/>
     <figSize height="17" width="104"/>
     <node>subprocess0</node>
   </nodes>
@@ -141,6 +151,7 @@
     <targetConnections>link5</targetConnections>
     <targetConnections>link7</targetConnections>
     <targetConnections>link8</targetConnections>
+    <targetConnections>link11</targetConnections>
     <location x="695" y="201"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -174,7 +185,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="415" y="290"/>
+    <location x="414" y="320"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -189,14 +200,78 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="370" y="325"/>
+    <location x="369" y="355"/>
     <figSize height="17" width="116"/>
     <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="updateInsuranceBill" displayName="updateInsuranceBill" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="502" y="135"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.insurance.updateInsuranceBill</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="insurance" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceMain" valueType="DataObject" pattern="reference">insurance</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables/>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="458" y="170"/>
+    <figSize height="17" width="115"/>
+    <node>subprocess3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>subprocess3</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="412" y="135"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">billMainId</process:from>
+      <process:to type="query">insurance/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">insurance/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">insurance/balaAuditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">insurance/balaAuditDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">insurance/balaAuditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">1</process:from>
+      <process:to type="query">insurance/isSettle</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="410" y="171"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-09 17:44:24" date="2018-09-09Z" description="" name="settleRepairInfo" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceMain" name="insurance"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="billMainId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="billTypeId" primitiveType="Int"/>

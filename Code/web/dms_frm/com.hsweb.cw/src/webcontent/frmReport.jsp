@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-
+<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonCloudPart.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
@@ -16,7 +17,7 @@ pageEncoding="UTF-8" session="false" %>
   <link href="<%=request.getContextPath()%>/cw/TextIndex.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <%@include file="/common/common.jsp"%>
+
   <style type="text/css">          
 
 </style>
@@ -115,16 +116,16 @@ pageEncoding="UTF-8" session="false" %>
 <script type="text/javascript">
     nui.parse();
     var titb = null;
-    var turlb = null;
+    var turlb = null; 
 function danju(){
     titb = "收款流水明细（收款单据）";
-    turlb = "cw/report/IncomeExpenditureDetail.jsp";
+    turlb =webPath+contextPath+ "/cw/report/IncomeExpenditureDetail.jsp";
     openPaper(titb, turlb);
 }
 
 function jingying(){
     titb = "经营收支统计汇总表";
-    turlb = "cw/report/jingyingshouzhitongjibaobiao.jsp";
+    turlb = webPath+contextPath+"/cw/report/jingyingshouzhitongjibaobiao.jsp";
     openPaper(titb, turlb);
 }
 

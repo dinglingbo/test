@@ -65,7 +65,7 @@
       <targetNode>assign17</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -203,14 +203,14 @@
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+  <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link9</targetConnections>
     <location x="15" y="405"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="0" name="errCode" type="query">errCode</process:return>
+      <process:return id="1" name="errMsg" type="query">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -250,7 +250,6 @@
     <process:returns>
       <process:return id="0" name="errCode" type="query">errCode</process:return>
       <process:return id="1" name="errMsg" type="query">errMsg</process:return>
-      <process:return id="2" name="zou" type="query">zou</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">

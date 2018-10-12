@@ -126,4 +126,30 @@
 		where service_id = #serviceId# and bill_package_id = 0 and card_detail_id = 0
 	</update>
 	
+	
+	<update id="setPkgItemServiceType" parameterClass="java.util.HashMap">
+		update rps_package a
+		inner join rps_item b
+		on a.id = b.bill_package_id
+		set b.service_type_id = a.service_type_id
+		where a.service_id = #serviceId# and b.service_id = #serviceId#
+	</update>
+	
+	<update id="setPkgPartServiceType" parameterClass="java.util.HashMap">
+		update rps_package a
+		inner join rps_part b
+		on a.id = b.bill_package_id
+		set b.service_type_id = a.service_type_id
+		where a.service_id = #serviceId# and b.service_id = #serviceId#
+	</update>
+	
+	<update id="setItemPartServiceType" parameterClass="java.util.HashMap">
+		update rps_item a
+		inner join rps_part b
+		on a.id = b.bill_item_id
+		set b.service_type_id = a.service_type_id
+		where a.service_id = #serviceId# and b.service_id = #serviceId#
+		      and a.bill_package_id = 0
+	</update>
+	
 </sqlMap>

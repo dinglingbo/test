@@ -130,6 +130,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="216" y="60"/>
@@ -222,7 +223,7 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="1==1" displayName="连接线" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>subprocess4</targetNode>
       <process:transitionCondition>
@@ -254,7 +255,7 @@
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="1==1" displayName="连接线" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>subprocess6</targetNode>
       <process:transitionCondition>
@@ -328,7 +329,7 @@
       <process:to type="query">pkgSubSum</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/itemTotalAmt</process:from>
+      <process:from type="query" pattern="reference">settlement/itemSubtotal</process:from>
       <process:to type="query">itemSubSum</process:to>
     </process:copy>
     <process:copy>

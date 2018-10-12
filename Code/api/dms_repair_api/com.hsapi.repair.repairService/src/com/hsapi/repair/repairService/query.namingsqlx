@@ -490,6 +490,9 @@
             <isNotEmpty prepend="and" property="orgid">
   				 a.orgid = #orgid#
              </isNotEmpty>
+             <isNotEmpty prepend="and" property="mainIdList">
+  				a.main_id in ($mainIdList$)
+             </isNotEmpty>
              <isNotEmpty prepend="and" property="billTypeId">
   				a.bill_type_id = #billTypeId#
              </isNotEmpty>

@@ -157,7 +157,7 @@ function loadMainAndDetailInfo(row)
             document.getElementById("basicInfoForm").disabled=false;
             setEditable(true);
        }
-        
+
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
        formJson = nui.encode(basicInfoForm.getData());
 
@@ -827,9 +827,13 @@ function onPrint() {
 	var mainParams=main;
 	var settleTypeId=nui.get('settleTypeId').text;
 	var rtnReasonId= nui.get('rtnReasonId').text;
+	var createDate = nui.get('createDate').getValue();
+	var serviceId = nui.get('serviceId').getValue();
 	var formParms={
 			settleTypeId :settleTypeId,
-			rtnReasonId:rtnReasonId
+			rtnReasonId:rtnReasonId,
+			createDate :createDate,
+			serviceId :serviceId
 	};
 	var detailParms=detail;
 
@@ -841,9 +845,11 @@ function onPrint() {
 		}
 	}
 	
-	for(var i=0;i<detailParms.length-1;i++){	
+	for(var i=0;i<detailParms.length;i++){	
 		var comPartBrindId=detailParms[i].comPartBrandId;
-		detailParms[i].comPartBrindId=brandList[comPartBrindId-1].name;
+		if(comPartBrindId){
+			detailParms[i].comPartBrindId=brandList[comPartBrindId].name;
+		}
 	}
 	
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderRtn/PurchaseOrderRtnPrint.jsp";

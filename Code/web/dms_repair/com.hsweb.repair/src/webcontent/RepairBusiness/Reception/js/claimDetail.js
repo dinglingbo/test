@@ -823,6 +823,15 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
+	var data = {
+			packageSubtotal:0,
+			packagePrefAmt:0,
+			itemSubtotal:0,
+			itemPrefAmt:0,
+			partSubtotal:0,
+			partPrefAmt:0,
+			mtAmt:0
+	};
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
@@ -834,7 +843,7 @@ function add(){
     rpsPackageGrid.clearRows();
     rpsItemGrid.clearRows();
     billForm.setData([]);
-    sellForm.setData([]);
+    sellForm.setData(data);
     sendGuestForm.setData([]);
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);
@@ -3131,23 +3140,29 @@ function onValueChangedItemSubtotal(e){
 		var unitPrice = setUnitPrice.getValue()||0;
 		var itemTime = setItemTime.getValue()||0;
 		var itamt = 0;
+		var rate = 0;
 		//设置工时总金额
 		if(unitPrice>0 && itemTime>0){
 		   itamt = itemTime*unitPrice;
 		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
+		 //设置小计金额
+		    if(itamt>0){
+		    	rate = (itamt - subtotal)*1.0/itamt;
+		    } 
+		    rate = rate * 100;
+			rate = rate.toFixed(2);    
+		    setRate.setValue(rate);
+		    setSubtotal.setValue(subtotal);
+		    lastItemSubtotal = subtotal;
+		    lastItemRate = rate;
+		}else{
+			subtotal = 0;
+			setSubtotal.setValue(subtotal);
+		    lastItemSubtotal = subtotal;
+		    lastItemRate = rate;
 		}
-		//设置小计金额
-		var rate = 0;
-	    if(itamt>0){
-	    	rate = (itamt - subtotal)*1.0/itamt;
-	    } 
-	    rate = rate * 100;
-		rate = rate.toFixed(2);    
-	    setRate.setValue(rate);
-	    setSubtotal.setValue(subtotal);
-	    lastItemSubtotal = subtotal;
-	    lastItemRate = rate;
+		
 	}	
 }
 

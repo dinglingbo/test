@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.6"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.12"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -133,6 +133,7 @@ body .mini-grid-row-selected{
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
+                              <input class="nui-hidden" name="auditSign" id="auditSign"/>
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">

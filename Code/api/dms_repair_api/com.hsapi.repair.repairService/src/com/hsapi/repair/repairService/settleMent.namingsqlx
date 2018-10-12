@@ -229,4 +229,29 @@
 	</select>
 	
 	
+	<select id="getRpsServiceType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		select DISTINCT m.serviceId as serviceId, m.serviceTypeId as serviceTypeId from 
+		(SELECT DISTINCT service_id as serviceId, service_type_id as serviceTypeId from rps_package 
+		where service_id = #serviceId# 
+		UNION
+		SELECT DISTINCT service_id as serviceId, service_type_id as serviceTypeId from rps_item
+		where service_id = #serviceId# and bill_package_id = 0) m
+	</select>
+	
+	<select id="getNullServiceTypeItem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT id, service_type_id as serviceTypeId, sales_deduct_origin_value as salesDeductOriginValue, 
+		       tech_deduct_origin_value AS techDeductOriginValue, 
+		       advisor_deduct_origin_value AS advisorDeductOriginValue
+		from rps_item 
+		where service_id = #serviceId# and service_type_id > 0 and (sales_deduct_origin_value is null 
+		      or tech_deduct_origin_value is null 
+		      or advisor_deduct_origin_value is null)
+	</select>
+	
+	<select id="getNullServiceTypePart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT id, service_type_id as serviceTypeId, sales_deduct_origin_value as salesDeductOriginValue
+		from rps_part 
+		where service_id = #serviceId# and service_type_id > 0 and sales_deduct_origin_value is null
+	</select>
+	
 </sqlMap>

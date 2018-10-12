@@ -11,7 +11,7 @@
 -->
 <head>
 <title>工单结算</title>
-<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.1">
+<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.8">
 </script>
 <style type="text/css">
 .vpanel_heading {
@@ -80,18 +80,20 @@ a.optbtn {
 				borderStyle="border-bottom:1;"
 				class="nui-datagrid"
 				dataField="" style="width: 100%; height:100px;"
+				allowCellSelect="true" allowCellEdit="true"
 				showPager="false"showModified="false" allowSortColumn="true"
 				>
 				<div property="columns">
 					<div type="indexcolumn" headerAlign="center" name="index" visible="true" width="15">序号</div>
-					<div header="其他收入">
+					<div header="其它收入">
 						<div property="columns">
-							<div field="optBtn" name="optBtn" width="40" headerAlign="center" header="操作" align="center" ></div>
-							<div field="billTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="收入项目">
-								<input  property="editor" enabled="true" id="billTypeList" name="list" data="list" dataField="list" class="nui-combobox" valueField="id" onvaluechanged="onbillTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
+							<div field="optBtn" name="optBtn" width="50" headerAlign="center" header="操作" align="center" ></div>
+							<div field="typeId" type="comboboxcolumn" width="100" headerAlign="center" header="收入项目">
+								<input  property="editor" enabled="true" id="billTypeList" name="list" data="rlist" dataField="rlist" class="nui-combobox" 
+								        valueField="id" onvaluechanged="onbillRTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
 							</div>
-							<div field="charOffAmt" width="60" summaryType="sum" headerAlign="center" header="收入金额">
-								<input property="editor" vtype="float" class="nui-textbox"/>
+							<div field="amt" width="60" headerAlign="center" header="收入金额">
+								<input property="editor" vtype="float" class="nui-textbox"  />
 							</div>
 							<div field="remark" width="80" headerAlign="center" header="备注">
 								<input property="editor" class="nui-textbox"/>
@@ -106,17 +108,19 @@ a.optbtn {
 				borderStyle="border-bottom:1;"
 				class="nui-datagrid"
 				dataField="" style="width: 100%; height:100px;"
+				allowCellSelect="true" allowCellEdit="true"
 				showPager="false"showModified="false" allowSortColumn="true"
 				>
 				<div property="columns">
 					<div type="indexcolumn" headerAlign="center" name="index" visible="true" width="15">序号</div>
 					<div header="费用支出">
 						<div property="columns">
-							<div field="optBtn" name="optBtn" width="40" headerAlign="center" header="操作" align="center" ></div>
-							<div field="billTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="费用科目">
-								<input  property="editor" enabled="true" id="billTypeList" name="list" data="list" dataField="list" class="nui-combobox" valueField="id" onvaluechanged="onbillTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
+							<div field="optBtn" name="optBtn" width="50" headerAlign="center" header="操作" align="center" ></div>
+							<div field="typeId" type="comboboxcolumn" width="100" headerAlign="center" header="费用科目">
+								<input  property="editor" enabled="true" id="billTypeList" name="list" data="plist" dataField="plist" class="nui-combobox" 
+								valueField="id" onvaluechanged="onbillPTypeChange" textField="name" url="" emptyText=""  vtype="required"/> 
 							</div>
-							<div field="charOffAmt" width="60" summaryType="sum" headerAlign="center" header="支出金额">
+							<div field="amt" width="60" summaryType="sum" headerAlign="center" header="支出金额">
 								<input property="editor" vtype="float" class="nui-textbox"/>
 							</div>
 							<div field="remark" width="80" headerAlign="center" header="备注">
@@ -130,7 +134,7 @@ a.optbtn {
 	</div>
 	<table style="width:100%; height:auto;">
 		<tr>
-			<td colspan="3"><div id="rtTr" class="vpanel_heading" style="background-color: #f3f4f6; color: #2d95ff;"><span>收款</span></div></td>
+			<td colspan="3"><div id="rtTr" class="vpanel_heading" style="background-color: #f3f4f6; color: #2d95ff;"><span>收款(如果有费用支出，请到应付账款管理进行付款!)</span></div></td>
 		</tr>
 
 		<tr >

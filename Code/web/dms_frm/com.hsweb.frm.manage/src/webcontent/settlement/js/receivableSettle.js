@@ -976,7 +976,7 @@ function doSettle() {
 	var rows = rightGrid.getSelecteds();
 	var s = rows.length;
 	if (s > 0) {
-		if (name == "pRightTab") {
+/*		if (name == "pRightTab") {
 			document.getElementById('rtTr').style.display = "none";
 			document.getElementById('rcTr').style.display = "none";
 			document.getElementById('ptTr').style.display = "";
@@ -1001,49 +1001,25 @@ function doSettle() {
 		if (errCode != 'S') {
 			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
 			return;
-		}
-
+		}		
 		settleWin.show();
-		
-		var guestName = rows[0].guestName;
-		var json = {
-				guestId:rows[0].guestId,
-				token : token
-		}
-		
-		nui.ajax({
-			url : apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
-			type : "post",
-			data : json,
-			success : function(data) {
-				if(data.member.length==0){
-					rechargeBalaAmt=0;
-				}else{	
-					rechargeBalaAmt = data.member[0].rechargeBalaAmt;
-				}
-				document.getElementById('settleGuestName').innerHTML = "结算单位："
-					+ guestName;
-			document.getElementById('settleBillCount').innerHTML = "结算单据数：" + s;
-			document.getElementById('rRPAmt').innerHTML = rtn.rRPAmt;
-			document.getElementById('rTrueAmt').innerHTML = rtn.rTrueAmt;
-			document.getElementById('rVoidAmt').innerHTML = rtn.rVoidAmt;
-			document.getElementById('rNoCharOffAmt').innerHTML = rtn.rNoCharOffAmt;
-			document.getElementById('pRPAmt').innerHTML = rtn.pRPAmt;
-			document.getElementById('pTrueAmt').innerHTML = rtn.pTrueAmt;
-			document.getElementById('pVoidAmt').innerHTML = rtn.pVoidAmt;
-			document.getElementById('pNoCharOffAmt').innerHTML = rtn.pNoCharOffAmt;
-			document.getElementById('rpAmt').innerHTML = rtn.rpAmt;
-			//document.getElementById('rechargeBalaAmt').innerHTML =rechargeBalaAmt;
-			$("#rechargeBalaAmt").html(rechargeBalaAmt+"元");
-			
-			settleAccountGrid.setData([]);
-			addSettleAccountRow();
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
-				console.log(jqXHR.responseText);
-			}
-		});
+		var guestName = rows[0].guestName;*/
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.receivable.flow?token="+token,
+	        title: "应收结算", width: "50%", height: "80%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(rows);
+	        },
+	        ondestroy: function (action) {
+				var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getRtnData();
+				data = data || {};
+				data.action = action;
+				callback && callback(data);
+	        }
+	    });
+
 
 	} else {
 		showMsg("请选择单据!", "W");
@@ -1566,3 +1542,5 @@ function onChanged() {
 	document.getElementById('rpAmt').innerHTML = rtn.rpAmt-dk;
 
 }
+
+

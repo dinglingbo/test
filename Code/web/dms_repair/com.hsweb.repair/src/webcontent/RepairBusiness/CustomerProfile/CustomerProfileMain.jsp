@@ -101,6 +101,9 @@ table {
 						<div name="guestFullName" field="guestFullName"
 							headerAlign="center" allowSort="true" visible="true"
 							width="100px">客户名称</div>
+						<div name="mobile" field="mobile"
+							headerAlign="center" allowSort="true" visible="true"
+							width="100px">客户电话</div>
 						<div name="addr" field="addr" headerAlign="center"
 							allowSort="true" visible="true" width="100px">地址</div>
 						<div name="lastComeDate" field="lastComeDate"

@@ -31,6 +31,8 @@
 	18、购买计次卡，充值
 
 	19、报销单
+	
+	20、获取收支项目
 
 */
 
@@ -302,6 +304,28 @@ function svrSetItemPartRateBatch(params, callback, unmaskcall){
 	});
 }
 
+var inComeExpensesUrl = window._rootFrmUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+function svrInComeExpenses(params, callback) {
+    //var params = {itemTypeId : 1, isMain: 0};
+    nui.ajax({
+        url : inComeExpensesUrl,
+        data : {
+            params: params,
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
 //新增客户
 function doApplyCustomer(params,callback){
     nui.open({
@@ -543,7 +567,7 @@ function doSelectBasicData(BasicDataUrl,title,params,callback){
 function doBillPay(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
-        title: "工单结算", width: "60%", height: "80%", allowDrag:true, allowResize:false,
+        title: "工单结算", width: "70%", height: "80%", 
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);

@@ -215,8 +215,8 @@ table{
     	
     	function SetData(mainParams,detailParms,formParms){
        		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
-       		$('#createDate').text("退货日期："+format(mainParams.createDate,"yyyy/MM/dd/HH:mm:ss"));
-       		$('#serviceId').text("No:"+mainParams.serviceId);
+       		$('#createDate').text("退货日期："+format(formParms.createDate,"yyyy/MM/dd/HH:mm:ss"));
+       		$('#serviceId').text("No:"+formParms.serviceId);
      
     		$('#rtnReasonId').text("退货原因:"+formParms.rtnReasonId);
     		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);
@@ -237,7 +237,7 @@ table{
 					'<td align="center">[remark]</td>'+
 					'<td align="center">[storehouse]</td>'+
 					'<td align="center">[storeShelf]</td>';
-				for(var i = 0; i < data.length-1; i++ ){ 
+				for(var i = 0; i < data.length; i++ ){ 
 					var tr=$("<tr></tr>");
 					tr.append(
 						tds.replace("[index]",i+1 ||"")

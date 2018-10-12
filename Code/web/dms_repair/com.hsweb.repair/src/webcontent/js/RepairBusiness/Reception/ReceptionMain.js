@@ -29,7 +29,7 @@ var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
-var serviceTypeIds = null;
+//var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"工时",
@@ -58,20 +58,29 @@ $(document).ready(function ()
     initMember("mtAdvisorId",function(){
         mtAdvisorIdEl.setValue(currEmpId);
         mtAdvisorIdEl.setText(currUserName);
-    });
-    initServiceType("serviceTypeId",function(data) {
-        servieTypeList = nui.get("serviceTypeId").getData();
-        servieTypeList.forEach(function(v) {
-            servieTypeHash[v.id] = v;
+
+        
+        initServiceType("serviceTypeId",function(data) {
+            servieTypeList = nui.get("serviceTypeId").getData();
+            servieTypeList.forEach(function(v) {
+                servieTypeHash[v.id] = v;
+            });
+            serviceTypeIds.setData(servieTypeList);
+
+            initCarBrand("carBrandId",function(data) {
+                brandList = nui.get("carBrandId").getData();
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
+
+                quickSearch(0);
+            });
+
+
         });
-        serviceTypeIds.setData(servieTypeList);
+
     });
-    initCarBrand("carBrandId",function(data) {
-        brandList = nui.get("carBrandId").getData();
-        brandList.forEach(function(v) {
-            brandHash[v.id] = v;
-        });
-    });
+
     // initCustomDicts("receTypeId", "0415",function(data) {
     //     receTypeIdList = nui.get("receTypeId").getData();
     //     receTypeIdList.forEach(function(v) {
@@ -199,7 +208,7 @@ $(document).ready(function ()
         }
     });
 
-    quickSearch(0);
+    
 });
 var statusHash = {
     "0" : "报价",
@@ -255,27 +264,27 @@ function quickSearch(type) {
     switch (type) {
         case 0:
             params.isSettle = 0;
-            params.isDisabled = 0;
-            queryname = "所有在厂"
+            queryname = "所有在厂";
             break;
         case 1:
             params.status = 0;  //报价
-            queryname = "报价"
+            queryname = "报价";
             break;
         case 2:
             params.status = 1;  //施工
-            queryname = "施工"
+            queryname = "施工";
             //document.getElementById("advancedMore").style.display='block';
             break;
         case 3:
             params.status = 2;  //完工
-            queryname = "完工"
+            queryname = "完工";
             params.balaAuditSign = 0;
             break;
         case 4:
             params.status = 2;//待结算
             params.balaAuditSign = 1;
-            queryname = "待结算"
+            params.isSettle = 0;
+            queryname = "待结算";
             //document.getElementById("advancedMore").style.display='block';
             break;
         default:
@@ -330,7 +339,7 @@ function unfinish(){
         return;
     }
     if(row.status != 2){
-        showMsg("本工单未未完工,不能返工!!","W");
+        showMsg("本工单未完工,不能返工!!","W");
         return;
     }
     
@@ -403,7 +412,30 @@ function del(){
 function onSearch()
 {
     var params = {};
-    
+    var menunamestatus = nui.get("menunamestatus");
+    var title = menunamestatus.getText();
+    switch (title) {
+        case "所有在厂":
+            params.isSettle = 0;
+            break;
+        case "报价":
+            params.status = 0;  //报价
+            break;
+        case "施工":
+            params.status = 1;  //施工
+            break;
+        case "完工":
+            params.status = 2;  //完工
+            params.balaAuditSign = 0;
+            break;
+        case "待结算":
+            params.status = 2;//待结算
+            params.balaAuditSign = 1;
+            params.isSettle = 0;
+            break;
+        default:
+            break;
+    }
     // if(!advancedSearchWin.visible){
     //     var value = nui.get("carNo-search").getValue()||"";
     //     value = value.replace(/\s+/g, "");
@@ -421,6 +453,7 @@ function doSearch(params) {
     gsparams.balaAuditSign = params.balaAuditSign;
     gsparams.isSettle = params.isSettle;
     gsparams.billTypeId = 0;
+    gsparams.isDisabled = 0;
 
     mainGrid.load({
         token:token,

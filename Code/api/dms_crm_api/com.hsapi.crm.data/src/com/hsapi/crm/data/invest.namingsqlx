@@ -17,7 +17,6 @@
 			a.car_type          carType,
 			a.car_vin           carVin,
 			a.guest_id          guestId,
-			a.guest_name        guestName,
 			a.id                id,
 			a.modifier          modifier,
 			a.modify_date       modifyDate,
@@ -30,25 +29,40 @@
 			a.service_id        serviceId,
 			a.visit_id          visitId,
 			a.visit_man         visitMan,
-			c.service_type_id   serviceTypeId,
-			c.mt_advisor        mtAdvisor,
 			b.item_total_amt    itemTotalAmt,
 			b.part_total_amt    partTotalAmt,
+			c.service_type_id   serviceTypeId,
+			c.mt_advisor        mtAdvisor,
+			c.enter_kilometers  enterKilometers,
 			c.comp_come_times   compComeTimes,
 			c.chain_come_times  chainComeTimes,
+			c.bill_type_id      billTypeId,
+			c.out_date          outDate,
+			c.enter_date        enterDate,
+			c.is_out_bill       isOutBill,
 			d.car_model         carModel,
 			d.car_brand_id      carBrandId,
 			d.engine_no         engineNo,
-			d.vin               vin         
-		from crm_visit_achievement a, wb_repair.rps_settlement b,wb_repair.rps_maintain c, wb_repair.rpb_car d
+			d.vin               vin,
+			e.full_name         guestName,
+			e.mobile            guestMobile,
+			f.name              contactName,
+			f.mobile            contactMobile,
+			f.id_no             contactIdNo
+		from crm_visit_achievement a, wb_repair.rps_settlement b,wb_repair.rps_maintain c, wb_repair.rpb_car d, wb_common.com_guest e, wb_repair.rpb_contactor f
 		where a.service_id = b.service_id
  			and b.service_id = c.id
  			and d.id = c.car_id
+ 			and c.guest_id = e.id
+			and c.contactor_id = f.id
  		<isNotEmpty prepend="and" property="carNo">
         	(a.car_no = #carNo#)
         </isNotEmpty>
         <isNotEmpty prepend="and" property="serviceCode">
         	(a.service_code = #serviceCode#)
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="auditSign">
+        	(a.audit_sign = #auditSign#)
         </isNotEmpty>
 	</select>
 </sqlMap>

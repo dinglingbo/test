@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="rpAccountSettle.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="结算单  直接收款&#xD;&#xA;1、在repair中验证数据&#xD;&#xA;2、更新结算数据状态&#xD;&#xA;3、在repair中通过http请求调用结算收款&#xD;&#xA;4、收款成功后，整体提交&#xD;&#xA;5、收款失败后，整体回滚&#xD;&#xA;&#xD;&#xA;获取次卡金额，且判断使用次卡是否超数&#xD;&#xA;提成信息放在事务之外执行，失败后插入日志还是通过单据里面是否计算提成的状态字段来判断是否计算？&#xD;&#xA;&#xD;&#xA;储值卡（会员卡）消费金额判断&#xD;&#xA;取默认结算账户" title="Administrator&#x9;18-8-11 下午3:01">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="结算单  直接收款&#xD;&#xA;1、在repair中验证数据&#xD;&#xA;2、更新结算数据状态&#xD;&#xA;3、在repair中通过http请求调用结算收款&#xD;&#xA;4、收款成功后，整体提交&#xD;&#xA;5、收款失败后，整体回滚&#xD;&#xA;&#xD;&#xA;获取次卡金额，且判断使用次卡是否超数&#xD;&#xA;提成信息放在事务之外执行，失败后插入日志还是通过单据里面是否计算提成的状态字段来判断是否计算？&#xD;&#xA;&#xD;&#xA;储值卡（会员卡）消费金额判断&#xD;&#xA;取默认结算账户&#xD;&#xA;&#xD;&#xA;com.hsapi.frm.frmService.rpinterface.billSettle.biz.ext" title="Administrator&#x9;18-8-11 下午3:01">
     <location x="80" y="-130"/>
-    <size height="281" width="361"/>
+    <size height="311" width="361"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link0" isDefault="true" type="transition">

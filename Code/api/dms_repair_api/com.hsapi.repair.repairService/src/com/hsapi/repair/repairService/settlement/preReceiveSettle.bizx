@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="preReceiveSettle" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新维修表状态为预结算  bala_audit_sign = 1&#xD;&#xA;103  综合维修收款&#xD;&#xA;104  储值卡充值款&#xD;&#xA;105  洗美套餐销售款&#xD;&#xA;106  洗美开单收款&#xD;&#xA;107  销售开单收款&#xD;&#xA;108  理赔开单收款&#xD;&#xA;&#xD;&#xA;0综合，1检查，2洗美，3销售，4理赔&#xD;&#xA;&#xD;&#xA;rps_expense 费用登记（判断 0综合，2洗美，4理赔 需要处理费用）" title="Administrator&#x9;18-8-11 下午3:01">
-    <location x="-7" y="-150"/>
-    <size height="226" width="601"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新维修表状态为预结算  bala_audit_sign = 1&#xD;&#xA;103  综合维修收款&#xD;&#xA;104  储值卡充值款&#xD;&#xA;105  洗美套餐销售款&#xD;&#xA;106  洗美开单收款&#xD;&#xA;107  销售开单收款&#xD;&#xA;108  理赔开单收款&#xD;&#xA;&#xD;&#xA;0综合，1检查，2洗美，3销售，4理赔&#xD;&#xA;&#xD;&#xA;rps_expense 费用登记（判断 0综合，2洗美，4理赔 需要处理费用）&#xD;&#xA;&#xD;&#xA;com.hsapi.frm.frmService.rpsettle.rpSettle.biz.ext" title="Administrator&#x9;18-8-11 下午3:01">
+    <location x="-7" y="-183"/>
+    <size height="251" width="601"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.9"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.10"></script>
 <style type="text/css">
 
 .title {
@@ -119,9 +119,6 @@
               </div>
           </div>
     </div>
-
-
-
 </div>
 
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">

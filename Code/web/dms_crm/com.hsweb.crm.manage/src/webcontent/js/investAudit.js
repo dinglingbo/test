@@ -11,6 +11,14 @@ var gAuditSign=[{
 	"text":"不通过"
 }];
 
+var gIsOutBill=[{
+	"id":0,
+	"text":"否"
+},{
+	"id":1,
+	"text":"是"
+}];
+
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
 	basicForm = new nui.Form("#basicInfo");

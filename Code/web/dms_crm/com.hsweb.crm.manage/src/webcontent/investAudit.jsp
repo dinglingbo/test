@@ -89,19 +89,19 @@
             			<table id="basicInfo" style="margin:0 5px;">
             				<tr>
                 				<td style="width:60px;text-align:right;"><span>客户名称:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="guestName" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>客户电话:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="guestMobile" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
                 				<td style="width:60px;text-align:right;"><span>联系人:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="contactName" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>联系电话:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="contactMobile" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>身份:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+                				<td style="width:60px;text-align:right;"><span>身份证:</span></td>
+								<td><input name="contactIdNo" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>来厂次数:</span></td>
 								<td><input name="compComeTimes" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
@@ -121,28 +121,28 @@
                 				<td style="width:60px;text-align:right;"><span>底盘号:</span></td>
 								<td><input name="vin" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>是否出单:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="isOutBill" style="width:130px;" data="gIsOutBill" class="nui-combobox"/></td>
             				</tr>
             				<tr>
                 				<td colspan="4"><hr/></td>
             				</tr>
             				<tr>
                 				<td style="width:60px;text-align:right;"><span>业务类型:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="serviceTypeId" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>维修类型:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="billTypeId" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
                 				<td style="width:60px;text-align:right;"><span>维修顾问:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="mtAdvisor" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>里程数:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="enterKilometers" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
                 				<td style="width:60px;text-align:right;"><span>进厂日期:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="enterDate" style="width:130px;" class="nui-datepicker" dateformat="yyyy-MM-dd"/></td>
 								<td style="width:60px;text-align:right;"><span>离场日期:</span></td>
-								<td><input name="" style="width:130px;" class="nui-textbox"/></td>
+								<td><input name="outDate" style="width:130px;" class="nui-datepicker" dateformat="yyyy-MM-dd"/></td>
             				</tr>
             			</table>
             		</div>

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货归库</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.29"></script>
 <style type="text/css">
 
 .title {
@@ -26,7 +26,9 @@
 .required {
 	color: red;
 }
-
+a { 
+    text-decoration: none;
+}
 .rmenu {
     font-size: 14px;
     /* font-weight: bold; */
@@ -67,7 +69,7 @@
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <span class="separator"></span>
+<!--                     <span class="separator"></span> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
@@ -105,6 +107,7 @@
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
 	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>
+	              <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
                  </div>
          </div>
   <div id="editFormDetail" style="display:none;padding:5px;position:relative;">

@@ -10,8 +10,6 @@
 -->
 <head>
 <title>打印配件销售单</title>
-	<%-- <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/printReturnBill.js?v=1.0.0"></script>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> --%> 
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
@@ -413,7 +411,7 @@
             <tr>
                 <td width="25%" height="20" class="left">客户：<span id="guestName"></span></td>
                 <td height="20" class="left">联系电话：<span id="phone"></span></td>
-                <td width="25%" class="left">开单日期：<span id="date"></span></td>
+                <td width="25%" class="left">开单日期：<span id="recordDate"></span></td>
             </tr>
             <tr>   
                 <td class="left">收货地址：<span id="shippingAdd"></td>
@@ -440,9 +438,9 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
             <tbody>
                 <tr>
-                    <td width="20%" height="20">制单人：丁生</td>
-                    <td width="20%">打印时间：2018-10-12 14:14:24</td>
-                    <td width="33%" align="right"><b style="font-size:16px;">合计</b>： <font style="font-size:16px; font-weight:bold;">0.00</font> 元&nbsp;&nbsp;&nbsp;<b style="font-size:16px;">大写</b>：<font style="font-size:16px; font-weight:bold;"> 整</font></td>
+                    <td width="20%" height="20">制单人:<span id="currUserName"></span></td>
+                    <td width="20%">打印时间：<span id="date"></span></td>
+                    <td width="33%" align="right"><b style="font-size:16px;">合计</b>： <font style="font-size:16px; font-weight:bold;"><span id = "amt"></span></font> 元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size:16px;">大写</b>：<font style="font-size:16px; font-weight:bold;"><span id = "Damt"></span></font></td>
                 </tr>
                 <tr>
 
@@ -470,40 +468,14 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
         <tbody>
             <tr>
-                <td height="20" class="left">公司地址：杭州市滨江区长河路和瑞科技园s4栋</td>
-                <td  class="right">联系电话：15986796825</td>
+                <td height="20" class="left">公司地址:<span id = "currCompAddress"></span></td>
+                <td  class="right">联系电话：<span id = "currCompTel"></td>
             </tr>
         </tbody>
     </table>
 </div>
 </div>
 <script type="text/javascript">
-    /* $("#print").click(function () {
-        settype();
-        $(".print_btn").hide();
-        window.print();
-    });
-     */
-   /*  $("#").each(function () {
-        if($(this).text()=="客户"){
-           $(this).text("hhhh")
-        }
-    }); */
-    
-    /* function settype() {
-        $.ajax({
-            type: "POST",
-            data: { type: "A4" },
-            url: "/Main/serve/SetPrintType",
-            dataType: "json",
-            success: function (data) {
-            },
-            error: function () {
-
-            }
-        });
-    } */
-    
      $(document).ready(function (){
 		$("#print").click(function () {
             $(".print_btn").hide();
@@ -511,37 +483,48 @@
         });
 	});	
 function SetData(params){
+       var sumAmt = 0;
        var date = new Date();
        var data = [];
        $("#guestName").html(params.guestFullName);
        $("#guestAdd").html(params.addr);
-       $("#date").html(params.recordDate);
+       $("#recordDate").html(params.recordDate);
        $("#phone").html(params.guestMobile); 
        $("#shippingAdd").html(params.addr); 
        $("#serviceCode").html(params.serviceCode);
-       $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId="+params.id+"&token="+params.token,{},function(text){
+       $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext?serviceId="+params.id+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         	    data =  text.data;
-            	for(var i = 0 , l = data.lenth ; i < l ; i++){
-                   var tBody = $("#tbodyId");
-		           tBody.empty();
+        	    var tBody = $("#tbodyId");
+        	     tBody.empty();
+            	for(var i = 0 , l = data.length ; i < l ; i++){
+            	  sumAmt = parseFloat(sumAmt) + parseFloat(data[i].amt);
+		           var tr = $("<tr></tr>");
 	               var tds =  '<td align="center">[id]</td>' +
 				    		   "<td>[partCode]</td>"+
 				    			"<td align='center'>[partName]</td>"+ 
 				    			"<td align='center'>[unit]</td>"+
 				    			"<td align='center'>[qty]</td>"+
 				    			"<td align='center'>[nuitPrice]</td>"+
-				    			"<td align='center'>[subtotal]</td>";
+				    			"<td align='center'>[amt]</td>";
 				  tr.append(
 		    				tds.replace("[id]",i +1)
-				    			.replace("[partCode]",data[i].partCode)
+				    			.replace("[partCode]",data[i].partCode || "")
 				    			.replace("[partName]",data[i].partName || "")
+				    			.replace("[unit]",data[i].unit || "")
 				    			.replace("[qty]",data[i].qty || "")
 				    			.replace("[nuitPrice]",data[i].unitPrice || "")
 				    			.replace("[amt]",data[i].amt || ""));
 		         tBody.append(tr);
            }
       }
- }); 
+      $("#amt").html(sumAmt);
+      $("#Damt").html(transform(sumAmt+""));  
+   });
+   $("#date").html(format(date, "yyyy-MM-dd HH:mm:ss"));
+   $("#currUserName").html(currUserName);
+   $("#currCompAddress").html(currCompAddress || "");
+   $("#currComptel").html(currComptel);
+   
  }
 </script>

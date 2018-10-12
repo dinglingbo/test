@@ -214,9 +214,9 @@ $(document).ready(function ()
                             }else if(action == "查看"){
                                 var opt={};
                                 opt.iconCls="fa fa-desktop";
-                                opt.id="1104";
-                                opt.text="洗车开单";
-                                opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/carWashMgr.jsp";
+                                opt.id="1106";
+                                opt.text="理赔开单";
+                                opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/claimMain.jsp";
                                 
                                 var params = {
                                     type: 'view',
@@ -528,7 +528,7 @@ $(document).ready(function ()
         }
     });
 
-
+    document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     // document.onmousedown=function(event){ 
     //     var i = 0;
     // };

@@ -93,6 +93,7 @@ function carNoChange(){
                 nui.get("serviceCode").setValue(result.data.serviceCode);
                 nui.get("serviceId").setValue(result.data.id);
                 nui.get("carId").setValue(result.data.carId);
+                nui.get("guestId").setValue(result.data.guestId);
             } else {
 				nui.alert(result.errMsg || "工单号生成失败!");
             }

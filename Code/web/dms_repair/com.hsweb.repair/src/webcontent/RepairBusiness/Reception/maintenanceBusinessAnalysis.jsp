@@ -11,6 +11,7 @@
 <head>
 <title>维修营业分析</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/echarts.js" type="text/javascript" ></script>
 </head>
 <style type="text/css">

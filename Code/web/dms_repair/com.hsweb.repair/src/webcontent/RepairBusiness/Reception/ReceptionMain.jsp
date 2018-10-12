@@ -119,9 +119,6 @@
               </div>
           </div>
     </div>
-
-
-
 </div>
 
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">

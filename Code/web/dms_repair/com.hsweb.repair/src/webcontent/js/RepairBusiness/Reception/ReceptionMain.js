@@ -29,7 +29,7 @@ var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
-var serviceTypeIds = null;
+//var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"工时",
@@ -264,27 +264,27 @@ function quickSearch(type) {
     switch (type) {
         case 0:
             params.isSettle = 0;
-            queryname = "所有在厂"
+            queryname = "所有在厂";
             break;
         case 1:
             params.status = 0;  //报价
-            queryname = "报价"
+            queryname = "报价";
             break;
         case 2:
             params.status = 1;  //施工
-            queryname = "施工"
+            queryname = "施工";
             //document.getElementById("advancedMore").style.display='block';
             break;
         case 3:
             params.status = 2;  //完工
-            queryname = "完工"
+            queryname = "完工";
             params.balaAuditSign = 0;
             break;
         case 4:
             params.status = 2;//待结算
             params.balaAuditSign = 1;
             params.isSettle = 0;
-            queryname = "待结算"
+            queryname = "待结算";
             //document.getElementById("advancedMore").style.display='block';
             break;
         default:
@@ -339,7 +339,7 @@ function unfinish(){
         return;
     }
     if(row.status != 2){
-        showMsg("本工单未未完工,不能返工!!","W");
+        showMsg("本工单未完工,不能返工!!","W");
         return;
     }
     

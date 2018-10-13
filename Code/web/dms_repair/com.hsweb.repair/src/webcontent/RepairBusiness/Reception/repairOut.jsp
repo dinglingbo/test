@@ -7,7 +7,7 @@
   - Author(s): Administrator 
   - Date: 2018-01-25 14:17:08 
   - Description:      
--->
+--> 
 
 <head>
   <title>维修出库</title>  
@@ -68,7 +68,7 @@ a {
             valueFromSelect="true"
             onvaluechanged=""
             nullItemText="请选择..."/>
-            进场日期 从<input id="date1" name="" class="nui-datepicker" value=""/>
+            开单日期 从<input id="date1" name="" class="nui-datepicker" value=""/>
             至 <input id="date2" name="" class="nui-datepicker" value=""/>
             <a class="nui-button" iconCls="" plain="false" onclick="onSearch">
                 <span class="fa fa-search fa-lg"></span>&nbsp;查询
@@ -86,7 +86,7 @@ a {
     onshowrowdetail="onShowRowDetail" url="">
     <div property="columns">
         <div field="id" name="id" visible="false">id</div>
-        <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
+        <div field="serviceCode" name="serviceCode" width="50" headerAlign="center" align="center">单号</div>
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
         <div field="guestTel" name="guestTel" width="40" headerAlign="center" align="center">手机号码</div>
         <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
@@ -134,6 +134,7 @@ a {
 
         var fdate1 = nui.get("date1").value;
         var fdate2 = nui.get("date2").value;
+        fdate2.setDate(fdate2.getDate()+1);
 
         var sdate = nui.formatDate (fdate1,"yyyy-MM-dd");
         var edate = nui.formatDate (fdate2,"yyyy-MM-dd");
@@ -141,8 +142,8 @@ a {
            // part :1,
            carNo:nui.get("carNo").value,
            name:nui.get("name").value,
-            sEnterDate:sdate,
-            eEnterDate:edate,
+            sRecordDate:sdate,
+            eRecordDate:edate,
             status:tstatus.value,
             serviceTypeId:nui.get("serviceTypeId").value,
             isSettle:isSettle.value,
@@ -222,7 +223,7 @@ a {
     var ll = '<a  href="javascript:newrepairOut('+"'ll'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;领料</a>';//class="icon-collapse"
     var th = '<a  href="javascript:newrepairOut('+"'th'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;退货</a>';//class="icon-addnew"
     if(column.field == "action"){
-        e.cellHtml = ll +"&nbsp;&nbsp;&nbsp;" + th;
+        e.cellHtml = ll +"&nbsp;&nbsp;" + th;
     }
 });
 

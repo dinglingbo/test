@@ -8,7 +8,10 @@ var mid = null;//主表ID
 var mainRow = null;  
 var outParams={};
 var status=null; //主表状态 1待归库2归库
-
+var mainIdStr=null;
+var mainIdList=null;
+var advancedPartWin=null;
+ 
 var servieTypeList = [];
 var servieTypeHash = {};
 var mtAdvisorIdEl = null; 
@@ -33,6 +36,8 @@ $(document).ready(function(){
 	servieIdEl = nui.get("servieIdEl");
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
+	
+	advancedPartWin=nui.get('advancedPartWin');
 /*	if(actionType == "ll"){
 		mainGrid.load({serviceId:mid});
 	}
@@ -123,9 +128,11 @@ function setInitData(params){
 	status=params.row.status;
 	//serviceCode = params.row.serviceCode;
 	mainRow = params.row;
+	mainIdStr=params.row.mainIdStr;
+	mainIdList =params.row.mainIdList;
 	outParams={
         	returnSign :0,
-        	mainIdList :params.row.mainIdList	
+        	mainId :params.row.detailId	
         };
 	if(!params.id){
         //add();
@@ -201,9 +208,9 @@ function setInitData(params){
                         	vaildUpdate();
                         });
                    
-                        if(status==1){
-                        	repairOutGrid.load({params:outParams,token:token});                   	
-                        }
+//                        if(status==1){
+//                        	repairOutGrid.load({params:outParams,token:token});                   	
+//                        }
 
                     }else{
                     	showMsg("数据加载失败,请重新打开工单!","W");
@@ -276,7 +283,8 @@ function THSave(){
 		for (var i = 0; i < rows.length; i++) {
 			if(rows[i].returnSign == 0){
 //				memberSelect(rows[i]);
-				onBlack(rows[i]);
+//				onBlack(rows[i]);
+				savepartOutRtn(rows[i]);
 			}else{
 				showMsg('该条数据已归库!','W');
 				return;
@@ -287,15 +295,15 @@ function THSave(){
 	}
 }
 
-function  savepartOutRtn(data,childdata){
+function  savepartOutRtn(data){
 	if(data){
 		var paramsDataArr = [];
             //var paramsData = nui.clone(data);
             var paramsData = {};
             paramsData.serviceId = data.serviceId;
-            paramsData.mId=data.mId//待出库-配件信息的ID
+//            paramsData.mId=data.mId//待出库-配件信息的ID
             paramsData.id = data.id;
-            paramsData.mainId = data.mainId;
+            paramsData.mainId = data.mId;//待出库-配件信息的ID
             paramsData.sourceId = data.id;
             paramsData.serviceId = mainRow.id;
             paramsData.serviceCode = mainRow.serviceCode;
@@ -308,14 +316,14 @@ function  savepartOutRtn(data,childdata){
             paramsData.partNameId = data.partNameId;
             paramsData.partFullName = data.partFullName;
             paramsData.stockQty = data.stockQty;
-            paramsData.outQty = childdata.outQty;
+            paramsData.outQty = data.outQty2;
             paramsData.enterPrice = data.enterPrice;
             paramsData.billTypeId = '050206';
             paramsData.storeId = data.storeId;
             paramsData.unit = data.unit;
-            paramsData.returnMan = childdata.returnMan;
-            paramsData.returnRemark = childdata.returnRemark;
-            //paramsData.pickType = "维修出库-领料";
+//            paramsData.returnMan = childdata.returnMan;
+            paramsData.returnRemark = data.returnRemark;
+            paramsData.pickType = "维修出库-领料";
             paramsData.taxUnitPrice = data.taxUnitPrice;
             paramsData.taxAmt = data.taxAmt;
             paramsData.noTaxUnitPrice = data.noTaxUnitPrice;
@@ -467,7 +475,19 @@ function  savepartOutRtn(data,childdata){
         	}
         });
     }
-    
+    function open(){
+    	var data=mainGrid.getSelected();
+    	outParams={
+            	returnSign :0,
+            	mainId :data.detailId	
+            };
+    	if(data && status==1){
+    		repairOutGrid.load({params:outParams,token:token});
+    	 	advancedPartWin.show();
+    	}else{
+    		showMsg("请选择一条记录","W");
+    	}
+    }
 //    function onPrint(e){
 //        var main = billForm.getData();
 //        var openUrl = null;

@@ -242,23 +242,23 @@ function setInitData(params){
 //	}
 //}
 
-function openPartSelect(par,type,id,row){
-	nui.open({
-		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
-		title:"选择配件",
-		height:"400px",
-		width:"900px",
-		onload:function(){
-			var iframe = this.getIFrameEl();
-			iframe.contentWindow.SetData(par,type,id,row);
-		},
-		ondestroy:function(action){ 
-            mainGrid.load({serviceId:mid,token:token});
-            repairOutGrid.load({params:outParams,token:token});
-        }
-
-    });
-}
+//function openPartSelect(par,type,id,row){
+//	nui.open({
+//		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
+//		title:"选择配件",
+//		height:"400px",
+//		width:"900px",
+//		onload:function(){
+//			var iframe = this.getIFrameEl();
+//			iframe.contentWindow.SetData(par,type,id,row);
+//		},
+//		ondestroy:function(action){ 
+//            mainGrid.load({serviceId:mid,token:token});
+//            repairOutGrid.load({params:outParams,token:token});
+//        }
+//
+//    });
+//}
 
 
  
@@ -392,29 +392,29 @@ function  savepartOutRtn(data,childdata){
 	
 	}
 
-    function memberSelect(row){
-    	nui.open({
-    		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
-    		title:"选择归库人",
-    		height:"300px",
-    		width:"600px",
-    		onload:function(){
-    			var iframe = this.getIFrameEl();
-    			iframe.contentWindow.SetData("th");
-    		},
-    		ondestroy:function(action){
-    			if (action == "ok") {
-    				var iframe = this.getIFrameEl();
-    				var childdata = iframe.contentWindow.GetFormData();
-                    //savePartOut();     //如果点击“确定”
-                    //CloseWindow("close");
-                }
-                
-            }
-
-        });
-
-    }
+//    function memberSelect(row){
+//    	nui.open({
+//    		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
+//    		title:"选择归库人",
+//    		height:"300px",
+//    		width:"600px",
+//    		onload:function(){
+//    			var iframe = this.getIFrameEl();
+//    			iframe.contentWindow.SetData("th");
+//    		},
+//    		ondestroy:function(action){
+//    			if (action == "ok") {
+//    				var iframe = this.getIFrameEl();
+//    				var childdata = iframe.contentWindow.GetFormData();
+//                    //savePartOut();     //如果点击“确定”
+//                    //CloseWindow("close");
+//                }
+//                
+//            }
+//
+//        });
+//
+//    }
 
 
     function onGenderRenderer(e) {
@@ -426,9 +426,9 @@ function  savepartOutRtn(data,childdata){
     }
 
 
-    function tt(t){
-    	nui.alert(t);
-    }
+//    function tt(t){
+//    	nui.alert(t);
+//    }
     
     //判断mainGrid已归库数量和归库数量一致时改变状态为已归库
     function vaildUpdate(){

@@ -70,6 +70,10 @@
                     (a.id = #id#)
                 </isNotEmpty>
                 
+                <isNotEmpty prepend="and" property="billTypeId"> 
+                    (a.bill_type_id = #billTypeId#)
+                </isNotEmpty>
+                
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
                     (a.create_date &gt;= #startDate#)
@@ -133,6 +137,7 @@
 			a.bill_service_id AS billServiceId,
 			a.bill_code AS billCode,
 			a.bill_dc AS billDc,
+			a.bill_type_id as billTypeId,
 			a.rp_amt AS rpAmt,
 			a.char_off_amt AS charOffAmt,
 			a.no_char_off_amt AS noCharOffAmt,
@@ -144,7 +149,7 @@
 			a.balancer AS balancer,
 			a.balance_date AS balanceDate,
 			a.settle_sign AS settleSign,
-			a.settler_id AS settlerId,
+			a.settler_id AS settlerId, 
 			a.settler AS settler,
 			a.settle_date AS settleDate,
 			a.settle_status AS settleStatus,
@@ -175,6 +180,10 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billTypeId"> 
+                    (a.bill_type_id = #billTypeId#)
                 </isNotEmpty>
                 
                 <!--本日 昨日 本周 上周 本月 下月 -->
@@ -234,6 +243,7 @@
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
             </dynamic> 
+            order by  a.create_date desc
 				
 	</select>
 	

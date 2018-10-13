@@ -1056,7 +1056,11 @@ function onCellCommitEdit(e) {
 	if (editor.isValid() == false) {
 		showMsg("请输入数字!","W");
 		e.cancel = true;
-	}else{
+	}else if(e.value == 0){
+		showMsg("退货数量不能为0!","W");
+		e.cancel = true;
+	}
+	else {
 		var newRow = {};
 		if (e.field == "qty") {
 			if (e.value == null || e.value == '') {

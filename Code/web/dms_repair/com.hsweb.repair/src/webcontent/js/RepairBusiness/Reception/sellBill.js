@@ -270,15 +270,29 @@ function onShowRowDetail(e) {
         token: token
     });*/
 }
+var sourceUrl = webBaseUrl+"repair/RepairBusiness/Reception/printSellBill.jsp?token="+token;
 function onPrint(e){
 	var main = billForm.getData();
-	var openUrl = null;
+	main.baseUrl = baseUrl;
+	main.token = token;
 	if(main.id){
 		var params = {
             source : e,
             serviceId : main.id
 		};
-        doPrint(params);
+        //doPrint(params);	
+	nui.open({
+        url: sourceUrl,
+        title: "销售单打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(main);
+        },
+        ondestroy: function (action){
+        }
+    });
 	}else{
         showMsg("请先保存工单,再打印!","W");
         return;
@@ -1257,6 +1271,7 @@ function saveBatch(){
 			                    data.guestMobile = guest.mobile;
 			                    data.contactorName = contactor.name;
 			                    data.mobile = contactor.mobile;
+			                    data.addr = guest.addr;
 
 			                    billForm.setData(data);
 

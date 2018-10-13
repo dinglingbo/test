@@ -6,7 +6,7 @@ var data={};
 var repairApiUrl = apiPath + repairApi + "/";
 $(document).ready(function(){
 	form=new nui.Form('#form');
-
+	nui.get('outQty').enabled=false;
     mtAdvisorIdEl = nui.get("mtAdvisorId");
  
     
@@ -35,11 +35,21 @@ function onOk()
         };
 
     }
-    orderEnter();
+    if(node.mId){
+    	closeWindow("ok");
+    }
+    else{
+    	orderEnter();
+    }
 
 }
 function getData(){
     return resultData;
+}
+
+function GetFormData(){
+    var data = form.getData();
+    return data;
 }
 
 function SetData(params) {
@@ -48,6 +58,9 @@ function SetData(params) {
         form.setData(params.data);
     }
     data=params.data;
+    if(data.mId){
+    	nui.get('outQty').enabled=true;
+    }
     nui.get('mtAdvisorId').setValue(currUserName); 
     nui.get('mtAdvisorId').setText(currUserName); 
 }

@@ -7,7 +7,11 @@ var repairOutGrid = null;
 var mid = null;//主表ID
 var mainRow = null;  
 var outParams={};
-
+var status=null; //主表状态 1待归库2归库
+var mainIdStr=null;
+var mainIdList=null;
+var advancedPartWin=null;
+ 
 var servieTypeList = [];
 var servieTypeHash = {};
 var mtAdvisorIdEl = null; 
@@ -32,6 +36,8 @@ $(document).ready(function(){
 	servieIdEl = nui.get("servieIdEl");
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
+	
+	advancedPartWin=nui.get('advancedPartWin');
 /*	if(actionType == "ll"){
 		mainGrid.load({serviceId:mid});
 	}
@@ -100,12 +106,12 @@ $(document).ready(function(){
     });
 
 
-    mainGrid.on("celldblclick",function(e){
-        var field = e.field;
-        var record = e.record;
-        var column = e.column;
-        LLSave();
-    });
+//    mainGrid.on("celldblclick",function(e){
+//        var field = e.field;
+//        var record = e.record;
+//        var column = e.column;
+//        LLSave();
+//    });
 
     repairOutGrid.on("celldblclick",function(e){
         var field = e.field;
@@ -119,11 +125,14 @@ $(document).ready(function(){
 
 function setInitData(params){
 	mid = params.id;
+	status=params.row.status;
 	//serviceCode = params.row.serviceCode;
 	mainRow = params.row;
+	mainIdStr=params.row.mainIdStr;
+	mainIdList =params.row.mainIdList;
 	outParams={
         	returnSign :0,
-        	mainIdList :params.row.mainIdList	
+        	mainId :params.row.detailId	
         };
 	if(!params.id){
         //add();
@@ -195,10 +204,13 @@ function setInitData(params){
                         billForm.setData(data);
                         //mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                         //mainGrid.load({mainId:params.id});
-                        mainGrid.load({serviceId:params.id,token:token});
+                        mainGrid.load({serviceId:params.id,token:token},function(){
+                        	vaildUpdate();
+                        });
                    
-
-                        repairOutGrid.load({params:outParams,token:token});
+//                        if(status==1){
+//                        	repairOutGrid.load({params:outParams,token:token});                   	
+//                        }
 
                     }else{
                     	showMsg("数据加载失败,请重新打开工单!","W");
@@ -214,55 +226,65 @@ function setInitData(params){
     }
 }
 
+//
+//function LLSave(argument) {
+//	var rows = mainGrid.getSelecteds();
+//	if (rows.length > 0) {
+//		for (var i = 0, l = rows.length; i < l; i++) {
+//			var r = rows[i].partId;
+//			var c = rows[i].partCode;
+//			var recordId = rows[i].id;
+//			if(r){
+//				openPartSelect(r,"Id",recordId,mainRow);
+//			}else if(c){ 
+//				openPartSelect(c,"Code",recordId,mainRow);
+//			}else{
+//				showMsg('部分配件需单独领取!','W');
+//				return;
+//			}
+//		}
+//
+//	}else{
+//		showMsg('请先选择配件!','W');
+//	}
+//}
 
-function LLSave(argument) {
-	var rows = mainGrid.getSelecteds();
-	if (rows.length > 0) {
-		for (var i = 0, l = rows.length; i < l; i++) {
-			var r = rows[i].partId;
-			var c = rows[i].partCode;
-			var recordId = rows[i].id;
-			if(r){
-				openPartSelect(r,"Id",recordId,mainRow);
-			}else if(c){ 
-				openPartSelect(c,"Code",recordId,mainRow);
-			}else{
-				showMsg('部分配件需单独领取!','W');
-				return;
-			}
-		}
-
-	}else{
-		showMsg('请先选择配件!','W');
-	}
-}
-
-function openPartSelect(par,type,id,row){
-	nui.open({
-		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
-		title:"选择配件",
-		height:"400px",
-		width:"900px",
-		onload:function(){
-			var iframe = this.getIFrameEl();
-			iframe.contentWindow.SetData(par,type,id,row);
-		},
-		ondestroy:function(action){ 
-            mainGrid.load({serviceId:mid,token:token});
-            repairOutGrid.load({params:outParams,token:token});
-        }
-
-    });
-}
+//function openPartSelect(par,type,id,row){
+//	nui.open({
+//		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
+//		title:"选择配件",
+//		height:"400px",
+//		width:"900px",
+//		onload:function(){
+//			var iframe = this.getIFrameEl();
+//			iframe.contentWindow.SetData(par,type,id,row);
+//		},
+//		ondestroy:function(action){ 
+//            mainGrid.load({serviceId:mid,token:token});
+//            repairOutGrid.load({params:outParams,token:token});
+//        }
+//
+//    });
+//}
 
 
-
+ 
 function THSave(){
 	var rows = repairOutGrid.getSelecteds();
+	var data = mainGrid.getData();
+	for(var i=0;i<data.length;i++){
+		for(var j=0;j<rows.length;j++){
+			if(rows[j].mainId==data[i].detailId){
+				rows[j].mId=data[i].id;
+			}			
+		}
+	}
 	if (rows.length > 0) {
 		for (var i = 0; i < rows.length; i++) {
 			if(rows[i].returnSign == 0){
-				memberSelect(rows[i]);
+//				memberSelect(rows[i]);
+//				onBlack(rows[i]);
+				savepartOutRtn(rows[i]);
 			}else{
 				showMsg('该条数据已归库!','W');
 				return;
@@ -273,14 +295,15 @@ function THSave(){
 	}
 }
 
-function  savepartOutRtn(data,childdata){
+function  savepartOutRtn(data){
 	if(data){
 		var paramsDataArr = [];
             //var paramsData = nui.clone(data);
             var paramsData = {};
             paramsData.serviceId = data.serviceId;
+//            paramsData.mId=data.mId//待出库-配件信息的ID
             paramsData.id = data.id;
-            paramsData.mainId = data.mainId;
+            paramsData.mainId = data.mId;//待出库-配件信息的ID
             paramsData.sourceId = data.id;
             paramsData.serviceId = mainRow.id;
             paramsData.serviceCode = mainRow.serviceCode;
@@ -293,14 +316,14 @@ function  savepartOutRtn(data,childdata){
             paramsData.partNameId = data.partNameId;
             paramsData.partFullName = data.partFullName;
             paramsData.stockQty = data.stockQty;
-            paramsData.outQty = data.outQty;
+            paramsData.outQty = data.outQty2;
             paramsData.enterPrice = data.enterPrice;
             paramsData.billTypeId = '050206';
             paramsData.storeId = data.storeId;
-            paramsData.unit = data.systemUnitId;
-            paramsData.pickMan = childdata.mtAdvisor;
-            paramsData.returnRemark = childdata.remark;
-            //paramsData.pickType = "维修出库-领料";
+            paramsData.unit = data.unit;
+//            paramsData.returnMan = childdata.returnMan;
+            paramsData.returnRemark = data.returnRemark;
+            paramsData.pickType = "维修出库-领料";
             paramsData.taxUnitPrice = data.taxUnitPrice;
             paramsData.taxAmt = data.taxAmt;
             paramsData.noTaxUnitPrice = data.noTaxUnitPrice;
@@ -309,9 +332,12 @@ function  savepartOutRtn(data,childdata){
             paramsData.trueCost = data.trueCost;
             paramsData.sellUntiPrice = data.sellUntiPrice;
             paramsData.sellAmt = data.sellAmt;
-            paramsData.flag=1;//退货归库的标志
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";
+            }
+            if(paramsData.outQty>data.outQty){
+            	showMsg("归库数量超过可归数量","W");
+            	return;
             }
             paramsDataArr.push(paramsData);
 
@@ -325,14 +351,17 @@ function  savepartOutRtn(data,childdata){
             	data:{
             		data:paramsDataArr,
             		billTypeId:"050206", 
+            		flag :"1",
             		token:token
             	},
             	success:function(text){
             		var errCode = text.errCode; 
             		if(errCode == "S"){
-            			mainGrid.load({serviceId:mid,token:token});
-            			repairOutGrid.load({params:outParms,token:token});
             			showMsg('归库成功!','S');
+            			mainGrid.load({serviceId:mid,token:token},function(){
+            				vaildUpdate();
+            			});
+            			repairOutGrid.load({params:outParams,token:token});           			
             		}else{
             			showMsg('归库失败!','E');
             		}
@@ -342,31 +371,58 @@ function  savepartOutRtn(data,childdata){
         	showMsg('没有需要归库的配件!','W');
         }
     }
-
-    function memberSelect(row){
-    	nui.open({
-    		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
-    		title:"选择归库人",
-    		height:"300px",
-    		width:"600px",
-    		onload:function(){
-    			var iframe = this.getIFrameEl();
-    			iframe.contentWindow.SetData("th");
-    		},
-    		ondestroy:function(action){
-    			if (action == "ok") {
+	
+	function onBlack(row) {	
+		nui.open({
+			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
+			title : "归库",
+			width : 430,
+			height : 230,
+			allowDrag : false,
+			allowResize : false,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var params = {
+					data : row
+				};
+	
+				iframe.contentWindow.SetData(params);
+			},
+			ondestroy : function(action) {
+				if (action == 'ok') {
+	
     				var iframe = this.getIFrameEl();
     				var childdata = iframe.contentWindow.GetFormData();
     				savepartOutRtn(row,childdata);
-                    //savePartOut();     //如果点击“确定”
-                    //CloseWindow("close");
-                }
-                
-            }
+				}
+			}
+		});
+	
+	}
 
-        });
-
-    }
+//    function memberSelect(row){
+//    	nui.open({
+//    		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
+//    		title:"选择归库人",
+//    		height:"300px",
+//    		width:"600px",
+//    		onload:function(){
+//    			var iframe = this.getIFrameEl();
+//    			iframe.contentWindow.SetData("th");
+//    		},
+//    		ondestroy:function(action){
+//    			if (action == "ok") {
+//    				var iframe = this.getIFrameEl();
+//    				var childdata = iframe.contentWindow.GetFormData();
+//                    //savePartOut();     //如果点击“确定”
+//                    //CloseWindow("close");
+//                }
+//                
+//            }
+//
+//        });
+//
+//    }
 
 
     function onGenderRenderer(e) {
@@ -378,24 +434,73 @@ function  savepartOutRtn(data,childdata){
     }
 
 
-    function tt(t){
-    	nui.alert(t);
+//    function tt(t){
+//    	nui.alert(t);
+//    }
+    
+    //判断mainGrid已归库数量和归库数量一致时改变状态为已归库
+    function vaildUpdate(){
+    	var count=0;
+    	var data=mainGrid.getData();
+    	if(status==2){
+    		return;
+    	}
+    	for(var i=0;i<data.length;i++){
+    		if(data[i].qty==data[i].pickQty){
+    			count=count+1;
+    		}
+    		if(count==data.length){
+    			update();
+    		}
+    	}
     }
 
-
-    function onPrint(e){
-        var main = billForm.getData();
-        var openUrl = null;
-        if(main.id){
-            var params = {
-                source : e,
-                serviceId : mainRow.id,
-                isSettle : mainRow.isSettle
+    function update(){
+        nui.ajax({
+        	url:baseUrl + "com.hsapi.repair.repairService.sureMt.updateMaintainStatus.biz.ext",
+        	type:"post",
+        	data:{
+        		id:mid,
+        		token: token
+        	},
+        	success:function(text){
+        		var errCode = text.errCode; 
+        		if(errCode == "S"){
+//        			mainGrid.load({serviceId:mid,token:token});
+//        			repairOutGrid.load({params:outParams,token:token});
+        			showMsg('更新成功!','S');
+        		}else{
+        			showMsg('更新失败!','E');
+        		}
+        	}
+        });
+    }
+    function open(){
+    	var data=mainGrid.getSelected();
+    	outParams={
+            	returnSign :0,
+            	mainId :data.detailId	
             };
-            
-            doPrint(params);
-        }else{
-            showMsg("请先保存工单,再打印!","W");
-            return;
-        }
+    	if(data && status==1){
+    		repairOutGrid.load({params:outParams,token:token});
+    	 	advancedPartWin.show();
+    	}else{
+    		showMsg("请选择一条记录","W");
+    	}
     }
+//    function onPrint(e){
+//        var main = billForm.getData();
+//        var openUrl = null;
+//        if(main.id){
+//            var params = {
+//                source : e,
+//                serviceId : mainRow.id,
+//                isSettle : mainRow.isSettle
+//            };
+//            
+//            doPrint(params);
+//        }else{
+//            showMsg("请先保存工单,再打印!","W");
+//            return;
+//        }
+//    }

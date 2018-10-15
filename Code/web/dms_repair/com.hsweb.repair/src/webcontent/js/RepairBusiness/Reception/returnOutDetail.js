@@ -226,11 +226,17 @@ function setInitData(params){
 function THSave(){
 
 	var rows = repairOutGrid.getSelecteds();
-	var data = mainGrid.getData();
-	for(var i=0;i<data.length;i++){
+	var mainData = mainGrid.getData();
+	for(var i=0;i<mainData.length;i++){
 		for(var j=0;j<rows.length;j++){
-			if(rows[j].mainId==data[i].detailId){
-				rows[j].mId=data[i].id;
+			if(rows[j].mainId==mainData[i].detailId){
+				rows[j].mId=mainData[i].id;
+				var qty=mainData[i].qty;
+	      		var pickQty=mainData[i].pickQty;
+				if(rows[j].outQty2>qty - pickQty){
+			      	showMsg("归库数量超过可归数量","W");
+			      	return;
+			      }
 			}			
 		}
 	}
@@ -240,6 +246,7 @@ function THSave(){
 				showMsg("归库数量不能为0","W");
 				return;
 			}
+	
 			if(rows[i].returnSign == 0){
 //				memberSelect(rows[i]);
 //				onBlack(rows[i]);
@@ -294,10 +301,7 @@ function  savepartOutRtn(data){
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";
             }
-            if(paramsData.outQty>data.outQty){
-            	showMsg("归库数量超过可归数量","W");
-            	return;
-            }
+      
             paramsDataArr.push(paramsData);
 
 

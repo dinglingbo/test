@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.2.4"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.2.5"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -88,9 +88,10 @@
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
             <td>
-                <div class="mini-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
-                    dataField="list" loadingText="数据加载中...">     
+                <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
+                    style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    id="search_key" url="" value="carNo"   searchField="key" 
+                    dataField="list" placeholder="请输入...">     
                     <div property="columns">
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>

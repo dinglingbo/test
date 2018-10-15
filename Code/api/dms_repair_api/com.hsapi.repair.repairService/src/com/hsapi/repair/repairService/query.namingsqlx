@@ -481,7 +481,8 @@
 			a.out_no AS outNo,
 			a.print_num AS printNum,
 			a.recorder AS recorder,
-			a.record_date AS recordDate
+			a.record_date AS recordDate,
+			a.out_qty as stockQty
 		FROM
 			pj_repair_out a
 		WHERE 1=1
@@ -490,8 +491,11 @@
             <isNotEmpty prepend="and" property="orgid">
   				 a.orgid = #orgid#
              </isNotEmpty>
-             <isNotEmpty prepend="and" property="mainIdList">
-  				a.main_id in ($mainIdList$)
+             <isNotEmpty prepend="and" property="mainId">
+  				a.main_id = #mainId#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="mainIdStr">
+  				a.main_id in ($mainIdStr$)
              </isNotEmpty>
              <isNotEmpty prepend="and" property="billTypeId">
   				a.bill_type_id = #billTypeId#

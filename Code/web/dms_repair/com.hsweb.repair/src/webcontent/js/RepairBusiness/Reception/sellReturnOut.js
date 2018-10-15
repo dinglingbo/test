@@ -176,7 +176,9 @@ function getSearchParam() {
 
 function repairOut() {
     var row = mainGrid.getSelected();
-    var mainIdList="";
+    var mainIdStr="";
+    var mainIdList=[];
+    
     innerPartGrid.load({
     	serviceId:row.id,
         token: token
@@ -184,9 +186,12 @@ function repairOut() {
     	if(innerPartGrid.data.length>0){
     		var data=innerPartGrid.getData();
     		for(var i=0;i<data.length;i++){
-    			mainIdList +=data[i].detailId+",";
+    			mainIdStr +=data[i].detailId+",";
+    			mainIdList.push({mainId : data[i].detailId});
+//    			mainIdList[i].mainId=data[i].detailId;
     		}
-    		mainIdList=mainIdList.substring(0, mainIdList.length-1);
+    		mainIdStr=mainIdStr.substring(0, mainIdStr.length-1);
+    		row.mainIdStr=mainIdStr;
     		row.mainIdList=mainIdList;
     	}
     });

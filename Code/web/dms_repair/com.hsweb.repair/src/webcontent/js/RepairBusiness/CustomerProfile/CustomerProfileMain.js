@@ -420,10 +420,30 @@ function importGuest(){
     });
 }
 
-function importCard(){
+function importCardByMobile(){
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCard.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCardByMobile.flow?token="+token,
+        title: "客户储值卡导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+
+        },
+        ondestroy: function (action)
+        {
+        	grid.load();
+        }
+    });
+}
+
+function importCardByCarNo(){
+    nui.open({
+        targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCardByCarNo.flow?token="+token,
         title: "客户储值卡导入", 
         width: 930, 
         height: 560,

@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.35"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.6"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -259,7 +259,7 @@ allowCellEdit="true" >
 		        <div field="outReturnQty" headerAlign="center" allowSort="false" visible="false" width="60" datatype="int" align="center" header="已归库数量"></div>           
 		        <div field="stockQty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="可归库数量"></div>
                 <div field="outQty2" allowSort="false" datatype="int" width="60"  headerAlign="center" header="归库数量">
-        			<input property="editor"  allowNull="false" minValue="1" decimalPlaces="0" class="mini-spinner" style="width:20%;" minWidth="20" />
+        			<input property="editor"  allowNull="false" maxValue="1000000" decimalPlaces="0" class="mini-spinner" style="width:20%;" minWidth="20" />
                 </div>
                 <div field="remark" allowSort="false" datatype="int" width="60"  headerAlign="center" header="归库备注">
         			<input property="editor"  class="mini-textbox" style="width:20%;" minWidth="20" />

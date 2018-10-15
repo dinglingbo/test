@@ -2,9 +2,12 @@
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
 var netInAmt = 0;
+var tableNum = 0;
 $(document).ready(function (){
-	 $("select#optaccount").change(function(){
-		 var myselect=document.getElementById("optaccount");
+	 $("select#optaccount"+tableNum).change(function(){
+		 var str = "";
+		 $("#paytype"+tableNum).empty();
+		 var myselect=document.getElementById("optaccount"+tableNum);
 		 var index=myselect.selectedIndex 
 		 var c  =myselect.options[index].value
 	    var json = {
@@ -16,7 +19,16 @@ $(document).ready(function (){
 			type : "post",
 			data : json,
 			success : function(data) {
-
+				for(var i = 0;i<data.list.length;i++){
+					var ss = '<td width="110" height="44" align="right">'+data.list[i].customName+'</td>'+'<td>'+'<input class="nui-textbox" id ='+data.list[i].customId
++'  style="width: 100px;">'+'</td>';
+					if(((i+1)%3)==0){
+						ss=ss+'</tr>'+'<tr>';
+					}
+					str = str+ss;
+				}
+				str='<tr>'+str+'</tr>';
+				document.getElementById('paytype0').innerHTML = str;
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				// nui.alert(jqXHR.responseText);
@@ -56,22 +68,7 @@ function setData(data){
 			console.log(jqXHR.responseText);
 		}
 	});
-	nui.ajax({
-		url : apiPath + frmApi + "/com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="+ token,
-		type : "post",
-		data : "",
-		success : function(data) {
-			var optaccount = document.getElementById('optaccount');
-			$("<option value=''>—请选择—</option>").appendTo("#optaccount");
-			for (var i = 0; i < data.settleAccount.length; i++) {
-				$("<option value="+data.settleAccount[i].id+">"+data.settleAccount[i].name+"</option>").appendTo("#optaccount");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
+	addType();
 }
 
 function onChanged() {
@@ -100,12 +97,31 @@ function onChanged() {
 
 
 function addF(){
-
-
-
+	tableNum++;
+	var str = '<div class="skbox2" id="div'+tableNum+'" name="'+tableNum+'"><table name="'+tableNum+'" width="98%" border="0" align="center" cellpadding="0" cellspacing="0"><tbody><tr><td width="50%" height="&quot;44&quot;"><select name="optaccount'+tableNum+'" id="optaccount'+tableNum+'"  style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;"></select></td><td><a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a></td></tr></tbody></table></div>';
+	var divA = document.getElementById("divd");
+    divA.innerHTML = divA.innerHTML+str;
+	addType();
 }
-function dF(){
 
-
-
+function addType(){
+		nui.ajax({
+			url : apiPath + frmApi + "/com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="+ token,
+			type : "post",
+			data : "",
+			success : function(data) {
+				for(var i = 0;i<=tableNum;i++){
+					$("#optaccount"+i).empty();
+					var optaccount = document.getElementById('optaccount'+i);
+					$("<option value=''>—请选择结算账户—</option>").appendTo("#optaccount"+i);
+					for (var j = 0; j < data.settleAccount.length; j++) {
+						$("<option value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+					}
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				// nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
 }

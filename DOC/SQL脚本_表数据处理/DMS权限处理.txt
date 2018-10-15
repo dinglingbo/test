@@ -31,6 +31,20 @@ SELECT 1368, 'role', FUNCCODE, 'function', 'default', 1, 0, '系统管理员', SYSDAT
 	)
 ) and FUNCCODE not in ('UserGuide','UserHelp','paramsConfig')
 
+INSERT INTO `dms_system`.`cap_resauth` (`PARTY_ID`, `PARTY_TYPE`, `RES_ID`, `RES_TYPE`, `TENANT_ID`, `RES_STATE`, `PARTY_SCOPE`, `CREATEUSER`, `CREATETIME`) 
+SELECT  1909, 'role', m.FUNCCODE, 'function', 'default', 1, 0, '系统管理员', SYSDATE() from app_function m
+inner join (
+SELECT b.funcgroupid, b.funcgroupname, b.parentgroup from app_funcgroup a
+inner join app_funcgroup b
+on a.funcgroupid = b.parentgroup
+where a. funcgroupname in ('预约', '工单', '采购', '库存',
+'客户','财务','报表','系统')
+union 
+SELECT c.funcgroupid, c.funcgroupname, c.parentgroup from app_funcgroup c
+where c. funcgroupname in ('预约', '工单', '采购', '库存',
+'客户','财务','报表','系统'))n
+on m.funcgroupid = n.funcgroupid
+
 
 
 DELETE from wb_common.com_tenant_menu where orgid = 84
@@ -42,4 +56,22 @@ from app_function where FUNCGROUPID in (
 		1102,1161,1162,1163,1164,1165,1241,1143,1081
 	)
 ) and FUNCCODE not in ('UserGuide','UserHelp','paramsConfig')
+
+
+DELETE from wb_common.com_tenant_menu where orgid = 121
+
+INSERT INTO `wb_common`.`com_tenant_menu` (`tenant_id`, `orgid`, `res_id`, `res_type`, 
+`res_name`, `res_parent_id`, `is_disabled`, `scope`) 
+SELECT 601, 121, M.FUNCCODE, 'function', M.FUNCNAME, M.FUNCGROUPID,  0, 'REPAIR'  from app_function m
+inner join (
+SELECT b.funcgroupid, b.funcgroupname, b.parentgroup from app_funcgroup a
+inner join app_funcgroup b
+on a.funcgroupid = b.parentgroup
+where a. funcgroupname in ('预约', '工单', '采购', '库存',
+'客户','财务','报表','系统')
+union 
+SELECT c.funcgroupid, c.funcgroupname, c.parentgroup from app_funcgroup c
+where c. funcgroupname in ('预约', '工单', '采购', '库存',
+'客户','财务','报表','系统'))n
+on m.funcgroupid = n.funcgroupid
 

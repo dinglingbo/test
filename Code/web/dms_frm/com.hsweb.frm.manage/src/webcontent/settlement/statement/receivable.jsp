@@ -12,7 +12,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.0.9"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.1.9"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 
@@ -82,7 +82,6 @@
 		h4,
 		h5,
 		h6,
-		input,
 		p {
 			margin: 0;
 			padding: 0;
@@ -180,10 +179,7 @@
 			height: 58px;
 		}
 
-		.skbox select,
-		.skbox2 select {
-			border: 0;
-		}
+
 
 		.zffs td {
 			font-size: 16px;
@@ -302,7 +298,7 @@
 		
 													</td>
 										<td height="40" class="line24">
-											<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" />
+											<input class="mini-spinner" id="deductible" name="deductible"  width="100px" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" />
 										</td>
 									</tr>
 								</tbody>
@@ -358,12 +354,13 @@
 							</div>
 						</div>
 					<div  class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-						<div class="skbox2" id="cs" name="cs">
-							<table name="account" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+						<div id="divd">
+						<div class="skbox2" id="div0" name="div0">
+							<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 								<tbody>
 									<tr>
 										<td width="50%" height="&quot;44&quot;">
-											<select name="optaccount" id="optaccount"  style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;">
+											<select name="optaccount0" id="optaccount0"  style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;">
 												
 
 											</select>
@@ -374,39 +371,19 @@
 									</tr>
 								</tbody>
 							</table>
-							<table name="paytype" width="96%" border="0" cellpadding="0" cellspacing="0">
+							<table name="paytype0" id="paytype0" width="96%" border="0" cellpadding="0" cellspacing="0">
 								<tbody>
-									<tr>
-										<td width="60" height="44" align="center">现金</td>
-										<td>
-											<input type="text" name="paytype" typeid="1" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="60" height="44" align="center">刷卡</td>
-										<td>
-											<input type="text" name="paytype" typeid="4" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="60" height="44" align="center">转账</td>
-										<td>
-											<input type="text" name="paytype" typeid="8" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="90" height="44" align="center">微信/支付宝</td>
-										<td>
-											<input type="text" name="paytype" typeid="5" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-									</tr>
+
 								</tbody>
 							</table>
 						</div>
-
-
-
-
+						</div>
 
 
 
 						<div class="pay_tcbk zffs" style="background: #f8f8f8;">
 							<div class="guazhangbz">
-									<table id="tbaddaccount" width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+									<table id="tbaddaccount" width="96%" height="100px" border="0" align="center" cellpadding="0" cellspacing="0">
 											<tbody>
 												<tr>
 													<td>

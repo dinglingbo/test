@@ -233,7 +233,7 @@ function THSave(){
 				rows[j].mId=mainData[i].id;
 				var qty=mainData[i].qty;
 	      		var pickQty=mainData[i].pickQty;
-				if(rows[j].outQty2>qty - pickQty){
+				if(rows[j].outQty2>qty - pickQty || rows[j].outQty2>rows[j].outQty-rows[j].outReturnQty){
 			      	showMsg("归库数量超过可归数量","W");
 			      	return;
 			      }
@@ -267,7 +267,7 @@ function  savepartOutRtn(data){
             //var paramsData = nui.clone(data);
             var paramsData = {};
             paramsData.serviceId = data.serviceId;
-//            paramsData.mId=data.mId//待出库-配件信息的ID
+            paramsData.mId=data.mId//待出库-配件信息的ID
             paramsData.id = data.id;
             paramsData.mainId = data.mId;//待出库-配件信息的ID
             paramsData.sourceId = data.id;

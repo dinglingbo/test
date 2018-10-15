@@ -271,15 +271,15 @@ function onShowRowDetail(e) {
     });*/
 }
 var sourceUrl = webBaseUrl+"repair/RepairBusiness/Reception/printSellBill.jsp?token="+token;
-function onPrint(e){
+function onPrint(){
 	var main = billForm.getData();
 	main.baseUrl = baseUrl;
 	main.token = token;
 	if(main.id){
-		var params = {
+		/*var params = {
             source : e,
             serviceId : main.id
-		};
+		};*/
         //doPrint(params);	
 	nui.open({
         url: sourceUrl,

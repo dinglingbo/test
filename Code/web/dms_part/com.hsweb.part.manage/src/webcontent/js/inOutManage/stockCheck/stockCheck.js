@@ -945,7 +945,7 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
+        + "com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
 function getPartInfo(params){
     var part = null;
     nui.ajax({
@@ -957,7 +957,7 @@ function getPartInfo(params){
             token: token
         },
         success : function(data) {
-            var partlist = data.partlist;
+            var partlist = data.detailList;
             if(partlist && partlist.length>0){
                 //如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
                 if(partlist.length==1){
@@ -995,7 +995,9 @@ function addInsertRow(value, row) {
         showMsg("请先选择盘点仓库!","W");
         return;
     }
-    var params = {partCode:value};
+    var formData=basicInfoForm.getData();
+    var storeId = formData.storeId;
+    var params = {partCode:value,storeId :storeId};
     var part = getPartInfo(params);
     if(part){
         params.partId = part.id;
@@ -1006,15 +1008,15 @@ function addInsertRow(value, row) {
             return;
         }
 
-        var p = {partId:part.id, storeId: storeIdEl.getValue()};
+        var p = {partId:part.partId, storeId: storeIdEl.getValue()};
         var stock = getPartPrice(p);
         var stockQty = stock.stockQty;
         var stockPrice = stock.stockPrice;
 
         var newRow = {
-            partId : part.id,
-            comPartCode : part.code,
-            comPartName : part.name,
+            partId : part.partId,
+            comPartCode : part.comPartCode,
+            comPartName : part.comPartName,
             comPartBrandId : part.partBrandId,
             comApplyCarModel : part.applyCarModel,
             comUnit : part.unit,
@@ -1029,10 +1031,10 @@ function addInsertRow(value, row) {
             exhibitPrice : 0,
             exhibitAmt : 0,
             storeId : storeIdEl.getValue(),
-            comOemCode : part.oemCode,
+            comOemCode : part.comOemCode,
             comSpec : part.spec,
-            partCode : part.code,
-            partName : part.name,
+            partCode : part.partCode,
+            partName : part.partName,
             fullName : part.fullName,
             systemUnitId : part.unit,
             enterUnitId : part.unit

@@ -360,6 +360,7 @@ function  savepartOutRtn(data){
     		}
     		if(count==data.length){
     			update();
+    			
     		}
     	}
     }
@@ -376,6 +377,7 @@ function  savepartOutRtn(data){
         		var errCode = text.errCode; 
         		if(errCode == "S"){
 //        			showMsg('更新成功!','S');
+        			status=2;
         		}else{
         			showMsg('更新失败!','E');
         		}

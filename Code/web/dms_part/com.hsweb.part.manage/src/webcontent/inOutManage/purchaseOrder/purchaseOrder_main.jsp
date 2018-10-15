@@ -68,7 +68,7 @@
 <!--                 <label style="font-family:Verdana;">配件编码：</label> -->
 <!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="100px" emptyText="订单单号" class="nui-textbox"/>
+                <input id="serviceId" width="80px" emptyText="订单单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."

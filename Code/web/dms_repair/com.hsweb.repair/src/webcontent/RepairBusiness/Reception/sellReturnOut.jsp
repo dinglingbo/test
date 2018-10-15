@@ -71,7 +71,7 @@ a {
         </table>
     </div>
 
-    <div class="nui-fit">
+<!--     <div class="nui-fit"> -->
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
@@ -98,7 +98,7 @@ a {
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>
+	              <div field="remark" name="carModel" width="70" headerAlign="center" header="备注" ></div>
 	              <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
                  </div>
          </div>
@@ -121,7 +121,7 @@ a {
 	       <div field="saleManId" headerAlign="center"  allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
       </div>
   </div>
-</div>
+<!-- </div> -->
 </div>
 </body>
 </html>

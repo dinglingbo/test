@@ -3,7 +3,27 @@ var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
 var netInAmt = 0;
 $(document).ready(function (){
-	
+	 $("select#optaccount").change(function(){
+		 var myselect=document.getElementById("optaccount");
+		 var index=myselect.selectedIndex 
+		 var c  =myselect.options[index].value
+	    var json = {
+	    		accountId:c,
+	    		token:token
+	    }
+		nui.ajax({
+			url : apiPath + frmApi + "/com.hsapi.frm.setting.queryAccountSettleType.biz.ext",
+			type : "post",
+			data : json,
+			success : function(data) {
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				// nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	 });
 });
 
 function setData(data){
@@ -42,11 +62,9 @@ function setData(data){
 		data : "",
 		success : function(data) {
 			var optaccount = document.getElementById('optaccount');
-			//optaccount.options[0].value = 0;
-			//optaccount.options[0].text = "请选择..";
+			$("<option value=''>—请选择—</option>").appendTo("#optaccount");
 			for (var i = 0; i < data.settleAccount.length; i++) {
-			optaccount.options[i].value = 0;
-			optaccount.options[i].text = data.settleAccount[i];
+				$("<option value="+data.settleAccount[i].id+">"+data.settleAccount[i].name+"</option>").appendTo("#optaccount");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -80,10 +98,14 @@ function onChanged() {
 
 }
 
+
 function addF(){
-	var deductible = nui.get("deductible").getValue()||0;
-	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
+
+
+
+}
+function dF(){
+
 
 
 }

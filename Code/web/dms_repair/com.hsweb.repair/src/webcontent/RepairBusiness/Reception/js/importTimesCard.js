@@ -87,7 +87,6 @@ function fixdata(data) { //文件流转BinaryString
 	return o;
 }
 var requiredField = {
-		name : "次卡名称",
 		carNo : "车牌号",
 	itemName: "工时名称",
 	totalTimes : "总次数",
@@ -100,7 +99,6 @@ function sure() {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
 			var newRow = {};
-			newRow.name = data[i].次卡名称||"";
 			newRow.carNo = data[i].车牌号||"";
 			newRow.itemName = data[i].工时名称||"";
 			newRow.totalTimes = data[i].总次数||"";

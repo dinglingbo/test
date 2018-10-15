@@ -89,8 +89,7 @@ function fixdata(data) { //文件流转BinaryString
 var requiredField = {
 	fullName : "客户名称",
 	mobile : "手机号码",
-	carNo: "车牌号",
-	vin : "车架号(VIN)"
+	carNo: "车牌号"
 };
 function sure() {
 	var data = mainGrid.getData();

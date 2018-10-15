@@ -12,7 +12,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.0.8"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.0.9"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 
@@ -357,8 +357,8 @@
 								</table>
 							</div>
 						</div>
-					<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-						<div class="skbox2">
+					<div  class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
+						<div class="skbox2" id="cs" name="cs">
 							<table name="account" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 								<tbody>
 									<tr>
@@ -369,7 +369,7 @@
 											</select>
 										</td>
 										<td>
-											<a class="depj" data-balloon="删除收款方式" data-balloon-pos="down" href="javascript:;" style="margin-left: 15px;"></a>
+											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
 										</td>
 									</tr>
 								</tbody>
@@ -377,60 +377,52 @@
 							<table name="paytype" width="96%" border="0" cellpadding="0" cellspacing="0">
 								<tbody>
 									<tr>
-										<td width="80" height="44" align="center">刷卡</td>
+										<td width="60" height="44" align="center">现金</td>
 										<td>
 											<input type="text" name="paytype" typeid="1" accountid="84" class="xcinput" style="width: 100px;">
 										</td>
-										<td width="80" height="44" align="center">支票</td>
+										<td width="60" height="44" align="center">刷卡</td>
 										<td>
 											<input type="text" name="paytype" typeid="4" accountid="84" class="xcinput" style="width: 100px;">
 										</td>
-										<td width="80" height="44" align="center">银行转账</td>
+										<td width="60" height="44" align="center">转账</td>
 										<td>
 											<input type="text" name="paytype" typeid="8" accountid="84" class="xcinput" style="width: 100px;">
 										</td>
-										<td width="80" height="44" align="center">支付宝</td>
+										<td width="90" height="44" align="center">微信/支付宝</td>
 										<td>
 											<input type="text" name="paytype" typeid="5" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-									</tr>
-									<tr>
-										<td width="80" height="44" align="center">微信</td>
-										<td>
-											<input type="text" name="paytype" typeid="6" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="80" height="44" align="center">其他支付</td>
-										<td>
-											<input type="text" name="paytype" typeid="3" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="80" height="44" align="center">收银家</td>
-										<td>
-											<input type="text" name="paytype" typeid="9" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<table id="tbaddaccount" width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
-								<tbody>
-									<tr>
-										<td>
-											<div class="pay_tcbk_list" style="padding: 0; margin-top: 8px;">
-												<ul>
-													<li>
-														<a href="javascript:;" id="btnaddaccount" >
-															<font onclick="addF">添加收款方式</font>
-														</a>
-													</li>
-												</ul>
-											</div>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 
+
+
+
+
+
+
 						<div class="pay_tcbk zffs" style="background: #f8f8f8;">
 							<div class="guazhangbz">
+									<table id="tbaddaccount" width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+											<tbody>
+												<tr>
+													<td>
+														<div class="pay_tcbk_list" style="padding: 0; margin-top: 8px;">
+															<ul>
+																<li>
+																	<a href="javascript:void(0);" onclick="addF()" >
+																		<font >添加收款方式</font>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>

@@ -488,7 +488,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/fullName</process:from>
+      <process:from type="query" pattern="reference">temp/carNo</process:from>
       <process:to type="query">fullName</process:to>
     </process:copy>
     <process:copy>
@@ -664,7 +664,7 @@
       <targetNode>assign16</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

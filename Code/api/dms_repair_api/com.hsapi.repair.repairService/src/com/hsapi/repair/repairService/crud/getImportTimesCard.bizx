@@ -786,6 +786,10 @@
       <process:to type="query">timesCardD/balaTimes</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="expression" pattern="reference">totalTimes-useTimes</process:from>
+      <process:to type="query">timesCardD/canUseTimes</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">itemList/itemTime</process:from>
       <process:to type="query">timesCardD/qty</process:to>
     </process:copy>

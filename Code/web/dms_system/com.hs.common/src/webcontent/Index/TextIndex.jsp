@@ -107,8 +107,7 @@ pageEncoding="UTF-8" session="false" %>
             <div class="vpanel" >
                 <div class="vpanel_heading" >
                     <i class="fa fa-eye fa-lg-custom fa-fw"></i>
-                    <span>今日工作看板</span>
-          <span style="float:right;margin-right:10px;font-size: 13px;">
+          <span >
                     <a onclick="" style="cursor: pointer;">客休息区看板</a>丨
                     <a onclick="" style="cursor: pointer;">维修车间看板</a>
                 </span>

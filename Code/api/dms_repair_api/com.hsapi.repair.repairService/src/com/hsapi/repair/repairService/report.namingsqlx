@@ -1217,4 +1217,20 @@
 
     </select>
     
+    <!--新车辆数统计，除去华胜才客户-->
+    <select id="queryNewCarByDay2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.datekey, count(1) as ct
+		from rps_guest_file_extend a
+		where a.orgid= #orgid# and a.is_settle = 1 and a.is_new_car = 1
+			  	<isNotEmpty prepend="and" property="startDate"> 
+		              a.record_date &gt;= #startDate#
+		        </isNotEmpty>
+		        <isNotEmpty prepend="and" property="endDate"> 
+		              a.record_date &lt;= #endDate#
+		        </isNotEmpty>
+		group by a.datekey
+		      
+
+    </select>
+    
 </sqlMap>

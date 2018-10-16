@@ -624,12 +624,11 @@ function onRightGridDraw(e)
             }
             break;
         case "stockOutQty":
-        	var qty=e.row.stockQty-e.row.orderQty;
-            if(qty<0)
-            { 
-                e.cellHtml = '<a style="color:red;">' + qty + '</a>';
+            if(e.value > 0)
+            {
+                e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
             }
-            break;
+            break;;
         case "operateBtn":
             e.cellHtml = //'<span class="icon-remove" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';/*'<span class="icon-add" onClick="javascript:addPart()" title="添加行">&nbsp;&nbsp;&nbsp;&nbsp;</span>' +
                         '<span class="fa fa-plus" onClick="javascript:addNewRow(true)" title="添加行">&nbsp;&nbsp;</span>' +
@@ -892,7 +891,7 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
     var part = null;
 
@@ -905,7 +904,7 @@ function getPartInfo(params){
             token: token
         },
         success : function(data) {
-            var partlist = data.detailList;
+            var partlist = data.partlist;
             if(partlist && partlist.length>0){
                 //如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
                 if(partlist.length==1){
@@ -974,30 +973,27 @@ function addInsertRow(value, row) {
         showMsg("请先选择移出仓库和移入仓库!","W");
         return;
     }
-    var formData=basicInfoForm.getData();
-    var storeId = formData.storeId;
-    var params = {partCode:value,storeId :storeId};
+    var params = {partCode:value};
     var part = getPartInfo(params);
     if(part){
-        params.partId = part.partId;
+    	params.partId = part.id;
         var newRow = {
-            partId : part.partId, 
-            comPartCode : part.comPartCode,
-            comPartName : part.comPartName,
+            partId : part.id,
+            comPartCode : part.code,
+            comPartName : part.name,
             comPartBrandId : part.partBrandId,
             comApplyCarModel : part.applyCarModel,
             comUnit : part.unit,
             orderQty : 1,
             storeId : storeIdEl.getValue(),
             receiveStoreId : receiveStoreIdEl.getValue(),
-            comOemCode : part.comOemCode,
+            comOemCode : part.oemCode,
             comSpec : part.spec,
-            partCode : part.partCode,
-            partName : part.partName,
+            partCode : part.code,
+            partName : part.name,
             fullName : part.fullName,
             systemUnitId : part.unit,
-            outUnitId : part.unit,
-            stockQty :part.stockQty 
+            outUnitId : part.unit
         };
 
         if(row){
@@ -1092,7 +1088,7 @@ function addSelectPart(){
     if(row){
         var params = {partCode:row.code};
         params.partId = row.id;
-                    
+        
         var newRow = {
             partId : row.id,
             comPartCode : row.code,

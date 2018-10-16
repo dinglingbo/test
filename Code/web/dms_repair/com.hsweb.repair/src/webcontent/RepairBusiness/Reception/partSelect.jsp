@@ -268,7 +268,7 @@
 
 
     function  savePartOut(childdata){
-        var data = mainGrid.getData();
+        var data = mainGrid.getChanges('modified');
         if(data){
             var paramsDataArr = [];
             //var paramsData = nui.clone(data); 

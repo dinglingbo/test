@@ -115,6 +115,7 @@
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link7" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="根据车牌号查询到数据" displayName="link9" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -431,6 +432,7 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link17" name="修改" displayName="连接线" type="transition">
       <sourceNode>assign12</sourceNode>
@@ -456,6 +458,7 @@
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign13</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link24" name="id=0" displayName="连接线" type="transition">
       <sourceNode>assign13</sourceNode>
@@ -550,6 +553,7 @@
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
       <targetNode>assign12</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link29" name="link29" displayName="连接线" type="transition">
       <sourceNode>assign16</sourceNode>
@@ -595,7 +599,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">carVin</process:from>
-      <process:to type="query">cond2/_expr[2]/carVin</process:to>
+      <process:to type="query">cond2/_expr[2]/vin</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

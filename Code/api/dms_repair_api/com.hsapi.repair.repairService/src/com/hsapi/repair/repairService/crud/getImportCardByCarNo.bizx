@@ -98,21 +98,6 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>transactionrollback0</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="17" y="349"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactionrollback0label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="7" y="385"/>
-    <figSize height="17" width="49"/>
-    <node>transactionrollback0</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
@@ -204,7 +189,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
     <targetConnections>link3</targetConnections>
-    <targetConnections>link39</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="1121" y="276"/>
     <size height="28" width="28"/>
     <nodeLabel>end2label</nodeLabel>
@@ -317,6 +302,7 @@
     <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend1</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" type="transition">
       <sourceNode>loopend1</sourceNode>
@@ -461,9 +447,9 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" collapsed="false" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>assign14</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="560" y="302"/>
@@ -524,12 +510,12 @@
     <node>assign8</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" collapsed="false" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>invokePojo2</targetNode>
     </sourceConnections>
-    <targetConnections>link43</targetConnections>
-    <location x="635" y="298"/>
+    <targetConnections>link22</targetConnections>
+    <location x="681" y="237"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
@@ -537,15 +523,15 @@
       <process:to type="query">member/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">list/fullName</process:from>
+      <process:from type="query" pattern="reference">guestList/fullName</process:from>
       <process:to type="query">member/guestFullName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">list/rechargeAmt</process:from>
+      <process:from type="query" pattern="reference">temp/rechargeAmt</process:from>
       <process:to type="query">member/rechargeTotalAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">list/sAmt</process:from>
+      <process:from type="query" pattern="reference">temp/sAmt</process:from>
       <process:to type="query">member/rechargeBalaAmt</process:to>
     </process:copy>
     <process:copy>
@@ -582,7 +568,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
-    <location x="630" y="334"/>
+    <location x="676" y="273"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
@@ -590,12 +576,13 @@
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign9</targetNode>
     </sourceConnections>
-    <targetConnections>link22</targetConnections>
+    <targetConnections>link12</targetConnections>
     <location x="759" y="228"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -653,20 +640,20 @@
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback1" name="事务回滚1" displayName="事务回滚" collapsed="false" type="transactionrollback">
     <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback1</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>assign19</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="1046" y="276"/>
+    <location x="978" y="259"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback1label" name="label" nodeType="label">
-    <location x="1032" y="312"/>
+    <location x="964" y="295"/>
     <figSize height="17" width="56"/>
     <node>transactionrollback1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" collapsed="false" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>loopend1</targetNode>
     </sourceConnections>
@@ -675,14 +662,6 @@
     <location x="756" y="302"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">保存数据失败</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">E</process:from>
       <process:to type="query">xErrCode</process:to>
@@ -696,7 +675,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="expandEntity" displayName="expandEntity" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>assign14</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="连接线" type="transition">
@@ -709,8 +688,8 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link25</targetConnections>
-    <location x="688" y="228"/>
+    <targetConnections>link17</targetConnections>
+    <location x="615" y="237"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -726,7 +705,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="662" y="264"/>
+    <location x="589" y="273"/>
     <figSize height="17" width="75"/>
     <node>invokePojo1</node>
   </nodes>
@@ -838,6 +817,7 @@
     <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
       <targetNode>transactioncommit0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
     <location x="1061" y="130"/>
@@ -1092,6 +1072,44 @@
     <location x="427" y="320"/>
     <figSize height="17" width="39"/>
     <node>assign21</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>end2</targetNode>
+    </sourceConnections>
+    <targetConnections>link39</targetConnections>
+    <location x="1032" y="358"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign19label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">保存数据失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
+    <location x="1027" y="394"/>
+    <figSize height="17" width="39"/>
+    <node>assign19</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactionrollback0</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="17" y="349"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactionrollback0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
+    <location x="7" y="385"/>
+    <figSize height="17" width="49"/>
+    <node>transactionrollback0</node>
   </nodes>
   <topRuler>
     <guides position="446" horizontal="true"/>

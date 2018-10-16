@@ -12,7 +12,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.1.9"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.2.6"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 
@@ -354,20 +354,22 @@
 							</div>
 						</div>
 					<div  class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-						<div id="divd">
+						<div id="dataform" >
 						<div class="skbox2" id="div0" name="div0">
 							<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 								<tbody>
 									<tr>
 										<td width="50%" height="&quot;44&quot;">
-											<select name="optaccount0" id="optaccount0"  style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;">
+											<select name="optaccount0" id="optaccount0" onchange="checkField(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;">
 												
 
 											</select>
 										</td>
 										<td>
-											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
 										</td>
+										<!-- <td>
+											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
+										</td> -->
 									</tr>
 								</tbody>
 							</table>
@@ -409,7 +411,7 @@
 											</td>
 											<td width="120" align="center">收款备注</td>
 											<td>
-												<input class="textbox" id="txtreceiptcomment" >
+												<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment" >
 											</td>
 										</tr>
 									</tbody>
@@ -476,7 +478,7 @@
 											border-radius: 5px;
 											text-decoration: none;
 											line-height: 40px;
-											margin-bottom: 20%;" href="javascript:void(0)">结算</a>
+											margin-bottom: 20%;" href="javascript:void(0)" onclick="settleOK()">结算</a>
 										</dd>
 									</td>
 

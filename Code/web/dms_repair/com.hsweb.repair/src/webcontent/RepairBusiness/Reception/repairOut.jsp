@@ -85,14 +85,14 @@ a {
     totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
     onshowrowdetail="onShowRowDetail" url="">
     <div property="columns">
-    	<div type="indexcolumn">序号</div>
+    	<div type="indexcolumn" width="15">序号</div>
         <div field="id" name="id" visible="false">id</div>
         <div field="serviceCode" name="serviceCode" width="50" headerAlign="center" align="center">单号</div>
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
         <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
         <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
-        <div field="status" name="status" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">维修进程</div>
+        <div field="status" name="status" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">进程</div>
         <div field="serviceTypeId" name="serviceTypeId" width="40" headerAlign="center" align="center">业务类型</div>
         <div field="isSettle" name="isSettle" width="40" headerAlign="center" align="center" renderer="onIsSettleRenderer">结算状态</div>
         <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">进厂日期</div>
